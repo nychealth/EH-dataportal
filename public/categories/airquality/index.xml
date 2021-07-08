@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>airquality on Environment &amp; Health Data Portal</title>
-    <link>https://nycehs.github.io/ehs-data-portal-frontend/categories/airquality/</link>
+    <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/airquality/</link>
     <description>Recent content in airquality on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 05 May 2021 08:18:56 -0400</lastBuildDate>
     
-	<atom:link href="https://nycehs.github.io/ehs-data-portal-frontend/categories/airquality/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/airquality/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Breathe Easy: NYC&#39;s Air Quality is Improving</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend/data_stories/breatheeasy/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/breatheeasy/</link>
       <pubDate>Wed, 05 May 2021 08:18:56 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend/data_stories/breatheeasy/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/breatheeasy/</guid>
       <description>NYC&amp;rsquo;s air quality has improved The air we breathe can have a major effect on our health — air pollution can make asthma worse and can cause heart disease, lung disease, strokes, and even cancer.
 Fortunately, New York City has made great strides in recent years to improve air quality. Let’s take a look.
 raw HTML within.  An air quality advisory day happens when air pollution builds up to dangerous levels.</description>
@@ -24,20 +24,20 @@ raw HTML within.  An air quality advisory day happens when air pollution builds 
     
     <item>
       <title>Asthma</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend/data_explorer/asthma_mm/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma_mm/</link>
       <pubDate>Wed, 14 Apr 2021 13:38:16 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend/data_explorer/asthma_mm/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma_mm/</guid>
       <description>Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.
 Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</description>
     </item>
     
     <item>
       <title>Air quality</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend/data_explorer/airquality_mm/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/airquality_mm/</link>
       <pubDate>Wed, 14 Apr 2021 13:03:17 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend/data_explorer/airquality_mm/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/airquality_mm/</guid>
       <description>Air quality is a measure of the condition of the air around us. The less air pollution there is, the better the air quality.
 Like many cities, New York City&amp;rsquo;s air contains particles, liquid droplets, gases, and other contaminants that could impact health. Two pollutants, particulate matter and ground-level ozone, are of particular health concern.
 Although New York City&amp;rsquo;s air does not currently meet federal air quality standards, it has improved significantly over the past two decades.</description>
@@ -45,10 +45,10 @@ Although New York City&amp;rsquo;s air does not currently meet federal air quali
     
     <item>
       <title>Air Quality</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend/key_topics/airquality/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/</link>
       <pubDate>Wed, 14 Apr 2021 12:32:15 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend/key_topics/airquality/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/</guid>
       <description>New York City&amp;rsquo;s air contains particles, drops of liquid, gasses, and other pollution that can affect health. Bad air quality can be particularly dangerous for older adults, children, and people with heart or lung conditions.
 Air quality varies from neighborhood to neighborhood, based on local levels of emissions and many other factors. We monitor air quality using the New York City Community Air Survey (NYCCAS), NYC&amp;rsquo;s comprehensive air quality monitoring and modeling network.</description>
     </item>

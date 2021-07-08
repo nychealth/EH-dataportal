@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Data_stories on Environment &amp; Health Data Portal</title>
-    <link>https://nycehs.github.io/ehs-data-portal-frontend/data_stories/</link>
+    <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/</link>
     <description>Recent content in Data_stories on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 05 May 2021 08:18:56 -0400</lastBuildDate>
     
-	<atom:link href="https://nycehs.github.io/ehs-data-portal-frontend/data_stories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Breathe Easy: NYC&#39;s Air Quality is Improving</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend/data_stories/breatheeasy/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/breatheeasy/</link>
       <pubDate>Wed, 05 May 2021 08:18:56 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend/data_stories/breatheeasy/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/breatheeasy/</guid>
       <description>NYC&amp;rsquo;s air quality has improved The air we breathe can have a major effect on our health — air pollution can make asthma worse and can cause heart disease, lung disease, strokes, and even cancer.
 Fortunately, New York City has made great strides in recent years to improve air quality. Let’s take a look.
 raw HTML within.  An air quality advisory day happens when air pollution builds up to dangerous levels.</description>
@@ -24,20 +24,20 @@ raw HTML within.  An air quality advisory day happens when air pollution builds 
     
     <item>
       <title>A New Look for the EH Data Portal</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend/data_stories/newlook/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/newlook/</link>
       <pubDate>Wed, 05 May 2021 08:14:38 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend/data_stories/newlook/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/newlook/</guid>
       <description>We&amp;rsquo;ve made a few changes If you&amp;rsquo;re a regular to the Environment &amp;amp; Health Data Portal, then you may notice that we&amp;rsquo;ve made a few changes to our home page. We&amp;rsquo;ve kept most of the Portal&amp;rsquo;s functions the same, but we&amp;rsquo;ve rearranged things, and want to tell you about them.
 Before raw HTML within.  After raw HTML within.  Why&amp;rsquo;d we make these changes? Well, for a few reasons:</description>
     </item>
     
     <item>
       <title>Why Asthma is a Social Justice Issue</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend/data_stories/povasthma/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/povasthma/</link>
       <pubDate>Tue, 13 Apr 2021 12:44:43 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend/data_stories/povasthma/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/povasthma/</guid>
       <description>Poverty can affect how you breathe Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.
 To understand the connection between poverty and asthma, take a look at this map of poverty rates in New York City, below. The darker the color, the more residents living in poverty.
 raw HTML within.  Now, compare that to a map of emergency department visits for asthma in children age 5 to 17, below.</description>

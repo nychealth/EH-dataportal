@@ -1,4 +1,4 @@
-baseURL = "https://nycehs.github.io/ehs-data-portal-frontend/"
+baseURL = "https://nycehs.github.io/ehs-data-portal-frontend-temp/"
 canonifyURLs = "true"
 relativeURLs = "true"
 languageCode = "en-us"

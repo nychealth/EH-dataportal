@@ -19,7 +19,7 @@ Line 5:  `window.location.href = "/ehs-neighborhoodprofiles/search_results/index
 ### Update the baseUrl
 Line 1:  `baseURL = "https://blenderbox.github.io/ehs-neighborhoodprofiles/"`
 If the baseURL has a subdirectory like on GitHub Pages you will need to set : `canonifyURLs = "true”` and `relativeURLs = "true"`
-https://nycehs.github.io/ehs-data-portal-frontend/
+https://nycehs.github.io/ehs-data-portal-frontend-temp/
 
 [Blenderbox repo's github pages](https://blenderbox.github.io/ehs-neighborhoodprofiles/)
 

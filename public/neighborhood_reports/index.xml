@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Neighborhood Reports on Environment &amp; Health Data Portal</title>
-    <link>https://nycehs.github.io/ehs-data-portal-frontend/neighborhood_reports/</link>
+    <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/</link>
     <description>Recent content in Neighborhood Reports on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://nycehs.github.io/ehs-data-portal-frontend/neighborhood_reports/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
