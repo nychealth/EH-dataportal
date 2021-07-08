@@ -1,0 +1,310 @@
+{{ define "main" }}
+
+<article class="container-fluid overflow-hidden" id="primary-content">
+
+  <div class="row">
+    <div class="col-md-10 col-sm-12 mx-auto">
+      <!--start main column-->
+      <div class="row">
+        <div class="col-md-8 col-sm-12">
+          <div class="accordion-group my-4" style="padding-left:0px!important" role="tablist" id="accordion-01">
+
+            <div class="card bg-lightgray mb-2" style="border-left: 10px solid #197BBD!important;">
+
+              <a class="card-header h4 collapse collapsed" style="color:#197BBD" id="acc-button-01"
+                data-toggle="collapse" href="#panel-acc-button-01" role="tab" aria-expanded="false"
+                aria-controls="panel-acc-button-01">
+                <span class="title" role="heading" aria-level="3"><i class="fas fa-atlas"></i>&nbsp;Data
+                  Stories</span>
+              </a>
+
+              <div class="collapse show" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01"
+                data-parent="#accordion-01">
+
+                <div class="card-body">
+                  <p class="card-text">
+                    Brief explainers and infographics on key health and environment topics.
+                  </p>
+                  {{ .Content}}
+                  <hr>
+                  <a href="/data_stories/" class="btn btn-outline-gray btn-sm my-2" style="float:right">Browse
+                    all data stories&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
+
+                </div>
+
+              </div>
+              <!-- .collapse -->
+
+            </div>
+            <!-- .card -->
+
+            <div class="card bg-lightgray mb-2" style="border-left: 10px solid #DC645C!important;">
+
+              <a class="card-header h4 collapse collapsed" style="color:#DC645C" id="acc-button-02"
+                data-toggle="collapse" href="#panel-acc-button-02" role="tab" aria-expanded="false"
+                aria-controls="panel-acc-button-02">
+                <span class="title" role="heading" aria-level="3"><i
+                    class="fas fa-map-marked-alt"></i>&nbsp;Neighborhood
+                  Reports</span>
+              </a>
+
+              <div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02"
+                data-parent="#accordion-01">
+
+                <div class="card-body">
+                  <p class="card-text">
+                    Get data for your neighborhood on key environmental
+                    health topics.
+                  </p>
+
+                  <form action="/neighborhood_reports" method="get" class="autocomplete-form">
+                    <div class="row no-gutters mb-2">
+                      <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-1 fs-sm">Choose a
+                        neighborhood:</label>
+                      <div class="col-8">
+                        <div class="autocomplete-wrapper">
+                          <select name="last-neighborhood" id="last-neighborhood">
+                            <option value="">Select a neighborhood</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-4">
+                        <button type="submit" class="btn-primary btn btn-block">Get Report</button>
+                      </div>
+                    </div>
+                  </form>
+
+                  <hr>
+                </div>
+
+              </div>
+              <!-- .collapse -->
+
+            </div>
+            <!-- .card -->
+
+
+            <div class="card bg-lightgray mb-2" style="border-left: 10px solid #545454!important;">
+
+              <a class="card-header h4 collapse collapsed" style="color:#545454" id="acc-button-0x"
+                data-toggle="collapse" href="#panel-acc-button-0x" role="tab" aria-expanded="false"
+                aria-controls="panel-acc-button-0x">
+                <span class="title" role="heading" aria-level="3"><i class="fas fa-star"></i>&nbsp;Key
+                  Topics</span>
+              </a>
+
+              <div class="collapse" id="panel-acc-button-0x" role="tabpanel" aria-labelledby="acc-button-0x"
+                data-parent="#accordion-01">
+
+                <div class="card-body">
+                  <p class="card-text">
+                    Explore key topics in environmental health that affect our city and our
+                    lives.
+                  </p>
+                  <div class="row mt-2">
+
+                    {{ range where .Site.RegularPages "Section" "key_topics"}}
+                    <div class="col-md-6 col-sm-12">
+                      <a class="btn btn-outline-gray btn-sm has-icon disperse mt-2" href="{{.URL}}">
+                        <span class="fas fa-angle-right"></span>
+                        <span class="title">{{ .Title }}</span>
+                      </a>
+                    </div>
+                    {{ end}}
+
+
+                  </div>
+
+                </div>
+
+              </div>
+              <!-- .collapse -->
+
+            </div>
+            <!-- .card -->
+
+
+            <div class="card bg-lightgray mb-2" style="border-left: 10px solid #00923E!important;">
+
+              <a class="card-header h4 collapse collapsed" id="acc-button-03" data-toggle="collapse"
+                href="#panel-acc-button-03" role="tab" aria-expanded="false" aria-controls="panel-acc-button-03">
+                <span class="title" role="heading" aria-level="3"><i class="fas fa-chart-line"></i>&nbsp;Explore
+                  Data</span>
+              </a>
+
+              <div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-03"
+                data-parent="#accordion-01">
+
+                <div class="card-body">
+                  <p class="card-text">
+                    Explore data on over 250 indicators and 50 environmental health topics.
+                    Use data
+                    tools, download data sets, and find data stories.
+                  </p>
+
+
+                  <hr>
+                  <a href="/data_explorer/" class="btn btn-outline-gray btn-sm my-2" style="float:right">Browse
+                    all topics&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
+                </div>
+
+              </div>
+              <!-- .collapse -->
+
+            </div>
+            <!-- .card -->
+
+          </div>
+          <!-- .accordion-group -->
+        </div>
+
+
+        <!--RIGHT HAND CARDS-->
+        <div class="col-md-4 col-sm-12">
+          <div class="card bg-lightgray mt-4">
+            <div class="card-body">
+              <h5 class="card-title text-muted fs-sm"><i class="far fa-question-circle"></i>&nbsp;What's "the
+                environment?"</h5>
+              <p class="fs-sm">It's
+                everything around us -
+                the climate, the air and
+                water, the buildings and streets, and the society we live in - that shapes
+                our lives and our
+                health. Explore your city here.</p>
+
+
+            </div>
+          </div>
+
+          <div class="card bg-lightgray my-4">
+            <div class="card-body">
+              <h5 class="card-title text-muted fs-sm"><i class="fas fa-info-circle"></i>&nbsp;About us
+              </h5>
+              <p class="card-text fs-sm">About the Environmental Public Health Tracking Program.
+              </p>
+              <hr>
+              <a href="" class="btn btn-outline-gray btn-sm mt-2" style="float:right">About
+                Us&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+
+      <div class="row mb-4">
+        <div class="col-9 mx-auto">
+          <hr style="border-top: 3px solid #998bc0; border-radius: 5px;">
+        </div>
+      </div>
+
+
+      <!--BOTTOM CARDS-->
+      <div class="row mb-4">
+        <div class="col-md-6 col-sm-12 mb-2">
+
+          <div class="card bg-lightgray h-100">
+            <div class="card-body">
+              <h5 class="card-title text-muted"><i class="fas fa-book-open"></i>&nbsp;Teaching
+                resources</h5>
+              <p class="card-text fs-sm">Lesson plans and classroom tools that use our data.</p>
+              <hr>
+              <a href="" class="btn btn-outline-gray btn-sm mt-2" style="float:right">Go to
+                Teaching
+                Resources&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-6 col-sm-12 mb-2">
+
+          <div class="card bg-lightgray h-100 ">
+            <div class="card-body">
+              <h5 class="card-title text-muted"><i class="fab fa-buromobelexperte"></i>&nbsp;Data
+                downloads</h5>
+              <p class="card-text fs-sm">Customize and download datasets for your own research.
+              </p>
+              <hr>
+              <a href="" class="btn btn-outline-gray btn-sm mt-2" style="float:right">Go to Data
+                Downloads&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+    <!--end main column-->
+  </div>
+
+
+
+
+</article>
+{{ end }}
+
+
+
+
+{{ define "js_bot" }}
+
+{{ $js := resources.Get "js/accessible-autocomplete.min.js" }}
+{{ $secureJS := $js }}
+<script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+
+{{ $js := resources.Get "js/accessible-autocomplete.min.js.map" }}
+
+{{ $js := resources.Get "js/uhflist.js" }}
+{{ $secureJS := $js }}
+<script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+
+<script type="text/javascript">
+  // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
+  function PopulateDropDownList() {
+    //Build an array containing Neighborhood records.
+    //UHFList.js contains a variable 'neighborhoods' with names zips and ids
+
+    var ddlNeighborhoods = document.getElementById("last-neighborhood");
+
+    //Add the Options to the DropDownList.
+    for (var i = 0; i < neighborhoods.length; i++) {
+      var option = document.createElement("OPTION");
+
+      //Set Neighborhood Name in Text part.
+      option.innerHTML = neighborhoods[i].namezip;
+
+      //Set Neighborhood Id in Value part.
+      option.value = neighborhoods[i].page_name;
+
+      //Add the Option element to DropDownList.
+      ddlNeighborhoods.options.add(option);
+    }
+  }
+</script>
+<script type="text/javascript">
+  PopulateDropDownList();
+  var selectEl = document.querySelector('#last-neighborhood')
+  accessibleAutocomplete.enhanceSelectElement({
+    autoselect: true,
+    confirmOnBlur: true,
+    defaultValue: "",
+    minLength: 2,
+    selectElement: selectEl
+  })
+
+  var queryStringParameters = window.location.search
+  var previouslySubmitted = queryStringParameters.length > 0
+  if (previouslySubmitted) {
+    var params = new URLSearchParams(document.location.search.split('?')[1])
+    window.location = '/neighborhood_reports/' + params.get('last-neighborhood')
+  }
+</script>
+
+
+{{ end }}

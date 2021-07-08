@@ -1,0 +1,80 @@
+<button data-toggle="modal" data-target="#modal-{{.ind.indicator_data_name}}-{{ .count }}" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">{{ .ind.indicator_short_name }}</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="/visualizations/images/{{ .ind.summary_bar_svg }}" alt="Visualization showing neighborhood rank of {{ .ind.indicator_neighborhood_rank }} out of 42." width="100%" class="viz d-md-none mb-1">
+      {{ if eq (string .ind.data_value_rank) "1" }}<span class="better">Better</span>
+      {{ else if eq (string .ind.data_value_rank) "2" }}<span class="middle">Middle</span>
+      {{ else }}<span class="worse">Worse</span>
+      {{ end }}
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="/visualizations/images/{{ .ind.summary_bar_svg }}" alt="Visualization showing neighborhood rank of {{ .ind.indicator_neighborhood_rank }} out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+<!-- modal -->
+<div class="modal fade report-modal" id="modal-{{.ind.indicator_data_name}}-{{ .count }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">{{ .ind.indicator_short_name }}:<br>{{ .ind.indicator_name }}</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>{{ .location }}</strong>, the {{ lower .ind.indicator_name }} is {{ if eq (string .ind.data_value_rank) "1" }}<span class="better">Better</span>{{ else if eq (string .ind.data_value_rank) "2" }}<span class="middle">Middle</span>{{ else }}<span class="worse">Worse</span>{{ end }} than the NYC average.</p>
+        {{ .ind.indicator_description | safeHTML }}
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">{{ .location }} <span class="indicator-value">{{ .ind.data_value_geo_entity }}&#37;</span></div>
+          <div class="col-sm-4">{{ .borough }} <span class="indicator-value">{{ .ind.data_value_borough }}&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">{{ .ind.data_value_nyc }}&#37;</span></div>
+        </div>
+        {{ if isset .ind "nabe_data_note" }}
+          <div class="data-note">{{ .ind.nabe_data_note }}</div>
+        {{ end }}
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-{{.ind.indicator_data_name}}-{{ .count }}"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-{{.ind.indicator_data_name}}-{{ .count }}"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-{{.ind.indicator_data_name}}-{{ .count }}"></div>
+
+      </div>
+      <!-- .modal-body -->
+      <div class="modal-footer flex-column">
+        {{ if isset .ind "source_description" }}<p class="fs-sm mb-4"><em>Source: {{ htmlUnescape .ind.source_description }}</em></p>{{ end }}
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- .modal -->
+
+<script type="text/javascript">
+  $( "#modal-{{.ind.indicator_data_name}}-{{ .count }}" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-{{.ind.indicator_data_name}}-{{ .count }}", buildSummarySpec(NeighborhoodName,"{{.ind.indicator_data_name}}"),opt).then().catch(console.error);
+    vegaEmbed("#trend-{{.ind.indicator_data_name}}-{{ .count }}", buildTrendSpec(NeighborhoodName,"{{.ind.indicator_data_name}}"),opt).then().catch(console.error);
+    vegaEmbed("#map-{{.ind.indicator_data_name}}-{{ .count }}", buildMapSpec(NeighborhoodName,"{{.ind.indicator_data_name}}"),opt).then().catch(console.error);
+  });
+</script>

@@ -1,0 +1,67 @@
+{{ define "main" }}
+
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-4">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/key_topics/">Key Topics</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                    </ou>
+            </nav>
+        </div>
+
+        <div class="col-md-2 mr-auto"></div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 col-sm-12 ml-auto">
+
+    
+            <h2><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
+                {{ .Title }}</h2>
+    
+            {{ .Content}}
+    
+    
+            <h3>Data Stories</h3>
+            <p>Ranging through data stories:</p>
+            <hr>
+            <ul>
+            {{ range where .Site.RegularPages "Section" "data_stories" }}
+                    <li><a href="{{ .URL}}">{{ .Title }}</a></li>
+            {{ end}}    
+            </ul>
+    
+        </div>
+
+
+        <div class="col-md-3 mr-auto text-right">
+            <h4>Other Key Topics</h4>
+            <hr>
+            {{ range where .Site.RegularPages "Section" "key_topics" }}
+           <p class="my-2"><a href="{{ .URL}}">{{ .Title }}</a></p>
+            {{ end}}
+            
+        </div>
+    
+
+    </div>
+
+
+
+
+
+
+
+</article>
+
+
+
+
+
+{{end}}

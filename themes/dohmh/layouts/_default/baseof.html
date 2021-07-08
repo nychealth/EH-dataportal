@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {{- partial "head.html" . -}}
+    {{- block "js_top" . }}{{- end }}
+  </head>
+  <body>
+    {{- partial "header.html" . -}}
+    <main id="skip-header-target" role="main">
+    {{- block "main" . }}{{- end }}
+      <ul id="results"></ul>
+    </main>
+    {{- partial "footer.html" . -}}
+    {{- partial "js_bottom.html" -}}
+    {{- block "js_bot" . }}{{- end }}
+  </body>
+</html>

@@ -1,0 +1,63 @@
+{{ define "main" }}
+
+
+<article class="container-fluid" id="skip-header-target">
+
+
+    <div class="col-md-10 col-sm-12 mx-auto my-4">
+
+        <div class="row no-gutters mb-2">
+            <div class="col">
+                <nav aria-label="breadcrumb" class="my-3">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/data_explorer/">Data Explorer</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                        </ou>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+
+            <div class="col-md-4">
+                <h4><i class="fas fa-chart-line text-muted" aria-hidden="true"
+                    style="margin-right: 10px"></i>Get data:</h4>
+                {{ range .Params.indicators}}
+                    <a href="{{.URL}}" onclick="protoPopup()">{{.name}}</a>
+                    <hr>
+                {{end}}
+
+
+                <h4 style="margin-top:20px"><i class="fas fa-passport text-muted" aria-hidden="true" style="margin-right: 10px"></i>Data Stories</h4><br>
+            </div>
+
+
+            <div class="col-md-8 fs-sm">
+              <h4><i class="fas fa-info-circle text-muted" style="margin-right: 10px" aria-hidden="true"></i>About {{ .Title}}</h4>
+                {{ .Content }}
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+    </div>
+
+</article>
+
+
+<script>
+    function protoPopup() {
+        alert("This link is taking you to a dataset displayed on the old version of the EH Data Portal. To continue to the data, click OK. To return to the prototype, just hit the back button.");
+    }
+
+</script>
+
+
+{{end}}

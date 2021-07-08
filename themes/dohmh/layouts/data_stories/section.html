@@ -1,0 +1,49 @@
+{{ define "main" }}
+
+<article class="container" id="skip-header-target">
+
+    <div class="col-md-10 mx-auto mt-4">
+        <h1><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>Data Stories</h1>
+        <p>Explainers and infographics on key health and environment topics.</p>
+
+        <div class="row my-4">
+            <div class="col-md-8">
+                <h2 class="fs-sm">Data Stories</h2>
+
+                {{ range .Pages }}
+
+                <p><a href="{{ .URL}}">{{ .Title }}</a></p>
+                <hr style="margin-bottom:5px">
+                {{end}}
+
+            </div>
+
+            <div class="col-md-4">
+                <h2 class="fs-sm">Infographics</h2>
+                <p><a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Cold/index.html">Cold Weather Safety</a></p>
+                <hr style="margin-bottom:5px">
+                <p><a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Heat/index.html">Extreme Heat Safety Quiz</a>
+                </p>
+                <hr style="margin-bottom:5px">
+                <p><a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/asthma/index.html">Asthma & Housing
+                        Infographic</a></p>
+                <hr style="margin-bottom:5px">
+                <p><a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Traffic/index.html">Health Impacts of Traffic
+                        Air
+                        Pollution</a></p>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+</article>
+
+{{end}}

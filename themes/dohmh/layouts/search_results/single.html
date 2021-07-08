@@ -1,0 +1,47 @@
+{{ define "main" }}
+
+  <article class="container-fluid overflow-hidden" id="primary-content">
+    <div class="col-md-10 mx-auto my-4">
+      <h1 class="search-results-title mb-4"></h1>
+
+      <div id="data_stories" class="mb-4" hidden>
+        <h2 class="h3"><span class="text-primary"><i class="fas fa-passport" aria-hidden="true"></i></span> Data Stories</h2>
+        <p class="search-results-info"></p>
+        <hr class="mb-2" />
+      </div>
+
+      <div id="neighborhood_reports" class="mb-4" hidden>
+        <h2 class="h3"><span class="text-primary"><i class="fas fa-map-marked-alt" aria-hidden="true"></i></span> Neighborhood Reports</h2>
+        <p class="search-results-info"></p>
+        <hr class="mb-2" />
+      </div>
+
+      <div id="key_topics" class="mb-4" hidden>
+        <h2><span class="text-primary"><i class="fas fa-star" aria-hidden="true"></i></span> Key Topics</h2>
+        <p class="search-results-info"></p>
+        <hr class="mb-2" />
+      </div>
+
+      <div id="data_explorer" class="mb-4" hidden>
+        <h2><span class="text-primary"><i class="fas fa-chart-line" aria-hidden="true"></i></span> Data Explorer</h2>
+        <p class="search-results-info"></p>
+        <hr class="mb-2" />
+      </div>
+
+      <div id="other" class="mb-4" hidden>
+        <h2>Other</h2>
+        <p class="search-results-info"></p>
+        <hr />
+      </div>
+
+    </div>
+    
+  </article>
+
+{{ end }}
+
+{{ define "js_bot" }}
+  {{ $js := resources.Get "js/search-results.js" }}
+  {{ $secureJS := $js }}
+  <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+{{ end }}

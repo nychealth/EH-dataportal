@@ -1,0 +1,75 @@
+{{ define "main" }}
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+
+        <div class="col-xl-2">
+
+
+        </div>
+        <!-- .col -->
+
+
+        <!--start main content section-->
+        <div class="col-xl-8 overflow-hidden fs-rg" id="primary-content">
+
+
+
+            <div class="narrow my-2">
+                <h2>{{ .Title}}</h2>
+
+                {{ .Content}}
+
+            </div>
+
+
+
+
+
+            <footer class="narrow my-4" id="article-footer">
+
+                <div class="border-top border-dark">
+
+                    <ul class="extensible-list horizontal text-muted mt-3">
+
+                        <li>
+                            <a class="text-muted" href="mailto:trackingportal@health.nyc.gov"
+                                title="Share through email">
+                                <span class="fa fa-envelope"></span> Questions about this data story? Ideas
+                                for another one? Email us.</a>
+
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- .narrow -->
+
+            </footer>
+            <!-- #article-footer -->
+
+        </div>
+        <!-- .col -->
+
+
+        <!--right-hand column for extra resources and links-->
+        <div class="col-xl-2 border-xl-left">
+
+            <div class="narrow py-3 mt-n3 mt-xl-0 sticky-top" style="z-index: 0">
+                INSERT CATEGORIES HERE
+
+
+            </div>
+            <!-- .my-3 -->
+
+        </div>
+        <!-- .col -->
+
+    </div>
+    <!-- .row -->
+
+</article>
+<!-- #primary-content -->
+
+
+{{end}}

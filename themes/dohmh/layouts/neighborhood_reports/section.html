@@ -1,0 +1,97 @@
+{{ define "main" }}
+
+<article class="container overflow-hidden" id="primary-content">
+
+  <div class="my-5">
+    <div class="narrow my-4">
+      <h1>{{ .Title }}</h1>
+
+      {{ .Content }}
+      <div class="bg-active p-2 p-md-4 mb-4">
+        <form action="/neighborhood_reports" method="get" class="autocomplete-form">
+          <div class="row no-gutters">
+            <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-3">What NYC neighborhood are you interested in?</label>
+            <div class="col-8">
+              <div class="autocomplete-wrapper">
+                <select name="last-neighborhood" id="last-neighborhood">
+                  <option value="">Select a neighborhood</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-4">
+              <button type="submit" class="btn-primary btn btn-block">Get Report</button> 
+            </div>
+          </div>
+        </form>
+      </div>
+      <h2 class="h2 h4">Neighborhood List</h2>
+      <ul class="list-unstyled">
+        <!-- Ranges through content/neighborhood_reports/NEIGHBORHOOD/*.md -->          
+        {{ range .Sections.ByTitle }}
+          <li>
+              <a href="{{.Permalink}}">{{.Title}}</a>
+          </li>
+        {{ end }}
+      </ul>
+    </div>
+  </div>
+</article>
+{{ end }}
+
+{{ define "js_bot" }}
+
+{{ $js := resources.Get "js/accessible-autocomplete.min.js" }}
+{{ $secureJS := $js }}
+<script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+
+{{ $js := resources.Get "js/accessible-autocomplete.min.js.map" }}
+
+{{ $js := resources.Get "js/uhflist.js" }}
+{{ $secureJS := $js }}
+<script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+
+<script type="text/javascript"> 
+  // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
+  function PopulateDropDownList() {
+        //Build an array containing Neighborhood records.
+        //UHFList.js contains a variable 'neighborhoods' with names zips and ids
+        
+         var ddlNeighborhoods = document.getElementById("last-neighborhood");
+        
+         //Add the Options to the DropDownList.
+         for (var i = 0; i < neighborhoods.length; i++) {
+             var option = document.createElement("OPTION");
+
+             //Set Neighborhood Name in Text part.
+             option.innerHTML = neighborhoods[i].namezip;
+
+             //Set Neighborhood Id in Value part.
+             option.value = neighborhoods[i].page_name;
+
+             //Add the Option element to DropDownList.
+             ddlNeighborhoods.options.add(option);
+         }
+     }
+ </script>
+ <script type="text/javascript">
+   PopulateDropDownList();
+   var selectEl = document.querySelector('#last-neighborhood')
+   accessibleAutocomplete.enhanceSelectElement({
+     autoselect: true,
+     confirmOnBlur: true,
+     defaultValue: "",
+     minLength: 2,
+     selectElement: selectEl
+   })
+
+   var queryStringParameters = window.location.search
+   var previouslySubmitted = queryStringParameters.length > 0
+   if (previouslySubmitted) {
+     var params = new URLSearchParams(document.location.search.split('?')[1])
+     window.location = '/neighborhood_reports/'+ params.get('last-neighborhood')
+   }
+ </script>
+
+
+{{ end }}
+

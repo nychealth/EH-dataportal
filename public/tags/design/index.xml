@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>design on Environment &amp; Health Data Portal</title>
+    <link>https://nycehs.github.io/ehs-data-portal-frontend/tags/design/</link>
+    <description>Recent content in design on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 May 2021 08:14:38 -0400</lastBuildDate>
+    
+	<atom:link href="https://nycehs.github.io/ehs-data-portal-frontend/tags/design/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A New Look for the EH Data Portal</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend/data_stories/newlook/</link>
+      <pubDate>Wed, 05 May 2021 08:14:38 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend/data_stories/newlook/</guid>
+      <description>We&amp;rsquo;ve made a few changes If you&amp;rsquo;re a regular to the Environment &amp;amp; Health Data Portal, then you may notice that we&amp;rsquo;ve made a few changes to our home page. We&amp;rsquo;ve kept most of the Portal&amp;rsquo;s functions the same, but we&amp;rsquo;ve rearranged things, and want to tell you about them.
+Before raw HTML within.  After raw HTML within.  Why&amp;rsquo;d we make these changes? Well, for a few reasons:</description>
+    </item>
+    
+  </channel>
+</rss>

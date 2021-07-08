@@ -1,0 +1,692 @@
+
+User-agent: *
+
+
+Disallow: /data_explorer/active-design/
+
+Disallow: /data_explorer/air-quality/
+
+Disallow: /data_explorer/alcohol-access/
+
+Disallow: /data_explorer/alcohol-use/
+
+Disallow: /data_explorer/asthma/
+
+Disallow: /data_explorer/bed-bugs/
+
+Disallow: /data_explorer/birth-defects/
+
+Disallow: /data_explorer/birth-outcomes/
+
+Disallow: /data_explorer/brownfields/
+
+Disallow: /data_explorer/cancer/
+
+Disallow: /data_explorer/cancers-in-children/
+
+Disallow: /data_explorer/carbon-monoxide-incidents/
+
+Disallow: /data_explorer/carbon-monoxide-poisoning/
+
+Disallow: /data_explorer/childhood-lead-exposure/
+
+Disallow: /data_explorer/chronic-obstructive-pulmonary-disease/
+
+Disallow: /data_explorer/cigarette-smoke/
+
+Disallow: /data_explorer/citywide-air-quality/
+
+Disallow: /data_explorer/climate/
+
+Disallow: /data_explorer/climate-change/
+
+Disallow: /data_explorer/cockroaches/
+
+Disallow: /data_explorer/
+
+Disallow: /data_explorer/diabetes-high-blood-pressure-and-high-cholesterol/
+
+Disallow: /data_explorer/disparity/
+
+Disallow: /data_explorer/drinking-water-quality/
+
+Disallow: /data_explorer/energy/
+
+Disallow: /
+
+Disallow: /data_explorer/falls-among-older-adults/
+
+Disallow: /data_explorer/health-care/
+
+Disallow: /data_explorer/health-impacts-of-air-pollution/
+
+Disallow: /data_explorer/heart-attacks/
+
+Disallow: /data_explorer/housing/
+
+Disallow: /data_explorer/housing-and-neighborhoods/
+
+Disallow: /data_explorer/large-city-air-quality-comparison/
+
+Disallow: /data_explorer/lead-hazards/
+
+Disallow: /data_explorer/mice-and-rats/
+
+Disallow: /data_explorer/mortality/
+
+Disallow: /data_explorer/neighborhood-air-quality/
+
+Disallow: /data_explorer/noise/
+
+Disallow: /data_explorer/nyc-agency-pesticide-use/
+
+Disallow: /data_explorer/other-nyc-data/
+
+Disallow: /data_explorer/overweight/
+
+Disallow: /data_explorer/parks-and-public-space/
+
+Disallow: /data_explorer/pesticides/
+
+Disallow: /data_explorer/physical-activity/
+
+Disallow: /data_explorer/population-characteristics/
+
+Disallow: /data_explorer/race-and-ethnicity/
+
+Disallow: /data_explorer/restaurant-food-safety/
+
+Disallow: /data_explorer/social-and-economic-conditions/
+
+Disallow: /data_explorer/solid-waste/
+
+Disallow: /data_explorer/sugary-drink-consumption/
+
+Disallow: /data_explorer/traffic/
+
+Disallow: /data_explorer/transportation/
+
+Disallow: /data_explorer/transportation-related-injuries/
+
+Disallow: /data_explorer/vector-borne-disease/
+
+Disallow: /data_explorer/violence/
+
+Disallow: /data_explorer/vulnerability/
+
+Disallow: /data_explorer/walking-driving-and-cycling/
+
+Disallow: /data_explorer/water-supply/
+
+Disallow: /data_explorer/waterways/
+
+Disallow: /data_explorer/weather-related-illness/
+
+Disallow: /data_explorer/worker-health/
+
+Disallow: /categories/airquality/
+
+Disallow: /data_stories/breatheeasy/
+
+Disallow: /categories/
+
+Disallow: /data_stories/
+
+Disallow: /data_stories/newlook/
+
+Disallow: /tags/civic-service-design/
+
+Disallow: /tags/design/
+
+Disallow: /tags/how-we-work/
+
+Disallow: /tags/
+
+Disallow: /tags/technology/
+
+Disallow: /key_topics/childhealth/
+
+Disallow: /categories/childhealth/
+
+Disallow: /key_topics/
+
+Disallow: /categories/social/
+
+Disallow: /key_topics/social/
+
+Disallow: /categories/pests/
+
+Disallow: /key_topics/pests/
+
+Disallow: /key_topics/foodanddrink/
+
+Disallow: /categories/foodanddrink/
+
+Disallow: /categories/transportation/
+
+Disallow: /key_topics/transportation/
+
+Disallow: /key_topics/housing/
+
+Disallow: /categories/housing/
+
+Disallow: /data_explorer/asthma_mm/
+
+Disallow: /data_explorer/airquality_mm/
+
+Disallow: /key_topics/climatehealth/
+
+Disallow: /categories/climatehealth/
+
+Disallow: /key_topics/airquality/
+
+Disallow: /data_stories/povasthma/
+
+Disallow: /neighborhood_reports/bayside_little_neck/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/bedford_stuyvesant_crown_heights/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/bensonhurst_bay_ridge/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/borough_park/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/canarsie_flatlands/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/central_harlem_morningside_heights/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/chelsea_clinton/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/coney_island_sheepshead_bay/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/crotona_tremont/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/downtown_heights_slope/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/east_flatbush_flatbush/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/east_harlem/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/east_new_york/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/flushing_clearview/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/fordham_bronx_pk/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/fresh_meadows/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/gramercy_park_murray_hill/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/greenpoint/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/greenwich_village_soho/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/high_bridge_morrisania/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/hunts_point_mott_haven/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/jamaica/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/kingsbridge_riverdale/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/long_island_city_astoria/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/lower_manhattan/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/northeast_bronx/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/pelham_throgs_neck/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/port_richmond/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/ridgewood_forest_hills/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/rockaways/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/south_beach_tottenville/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/southeast_queens/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/southwest_queens/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/stapleton_st_george/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/sunset_park/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/union_square_lower_east_side/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/upper_east_side/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/upper_west_side/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/washington_heights/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/west_queens/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/williamsburg_bushwick/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/willowbrook/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/bayside_little_neck/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/bedford_stuyvesant_crown_heights/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/bensonhurst_bay_ridge/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/borough_park/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/canarsie_flatlands/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/central_harlem_morningside_heights/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/chelsea_clinton/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/coney_island_sheepshead_bay/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/crotona_tremont/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/downtown_heights_slope/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/east_flatbush_flatbush/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/east_harlem/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/east_new_york/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/flushing_clearview/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/fordham_bronx_pk/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/fresh_meadows/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/gramercy_park_murray_hill/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/greenpoint/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/greenwich_village_soho/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/high_bridge_morrisania/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/hunts_point_mott_haven/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/jamaica/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/kingsbridge_riverdale/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/long_island_city_astoria/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/lower_manhattan/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/northeast_bronx/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/pelham_throgs_neck/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/port_richmond/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/ridgewood_forest_hills/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/rockaways/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/south_beach_tottenville/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/southeast_queens/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/southwest_queens/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/stapleton_st_george/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/sunset_park/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/union_square_lower_east_side/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/upper_east_side/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/upper_west_side/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/washington_heights/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/west_queens/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/williamsburg_bushwick/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/willowbrook/asthma_and_the_environment/
+
+Disallow: /neighborhood_reports/bayside_little_neck/
+
+Disallow: /neighborhood_reports/bedford_stuyvesant_crown_heights/
+
+Disallow: /neighborhood_reports/bensonhurst_bay_ridge/
+
+Disallow: /neighborhood_reports/borough_park/
+
+Disallow: /neighborhood_reports/canarsie_flatlands/
+
+Disallow: /neighborhood_reports/central_harlem_morningside_heights/
+
+Disallow: /neighborhood_reports/chelsea_clinton/
+
+Disallow: /neighborhood_reports/bayside_little_neck/climate_and_health/
+
+Disallow: /neighborhood_reports/bedford_stuyvesant_crown_heights/climate_and_health/
+
+Disallow: /neighborhood_reports/bensonhurst_bay_ridge/climate_and_health/
+
+Disallow: /neighborhood_reports/borough_park/climate_and_health/
+
+Disallow: /neighborhood_reports/canarsie_flatlands/climate_and_health/
+
+Disallow: /neighborhood_reports/central_harlem_morningside_heights/climate_and_health/
+
+Disallow: /neighborhood_reports/chelsea_clinton/climate_and_health/
+
+Disallow: /neighborhood_reports/coney_island_sheepshead_bay/climate_and_health/
+
+Disallow: /neighborhood_reports/crotona_tremont/climate_and_health/
+
+Disallow: /neighborhood_reports/downtown_heights_slope/climate_and_health/
+
+Disallow: /neighborhood_reports/east_flatbush_flatbush/climate_and_health/
+
+Disallow: /neighborhood_reports/east_harlem/climate_and_health/
+
+Disallow: /neighborhood_reports/east_new_york/climate_and_health/
+
+Disallow: /neighborhood_reports/flushing_clearview/climate_and_health/
+
+Disallow: /neighborhood_reports/fordham_bronx_pk/climate_and_health/
+
+Disallow: /neighborhood_reports/fresh_meadows/climate_and_health/
+
+Disallow: /neighborhood_reports/gramercy_park_murray_hill/climate_and_health/
+
+Disallow: /neighborhood_reports/greenpoint/climate_and_health/
+
+Disallow: /neighborhood_reports/greenwich_village_soho/climate_and_health/
+
+Disallow: /neighborhood_reports/high_bridge_morrisania/climate_and_health/
+
+Disallow: /neighborhood_reports/hunts_point_mott_haven/climate_and_health/
+
+Disallow: /neighborhood_reports/jamaica/climate_and_health/
+
+Disallow: /neighborhood_reports/kingsbridge_riverdale/climate_and_health/
+
+Disallow: /neighborhood_reports/long_island_city_astoria/climate_and_health/
+
+Disallow: /neighborhood_reports/lower_manhattan/climate_and_health/
+
+Disallow: /neighborhood_reports/northeast_bronx/climate_and_health/
+
+Disallow: /neighborhood_reports/pelham_throgs_neck/climate_and_health/
+
+Disallow: /neighborhood_reports/port_richmond/climate_and_health/
+
+Disallow: /neighborhood_reports/ridgewood_forest_hills/climate_and_health/
+
+Disallow: /neighborhood_reports/rockaways/climate_and_health/
+
+Disallow: /neighborhood_reports/south_beach_tottenville/climate_and_health/
+
+Disallow: /neighborhood_reports/southeast_queens/climate_and_health/
+
+Disallow: /neighborhood_reports/southwest_queens/climate_and_health/
+
+Disallow: /neighborhood_reports/stapleton_st_george/climate_and_health/
+
+Disallow: /neighborhood_reports/sunset_park/climate_and_health/
+
+Disallow: /neighborhood_reports/union_square_lower_east_side/climate_and_health/
+
+Disallow: /neighborhood_reports/upper_east_side/climate_and_health/
+
+Disallow: /neighborhood_reports/upper_west_side/climate_and_health/
+
+Disallow: /neighborhood_reports/washington_heights/climate_and_health/
+
+Disallow: /neighborhood_reports/west_queens/climate_and_health/
+
+Disallow: /neighborhood_reports/williamsburg_bushwick/climate_and_health/
+
+Disallow: /neighborhood_reports/willowbrook/climate_and_health/
+
+Disallow: /neighborhood_reports/coney_island_sheepshead_bay/
+
+Disallow: /neighborhood_reports/crotona_tremont/
+
+Disallow: /neighborhood_reports/downtown_heights_slope/
+
+Disallow: /neighborhood_reports/east_flatbush_flatbush/
+
+Disallow: /neighborhood_reports/east_harlem/
+
+Disallow: /neighborhood_reports/east_new_york/
+
+Disallow: /neighborhood_reports/flushing_clearview/
+
+Disallow: /neighborhood_reports/fordham_bronx_pk/
+
+Disallow: /neighborhood_reports/fresh_meadows/
+
+Disallow: /neighborhood_reports/gramercy_park_murray_hill/
+
+Disallow: /neighborhood_reports/greenpoint/
+
+Disallow: /neighborhood_reports/greenwich_village_soho/
+
+Disallow: /neighborhood_reports/high_bridge_morrisania/
+
+Disallow: /neighborhood_reports/bayside_little_neck/housing_and_health/
+
+Disallow: /neighborhood_reports/bedford_stuyvesant_crown_heights/housing_and_health/
+
+Disallow: /neighborhood_reports/bensonhurst_bay_ridge/housing_and_health/
+
+Disallow: /neighborhood_reports/borough_park/housing_and_health/
+
+Disallow: /neighborhood_reports/canarsie_flatlands/housing_and_health/
+
+Disallow: /neighborhood_reports/central_harlem_morningside_heights/housing_and_health/
+
+Disallow: /neighborhood_reports/chelsea_clinton/housing_and_health/
+
+Disallow: /neighborhood_reports/coney_island_sheepshead_bay/housing_and_health/
+
+Disallow: /neighborhood_reports/crotona_tremont/housing_and_health/
+
+Disallow: /neighborhood_reports/downtown_heights_slope/housing_and_health/
+
+Disallow: /neighborhood_reports/east_flatbush_flatbush/housing_and_health/
+
+Disallow: /neighborhood_reports/east_harlem/housing_and_health/
+
+Disallow: /neighborhood_reports/east_new_york/housing_and_health/
+
+Disallow: /neighborhood_reports/flushing_clearview/housing_and_health/
+
+Disallow: /neighborhood_reports/fordham_bronx_pk/housing_and_health/
+
+Disallow: /neighborhood_reports/fresh_meadows/housing_and_health/
+
+Disallow: /neighborhood_reports/gramercy_park_murray_hill/housing_and_health/
+
+Disallow: /neighborhood_reports/greenpoint/housing_and_health/
+
+Disallow: /neighborhood_reports/greenwich_village_soho/housing_and_health/
+
+Disallow: /neighborhood_reports/high_bridge_morrisania/housing_and_health/
+
+Disallow: /neighborhood_reports/hunts_point_mott_haven/housing_and_health/
+
+Disallow: /neighborhood_reports/jamaica/housing_and_health/
+
+Disallow: /neighborhood_reports/kingsbridge_riverdale/housing_and_health/
+
+Disallow: /neighborhood_reports/long_island_city_astoria/housing_and_health/
+
+Disallow: /neighborhood_reports/lower_manhattan/housing_and_health/
+
+Disallow: /neighborhood_reports/northeast_bronx/housing_and_health/
+
+Disallow: /neighborhood_reports/pelham_throgs_neck/housing_and_health/
+
+Disallow: /neighborhood_reports/port_richmond/housing_and_health/
+
+Disallow: /neighborhood_reports/ridgewood_forest_hills/housing_and_health/
+
+Disallow: /neighborhood_reports/rockaways/housing_and_health/
+
+Disallow: /neighborhood_reports/south_beach_tottenville/housing_and_health/
+
+Disallow: /neighborhood_reports/southeast_queens/housing_and_health/
+
+Disallow: /neighborhood_reports/southwest_queens/housing_and_health/
+
+Disallow: /neighborhood_reports/stapleton_st_george/housing_and_health/
+
+Disallow: /neighborhood_reports/sunset_park/housing_and_health/
+
+Disallow: /neighborhood_reports/union_square_lower_east_side/housing_and_health/
+
+Disallow: /neighborhood_reports/upper_east_side/housing_and_health/
+
+Disallow: /neighborhood_reports/upper_west_side/housing_and_health/
+
+Disallow: /neighborhood_reports/washington_heights/housing_and_health/
+
+Disallow: /neighborhood_reports/west_queens/housing_and_health/
+
+Disallow: /neighborhood_reports/williamsburg_bushwick/housing_and_health/
+
+Disallow: /neighborhood_reports/willowbrook/housing_and_health/
+
+Disallow: /neighborhood_reports/hunts_point_mott_haven/
+
+Disallow: /neighborhood_reports/jamaica/
+
+Disallow: /neighborhood_reports/kingsbridge_riverdale/
+
+Disallow: /neighborhood_reports/long_island_city_astoria/
+
+Disallow: /neighborhood_reports/lower_manhattan/
+
+Disallow: /neighborhood_reports/
+
+Disallow: /neighborhood_reports/northeast_bronx/
+
+Disallow: /neighborhood_reports/bayside_little_neck/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/bedford_stuyvesant_crown_heights/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/bensonhurst_bay_ridge/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/borough_park/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/canarsie_flatlands/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/central_harlem_morningside_heights/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/chelsea_clinton/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/coney_island_sheepshead_bay/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/crotona_tremont/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/downtown_heights_slope/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/east_flatbush_flatbush/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/east_harlem/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/east_new_york/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/flushing_clearview/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/fordham_bronx_pk/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/fresh_meadows/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/gramercy_park_murray_hill/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/greenpoint/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/greenwich_village_soho/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/high_bridge_morrisania/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/hunts_point_mott_haven/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/jamaica/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/kingsbridge_riverdale/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/long_island_city_astoria/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/lower_manhattan/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/northeast_bronx/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/pelham_throgs_neck/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/port_richmond/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/ridgewood_forest_hills/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/rockaways/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/south_beach_tottenville/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/southeast_queens/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/southwest_queens/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/stapleton_st_george/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/sunset_park/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/union_square_lower_east_side/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/upper_east_side/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/upper_west_side/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/washington_heights/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/west_queens/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/williamsburg_bushwick/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/willowbrook/outdoor_air_and_health/
+
+Disallow: /neighborhood_reports/pelham_throgs_neck/
+
+Disallow: /neighborhood_reports/port_richmond/
+
+Disallow: /neighborhood_reports/ridgewood_forest_hills/
+
+Disallow: /neighborhood_reports/rockaways/
+
+Disallow: /search_results/
+
+Disallow: /neighborhood_reports/south_beach_tottenville/
+
+Disallow: /neighborhood_reports/southeast_queens/
+
+Disallow: /neighborhood_reports/southwest_queens/
+
+Disallow: /neighborhood_reports/stapleton_st_george/
+
+Disallow: /neighborhood_reports/sunset_park/
+
+Disallow: /neighborhood_reports/union_square_lower_east_side/
+
+Disallow: /neighborhood_reports/upper_east_side/
+
+Disallow: /neighborhood_reports/upper_west_side/
+
+Disallow: /neighborhood_reports/washington_heights/
+
+Disallow: /neighborhood_reports/west_queens/
+
+Disallow: /neighborhood_reports/williamsburg_bushwick/
+
+Disallow: /neighborhood_reports/willowbrook/
+

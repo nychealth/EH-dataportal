@@ -1,0 +1,34 @@
+---
+city:
+- entry: 
+  copy: "Enforces tenant and housing laws: landlords must keep homes free of pests and mold"
+  link: https://www1.nyc.gov/assets/doh/downloads/pdf/asthma/local-law-55.pdf
+- entry: 
+  copy: "Offers free Healthy Homes Community Workshops"
+  link: https://www1.nyc.gov/site/doh/health/health-topics/healthy-home-workshops.page
+- entry: 
+  copy: "Monitors air quality across neighborhoods through the NYC Community Air Survey"
+  link: https://www1.nyc.gov/site/doh/data/data-sets/air-quality-nyc-community-air-survey.page
+- entry: 
+  copy: "Follows a plan called OneNYC to create a more sustainable and equitable City"
+  link: https://onenyc.cityofnewyork.us/
+you:
+- entry: 
+  copy: "Work with your healthcare provider to create an asthma action plan"
+  link: http://www.nyc.gov/health/asthma
+- entry: 
+  copy: "Check the weather report for the air quality index and pollen counts"
+  link: http://www.weather.gov/
+- entry: 
+  copy: "If you smoke, quit. Don’t allow smoking in your home or car"
+  link: https://www1.nyc.gov/site/doh/health/health-topics/smoking-smoke-free-housing.page
+- entry: 
+  copy: "Reduce dust levels in your home. Removing clutter and cleaning regularly can help."
+  link:
+- entry: 
+  copy: "Fix leaks in your home to prevent mold. Notify your landlord. If they do not fix leaks promptly, call 311."
+  link: https://www1.nyc.gov/site/doh/health/health-topics/healthy-home.page
+data:
+- entry: 
+  copy: "More data entries go here"
+  link: 

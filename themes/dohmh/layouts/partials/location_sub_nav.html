@@ -1,0 +1,13 @@
+
+{{/* Prepraring neighborhood so it can work to define a path and context for creating a list of other reports in this neighborhood */}}
+{{ $removeTrailingSlash := strings.TrimRight "/" .neighborhood}}
+{{ $neighborhood := (print "/" $removeTrailingSlash)}}
+{{ $reports := site.GetPage $neighborhood }}
+
+{{ with $reports }}
+  {{ range sort .Pages "Title" "asc" }}
+  <a href="{{.Permalink}}" class="list-group-item list-group-item-action{{ if (eq $.report .File.BaseFileName) }} active{{ end }}" aria-current="page">
+    {{.Title}}
+  </a>
+  {{ end }}
+{{ end }}
