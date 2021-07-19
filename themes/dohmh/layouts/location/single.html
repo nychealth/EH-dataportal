@@ -111,7 +111,7 @@
                 </div>
 
                 {{ with .report_topic_data }}
-                    {{ range sort . "data_value_rank" "asc" }}
+                    {{ range sort . "data_value_rank" "desc" }}
                     {{ $location := $.Scratch.Get "location" }}
                     {{ $borough := $.Scratch.Get "borough" }}
                       {{- partial "report_indicator.html" (dict "location" $location "borough" $borough "ind" . "count" $count) -}}

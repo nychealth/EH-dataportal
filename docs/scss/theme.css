@@ -8930,13 +8930,13 @@ h2.report-info {
     .better, .middle, .worse {
       width: 78px;
       display: inline-block; } }
-.better {
+.worse {
   background-color: #F2CDD7; }
 
 .middle {
   background-color: #F2EDDD; }
 
-.worse {
+.better {
   background-color: #D1F0C8; }
 
 .comparison {
