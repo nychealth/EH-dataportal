@@ -1,0 +1,128 @@
+<!-- For keyboard users -->
+<a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
+
+<header id="global-header" role="banner">
+
+    <div class="bg-black text-white" id="nyc-top-header">
+
+        <div class="container-fluid wide">
+
+            <div class="row py-1 align-items-center justify-content-between">
+
+                <div class="col-auto">
+                    <p class="d-none d-md-flex fs-md">
+                        <a class="text-reset" href="https://www1.nyc.gov/">
+                            <strong>nyc.gov</strong>
+                        </a>
+                        <span class="mx-1" aria-hidden="true">|</span>
+                        Health
+                    </p>
+                </div>
+                <!-- .col -->
+
+                <div class="col-auto">
+
+                    <ul class="extensible-list horizontal fs-md">
+                        <li>
+                            <a class="text-reset" href="https://www1.nyc.gov/">
+                                <strong>
+                                    311
+                                </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-reset" href="https://www1.nyc.gov/home/search/index.page">
+                                <strong>
+                                    Search all NYC.gov
+                                </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
+                                <img class="d-block" src="/images/nyc-bubble-logo.svg" width="45" alt="NYC Logo">
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- .col -->
+
+            </div>
+            <!-- .row -->
+
+        </div>
+        <!-- .container-fluid -->
+
+    </div>
+    <!-- #nyc-top-header -->
+    <div class="site-header bg-primary">
+        <div class="row no-gutters justify-content-between py-2">
+
+            <!-- Menu Toggle -->
+            <div class="col-auto d-flex d-lg-none ml-auto">
+
+                <button class="no-btn-style" type="button" data-toggle="collapse"
+                    data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="fas fa-bars fa-lg"></span>
+                </button>
+
+            </div>
+            <!-- .col -->
+
+            <div class="col-auto">
+
+                <ul class="extensible-list horizontal">
+                    <li>
+                        <button class="no-btn-style" type="button" title="Language"
+                            data-toggle="collapse" data-target="#global-language"
+                            aria-controls="global-language" aria-expanded="false">
+                            <span class="sr-only">Language</span>
+                            <span class="fas fa-language fa-2x"></span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="no-btn-style" type="button" title="Search" data-toggle="collapse"
+                            data-target="#global-search" aria-controls="global-search"
+                            aria-expanded="false">
+                            <span class="sr-only">Search</span>
+                            <span class="fas fa-search fa-lg"></span>
+                        </button>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- .col -->
+
+        </div>
+        <!-- .row -->
+    </div>
+
+
+
+    <div class="container-fluid collapse d-lg-block px-0 border-lg-top" id="nav-primary">
+
+        <div class="wide">
+
+            <nav class="nav nav-pills border-bottom" role="navigation">
+                {{ $currentPage := . }}
+                {{ range .Site.Menus.main }}
+                <div class="nav-item{{ if $currentPage.IsMenuCurrent `main` . }} active{{ end }}">
+
+                    <a class="nav-link" href="{{ .URL }}" id="nav-item-{{ .Identifier }}">
+                        {{ .Pre }} {{ .Name }}
+                    </a>
+
+                </div>
+                <!-- .nav-item -->
+                {{ end }}
+                
+            </nav>
+
+        </div>
+        <!-- .wide -->
+
+    </div>
+
+</header>
+<!-- #global-header -->
