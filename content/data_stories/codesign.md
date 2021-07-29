@@ -5,6 +5,7 @@ draft: false
 tags: ["how we work","civic service design","design","technology"]
 categories: []
 keywords: []
+image: /images/ds-codesign.jpg
 ---
 ### We're making changes, and we need your help
 A few months ago, when we redesigned the home page of the Environment & Health Data Portal, we wrote that we were working toward "building a system that works: that’s intuitive and makes our information clear and easy-to-find."

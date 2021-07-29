@@ -5,6 +5,7 @@ draft: false
 tags:
 categories: ["airquality"]
 keywords: ["air quality","pollution","PM2.5","traffic","breathing","asthma","heart disease","lung disease","stroke"]
+image: /images/ds-breatheeasy.jpg
 ---
 
 ### NYC's air quality has improved

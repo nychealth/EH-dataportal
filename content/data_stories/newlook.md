@@ -5,6 +5,7 @@ draft: false
 tags: ["how we work","civic service design","design","technology"]
 categories: []
 keywords: []
+image: /images/ds-newlook.jpg
 ---
 
 ### We've made a few changes

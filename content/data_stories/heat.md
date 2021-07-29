@@ -5,6 +5,7 @@ draft: false
 tags: ["climate","heat","weather","mortality","death","climate change","air conditioner", "air conditioning"]
 categories: ["climateandhealth"]
 keywords: []
+image: /images/ds-heat.jpg
 ---
 
 Hot weather is dangerous. In New York City and across the country, more people die from extreme heat in an ordinary year than from all other natural disasters.

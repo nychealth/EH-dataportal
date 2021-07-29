@@ -6,6 +6,7 @@ image: /images/povasthma.png
 tags:
 categories: ["housing","social","childhealth"]
 keywords: ["poverty","asthma","injustice","housing","children","emergency department visits","ed visits","emergency room","social determinants"]
+image: /images/ds-povasthma.jpg
 ---
 
 ### Poverty can affect how you breathe

@@ -5,6 +5,7 @@ draft: false
 tags: ["violence","assaults","poverty"]
 categories: ["social"]
 keywords: []
+image: /images/ds-assaults.jpg
 ---
 
 ### Violence has profound effects
