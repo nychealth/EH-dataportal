@@ -6,12 +6,15 @@
   </head>
   <body>
     {{ if ne .Site.RegularPages "Section" "data_stories"}}
+    {{- partial "header-ds.html" . -}}
+    {{ end}}
+
+
+    {{ if eq .Site.RegularPages "Section" "data_stories"}}
     {{- partial "header.html" . -}}
     {{ end}}
 
-    {{ if eq .Site.RegularPages "Section" "data_stories"}}
-    {{- partial "header-ds.html" . -}}
-    {{ end}}
+
 
 
 
