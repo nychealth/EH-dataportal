@@ -1,13 +1,39 @@
 {{ define "main" }}
 
 <div class="container-fluid px-0">
-    <div style="width: 100%; height: 300px; border: 3px solid red">
-        {{ with .Params.image }}
-        <img src="{{ . }}">
-        {{ end }}
-    </div>
+
+        <div id="datastoryheader">
+            <div class="medium mt-4">
+                <h1 class="titleheader py-2">
+                    {{ .Title}}
+                </h1>
+            </div>
+
+
+        </div>
 
 </div>
+
+{{ with .Params.image }}
+<style>
+
+    #datastoryheader {
+        width: 100%;
+        height: 300px;
+        border: 3px solid red;
+        background-image: URL({{ . }});
+    }
+
+    .titleheader {    
+    color: #fff;
+    text-align: center;
+    font-size: 3em;
+    background-color: rgba(132,132,132,0.5);
+    margin-bottom: 15px;
+    border-radius: 5px;
+    }
+</style>
+{{ end }}
 
 <article class="container-fluid" id="skip-header-target">
 
@@ -26,7 +52,6 @@
 
 
             <div class="narrow my-2">
-                <h2>{{ .Title}}</h2>
 
                 {{ .Content}}
 
