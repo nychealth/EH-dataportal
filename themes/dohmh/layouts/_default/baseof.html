@@ -5,13 +5,20 @@
     {{- block "js_top" . }}{{- end }}
   </head>
   <body>
-    {{ if ne .Site.RegularPages "Section" "data_stories"}}
-    {{- partial "header-ds.html" . -}}
+
+    <!--
+      For data stories: 
+        - Regular Pages (individual data stories) to have header-ds.html
+        - DS landing page & all others to have header.html
+    -->
+
+    {{ if ne .Section "data_stories"}}
+    {{- partial "header.html" . -}}
     {{ end}}
 
 
-    {{ if eq .Site.RegularPages "Section" "data_stories"}}
-    {{- partial "header.html" . -}}
+    {{ if eq .Section "data_stories"}}
+    {{- partial "header-ds.html" . -}}
     {{ end}}
 
 
