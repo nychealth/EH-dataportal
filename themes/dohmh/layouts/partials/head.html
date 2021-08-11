@@ -9,13 +9,14 @@
   {{ if .Params.seo_title }}{{ .Params.seo_title }}{{ else }}{{ .Title }}{{ end }} &#x7c; {{ .Site.Title }}
 {{ end }}</title>
 {{ partial "seo" . }}
+{{ partial "chart" . }}
 
 <!-- jQuery (full, compressed version) -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Site specific JS -->
-{{ $js := resources.Get "js/site.js" }}
+<!-- {{ $js := resources.Get "js/site.js" }} 
 {{ $secureJS := $js }}
-<script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+<script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script> -->
 
 <!-- Font Awesome -->
 <link rel="stylesheet" href="/fontawesome/css/all.min.css">
