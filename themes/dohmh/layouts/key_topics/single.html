@@ -28,14 +28,17 @@
             {{ .Content}}
     
     
-            <h3>Data Stories</h3>
-            <p>Ranging through data stories:</p>
+
+
             <hr>
+
+            {{ range where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.relatedCategory ) }}
+            <h3>Related Data Stories</h3>
             <ul>
-            {{ range where .Site.RegularPages "Section" "data_stories" }}
                     <li><a href="{{ .URL}}">{{ .Title }}</a></li>
-            {{ end}}    
             </ul>
+            {{ end}}    
+
     
         </div>
 
