@@ -409,64 +409,64 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-treeCovP-1" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-subDistP-1" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Tree shade </span>
+      <span class="indicator-short-name">Subway access</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/treeCovP_204.svg" alt="Visualization showing neighborhood rank of 29 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/subDistP_204.svg" alt="Visualization showing neighborhood rank of 11 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/treeCovP_204.svg" alt="Visualization showing neighborhood rank of 29 out of 42." class="viz">
+      <img src="../../../visualizations/images/subDistP_204.svg" alt="Visualization showing neighborhood rank of 11 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-treeCovP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-subDistP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Tree shade :<br>Tree canopy cover (percent of land area), 2014</h2>
+        <h2 class="modal-title" id="exampleModalLabel">Subway access:<br>People living in walking distance to a subway station (percent), 2018</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>East New York</strong>, the tree canopy cover (percent of land area), 2014 is <span class="better">Better</span> than the NYC average.</p>
-        <p>The number of trees and the area shaded by them influences many neighborhood factors, such as attractiveness and lower summer temperatures that, in turn, encourage residents and visitors to walk and do other physical activity. &ldquo;Tree canopy cover&rdquo; measures the percent of a neighborhood that is covered (or shaded) by trees.</p>
+        <p>In <strong>East New York</strong>, the people living in walking distance to a subway station (percent), 2018 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Percentage of population within a quarter-mile of a subway station entrance.</p>
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
         <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">East New York <span class="indicator-value">14.8&#37;</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">15.8&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">21.1&#37;</span></div>
+          <div class="col-sm-4 text-primary">East New York <span class="indicator-value">66.0&#37;</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">54&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">48&#37;</span></div>
         </div>
         
           <div class="data-note"></div>
         
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-treeCovP-1"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-subDistP-1"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-treeCovP-1"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-subDistP-1"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-treeCovP-1"></div>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-subDistP-1"></div>
 
       </div>
       
@@ -480,11 +480,11 @@
 
 
 <script type="text/javascript">
-  $( "#modal-treeCovP-1" ).on('shown.bs.modal', function() {
+  $( "#modal-subDistP-1" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-treeCovP-1", buildSummarySpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-treeCovP-1", buildTrendSpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
-    vegaEmbed("#map-treeCovP-1", buildMapSpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
+    vegaEmbed("#summary-subDistP-1", buildSummarySpec(NeighborhoodName,"subDistP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-subDistP-1", buildTrendSpec(NeighborhoodName,"subDistP"),opt).then().catch(console.error);
+    vegaEmbed("#map-subDistP-1", buildMapSpec(NeighborhoodName,"subDistP"),opt).then().catch(console.error);
   });
 </script>
                     
@@ -725,64 +725,64 @@
   });
 </script>
                     
-                    <button data-toggle="modal" data-target="#modal-subDistP-1" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-treeCovP-1" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Subway access</span>
+      <span class="indicator-short-name">Tree shade </span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/subDistP_204.svg" alt="Visualization showing neighborhood rank of 11 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/treeCovP_204.svg" alt="Visualization showing neighborhood rank of 29 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/subDistP_204.svg" alt="Visualization showing neighborhood rank of 11 out of 42." class="viz">
+      <img src="../../../visualizations/images/treeCovP_204.svg" alt="Visualization showing neighborhood rank of 29 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-subDistP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-treeCovP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Subway access:<br>People living in walking distance to a subway station (percent), 2018</h2>
+        <h2 class="modal-title" id="exampleModalLabel">Tree shade :<br>Tree canopy cover (percent of land area), 2014</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>East New York</strong>, the people living in walking distance to a subway station (percent), 2018 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Percentage of population within a quarter-mile of a subway station entrance.</p>
+        <p>In <strong>East New York</strong>, the tree canopy cover (percent of land area), 2014 is <span class="better">Better</span> than the NYC average.</p>
+        <p>The number of trees and the area shaded by them influences many neighborhood factors, such as attractiveness and lower summer temperatures that, in turn, encourage residents and visitors to walk and do other physical activity. &ldquo;Tree canopy cover&rdquo; measures the percent of a neighborhood that is covered (or shaded) by trees.</p>
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
         <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">East New York <span class="indicator-value">66.0&#37;</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">54&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">48&#37;</span></div>
+          <div class="col-sm-4 text-primary">East New York <span class="indicator-value">14.8&#37;</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">15.8&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">21.1&#37;</span></div>
         </div>
         
           <div class="data-note"></div>
         
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-subDistP-1"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-treeCovP-1"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-subDistP-1"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-treeCovP-1"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-subDistP-1"></div>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-treeCovP-1"></div>
 
       </div>
       
@@ -796,11 +796,11 @@
 
 
 <script type="text/javascript">
-  $( "#modal-subDistP-1" ).on('shown.bs.modal', function() {
+  $( "#modal-treeCovP-1" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-subDistP-1", buildSummarySpec(NeighborhoodName,"subDistP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-subDistP-1", buildTrendSpec(NeighborhoodName,"subDistP"),opt).then().catch(console.error);
-    vegaEmbed("#map-subDistP-1", buildMapSpec(NeighborhoodName,"subDistP"),opt).then().catch(console.error);
+    vegaEmbed("#summary-treeCovP-1", buildSummarySpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-treeCovP-1", buildTrendSpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
+    vegaEmbed("#map-treeCovP-1", buildMapSpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
   });
 </script>
                   
@@ -845,85 +845,6 @@
 
                 
                     
-                    
-                    <button data-toggle="modal" data-target="#modal-poveACSP-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Poverty</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/poveACSP_204.svg" alt="Visualization showing neighborhood rank of 8 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/poveACSP_204.svg" alt="Visualization showing neighborhood rank of 8 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-poveACSP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Poverty:<br>People living in poverty (percent), 2013-17</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>East New York</strong>, the people living in poverty (percent), 2013-17 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Neighborhood poverty is a major determinant of health, since poverty deprives people of access to health and safety resources.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">East New York <span class="indicator-value">28.6&#37;</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">21.9&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">19.6&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-poveACSP-2"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-poveACSP-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-poveACSP-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-poveACSP-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-poveACSP-2", buildSummarySpec(NeighborhoodName,"poveACSP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-poveACSP-2", buildTrendSpec(NeighborhoodName,"poveACSP"),opt).then().catch(console.error);
-    vegaEmbed("#map-poveACSP-2", buildMapSpec(NeighborhoodName,"poveACSP"),opt).then().catch(console.error);
-  });
-</script>
                     
                     <button data-toggle="modal" data-target="#modal-nabSafeP-2" class="indicator-anchor">
   <div class="row align-items-center">
@@ -1080,6 +1001,85 @@
     vegaEmbed("#summary-ratRepoP-2", buildSummarySpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
     vegaEmbed("#trend-ratRepoP-2", buildTrendSpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
     vegaEmbed("#map-ratRepoP-2", buildMapSpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-poveACSP-2" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Poverty</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/poveACSP_204.svg" alt="Visualization showing neighborhood rank of 8 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/poveACSP_204.svg" alt="Visualization showing neighborhood rank of 8 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-poveACSP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Poverty:<br>People living in poverty (percent), 2013-17</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>East New York</strong>, the people living in poverty (percent), 2013-17 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Neighborhood poverty is a major determinant of health, since poverty deprives people of access to health and safety resources.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">East New York <span class="indicator-value">28.6&#37;</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">21.9&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">19.6&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-poveACSP-2"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-poveACSP-2"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-poveACSP-2"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-poveACSP-2" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-poveACSP-2", buildSummarySpec(NeighborhoodName,"poveACSP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-poveACSP-2", buildTrendSpec(NeighborhoodName,"poveACSP"),opt).then().catch(console.error);
+    vegaEmbed("#map-poveACSP-2", buildMapSpec(NeighborhoodName,"poveACSP"),opt).then().catch(console.error);
   });
 </script>
                   
@@ -1332,7 +1332,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/obesityP_204.svg" alt="Visualization showing neighborhood rank of 10 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1411,7 +1411,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/preMorAA_204.svg" alt="Visualization showing neighborhood rank of 5 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">

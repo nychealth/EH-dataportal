@@ -409,85 +409,6 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-Fine365-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">PM2.5 (Fine particles) </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Fine365_107.svg" alt="Visualization showing neighborhood rank of 11 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Fine365_107.svg" alt="Visualization showing neighborhood rank of 11 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Fine365-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">PM2.5 (Fine particles) :<br>Fine Particulate Matter (PM2.5)(Mean mcg per cubic meter) Annual Average 2018</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Hunts Point - Mott Haven</strong>, the fine particulate matter (pm2.5)(mean mcg per cubic meter) annual average 2018 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Fine particles are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Hunts Point - Mott Haven <span class="indicator-value">7.8&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">7.3&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">7&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Fine365-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Fine365-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Fine365-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Fine365-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Fine365-1", buildSummarySpec(NeighborhoodName,"Fine365"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Fine365-1", buildTrendSpec(NeighborhoodName,"Fine365"),opt).then().catch(console.error);
-    vegaEmbed("#map-Fine365-1", buildMapSpec(NeighborhoodName,"Fine365"),opt).then().catch(console.error);
-  });
-</script>
-                    
                     <button data-toggle="modal" data-target="#modal-Nitr375-1" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -724,6 +645,85 @@
     vegaEmbed("#map-Sulf383-1", buildMapSpec(NeighborhoodName,"Sulf383"),opt).then().catch(console.error);
   });
 </script>
+                    
+                    <button data-toggle="modal" data-target="#modal-Fine365-1" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">PM2.5 (Fine particles) </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Fine365_107.svg" alt="Visualization showing neighborhood rank of 11 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Fine365_107.svg" alt="Visualization showing neighborhood rank of 11 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Fine365-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">PM2.5 (Fine particles) :<br>Fine Particulate Matter (PM2.5)(Mean mcg per cubic meter) Annual Average 2018</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Hunts Point - Mott Haven</strong>, the fine particulate matter (pm2.5)(mean mcg per cubic meter) annual average 2018 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Fine particles are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Hunts Point - Mott Haven <span class="indicator-value">7.8&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">7.3&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">7&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Fine365-1"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Fine365-1"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Fine365-1"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Fine365-1" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Fine365-1", buildSummarySpec(NeighborhoodName,"Fine365"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Fine365-1", buildTrendSpec(NeighborhoodName,"Fine365"),opt).then().catch(console.error);
+    vegaEmbed("#map-Fine365-1", buildMapSpec(NeighborhoodName,"Fine365"),opt).then().catch(console.error);
+  });
+</script>
                   
               </div>
               
@@ -774,7 +774,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/PM2.648_107.svg" alt="Visualization showing neighborhood rank of 2 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -853,7 +853,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/PM2.657_107.svg" alt="Visualization showing neighborhood rank of 2 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -932,7 +932,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/PM2.651_107.svg" alt="Visualization showing neighborhood rank of 2 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1011,7 +1011,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/PM2.650_107.svg" alt="Visualization showing neighborhood rank of 1 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1090,7 +1090,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/PM2.639_107.svg" alt="Visualization showing neighborhood rank of 9 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1169,7 +1169,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/PM2.651_107.svg" alt="Visualization showing neighborhood rank of 2 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1283,6 +1283,85 @@
                 
                     
                     
+                    <button data-toggle="modal" data-target="#modal-O3-A652-3" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Deaths from ozone</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/O3-A652_107.svg" alt="Visualization showing neighborhood rank of 32 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/O3-A652_107.svg" alt="Visualization showing neighborhood rank of 32 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-O3-A652-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Deaths from ozone:<br>Deaths due to cardiac and respiratory causes among all residents 2015-2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Hunts Point - Mott Haven</strong>, the deaths due to cardiac and respiratory causes among all residents 2015-2017 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Estimating heart and respiratory deaths that can be linked to ozone is a way to understand how air pollution increases mortality.  </p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Hunts Point - Mott Haven <span class="indicator-value">3.6&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">4.6&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">4.8&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-O3-A652-3"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-O3-A652-3"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-O3-A652-3"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-O3-A652-3" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-O3-A652-3", buildSummarySpec(NeighborhoodName,"O3-A652"),opt).then().catch(console.error);
+    vegaEmbed("#trend-O3-A652-3", buildTrendSpec(NeighborhoodName,"O3-A652"),opt).then().catch(console.error);
+    vegaEmbed("#map-O3-A652-3", buildMapSpec(NeighborhoodName,"O3-A652"),opt).then().catch(console.error);
+  });
+</script>
+                    
                     <button data-toggle="modal" data-target="#modal-O3-A653-3" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -1290,7 +1369,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/O3-A653_107.svg" alt="Visualization showing neighborhood rank of 3 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1369,7 +1448,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/O3-A659_107.svg" alt="Visualization showing neighborhood rank of 2 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1448,7 +1527,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/O3-A655_107.svg" alt="Visualization showing neighborhood rank of 1 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1527,7 +1606,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/O3-A661_107.svg" alt="Visualization showing neighborhood rank of 1 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1596,85 +1675,6 @@
     vegaEmbed("#summary-O3-A661-3", buildSummarySpec(NeighborhoodName,"O3-A661"),opt).then().catch(console.error);
     vegaEmbed("#trend-O3-A661-3", buildTrendSpec(NeighborhoodName,"O3-A661"),opt).then().catch(console.error);
     vegaEmbed("#map-O3-A661-3", buildMapSpec(NeighborhoodName,"O3-A661"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-O3-A652-3" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Deaths from ozone</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/O3-A652_107.svg" alt="Visualization showing neighborhood rank of 32 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/O3-A652_107.svg" alt="Visualization showing neighborhood rank of 32 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-O3-A652-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Deaths from ozone:<br>Deaths due to cardiac and respiratory causes among all residents 2015-2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Hunts Point - Mott Haven</strong>, the deaths due to cardiac and respiratory causes among all residents 2015-2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Estimating heart and respiratory deaths that can be linked to ozone is a way to understand how air pollution increases mortality.  </p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Hunts Point - Mott Haven <span class="indicator-value">3.6&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">4.6&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">4.8&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-O3-A652-3"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-O3-A652-3"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-O3-A652-3"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-O3-A652-3" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-O3-A652-3", buildSummarySpec(NeighborhoodName,"O3-A652"),opt).then().catch(console.error);
-    vegaEmbed("#trend-O3-A652-3", buildTrendSpec(NeighborhoodName,"O3-A652"),opt).then().catch(console.error);
-    vegaEmbed("#map-O3-A652-3", buildMapSpec(NeighborhoodName,"O3-A652"),opt).then().catch(console.error);
   });
 </script>
                   
@@ -1920,85 +1920,6 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-Traf645-5" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Truck traffic</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Traf645_107.svg" alt="Visualization showing neighborhood rank of 21 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="middle">Middle</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Traf645_107.svg" alt="Visualization showing neighborhood rank of 21 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Traf645-5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Truck traffic:<br>Trucks 2016</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Hunts Point - Mott Haven</strong>, the trucks 2016 is <span class="middle">Middle</span> than the NYC average.</p>
-        <p>Traffic density is a measure of  the average number of vehicles that occupy specified area. Traffic density can influence health as a source of air pollution and traffic-related injuries. </p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Hunts Point - Mott Haven <span class="indicator-value">1.3&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">2&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">1.2&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Traf645-5"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Traf645-5"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Traf645-5"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Traf645-5" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Traf645-5", buildSummarySpec(NeighborhoodName,"Traf645"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Traf645-5", buildTrendSpec(NeighborhoodName,"Traf645"),opt).then().catch(console.error);
-    vegaEmbed("#map-Traf645-5", buildMapSpec(NeighborhoodName,"Traf645"),opt).then().catch(console.error);
-  });
-</script>
-                    
                     <button data-toggle="modal" data-target="#modal-Traf643-5" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -2006,7 +1927,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Traf643_107.svg" alt="Visualization showing neighborhood rank of 32 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -2085,7 +2006,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Traf644_107.svg" alt="Visualization showing neighborhood rank of 32 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -2154,6 +2075,85 @@
     vegaEmbed("#summary-Traf644-5", buildSummarySpec(NeighborhoodName,"Traf644"),opt).then().catch(console.error);
     vegaEmbed("#trend-Traf644-5", buildTrendSpec(NeighborhoodName,"Traf644"),opt).then().catch(console.error);
     vegaEmbed("#map-Traf644-5", buildMapSpec(NeighborhoodName,"Traf644"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-Traf645-5" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Truck traffic</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Traf645_107.svg" alt="Visualization showing neighborhood rank of 21 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="middle">Middle</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Traf645_107.svg" alt="Visualization showing neighborhood rank of 21 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Traf645-5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Truck traffic:<br>Trucks 2016</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Hunts Point - Mott Haven</strong>, the trucks 2016 is <span class="middle">Middle</span> than the NYC average.</p>
+        <p>Traffic density is a measure of  the average number of vehicles that occupy specified area. Traffic density can influence health as a source of air pollution and traffic-related injuries. </p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Hunts Point - Mott Haven <span class="indicator-value">1.3&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">2&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">1.2&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Traf645-5"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Traf645-5"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Traf645-5"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Traf645-5" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Traf645-5", buildSummarySpec(NeighborhoodName,"Traf645"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Traf645-5", buildTrendSpec(NeighborhoodName,"Traf645"),opt).then().catch(console.error);
+    vegaEmbed("#map-Traf645-5", buildMapSpec(NeighborhoodName,"Traf645"),opt).then().catch(console.error);
   });
 </script>
                   

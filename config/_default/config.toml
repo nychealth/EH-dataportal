@@ -6,6 +6,7 @@ title = "Environment & Health Data Portal"
 enableRobotsTXT = true
 metaDataFormat = "yaml"
 theme = "dohmh"
+publishDir = "docs"
 
 [menu]
 
