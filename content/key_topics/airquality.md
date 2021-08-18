@@ -4,6 +4,7 @@ date: 2021-04-14T12:32:15-04:00
 draft: false
 tags: 
 categories: [airquality]
+relatedCategory: airquality
 keywords: 
 ---
 

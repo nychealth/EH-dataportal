@@ -37,14 +37,18 @@ This code works on any template page to range through items in another content s
 {{end}}
 ```
 
-It can be elaborated on with additional conditions. This should nest an if loop, looking for data_stories where a "categories" parameter equals "airquality." 
+It can be elaborated on with additional conditions. This looks for data_stories that have a category that intersects with the key topic's relatedCategory.
 
 ```
-{{ range where .Site.Pages "Section" "data_stories" }}
-    {{ if eq "categories" "airquality"}}
-        {{ .Title }}<br>
-    {{ end}}
-{{end}}
+            {{ range where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.relatedCategory ) }}
+            <h3>Related Data Stories</h3>
+            <ul>
+                    <li><a href="{{ .URL}}">{{ .Title }}</a></li>
+            </ul>
+            {{ end}}  
 ```
 
-When we sub in "airquality" for a variable that matches the specific key topic, we can display matching Data Stories on a specific Key Topic page just by publishing a new Data Story with a cateogory that matches the Key Topic.
+For this to work, key topics need the following format in the frontmattr:
+```
+    relatedCategory: airquality
+```
