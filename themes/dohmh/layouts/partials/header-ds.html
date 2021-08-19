@@ -1,0 +1,89 @@
+<!-- For keyboard users -->
+<a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
+
+<header id="global-header" role="banner">
+
+    <div class="bg-black text-white" id="nyc-top-header">
+
+        <div class="container-fluid wide">
+
+            <div class="row py-1 align-items-center justify-content-between">
+
+                <div class="col-auto">
+                    <p class="d-none d-md-flex fs-md">
+                        <a class="text-reset" href="https://www1.nyc.gov/">
+                            <strong>nyc.gov</strong>
+                        </a>
+                        <span class="mx-1" aria-hidden="true">|</span>
+                        Health
+                    </p>
+                </div>
+                <!-- .col -->
+
+                <div class="col-auto">
+
+                    <ul class="extensible-list horizontal fs-md">
+                        <li>
+                            <a class="text-reset" href="https://www1.nyc.gov/">
+                                <strong>
+                                    311
+                                </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-reset" href="https://www1.nyc.gov/home/search/index.page">
+                                <strong>
+                                    Search all NYC.gov
+                                </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
+                                <img class="d-block" src="/images/nyc-bubble-logo.svg" width="45" alt="NYC Logo">
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- .col -->
+
+            </div>
+            <!-- .row -->
+
+        </div>
+        <!-- .container-fluid -->
+
+    </div>
+    <!-- #nyc-top-header -->
+
+    
+
+
+
+
+    <div class="container-fluid collapse d-lg-block px-0 border-lg-top" id="nav-primary">
+
+        <div class="wide">
+
+            <nav class="nav nav-pills border-bottom" role="navigation">
+                {{ $currentPage := . }}
+                {{ range .Site.Menus.main }}
+                <div class="nav-item{{ if $currentPage.IsMenuCurrent `main` . }} active{{ end }}">
+
+                    <a class="nav-link" href="{{ .URL }}" id="nav-item-{{ .Identifier }}">
+                        {{ .Pre }} {{ .Name }}
+                    </a>
+
+                </div>
+                <!-- .nav-item -->
+                {{ end }}
+                
+            </nav>
+
+        </div>
+        <!-- .wide -->
+
+    </div>
+
+</header>
+<!-- #global-header -->

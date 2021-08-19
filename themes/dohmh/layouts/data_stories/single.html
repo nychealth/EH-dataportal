@@ -1,5 +1,42 @@
 {{ define "main" }}
 
+<div class="container-fluid px-0">
+
+        <div id="datastoryheader" {{ with .Params.image }} style="background-image: URL({{ . }})"{{ end}}>
+
+            <div class="medium my-auto">
+                <h1 class="titleheader py-2 px-4">
+                    {{ .Title}}
+                </h1>
+            </div>
+
+
+        </div>
+
+</div>
+
+
+<style>
+
+    #datastoryheader {
+        width: 100%;
+        height: 400px;
+        background-size: cover;
+        display: flex;
+    }
+
+    .titleheader {    
+    color: #fff;
+    text-align: center;
+    font-size: 3em;
+    background-color: rgba(132,132,132,0.5);
+    padding-top: 75px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    }
+</style>
+
+
 <article class="container-fluid" id="skip-header-target">
 
     <div class="row">
@@ -17,7 +54,6 @@
 
 
             <div class="narrow my-2">
-                <h2>{{ .Title}}</h2>
 
                 {{ .Content}}
 

@@ -1,10 +1,11 @@
 ---
-title: "Breathe Easy: NYC's Air Quality is Improving"
+title: "Breathe easy: NYC's air quality is improving"
 date: 2021-05-05T08:18:56-04:00
 draft: false
 tags:
 categories: ["airquality"]
 keywords: ["air quality","pollution","PM2.5","traffic","breathing","asthma","heart disease","lung disease","stroke"]
+image: ../../images/ds-breatheeasy.jpg
 ---
 
 ### NYC's air quality has improved
@@ -13,9 +14,8 @@ The air we breathe can have a major effect on our health — air pollution c
 Fortunately, New York City has made great strides in recent years to improve air quality. Let’s take a look.
 
 {{< rawhtml >}}
-<div style="border: 1px solid black; width: 100%; height: 200px;">
-raw HTML within.
-</div>
+<iframe title="Chart: Better air quality means fewer dangerous days" aria-describedby="Number of days per year in New York City with air quality advisories" id="datawrapper-chart-sXhjH" src="https://datawrapper.dwcdn.net/sXhjH/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important;" height="428"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var t in a.data["datawrapper-height"]){var e=document.getElementById("datawrapper-chart-"+t);e&&(e.style.height=a.data["datawrapper-height"][t]+"px")}})}();</script>
+
 {{< /rawhtml >}}
 
 An air quality advisory day happens when air pollution builds up to dangerous levels. It means that people who are sensitive to air pollution (like people with respiratory or heart problems) should spend less time outside and avoid outdoor exercise. If the air quality is bad enough, then most people will be affected by it.
@@ -26,9 +26,8 @@ Over the years, though, the number of advisory days has gone down. That’s good
 Since the winter of 2008/2009, the Health Department has been measuring air quality through the NYC Community Air Survey (NYCCAS). It’s the largest urban air monitoring program in the USA, and measures six different kinds of air pollution at about 100 locations around the city.
 
 {{< rawhtml >}}
-<div style="border: 1px solid black; width: 100%; height: 200px;">
-raw HTML within.
-</div>
+<iframe width="800" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="NYCCAS Sites" src="//nycdohmh.maps.arcgis.com/apps/Embed/index.html?webmap=414f6c00466e456a9b8b994017cfc728&extent=-74.4827,40.5223,-73.5962,40.9116&home=true&zoom=true&previewImage=false&scale=true&disable_scroll=false&theme=light"></iframe>
+
 {{< /rawhtml >}}
 
 Because of NYCCAS, we’ve been able to measure improvements in air quality that are, in part, due to City regulations and policies. For example:
@@ -44,9 +43,8 @@ In New York City, the current PM2.5 levels contribute to an estimated 2,300 deat
 So it’s good news that since monitoring neighborhood-level air pollution began in 2009, the levels of PM2.5 have steadily gone down — which you can see in the chart below.
 
 {{< rawhtml >}}
-<div style="border: 1px solid black; width: 100%; height: 200px;">
-raw HTML within.
-</div>
+<iframe title="Chart: PM2.5 levels have decreased by 28%" aria-describedby="NYC's mean annual average of fine particulate matter (PM2.5) in the air" id="datawrapper-chart-DLHxS" src="https://datawrapper.dwcdn.net/DLHxS/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var t in a.data["datawrapper-height"]){var e=document.getElementById("datawrapper-chart-"+t);e&&(e.style.height=a.data["datawrapper-height"][t]+"px")}})}();</script>
+
 {{< /rawhtml >}}
 
 By burning heating oil, New York City's buildings are responsible for about 50 percent of the city’s PM2.5 emissions — and traffic is responsible for another 17 percent (see a data story on the Public Health Impacts of PM2.5 from Air Pollution). That means that reducing traffic and working to make sure that buildings burn cleaner fuel are great ways to clean up the air and help keep our air cleaner - and both are important parts of OneNYC, the city’s sustainability plan.
