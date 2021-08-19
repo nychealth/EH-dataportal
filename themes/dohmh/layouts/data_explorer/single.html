@@ -29,7 +29,21 @@
                 {{end}}
 
 
+                <hr class="mt-4">
                 <h4 style="margin-top:20px"><i class="fas fa-passport text-muted" aria-hidden="true" style="margin-right: 10px"></i>Data Stories</h4><br>
+                
+                {{ range where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.keyTopic)  }}
+                    <p>{{ .Title }}</p>
+                {{ end}}
+
+
+                <h4 style="margin-top:20px"><i class="fas fa-star text-muted" aria-hidden="true" style="margin-right: 10px"></i>Key Topics</h4><br>
+
+                {{ range where ( where .Site.RegularPages "Section" "key_topics") ".Params.keyTopic" "intersect" ( slice .Params.categories)  }}
+                    <a href="{{ .URL}}">{{ .Title}}</a>
+
+                {{ end}}
+
             </div>
 
 
