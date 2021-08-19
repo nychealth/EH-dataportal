@@ -32,12 +32,14 @@
 
             <hr>
 
-            {{ range where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.relatedCategory ) }}
+            <!--This displays data stories if a data story's "categories" (in its frontmatter) equals the key topic's relatedCategory tag-->
+            {{ range where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) }}
             <h3>Related Data Stories</h3>
             <ul>
                     <li><a href="{{ .URL}}">{{ .Title }}</a></li>
             </ul>
             {{ end}}    
+            <!---->
 
     
         </div>
