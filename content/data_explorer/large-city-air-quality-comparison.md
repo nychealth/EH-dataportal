@@ -3,7 +3,7 @@ title: Large City Air Quality Comparison
 date: 2021-05-28 18:02:58.756768
 draft: false
 tags: 
-categories: []
+categories: ["airquality"]
 keywords: 
 indicators: []
 ---

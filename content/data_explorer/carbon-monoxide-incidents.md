@@ -3,7 +3,7 @@ title: Carbon Monoxide Incidents
 date: 2021-05-28 18:02:58.897914
 draft: false
 tags: 
-categories: []
+categories: ["housing"]
 keywords: 
 indicators: [{"subtopic_id": 51, "internal_id": 2405, "name": "Carbon Monoxide Emergency Department Visits", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2405,719b87,51,Summarize"}, {"subtopic_id": 51, "internal_id": 2406, "name": "Carbon Monoxide Hospitalizations", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2406,719b87,51,Summarize"}, {"subtopic_id": 51, "internal_id": 38, "name": "Carbon Monoxide Incidents ", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=38,719b87,51,Summarize"}, {"subtopic_id": 51, "internal_id": 2168, "name": "Carbon Monoxide Incidents without a Detector (3 Year Avg.)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2168,719b87,51,Summarize"}]
 ---

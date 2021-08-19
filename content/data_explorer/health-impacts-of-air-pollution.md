@@ -3,7 +3,7 @@ title: Health Impacts of Air Pollution
 date: 2021-05-28 18:02:58.777148
 draft: false
 tags: 
-categories: []
+categories: ["airquality","transportation"]
 keywords: 
 indicators: [{"subtopic_id": 103, "internal_id": 2122, "name": "O3-Attributable Asthma Emergency Department Visits", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2122,719b87,103,Summarize"}, {"subtopic_id": 103, "internal_id": 2124, "name": "O3-Attributable Asthma Hospitalizations ", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2124,719b87,103,Summarize"}, {"subtopic_id": 103, "internal_id": 2121, "name": "O3-Attributable Cardiac and Respiratory Deaths ", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2121,719b87,103,Summarize"}, {"subtopic_id": 103, "internal_id": 2117, "name": "PM2.5-Attributable Asthma Emergency Department Visits ", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2117,719b87,103,Summarize"}, {"subtopic_id": 103, "internal_id": 2120, "name": "PM2.5-Attributable Cardiovascular Hospitalizations (Adults 40 Yrs and Older) ", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2120,719b87,103,Summarize"}, {"subtopic_id": 103, "internal_id": 2108, "name": "PM2.5-Attributable Deaths ", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2108,719b87,103,Summarize"}, {"subtopic_id": 103, "internal_id": 2119, "name": "PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2119,719b87,103,Summarize"}]
 ---
