@@ -32,7 +32,7 @@
                 <hr class="mt-4">
                 <h4 style="margin-top:20px"><i class="fas fa-passport text-muted" aria-hidden="true" style="margin-right: 10px"></i>Data Stories</h4><br>
                 
-                {{ range where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.keyTopic)  }}
+                {{ range where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice ".Params.categories" )}}
                     <p>{{ .Title }}</p>
                 {{ end}}
 
