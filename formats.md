@@ -6,12 +6,12 @@ Indicators can be displayed on subtopic pages. If Indicators are stored as json 
 
 ```
 indicators: {
-    "Indicator1": {
+    {
         "name" : "ED visits (adults)",
         "URL": "http://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2380,4466a0,11,Summarize"
     },
 
-    "Indicator2": {
+    {
         "name" : "ED visits (age 0-4)",
         "URL": "http://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2048,4466a0,11,Summarize"
     }
@@ -37,18 +37,26 @@ This code works on any template page to range through items in another content s
 {{end}}
 ```
 
-It can be elaborated on with additional conditions. This looks for data_stories that have a category that intersects with the key topic's relatedCategory.
+It can be elaborated on with additional conditions. This looks for data_stories that have a category that intersects with the key topic's frontmatter variable, keyTopic.
 
 ```
-            {{ range where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.relatedCategory ) }}
-            <h3>Related Data Stories</h3>
-            <ul>
-                    <li><a href="{{ .URL}}">{{ .Title }}</a></li>
-            </ul>
-            {{ end}}  
+{{ range where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) }}
+<h3>Related Data Stories</h3>
+<ul>
+    <li><a href="{{ .URL}}">{{ .Title }}</a></li>
+</ul>
+{{ end}}    
+
 ```
 
-For this to work, key topics need the following format in the frontmattr:
+For this to work, key topics need the following in the frontmattr:
 ```
-    relatedCategory: airquality
+keyTopic: airquality
 ```
+
+And, data stories and data explorer (subtopics) markdown should have the following in the frontmatter:
+- categories: ["key topic 1", "key topic 2"]
+
+Data stories and data explorer (subtopics) and other content can also have the following in the frontmatter:
+- tags: this is a freeform category we are not yet using
+- keywords: this is a field used to populate information for the site search function
