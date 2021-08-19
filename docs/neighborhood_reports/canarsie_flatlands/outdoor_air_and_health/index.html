@@ -409,85 +409,6 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-Ozon386-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Ozone</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Ozon386_208.svg" alt="Visualization showing neighborhood rank of 2 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Ozon386_208.svg" alt="Visualization showing neighborhood rank of 2 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Ozon386-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Ozone:<br>Ozone (O3)(Mean ppb) Summer 2018</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Canarsie - Flatlands</strong>, the ozone (o3)(mean ppb) summer 2018 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Ozone is a common air pollutant that can harm breathing and worsen asthma and other respiratory conditions.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Canarsie - Flatlands <span class="indicator-value">33.0&#37;</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">30.9&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">30.6&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Ozon386-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Ozon386-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Ozon386-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Ozon386-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Ozon386-1", buildSummarySpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Ozon386-1", buildTrendSpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
-    vegaEmbed("#map-Ozon386-1", buildMapSpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
-  });
-</script>
-                    
                     <button data-toggle="modal" data-target="#modal-Nitr375-1" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -495,7 +416,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Nitr375_208.svg" alt="Visualization showing neighborhood rank of 37 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -574,7 +495,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Fine365_208.svg" alt="Visualization showing neighborhood rank of 31 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -653,7 +574,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Sulf383_208.svg" alt="Visualization showing neighborhood rank of 34 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -722,6 +643,85 @@
     vegaEmbed("#summary-Sulf383-1", buildSummarySpec(NeighborhoodName,"Sulf383"),opt).then().catch(console.error);
     vegaEmbed("#trend-Sulf383-1", buildTrendSpec(NeighborhoodName,"Sulf383"),opt).then().catch(console.error);
     vegaEmbed("#map-Sulf383-1", buildMapSpec(NeighborhoodName,"Sulf383"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-Ozon386-1" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Ozone</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Ozon386_208.svg" alt="Visualization showing neighborhood rank of 2 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Ozon386_208.svg" alt="Visualization showing neighborhood rank of 2 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Ozon386-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Ozone:<br>Ozone (O3)(Mean ppb) Summer 2018</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Canarsie - Flatlands</strong>, the ozone (o3)(mean ppb) summer 2018 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Ozone is a common air pollutant that can harm breathing and worsen asthma and other respiratory conditions.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Canarsie - Flatlands <span class="indicator-value">33.0&#37;</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">30.9&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">30.6&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Ozon386-1"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Ozon386-1"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Ozon386-1"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Ozon386-1" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Ozon386-1", buildSummarySpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Ozon386-1", buildTrendSpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
+    vegaEmbed("#map-Ozon386-1", buildMapSpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
   });
 </script>
                   
@@ -1283,164 +1283,6 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-O3-A655-3" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Ozone asthma hospitalizations (children)  </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/O3-A655_208.svg" alt="Visualization showing neighborhood rank of 14 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/O3-A655_208.svg" alt="Visualization showing neighborhood rank of 14 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-O3-A655-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Ozone asthma hospitalizations (children)  :<br>Asthma hospitalizations among children under 18 years of age 2015-2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Canarsie - Flatlands</strong>, the asthma hospitalizations among children under 18 years of age 2015-2017 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Ozone-attributable asthma hospitalizations represent part of the health burden of ozone air pollution.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Canarsie - Flatlands <span class="indicator-value">19.8&#37;</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">16.5&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">18.7&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-O3-A655-3"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-O3-A655-3"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-O3-A655-3"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-O3-A655-3" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-O3-A655-3", buildSummarySpec(NeighborhoodName,"O3-A655"),opt).then().catch(console.error);
-    vegaEmbed("#trend-O3-A655-3", buildTrendSpec(NeighborhoodName,"O3-A655"),opt).then().catch(console.error);
-    vegaEmbed("#map-O3-A655-3", buildMapSpec(NeighborhoodName,"O3-A655"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-O3-A652-3" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Deaths from ozone</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/O3-A652_208.svg" alt="Visualization showing neighborhood rank of 9 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/O3-A652_208.svg" alt="Visualization showing neighborhood rank of 9 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-O3-A652-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Deaths from ozone:<br>Deaths due to cardiac and respiratory causes among all residents 2015-2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Canarsie - Flatlands</strong>, the deaths due to cardiac and respiratory causes among all residents 2015-2017 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Estimating heart and respiratory deaths that can be linked to ozone is a way to understand how air pollution increases mortality.  </p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Canarsie - Flatlands <span class="indicator-value">6.0&#37;</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">5&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">4.8&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-O3-A652-3"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-O3-A652-3"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-O3-A652-3"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-O3-A652-3" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-O3-A652-3", buildSummarySpec(NeighborhoodName,"O3-A652"),opt).then().catch(console.error);
-    vegaEmbed("#trend-O3-A652-3", buildTrendSpec(NeighborhoodName,"O3-A652"),opt).then().catch(console.error);
-    vegaEmbed("#map-O3-A652-3", buildMapSpec(NeighborhoodName,"O3-A652"),opt).then().catch(console.error);
-  });
-</script>
-                    
                     <button data-toggle="modal" data-target="#modal-O3-A653-3" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -1677,6 +1519,164 @@
     vegaEmbed("#map-O3-A661-3", buildMapSpec(NeighborhoodName,"O3-A661"),opt).then().catch(console.error);
   });
 </script>
+                    
+                    <button data-toggle="modal" data-target="#modal-O3-A655-3" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Ozone asthma hospitalizations (children)  </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/O3-A655_208.svg" alt="Visualization showing neighborhood rank of 14 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/O3-A655_208.svg" alt="Visualization showing neighborhood rank of 14 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-O3-A655-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Ozone asthma hospitalizations (children)  :<br>Asthma hospitalizations among children under 18 years of age 2015-2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Canarsie - Flatlands</strong>, the asthma hospitalizations among children under 18 years of age 2015-2017 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Ozone-attributable asthma hospitalizations represent part of the health burden of ozone air pollution.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Canarsie - Flatlands <span class="indicator-value">19.8&#37;</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">16.5&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">18.7&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-O3-A655-3"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-O3-A655-3"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-O3-A655-3"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-O3-A655-3" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-O3-A655-3", buildSummarySpec(NeighborhoodName,"O3-A655"),opt).then().catch(console.error);
+    vegaEmbed("#trend-O3-A655-3", buildTrendSpec(NeighborhoodName,"O3-A655"),opt).then().catch(console.error);
+    vegaEmbed("#map-O3-A655-3", buildMapSpec(NeighborhoodName,"O3-A655"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-O3-A652-3" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Deaths from ozone</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/O3-A652_208.svg" alt="Visualization showing neighborhood rank of 9 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/O3-A652_208.svg" alt="Visualization showing neighborhood rank of 9 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-O3-A652-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Deaths from ozone:<br>Deaths due to cardiac and respiratory causes among all residents 2015-2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Canarsie - Flatlands</strong>, the deaths due to cardiac and respiratory causes among all residents 2015-2017 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Estimating heart and respiratory deaths that can be linked to ozone is a way to understand how air pollution increases mortality.  </p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Canarsie - Flatlands <span class="indicator-value">6.0&#37;</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">5&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">4.8&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-O3-A652-3"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-O3-A652-3"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-O3-A652-3"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-O3-A652-3" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-O3-A652-3", buildSummarySpec(NeighborhoodName,"O3-A652"),opt).then().catch(console.error);
+    vegaEmbed("#trend-O3-A652-3", buildTrendSpec(NeighborhoodName,"O3-A652"),opt).then().catch(console.error);
+    vegaEmbed("#map-O3-A652-3", buildMapSpec(NeighborhoodName,"O3-A652"),opt).then().catch(console.error);
+  });
+</script>
                   
               </div>
               
@@ -1727,7 +1727,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Air%20646_208.svg" alt="Visualization showing neighborhood rank of 37 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1806,7 +1806,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Air%20647_208.svg" alt="Visualization showing neighborhood rank of 35 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1927,7 +1927,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Traf643_208.svg" alt="Visualization showing neighborhood rank of 35 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -2006,7 +2006,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Traf644_208.svg" alt="Visualization showing neighborhood rank of 35 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -2085,7 +2085,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Traf645_208.svg" alt="Visualization showing neighborhood rank of 39 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -2206,7 +2206,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Boil640_208.svg" alt="Visualization showing neighborhood rank of 38 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -2285,7 +2285,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Boil641_208.svg" alt="Visualization showing neighborhood rank of 34 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -2364,7 +2364,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Boil642_208.svg" alt="Visualization showing neighborhood rank of 37 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">

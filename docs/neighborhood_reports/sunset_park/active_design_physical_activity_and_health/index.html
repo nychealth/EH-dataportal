@@ -409,85 +409,6 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-sidwalkP-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Sidewalk area</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/sidwalkP_205.svg" alt="Visualization showing neighborhood rank of 33 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/sidwalkP_205.svg" alt="Visualization showing neighborhood rank of 33 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-sidwalkP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Sidewalk area:<br>Sidewalk area (percent of land area), 2014</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Sunset Park</strong>, the sidewalk area (percent of land area), 2014 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Sidewalks are a critical component of New York City residents&rsquo; commute. Ample sidewalks in neighborhoods are important for commuting, businesses, and physical activity. Greater sidewalk area facilitates safer pedestrian traffic that, in turn, attracts businesses and fosters community. &ldquo;Sidewalk area&rdquo; measures the percent of a neighborhood that is covered by sidewalk area.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Sunset Park <span class="indicator-value">6.1&#37;</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">7.8&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">6.6&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-sidwalkP-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-sidwalkP-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-sidwalkP-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-sidwalkP-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-sidwalkP-1", buildSummarySpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-sidwalkP-1", buildTrendSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
-    vegaEmbed("#map-sidwalkP-1", buildMapSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
-  });
-</script>
-                    
                     <button data-toggle="modal" data-target="#modal-parkDisP-1" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -803,6 +724,85 @@
     vegaEmbed("#map-treeCovP-1", buildMapSpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
   });
 </script>
+                    
+                    <button data-toggle="modal" data-target="#modal-sidwalkP-1" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Sidewalk area</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/sidwalkP_205.svg" alt="Visualization showing neighborhood rank of 33 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/sidwalkP_205.svg" alt="Visualization showing neighborhood rank of 33 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-sidwalkP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Sidewalk area:<br>Sidewalk area (percent of land area), 2014</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Sunset Park</strong>, the sidewalk area (percent of land area), 2014 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Sidewalks are a critical component of New York City residents&rsquo; commute. Ample sidewalks in neighborhoods are important for commuting, businesses, and physical activity. Greater sidewalk area facilitates safer pedestrian traffic that, in turn, attracts businesses and fosters community. &ldquo;Sidewalk area&rdquo; measures the percent of a neighborhood that is covered by sidewalk area.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Sunset Park <span class="indicator-value">6.1&#37;</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">7.8&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">6.6&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-sidwalkP-1"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-sidwalkP-1"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-sidwalkP-1"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-sidwalkP-1" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-sidwalkP-1", buildSummarySpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-sidwalkP-1", buildTrendSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
+    vegaEmbed("#map-sidwalkP-1", buildMapSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
+  });
+</script>
                   
               </div>
               
@@ -845,164 +845,6 @@
 
                 
                     
-                    
-                    <button data-toggle="modal" data-target="#modal-nabSafeP-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Neighborhood safety</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nabSafeP_205.svg" alt="Visualization showing neighborhood rank of 36 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nabSafeP_205.svg" alt="Visualization showing neighborhood rank of 36 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-nabSafeP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Neighborhood safety:<br>Adults perceiving neighborhood as safe from crime (percent), 2016</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Sunset Park</strong>, the adults perceiving neighborhood as safe from crime (percent), 2016 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Whether people perceive their neighborhood as safe can affect whether they will spend time outside, use parks, and use active and sustainable forms of transportation. It can also affect mental well-being.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Sunset Park <span class="indicator-value">76.6&#37;</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">85.5&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">85.5&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-nabSafeP-2"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-nabSafeP-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-nabSafeP-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-nabSafeP-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-nabSafeP-2", buildSummarySpec(NeighborhoodName,"nabSafeP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-nabSafeP-2", buildTrendSpec(NeighborhoodName,"nabSafeP"),opt).then().catch(console.error);
-    vegaEmbed("#map-nabSafeP-2", buildMapSpec(NeighborhoodName,"nabSafeP"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-poveACSP-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Poverty</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/poveACSP_205.svg" alt="Visualization showing neighborhood rank of 7 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/poveACSP_205.svg" alt="Visualization showing neighborhood rank of 7 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-poveACSP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Poverty:<br>People living in poverty (percent), 2013-17</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Sunset Park</strong>, the people living in poverty (percent), 2013-17 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Neighborhood poverty is a major determinant of health, since poverty deprives people of access to health and safety resources.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Sunset Park <span class="indicator-value">30.0&#37;</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">21.9&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">19.6&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-poveACSP-2"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-poveACSP-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-poveACSP-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-poveACSP-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-poveACSP-2", buildSummarySpec(NeighborhoodName,"poveACSP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-poveACSP-2", buildTrendSpec(NeighborhoodName,"poveACSP"),opt).then().catch(console.error);
-    vegaEmbed("#map-poveACSP-2", buildMapSpec(NeighborhoodName,"poveACSP"),opt).then().catch(console.error);
-  });
-</script>
                     
                     <button data-toggle="modal" data-target="#modal-ratRepoP-2" class="indicator-anchor">
   <div class="row align-items-center">
@@ -1082,6 +924,164 @@
     vegaEmbed("#map-ratRepoP-2", buildMapSpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
   });
 </script>
+                    
+                    <button data-toggle="modal" data-target="#modal-nabSafeP-2" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Neighborhood safety</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/nabSafeP_205.svg" alt="Visualization showing neighborhood rank of 36 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/nabSafeP_205.svg" alt="Visualization showing neighborhood rank of 36 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-nabSafeP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Neighborhood safety:<br>Adults perceiving neighborhood as safe from crime (percent), 2016</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Sunset Park</strong>, the adults perceiving neighborhood as safe from crime (percent), 2016 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Whether people perceive their neighborhood as safe can affect whether they will spend time outside, use parks, and use active and sustainable forms of transportation. It can also affect mental well-being.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Sunset Park <span class="indicator-value">76.6&#37;</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">85.5&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">85.5&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-nabSafeP-2"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-nabSafeP-2"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-nabSafeP-2"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-nabSafeP-2" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-nabSafeP-2", buildSummarySpec(NeighborhoodName,"nabSafeP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-nabSafeP-2", buildTrendSpec(NeighborhoodName,"nabSafeP"),opt).then().catch(console.error);
+    vegaEmbed("#map-nabSafeP-2", buildMapSpec(NeighborhoodName,"nabSafeP"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-poveACSP-2" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Poverty</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/poveACSP_205.svg" alt="Visualization showing neighborhood rank of 7 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/poveACSP_205.svg" alt="Visualization showing neighborhood rank of 7 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-poveACSP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Poverty:<br>People living in poverty (percent), 2013-17</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Sunset Park</strong>, the people living in poverty (percent), 2013-17 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Neighborhood poverty is a major determinant of health, since poverty deprives people of access to health and safety resources.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Sunset Park <span class="indicator-value">30.0&#37;</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">21.9&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">19.6&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-poveACSP-2"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-poveACSP-2"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-poveACSP-2"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-poveACSP-2" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-poveACSP-2", buildSummarySpec(NeighborhoodName,"poveACSP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-poveACSP-2", buildTrendSpec(NeighborhoodName,"poveACSP"),opt).then().catch(console.error);
+    vegaEmbed("#map-poveACSP-2", buildMapSpec(NeighborhoodName,"poveACSP"),opt).then().catch(console.error);
+  });
+</script>
                   
               </div>
               
@@ -1125,85 +1125,6 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-recExerP-3" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Exercise </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/recExerP_205.svg" alt="Visualization showing neighborhood rank of 41 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/recExerP_205.svg" alt="Visualization showing neighborhood rank of 41 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-recExerP-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Exercise :<br>Adults reporting exercise in the past 30 days (percent), 2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Sunset Park</strong>, the adults reporting exercise in the past 30 days (percent), 2017 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Regular exercise is a key way to stay healthy.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Sunset Park <span class="indicator-value">64.0&#37;</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">71.8&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">74.5&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-recExerP-3"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-recExerP-3"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-recExerP-3"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-recExerP-3" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-recExerP-3", buildSummarySpec(NeighborhoodName,"recExerP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-recExerP-3", buildTrendSpec(NeighborhoodName,"recExerP"),opt).then().catch(console.error);
-    vegaEmbed("#map-recExerP-3", buildMapSpec(NeighborhoodName,"recExerP"),opt).then().catch(console.error);
-  });
-</script>
-                    
                     <button data-toggle="modal" data-target="#modal-recBikeP-3" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -1211,7 +1132,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/recBikeP_205.svg" alt="Visualization showing neighborhood rank of 10 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1282,6 +1203,85 @@
     vegaEmbed("#map-recBikeP-3", buildMapSpec(NeighborhoodName,"recBikeP"),opt).then().catch(console.error);
   });
 </script>
+                    
+                    <button data-toggle="modal" data-target="#modal-recExerP-3" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Exercise </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/recExerP_205.svg" alt="Visualization showing neighborhood rank of 41 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/recExerP_205.svg" alt="Visualization showing neighborhood rank of 41 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-recExerP-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Exercise :<br>Adults reporting exercise in the past 30 days (percent), 2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Sunset Park</strong>, the adults reporting exercise in the past 30 days (percent), 2017 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Regular exercise is a key way to stay healthy.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Sunset Park <span class="indicator-value">64.0&#37;</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">71.8&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">74.5&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-recExerP-3"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-recExerP-3"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-recExerP-3"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-recExerP-3" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-recExerP-3", buildSummarySpec(NeighborhoodName,"recExerP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-recExerP-3", buildTrendSpec(NeighborhoodName,"recExerP"),opt).then().catch(console.error);
+    vegaEmbed("#map-recExerP-3", buildMapSpec(NeighborhoodName,"recExerP"),opt).then().catch(console.error);
+  });
+</script>
                   
               </div>
               
@@ -1324,6 +1324,85 @@
 
                 
                     
+                    
+                    <button data-toggle="modal" data-target="#modal-obesityP-4" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Overweight </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/obesityP_205.svg" alt="Visualization showing neighborhood rank of 34 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/obesityP_205.svg" alt="Visualization showing neighborhood rank of 34 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-obesityP-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Overweight :<br>Adults with overweight or obesity (percent), 2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Sunset Park</strong>, the adults with overweight or obesity (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>People who are overweight or obese are at increased risk for heart disease and diabetes.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Sunset Park <span class="indicator-value">48.9&#37;</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">58.2&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">57.4&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-obesityP-4"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-obesityP-4"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-obesityP-4"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-obesityP-4" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-obesityP-4", buildSummarySpec(NeighborhoodName,"obesityP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-obesityP-4", buildTrendSpec(NeighborhoodName,"obesityP"),opt).then().catch(console.error);
+    vegaEmbed("#map-obesityP-4", buildMapSpec(NeighborhoodName,"obesityP"),opt).then().catch(console.error);
+  });
+</script>
                     
                     <button data-toggle="modal" data-target="#modal-preMorAA-4" class="indicator-anchor">
   <div class="row align-items-center">
@@ -1401,85 +1480,6 @@
     vegaEmbed("#summary-preMorAA-4", buildSummarySpec(NeighborhoodName,"preMorAA"),opt).then().catch(console.error);
     vegaEmbed("#trend-preMorAA-4", buildTrendSpec(NeighborhoodName,"preMorAA"),opt).then().catch(console.error);
     vegaEmbed("#map-preMorAA-4", buildMapSpec(NeighborhoodName,"preMorAA"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-obesityP-4" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Overweight </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/obesityP_205.svg" alt="Visualization showing neighborhood rank of 34 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/obesityP_205.svg" alt="Visualization showing neighborhood rank of 34 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-obesityP-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Overweight :<br>Adults with overweight or obesity (percent), 2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Sunset Park</strong>, the adults with overweight or obesity (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>People who are overweight or obese are at increased risk for heart disease and diabetes.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Sunset Park <span class="indicator-value">48.9&#37;</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">58.2&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">57.4&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-obesityP-4"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-obesityP-4"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-obesityP-4"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-obesityP-4" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-obesityP-4", buildSummarySpec(NeighborhoodName,"obesityP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-obesityP-4", buildTrendSpec(NeighborhoodName,"obesityP"),opt).then().catch(console.error);
-    vegaEmbed("#map-obesityP-4", buildMapSpec(NeighborhoodName,"obesityP"),opt).then().catch(console.error);
   });
 </script>
                   

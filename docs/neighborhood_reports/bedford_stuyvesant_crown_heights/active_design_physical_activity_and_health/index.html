@@ -409,6 +409,243 @@
                 
                     
                     
+                    <button data-toggle="modal" data-target="#modal-subDistP-1" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Subway access</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/subDistP_203.svg" alt="Visualization showing neighborhood rank of 13 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/subDistP_203.svg" alt="Visualization showing neighborhood rank of 13 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-subDistP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Subway access:<br>People living in walking distance to a subway station (percent), 2018</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Bedford Stuyvesant - Crown Heights</strong>, the people living in walking distance to a subway station (percent), 2018 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Percentage of population within a quarter-mile of a subway station entrance.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Bedford Stuyvesant - Crown Heights <span class="indicator-value">63.0&#37;</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">54&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">48&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-subDistP-1"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-subDistP-1"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-subDistP-1"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-subDistP-1" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-subDistP-1", buildSummarySpec(NeighborhoodName,"subDistP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-subDistP-1", buildTrendSpec(NeighborhoodName,"subDistP"),opt).then().catch(console.error);
+    vegaEmbed("#map-subDistP-1", buildMapSpec(NeighborhoodName,"subDistP"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-bikeLanP-1" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Bike lanes </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/bikeLanP_203.svg" alt="Visualization showing neighborhood rank of 11 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/bikeLanP_203.svg" alt="Visualization showing neighborhood rank of 11 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-bikeLanP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Bike lanes :<br>Streets with bicycle lanes (percent), 2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Bedford Stuyvesant - Crown Heights</strong>, the streets with bicycle lanes (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>The percent of streets with bike lanes can affect cyclist and pedestrian safety, physical activity, and sustainable transportation use. </p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Bedford Stuyvesant - Crown Heights <span class="indicator-value">19.0&#37;</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">13&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">10&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-bikeLanP-1"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-bikeLanP-1"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-bikeLanP-1"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-bikeLanP-1" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-bikeLanP-1", buildSummarySpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-bikeLanP-1", buildTrendSpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
+    vegaEmbed("#map-bikeLanP-1", buildMapSpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-sidwalkP-1" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Sidewalk area</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/sidwalkP_203.svg" alt="Visualization showing neighborhood rank of 7 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/sidwalkP_203.svg" alt="Visualization showing neighborhood rank of 7 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-sidwalkP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Sidewalk area:<br>Sidewalk area (percent of land area), 2014</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Bedford Stuyvesant - Crown Heights</strong>, the sidewalk area (percent of land area), 2014 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Sidewalks are a critical component of New York City residents&rsquo; commute. Ample sidewalks in neighborhoods are important for commuting, businesses, and physical activity. Greater sidewalk area facilitates safer pedestrian traffic that, in turn, attracts businesses and fosters community. &ldquo;Sidewalk area&rdquo; measures the percent of a neighborhood that is covered by sidewalk area.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Bedford Stuyvesant - Crown Heights <span class="indicator-value">10.5&#37;</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">7.8&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">6.6&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-sidwalkP-1"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-sidwalkP-1"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-sidwalkP-1"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-sidwalkP-1" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-sidwalkP-1", buildSummarySpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-sidwalkP-1", buildTrendSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
+    vegaEmbed("#map-sidwalkP-1", buildMapSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
+  });
+</script>
+                    
                     <button data-toggle="modal" data-target="#modal-parkDisP-1" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -566,243 +803,6 @@
     vegaEmbed("#map-treeCovP-1", buildMapSpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
   });
 </script>
-                    
-                    <button data-toggle="modal" data-target="#modal-subDistP-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Subway access</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/subDistP_203.svg" alt="Visualization showing neighborhood rank of 13 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/subDistP_203.svg" alt="Visualization showing neighborhood rank of 13 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-subDistP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Subway access:<br>People living in walking distance to a subway station (percent), 2018</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Bedford Stuyvesant - Crown Heights</strong>, the people living in walking distance to a subway station (percent), 2018 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Percentage of population within a quarter-mile of a subway station entrance.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Bedford Stuyvesant - Crown Heights <span class="indicator-value">63.0&#37;</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">54&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">48&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-subDistP-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-subDistP-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-subDistP-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-subDistP-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-subDistP-1", buildSummarySpec(NeighborhoodName,"subDistP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-subDistP-1", buildTrendSpec(NeighborhoodName,"subDistP"),opt).then().catch(console.error);
-    vegaEmbed("#map-subDistP-1", buildMapSpec(NeighborhoodName,"subDistP"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-bikeLanP-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Bike lanes </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/bikeLanP_203.svg" alt="Visualization showing neighborhood rank of 11 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/bikeLanP_203.svg" alt="Visualization showing neighborhood rank of 11 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-bikeLanP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Bike lanes :<br>Streets with bicycle lanes (percent), 2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Bedford Stuyvesant - Crown Heights</strong>, the streets with bicycle lanes (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>The percent of streets with bike lanes can affect cyclist and pedestrian safety, physical activity, and sustainable transportation use. </p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Bedford Stuyvesant - Crown Heights <span class="indicator-value">19.0&#37;</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">13&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">10&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-bikeLanP-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-bikeLanP-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-bikeLanP-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-bikeLanP-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-bikeLanP-1", buildSummarySpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-bikeLanP-1", buildTrendSpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
-    vegaEmbed("#map-bikeLanP-1", buildMapSpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-sidwalkP-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Sidewalk area</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/sidwalkP_203.svg" alt="Visualization showing neighborhood rank of 7 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/sidwalkP_203.svg" alt="Visualization showing neighborhood rank of 7 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-sidwalkP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Sidewalk area:<br>Sidewalk area (percent of land area), 2014</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Bedford Stuyvesant - Crown Heights</strong>, the sidewalk area (percent of land area), 2014 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Sidewalks are a critical component of New York City residents&rsquo; commute. Ample sidewalks in neighborhoods are important for commuting, businesses, and physical activity. Greater sidewalk area facilitates safer pedestrian traffic that, in turn, attracts businesses and fosters community. &ldquo;Sidewalk area&rdquo; measures the percent of a neighborhood that is covered by sidewalk area.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Bedford Stuyvesant - Crown Heights <span class="indicator-value">10.5&#37;</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">7.8&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">6.6&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-sidwalkP-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-sidwalkP-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-sidwalkP-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-sidwalkP-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-sidwalkP-1", buildSummarySpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-sidwalkP-1", buildTrendSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
-    vegaEmbed("#map-sidwalkP-1", buildMapSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
-  });
-</script>
                   
               </div>
               
@@ -853,7 +853,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/nabSafeP_203.svg" alt="Visualization showing neighborhood rank of 34 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -932,7 +932,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/poveACSP_203.svg" alt="Visualization showing neighborhood rank of 11 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1011,7 +1011,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/ratRepoP_203.svg" alt="Visualization showing neighborhood rank of 14 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1332,7 +1332,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/obesityP_203.svg" alt="Visualization showing neighborhood rank of 9 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1411,7 +1411,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/preMorAA_203.svg" alt="Visualization showing neighborhood rank of 7 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">

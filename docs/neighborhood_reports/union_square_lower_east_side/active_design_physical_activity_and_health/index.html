@@ -409,6 +409,243 @@
                 
                     
                     
+                    <button data-toggle="modal" data-target="#modal-parkDisP-1" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Park access</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/parkDisP_309.svg" alt="Visualization showing neighborhood rank of 1 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/parkDisP_309.svg" alt="Visualization showing neighborhood rank of 1 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-parkDisP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Park access:<br>People living in walking distance to a park (percent), 2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Union Square - Lower East Side</strong>, the people living in walking distance to a park (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Walking distance to a park is defined as 1/4-mile or less to entrances of smaller sites, such as sitting areas and playgrounds, and 1/2-mile or less to entrances of larger parks. Parks and open space that are not under the NYC Parks Department jurisdiction are also included.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Union Square - Lower East Side <span class="indicator-value">100.0&#37;</span></div>
+          <div class="col-sm-4">Manhattan <span class="indicator-value">97&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">81&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-parkDisP-1"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-parkDisP-1"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-parkDisP-1"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-parkDisP-1" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-parkDisP-1", buildSummarySpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-parkDisP-1", buildTrendSpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
+    vegaEmbed("#map-parkDisP-1", buildMapSpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-bikeLanP-1" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Bike lanes </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/bikeLanP_309.svg" alt="Visualization showing neighborhood rank of 1 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/bikeLanP_309.svg" alt="Visualization showing neighborhood rank of 1 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-bikeLanP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Bike lanes :<br>Streets with bicycle lanes (percent), 2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Union Square - Lower East Side</strong>, the streets with bicycle lanes (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>The percent of streets with bike lanes can affect cyclist and pedestrian safety, physical activity, and sustainable transportation use. </p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Union Square - Lower East Side <span class="indicator-value">36.0&#37;</span></div>
+          <div class="col-sm-4">Manhattan <span class="indicator-value">29&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">10&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-bikeLanP-1"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-bikeLanP-1"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-bikeLanP-1"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-bikeLanP-1" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-bikeLanP-1", buildSummarySpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-bikeLanP-1", buildTrendSpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
+    vegaEmbed("#map-bikeLanP-1", buildMapSpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-sidwalkP-1" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Sidewalk area</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/sidwalkP_309.svg" alt="Visualization showing neighborhood rank of 11 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/sidwalkP_309.svg" alt="Visualization showing neighborhood rank of 11 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-sidwalkP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Sidewalk area:<br>Sidewalk area (percent of land area), 2014</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Union Square - Lower East Side</strong>, the sidewalk area (percent of land area), 2014 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Sidewalks are a critical component of New York City residents&rsquo; commute. Ample sidewalks in neighborhoods are important for commuting, businesses, and physical activity. Greater sidewalk area facilitates safer pedestrian traffic that, in turn, attracts businesses and fosters community. &ldquo;Sidewalk area&rdquo; measures the percent of a neighborhood that is covered by sidewalk area.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Union Square - Lower East Side <span class="indicator-value">9.6&#37;</span></div>
+          <div class="col-sm-4">Manhattan <span class="indicator-value">9.9&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">6.6&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-sidwalkP-1"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-sidwalkP-1"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-sidwalkP-1"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-sidwalkP-1" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-sidwalkP-1", buildSummarySpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-sidwalkP-1", buildTrendSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
+    vegaEmbed("#map-sidwalkP-1", buildMapSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
+  });
+</script>
+                    
                     <button data-toggle="modal" data-target="#modal-subDistP-1" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -566,243 +803,6 @@
     vegaEmbed("#map-treeCovP-1", buildMapSpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
   });
 </script>
-                    
-                    <button data-toggle="modal" data-target="#modal-parkDisP-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Park access</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/parkDisP_309.svg" alt="Visualization showing neighborhood rank of 1 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/parkDisP_309.svg" alt="Visualization showing neighborhood rank of 1 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-parkDisP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Park access:<br>People living in walking distance to a park (percent), 2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Union Square - Lower East Side</strong>, the people living in walking distance to a park (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Walking distance to a park is defined as 1/4-mile or less to entrances of smaller sites, such as sitting areas and playgrounds, and 1/2-mile or less to entrances of larger parks. Parks and open space that are not under the NYC Parks Department jurisdiction are also included.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Union Square - Lower East Side <span class="indicator-value">100.0&#37;</span></div>
-          <div class="col-sm-4">Manhattan <span class="indicator-value">97&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">81&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-parkDisP-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-parkDisP-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-parkDisP-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-parkDisP-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-parkDisP-1", buildSummarySpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-parkDisP-1", buildTrendSpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
-    vegaEmbed("#map-parkDisP-1", buildMapSpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-bikeLanP-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Bike lanes </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/bikeLanP_309.svg" alt="Visualization showing neighborhood rank of 1 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/bikeLanP_309.svg" alt="Visualization showing neighborhood rank of 1 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-bikeLanP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Bike lanes :<br>Streets with bicycle lanes (percent), 2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Union Square - Lower East Side</strong>, the streets with bicycle lanes (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>The percent of streets with bike lanes can affect cyclist and pedestrian safety, physical activity, and sustainable transportation use. </p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Union Square - Lower East Side <span class="indicator-value">36.0&#37;</span></div>
-          <div class="col-sm-4">Manhattan <span class="indicator-value">29&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">10&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-bikeLanP-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-bikeLanP-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-bikeLanP-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-bikeLanP-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-bikeLanP-1", buildSummarySpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-bikeLanP-1", buildTrendSpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
-    vegaEmbed("#map-bikeLanP-1", buildMapSpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-sidwalkP-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Sidewalk area</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/sidwalkP_309.svg" alt="Visualization showing neighborhood rank of 11 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/sidwalkP_309.svg" alt="Visualization showing neighborhood rank of 11 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-sidwalkP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Sidewalk area:<br>Sidewalk area (percent of land area), 2014</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Union Square - Lower East Side</strong>, the sidewalk area (percent of land area), 2014 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Sidewalks are a critical component of New York City residents&rsquo; commute. Ample sidewalks in neighborhoods are important for commuting, businesses, and physical activity. Greater sidewalk area facilitates safer pedestrian traffic that, in turn, attracts businesses and fosters community. &ldquo;Sidewalk area&rdquo; measures the percent of a neighborhood that is covered by sidewalk area.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Union Square - Lower East Side <span class="indicator-value">9.6&#37;</span></div>
-          <div class="col-sm-4">Manhattan <span class="indicator-value">9.9&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">6.6&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-sidwalkP-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-sidwalkP-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-sidwalkP-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-sidwalkP-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-sidwalkP-1", buildSummarySpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-sidwalkP-1", buildTrendSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
-    vegaEmbed("#map-sidwalkP-1", buildMapSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
-  });
-</script>
                   
               </div>
               
@@ -845,85 +845,6 @@
 
                 
                     
-                    
-                    <button data-toggle="modal" data-target="#modal-ratRepoP-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Mice or rats (outside) </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/ratRepoP_309.svg" alt="Visualization showing neighborhood rank of 10 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/ratRepoP_309.svg" alt="Visualization showing neighborhood rank of 10 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-ratRepoP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Mice or rats (outside) :<br>Adults reporting rats or mice outside their building (percent), 2010</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Union Square - Lower East Side</strong>, the adults reporting rats or mice outside their building (percent), 2010 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Mice and rats outside a building can indicate the presence of mice and rats in people's homes - which can trigger asthma and indicate other health-threatening maintenance deficiencies.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Union Square - Lower East Side <span class="indicator-value">42.2&#37;</span></div>
-          <div class="col-sm-4">Manhattan <span class="indicator-value">42&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">27.3&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-ratRepoP-2"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-ratRepoP-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-ratRepoP-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-ratRepoP-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-ratRepoP-2", buildSummarySpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-ratRepoP-2", buildTrendSpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
-    vegaEmbed("#map-ratRepoP-2", buildMapSpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
-  });
-</script>
                     
                     <button data-toggle="modal" data-target="#modal-nabSafeP-2" class="indicator-anchor">
   <div class="row align-items-center">
@@ -1082,6 +1003,85 @@
     vegaEmbed("#map-poveACSP-2", buildMapSpec(NeighborhoodName,"poveACSP"),opt).then().catch(console.error);
   });
 </script>
+                    
+                    <button data-toggle="modal" data-target="#modal-ratRepoP-2" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Mice or rats (outside) </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/ratRepoP_309.svg" alt="Visualization showing neighborhood rank of 10 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/ratRepoP_309.svg" alt="Visualization showing neighborhood rank of 10 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-ratRepoP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Mice or rats (outside) :<br>Adults reporting rats or mice outside their building (percent), 2010</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Union Square - Lower East Side</strong>, the adults reporting rats or mice outside their building (percent), 2010 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Mice and rats outside a building can indicate the presence of mice and rats in people's homes - which can trigger asthma and indicate other health-threatening maintenance deficiencies.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Union Square - Lower East Side <span class="indicator-value">42.2&#37;</span></div>
+          <div class="col-sm-4">Manhattan <span class="indicator-value">42&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">27.3&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-ratRepoP-2"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-ratRepoP-2"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-ratRepoP-2"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-ratRepoP-2" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-ratRepoP-2", buildSummarySpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-ratRepoP-2", buildTrendSpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
+    vegaEmbed("#map-ratRepoP-2", buildMapSpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
+  });
+</script>
                   
               </div>
               
@@ -1132,7 +1132,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/recExerP_309.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1211,7 +1211,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/recBikeP_309.svg" alt="Visualization showing neighborhood rank of 9 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1325,6 +1325,85 @@
                 
                     
                     
+                    <button data-toggle="modal" data-target="#modal-obesityP-4" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Overweight </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/obesityP_309.svg" alt="Visualization showing neighborhood rank of 41 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/obesityP_309.svg" alt="Visualization showing neighborhood rank of 41 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-obesityP-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Overweight :<br>Adults with overweight or obesity (percent), 2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Union Square - Lower East Side</strong>, the adults with overweight or obesity (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>People who are overweight or obese are at increased risk for heart disease and diabetes.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Union Square - Lower East Side <span class="indicator-value">32.2&#37;</span></div>
+          <div class="col-sm-4">Manhattan <span class="indicator-value">44.4&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">57.4&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-obesityP-4"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-obesityP-4"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-obesityP-4"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-obesityP-4" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-obesityP-4", buildSummarySpec(NeighborhoodName,"obesityP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-obesityP-4", buildTrendSpec(NeighborhoodName,"obesityP"),opt).then().catch(console.error);
+    vegaEmbed("#map-obesityP-4", buildMapSpec(NeighborhoodName,"obesityP"),opt).then().catch(console.error);
+  });
+</script>
+                    
                     <button data-toggle="modal" data-target="#modal-preMorAA-4" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -1401,85 +1480,6 @@
     vegaEmbed("#summary-preMorAA-4", buildSummarySpec(NeighborhoodName,"preMorAA"),opt).then().catch(console.error);
     vegaEmbed("#trend-preMorAA-4", buildTrendSpec(NeighborhoodName,"preMorAA"),opt).then().catch(console.error);
     vegaEmbed("#map-preMorAA-4", buildMapSpec(NeighborhoodName,"preMorAA"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-obesityP-4" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Overweight </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/obesityP_309.svg" alt="Visualization showing neighborhood rank of 41 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/obesityP_309.svg" alt="Visualization showing neighborhood rank of 41 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-obesityP-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Overweight :<br>Adults with overweight or obesity (percent), 2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Union Square - Lower East Side</strong>, the adults with overweight or obesity (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>People who are overweight or obese are at increased risk for heart disease and diabetes.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Union Square - Lower East Side <span class="indicator-value">32.2&#37;</span></div>
-          <div class="col-sm-4">Manhattan <span class="indicator-value">44.4&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">57.4&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-obesityP-4"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-obesityP-4"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-obesityP-4"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-obesityP-4" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-obesityP-4", buildSummarySpec(NeighborhoodName,"obesityP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-obesityP-4", buildTrendSpec(NeighborhoodName,"obesityP"),opt).then().catch(console.error);
-    vegaEmbed("#map-obesityP-4", buildMapSpec(NeighborhoodName,"obesityP"),opt).then().catch(console.error);
   });
 </script>
                   

@@ -409,6 +409,85 @@
                 
                     
                     
+                    <button data-toggle="modal" data-target="#modal-treeCovP-1" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Tree shade </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/treeCovP_501.svg" alt="Visualization showing neighborhood rank of 13 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/treeCovP_501.svg" alt="Visualization showing neighborhood rank of 13 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-treeCovP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Tree shade :<br>Tree canopy cover (percent of land area), 2014</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Port Richmond</strong>, the tree canopy cover (percent of land area), 2014 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>The number of trees and the area shaded by them influences many neighborhood factors, such as attractiveness and lower summer temperatures that, in turn, encourage residents and visitors to walk and do other physical activity. &ldquo;Tree canopy cover&rdquo; measures the percent of a neighborhood that is covered (or shaded) by trees.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Port Richmond <span class="indicator-value">21.6&#37;</span></div>
+          <div class="col-sm-4">Staten Island <span class="indicator-value">30.3&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">21.1&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-treeCovP-1"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-treeCovP-1"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-treeCovP-1"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-treeCovP-1" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-treeCovP-1", buildSummarySpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-treeCovP-1", buildTrendSpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
+    vegaEmbed("#map-treeCovP-1", buildMapSpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
+  });
+</script>
+                    
                     <button data-toggle="modal" data-target="#modal-parkDisP-1" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -416,7 +495,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/parkDisP_501.svg" alt="Visualization showing neighborhood rank of 40 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -495,7 +574,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/subDistP_501.svg" alt="Visualization showing neighborhood rank of 38 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -574,7 +653,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/bikeLanP_501.svg" alt="Visualization showing neighborhood rank of 41 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -653,7 +732,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/sidwalkP_501.svg" alt="Visualization showing neighborhood rank of 37 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -724,85 +803,6 @@
     vegaEmbed("#map-sidwalkP-1", buildMapSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
   });
 </script>
-                    
-                    <button data-toggle="modal" data-target="#modal-treeCovP-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Tree shade </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/treeCovP_501.svg" alt="Visualization showing neighborhood rank of 13 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/treeCovP_501.svg" alt="Visualization showing neighborhood rank of 13 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-treeCovP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Tree shade :<br>Tree canopy cover (percent of land area), 2014</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Port Richmond</strong>, the tree canopy cover (percent of land area), 2014 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>The number of trees and the area shaded by them influences many neighborhood factors, such as attractiveness and lower summer temperatures that, in turn, encourage residents and visitors to walk and do other physical activity. &ldquo;Tree canopy cover&rdquo; measures the percent of a neighborhood that is covered (or shaded) by trees.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Port Richmond <span class="indicator-value">21.6&#37;</span></div>
-          <div class="col-sm-4">Staten Island <span class="indicator-value">30.3&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">21.1&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-treeCovP-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-treeCovP-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-treeCovP-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-treeCovP-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-treeCovP-1", buildSummarySpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-treeCovP-1", buildTrendSpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
-    vegaEmbed("#map-treeCovP-1", buildMapSpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
-  });
-</script>
                   
               </div>
               
@@ -846,64 +846,64 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-nabSafeP-2" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-ratRepoP-2" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Neighborhood safety</span>
+      <span class="indicator-short-name">Mice or rats (outside) </span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nabSafeP_501.svg" alt="Visualization showing neighborhood rank of 31 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/ratRepoP_501.svg" alt="Visualization showing neighborhood rank of 34 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nabSafeP_501.svg" alt="Visualization showing neighborhood rank of 31 out of 42." class="viz">
+      <img src="../../../visualizations/images/ratRepoP_501.svg" alt="Visualization showing neighborhood rank of 34 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-nabSafeP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-ratRepoP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Neighborhood safety:<br>Adults perceiving neighborhood as safe from crime (percent), 2016</h2>
+        <h2 class="modal-title" id="exampleModalLabel">Mice or rats (outside) :<br>Adults reporting rats or mice outside their building (percent), 2010</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Port Richmond</strong>, the adults perceiving neighborhood as safe from crime (percent), 2016 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Whether people perceive their neighborhood as safe can affect whether they will spend time outside, use parks, and use active and sustainable forms of transportation. It can also affect mental well-being.</p>
+        <p>In <strong>Port Richmond</strong>, the adults reporting rats or mice outside their building (percent), 2010 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Mice and rats outside a building can indicate the presence of mice and rats in people's homes - which can trigger asthma and indicate other health-threatening maintenance deficiencies.</p>
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
         <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Port Richmond <span class="indicator-value">80.1*&#37;</span></div>
-          <div class="col-sm-4">Staten Island <span class="indicator-value">90.5&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">85.5&#37;</span></div>
+          <div class="col-sm-4 text-primary">Port Richmond <span class="indicator-value">11.7&#37;</span></div>
+          <div class="col-sm-4">Staten Island <span class="indicator-value">10.3&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">27.3&#37;</span></div>
         </div>
         
-          <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
+          <div class="data-note"></div>
         
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-nabSafeP-2"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-ratRepoP-2"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-nabSafeP-2"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-ratRepoP-2"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-nabSafeP-2"></div>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-ratRepoP-2"></div>
 
       </div>
       
@@ -917,11 +917,11 @@
 
 
 <script type="text/javascript">
-  $( "#modal-nabSafeP-2" ).on('shown.bs.modal', function() {
+  $( "#modal-ratRepoP-2" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-nabSafeP-2", buildSummarySpec(NeighborhoodName,"nabSafeP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-nabSafeP-2", buildTrendSpec(NeighborhoodName,"nabSafeP"),opt).then().catch(console.error);
-    vegaEmbed("#map-nabSafeP-2", buildMapSpec(NeighborhoodName,"nabSafeP"),opt).then().catch(console.error);
+    vegaEmbed("#summary-ratRepoP-2", buildSummarySpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-ratRepoP-2", buildTrendSpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
+    vegaEmbed("#map-ratRepoP-2", buildMapSpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
   });
 </script>
                     
@@ -1004,64 +1004,64 @@
   });
 </script>
                     
-                    <button data-toggle="modal" data-target="#modal-ratRepoP-2" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-nabSafeP-2" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Mice or rats (outside) </span>
+      <span class="indicator-short-name">Neighborhood safety</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/ratRepoP_501.svg" alt="Visualization showing neighborhood rank of 34 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/nabSafeP_501.svg" alt="Visualization showing neighborhood rank of 31 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/ratRepoP_501.svg" alt="Visualization showing neighborhood rank of 34 out of 42." class="viz">
+      <img src="../../../visualizations/images/nabSafeP_501.svg" alt="Visualization showing neighborhood rank of 31 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-ratRepoP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-nabSafeP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Mice or rats (outside) :<br>Adults reporting rats or mice outside their building (percent), 2010</h2>
+        <h2 class="modal-title" id="exampleModalLabel">Neighborhood safety:<br>Adults perceiving neighborhood as safe from crime (percent), 2016</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Port Richmond</strong>, the adults reporting rats or mice outside their building (percent), 2010 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Mice and rats outside a building can indicate the presence of mice and rats in people's homes - which can trigger asthma and indicate other health-threatening maintenance deficiencies.</p>
+        <p>In <strong>Port Richmond</strong>, the adults perceiving neighborhood as safe from crime (percent), 2016 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Whether people perceive their neighborhood as safe can affect whether they will spend time outside, use parks, and use active and sustainable forms of transportation. It can also affect mental well-being.</p>
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
         <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Port Richmond <span class="indicator-value">11.7&#37;</span></div>
-          <div class="col-sm-4">Staten Island <span class="indicator-value">10.3&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">27.3&#37;</span></div>
+          <div class="col-sm-4 text-primary">Port Richmond <span class="indicator-value">80.1*&#37;</span></div>
+          <div class="col-sm-4">Staten Island <span class="indicator-value">90.5&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">85.5&#37;</span></div>
         </div>
         
-          <div class="data-note"></div>
+          <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
         
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-ratRepoP-2"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-nabSafeP-2"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-ratRepoP-2"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-nabSafeP-2"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-ratRepoP-2"></div>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-nabSafeP-2"></div>
 
       </div>
       
@@ -1075,11 +1075,11 @@
 
 
 <script type="text/javascript">
-  $( "#modal-ratRepoP-2" ).on('shown.bs.modal', function() {
+  $( "#modal-nabSafeP-2" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-ratRepoP-2", buildSummarySpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-ratRepoP-2", buildTrendSpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
-    vegaEmbed("#map-ratRepoP-2", buildMapSpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
+    vegaEmbed("#summary-nabSafeP-2", buildSummarySpec(NeighborhoodName,"nabSafeP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-nabSafeP-2", buildTrendSpec(NeighborhoodName,"nabSafeP"),opt).then().catch(console.error);
+    vegaEmbed("#map-nabSafeP-2", buildMapSpec(NeighborhoodName,"nabSafeP"),opt).then().catch(console.error);
   });
 </script>
                   
@@ -1132,7 +1132,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/recExerP_501.svg" alt="Visualization showing neighborhood rank of 30 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1211,7 +1211,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/recBikeP_501.svg" alt="Visualization showing neighborhood rank of 40 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1332,7 +1332,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/obesityP_501.svg" alt="Visualization showing neighborhood rank of 5 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1411,7 +1411,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/preMorAA_501.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">

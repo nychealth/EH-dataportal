@@ -409,6 +409,85 @@
                 
                     
                     
+                    <button data-toggle="modal" data-target="#modal-Publ696-1" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Asthma (public school children) </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Publ696_307.svg" alt="Visualization showing neighborhood rank of 36 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Publ696_307.svg" alt="Visualization showing neighborhood rank of 36 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Publ696-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Asthma (public school children) :<br>Asthma among public school children ages 5 to 14 years old  (per 1,000 children), 2013-2014</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Gramercy Park - Murray Hill</strong>, the asthma among public school children ages 5 to 14 years old  (per 1,000 children), 2013-2014 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Asthma is a common disease characterized by breathing difficulty. Environmental exposures resulting from poor air quality and housing maintenance are known to increase risk of asthma development and trigger asthma symptoms.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Gramercy Park - Murray Hill <span class="indicator-value">41.7&#37;</span></div>
+          <div class="col-sm-4">Manhattan <span class="indicator-value">68.4&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">73.8&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Publ696-1"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Publ696-1"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Publ696-1"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Publ696-1" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Publ696-1", buildSummarySpec(NeighborhoodName,"Publ696"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Publ696-1", buildTrendSpec(NeighborhoodName,"Publ696"),opt).then().catch(console.error);
+    vegaEmbed("#map-Publ696-1", buildMapSpec(NeighborhoodName,"Publ696"),opt).then().catch(console.error);
+  });
+</script>
+                    
                     <button data-toggle="modal" data-target="#modal-Asth1196-1" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -566,85 +645,6 @@
     vegaEmbed("#map-Asth1201-1", buildMapSpec(NeighborhoodName,"Asth1201"),opt).then().catch(console.error);
   });
 </script>
-                    
-                    <button data-toggle="modal" data-target="#modal-Publ696-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Asthma (public school children) </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Publ696_307.svg" alt="Visualization showing neighborhood rank of 36 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Publ696_307.svg" alt="Visualization showing neighborhood rank of 36 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Publ696-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Asthma (public school children) :<br>Asthma among public school children ages 5 to 14 years old  (per 1,000 children), 2013-2014</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Gramercy Park - Murray Hill</strong>, the asthma among public school children ages 5 to 14 years old  (per 1,000 children), 2013-2014 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Asthma is a common disease characterized by breathing difficulty. Environmental exposures resulting from poor air quality and housing maintenance are known to increase risk of asthma development and trigger asthma symptoms.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Gramercy Park - Murray Hill <span class="indicator-value">41.7&#37;</span></div>
-          <div class="col-sm-4">Manhattan <span class="indicator-value">68.4&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">73.8&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Publ696-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Publ696-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Publ696-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Publ696-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Publ696-1", buildSummarySpec(NeighborhoodName,"Publ696"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Publ696-1", buildTrendSpec(NeighborhoodName,"Publ696"),opt).then().catch(console.error);
-    vegaEmbed("#map-Publ696-1", buildMapSpec(NeighborhoodName,"Publ696"),opt).then().catch(console.error);
-  });
-</script>
                   
               </div>
               
@@ -687,6 +687,164 @@
 
                 
                     
+                    
+                    <button data-toggle="modal" data-target="#modal-Asth1199-2" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Asthma ED visits (adults)</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Asth1199_307.svg" alt="Visualization showing neighborhood rank of 31 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Asth1199_307.svg" alt="Visualization showing neighborhood rank of 31 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Asth1199-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Asthma ED visits (adults):<br>Asthma emergency department visits among adults ages 18 years and older, 2016</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Gramercy Park - Murray Hill</strong>, the asthma emergency department visits among adults ages 18 years and older, 2016 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Severe asthma attacks can result in a visit to the ED. Certain exposures can trigger asthma symptoms, including smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander, among others.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Gramercy Park - Murray Hill <span class="indicator-value">43.0&#37;</span></div>
+          <div class="col-sm-4">Manhattan <span class="indicator-value">95.5&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">99.1&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Asth1199-2"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Asth1199-2"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Asth1199-2"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Asth1199-2" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Asth1199-2", buildSummarySpec(NeighborhoodName,"Asth1199"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Asth1199-2", buildTrendSpec(NeighborhoodName,"Asth1199"),opt).then().catch(console.error);
+    vegaEmbed("#map-Asth1199-2", buildMapSpec(NeighborhoodName,"Asth1199"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-Asth1204-2" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Asthma hospitalizations (adults)</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Asth1204_307.svg" alt="Visualization showing neighborhood rank of 40 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Asth1204_307.svg" alt="Visualization showing neighborhood rank of 40 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Asth1204-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Asthma hospitalizations (adults):<br>Asthma hospitalizations among adults ages 18 years and older, 2016</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Gramercy Park - Murray Hill</strong>, the asthma hospitalizations among adults ages 18 years and older, 2016 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Gramercy Park - Murray Hill <span class="indicator-value">1.9&#37;</span></div>
+          <div class="col-sm-4">Manhattan <span class="indicator-value">7.6&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">11.1&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Asth1204-2"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Asth1204-2"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Asth1204-2"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Asth1204-2" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Asth1204-2", buildSummarySpec(NeighborhoodName,"Asth1204"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Asth1204-2", buildTrendSpec(NeighborhoodName,"Asth1204"),opt).then().catch(console.error);
+    vegaEmbed("#map-Asth1204-2", buildMapSpec(NeighborhoodName,"Asth1204"),opt).then().catch(console.error);
+  });
+</script>
                     
                     <button data-toggle="modal" data-target="#modal-Adul31-2" class="indicator-anchor">
   <div class="row align-items-center">
@@ -766,164 +924,6 @@
     vegaEmbed("#map-Adul31-2", buildMapSpec(NeighborhoodName,"Adul31"),opt).then().catch(console.error);
   });
 </script>
-                    
-                    <button data-toggle="modal" data-target="#modal-Asth1199-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Asthma ED visits (adults)</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Asth1199_307.svg" alt="Visualization showing neighborhood rank of 31 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Asth1199_307.svg" alt="Visualization showing neighborhood rank of 31 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Asth1199-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Asthma ED visits (adults):<br>Asthma emergency department visits among adults ages 18 years and older, 2016</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Gramercy Park - Murray Hill</strong>, the asthma emergency department visits among adults ages 18 years and older, 2016 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Severe asthma attacks can result in a visit to the ED. Certain exposures can trigger asthma symptoms, including smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander, among others.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Gramercy Park - Murray Hill <span class="indicator-value">43.0&#37;</span></div>
-          <div class="col-sm-4">Manhattan <span class="indicator-value">95.5&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">99.1&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Asth1199-2"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Asth1199-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Asth1199-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Asth1199-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Asth1199-2", buildSummarySpec(NeighborhoodName,"Asth1199"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Asth1199-2", buildTrendSpec(NeighborhoodName,"Asth1199"),opt).then().catch(console.error);
-    vegaEmbed("#map-Asth1199-2", buildMapSpec(NeighborhoodName,"Asth1199"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-Asth1204-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Asthma hospitalizations (adults)</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Asth1204_307.svg" alt="Visualization showing neighborhood rank of 40 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Asth1204_307.svg" alt="Visualization showing neighborhood rank of 40 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Asth1204-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Asthma hospitalizations (adults):<br>Asthma hospitalizations among adults ages 18 years and older, 2016</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Gramercy Park - Murray Hill</strong>, the asthma hospitalizations among adults ages 18 years and older, 2016 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Gramercy Park - Murray Hill <span class="indicator-value">1.9&#37;</span></div>
-          <div class="col-sm-4">Manhattan <span class="indicator-value">7.6&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">11.1&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Asth1204-2"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Asth1204-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Asth1204-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Asth1204-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Asth1204-2", buildSummarySpec(NeighborhoodName,"Asth1204"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Asth1204-2", buildTrendSpec(NeighborhoodName,"Asth1204"),opt).then().catch(console.error);
-    vegaEmbed("#map-Asth1204-2", buildMapSpec(NeighborhoodName,"Asth1204"),opt).then().catch(console.error);
-  });
-</script>
                   
               </div>
               
@@ -967,85 +967,6 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-Adul672-3" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Health insurance (adults)</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Adul672_307.svg" alt="Visualization showing neighborhood rank of 31 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Adul672_307.svg" alt="Visualization showing neighborhood rank of 31 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Adul672-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Health insurance (adults):<br>Adults with health insurance, 2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Gramercy Park - Murray Hill</strong>, the adults with health insurance, 2017 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Health insurance coverage is associated with numerous beneficial health effects. Those with health insurance are more likely to have a regular doctor, receive preventive care services, better manage chronic health conditions, have longer life expectancy, and more.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Gramercy Park - Murray Hill <span class="indicator-value">86.4&#37;</span></div>
-          <div class="col-sm-4">Manhattan <span class="indicator-value">92.3&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">88.1&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Adul672-3"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Adul672-3"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Adul672-3"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Adul672-3" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Adul672-3", buildSummarySpec(NeighborhoodName,"Adul672"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Adul672-3", buildTrendSpec(NeighborhoodName,"Adul672"),opt).then().catch(console.error);
-    vegaEmbed("#map-Adul672-3", buildMapSpec(NeighborhoodName,"Adul672"),opt).then().catch(console.error);
-  });
-</script>
-                    
                     <button data-toggle="modal" data-target="#modal-poveACSP-3" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -1053,7 +974,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/poveACSP_307.svg" alt="Visualization showing neighborhood rank of 38 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1124,6 +1045,85 @@
     vegaEmbed("#map-poveACSP-3", buildMapSpec(NeighborhoodName,"poveACSP"),opt).then().catch(console.error);
   });
 </script>
+                    
+                    <button data-toggle="modal" data-target="#modal-Adul672-3" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Health insurance (adults)</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Adul672_307.svg" alt="Visualization showing neighborhood rank of 31 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Adul672_307.svg" alt="Visualization showing neighborhood rank of 31 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Adul672-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Health insurance (adults):<br>Adults with health insurance, 2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Gramercy Park - Murray Hill</strong>, the adults with health insurance, 2017 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Health insurance coverage is associated with numerous beneficial health effects. Those with health insurance are more likely to have a regular doctor, receive preventive care services, better manage chronic health conditions, have longer life expectancy, and more.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Gramercy Park - Murray Hill <span class="indicator-value">86.4&#37;</span></div>
+          <div class="col-sm-4">Manhattan <span class="indicator-value">92.3&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">88.1&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Adul672-3"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Adul672-3"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Adul672-3"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Adul672-3" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Adul672-3", buildSummarySpec(NeighborhoodName,"Adul672"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Adul672-3", buildTrendSpec(NeighborhoodName,"Adul672"),opt).then().catch(console.error);
+    vegaEmbed("#map-Adul672-3", buildMapSpec(NeighborhoodName,"Adul672"),opt).then().catch(console.error);
+  });
+</script>
                   
               </div>
               
@@ -1167,85 +1167,6 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-Adul292-4" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Smoke-free homes </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Adul292_307.svg" alt="Visualization showing neighborhood rank of 14 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Adul292_307.svg" alt="Visualization showing neighborhood rank of 14 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Adul292-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Smoke-free homes :<br>Adults who allow smoking in the home (percent), 2013</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Gramercy Park - Murray Hill</strong>, the adults who allow smoking in the home (percent), 2013 is <span class="better">Better</span> than the NYC average.</p>
-        <p>A smoke-free home policy can limit people's exposure to secondhand smoke, which is especially dangerous to children.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Gramercy Park - Murray Hill <span class="indicator-value">24.7&#37;</span></div>
-          <div class="col-sm-4">Manhattan <span class="indicator-value">23.9&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">22.9&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Adul292-4"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Adul292-4"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Adul292-4"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Adul292-4" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Adul292-4", buildSummarySpec(NeighborhoodName,"Adul292"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Adul292-4", buildTrendSpec(NeighborhoodName,"Adul292"),opt).then().catch(console.error);
-    vegaEmbed("#map-Adul292-4", buildMapSpec(NeighborhoodName,"Adul292"),opt).then().catch(console.error);
-  });
-</script>
-                    
                     <button data-toggle="modal" data-target="#modal-Home245-4" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -1253,7 +1174,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Home245_307.svg" alt="Visualization showing neighborhood rank of 37 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1332,7 +1253,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Adul634_307.svg" alt="Visualization showing neighborhood rank of 37 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1411,7 +1332,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Adul47_307.svg" alt="Visualization showing neighborhood rank of 30 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1490,7 +1411,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Adul625_307.svg" alt="Visualization showing neighborhood rank of 34 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1561,6 +1482,85 @@
     vegaEmbed("#map-Adul625-4", buildMapSpec(NeighborhoodName,"Adul625"),opt).then().catch(console.error);
   });
 </script>
+                    
+                    <button data-toggle="modal" data-target="#modal-Adul292-4" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Smoke-free homes </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Adul292_307.svg" alt="Visualization showing neighborhood rank of 14 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Adul292_307.svg" alt="Visualization showing neighborhood rank of 14 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Adul292-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Smoke-free homes :<br>Adults who allow smoking in the home (percent), 2013</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Gramercy Park - Murray Hill</strong>, the adults who allow smoking in the home (percent), 2013 is <span class="better">Better</span> than the NYC average.</p>
+        <p>A smoke-free home policy can limit people's exposure to secondhand smoke, which is especially dangerous to children.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Gramercy Park - Murray Hill <span class="indicator-value">24.7&#37;</span></div>
+          <div class="col-sm-4">Manhattan <span class="indicator-value">23.9&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">22.9&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Adul292-4"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Adul292-4"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Adul292-4"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Adul292-4" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Adul292-4", buildSummarySpec(NeighborhoodName,"Adul292"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Adul292-4", buildTrendSpec(NeighborhoodName,"Adul292"),opt).then().catch(console.error);
+    vegaEmbed("#map-Adul292-4", buildMapSpec(NeighborhoodName,"Adul292"),opt).then().catch(console.error);
+  });
+</script>
                   
               </div>
               
@@ -1611,7 +1611,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Home76_307.svg" alt="Visualization showing neighborhood rank of 40 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1690,7 +1690,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Home80_307.svg" alt="Visualization showing neighborhood rank of 36 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1769,7 +1769,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Rent1248_307.svg" alt="Visualization showing neighborhood rank of 37 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1883,85 +1883,6 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-Fine365-6" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">PM2.5 (Fine particles) </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Fine365_307.svg" alt="Visualization showing neighborhood rank of 1 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Fine365_307.svg" alt="Visualization showing neighborhood rank of 1 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Fine365-6" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">PM2.5 (Fine particles) :<br>Fine particulate matter (PM2.5) (mean mcg per cubic meter), Annual Average 2018</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Gramercy Park - Murray Hill</strong>, the fine particulate matter (pm2.5) (mean mcg per cubic meter), annual average 2018 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Fine particles are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Gramercy Park - Murray Hill <span class="indicator-value">10.3&#37;</span></div>
-          <div class="col-sm-4">Manhattan <span class="indicator-value">8.5&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">7&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Fine365-6"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Fine365-6"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Fine365-6"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Fine365-6" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Fine365-6", buildSummarySpec(NeighborhoodName,"Fine365"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Fine365-6", buildTrendSpec(NeighborhoodName,"Fine365"),opt).then().catch(console.error);
-    vegaEmbed("#map-Fine365-6", buildMapSpec(NeighborhoodName,"Fine365"),opt).then().catch(console.error);
-  });
-</script>
-                    
                     <button data-toggle="modal" data-target="#modal-Ozon386-6" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -1969,7 +1890,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Ozon386_307.svg" alt="Visualization showing neighborhood rank of 42 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -2040,6 +1961,85 @@
     vegaEmbed("#map-Ozon386-6", buildMapSpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
   });
 </script>
+                    
+                    <button data-toggle="modal" data-target="#modal-Fine365-6" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">PM2.5 (Fine particles) </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Fine365_307.svg" alt="Visualization showing neighborhood rank of 1 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Fine365_307.svg" alt="Visualization showing neighborhood rank of 1 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Fine365-6" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">PM2.5 (Fine particles) :<br>Fine particulate matter (PM2.5) (mean mcg per cubic meter), Annual Average 2018</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Gramercy Park - Murray Hill</strong>, the fine particulate matter (pm2.5) (mean mcg per cubic meter), annual average 2018 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Fine particles are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Gramercy Park - Murray Hill <span class="indicator-value">10.3&#37;</span></div>
+          <div class="col-sm-4">Manhattan <span class="indicator-value">8.5&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">7&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Fine365-6"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Fine365-6"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Fine365-6"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Fine365-6" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Fine365-6", buildSummarySpec(NeighborhoodName,"Fine365"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Fine365-6", buildTrendSpec(NeighborhoodName,"Fine365"),opt).then().catch(console.error);
+    vegaEmbed("#map-Fine365-6", buildMapSpec(NeighborhoodName,"Fine365"),opt).then().catch(console.error);
+  });
+</script>
                   
               </div>
               
@@ -2082,6 +2082,85 @@
 
                 
                     
+                    
+                    <button data-toggle="modal" data-target="#modal-PM2.657-7" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">PM2.5 asthma ED visits (children)  </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/PM2.657_307.svg" alt="Visualization showing neighborhood rank of 31 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/PM2.657_307.svg" alt="Visualization showing neighborhood rank of 31 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-PM2.657-7" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">PM2.5 asthma ED visits (children)  :<br>Attributable asthma emergency department visits among adults ages 18 and older, 2015-2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Gramercy Park - Murray Hill</strong>, the attributable asthma emergency department visits among adults ages 18 and older, 2015-2017 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>PM2.5-attributable asthma ED visits represent part of the health burden imposed by fine particle air pollution.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Gramercy Park - Murray Hill <span class="indicator-value">16.5&#37;</span></div>
+          <div class="col-sm-4">Manhattan <span class="indicator-value">34.8&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">34.6&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-PM2.657-7"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-PM2.657-7"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-PM2.657-7"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-PM2.657-7" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-PM2.657-7", buildSummarySpec(NeighborhoodName,"PM2.657"),opt).then().catch(console.error);
+    vegaEmbed("#trend-PM2.657-7", buildTrendSpec(NeighborhoodName,"PM2.657"),opt).then().catch(console.error);
+    vegaEmbed("#map-PM2.657-7", buildMapSpec(NeighborhoodName,"PM2.657"),opt).then().catch(console.error);
+  });
+</script>
                     
                     <button data-toggle="modal" data-target="#modal-PM2.648-7" class="indicator-anchor">
   <div class="row align-items-center">
@@ -2161,85 +2240,6 @@
     vegaEmbed("#map-PM2.648-7", buildMapSpec(NeighborhoodName,"PM2.648"),opt).then().catch(console.error);
   });
 </script>
-                    
-                    <button data-toggle="modal" data-target="#modal-PM2.657-7" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">PM2.5 asthma ED visits (children)  </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/PM2.657_307.svg" alt="Visualization showing neighborhood rank of 31 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/PM2.657_307.svg" alt="Visualization showing neighborhood rank of 31 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-PM2.657-7" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">PM2.5 asthma ED visits (children)  :<br>Attributable asthma emergency department visits among adults ages 18 and older, 2015-2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Gramercy Park - Murray Hill</strong>, the attributable asthma emergency department visits among adults ages 18 and older, 2015-2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>PM2.5-attributable asthma ED visits represent part of the health burden imposed by fine particle air pollution.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Gramercy Park - Murray Hill <span class="indicator-value">16.5&#37;</span></div>
-          <div class="col-sm-4">Manhattan <span class="indicator-value">34.8&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">34.6&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-PM2.657-7"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-PM2.657-7"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-PM2.657-7"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-PM2.657-7" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-PM2.657-7", buildSummarySpec(NeighborhoodName,"PM2.657"),opt).then().catch(console.error);
-    vegaEmbed("#trend-PM2.657-7", buildTrendSpec(NeighborhoodName,"PM2.657"),opt).then().catch(console.error);
-    vegaEmbed("#map-PM2.657-7", buildMapSpec(NeighborhoodName,"PM2.657"),opt).then().catch(console.error);
-  });
-</script>
                   
               </div>
               
@@ -2282,6 +2282,164 @@
 
                 
                     
+                    
+                    <button data-toggle="modal" data-target="#modal-O3-A659-8" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Ozone asthma ED visits (children)   </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/O3-A659_307.svg" alt="Visualization showing neighborhood rank of 31 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/O3-A659_307.svg" alt="Visualization showing neighborhood rank of 31 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-O3-A659-8" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Ozone asthma ED visits (children)   :<br>Attributable asthma emergency department visits among adults ages 18 years and older, 2015-2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Gramercy Park - Murray Hill</strong>, the attributable asthma emergency department visits among adults ages 18 years and older, 2015-2017 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Ozone-attributable asthma ED visits represent part of the health burden of ozone air pollution.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Gramercy Park - Murray Hill <span class="indicator-value">21.5&#37;</span></div>
+          <div class="col-sm-4">Manhattan <span class="indicator-value">45&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">48.3&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-O3-A659-8"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-O3-A659-8"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-O3-A659-8"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-O3-A659-8" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-O3-A659-8", buildSummarySpec(NeighborhoodName,"O3-A659"),opt).then().catch(console.error);
+    vegaEmbed("#trend-O3-A659-8", buildTrendSpec(NeighborhoodName,"O3-A659"),opt).then().catch(console.error);
+    vegaEmbed("#map-O3-A659-8", buildMapSpec(NeighborhoodName,"O3-A659"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-O3-A661-8" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Ozone asthma hospitalizations (children)  </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/O3-A661_307.svg" alt="Visualization showing neighborhood rank of 39 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/O3-A661_307.svg" alt="Visualization showing neighborhood rank of 39 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-O3-A661-8" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Ozone asthma hospitalizations (children)  :<br>Attributable asthma hospitalizations among adults ages 18 years and older, 2015-2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Gramercy Park - Murray Hill</strong>, the attributable asthma hospitalizations among adults ages 18 years and older, 2015-2017 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Ozone-attributable asthma hospitalizations represent part of the health burden of ozone air pollution.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Gramercy Park - Murray Hill <span class="indicator-value">1.0&#37;</span></div>
+          <div class="col-sm-4">Manhattan <span class="indicator-value">2.8&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">3.9&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-O3-A661-8"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-O3-A661-8"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-O3-A661-8"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-O3-A661-8" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-O3-A661-8", buildSummarySpec(NeighborhoodName,"O3-A661"),opt).then().catch(console.error);
+    vegaEmbed("#trend-O3-A661-8", buildTrendSpec(NeighborhoodName,"O3-A661"),opt).then().catch(console.error);
+    vegaEmbed("#map-O3-A661-8", buildMapSpec(NeighborhoodName,"O3-A661"),opt).then().catch(console.error);
+  });
+</script>
                     
                     <button data-toggle="modal" data-target="#modal-O3-A653-8" class="indicator-anchor">
   <div class="row align-items-center">
@@ -2438,164 +2596,6 @@
     vegaEmbed("#summary-O3-A655-8", buildSummarySpec(NeighborhoodName,"O3-A655"),opt).then().catch(console.error);
     vegaEmbed("#trend-O3-A655-8", buildTrendSpec(NeighborhoodName,"O3-A655"),opt).then().catch(console.error);
     vegaEmbed("#map-O3-A655-8", buildMapSpec(NeighborhoodName,"O3-A655"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-O3-A659-8" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Ozone asthma ED visits (children)   </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/O3-A659_307.svg" alt="Visualization showing neighborhood rank of 31 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/O3-A659_307.svg" alt="Visualization showing neighborhood rank of 31 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-O3-A659-8" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Ozone asthma ED visits (children)   :<br>Attributable asthma emergency department visits among adults ages 18 years and older, 2015-2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Gramercy Park - Murray Hill</strong>, the attributable asthma emergency department visits among adults ages 18 years and older, 2015-2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Ozone-attributable asthma ED visits represent part of the health burden of ozone air pollution.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Gramercy Park - Murray Hill <span class="indicator-value">21.5&#37;</span></div>
-          <div class="col-sm-4">Manhattan <span class="indicator-value">45&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">48.3&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-O3-A659-8"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-O3-A659-8"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-O3-A659-8"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-O3-A659-8" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-O3-A659-8", buildSummarySpec(NeighborhoodName,"O3-A659"),opt).then().catch(console.error);
-    vegaEmbed("#trend-O3-A659-8", buildTrendSpec(NeighborhoodName,"O3-A659"),opt).then().catch(console.error);
-    vegaEmbed("#map-O3-A659-8", buildMapSpec(NeighborhoodName,"O3-A659"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-O3-A661-8" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Ozone asthma hospitalizations (children)  </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/O3-A661_307.svg" alt="Visualization showing neighborhood rank of 39 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/O3-A661_307.svg" alt="Visualization showing neighborhood rank of 39 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-O3-A661-8" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Ozone asthma hospitalizations (children)  :<br>Attributable asthma hospitalizations among adults ages 18 years and older, 2015-2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Gramercy Park - Murray Hill</strong>, the attributable asthma hospitalizations among adults ages 18 years and older, 2015-2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Ozone-attributable asthma hospitalizations represent part of the health burden of ozone air pollution.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Gramercy Park - Murray Hill <span class="indicator-value">1.0&#37;</span></div>
-          <div class="col-sm-4">Manhattan <span class="indicator-value">2.8&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">3.9&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-O3-A661-8"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-O3-A661-8"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-O3-A661-8"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-O3-A661-8" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-O3-A661-8", buildSummarySpec(NeighborhoodName,"O3-A661"),opt).then().catch(console.error);
-    vegaEmbed("#trend-O3-A661-8", buildTrendSpec(NeighborhoodName,"O3-A661"),opt).then().catch(console.error);
-    vegaEmbed("#map-O3-A661-8", buildMapSpec(NeighborhoodName,"O3-A661"),opt).then().catch(console.error);
   });
 </script>
                   

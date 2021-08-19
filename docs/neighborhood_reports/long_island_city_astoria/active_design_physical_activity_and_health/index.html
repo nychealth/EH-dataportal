@@ -409,64 +409,64 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-parkDisP-1" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-bikeLanP-1" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Park access</span>
+      <span class="indicator-short-name">Bike lanes </span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/parkDisP_401.svg" alt="Visualization showing neighborhood rank of 34 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/bikeLanP_401.svg" alt="Visualization showing neighborhood rank of 12 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/parkDisP_401.svg" alt="Visualization showing neighborhood rank of 34 out of 42." class="viz">
+      <img src="../../../visualizations/images/bikeLanP_401.svg" alt="Visualization showing neighborhood rank of 12 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-parkDisP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-bikeLanP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Park access:<br>People living in walking distance to a park (percent), 2017</h2>
+        <h2 class="modal-title" id="exampleModalLabel">Bike lanes :<br>Streets with bicycle lanes (percent), 2017</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Long Island City - Astoria</strong>, the people living in walking distance to a park (percent), 2017 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Walking distance to a park is defined as 1/4-mile or less to entrances of smaller sites, such as sitting areas and playgrounds, and 1/2-mile or less to entrances of larger parks. Parks and open space that are not under the NYC Parks Department jurisdiction are also included.</p>
+        <p>In <strong>Long Island City - Astoria</strong>, the streets with bicycle lanes (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>The percent of streets with bike lanes can affect cyclist and pedestrian safety, physical activity, and sustainable transportation use. </p>
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
         <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Long Island City - Astoria <span class="indicator-value">66.0&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">69&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">81&#37;</span></div>
+          <div class="col-sm-4 text-primary">Long Island City - Astoria <span class="indicator-value">18.0&#37;</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">6&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">10&#37;</span></div>
         </div>
         
           <div class="data-note"></div>
         
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-parkDisP-1"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-bikeLanP-1"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-parkDisP-1"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-bikeLanP-1"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-parkDisP-1"></div>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-bikeLanP-1"></div>
 
       </div>
       
@@ -480,72 +480,72 @@
 
 
 <script type="text/javascript">
-  $( "#modal-parkDisP-1" ).on('shown.bs.modal', function() {
+  $( "#modal-bikeLanP-1" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-parkDisP-1", buildSummarySpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-parkDisP-1", buildTrendSpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
-    vegaEmbed("#map-parkDisP-1", buildMapSpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
+    vegaEmbed("#summary-bikeLanP-1", buildSummarySpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-bikeLanP-1", buildTrendSpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
+    vegaEmbed("#map-bikeLanP-1", buildMapSpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
   });
 </script>
                     
-                    <button data-toggle="modal" data-target="#modal-treeCovP-1" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-sidwalkP-1" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Tree shade </span>
+      <span class="indicator-short-name">Sidewalk area</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/treeCovP_401.svg" alt="Visualization showing neighborhood rank of 38 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/sidwalkP_401.svg" alt="Visualization showing neighborhood rank of 14 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/treeCovP_401.svg" alt="Visualization showing neighborhood rank of 38 out of 42." class="viz">
+      <img src="../../../visualizations/images/sidwalkP_401.svg" alt="Visualization showing neighborhood rank of 14 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-treeCovP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-sidwalkP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Tree shade :<br>Tree canopy cover (percent of land area), 2014</h2>
+        <h2 class="modal-title" id="exampleModalLabel">Sidewalk area:<br>Sidewalk area (percent of land area), 2014</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Long Island City - Astoria</strong>, the tree canopy cover (percent of land area), 2014 is <span class="better">Better</span> than the NYC average.</p>
-        <p>The number of trees and the area shaded by them influences many neighborhood factors, such as attractiveness and lower summer temperatures that, in turn, encourage residents and visitors to walk and do other physical activity. &ldquo;Tree canopy cover&rdquo; measures the percent of a neighborhood that is covered (or shaded) by trees.</p>
+        <p>In <strong>Long Island City - Astoria</strong>, the sidewalk area (percent of land area), 2014 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Sidewalks are a critical component of New York City residents&rsquo; commute. Ample sidewalks in neighborhoods are important for commuting, businesses, and physical activity. Greater sidewalk area facilitates safer pedestrian traffic that, in turn, attracts businesses and fosters community. &ldquo;Sidewalk area&rdquo; measures the percent of a neighborhood that is covered by sidewalk area.</p>
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
         <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Long Island City - Astoria <span class="indicator-value">10.4&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">19.8&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">21.1&#37;</span></div>
+          <div class="col-sm-4 text-primary">Long Island City - Astoria <span class="indicator-value">9.1&#37;</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">7&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">6.6&#37;</span></div>
         </div>
         
           <div class="data-note"></div>
         
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-treeCovP-1"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-sidwalkP-1"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-treeCovP-1"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-sidwalkP-1"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-treeCovP-1"></div>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-sidwalkP-1"></div>
 
       </div>
       
@@ -559,11 +559,11 @@
 
 
 <script type="text/javascript">
-  $( "#modal-treeCovP-1" ).on('shown.bs.modal', function() {
+  $( "#modal-sidwalkP-1" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-treeCovP-1", buildSummarySpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-treeCovP-1", buildTrendSpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
-    vegaEmbed("#map-treeCovP-1", buildMapSpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
+    vegaEmbed("#summary-sidwalkP-1", buildSummarySpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-sidwalkP-1", buildTrendSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
+    vegaEmbed("#map-sidwalkP-1", buildMapSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
   });
 </script>
                     
@@ -646,64 +646,64 @@
   });
 </script>
                     
-                    <button data-toggle="modal" data-target="#modal-bikeLanP-1" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-parkDisP-1" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Bike lanes </span>
+      <span class="indicator-short-name">Park access</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/bikeLanP_401.svg" alt="Visualization showing neighborhood rank of 12 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/parkDisP_401.svg" alt="Visualization showing neighborhood rank of 34 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/bikeLanP_401.svg" alt="Visualization showing neighborhood rank of 12 out of 42." class="viz">
+      <img src="../../../visualizations/images/parkDisP_401.svg" alt="Visualization showing neighborhood rank of 34 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-bikeLanP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-parkDisP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Bike lanes :<br>Streets with bicycle lanes (percent), 2017</h2>
+        <h2 class="modal-title" id="exampleModalLabel">Park access:<br>People living in walking distance to a park (percent), 2017</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Long Island City - Astoria</strong>, the streets with bicycle lanes (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>The percent of streets with bike lanes can affect cyclist and pedestrian safety, physical activity, and sustainable transportation use. </p>
+        <p>In <strong>Long Island City - Astoria</strong>, the people living in walking distance to a park (percent), 2017 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Walking distance to a park is defined as 1/4-mile or less to entrances of smaller sites, such as sitting areas and playgrounds, and 1/2-mile or less to entrances of larger parks. Parks and open space that are not under the NYC Parks Department jurisdiction are also included.</p>
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
         <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Long Island City - Astoria <span class="indicator-value">18.0&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">6&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">10&#37;</span></div>
+          <div class="col-sm-4 text-primary">Long Island City - Astoria <span class="indicator-value">66.0&#37;</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">69&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">81&#37;</span></div>
         </div>
         
           <div class="data-note"></div>
         
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-bikeLanP-1"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-parkDisP-1"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-bikeLanP-1"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-parkDisP-1"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-bikeLanP-1"></div>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-parkDisP-1"></div>
 
       </div>
       
@@ -717,72 +717,72 @@
 
 
 <script type="text/javascript">
-  $( "#modal-bikeLanP-1" ).on('shown.bs.modal', function() {
+  $( "#modal-parkDisP-1" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-bikeLanP-1", buildSummarySpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-bikeLanP-1", buildTrendSpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
-    vegaEmbed("#map-bikeLanP-1", buildMapSpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
+    vegaEmbed("#summary-parkDisP-1", buildSummarySpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-parkDisP-1", buildTrendSpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
+    vegaEmbed("#map-parkDisP-1", buildMapSpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
   });
 </script>
                     
-                    <button data-toggle="modal" data-target="#modal-sidwalkP-1" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-treeCovP-1" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Sidewalk area</span>
+      <span class="indicator-short-name">Tree shade </span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/sidwalkP_401.svg" alt="Visualization showing neighborhood rank of 14 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/treeCovP_401.svg" alt="Visualization showing neighborhood rank of 38 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/sidwalkP_401.svg" alt="Visualization showing neighborhood rank of 14 out of 42." class="viz">
+      <img src="../../../visualizations/images/treeCovP_401.svg" alt="Visualization showing neighborhood rank of 38 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-sidwalkP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-treeCovP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Sidewalk area:<br>Sidewalk area (percent of land area), 2014</h2>
+        <h2 class="modal-title" id="exampleModalLabel">Tree shade :<br>Tree canopy cover (percent of land area), 2014</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Long Island City - Astoria</strong>, the sidewalk area (percent of land area), 2014 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Sidewalks are a critical component of New York City residents&rsquo; commute. Ample sidewalks in neighborhoods are important for commuting, businesses, and physical activity. Greater sidewalk area facilitates safer pedestrian traffic that, in turn, attracts businesses and fosters community. &ldquo;Sidewalk area&rdquo; measures the percent of a neighborhood that is covered by sidewalk area.</p>
+        <p>In <strong>Long Island City - Astoria</strong>, the tree canopy cover (percent of land area), 2014 is <span class="better">Better</span> than the NYC average.</p>
+        <p>The number of trees and the area shaded by them influences many neighborhood factors, such as attractiveness and lower summer temperatures that, in turn, encourage residents and visitors to walk and do other physical activity. &ldquo;Tree canopy cover&rdquo; measures the percent of a neighborhood that is covered (or shaded) by trees.</p>
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
         <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Long Island City - Astoria <span class="indicator-value">9.1&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">7&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">6.6&#37;</span></div>
+          <div class="col-sm-4 text-primary">Long Island City - Astoria <span class="indicator-value">10.4&#37;</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">19.8&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">21.1&#37;</span></div>
         </div>
         
           <div class="data-note"></div>
         
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-sidwalkP-1"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-treeCovP-1"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-sidwalkP-1"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-treeCovP-1"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-sidwalkP-1"></div>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-treeCovP-1"></div>
 
       </div>
       
@@ -796,11 +796,11 @@
 
 
 <script type="text/javascript">
-  $( "#modal-sidwalkP-1" ).on('shown.bs.modal', function() {
+  $( "#modal-treeCovP-1" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-sidwalkP-1", buildSummarySpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-sidwalkP-1", buildTrendSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
-    vegaEmbed("#map-sidwalkP-1", buildMapSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
+    vegaEmbed("#summary-treeCovP-1", buildSummarySpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-treeCovP-1", buildTrendSpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
+    vegaEmbed("#map-treeCovP-1", buildMapSpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
   });
 </script>
                   
@@ -1125,6 +1125,85 @@
                 
                     
                     
+                    <button data-toggle="modal" data-target="#modal-recExerP-3" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Exercise </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/recExerP_401.svg" alt="Visualization showing neighborhood rank of 11 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/recExerP_401.svg" alt="Visualization showing neighborhood rank of 11 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-recExerP-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Exercise :<br>Adults reporting exercise in the past 30 days (percent), 2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Long Island City - Astoria</strong>, the adults reporting exercise in the past 30 days (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Regular exercise is a key way to stay healthy.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Long Island City - Astoria <span class="indicator-value">78.9&#37;</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">74&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">74.5&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-recExerP-3"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-recExerP-3"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-recExerP-3"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-recExerP-3" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-recExerP-3", buildSummarySpec(NeighborhoodName,"recExerP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-recExerP-3", buildTrendSpec(NeighborhoodName,"recExerP"),opt).then().catch(console.error);
+    vegaEmbed("#map-recExerP-3", buildMapSpec(NeighborhoodName,"recExerP"),opt).then().catch(console.error);
+  });
+</script>
+                    
                     <button data-toggle="modal" data-target="#modal-recBikeP-3" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -1201,85 +1280,6 @@
     vegaEmbed("#summary-recBikeP-3", buildSummarySpec(NeighborhoodName,"recBikeP"),opt).then().catch(console.error);
     vegaEmbed("#trend-recBikeP-3", buildTrendSpec(NeighborhoodName,"recBikeP"),opt).then().catch(console.error);
     vegaEmbed("#map-recBikeP-3", buildMapSpec(NeighborhoodName,"recBikeP"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-recExerP-3" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Exercise </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/recExerP_401.svg" alt="Visualization showing neighborhood rank of 11 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/recExerP_401.svg" alt="Visualization showing neighborhood rank of 11 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-recExerP-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Exercise :<br>Adults reporting exercise in the past 30 days (percent), 2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Long Island City - Astoria</strong>, the adults reporting exercise in the past 30 days (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Regular exercise is a key way to stay healthy.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Long Island City - Astoria <span class="indicator-value">78.9&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">74&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">74.5&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-recExerP-3"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-recExerP-3"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-recExerP-3"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-recExerP-3" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-recExerP-3", buildSummarySpec(NeighborhoodName,"recExerP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-recExerP-3", buildTrendSpec(NeighborhoodName,"recExerP"),opt).then().catch(console.error);
-    vegaEmbed("#map-recExerP-3", buildMapSpec(NeighborhoodName,"recExerP"),opt).then().catch(console.error);
   });
 </script>
                   

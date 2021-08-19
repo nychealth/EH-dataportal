@@ -409,85 +409,6 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-Sulf383-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Sulfur dioxide</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Sulf383_103.svg" alt="Visualization showing neighborhood rank of 2 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Sulf383_103.svg" alt="Visualization showing neighborhood rank of 2 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Sulf383-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Sulfur dioxide:<br>Sulfur Dioxide (SO2)(Mean ppb) Winter 2015-16</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Fordham - Bronx Pk</strong>, the sulfur dioxide (so2)(mean ppb) winter 2015-16 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Sulfur dioxide comes from burning certain types of fuel oil. As an air pollutant, it can can worsen lung diseases.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">0.5&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">0.3&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">0.2&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Sulf383-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Sulf383-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Sulf383-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Sulf383-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Sulf383-1", buildSummarySpec(NeighborhoodName,"Sulf383"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Sulf383-1", buildTrendSpec(NeighborhoodName,"Sulf383"),opt).then().catch(console.error);
-    vegaEmbed("#map-Sulf383-1", buildMapSpec(NeighborhoodName,"Sulf383"),opt).then().catch(console.error);
-  });
-</script>
-                    
                     <button data-toggle="modal" data-target="#modal-Nitr375-1" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -724,6 +645,85 @@
     vegaEmbed("#map-Ozon386-1", buildMapSpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
   });
 </script>
+                    
+                    <button data-toggle="modal" data-target="#modal-Sulf383-1" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Sulfur dioxide</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Sulf383_103.svg" alt="Visualization showing neighborhood rank of 2 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Sulf383_103.svg" alt="Visualization showing neighborhood rank of 2 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Sulf383-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Sulfur dioxide:<br>Sulfur Dioxide (SO2)(Mean ppb) Winter 2015-16</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Fordham - Bronx Pk</strong>, the sulfur dioxide (so2)(mean ppb) winter 2015-16 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Sulfur dioxide comes from burning certain types of fuel oil. As an air pollutant, it can can worsen lung diseases.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">0.5&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">0.3&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">0.2&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Sulf383-1"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Sulf383-1"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Sulf383-1"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Sulf383-1" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Sulf383-1", buildSummarySpec(NeighborhoodName,"Sulf383"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Sulf383-1", buildTrendSpec(NeighborhoodName,"Sulf383"),opt).then().catch(console.error);
+    vegaEmbed("#map-Sulf383-1", buildMapSpec(NeighborhoodName,"Sulf383"),opt).then().catch(console.error);
+  });
+</script>
                   
               </div>
               
@@ -766,401 +766,6 @@
 
                 
                     
-                    
-                    <button data-toggle="modal" data-target="#modal-PM2.648-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">PM2.5 asthma ED visits (children)  </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/PM2.648_103.svg" alt="Visualization showing neighborhood rank of 6 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/PM2.648_103.svg" alt="Visualization showing neighborhood rank of 6 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-PM2.648-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">PM2.5 asthma ED visits (children)  :<br>Asthma emergency department visits among children under 18 years of age 2015-2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Fordham - Bronx Pk</strong>, the asthma emergency department visits among children under 18 years of age 2015-2017 is <span class="better">Better</span> than the NYC average.</p>
-        <p>PM2.5-attributable asthma ED visits represent part of the health burden imposed by fine particle air pollution.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">153.6&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">146.9&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">78.2&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-PM2.648-2"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-PM2.648-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-PM2.648-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-PM2.648-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-PM2.648-2", buildSummarySpec(NeighborhoodName,"PM2.648"),opt).then().catch(console.error);
-    vegaEmbed("#trend-PM2.648-2", buildTrendSpec(NeighborhoodName,"PM2.648"),opt).then().catch(console.error);
-    vegaEmbed("#map-PM2.648-2", buildMapSpec(NeighborhoodName,"PM2.648"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-PM2.657-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">PM2.5 asthma ED visits (children)  </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/PM2.657_103.svg" alt="Visualization showing neighborhood rank of 9 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/PM2.657_103.svg" alt="Visualization showing neighborhood rank of 9 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-PM2.657-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">PM2.5 asthma ED visits (children)  :<br>Asthma emergency department visits in adults 2015-2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Fordham - Bronx Pk</strong>, the asthma emergency department visits in adults 2015-2017 is <span class="better">Better</span> than the NYC average.</p>
-        <p>PM2.5-attributable asthma ED visits represent part of the health burden imposed by fine particle air pollution.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">64.1&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">67&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">34.6&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-PM2.657-2"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-PM2.657-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-PM2.657-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-PM2.657-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-PM2.657-2", buildSummarySpec(NeighborhoodName,"PM2.657"),opt).then().catch(console.error);
-    vegaEmbed("#trend-PM2.657-2", buildTrendSpec(NeighborhoodName,"PM2.657"),opt).then().catch(console.error);
-    vegaEmbed("#map-PM2.657-2", buildMapSpec(NeighborhoodName,"PM2.657"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-PM2.651-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">PM2.5 health burden (heart)   </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/PM2.651_103.svg" alt="Visualization showing neighborhood rank of 7 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/PM2.651_103.svg" alt="Visualization showing neighborhood rank of 7 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-PM2.651-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">PM2.5 health burden (heart)   :<br>Cardiovascular hospitalizations in adults aged 40 years and older.  2015-2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Fordham - Bronx Pk</strong>, the cardiovascular hospitalizations in adults aged 40 years and older.  2015-2017 is <span class="better">Better</span> than the NYC average.</p>
-        <p>PM2.5-attributable cardiovascular hospitalizations represent part of the health burden imposed by fine particle air pollution.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">21.2&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">21&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">17&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-PM2.651-2"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-PM2.651-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-PM2.651-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-PM2.651-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-PM2.651-2", buildSummarySpec(NeighborhoodName,"PM2.651"),opt).then().catch(console.error);
-    vegaEmbed("#trend-PM2.651-2", buildTrendSpec(NeighborhoodName,"PM2.651"),opt).then().catch(console.error);
-    vegaEmbed("#map-PM2.651-2", buildMapSpec(NeighborhoodName,"PM2.651"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-PM2.650-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">PM2.5 health burden (lungs)   </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/PM2.650_103.svg" alt="Visualization showing neighborhood rank of 5 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/PM2.650_103.svg" alt="Visualization showing neighborhood rank of 5 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-PM2.650-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">PM2.5 health burden (lungs)   :<br>Respiratory hospitalizations in adults aged 20 years and older 2015-2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Fordham - Bronx Pk</strong>, the respiratory hospitalizations in adults aged 20 years and older 2015-2017 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Estimating hospitalizations that can be linked to PM2.5 is a way to understand how air pollution impacts public health.  </p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">19.4&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">19.6&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">11.8&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-PM2.650-2"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-PM2.650-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-PM2.650-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-PM2.650-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-PM2.650-2", buildSummarySpec(NeighborhoodName,"PM2.650"),opt).then().catch(console.error);
-    vegaEmbed("#trend-PM2.650-2", buildTrendSpec(NeighborhoodName,"PM2.650"),opt).then().catch(console.error);
-    vegaEmbed("#map-PM2.650-2", buildMapSpec(NeighborhoodName,"PM2.650"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-PM2.651-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">PM2.5 health burden (heart)   </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/PM2.651_103.svg" alt="Visualization showing neighborhood rank of 7 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/PM2.651_103.svg" alt="Visualization showing neighborhood rank of 7 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-PM2.651-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">PM2.5 health burden (heart)   :<br>Cardiovascular hospitalizations in adults aged 40 years and older.  2009-2011</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Fordham - Bronx Pk</strong>, the cardiovascular hospitalizations in adults aged 40 years and older.  2009-2011 is <span class="better">Better</span> than the NYC average.</p>
-        <p>PM2.5-attributable cardiovascular hospitalizations represent part of the health burden imposed by fine particle air pollution.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">21.2&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">21&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">17&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-PM2.651-2"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-PM2.651-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-PM2.651-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-PM2.651-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-PM2.651-2", buildSummarySpec(NeighborhoodName,"PM2.651"),opt).then().catch(console.error);
-    vegaEmbed("#trend-PM2.651-2", buildTrendSpec(NeighborhoodName,"PM2.651"),opt).then().catch(console.error);
-    vegaEmbed("#map-PM2.651-2", buildMapSpec(NeighborhoodName,"PM2.651"),opt).then().catch(console.error);
-  });
-</script>
                     
                     <button data-toggle="modal" data-target="#modal-PM2.639-2" class="indicator-anchor">
   <div class="row align-items-center">
@@ -1240,6 +845,401 @@
     vegaEmbed("#map-PM2.639-2", buildMapSpec(NeighborhoodName,"PM2.639"),opt).then().catch(console.error);
   });
 </script>
+                    
+                    <button data-toggle="modal" data-target="#modal-PM2.648-2" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">PM2.5 asthma ED visits (children)  </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/PM2.648_103.svg" alt="Visualization showing neighborhood rank of 6 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/PM2.648_103.svg" alt="Visualization showing neighborhood rank of 6 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-PM2.648-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">PM2.5 asthma ED visits (children)  :<br>Asthma emergency department visits among children under 18 years of age 2015-2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Fordham - Bronx Pk</strong>, the asthma emergency department visits among children under 18 years of age 2015-2017 is <span class="better">Better</span> than the NYC average.</p>
+        <p>PM2.5-attributable asthma ED visits represent part of the health burden imposed by fine particle air pollution.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">153.6&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">146.9&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">78.2&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-PM2.648-2"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-PM2.648-2"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-PM2.648-2"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-PM2.648-2" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-PM2.648-2", buildSummarySpec(NeighborhoodName,"PM2.648"),opt).then().catch(console.error);
+    vegaEmbed("#trend-PM2.648-2", buildTrendSpec(NeighborhoodName,"PM2.648"),opt).then().catch(console.error);
+    vegaEmbed("#map-PM2.648-2", buildMapSpec(NeighborhoodName,"PM2.648"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-PM2.657-2" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">PM2.5 asthma ED visits (children)  </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/PM2.657_103.svg" alt="Visualization showing neighborhood rank of 9 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/PM2.657_103.svg" alt="Visualization showing neighborhood rank of 9 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-PM2.657-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">PM2.5 asthma ED visits (children)  :<br>Asthma emergency department visits in adults 2015-2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Fordham - Bronx Pk</strong>, the asthma emergency department visits in adults 2015-2017 is <span class="better">Better</span> than the NYC average.</p>
+        <p>PM2.5-attributable asthma ED visits represent part of the health burden imposed by fine particle air pollution.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">64.1&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">67&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">34.6&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-PM2.657-2"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-PM2.657-2"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-PM2.657-2"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-PM2.657-2" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-PM2.657-2", buildSummarySpec(NeighborhoodName,"PM2.657"),opt).then().catch(console.error);
+    vegaEmbed("#trend-PM2.657-2", buildTrendSpec(NeighborhoodName,"PM2.657"),opt).then().catch(console.error);
+    vegaEmbed("#map-PM2.657-2", buildMapSpec(NeighborhoodName,"PM2.657"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-PM2.651-2" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">PM2.5 health burden (heart)   </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/PM2.651_103.svg" alt="Visualization showing neighborhood rank of 7 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/PM2.651_103.svg" alt="Visualization showing neighborhood rank of 7 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-PM2.651-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">PM2.5 health burden (heart)   :<br>Cardiovascular hospitalizations in adults aged 40 years and older.  2015-2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Fordham - Bronx Pk</strong>, the cardiovascular hospitalizations in adults aged 40 years and older.  2015-2017 is <span class="better">Better</span> than the NYC average.</p>
+        <p>PM2.5-attributable cardiovascular hospitalizations represent part of the health burden imposed by fine particle air pollution.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">21.2&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">21&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">17&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-PM2.651-2"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-PM2.651-2"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-PM2.651-2"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-PM2.651-2" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-PM2.651-2", buildSummarySpec(NeighborhoodName,"PM2.651"),opt).then().catch(console.error);
+    vegaEmbed("#trend-PM2.651-2", buildTrendSpec(NeighborhoodName,"PM2.651"),opt).then().catch(console.error);
+    vegaEmbed("#map-PM2.651-2", buildMapSpec(NeighborhoodName,"PM2.651"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-PM2.650-2" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">PM2.5 health burden (lungs)   </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/PM2.650_103.svg" alt="Visualization showing neighborhood rank of 5 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/PM2.650_103.svg" alt="Visualization showing neighborhood rank of 5 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-PM2.650-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">PM2.5 health burden (lungs)   :<br>Respiratory hospitalizations in adults aged 20 years and older 2015-2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Fordham - Bronx Pk</strong>, the respiratory hospitalizations in adults aged 20 years and older 2015-2017 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Estimating hospitalizations that can be linked to PM2.5 is a way to understand how air pollution impacts public health.  </p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">19.4&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">19.6&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">11.8&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-PM2.650-2"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-PM2.650-2"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-PM2.650-2"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-PM2.650-2" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-PM2.650-2", buildSummarySpec(NeighborhoodName,"PM2.650"),opt).then().catch(console.error);
+    vegaEmbed("#trend-PM2.650-2", buildTrendSpec(NeighborhoodName,"PM2.650"),opt).then().catch(console.error);
+    vegaEmbed("#map-PM2.650-2", buildMapSpec(NeighborhoodName,"PM2.650"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-PM2.651-2" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">PM2.5 health burden (heart)   </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/PM2.651_103.svg" alt="Visualization showing neighborhood rank of 7 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/PM2.651_103.svg" alt="Visualization showing neighborhood rank of 7 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-PM2.651-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">PM2.5 health burden (heart)   :<br>Cardiovascular hospitalizations in adults aged 40 years and older.  2009-2011</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Fordham - Bronx Pk</strong>, the cardiovascular hospitalizations in adults aged 40 years and older.  2009-2011 is <span class="better">Better</span> than the NYC average.</p>
+        <p>PM2.5-attributable cardiovascular hospitalizations represent part of the health burden imposed by fine particle air pollution.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">21.2&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">21&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">17&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-PM2.651-2"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-PM2.651-2"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-PM2.651-2"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-PM2.651-2" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-PM2.651-2", buildSummarySpec(NeighborhoodName,"PM2.651"),opt).then().catch(console.error);
+    vegaEmbed("#trend-PM2.651-2", buildTrendSpec(NeighborhoodName,"PM2.651"),opt).then().catch(console.error);
+    vegaEmbed("#map-PM2.651-2", buildMapSpec(NeighborhoodName,"PM2.651"),opt).then().catch(console.error);
+  });
+</script>
                   
               </div>
               
@@ -1282,322 +1282,6 @@
 
                 
                     
-                    
-                    <button data-toggle="modal" data-target="#modal-O3-A653-3" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Ozone asthma ED visits (children)   </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/O3-A653_103.svg" alt="Visualization showing neighborhood rank of 6 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/O3-A653_103.svg" alt="Visualization showing neighborhood rank of 6 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-O3-A653-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Ozone asthma ED visits (children)   :<br>Asthma emergency department visits among children under 18 years of age 2015-2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Fordham - Bronx Pk</strong>, the asthma emergency department visits among children under 18 years of age 2015-2017 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Ozone-attributable asthma ED visits represent part of the health burden of ozone air pollution.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">187.8&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">177.5&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">101.9&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-O3-A653-3"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-O3-A653-3"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-O3-A653-3"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-O3-A653-3" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-O3-A653-3", buildSummarySpec(NeighborhoodName,"O3-A653"),opt).then().catch(console.error);
-    vegaEmbed("#trend-O3-A653-3", buildTrendSpec(NeighborhoodName,"O3-A653"),opt).then().catch(console.error);
-    vegaEmbed("#map-O3-A653-3", buildMapSpec(NeighborhoodName,"O3-A653"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-O3-A659-3" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Ozone asthma ED visits (children)   </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/O3-A659_103.svg" alt="Visualization showing neighborhood rank of 9 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/O3-A659_103.svg" alt="Visualization showing neighborhood rank of 9 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-O3-A659-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Ozone asthma ED visits (children)   :<br>Asthma emergency department visits among adults 2015-2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Fordham - Bronx Pk</strong>, the asthma emergency department visits among adults 2015-2017 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Ozone-attributable asthma ED visits represent part of the health burden of ozone air pollution.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">85.5&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">87.6&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">48.3&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-O3-A659-3"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-O3-A659-3"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-O3-A659-3"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-O3-A659-3" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-O3-A659-3", buildSummarySpec(NeighborhoodName,"O3-A659"),opt).then().catch(console.error);
-    vegaEmbed("#trend-O3-A659-3", buildTrendSpec(NeighborhoodName,"O3-A659"),opt).then().catch(console.error);
-    vegaEmbed("#map-O3-A659-3", buildMapSpec(NeighborhoodName,"O3-A659"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-O3-A655-3" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Ozone asthma hospitalizations (children)  </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/O3-A655_103.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/O3-A655_103.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-O3-A655-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Ozone asthma hospitalizations (children)  :<br>Asthma hospitalizations among children under 18 years of age 2015-2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Fordham - Bronx Pk</strong>, the asthma hospitalizations among children under 18 years of age 2015-2017 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Ozone-attributable asthma hospitalizations represent part of the health burden of ozone air pollution.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">39.1&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">34.3&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">18.7&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-O3-A655-3"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-O3-A655-3"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-O3-A655-3"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-O3-A655-3" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-O3-A655-3", buildSummarySpec(NeighborhoodName,"O3-A655"),opt).then().catch(console.error);
-    vegaEmbed("#trend-O3-A655-3", buildTrendSpec(NeighborhoodName,"O3-A655"),opt).then().catch(console.error);
-    vegaEmbed("#map-O3-A655-3", buildMapSpec(NeighborhoodName,"O3-A655"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-O3-A661-3" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Ozone asthma hospitalizations (children)  </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/O3-A661_103.svg" alt="Visualization showing neighborhood rank of 3 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/O3-A661_103.svg" alt="Visualization showing neighborhood rank of 3 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-O3-A661-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Ozone asthma hospitalizations (children)  :<br>Asthma hospitalizations among adults 2015-2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Fordham - Bronx Pk</strong>, the asthma hospitalizations among adults 2015-2017 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Ozone-attributable asthma hospitalizations represent part of the health burden of ozone air pollution.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">10.0&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">9.1&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">3.9&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-O3-A661-3"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-O3-A661-3"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-O3-A661-3"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-O3-A661-3" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-O3-A661-3", buildSummarySpec(NeighborhoodName,"O3-A661"),opt).then().catch(console.error);
-    vegaEmbed("#trend-O3-A661-3", buildTrendSpec(NeighborhoodName,"O3-A661"),opt).then().catch(console.error);
-    vegaEmbed("#map-O3-A661-3", buildMapSpec(NeighborhoodName,"O3-A661"),opt).then().catch(console.error);
-  });
-</script>
                     
                     <button data-toggle="modal" data-target="#modal-O3-A652-3" class="indicator-anchor">
   <div class="row align-items-center">
@@ -1677,6 +1361,322 @@
     vegaEmbed("#map-O3-A652-3", buildMapSpec(NeighborhoodName,"O3-A652"),opt).then().catch(console.error);
   });
 </script>
+                    
+                    <button data-toggle="modal" data-target="#modal-O3-A653-3" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Ozone asthma ED visits (children)   </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/O3-A653_103.svg" alt="Visualization showing neighborhood rank of 6 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/O3-A653_103.svg" alt="Visualization showing neighborhood rank of 6 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-O3-A653-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Ozone asthma ED visits (children)   :<br>Asthma emergency department visits among children under 18 years of age 2015-2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Fordham - Bronx Pk</strong>, the asthma emergency department visits among children under 18 years of age 2015-2017 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Ozone-attributable asthma ED visits represent part of the health burden of ozone air pollution.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">187.8&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">177.5&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">101.9&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-O3-A653-3"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-O3-A653-3"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-O3-A653-3"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-O3-A653-3" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-O3-A653-3", buildSummarySpec(NeighborhoodName,"O3-A653"),opt).then().catch(console.error);
+    vegaEmbed("#trend-O3-A653-3", buildTrendSpec(NeighborhoodName,"O3-A653"),opt).then().catch(console.error);
+    vegaEmbed("#map-O3-A653-3", buildMapSpec(NeighborhoodName,"O3-A653"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-O3-A659-3" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Ozone asthma ED visits (children)   </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/O3-A659_103.svg" alt="Visualization showing neighborhood rank of 9 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/O3-A659_103.svg" alt="Visualization showing neighborhood rank of 9 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-O3-A659-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Ozone asthma ED visits (children)   :<br>Asthma emergency department visits among adults 2015-2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Fordham - Bronx Pk</strong>, the asthma emergency department visits among adults 2015-2017 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Ozone-attributable asthma ED visits represent part of the health burden of ozone air pollution.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">85.5&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">87.6&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">48.3&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-O3-A659-3"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-O3-A659-3"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-O3-A659-3"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-O3-A659-3" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-O3-A659-3", buildSummarySpec(NeighborhoodName,"O3-A659"),opt).then().catch(console.error);
+    vegaEmbed("#trend-O3-A659-3", buildTrendSpec(NeighborhoodName,"O3-A659"),opt).then().catch(console.error);
+    vegaEmbed("#map-O3-A659-3", buildMapSpec(NeighborhoodName,"O3-A659"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-O3-A655-3" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Ozone asthma hospitalizations (children)  </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/O3-A655_103.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/O3-A655_103.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-O3-A655-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Ozone asthma hospitalizations (children)  :<br>Asthma hospitalizations among children under 18 years of age 2015-2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Fordham - Bronx Pk</strong>, the asthma hospitalizations among children under 18 years of age 2015-2017 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Ozone-attributable asthma hospitalizations represent part of the health burden of ozone air pollution.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">39.1&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">34.3&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">18.7&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-O3-A655-3"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-O3-A655-3"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-O3-A655-3"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-O3-A655-3" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-O3-A655-3", buildSummarySpec(NeighborhoodName,"O3-A655"),opt).then().catch(console.error);
+    vegaEmbed("#trend-O3-A655-3", buildTrendSpec(NeighborhoodName,"O3-A655"),opt).then().catch(console.error);
+    vegaEmbed("#map-O3-A655-3", buildMapSpec(NeighborhoodName,"O3-A655"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-O3-A661-3" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Ozone asthma hospitalizations (children)  </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/O3-A661_103.svg" alt="Visualization showing neighborhood rank of 3 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/O3-A661_103.svg" alt="Visualization showing neighborhood rank of 3 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-O3-A661-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Ozone asthma hospitalizations (children)  :<br>Asthma hospitalizations among adults 2015-2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Fordham - Bronx Pk</strong>, the asthma hospitalizations among adults 2015-2017 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Ozone-attributable asthma hospitalizations represent part of the health burden of ozone air pollution.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">10.0&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">9.1&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">3.9&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-O3-A661-3"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-O3-A661-3"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-O3-A661-3"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-O3-A661-3" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-O3-A661-3", buildSummarySpec(NeighborhoodName,"O3-A661"),opt).then().catch(console.error);
+    vegaEmbed("#trend-O3-A661-3", buildTrendSpec(NeighborhoodName,"O3-A661"),opt).then().catch(console.error);
+    vegaEmbed("#map-O3-A661-3", buildMapSpec(NeighborhoodName,"O3-A661"),opt).then().catch(console.error);
+  });
+</script>
                   
               </div>
               
@@ -1719,85 +1719,6 @@
 
                 
                     
-                    
-                    <button data-toggle="modal" data-target="#modal-Air 647-4" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Formaldehyde</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Air%20647_103.svg" alt="Visualization showing neighborhood rank of 13 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Air%20647_103.svg" alt="Visualization showing neighborhood rank of 13 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Air 647-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Formaldehyde:<br>Formaldehyde (µg/m3) 2011</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Fordham - Bronx Pk</strong>, the formaldehyde (µg/m3) 2011 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Formaldehyde is an air pollutant resulting from car exhaust and the manufacture of industrial products. Formaldehyde is a known carcinogen that can also cause irritation to eyes and lungs and increase risk of asthma and trigger asthma symptoms.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">2.2&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">2&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">2.1&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Air 647-4"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Air 647-4"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Air 647-4"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Air 647-4" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Air 647-4", buildSummarySpec(NeighborhoodName,"Air 647"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Air 647-4", buildTrendSpec(NeighborhoodName,"Air 647"),opt).then().catch(console.error);
-    vegaEmbed("#map-Air 647-4", buildMapSpec(NeighborhoodName,"Air 647"),opt).then().catch(console.error);
-  });
-</script>
                     
                     <button data-toggle="modal" data-target="#modal-Air 646-4" class="indicator-anchor">
   <div class="row align-items-center">
@@ -1877,6 +1798,85 @@
     vegaEmbed("#map-Air 646-4", buildMapSpec(NeighborhoodName,"Air 646"),opt).then().catch(console.error);
   });
 </script>
+                    
+                    <button data-toggle="modal" data-target="#modal-Air 647-4" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Formaldehyde</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Air%20647_103.svg" alt="Visualization showing neighborhood rank of 13 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Air%20647_103.svg" alt="Visualization showing neighborhood rank of 13 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Air 647-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Formaldehyde:<br>Formaldehyde (µg/m3) 2011</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Fordham - Bronx Pk</strong>, the formaldehyde (µg/m3) 2011 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Formaldehyde is an air pollutant resulting from car exhaust and the manufacture of industrial products. Formaldehyde is a known carcinogen that can also cause irritation to eyes and lungs and increase risk of asthma and trigger asthma symptoms.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">2.2&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">2&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">2.1&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Air 647-4"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Air 647-4"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Air 647-4"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Air 647-4" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Air 647-4", buildSummarySpec(NeighborhoodName,"Air 647"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Air 647-4", buildTrendSpec(NeighborhoodName,"Air 647"),opt).then().catch(console.error);
+    vegaEmbed("#map-Air 647-4", buildMapSpec(NeighborhoodName,"Air 647"),opt).then().catch(console.error);
+  });
+</script>
                   
               </div>
               
@@ -1919,6 +1919,85 @@
 
                 
                     
+                    
+                    <button data-toggle="modal" data-target="#modal-Traf645-5" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Truck traffic</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Traf645_103.svg" alt="Visualization showing neighborhood rank of 28 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Traf645_103.svg" alt="Visualization showing neighborhood rank of 28 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Traf645-5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Truck traffic:<br>Trucks 2016</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Fordham - Bronx Pk</strong>, the trucks 2016 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Traffic density is a measure of  the average number of vehicles that occupy specified area. Traffic density can influence health as a source of air pollution and traffic-related injuries. </p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">0.8&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">2&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">1.2&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Traf645-5"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Traf645-5"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Traf645-5"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Traf645-5" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Traf645-5", buildSummarySpec(NeighborhoodName,"Traf645"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Traf645-5", buildTrendSpec(NeighborhoodName,"Traf645"),opt).then().catch(console.error);
+    vegaEmbed("#map-Traf645-5", buildMapSpec(NeighborhoodName,"Traf645"),opt).then().catch(console.error);
+  });
+</script>
                     
                     <button data-toggle="modal" data-target="#modal-Traf643-5" class="indicator-anchor">
   <div class="row align-items-center">
@@ -2077,85 +2156,6 @@
     vegaEmbed("#map-Traf644-5", buildMapSpec(NeighborhoodName,"Traf644"),opt).then().catch(console.error);
   });
 </script>
-                    
-                    <button data-toggle="modal" data-target="#modal-Traf645-5" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Truck traffic</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Traf645_103.svg" alt="Visualization showing neighborhood rank of 28 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Traf645_103.svg" alt="Visualization showing neighborhood rank of 28 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Traf645-5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Truck traffic:<br>Trucks 2016</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Fordham - Bronx Pk</strong>, the trucks 2016 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Traffic density is a measure of  the average number of vehicles that occupy specified area. Traffic density can influence health as a source of air pollution and traffic-related injuries. </p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Fordham - Bronx Pk <span class="indicator-value">0.8&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">2&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">1.2&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Traf645-5"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Traf645-5"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Traf645-5"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Traf645-5" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Traf645-5", buildSummarySpec(NeighborhoodName,"Traf645"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Traf645-5", buildTrendSpec(NeighborhoodName,"Traf645"),opt).then().catch(console.error);
-    vegaEmbed("#map-Traf645-5", buildMapSpec(NeighborhoodName,"Traf645"),opt).then().catch(console.error);
-  });
-</script>
                   
               </div>
               
@@ -2206,7 +2206,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Boil640_103.svg" alt="Visualization showing neighborhood rank of 7 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -2285,7 +2285,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Boil641_103.svg" alt="Visualization showing neighborhood rank of 7 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -2364,7 +2364,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Boil642_103.svg" alt="Visualization showing neighborhood rank of 11 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">

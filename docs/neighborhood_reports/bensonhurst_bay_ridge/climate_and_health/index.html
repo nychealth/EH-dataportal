@@ -409,6 +409,85 @@
                 
                     
                     
+                    <button data-toggle="modal" data-target="#modal-Dayt688-1" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Surface temperature</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Dayt688_209.svg" alt="Visualization showing neighborhood rank of 38 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Dayt688_209.svg" alt="Visualization showing neighborhood rank of 38 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Dayt688-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Surface temperature:<br>Spatial average of surface temperature (Degrees Fahrenheit), 11:22 AM, July 17, 2018</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Bensonhurst - Bay Ridge</strong>, the spatial average of surface temperature (degrees fahrenheit), 11:22 am, july 17, 2018 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Surface temperatures in NYC may vary as a function of vegetative land cover, which promotes cooling, or cover by paved roads, sidewalks, and buildings, which retain heat.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Bensonhurst - Bay Ridge <span class="indicator-value">94.8&#37;</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">98.6&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">98.6&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Dayt688-1"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Dayt688-1"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Dayt688-1"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Dayt688-1" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Dayt688-1", buildSummarySpec(NeighborhoodName,"Dayt688"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Dayt688-1", buildTrendSpec(NeighborhoodName,"Dayt688"),opt).then().catch(console.error);
+    vegaEmbed("#map-Dayt688-1", buildMapSpec(NeighborhoodName,"Dayt688"),opt).then().catch(console.error);
+  });
+</script>
+                    
                     <button data-toggle="modal" data-target="#modal-Area687-1" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -566,85 +645,6 @@
     vegaEmbed("#map-Ozon386-1", buildMapSpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
   });
 </script>
-                    
-                    <button data-toggle="modal" data-target="#modal-Dayt688-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Surface temperature</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Dayt688_209.svg" alt="Visualization showing neighborhood rank of 38 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Dayt688_209.svg" alt="Visualization showing neighborhood rank of 38 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Dayt688-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Surface temperature:<br>Spatial average of surface temperature (Degrees Fahrenheit), 11:22 AM, July 17, 2018</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Bensonhurst - Bay Ridge</strong>, the spatial average of surface temperature (degrees fahrenheit), 11:22 am, july 17, 2018 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Surface temperatures in NYC may vary as a function of vegetative land cover, which promotes cooling, or cover by paved roads, sidewalks, and buildings, which retain heat.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Bensonhurst - Bay Ridge <span class="indicator-value">94.8&#37;</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">98.6&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">98.6&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Dayt688-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Dayt688-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Dayt688-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Dayt688-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Dayt688-1", buildSummarySpec(NeighborhoodName,"Dayt688"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Dayt688-1", buildTrendSpec(NeighborhoodName,"Dayt688"),opt).then().catch(console.error);
-    vegaEmbed("#map-Dayt688-1", buildMapSpec(NeighborhoodName,"Dayt688"),opt).then().catch(console.error);
-  });
-</script>
                   
               </div>
               
@@ -687,6 +687,85 @@
 
                 
                     
+                    
+                    <button data-toggle="modal" data-target="#modal-Home88-2" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Building quality</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Home88_209.svg" alt="Visualization showing neighborhood rank of 10 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Home88_209.svg" alt="Visualization showing neighborhood rank of 10 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Home88-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Building quality:<br>Homes near structures rated good or excellent (percent),  2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Bensonhurst - Bay Ridge</strong>, the homes near structures rated good or excellent (percent),  2017 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Building quality is a strong predictor of the number of housing maintenance deficiencies in a residence that may contribute to increased risk of acute or chronic health problems.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Bensonhurst - Bay Ridge <span class="indicator-value">90.0&#37;</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">80.4&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">80.7&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Home88-2"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Home88-2"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Home88-2"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Home88-2" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Home88-2", buildSummarySpec(NeighborhoodName,"Home88"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Home88-2", buildTrendSpec(NeighborhoodName,"Home88"),opt).then().catch(console.error);
+    vegaEmbed("#map-Home88-2", buildMapSpec(NeighborhoodName,"Home88"),opt).then().catch(console.error);
+  });
+</script>
                     
                     <button data-toggle="modal" data-target="#modal-Adul706-2" class="indicator-anchor">
   <div class="row align-items-center">
@@ -845,85 +924,6 @@
     vegaEmbed("#map-Vege690-2", buildMapSpec(NeighborhoodName,"Vege690"),opt).then().catch(console.error);
   });
 </script>
-                    
-                    <button data-toggle="modal" data-target="#modal-Home88-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Building quality</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Home88_209.svg" alt="Visualization showing neighborhood rank of 10 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Home88_209.svg" alt="Visualization showing neighborhood rank of 10 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Home88-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Building quality:<br>Homes near structures rated good or excellent (percent),  2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Bensonhurst - Bay Ridge</strong>, the homes near structures rated good or excellent (percent),  2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Building quality is a strong predictor of the number of housing maintenance deficiencies in a residence that may contribute to increased risk of acute or chronic health problems.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Bensonhurst - Bay Ridge <span class="indicator-value">90.0&#37;</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">80.4&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">80.7&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Home88-2"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Home88-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Home88-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Home88-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Home88-2", buildSummarySpec(NeighborhoodName,"Home88"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Home88-2", buildTrendSpec(NeighborhoodName,"Home88"),opt).then().catch(console.error);
-    vegaEmbed("#map-Home88-2", buildMapSpec(NeighborhoodName,"Home88"),opt).then().catch(console.error);
-  });
-</script>
                   
               </div>
               
@@ -967,67 +967,64 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-Adul692-3" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-Olde693-3" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Independence difficulty</span>
+      <span class="indicator-short-name">Older adults living alone</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Adul692_209.svg" alt="Visualization showing neighborhood rank of 10 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/Olde693_209.svg" alt="Visualization showing neighborhood rank of 30 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Adul692_209.svg" alt="Visualization showing neighborhood rank of 10 out of 42." class="viz">
+      <img src="../../../visualizations/images/Olde693_209.svg" alt="Visualization showing neighborhood rank of 30 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Adul692-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Olde693-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Independence difficulty:<br>Adults aged 18 and older with independent living difficulty (percent), 2013-17</h2>
+        <h2 class="modal-title" id="exampleModalLabel">Older adults living alone:<br>Adults aged 65 years and older who live alone (percent), 2013-2017</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Bensonhurst - Bay Ridge</strong>, the adults aged 18 and older with independent living difficulty (percent), 2013-17 is <span class="better">Better</span> than the NYC average.</p>
-        <p>People with disabilities or access or functional needs may need additional support during extreme weather to avoid injury, illness or even death. For example, planning needs to be made for safe travel out of evacuation zones during a hurricane, or to ensure back-up electricity is available to to support medical equipment during power outages caused by heat waves.</p>
-<p>&nbsp;</p>
-<p>Information provided here about adults with independent living difficulties can help emergency management professionals better prepare our residents for emergencies. For more information, please visit:</p>
-<p><a href="https://www1.nyc.gov/site/em/ready/disabilities-access-functional-needs.page">NYC Emergency Management: Disabilities, Access &amp; Functional Needs</a></p>
+        <p>In <strong>Bensonhurst - Bay Ridge</strong>, the adults aged 65 years and older who live alone (percent), 2013-2017 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Adults over the age of 65 are more vulnerable to extreme hot and cold weather. Those that live alone may have more difficulty getting the resources they need in extreme weather events and are at higher risk of weather-related illnesses like heat stroke and hypothermia.</p>
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
         <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Bensonhurst - Bay Ridge <span class="indicator-value">6.5&#37;</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">5.8&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">5.5&#37;</span></div>
+          <div class="col-sm-4 text-primary">Bensonhurst - Bay Ridge <span class="indicator-value">27.2&#37;</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">29.6&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">31.2&#37;</span></div>
         </div>
         
           <div class="data-note"></div>
         
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Adul692-3"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Olde693-3"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Adul692-3"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Olde693-3"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Adul692-3"></div>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Olde693-3"></div>
 
       </div>
       
@@ -1041,72 +1038,72 @@
 
 
 <script type="text/javascript">
-  $( "#modal-Adul692-3" ).on('shown.bs.modal', function() {
+  $( "#modal-Olde693-3" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Adul692-3", buildSummarySpec(NeighborhoodName,"Adul692"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Adul692-3", buildTrendSpec(NeighborhoodName,"Adul692"),opt).then().catch(console.error);
-    vegaEmbed("#map-Adul692-3", buildMapSpec(NeighborhoodName,"Adul692"),opt).then().catch(console.error);
+    vegaEmbed("#summary-Olde693-3", buildSummarySpec(NeighborhoodName,"Olde693"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Olde693-3", buildTrendSpec(NeighborhoodName,"Olde693"),opt).then().catch(console.error);
+    vegaEmbed("#map-Olde693-3", buildMapSpec(NeighborhoodName,"Olde693"),opt).then().catch(console.error);
   });
 </script>
                     
-                    <button data-toggle="modal" data-target="#modal-Seri691-3" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-Obes506-3" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Psychological distress</span>
+      <span class="indicator-short-name">Obesity</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Seri691_209.svg" alt="Visualization showing neighborhood rank of 3 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/Obes506_209.svg" alt="Visualization showing neighborhood rank of 32 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Seri691_209.svg" alt="Visualization showing neighborhood rank of 3 out of 42." class="viz">
+      <img src="../../../visualizations/images/Obes506_209.svg" alt="Visualization showing neighborhood rank of 32 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Seri691-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Obes506-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Psychological distress:<br>Adults aged 18 years and older reporting serious psychological distress (percent),  2012</h2>
+        <h2 class="modal-title" id="exampleModalLabel">Obesity:<br>Adults aged 18 years and older who are obese (percent), 2017</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Bensonhurst - Bay Ridge</strong>, the adults aged 18 years and older reporting serious psychological distress (percent),  2012 is <span class="better">Better</span> than the NYC average.</p>
-        <p></p>
+        <p>In <strong>Bensonhurst - Bay Ridge</strong>, the adults aged 18 years and older who are obese (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>People who are obese are at increased risk for heart disease and diabetes. Neighborhood factors such as walkability and the types of food retail outlets available can impact residents' risk of being overweight or obese.</p>
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
         <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Bensonhurst - Bay Ridge <span class="indicator-value">9.1*&#37;</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">6&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">5.5&#37;</span></div>
+          <div class="col-sm-4 text-primary">Bensonhurst - Bay Ridge <span class="indicator-value">19.5&#37;</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">26.4&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">25.1&#37;</span></div>
         </div>
         
-          <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
+          <div class="data-note"></div>
         
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Seri691-3"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Obes506-3"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Seri691-3"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Obes506-3"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Seri691-3"></div>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Obes506-3"></div>
 
       </div>
       
@@ -1120,11 +1117,11 @@
 
 
 <script type="text/javascript">
-  $( "#modal-Seri691-3" ).on('shown.bs.modal', function() {
+  $( "#modal-Obes506-3" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Seri691-3", buildSummarySpec(NeighborhoodName,"Seri691"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Seri691-3", buildTrendSpec(NeighborhoodName,"Seri691"),opt).then().catch(console.error);
-    vegaEmbed("#map-Seri691-3", buildMapSpec(NeighborhoodName,"Seri691"),opt).then().catch(console.error);
+    vegaEmbed("#summary-Obes506-3", buildSummarySpec(NeighborhoodName,"Obes506"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Obes506-3", buildTrendSpec(NeighborhoodName,"Obes506"),opt).then().catch(console.error);
+    vegaEmbed("#map-Obes506-3", buildMapSpec(NeighborhoodName,"Obes506"),opt).then().catch(console.error);
   });
 </script>
                     
@@ -1207,64 +1204,67 @@
   });
 </script>
                     
-                    <button data-toggle="modal" data-target="#modal-Olde693-3" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-Adul692-3" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Older adults living alone</span>
+      <span class="indicator-short-name">Independence difficulty</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Olde693_209.svg" alt="Visualization showing neighborhood rank of 30 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/Adul692_209.svg" alt="Visualization showing neighborhood rank of 10 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Olde693_209.svg" alt="Visualization showing neighborhood rank of 30 out of 42." class="viz">
+      <img src="../../../visualizations/images/Adul692_209.svg" alt="Visualization showing neighborhood rank of 10 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Olde693-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Adul692-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Older adults living alone:<br>Adults aged 65 years and older who live alone (percent), 2013-2017</h2>
+        <h2 class="modal-title" id="exampleModalLabel">Independence difficulty:<br>Adults aged 18 and older with independent living difficulty (percent), 2013-17</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Bensonhurst - Bay Ridge</strong>, the adults aged 65 years and older who live alone (percent), 2013-2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Adults over the age of 65 are more vulnerable to extreme hot and cold weather. Those that live alone may have more difficulty getting the resources they need in extreme weather events and are at higher risk of weather-related illnesses like heat stroke and hypothermia.</p>
+        <p>In <strong>Bensonhurst - Bay Ridge</strong>, the adults aged 18 and older with independent living difficulty (percent), 2013-17 is <span class="better">Better</span> than the NYC average.</p>
+        <p>People with disabilities or access or functional needs may need additional support during extreme weather to avoid injury, illness or even death. For example, planning needs to be made for safe travel out of evacuation zones during a hurricane, or to ensure back-up electricity is available to to support medical equipment during power outages caused by heat waves.</p>
+<p>&nbsp;</p>
+<p>Information provided here about adults with independent living difficulties can help emergency management professionals better prepare our residents for emergencies. For more information, please visit:</p>
+<p><a href="https://www1.nyc.gov/site/em/ready/disabilities-access-functional-needs.page">NYC Emergency Management: Disabilities, Access &amp; Functional Needs</a></p>
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
         <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Bensonhurst - Bay Ridge <span class="indicator-value">27.2&#37;</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">29.6&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">31.2&#37;</span></div>
+          <div class="col-sm-4 text-primary">Bensonhurst - Bay Ridge <span class="indicator-value">6.5&#37;</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">5.8&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">5.5&#37;</span></div>
         </div>
         
           <div class="data-note"></div>
         
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Olde693-3"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Adul692-3"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Olde693-3"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Adul692-3"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Olde693-3"></div>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Adul692-3"></div>
 
       </div>
       
@@ -1278,72 +1278,72 @@
 
 
 <script type="text/javascript">
-  $( "#modal-Olde693-3" ).on('shown.bs.modal', function() {
+  $( "#modal-Adul692-3" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Olde693-3", buildSummarySpec(NeighborhoodName,"Olde693"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Olde693-3", buildTrendSpec(NeighborhoodName,"Olde693"),opt).then().catch(console.error);
-    vegaEmbed("#map-Olde693-3", buildMapSpec(NeighborhoodName,"Olde693"),opt).then().catch(console.error);
+    vegaEmbed("#summary-Adul692-3", buildSummarySpec(NeighborhoodName,"Adul692"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Adul692-3", buildTrendSpec(NeighborhoodName,"Adul692"),opt).then().catch(console.error);
+    vegaEmbed("#map-Adul692-3", buildMapSpec(NeighborhoodName,"Adul692"),opt).then().catch(console.error);
   });
 </script>
                     
-                    <button data-toggle="modal" data-target="#modal-Obes506-3" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-Seri691-3" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Obesity</span>
+      <span class="indicator-short-name">Psychological distress</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Obes506_209.svg" alt="Visualization showing neighborhood rank of 32 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/Seri691_209.svg" alt="Visualization showing neighborhood rank of 3 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Obes506_209.svg" alt="Visualization showing neighborhood rank of 32 out of 42." class="viz">
+      <img src="../../../visualizations/images/Seri691_209.svg" alt="Visualization showing neighborhood rank of 3 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Obes506-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Seri691-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Obesity:<br>Adults aged 18 years and older who are obese (percent), 2017</h2>
+        <h2 class="modal-title" id="exampleModalLabel">Psychological distress:<br>Adults aged 18 years and older reporting serious psychological distress (percent),  2012</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Bensonhurst - Bay Ridge</strong>, the adults aged 18 years and older who are obese (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>People who are obese are at increased risk for heart disease and diabetes. Neighborhood factors such as walkability and the types of food retail outlets available can impact residents' risk of being overweight or obese.</p>
+        <p>In <strong>Bensonhurst - Bay Ridge</strong>, the adults aged 18 years and older reporting serious psychological distress (percent),  2012 is <span class="better">Better</span> than the NYC average.</p>
+        <p></p>
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
         <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Bensonhurst - Bay Ridge <span class="indicator-value">19.5&#37;</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">26.4&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">25.1&#37;</span></div>
+          <div class="col-sm-4 text-primary">Bensonhurst - Bay Ridge <span class="indicator-value">9.1*&#37;</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">6&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">5.5&#37;</span></div>
         </div>
         
-          <div class="data-note"></div>
+          <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
         
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Obes506-3"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Seri691-3"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Obes506-3"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Seri691-3"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Obes506-3"></div>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Seri691-3"></div>
 
       </div>
       
@@ -1357,11 +1357,11 @@
 
 
 <script type="text/javascript">
-  $( "#modal-Obes506-3" ).on('shown.bs.modal', function() {
+  $( "#modal-Seri691-3" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Obes506-3", buildSummarySpec(NeighborhoodName,"Obes506"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Obes506-3", buildTrendSpec(NeighborhoodName,"Obes506"),opt).then().catch(console.error);
-    vegaEmbed("#map-Obes506-3", buildMapSpec(NeighborhoodName,"Obes506"),opt).then().catch(console.error);
+    vegaEmbed("#summary-Seri691-3", buildSummarySpec(NeighborhoodName,"Seri691"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Seri691-3", buildTrendSpec(NeighborhoodName,"Seri691"),opt).then().catch(console.error);
+    vegaEmbed("#map-Seri691-3", buildMapSpec(NeighborhoodName,"Seri691"),opt).then().catch(console.error);
   });
 </script>
                   
@@ -1414,7 +1414,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Heat536_209.svg" alt="Visualization showing neighborhood rank of 35 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1493,7 +1493,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Asth1196_209.svg" alt="Visualization showing neighborhood rank of 36 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">

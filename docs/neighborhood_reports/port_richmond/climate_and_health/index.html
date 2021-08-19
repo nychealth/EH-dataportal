@@ -409,6 +409,85 @@
                 
                     
                     
+                    <button data-toggle="modal" data-target="#modal-Ozon386-1" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Ozone</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Ozon386_501.svg" alt="Visualization showing neighborhood rank of 34 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Ozon386_501.svg" alt="Visualization showing neighborhood rank of 34 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Ozon386-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Ozone:<br>Ozone (O3)(Mean ppb) Summer 2018</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Port Richmond</strong>, the ozone (o3)(mean ppb) summer 2018 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Ozone is a common air pollutant that can harm breathing and worsen asthma and other respiratory conditions.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Port Richmond <span class="indicator-value">28.5&#37;</span></div>
+          <div class="col-sm-4">Staten Island <span class="indicator-value">29.8&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">30.6&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Ozon386-1"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Ozon386-1"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Ozon386-1"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Ozon386-1" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Ozon386-1", buildSummarySpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Ozon386-1", buildTrendSpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
+    vegaEmbed("#map-Ozon386-1", buildMapSpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
+  });
+</script>
+                    
                     <button data-toggle="modal" data-target="#modal-Area687-1" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -416,7 +495,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Area687_501.svg" alt="Visualization showing neighborhood rank of 12 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -495,7 +574,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Dayt688_501.svg" alt="Visualization showing neighborhood rank of 12 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -566,85 +645,6 @@
     vegaEmbed("#map-Dayt688-1", buildMapSpec(NeighborhoodName,"Dayt688"),opt).then().catch(console.error);
   });
 </script>
-                    
-                    <button data-toggle="modal" data-target="#modal-Ozon386-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Ozone</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Ozon386_501.svg" alt="Visualization showing neighborhood rank of 34 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Ozon386_501.svg" alt="Visualization showing neighborhood rank of 34 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Ozon386-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Ozone:<br>Ozone (O3)(Mean ppb) Summer 2018</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Port Richmond</strong>, the ozone (o3)(mean ppb) summer 2018 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Ozone is a common air pollutant that can harm breathing and worsen asthma and other respiratory conditions.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Port Richmond <span class="indicator-value">28.5&#37;</span></div>
-          <div class="col-sm-4">Staten Island <span class="indicator-value">29.8&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">30.6&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Ozon386-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Ozon386-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Ozon386-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Ozon386-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Ozon386-1", buildSummarySpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Ozon386-1", buildTrendSpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
-    vegaEmbed("#map-Ozon386-1", buildMapSpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
-  });
-</script>
                   
               </div>
               
@@ -687,6 +687,164 @@
 
                 
                     
+                    
+                    <button data-toggle="modal" data-target="#modal-Adul706-2" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Older adults with AC </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Adul706_501.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Adul706_501.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Adul706-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Older adults with AC :<br>Adults 65&#43; Reporting Air Conditioning in the Home (Percent) 2013</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Port Richmond</strong>, the adults 65&#43; reporting air conditioning in the home (percent) 2013 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Adults over the age of 65 are more vulnerable to hot weather and heat stress. Air conditioning (AC) can substantially reduce the risk of heat stroke and other heat-related illness.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Port Richmond <span class="indicator-value">N/A**&#37;</span></div>
+          <div class="col-sm-4">Staten Island <span class="indicator-value">96.7&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">87.7&#37;</span></div>
+        </div>
+        
+          <div class="data-note">**Estimate is suppressed due to insufficient data.</div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Adul706-2"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Adul706-2"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Adul706-2"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Adul706-2" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Adul706-2", buildSummarySpec(NeighborhoodName,"Adul706"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Adul706-2", buildTrendSpec(NeighborhoodName,"Adul706"),opt).then().catch(console.error);
+    vegaEmbed("#map-Adul706-2", buildMapSpec(NeighborhoodName,"Adul706"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-Vege690-2" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Grass and tree cover</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Vege690_501.svg" alt="Visualization showing neighborhood rank of 10 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Vege690_501.svg" alt="Visualization showing neighborhood rank of 10 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Vege690-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Grass and tree cover:<br>Area with vegetative cover including trees and grass (percent), 2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Port Richmond</strong>, the area with vegetative cover including trees and grass (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Vegetative cover is the land covered by trees, grass, or other plants. This area is not covered by a hard surface such as paved roads, sidewalks, or buildings. <a href="https://www.epa.gov/heat-islands/using-trees-and-vegetation-reduce-heat-islands">Vegetative cover tends to reduce temperatures in the immediate area</a>.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Port Richmond <span class="indicator-value">41.0&#37;</span></div>
+          <div class="col-sm-4">Staten Island <span class="indicator-value">56&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">38&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Vege690-2"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Vege690-2"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Vege690-2"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Vege690-2" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Vege690-2", buildSummarySpec(NeighborhoodName,"Vege690"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Vege690-2", buildTrendSpec(NeighborhoodName,"Vege690"),opt).then().catch(console.error);
+    vegaEmbed("#map-Vege690-2", buildMapSpec(NeighborhoodName,"Vege690"),opt).then().catch(console.error);
+  });
+</script>
                     
                     <button data-toggle="modal" data-target="#modal-Home88-2" class="indicator-anchor">
   <div class="row align-items-center">
@@ -766,164 +924,6 @@
     vegaEmbed("#map-Home88-2", buildMapSpec(NeighborhoodName,"Home88"),opt).then().catch(console.error);
   });
 </script>
-                    
-                    <button data-toggle="modal" data-target="#modal-Adul706-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Older adults with AC </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Adul706_501.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Adul706_501.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Adul706-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Older adults with AC :<br>Adults 65&#43; Reporting Air Conditioning in the Home (Percent) 2013</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Port Richmond</strong>, the adults 65&#43; reporting air conditioning in the home (percent) 2013 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Adults over the age of 65 are more vulnerable to hot weather and heat stress. Air conditioning (AC) can substantially reduce the risk of heat stroke and other heat-related illness.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Port Richmond <span class="indicator-value">N/A**&#37;</span></div>
-          <div class="col-sm-4">Staten Island <span class="indicator-value">96.7&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">87.7&#37;</span></div>
-        </div>
-        
-          <div class="data-note">**Estimate is suppressed due to insufficient data.</div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Adul706-2"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Adul706-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Adul706-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Adul706-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Adul706-2", buildSummarySpec(NeighborhoodName,"Adul706"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Adul706-2", buildTrendSpec(NeighborhoodName,"Adul706"),opt).then().catch(console.error);
-    vegaEmbed("#map-Adul706-2", buildMapSpec(NeighborhoodName,"Adul706"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-Vege690-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Grass and tree cover</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Vege690_501.svg" alt="Visualization showing neighborhood rank of 10 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Vege690_501.svg" alt="Visualization showing neighborhood rank of 10 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Vege690-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Grass and tree cover:<br>Area with vegetative cover including trees and grass (percent), 2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Port Richmond</strong>, the area with vegetative cover including trees and grass (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Vegetative cover is the land covered by trees, grass, or other plants. This area is not covered by a hard surface such as paved roads, sidewalks, or buildings. <a href="https://www.epa.gov/heat-islands/using-trees-and-vegetation-reduce-heat-islands">Vegetative cover tends to reduce temperatures in the immediate area</a>.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Port Richmond <span class="indicator-value">41.0&#37;</span></div>
-          <div class="col-sm-4">Staten Island <span class="indicator-value">56&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">38&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Vege690-2"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Vege690-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Vege690-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Vege690-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Vege690-2", buildSummarySpec(NeighborhoodName,"Vege690"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Vege690-2", buildTrendSpec(NeighborhoodName,"Vege690"),opt).then().catch(console.error);
-    vegaEmbed("#map-Vege690-2", buildMapSpec(NeighborhoodName,"Vege690"),opt).then().catch(console.error);
-  });
-</script>
                   
               </div>
               
@@ -967,64 +967,64 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-Obes506-3" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-Seri691-3" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Obesity</span>
+      <span class="indicator-short-name">Psychological distress</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Obes506_501.svg" alt="Visualization showing neighborhood rank of 2 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/Seri691_501.svg" alt="Visualization showing neighborhood rank of 36 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Obes506_501.svg" alt="Visualization showing neighborhood rank of 2 out of 42." class="viz">
+      <img src="../../../visualizations/images/Seri691_501.svg" alt="Visualization showing neighborhood rank of 36 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Obes506-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Seri691-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Obesity:<br>Adults aged 18 years and older who are obese (percent), 2017</h2>
+        <h2 class="modal-title" id="exampleModalLabel">Psychological distress:<br>Adults aged 18 years and older reporting serious psychological distress (percent),  2012</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Port Richmond</strong>, the adults aged 18 years and older who are obese (percent), 2017 is <span class="better">Better</span> than the NYC average.</p>
-        <p>People who are obese are at increased risk for heart disease and diabetes. Neighborhood factors such as walkability and the types of food retail outlets available can impact residents' risk of being overweight or obese.</p>
+        <p>In <strong>Port Richmond</strong>, the adults aged 18 years and older reporting serious psychological distress (percent),  2012 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p></p>
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
         <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Port Richmond <span class="indicator-value">40.4*&#37;</span></div>
-          <div class="col-sm-4">Staten Island <span class="indicator-value">26&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">25.1&#37;</span></div>
+          <div class="col-sm-4 text-primary">Port Richmond <span class="indicator-value">1.7*&#37;</span></div>
+          <div class="col-sm-4">Staten Island <span class="indicator-value">5&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">5.5&#37;</span></div>
         </div>
         
           <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
         
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Obes506-3"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Seri691-3"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Obes506-3"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Seri691-3"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Obes506-3"></div>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Seri691-3"></div>
 
       </div>
       
@@ -1038,11 +1038,11 @@
 
 
 <script type="text/javascript">
-  $( "#modal-Obes506-3" ).on('shown.bs.modal', function() {
+  $( "#modal-Seri691-3" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Obes506-3", buildSummarySpec(NeighborhoodName,"Obes506"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Obes506-3", buildTrendSpec(NeighborhoodName,"Obes506"),opt).then().catch(console.error);
-    vegaEmbed("#map-Obes506-3", buildMapSpec(NeighborhoodName,"Obes506"),opt).then().catch(console.error);
+    vegaEmbed("#summary-Seri691-3", buildSummarySpec(NeighborhoodName,"Seri691"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Seri691-3", buildTrendSpec(NeighborhoodName,"Seri691"),opt).then().catch(console.error);
+    vegaEmbed("#map-Seri691-3", buildMapSpec(NeighborhoodName,"Seri691"),opt).then().catch(console.error);
   });
 </script>
                     
@@ -1286,64 +1286,64 @@
   });
 </script>
                     
-                    <button data-toggle="modal" data-target="#modal-Seri691-3" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-Obes506-3" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Psychological distress</span>
+      <span class="indicator-short-name">Obesity</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Seri691_501.svg" alt="Visualization showing neighborhood rank of 36 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/Obes506_501.svg" alt="Visualization showing neighborhood rank of 2 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Seri691_501.svg" alt="Visualization showing neighborhood rank of 36 out of 42." class="viz">
+      <img src="../../../visualizations/images/Obes506_501.svg" alt="Visualization showing neighborhood rank of 2 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Seri691-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Obes506-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Psychological distress:<br>Adults aged 18 years and older reporting serious psychological distress (percent),  2012</h2>
+        <h2 class="modal-title" id="exampleModalLabel">Obesity:<br>Adults aged 18 years and older who are obese (percent), 2017</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Port Richmond</strong>, the adults aged 18 years and older reporting serious psychological distress (percent),  2012 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p></p>
+        <p>In <strong>Port Richmond</strong>, the adults aged 18 years and older who are obese (percent), 2017 is <span class="better">Better</span> than the NYC average.</p>
+        <p>People who are obese are at increased risk for heart disease and diabetes. Neighborhood factors such as walkability and the types of food retail outlets available can impact residents' risk of being overweight or obese.</p>
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
         <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Port Richmond <span class="indicator-value">1.7*&#37;</span></div>
-          <div class="col-sm-4">Staten Island <span class="indicator-value">5&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">5.5&#37;</span></div>
+          <div class="col-sm-4 text-primary">Port Richmond <span class="indicator-value">40.4*&#37;</span></div>
+          <div class="col-sm-4">Staten Island <span class="indicator-value">26&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">25.1&#37;</span></div>
         </div>
         
           <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
         
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Seri691-3"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Obes506-3"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Seri691-3"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Obes506-3"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Seri691-3"></div>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Obes506-3"></div>
 
       </div>
       
@@ -1357,11 +1357,11 @@
 
 
 <script type="text/javascript">
-  $( "#modal-Seri691-3" ).on('shown.bs.modal', function() {
+  $( "#modal-Obes506-3" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Seri691-3", buildSummarySpec(NeighborhoodName,"Seri691"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Seri691-3", buildTrendSpec(NeighborhoodName,"Seri691"),opt).then().catch(console.error);
-    vegaEmbed("#map-Seri691-3", buildMapSpec(NeighborhoodName,"Seri691"),opt).then().catch(console.error);
+    vegaEmbed("#summary-Obes506-3", buildSummarySpec(NeighborhoodName,"Obes506"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Obes506-3", buildTrendSpec(NeighborhoodName,"Obes506"),opt).then().catch(console.error);
+    vegaEmbed("#map-Obes506-3", buildMapSpec(NeighborhoodName,"Obes506"),opt).then().catch(console.error);
   });
 </script>
                   
@@ -1406,85 +1406,6 @@
 
                 
                     
-                    
-                    <button data-toggle="modal" data-target="#modal-Heat536-4" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Heat ED visits</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Heat536_501.svg" alt="Visualization showing neighborhood rank of 1 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Heat536_501.svg" alt="Visualization showing neighborhood rank of 1 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Heat536-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Heat ED visits:<br>Heat stress emergency department visits (rate per 100,000 residents), 2014</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Port Richmond</strong>, the heat stress emergency department visits (rate per 100,000 residents), 2014 is <span class="better">Better</span> than the NYC average.</p>
-        <p>ED visits due to heat stress represent part of the public health burden of extreme heat.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Port Richmond <span class="indicator-value">11.9*&#37;</span></div>
-          <div class="col-sm-4">Staten Island <span class="indicator-value">5.7&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">3.7&#37;</span></div>
-        </div>
-        
-          <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Heat536-4"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Heat536-4"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Heat536-4"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Heat536-4" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Heat536-4", buildSummarySpec(NeighborhoodName,"Heat536"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Heat536-4", buildTrendSpec(NeighborhoodName,"Heat536"),opt).then().catch(console.error);
-    vegaEmbed("#map-Heat536-4", buildMapSpec(NeighborhoodName,"Heat536"),opt).then().catch(console.error);
-  });
-</script>
                     
                     <button data-toggle="modal" data-target="#modal-Asth1196-4" class="indicator-anchor">
   <div class="row align-items-center">
@@ -1562,6 +1483,85 @@
     vegaEmbed("#summary-Asth1196-4", buildSummarySpec(NeighborhoodName,"Asth1196"),opt).then().catch(console.error);
     vegaEmbed("#trend-Asth1196-4", buildTrendSpec(NeighborhoodName,"Asth1196"),opt).then().catch(console.error);
     vegaEmbed("#map-Asth1196-4", buildMapSpec(NeighborhoodName,"Asth1196"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-Heat536-4" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Heat ED visits</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Heat536_501.svg" alt="Visualization showing neighborhood rank of 1 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Heat536_501.svg" alt="Visualization showing neighborhood rank of 1 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Heat536-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Heat ED visits:<br>Heat stress emergency department visits (rate per 100,000 residents), 2014</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Port Richmond</strong>, the heat stress emergency department visits (rate per 100,000 residents), 2014 is <span class="better">Better</span> than the NYC average.</p>
+        <p>ED visits due to heat stress represent part of the public health burden of extreme heat.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Port Richmond <span class="indicator-value">11.9*&#37;</span></div>
+          <div class="col-sm-4">Staten Island <span class="indicator-value">5.7&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">3.7&#37;</span></div>
+        </div>
+        
+          <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Heat536-4"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Heat536-4"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Heat536-4"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Heat536-4" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Heat536-4", buildSummarySpec(NeighborhoodName,"Heat536"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Heat536-4", buildTrendSpec(NeighborhoodName,"Heat536"),opt).then().catch(console.error);
+    vegaEmbed("#map-Heat536-4", buildMapSpec(NeighborhoodName,"Heat536"),opt).then().catch(console.error);
   });
 </script>
                   

@@ -409,164 +409,6 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-Ozon386-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Ozone</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Ozon386_409.svg" alt="Visualization showing neighborhood rank of 5 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Ozon386_409.svg" alt="Visualization showing neighborhood rank of 5 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Ozon386-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Ozone:<br>Ozone (O3)(Mean ppb) Summer 2018</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Southeast Queens</strong>, the ozone (o3)(mean ppb) summer 2018 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Ozone is a common air pollutant that can harm breathing and worsen asthma and other respiratory conditions.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Southeast Queens <span class="indicator-value">31.8&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">31.5&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">30.6&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Ozon386-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Ozon386-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Ozon386-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Ozon386-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Ozon386-1", buildSummarySpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Ozon386-1", buildTrendSpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
-    vegaEmbed("#map-Ozon386-1", buildMapSpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-Dayt688-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Surface temperature</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Dayt688_409.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Dayt688_409.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Dayt688-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Surface temperature:<br>Spatial average of surface temperature (Degrees Fahrenheit), 11:22 AM, July 17, 2018</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Southeast Queens</strong>, the spatial average of surface temperature (degrees fahrenheit), 11:22 am, july 17, 2018 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Surface temperatures in NYC may vary as a function of vegetative land cover, which promotes cooling, or cover by paved roads, sidewalks, and buildings, which retain heat.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Southeast Queens <span class="indicator-value">100.6&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">100&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">98.6&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Dayt688-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Dayt688-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Dayt688-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Dayt688-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Dayt688-1", buildSummarySpec(NeighborhoodName,"Dayt688"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Dayt688-1", buildTrendSpec(NeighborhoodName,"Dayt688"),opt).then().catch(console.error);
-    vegaEmbed("#map-Dayt688-1", buildMapSpec(NeighborhoodName,"Dayt688"),opt).then().catch(console.error);
-  });
-</script>
-                    
                     <button data-toggle="modal" data-target="#modal-Area687-1" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -645,6 +487,164 @@
     vegaEmbed("#map-Area687-1", buildMapSpec(NeighborhoodName,"Area687"),opt).then().catch(console.error);
   });
 </script>
+                    
+                    <button data-toggle="modal" data-target="#modal-Ozon386-1" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Ozone</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Ozon386_409.svg" alt="Visualization showing neighborhood rank of 5 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Ozon386_409.svg" alt="Visualization showing neighborhood rank of 5 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Ozon386-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Ozone:<br>Ozone (O3)(Mean ppb) Summer 2018</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Southeast Queens</strong>, the ozone (o3)(mean ppb) summer 2018 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Ozone is a common air pollutant that can harm breathing and worsen asthma and other respiratory conditions.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Southeast Queens <span class="indicator-value">31.8&#37;</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">31.5&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">30.6&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Ozon386-1"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Ozon386-1"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Ozon386-1"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Ozon386-1" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Ozon386-1", buildSummarySpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Ozon386-1", buildTrendSpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
+    vegaEmbed("#map-Ozon386-1", buildMapSpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-Dayt688-1" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Surface temperature</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Dayt688_409.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Dayt688_409.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Dayt688-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Surface temperature:<br>Spatial average of surface temperature (Degrees Fahrenheit), 11:22 AM, July 17, 2018</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Southeast Queens</strong>, the spatial average of surface temperature (degrees fahrenheit), 11:22 am, july 17, 2018 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Surface temperatures in NYC may vary as a function of vegetative land cover, which promotes cooling, or cover by paved roads, sidewalks, and buildings, which retain heat.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Southeast Queens <span class="indicator-value">100.6&#37;</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">100&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">98.6&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Dayt688-1"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Dayt688-1"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Dayt688-1"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Dayt688-1" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Dayt688-1", buildSummarySpec(NeighborhoodName,"Dayt688"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Dayt688-1", buildTrendSpec(NeighborhoodName,"Dayt688"),opt).then().catch(console.error);
+    vegaEmbed("#map-Dayt688-1", buildMapSpec(NeighborhoodName,"Dayt688"),opt).then().catch(console.error);
+  });
+</script>
                   
               </div>
               
@@ -687,6 +687,164 @@
 
                 
                     
+                    
+                    <button data-toggle="modal" data-target="#modal-Adul706-2" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Older adults with AC </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Adul706_409.svg" alt="Visualization showing neighborhood rank of 13 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Adul706_409.svg" alt="Visualization showing neighborhood rank of 13 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Adul706-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Older adults with AC :<br>Adults 65&#43; Reporting Air Conditioning in the Home (Percent) 2013</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Southeast Queens</strong>, the adults 65&#43; reporting air conditioning in the home (percent) 2013 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Adults over the age of 65 are more vulnerable to hot weather and heat stress. Air conditioning (AC) can substantially reduce the risk of heat stroke and other heat-related illness.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Southeast Queens <span class="indicator-value">N/A**&#37;</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">87.6&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">87.7&#37;</span></div>
+        </div>
+        
+          <div class="data-note">**Estimate is suppressed due to insufficient data.</div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Adul706-2"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Adul706-2"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Adul706-2"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Adul706-2" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Adul706-2", buildSummarySpec(NeighborhoodName,"Adul706"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Adul706-2", buildTrendSpec(NeighborhoodName,"Adul706"),opt).then().catch(console.error);
+    vegaEmbed("#map-Adul706-2", buildMapSpec(NeighborhoodName,"Adul706"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-Vege690-2" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Grass and tree cover</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Vege690_409.svg" alt="Visualization showing neighborhood rank of 9 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Vege690_409.svg" alt="Visualization showing neighborhood rank of 9 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Vege690-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Grass and tree cover:<br>Area with vegetative cover including trees and grass (percent), 2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Southeast Queens</strong>, the area with vegetative cover including trees and grass (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Vegetative cover is the land covered by trees, grass, or other plants. This area is not covered by a hard surface such as paved roads, sidewalks, or buildings. <a href="https://www.epa.gov/heat-islands/using-trees-and-vegetation-reduce-heat-islands">Vegetative cover tends to reduce temperatures in the immediate area</a>.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Southeast Queens <span class="indicator-value">44.0&#37;</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">37&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">38&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Vege690-2"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Vege690-2"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Vege690-2"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Vege690-2" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Vege690-2", buildSummarySpec(NeighborhoodName,"Vege690"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Vege690-2", buildTrendSpec(NeighborhoodName,"Vege690"),opt).then().catch(console.error);
+    vegaEmbed("#map-Vege690-2", buildMapSpec(NeighborhoodName,"Vege690"),opt).then().catch(console.error);
+  });
+</script>
                     
                     <button data-toggle="modal" data-target="#modal-Home88-2" class="indicator-anchor">
   <div class="row align-items-center">
@@ -766,164 +924,6 @@
     vegaEmbed("#map-Home88-2", buildMapSpec(NeighborhoodName,"Home88"),opt).then().catch(console.error);
   });
 </script>
-                    
-                    <button data-toggle="modal" data-target="#modal-Adul706-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Older adults with AC </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Adul706_409.svg" alt="Visualization showing neighborhood rank of 13 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Adul706_409.svg" alt="Visualization showing neighborhood rank of 13 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Adul706-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Older adults with AC :<br>Adults 65&#43; Reporting Air Conditioning in the Home (Percent) 2013</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Southeast Queens</strong>, the adults 65&#43; reporting air conditioning in the home (percent) 2013 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Adults over the age of 65 are more vulnerable to hot weather and heat stress. Air conditioning (AC) can substantially reduce the risk of heat stroke and other heat-related illness.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Southeast Queens <span class="indicator-value">N/A**&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">87.6&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">87.7&#37;</span></div>
-        </div>
-        
-          <div class="data-note">**Estimate is suppressed due to insufficient data.</div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Adul706-2"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Adul706-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Adul706-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Adul706-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Adul706-2", buildSummarySpec(NeighborhoodName,"Adul706"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Adul706-2", buildTrendSpec(NeighborhoodName,"Adul706"),opt).then().catch(console.error);
-    vegaEmbed("#map-Adul706-2", buildMapSpec(NeighborhoodName,"Adul706"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-Vege690-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Grass and tree cover</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Vege690_409.svg" alt="Visualization showing neighborhood rank of 9 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Vege690_409.svg" alt="Visualization showing neighborhood rank of 9 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Vege690-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Grass and tree cover:<br>Area with vegetative cover including trees and grass (percent), 2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Southeast Queens</strong>, the area with vegetative cover including trees and grass (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Vegetative cover is the land covered by trees, grass, or other plants. This area is not covered by a hard surface such as paved roads, sidewalks, or buildings. <a href="https://www.epa.gov/heat-islands/using-trees-and-vegetation-reduce-heat-islands">Vegetative cover tends to reduce temperatures in the immediate area</a>.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Southeast Queens <span class="indicator-value">44.0&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">37&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">38&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Vege690-2"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Vege690-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Vege690-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Vege690-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Vege690-2", buildSummarySpec(NeighborhoodName,"Vege690"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Vege690-2", buildTrendSpec(NeighborhoodName,"Vege690"),opt).then().catch(console.error);
-    vegaEmbed("#map-Vege690-2", buildMapSpec(NeighborhoodName,"Vege690"),opt).then().catch(console.error);
-  });
-</script>
                   
               </div>
               
@@ -974,7 +974,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Neig689_409.svg" alt="Visualization showing neighborhood rank of 41 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1053,7 +1053,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Olde693_409.svg" alt="Visualization showing neighborhood rank of 41 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1132,7 +1132,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Adul692_409.svg" alt="Visualization showing neighborhood rank of 29 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1214,7 +1214,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Obes506_409.svg" alt="Visualization showing neighborhood rank of 35 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1293,7 +1293,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Seri691_409.svg" alt="Visualization showing neighborhood rank of 38 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1414,7 +1414,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Heat536_409.svg" alt="Visualization showing neighborhood rank of 41 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1493,7 +1493,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Asth1196_409.svg" alt="Visualization showing neighborhood rank of 31 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">

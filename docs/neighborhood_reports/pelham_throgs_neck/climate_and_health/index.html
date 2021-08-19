@@ -409,6 +409,85 @@
                 
                     
                     
+                    <button data-toggle="modal" data-target="#modal-Dayt688-1" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Surface temperature</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Dayt688_104.svg" alt="Visualization showing neighborhood rank of 31 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Dayt688_104.svg" alt="Visualization showing neighborhood rank of 31 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Dayt688-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Surface temperature:<br>Spatial average of surface temperature (Degrees Fahrenheit), 11:22 AM, July 17, 2018</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Pelham - Throgs Neck</strong>, the spatial average of surface temperature (degrees fahrenheit), 11:22 am, july 17, 2018 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Surface temperatures in NYC may vary as a function of vegetative land cover, which promotes cooling, or cover by paved roads, sidewalks, and buildings, which retain heat.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Pelham - Throgs Neck <span class="indicator-value">96.0&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">97.1&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">98.6&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Dayt688-1"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Dayt688-1"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Dayt688-1"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Dayt688-1" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Dayt688-1", buildSummarySpec(NeighborhoodName,"Dayt688"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Dayt688-1", buildTrendSpec(NeighborhoodName,"Dayt688"),opt).then().catch(console.error);
+    vegaEmbed("#map-Dayt688-1", buildMapSpec(NeighborhoodName,"Dayt688"),opt).then().catch(console.error);
+  });
+</script>
+                    
                     <button data-toggle="modal" data-target="#modal-Area687-1" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -416,7 +495,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Area687_104.svg" alt="Visualization showing neighborhood rank of 7 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -495,7 +574,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Ozon386_104.svg" alt="Visualization showing neighborhood rank of 7 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -566,85 +645,6 @@
     vegaEmbed("#map-Ozon386-1", buildMapSpec(NeighborhoodName,"Ozon386"),opt).then().catch(console.error);
   });
 </script>
-                    
-                    <button data-toggle="modal" data-target="#modal-Dayt688-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Surface temperature</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Dayt688_104.svg" alt="Visualization showing neighborhood rank of 31 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Dayt688_104.svg" alt="Visualization showing neighborhood rank of 31 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Dayt688-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Surface temperature:<br>Spatial average of surface temperature (Degrees Fahrenheit), 11:22 AM, July 17, 2018</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Pelham - Throgs Neck</strong>, the spatial average of surface temperature (degrees fahrenheit), 11:22 am, july 17, 2018 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Surface temperatures in NYC may vary as a function of vegetative land cover, which promotes cooling, or cover by paved roads, sidewalks, and buildings, which retain heat.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Pelham - Throgs Neck <span class="indicator-value">96.0&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">97.1&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">98.6&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Dayt688-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Dayt688-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Dayt688-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Dayt688-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Dayt688-1", buildSummarySpec(NeighborhoodName,"Dayt688"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Dayt688-1", buildTrendSpec(NeighborhoodName,"Dayt688"),opt).then().catch(console.error);
-    vegaEmbed("#map-Dayt688-1", buildMapSpec(NeighborhoodName,"Dayt688"),opt).then().catch(console.error);
-  });
-</script>
                   
               </div>
               
@@ -688,64 +688,64 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-Home88-2" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-Vege690-2" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Building quality</span>
+      <span class="indicator-short-name">Grass and tree cover</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Home88_104.svg" alt="Visualization showing neighborhood rank of 31 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/Vege690_104.svg" alt="Visualization showing neighborhood rank of 6 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Home88_104.svg" alt="Visualization showing neighborhood rank of 31 out of 42." class="viz">
+      <img src="../../../visualizations/images/Vege690_104.svg" alt="Visualization showing neighborhood rank of 6 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Home88-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Vege690-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Building quality:<br>Homes near structures rated good or excellent (percent),  2017</h2>
+        <h2 class="modal-title" id="exampleModalLabel">Grass and tree cover:<br>Area with vegetative cover including trees and grass (percent), 2017</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Pelham - Throgs Neck</strong>, the homes near structures rated good or excellent (percent),  2017 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Building quality is a strong predictor of the number of housing maintenance deficiencies in a residence that may contribute to increased risk of acute or chronic health problems.</p>
+        <p>In <strong>Pelham - Throgs Neck</strong>, the area with vegetative cover including trees and grass (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Vegetative cover is the land covered by trees, grass, or other plants. This area is not covered by a hard surface such as paved roads, sidewalks, or buildings. <a href="https://www.epa.gov/heat-islands/using-trees-and-vegetation-reduce-heat-islands">Vegetative cover tends to reduce temperatures in the immediate area</a>.</p>
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
         <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Pelham - Throgs Neck <span class="indicator-value">75.6&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">62.5&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">80.7&#37;</span></div>
+          <div class="col-sm-4 text-primary">Pelham - Throgs Neck <span class="indicator-value">46.0&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">39&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">38&#37;</span></div>
         </div>
         
           <div class="data-note"></div>
         
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Home88-2"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Vege690-2"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Home88-2"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Vege690-2"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Home88-2"></div>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Vege690-2"></div>
 
       </div>
       
@@ -759,11 +759,11 @@
 
 
 <script type="text/javascript">
-  $( "#modal-Home88-2" ).on('shown.bs.modal', function() {
+  $( "#modal-Vege690-2" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Home88-2", buildSummarySpec(NeighborhoodName,"Home88"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Home88-2", buildTrendSpec(NeighborhoodName,"Home88"),opt).then().catch(console.error);
-    vegaEmbed("#map-Home88-2", buildMapSpec(NeighborhoodName,"Home88"),opt).then().catch(console.error);
+    vegaEmbed("#summary-Vege690-2", buildSummarySpec(NeighborhoodName,"Vege690"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Vege690-2", buildTrendSpec(NeighborhoodName,"Vege690"),opt).then().catch(console.error);
+    vegaEmbed("#map-Vege690-2", buildMapSpec(NeighborhoodName,"Vege690"),opt).then().catch(console.error);
   });
 </script>
                     
@@ -846,64 +846,64 @@
   });
 </script>
                     
-                    <button data-toggle="modal" data-target="#modal-Vege690-2" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-Home88-2" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Grass and tree cover</span>
+      <span class="indicator-short-name">Building quality</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Vege690_104.svg" alt="Visualization showing neighborhood rank of 6 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/Home88_104.svg" alt="Visualization showing neighborhood rank of 31 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Vege690_104.svg" alt="Visualization showing neighborhood rank of 6 out of 42." class="viz">
+      <img src="../../../visualizations/images/Home88_104.svg" alt="Visualization showing neighborhood rank of 31 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Vege690-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Home88-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Grass and tree cover:<br>Area with vegetative cover including trees and grass (percent), 2017</h2>
+        <h2 class="modal-title" id="exampleModalLabel">Building quality:<br>Homes near structures rated good or excellent (percent),  2017</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Pelham - Throgs Neck</strong>, the area with vegetative cover including trees and grass (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Vegetative cover is the land covered by trees, grass, or other plants. This area is not covered by a hard surface such as paved roads, sidewalks, or buildings. <a href="https://www.epa.gov/heat-islands/using-trees-and-vegetation-reduce-heat-islands">Vegetative cover tends to reduce temperatures in the immediate area</a>.</p>
+        <p>In <strong>Pelham - Throgs Neck</strong>, the homes near structures rated good or excellent (percent),  2017 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Building quality is a strong predictor of the number of housing maintenance deficiencies in a residence that may contribute to increased risk of acute or chronic health problems.</p>
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
         <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Pelham - Throgs Neck <span class="indicator-value">46.0&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">39&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">38&#37;</span></div>
+          <div class="col-sm-4 text-primary">Pelham - Throgs Neck <span class="indicator-value">75.6&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">62.5&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">80.7&#37;</span></div>
         </div>
         
           <div class="data-note"></div>
         
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Vege690-2"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Home88-2"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Vege690-2"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Home88-2"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Vege690-2"></div>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Home88-2"></div>
 
       </div>
       
@@ -917,11 +917,11 @@
 
 
 <script type="text/javascript">
-  $( "#modal-Vege690-2" ).on('shown.bs.modal', function() {
+  $( "#modal-Home88-2" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Vege690-2", buildSummarySpec(NeighborhoodName,"Vege690"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Vege690-2", buildTrendSpec(NeighborhoodName,"Vege690"),opt).then().catch(console.error);
-    vegaEmbed("#map-Vege690-2", buildMapSpec(NeighborhoodName,"Vege690"),opt).then().catch(console.error);
+    vegaEmbed("#summary-Home88-2", buildSummarySpec(NeighborhoodName,"Home88"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Home88-2", buildTrendSpec(NeighborhoodName,"Home88"),opt).then().catch(console.error);
+    vegaEmbed("#map-Home88-2", buildMapSpec(NeighborhoodName,"Home88"),opt).then().catch(console.error);
   });
 </script>
                   
@@ -967,6 +967,85 @@
                 
                     
                     
+                    <button data-toggle="modal" data-target="#modal-Olde693-3" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Older adults living alone</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Olde693_104.svg" alt="Visualization showing neighborhood rank of 21 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="middle">Middle</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Olde693_104.svg" alt="Visualization showing neighborhood rank of 21 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Olde693-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Older adults living alone:<br>Adults aged 65 years and older who live alone (percent), 2013-2017</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Pelham - Throgs Neck</strong>, the adults aged 65 years and older who live alone (percent), 2013-2017 is <span class="middle">Middle</span> than the NYC average.</p>
+        <p>Adults over the age of 65 are more vulnerable to extreme hot and cold weather. Those that live alone may have more difficulty getting the resources they need in extreme weather events and are at higher risk of weather-related illnesses like heat stroke and hypothermia.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Pelham - Throgs Neck <span class="indicator-value">31.9&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">34&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">31.2&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Olde693-3"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Olde693-3"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Olde693-3"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Olde693-3" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Olde693-3", buildSummarySpec(NeighborhoodName,"Olde693"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Olde693-3", buildTrendSpec(NeighborhoodName,"Olde693"),opt).then().catch(console.error);
+    vegaEmbed("#map-Olde693-3", buildMapSpec(NeighborhoodName,"Olde693"),opt).then().catch(console.error);
+  });
+</script>
+                    
                     <button data-toggle="modal" data-target="#modal-Neig689-3" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -974,7 +1053,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Neig689_104.svg" alt="Visualization showing neighborhood rank of 14 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1053,7 +1132,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Adul692_104.svg" alt="Visualization showing neighborhood rank of 7 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1135,7 +1214,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Obes506_104.svg" alt="Visualization showing neighborhood rank of 10 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1214,7 +1293,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Seri691_104.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1285,85 +1364,6 @@
     vegaEmbed("#map-Seri691-3", buildMapSpec(NeighborhoodName,"Seri691"),opt).then().catch(console.error);
   });
 </script>
-                    
-                    <button data-toggle="modal" data-target="#modal-Olde693-3" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Older adults living alone</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Olde693_104.svg" alt="Visualization showing neighborhood rank of 21 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="middle">Middle</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Olde693_104.svg" alt="Visualization showing neighborhood rank of 21 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Olde693-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Older adults living alone:<br>Adults aged 65 years and older who live alone (percent), 2013-2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Pelham - Throgs Neck</strong>, the adults aged 65 years and older who live alone (percent), 2013-2017 is <span class="middle">Middle</span> than the NYC average.</p>
-        <p>Adults over the age of 65 are more vulnerable to extreme hot and cold weather. Those that live alone may have more difficulty getting the resources they need in extreme weather events and are at higher risk of weather-related illnesses like heat stroke and hypothermia.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Pelham - Throgs Neck <span class="indicator-value">31.9&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">34&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">31.2&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Olde693-3"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Olde693-3"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Olde693-3"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Olde693-3" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Olde693-3", buildSummarySpec(NeighborhoodName,"Olde693"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Olde693-3", buildTrendSpec(NeighborhoodName,"Olde693"),opt).then().catch(console.error);
-    vegaEmbed("#map-Olde693-3", buildMapSpec(NeighborhoodName,"Olde693"),opt).then().catch(console.error);
-  });
-</script>
                   
               </div>
               
@@ -1406,85 +1406,6 @@
 
                 
                     
-                    
-                    <button data-toggle="modal" data-target="#modal-Asth1196-4" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Asthma ED visits (children)</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Asth1196_104.svg" alt="Visualization showing neighborhood rank of 11 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Asth1196_104.svg" alt="Visualization showing neighborhood rank of 11 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Asth1196-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Asthma ED visits (children):<br>Asthma emergency department visits among children ages 5 to 17 years (per 10,000) 2016</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Pelham - Throgs Neck</strong>, the asthma emergency department visits among children ages 5 to 17 years (per 10,000) 2016 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Severe asthma attacks can result in a visit to the ED. Certain exposures can trigger asthma symptoms, including smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander, among others.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Pelham - Throgs Neck <span class="indicator-value">286.4&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">384.2&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">215.3&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Asth1196-4"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Asth1196-4"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Asth1196-4"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Asth1196-4" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Asth1196-4", buildSummarySpec(NeighborhoodName,"Asth1196"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Asth1196-4", buildTrendSpec(NeighborhoodName,"Asth1196"),opt).then().catch(console.error);
-    vegaEmbed("#map-Asth1196-4", buildMapSpec(NeighborhoodName,"Asth1196"),opt).then().catch(console.error);
-  });
-</script>
                     
                     <button data-toggle="modal" data-target="#modal-Heat536-4" class="indicator-anchor">
   <div class="row align-items-center">
@@ -1562,6 +1483,85 @@
     vegaEmbed("#summary-Heat536-4", buildSummarySpec(NeighborhoodName,"Heat536"),opt).then().catch(console.error);
     vegaEmbed("#trend-Heat536-4", buildTrendSpec(NeighborhoodName,"Heat536"),opt).then().catch(console.error);
     vegaEmbed("#map-Heat536-4", buildMapSpec(NeighborhoodName,"Heat536"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-Asth1196-4" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Asthma ED visits (children)</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Asth1196_104.svg" alt="Visualization showing neighborhood rank of 11 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Asth1196_104.svg" alt="Visualization showing neighborhood rank of 11 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Asth1196-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Asthma ED visits (children):<br>Asthma emergency department visits among children ages 5 to 17 years (per 10,000) 2016</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Pelham - Throgs Neck</strong>, the asthma emergency department visits among children ages 5 to 17 years (per 10,000) 2016 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Severe asthma attacks can result in a visit to the ED. Certain exposures can trigger asthma symptoms, including smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander, among others.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Pelham - Throgs Neck <span class="indicator-value">286.4&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">384.2&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">215.3&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Asth1196-4"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Asth1196-4"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Asth1196-4"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Asth1196-4" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Asth1196-4", buildSummarySpec(NeighborhoodName,"Asth1196"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Asth1196-4", buildTrendSpec(NeighborhoodName,"Asth1196"),opt).then().catch(console.error);
+    vegaEmbed("#map-Asth1196-4", buildMapSpec(NeighborhoodName,"Asth1196"),opt).then().catch(console.error);
   });
 </script>
                   

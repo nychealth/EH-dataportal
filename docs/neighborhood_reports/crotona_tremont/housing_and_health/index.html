@@ -409,6 +409,85 @@
                 
                     
                     
+                    <button data-toggle="modal" data-target="#modal-Adul292-1" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Smoke-free homes </span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Adul292_105.svg" alt="Visualization showing neighborhood rank of 30 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="better">Better</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Adul292_105.svg" alt="Visualization showing neighborhood rank of 30 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Adul292-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Smoke-free homes :<br>Adults who allow smoking in the home (percent)  2013</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Crotona -Tremont</strong>, the adults who allow smoking in the home (percent)  2013 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>A smoke-free home policy can limit people's exposure to secondhand smoke, which is especially dangerous to children.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Crotona -Tremont <span class="indicator-value">19.7&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">21&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">22.9&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Adul292-1"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Adul292-1"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Adul292-1"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Adul292-1" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Adul292-1", buildSummarySpec(NeighborhoodName,"Adul292"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Adul292-1", buildTrendSpec(NeighborhoodName,"Adul292"),opt).then().catch(console.error);
+    vegaEmbed("#map-Adul292-1", buildMapSpec(NeighborhoodName,"Adul292"),opt).then().catch(console.error);
+  });
+</script>
+                    
                     <button data-toggle="modal" data-target="#modal-Home94-1" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -416,7 +495,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Home94_105.svg" alt="Visualization showing neighborhood rank of 1 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -495,7 +574,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Home245_105.svg" alt="Visualization showing neighborhood rank of 1 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -574,7 +653,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Adul625_105.svg" alt="Visualization showing neighborhood rank of 8 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -645,85 +724,6 @@
     vegaEmbed("#map-Adul625-1", buildMapSpec(NeighborhoodName,"Adul625"),opt).then().catch(console.error);
   });
 </script>
-                    
-                    <button data-toggle="modal" data-target="#modal-Adul292-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Smoke-free homes </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Adul292_105.svg" alt="Visualization showing neighborhood rank of 30 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Adul292_105.svg" alt="Visualization showing neighborhood rank of 30 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Adul292-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Smoke-free homes :<br>Adults who allow smoking in the home (percent)  2013</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Crotona -Tremont</strong>, the adults who allow smoking in the home (percent)  2013 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>A smoke-free home policy can limit people's exposure to secondhand smoke, which is especially dangerous to children.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Crotona -Tremont <span class="indicator-value">19.7&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">21&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">22.9&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Adul292-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Adul292-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Adul292-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Adul292-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Adul292-1", buildSummarySpec(NeighborhoodName,"Adul292"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Adul292-1", buildTrendSpec(NeighborhoodName,"Adul292"),opt).then().catch(console.error);
-    vegaEmbed("#map-Adul292-1", buildMapSpec(NeighborhoodName,"Adul292"),opt).then().catch(console.error);
-  });
-</script>
                   
               </div>
               
@@ -767,64 +767,64 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-Rent1248-2" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-Hous781-2" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Maintenance problems</span>
+      <span class="indicator-short-name">Households with AC</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Rent1248_105.svg" alt="Visualization showing neighborhood rank of 1 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/Hous781_105.svg" alt="Visualization showing neighborhood rank of 42 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="better">Better</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Rent1248_105.svg" alt="Visualization showing neighborhood rank of 1 out of 42." class="viz">
+      <img src="../../../visualizations/images/Hous781_105.svg" alt="Visualization showing neighborhood rank of 42 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Rent1248-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Hous781-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Maintenance problems:<br>Renter-occupied homes with any health-related maintenance problems (percent) 2017</h2>
+        <h2 class="modal-title" id="exampleModalLabel">Households with AC:<br>Homes reporting air conditioning (percent) 2017</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Crotona -Tremont</strong>, the renter-occupied homes with any health-related maintenance problems (percent) 2017 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Housing without health-threatening maintenance deficiencies is an important environmental component of health.</p>
+        <p>In <strong>Crotona -Tremont</strong>, the homes reporting air conditioning (percent) 2017 is <span class="worse">Worse</span> than the NYC average.</p>
+        <p>Air conditioning is an important way to avoid heat stress, especially for persons with limited mobility.</p>
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
         <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Crotona -Tremont <span class="indicator-value">82.7*&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">76&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">61.5&#37;</span></div>
+          <div class="col-sm-4 text-primary">Crotona -Tremont <span class="indicator-value">79.1&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">85.6&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">91&#37;</span></div>
         </div>
         
-          <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
+          <div class="data-note"></div>
         
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Rent1248-2"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Hous781-2"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Rent1248-2"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Hous781-2"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Rent1248-2"></div>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Hous781-2"></div>
 
       </div>
       
@@ -838,11 +838,11 @@
 
 
 <script type="text/javascript">
-  $( "#modal-Rent1248-2" ).on('shown.bs.modal', function() {
+  $( "#modal-Hous781-2" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Rent1248-2", buildSummarySpec(NeighborhoodName,"Rent1248"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Rent1248-2", buildTrendSpec(NeighborhoodName,"Rent1248"),opt).then().catch(console.error);
-    vegaEmbed("#map-Rent1248-2", buildMapSpec(NeighborhoodName,"Rent1248"),opt).then().catch(console.error);
+    vegaEmbed("#summary-Hous781-2", buildSummarySpec(NeighborhoodName,"Hous781"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Hous781-2", buildTrendSpec(NeighborhoodName,"Hous781"),opt).then().catch(console.error);
+    vegaEmbed("#map-Hous781-2", buildMapSpec(NeighborhoodName,"Hous781"),opt).then().catch(console.error);
   });
 </script>
                     
@@ -853,7 +853,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Home76_105.svg" alt="Visualization showing neighborhood rank of 1 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -932,7 +932,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Home80_105.svg" alt="Visualization showing neighborhood rank of 1 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1011,7 +1011,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Pre-78_105.svg" alt="Visualization showing neighborhood rank of 1 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1090,7 +1090,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Home90_105.svg" alt="Visualization showing neighborhood rank of 1 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1169,7 +1169,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Carb716_105.svg" alt="Visualization showing neighborhood rank of 9 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1241,64 +1241,64 @@
   });
 </script>
                     
-                    <button data-toggle="modal" data-target="#modal-Hous781-2" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-Rent1248-2" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Households with AC</span>
+      <span class="indicator-short-name">Maintenance problems</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Hous781_105.svg" alt="Visualization showing neighborhood rank of 42 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/Rent1248_105.svg" alt="Visualization showing neighborhood rank of 1 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Hous781_105.svg" alt="Visualization showing neighborhood rank of 42 out of 42." class="viz">
+      <img src="../../../visualizations/images/Rent1248_105.svg" alt="Visualization showing neighborhood rank of 1 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Hous781-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Rent1248-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Households with AC:<br>Homes reporting air conditioning (percent) 2017</h2>
+        <h2 class="modal-title" id="exampleModalLabel">Maintenance problems:<br>Renter-occupied homes with any health-related maintenance problems (percent) 2017</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Crotona -Tremont</strong>, the homes reporting air conditioning (percent) 2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Air conditioning is an important way to avoid heat stress, especially for persons with limited mobility.</p>
+        <p>In <strong>Crotona -Tremont</strong>, the renter-occupied homes with any health-related maintenance problems (percent) 2017 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Housing without health-threatening maintenance deficiencies is an important environmental component of health.</p>
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
         <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Crotona -Tremont <span class="indicator-value">79.1&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">85.6&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">91&#37;</span></div>
+          <div class="col-sm-4 text-primary">Crotona -Tremont <span class="indicator-value">82.7*&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">76&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">61.5&#37;</span></div>
         </div>
         
-          <div class="data-note"></div>
+          <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
         
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Hous781-2"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Rent1248-2"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Hous781-2"></div> 
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Rent1248-2"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Hous781-2"></div>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Rent1248-2"></div>
 
       </div>
       
@@ -1312,11 +1312,11 @@
 
 
 <script type="text/javascript">
-  $( "#modal-Hous781-2" ).on('shown.bs.modal', function() {
+  $( "#modal-Rent1248-2" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Hous781-2", buildSummarySpec(NeighborhoodName,"Hous781"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Hous781-2", buildTrendSpec(NeighborhoodName,"Hous781"),opt).then().catch(console.error);
-    vegaEmbed("#map-Hous781-2", buildMapSpec(NeighborhoodName,"Hous781"),opt).then().catch(console.error);
+    vegaEmbed("#summary-Rent1248-2", buildSummarySpec(NeighborhoodName,"Rent1248"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Rent1248-2", buildTrendSpec(NeighborhoodName,"Rent1248"),opt).then().catch(console.error);
+    vegaEmbed("#map-Rent1248-2", buildMapSpec(NeighborhoodName,"Rent1248"),opt).then().catch(console.error);
   });
 </script>
                   
@@ -1361,164 +1361,6 @@
 
                 
                     
-                    
-                    <button data-toggle="modal" data-target="#modal-Asth1201-3" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Asthma hospitalizations (children)</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Asth1201_105.svg" alt="Visualization showing neighborhood rank of 8 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Asth1201_105.svg" alt="Visualization showing neighborhood rank of 8 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Asth1201-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Asthma hospitalizations (children):<br>Asthma Hospitalizations among Children 5 to 17 Yrs Old (Rate per 10,000 residents) 2016</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Crotona -Tremont</strong>, the asthma hospitalizations among children 5 to 17 yrs old (rate per 10,000 residents) 2016 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Crotona -Tremont <span class="indicator-value">47.8&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">51.1&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">27.2&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Asth1201-3"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Asth1201-3"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Asth1201-3"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Asth1201-3" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Asth1201-3", buildSummarySpec(NeighborhoodName,"Asth1201"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Asth1201-3", buildTrendSpec(NeighborhoodName,"Asth1201"),opt).then().catch(console.error);
-    vegaEmbed("#map-Asth1201-3", buildMapSpec(NeighborhoodName,"Asth1201"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-Asth1204-3" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Asthma hospitalizations (adults)</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/Asth1204_105.svg" alt="Visualization showing neighborhood rank of 3 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/Asth1204_105.svg" alt="Visualization showing neighborhood rank of 3 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Asth1204-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Asthma hospitalizations (adults):<br>Asthma Hospitalizations among Adults (Age-Adjusted Rate per 10,000 residents) 2016</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Crotona -Tremont</strong>, the asthma hospitalizations among adults (age-adjusted rate per 10,000 residents) 2016 is <span class="better">Better</span> than the NYC average.</p>
-        <p>Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Crotona -Tremont <span class="indicator-value">32.2&#37;</span></div>
-          <div class="col-sm-4">Bronx <span class="indicator-value">27.9&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">11.1&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Asth1204-3"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Asth1204-3"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Asth1204-3"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Asth1204-3" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Asth1204-3", buildSummarySpec(NeighborhoodName,"Asth1204"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Asth1204-3", buildTrendSpec(NeighborhoodName,"Asth1204"),opt).then().catch(console.error);
-    vegaEmbed("#map-Asth1204-3", buildMapSpec(NeighborhoodName,"Asth1204"),opt).then().catch(console.error);
-  });
-</script>
                     
                     <button data-toggle="modal" data-target="#modal-Chil777-3" class="indicator-anchor">
   <div class="row align-items-center">
@@ -1677,6 +1519,164 @@
     vegaEmbed("#map-Heat540-3", buildMapSpec(NeighborhoodName,"Heat540"),opt).then().catch(console.error);
   });
 </script>
+                    
+                    <button data-toggle="modal" data-target="#modal-Asth1201-3" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Asthma hospitalizations (children)</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Asth1201_105.svg" alt="Visualization showing neighborhood rank of 8 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Asth1201_105.svg" alt="Visualization showing neighborhood rank of 8 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Asth1201-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Asthma hospitalizations (children):<br>Asthma Hospitalizations among Children 5 to 17 Yrs Old (Rate per 10,000 residents) 2016</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Crotona -Tremont</strong>, the asthma hospitalizations among children 5 to 17 yrs old (rate per 10,000 residents) 2016 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Crotona -Tremont <span class="indicator-value">47.8&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">51.1&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">27.2&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Asth1201-3"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Asth1201-3"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Asth1201-3"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Asth1201-3" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Asth1201-3", buildSummarySpec(NeighborhoodName,"Asth1201"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Asth1201-3", buildTrendSpec(NeighborhoodName,"Asth1201"),opt).then().catch(console.error);
+    vegaEmbed("#map-Asth1201-3", buildMapSpec(NeighborhoodName,"Asth1201"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-Asth1204-3" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Asthma hospitalizations (adults)</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/Asth1204_105.svg" alt="Visualization showing neighborhood rank of 3 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/Asth1204_105.svg" alt="Visualization showing neighborhood rank of 3 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Asth1204-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Asthma hospitalizations (adults):<br>Asthma Hospitalizations among Adults (Age-Adjusted Rate per 10,000 residents) 2016</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>In <strong>Crotona -Tremont</strong>, the asthma hospitalizations among adults (age-adjusted rate per 10,000 residents) 2016 is <span class="better">Better</span> than the NYC average.</p>
+        <p>Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <p><em>Compared to NYC</em></p>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Crotona -Tremont <span class="indicator-value">32.2&#37;</span></div>
+          <div class="col-sm-4">Bronx <span class="indicator-value">27.9&#37;</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">11.1&#37;</span></div>
+        </div>
+        
+          <div class="data-note"></div>
+        
+        
+        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-Asth1204-3"></div> 
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trend</h3>
+        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-Asth1204-3"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Map</h3>
+        <div style="width:100%; height:40vmin; z-index:10000;" id="map-Asth1204-3"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-Asth1204-3" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-Asth1204-3", buildSummarySpec(NeighborhoodName,"Asth1204"),opt).then().catch(console.error);
+    vegaEmbed("#trend-Asth1204-3", buildTrendSpec(NeighborhoodName,"Asth1204"),opt).then().catch(console.error);
+    vegaEmbed("#map-Asth1204-3", buildMapSpec(NeighborhoodName,"Asth1204"),opt).then().catch(console.error);
+  });
+</script>
                   
               </div>
               
@@ -1727,7 +1727,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Chil755_105.svg" alt="Visualization showing neighborhood rank of 2 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
@@ -1806,7 +1806,7 @@
     </div>
     <div class="col-6 col-md-4 topic-list">
       <img src="../../../visualizations/images/Crow25_105.svg" alt="Visualization showing neighborhood rank of 6 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
+      <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
