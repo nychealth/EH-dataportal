@@ -1,6 +1,17 @@
 # Format Notes
 This markdown contains directions on how we handle specific content in this prototype.
 
+## Nav
+The nav will highlight the content area (e.g., "Data Stories") when the user is on a subpage (e.g., an individual subpage). For this to work, each markdown file needs the following in the front matter:
+
+```
+menu:
+    main:
+        identifier: '02'
+```
+
+Where 01 is for subpages of the home page, 02 is for data stories, 03 is for the data explorer, 04 is for neighborhood reports, and 05 is for key topics (per config.toml).
+
 ## Indicators
 Indicators can be displayed on subtopic pages. If Indicators are stored as json within subtopic content markdown file's front matter - see [asthma.md](https://github.com/nycehs/ehs-neighborhoodprofiles/blob/main/content/data_explorer/asthma.md) or below:
 
