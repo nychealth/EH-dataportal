@@ -6,6 +6,9 @@ tags:
 categories: []
 keywords: 
 indicators: [{"subtopic_id": 96, "internal_id": 2060, "name": "Adults Reporting Exercise in the Past 30 Days", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2060,719b87,96,Summarize"}, {"subtopic_id": 96, "internal_id": 2058, "name": "Adults Who Walk or Bike for Transportation", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2058,719b87,96,Summarize"}, {"subtopic_id": 96, "internal_id": 2173, "name": "Bike for Transportation in the Past 7 Days", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2173,719b87,96,Summarize"}, {"subtopic_id": 96, "internal_id": 2059, "name": "Monthly Bicycle Use", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2059,719b87,96,Summarize"}, {"subtopic_id": 96, "internal_id": 2172, "name": "Walk for Transportation in the Past 7 Days", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2172,719b87,96,Summarize"}]
+menu:
+    main:
+        identifier: '03'
 ---
 # Physical Activity
 ### About Physical Activity

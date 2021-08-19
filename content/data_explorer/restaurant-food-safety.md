@@ -6,6 +6,9 @@ tags:
 categories: []
 keywords: 
 indicators: [{"subtopic_id": 98, "internal_id": 2065, "name": "Restaurants with A Grades", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2065,719b87,98,Summarize"}]
+menu:
+    main:
+        identifier: '03'
 ---
 # Restaurant Food Safety
 ### About Restaurant Food Safety

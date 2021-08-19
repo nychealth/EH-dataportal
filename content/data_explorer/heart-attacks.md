@@ -6,6 +6,9 @@ tags:
 categories: []
 keywords: 
 indicators: [{"subtopic_id": 13, "internal_id": 90, "name": "Heart Attack Hospitalizations", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=90,719b87,13,Summarize"}]
+menu:
+    main:
+        identifier: '03'
 ---
 # Heart Attacks
 ### About Heart Attacks
