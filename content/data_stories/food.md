@@ -5,7 +5,7 @@ draft: false
 tags:
 categories: ["foodanddrink"]
 keywords: ["foodborne illness","food poisoning","restaurant","restaurants","inspections","heat","hot weater","grades","eating"]
-image: /images/ds-food.jpg
+image: ../../images/ds-food.jpg
 ---
 
 ### A billion times per year
