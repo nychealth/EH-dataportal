@@ -1,6 +1,15 @@
 # Format Notes
 This markdown contains directions on how we handle specific content in this prototype.
 
+## Data Stories
+Data stories include a banner image. This image is added to static/images. It should be called ds-[storyname].jpg.
+
+The image should be referenced in the front matter this way:
+```
+image: ../../images/ds-assaults.jpg
+```
+
+
 ## Indicators
 Indicators can be displayed on subtopic pages. If Indicators are stored as json within subtopic content markdown file's front matter - see [asthma.md](https://github.com/nycehs/ehs-neighborhoodprofiles/blob/main/content/data_explorer/asthma.md) or below:
 
