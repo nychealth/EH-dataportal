@@ -1,5 +1,5 @@
 ---
-title: "A New Look for the EH Data Portal"
+title: "A new look for the EH Data Portal"
 date: 2021-05-05T08:14:38-04:00
 draft: false
 tags: ["how we work","civic service design","design","technology"]
@@ -8,6 +8,7 @@ keywords: []
 menu:
     main:
         identifier: '02'
+image: ../../images/ds-newlook.jpg
 ---
 
 ### We've made a few changes
@@ -15,17 +16,19 @@ If you're a regular to the Environment & Health Data Portal, then you may notice
 
 #### Before
 {{< rawhtml >}}
-<div style="border: 1px solid black; width: 100%; height: 200px;">
-raw HTML within.
-</div>
+<img src="https://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/newlook/1.png" alt="The previous Environment and Health Data Portal home page">
+
 {{< /rawhtml >}}
+
+
 
 #### After
 {{< rawhtml >}}
-<div style="border: 1px solid black; width: 100%; height: 200px;">
-raw HTML within.
-</div>
+<img src="https://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/newlook/2.png" alt="The new Environment and Health Data Portal home page">
+
 {{< /rawhtml >}}
+
+
 
 #### Why'd we make these changes?
 Well, for a few reasons:
