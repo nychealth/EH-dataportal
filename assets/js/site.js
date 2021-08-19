@@ -1,5 +1,7 @@
 // Contants used for both visualizations
 const indicatorDataPath = "/visualizations/csv/"; //change this to alter the path to the data file
+const indicatorMapPath = "/visualizations/json/"; //change this to alter the path to the data file
+  
 
 // Function and config used for summary data visualizations.
 var summarySpec = {
@@ -171,6 +173,8 @@ function buildMapSpec(neighborhood,dataSlug) {
   temp.layer[1].encoding.stroke.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
   // graft the data file path on to the specification for the indicator
   temp.transform[0].from.data.url = indicatorDataPath+dataSlug+".csv"; //note the function needs access to the indicatorDataPath global var
+  // graft the data file path on to the specification for the indicator
+  temp.data.url = indicatorMapPath+"UHF42.topo.json"; //note the function needs access to the indicatorDataPath global var
   // return the vega-lite spec
   return temp;
 };
