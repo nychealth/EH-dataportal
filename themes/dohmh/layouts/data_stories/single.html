@@ -92,7 +92,10 @@
         <div class="col-xl-2 border-xl-left">
 
             <div class="narrow py-3 mt-n3 mt-xl-0 sticky-top" style="z-index: 0">
-                INSERT CATEGORIES HERE
+                Get data stories about:<br>
+                {{ range .Params.categories}}
+                   <a href=""> {{ . }} </a>
+                {{ end}}
 
 
             </div>
