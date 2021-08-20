@@ -21,24 +21,55 @@
     <div class="row">
         <div class="col-md-8 col-sm-12 ml-auto">
 
+            <div class="row">
+                <h2><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
+                    {{ .Title }}</h2>
+        
+                {{ .Content}}
+            </div>
+
     
-            <h2><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
-                {{ .Title }}</h2>
-    
-            {{ .Content}}
-    
-    
+            <div class="row mt-2">
+                <div class="col-md-6 pl-0">
+                    <div class="card content-card mb-4">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <h3 class="card-title">Data Stories</h3>
+                                    <p class="card-text">        
+                                        <ul>
+                                            {{ range where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.relatedCategory ) }}
+                                            <li><a href="{{ .URL}}">{{ .Title }}</a></li>
+
+                                            {{ end}}   
+
+                                        </ul></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6" style="padding-left: 0px!important">
+                    <div class="card content-card mb-4">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <h3 class="card-title">Neighborhood Reports</h3>
+                                    <p class="card-text">[NR loops here - will need to build NR topic landing pages, tag them, and ingest with code similar to above]</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2 mb-4">
+                <div id="indicatorDest">
+                    <h3><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Get the data</h3>
+                    <p>Indicator list here...</p>
+                </div>
+
+            </div>
 
 
-            <hr>
-            <h3>Related Data Stories</h3>
-            <ul>
-            {{ range where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.relatedCategory ) }}
 
-                    <li><a href="{{ .URL}}">{{ .Title }}</a></li>
-
-            {{ end}}    
-            </ul>
     
         </div>
 
