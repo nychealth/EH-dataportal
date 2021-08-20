@@ -31,14 +31,14 @@
 
 
             <hr>
-
-            {{ range where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.relatedCategory ) }}
             <h3>Related Data Stories</h3>
             <ul>
-                    <li><a href="{{ .URL}}">{{ .Title }}</a></li>
-            </ul>
-            {{ end}}    
+            {{ range where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.relatedCategory ) }}
 
+                    <li><a href="{{ .URL}}">{{ .Title }}</a></li>
+
+            {{ end}}    
+            </ul>
     
         </div>
 
