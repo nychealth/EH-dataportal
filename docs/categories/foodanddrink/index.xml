@@ -6,10 +6,16 @@
     <description>Recent content in foodanddrink on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 May 2021 07:58:53 -0400</lastBuildDate>
-    
-	<atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/foodanddrink/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Mon, 19 Jul 2021 08:09:14 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/foodanddrink/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What hot weather means for food safety</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/food/</link>
+      <pubDate>Mon, 19 Jul 2021 08:09:14 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/food/</guid>
+      <description>A billion times per year New Yorkers eat out more than a billion times a year. To help keep diners safe, the Health Department educates restaurant operators about food safety practices and inspects all 27,000 city restaurants at least once a year. Over 90 percent of NYC restaurants have &amp;ldquo;A&amp;rdquo; grades in the window, showing excellent compliance with food safety requirements.
+However, warmer weather creates special challenges keeping food safe. We dug into the data to find out how hot weather affects food safety.</description>
+    </item>
     
     <item>
       <title>Food and Drink</title>

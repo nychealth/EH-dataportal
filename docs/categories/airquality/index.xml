@@ -6,20 +6,16 @@
     <description>Recent content in airquality on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 May 2021 08:18:56 -0400</lastBuildDate>
-    
-	<atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/airquality/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 05 May 2021 08:18:56 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/airquality/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Breathe Easy: NYC&#39;s Air Quality is Improving</title>
+      <title>Breathe easy: NYC&#39;s air quality is improving</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/breatheeasy/</link>
       <pubDate>Wed, 05 May 2021 08:18:56 -0400</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/breatheeasy/</guid>
       <description>NYC&amp;rsquo;s air quality has improved The air we breathe can have a major effect on our health — air pollution can make asthma worse and can cause heart disease, lung disease, strokes, and even cancer.
 Fortunately, New York City has made great strides in recent years to improve air quality. Let’s take a look.
-raw HTML within.  An air quality advisory day happens when air pollution builds up to dangerous levels.</description>
+!function(){&#34;use strict&#34;;window.addEventListener(&#34;message&#34;,function(a){if(void 0!==a.data[&#34;datawrapper-height&#34;])for(var t in a.data[&#34;datawrapper-height&#34;]){var e=document.getElementById(&#34;datawrapper-chart-&#34;+t);e&amp;&amp;(e.style.height=a.data[&#34;datawrapper-height&#34;][t]+&#34;px&#34;)}})}(); An air quality advisory day happens when air pollution builds up to dangerous levels.</description>
     </item>
     
     <item>

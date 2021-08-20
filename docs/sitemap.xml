@@ -1,1471 +1,831 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/air-conditioner/</loc>
+    <lastmod>2021-07-19T08:33:22-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/air-conditioning/</loc>
+    <lastmod>2021-07-19T08:33:22-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/</loc>
+    <lastmod>2021-07-19T08:33:22-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/climate/</loc>
+    <lastmod>2021-07-19T08:33:22-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/climate-change/</loc>
+    <lastmod>2021-07-19T08:33:22-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/climateandhealth/</loc>
+    <lastmod>2021-07-19T08:33:22-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/</loc>
+    <lastmod>2021-07-19T08:33:22-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/death/</loc>
+    <lastmod>2021-07-19T08:33:22-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/</loc>
+    <lastmod>2021-07-19T08:33:22-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/heat/</loc>
+    <lastmod>2021-07-19T08:33:22-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/mortality/</loc>
+    <lastmod>2021-07-19T08:33:22-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/heat/</loc>
+    <lastmod>2021-07-19T08:33:22-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/</loc>
+    <lastmod>2021-07-19T08:33:22-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/weather/</loc>
+    <lastmod>2021-07-19T08:33:22-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/assaults/</loc>
+    <lastmod>2021-07-19T08:29:34-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/assaults/</loc>
+    <lastmod>2021-07-19T08:29:34-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/poverty/</loc>
+    <lastmod>2021-07-19T08:29:34-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/</loc>
+    <lastmod>2021-07-19T08:29:34-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/violence/</loc>
+    <lastmod>2021-07-19T08:29:34-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/civic-service-design/</loc>
+    <lastmod>2021-07-19T08:20:57-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/design/</loc>
+    <lastmod>2021-07-19T08:20:57-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/how-we-work/</loc>
+    <lastmod>2021-07-19T08:20:57-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/technology/</loc>
+    <lastmod>2021-07-19T08:20:57-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/codesign/</loc>
+    <lastmod>2021-07-19T08:20:57-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/foodanddrink/</loc>
+    <lastmod>2021-07-19T08:09:14-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/food/</loc>
+    <lastmod>2021-07-19T08:09:14-04:00</lastmod>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/active-design/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/air-quality/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/alcohol-access/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/alcohol-use/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/bed-bugs/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/birth-defects/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/birth-outcomes/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/brownfields/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/cancer/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/cancers-in-children/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/carbon-monoxide-incidents/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/carbon-monoxide-poisoning/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/childhood-lead-exposure/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/chronic-obstructive-pulmonary-disease/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/cigarette-smoke/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/citywide-air-quality/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/climate/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/climate-change/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/cockroaches/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/diabetes-high-blood-pressure-and-high-cholesterol/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/disparity/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/drinking-water-quality/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/energy/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/falls-among-older-adults/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/health-care/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/health-impacts-of-air-pollution/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/heart-attacks/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/housing/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/housing-and-neighborhoods/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/large-city-air-quality-comparison/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/lead-hazards/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/mice-and-rats/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/mortality/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/neighborhood-air-quality/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/noise/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/nyc-agency-pesticide-use/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/other-nyc-data/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/overweight/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/parks-and-public-space/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/pesticides/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/physical-activity/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/population-characteristics/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/race-and-ethnicity/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/restaurant-food-safety/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/social-and-economic-conditions/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/solid-waste/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/sugary-drink-consumption/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/traffic/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/transportation/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/transportation-related-injuries/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/vector-borne-disease/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/violence/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/vulnerability/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/walking-driving-and-cycling/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/water-supply/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/waterways/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/weather-related-illness/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/worker-health/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/airquality/</loc>
     <lastmod>2021-05-05T08:18:56-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/breatheeasy/</loc>
     <lastmod>2021-05-05T08:18:56-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/</loc>
-    <lastmod>2021-05-05T08:18:56-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/</loc>
-    <lastmod>2021-05-05T08:18:56-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/newlook/</loc>
     <lastmod>2021-05-05T08:14:38-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/civic-service-design/</loc>
-    <lastmod>2021-05-05T08:14:38-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/design/</loc>
-    <lastmod>2021-05-05T08:14:38-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/how-we-work/</loc>
-    <lastmod>2021-05-05T08:14:38-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/</loc>
-    <lastmod>2021-05-05T08:14:38-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/technology/</loc>
-    <lastmod>2021-05-05T08:14:38-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/childhealth/</loc>
     <lastmod>2021-05-05T07:59:26-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/childhealth/</loc>
     <lastmod>2021-05-05T07:59:26-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/</loc>
     <lastmod>2021-05-05T07:59:26-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/</loc>
-    <lastmod>2021-05-05T07:59:16-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/social/</loc>
     <lastmod>2021-05-05T07:59:16-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/pests/</loc>
     <lastmod>2021-05-05T07:59:02-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/pests/</loc>
     <lastmod>2021-05-05T07:59:02-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/foodanddrink/</loc>
     <lastmod>2021-05-05T07:58:53-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/foodanddrink/</loc>
-    <lastmod>2021-05-05T07:58:53-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/transportation/</loc>
     <lastmod>2021-05-05T07:58:01-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/transportation/</loc>
     <lastmod>2021-05-05T07:58:01-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/housing/</loc>
     <lastmod>2021-05-05T07:56:00-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/housing/</loc>
     <lastmod>2021-05-05T07:56:00-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma_mm/</loc>
     <lastmod>2021-04-14T13:38:16-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/airquality_mm/</loc>
     <lastmod>2021-04-14T13:03:17-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/</loc>
     <lastmod>2021-04-14T12:33:17-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/climatehealth/</loc>
     <lastmod>2021-04-14T12:33:17-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/</loc>
     <lastmod>2021-04-14T12:32:15-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/povasthma/</loc>
     <lastmod>2021-04-13T12:44:43-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bayside_little_neck/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bedford_stuyvesant_crown_heights/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bensonhurst_bay_ridge/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/borough_park/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/canarsie_flatlands/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/central_harlem_morningside_heights/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/chelsea_clinton/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/coney_island_sheepshead_bay/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/crotona_tremont/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/downtown_heights_slope/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_flatbush_flatbush/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_harlem/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_new_york/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/flushing_clearview/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/fordham_bronx_pk/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/fresh_meadows/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/gramercy_park_murray_hill/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/greenpoint/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/greenwich_village_soho/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/high_bridge_morrisania/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/hunts_point_mott_haven/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/jamaica/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/kingsbridge_riverdale/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/long_island_city_astoria/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/lower_manhattan/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/northeast_bronx/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/pelham_throgs_neck/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/port_richmond/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/ridgewood_forest_hills/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/rockaways/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/south_beach_tottenville/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/southeast_queens/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/southwest_queens/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/stapleton_st_george/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/sunset_park/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/union_square_lower_east_side/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/upper_east_side/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/upper_west_side/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/washington_heights/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/west_queens/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/williamsburg_bushwick/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/willowbrook/active_design_physical_activity_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bayside_little_neck/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bedford_stuyvesant_crown_heights/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bensonhurst_bay_ridge/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/borough_park/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/canarsie_flatlands/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/central_harlem_morningside_heights/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/chelsea_clinton/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/coney_island_sheepshead_bay/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/crotona_tremont/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/downtown_heights_slope/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_flatbush_flatbush/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_harlem/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_new_york/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/flushing_clearview/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/fordham_bronx_pk/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/fresh_meadows/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/gramercy_park_murray_hill/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/greenpoint/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/greenwich_village_soho/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/high_bridge_morrisania/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/hunts_point_mott_haven/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/jamaica/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/kingsbridge_riverdale/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/long_island_city_astoria/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/lower_manhattan/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/northeast_bronx/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/pelham_throgs_neck/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/port_richmond/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/ridgewood_forest_hills/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/rockaways/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/south_beach_tottenville/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/southeast_queens/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/southwest_queens/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/stapleton_st_george/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/sunset_park/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/union_square_lower_east_side/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/upper_east_side/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/upper_west_side/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/washington_heights/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/west_queens/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/williamsburg_bushwick/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/willowbrook/asthma_and_the_environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bayside_little_neck/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bedford_stuyvesant_crown_heights/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bensonhurst_bay_ridge/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/borough_park/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/canarsie_flatlands/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/central_harlem_morningside_heights/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/chelsea_clinton/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bayside_little_neck/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bedford_stuyvesant_crown_heights/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bensonhurst_bay_ridge/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/borough_park/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/canarsie_flatlands/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/central_harlem_morningside_heights/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/chelsea_clinton/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/coney_island_sheepshead_bay/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/crotona_tremont/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/downtown_heights_slope/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_flatbush_flatbush/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_harlem/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_new_york/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/flushing_clearview/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/fordham_bronx_pk/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/fresh_meadows/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/gramercy_park_murray_hill/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/greenpoint/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/greenwich_village_soho/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/high_bridge_morrisania/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/hunts_point_mott_haven/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/jamaica/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/kingsbridge_riverdale/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/long_island_city_astoria/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/lower_manhattan/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/northeast_bronx/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/pelham_throgs_neck/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/port_richmond/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/ridgewood_forest_hills/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/rockaways/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/south_beach_tottenville/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/southeast_queens/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/southwest_queens/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/stapleton_st_george/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/sunset_park/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/union_square_lower_east_side/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/upper_east_side/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/upper_west_side/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/washington_heights/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/west_queens/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/williamsburg_bushwick/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/willowbrook/climate_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/coney_island_sheepshead_bay/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/crotona_tremont/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/downtown_heights_slope/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_flatbush_flatbush/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_harlem/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_new_york/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/flushing_clearview/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/fordham_bronx_pk/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/fresh_meadows/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/gramercy_park_murray_hill/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/greenpoint/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/greenwich_village_soho/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/high_bridge_morrisania/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bayside_little_neck/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bedford_stuyvesant_crown_heights/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bensonhurst_bay_ridge/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/borough_park/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/canarsie_flatlands/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/central_harlem_morningside_heights/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/chelsea_clinton/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/coney_island_sheepshead_bay/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/crotona_tremont/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/downtown_heights_slope/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_flatbush_flatbush/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_harlem/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_new_york/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/flushing_clearview/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/fordham_bronx_pk/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/fresh_meadows/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/gramercy_park_murray_hill/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/greenpoint/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/greenwich_village_soho/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/high_bridge_morrisania/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/hunts_point_mott_haven/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/jamaica/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/kingsbridge_riverdale/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/long_island_city_astoria/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/lower_manhattan/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/northeast_bronx/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/pelham_throgs_neck/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/port_richmond/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/ridgewood_forest_hills/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/rockaways/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/south_beach_tottenville/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/southeast_queens/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/southwest_queens/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/stapleton_st_george/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/sunset_park/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/union_square_lower_east_side/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/upper_east_side/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/upper_west_side/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/washington_heights/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/west_queens/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/williamsburg_bushwick/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/willowbrook/housing_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/hunts_point_mott_haven/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/jamaica/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/kingsbridge_riverdale/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/long_island_city_astoria/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/lower_manhattan/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/northeast_bronx/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bayside_little_neck/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bedford_stuyvesant_crown_heights/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bensonhurst_bay_ridge/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/borough_park/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/canarsie_flatlands/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/central_harlem_morningside_heights/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/chelsea_clinton/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/coney_island_sheepshead_bay/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/crotona_tremont/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/downtown_heights_slope/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_flatbush_flatbush/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_harlem/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_new_york/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/flushing_clearview/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/fordham_bronx_pk/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/fresh_meadows/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/gramercy_park_murray_hill/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/greenpoint/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/greenwich_village_soho/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/high_bridge_morrisania/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/hunts_point_mott_haven/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/jamaica/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/kingsbridge_riverdale/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/long_island_city_astoria/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/lower_manhattan/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/northeast_bronx/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/pelham_throgs_neck/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/port_richmond/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/ridgewood_forest_hills/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/rockaways/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/south_beach_tottenville/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/southeast_queens/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/southwest_queens/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/stapleton_st_george/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/sunset_park/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/union_square_lower_east_side/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/upper_east_side/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/upper_west_side/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/washington_heights/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/west_queens/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/williamsburg_bushwick/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/willowbrook/outdoor_air_and_health/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/pelham_throgs_neck/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/port_richmond/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/ridgewood_forest_hills/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/rockaways/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/search_results/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/south_beach_tottenville/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/southeast_queens/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/southwest_queens/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/stapleton_st_george/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/sunset_park/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/union_square_lower_east_side/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/upper_east_side/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/upper_west_side/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/washington_heights/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/west_queens/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/williamsburg_bushwick/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/willowbrook/</loc>
   </url>
-  
 </urlset>

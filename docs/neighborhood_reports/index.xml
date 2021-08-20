@@ -5,10 +5,6 @@
     <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/</link>
     <description>Recent content in Neighborhood Reports on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-us</language><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

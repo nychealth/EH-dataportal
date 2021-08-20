@@ -6,10 +6,16 @@
     <description>Recent content in social on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 May 2021 07:59:16 -0400</lastBuildDate>
-    
-	<atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Mon, 19 Jul 2021 08:29:34 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Disparities in violence</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/assaults/</link>
+      <pubDate>Mon, 19 Jul 2021 08:29:34 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/assaults/</guid>
+      <description>Violence has profound effects An assault, a shooting, a homicide, or any use of force affects people in many deep ways.
+Violence causes physical and emotional harm. It can inflict fear, a constant sense of unease. It can cause short- and long-term trauma. Violence can affect people throughout their lives - including their health. It can lead to poor birth outcomes, compromised childhood development, negative health behaviors, physical and mental illness, and premature deaths.</description>
+    </item>
     
     <item>
       <title>Social and Economic Conditions</title>
@@ -32,14 +38,14 @@ Asthma is a leading cause of emergency room visits, hospitalizations and missed 
     </item>
     
     <item>
-      <title>Why Asthma is a Social Justice Issue</title>
+      <title>Why asthma is a social justice issue</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/povasthma/</link>
       <pubDate>Tue, 13 Apr 2021 12:44:43 -0400</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/povasthma/</guid>
       <description>Poverty can affect how you breathe Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.
 To understand the connection between poverty and asthma, take a look at this map of poverty rates in New York City, below. The darker the color, the more residents living in poverty.
-raw HTML within.  Now, compare that to a map of emergency department visits for asthma in children age 5 to 17, below.</description>
+!function(){&#34;use strict&#34;;window.addEventListener(&#34;message&#34;,function(a){if(void 0!==a.data[&#34;datawrapper-height&#34;])for(var t in a.data[&#34;datawrapper-height&#34;]){var e=document.getElementById(&#34;datawrapper-chart-&#34;+t);e&amp;&amp;(e.style.height=a.data[&#34;datawrapper-height&#34;][t]+&#34;px&#34;)}})}(); Now, compare that to a map of emergency department visits for asthma in children age 5 to 17, below.</description>
     </item>
     
   </channel>
