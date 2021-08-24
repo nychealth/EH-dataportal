@@ -9,6 +9,7 @@ keywords:
 menu:
     main:
         identifier: '05'
+layout: single
 ---
 Most people spend most of their time at home - so the household environment can significantly affect health. Disrepair that stems from longterm maintenance neglect can lead to serious health problems, including: lead poisoning from lead paint; asthma and other respiratory issues triggered by pests; and carbon monoxide poisoning.
 
