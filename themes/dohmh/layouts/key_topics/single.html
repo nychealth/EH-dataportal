@@ -80,7 +80,6 @@
             {{ range where (where .Site.Pages "Section" "key_topics") ".File.BaseFileName" "_index" }}
            <p class="my-2"><a href="{{ .URL}}">{{ .Title }}</a></p>
             {{ end}}
-            <!--Note that .RegularPages only returns subpages (aqe) - we want to return first level(_index.md) pages-->
             
         </div>
     
