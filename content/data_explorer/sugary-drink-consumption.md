@@ -6,6 +6,9 @@ tags:
 categories: []
 keywords: 
 indicators: [{"subtopic_id": 102, "internal_id": 2097, "name": "Adult Consumption of 1 or More Sugary Drinks Per Day", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2097,719b87,102,Summarize"}, {"subtopic_id": 102, "internal_id": 2098, "name": "Youth Consumption of 1 or More Sugary Drinks Per Day", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2098,719b87,102,Summarize"}]
+menu:
+    main:
+        identifier: '03'
 ---
 # Sugary Drink Consumption
 ### About Sugary Drinks

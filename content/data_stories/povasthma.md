@@ -6,6 +6,9 @@ image: /images/povasthma.png
 tags:
 categories: ["housing","social","childhealth"]
 keywords: ["poverty","asthma","injustice","housing","children","emergency department visits","ed visits","emergency room","social determinants"]
+menu:
+    main:
+        identifier: '02'
 image: ../../images/ds-povasthma.jpg
 ---
 

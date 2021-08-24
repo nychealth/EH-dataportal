@@ -6,6 +6,9 @@ tags:
 categories: []
 keywords: 
 indicators: [{"subtopic_id": 115, "internal_id": 2209, "name": "Elevated Blood Lead Levels among Persons Aged 16 or Older", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2209,719b87,115,Summarize"}, {"subtopic_id": 115, "internal_id": 2211, "name": "Hospitalizations Billed to Workers\u2019 Compensation", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2211,719b87,115,Summarize"}, {"subtopic_id": 115, "internal_id": 2208, "name": "Hospitalizations for Asbestosis", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2208,719b87,115,Summarize"}, {"subtopic_id": 115, "internal_id": 2210, "name": "Hospitalizations for Pneumoconiosis", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2210,719b87,115,Summarize"}, {"subtopic_id": 115, "internal_id": 2073, "name": "Perception of Neighborhood Safety", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2073,719b87,115,Summarize"}, {"subtopic_id": 115, "internal_id": 2214, "name": "Work-Related Deaths across All Industries", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2214,719b87,115,Summarize"}, {"subtopic_id": 115, "internal_id": 2239, "name": "Work-Related Deaths in the Construction Industry by Borough", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2239,719b87,115,Summarize"}, {"subtopic_id": 115, "internal_id": 2215, "name": "Work-Related Deaths in the Construction Industry Citywide", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2215,719b87,115,Summarize"}]
+menu:
+    main:
+        identifier: '03'
 ---
 # Worker Health
 ### About Worker Health and Safety

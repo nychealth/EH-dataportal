@@ -6,6 +6,9 @@ tags:
 categories: []
 keywords: 
 indicators: [{"subtopic_id": 15, "internal_id": 2398, "name": "Carbon Monoxide Deaths", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2398,719b87,15,Summarize"}]
+menu:
+    main:
+        identifier: '03'
 ---
 # Carbon Monoxide Poisoning
 ### About Carbon Monoxide

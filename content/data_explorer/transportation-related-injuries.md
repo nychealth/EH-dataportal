@@ -6,6 +6,9 @@ tags:
 categories: []
 keywords: 
 indicators: [{"subtopic_id": 101, "internal_id": 2092, "name": "Bicycle Injury Emergency Department Visits", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2092,719b87,101,Summarize"}, {"subtopic_id": 101, "internal_id": 2086, "name": "Bicycle Injury Hospitalizations", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2086,719b87,101,Summarize"}, {"subtopic_id": 101, "internal_id": 2094, "name": "Pedestrian Injury Emergency Department Visits", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2094,719b87,101,Summarize"}, {"subtopic_id": 101, "internal_id": 2093, "name": "Pedestrian Injury Hospitalizations", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2093,719b87,101,Summarize"}]
+menu:
+    main:
+        identifier: '03'
 ---
 # Transportation-related Injuries
 ### About traffic injuries in New York City

@@ -6,6 +6,9 @@ tags:
 categories: []
 keywords: 
 indicators: [{"subtopic_id": 97, "internal_id": 2050, "name": "Adults Reporting Heavy Drinking", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2050,719b87,97,Summarize"}, {"subtopic_id": 97, "internal_id": 2051, "name": "Adults Who Binge Drink", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2051,719b87,97,Summarize"}, {"subtopic_id": 97, "internal_id": 2056, "name": "Underage Drinking", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2056,719b87,97,Summarize"}, {"subtopic_id": 97, "internal_id": 2055, "name": "Youth Who Binge Drink", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2055,719b87,97,Summarize"}]
+menu:
+    main:
+        identifier: '03'
 ---
 # Alcohol Use
 ### About Alcohol
