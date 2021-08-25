@@ -36,8 +36,7 @@
                     {{ $page := . }}
                     {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
                     {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
-                    <a href="{{ $page.Permalink
-                    }}">{{ $page.Title }}</a>
+                    <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
                     <hr>
                     {{ end }} 
                     {{ end }}
@@ -53,8 +52,7 @@
                     {{ $page := . }}
                     {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
                     {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
-                    <a href="{{ $page.Permalink
-                    }}">{{ $page.Title }}</a>
+                    <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
                     <hr>
                     {{ end }} 
                     {{ end }}
