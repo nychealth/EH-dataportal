@@ -46,11 +46,18 @@
 
                 <h4 class="mt-4"><i class="fas fa-star text-muted mr-1" aria-hidden="true"></i>Key Topics</h4>
 
+                    <!--sets variables-->
                     {{ $page_link := .Permalink }}
                     {{ $cats := .Params.categories }}
+
                     {{ range where .Site.RegularPages "Section" "key_topics" }}
+                    <!--$page equals values we find when ranging through-->
                     {{ $page := . }}
+
+                    <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
                     {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
+
+                    <!--Show commonalities, except for page we're on -->
                     {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
                     <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
                     <hr>
