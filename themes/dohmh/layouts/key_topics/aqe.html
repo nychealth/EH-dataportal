@@ -49,8 +49,12 @@
 
 </article>
 
+<!--Add other libraries here-->
 
-
+<!--This code uses the JS file specified in the page's frontmatter-->
+{{ with .Params.customJS}}
+<script type="text/javascript" src="{{ . }}"></script>
+{{ end}}
 
 
 {{end}}

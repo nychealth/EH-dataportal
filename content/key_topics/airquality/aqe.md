@@ -9,14 +9,14 @@ menu:
     main:
         identifier: '05'
 layout: aqe
+customJS: ../../js/aqe.js
 ---
 
 Your neighborhood's air quality. Insert neighborhood to continue. 
 
-We've reorganized pages into directories with _index.md; gave each _index a layout: single to ensure displays as single page. 
-
-Main question:
-- What's the best way to handle these custom pages that have their own CSS and JS? Is it more like a custom template - where most of the stuff is built into the 'template' page? E.g., we put ```layout: aqe``` in our frontmatter, and we just write most of the page in themes/layouts/key_topics/airquality/aqe.html?
+---
+- where will other library dependencies load? do they need to go into head or can they load at the bottom?
+- do we build it so they load only for this page, and/or this type of page?
 
 
 
