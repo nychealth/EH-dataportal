@@ -3,7 +3,7 @@ title: Carbon Monoxide Poisoning
 date: 2021-05-28 18:02:58.836583
 draft: false
 tags: 
-categories: []
+categories: ["housing","childhealth"]
 keywords: 
 indicators: [{"subtopic_id": 15, "internal_id": 2398, "name": "Carbon Monoxide Deaths", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2398,719b87,15,Summarize"}]
 ---

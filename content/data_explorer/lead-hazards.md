@@ -3,7 +3,7 @@ title: Lead Hazards
 date: 2021-05-28 18:02:58.832294
 draft: false
 tags: 
-categories: []
+categories: ["housing","social","childhealth"]
 keywords: 
 indicators: [{"subtopic_id": 4, "internal_id": 2176, "name": "Children under 5 years old in Poverty", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2176,719b87,4,Summarize"}, {"subtopic_id": 4, "internal_id": 16, "name": "Pre-1950 Homes", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=16,719b87,4,Summarize"}, {"subtopic_id": 4, "internal_id": 41, "name": "Pre-1960 Homes with Peeling Paint", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=41,719b87,4,Summarize"}]
 ---

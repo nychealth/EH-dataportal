@@ -3,7 +3,7 @@ title: Noise
 date: 2021-05-28 18:02:58.747003
 draft: false
 tags: 
-categories: []
+categories: ["transportation"]
 keywords: 
 indicators: [{"subtopic_id": 105, "internal_id": 2134, "name": "Disruptive Noise Exposure", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2134,719b87,105,Summarize"}]
 ---

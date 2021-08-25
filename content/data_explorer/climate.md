@@ -3,7 +3,7 @@ title: Climate
 date: 2021-05-28 18:02:58.827642
 draft: false
 tags: 
-categories: []
+categories: ["climatehealth"]
 keywords: 
 indicators: [{"subtopic_id": 107, "internal_id": 2155, "name": "Adults 65+ Reporting Air Conditioning in the Home", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2155,719b87,107,Summarize"}, {"subtopic_id": 107, "internal_id": 2104, "name": "Adults Reporting Air Conditioning in the Home", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2104,719b87,107,Summarize"}, {"subtopic_id": 107, "internal_id": 2141, "name": "Daytime Summer Surface Temperature", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2141,719b87,107,Summarize"}, {"subtopic_id": 107, "internal_id": 2084, "name": "Heat Events", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2084,719b87,107,Summarize"}, {"subtopic_id": 107, "internal_id": 2191, "name": "Heat Vulnerability Index", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2191,719b87,107,Summarize"}, {"subtopic_id": 107, "internal_id": 2185, "name": "Households reporting air conditioning", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2185,719b87,107,Summarize"}, {"subtopic_id": 107, "internal_id": 2377, "name": "Households reporting someone who uses electric medical equipment", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2377,719b87,107,Summarize"}]
 ---
