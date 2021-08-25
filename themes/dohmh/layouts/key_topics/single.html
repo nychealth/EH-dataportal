@@ -63,7 +63,14 @@
             <div class="row mt-2 mb-4">
                 <div id="indicatorDest">
                     <h3><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Get the data</h3>
-                    <p>Indicator list here...</p>
+                    <p class="card-text">        
+                        <ul>
+                            {{ range where ( where .Site.RegularPages "Section" "data_explorer") ".Params.categories" "intersect" ( slice .Params.relatedCategory ) }}
+                            <li><a href="{{ .URL}}">{{ .Title }}</a></li>
+
+                            {{ end}}   
+
+                        </ul></p>
                 </div>
 
             </div>
