@@ -6,9 +6,13 @@ tags:
 categories: []
 keywords: ["how we work","civic service design","design","technology"]
 image: ../../images/ds-newlook.jpg
+menu:
+    main:
+        identifier: '02'
 ---
 
-### We've made a few changes
+We've made a few changes.
+
 If you're a regular to the Environment & Health Data Portal, then you may notice that we've made a few changes to our home page. We've kept most of the Portal's functions the same, but we've rearranged things, and want to tell you about them.
 
 #### Before

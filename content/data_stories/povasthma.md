@@ -7,9 +7,11 @@ tags:
 categories: ["housing","social","childhealth"]
 keywords: ["poverty","asthma","injustice","housing","children","emergency department visits","ed visits","emergency room","social determinants"]
 image: ../../images/ds-povasthma.jpg
+menu:
+    main:
+        identifier: '02'
 ---
 
-### Poverty can affect how you breathe
 Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.
 
 To understand the connection between poverty and asthma, take a look at this map of poverty rates in New York City, below. The darker the color, the more residents living in poverty.

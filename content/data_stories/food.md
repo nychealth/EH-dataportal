@@ -6,9 +6,11 @@ tags:
 categories: ["foodanddrink"]
 keywords: ["foodborne illness","food poisoning","restaurant","restaurants","inspections","heat","hot weater","grades","eating"]
 image: ../../images/ds-food.jpg
+menu:
+    main:
+        identifier: '02'
 ---
 
-### A billion times per year
 New Yorkers eat out more than a billion times a year. To help keep diners safe, the Health Department educates restaurant operators about food safety practices and inspects all 27,000 city restaurants at least once a year. Over 90 percent of NYC restaurants have "A" grades in the window, showing excellent compliance with food safety requirements.
 
 However, warmer weather creates special challenges keeping food safe. We dug into the data to find out how hot weather affects food safety.

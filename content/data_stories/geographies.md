@@ -6,9 +6,10 @@ tags:
 categories: []
 keywords: ["geography","maps","neighborhoods","health data","methods","geographic"]
 image: ../../images/ds-geographies.jpg
+menu:
+    main:
+        identifier: '02'
 ---
-
-## Mapping health data onto NYC's neighborhoods
 
 New York City has hundreds of neighborhoods and nearly as many ways of drawing neighborhood boundaries. When you [visit the Environment & Health Data Portal](https://a816-dohbesp.nyc.gov/IndicatorPublic/Subtopic.aspx), you might notice that data is available in several different neighborhood schemes.
 

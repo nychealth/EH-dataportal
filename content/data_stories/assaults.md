@@ -6,10 +6,12 @@ tags:
 categories: ["social"]
 keywords: ["violence","assaults","poverty"]
 image: ../../images/ds-assaults.jpg
+menu:
+    main:
+        identifier: '02'
 ---
 
-### Violence has profound effects
-An assault, a shooting, a homicide, or any use of force affects people in many deep ways.
+Violence has profound effects. An assault, a shooting, a homicide, or any use of force affects people in many deep ways.
 
 Violence causes physical and emotional harm. It can inflict fear, a constant sense of unease. It can cause short- and long-term trauma. Violence can affect people throughout their lives - including their health. It can lead to poor birth outcomes, compromised childhood development, negative health behaviors, physical and mental illness, and premature deaths.
 

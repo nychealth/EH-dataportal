@@ -6,9 +6,11 @@ tags:
 categories: ["airquality"]
 keywords: ["air quality","pollution","PM2.5","traffic","breathing","asthma","heart disease","lung disease","stroke"]
 image: ../../images/ds-breatheeasy.jpg
+menu:
+    main:
+        identifier: '02'
 ---
 
-### NYC's air quality has improved
 The air we breathe can have a major effect on our health — air pollution can make asthma worse and can cause heart disease, lung disease, strokes, and even cancer.
 
 Fortunately, New York City has made great strides in recent years to improve air quality. Let’s take a look.

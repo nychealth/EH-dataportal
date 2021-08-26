@@ -8,8 +8,7 @@ keywords: ["air quality","traffic","transportation","covid","covid-19","coronavi
 image: ../../images/ds-aqcovid.jpeg
 ---
 
-## What happens when NYC stays home?
-The COVID-19 pandemic upended the lives of all New Yorkers. The outbreak has affected many aspects of our daily life, but there are also less apparent effects, such as impacts on our environment.
+What happens when NYC stays home? The COVID-19 pandemic upended the lives of all New Yorkers. The outbreak has affected many aspects of our daily life, but there are also less apparent effects, such as impacts on our environment.
 
 The NYC Community Air Survey uses air quality monitors to take hourly measurements of fine particulate (PM2.5) at a few sites around the city.
 
