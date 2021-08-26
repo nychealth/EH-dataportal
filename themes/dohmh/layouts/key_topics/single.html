@@ -34,7 +34,7 @@
                     <div class="card content-card mb-4">
                         <div class="card-content">
                             <div class="card-body">
-                                <h3>Data Stories</h3>
+                                <h3><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories</h3>
                                     <p class="card-text">        
 
                                             <!--Returns data stories if their categories intersect with this page's relatedCategory/keyTopic-->
@@ -56,28 +56,39 @@
 
                 <div class="col-md-6 pl-0">
 
-                    <!--This returns 'subpages' that are tagged with this KT's relatedCategory/keyTopic - that is, nested pages for this Key Topic.-->
-                    {{ range where ( where .Site.RegularPages "Section" "key_topics") ".Params.categories" "intersect" ( slice .Params.relatedCategory ) }}
-
-                    <h3>Data features:</h3>
+                    <h3><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Data features:</h3>
+                    {{ $page_link := .Permalink }}
+                    {{ $cats := .Params.categories }}
+                    {{ range where .Site.RegularPages "Section" "key_topics" }}
+                    {{ $page := . }}
+                    {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
+                    {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
                     <a class="btn btn-outline-primary btn-lg has-icon disperse" href="{{ .URL}}">
                         <span class="fas fa-angle-right"></span>
                         <span class="title">{{ .Title }}</span>
                     </a>
-                    {{ end}}  
+                    {{ end }} 
+                    {{ end }}
 
 
-                    {{ range where ( where .Site.RegularPages "Section" "neighborhood_reports") ".Params.categories" "intersect" ( slice .Params.relatedCategory ) }}
 
-                    <h3 class="mt-4">Neighborhood Reports</h3>
+
+                    <h3 class="mt-4"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
+                    {{ $page_link := .Permalink }}
+                    {{ $cats := .Params.categories }}
+                    {{ range where .Site.RegularPages "Section" "neighborhood_reports" }}
+                    {{ $page := . }}
+                    {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
+                    {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
                     <a class="btn btn-outline-primary btn-lg has-icon disperse" href="{{ .URL}}">
                         <span class="fas fa-angle-right"></span>
                         <span class="title">{{ .Title }}</span>
                     </a>
-                    {{ end}}  
-                    </div>
+                    {{ end }} 
+                    {{ end }}
 
 
+                </div>
 
 
 
@@ -94,11 +105,15 @@
                     <h3><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Get the data: <span class="text-muted">Related datasets in the Data Explorer</span></h3>
                     <p class="card-text">        
                         <ul>
-                            <!--Returns subtopics if their category intersects with this page's relatedCategory/keyTopic-->
-                            {{ range where ( where .Site.RegularPages "Section" "data_explorer") ".Params.categories" "intersect" ( slice .Params.relatedCategory ) }}
+                            {{ $page_link := .Permalink }}
+                            {{ $cats := .Params.categories }}
+                            {{ range where .Site.RegularPages "Section" "data_explorer" }}
+                            {{ $page := . }}
+                            {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
+                            {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
                             <li><a href="{{ .URL}}">{{ .Title }}</a></li>
-
-                            {{ end}}   
+                            {{ end }} 
+                            {{ end }}
 
                         </ul></p>
 

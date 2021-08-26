@@ -46,6 +46,29 @@ This code works on any template page to range through items in another content s
 {{end}}
 ```
 
+### Newer approach:
+This is more complex code that looks for the intersection of two areas' categories field. As a reminder, we use categories to tag matter with their **key topics**. 
+
+```
+    <!--Establishes two variables-->
+    {{ $page_link := .Permalink }}
+    {{ $cats := .Params.categories }}
+    <!--Ranges through the section we want to ingest into this page-->
+    {{ range where .Site.RegularPages "Section" "data_explorer" }}
+    <!--Places the contents of that range, ., into a variable called $page-->
+    {{ $page := . }}
+    <!--Defines a variable as the intersection of the ranged pages .Params.categories, and this page's-->
+    {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
+    <!--Excludes this page-->
+    {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
+    <li><a href="{{ .URL}}">{{ .Title }}</a></li>
+    {{ end }} 
+    {{ end }}
+```
+
+### Older approach:
+This is what we used when we tagged each keytopic with relatedCategory (later called keyTopic).
+
 It can be elaborated on with additional conditions. This looks for data_stories that have a category that intersects with the key topic's relatedCategory.
 
 ```
