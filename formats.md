@@ -57,41 +57,26 @@ This code works on any template page to range through items in another content s
 {{end}}
 ```
 
-### Newer approach:
-This is more complex code that looks for the intersection of two areas' categories field. As a reminder, we use categories to tag matter with their **key topics**. 
+It can be elaborated on with additional conditions. This looks for data_stories that have a category that intersects with the key topic's frontmatter variable, keyTopic.
 
 ```
-    <!--Establishes two variables-->
-    {{ $page_link := .Permalink }}
-    {{ $cats := .Params.categories }}
-    <!--Ranges through the section we want to ingest into this page-->
-    {{ range where .Site.RegularPages "Section" "data_explorer" }}
-    <!--Places the contents of that range, ., into a variable called $page-->
-    {{ $page := . }}
-    <!--Defines a variable as the intersection of the ranged pages .Params.categories, and this page's-->
-    {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
-    <!--Excludes this page-->
-    {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
+{{ range where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) }}
+<h3>Related Data Stories</h3>
+<ul>
     <li><a href="{{ .URL}}">{{ .Title }}</a></li>
-    {{ end }} 
-    {{ end }}
-```
-
-### Older approach:
-This is what we used when we tagged each keytopic with relatedCategory (later called keyTopic).
-
-It can be elaborated on with additional conditions. This looks for data_stories that have a category that intersects with the key topic's relatedCategory.
+</ul>
+{{ end}}    
 
 ```
-            {{ range where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.relatedCategory ) }}
-            <h3>Related Data Stories</h3>
-            <ul>
-                    <li><a href="{{ .URL}}">{{ .Title }}</a></li>
-            </ul>
-            {{ end}}  
+
+For this to work, key topics need the following in the frontmattr:
+```
+keyTopic: airquality
 ```
 
-For this to work, key topics need the following format in the frontmattr:
-```
-    relatedCategory: airquality
-```
+And, data stories and data explorer (subtopics) markdown should have the following in the frontmatter:
+- categories: ["key topic 1", "key topic 2"]
+
+Data stories and data explorer (subtopics) and other content can also have the following in the frontmatter:
+- tags: this is a freeform category we are not yet using
+- keywords: this is a field used to populate information for the site search function

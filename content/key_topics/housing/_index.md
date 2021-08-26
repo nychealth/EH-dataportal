@@ -4,7 +4,7 @@ date: 2021-05-05T07:56:00-04:00
 draft: false
 tags: 
 categories: [housing]
-relatedCategory: housing
+keyTopic: housing
 keywords: 
 menu:
     main:
