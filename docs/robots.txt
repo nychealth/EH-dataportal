@@ -2,11 +2,25 @@
 User-agent: *
 
 
+Disallow: /categories/
+
+Disallow: /categories/climatehealth/
+
+Disallow: /
+
+Disallow: /key_topics/climatehealth/hvi/
+
+Disallow: /key_topics/
+
+Disallow: /categories/social/
+
+Disallow: /categories/airquality/
+
+Disallow: /key_topics/airquality/aqe/
+
 Disallow: /tags/air-conditioner/
 
 Disallow: /tags/air-conditioning/
-
-Disallow: /categories/
 
 Disallow: /tags/climate/
 
@@ -17,8 +31,6 @@ Disallow: /categories/climateandhealth/
 Disallow: /data_stories/
 
 Disallow: /tags/death/
-
-Disallow: /
 
 Disallow: /tags/heat/
 
@@ -35,8 +47,6 @@ Disallow: /tags/assaults/
 Disallow: /data_stories/assaults/
 
 Disallow: /tags/poverty/
-
-Disallow: /categories/social/
 
 Disallow: /tags/violence/
 
@@ -80,6 +90,8 @@ Disallow: /data_explorer/carbon-monoxide-incidents/
 
 Disallow: /data_explorer/carbon-monoxide-poisoning/
 
+Disallow: /categories/childhealth/
+
 Disallow: /data_explorer/childhood-lead-exposure/
 
 Disallow: /data_explorer/chronic-obstructive-pulmonary-disease/
@@ -114,6 +126,8 @@ Disallow: /data_explorer/heart-attacks/
 
 Disallow: /data_explorer/housing/
 
+Disallow: /categories/housing/
+
 Disallow: /data_explorer/housing-and-neighborhoods/
 
 Disallow: /data_explorer/large-city-air-quality-comparison/
@@ -138,6 +152,8 @@ Disallow: /data_explorer/parks-and-public-space/
 
 Disallow: /data_explorer/pesticides/
 
+Disallow: /categories/pests/
+
 Disallow: /data_explorer/physical-activity/
 
 Disallow: /data_explorer/population-characteristics/
@@ -155,6 +171,8 @@ Disallow: /data_explorer/sugary-drink-consumption/
 Disallow: /data_explorer/traffic/
 
 Disallow: /data_explorer/transportation/
+
+Disallow: /categories/transportation/
 
 Disallow: /data_explorer/transportation-related-injuries/
 
@@ -174,41 +192,27 @@ Disallow: /data_explorer/weather-related-illness/
 
 Disallow: /data_explorer/worker-health/
 
-Disallow: /categories/airquality/
-
 Disallow: /data_stories/breatheeasy/
 
 Disallow: /data_stories/newlook/
 
 Disallow: /key_topics/childhealth/
 
-Disallow: /categories/childhealth/
-
-Disallow: /key_topics/
-
 Disallow: /key_topics/social/
-
-Disallow: /categories/pests/
 
 Disallow: /key_topics/pests/
 
 Disallow: /key_topics/foodanddrink/
 
-Disallow: /categories/transportation/
-
 Disallow: /key_topics/transportation/
 
 Disallow: /key_topics/housing/
-
-Disallow: /categories/housing/
 
 Disallow: /data_explorer/asthma_mm/
 
 Disallow: /data_explorer/airquality_mm/
 
 Disallow: /key_topics/climatehealth/
-
-Disallow: /categories/climatehealth/
 
 Disallow: /key_topics/airquality/
 
@@ -297,6 +301,8 @@ Disallow: /neighborhood_reports/west_queens/active_design_physical_activity_and_
 Disallow: /neighborhood_reports/williamsburg_bushwick/active_design_physical_activity_and_health/
 
 Disallow: /neighborhood_reports/willowbrook/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/airquality/
 
 Disallow: /neighborhood_reports/bayside_little_neck/asthma_and_the_environment/
 

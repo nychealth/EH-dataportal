@@ -6,5 +6,14 @@
     <description>Recent content in Neighborhood Reports on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Air Quality</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/airquality/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/airquality/</guid>
+      <description>Air Quality Neighborhood Report Landing Page.</description>
+    </item>
+    
   </channel>
 </rss>

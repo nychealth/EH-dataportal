@@ -6,7 +6,26 @@
     <description>Recent content on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Jul 2021 08:33:22 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 25 Aug 2021 10:49:05 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Interactive Heat Vulnerability Index</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/hvi/</link>
+      <pubDate>Wed, 25 Aug 2021 10:49:05 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/hvi/</guid>
+      <description>Interactive Heat Vulnerability Index explorer. Insert neighborhood to continue.</description>
+    </item>
+    
+    <item>
+      <title>Your Neighborhood&#39;s Air Quality</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/aqe/</link>
+      <pubDate>Tue, 24 Aug 2021 12:04:44 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/aqe/</guid>
+      <description>Your neighborhood&amp;rsquo;s air quality. Insert neighborhood to continue.
+  where will other library dependencies load? do they need to go into head or can they load at the bottom? do we build it so they load only for this page, and/or this type of page?  </description>
+    </item>
+    
     <item>
       <title>Protecting New Yorkers from extreme heat</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/heat/</link>
@@ -1068,6 +1087,15 @@ To understand the connection between poverty and asthma, take a look at this map
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/willowbrook/active_design_physical_activity_and_health/</guid>
       <description>The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood&amp;rsquo;s features can also impact the safety of its residents.</description>
+    </item>
+    
+    <item>
+      <title>Air Quality</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/airquality/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/airquality/</guid>
+      <description>Air Quality Neighborhood Report Landing Page.</description>
     </item>
     
     <item>

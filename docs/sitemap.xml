@@ -2,13 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/</loc>
+    <lastmod>2021-08-25T10:49:05-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/climatehealth/</loc>
+    <lastmod>2021-08-25T10:49:05-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/</loc>
+    <lastmod>2021-08-25T10:49:05-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/hvi/</loc>
+    <lastmod>2021-08-25T10:49:05-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/</loc>
+    <lastmod>2021-08-25T10:49:05-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/</loc>
+    <lastmod>2021-08-25T10:49:05-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/airquality/</loc>
+    <lastmod>2021-08-24T12:04:44-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/aqe/</loc>
+    <lastmod>2021-08-24T12:04:44-04:00</lastmod>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/air-conditioner/</loc>
     <lastmod>2021-07-19T08:33:22-04:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/air-conditioning/</loc>
-    <lastmod>2021-07-19T08:33:22-04:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/</loc>
     <lastmod>2021-07-19T08:33:22-04:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/climate/</loc>
@@ -24,9 +45,6 @@
     <lastmod>2021-07-19T08:33:22-04:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/death/</loc>
-    <lastmod>2021-07-19T08:33:22-04:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/</loc>
     <lastmod>2021-07-19T08:33:22-04:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/heat/</loc>
@@ -51,9 +69,6 @@
     <lastmod>2021-07-19T08:29:34-04:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/poverty/</loc>
-    <lastmod>2021-07-19T08:29:34-04:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/</loc>
     <lastmod>2021-07-19T08:29:34-04:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/tags/violence/</loc>
@@ -119,6 +134,9 @@
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/carbon-monoxide-poisoning/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/childhealth/</loc>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/childhood-lead-exposure/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
@@ -170,6 +188,9 @@
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/housing/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/housing/</loc>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/housing-and-neighborhoods/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
@@ -206,6 +227,9 @@
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/pesticides/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/pests/</loc>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/physical-activity/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
@@ -231,6 +255,9 @@
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/transportation/</loc>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/transportation/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/transportation-related-injuries/</loc>
@@ -260,9 +287,6 @@
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/worker-health/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/airquality/</loc>
-    <lastmod>2021-05-05T08:18:56-04:00</lastmod>
-  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/breatheeasy/</loc>
     <lastmod>2021-05-05T08:18:56-04:00</lastmod>
   </url><url>
@@ -272,17 +296,8 @@
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/childhealth/</loc>
     <lastmod>2021-05-05T07:59:26-04:00</lastmod>
   </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/childhealth/</loc>
-    <lastmod>2021-05-05T07:59:26-04:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/</loc>
-    <lastmod>2021-05-05T07:59:26-04:00</lastmod>
-  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/social/</loc>
     <lastmod>2021-05-05T07:59:16-04:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/pests/</loc>
-    <lastmod>2021-05-05T07:59:02-04:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/pests/</loc>
     <lastmod>2021-05-05T07:59:02-04:00</lastmod>
@@ -290,16 +305,10 @@
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/foodanddrink/</loc>
     <lastmod>2021-05-05T07:58:53-04:00</lastmod>
   </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/transportation/</loc>
-    <lastmod>2021-05-05T07:58:01-04:00</lastmod>
-  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/transportation/</loc>
     <lastmod>2021-05-05T07:58:01-04:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/housing/</loc>
-    <lastmod>2021-05-05T07:56:00-04:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/housing/</loc>
     <lastmod>2021-05-05T07:56:00-04:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma_mm/</loc>
@@ -309,9 +318,6 @@
     <lastmod>2021-04-14T13:03:17-04:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/</loc>
-    <lastmod>2021-04-14T12:33:17-04:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/climatehealth/</loc>
     <lastmod>2021-04-14T12:33:17-04:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/</loc>
@@ -403,6 +409,8 @@
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/williamsburg_bushwick/active_design_physical_activity_and_health/</loc>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/willowbrook/active_design_physical_activity_and_health/</loc>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/airquality/</loc>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bayside_little_neck/asthma_and_the_environment/</loc>
   </url><url>

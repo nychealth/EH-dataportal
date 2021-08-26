@@ -6,22 +6,40 @@
     <description>Recent content in Categories on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Jul 2021 08:33:22 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 25 Aug 2021 10:49:05 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>climateandhealth</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/climateandhealth/</link>
-      <pubDate>Mon, 19 Jul 2021 08:33:22 -0400</pubDate>
+      <title>climatehealth</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/climatehealth/</link>
+      <pubDate>Wed, 25 Aug 2021 10:49:05 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/climateandhealth/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/climatehealth/</guid>
       <description></description>
     </item>
     
     <item>
       <title>social</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/</link>
-      <pubDate>Mon, 19 Jul 2021 08:29:34 -0400</pubDate>
+      <pubDate>Wed, 25 Aug 2021 10:49:05 -0400</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>airquality</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/airquality/</link>
+      <pubDate>Tue, 24 Aug 2021 12:04:44 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/airquality/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>climateandhealth</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/climateandhealth/</link>
+      <pubDate>Mon, 19 Jul 2021 08:33:22 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/climateandhealth/</guid>
       <description></description>
     </item>
     
@@ -35,27 +53,27 @@
     </item>
     
     <item>
-      <title>airquality</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/airquality/</link>
-      <pubDate>Wed, 05 May 2021 08:18:56 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/airquality/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>childhealth</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/childhealth/</link>
-      <pubDate>Wed, 05 May 2021 07:59:26 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/childhealth/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>housing</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/housing/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/housing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>pests</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/pests/</link>
-      <pubDate>Wed, 05 May 2021 07:59:02 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/pests/</guid>
       <description></description>
@@ -64,27 +82,9 @@
     <item>
       <title>transportation</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/transportation/</link>
-      <pubDate>Wed, 05 May 2021 07:58:01 -0400</pubDate>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/transportation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>housing</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/housing/</link>
-      <pubDate>Wed, 05 May 2021 07:56:00 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/housing/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>climatehealth</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/climatehealth/</link>
-      <pubDate>Wed, 14 Apr 2021 12:33:17 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/climatehealth/</guid>
       <description></description>
     </item>
     
