@@ -91,12 +91,32 @@
         <!--right-hand column for extra resources and links-->
         <div class="col-xl-2 border-xl-left">
 
-            <div class="narrow py-3 mt-n3 mt-xl-0 sticky-top" style="z-index: 0">
-                Get data stories about:<br>
+            <div class="py-3 mt-n3 mt-xl-0 sticky-top" style="z-index: 0">
+                <p>More data stories on:<br>
                 {{ range .Params.categories}}
                    <a href=""> {{ . }} </a>
                 {{ end}}
+            </p>
 
+                <hr>
+                <strong>Related Key Topics</strong>
+                    <!--sets variables-->
+                    {{ $page_link := .Permalink }}
+                    {{ $cats := .Params.categories }}
+
+                    {{ range where .Site.RegularPages "Section" "key_topics" }}
+                    <!--$page equals values we find when ranging through-->
+                    {{ $page := . }}
+
+                    <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
+                    {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
+
+                    <!--Show commonalities, except for page we're on -->
+                    {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
+                    <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
+                    <hr>
+                    {{ end }} 
+                    {{ end }}
 
             </div>
             <!-- .my-3 -->
