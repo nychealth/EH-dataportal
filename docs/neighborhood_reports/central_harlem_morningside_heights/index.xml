@@ -5,11 +5,7 @@
     <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/central_harlem_morningside_heights/</link>
     <description>Recent content in Central Harlem - Morningside Heights on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/central_harlem_morningside_heights/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-us</language><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/central_harlem_morningside_heights/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Active Design Physical Activity and Health</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/central_harlem_morningside_heights/active_design_physical_activity_and_health/</link>

@@ -2,6 +2,58 @@
 User-agent: *
 
 
+Disallow: /tags/air-conditioner/
+
+Disallow: /tags/air-conditioning/
+
+Disallow: /categories/
+
+Disallow: /tags/climate/
+
+Disallow: /tags/climate-change/
+
+Disallow: /categories/climateandhealth/
+
+Disallow: /data_stories/
+
+Disallow: /tags/death/
+
+Disallow: /
+
+Disallow: /tags/heat/
+
+Disallow: /tags/mortality/
+
+Disallow: /data_stories/heat/
+
+Disallow: /tags/
+
+Disallow: /tags/weather/
+
+Disallow: /tags/assaults/
+
+Disallow: /data_stories/assaults/
+
+Disallow: /tags/poverty/
+
+Disallow: /categories/social/
+
+Disallow: /tags/violence/
+
+Disallow: /tags/civic-service-design/
+
+Disallow: /tags/design/
+
+Disallow: /tags/how-we-work/
+
+Disallow: /tags/technology/
+
+Disallow: /data_stories/codesign/
+
+Disallow: /categories/foodanddrink/
+
+Disallow: /data_stories/food/
+
 Disallow: /data_explorer/active-design/
 
 Disallow: /data_explorer/air-quality/
@@ -51,8 +103,6 @@ Disallow: /data_explorer/disparity/
 Disallow: /data_explorer/drinking-water-quality/
 
 Disallow: /data_explorer/energy/
-
-Disallow: /
 
 Disallow: /data_explorer/falls-among-older-adults/
 
@@ -128,29 +178,13 @@ Disallow: /categories/airquality/
 
 Disallow: /data_stories/breatheeasy/
 
-Disallow: /categories/
-
-Disallow: /data_stories/
-
 Disallow: /data_stories/newlook/
-
-Disallow: /tags/civic-service-design/
-
-Disallow: /tags/design/
-
-Disallow: /tags/how-we-work/
-
-Disallow: /tags/
-
-Disallow: /tags/technology/
 
 Disallow: /key_topics/childhealth/
 
 Disallow: /categories/childhealth/
 
 Disallow: /key_topics/
-
-Disallow: /categories/social/
 
 Disallow: /key_topics/social/
 
@@ -159,8 +193,6 @@ Disallow: /categories/pests/
 Disallow: /key_topics/pests/
 
 Disallow: /key_topics/foodanddrink/
-
-Disallow: /categories/foodanddrink/
 
 Disallow: /categories/transportation/
 

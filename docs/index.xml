@@ -6,10 +6,47 @@
     <description>Recent content on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 May 2021 18:02:58 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 19 Jul 2021 08:33:22 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Protecting New Yorkers from extreme heat</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/heat/</link>
+      <pubDate>Mon, 19 Jul 2021 08:33:22 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/heat/</guid>
+      <description>Hot weather is dangerous. In New York City and across the country, more people die from extreme heat in an ordinary year than from all other natural disasters.
+Heat stress happens when your body’s temperature increases quickly: The body can no longer control its temperature to cool itself down, which can quickly lead to death.
+At the NYC Health Department, we track heat stress deaths by reviewing causes of death recorded by the Bureau of Vital Statistics.</description>
+    </item>
     
-	<atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Disparities in violence</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/assaults/</link>
+      <pubDate>Mon, 19 Jul 2021 08:29:34 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/assaults/</guid>
+      <description>Violence has profound effects An assault, a shooting, a homicide, or any use of force affects people in many deep ways.
+Violence causes physical and emotional harm. It can inflict fear, a constant sense of unease. It can cause short- and long-term trauma. Violence can affect people throughout their lives - including their health. It can lead to poor birth outcomes, compromised childhood development, negative health behaviors, physical and mental illness, and premature deaths.</description>
+    </item>
     
+    <item>
+      <title>Why we&#39;re working with you to redesign the data portal</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/codesign/</link>
+      <pubDate>Mon, 19 Jul 2021 08:20:57 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/codesign/</guid>
+      <description>We&amp;rsquo;re making changes, and we need your help A few months ago, when we redesigned the home page of the Environment &amp;amp; Health Data Portal, we wrote that we were working toward &amp;ldquo;building a system that works: that’s intuitive and makes our information clear and easy-to-find.&amp;rdquo;
+As a government agency, we&amp;rsquo;re committed to making information available via the web. By doing this well, we hope that people can use this information to change their lives and their communities.</description>
+    </item>
+    
+    <item>
+      <title>What hot weather means for food safety</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/food/</link>
+      <pubDate>Mon, 19 Jul 2021 08:09:14 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/food/</guid>
+      <description>A billion times per year New Yorkers eat out more than a billion times a year. To help keep diners safe, the Health Department educates restaurant operators about food safety practices and inspects all 27,000 city restaurants at least once a year. Over 90 percent of NYC restaurants have &amp;ldquo;A&amp;rdquo; grades in the window, showing excellent compliance with food safety requirements.
+However, warmer weather creates special challenges keeping food safe. We dug into the data to find out how hot weather affects food safety.</description>
+    </item>
     
     <item>
       <title>Active Design</title>
@@ -166,7 +203,7 @@ This site provides data on blood lead testing and on elevated blood lead levels 
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/cigarette-smoke/</guid>
       <description>Cigarette Smoke About Cigarette Smoke Cigarette smoke contains over 250 toxic chemicals, more than 50 of which cause cancer. Secondhand smoke is a dangerous combination of the smoke from the burning of a cigarette, pipe, or cigar, and the smoke exhaled by a smoker. There is no safe level of secondhand smoke exposure. Even brief exposure can be harmful.
-This site provides data on: teen and adult smoking, adults&amp;rsquo; exposure to cigarette smoke at home or at work and adults with a policy banning smoking in their home.</description>
+This site provides data on: teen and adult smoking, adults&#39; exposure to cigarette smoke at home or at work and adults with a policy banning smoking in their home.</description>
     </item>
     
     <item>
@@ -602,84 +639,25 @@ Data on work-related injuries and illness are used to show how often these preve
     </item>
     
     <item>
-      <title>Breathe Easy: NYC&#39;s Air Quality is Improving</title>
+      <title>Breathe easy: NYC&#39;s air quality is improving</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/breatheeasy/</link>
       <pubDate>Wed, 05 May 2021 08:18:56 -0400</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/breatheeasy/</guid>
       <description>NYC&amp;rsquo;s air quality has improved The air we breathe can have a major effect on our health — air pollution can make asthma worse and can cause heart disease, lung disease, strokes, and even cancer.
 Fortunately, New York City has made great strides in recent years to improve air quality. Let’s take a look.
-raw HTML within.  An air quality advisory day happens when air pollution builds up to dangerous levels.</description>
+!function(){&#34;use strict&#34;;window.addEventListener(&#34;message&#34;,function(a){if(void 0!==a.data[&#34;datawrapper-height&#34;])for(var t in a.data[&#34;datawrapper-height&#34;]){var e=document.getElementById(&#34;datawrapper-chart-&#34;+t);e&amp;&amp;(e.style.height=a.data[&#34;datawrapper-height&#34;][t]+&#34;px&#34;)}})}(); An air quality advisory day happens when air pollution builds up to dangerous levels.</description>
     </item>
     
     <item>
-      <title>A New Look for the EH Data Portal</title>
+      <title>A new look for the EH Data Portal</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/newlook/</link>
       <pubDate>Wed, 05 May 2021 08:14:38 -0400</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/newlook/</guid>
       <description>We&amp;rsquo;ve made a few changes If you&amp;rsquo;re a regular to the Environment &amp;amp; Health Data Portal, then you may notice that we&amp;rsquo;ve made a few changes to our home page. We&amp;rsquo;ve kept most of the Portal&amp;rsquo;s functions the same, but we&amp;rsquo;ve rearranged things, and want to tell you about them.
-Before raw HTML within.  After raw HTML within.  Why&amp;rsquo;d we make these changes? Well, for a few reasons:</description>
-    </item>
-    
-    <item>
-      <title>Child Health</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/childhealth/</link>
-      <pubDate>Wed, 05 May 2021 07:59:26 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/childhealth/</guid>
-      <description>Lifelong health can be determined by your health when you are a child. Plus, children can be fragile, and can be more harmed by environmental threats. So, ways that the environment can affect health often are particularly important for child health.
-In New York City, several environmental factors play a key role in determining childhood health.</description>
-    </item>
-    
-    <item>
-      <title>Social and Economic Conditions</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/social/</link>
-      <pubDate>Wed, 05 May 2021 07:59:16 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/social/</guid>
-      <description>Social and economic conditions affect people’s health. These conditions (also called “social determinants of health”) are conditions that people may be born into or fall into over the course of their lives. They are shaped by local, national and global distribution of resources and power.
-People tend to be healthier when they have access to economic and financial stability, higher education, adequate health care, healthy neighborhoods, and safe, strong communities.</description>
-    </item>
-    
-    <item>
-      <title>Pests and Pesticides</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/pests/</link>
-      <pubDate>Wed, 05 May 2021 07:59:02 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/pests/</guid>
-      <description>Pests and pesticides can both have health effects. Household pests like mice, rats, and cockroaches can trigger asthma, while bed bugs are a well-known nuisance. Meanwhile, warmer winters may mean more vector-borne diseases like babesiosis and west nile virus.
-Pesticides are chemicals used to control or kill insects, rats, mice, plants and weeds, or fungi (mold). Esposure to pesticides can occur from consuming foods or beverages that contain pesticide residues, from direct contact with the skin or eyes, or from breathing air in areas where pesticides are applied.</description>
-    </item>
-    
-    <item>
-      <title>Food and Drink</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/foodanddrink/</link>
-      <pubDate>Wed, 05 May 2021 07:58:53 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/foodanddrink/</guid>
-      <description>We all make choices around food and drink, but sometimes, those choices are made for us by our food environments.
-Our food environments include neighborhood-level alcohol access, unhealthy food access, and restaurant food safety. Additionally, drinking water quality data includes data on contaminants that are most frequently found at levels that may be of public health significant in the country&amp;rsquo;s drinking water.</description>
-    </item>
-    
-    <item>
-      <title>Transportation and Active Design</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/transportation/</link>
-      <pubDate>Wed, 05 May 2021 07:58:01 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/transportation/</guid>
-      <description>Physical inactivity and unhealthy diet rank among the leading risk factors for premature death in the United States. Active design, however, promotes health by using architectural and urban design strategies to encourage walking, bicycling, stair climbing, transit use, active recreation, and healthy eating.
-Designing to increase access to parks, create pedestrian plazas, ensure well-maintained sidewalks, plant street trees, provide secure bicycle storage, and make stairwaus in buildings attractive and accessible can have a measurable effect on people&amp;rsquo;s ability to safetly get regular physical activity that can keep them healthy.</description>
-    </item>
-    
-    <item>
-      <title>Housing</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/housing/</link>
-      <pubDate>Wed, 05 May 2021 07:56:00 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/housing/</guid>
-      <description>Most people spend most of their time at home - so the household environment can significantly affect health. Disrepair that stems from longterm maintenance neglect can lead to serious health problems, including: lead poisoning from lead paint; asthma and other respiratory issues triggered by pests; and carbon monoxide poisoning.
-In NYC, substandard housing is disproportionately located in low-income neighborhoods, as historical disinvestment lead to severe, systemic maintenance deficiencies that threatens people&amp;rsquo;s health.</description>
+Before After Why&amp;rsquo;d we make these changes? Well, for a few reasons:
+To highlight our best tools and resources. We want our home page to make it clear what this site is all about, and draw attention to our top tools: our Data Explorer, Neighborhood Reports, and Data Stories.</description>
     </item>
     
     <item>
@@ -704,34 +682,14 @@ Although New York City&amp;rsquo;s air does not currently meet federal air quali
     </item>
     
     <item>
-      <title>Climate and Health</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/</link>
-      <pubDate>Wed, 14 Apr 2021 12:33:17 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/</guid>
-      <description>Climate, including extreme weather, has a direct impact on health. As NYC&amp;rsquo;s climate changes, along with the world&amp;rsquo;s climate, we expect more frequent and intense heat waves, increased rainfall and more severe storms. These will add to existing weather-related risks. Already, heat kills more people than all other natural disasters combined.
-In New York City, those most vulnerable to the dangers of hot weather are older adults and people with health conditions like heart disease, diabetes, and cognitive impairment - especially those in low-income, Black, and Brown communities.</description>
-    </item>
-    
-    <item>
-      <title>Air Quality</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/</link>
-      <pubDate>Wed, 14 Apr 2021 12:32:15 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/</guid>
-      <description>New York City&amp;rsquo;s air contains particles, drops of liquid, gasses, and other pollution that can affect health. Bad air quality can be particularly dangerous for older adults, children, and people with heart or lung conditions.
-Air quality varies from neighborhood to neighborhood, based on local levels of emissions and many other factors. We monitor air quality using the New York City Community Air Survey (NYCCAS), NYC&amp;rsquo;s comprehensive air quality monitoring and modeling network.</description>
-    </item>
-    
-    <item>
-      <title>Why Asthma is a Social Justice Issue</title>
+      <title>Why asthma is a social justice issue</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/povasthma/</link>
       <pubDate>Tue, 13 Apr 2021 12:44:43 -0400</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/povasthma/</guid>
       <description>Poverty can affect how you breathe Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.
 To understand the connection between poverty and asthma, take a look at this map of poverty rates in New York City, below. The darker the color, the more residents living in poverty.
-raw HTML within.  Now, compare that to a map of emergency department visits for asthma in children age 5 to 17, below.</description>
+!function(){&#34;use strict&#34;;window.addEventListener(&#34;message&#34;,function(a){if(void 0!==a.data[&#34;datawrapper-height&#34;])for(var t in a.data[&#34;datawrapper-height&#34;]){var e=document.getElementById(&#34;datawrapper-chart-&#34;+t);e&amp;&amp;(e.style.height=a.data[&#34;datawrapper-height&#34;][t]+&#34;px&#34;)}})}(); Now, compare that to a map of emergency department visits for asthma in children age 5 to 17, below.</description>
     </item>
     
     <item>

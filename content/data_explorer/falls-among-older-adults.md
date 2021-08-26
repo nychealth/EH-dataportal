@@ -3,7 +3,7 @@ title: Falls Among Older Adults
 date: 2021-05-28 18:02:58.721805
 draft: false
 tags: 
-categories: []
+categories: ["housing"]
 keywords: 
 indicators: [{"subtopic_id": 108, "internal_id": 2135, "name": "Fall-related emergency department visits among older adults", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2135,719b87,108,Summarize"}, {"subtopic_id": 108, "internal_id": 2136, "name": "Fall-related hospitalizations among older adults", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2136,719b87,108,Summarize"}, {"subtopic_id": 108, "internal_id": 2408, "name": "Home fall-related emergency department visits among older adults", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2408,719b87,108,Summarize"}, {"subtopic_id": 108, "internal_id": 2409, "name": "Home fall-related hospitalizations among older adults", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2409,719b87,108,Summarize"}, {"subtopic_id": 108, "internal_id": 2403, "name": "Homes with reported falls among adults 65 and older", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2403,719b87,108,Summarize"}]
 menu:

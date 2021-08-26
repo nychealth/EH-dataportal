@@ -3,7 +3,7 @@ title: Energy
 date: 2021-05-28 18:02:58.729040
 draft: false
 tags: 
-categories: []
+categories: ["climatehealth"]
 keywords: 
 indicators: [{"subtopic_id": 86, "internal_id": 2005, "name": "Cleaner Energy", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2005,719b87,86,Summarize"}, {"subtopic_id": 86, "internal_id": 2007, "name": "Energy Efficiency", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2007,719b87,86,Summarize"}, {"subtopic_id": 86, "internal_id": 2006, "name": "Energy Reliability", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2006,719b87,86,Summarize"}]
 menu:

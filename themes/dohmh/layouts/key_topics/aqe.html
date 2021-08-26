@@ -1,0 +1,60 @@
+{{ define "main" }}
+
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-4 pl-0">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/key_topics/">Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href="/key_topics/airquality/">Air Quality</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                    </ou>
+            </nav>
+        </div>
+
+        <div class="col-md-2 mr-auto"></div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 col-sm-12 ml-auto">
+
+            <div class="row">
+                <h2><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
+                    {{ .Title }}</h2>
+        
+                {{ .Content}}
+            </div>
+
+    
+    
+        </div>
+
+
+        <div class="col-md-3 mr-auto text-right">
+            
+        </div>
+    
+
+    </div>
+
+
+
+
+
+
+
+</article>
+
+<!--Add other libraries here-->
+
+<!--This code uses the JS file specified in the page's frontmatter-->
+{{ with .Params.customJS}}
+<script type="text/javascript" src="{{ . }}"></script>
+{{ end}}
+
+
+{{end}}

@@ -3,7 +3,7 @@ title: Cancers in Children
 date: 2021-05-28 18:02:58.766134
 draft: false
 tags: 
-categories: []
+categories: ["childhealth"]
 keywords: 
 indicators: [{"subtopic_id": 93, "internal_id": 2037, "name": "Acute Lymphocytic Leukemia in Children", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2037,719b87,93,Summarize"}, {"subtopic_id": 93, "internal_id": 2035, "name": "Acute Myeloid Leukemia in Children", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2035,719b87,93,Summarize"}, {"subtopic_id": 93, "internal_id": 2033, "name": "Brain and CNS Cancer in Children", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2033,719b87,93,Summarize"}, {"subtopic_id": 93, "internal_id": 2031, "name": "Leukemia in Children", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2031,719b87,93,Summarize"}, {"subtopic_id": 93, "internal_id": 2039, "name": "Total Cancer in Children", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2039,719b87,93,Summarize"}]
 menu:

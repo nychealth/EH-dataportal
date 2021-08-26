@@ -6,10 +6,33 @@
     <description>Recent content in Categories on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 May 2021 08:18:56 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 19 Jul 2021 08:33:22 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>climateandhealth</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/climateandhealth/</link>
+      <pubDate>Mon, 19 Jul 2021 08:33:22 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/climateandhealth/</guid>
+      <description></description>
+    </item>
     
-	<atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>social</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/</link>
+      <pubDate>Mon, 19 Jul 2021 08:29:34 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/</guid>
+      <description></description>
+    </item>
     
+    <item>
+      <title>foodanddrink</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/foodanddrink/</link>
+      <pubDate>Mon, 19 Jul 2021 08:09:14 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/foodanddrink/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>airquality</title>
@@ -30,29 +53,11 @@
     </item>
     
     <item>
-      <title>social</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/</link>
-      <pubDate>Wed, 05 May 2021 07:59:16 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>pests</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/pests/</link>
       <pubDate>Wed, 05 May 2021 07:59:02 -0400</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/pests/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>foodanddrink</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/foodanddrink/</link>
-      <pubDate>Wed, 05 May 2021 07:58:53 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/foodanddrink/</guid>
       <description></description>
     </item>
     

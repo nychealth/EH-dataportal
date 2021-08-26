@@ -6,41 +6,79 @@
     <description>Recent content in Data_stories on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 May 2021 08:18:56 -0400</lastBuildDate>
-    
-	<atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Mon, 19 Jul 2021 08:33:22 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Protecting New Yorkers from extreme heat</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/heat/</link>
+      <pubDate>Mon, 19 Jul 2021 08:33:22 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/heat/</guid>
+      <description>Hot weather is dangerous. In New York City and across the country, more people die from extreme heat in an ordinary year than from all other natural disasters.
+Heat stress happens when your body’s temperature increases quickly: The body can no longer control its temperature to cool itself down, which can quickly lead to death.
+At the NYC Health Department, we track heat stress deaths by reviewing causes of death recorded by the Bureau of Vital Statistics.</description>
+    </item>
     
     <item>
-      <title>Breathe Easy: NYC&#39;s Air Quality is Improving</title>
+      <title>Disparities in violence</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/assaults/</link>
+      <pubDate>Mon, 19 Jul 2021 08:29:34 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/assaults/</guid>
+      <description>Violence has profound effects An assault, a shooting, a homicide, or any use of force affects people in many deep ways.
+Violence causes physical and emotional harm. It can inflict fear, a constant sense of unease. It can cause short- and long-term trauma. Violence can affect people throughout their lives - including their health. It can lead to poor birth outcomes, compromised childhood development, negative health behaviors, physical and mental illness, and premature deaths.</description>
+    </item>
+    
+    <item>
+      <title>Why we&#39;re working with you to redesign the data portal</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/codesign/</link>
+      <pubDate>Mon, 19 Jul 2021 08:20:57 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/codesign/</guid>
+      <description>We&amp;rsquo;re making changes, and we need your help A few months ago, when we redesigned the home page of the Environment &amp;amp; Health Data Portal, we wrote that we were working toward &amp;ldquo;building a system that works: that’s intuitive and makes our information clear and easy-to-find.&amp;rdquo;
+As a government agency, we&amp;rsquo;re committed to making information available via the web. By doing this well, we hope that people can use this information to change their lives and their communities.</description>
+    </item>
+    
+    <item>
+      <title>What hot weather means for food safety</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/food/</link>
+      <pubDate>Mon, 19 Jul 2021 08:09:14 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/food/</guid>
+      <description>A billion times per year New Yorkers eat out more than a billion times a year. To help keep diners safe, the Health Department educates restaurant operators about food safety practices and inspects all 27,000 city restaurants at least once a year. Over 90 percent of NYC restaurants have &amp;ldquo;A&amp;rdquo; grades in the window, showing excellent compliance with food safety requirements.
+However, warmer weather creates special challenges keeping food safe. We dug into the data to find out how hot weather affects food safety.</description>
+    </item>
+    
+    <item>
+      <title>Breathe easy: NYC&#39;s air quality is improving</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/breatheeasy/</link>
       <pubDate>Wed, 05 May 2021 08:18:56 -0400</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/breatheeasy/</guid>
       <description>NYC&amp;rsquo;s air quality has improved The air we breathe can have a major effect on our health — air pollution can make asthma worse and can cause heart disease, lung disease, strokes, and even cancer.
 Fortunately, New York City has made great strides in recent years to improve air quality. Let’s take a look.
-raw HTML within.  An air quality advisory day happens when air pollution builds up to dangerous levels.</description>
+!function(){&#34;use strict&#34;;window.addEventListener(&#34;message&#34;,function(a){if(void 0!==a.data[&#34;datawrapper-height&#34;])for(var t in a.data[&#34;datawrapper-height&#34;]){var e=document.getElementById(&#34;datawrapper-chart-&#34;+t);e&amp;&amp;(e.style.height=a.data[&#34;datawrapper-height&#34;][t]+&#34;px&#34;)}})}(); An air quality advisory day happens when air pollution builds up to dangerous levels.</description>
     </item>
     
     <item>
-      <title>A New Look for the EH Data Portal</title>
+      <title>A new look for the EH Data Portal</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/newlook/</link>
       <pubDate>Wed, 05 May 2021 08:14:38 -0400</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/newlook/</guid>
       <description>We&amp;rsquo;ve made a few changes If you&amp;rsquo;re a regular to the Environment &amp;amp; Health Data Portal, then you may notice that we&amp;rsquo;ve made a few changes to our home page. We&amp;rsquo;ve kept most of the Portal&amp;rsquo;s functions the same, but we&amp;rsquo;ve rearranged things, and want to tell you about them.
-Before raw HTML within.  After raw HTML within.  Why&amp;rsquo;d we make these changes? Well, for a few reasons:</description>
+Before After Why&amp;rsquo;d we make these changes? Well, for a few reasons:
+To highlight our best tools and resources. We want our home page to make it clear what this site is all about, and draw attention to our top tools: our Data Explorer, Neighborhood Reports, and Data Stories.</description>
     </item>
     
     <item>
-      <title>Why Asthma is a Social Justice Issue</title>
+      <title>Why asthma is a social justice issue</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/povasthma/</link>
       <pubDate>Tue, 13 Apr 2021 12:44:43 -0400</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/povasthma/</guid>
       <description>Poverty can affect how you breathe Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.
 To understand the connection between poverty and asthma, take a look at this map of poverty rates in New York City, below. The darker the color, the more residents living in poverty.
-raw HTML within.  Now, compare that to a map of emergency department visits for asthma in children age 5 to 17, below.</description>
+!function(){&#34;use strict&#34;;window.addEventListener(&#34;message&#34;,function(a){if(void 0!==a.data[&#34;datawrapper-height&#34;])for(var t in a.data[&#34;datawrapper-height&#34;]){var e=document.getElementById(&#34;datawrapper-chart-&#34;+t);e&amp;&amp;(e.style.height=a.data[&#34;datawrapper-height&#34;][t]+&#34;px&#34;)}})}(); Now, compare that to a map of emergency department visits for asthma in children age 5 to 17, below.</description>
     </item>
     
   </channel>

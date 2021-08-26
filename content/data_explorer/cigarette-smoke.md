@@ -3,7 +3,7 @@ title: Cigarette Smoke
 date: 2021-05-28 18:02:58.768736
 draft: false
 tags: 
-categories: []
+categories: ["housing","childhealth"]
 keywords: 
 indicators: [{"subtopic_id": 3, "internal_id": 2338, "name": "Adults Reporting Secondhand Smoke at Home from Outside Sources", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2338,719b87,3,Summarize"}, {"subtopic_id": 3, "internal_id": 2020, "name": "Adults Reporting Secondhand Smoke at Work", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2020,719b87,3,Summarize"}, {"subtopic_id": 3, "internal_id": 2017, "name": "Adults without a Smoke-Free Home Policy", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2017,719b87,3,Summarize"}, {"subtopic_id": 3, "internal_id": 2019, "name": "Cigarette Smoking among Adults", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2019,719b87,3,Summarize"}, {"subtopic_id": 3, "internal_id": 2021, "name": "Cigarette Smoking among Youths", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2021,719b87,3,Summarize"}]
 menu:

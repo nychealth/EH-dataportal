@@ -3,7 +3,7 @@ title: Water Supply
 date: 2021-05-28 18:02:58.819938
 draft: false
 tags: 
-categories: []
+categories: ["foodanddrink"]
 keywords: 
 indicators: [{"subtopic_id": 85, "internal_id": 2001, "name": "Drinking Water Demand", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2001,719b87,85,Summarize"}, {"subtopic_id": 85, "internal_id": 2009, "name": "Drinking Water Quality", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2009,719b87,85,Summarize"}]
 menu:

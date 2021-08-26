@@ -4,7 +4,7 @@
 <article class="container-fluid" id="skip-header-target">
 
     <div class="row">
-        <div class="col-md-11 mx-auto mt-4">
+        <div class="col-md-11 mx-auto mt-4 pl-0">
             <nav aria-label="breadcrumb" class="mb-4">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -21,23 +21,106 @@
     <div class="row">
         <div class="col-md-8 col-sm-12 ml-auto">
 
-    
-            <h2><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
-                {{ .Title }}</h2>
-    
-            {{ .Content}}
-    
-    
+            <div class="row">
+                <h2><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
+                    {{ .Title }}</h2>
+        
+                {{ .Content}}
+            </div>
 
 
-            <hr>
+            <div class="row mt-2">
+                <div class="col-md-6 pl-0">
+                    <div class="card content-card mb-4">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <h3><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories</h3>
+                                    <p class="card-text">        
 
-            {{ range where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.relatedCategory ) }}
-            <h3>Related Data Stories</h3>
-            <ul>
-                    <li><a href="{{ .URL}}">{{ .Title }}</a></li>
-            </ul>
-            {{ end}}    
+                                            <!--Returns data stories if their categories intersect with this page's relatedCategory/keyTopic-->
+                                            {{ range where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.relatedCategory ) }}
+                                           <a href="{{ .URL}}">{{ .Title }}</a>
+                                           <hr class="my-1">
+
+                                            {{ end}}   
+                                            <a style="float:right" class="my-2" href="/data_stories/">See all Data Stories.</a>
+
+                                    </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-md-6 pl-0">
+
+                    <h3><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Data features:</h3>
+                    {{ $page_link := .Permalink }}
+                    {{ $cats := .Params.categories }}
+                    {{ range where .Site.RegularPages "Section" "key_topics" }}
+                    {{ $page := . }}
+                    {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
+                    {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
+                    <a class="btn btn-outline-primary btn-lg has-icon disperse" href="{{ .URL}}">
+                        <span class="fas fa-angle-right"></span>
+                        <span class="title">{{ .Title }}</span>
+                    </a>
+                    {{ end }} 
+                    {{ end }}
+
+
+
+
+                    <h3 class="mt-4"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
+                    {{ $page_link := .Permalink }}
+                    {{ $cats := .Params.categories }}
+                    {{ range where .Site.RegularPages "Section" "neighborhood_reports" }}
+                    {{ $page := . }}
+                    {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
+                    {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
+                    <a class="btn btn-outline-primary btn-lg has-icon disperse" href="{{ .URL}}">
+                        <span class="fas fa-angle-right"></span>
+                        <span class="title">{{ .Title }}</span>
+                    </a>
+                    {{ end }} 
+                    {{ end }}
+
+
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+
+
+            <div class="row mt-4 mb-4">
+
+                    <h3><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Get the data: <span class="text-muted">Related datasets in the Data Explorer</span></h3>
+                    <p class="card-text">        
+                        <ul>
+                            {{ $page_link := .Permalink }}
+                            {{ $cats := .Params.categories }}
+                            {{ range where .Site.RegularPages "Section" "data_explorer" }}
+                            {{ $page := . }}
+                            {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
+                            {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
+                            <li><a href="{{ .URL}}">{{ .Title }}</a></li>
+                            {{ end }} 
+                            {{ end }}
+
+                        </ul></p>
+
+
+            </div>
+
+
 
     
         </div>
@@ -46,7 +129,7 @@
         <div class="col-md-3 mr-auto text-right">
             <h4>Other Key Topics</h4>
             <hr>
-            {{ range where .Site.RegularPages "Section" "key_topics" }}
+            {{ range where (where .Site.Pages "Section" "key_topics") ".File.BaseFileName" "_index" }}
            <p class="my-2"><a href="{{ .URL}}">{{ .Title }}</a></p>
             {{ end}}
             

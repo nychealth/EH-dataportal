@@ -3,7 +3,7 @@ title: Cockroaches
 date: 2021-05-28 18:02:58.860064
 draft: false
 tags: 
-categories: []
+categories: ["pests","housing"]
 keywords: 
 indicators: [{"subtopic_id": 8, "internal_id": 22, "name": "Adults Reporting Cockroaches in the Home", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=22,719b87,8,Summarize"}, {"subtopic_id": 8, "internal_id": 2393, "name": "Children living in homes with cockroaches (ages 0-13 years)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2393,719b87,8,Summarize"}, {"subtopic_id": 8, "internal_id": 107, "name": "Homes with Cockroaches", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=107,719b87,8,Summarize"}]
 menu:
