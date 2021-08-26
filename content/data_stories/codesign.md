@@ -2,9 +2,9 @@
 title: "Why we're working with you to redesign the data portal"
 date: 2021-07-19T08:20:57-04:00
 draft: false
-tags: ["how we work","civic service design","design","technology"]
+tags: 
 categories: []
-keywords: []
+keywords: ["how we work","civic service design","design","technology"]
 image: ../../images/ds-codesign.jpg
 ---
 ### We're making changes, and we need your help

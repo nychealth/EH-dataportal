@@ -2,9 +2,9 @@
 title: "Disparities in violence"
 date: 2021-07-19T08:29:34-04:00
 draft: false
-tags: ["violence","assaults","poverty"]
+tags: 
 categories: ["social"]
-keywords: []
+keywords: ["violence","assaults","poverty"]
 image: ../../images/ds-assaults.jpg
 ---
 

@@ -2,9 +2,9 @@
 title: "Air quality during COVID-19"
 date: 2021-07-19T08:33:22-04:00
 draft: false
-tags: ["air quality","traffic","transportation","covid","covid-19","coronavirus","air pollution", "lungs","breathing"]
-categories: ["transportation"]
-keywords: []
+tags: 
+categories: ["transportation","airquality"]
+keywords: ["air quality","traffic","transportation","covid","covid-19","coronavirus","air pollution", "lungs","breathing"]
 image: ../../images/ds-aqcovid.jpeg
 ---
 

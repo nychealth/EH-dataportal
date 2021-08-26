@@ -2,9 +2,9 @@
 title: "Neighborhood boundaries on the EH Data Portal"
 date: 2021-07-19T08:33:22-04:00
 draft: false
-tags: ["geography","maps","neighborhoods","health data","methods","geographic"]
+tags: 
 categories: []
-keywords: []
+keywords: ["geography","maps","neighborhoods","health data","methods","geographic"]
 image: ../../images/ds-geographies.jpg
 ---
 
