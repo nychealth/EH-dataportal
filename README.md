@@ -117,7 +117,7 @@ If a file contains ```layout: custom``` in the frontmatter,  Hugo will look for 
 ### Data visualization shortcodes
 Shortcodes for Datawraper and Vega/Vega-Lite both exist. With shortcodes, you enter simple code in markdown that inserts components into pre-written code. 
 
-To embed a Vega/Vega-Lite visualization, simply add this:. The shortcut inserts the id and the spec into standard V/VL code. Store chart specifications in static/visualizations/spec. 
+To embed a Vega/Vega-Lite visualization, simply add this:. The shortcut inserts the id and the spec into standard V/VL code. Store chart specifications in ```static/visualizations/spec```. Additionally, the markdown file needs ```vega: true``` which adds Vega libraries to ```head.html```. 
 ```{{< vega id="uniqueDivID" spec="../../visualizations/spec/bartest.vl.json" >}}```
 
 For Datawrapper, the shortcode is:
