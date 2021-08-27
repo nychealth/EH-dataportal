@@ -9,6 +9,7 @@ image: ../../images/ds-geographies.jpg
 menu:
     main:
         identifier: '02'
+vega: true
 ---
 
 New York City has hundreds of neighborhoods and nearly as many ways of drawing neighborhood boundaries. When you [visit the Environment & Health Data Portal](https://a816-dohbesp.nyc.gov/IndicatorPublic/Subtopic.aspx), you might notice that data is available in several different neighborhood schemes.
@@ -18,6 +19,9 @@ For example, dig around in the asthma data pages and you'll find [Adults with As
 The most common neighborhood boundaries on the EH Data Portal are Community Districts, Public Use Microdata Areas, and United Hospital Fund neighborhoods. These three common neighborhood schemes have different building blocks. Let's explore these.
 
 ### Nesting: how neighborhood schemes have different root units
+
+{{< vega id="viz" spec="../../visualizations/spec/bartest.vl.json" >}}
+
 
 {{< rawhtml >}}
 <div style="border: 1px solid blue; height: 500px; width: 100%"></div>
