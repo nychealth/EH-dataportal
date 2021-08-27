@@ -114,6 +114,14 @@ Data stories, Key Topics, and Data Explorer (subtopics) markdown should have the
 ### Using custom layouts
 If a file contains ```layout: custom``` in the frontmatter,  Hugo will look for a layout named ```custom.html``` in the same directory structure within ```/themes/dohmh/layouts```. Use this for one-off data features like the Air Quality Explorer. For Key Topic landing pages, use ```layout: single``` to force these pages to display based on the ```single.html``` template instead of the list template (```section.html```).
 
+### Data visualization shortcodes
+Shortcodes for Datawraper and Vega/Vega-Lite both exist. With shortcodes, you enter simple code in markdown that inserts components into pre-written code. 
+
+To embed a Vega/Vega-Lite visualization, simply add this:. The shortcut inserts the id and the spec into standard V/VL code. Store chart specifications in static/visualizations/spec. 
+```{{< vega id="uniqueDivID" spec="../../visualizations/spec/bartest.vl.json" >}}```
+
+For Datawrapper, the shortcode is:
+```{{< datawrapper "Title" "chartID/version/" "Height" >}}```
 
 ## Testing and checks
 
