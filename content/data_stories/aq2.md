@@ -20,15 +20,7 @@ We combine NYCCAS data with other data to make reliable estimates about air qual
 
 For example, when we group neighborhoods based on traffic (high, medium, or low traffic density), we can see that high-traffic neighborhoods have more PM2.5 than medium- and low-traffic neighborhoods.
 
- {{< rawhtml >}}
-<iframe title="Seasonal PM2.5 concentrations" class="mb-4" aria-label="Interactive line chart"
-id="datawrapper-chart-1iDTX" src="https://datawrapper.dwcdn.net/1iDTX/2/"
-scrolling="no" frameborder="0"
-style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe>
-<script type="text/javascript">!function () { "use strict"; window.addEventListener("message", (function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } })) }();
-</script>
-{{< /rawhtml >}}
-
+{{< datawrapper "Seasonal PM2.5 concentrations" "1iDTX/2/" "400" >}}
 
 Interestingly, medium-traffic neighborhoods and low-traffic neighborhoods see similar levels of PM2.5 pollution. Only with high traffic density do we see higher pollution levels. You can also see that PM2.5 is a little higher in the winter and summer for all neighborhoods (regardless of traffic density). Pollution levels vary by season due changes in energy use (heating and cooling), and weather patterns.
 
@@ -37,14 +29,7 @@ NYC's air quality has been improving. Over the last ten years, NYCCAS has shown 
 
 Because the level of PM2.5 varies by season, it can be helpful to look at one season at a time. The chart below shows the average summertime levels of PM2.5. You can see that air quality has gotten better across all neighborhoods, regardless of traffic density.
 
- {{< rawhtml >}}
-<iframe title="Summer PM2.5 concentrations in NYC" class="mb-4" aria-label="Interactive line chart"
-id="datawrapper-chart-Dwtb1" src="https://datawrapper.dwcdn.net/Dwtb1/2/"
-scrolling="no" frameborder="0"
-style="width: 0; min-width: 100% !important; border: none;" height="428"></iframe>
-<script type="text/javascript">!function () { "use strict"; window.addEventListener("message", (function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } })) }();
-</script>
-{{< /rawhtml >}}
+{{< datawrapper "Summer PM2.5 concentrations in NYC" "Dwtb1/2/" "400" >}}
 
 NYCCAS was designed to record trends like this, and to measure big, broad changes. If we want to make big air quality changes, we’ll need big interventions: create large car-free zones, reduce traffic volume, and place greater restrictions on harmful emissions.
 

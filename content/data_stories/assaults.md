@@ -22,30 +22,21 @@ Violence is a real and pressing public health threat, and it doesn't affect New 
 
 We can look at violence by looking at data on non-fatal assault hospitalizations - violence that results in somebody going to the hospital, but not dying. While the hospitalization data capture where the person injured in the assault lives – and not where the assault occurred – they can be interpreted as indicators of violence in the neighborhood.
 
-{{< rawhtml >}}
-<iframe title="Violence rates are highest in the Bronx and Brooklyn" aria-label="USA new york city community districts choropleth map" id="datawrapper-chart-dVe0S" src="https://datawrapper.dwcdn.net/dVe0S/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="559"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();</script>
+{{< datawrapper "Violence rates are highest in the Bronx and Brooklyn" "dVe0S/4/" "559" >}}
 
-
-{{< /rawhtml >}}
 
 In this map, we can see that the highest rates of non-fatal assault hospitalizations - the darkest shades of purple on the map - are concentrated in the Bronx, parts of Harlem, northeastern Brooklyn, and northern Staten Island.
 
 Hospitalization rates for these neighborhoods are nearly 4 times the City’s average:
 
-{{< rawhtml >}}
-<iframe title="A huge disparity in NYC's neighborhood violence rates" aria-label="Bar Chart" id="datawrapper-chart-062qz" src="https://datawrapper.dwcdn.net/062qz/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="357"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();</script>
+{{< datawrapper "A huge disparity in NYC's neighborhood violence rates" "062qz/2/" "357" >}}
 
 
-{{< /rawhtml >}}
 These higher rates of violence means that the health consequences ripple throughout the residents of these neighborhoods - often with devastating consequences.
 
 A major inequity is driving these different rates - poverty.
 
-{{< rawhtml >}}
-<iframe title="A disparity in violence by neighborhood poverty rate" aria-label="Column Chart" id="datawrapper-chart-vBeo1" src="https://datawrapper.dwcdn.net/vBeo1/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();</script>
-
-
-{{< /rawhtml >}}
+{{< datawrapper "A disparity in violence by neighborhood poverty rate" "vBeo1/3/" "400" >}}
 
 Violence is highest in NYC neighborhoods with higher rates of poverty.
 

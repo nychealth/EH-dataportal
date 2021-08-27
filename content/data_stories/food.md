@@ -18,11 +18,7 @@ However, warmer weather creates special challenges keeping food safe. We dug int
 ### Some background on foodborne illnesses
 Though most foodborne illnesses are relatively minor, the Centers for Disease Control and Prevention estimates that there are 128,000 hospitalizations and 3,000 deaths per year from foodborne illnesses in the USA.
 
-{{< rawhtml >}}
-<iframe title="In NYC, there are thousands of cases per year" aria-label="Bar Chart" id="datawrapper-chart-TWYcr" src="https://datawrapper.dwcdn.net/TWYcr/6/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="532"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();</script>
-
-
-{{< /rawhtml >}}
+{{< datawrapper "In NYC, there are thousands of cases per year" "TWYcr/6/" "532" >}}
 
 Many of these are viruses and bacteria that spread through unsafe food handling practices. For example, if bacteria from raw meat or eggs contaminate other ready-to-eat food, it can make people sick.
 
@@ -47,15 +43,12 @@ We investigated how outdoor temperature affects restaurant food safety patterns.
 
 {{< rawhtml>}}
 <span style="text-align:center; display:block;"><b>Nearly half of inspections found cold holding violations</b>
-<img src="food2.png" alt="A waffle chart showing nearly 65,000 inspections, of which 45 percent had cold holding violations."></span>
+<img src="https://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/food/food2.png" alt="A waffle chart showing nearly 65,000 inspections, of which 45 percent had cold holding violations."></span>
 {{< /rawhtml >}}
 
 We looked at inspections conducted on higher and lower maximum temperature days, and we found a 20 percent increase in cold food holding violations on the hottest days (93° or higher) compared with average summer days (temperatures around 82°).
 
-{{< rawhtml>}}
- <iframe title="Hot weather means more cold food holding violations" aria-label="Bar Chart" id="https:datawrapper-chart-PpaPF" src="//datawrapper.dwcdn.net/PpaPF/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="210"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();</script>
-
-{{< /rawhtml >}}
+{{< datawrapper "Hot weather means more cold food holding violations" "PpaPF/4/" "210" >}}
 
 ### We talked over our findings with restaurant staff
 After reviewing these data, we convened restaurant operators to talk about common challenges to keeping food cool.
