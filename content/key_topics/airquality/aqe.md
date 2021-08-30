@@ -9,18 +9,11 @@ menu:
     main:
         identifier: '05'
 layout: aqe
-customJS: ../../js/aqe.js
+customJS: /js/aqe.js
+accessibleAutocomplete: /js/accessible-autocomplete.min.js
+vega: true
 ---
 
-Your neighborhood's air quality. Insert neighborhood to continue. 
+We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes one neighborhood's air quality different from another's. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.
 
----
-- where will other library dependencies load? do they need to go into head or can they load at the bottom?
-- do we build it so they load only for this page, and/or this type of page?
-
-
-
-{{< rawhtml >}}
-
-{{< /rawhtml >}}
-
+If we don't have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.
