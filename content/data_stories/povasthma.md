@@ -7,26 +7,21 @@ tags:
 categories: ["housing","social","childhealth"]
 keywords: ["poverty","asthma","injustice","housing","children","emergency department visits","ed visits","emergency room","social determinants"]
 image: ../../images/ds-povasthma.jpg
+menu:
+    main:
+        identifier: '02'
 ---
 
-### Poverty can affect how you breathe
 Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.
 
 To understand the connection between poverty and asthma, take a look at this map of poverty rates in New York City, below. The darker the color, the more residents living in poverty.
 
 
-
-{{< rawhtml >}}
-<iframe title="Poverty in New York City" aria-label="USA new york city neighborhoods (ntas) choropleth map" id="datawrapper-chart-s32oq" src="https://datawrapper.dwcdn.net/s32oq/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important;" height="600"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var t in a.data["datawrapper-height"]){var e=document.getElementById("datawrapper-chart-"+t);e&&(e.style.height=a.data["datawrapper-height"][t]+"px")}})}();</script>
-
-{{< /rawhtml >}}
+{{< datawrapper "Poverty in New York City" "s32oq/3/" "600" >}}
 
 Now, compare that to a map of emergency department visits for asthma in children age 5 to 17, below. The darker the color, the higher the rate of children visiting the emergency department with asthma.
 
-{{< rawhtml >}}
-<iframe id="datawrapper-chart-5S8mf" src="https://datawrapper.dwcdn.net/5S8mf/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important;" height="600"></iframe><script type="text/javascript">if("undefined"==typeof window.datawrapper)window.datawrapper={};window.datawrapper["5S8mf"]={},window.datawrapper["5S8mf"].iframe=document.getElementById("datawrapper-chart-5S8mf"),window.addEventListener("message",function(a){if("undefined"!=typeof a.data["datawrapper-height"])for(var b in a.data["datawrapper-height"])if("5S8mf"==b)window.datawrapper["5S8mf"].iframe.style.height=a.data["datawrapper-height"][b]+"px"});</script>
-
-{{< /rawhtml >}}
+{{< datawrapper "Child asthma in NYC" "5S8mf/4/" "600" >}}
 
 The similarities are clear. Throughout the city, neighborhoods with higher rates of poverty also experience higher rates of childhood asthma, which we can see from the rates of emergency department visits.
 
@@ -35,10 +30,7 @@ We can look at the connections between these two maps, of poverty and asthma, wi
 
 On the scatter plot below, each dot represents one neighborhood. Its horizontal position represents the neighborhood's poverty rate, and its vertical position represents its asthma rate. The pattern of dots, roughly grouped around an ascending line, shows a connection between poverty and asthma: the higher the poverty rate, the higher the asthma rate.
 
-{{< rawhtml >}}
-<iframe id="datawrapper-chart-YiBqa" src="https://datawrapper.dwcdn.net/YiBqa/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important;" height="409"></iframe><script type="text/javascript">if("undefined"==typeof window.datawrapper)window.datawrapper={};window.datawrapper["YiBqa"]={},window.datawrapper["YiBqa"].iframe=document.getElementById("datawrapper-chart-YiBqa"),window.addEventListener("message",function(a){if("undefined"!=typeof a.data["datawrapper-height"])for(var b in a.data["datawrapper-height"])if("YiBqa"==b)window.datawrapper["YiBqa"].iframe.style.height=a.data["datawrapper-height"][b]+"px"});</script>
-
-{{< /rawhtml >}}
+{{< datawrapper "The correlation between poverty and asthma" "YiBqa/2/" "409" >}}
 
 ### Why does this connection exist?
 The connection between poverty and asthma is due to a variety of factors, including:

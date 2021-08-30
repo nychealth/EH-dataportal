@@ -23,3 +23,10 @@
 {{ $sass := resources.Get "scss/theme.scss" }}
 {{ $style := $sass | resources.ToCSS }}
 <link rel="stylesheet" href="{{ $style.Permalink }}" />
+
+<!--Vega. To call, have vega: true in a page's frontmatter-->
+{{ if .Params.vega }}
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+{{ end }}

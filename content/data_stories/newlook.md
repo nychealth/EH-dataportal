@@ -2,13 +2,17 @@
 title: "A new look for the EH Data Portal"
 date: 2021-05-05T08:14:38-04:00
 draft: false
-tags: ["how we work","civic service design","design","technology"]
+tags: 
 categories: []
-keywords: []
+keywords: ["how we work","civic service design","design","technology"]
 image: ../../images/ds-newlook.jpg
+menu:
+    main:
+        identifier: '02'
 ---
 
-### We've made a few changes
+We've made a few changes.
+
 If you're a regular to the Environment & Health Data Portal, then you may notice that we've made a few changes to our home page. We've kept most of the Portal's functions the same, but we've rearranged things, and want to tell you about them.
 
 #### Before
