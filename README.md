@@ -123,6 +123,14 @@ To embed a Vega/Vega-Lite visualization, simply add this:. The shortcut inserts 
 For Datawrapper, the shortcode is:
 ```{{< datawrapper "Title" "chartID/version/" "Height" >}}```
 
+### Environment-specific deployment and building
+The /config folder includes subfolders with environment-specific configuration. Specifically, there are different configuration files for serving the site locally, serving it on Github pages, and eventually, building for production.
+
+Currently, config/local/config.toml has a variable ```devpath = "/ehs-data-portal-frontend-temp"```. This can be inserted into templates in order to fix path issues. For example, in header.html, the following uses this environment variable to load the banner image:
+```<div class="site-header bg-primary" style="background-image: url({{ $.Site.Params.devpath}}/images/header_background.jpg)">``` 
+
+To run a local-environment-specific serve or build, enter ```hugo serve --environment local``` or ```hugo build --environment local```. This will merge the contents of /config/local/config.toml with /config/_default/config.toml.
+
 ## Testing and checks
 
 - **Update this list** - with the project's QA/QC rules and any testing information; below are examples only
