@@ -5,7 +5,8 @@ draft: false
 tags: 
 categories: []
 keywords: ["geography","maps","neighborhoods","health data","methods","geographic"]
-image: ../../images/ds-geographies.jpg
+image: ds-geographies.jpg
+layout: single
 menu:
     main:
         identifier: '02'
@@ -15,6 +16,8 @@ vega: true
 New York City has hundreds of neighborhoods and nearly as many ways of drawing neighborhood boundaries. When you [visit the Environment & Health Data Portal](https://a816-dohbesp.nyc.gov/IndicatorPublic/Subtopic.aspx), you might notice that data is available in several different neighborhood schemes.
 
 For example, dig around in the asthma data pages and you'll find [Adults with Asthma](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=18,4466a0,11,Summarize) presented by UHF34 neighborhoods, [Public School Children with Asthma](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2147,4466a0,11,Summarize) presented by UHF42 neighborhoods, and [Asthma emergency department visits](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2383,4466a0,11,Summarize) are offered by NTAs. Other data on the portal are offered by CD, ZIP code, PUMA, and occasionally even police precinct. **What are all these neighborhood schemes, why do we use one and not the other, and why isn’t the whole system consistent?**
+
+{{< figure src="ds-geographies.jpg" alt="Here's this image" >}}
 
 The most common neighborhood boundaries on the EH Data Portal are Community Districts, Public Use Microdata Areas, and United Hospital Fund neighborhoods. These three common neighborhood schemes have different building blocks. Let's explore these.
 
