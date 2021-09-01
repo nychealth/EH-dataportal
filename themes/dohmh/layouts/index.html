@@ -24,8 +24,7 @@
 
                 <div class="card-body">
                   <p class="card-text">
-                    Get data for your neighborhood on key environmental
-                    health topics.
+                    How does the environment in your neighborhood affect health? Get the data here. 
                   </p>
 
                   <form action="/neighborhood_reports" method="get" class="autocomplete-form">
@@ -70,7 +69,7 @@
 
                 <div class="card-body">
                   <p class="card-text">
-                    Explore key topics in environmental health that affect our city and our
+                    Explore the issues in environmental health that affect our city and our
                     lives.
                   </p>
                   <div class="row mt-2">
@@ -109,14 +108,13 @@
 
                 <div class="card-body">
                   <p class="card-text">
-                    Explore data on over 250 indicators and 50 environmental health topics.
-                    Use data
-                    tools, download data sets, and find data stories.
+                    Data on over 250 indicators and 50 environmental health topics.
+                    Explore, visualize, and download data sets - so you can find the story.
                   </p>
 
 
                   <hr>
-                  <a href="/data_explorer/" class="btn btn-outline-gray btn-sm my-2" style="float:right">Browse
+                  <a href="/data_explorer/" class="btn btn-outline-gray btn-sm my-2" style="float:right; color: #00923E;">Browse
                     all topics&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
                 </div>
 
@@ -139,16 +137,18 @@
               <span class="title" role="heading" aria-level="3"><i class="fas fa-atlas"></i>&nbsp;Data
                 Stories</span>
               </div>
-
-
-
               <div class="card-body">
                 <p class="card-text">
                   Brief explainers and infographics on key health and environment topics.
                 </p>
-                {{ .Content}}
-                <hr>
-                <a href="/data_stories/" class="btn btn-outline-gray btn-sm my-2" style="float:right">Browse
+                <div class="fs-sm">
+                  {{ range first 5 ((where .Site.RegularPages "Section" "data_stories")) }}
+                 <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                 <hr class="my-1">
+                  {{ end }}
+                </div>
+
+                <a href="/data_stories/" class="btn btn-outline-gray btn-sm my-2" style="float:right; color: #197BBD;">Browse
                   all data stories&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
 
               </div>
