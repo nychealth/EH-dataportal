@@ -58,4 +58,4 @@ Other parts of the city have reduced traffic - like on 14th Street in Manhattan,
 
 So while we don't have a monitor in every place that has gone car-free - like the 14th Street Busway or Prospect Park - we can use what we learned from Times Square to safely conclude that removing traffic from an area can improve the air quality - particularly for pollutants that mostly come from vehicle emissions.
 
-We continue to explore the data collected through NYCCAS in Part 2.
+We continue to explore the data collected through NYCCAS in [Part 2]({{< ref "/data_stories/aq2" >}}).
