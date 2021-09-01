@@ -812,3 +812,22 @@ span.th-sub {
     color: $breadcrumb-active-color;
   }
 }
+
+
+// Data story styles
+#datastoryheader {
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    display: flex;
+}
+
+.titleheader {    
+color: #fff;
+text-align: center;
+font-size: 3em;
+background-color: rgba(132,132,132,0.5);
+padding-top: 75px;
+margin-bottom: 15px;
+border-radius: 5px;
+}
