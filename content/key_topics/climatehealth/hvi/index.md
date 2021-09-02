@@ -8,6 +8,8 @@ menu:
     main:
         identifier: '05'
 layout: hvi
+customJS: hvi.js
+accessibleAutocomplete: /js/accessible-autocomplete.min.js
+vega: true
 ---
 
-Interactive Heat Vulnerability Index explorer. Insert neighborhood to continue. 
