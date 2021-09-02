@@ -50,8 +50,8 @@ var tabShown = 'tab-01-a'; //let tabSpec = '';
 //const BDmapSpec = "./js/BDmapSpec.vl.json";
 //const BEmapSpec = "/js/BEmapSpec.vl.json";
 
-var PMBarVGSpec = `../../../visualizations/spec/aqe/PMBarSpec.vg.json`;
-var NO2BarVGSpec = `../../../visualizations/spec/aqe/NO2BarSpec.vg.json`;
+var PMBarVGSpec = `PMBarSpec.vg.json`;
+var NO2BarVGSpec = `NO2BarSpec.vg.json`;
 var embed_opt = {
   actions:false
 };
@@ -170,13 +170,13 @@ function mapUpdateID(tabShown) {
 
 function mapUpdateSpec(tabShown) {
   if (tabShown === "tab-01-a") {
-    return `../../../visualizations/spec/aqe/BEmapSpec.vg.json`;
+    return `BEmapSpec.vg.json`;
   } else if (tabShown === "tab-01-d") {
-    return `../../../visualizations/spec/aqe/BDmapSpec.vg.json`;
+    return `BDmapSpec.vg.json`;
   } else if (tabShown === "tab-01-b") {
-    return `../../../visualizations/spec/aqe/IndustrialmapSpec.vg.json`;
+    return `IndustrialmapSpec.vg.json`;
   } else if (tabShown === "tab-01-c") {
-    return `../../../visualizations/spec/aqe/TrafficmapSpec.vg.json`;
+    return `TrafficmapSpec.vg.json`;
   } else {
     console.log('Error: not sure which map to update');
   }
