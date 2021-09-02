@@ -72,10 +72,18 @@
 
 
                     <h3 class="mt-4"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
-                    {{ $title := "Neighborhood Reports" }}
-                    {{ $section := "neighborhood_reports" }}
-                    {{ partial "related" (dict "header" $title "area" $section)}}
-
+                    {{ $page_link := .Permalink }}
+                    {{ $cats := .Params.categories }}
+                    {{ range where .Site.RegularPages "Section" "neighborhood_reports" }}
+                    {{ $page := . }}
+                    {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
+                    {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
+                    <a class="btn btn-outline-primary btn-lg has-icon disperse" href="{{ .URL}}">
+                        <span class="fas fa-angle-right"></span>
+                        <span class="title">{{ .Title }}</span>
+                    </a>
+                    {{ end }} 
+                    {{ end }}
 
                 </div>
 
