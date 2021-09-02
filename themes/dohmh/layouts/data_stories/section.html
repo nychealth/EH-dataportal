@@ -10,7 +10,7 @@
         <div class="row my-4">
             <div class="col-md-8">
 
-                {{ range .Pages }}
+                {{ range .RegularPages }}
                 <a class="h2 fs-lg" href="{{ .URL}}">{{ .Title }}</a>
                 <p class="fs-sm">{{ .Content | truncate 150 }}</p> 
                 <p class="text-right"><a href="{{ .URL}}">Read more...</a></p>
