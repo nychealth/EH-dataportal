@@ -1,15 +1,12 @@
 # A new frontend for the Environment and Health Data portal
 
-Add text here
-
-{Replace this with a screenshot of the application or output.}
+This repository contains a new prototype of the Environment and Health Data Portal. You can view a staged development version [here](https://nycehs.github.io/ehs-data-portal-frontend-temp/).
 
 ## How you can help
 
 In the spirit of free software, everyone is encouraged to help improve this project.  Here are some ways you can contribute.
 
-- Comment on or clarify [issues](link to issues)
-- Report [bugs](link to bugs)
+- Comment on or clarify [issues](https://github.com/nycehs/ehs-data-portal-frontend-temp/issues)
 - Suggest new features
 - Write or edit documentation
 - Write code (no patch is too small)
@@ -23,26 +20,116 @@ In the spirit of free software, everyone is encouraged to help improve this proj
 You will need the following things properly installed on your computer.
 
 - [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/) (with NPM)
-- [R](https://www.r-project.org/)
-- {Replace this list with the app's dependencies.}
+- [Hugo](https://gohugo.io/) 
 
-## Local development
+## Development
 
-- Clone this repo `command`
-- Install Dependencies `command`
-- Start the server `command`
+- On your local, the server with `hugo serve --environment local`
+- Develop on branches labelled hotfix-, content-, or feature-. 
+- When merging branches into main, run a new build on main to /docs.
 
 ## Architecture
 
-{"Lay of the land" structure of the codebase, components...}
+Development is largely done in the /content and the /themes directories. Functionality worth noting for ongoing development:
 
-## Backend services
+### Navigation
+The nav menu will highlight the content area (e.g., "Data Stories") when the user is on that area's landing page, or on a subpage within that directory. For this to work, each markdown file (especially subpages) needs the following in the front matter:
 
-- **Geosupport API** - Description of this service
-- **Service two** - Description of this service
-- **Service three** - Description of this service
-- {Replace this list with the app's backend service dependencies, or remove if not applicable.}
+```
+menu:
+    main:
+        identifier: '02'
+```
+
+Use 01 for subpages of the home page, 02  for data stories, 03 for the data explorer, 04 for neighborhood reports, and 05 for Key Topics (per config.toml).
+
+### Data Stories banner images
+Data stories include a banner image. This image is added to static/images. It should be called ```ds-[storyname].jpg```. The image should be referenced in the front matter this way:
+```
+image: ../../images/ds-assaults.jpg
+```
+
+It is referenced via in-line CSS in themes/dohmh/layouts/data_stories/single.html.
+
+### Indicators
+Indicators can be displayed on subtopic pages. Indicators are stored as json within subtopic content markdown file's front matter - see [asthma.md](https://github.com/nycehs/ehs-neighborhoodprofiles/blob/main/content/data_explorer/asthma.md) or below:
+
+```
+indicators: {
+    {
+        "name" : "ED visits (adults)",
+        "URL": "http://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2380,4466a0,11,Summarize"
+    },
+
+    {
+        "name" : "ED visits (age 0-4)",
+        "URL": "http://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2048,4466a0,11,Summarize"
+    }
+}
+```
+
+
+Then, the template page loops through the Indicator JSON and displays each indicator:
+
+```
+{{ range .Params.indicators}}
+    <a href="{{.url}}" onclick="protoPopup()">{{.name}}</a>
+    <hr>
+{{end}}
+```
+
+### Ranging through items in another content section
+This code works on any template page to range through items in another content section. For example, placed on key_topics/section.html, it ranges through all of the Site's Pages that are in the data_stories section, and prints the Title.
+
+```
+    {{ range where .Site.RegularPages "Section" "data_stories" }}
+        {{ .Title }}<br>
+    {{end}}
+```
+
+This is more complex code that looks for the intersection of two areas' categories field. As a reminder, we use categories to tag matter with their **key topics**. 
+
+```
+    <!--Establishes two variables-->
+    {{ $page_link := .Permalink }}
+    {{ $cats := .Params.categories }}
+    <!--Ranges through the section we want to ingest into this page-->
+    {{ range where .Site.RegularPages "Section" "data_explorer" }}
+    <!--Places the contents of that range, ., into a variable called $page-->
+    {{ $page := . }}
+    <!--Defines a variable as the intersection of the ranged pages .Params.categories, and this page's-->
+    {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
+    <!--Excludes this page-->
+    {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
+    <li><a href="{{ .URL}}">{{ .Title }}</a></li>
+    {{ end }} 
+    {{ end }}
+```
+
+Data stories, Key Topics, and Data Explorer (subtopics) markdown should have the following in the frontmatter:
+- categories: ["key topic 1", "key topic 2"]
+- keywords: a field used to populate information for the site search function
+- tags: a freeform category we are not yet using
+
+### Using custom layouts
+If a file contains ```layout: custom``` in the frontmatter,  Hugo will look for a layout named ```custom.html``` in the same directory structure within ```/themes/dohmh/layouts```. Use this for one-off data features like the Air Quality Explorer. For Key Topic landing pages, use ```layout: single``` to force these pages to display based on the ```single.html``` template instead of the list template (```section.html```).
+
+### Data visualization shortcodes
+Shortcodes for Datawraper and Vega/Vega-Lite both exist. With shortcodes, you enter simple code in markdown that inserts components into pre-written code. 
+
+To embed a Vega/Vega-Lite visualization, simply add this:. The shortcut inserts the id and the spec into standard V/VL code. Store chart specifications in ```static/visualizations/spec```. Additionally, the markdown file needs ```vega: true``` which adds Vega libraries to ```head.html```. 
+```{{< vega id="uniqueDivID" spec="../../visualizations/spec/bartest.vl.json" >}}```
+
+For Datawrapper, the shortcode is:
+```{{< datawrapper "Title" "chartID/version/" "Height" >}}```
+
+### Environment-specific deployment and building
+The /config folder includes subfolders with environment-specific configuration. Specifically, there are different configuration files for serving the site locally, serving it on Github pages, and eventually, building for production.
+
+Currently, config/local/config.toml has a variable ```devpath = "/ehs-data-portal-frontend-temp"```. This can be inserted into templates in order to fix path issues. For example, in header.html, the following uses this environment variable to load the banner image:
+```<div class="site-header bg-primary" style="background-image: url({{ $.Site.Params.devpath}}/images/header_background.jpg)">``` 
+
+To run a local-environment-specific serve or build, enter ```hugo serve --environment local``` or ```hugo build --environment local```. This will merge the contents of /config/local/config.toml with /config/_default/config.toml.
 
 ## Testing and checks
 
@@ -63,7 +150,7 @@ You will need the following things properly installed on your computer.
 ## Contact us
 
 You can comment on issues and we'll follow up as soon as we can. 
-{Other ways to contact can be entered here}
+
 
 ## Communications disclaimer
 
