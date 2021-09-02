@@ -5,7 +5,7 @@ draft: false
 tags: 
 categories: []
 keywords: ["how we work","civic service design","design","technology"]
-image: ../../images/ds-newlook.jpg
+image: ds-newlook.jpg
 menu:
     main:
         identifier: '02'

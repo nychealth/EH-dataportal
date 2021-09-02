@@ -5,13 +5,13 @@ draft: false
 tags: 
 categories: ["transportation","airquality"]
 keywords: ["air quality","traffic","transportation","cars","traffic","car-free","carfree","pedestrians","cycling","bikes","biking","pollution","air pollution", "lungs","breathing"]
-image: ../../images/ds-aq2.jpeg
+image: ds-aq2.jpeg
 menu:
     main:
         identifier: '02'
 ---
 
-In Part 1, we looked at data from the New York City Community Air Survey (NYCCAS) - a network of about 100 air quality monitors - to see if air quality improves in areas that go car-free. And the answer is yes.
+In [Part 1]({{< ref "/data_stories/aqts" >}}), we looked at data from the New York City Community Air Survey (NYCCAS) - a network of about 100 air quality monitors - to see if air quality improves in areas that go car-free. And the answer is yes.
 
 NYCCAS tells us that more traffic means more air pollution nearby. So, even if we don't have a nearby monitor, we can predict that an area that goes car-free (like Park Drive in Prospect Park, for example) sees an improvement in air quality.
 

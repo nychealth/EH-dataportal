@@ -5,10 +5,7 @@ draft: false
 tags:
 categories: ["airquality"]
 keywords: ["air quality","pollution","PM2.5","traffic","breathing","asthma","heart disease","lung disease","stroke"]
-menu:
-    main:
-        identifier: '02'
-image: ../../images/ds-breatheeasy.jpg
+image: ds-breatheeasy.jpg
 menu:
     main:
         identifier: '02'

@@ -5,7 +5,7 @@ draft: false
 tags: 
 categories: ["climateandhealth","social"]
 keywords: ["climate","heat","weather","mortality","death","climate change","air conditioner", "air conditioning"]
-image: ../../images/ds-heat.jpg
+image: ds-heat.jpg
 menu:
     main:
         identifier: '02'

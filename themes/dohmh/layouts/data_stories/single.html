@@ -15,28 +15,6 @@
 
 </div>
 
-
-<style>
-
-    #datastoryheader {
-        width: 100%;
-        height: 400px;
-        background-size: cover;
-        display: flex;
-    }
-
-    .titleheader {    
-    color: #fff;
-    text-align: center;
-    font-size: 3em;
-    background-color: rgba(132,132,132,0.5);
-    padding-top: 75px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    }
-</style>
-
-
 <article class="container-fluid" id="skip-header-target">
 
     <div class="row">
@@ -92,13 +70,9 @@
         <div class="col-xl-2 border-xl-left">
 
             <div class="py-3 mt-n3 mt-xl-0 sticky-top" style="z-index: 0">
-                <p>More data stories on:<br>
-                {{ range .Params.categories}}
-                   <a href=""> {{ . }} </a>
-                {{ end}}
-            </p>
-
-                <hr>
+                <strong>Published on:</strong><br>
+                {{ .Date.Format "January 2, 2006"}}
+                <hr class="my-2">
                 <strong>Related Key Topics</strong>
                     <!--sets variables-->
                     {{ $page_link := .Permalink }}
@@ -114,7 +88,7 @@
                     <!--Show commonalities, except for page we're on -->
                     {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
                     <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
-                    <hr>
+                    <hr class="my-1">
                     {{ end }} 
                     {{ end }}
 

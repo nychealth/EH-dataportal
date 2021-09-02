@@ -5,7 +5,10 @@ draft: false
 tags: 
 categories: ["transportation","airquality"]
 keywords: ["air quality","traffic","transportation","covid","covid-19","coronavirus","air pollution", "lungs","breathing"]
-image: ../../images/ds-aqcovid.jpeg
+image: ds-aqcovid.jpeg
+menu:
+    main:
+        identifier: '02'
 ---
 
 What happens when NYC stays home? The COVID-19 pandemic upended the lives of all New Yorkers. The outbreak has affected many aspects of our daily life, but there are also less apparent effects, such as impacts on our environment.

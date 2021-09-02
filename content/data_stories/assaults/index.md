@@ -5,7 +5,7 @@ draft: false
 tags: 
 categories: ["social"]
 keywords: ["violence","assaults","poverty"]
-image: ../../images/ds-assaults.jpg
+image: ds-assaults.jpg
 menu:
     main:
         identifier: '02'

@@ -2,14 +2,10 @@
 title: "Why asthma is a social justice issue"
 date: 2021-04-13T12:44:43-04:00
 draft: false
-image: /images/povasthma.png
 tags:
 categories: ["housing","social","childhealth"]
 keywords: ["poverty","asthma","injustice","housing","children","emergency department visits","ed visits","emergency room","social determinants"]
-menu:
-    main:
-        identifier: '02'
-image: ../../images/ds-povasthma.jpg
+image: ds-povasthma.jpg
 menu:
     main:
         identifier: '02'
