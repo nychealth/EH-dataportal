@@ -1,0 +1,235 @@
+{{ define "main" }}
+
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-4 pl-0">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/key_topics/">Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href="/key_topics/climatehealth/">Climate and Health</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col-md-2 mr-auto"></div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-7 col-sm-12 ml-auto">
+
+            <div class="row">
+                <h2><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
+                    {{ .Title }}</h2>
+        
+                {{ .Content}}
+
+                <p>This is called <a href="#syndromicmodal" data-toggle="modal" class="badge badge-pill badge-warning">syndromic surveillance</a>, and it helps us track citywide trends. Typically, 10,000 people visit an emergency department (or ED, also called the emergency room) every day in NYC. When somebody visits the ED, they're examined, and asked to describe how they feel. These findings are recorded, and hospitals send these records to the Health Department. We search these records for diagnostic codes (when available) and words describing why patients are at the ED to track specific health conditions in near real-time.</p>
+
+                <p>Below are data on the number of <a href="#heatmodal" data-toggle="modal" class="badge badge-pill badge-warning">heat syndrome</a> visits to emergency departments, and the daily maximum temperature. <a href="#whatmodal" data-toggle="modal" class="badge badge-pill badge-warning">What do we use these data for</a>?</p></p>
+
+            </div>
+
+    
+    
+        </div>
+
+
+        <div class="col-md-4 mr-auto text-right">
+            <div class="mt-4" style="border-radius: 5px;">
+                
+                <a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us" data-label_1="NEW YORK CITY" data-label_2="WEATHER" data-theme="original" >NEW YORK CITY WEATHER</a>
+                <script>
+                !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                </script>
+
+                <div class="mt-2" style="background-color: #dcdcdc; padding: 7px 7px; border-radius: 5px;">
+                    <p>In NYC, an <strong>extreme heat event</strong> is two or more days with a heat index reaching 95 °F, or one or more days reaching 100 °F.</div>
+                     <!--
+                     <div class="mt-2" style="background-color: #dcdcdc; padding: 7px 7px; border-radius: 5px;">Get a <strong>weather forecast</strong> from the National Weather Service for your area at <a href="https://www.weather.gov/">weather.gov</a>.</div>-->
+                     <div class="mt-2" style="background-color: #dcdcdc; padding: 7px 7px; border-radius: 5px;">
+                      To learn more about heat and health, visit <a href="https://www1.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page">Extreme Heat and Health</a>. To stay safe in the heat, visit <a href="https://www1.nyc.gov/assets/em/html/beat-the-heat/beattheheat.html">Beat the Heat</a>.</p>
+                 </div>
+            </div>
+    
+
+        </div>
+
+    </div>
+
+    <div class="row mt-2" >
+        <div class="col-11 mx-auto pl-0">
+            <h3 style="background-color:#f1f1f1; padding: 10px; border-radius: 5px;">Annual data</h3>
+            <div class="row mt-2 pl-2">
+                Select a year to view data: &nbsp;&nbsp;
+                <input type="radio" name="syn" onclick="udata(2021)" id="2021"checked="checked"><label for="2021">&nbsp;2021</label> &nbsp;&nbsp;&nbsp;
+                <input type="radio" name="syn" onclick="udata(2020)" id="2020"><label for="2020">&nbsp;2020</label> &nbsp;&nbsp;&nbsp;
+                <input type="radio" name="syn" onclick="udata(2019)" id="2019"><label for="2019">&nbsp;2019</label> &nbsp;&nbsp;&nbsp;
+                <input type="radio" name="syn" onclick="udata(2018)" id="2018"/><label for="2018">&nbsp;2018</label> &nbsp;&nbsp;&nbsp;
+                <input type="radio" name="syn" onclick="udata(2017)" id="2017"><label for="2017">&nbsp;2017</label>&nbsp;&nbsp;&nbsp;
+            </div>
+
+            <div class="row mt-2 pl-2">
+                <div id="if2021" style="display: block" class="dataholder">
+                    <iframe title="2021 Heat ED Visits" aria-label="Interactive line chart" id="datawrapper-chart-tfWhM" src="https://datawrapper.dwcdn.net/tfWhM/6/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
+                    </script>
+                </div>
+
+                <div id="if2020" style="display:none" class="dataholder">
+                    <iframe title="" aria-label="Interactive line chart" id="datawrapper-chart-AOztc" src="https://datawrapper.dwcdn.net/AOztc/15/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="800"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
+                    </script>
+                </div>
+
+                <div id="if2019" style="display:none" class="dataholder">
+                    <iframe title="" aria-label="Interactive line chart" id="datawrapper-chart-Rokvl" src="//datawrapper.dwcdn.net/Rokvl/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="800"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+                    </script>
+                </div>
+                
+                <div id="if2018" style="display:none" class="dataholder">
+                    <iframe title="" aria-label="Interactive line chart" id="datawrapper-chart-KGk7o" src="//datawrapper.dwcdn.net/KGk7o/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="800"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+                    </script>
+                </div>
+
+                <div id="if2017" style="display:none" class="dataholder">
+                    <iframe title="" aria-label="Interactive line chart" id="datawrapper-chart-pDamD" src="//datawrapper.dwcdn.net/pDamD/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="800"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+                    </script>
+                </div>
+
+
+            </div>
+
+            <div class="row my-2 fs-sm">
+                <em>Max daily temperature is the heat index or temperature, whichever is higher, as recorded by the National Weather Service weather station at La Guardia Airport.</em>    
+            </div>
+
+            <div class="row mt-4" style="background-color:#f1f1f1; padding: 10px; border-radius: 5px;">
+                <H4>Data from 2017 to 2020</H4>
+            </div>
+            
+            <div class="row my-2 fs-sm">
+                <iframe title="Heat-related ED visits: 2017 to 2020" aria-label="chart" id="datawrapper-chart-J1qiq" src="https://datawrapper.dwcdn.net/J1qiq/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
+                </script>
+            
+            </div>
+            
+            
+            <div class="row my-4" style="background-color: #f1f1f1; padding: 10px; border-radius: 5px;">
+                <a href="https://github.com/nychealth/heat-syndrome-data">To download data and for additional documentation, please see our Github repository</a>.
+                </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+<script>
+
+    function udata(x) {
+        document.getElementById('if2021').style.display = "none";
+        document.getElementById('if2020').style.display = "none";
+        document.getElementById('if2019').style.display = "none";
+        document.getElementById('if2018').style.display = "none";
+        document.getElementById('if2017').style.display = "none";
+
+        if (x == 2017) {
+            document.getElementById('if2017').style.display = "block";
+        } else if (x==2018) {
+            document.getElementById('if2018').style.display = "block";
+        } else if (x==2019) {
+            document.getElementById('if2019').style.display = "block";
+        } else if (x==2020) {
+            document.getElementById('if2020').style.display = "block";
+        } else if (x==2021) {
+            document.getElementById('if2021').style.display = "block";
+        } else {
+        }
+
+    }
+
+</script>
+
+
+      <!-- Syndromic modal -->
+  <div class="modal fade" id="syndromicmodal" tabindex="-1" role="dialog" aria-labelledby="syndromicmodaltitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="privacymodallongtitle">Syndromic surveillance</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p>The Centers for Disease Control and Prevention (CDC) defines surveillance as "the ongoing, systematic collection, analysis, and interpretation of health-related data essential to planning, implementation, and evaluation of public health practice, closely integrated with the timely dissemination of these data to those responsible for prevention and control." A syndrome is a group of signs (something a health care provider can observe, like a rash, or body temperature) and symptoms (something a patient feels - like pain, or fatigue) that are often associated with a particular disease or condition.</p>
+            <p>The heat syndrome is identified in surveillance data by looking for diagnostic codes for heat-related illness  and by searching  chief complaints (descriptions of why patients are at the ED) for words related to heat, such as overheating, sunstroke, and similar terms.</p>
+            <p>Syndrome data are inherently non-specific and are not based on diagnostic testing. While the NYC syndromic surveillance system captures data on 100% of ED visits in the city (as of 5/1/16), the data are not comprehensive because some residents seek care outside the city. These data are not exact measures and should be used to understand trends, rather than to count cases. In addition, recent data are not final and are subject to change. 
+                </p>
+                <p>For more syndromes tracked by the Health Department, visit <a href="https://a816-health.nyc.gov/hdi/epiquery/visualizations?PageType=ps&PopulationSource=Syndromic">EpiQuery</a>.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- Heat syndrome modal -->
+      <div class="modal fade" id="heatmodal" tabindex="-1" role="dialog" aria-labelledby="heatmodaltitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="heatmodallongtitle">Heat syndrome</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <p>The heat syndrome is identified in surveillance data by looking for diagnostic codes for heat-related illness  and by searching  chief complaints (descriptions of why patients are at the ED) for words related to heat, such as overheating, sunstroke, and similar terms.</p>
+                <p>Syndromic data are inherently non-specific and are not based on diagnostic testing. While the NYC syndromic surveillance system captures data on 100% of ED visits in the city (as of 5/1/16), the data are not comprehensive because some residents seek care outside the city. These data are not exact measures and should be used to understand trends, rather than to count cases. In addition, recent data are not final and are subject to change. 
+                </p>
+                <p>For more information, see the Council of State and Territorial Epidemiologists' <a href="https://cdn.ymaws.com/www.cste.org/resource/resmgr/pdfs/pdfs2/CSTE_Heat_Syndrome_Case_Defi.pdf">heat syndrome case definition</a>.</p>
+                </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- What modal -->
+    <div class="modal fade" id="whatmodal" tabindex="-1" role="dialog" aria-labelledby="whatmodaltitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="whatmodallongtitle">What do we use these data for?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <p>Tracking heat-related illness (HRI) in near-real time can help provide situational awareness, supplementing the weather forecast as an indicator of public health risk. HRI detected in emergency department syndromic surveillance data are strongly associated with hot weather and highly correlated with daily counts of HRI hospital discharge data. However, HRI counts detected in the ED syndromic surveillance data represent suspected rather than confirmed illness and is useful to track trends. Some records may be counted as cases when they are not HRI, while other HRI cases may go undetected due to differences in hospital coding practices or because of what patients say when they describe what is bothering them.
+                </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+</article>
+
+
+
+
+
+{{end}}
