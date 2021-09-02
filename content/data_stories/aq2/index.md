@@ -5,7 +5,7 @@ draft: false
 tags: 
 categories: ["transportation","airquality"]
 keywords: ["air quality","traffic","transportation","cars","traffic","car-free","carfree","pedestrians","cycling","bikes","biking","pollution","air pollution", "lungs","breathing"]
-image: ../../images/ds-aq2.jpeg
+image: ds-aq2.jpeg
 menu:
     main:
         identifier: '02'

@@ -5,7 +5,7 @@ draft: false
 tags:
 categories: ["foodanddrink"]
 keywords: ["foodborne illness","food poisoning","restaurant","restaurants","inspections","heat","hot weater","grades","eating"]
-image: ../../images/ds-food.jpg
+image: ds-food.jpg
 menu:
     main:
         identifier: '02'
@@ -25,7 +25,7 @@ Many of these are viruses and bacteria that spread through unsafe food handling 
 ### Food safety inspectors work to keep you safe
 When you eat at a restaurant, you're placing your trust in both the restaurant and in our food safety inspectors. The Health Department employs about 100 of them, and they visit each of nearly 27,000 NYC restaurants at least once per year, to make sure restaurants meet Health Code requirements. Restaurants receive an inspection score, which gets converted into the letter grade you see posted in the window.
 
-{{< figure src="../../images/ds-foodletter.jpg" alt="A sanitary inspection A grade" >}}
+{{< figure src="ds-foodletter.jpg" alt="A sanitary inspection A grade" >}}
 
 As part of the inspection process, food safety inspectors educate restaurant operators about food safety practices, and collect data on violations they observe. Then, our team at the Health Department analyzes the inspection data to identify common violations and understand patterns in the violations. We use this data to figure out what food safety practices need improvement - helping to reduce risks to customers like you.
 
@@ -36,7 +36,7 @@ Potentially hazardous cold food needs to be stored at or below 41° F, to minimi
 
 We investigated how outdoor temperature affects restaurant food safety patterns. To do this, we analyzed data from 64,661 inspections that took place over five summers. Of these inspections, 45 percent found cold holding violations.
 
-{{< figure src="../../images/ds-food2.png" alt="A waffle chart showing nearly 65,000 inspections, of which 45 percent had cold holding violations" >}}
+{{< figure src="ds-food2.png" alt="A waffle chart showing nearly 65,000 inspections, of which 45 percent had cold holding violations" >}}
 
 We looked at inspections conducted on higher and lower maximum temperature days, and we found a 20 percent increase in cold food holding violations on the hottest days (93° or higher) compared with average summer days (temperatures around 82°).
 
