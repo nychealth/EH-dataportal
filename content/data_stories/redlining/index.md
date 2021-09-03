@@ -4,7 +4,7 @@ date: 2021-09-03T08:07:31-04:00
 draft: false
 tags:
 categories: ["housing","social","childhealth"]
-keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment"]
+keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism"]
 image: ds-povasthma.jpg
 menu:
     main:
@@ -34,7 +34,7 @@ chapters: [
     }
 ]
 ---
-{{< storyheader text="" anchor="1">}}
+{{< storyheader text="Inside the 90-year-old financial policy that harms our health" anchor="1">}}
 In public health, we often cite structural racism to help explain health patterns in our society. But what, specifically, does this mean? A close look at the history of redlining shows this connection.
 
 When we analyze data on the health of New Yorkers, we often find the same geographic patterns, with higher rates of preventable health conditions in high-poverty neighborhoods. For example, [we've written about how asthma and poverty are closely connected]({{< ref "/data_stories/povasthma" >}}).
