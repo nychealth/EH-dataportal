@@ -99,8 +99,30 @@
                     {{ .Date.Format "January 2, 2006"}}
                 </div>
 
-                <hr class="my-2">
-                <strong>Related Topics</strong><br>
+                <div class="mt-4">
+                    <strong>Related Data Stories</strong><br>
+                    <!--sets variables-->
+                    {{ $page_link := .Permalink }}
+                    {{ $cats := .Params.categories }}
+
+                    {{ range where .Site.Pages "Section" "data_stories" }}
+                    <!--$page equals values we find when ranging through-->
+                    {{ $page := . }}
+
+                    <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
+                    {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
+
+                    <!--Show commonalities, except for page we're on -->
+                    {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
+                    <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
+                    <hr class="my-1">
+                    {{ end }} 
+                    {{ end }}
+                </div>
+
+
+                <div class="mt-4">
+                    <strong>Related Topics</strong><br>
                     <!--sets variables-->
                     {{ $page_link := .Permalink }}
                     {{ $cats := .Params.categories }}
@@ -118,6 +140,8 @@
                     <hr class="my-1">
                     {{ end }} 
                     {{ end }}
+                </div>
+
 
             </div>
             <!-- .my-3 -->
