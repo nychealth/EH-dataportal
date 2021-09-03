@@ -1,0 +1,135 @@
+{{ define "main" }}
+
+<style>
+    body {
+        position: relative;
+    }
+</style>
+
+<div class="container-fluid px-0">
+
+        <div id="datastoryheader" {{ with .Params.image }} style="background-image: URL({{ . }})"{{ end}}>
+
+            <div class="medium my-auto">
+                <h1 class="titleheader py-2 px-4">
+                    {{ .Title}}
+                </h1>
+            </div>
+
+
+        </div>
+
+</div>
+
+<div class="container-fluid d-xl-none d-lg-none">
+    <div class="narrow">
+        <div class="btn-toggle narrow">
+            <button class="btn btn-block btn-lg btn-primary shadow" data-toggle="collapse"
+                data-target="#main-nav" aria-expanded="false" aria-controls="sidebar-nav">
+                <span class="title">Contents</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+
+        <div class="col-xl-3">
+            <div class="sticky-top container-fluid collapse d-lg-block px-0 border-lg-top border-lg-bottom"
+                id="main-nav" style="background-color:white;">
+                <div id="list-example" class="list-group">
+                    <p class="list-group-item">Table of Contents</p>
+                    {{ range .Params.chapters}}
+                    <a class="list-group-item" href="#{{ .anchor}}">{{ .chapter}}</a>
+
+                    {{ end }}
+
+                </div>
+            </div>
+
+
+
+        </div>
+        <!-- .col -->
+
+
+        <!--start main content section-->
+        <div class="col-xl-7 overflow-hidden fs-rg" id="primary-content">
+            <div class="wide my-2 px-5">
+                {{ .Content}}
+            </div>
+
+
+
+
+
+            <footer class="narrow my-4" id="article-footer">
+
+                <div class="border-top border-dark">
+
+                    <ul class="extensible-list horizontal text-muted mt-3">
+
+                        <li>
+                            <a class="text-muted" href="mailto:trackingportal@health.nyc.gov"
+                                title="Share through email">
+                                <span class="fa fa-envelope"></span> Questions about this data story? Ideas
+                                for another one? Email us.</a>
+
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- .narrow -->
+
+            </footer>
+            <!-- #article-footer -->
+
+        </div>
+        <!-- .col -->
+
+
+        <!--right-hand column for extra resources and links-->
+        <div class="col-xl-2 border-xl-left">
+
+            <div class="py-3 mt-n3 mt-xl-0 sticky-top" style="z-index: 0">
+                <div class="fs-sm">
+                    <strong>Published on:</strong><br>
+                    {{ .Date.Format "January 2, 2006"}}
+                </div>
+
+                <hr class="my-2">
+                <strong>Related Topics</strong><br>
+                    <!--sets variables-->
+                    {{ $page_link := .Permalink }}
+                    {{ $cats := .Params.categories }}
+
+                    {{ range where (where .Site.Pages "Section" "key_topics") ".File.BaseFileName" "_index" }}
+                    <!--$page equals values we find when ranging through-->
+                    {{ $page := . }}
+
+                    <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
+                    {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
+
+                    <!--Show commonalities, except for page we're on -->
+                    {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
+                    <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
+                    <hr class="my-1">
+                    {{ end }} 
+                    {{ end }}
+
+            </div>
+            <!-- .my-3 -->
+
+        </div>
+        <!-- .col -->
+
+    </div>
+    <!-- .row -->
+
+</article>
+<!-- #primary-content -->
+
+
+{{end}}

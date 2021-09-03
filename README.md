@@ -10,10 +10,10 @@ In the spirit of free software, everyone is encouraged to help improve this proj
 - Suggest new features
 - Write or edit documentation
 - Write code (no patch is too small)
-  - Fix typos
-  - Add comments
-  - Clean up code
-  - Add new features
+- Fix typos
+- Add comments
+- Clean up code
+- Add new features
 
 ## Requirements
 
@@ -24,9 +24,9 @@ You will need the following things properly installed on your computer.
 
 ## Development
 
-- On your local, the server with `hugo serve --environment local`
+- On your local, start the server with `hugo serve --environment local`
 - Develop on branches labelled hotfix-, content-, or feature-. 
-- When merging branches into main, run a new build on main to /docs.
+- After merging branches into main, run a new build on main to /docs.
 
 ## Architecture
 
@@ -43,19 +43,55 @@ menu:
 
 Use 01 for subpages of the home page, 02  for data stories, 03 for the data explorer, 04 for neighborhood reports, and 05 for Key Topics (per config.toml).
 
-### Data Stories banner images
-Data stories include a banner image. This image is added to static/images. It should be called ```ds-[storyname].jpg```. The image should be referenced in the front matter this way:
+### Asset management
+Assets like images or other files can be stored in /static, or in a content directory. Follow these guidelines for asset managemetn:
+- If an asset is likely to be used across the site, it should be stored in /static. 
+- Store data files in /static, so that an update workflow might overwrite /static/visualizations/csv rather than finding individual data files in content directories. 
+- If it's page-specific, store it in a content directory close to the content that uses it.
+
+#### Data Stories banner images
+Data stories include a banner image. This image is added to the data story's directory. It should be called ```ds-[storyname].jpg```. The image should be referenced in the front matter this way:
 ```
-image: ../../images/ds-assaults.jpg
+image: ds-assaults.jpg
 ```
 
 It is referenced via in-line CSS in themes/dohmh/layouts/data_stories/single.html.
+
+#### Other data story images
+Other images can be added to Data Stories (and other pages) using the figure shortcode that is native to Hugo.
+```{{< figure src="/location/image.jpg" alt="Alt text goes here" >}}```
+
+### Data Stories with Chapter Navigation
+Use ```layout:advanced``` for more complex data stories that have in-page navigation.
+
+Create chapter frontmatter formatted like this:
+```
+chapters: [
+    {
+        "chapter": "Introduction",
+        "anchor": "1"
+    },
+    {
+        "chapter": "Poverty, race, and health",
+        "anchor": "2"
+    },
+    {
+        "chapter": "A brief history of redlining",
+        "anchor": "3"
+    }
+]
+```
+
+And, use the storyheader shortcode to insert headers with anchor links like this:
+```{{< storyheader text="Introduction" anchor="1">}}```
+
+Note that ```text``` does not need to match ```chapter```, but ```anchor``` in the frontmatter needs to match ```anchor``` in the shortcode.
 
 ### Indicators
 Indicators can be displayed on subtopic pages. Indicators are stored as json within subtopic content markdown file's front matter - see [asthma.md](https://github.com/nycehs/ehs-neighborhoodprofiles/blob/main/content/data_explorer/asthma.md) or below:
 
 ```
-indicators: {
+indicators: [
     {
         "name" : "ED visits (adults)",
         "URL": "http://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2380,4466a0,11,Summarize"
@@ -65,7 +101,7 @@ indicators: {
         "name" : "ED visits (age 0-4)",
         "URL": "http://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2048,4466a0,11,Summarize"
     }
-}
+]
 ```
 
 
