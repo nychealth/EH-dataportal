@@ -9,9 +9,8 @@
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item"><a href="/key_topics/">Key Topics</a></li>
-                    {{ with .Params.categories}}
-                    <li class="breadcrumb-item"><a href="">{{ . }}</a></li>
-                    {{ end }}
+                    <li class="breadcrumb-item"><a href="..">
+                        {{ with .Params.categories}} {{ . }} </a></li>{{ end }}
                     <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                 </ul>
             </nav>
