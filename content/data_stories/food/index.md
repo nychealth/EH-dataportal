@@ -5,7 +5,7 @@ draft: false
 tags:
 categories: ["foodanddrink","climatehealth"]
 keywords: ["foodborne illness","food poisoning","restaurant","restaurants","inspections","heat","hot weater","grades","eating"]
-image: ds-food.jpg
+image: ds-food.JPG
 menu:
     main:
         identifier: '02'
