@@ -8,9 +8,9 @@ image: ds-povasthma.jpg
 menu:
     main:
         identifier: '02'
-layout: advanced
 image: ds-violence.jpg
 vega: true
+layout: flexible
 chapters: [
     {
         "chapter": "Introduction",
@@ -86,20 +86,65 @@ This map shows the parts of NYC that were redlined 90 years ago as part of racis
 
 A map of recent shootings lines up with the heavily redlined areas of the Bronx, Harlem, and northern and eastern Brooklyn - showing clearly how today's violence is closely related to the ways that racist policies are embedded in our society.
 
-**INSERT REDLINING/SHOOTING MAP HERE**
+{{< rawhtml>}}
+</div>
+<div class="wide my-4">
+<iframe src="HOLC-shootings/map.html" width="100%" height="550px" style="border:none" scrolling="no" frameborder="0"></iframe>
+</div>
+<div class="narrow">
+{{< /rawhtml>}}
 
-Decades of government and societal disinvestment from practices like redlining means limited opportunity and resources, and results in higher rates of poverty in some neighborhoods.
+Decades of government and societal {{< rawhtml>}}<a href="#disinvestmentCollapse" data-toggle="collapse" class="badge badge-pill badge-warning">disinvestment</a>{{< /rawhtml>}} from practices like redlining means limited opportunity and resources, and results in higher rates of poverty in some neighborhoods.
+
+{{< rawhtml>}}
+<div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="disinvestmentCollapse">
+<strong>Disinvestment</strong> is when either government agencies or private companies
+deliberately withhold or withdraw resources and opportunity from a neighborhood or
+community. </p>
+<p>The history of disinvesment is tied to racist practices and policies - like denyng people
+of color loans to buy homes. Disinvestment is also planned shrinkage, a steady decline
+of public funding for public housing, services, education - especially in cities, and
+especially in neighborhoods populated mostly by people of color.</p>
+</div>
+{{< /rawhtml>}}
 
 As a result of this disinvestment, we see a clear relationship between poverty and violence. As a neighborhood's poverty level increases, so do assaults.
 
 {{< datawrapper "A clear relationship between poverty and violence" "DlEvR/2/" "400">}}
 
 ### Disinvestment creates environments that threaten health.
-Disinvestment takes many forms. It promotes segregation, limits people’s access to basic resources, and creates environments that threaten people’s health.
+{{< rawhtml>}}<a href="#disinvestmentCollapseTwo" data-toggle="collapse" class="badge badge-pill badge-warning">Disinvestment takes many forms</a>{{< /rawhtml>}} It promotes segregation, limits people’s access to basic resources, and creates environments that threaten people’s health.
+
+{{< rawhtml>}}
+<div class="collapse py-2 px-2 mx-2 mb-2 drawerbg" id="disinvestmentCollapseTwo">
+    <p>Disinvestment can be:
+    <ul>
+        <li>Denying people access to loans to buy homes - like <span
+                style="font-weight: bold; color:#7e0000">redlining</span> and other
+            well-documented racist real estate practices</li>
+        <li>Housing neglect by landlords, leading to unhealthy housing</li>
+        <li>Poorly-funded schools</li>
+        <li>Fewer job opportunities and lower-paying jobs</li>
+        <li>Emphasis on policing over pro-social resources</li>
+    </ul>
+    </p>
+</div>
+{{< /rawhtml>}}
 
 In terms of public health, we say that disinvestment produces environmental factors that make certain health outcomes more likely.
 
-**insert boxes**
+{{< rawhtml>}}
+<div class="d-sm-none d-md-block">
+    <div class="row py-2">
+        <div class="col-5 ml-auto"><button type="button" class="btn btn-light btn-med btn-block"
+                disabled>Environmental factors</button></div>
+        <div class="col-1 text-center"><i class="fas fa-arrow-alt-circle-right h2"
+                style="color: #999999"></i></div>
+        <div class="col-5 mr-auto"><button type="button" class="btn btn-light btn-med btn-block"
+                disabled>Health outcomes</button></div>
+    </div>
+</div>
+{{< /rawhtml>}}
 
 Due to a history of disinvestment, New York City neighborhoods experience very different environmental factors that predict violence and other health outcomes.
 
@@ -107,67 +152,190 @@ By “environmental,” we mean the entire physical, social, and economic contex
 
 Whether or not a neighborhood experiences more violence can be explained by looking at whether its environment has protective factors, which help prevent violence before it starts, or risk factors, which make violence a more likely outcome.
 
-**insert other boxes**
+{{< rawhtml>}}
+ <div class="row d-sm-none d-md-block">
+    <div class="col mx-auto">
+        <div class="medium">
+            <div class="row mt-4 mb-2">
+                <div class="col-6">
+                    <div class="card text-white bg-success w-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Protective factors include:</h5>
+                            <p class="card-text">
+                                <i class="far fa-check-square"></i>&nbsp;Child health<br>
+                                <i class="far fa-check-square"></i>&nbsp;Economic stability<br>
+                                <i class="far fa-check-square"></i>&nbsp;High quality
+                                education<br>
+                                <i class="far fa-check-square"></i>&nbsp;Housing stability<br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card text-white bg-danger float-right w-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Risk factors include:</h5>
+                            <p class="card-text">
+                                <i class="fas fa-exclamation-circle"></i>&nbsp;Poverty, and
+                                child poverty<br>
+                                <i class="fas fa-exclamation-circle"></i>&nbsp;Economic
+                                instability<br>
+                                <i class="fas fa-exclamation-circle"></i>&nbsp;Housing
+                                instability<br>
+                                <i class="fas fa-exclamation-circle"></i>&nbsp;Experiencing
+                                trauma or violence<br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end row-->
+{{< /rawhtml>}}
 
 {{< storyheader text="What does this mean for NYC's neighborhoods?" anchor="4">}}
 
 NYC's neighborhoods experience these protective and risk factors very differently. Some neighborhoods have a lot less of the protective factors – and a lot more of the risk factors.
 
-Let's explore how by comparing two neighborhoods: Belmont/East Tremont, in the Bronx, and Tottenville/Great Kills, in Staten Island.
+{{< rawhtml>}}
+Let's explore how by comparing two neighborhoods: <span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span>, in the Bronx, and <span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span>, in Staten Island.
+</div> <!--close narrow-->
+</div> <!--close a column-->
+</div> <!--close a row-->
 
-**insert long charts**
+<div class="row no-gutters mt-4">
+    <div class="col-lg-5 ml-auto panel-grid"
+        style="border-top-left-radius: 15px; border-bottom-left-radius: 15px;">
+        <iframe title="Poverty" aria-label="Bar Chart" id="datawrapper-chart-GXRIu"
+            src="https://datawrapper.dwcdn.net/GXRIu/1/" scrolling="no" frameborder="0"
+            style="width: 0; min-width: 100% !important; border: none;" height="1468"></iframe>
+        <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", (function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } })) }();
+        </script>
+    </div>
+    <div class="col-lg-5 mr-auto panel-grid"
+        style="border-top-right-radius: 15px; border-bottom-right-radius: 15px;">
+        <p class="mt-3">Poverty ranges from 6.2% to 41.5% among NYC neighborhoods. <span
+                style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span> has one of the
+            highest poverty rates in the city...</p>
+        <div class="d-none d-lg-block" style="height: 1330px;"></div>
+        <p>...while <span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span> has
+            one of the lowest.</p>
+    </div>
+</div>
+<div class="row no-gutters mt-4">
+    <div class="col-lg-5 mx-auto">
+        <p class="my-2">Neighborhood poverty is one of the environmental factors that can predict
+            violence, with neighborhoods with higher rates of poverty more likely to also have high
+            rates of non-fatal assault hospitalizations.</p>
+    </div>
+</div>
 
-Neighborhood poverty is one of the environmental factors that can predict violence, with neighborhoods with higher rates of poverty more likely to also have high rates of non-fatal assault hospitalizations.
+<div class="row no-gutters mt-2">
+    <div class="col-lg-5 ml-auto panel-grid"
+        style="border-top-left-radius: 15px; border-bottom-left-radius: 15px;">
+        <p class="mt-2"><span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span>
+            also has a high rate of non-fatal assault hospitalizations - one of the highest in the city
+            (107 per 100,000 people).</p>
+        <div class="d-none d-lg-block" style="height: 1330px;"></div>
+        <p class="mt-10"><span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span>
+            follows the same pattern, with one of the lowest rates of non-fatal assault hospitalizations
+            - only 15 per 100,000 people.</p>
+    </div>
+    <div class="col-lg-5 mr-auto panel-grid">
+        <iframe title="Assaults" aria-label="Bar Chart" id="datawrapper-chart-PqnEK"
+            src="https://datawrapper.dwcdn.net/PqnEK/1/" scrolling="no" frameborder="0"
+            style="width: 0; min-width: 100% !important; border: none;" height="1488"></iframe>
+        <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", (function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } })) }();
+        </script>
+    </div>
+</div>
 
-**insert long charts**
+<div class="row mt-4">
+    <div class="col-lg-6 mx-auto">
+        <p>Another way to compare poverty and violence rates is to rank neighborhoods from highest to
+            lowest for each and compare their positions.</p>
+        <p>Below, we can see that <span style="color: #b820bb; font-weight: bold;">Belmont/East
+                Tremont</span> ranks high in both poverty and assaults, while <span
+                style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span> ranks low for
+            both.</p>
+        <iframe title="Poverty and Assaults" aria-label="Interactive line chart"
+            id="datawrapper-chart-639n0" src="https://datawrapper.dwcdn.net/639n0/1/" scrolling="no"
+            frameborder="0" style="width: 0; min-width: 100% !important; border: none;"
+            height="820"></iframe>
+        <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", (function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } })) }();
+        </script>
+        <h4 class="mt-4">When we add in other risk factors, an even more significant pattern emerges.
+        </h4>
+        <p>Below, each vertical line represents the neighborhood rankings for the risk factors of total
+            poverty, child poverty, child homelessness, high school incompletion, disconnected youth,
+            unemployment, evictions, foreclosures – and the violent outcome of assault hospitalizations,
+            shootings, and homicides. Each line connects one neighborhood through its ranks – the
+            flatter the line, the more consistent the ranks.</p>
+        <p>These risk factors describe a network of threatening <a href="#envcollapse"
+                data-toggle="collapse" class="badge badge-pill badge-warning">environmental factors</a>
+            in communities that
+            have experienced disinvestment, place residents in poverty and expose them to risks
+            throughout their lives – culminating in higher rates of <a href="#violcollapse"
+                data-toggle="collapse" class="badge badge-pill badge-warning">violence</a>.</p>
+        <div class="collapse drawerbg my-2 pt-2 pb-2 mx-2" id="envcollapse">
+            Environmental factors in the chart below:
+            <ul>
+                <li><strong>Child well-being</strong>: Poverty, child poverty, and child homelessness
+                </li>
+                <li><strong>Education and employment</strong>: high school incompletion, disconnected
+                    youth, and unemployment</li>
+                <li><strong>Housing stability</strong>: evictions, foreclosures</li>
+            </ul>
+            <button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal"
+                data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;About the
+                data</button>
+        </div>
+        <div class="collapse drawerbg my-2 pt-2 pb-2 mx-2" id="violcollapse">
+            Violence outcomes in the chart below:
+            <ul>
+                <li>Non-fatal assault hospitalizations</li>
+                <li>Shootings</li>
+                <li>Homicides</li>
+            </ul>
+            <button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal"
+                data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;About the
+                data</button>
+        </div>
+        <span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span> ranks highly for
+        these risk factors that make violence more likely. By comparison, <span
+            style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span> ranks low for
+        these factors.</p>
+    </div>
+</div>
 
-Another way to compare poverty and violence rates is to rank neighborhoods from highest to lowest for each and compare their positions.
+<div class="row mt-4 px-2">
+    <iframe title="Belmont and Tottenville" aria-label="Interactive line chart"
+        id="datawrapper-chart-7Dx2d" src="https://datawrapper.dwcdn.net/7Dx2d/4/" scrolling="no"
+        frameborder="0" style="width: 0; min-width: 100% !important; border: none;"
+        height="714"></iframe>
+    <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", (function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } })) }();
+    </script>
+    <div>
+    </div>
+</div>
 
-Below, we can see that Belmont/East Tremont ranks high in both poverty and assaults, while Tottenville/Great Kills ranks low for both.
-
-**insert single parallel coordinates plot**
-
-When we add in other risk factors, an even more significant pattern emerges.
-Below, each vertical line represents the neighborhood rankings for the risk factors of total poverty, child poverty, child homelessness, high school incompletion, disconnected youth, unemployment, evictions, foreclosures – and the violent outcome of assault hospitalizations, shootings, and homicides. Each line connects one neighborhood through its ranks – the flatter the line, the more consistent the ranks.
-
-These risk factors describe a network of threatening environmental factors in communities that have experienced disinvestment, place residents in poverty and expose them to risks throughout their lives – culminating in higher rates of violence.
-
-Belmont/East Tremont ranks highly for these risk factors that make violence more likely. By comparison, Tottenville/Great Kills ranks low for these factors.
-
-**insert first big PC chart**
-
-A pattern emerges: neighborhoods with the highest poverty rates consistently rank high for risk factors experience more violence. Neighborhoods with the lowest poverty rates consistently rank low for risk factors experience less violence.
-
-Why does this happen?
-These risk factors make up a network of environmental threats in communities that have experienced disinvestment. Due to the inequitable distribution of resources and opportunities, some neighborhoods face a disproportionate amount of risk. These threats place residents in poverty and expose them to risks throughout their lives – culminating in higher rates of violence.
-
-In environments where risk factors far outweigh protective factors, higher rates of neighborhood violence emerge - and threaten the health of residents of these neighborhoods.
-
-**insert second big PC chart**
-
-{{< storyheader text="Breaking the cycle of violence" anchor="5">}}
-#### Addressing factors that lead to violence...
-The Health Department takes a public health approach to violence. This means promoting conditions that prevent violence, and addressing outcomes triggered by violence. It means working across systems and communities to reinvest in neighborhoods most affected by violence. This work includes:
-
-Research on the most effective policies to reduce violence, collecting and analyzing data that can be used to develop new interventions.
-
-Through the Crisis Management System, working with other city organizations to support community-led efforts to de-escalate violence, providing support to at-risk youth with employment, legal, therapeutic, and educational opportunities.
-
-Strengthening the Neighborhood Health Action Centers in the South Bronx, Harlem and Central Brooklyn, neighborhoods that all experience higher levels of violence. The Action Centers serve as community hubs for programs and resources that can decrease risk and increase protective factors.
-
-Working with hospitals to help them respond to the many needs – physical, social, and emotional – of people injured by violence.
-
-We're partnering with communities to respond to neighborhood-level mental health crises and traumatic events through Rapid Assessment and Response.
-
-With this work, the Health Department is reinvesting in communities that have experienced disinvestment so that we can build environments where protective factors outweigh risk factors.
-
-#### ...to reduce rates of violence
-Public health is about assuring the conditions in which people can be healthy.
-
-A public health approach to violence prevention relies on a response from all sectors of society to address the inequities that lead to violence. It relies on creating and supporting systems so that both institutions and neighborhoods support the health of their residents.
-
-A public health approach to violence presents an opportunity to find sustainable solutions to create healthy spaces for New Yorkers to live and thrive.
-
-It means that we can prevent violence by eliminating poverty, providing jobs, healthy housing, and education, creating a society based on justice and equality, that offers opportunity to all.
+<div class="row mt-1 pb-2">
+    <div class="col-lg-6 mx-auto">
+        <button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal"
+            data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;About the data</button>
+    </div>
+</div>
 
 
+{{< /rawhtml>}}
+
+
+
+
+{{< rawhtml>}}
+<div class="row">
+    <div class="col-xl-8 overflow-hidden fs-rg">
+        <div class="narrow">
+{{< /rawhtml>}}
