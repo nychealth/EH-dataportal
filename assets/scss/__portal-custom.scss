@@ -500,3 +500,114 @@ height: 200px;}
         display: block;
         z-index: -1;
     }
+
+
+
+    // violence data story css
+    .vcard {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        border-left: 8px solid #5c8ea5;
+        box-shadow: 10px 10px 5px 0px #dfdfdf;
+        background-color: #ffffff;
+        padding-bottom: 15px;
+    }
+    
+    .sectionchanger {
+        border: 5px solid #707070;
+        margin-top: 50px;
+    }
+    
+    .drawerbg {
+        background-color: #d7e6e3;
+        border-radius: 5px;
+        padding: 5px;
+        font-size: 14px;
+    }
+    
+    .heavyline {
+        border: 5px solid #707070;
+        border-radius: 5px;
+    }
+    
+    .vcard-title {
+        background-color: #5c8ea5;
+        padding: 15px;
+        color: white;
+        margin-bottom: 15px;
+    }
+    
+    .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+        color: #fff;
+        background-color: #b820bb!important;
+    }
+    
+    
+    .panel-grid-v {
+        padding: 10px!important;
+    }
+    
+    .panel-grid {
+        padding: 10px!important;
+        background-color: #f5f5f5!important;
+    }
+    
+    .panel-grid-l {
+        border-top: 2px dotted #757575;
+        border-left: 2px dotted #757575;
+        border-bottom: 2px dotted #757575;
+    }
+    
+    .panel-grid-r {
+        border-top: 2px dotted #757575;
+        border-right: 2px dotted #757575;
+        border-bottom: 2px dotted #757575;
+    }
+    
+    .connector {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        height: 150px;
+    }
+    
+    .border-right-v {
+        border-right: 2px dotted #6D8448;
+    }
+    
+    
+    .crossing-header-v {
+        background-color: #fbd7de;
+        padding: 15px;
+        border-left: 2px dotted #ff335f;
+        border-top: 2px dotted #ff335f;	
+    
+    }
+    
+    .content-red {
+        padding-left: 15px!important;
+        border-left: 2px dotted #ff335f;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: #fffcfd;
+    }
+    
+    .crossing-header-red h2 {
+        color: #991e39;
+    }
+    
+    .crossing-header-red h3 {
+        color: #991e39;
+    }
+    
+    .offset-sticky {
+        top: 60px;
+        z-index: -1;
+    }
+    
+    .quote {
+        background-color: #f8eaff; 
+        padding-left: 25px; 
+        padding-right: 25px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
