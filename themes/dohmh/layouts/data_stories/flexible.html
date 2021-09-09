@@ -1,0 +1,84 @@
+{{ define "main" }}
+
+<div class="container-fluid px-0">
+
+        <div id="datastoryheader" {{ with .Params.image }} style="background-image: URL({{ . }})"{{ end}}>
+
+            <div class="medium my-auto">
+                <h1 class="titleheader py-2 px-4">
+                    {{ .Title}}
+                </h1>
+            </div>
+
+
+        </div>
+
+</div>
+
+<!-- This flexible data story template puts content only within a row, and puts related content below -->
+
+<article class="container-fluid" id="skip-header-target">
+    <div class="row">
+        {{ .Content}}
+    </div>
+
+
+
+</article>
+<!-- #primary-content -->
+
+    <div class="row px-6 py-6">
+        <div class="col-lg-3 ml-auto">
+            <div class="fs-sm">
+                <strong>Published on:</strong><br>
+                {{ .Date.Format "January 2, 2006"}}
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <strong>Related Data Stories</strong><br>
+            <!--sets variables-->
+            {{ $page_link := .Permalink }}
+            {{ $cats := .Params.categories }}
+    
+            {{ range where .Site.Pages "Section" "data_stories" }}
+            <!--$page equals values we find when ranging through-->
+            {{ $page := . }}
+    
+            <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
+            {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
+    
+            <!--Show commonalities, except for page we're on -->
+            {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
+            <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
+            <hr class="my-1">
+            {{ end }} 
+            {{ end }}
+        </div>
+
+        <div class="col-lg-4">
+            <strong>Related Topics</strong><br>
+            <!--sets variables-->
+            {{ $page_link := .Permalink }}
+            {{ $cats := .Params.categories }}
+    
+            {{ range where (where .Site.Pages "Section" "key_topics") ".File.BaseFileName" "_index" }}
+            <!--$page equals values we find when ranging through-->
+            {{ $page := . }}
+    
+            <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
+            {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
+    
+            <!--Show commonalities, except for page we're on -->
+            {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
+            <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
+            <hr class="my-1">
+            {{ end }} 
+            {{ end }}
+        </div>
+    </div>
+
+<!-- related -->
+
+
+{{end}}
