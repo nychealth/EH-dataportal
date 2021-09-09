@@ -81,8 +81,7 @@ layout: flexible
 </div>
 
 <div class="row no-gutters mt-4">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-7 mr-auto">
+    <div class="col-lg-7 mx-auto">
         <div class="vcard">
             <div class="vcard-title">
                 <h3>NYC's homicide rate has declined...</h3>
@@ -127,7 +126,7 @@ layout: flexible
 </div>
 
 <div class="row no-gutters mt-4">
-    <div class="col-lg-8 ml-auto">
+    <div class="col-lg-7 mx-auto">
         <div class="vcard">
             <div class="vcard-title">
                 <h3>...but a drop in the homicide rate doesn't tell the whole story.</h3>
@@ -210,7 +209,7 @@ layout: flexible
             and northern and eastern Brooklyn - showing clearly how today's violence is closely related
             to the ways that racist policies are embedded in our society. </p>
         <div class="my-3">
-            <iframe src="HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
+            <iframe src="HOLC-shootings/map.html" scrolling="no" frameborder="0"
                 style="position: relative; height: 600px; width: 100%;"></iframe>
         </div>
         <p>Decades of government and societal <a href="#disinvestmentCollapse" data-toggle="collapse"
@@ -584,7 +583,7 @@ layout: flexible
 </div>
 
 
-<div class="row mt-6">
+<div class="row mt-4">
     <div class="col-lg-1"></div>
     <div class="col-lg-6 mr-auto">
         <div class="vcard px-2 pt-2">
@@ -595,7 +594,7 @@ layout: flexible
     </div>
 </div>
 
-<div class="row mt-6">
+<div class="row mt-4">
     <div class="col-lg-2"></div>
     <div class="col-lg-6 mr-auto">
         <div class="vcard px-2 pt-2">
@@ -610,7 +609,7 @@ layout: flexible
     </div>
 </div>
 
-<div class="row mt-6">
+<div class="row mt-4">
     <div class="col-lg-3"></div>
     <div class="col-lg-6 mr-auto">
         <div class="vcard px-2 pt-2">
@@ -622,7 +621,7 @@ layout: flexible
     </div>
 </div>
 
-<div class="row mt-6">
+<div class="row mt-4">
     <div class="col-lg-4"></div>
     <div class="col-lg-6 mr-auto">
         <div class="vcard px-2 pt-2">
@@ -633,7 +632,7 @@ layout: flexible
 </div>
 
 
-<div class="row mt-6">
+<div class="row mt-4">
     <div class="col-lg-5"></div>
     <div class="col-lg-6 mr-auto">
         <div class="vcard px-2 py-2">
@@ -687,7 +686,7 @@ layout: flexible
         </div>
     </div>
 </div>
-<br><br><br>
+
 
 <div class="row my-6">
     <div class="col-lg-8 mx-auto bg-light px-2 py-2">
