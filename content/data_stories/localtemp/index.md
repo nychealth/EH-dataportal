@@ -1,6 +1,6 @@
 ---
 title: "The Urban Heat Island Effect in New York City"
-date: 2021-09-08T12:52:43-04:00
+date: 2021-08-20T12:52:43-04:00
 draft: false
 tags:
 categories: ["climatehealth"]

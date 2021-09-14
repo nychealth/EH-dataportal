@@ -1,6 +1,6 @@
 ---
 title: "A brief history of redlining"
-date: 2021-09-03T08:07:31-04:00
+date: 2021-01-06T08:07:31-04:00
 draft: false
 tags:
 categories: ["housing","social","childhealth"]

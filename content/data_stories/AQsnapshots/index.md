@@ -1,6 +1,6 @@
 ---
 title: "Air quality snapshots: special findings from 10 years of NYCCAS"
-date: 2021-09-09T13:37:45-04:00
+date: 2020-04-21T13:37:45-04:00
 draft: false
 layout: flexible
 image: ds-AQsnapshots.jpg
