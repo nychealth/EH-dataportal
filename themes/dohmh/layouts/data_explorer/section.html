@@ -10,22 +10,79 @@
         <p>Browse topics to get to data sets on important environment and health topics for NYC. View maps, charts, and
             disparities, and more.</p>
 
+
         <div class="row">
-
-            {{ range .Pages }}
-            <div class="col-md-6">
-                <p><a href="{{ .URL}}">{{ .Title}}</a></p>
+            <div class="col-6 mx-auto">
+                <form action="" method="get" class="autocomplete-form">
+                    <div class="row no-gutters">
+                    <label for="all-data" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">Search data</label>
+                    <div class="col-9">
+                        <div class="autocomplete-wrapper" width="100%">
+                        <select name="all-data" id="all-data">
+                            <option value="">Search data</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" class="btn-primary btn btn-block" style="height:39px;">Search</button> 
+                    </div>
+                    </div>
+                </form>
             </div>
-
-
-            {{end}}
-
-
-
-
         </div>
     </div>
 
 </article>
+
+{{ $js := resources.Get "js/accessible-autocomplete.min.js" }}
+{{ $secureJS := $js }}
+<script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+
+{{ $js := resources.Get "js/accessible-autocomplete.min.js.map" }}
+
+<script type="text/javascript"> 
+    // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
+    function populateDropDownList() {
+          //Build an array containing Neighborhood records.
+          //UHFList.js contains a variable 'neighborhoods' with names zips and ids
+          
+           var ddlData = document.getElementById("all-data");
+           
+          {{ range .Pages }} // range through data_explorer pages
+            var option = document.createElement("OPTION");
+            //Set Neighborhood Name in Text part.
+            option.innerHTML = {{ .Title}}
+
+            // set the option value
+            option.value = 
+
+            //Add the Option element to DropDownList.
+            ddlData.options.add(option);
+
+            {{ range .Params.indicators}} // also range through data_explorer pages' indicators (in .md frontmatter)
+                var option = document.createElement("OPTION");
+                //Set Neighborhood Name in Text part.
+                option.innerHTML = {{ .name}}
+
+                // set the option value
+
+                //Add the Option element to DropDownList.
+                ddlData.options.add(option);
+            {{end}}
+          {{ end}}
+
+       };
+
+       populateDropDownList();
+
+       var selectEl = document.querySelector('#all-data')
+        accessibleAutocomplete.enhanceSelectElement({
+        autoselect: true,
+        confirmOnBlur: true,
+        defaultValue: "",
+        minLength: 2,
+        selectElement: selectEl
+            })
+   </script>
 
 {{end}}
