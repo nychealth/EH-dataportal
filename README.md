@@ -61,10 +61,10 @@ It is referenced via in-line CSS in themes/dohmh/layouts/data_stories/single.htm
 Other images can be added to Data Stories (and other pages) using the figure shortcode that is native to Hugo.
 ```{{< figure src="/location/image.jpg" alt="Alt text goes here" >}}```
 
-### Data Stories with Chapter Navigation
-Use ```layout:advanced``` for more complex data stories that have in-page navigation.
+### Alternate data story layouts
+A file named ```index.md``` will, by default, receive the ```single.html``` layout, whereas a file named ```_index.md``` will get ```section.html``` layout. We can also use custom layouts by specifying the layout in the front matter. For example, ```layout:advanced``` will use ```advanced.html``` (for in-page nagivation), and ```layout:flexible``` will use ```flexible.html```, which puts all content inside of a ```container-fluid``` and a single Bootstrap row. This is largely useful for moving pre-existing data stories over into our new structure, and probably shouldn't be used to develop *new* data stories.
 
-Create chapter frontmatter formatted like this:
+For ```layout:advanced```, create chapter frontmatter formatted like this:
 ```
 chapters: [
     {
