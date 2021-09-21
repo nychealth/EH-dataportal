@@ -29,8 +29,8 @@
             </div>
 
             <div class="row mt-2">
+                <!--Conditional if code only executes contents (related partial) if that intersection content exists. So it removes header if null content-->
                 {{ if where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.relatedCategory ) }}
-
                 <div class="col-md-6 pl-0">
                     <h3><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories</h3>
                     <div class="card content-card mb-4">
