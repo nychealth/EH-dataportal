@@ -13,7 +13,7 @@
 
         <div class="row">
             <div class="col-6 mx-auto">
-                <form action="" method="get" class="autocomplete-form">
+                <form class="autocomplete-form">
                     <div class="row no-gutters">
                     <label for="all-data" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">Search data</label>
                     <div class="col-9">
@@ -54,27 +54,26 @@
             option.innerHTML = {{ .Title}}
 
             // set the option value
-            option.value = 
+            option.value = {{ .URL }}
 
             //Add the Option element to DropDownList.
             ddlData.options.add(option);
 
-            {{ range .Params.indicators}} // also range through data_explorer pages' indicators (in .md frontmatter)
-                var option = document.createElement("OPTION");
-                //Set Neighborhood Name in Text part.
-                option.innerHTML = {{ .name}}
+                    {{ range .Params.indicators}} // also range through data_explorer pages' indicators (in .md frontmatter)
+                        var option = document.createElement("OPTION");
+                        //Set Neighborhood Name in Text part.
+                        option.innerHTML = {{ .name}}
 
-                // set the option value
+                        // set the option value
+                        option.value = {{ .URL}}
 
-                //Add the Option element to DropDownList.
-                ddlData.options.add(option);
-            {{end}}
+                        //Add the Option element to DropDownList.
+                        ddlData.options.add(option);
+                    {{end}}
           {{ end}}
-
        };
 
        populateDropDownList();
-
        var selectEl = document.querySelector('#all-data')
         accessibleAutocomplete.enhanceSelectElement({
         autoselect: true,
@@ -82,7 +81,17 @@
         defaultValue: "",
         minLength: 2,
         selectElement: selectEl
-            })
+            });
+
+
+    var dataSearchForm = document.getElementById('all-data')
+    document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
+        e.preventDefault(); // prevent page re-load
+        console.log(dataSearchForm.value)
+      });
+
+
+
    </script>
 
 {{end}}
