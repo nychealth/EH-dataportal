@@ -12,7 +12,7 @@
 
                 {{ range .RegularPages }}
                 <a class="h2 fs-lg" href="{{ .URL}}">{{ .Title }}</a>
-                <p class="fs-sm">{{ .Content | truncate 150 | plainify }}</p> 
+                <p class="fs-sm">{{ .Content | plainify | truncate 150 }}</p> 
                 <p class="text-right"><a href="{{ .URL}}">Read more...</a></p>
                 <hr class="mb-3">
                 
