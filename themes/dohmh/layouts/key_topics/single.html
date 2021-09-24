@@ -28,8 +28,9 @@
                 {{ .Content}}
             </div>
 
-
             <div class="row mt-2">
+                <!--Conditional if code only executes contents (related partial) if that intersection content exists. So it removes header if null content-->
+                {{ if where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.relatedCategory ) }}
                 <div class="col-md-6 pl-0">
                     <h3><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories</h3>
                     <div class="card content-card mb-4">
@@ -46,21 +47,22 @@
                         </div>
                     </div>
                 </div>
-
+                {{ end }}
+                <!--end conditional here-->
 
 
 
                 <div class="col-md-6 pl-0">
+                    {{ if where ( where .Site.RegularPages "Section" "neighborhood_reports") ".Params.categories" "intersect" ( slice .Params.relatedCategory ) }}
+                        <h3><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
+                        {{ partial "related" (dict "section" "neighborhood_reports" "layout" "button" "content" . ) }}
+                        <hr class="my-2">
+                    {{ end }}
 
-                    <h3><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
-                    {{ partial "related" (dict "section" "neighborhood_reports" "layout" "button" "content" . ) }}
-
-                    <hr class="my-2">
-
-                    <h3><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Data Features</h3>
-                    {{ partial "related" (dict "section" "key_topics" "layout" "button" "content" . ) }}     
-
-
+                    {{ if where ( where .Site.RegularPages "Section" "key_topics") ".Params.categories" "intersect" ( slice .Params.relatedCategory ) }}
+                        <h3><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Data Features</h3>
+                        {{ partial "related" (dict "section" "key_topics" "layout" "button" "content" . ) }}     
+                    {{ end }}
                 </div>
 
 
