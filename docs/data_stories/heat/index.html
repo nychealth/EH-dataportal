@@ -229,6 +229,8 @@
 
 <link rel="stylesheet" href="https://nycehs.github.io/ehs-data-portal-frontend-temp/scss/theme.css" />
 
+
+
   </head>
   <body>
 
@@ -316,7 +318,7 @@
                 </div>
                 
                 
-                <div class="nav-item">
+                <div class="nav-item active">
 
                     <a class="nav-link" href="../../data_stories/" id="nav-item-02">
                         <span class='text-primary'><i class='fas fa-passport' aria-hidden='true'></i></span> Data Stories
@@ -372,7 +374,7 @@
 
 <div class="container-fluid px-0">
 
-        <div id="datastoryheader"  style="background-image: URL(../../images/ds-heat.jpg)">
+        <div id="datastoryheader"  style="background-image: URL(ds-heat.jpg)">
 
             <div class="medium my-auto">
                 <h1 class="titleheader py-2 px-4">
@@ -384,28 +386,6 @@
         </div>
 
 </div>
-
-
-<style>
-
-    #datastoryheader {
-        width: 100%;
-        height: 400px;
-        background-size: cover;
-        display: flex;
-    }
-
-    .titleheader {    
-    color: #fff;
-    text-align: center;
-    font-size: 3em;
-    background-color: rgba(132,132,132,0.5);
-    padding-top: 75px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    }
-</style>
-
 
 <article class="container-fluid" id="skip-header-target">
 
@@ -425,43 +405,56 @@
 
             <div class="narrow my-2">
 
-                <p>Hot weather is dangerous. In New York City and across the country, more people die from extreme heat in an ordinary year than from all other natural disasters.</p>
-<p>Heat stress happens when your body’s temperature increases quickly: The body can no longer control its temperature to cool itself down, which can quickly lead to death.</p>
-<p>At the NYC Health Department, we track heat stress deaths by reviewing causes of death recorded by the Bureau of Vital Statistics. In NYC, the number of heat stress deaths vary considerably by year with more deaths usually happening during hotter summers. From 1999 to 2016, there were 4 such spikes due to severe heat emergencies: 1999, 2006, 2011, and 2013.</p>
+                <p>Hot weather is dangerous. In New York City and across the country, more people on average die from extreme heat each year than from all other natural disasters.</p>
+<p>Heat stress happens when your body’s temperature increases quickly. When the body can no longer control its temperature or cool itself down, it can lead to death.</p>
+<p>At the NYC Health Department, we track heat stress deaths by reviewing causes of death recorded by the Bureau of Vital Statistics. More people usually die of heat stress during hotter summers. From 1999 to 2016, NYC had 4 spikes due to severe heat, in 1999, 2006, 2011, and 2013.</p>
 
+</div>
+<div class="wide my-4">
+<iframe title="Heat can be deadly" aria-label="Interactive chart" id="datawrapper-chart-O0SUA" src="//datawrapper.dwcdn.net/F8xiB/4/" scrolling="no" frameborder="0"
+style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe> <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+</script>
+</div>
+<div class="narrow">
+<p>But deaths due to heat stress only tell part of the story. Summer heat can also kill people by worsening chronic illnesses, such as heart disease. Since the effects of heat can be hard to recognize, these are often not recorded as heat-related deaths on death certificates.</p>
+<p>We use statistical models to examine the difference between the average number of deaths during hot weather and the average number of deaths on typical, cooler summer days. That difference is called <a href="https://nyccas.cityofnewyork.us/nyccas2021/web/report/7">heat-exacerbated mortality</a>. It is an estimate of the number of people who died because of heat, even if heat is not included on their death certificate as a cause of death.</p>
+<h3 id="heat-exacerbated-mortality">Heat-exacerbated mortality</h3>
+<p>Each year from 2010 to 2018, there were an average of 350 heat-exacerbated deaths associated with days over 82°F from May to September. This is over 30 times greater than the number of deaths with “heat-related stress” listed on the death certificate.</p>
+<p>Of these 350 annual deaths, about 100 (28%) are due to <strong>extreme heat events</strong>: 2 or more days with a heat index of 95°F or higher, or one or more days reaching 100°F or higher. While extreme heat days are more rare, the risk of death on these days is much higher than on other summer days. But because there are many more days that are hot but not extreme, we estimate that more deaths - about 250 - happen on summer days without extreme heat events.</p>
+<h3 id="what-puts-people-at-risk-of-heat-stress">What puts people at risk of heat stress?</h3>
+<p>We investigated heat stress deaths by looking at medical examiner’s records. Of the 88 people who died from 2010 to 2019 whose records we reviewed, 62 (71%) were exposed to the heat in their own homes.</p>
+<p>What prevents heat-related illness at home? Air conditioning. Of the records with information on home air conditioning, <strong>none of those who died had a working air conditioner</strong>.</p>
+<p>90% of households in NYC report having an air conditioner – but in some of NYC’s low-income neighborhoods, this drops to as low as 76%.</p>
 
-<iframe title="Heat can be deadly" aria-label="Column Chart" id="datawrapper-chart-F8xiB" src="//datawrapper.dwcdn.net/F8xiB/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="404"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
-                                </script>
-
-
-<p>Deaths with heat stress listed on the death certificate tell only part of the story, however, and under-estimate the burden of heat-related mortality. The effects of heat can be hard to recognize. Heat can worsen chronic illnesses, such as cardiovascular disease, resulting in deaths from natural causes not labeled as heat-related on a death certificate.</p>
-<p>To estimate the number of these deaths, we use statistical models to examine the difference between the average number of deaths during extreme heat events and the average number of deaths on typical, non-extreme summer days. That difference is called the excess mortality due to extreme heat.</p>
-<p>In NYC, excess mortality increases as a result of extreme heat events, which are defined as 2 or more days with a heat index reaching 95 degrees Fahrenheit or higher, or one or more days reaching 100 degrees or higher. We found that the number of deaths attributable to extreme heat events is nearly 10 times greater than the number of deaths where heat stress was listed on the death certificate.</p>
-
-
-<iframe title="Heat stress deaths are just the tip of the iceberg." aria-label="Bar Chart" id="datawrapper-chart-Zgqqg" src="//datawrapper.dwcdn.net/Zgqqg/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="162"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
-                                </script>
-
-
-<p>This gives us a clearer picture of the burden of extreme heat events in New York City.</p>
-<h3 id="what-puts-people-at-risk">What puts people at risk?</h3>
-<p>We investigated heat stress deaths by looking at medical examiner records. Of the 48 people who died from 2008 to 2011 whose medical examiner records were reviewed, 41 became sick in their own homes.</p>
-<p>What prevents heat-related illness at home? Air conditioning. Of the records with information on home air conditioning, none of those who died had a working air conditioner.</p>
-<p>90% of households in NYC report having an air conditioner – but in some of NYC’s low-income neighborhoods, this drops to as low as only 75%.</p>
-
-
-<iframe title="Air conditioning access is a matter of health equity." aria-label="Dot Plot" id="datawrapper-chart-z0BAM" src="//datawrapper.dwcdn.net/z0BAM/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1203"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
-                                </script>
-
-
-<p>Having an air conditioner is one thing – but using it is another. When we surveyed New Yorkers, we found that 15% of New Yorkers don&rsquo;t use AC, despite having one. Many said they don&rsquo;t use it because of the cost of electricity (low-income New Yorkers can apply to receive money to buy an air conditioner).</p>
-<p>The COVID-19 pandemic is likely to further worsen the financial hardship of people who are already disproportionately impacted by heat, making the use of air conditioning even more unaffordable - placing them at further risk.</p>
-<h3 id="climate-change-is-bringing-more-extreme-heat">Climate change is bringing more extreme heat</h3>
-<p>Access to air conditioning is an issue of climate equity. We anticipate more extreme heat events as our climate continues to warm – so the Health Department is working to protect some of New York City’s most vulnerable residents. A deep dive into the data on who is at risk allowed us to create the Heat Vulnerability Index, which scores neighborhoods based on factors that can affect risk. These include environmental factors like neighborhood surface temperature and green space, and social factors like poverty, race, and access to air conditioning. Black New Yorkers suffer disproportionate health impacts from heat due to social and economic disparities. These disparities stem from structural racism - both historic and current - which limits access to resources that protect health. Structural racism results in higher unemployment rates, fewer job opportunities, lower pay, and greater job instability for Black New Yorkers. This has a direct impact on many household decisions such as the ability to afford and use air conditioning.</p>
-<p>During the current pandemic, people at high risk from COVID-19 are also at higher risk when it’s hot: older New Yorkers, those with chronic medical conditions, and due to social and economic biases, low-income residents and non-Latinx Black residents. To avoid compounding the inequitable effects of COVID-19 this summer, access to in-home cooling will be all the more important this summer.</p>
-<p>In response, the New York State Public Service Commission approved $70.5 million in emergency cooling assistance to help low-income ConEd customers cover the cost of their electricity bills this summer. Eligible New Yorkers can also apply for a free air conditioner and installation through the Home Energy Assistance Program (HEAP). In addition to low-income families, households in public or subsidized housing with heat included in their shelter costs may be eligible to get the benefit as part of extended HEAP benefits due to COVID-19. Visit nyc.gov/hra and search for HEAP Cooling Application or call 212-331-3126 between the hours of 9 am and 5 pm for more information and to get an application.</p>
-<p>As we prepare for a changing climate, we need to view air conditioning not as a luxury, but as life-saving equipment. Yes, we must use it responsibly to reduce contributions to climate change and protect the power grid. But home cooling in the summer should be treated like heat in the winter: as necessary to survival, particularly for those who are most at risk.</p>
+</div>
+<div class="wide my-4">
+<iframe title="Air conditioning access is a matter of health equity." aria-label="Interactive chart" id="datawrapper-chart-O0SUA" src="//datawrapper.dwcdn.net/z0BAM/1/" scrolling="no" frameborder="0"
+style="width: 0; min-width: 100% !important; border: none;" height="1203"></iframe> <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+</script>
+</div>
+<div class="narrow">
+<p>Having an air conditioner is one thing – but using it is another. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6069135/">When we surveyed New Yorkers</a>, we found that 15% of New Yorkers have AC but don&rsquo;t use it during hot weather. Of those, 1 out of 4 said they don&rsquo;t use AC because of the cost of electricity. (<a href="https://www1.nyc.gov/site/hra/help/energy-assistance.page">Low-income New Yorkers can apply to receive money from the State to buy an air conditioner</a>.)</p>
+<p>During the COVID-19 public health emergency, many households have experienced financial hardship. Even as the City phases into recovery, communities continue to cope with the spread of COVID-19, steps to reduce risk, and lasting economic impacts. These may put people at greater risk for indoor heat exposure, because they may be limiting contact with others by staying at home and limiting air conditioning to save money.</p>
+<h3 id="access-to-air-conditioning-is-an-issue-of-climate-health-equity">Access to air conditioning is an issue of climate-health equity</h3>
+<p>We expect more extreme heat events as our climate continues to warm, so the Health Department is working to prepare our residents and communities.</p>
+<p>Older adults are more likely to die from extreme heat because of being more likely to have chronic illnesses and economic concerns. However, Black New Yorkers die from heat at younger ages. They are often younger when they develop chronic medical conditions and are more likely to have more than one condition. Crucially, long-standing systemic health and social inequities have put Black New Yorkers at increased risk of getting sick and dying from extreme heat. Structural racism also results in higher unemployment rates, fewer job opportunities, lower pay, and greater job instability for Black New Yorkers, affecting financial stability.</p>
+<p>We identified environmental, housing, and social factors that influence who is more likely to die from heat. We used this to create <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/HeatHub/hvi.html">the Heat Vulnerability Index</a> to learn how heat risk changes across neighborhoods.</p>
+<p>As we experience a changing climate, air conditioning is no longer a luxury. It is life-saving equipment. Yes, we must use it responsibly to reduce contributions to climate change and protect the power grid. But home cooling in the summer should be treated like heat in the winter: necessary to survival, particularly for those who are most at risk.</p>
 <p>A healthy indoor temperature should not be a privilege limited to those who can afford to own and use an air conditioner – especially when lacking one can be deadly.</p>
+<hr>
+<p><em>New Yorkers can apply for a free air conditioner and installation through the Home Energy Assistance Program (HEAP). Low-income families and households in public or subsidized housing with heat included in their shelter costs may be eligible as part of extended HEAP benefits. Visit nyc.gov/hra and search for HEAP Cooling Application, or call 212-331-3126 between 9 am and 5 pm to apply.</em></p>
+<p>Resources</p>
+<ul>
+<li><a href="https://www1.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page">Extreme Heat and Your Health</a></li>
+<li><a href="https://www1.nyc.gov/assets/em/html/beat-the-heat/beattheheat.html">Beat the Heat</a></li>
+</ul>
+<p>Research</p>
+<ul>
+<li><a href="https://journals.lww.com/epidem/fulltext/2018/11000/Equitable_Access_to_Air_Conditioning___A_City.1.aspx">A City Health Department’s Perspective on Preventing Heat-related Deaths</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pubmed/25782056">A Case-Only Study of Vulnerability to Heat Wave-Related Mortality in New York City (2000-2011)</a></li>
+<li><a href="https://nycehs.github.io/IndicatorPublic/EPHTPDF/HVI_FAQ.pdf">About the Heat Vulnerability Index</a></li>
+<li><a href="https://www.mdpi.com/1660-4601/15/7/1433">Awareness, risk perception, and protective behaviors for extreme heat and climate change in New York City</a></li>
+</ul>
 
 
             </div>
@@ -498,9 +491,308 @@
         
         <div class="col-xl-2 border-xl-left">
 
-            <div class="narrow py-3 mt-n3 mt-xl-0 sticky-top" style="z-index: 0">
-                INSERT CATEGORIES HERE
+            <div class="py-3 mt-n3 mt-xl-0 sticky-top" style="z-index: 0">
+                <div class="fs-sm">
+                    <strong>Published on:</strong><br>
+                    September 9, 2020
+                </div>
+                <div class="mt-4">
+                    <strong>Related Data Stories</strong><br>
+                    
+                    
+                    
 
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/localtemp/">The Urban Heat Island Effect in New York City</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/violence/">Why violence is a public health issue</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/redlining/">A brief history of redlining</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/housing/">Health, housing, and history</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/assaults/">Disparities in violence</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/food/">What hot weather means for food safety</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/povasthma/">Why asthma is a social justice issue</a>
+                    <hr class="my-1">
+                     
+                    
+                </div>
+
+
+                <div class="mt-4">
+                    <strong>Related Topics</strong><br>
+                    
+                    
+                    
+
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/social/">Social and Economic Conditions</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/">Climate and Health</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                </div>
 
             </div>
             

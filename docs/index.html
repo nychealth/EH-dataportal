@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-	<meta name="generator" content="Hugo 0.82.1" />
+	<meta name="generator" content="Hugo 0.88.1" />
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -230,6 +230,8 @@
 
 <link rel="stylesheet" href="https://nycehs.github.io/ehs-data-portal-frontend-temp/scss/theme.css" />
 
+
+
   </head>
   <body>
 
@@ -292,7 +294,7 @@
 
     </div>
     
-    <div class="site-header bg-primary">
+    <div class="site-header bg-primary" style="background-image: url(/images/header_background.jpg)">
         <div class="wrap-header">
 
             <div class="container-fluid wide">
@@ -474,40 +476,6 @@
         <div class="col-md-8 col-sm-12">
           <div class="accordion-group my-4" style="padding-left:0px!important" role="tablist" id="accordion-01">
 
-            <div class="card bg-lightgray mb-2" style="border-left: 10px solid #197BBD!important;">
-
-              <a class="card-header h4 collapse collapsed" style="color:#197BBD" id="acc-button-01"
-                data-toggle="collapse" href="#panel-acc-button-01" role="tab" aria-expanded="false"
-                aria-controls="panel-acc-button-01">
-                <span class="title" role="heading" aria-level="3"><i class="fas fa-atlas"></i>&nbsp;Data
-                  Stories</span>
-              </a>
-
-              <div class="collapse show" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01"
-                data-parent="#accordion-01">
-
-                <div class="card-body">
-                  <p class="card-text">
-                    Brief explainers and infographics on key health and environment topics.
-                  </p>
-                  <ul>
-<li><strong>New</strong> <a href="">Why violence is a public health issue</a>.</li>
-<li><strong>New</strong> <a href="">Health, housing, and history</a>.</li>
-<li><strong>New</strong> <a href="">A brief history of redlining</a>.</li>
-</ul>
-
-                  <hr>
-                  <a href="./data_stories/" class="btn btn-outline-gray btn-sm my-2" style="float:right">Browse
-                    all data stories&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
-
-                </div>
-
-              </div>
-              
-
-            </div>
-            
-
             <div class="card bg-lightgray mb-2" style="border-left: 10px solid #DC645C!important;">
 
               <a class="card-header h4 collapse collapsed" style="color:#DC645C" id="acc-button-02"
@@ -518,13 +486,12 @@
                   Reports</span>
               </a>
 
-              <div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02"
+              <div class="collapse show" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02"
                 data-parent="#accordion-01">
 
                 <div class="card-body">
                   <p class="card-text">
-                    Get data for your neighborhood on key environmental
-                    health topics.
+                    How does the environment in your neighborhood affect health? Get the data here. 
                   </p>
 
                   <form action="./neighborhood_reports" method="get" class="autocomplete-form">
@@ -569,23 +536,72 @@
 
                 <div class="card-body">
                   <p class="card-text">
-                    Explore key topics in environmental health that affect our city and our
+                    Explore the issues in environmental health that affect our city and our
                     lives.
                   </p>
                   <div class="row mt-2">
 
                     
                     <div class="col-md-6 col-sm-12">
-                      <a class="btn btn-outline-gray btn-sm has-icon disperse mt-2" href="./key_topics/climatehealth/hvi/">
+                      <a class="btn btn-outline-gray btn-sm has-icon disperse mt-2" href="./key_topics/">
                         <span class="fas fa-angle-right"></span>
-                        <span class="title">Interactive Heat Vulnerability Index</span>
+                        <span class="title">Key Topics in Environmental Health</span>
                       </a>
                     </div>
                     
                     <div class="col-md-6 col-sm-12">
-                      <a class="btn btn-outline-gray btn-sm has-icon disperse mt-2" href="./key_topics/airquality/aqe/">
+                      <a class="btn btn-outline-gray btn-sm has-icon disperse mt-2" href="./key_topics/childhealth/">
                         <span class="fas fa-angle-right"></span>
-                        <span class="title">Your Neighborhood&#39;s Air Quality</span>
+                        <span class="title">Child Health</span>
+                      </a>
+                    </div>
+                    
+                    <div class="col-md-6 col-sm-12">
+                      <a class="btn btn-outline-gray btn-sm has-icon disperse mt-2" href="./key_topics/social/">
+                        <span class="fas fa-angle-right"></span>
+                        <span class="title">Social and Economic Conditions</span>
+                      </a>
+                    </div>
+                    
+                    <div class="col-md-6 col-sm-12">
+                      <a class="btn btn-outline-gray btn-sm has-icon disperse mt-2" href="./key_topics/pests/">
+                        <span class="fas fa-angle-right"></span>
+                        <span class="title">Pests and Pesticides</span>
+                      </a>
+                    </div>
+                    
+                    <div class="col-md-6 col-sm-12">
+                      <a class="btn btn-outline-gray btn-sm has-icon disperse mt-2" href="./key_topics/foodanddrink/">
+                        <span class="fas fa-angle-right"></span>
+                        <span class="title">Food and Drink</span>
+                      </a>
+                    </div>
+                    
+                    <div class="col-md-6 col-sm-12">
+                      <a class="btn btn-outline-gray btn-sm has-icon disperse mt-2" href="./key_topics/transportation/">
+                        <span class="fas fa-angle-right"></span>
+                        <span class="title">Transportation and Active Design</span>
+                      </a>
+                    </div>
+                    
+                    <div class="col-md-6 col-sm-12">
+                      <a class="btn btn-outline-gray btn-sm has-icon disperse mt-2" href="./key_topics/housing/">
+                        <span class="fas fa-angle-right"></span>
+                        <span class="title">Housing</span>
+                      </a>
+                    </div>
+                    
+                    <div class="col-md-6 col-sm-12">
+                      <a class="btn btn-outline-gray btn-sm has-icon disperse mt-2" href="./key_topics/climatehealth/">
+                        <span class="fas fa-angle-right"></span>
+                        <span class="title">Climate and Health</span>
+                      </a>
+                    </div>
+                    
+                    <div class="col-md-6 col-sm-12">
+                      <a class="btn btn-outline-gray btn-sm has-icon disperse mt-2" href="./key_topics/airquality/">
+                        <span class="fas fa-angle-right"></span>
+                        <span class="title">Air Quality</span>
                       </a>
                     </div>
                     
@@ -615,14 +631,13 @@
 
                 <div class="card-body">
                   <p class="card-text">
-                    Explore data on over 250 indicators and 50 environmental health topics.
-                    Use data
-                    tools, download data sets, and find data stories.
+                    Data on over 250 indicators and 50 environmental health topics.
+                    Explore, visualize, and download data sets - so you can find the story.
                   </p>
 
 
                   <hr>
-                  <a href="./data_explorer/" class="btn btn-outline-gray btn-sm my-2" style="float:right">Browse
+                  <a href="./data_explorer/" class="btn btn-outline-gray btn-sm my-2" style="float:right; color: #00923E;">Browse
                     all topics&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
                 </div>
 
@@ -639,32 +654,48 @@
 
         
         <div class="col-md-4 col-sm-12">
-          <div class="card bg-lightgray mt-4">
-            <div class="card-body">
-              <h5 class="card-title text-muted fs-sm"><i class="far fa-question-circle"></i>&nbsp;What's "the
-                environment?"</h5>
-              <p class="fs-sm">It's
-                everything around us -
-                the climate, the air and
-                water, the buildings and streets, and the society we live in - that shapes
-                our lives and our
-                health. Explore your city here.</p>
+          <div class="card bg-lightgray my-4" style="border-left: 10px solid #197BBD!important;">
+
+            <div class="card-header h4" style="color:#197BBD" href="#panel-acc-button-01" role="tab">
+              <span class="title" role="heading" aria-level="3"><i class="fas fa-atlas"></i>&nbsp;Data
+                Stories</span>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Brief explainers and infographics on key health and environment topics.
+                </p>
+                <div class="fs-sm">
+                  
+                 <a href="./data_stories/localtemp/">The Urban Heat Island Effect in New York City</a>
+                 <hr class="my-1">
+                  
+                 <a href="./data_stories/aq-cooking/">Tracking changes in New York City&#39;s sources of air pollution</a>
+                 <hr class="my-1">
+                  
+                 <a href="./data_stories/violence/">Why violence is a public health issue</a>
+                 <hr class="my-1">
+                  
+                 <a href="./data_stories/redlining/">A brief history of redlining</a>
+                 <hr class="my-1">
+                  
+                 <a href="./data_stories/housing/">Health, housing, and history</a>
+                 <hr class="my-1">
+                  
+                </div>
+
+                <a href="./data_stories/" class="btn btn-outline-gray btn-sm my-2" style="float:right; color: #197BBD;">Browse
+                  all data stories&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
+
+              </div>
 
 
-            </div>
+
           </div>
+          
 
-          <div class="card bg-lightgray my-4">
-            <div class="card-body">
-              <h5 class="card-title text-muted fs-sm"><i class="fas fa-info-circle"></i>&nbsp;About us
-              </h5>
-              <p class="card-text fs-sm">About the Environmental Public Health Tracking Program.
-              </p>
-              <hr>
-              <a href="" class="btn btn-outline-gray btn-sm mt-2" style="float:right">About
-                Us&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
-            </div>
-          </div>
+
+
+
 
 
         </div>
@@ -677,8 +708,41 @@
         </div>
       </div>
 
-
       
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="card bg-lightgray mt-4">
+            <div class="card-body">
+              <h5 class="card-title text-muted fs-sm"><i class="far fa-question-circle"></i>&nbsp;What's "the
+                environment?"</h5>
+              <p class="fs-sm">It's
+                everything around us -
+                the climate, the air and
+                water, the buildings and streets, and the society we live in - that shapes
+                our lives and our
+                health. Explore your city here.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card bg-lightgray my-4">
+            <div class="card-body">
+              <h5 class="card-title text-muted fs-sm"><i class="fas fa-info-circle"></i>&nbsp;About us
+              </h5>
+              <p class="card-text fs-sm">About the Environmental Public Health Tracking Program.
+              </p>
+              <hr>
+              <a href="" class="btn btn-outline-gray btn-sm mt-2" style="float:right">About
+                Us&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
       <div class="row mb-4">
         <div class="col-md-6 col-sm-12 mb-2">
 

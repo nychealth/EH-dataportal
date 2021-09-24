@@ -2,67 +2,33 @@
 User-agent: *
 
 
+Disallow: /
+
+Disallow: /key_topics/
+
+Disallow: /categories/airquality/
+
 Disallow: /categories/
 
 Disallow: /categories/climatehealth/
 
-Disallow: /
+Disallow: /key_topics/climatehealth/heat-report/
 
-Disallow: /key_topics/climatehealth/hvi/
-
-Disallow: /key_topics/
-
-Disallow: /categories/social/
-
-Disallow: /categories/airquality/
-
-Disallow: /key_topics/airquality/aqe/
-
-Disallow: /tags/air-conditioner/
-
-Disallow: /tags/air-conditioning/
-
-Disallow: /tags/climate/
-
-Disallow: /tags/climate-change/
-
-Disallow: /categories/climateandhealth/
+Disallow: /key_topics/airquality/nyccas/
 
 Disallow: /data_stories/
 
-Disallow: /tags/death/
+Disallow: /key_topics/climatehealth/syndromic/
 
-Disallow: /tags/heat/
+Disallow: /categories/housing/
 
-Disallow: /tags/mortality/
+Disallow: /key_topics/climatehealth/hvi/
 
-Disallow: /data_stories/heat/
+Disallow: /categories/social/
 
-Disallow: /tags/
+Disallow: /key_topics/airquality/aqe/
 
-Disallow: /tags/weather/
-
-Disallow: /tags/assaults/
-
-Disallow: /data_stories/assaults/
-
-Disallow: /tags/poverty/
-
-Disallow: /tags/violence/
-
-Disallow: /tags/civic-service-design/
-
-Disallow: /tags/design/
-
-Disallow: /tags/how-we-work/
-
-Disallow: /tags/technology/
-
-Disallow: /data_stories/codesign/
-
-Disallow: /categories/foodanddrink/
-
-Disallow: /data_stories/food/
+Disallow: /data_stories/localtemp/
 
 Disallow: /data_explorer/active-design/
 
@@ -118,6 +84,8 @@ Disallow: /data_explorer/energy/
 
 Disallow: /data_explorer/falls-among-older-adults/
 
+Disallow: /categories/foodanddrink/
+
 Disallow: /data_explorer/health-care/
 
 Disallow: /data_explorer/health-impacts-of-air-pollution/
@@ -125,8 +93,6 @@ Disallow: /data_explorer/health-impacts-of-air-pollution/
 Disallow: /data_explorer/heart-attacks/
 
 Disallow: /data_explorer/housing/
-
-Disallow: /categories/housing/
 
 Disallow: /data_explorer/housing-and-neighborhoods/
 
@@ -192,10 +158,6 @@ Disallow: /data_explorer/weather-related-illness/
 
 Disallow: /data_explorer/worker-health/
 
-Disallow: /data_stories/breatheeasy/
-
-Disallow: /data_stories/newlook/
-
 Disallow: /key_topics/childhealth/
 
 Disallow: /key_topics/social/
@@ -216,7 +178,41 @@ Disallow: /key_topics/climatehealth/
 
 Disallow: /key_topics/airquality/
 
+Disallow: /data_stories/aq-cooking/
+
+Disallow: /data_stories/violence/
+
+Disallow: /data_stories/redlining/
+
+Disallow: /data_stories/housing/
+
+Disallow: /data_stories/streets/
+
+Disallow: /data_stories/heat/
+
+Disallow: /data_stories/geographies/
+
+Disallow: /data_stories/aqcovid/
+
+Disallow: /data_stories/aqsnapshots/
+
+Disallow: /data_stories/assaults/
+
+Disallow: /data_stories/codesign/
+
+Disallow: /data_stories/aqts/
+
+Disallow: /data_stories/aq2/
+
+Disallow: /data_stories/newlook/
+
+Disallow: /data_stories/breatheeasy/
+
+Disallow: /data_stories/food/
+
 Disallow: /data_stories/povasthma/
+
+Disallow: /neighborhood_reports/activedesign/
 
 Disallow: /neighborhood_reports/bayside_little_neck/active_design_physical_activity_and_health/
 
@@ -302,7 +298,7 @@ Disallow: /neighborhood_reports/williamsburg_bushwick/active_design_physical_act
 
 Disallow: /neighborhood_reports/willowbrook/active_design_physical_activity_and_health/
 
-Disallow: /neighborhood_reports/airquality/
+Disallow: /neighborhood_reports/asthma/
 
 Disallow: /neighborhood_reports/bayside_little_neck/asthma_and_the_environment/
 
@@ -416,6 +412,8 @@ Disallow: /neighborhood_reports/central_harlem_morningside_heights/climate_and_h
 
 Disallow: /neighborhood_reports/chelsea_clinton/climate_and_health/
 
+Disallow: /neighborhood_reports/climateandhealth/
+
 Disallow: /neighborhood_reports/coney_island_sheepshead_bay/climate_and_health/
 
 Disallow: /neighborhood_reports/crotona_tremont/climate_and_health/
@@ -511,6 +509,8 @@ Disallow: /neighborhood_reports/greenpoint/
 Disallow: /neighborhood_reports/greenwich_village_soho/
 
 Disallow: /neighborhood_reports/high_bridge_morrisania/
+
+Disallow: /neighborhood_reports/housing/
 
 Disallow: /neighborhood_reports/bayside_little_neck/housing_and_health/
 
@@ -662,6 +662,8 @@ Disallow: /neighborhood_reports/lower_manhattan/outdoor_air_and_health/
 
 Disallow: /neighborhood_reports/northeast_bronx/outdoor_air_and_health/
 
+Disallow: /neighborhood_reports/outdoorair/
+
 Disallow: /neighborhood_reports/pelham_throgs_neck/outdoor_air_and_health/
 
 Disallow: /neighborhood_reports/port_richmond/outdoor_air_and_health/
@@ -713,6 +715,8 @@ Disallow: /neighborhood_reports/southwest_queens/
 Disallow: /neighborhood_reports/stapleton_st_george/
 
 Disallow: /neighborhood_reports/sunset_park/
+
+Disallow: /tags/
 
 Disallow: /neighborhood_reports/union_square_lower_east_side/
 

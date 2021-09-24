@@ -229,6 +229,8 @@
 
 <link rel="stylesheet" href="https://nycehs.github.io/ehs-data-portal-frontend-temp/scss/theme.css" />
 
+
+
   </head>
   <body>
 
@@ -316,7 +318,7 @@
                 </div>
                 
                 
-                <div class="nav-item">
+                <div class="nav-item active">
 
                     <a class="nav-link" href="../../data_stories/" id="nav-item-02">
                         <span class='text-primary'><i class='fas fa-passport' aria-hidden='true'></i></span> Data Stories
@@ -372,7 +374,7 @@
 
 <div class="container-fluid px-0">
 
-        <div id="datastoryheader"  style="background-image: URL(../../images/ds-food.jpg)">
+        <div id="datastoryheader"  style="background-image: URL(ds-food.JPG)">
 
             <div class="medium my-auto">
                 <h1 class="titleheader py-2 px-4">
@@ -384,28 +386,6 @@
         </div>
 
 </div>
-
-
-<style>
-
-    #datastoryheader {
-        width: 100%;
-        height: 400px;
-        background-size: cover;
-        display: flex;
-    }
-
-    .titleheader {    
-    color: #fff;
-    text-align: center;
-    font-size: 3em;
-    background-color: rgba(132,132,132,0.5);
-    padding-top: 75px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    }
-</style>
-
 
 <article class="container-fluid" id="skip-header-target">
 
@@ -425,42 +405,43 @@
 
             <div class="narrow my-2">
 
-                <h3 id="a-billion-times-per-year">A billion times per year</h3>
-<p>New Yorkers eat out more than a billion times a year. To help keep diners safe, the Health Department educates restaurant operators about food safety practices and inspects all 27,000 city restaurants at least once a year. Over 90 percent of NYC restaurants have &ldquo;A&rdquo; grades in the window, showing excellent compliance with food safety requirements.</p>
+                <p>New Yorkers eat out more than a billion times a year. To help keep diners safe, the Health Department educates restaurant operators about food safety practices and inspects all 27,000 city restaurants at least once a year. Over 90 percent of NYC restaurants have &ldquo;A&rdquo; grades in the window, showing excellent compliance with food safety requirements.</p>
 <p>However, warmer weather creates special challenges keeping food safe. We dug into the data to find out how hot weather affects food safety.</p>
 <h3 id="some-background-on-foodborne-illnesses">Some background on foodborne illnesses</h3>
 <p>Though most foodborne illnesses are relatively minor, the Centers for Disease Control and Prevention estimates that there are 128,000 hospitalizations and 3,000 deaths per year from foodborne illnesses in the USA.</p>
 
-
-<iframe title="In NYC, there are thousands of cases per year" aria-label="Bar Chart" id="datawrapper-chart-TWYcr" src="https://datawrapper.dwcdn.net/TWYcr/6/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="532"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();</script>
-
-
-
+</div>
+<div class="wide my-4">
+<iframe title="In NYC, there are thousands of cases per year" aria-label="Interactive chart" id="datawrapper-chart-O0SUA" src="//datawrapper.dwcdn.net/TWYcr/6/" scrolling="no" frameborder="0"
+style="width: 0; min-width: 100% !important; border: none;" height="532"></iframe> <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+</script>
+</div>
+<div class="narrow">
 <p>Many of these are viruses and bacteria that spread through unsafe food handling practices. For example, if bacteria from raw meat or eggs contaminate other ready-to-eat food, it can make people sick.</p>
 <h3 id="food-safety-inspectors-work-to-keep-you-safe">Food safety inspectors work to keep you safe</h3>
 <p>When you eat at a restaurant, you&rsquo;re placing your trust in both the restaurant and in our food safety inspectors. The Health Department employs about 100 of them, and they visit each of nearly 27,000 NYC restaurants at least once per year, to make sure restaurants meet Health Code requirements. Restaurants receive an inspection score, which gets converted into the letter grade you see posted in the window.</p>
-
-
- <span style="text-align: center; display: block;">
-<img src="https://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/food/foodletter.jpg" style="width: 40%;" alt="A Sanitary Inspection A Grade"></span>
-
+<figure><img src="ds-foodletter.jpg"
+         alt="A sanitary inspection A grade"/>
+</figure>
 
 <p>As part of the inspection process, food safety inspectors educate restaurant operators about food safety practices, and collect data on violations they observe. Then, our team at the Health Department analyzes the inspection data to identify common violations and understand patterns in the violations. We use this data to figure out what food safety practices need improvement - helping to reduce risks to customers like you.</p>
 <h3 id="hot-weather-and-food-safety">Hot weather and food safety</h3>
 <p>Certain foodborne illnesses increase in the summertime, possibly because bacteria are more likely to multiply in warmer temperatures.</p>
 <p>Potentially hazardous cold food needs to be stored at or below 41° F, to minimize the growth of microorganisms that can make you sick. Cold holding violations - not storing food at or below 41° F - are one of the most common violations that our food safety inspectors find. When potentially hazardous foods - like meat, poultry, fish, and cut melons - aren&rsquo;t kept cold enough, bacteria can multiply rapidly.</p>
 <p>We investigated how outdoor temperature affects restaurant food safety patterns. To do this, we analyzed data from 64,661 inspections that took place over five summers. Of these inspections, 45 percent found cold holding violations.</p>
-
-
-<span style="text-align:center; display:block;"><b>Nearly half of inspections found cold holding violations</b>
-<img src="food2.png" alt="A waffle chart showing nearly 65,000 inspections, of which 45 percent had cold holding violations."></span>
+<figure><img src="ds-food2.png"
+         alt="A waffle chart showing nearly 65,000 inspections, of which 45 percent had cold holding violations"/>
+</figure>
 
 <p>We looked at inspections conducted on higher and lower maximum temperature days, and we found a 20 percent increase in cold food holding violations on the hottest days (93° or higher) compared with average summer days (temperatures around 82°).</p>
 
-
- <iframe title="Hot weather means more cold food holding violations" aria-label="Bar Chart" id="https:datawrapper-chart-PpaPF" src="//datawrapper.dwcdn.net/PpaPF/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="210"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();</script>
-
-
+</div>
+<div class="wide my-4">
+<iframe title="Hot weather means more cold food holding violations" aria-label="Interactive chart" id="datawrapper-chart-O0SUA" src="//datawrapper.dwcdn.net/PpaPF/4/" scrolling="no" frameborder="0"
+style="width: 0; min-width: 100% !important; border: none;" height="210"></iframe> <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+</script>
+</div>
+<div class="narrow">
 <h3 id="we-talked-over-our-findings-with-restaurant-staff">We talked over our findings with restaurant staff</h3>
 <p>After reviewing these data, we convened restaurant operators to talk about common challenges to keeping food cool.</p>
 <p>For example, they told us that in the hot weather, refrigerators can break down, or stop working due to short-term power outages. If these outages happen while the restaurant is closed, it can be hard to know how long the fridge was out and how long the food was warming up.</p>
@@ -506,9 +487,296 @@
         
         <div class="col-xl-2 border-xl-left">
 
-            <div class="narrow py-3 mt-n3 mt-xl-0 sticky-top" style="z-index: 0">
-                INSERT CATEGORIES HERE
+            <div class="py-3 mt-n3 mt-xl-0 sticky-top" style="z-index: 0">
+                <div class="fs-sm">
+                    <strong>Published on:</strong><br>
+                    October 24, 2019
+                </div>
+                <div class="mt-4">
+                    <strong>Related Data Stories</strong><br>
+                    
+                    
+                    
 
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/localtemp/">The Urban Heat Island Effect in New York City</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/aq-cooking/">Tracking changes in New York City&#39;s sources of air pollution</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/heat/">Protecting New Yorkers from extreme heat</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                </div>
+
+
+                <div class="mt-4">
+                    <strong>Related Topics</strong><br>
+                    
+                    
+                    
+
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/foodanddrink/">Food and Drink</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/">Climate and Health</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                </div>
 
             </div>
             

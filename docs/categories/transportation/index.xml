@@ -153,17 +153,6 @@ New York State sets water quality standards, and NYC monitors New York Harbor wa
     </item>
     
     <item>
-      <title>A new look for the EH Data Portal</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/newlook/</link>
-      <pubDate>Wed, 05 May 2021 08:14:38 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/newlook/</guid>
-      <description>We&amp;rsquo;ve made a few changes If you&amp;rsquo;re a regular to the Environment &amp;amp; Health Data Portal, then you may notice that we&amp;rsquo;ve made a few changes to our home page. We&amp;rsquo;ve kept most of the Portal&amp;rsquo;s functions the same, but we&amp;rsquo;ve rearranged things, and want to tell you about them.
-Before After Why&amp;rsquo;d we make these changes? Well, for a few reasons:
-To highlight our best tools and resources. We want our home page to make it clear what this site is all about, and draw attention to our top tools: our Data Explorer, Neighborhood Reports, and Data Stories.</description>
-    </item>
-    
-    <item>
       <title>Transportation and Active Design</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/transportation/</link>
       <pubDate>Wed, 05 May 2021 07:58:01 -0400</pubDate>
@@ -185,12 +174,82 @@ Although New York City&amp;rsquo;s air does not currently meet federal air quali
     </item>
     
     <item>
-      <title>Air Quality</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/airquality/</link>
+      <title>Environments matter: the road to street safety in NYC</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/streets/</link>
+      <pubDate>Sun, 20 Sep 2020 10:54:51 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/streets/</guid>
+      <description>The COVID-19 public health emergency has changed New York City in many ways - including how we get around the city. As the city continues to adapt to COVID-19, New Yorkers will look for ways to get around that feel safe - redistributing transit among different modes to ease crowding and increase safety on public transportation. As more New Yorkers use bicycles, let&#39;s take a look at safety on our streets.</description>
+    </item>
+    
+    <item>
+      <title>Air quality during COVID-19</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/aqcovid/</link>
+      <pubDate>Wed, 22 Apr 2020 08:33:22 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/aqcovid/</guid>
+      <description>What happens when NYC stays home? The COVID-19 pandemic upended the lives of all New Yorkers. The outbreak has affected many aspects of our daily life, but there are also less apparent effects, such as impacts on our environment.
+The NYC Community Air Survey uses air quality monitors to take hourly measurements of fine particulate (PM2.5) at a few sites around the city.
+Generally, locations around the city see changes in PM2.</description>
+    </item>
+    
+    <item>
+      <title>Air quality snapshots: special findings from 10 years of NYCCAS</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/aqsnapshots/</link>
+      <pubDate>Tue, 21 Apr 2020 13:37:45 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/aqsnapshots/</guid>
+      <description>Skip Nav Air quality snapshots: 10 years of NYC air quality monitoring A traffic health threat: air toxics  Noise levels that harm health  The benefits of cleaner fuel  Special monitoring for environmental justice      For 10 years, the New York City Community Air Survey (NYCCAS) has measured air quality at 100 locations around NYC. We’ve combined these measurements with data on things related to air quality - like traffic, building emissions, green space, and much more - to model seasonal air quality in every New York City neighborhood.</description>
+    </item>
+    
+    <item>
+      <title>Air quality in car-free areas</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/aqts/</link>
+      <pubDate>Mon, 25 Nov 2019 13:24:52 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/aqts/</guid>
+      <description>Does the air improve in car-free zones? People often ask us this, and it&amp;rsquo;s a great question. To answer, we turn to the NYC Community Air Survey, or NYCCAS. NYCCAS is our network of air quality monitors around the city.
+NYCCAS monitors air with nearly 100 sensors across the city  NYCCAS air quality monitor sites: Routine site, environmental justice site, retired site. We use these monitors to measure levels of six different pollutants: fine particles (PM2.</description>
+    </item>
+    
+    <item>
+      <title>What our air quality monitors tell us about NYC&#39;s neighborhoods</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/aq2/</link>
+      <pubDate>Mon, 25 Nov 2019 13:24:52 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/aq2/</guid>
+      <description>In Part 1, we looked at data from the New York City Community Air Survey (NYCCAS) - a network of about 100 air quality monitors - to see if air quality improves in areas that go car-free. And the answer is yes.
+NYCCAS tells us that more traffic means more air pollution nearby. So, even if we don&amp;rsquo;t have a nearby monitor, we can predict that an area that goes car-free (like Park Drive in Prospect Park, for example) sees an improvement in air quality.</description>
+    </item>
+    
+    <item>
+      <title>Active Design Physical Activity and Health</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/activedesign/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/airquality/</guid>
-      <description>Air Quality Neighborhood Report Landing Page.</description>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/activedesign/</guid>
+      <description>Active Design Neighborhood Report Landing Page.
+The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood&amp;rsquo;s features can also impact the safety of its residents.</description>
+    </item>
+    
+    <item>
+      <title>Asthma and the Environment</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/asthma/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/asthma/</guid>
+      <description>Asthma and the Environment Neighborhood Report Landing Page.
+Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma indicators by neighborhood. It also describes housing and neighborhood characteristics that can make asthma worse.</description>
+    </item>
+    
+    <item>
+      <title>Outdoor Air and Health</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/outdoorair/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/outdoorair/</guid>
+      <description>Outdoor Air and Health Neighborhood Report Landing Page.
+Air pollution is one of the most important environmental threats to urban populations and while all people are exposed, pollutant emissions, levels of exposure, and population vulnerability vary across neighborhoods. Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases, cancers, and premature deaths.</description>
     </item>
     
   </channel>

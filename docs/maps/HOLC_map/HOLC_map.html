@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="data/HOLCClassD_0.js"></script>
+        <script src="data/HOLCClassC_1.js"></script>
+        <script src="data/HOLCClassB_2.js"></script>
+        <script src="data/HOLCClassA_3.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:20, minZoom:10
+        })
+		var osmLayer = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+        attribution: 'Map tiles by Carto, under CC BY 3.0. Data by <a href="http://osm.org/copyright">OpenStreetMap<\/a>, under ODbL.'
+    }).addTo(map);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+        }
+        function pop_HOLCClassD_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + 'Class: ' + (feature.properties['holc_grade'] !== null ? Autolinker.link(String(feature.properties['holc_grade'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_HOLCClassD_0_0() {
+            return {
+                pane: 'pane_HOLCClassD_0',
+                opacity: .5,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: .7,
+                fillColor: 'rgba(221,34,37,1.0)',
+            }
+        }
+        map.createPane('pane_HOLCClassD_0');
+        map.getPane('pane_HOLCClassD_0').style.zIndex = 400;
+        map.getPane('pane_HOLCClassD_0').style['mix-blend-mode'] = 'normal';
+        var layer_HOLCClassD_0 = new L.geoJson(json_HOLCClassD_0, {
+            attribution: '',
+            pane: 'pane_HOLCClassD_0',
+            onEachFeature: pop_HOLCClassD_0,
+            style: style_HOLCClassD_0_0,
+        });
+        bounds_group.addLayer(layer_HOLCClassD_0);
+        map.addLayer(layer_HOLCClassD_0);
+        function pop_HOLCClassC_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + 'Class: ' + (feature.properties['holc_grade'] !== null ? Autolinker.link(String(feature.properties['holc_grade'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_HOLCClassC_1_0() {
+            return {
+                pane: 'pane_HOLCClassC_1',
+                opacity: .5,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: .7,
+                fillColor: 'rgba(255,255,191,1.0)',
+            }
+        }
+        map.createPane('pane_HOLCClassC_1');
+        map.getPane('pane_HOLCClassC_1').style.zIndex = 401;
+        map.getPane('pane_HOLCClassC_1').style['mix-blend-mode'] = 'normal';
+        var layer_HOLCClassC_1 = new L.geoJson(json_HOLCClassC_1, {
+            attribution: '',
+            pane: 'pane_HOLCClassC_1',
+            onEachFeature: pop_HOLCClassC_1,
+            style: style_HOLCClassC_1_0,
+        });
+        bounds_group.addLayer(layer_HOLCClassC_1);
+        map.addLayer(layer_HOLCClassC_1);
+        function pop_HOLCClassB_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + 'Class: ' + (feature.properties['holc_grade'] !== null ? Autolinker.link(String(feature.properties['holc_grade'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_HOLCClassB_2_0() {
+            return {
+                pane: 'pane_HOLCClassB_2',
+                opacity: .5,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: .7,
+                fillColor: 'rgba(52,96,253,1.0)',
+            }
+        }
+        map.createPane('pane_HOLCClassB_2');
+        map.getPane('pane_HOLCClassB_2').style.zIndex = 402;
+        map.getPane('pane_HOLCClassB_2').style['mix-blend-mode'] = 'normal';
+        var layer_HOLCClassB_2 = new L.geoJson(json_HOLCClassB_2, {
+            attribution: '',
+            pane: 'pane_HOLCClassB_2',
+            onEachFeature: pop_HOLCClassB_2,
+            style: style_HOLCClassB_2_0,
+        });
+        bounds_group.addLayer(layer_HOLCClassB_2);
+        map.addLayer(layer_HOLCClassB_2);
+        function pop_HOLCClassA_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + 'Class: ' + (feature.properties['holc_grade'] !== null ? Autolinker.link(String(feature.properties['holc_grade'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_HOLCClassA_3_0() {
+            return {
+                pane: 'pane_HOLCClassA_3',
+                opacity: .5,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: .7,
+                fillColor: 'rgba(9,161,12,1.0)',
+            }
+        }
+        map.createPane('pane_HOLCClassA_3');
+        map.getPane('pane_HOLCClassA_3').style.zIndex = 403;
+        map.getPane('pane_HOLCClassA_3').style['mix-blend-mode'] = 'normal';
+        var layer_HOLCClassA_3 = new L.geoJson(json_HOLCClassA_3, {
+            attribution: '',
+            pane: 'pane_HOLCClassA_3',
+            onEachFeature: pop_HOLCClassA_3,
+            style: style_HOLCClassA_3_0,
+        });
+        bounds_group.addLayer(layer_HOLCClassA_3);
+        map.addLayer(layer_HOLCClassA_3);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/HOLCClassA_3.png" /> Class A: Best': layer_HOLCClassA_3,'<img src="legend/HOLCClassB_2.png" /> Class B: Still desirable': layer_HOLCClassB_2,'<img src="legend/HOLCClassC_1.png" /> Class C: Definitely declining': layer_HOLCClassC_1,'<img src="legend/HOLCClassD_0.png" /> Class D: Hazardous': layer_HOLCClassD_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>

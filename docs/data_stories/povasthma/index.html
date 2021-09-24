@@ -229,6 +229,8 @@
 
 <link rel="stylesheet" href="https://nycehs.github.io/ehs-data-portal-frontend-temp/scss/theme.css" />
 
+
+
   </head>
   <body>
 
@@ -372,7 +374,7 @@
 
 <div class="container-fluid px-0">
 
-        <div id="datastoryheader"  style="background-image: URL(../../images/ds-povasthma.jpg)">
+        <div id="datastoryheader"  style="background-image: URL(ds-povasthma.jpg)">
 
             <div class="medium my-auto">
                 <h1 class="titleheader py-2 px-4">
@@ -384,28 +386,6 @@
         </div>
 
 </div>
-
-
-<style>
-
-    #datastoryheader {
-        width: 100%;
-        height: 400px;
-        background-size: cover;
-        display: flex;
-    }
-
-    .titleheader {    
-    color: #fff;
-    text-align: center;
-    font-size: 3em;
-    background-color: rgba(132,132,132,0.5);
-    padding-top: 75px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    }
-</style>
-
 
 <article class="container-fluid" id="skip-header-target">
 
@@ -425,29 +405,37 @@
 
             <div class="narrow my-2">
 
-                <h3 id="poverty-can-affect-how-you-breathe">Poverty can affect how you breathe</h3>
-<p>Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.</p>
+                <p>Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.</p>
 <p>To understand the connection between poverty and asthma, take a look at this map of poverty rates in New York City, below. The darker the color, the more residents living in poverty.</p>
 
-
-<iframe title="Poverty in New York City" aria-label="USA new york city neighborhoods (ntas) choropleth map" id="datawrapper-chart-s32oq" src="https://datawrapper.dwcdn.net/s32oq/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important;" height="600"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var t in a.data["datawrapper-height"]){var e=document.getElementById("datawrapper-chart-"+t);e&&(e.style.height=a.data["datawrapper-height"][t]+"px")}})}();</script>
-
-
+</div>
+<div class="wide my-4">
+<iframe title="Poverty in New York City" aria-label="Interactive chart" id="datawrapper-chart-O0SUA" src="//datawrapper.dwcdn.net/s32oq/3/" scrolling="no" frameborder="0"
+style="width: 0; min-width: 100% !important; border: none;" height="600"></iframe> <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+</script>
+</div>
+<div class="narrow">
 <p>Now, compare that to a map of emergency department visits for asthma in children age 5 to 17, below. The darker the color, the higher the rate of children visiting the emergency department with asthma.</p>
 
-
-<iframe id="datawrapper-chart-5S8mf" src="https://datawrapper.dwcdn.net/5S8mf/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important;" height="600"></iframe><script type="text/javascript">if("undefined"==typeof window.datawrapper)window.datawrapper={};window.datawrapper["5S8mf"]={},window.datawrapper["5S8mf"].iframe=document.getElementById("datawrapper-chart-5S8mf"),window.addEventListener("message",function(a){if("undefined"!=typeof a.data["datawrapper-height"])for(var b in a.data["datawrapper-height"])if("5S8mf"==b)window.datawrapper["5S8mf"].iframe.style.height=a.data["datawrapper-height"][b]+"px"});</script>
-
-
+</div>
+<div class="wide my-4">
+<iframe title="Child asthma in NYC" aria-label="Interactive chart" id="datawrapper-chart-O0SUA" src="//datawrapper.dwcdn.net/5S8mf/4/" scrolling="no" frameborder="0"
+style="width: 0; min-width: 100% !important; border: none;" height="600"></iframe> <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+</script>
+</div>
+<div class="narrow">
 <p>The similarities are clear. Throughout the city, neighborhoods with higher rates of poverty also experience higher rates of childhood asthma, which we can see from the rates of emergency department visits.</p>
 <h3 id="they-look-connected-are-they">They look connected. Are they?</h3>
 <p>We can look at the connections between these two maps, of poverty and asthma, with a scatter plot.</p>
 <p>On the scatter plot below, each dot represents one neighborhood. Its horizontal position represents the neighborhood&rsquo;s poverty rate, and its vertical position represents its asthma rate. The pattern of dots, roughly grouped around an ascending line, shows a connection between poverty and asthma: the higher the poverty rate, the higher the asthma rate.</p>
 
-
-<iframe id="datawrapper-chart-YiBqa" src="https://datawrapper.dwcdn.net/YiBqa/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important;" height="409"></iframe><script type="text/javascript">if("undefined"==typeof window.datawrapper)window.datawrapper={};window.datawrapper["YiBqa"]={},window.datawrapper["YiBqa"].iframe=document.getElementById("datawrapper-chart-YiBqa"),window.addEventListener("message",function(a){if("undefined"!=typeof a.data["datawrapper-height"])for(var b in a.data["datawrapper-height"])if("YiBqa"==b)window.datawrapper["YiBqa"].iframe.style.height=a.data["datawrapper-height"][b]+"px"});</script>
-
-
+</div>
+<div class="wide my-4">
+<iframe title="The correlation between poverty and asthma" aria-label="Interactive chart" id="datawrapper-chart-O0SUA" src="//datawrapper.dwcdn.net/YiBqa/2/" scrolling="no" frameborder="0"
+style="width: 0; min-width: 100% !important; border: none;" height="409"></iframe> <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+</script>
+</div>
+<div class="narrow">
 <h3 id="why-does-this-connection-exist">Why does this connection exist?</h3>
 <p>The connection between poverty and asthma is due to a variety of factors, including:</p>
 <ul>
@@ -499,9 +487,305 @@
         
         <div class="col-xl-2 border-xl-left">
 
-            <div class="narrow py-3 mt-n3 mt-xl-0 sticky-top" style="z-index: 0">
-                INSERT CATEGORIES HERE
+            <div class="py-3 mt-n3 mt-xl-0 sticky-top" style="z-index: 0">
+                <div class="fs-sm">
+                    <strong>Published on:</strong><br>
+                    October 24, 2019
+                </div>
+                <div class="mt-4">
+                    <strong>Related Data Stories</strong><br>
+                    
+                    
+                    
 
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/violence/">Why violence is a public health issue</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/redlining/">A brief history of redlining</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/housing/">Health, housing, and history</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/heat/">Protecting New Yorkers from extreme heat</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/assaults/">Disparities in violence</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                </div>
+
+
+                <div class="mt-4">
+                    <strong>Related Topics</strong><br>
+                    
+                    
+                    
+
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/childhealth/">Child Health</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/social/">Social and Economic Conditions</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                    
+                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/housing/">Housing</a>
+                    <hr class="my-1">
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                    
+                    
+
+                    
+                    
+
+                    
+                     
+                    
+                </div>
 
             </div>
             
