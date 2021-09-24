@@ -1,6 +1,6 @@
 ---
 title: "Why asthma is a social justice issue"
-date: 2021-04-13T12:44:43-04:00
+date: 2019-10-24T08:18:56-04:00
 draft: false
 tags:
 categories: ["housing","social","childhealth"]

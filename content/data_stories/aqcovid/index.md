@@ -1,6 +1,6 @@
 ---
 title: "Air quality during COVID-19"
-date: 2021-07-19T08:33:22-04:00
+date: 2020-04-22T08:33:22-04:00
 draft: false
 tags: 
 categories: ["transportation","airquality"]

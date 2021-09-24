@@ -1,11 +1,11 @@
 ---
 title: "What hot weather means for food safety"
-date: 2021-07-19T08:09:14-04:00
+date: 2019-10-24T08:18:56-04:00
 draft: false
 tags:
 categories: ["foodanddrink","climatehealth"]
 keywords: ["foodborne illness","food poisoning","restaurant","restaurants","inspections","heat","hot weater","grades","eating"]
-image: ds-food.jpg
+image: ds-food.JPG
 menu:
     main:
         identifier: '02'

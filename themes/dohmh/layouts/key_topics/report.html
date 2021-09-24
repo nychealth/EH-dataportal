@@ -1,0 +1,47 @@
+{{ define "main" }}
+
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-4 pl-0">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/key_topics/">Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href="..">
+                        {{ with .Parent}} {{ .Title }} </a></li>{{ end }}
+                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col-md-2 mr-auto"></div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 col-sm-12 mx-auto">
+                <h2><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
+                    {{ .Title }}</h2>
+        
+                {{ .Content}}
+    
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+</article>
+
+
+
+
+
+{{end}}

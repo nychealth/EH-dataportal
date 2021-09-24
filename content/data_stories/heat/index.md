@@ -1,9 +1,9 @@
 ---
 title: "Protecting New Yorkers from extreme heat"
-date: 2021-07-19T08:33:22-04:00
+date: 2020-09-09T08:33:22-04:00
 draft: false
 tags: 
-categories: ["climateandhealth","social"]
+categories: ["climatehealth","social"]
 keywords: ["climate","heat","weather","mortality","death","climate change","air conditioner", "air conditioning"]
 image: ds-heat.jpg
 menu:

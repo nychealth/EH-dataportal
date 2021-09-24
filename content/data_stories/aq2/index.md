@@ -1,6 +1,6 @@
 ---
 title: "What our air quality monitors tell us about NYC's neighborhoods"
-date: 2021-08-26T13:24:52-04:00
+date: 2019-11-25T13:24:52-04:00
 draft: false
 tags: 
 categories: ["transportation","airquality"]
