@@ -10,9 +10,12 @@
         <p>Browse topics to get to data sets on important environment and health topics for NYC. View maps, charts, and
             disparities, and more.</p>
 
+        <p><strong>Note</strong>: some of these links will take you to datasets displayed on the old version of the EH Data Portal. To return here, just hit the back button.</p>
+
 
         <div class="row">
             <div class="col-6 mx-auto">
+
                 <form class="autocomplete-form">
                     <div class="row no-gutters">
                     <label for="all-data" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">Search data</label>
@@ -24,10 +27,11 @@
                         </div>
                     </div>
                     <div class="col-3">
-                        <button type="submit" class="btn-primary btn btn-block" style="height:39px;">Search</button> 
+                        <button type="submit" class="btn-primary btn btn-block" style="height:39px;">Get data</button> 
                     </div>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
@@ -54,7 +58,7 @@
             option.innerHTML = {{ .Title}}
 
             // set the option value
-            option.value = {{ .URL }}
+            option.value = '{{ .Site.Params.devpath}}/{{ .URL }}'
 
             //Add the Option element to DropDownList.
             ddlData.options.add(option);
@@ -84,10 +88,10 @@
             });
 
 
-    var dataSearchForm = document.getElementById('all-data')
+    var dataSearchForm = document.getElementById('all-data-select')
     document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
         e.preventDefault(); // prevent page re-load
-        console.log(dataSearchForm.value)
+        window.location.assign(dataSearchForm.options[dataSearchForm.selectedIndex].value)
       });
 
 
