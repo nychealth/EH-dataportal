@@ -8,50 +8,76 @@
     </div>
 
         <div class="row my-4">
-            <div class="col-md-8">
 
                 {{ range .RegularPages }}
-                <a class="h2 fs-lg" href="{{ .URL}}">{{ .Title }}</a>
+                <div class="col-md-4">
+
+                <a class="h2 fs-md" href="{{ .URL}}">{{ .Title }}</a>
                 <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                <p class="text-right"><a href="{{ .URL}}">Read more...</a></p>
+                <p class="text-right fs-sm"><a href="{{ .URL}}">Read more...</a></p>
                 <hr class="mb-3">
-                
+                </div>
                 {{end}}
+        </div>
 
+
+        <div class="row mt-4">
+            <div class="col-md-10 mx-auto">
+                <h2>Infographics</h2>
             </div>
-
-            <div class="col-md-4">
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-6">
                 <div class="card content-card mb-4">
                     <div class="card-content">
                         <div class="card-body">
-                            <h2 class="card-title">Infographics</h2>
-                            <p><a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Cold/index.html">Cold Weather Safety</a></p>
-                            <hr style="margin-bottom:5px">
-                            <p><a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Heat/index.html">Extreme Heat Safety Quiz</a>
-                            </p>
-                            <hr style="margin-bottom:5px">
-                            <p><a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/asthma/index.html">Asthma & Housing
-                                    Infographic</a></p>
-                            <hr style="margin-bottom:5px">
-                            <p><a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Traffic/index.html">Health Impacts of Traffic
-                                    Air
-                                    Pollution</a></p>
+                            <h3 class="card-title">Cold Weather Safety</h3>
+                            <p>Winter weather can be dangerous. <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Cold/index.html">Here's how to stay safe and be prepared, inside and outside</a>.</p>    
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="col-md-6">
+                <div class="card content-card mb-4">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <h3 class="card-title">Extreme Heat Safety Quiz</h3>
+                            <p>As our climate changes, we can expect hotter, longer and more frequent heat waves. <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Heat/index.html">Test your knowledge here</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card content-card mb-4">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <h3 class="card-title">Asthma and Housing</h3>
+                            <p>Housing conditions are a common trigger for asthma. <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/asthma/index.html">Learn more with the Asthma and Housing infographic</a>.</p>
+
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card content-card mb-4">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <h3 class="card-title">Health Impacts of Traffic Air Pollution</h3>
+
+                            <p>PM2.5 is one of the most harmful air pollutants. <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Traffic/index.html">The health impacts of traffic
+                                    air
+                                    pollution are highest in poorer neighborhoods</a>.</p>
+    
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
-
 </article>
 
 {{end}}
