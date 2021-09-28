@@ -9,7 +9,6 @@ keywords:
 menu:
     main:
         identifier: '05'
-layout: single
 ---
 
 Physical inactivity and unhealthy diet rank among the leading risk factors for premature death in the United States. Active design, however, promotes health by using architectural and urban design strategies to encourage walking, bicycling, stair climbing, transit use, active recreation, and healthy eating.
