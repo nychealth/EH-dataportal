@@ -9,7 +9,6 @@ keywords:
 menu:
     main:
         identifier: '05'
-layout: single
 ---
 
 Pests and pesticides can both have health effects. Household pests like mice, rats, and cockroaches can trigger asthma, while bed bugs are a well-known nuisance. Meanwhile, warmer winters may mean more vector-borne diseases like babesiosis and west nile virus.

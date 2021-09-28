@@ -9,7 +9,6 @@ keywords:
 menu:
     main:
         identifier: '05'
-layout: single
 ---
 
 New York City's air contains particles, drops of liquid, gasses, and other pollution that can affect health. Bad air quality can be particularly dangerous for older adults, children, and people with heart or lung conditions.

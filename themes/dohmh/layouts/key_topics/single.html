@@ -95,7 +95,7 @@
         <div class="col-md-3 mr-auto text-right">
             <h4>Other Key Topics</h4>
             <hr>
-            {{ range where (where .Site.Pages "Section" "key_topics") ".File.BaseFileName" "_index" }}
+            {{ range where (where .Site.Pages "Section" "key_topics") ".File.BaseFileName" "index" }}
            <p class="my-2"><a href="{{ .URL}}">{{ .Title }}</a></p>
             {{ end}}
             
