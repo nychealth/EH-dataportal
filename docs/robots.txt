@@ -6,33 +6,19 @@ Disallow: /
 
 Disallow: /key_topics/
 
-Disallow: /categories/airquality/
+Disallow: /data_stories/
 
 Disallow: /categories/
 
 Disallow: /categories/climatehealth/
-
-Disallow: /key_topics/climatehealth/heat-report/
-
-Disallow: /key_topics/airquality/nyccas/
-
-Disallow: /data_stories/
-
-Disallow: /key_topics/climatehealth/syndromic/
-
-Disallow: /categories/housing/
-
-Disallow: /key_topics/climatehealth/hvi/
-
-Disallow: /categories/social/
-
-Disallow: /key_topics/airquality/aqe/
 
 Disallow: /data_stories/localtemp/
 
 Disallow: /data_explorer/active-design/
 
 Disallow: /data_explorer/air-quality/
+
+Disallow: /categories/airquality/
 
 Disallow: /data_explorer/alcohol-access/
 
@@ -94,6 +80,8 @@ Disallow: /data_explorer/heart-attacks/
 
 Disallow: /data_explorer/housing/
 
+Disallow: /categories/housing/
+
 Disallow: /data_explorer/housing-and-neighborhoods/
 
 Disallow: /data_explorer/large-city-air-quality-comparison/
@@ -127,6 +115,8 @@ Disallow: /data_explorer/population-characteristics/
 Disallow: /data_explorer/race-and-ethnicity/
 
 Disallow: /data_explorer/restaurant-food-safety/
+
+Disallow: /categories/social/
 
 Disallow: /data_explorer/social-and-economic-conditions/
 
@@ -189,6 +179,8 @@ Disallow: /data_stories/housing/
 Disallow: /data_stories/streets/
 
 Disallow: /data_stories/heat/
+
+Disallow: /categories/internal/
 
 Disallow: /data_stories/geographies/
 
