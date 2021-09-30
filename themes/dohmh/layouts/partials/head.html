@@ -31,3 +31,8 @@
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 {{ end }}
+
+<!-- Analytics placeholder -->
+{{ if eq (getenv "HUGO_ENV") "production" }} 
+<!--insert Analytics code here-->
+{{ end }} 
