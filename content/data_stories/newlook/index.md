@@ -3,7 +3,7 @@ title: "A new look for the EH Data Portal"
 date: 2019-10-24T08:18:56-04:00
 draft: false
 tags: 
-categories: []
+categories: ["internal"]
 keywords: ["how we work","civic service design","design","technology"]
 image: ds-newlook.jpg
 menu:

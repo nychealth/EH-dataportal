@@ -4,80 +4,182 @@
 
     <div class="col-md-10 mx-auto mt-4">
         <h1><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>Data Stories</h1>
-        <p>Explainers and infographics on key health and environment topics.</p>
+        <p>Explainers and infographics on key health and environment topics. View content about:</p>
+        <a onclick="changeStories(`all`)"><span id="allbtn" class="badge badge-pill badge-light py-1 storybadge activebadge">All topics</span></a>
+        <a onclick="changeStories(`airquality`)"><span id="airqualitybtn" class="badge badge-pill badge-light py-1 storybadge">Air quality</span></a>
+        <a onclick="changeStories(`transportation`)"><span id="transportationbtn" class="badge badge-pill badge-light py-1 storybadge">Transportation</span></a>
+        <a onclick="changeStories(`justice`)"><span id="justicebtn" class="badge badge-pill badge-light py-1 storybadge">Social justice</span></a>
+        <a onclick="changeStories(`climate`)"><span id="climatebtn" class="badge badge-pill badge-light py-1 storybadge">Climate and health</span></a>
+        <a onclick="changeStories(`housing`)"><span id="housingbtn" class="badge badge-pill badge-light py-1 storybadge">Housing</span></a>
+        <a onclick="changeStories(`food`)"><span id="foodbtn" class="badge badge-pill badge-light py-1 storybadge">Food and drink</span></a>
+        <a onclick="changeStories(`internal`)"><span id="internalbtn" class="badge badge-pill badge-light py-1 storybadge">How we work</span></a>
+        <a onclick="changeStories(`infographics`)"><span id="infographicsbtn" class="badge badge-pill badge-light py-1 storybadge">Infographics</span></a>
+
     </div>
 
-        <div class="row my-4">
+        <div class="row my-4 show storybin" id="all">
 
-                {{ range .RegularPages }}
+            {{ range .RegularPages }}
+            <div class="col-md-4">
+                <a class="h2 fs-md" href="{{ .URL}}">{{ .Title }}</a>
+                <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
+                <p class="text-right fs-sm"><a href="{{ .URL}}">Read more...</a></p>
+            <hr class="mb-3">
+            </div>
+            {{end}}
+        </div>
+
+        <div class="row my-4 hide storybin" id="airquality">
+            {{ range where .RegularPages "Params.categories" "intersect" (slice "airquality") }}
                 <div class="col-md-4">
-
                 <a class="h2 fs-md" href="{{ .URL}}">{{ .Title }}</a>
                 <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
                 <p class="text-right fs-sm"><a href="{{ .URL}}">Read more...</a></p>
                 <hr class="mb-3">
                 </div>
-                {{end}}
+            {{end}}
         </div>
 
-
-        <div class="row mt-4">
-            <div class="col-md-10 mx-auto">
-                <h2>Infographics</h2>
+        <div class="row my-4 hide storybin" id="transportation">
+            {{ range where .RegularPages "Params.categories" "intersect" (slice "transportation") }}
+            <div class="col-md-4">
+            <a class="h2 fs-md" href="{{ .URL}}">{{ .Title }}</a>
+            <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
+            <p class="text-right fs-sm"><a href="{{ .URL}}">Read more...</a></p>
+            <hr class="mb-3">
             </div>
+        {{end}}
         </div>
-        <div class="row mt-2">
-            <div class="col-md-6">
-                <div class="card content-card mb-4">
-                    <div class="card-content">
-                        <div class="card-body">
-                            <h3 class="card-title">Cold Weather Safety</h3>
-                            <p>Winter weather can be dangerous. <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Cold/index.html">Here's how to stay safe and be prepared, inside and outside</a>.</p>    
+
+        <div class="row my-4 hide storybin" id="justice">
+            {{ range where .RegularPages "Params.categories" "intersect" (slice "social") }}
+            <div class="col-md-4">
+            <a class="h2 fs-md" href="{{ .URL}}">{{ .Title }}</a>
+            <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
+            <p class="text-right fs-sm"><a href="{{ .URL}}">Read more...</a></p>
+            <hr class="mb-3">
+            </div>
+        {{end}}
+        </div>
+
+        <div class="row my-4 hide storybin" id="climate">
+            {{ range where .RegularPages "Params.categories" "intersect" (slice "climatehealth") }}
+            <div class="col-md-4">
+            <a class="h2 fs-md" href="{{ .URL}}">{{ .Title }}</a>
+            <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
+            <p class="text-right fs-sm"><a href="{{ .URL}}">Read more...</a></p>
+            <hr class="mb-3">
+            </div>
+        {{end}}
+        </div>
+
+        <div class="row my-4 hide storybin" id="housing">
+            {{ range where .RegularPages "Params.categories" "intersect" (slice "housing") }}
+            <div class="col-md-4">
+            <a class="h2 fs-md" href="{{ .URL}}">{{ .Title }}</a>
+            <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
+            <p class="text-right fs-sm"><a href="{{ .URL}}">Read more...</a></p>
+            <hr class="mb-3">
+            </div>
+        {{end}}
+        </div>
+
+        <div class="row my-4 hide storybin" id="food">
+            {{ range where .RegularPages "Params.categories" "intersect" (slice "foodanddrink") }}
+            <div class="col-md-4">
+            <a class="h2 fs-md" href="{{ .URL}}">{{ .Title }}</a>
+            <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
+            <p class="text-right fs-sm"><a href="{{ .URL}}">Read more...</a></p>
+            <hr class="mb-3">
+            </div>
+        {{end}}
+        </div>
+
+        <div class="row my-4 hide storybin" id="internal">
+            {{ range where .RegularPages "Params.categories" "intersect" (slice "internal") }}
+            <div class="col-md-4">
+            <a class="h2 fs-md" href="{{ .URL}}">{{ .Title }}</a>
+            <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
+            <p class="text-right fs-sm"><a href="{{ .URL}}">Read more...</a></p>
+            <hr class="mb-3">
+            </div>
+        {{end}}
+        </div>
+
+        <div class="row my-4 hide storybin" id="infographics">
+                <div class="col-md-6">
+                    <div class="card content-card mb-4">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <h3 class="card-title">Cold Weather Safety</h3>
+                                <p>Winter weather can be dangerous. <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Cold/index.html">Here's how to stay safe and be prepared, inside and outside</a>.</p>    
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="card content-card mb-4">
-                    <div class="card-content">
-                        <div class="card-body">
-                            <h3 class="card-title">Extreme Heat Safety Quiz</h3>
-                            <p>As our climate changes, we can expect hotter, longer and more frequent heat waves. <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Heat/index.html">Test your knowledge here</a>.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="card content-card mb-4">
-                    <div class="card-content">
-                        <div class="card-body">
-                            <h3 class="card-title">Asthma and Housing</h3>
-                            <p>Housing conditions are a common trigger for asthma. <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/asthma/index.html">Learn more with the Asthma and Housing infographic</a>.</p>
-
     
+                <div class="col-md-6">
+                    <div class="card content-card mb-4">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <h3 class="card-title">Extreme Heat Safety Quiz</h3>
+                                <p>As our climate changes, we can expect hotter, longer and more frequent heat waves. <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Heat/index.html">Test your knowledge here</a>.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="card content-card mb-4">
-                    <div class="card-content">
-                        <div class="card-body">
-                            <h3 class="card-title">Health Impacts of Traffic Air Pollution</h3>
-
-                            <p>PM2.5 is one of the most harmful air pollutants. <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Traffic/index.html">The health impacts of traffic
-                                    air
-                                    pollution are highest in poorer neighborhoods</a>.</p>
     
+                <div class="col-md-6">
+                    <div class="card content-card mb-4">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <h3 class="card-title">Asthma and Housing</h3>
+                                <p>Housing conditions are a common trigger for asthma. <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/asthma/index.html">Learn more with the Asthma and Housing infographic</a>.</p>
+    
+        
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+    
+                <div class="col-md-6">
+                    <div class="card content-card mb-4">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <h3 class="card-title">Health Impacts of Traffic Air Pollution</h3>
+    
+                                <p>PM2.5 is one of the most harmful air pollutants. <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Traffic/index.html">The health impacts of traffic
+                                        air
+                                        pollution are highest in poorer neighborhoods</a>.</p>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
+        
+
+        <hr class="my-4 portalhr">
+
+        <script>
+            function changeStories(x) {
+                var buttons = document.querySelectorAll('.badge-pill')
+                buttons.forEach(i => i.classList.remove('activebadge'));
+                buttons.forEach(i => i.removeAttribute("aria-selected"))
+
+                document.querySelectorAll('.storybin').forEach(i => i.classList.add('hide'))
+
+                document.getElementById(x).classList.remove('hide')
+                var btn = x+"btn";
+                document.getElementById(btn).classList.add('activebadge')
+                document.getElementById(btn).setAttribute("aria-selected", "true")
+            }
+        </script>
+
+
+
+
 </article>
 
 {{end}}
