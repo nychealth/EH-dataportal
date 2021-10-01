@@ -611,3 +611,13 @@ height: 200px;}
         padding-top: 5px;
         padding-bottom: 5px;
     }
+
+
+// for topic-selectors on neighborhood reports landing
+    .tab-container {
+		display: none;
+	  }
+	  
+	  .tab-container.open {
+		display: block;
+	  }
