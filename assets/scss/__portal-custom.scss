@@ -613,6 +613,15 @@ height: 200px;}
     }
 
 
+// for topic-selectors on neighborhood reports landing
+    .tab-container {
+		display: none;
+	  }
+	  
+	  .tab-container.open {
+		display: block;
+	  }
+
     .badge-light:hover {
         background-color: #dfe0e1;
     }
@@ -632,3 +641,4 @@ height: 200px;}
         margin-top: 5px;
         margin-bottom: 5px;
     }
+
