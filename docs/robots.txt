@@ -204,8 +204,6 @@ Disallow: /data_stories/food/
 
 Disallow: /data_stories/povasthma/
 
-Disallow: /neighborhood_reports/activedesign/
-
 Disallow: /neighborhood_reports/bayside_little_neck/active_design_physical_activity_and_health/
 
 Disallow: /neighborhood_reports/bedford_stuyvesant_crown_heights/active_design_physical_activity_and_health/
@@ -289,6 +287,8 @@ Disallow: /neighborhood_reports/west_queens/active_design_physical_activity_and_
 Disallow: /neighborhood_reports/williamsburg_bushwick/active_design_physical_activity_and_health/
 
 Disallow: /neighborhood_reports/willowbrook/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/activedesign/
 
 Disallow: /neighborhood_reports/asthma/
 

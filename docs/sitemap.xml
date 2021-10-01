@@ -305,8 +305,6 @@
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/povasthma/</loc>
     <lastmod>2019-10-24T08:18:56-04:00</lastmod>
   </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/activedesign/</loc>
-  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bayside_little_neck/active_design_physical_activity_and_health/</loc>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bedford_stuyvesant_crown_heights/active_design_physical_activity_and_health/</loc>
@@ -390,6 +388,8 @@
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/williamsburg_bushwick/active_design_physical_activity_and_health/</loc>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/willowbrook/active_design_physical_activity_and_health/</loc>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/activedesign/</loc>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/asthma/</loc>
   </url><url>
