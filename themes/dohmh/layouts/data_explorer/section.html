@@ -10,22 +10,102 @@
         <p>Browse topics to get to data sets on important environment and health topics for NYC. View maps, charts, and
             disparities, and more.</p>
 
-        <div class="row">
+        <p><strong>Note</strong>: some of these links will take you to datasets displayed on the old version of the EH Data Portal. To return here, just hit the back button.</p>
 
+
+        <div class="row">
+            <div class="col-6 mx-auto">
+
+                <form class="autocomplete-form">
+                    <div class="row no-gutters">
+                    <label for="all-data" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">Search data</label>
+                    <div class="col-9">
+                        <div class="autocomplete-wrapper" width="100%">
+                        <select name="all-data" id="all-data">
+                            <option value="">Search data</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" class="btn-primary btn btn-block" style="height:39px;">Get data</button> 
+                    </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+        <div class="row mt-4">
+            <div class="col">
+                <h3>All data topics:</h3>
+            </div>
+        </div>
+        <div class="row">
             {{ range .Pages }}
             <div class="col-md-6">
                 <p><a href="{{ .URL}}">{{ .Title}}</a></p>
             </div>
-
-
             {{end}}
-
-
-
-
         </div>
+
+
     </div>
 
 </article>
+
+{{ $js := resources.Get "js/accessible-autocomplete.min.js" }}
+{{ $secureJS := $js }}
+<script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+
+{{ $js := resources.Get "js/accessible-autocomplete.min.js.map" }}
+
+<script type="text/javascript"> 
+    // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
+    function populateDropDownList() {          
+           var ddlData = document.getElementById("all-data");
+          {{ range .Pages }} // range through data_explorer pages
+            var option = document.createElement("OPTION");
+            //Set Neighborhood Name in Text part.
+            option.innerHTML = {{ .Title}}
+            // set the option value - this adds the environment variable to give it the base URL.
+            option.value = '{{ .Site.Params.devpath}}/{{ .URL }}'
+            //Add the Option element to DropDownList.
+            ddlData.options.add(option);
+                    {{ range .Params.indicators}} // also range through data_explorer pages' indicators (in .md frontmatter)
+                        var option = document.createElement("OPTION");
+                        //Set Neighborhood Name in Text part.
+                        option.innerHTML = {{ .name}}
+                        // set the option value
+                        option.value = {{ .URL}}
+                        //Add the Option element to DropDownList.
+                        ddlData.options.add(option);
+                    {{end}}
+          {{ end}}
+       };
+
+       populateDropDownList(); // runs the function above.
+
+       // this handles AA highlighting.
+       var selectEl = document.querySelector('#all-data')
+        accessibleAutocomplete.enhanceSelectElement({
+        autoselect: true,
+        confirmOnBlur: true,
+        defaultValue: "",
+        minLength: 2,
+        selectElement: selectEl
+            });
+
+
+    // this takes the AA form and on submit, sends page to a new location.
+    var dataSearchForm = document.getElementById('all-data-select') // this isn't all-data, but all-data-select because of changes applied by the AA JS.
+    document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
+        e.preventDefault(); // prevent page re-load
+        window.location.assign(dataSearchForm.options[dataSearchForm.selectedIndex].value)
+      });
+
+
+
+   </script>
 
 {{end}}
