@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Data_explorers on Environment &amp; Health Data Portal</title>
+    <title>Data Explorer on Environment &amp; Health Data Portal</title>
     <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/</link>
-    <description>Recent content in Data_explorers on Environment &amp; Health Data Portal</description>
+    <description>Recent content in Data Explorer on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 May 2021 18:02:58 +0000</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Sep 2021 08:22:51 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Active Design</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/active-design/</link>
@@ -47,16 +47,6 @@ This site provides data on heavy alcohol consumption and alcohol outlets in NYC.
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/alcohol-use/</guid>
       <description>Alcohol Use About Alcohol Heavy regular drinking and binge drinking contribute to a wide range of chronic health problems, including heart disease, diabetes, cancer, stroke, cirrhosis, depression and dementia. Alcohol use is also associated with suicide, homicide, domestic violence, sexually transmitted diseases and injuries. It is one of the leading behavior-related causes of death in New York City (NYC).
 This site provides data on heavy alcohol consumption and alcohol outlets in NYC.</description>
-    </item>
-    
-    <item>
-      <title>Asthma</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</guid>
-      <description>Asthma About Asthma Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.
-Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</description>
     </item>
     
     <item>
@@ -605,17 +595,6 @@ Data on work-related injuries and illness are used to show how often these preve
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma_mm/</guid>
       <description>Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.
 Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</description>
-    </item>
-    
-    <item>
-      <title>Air quality</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/airquality_mm/</link>
-      <pubDate>Wed, 14 Apr 2021 13:03:17 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/airquality_mm/</guid>
-      <description>Air quality is a measure of the condition of the air around us. The less air pollution there is, the better the air quality.
-Like many cities, New York City&amp;rsquo;s air contains particles, liquid droplets, gases, and other contaminants that could impact health. Two pollutants, particulate matter and ground-level ozone, are of particular health concern.
-Although New York City&amp;rsquo;s air does not currently meet federal air quality standards, it has improved significantly over the past two decades.</description>
     </item>
     
   </channel>
