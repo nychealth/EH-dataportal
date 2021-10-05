@@ -2830,15 +2830,19 @@
      selectElement: selectEl
    })
 
-   var reportExt = '';
+
+
+   var thisURL = window.location.pathname.split('/')
+   var reportExt = thisURL[4];
    
+
 
   
   var searchForm = document.getElementById('last-neighborhood-select') 
   document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
   e.preventDefault(); 
   var locVal = searchForm.options[searchForm.selectedIndex].value;
-  window.location = '\/ehs-data-portal-frontend-temp/neighborhood_reports/'+ locVal + reportExt;
+  window.location = '\/ehs-data-portal-frontend-temp/neighborhood_reports/'+ locVal + "/" + reportExt;
   });
 
 
