@@ -37,8 +37,8 @@
 <meta name="twitter:creator" content="@nycHealthy">
 <script>
     
-  const indicatorDataPath = "/visualizations/csv/"; 
-  const indicatorMapPath = "/visualizations/json/"; 
+  const indicatorDataPath = "\/ehs-data-portal-frontend-temp/visualizations/csv/"; 
+  const indicatorMapPath = "\/ehs-data-portal-frontend-temp/visualizations/json/"; 
   
   
   var summarySpec = {
@@ -293,7 +293,7 @@
 
     </div>
     
-    <div class="site-header bg-primary" style="background-image: url(/images/header_background.jpg)">
+    <div class="site-header bg-primary" style="background-image: url(/ehs-data-portal-frontend-temp/images/header_background.jpg)">
         <div class="wrap-header">
 
             <div class="container-fluid wide">
@@ -468,16 +468,49 @@
 
 <article class="container overflow-hidden" id="primary-content">
 
-  <div class="my-5">
-    <div class="narrow my-4">
-      <h1>Neighborhood Reports</h1>
+  <div class="col-md-10 mx-auto mt-4">
+    <h1><i class="fas fa-map-marked-alt" aria-hidden="true" style="margin-right: 10px"></i>Neighborhood Reports</h1>
+    <p><p>What affects health in your neighborhood, and how does it compare with other parts of the city?</p>
+</p>
+  </div>
 
-      <p>What affects health in your neighborhood, and how does it compare with other parts of the city?</p>
+  <div class="row my-4">
+    <div class="col-md-6">
+      <h3>1. Choose report</h3>
+      <select class="form-control form-control-lg" id="report" name="report" required size="5" style="overflow-y:hidden;">
+          <option value="Asthma" class="topic-list-option" id="AsthmaOption">Asthma and the environment</option>
+          <option value="Climate" class="topic-list-option" id="ClimateOption">Climate and health</option>
+          <option value="Housing" class="topic-list-option" id="HousingOption">Housing and health</option>
+          <option value="Outdoor" class="topic-list-option" id="OutdoorOption">Outdoor air and health</option>
+          <option value="Active" class="topic-list-option" id="ActiveOption">Active design, physical activity, and health</option>
 
+      </select>
+    <br>
+
+    <style>
+      .selectedOption {
+      font-weight: bold;
+    }
+    </style>
+
+      <div id="Asthma" class="tab-container"> <h4>Asthma and the environment</h4>
+          <p>Asthma is a leading cause of hospitalizations for children. It can be made worse by housing and neighborhood characteristics. There are powerful inequities that drive racial disparities in asthma in NYC.</p></div>
+      <div id="Climate" class="tab-container"> <h4>Climate and health</h4>
+          <p>As the climate changes, we track New York City's risk for extreme heat, storms and flooding, and episodes of elevated ozone. These have important public health impacts: already, heat kills more people than all other natural disasters.</p></div>
+      <div id="Housing" class="tab-container"> <h4>Housing and health</h4>
+          <p>Housing conditions can drive health outcomes like asthma, lead poisoning, and carbon monoxide poisoning. We track housing neighborhood characteristics that can put people at risk - and special populations that are vulnernerable.</p></div>
+      <div id="Outdoor" class="tab-container">  <h4>Outdoor air and health</h4>
+          <p>Air pollution is one of the most important environmental threats to people who live in urban areas. Exposures are linked to respiratory and heart diseases, cancers, and premature deaths. Meanwhile, emissions, levels of exposure, and population vulnerability vary across neighborhoods. </p></div>
+      <div id="Active" class="tab-container"> <h4>Active design, physical activity, and health</h4>
+          <p>The design and condition of buildings, streets, public transportation, and parks influence how much physical activity people get, how much they use active transportation, and how much other healthy behavior they do. A neighborhood built environment can also affect the safety of its residents. </p></div>
+    </div>
+
+    <div class="col-md-6">
+      <h3>2. Choose Neighborhood</h3>
       <div class="bg-active p-2 p-md-4 mb-4">
         <form action="../neighborhood_reports" method="get" class="autocomplete-form">
           <div class="row no-gutters">
-            <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-3">What NYC neighborhood are you interested in?</label>
+            <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">What NYC neighborhood are you interested in?</label>
             <div class="col-8">
               <div class="autocomplete-wrapper">
                 <select name="last-neighborhood" id="last-neighborhood">
@@ -486,11 +519,22 @@
               </div>
             </div>
             <div class="col-4">
-              <button type="submit" class="btn-primary btn btn-block">Get Report</button> 
+              <button type="submit" class="btn-primary btn btn-block">3. Get Report!</button> 
             </div>
           </div>
         </form>
       </div>
+
+      <div id="warning" class="py-2 px-2" style="background: #f1f1f1; display:none;">
+        <h4><i class="fas fa-exclamation-triangle" aria-hidden="true" style="color:purple;"></i></h4>
+        <strong style="color:purple;"><i class="fas fa-arrow-circle-left mr-2" aria-hidden="true"></i>You must choose a report topic first!</strong>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row my-5 sr-only">
+    <div class="col">
       <h2 class="h2 h4">Neighborhood List</h2>
       <ul class="list-unstyled">
                   
@@ -666,7 +710,12 @@
       </ul>
     </div>
   </div>
+
+
+
+
 </article>
+
 
       <ul id="results"></ul>
     </main><footer class="bg-black" id="global-footer" role="contentinfo">
@@ -887,14 +936,64 @@
 
 
 
-
-
 <script type="text/javascript" src="https://nycehs.github.io/ehs-data-portal-frontend-temp/js/uhflist.js" integrity=""></script>
 
 <script type="text/javascript"> 
+
+var report; 
+var reportURL;
+
+document.getElementById('report').addEventListener('change', function(event) {
+  event.preventDefault(); 
+  var target = event.target.value; 
+  report = target; 
+  window.location.hash = target + "report"; 
+  changeDescription(target)
+
+  
+  if (report=="Asthma") {
+    reportURL = '/asthma_and_the_environment/'
+  } else if (report=="Climate") {
+    reportURL = '/climate_and_health/'
+  } else if (report=="Housing") {
+    reportURL = '/housing_and_health/'
+  } else if (report=="Outdoor") {
+    reportURL = '/outdoor_air_and_health/'
+  } else if (report=="Active") {
+    reportURL = '/active_design_physical_activity_and_health/'
+  };
+});
+
+function changeDescription(x) {
+  
+  document.querySelectorAll('.tab-container').forEach(container => container.classList.remove('open')) 
+  document.getElementById(x).classList.add('open') 
+
+  
+  document.querySelectorAll('.topic-list-option').forEach(option => option.classList.remove('selectedOption')) 
+  var option = x+"Option";
+  document.getElementById(option).classList.add('selectedOption')
+
+}
+
+
+  if (window.location.hash=="#Asthmareport") {
+  changeDescription("Asthma")
+  } else if (window.location.hash=="#Climatereport") {
+  changeDescription("Climate")
+  } else if (window.location.hash=="#Housingreport") {
+  changeDescription("Housing")
+  }  else if (window.location.hash=="#Outdoorreport") {
+  changeDescription("Outdoor")
+  }  else if (window.location.hash=="#Activereport") {
+  changeDescription("Active")
+  };
+
+
+
+
   
   function PopulateDropDownList() {
-        
         
         
          var ddlNeighborhoods = document.getElementById("last-neighborhood");
@@ -913,9 +1012,11 @@
              ddlNeighborhoods.options.add(option);
          }
      }
- </script>
- <script type="text/javascript">
+
+  
    PopulateDropDownList();
+
+   
    var selectEl = document.querySelector('#last-neighborhood')
    accessibleAutocomplete.enhanceSelectElement({
      autoselect: true,
@@ -923,15 +1024,21 @@
      defaultValue: "",
      minLength: 2,
      selectElement: selectEl
-   })
+   });
 
-   var queryStringParameters = window.location.search
-   var previouslySubmitted = queryStringParameters.length > 0
-   if (previouslySubmitted) {
-     var params = new URLSearchParams(document.location.search.split('?')[1])
-     window.location = '/neighborhood_reports/'+ params.get('last-neighborhood')
-   }
- </script>
+    
+    var searchForm = document.getElementById('last-neighborhood-select') 
+    document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
+    e.preventDefault(); 
+    var locVal = searchForm.options[searchForm.selectedIndex].value
+
+    if (reportURL) {
+      window.location = '\/ehs-data-portal-frontend-temp/neighborhood_reports/'+ locVal + reportURL
+    } else {
+      document.getElementById('warning').style.display = "block" 
+    }
+    });
+  </script>
 
 
 

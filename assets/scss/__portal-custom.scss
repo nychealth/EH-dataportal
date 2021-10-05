@@ -613,9 +613,41 @@ height: 200px;}
     }
 
 
+
     .greenfill {
         background: #00923E;
         padding: 5px;
         color: white;
         border-radius: 3px;
     }
+
+// for topic-selectors on neighborhood reports landing
+    .tab-container {
+		display: none;
+	  }
+	  
+	  .tab-container.open {
+		display: block;
+	  }
+
+    .badge-light:hover {
+        background-color: #dfe0e1;
+    }
+
+    .portalhr {
+        border-top: 3px solid #998bc0;
+        border-radius: 5px;
+    }
+
+    .activebadge {
+        background-color: #007bff!important;
+        color: white!important;
+    }
+
+    .storybadge {
+        cursor:pointer;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+
