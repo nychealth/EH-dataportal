@@ -301,15 +301,19 @@
      selectElement: selectEl
    })
 
-   var reportExt = '';
+
+
+   var thisURL = window.location.pathname.split('/')
+   var reportExt = thisURL[4];
    // check report and declare reportExt
+
 
   // this takes the form and on submit, sends page to a new location.
   var searchForm = document.getElementById('last-neighborhood-select') // this is last-neighborhood-select because of changes applied by the AA JS.
   document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
   e.preventDefault(); // prevent page re-load
   var locVal = searchForm.options[searchForm.selectedIndex].value;
-  window.location = '{{ $.Site.Params.devpath}}/neighborhood_reports/'+ locVal + reportExt;
+  window.location = '{{ $.Site.Params.devpath}}/neighborhood_reports/'+ locVal + "/" + reportExt;
   });
 
 
