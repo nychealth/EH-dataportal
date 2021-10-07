@@ -78,66 +78,35 @@
                 <h3 class="text-muted fs-rg mt-4">Related:</h3>
                 <div class="fs-sm">
                     <h4 class="mt-2 fs-md"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
-                    <!--sets variables-->
-                    {{ $page_link := .Permalink }}
-                    {{ $cats := .Params.categories }}
-
-                    {{ range where .Site.Pages "Section" "data_stories" }}
-                    <!--$page equals values we find when ranging through-->
-                    {{ $page := . }}
-
-                    <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
-                    {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
-
-                    <!--Show commonalities, except for page we're on -->
-                    {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
-                    <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
-                    <hr class="my-1">
-                    {{ end }} 
-                    {{ end }}
+                    {{ partial "related" (dict "section" "data_stories" "layout" "singlelist" "content" . ) }}
                 </div>
 
 
                 <div class="mt-4 fs-sm">
                     <h4 class="fs-md"><i class="fas fa-star text-muted mr-1" aria-hidden="true"></i>Key Topics</h4>
-                    <!--sets variables-->
-                    {{ $page_link := .Permalink }}
-                    {{ $cats := .Params.categories }}
+                        <!--sets variables-->
+                        {{ $page_link := .Permalink }}
+                        {{ $cats := .Params.categories }}
 
-                    {{ range where (where .Site.Pages "Section" "key_topics") ".File.BaseFileName" "index" }}
-                    <!--$page equals values we find when ranging through-->
-                    {{ $page := . }}
+                        {{ range where (where .Site.Pages "Section" "key_topics") ".File.BaseFileName" "_index" }}
+                        <!--$page equals values we find when ranging through-->
+                        {{ $page := . }}
 
-                    <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
-                    {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
+                        <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
+                        {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
 
-                    <!--Show commonalities, except for page we're on -->
-                    {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
-                    <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
-                    <hr class="my-1">
-                    {{ end }} 
-                    {{ end }}
+                        <!--Show commonalities, except for page we're on -->
+                        {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
+                        <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
+                        <hr class="my-1">
+                        {{ end }} 
+                        {{ end }}
                 </div>
 
                 <div class="mt-4 fs-sm">
                     <h4 class="fs-md"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
-                    <!--sets variables-->
-                    {{ $page_link := .Permalink }}
-                    {{ $cats := .Params.categories }}
+                    {{ partial "related" (dict "section" "neighborhood_reports" "layout" "singlelist" "content" . ) }}
 
-                    {{ range where .Site.Pages "Section" "neighborhood_reports" }}
-                    <!--$page equals values we find when ranging through-->
-                    {{ $page := . }}
-
-                    <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
-                    {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
-
-                    <!--Show commonalities, except for page we're on -->
-                    {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
-                    <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
-                    <hr class="my-1">
-                    {{ end }} 
-                    {{ end }}
                 </div>
 
             </div>
