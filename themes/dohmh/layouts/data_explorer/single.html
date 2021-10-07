@@ -43,54 +43,35 @@
 
                     <div class="col-md-4">
                         <h4 class="fs-md"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
-                
-                        {{ $page_link := .Permalink }}
-                        {{ $cats := .Params.categories }}
-                        {{ range where .Site.RegularPages "Section" "data_stories" }}
-                        {{ $page := . }}
-                        {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
-                        {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
-                        <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
-                        <hr>
-                        {{ end }} 
-                        {{ end }}
+                        {{ partial "related" (dict "section" "data_stories" "layout" "singlelist" "content" . ) }}
+
                     </div>
 
                     <div class="col-md-4 mt-0">
                         <h4 class="fs-md"><i class="fas fa-star text-muted mr-1" aria-hidden="true"></i>Key Topics</h4>
-
                         <!--sets variables-->
                         {{ $page_link := .Permalink }}
                         {{ $cats := .Params.categories }}
-        
-                        {{ range where .Site.RegularPages "Section" "key_topics" }}
+
+                        {{ range where (where .Site.Pages "Section" "key_topics") ".File.BaseFileName" "_index" }}
                         <!--$page equals values we find when ranging through-->
                         {{ $page := . }}
-        
+
                         <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
                         {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
-        
+
                         <!--Show commonalities, except for page we're on -->
                         {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
                         <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
-                        <hr>
+                        <hr class="my-1">
                         {{ end }} 
                         {{ end }}
                     </div>
 
                     <div class="col-md-4">
                         <h4 class="fs-md"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
-                
-                        {{ $page_link := .Permalink }}
-                        {{ $cats := .Params.categories }}
-                        {{ range where .Site.RegularPages "Section" "neighborhood_reports" }}
-                        {{ $page := . }}
-                        {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
-                        {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
-                        <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
-                        <hr>
-                        {{ end }} 
-                        {{ end }}
+                        {{ partial "related" (dict "section" "neighborhood_reports" "layout" "singlelist" "content" . ) }}
+
                     </div>
                 </div>
 
