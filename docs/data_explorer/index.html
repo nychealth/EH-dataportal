@@ -470,283 +470,295 @@
 
     <div class="col-md-10 mx-auto my-4">
 
-
-
         <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>Data Explorer</h1>
-        <p>Browse topics to get to data sets on important environment and health topics for NYC. View maps, charts, and
-            disparities, and more.</p>
-
-        <p><strong>Note</strong>: some of these links will take you to datasets displayed on the old version of the EH Data Portal. To return here, just hit the back button.</p>
+        <p>Get data sets on important environment and health topics for NYC. View maps, charts, and more.</p>
 
 
         <div class="row">
-            <div class="col-6 mx-auto">
+            <div class="col">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Topics A to Z</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"><i class="fas fa-search mr-2" aria-hidden="true"></i>Search topics</a>
+                    </li>
+                  </ul>
+            </div>
+        </div>
 
-                <form class="autocomplete-form">
-                    <div class="row no-gutters">
-                    <label for="all-data" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">Search data</label>
-                    <div class="col-9">
-                        <div class="autocomplete-wrapper" width="100%">
-                        <select name="all-data" id="all-data">
-                            <option value="">Search data</option>
-                        </select>
+        <div class="row">
+            <div class="col">
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                            <div class="row">
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/active-design/">Active Design</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/air-quality/">Air Quality</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/alcohol-access/">Alcohol Access</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/alcohol-use/">Alcohol Use</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/bed-bugs/">Bed Bugs</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/birth-defects/">Birth Defects</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/birth-outcomes/">Birth Outcomes</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/brownfields/">Brownfields</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/cancer/">Cancer</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/cancers-in-children/">Cancers in Children</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/carbon-monoxide-incidents/">Carbon Monoxide Incidents</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/carbon-monoxide-poisoning/">Carbon Monoxide Poisoning</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/childhood-lead-exposure/">Childhood Lead Exposure</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/chronic-obstructive-pulmonary-disease/">Chronic Obstructive Pulmonary Disease</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/cigarette-smoke/">Cigarette Smoke</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/citywide-air-quality/">Citywide Air Quality</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/climate/">Climate</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/climate-change/">Climate Change</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/cockroaches/">Cockroaches</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/diabetes-high-blood-pressure-and-high-cholesterol/">Diabetes, High Blood Pressure and High Cholesterol</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/disparity/">Disparity</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/drinking-water-quality/">Drinking Water Quality</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/energy/">Energy</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/falls-among-older-adults/">Falls Among Older Adults</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/health-care/">Health Care</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/health-impacts-of-air-pollution/">Health Impacts of Air Pollution</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/heart-attacks/">Heart Attacks</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/housing/">Housing</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/housing-and-neighborhoods/">Housing and Neighborhoods</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/large-city-air-quality-comparison/">Large City Air Quality Comparison</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/lead-hazards/">Lead Hazards</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/mice-and-rats/">Mice and Rats</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/mortality/">Mortality</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/neighborhood-air-quality/">Neighborhood Air Quality</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/noise/">Noise</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/nyc-agency-pesticide-use/">NYC Agency Pesticide Use</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/other-nyc-data/">Other NYC data</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/overweight/">Overweight</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/parks-and-public-space/">Parks and Public Space</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/pesticides/">Pesticides</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/physical-activity/">Physical Activity</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/population-characteristics/">Population Characteristics</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/race-and-ethnicity/">Race and Ethnicity</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/restaurant-food-safety/">Restaurant Food Safety</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/social-and-economic-conditions/">Social and Economic Conditions</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/solid-waste/">Solid Waste</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/sugary-drink-consumption/">Sugary Drink Consumption</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/traffic/">Traffic</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/transportation/">Transportation</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/transportation-related-injuries/">Transportation-related Injuries</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/vector-borne-disease/">Vector-borne Disease</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/violence/">Violence</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/vulnerability/">Vulnerability</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/walking-driving-and-cycling/">Walking, Driving, and Cycling</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/water-supply/">Water Supply</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/waterways/">Waterways</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/weather-related-illness/">Weather-Related Illness</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/worker-health/">Worker Health</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <p><a href="../data_explorer/asthma_mm/">Asthma</a></p>
+                            </div>
+                            
                         </div>
                     </div>
-                    <div class="col-3">
-                        <button type="submit" class="btn-primary btn btn-block" style="height:39px;">Get data</button> 
+
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                        <div class="row">
+                            <div class="col-8 mx-auto">
+                                <form class="autocomplete-form">
+                                    <div class="row no-gutters">
+                                    <label for="all-data" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">Search data</label>
+                                    <div class="col-9">
+                                        <div class="autocomplete-wrapper" width="100%">
+                                        <select name="all-data" id="all-data">
+                                            <option value="">Search data</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="submit" class="btn-primary btn btn-block" style="height:39px;">Get data</button> 
+                                    </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                </form>
 
+
+                  </div>
             </div>
+
         </div>
-
-
-        <div class="row mt-4">
-            <div class="col">
-                <h3>All data topics:</h3>
-            </div>
-        </div>
-        <div class="row">
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/active-design/">Active Design</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/air-quality/">Air Quality</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/alcohol-access/">Alcohol Access</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/alcohol-use/">Alcohol Use</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/bed-bugs/">Bed Bugs</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/birth-defects/">Birth Defects</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/birth-outcomes/">Birth Outcomes</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/brownfields/">Brownfields</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/cancer/">Cancer</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/cancers-in-children/">Cancers in Children</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/carbon-monoxide-incidents/">Carbon Monoxide Incidents</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/carbon-monoxide-poisoning/">Carbon Monoxide Poisoning</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/childhood-lead-exposure/">Childhood Lead Exposure</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/chronic-obstructive-pulmonary-disease/">Chronic Obstructive Pulmonary Disease</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/cigarette-smoke/">Cigarette Smoke</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/citywide-air-quality/">Citywide Air Quality</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/climate/">Climate</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/climate-change/">Climate Change</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/cockroaches/">Cockroaches</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/diabetes-high-blood-pressure-and-high-cholesterol/">Diabetes, High Blood Pressure and High Cholesterol</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/disparity/">Disparity</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/drinking-water-quality/">Drinking Water Quality</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/energy/">Energy</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/falls-among-older-adults/">Falls Among Older Adults</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/health-care/">Health Care</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/health-impacts-of-air-pollution/">Health Impacts of Air Pollution</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/heart-attacks/">Heart Attacks</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/housing/">Housing</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/housing-and-neighborhoods/">Housing and Neighborhoods</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/large-city-air-quality-comparison/">Large City Air Quality Comparison</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/lead-hazards/">Lead Hazards</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/mice-and-rats/">Mice and Rats</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/mortality/">Mortality</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/neighborhood-air-quality/">Neighborhood Air Quality</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/noise/">Noise</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/nyc-agency-pesticide-use/">NYC Agency Pesticide Use</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/other-nyc-data/">Other NYC data</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/overweight/">Overweight</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/parks-and-public-space/">Parks and Public Space</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/pesticides/">Pesticides</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/physical-activity/">Physical Activity</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/population-characteristics/">Population Characteristics</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/race-and-ethnicity/">Race and Ethnicity</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/restaurant-food-safety/">Restaurant Food Safety</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/social-and-economic-conditions/">Social and Economic Conditions</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/solid-waste/">Solid Waste</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/sugary-drink-consumption/">Sugary Drink Consumption</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/traffic/">Traffic</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/transportation/">Transportation</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/transportation-related-injuries/">Transportation-related Injuries</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/vector-borne-disease/">Vector-borne Disease</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/violence/">Violence</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/vulnerability/">Vulnerability</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/walking-driving-and-cycling/">Walking, Driving, and Cycling</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/water-supply/">Water Supply</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/waterways/">Waterways</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/weather-related-illness/">Weather-Related Illness</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/worker-health/">Worker Health</a></p>
-            </div>
-            
-            <div class="col-md-6">
-                <p><a href="../data_explorer/asthma_mm/">Asthma</a></p>
-            </div>
-            
-        </div>
-
 
     </div>
 
@@ -770,71 +782,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/active-design\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Bicycle Network Coverage"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2390,719b87,104,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Sidewalk Area"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2181,719b87,104,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Subway Station Density"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2158,719b87,104,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Tree Canopy Cover"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2157,719b87,104,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Vegetative Cover"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2143,719b87,104,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Walkability Index (Infrastructure)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2133,719b87,104,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Walking Distance to a Park"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2388,719b87,104,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Walking Distance to a Subway Station"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2391,719b87,104,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -843,71 +790,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/air-quality\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Air Quality Advisory Days"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=92,719b87,122,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Black Carbon"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2024,719b87,122,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Fine Particulate Matter (PM 2.5)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=57,719b87,122,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Fine Particulate Matter (PM2.5)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2023,719b87,122,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Nitric Oxide (NO)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2028,719b87,122,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Nitrogen Dioxide (NO2)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2025,719b87,122,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Ozone"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=55,719b87,122,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Ozone (O3)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2027,719b87,122,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -916,23 +798,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/alcohol-access\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Access to Alcohol"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2049,719b87,95,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Youth Access to Alcohol"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2057,719b87,95,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -941,39 +806,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/alcohol-use\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults Reporting Heavy Drinking"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2050,719b87,97,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults Who Binge Drink"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2051,719b87,97,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Underage Drinking"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2056,719b87,97,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Youth Who Binge Drink"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2055,719b87,97,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -982,15 +814,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/bed-bugs\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults Reporting Bed Bugs in their Home"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2030,719b87,92,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -999,111 +822,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/birth-defects\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Anencephaly"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=26,719b87,16,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Cleft Lip with or without Cleft Palate "
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=30,719b87,16,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Cleft Palate without Cleft Lip "
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=31,719b87,16,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Down Syndrome / Trisomy 21 (Maternal Age \u003c 35 Yrs)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=36,719b87,16,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Down Syndrome / Trisomy 21 (Maternal Age 35 Yrs and Over)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=37,719b87,16,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Gastroschisis "
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=33,719b87,16,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Hypoplastic Left Heart Syndrome "
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=28,719b87,16,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Hypospadias "
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=32,719b87,16,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Lower Limb Deficiencies"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=35,719b87,16,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Spina Bifida (without Anencephaly)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=27,719b87,16,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Tetralogy of Fallot"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=101,719b87,16,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Transposition of the Great Arteries (Vessels) "
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=29,719b87,16,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Upper Limb Deficiencies"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=34,719b87,16,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -1112,87 +830,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/birth-outcomes\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Infant Death"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=5,719b87,12,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Low Birthweight at Full Term"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=4,719b87,12,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Neonatal Death"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=6,719b87,12,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Perinatal Death"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=7,719b87,12,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Postneonatal Death"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=8,719b87,12,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Preterm Birth"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=1,719b87,12,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Sex Ratio "
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=10,719b87,12,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Total (Lifetime) Fertility"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=9,719b87,12,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Very Low Birthweight"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=3,719b87,12,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Very Preterm Birth"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2,719b87,12,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -1201,7 +838,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/brownfields\/'
             
             ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -1210,143 +846,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/cancer\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Acute Myeloid Leukemia"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=74,719b87,39,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Bladder Cancer"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2096,719b87,39,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Brain and Other Nervous System Cancer"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=66,719b87,39,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Breast Cancer in Females"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=60,719b87,39,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Chronic Lymphocytic Leukemia"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=770,719b87,39,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Esophageal Cancer"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2077,719b87,39,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Kidney and Renal Pelvis Cancer"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2087,719b87,39,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Larynx Cancer"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2088,719b87,39,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Leukemia"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=73,719b87,39,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Liver and Intrahepatic Bile Duct Cancer"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2089,719b87,39,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Lung and Bronchus Cancer"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=63,719b87,39,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Melanoma of the Skin"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2090,719b87,39,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Mesothelioma"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2095,719b87,39,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Non-Hodgkin's Lymphomas"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=71,719b87,39,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Oral Cavity and Pharynx Cancer"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2091,719b87,39,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Pancreatic Cancer"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=64,719b87,39,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Thyroid Cancer"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=690,719b87,39,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -1355,47 +854,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/cancers-in-children\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Acute Lymphocytic Leukemia in Children"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2037,719b87,93,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Acute Myeloid Leukemia in Children"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2035,719b87,93,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Brain and CNS Cancer in Children"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2033,719b87,93,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Leukemia in Children"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2031,719b87,93,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Total Cancer in Children"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2039,719b87,93,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -1404,39 +862,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/carbon-monoxide-incidents\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Carbon Monoxide Emergency Department Visits"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2405,719b87,51,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Carbon Monoxide Hospitalizations"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2406,719b87,51,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Carbon Monoxide Incidents "
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=38,719b87,51,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Carbon Monoxide Incidents without a Detector (3 Year Avg.)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2168,719b87,51,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -1445,15 +870,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/carbon-monoxide-poisoning\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Carbon Monoxide Deaths"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2398,719b87,15,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -1462,31 +878,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/childhood-lead-exposure\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Children tested for lead by age 3 years"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2189,719b87,14,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Children under 6 years with elevated blood lead levels (BLL)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2184,719b87,14,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Children under 6 years with elevated blood lead levels by NTA"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2216,719b87,14,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -1495,23 +886,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/chronic-obstructive-pulmonary-disease\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Chronic Obstructive Pulmonary Disease  Hospitalization"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2341,719b87,123,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Chronic Obstructive Pulmonary Disease Emergency Department Visits"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2343,719b87,123,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -1520,47 +894,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/cigarette-smoke\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults Reporting Secondhand Smoke at Home from Outside Sources"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2338,719b87,3,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults Reporting Secondhand Smoke at Work"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2020,719b87,3,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults without a Smoke-Free Home Policy"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2017,719b87,3,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Cigarette Smoking among Adults"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2019,719b87,3,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Cigarette Smoking among Youths"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2021,719b87,3,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -1569,31 +902,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/citywide-air-quality\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Air Quality Advisory Days"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=92,719b87,1,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Fine Particulate Matter (PM 2.5)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=57,719b87,1,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Ozone"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=55,719b87,1,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -1602,63 +910,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/climate\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults 65+ Reporting Air Conditioning in the Home"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2155,719b87,107,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults Reporting Air Conditioning in the Home"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2104,719b87,107,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Daytime Summer Surface Temperature"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2141,719b87,107,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Heat Events"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2084,719b87,107,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Heat Vulnerability Index"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2191,719b87,107,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Households reporting air conditioning"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2185,719b87,107,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Households reporting someone who uses electric medical equipment"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2377,719b87,107,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -1667,15 +918,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/climate-change\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Greenhouse Gas Emissions"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=776,719b87,83,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -1684,31 +926,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/cockroaches\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults Reporting Cockroaches in the Home"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=22,719b87,8,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Children living in homes with cockroaches (ages 0-13 years)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2393,719b87,8,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Homes with Cockroaches"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=107,719b87,8,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -1717,31 +934,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/diabetes-high-blood-pressure-and-high-cholesterol\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults with Diabetes"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2169,719b87,112,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults with High Blood Pressure"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2170,719b87,112,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults with High Cholesterol"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2171,719b87,112,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -1750,31 +942,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/disparity\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Neighborhood Poverty"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=13,719b87,40,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Neighborhood Race/Ethnicity - Non Hispanic Black"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2106,719b87,40,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Neighborhood Race/Ethnicity - Non Hispanic White"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2107,719b87,40,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -1783,39 +950,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/drinking-water-quality\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Arsenic in Drinking Water"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2044,719b87,52,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Disinfection By-Product in Drinking Water (HAA5)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2043,719b87,52,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Disinfection By-Product in Drinking Water (TTHM)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2207,719b87,52,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Nitrate in Drinking Water"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2041,719b87,52,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -1824,31 +958,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/energy\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Cleaner Energy"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2005,719b87,86,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Energy Efficiency"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2007,719b87,86,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Energy Reliability"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2006,719b87,86,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -1857,47 +966,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/falls-among-older-adults\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Fall-related emergency department visits among older adults"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2135,719b87,108,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Fall-related hospitalizations among older adults"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2136,719b87,108,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Home fall-related emergency department visits among older adults"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2408,719b87,108,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Home fall-related hospitalizations among older adults"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2409,719b87,108,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Homes with reported falls among adults 65 and older"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2403,719b87,108,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -1906,47 +974,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/health-care\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults with a Personal Doctor"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2151,719b87,121,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults with Health Insurance "
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2132,719b87,121,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Households that postponed health care in the last 12 months"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2401,719b87,121,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Premature Mortality"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2322,719b87,121,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Self-Reported Health"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2232,719b87,121,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -1955,63 +982,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/health-impacts-of-air-pollution\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "O3-Attributable Asthma Emergency Department Visits"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2122,719b87,103,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "O3-Attributable Asthma Hospitalizations "
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2124,719b87,103,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "O3-Attributable Cardiac and Respiratory Deaths "
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2121,719b87,103,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "PM2.5-Attributable Asthma Emergency Department Visits "
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2117,719b87,103,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "PM2.5-Attributable Cardiovascular Hospitalizations (Adults 40 Yrs and Older) "
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2120,719b87,103,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "PM2.5-Attributable Deaths "
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2108,719b87,103,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2119,719b87,103,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -2020,15 +990,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/heart-attacks\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Heart Attack Hospitalizations"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=90,719b87,13,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -2037,159 +998,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/housing\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults Reporting Mold in the Home"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2101,719b87,36,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults Reporting Secondhand Smoke at Home"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=25,719b87,36,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Children living in homes using supplemental heat (ages 0-13 years)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2396,719b87,36,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Children living in homes with cracks or holes (ages 0-13 years)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2395,719b87,36,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Children living in homes with mice (ages 0-13  years)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2394,719b87,36,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Court Ordered Evictions"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2365,719b87,36,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Crowding (\u003e 1 person/room)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=15,719b87,36,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Homes near Structures Rated Good or Excellent"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=46,719b87,36,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Homes Using Supplemental Heat"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=47,719b87,36,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Homes with 3 or More Maintenance Deficiencies"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=45,719b87,36,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Homes with Cracks or Holes"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=40,719b87,36,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Homes with Grab Bars in Bathroom (among older adult households)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2188,719b87,36,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Homes with Leaks"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=42,719b87,36,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Homes with Mice or Rats in the Building"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=48,719b87,36,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Households reporting someone who uses electric medical equipment"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2377,719b87,36,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Owner-Occupied Homes"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=17,719b87,36,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Pre-1960 Homes with Peeling Paint"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=41,719b87,36,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Renter-occupied homes with any health-related maintenance problems"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2399,719b87,36,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Renter-occupied homes with no maintenance deficiencies (TCNY2020)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2179,719b87,36,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -2198,31 +1006,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/housing-and-neighborhoods\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Housing Affordability"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2003,719b87,87,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Housing Supply "
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2002,719b87,87,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Housing Sustainability"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2004,719b87,87,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -2231,7 +1014,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/large-city-air-quality-comparison\/'
             
             ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -2240,31 +1022,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/lead-hazards\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Children under 5 years old in Poverty"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2176,719b87,4,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Pre-1950 Homes"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=16,719b87,4,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Pre-1960 Homes with Peeling Paint"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=41,719b87,4,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -2273,39 +1030,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/mice-and-rats\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults Reporting Mice in the Home"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2105,719b87,7,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults Reporting Rats or Mice outside Their Building"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=24,719b87,7,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Homes with Mice or Rats in the Building"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=48,719b87,7,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Nitrogen Dioxide (NO2)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2025,719b87,7,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -2314,7 +1038,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/mortality\/'
             
             ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -2323,55 +1046,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/neighborhood-air-quality\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Black Carbon"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2024,719b87,91,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Fine Particulate Matter (PM2.5)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2023,719b87,91,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Nitric Oxide (NO)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2028,719b87,91,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Nitrogen Dioxide (NO2)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2025,719b87,91,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Ozone (O3)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2027,719b87,91,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Sulfur Dioxide (SO2)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2026,719b87,91,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -2380,15 +1054,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/noise\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Disruptive Noise Exposure"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2134,719b87,105,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -2397,47 +1062,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/nyc-agency-pesticide-use\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "All Agency Use of \"Best Practice\" Products"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2345,719b87,124,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "All Agency Use of Fungicides"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2348,719b87,124,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "All Agency Use of Herbicides"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2351,719b87,124,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "All Agency Use of Insecticides"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2354,719b87,124,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "All Agency Use of Rodenticides"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2357,719b87,124,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -2446,239 +1070,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/other-nyc-data\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults Reporting Personal Use of Pesticides"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2235,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults with Independent Living Difficulty"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2145,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Air Toxics Concentrations- Average Benzene Concentrations"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2115,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Air Toxics Concentrations- Average Formaldehyde Concentrations"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2116,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Area Located within Hurricane Evacuation Zones 1-6"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2140,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Arsenic in Drinking Water"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2044,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Boiler Emissions- Total NOx Emissions"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2111,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Boiler Emissions- Total PM2.5 Emissions"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2110,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Boiler Emissions- Total SO2 Emissions"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2109,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Carbon Monoxide Incidents "
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=38,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Court Ordered Evictions"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2365,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Crowding (\u003e 1 person/room)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=15,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Disinfection By-Product in Drinking Water (HAA5)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2043,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Homes in 1 or 2 Family Buildings"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=81,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Neighborhood Poverty (ACS)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2142,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Nitrate in Drinking Water"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2041,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Nitrogen Dioxide (NO2)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2025,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Older Adults Living Alone"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2146,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Poverty"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=103,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Public School Children (5-14 Yrs Old) with Asthma"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2147,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Public School Children (5-14 Yrs Old) with Persistent Asthma"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2149,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Race and Ethnicity"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2325,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Serious psychological distress"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2144,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Sulfur Dioxide (SO2)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2026,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Traffic Density- Annual Vehicle Miles Traveled"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2112,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Traffic Density- Annual Vehicle Miles Traveled for Cars"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2113,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Traffic Density- Annual Vehicle Miles Traveled for Trucks"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2114,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Tree Canopy Cover"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2157,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Vegetative Cover"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2143,719b87,17,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -2687,47 +1078,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/overweight\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Nitrogen Dioxide (NO2)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2025,719b87,113,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Obese Adults"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2063,719b87,113,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Obese Youth"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2064,719b87,113,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Overweight or Obese Adults"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2061,719b87,113,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Overweight or Obese Youth"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2062,719b87,113,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -2736,23 +1086,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/parks-and-public-space\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Nitrogen Dioxide (NO2)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2025,719b87,78,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Park Distance"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=775,719b87,78,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -2761,151 +1094,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/pesticides\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults Reporting Personal Use of Pesticides"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2235,719b87,9,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Commercial Use of \"Best Practice\" Products"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=100,719b87,9,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Commercial Use of Fungicides"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=96,719b87,9,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Commercial Use of Herbicides"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=94,719b87,9,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Commercial Use of Insecticides"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=93,719b87,9,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Commercial Use of Insecticides (Organophosphate)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=97,719b87,9,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Commercial Use of Insecticides (Pyrethroid/Pyrethrin)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=98,719b87,9,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Commercial Use of Rodenticides"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=102,719b87,9,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Insecticides (Carbamate)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=99,719b87,9,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Nitrogen Dioxide (NO2)"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2025,719b87,9,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "NYC Agency Use of \"Best Practice\" Products"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2366,719b87,9,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "NYC Agency Use of Fungicides"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2364,719b87,9,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "NYC Agency Use of Glyphosate"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2367,719b87,9,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "NYC Agency Use of Herbicides"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2368,719b87,9,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "NYC Agency Use of Insecticides"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2369,719b87,9,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "NYC Agency Use of Mosquito Control"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2374,719b87,9,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "NYC Agency Use of Rodenticides"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2370,719b87,9,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Regular Exterminator Service"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=91,719b87,9,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -2914,47 +1102,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/physical-activity\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults Reporting Exercise in the Past 30 Days"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2060,719b87,96,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults Who Walk or Bike for Transportation"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2058,719b87,96,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Bike for Transportation in the Past 7 Days"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2173,719b87,96,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Monthly Bicycle Use"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2059,719b87,96,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Walk for Transportation in the Past 7 Days"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2172,719b87,96,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -2963,15 +1110,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/population-characteristics\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Carbon Monoxide Incidents "
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=38,719b87,106,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -2980,7 +1118,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/race-and-ethnicity\/'
             
             ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -2989,15 +1126,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/restaurant-food-safety\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Restaurants with A Grades"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2065,719b87,98,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -3006,111 +1134,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/social-and-economic-conditions\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults with a Personal Doctor"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2151,719b87,109,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults with Health Insurance "
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2132,719b87,109,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Children under 5 years old in Poverty"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2176,719b87,109,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Foreign-Born"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=14,719b87,109,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "High School Graduation"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2334,719b87,109,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Limited English"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2335,719b87,109,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Perception of Neighborhood Safety"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2073,719b87,109,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Poverty"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=103,719b87,109,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Rent Burdened Households"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2336,719b87,109,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "School Absenteeism"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2323,719b87,109,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Self-Reported Health"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2232,719b87,109,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Unemployment"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2337,719b87,109,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Unhealthy Food Access"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2389,719b87,109,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -3119,7 +1142,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/solid-waste\/'
             
             ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -3128,23 +1150,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/sugary-drink-consumption\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adult Consumption of 1 or More Sugary Drinks Per Day"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2097,719b87,102,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Youth Consumption of 1 or More Sugary Drinks Per Day"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2098,719b87,102,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -3153,39 +1158,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/traffic\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults Reporting Driving in the Last 30 Days"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2236,719b87,114,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults Reporting Messaging While Driving in the Last 30 Days"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2237,719b87,114,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults Reporting Speeding in the Last 30 Days"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2238,719b87,114,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Traffic Density- Annual Vehicle Miles Traveled for Cars"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2113,719b87,114,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -3194,47 +1166,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/transportation\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Bicycle Network Coverage"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2390,719b87,90,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Modal Shift - All Travel"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2011,719b87,90,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Modal Shift - Travel to the Central Business District"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2012,719b87,90,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "State of Good Repair"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=774,719b87,90,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Transit Capacity "
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2014,719b87,90,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -3243,39 +1174,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/transportation-related-injuries\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Bicycle Injury Emergency Department Visits"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2092,719b87,101,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Bicycle Injury Hospitalizations"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2086,719b87,101,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Pedestrian Injury Emergency Department Visits"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2094,719b87,101,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Pedestrian Injury Hospitalizations"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2093,719b87,101,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -3284,23 +1182,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/vector-borne-disease\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Babesiosis"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2218,719b87,116,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "West Nile virus"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2340,719b87,116,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -3309,23 +1190,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/violence\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Non-fatal Assault Emergency Department Visits"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2400,719b87,125,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Non-fatal Assault Hospitalizations"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2375,719b87,125,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -3334,15 +1198,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/vulnerability\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Self-Reported Health"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2232,719b87,117,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -3351,23 +1206,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/walking-driving-and-cycling\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults Reporting Driving in the Last 30 Days"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2236,719b87,119,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Adults Reporting Speeding in the Last 30 Days"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2238,719b87,119,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -3376,23 +1214,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/water-supply\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Drinking Water Demand"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2001,719b87,85,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Drinking Water Quality"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2009,719b87,85,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -3401,15 +1222,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/waterways\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "New York Harbor Water Quality"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2008,719b87,89,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -3418,79 +1230,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/weather-related-illness\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "5-Year Heat Stress Hospitalizations"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2410,719b87,100,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Cold Stress Deaths"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2376,719b87,100,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Cold Stress Emergency Department Visits"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2175,719b87,100,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Cold Stress Hospitalizations"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2174,719b87,100,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Heat Events"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2084,719b87,100,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Heat Stress Deaths"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2074,719b87,100,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Heat Stress Emergency Department Visits"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2075,719b87,100,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Heat Stress Hospitalizations"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2076,719b87,100,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Heat Vulnerability Index by NTA"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2411,719b87,100,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -3499,71 +1238,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/worker-health\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Elevated Blood Lead Levels among Persons Aged 16 or Older"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2209,719b87,115,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Hospitalizations Billed to Workers’ Compensation"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2211,719b87,115,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Hospitalizations for Asbestosis"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2208,719b87,115,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Hospitalizations for Pneumoconiosis"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2210,719b87,115,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Perception of Neighborhood Safety"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2073,719b87,115,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Work-Related Deaths across All Industries"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2214,719b87,115,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Work-Related Deaths in the Construction Industry by Borough"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2239,719b87,115,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "Work-Related Deaths in the Construction Industry Citywide"
-                        
-                        option.value = "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2215,719b87,115,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
            
             var option = document.createElement("OPTION");
             
@@ -3572,23 +1246,6 @@
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/asthma_mm\/'
             
             ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "ED visits (adults)"
-                        
-                        option.value = "http://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2380,4466a0,11,Summarize"
-                        
-                        ddlData.options.add(option);
-                     
-                        var option = document.createElement("OPTION");
-                        
-                        option.innerHTML = "ED visits (age 0-4)"
-                        
-                        option.value = "http://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2048,4466a0,11,Summarize"
-                        
-                        ddlData.options.add(option);
-                    
           
        };
 
@@ -3611,9 +1268,6 @@
         e.preventDefault(); 
         window.location.assign(dataSearchForm.options[dataSearchForm.selectedIndex].value)
       });
-
-
-
    </script>
 
 

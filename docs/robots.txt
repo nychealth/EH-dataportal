@@ -2,13 +2,15 @@
 User-agent: *
 
 
+Disallow: /data_explorer/
+
+Disallow: /
+
 Disallow: /key_topics/airquality/
 
 Disallow: /categories/airquality/
 
 Disallow: /categories/
-
-Disallow: /
 
 Disallow: /key_topics/climatehealth/
 
@@ -25,8 +27,6 @@ Disallow: /key_topics/social/
 Disallow: /categories/transportation/
 
 Disallow: /key_topics/transportation/
-
-Disallow: /data_explorer/
 
 Disallow: /key_topics/
 
