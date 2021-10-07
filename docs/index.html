@@ -1046,12 +1046,13 @@
     selectElement: selectEl
   })
 
-  var queryStringParameters = window.location.search
-  var previouslySubmitted = queryStringParameters.length > 0
-  if (previouslySubmitted) {
-    var params = new URLSearchParams(document.location.search.split('?')[1])
-    window.location = '\/ehs-data-portal-frontend-temp/neighborhood_reports/' + params.get('last-neighborhood')
-  }
+  
+  var searchForm = document.getElementById('last-neighborhood-select') 
+  document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
+  e.preventDefault(); 
+  var locVal = searchForm.options[searchForm.selectedIndex].value;
+  window.location = '\/ehs-data-portal-frontend-temp/neighborhood_reports/'+ locVal;
+  });
 </script>
 
 
