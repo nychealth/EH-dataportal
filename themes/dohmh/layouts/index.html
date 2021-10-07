@@ -304,12 +304,13 @@
     selectElement: selectEl
   })
 
-  var queryStringParameters = window.location.search
-  var previouslySubmitted = queryStringParameters.length > 0
-  if (previouslySubmitted) {
-    var params = new URLSearchParams(document.location.search.split('?')[1])
-    window.location = '{{ $.Site.Params.devpath}}/neighborhood_reports/' + params.get('last-neighborhood')
-  }
+  // this takes the form and on submit, sends page to a new location.
+  var searchForm = document.getElementById('last-neighborhood-select') // this is last-neighborhood-select because of changes applied by the AA JS.
+  document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
+  e.preventDefault(); // prevent page re-load
+  var locVal = searchForm.options[searchForm.selectedIndex].value;
+  window.location = '{{ $.Site.Params.devpath}}/neighborhood_reports/'+ locVal;
+  });
 </script>
 
 
