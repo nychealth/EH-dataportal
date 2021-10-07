@@ -93,53 +93,40 @@
         <!--right-hand column for extra resources and links-->
         <div class="col-xl-2 border-xl-left">
 
-            <div class="py-3 mt-n3 mt-xl-0 sticky-top" style="z-index: 0">
+            <div class="py-3 mt-n3 mt-xl-0 sticky-top fs-sm" style="z-index: 0">
                 <div class="fs-sm">
                     <strong>Published on:</strong><br>
                     {{ .Date.Format "January 2, 2006"}}
                 </div>
 
+                <h3 class="text-muted fs-rg mt-4">Related:</h3>
+                    <h4 class="mt-2 fs-md"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
+                    {{ partial "related" (dict "section" "data_stories" "layout" "singlelist" "content" . ) }}
+
                 <div class="mt-4">
-                    <strong>Related Data Stories</strong><br>
-                    <!--sets variables-->
-                    {{ $page_link := .Permalink }}
-                    {{ $cats := .Params.categories }}
+                    <h4 class="fs-md"><i class="fas fa-star text-muted mr-1" aria-hidden="true"></i>Key Topics</h4>
+                        <!--sets variables-->
+                        {{ $page_link := .Permalink }}
+                        {{ $cats := .Params.categories }}
 
-                    {{ range where .Site.Pages "Section" "data_stories" }}
-                    <!--$page equals values we find when ranging through-->
-                    {{ $page := . }}
+                        {{ range where (where .Site.Pages "Section" "key_topics") ".File.BaseFileName" "_index" }}
+                        <!--$page equals values we find when ranging through-->
+                        {{ $page := . }}
 
-                    <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
-                    {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
+                        <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
+                        {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
 
-                    <!--Show commonalities, except for page we're on -->
-                    {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
-                    <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
-                    <hr class="my-1">
-                    {{ end }} 
-                    {{ end }}
+                        <!--Show commonalities, except for page we're on -->
+                        {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
+                        <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
+                        <hr class="my-1">
+                        {{ end }} 
+                        {{ end }}
                 </div>
 
-
                 <div class="mt-4">
-                    <strong>Related Topics</strong><br>
-                    <!--sets variables-->
-                    {{ $page_link := .Permalink }}
-                    {{ $cats := .Params.categories }}
-
-                    {{ range where (where .Site.Pages "Section" "key_topics") ".File.BaseFileName" "_index" }}
-                    <!--$page equals values we find when ranging through-->
-                    {{ $page := . }}
-
-                    <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
-                    {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
-
-                    <!--Show commonalities, except for page we're on -->
-                    {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
-                    <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
-                    <hr class="my-1">
-                    {{ end }} 
-                    {{ end }}
+                    <h4 class="fs-md"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
+                    {{ partial "related" (dict "section" "neighborhood_reports" "layout" "singlelist" "content" . ) }}
                 </div>
 
 

@@ -19,16 +19,6 @@ Although New York City&amp;rsquo;s air does not currently meet federal air quali
     </item>
     
     <item>
-      <title>Asthma</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</guid>
-      <description>Asthma About Asthma Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.
-Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</description>
-    </item>
-    
-    <item>
       <title>Birth Defects</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/birth-defects/</link>
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
@@ -136,17 +126,6 @@ Asthma is a leading cause of emergency room visits, hospitalizations and missed 
     </item>
     
     <item>
-      <title>Air quality</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/airquality_mm/</link>
-      <pubDate>Wed, 14 Apr 2021 13:03:17 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/airquality_mm/</guid>
-      <description>Air quality is a measure of the condition of the air around us. The less air pollution there is, the better the air quality.
-Like many cities, New York City&amp;rsquo;s air contains particles, liquid droplets, gases, and other contaminants that could impact health. Two pollutants, particulate matter and ground-level ozone, are of particular health concern.
-Although New York City&amp;rsquo;s air does not currently meet federal air quality standards, it has improved significantly over the past two decades.</description>
-    </item>
-    
-    <item>
       <title>Why violence is a public health issue</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/violence/</link>
       <pubDate>Mon, 08 Feb 2021 08:07:31 -0400</pubDate>
@@ -192,8 +171,7 @@ To understand the connection between poverty and asthma, take a look at this map
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/asthma/</guid>
-      <description>Asthma and the Environment Neighborhood Report Landing Page.
-Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma indicators by neighborhood. It also describes housing and neighborhood characteristics that can make asthma worse.</description>
+      <description>Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma indicators by neighborhood. It also describes housing and neighborhood characteristics that can make asthma worse.</description>
     </item>
     
     <item>
@@ -202,8 +180,7 @@ Asthma is a common lung disease and a leading cause of hospitalizations for chil
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/housing/</guid>
-      <description>Housing and Health Neighborhood Report Landing Page.
-This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can increase vulnerability to housing hazards.</description>
+      <description>This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can increase vulnerability to housing hazards.</description>
     </item>
     
     <item>
@@ -212,8 +189,7 @@ This report provides a neighborhood summary of housing conditions and related he
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/outdoorair/</guid>
-      <description>Outdoor Air and Health Neighborhood Report Landing Page.
-Air pollution is one of the most important environmental threats to urban populations and while all people are exposed, pollutant emissions, levels of exposure, and population vulnerability vary across neighborhoods. Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases, cancers, and premature deaths.</description>
+      <description>Air pollution is one of the most important environmental threats to urban populations and while all people are exposed, pollutant emissions, levels of exposure, and population vulnerability vary across neighborhoods. Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases, cancers, and premature deaths.</description>
     </item>
     
   </channel>

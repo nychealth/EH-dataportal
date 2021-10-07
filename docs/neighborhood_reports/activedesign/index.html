@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <title>
-  Active Design Physical Activity and Health &#x7c; Environment &amp; Health Data Portal
+  Active Design, Physical Activity and Health &#x7c; Environment &amp; Health Data Portal
 </title>
 
 <meta name="description" content="Here is the site global SEO description">
@@ -22,7 +22,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_us" />
 <meta property="og:url" content="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/activedesign/" />
-<meta property="og:title" content="Active Design Physical Activity and Health &ndash; Environment &amp; Health Data Portal" />
+<meta property="og:title" content="Active Design, Physical Activity and Health &ndash; Environment &amp; Health Data Portal" />
 <meta property="og:description" content="Here is the site global SEO description" />
 <meta property="og:site_name" content="Environment &amp; Health Data Portal" />
 <meta property="og:image" content="https://nycehs.github.io/ehs-data-portal-frontend-temp/images/report_bottom_background_hu55023dbc37de342337a21cf33dcc5889_222582_2400x1260_fill_q75_box_smart1.jpg">
@@ -30,15 +30,15 @@
 <meta property="og:see_also" content="https://twitter.com/nycHealthy" />
 
 
-<meta name="twitter:title" content="Active Design Physical Activity and Health &ndash; Environment &amp; Health Data Portal">
+<meta name="twitter:title" content="Active Design, Physical Activity and Health &ndash; Environment &amp; Health Data Portal">
 <meta name="twitter:description" content="Here is the site global SEO description">
 <meta name="twitter:image" content="/images/report_bottom_background.jpg">
 <meta name="twitter:site" content="@nycHealthy">
 <meta name="twitter:creator" content="@nycHealthy">
 <script>
     
-  const indicatorDataPath = "/visualizations/csv/"; 
-  const indicatorMapPath = "/visualizations/json/"; 
+  const indicatorDataPath = "\/ehs-data-portal-frontend-temp/visualizations/csv/"; 
+  const indicatorMapPath = "\/ehs-data-portal-frontend-temp/visualizations/json/"; 
   
   
   var summarySpec = {
@@ -293,7 +293,7 @@
 
     </div>
     
-    <div class="site-header bg-primary" style="background-image: url(/images/header_background.jpg)">
+    <div class="site-header bg-primary" style="background-image: url(/ehs-data-portal-frontend-temp/images/header_background.jpg)">
         <div class="wrap-header">
 
             <div class="container-fluid wide">
@@ -466,10 +466,138 @@
 
     <main id="skip-header-target" role="main">
 
-<h2>Active Design Physical Activity and Health</h2>
-<p><p>Active Design Neighborhood Report Landing Page.</p>
-<p>The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood&rsquo;s features can also impact the safety of its residents.</p>
+<article class="container" id="skip-header-target">
+    <div class="row">
+        <div class="col-md-12 mx-auto mt-4 pl-0">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../../neighborhood_reports/">Neighborhood Reports</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Active Design, Physical Activity and Health</li>
+                </ul>
+            </nav>
+        </div>
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 pl-0">
+            <h2>Active Design, Physical Activity and Health</h2>
+            <p><p>The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood&rsquo;s features can also impact the safety of its residents.</p>
 </p>
+            <p>Get a neighborhood report by searching for your neighborhood:</p>
+            <div class="bg-active p-2 p-md-4 mb-4">
+                <form action="../../neighborhood_reports" method="get" class="autocomplete-form">
+                  <div class="row no-gutters">
+                    <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-3">What NYC neighborhood are you interested in?</label>
+                    <div class="col-8">
+                      <div class="autocomplete-wrapper">
+                        <select name="last-neighborhood" id="last-neighborhood">
+                          <option value="">Select a neighborhood</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <button type="submit" class="btn-primary btn btn-block">Get Report</button> 
+                    </div>
+                  </div>
+                </form>
+              </div>
+        </div>
+
+        <div class="col-md-4 text-align-right">
+            <h3 class="fs-rg">Neighborhood Reports</h3>
+            <nav role="navigation">
+              <div class="list-group custom-active">
+                
+                <a href="../../neighborhood_reports/activedesign/" class="list-group-item">Active Design, Physical Activity and Health
+                </a>
+                
+                
+                <a href="../../neighborhood_reports/asthma/" class="list-group-item">Asthma and the Environment
+                </a>
+                
+                
+                <a href="../../neighborhood_reports/climateandhealth/" class="list-group-item">Climate and Health
+                </a>
+                
+                
+                <a href="../../neighborhood_reports/housing/" class="list-group-item">Housing and Health
+                </a>
+                
+                
+                <a href="../../neighborhood_reports/outdoorair/" class="list-group-item">Outdoor Air and Health
+                </a>
+                
+              </div>
+            </nav>
+
+
+        </div>
+    </div>
+
+</article>
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript" src="https://nycehs.github.io/ehs-data-portal-frontend-temp/js/accessible-autocomplete.min.js" integrity=""></script>
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="https://nycehs.github.io/ehs-data-portal-frontend-temp/js/uhflist.js" integrity=""></script>
+
+<script type="text/javascript"> 
+    
+    function PopulateDropDownList() {
+          
+          
+          
+           var ddlNeighborhoods = document.getElementById("last-neighborhood");
+          
+           
+           for (var i = 0; i < neighborhoods.length; i++) {
+               var option = document.createElement("OPTION");
+  
+               
+               option.innerHTML = neighborhoods[i].namezip;
+  
+               
+               option.value = neighborhoods[i].page_name;
+  
+               
+               ddlNeighborhoods.options.add(option);
+           }
+       }
+   </script>
+   <script type="text/javascript">
+     PopulateDropDownList();
+     var selectEl = document.querySelector('#last-neighborhood')
+     accessibleAutocomplete.enhanceSelectElement({
+       autoselect: true,
+       confirmOnBlur: true,
+       defaultValue: "",
+       minLength: 2,
+       selectElement: selectEl
+     })
+  
+    
+    var searchForm = document.getElementById('last-neighborhood-select') 
+    document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
+        e.preventDefault(); 
+        var locVal = searchForm.options[searchForm.selectedIndex].value
+        window.location = '\/ehs-data-portal-frontend-temp/neighborhood_reports/'+ locVal + "/active_design_physical_activity_and_health/"
+      });
+   </script>
 
 
       <ul id="results"></ul>

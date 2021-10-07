@@ -6,49 +6,49 @@
     <description>Recent content on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Sep 2021 13:58:59 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Oct 2021 12:32:15 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Heat Report</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/heat-report/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/heat-report/heat-report/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/heat-report/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/heat-report/heat-report/</guid>
       <description>Heat Report Goes Here.</description>
     </item>
     
     <item>
       <title>NYCCAS report</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/nyccas/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/nyccas/nyccas/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/nyccas/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/nyccas/nyccas/</guid>
       <description>NYCCAS Report Goes Here.</description>
     </item>
     
     <item>
       <title>Real-time heat-related illness</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/syndromic/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/syndromic/syndromic/</link>
       <pubDate>Mon, 30 Aug 2021 11:51:01 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/syndromic/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/syndromic/syndromic/</guid>
       <description>Extreme heat is dangerous. It can cause heat-related illness, make chronic conditions worse, and even kill. The weather forecast is our best way to predict heat-related health outcomes. We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC.</description>
     </item>
     
     <item>
       <title>Interactive Heat Vulnerability Index</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/hvi/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/hvi/hvi/</link>
       <pubDate>Wed, 25 Aug 2021 10:49:05 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/hvi/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/hvi/hvi/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Your Neighborhood&#39;s Air Quality</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/aqe/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/aqe/aqe/</link>
       <pubDate>Tue, 24 Aug 2021 12:04:44 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/aqe/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/aqe/aqe/</guid>
       <description>We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes one neighborhood&amp;rsquo;s air quality different from another&amp;rsquo;s. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.
 If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.</description>
     </item>
@@ -103,16 +103,6 @@ This site provides data on heavy alcohol consumption and alcohol outlets in NYC.
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/alcohol-use/</guid>
       <description>Alcohol Use About Alcohol Heavy regular drinking and binge drinking contribute to a wide range of chronic health problems, including heart disease, diabetes, cancer, stroke, cirrhosis, depression and dementia. Alcohol use is also associated with suicide, homicide, domestic violence, sexually transmitted diseases and injuries. It is one of the leading behavior-related causes of death in New York City (NYC).
 This site provides data on heavy alcohol consumption and alcohol outlets in NYC.</description>
-    </item>
-    
-    <item>
-      <title>Asthma</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</guid>
-      <description>Asthma About Asthma Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.
-Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</description>
     </item>
     
     <item>
@@ -664,17 +654,6 @@ Asthma is a leading cause of emergency room visits, hospitalizations and missed 
     </item>
     
     <item>
-      <title>Air quality</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/airquality_mm/</link>
-      <pubDate>Wed, 14 Apr 2021 13:03:17 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/airquality_mm/</guid>
-      <description>Air quality is a measure of the condition of the air around us. The less air pollution there is, the better the air quality.
-Like many cities, New York City&amp;rsquo;s air contains particles, liquid droplets, gases, and other contaminants that could impact health. Two pollutants, particulate matter and ground-level ozone, are of particular health concern.
-Although New York City&amp;rsquo;s air does not currently meet federal air quality standards, it has improved significantly over the past two decades.</description>
-    </item>
-    
-    <item>
       <title>Tracking changes in New York City&#39;s sources of air pollution</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/aq-cooking/</link>
       <pubDate>Mon, 12 Apr 2021 12:02:09 -0400</pubDate>
@@ -845,16 +824,6 @@ However, warmer weather creates special challenges keeping food safe. We dug int
       <description>Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.
 To understand the connection between poverty and asthma, take a look at this map of poverty rates in New York City, below. The darker the color, the more residents living in poverty.
   !function () { &#34;use strict&#34;; window.addEventListener(&#34;message&#34;, function (a) { if (void 0 !== a.data[&#34;datawrapper-height&#34;]) for (var e in a.</description>
-    </item>
-    
-    <item>
-      <title>Active Design Physical Activity and Health</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/activedesign/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/activedesign/</guid>
-      <description>Active Design Neighborhood Report Landing Page.
-The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood&amp;rsquo;s features can also impact the safety of its residents.</description>
     </item>
     
     <item>
@@ -1236,13 +1205,21 @@ The design and conditions of buildings, streets, public transportation and parks
     </item>
     
     <item>
+      <title>Active Design, Physical Activity and Health</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/activedesign/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/activedesign/</guid>
+      <description>The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood&amp;rsquo;s features can also impact the safety of its residents.</description>
+    </item>
+    
+    <item>
       <title>Asthma and the Environment</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/asthma/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/asthma/</guid>
-      <description>Asthma and the Environment Neighborhood Report Landing Page.
-Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma indicators by neighborhood. It also describes housing and neighborhood characteristics that can make asthma worse.</description>
+      <description>Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma indicators by neighborhood. It also describes housing and neighborhood characteristics that can make asthma worse.</description>
     </item>
     
     <item>
@@ -1692,8 +1669,7 @@ Asthma is a common lung disease and a leading cause of hospitalizations for chil
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/climateandhealth/</guid>
-      <description>Climate and Health Neighborhood Report Landing Page.
-Extreme heat, coastal storms, flooding and episodes of elevated ozone are climate-related hazards that may increase with climate change and have important public health impacts in New York City. Extreme weather can cause power outages, which also threaten public health. This report provides neighborhood indicators of climate-related hazards, vulnerability and health impacts.</description>
+      <description>Extreme heat, coastal storms, flooding and episodes of elevated ozone are climate-related hazards that may increase with climate change and have important public health impacts in New York City. Extreme weather can cause power outages, which also threaten public health. This report provides neighborhood indicators of climate-related hazards, vulnerability and health impacts.</description>
     </item>
     
     <item>
@@ -2017,8 +1993,7 @@ Extreme heat, coastal storms, flooding and episodes of elevated ozone are climat
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/housing/</guid>
-      <description>Housing and Health Neighborhood Report Landing Page.
-This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can increase vulnerability to housing hazards.</description>
+      <description>This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can increase vulnerability to housing hazards.</description>
     </item>
     
     <item>
@@ -2639,8 +2614,7 @@ This report provides a neighborhood summary of housing conditions and related he
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/outdoorair/</guid>
-      <description>Outdoor Air and Health Neighborhood Report Landing Page.
-Air pollution is one of the most important environmental threats to urban populations and while all people are exposed, pollutant emissions, levels of exposure, and population vulnerability vary across neighborhoods. Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases, cancers, and premature deaths.</description>
+      <description>Air pollution is one of the most important environmental threats to urban populations and while all people are exposed, pollutant emissions, levels of exposure, and population vulnerability vary across neighborhoods. Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases, cancers, and premature deaths.</description>
     </item>
     
     <item>

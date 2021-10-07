@@ -21,59 +21,59 @@
         <div class="row mt-3">
 
             <div class="col-md-4">
-                <h4><i class="fas fa-chart-line text-muted mr-1" aria-hidden="true"></i>Get data:</h4>
+                <h4 class="greenfill"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
                 {{ range .Params.indicators}}
                     <a href="{{.URL}}" onclick="protoPopup()">{{.name}}</a>
                     <hr>
                 {{end}}
-
-
-                <h4 class="mt-4"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
-                
-                    {{ $page_link := .Permalink }}
-                    {{ $cats := .Params.categories }}
-                    {{ range where .Site.RegularPages "Section" "data_stories" }}
-                    {{ $page := . }}
-                    {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
-                    {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
-                    <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
-                    <hr>
-                    {{ end }} 
-                    {{ end }}
-
-
-
-
-                <h4 class="mt-4"><i class="fas fa-star text-muted mr-1" aria-hidden="true"></i>Key Topics</h4>
-
-                    <!--sets variables-->
-                    {{ $page_link := .Permalink }}
-                    {{ $cats := .Params.categories }}
-
-                    {{ range where .Site.RegularPages "Section" "key_topics" }}
-                    <!--$page equals values we find when ranging through-->
-                    {{ $page := . }}
-
-                    <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
-                    {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
-
-                    <!--Show commonalities, except for page we're on -->
-                    {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
-                    <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
-                    <hr>
-                    {{ end }} 
-                    {{ end }}
-
-
-
-
-
             </div>
 
-
             <div class="col-md-8 fs-sm">
-              <h4><i class="fas fa-info-circle text-muted" style="margin-right: 10px" aria-hidden="true"></i>About {{ .Title}}</h4>
+              <h4 class="greenfill"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About {{ .Title}}</h4>
                 {{ .Content }}
+
+
+
+
+
+                <div class="row mt-4 mb-0">
+                    <div class="col-12 mb-1">
+                        <h3 class="greenfill fs-rg my-2">Related:</h3>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h4 class="fs-md"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
+                        {{ partial "related" (dict "section" "data_stories" "layout" "singlelist" "content" . ) }}
+
+                    </div>
+
+                    <div class="col-md-4 mt-0">
+                        <h4 class="fs-md"><i class="fas fa-star text-muted mr-1" aria-hidden="true"></i>Key Topics</h4>
+                        <!--sets variables-->
+                        {{ $page_link := .Permalink }}
+                        {{ $cats := .Params.categories }}
+
+                        {{ range where (where .Site.Pages "Section" "key_topics") ".File.BaseFileName" "_index" }}
+                        <!--$page equals values we find when ranging through-->
+                        {{ $page := . }}
+
+                        <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
+                        {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
+
+                        <!--Show commonalities, except for page we're on -->
+                        {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
+                        <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
+                        <hr class="my-1">
+                        {{ end }} 
+                        {{ end }}
+                    </div>
+
+                    <div class="col-md-4">
+                        <h4 class="fs-md"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
+                        {{ partial "related" (dict "section" "neighborhood_reports" "layout" "singlelist" "content" . ) }}
+
+                    </div>
+                </div>
 
             </div>
 

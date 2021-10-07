@@ -24,6 +24,9 @@
                 <p><a href="{{ .URL}}">{{ .Title}}</a></p>
             </div>
 
+            {{ else if eq $layout "singlelist"}}
+            <a href="{{ .URL}}">{{ .Title }}</a>
+            <hr class="my-1">
 
             {{ end }}
 

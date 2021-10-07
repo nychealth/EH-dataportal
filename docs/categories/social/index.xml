@@ -6,13 +6,23 @@
     <description>Recent content in social on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Aug 2021 10:49:05 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Oct 2021 07:59:16 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Social and Economic Conditions</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/social/</link>
+      <pubDate>Fri, 01 Oct 2021 07:59:16 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/social/</guid>
+      <description>Social and economic conditions affect people’s health. These conditions (also called “social determinants of health”) are conditions that people may be born into or fall into over the course of their lives. They are shaped by local, national and global distribution of resources and power.
+People tend to be healthier when they have access to economic and financial stability, higher education, adequate health care, healthy neighborhoods, and safe, strong communities.</description>
+    </item>
+    
     <item>
       <title>Interactive Heat Vulnerability Index</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/hvi/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/hvi/hvi/</link>
       <pubDate>Wed, 25 Aug 2021 10:49:05 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/hvi/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/hvi/hvi/</guid>
       <description></description>
     </item>
     
@@ -142,16 +152,6 @@ Data on work-related injuries and illness are used to show how often these preve
     </item>
     
     <item>
-      <title>Social and Economic Conditions</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/social/</link>
-      <pubDate>Wed, 05 May 2021 07:59:16 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/social/</guid>
-      <description>Social and economic conditions affect people’s health. These conditions (also called “social determinants of health”) are conditions that people may be born into or fall into over the course of their lives. They are shaped by local, national and global distribution of resources and power.
-People tend to be healthier when they have access to economic and financial stability, higher education, adequate health care, healthy neighborhoods, and safe, strong communities.</description>
-    </item>
-    
-    <item>
       <title>Asthma</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma_mm/</link>
       <pubDate>Wed, 14 Apr 2021 13:38:16 -0400</pubDate>
@@ -228,8 +228,7 @@ To understand the connection between poverty and asthma, take a look at this map
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/asthma/</guid>
-      <description>Asthma and the Environment Neighborhood Report Landing Page.
-Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma indicators by neighborhood. It also describes housing and neighborhood characteristics that can make asthma worse.</description>
+      <description>Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma indicators by neighborhood. It also describes housing and neighborhood characteristics that can make asthma worse.</description>
     </item>
     
     <item>
@@ -238,8 +237,7 @@ Asthma is a common lung disease and a leading cause of hospitalizations for chil
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/climateandhealth/</guid>
-      <description>Climate and Health Neighborhood Report Landing Page.
-Extreme heat, coastal storms, flooding and episodes of elevated ozone are climate-related hazards that may increase with climate change and have important public health impacts in New York City. Extreme weather can cause power outages, which also threaten public health. This report provides neighborhood indicators of climate-related hazards, vulnerability and health impacts.</description>
+      <description>Extreme heat, coastal storms, flooding and episodes of elevated ozone are climate-related hazards that may increase with climate change and have important public health impacts in New York City. Extreme weather can cause power outages, which also threaten public health. This report provides neighborhood indicators of climate-related hazards, vulnerability and health impacts.</description>
     </item>
     
     <item>
@@ -248,8 +246,7 @@ Extreme heat, coastal storms, flooding and episodes of elevated ozone are climat
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/housing/</guid>
-      <description>Housing and Health Neighborhood Report Landing Page.
-This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can increase vulnerability to housing hazards.</description>
+      <description>This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can increase vulnerability to housing hazards.</description>
     </item>
     
   </channel>
