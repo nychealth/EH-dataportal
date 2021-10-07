@@ -4,51 +4,62 @@
 
     <div class="col-md-10 mx-auto my-4">
 
-
-
-        <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>Data Explorer</h1>
-        <p>Browse topics to get to data sets on important environment and health topics for NYC. View maps, charts, and
-            disparities, and more.</p>
-
-        <p><strong>Note</strong>: some of these links will take you to datasets displayed on the old version of the EH Data Portal. To return here, just hit the back button.</p>
-
+        <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title}}</h1>
+        {{ .Content }}
 
         <div class="row">
-            <div class="col-6 mx-auto">
+            <div class="col">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Topics A to Z</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"><i class="fas fa-search mr-2" aria-hidden="true"></i>Search topics</a>
+                    </li>
+                  </ul>
+            </div>
+        </div>
 
-                <form class="autocomplete-form">
-                    <div class="row no-gutters">
-                    <label for="all-data" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">Search data</label>
-                    <div class="col-9">
-                        <div class="autocomplete-wrapper" width="100%">
-                        <select name="all-data" id="all-data">
-                            <option value="">Search data</option>
-                        </select>
+        <div class="row">
+            <div class="col">
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                            <div class="row">
+                            {{ range .Pages }}
+                            <div class="col-md-4">
+                                <p><a href="{{ .URL}}">{{ .Title}}</a></p>
+                            </div>
+                            {{end}}
                         </div>
                     </div>
-                    <div class="col-3">
-                        <button type="submit" class="btn-primary btn btn-block" style="height:39px;">Get data</button> 
+
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                        <div class="row">
+                            <div class="col-8 mx-auto">
+                                <form class="autocomplete-form">
+                                    <div class="row no-gutters">
+                                    <label for="all-data" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">Search data</label>
+                                    <div class="col-9">
+                                        <div class="autocomplete-wrapper" width="100%">
+                                        <select name="all-data" id="all-data">
+                                            <option value="">Search data</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="submit" class="btn-primary btn btn-block" style="height:39px;">Get data</button> 
+                                    </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                </form>
 
+
+                  </div>
             </div>
-        </div>
 
-
-        <div class="row mt-4">
-            <div class="col">
-                <h3>All data topics:</h3>
-            </div>
         </div>
-        <div class="row">
-            {{ range .Pages }}
-            <div class="col-md-6">
-                <p><a href="{{ .URL}}">{{ .Title}}</a></p>
-            </div>
-            {{end}}
-        </div>
-
 
     </div>
 
@@ -72,15 +83,6 @@
             option.value = '{{ .Site.Params.devpath}}/{{ .URL }}'
             //Add the Option element to DropDownList.
             ddlData.options.add(option);
-                    {{ range .Params.indicators}} // also range through data_explorer pages' indicators (in .md frontmatter)
-                        var option = document.createElement("OPTION");
-                        //Set Neighborhood Name in Text part.
-                        option.innerHTML = {{ .name}}
-                        // set the option value
-                        option.value = {{ .URL}}
-                        //Add the Option element to DropDownList.
-                        ddlData.options.add(option);
-                    {{end}}
           {{ end}}
        };
 
@@ -103,9 +105,6 @@
         e.preventDefault(); // prevent page re-load
         window.location.assign(dataSearchForm.options[dataSearchForm.selectedIndex].value)
       });
-
-
-
    </script>
 
 {{end}}
