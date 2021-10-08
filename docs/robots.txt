@@ -2,6 +2,8 @@
 User-agent: *
 
 
+Disallow: /data_explorer/
+
 Disallow: /
 
 Disallow: /key_topics/
@@ -23,8 +25,6 @@ Disallow: /categories/airquality/
 Disallow: /data_explorer/alcohol-access/
 
 Disallow: /data_explorer/alcohol-use/
-
-Disallow: /data_explorer/asthma/
 
 Disallow: /data_explorer/bed-bugs/
 
@@ -57,8 +57,6 @@ Disallow: /data_explorer/climate/
 Disallow: /data_explorer/climate-change/
 
 Disallow: /data_explorer/cockroaches/
-
-Disallow: /data_explorer/
 
 Disallow: /data_explorer/diabetes-high-blood-pressure-and-high-cholesterol/
 
@@ -162,8 +160,6 @@ Disallow: /key_topics/housing/
 
 Disallow: /data_explorer/asthma_mm/
 
-Disallow: /data_explorer/airquality_mm/
-
 Disallow: /key_topics/climatehealth/
 
 Disallow: /key_topics/airquality/
@@ -203,8 +199,6 @@ Disallow: /data_stories/breatheeasy/
 Disallow: /data_stories/food/
 
 Disallow: /data_stories/povasthma/
-
-Disallow: /neighborhood_reports/activedesign/
 
 Disallow: /neighborhood_reports/bayside_little_neck/active_design_physical_activity_and_health/
 
@@ -289,6 +283,8 @@ Disallow: /neighborhood_reports/west_queens/active_design_physical_activity_and_
 Disallow: /neighborhood_reports/williamsburg_bushwick/active_design_physical_activity_and_health/
 
 Disallow: /neighborhood_reports/willowbrook/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/activedesign/
 
 Disallow: /neighborhood_reports/asthma/
 

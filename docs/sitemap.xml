@@ -2,8 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/</loc>
+    <lastmod>2021-09-28T08:22:51-04:00</lastmod>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/</loc>
-    <lastmod>2021-09-10T13:58:59-04:00</lastmod>
+    <lastmod>2021-09-28T08:22:51-04:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/</loc>
     <lastmod>2021-09-10T13:58:59-04:00</lastmod>
@@ -33,9 +36,6 @@
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/alcohol-use/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/bed-bugs/</loc>
@@ -84,9 +84,6 @@
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/cockroaches/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/diabetes-high-blood-pressure-and-high-cholesterol/</loc>
@@ -242,9 +239,6 @@
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma_mm/</loc>
     <lastmod>2021-04-14T13:38:16-04:00</lastmod>
   </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/airquality_mm/</loc>
-    <lastmod>2021-04-14T13:03:17-04:00</lastmod>
-  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/</loc>
     <lastmod>2021-04-14T12:33:17-04:00</lastmod>
   </url><url>
@@ -304,8 +298,6 @@
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/povasthma/</loc>
     <lastmod>2019-10-24T08:18:56-04:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/activedesign/</loc>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bayside_little_neck/active_design_physical_activity_and_health/</loc>
   </url><url>
@@ -390,6 +382,8 @@
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/williamsburg_bushwick/active_design_physical_activity_and_health/</loc>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/willowbrook/active_design_physical_activity_and_health/</loc>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/activedesign/</loc>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/asthma/</loc>
   </url><url>

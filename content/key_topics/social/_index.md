@@ -1,6 +1,6 @@
 ---
 title: "Social and Economic Conditions"
-date: 2021-05-05T07:59:16-04:00
+date: 2021-10-01T07:59:16-04:00
 draft: false
 tags: 
 categories: [social]
@@ -9,6 +9,7 @@ keywords:
 menu:
     main:
         identifier: '05'
+layout: single
 ---
 
 Social and economic conditions affect people’s health. These conditions (also called “social determinants of health”) are conditions that people may be born into or fall into over the course of their lives. They are shaped by local, national and global distribution of resources and power.

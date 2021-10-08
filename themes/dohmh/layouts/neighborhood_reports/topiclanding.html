@@ -39,34 +39,29 @@
               </div>
         </div>
 
-        <div class="col-md-4 text-align-right">
-            <h3 class="fs-rg">Neighborhood Reports</h3>
-            <nav role="navigation">
-              <div class="list-group custom-active">
+        <div class="col-md-4 text-right">
+            <h3 class="fs-rg mb-2">Neighborhood Reports</h3>
+            <hr class="my-2">
                 {{ with .Site.GetPage "/neighborhood_reports/activedesign.md" }}
-                <a href="{{ .URL}}" class="list-group-item">{{ .Title }}
-                </a>
+                <p><a href="{{ .URL}}">{{ .Title }}
+                </a></p>
                 {{ end }}
                 {{ with .Site.GetPage "/neighborhood_reports/asthma.md" }}
-                <a href="{{ .URL}}" class="list-group-item">{{ .Title }}
-                </a>
+                <p><a href="{{ .URL}}">{{ .Title }}
+                </a></p>
                 {{ end }}
                 {{ with .Site.GetPage "/neighborhood_reports/climateandhealth.md" }}
-                <a href="{{ .URL}}" class="list-group-item">{{ .Title }}
-                </a>
+                <p><a href="{{ .URL}}">{{ .Title }}
+                </a></p>
                 {{ end }}
                 {{ with .Site.GetPage "/neighborhood_reports/housing.md" }}
-                <a href="{{ .URL}}" class="list-group-item">{{ .Title }}
-                </a>
+                <p><a href="{{ .URL}}">{{ .Title }}
+                </a></p>
                 {{ end }}
                 {{ with .Site.GetPage "/neighborhood_reports/outdoorair.md" }}
-                <a href="{{ .URL}}" class="list-group-item">{{ .Title }}
-                </a>
+                <p><a href="{{ .URL}}">{{ .Title }}
+                </a></p>
                 {{ end }}
-              </div>
-            </nav>
-
-
         </div>
     </div>
 
