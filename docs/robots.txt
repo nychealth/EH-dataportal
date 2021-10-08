@@ -30,17 +30,17 @@ Disallow: /key_topics/transportation/
 
 Disallow: /key_topics/
 
-Disallow: /key_topics/climatehealth/heat-report/heat-report/
+Disallow: /key_topics/climatehealth/heat-report/
 
-Disallow: /key_topics/airquality/nyccas/nyccas/
+Disallow: /key_topics/airquality/nyccas/
 
 Disallow: /data_stories/
 
-Disallow: /key_topics/climatehealth/syndromic/syndromic/
+Disallow: /key_topics/climatehealth/syndromic/
 
-Disallow: /key_topics/climatehealth/hvi/hvi/
+Disallow: /key_topics/climatehealth/hvi/
 
-Disallow: /key_topics/airquality/aqe/aqe/
+Disallow: /key_topics/airquality/aqe/
 
 Disallow: /data_stories/localtemp/
 
