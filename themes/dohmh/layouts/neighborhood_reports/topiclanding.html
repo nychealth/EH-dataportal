@@ -1,6 +1,135 @@
 {{ define "main" }}
 
-<h2>{{ .Title }}</h2>
-<p>{{ .Content }}</p>
+<article class="container" id="skip-header-target">
+    <div class="row">
+        <div class="col-md-12 mx-auto mt-4 pl-0">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/neighborhood_reports/">Neighborhood Reports</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
+        </div>
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 pl-0">
+            <h2>{{ .Title }}</h2>
+            <p>{{ .Content}}</p>
+            <p>Get a neighborhood report by searching for your neighborhood:</p>
+            <div class="bg-active p-2 p-md-4 mb-4">
+                <form action="/neighborhood_reports" method="get" class="autocomplete-form">
+                  <div class="row no-gutters">
+                    <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-3">What NYC neighborhood are you interested in?</label>
+                    <div class="col-8">
+                      <div class="autocomplete-wrapper">
+                        <select name="last-neighborhood" id="last-neighborhood">
+                          <option value="">Select a neighborhood</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <button type="submit" class="btn-primary btn btn-block">Get Report</button> 
+                    </div>
+                  </div>
+                </form>
+              </div>
+        </div>
+
+        <div class="col-md-4 text-align-right">
+            <h3 class="fs-rg">Neighborhood Reports</h3>
+            <nav role="navigation">
+              <div class="list-group custom-active">
+                {{ with .Site.GetPage "/neighborhood_reports/activedesign.md" }}
+                <a href="{{ .URL}}" class="list-group-item">{{ .Title }}
+                </a>
+                {{ end }}
+                {{ with .Site.GetPage "/neighborhood_reports/asthma.md" }}
+                <a href="{{ .URL}}" class="list-group-item">{{ .Title }}
+                </a>
+                {{ end }}
+                {{ with .Site.GetPage "/neighborhood_reports/climateandhealth.md" }}
+                <a href="{{ .URL}}" class="list-group-item">{{ .Title }}
+                </a>
+                {{ end }}
+                {{ with .Site.GetPage "/neighborhood_reports/housing.md" }}
+                <a href="{{ .URL}}" class="list-group-item">{{ .Title }}
+                </a>
+                {{ end }}
+                {{ with .Site.GetPage "/neighborhood_reports/outdoorair.md" }}
+                <a href="{{ .URL}}" class="list-group-item">{{ .Title }}
+                </a>
+                {{ end }}
+              </div>
+            </nav>
+
+
+        </div>
+    </div>
+
+</article>
+
+
+
+
+
+
+
+
+  {{ $js := resources.Get "js/accessible-autocomplete.min.js" }}
+  {{ $secureJS := $js }}
+  <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+  
+  {{ $js := resources.Get "js/accessible-autocomplete.min.js.map" }}
+  
+  {{ $js := resources.Get "js/uhflist.js" }}
+  {{ $secureJS := $js }}
+  <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+
+<script type="text/javascript"> 
+    // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
+    function PopulateDropDownList() {
+          //Build an array containing Neighborhood records.
+          //UHFList.js contains a variable 'neighborhoods' with names zips and ids
+          
+           var ddlNeighborhoods = document.getElementById("last-neighborhood");
+          
+           //Add the Options to the DropDownList.
+           for (var i = 0; i < neighborhoods.length; i++) {
+               var option = document.createElement("OPTION");
+  
+               //Set Neighborhood Name in Text part.
+               option.innerHTML = neighborhoods[i].namezip;
+  
+               //Set Neighborhood Id in Value part.
+               option.value = neighborhoods[i].page_name;
+  
+               //Add the Option element to DropDownList.
+               ddlNeighborhoods.options.add(option);
+           }
+       }
+   </script>
+   <script type="text/javascript">
+     PopulateDropDownList();
+     var selectEl = document.querySelector('#last-neighborhood')
+     accessibleAutocomplete.enhanceSelectElement({
+       autoselect: true,
+       confirmOnBlur: true,
+       defaultValue: "",
+       minLength: 2,
+       selectElement: selectEl
+     })
+  
+    // this takes the AA form and on submit, sends page to a new location.
+    var searchForm = document.getElementById('last-neighborhood-select') // this isn't all-data, but all-data-select because of changes applied by the AA JS.
+    document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
+        e.preventDefault(); // prevent page re-load
+        var locVal = searchForm.options[searchForm.selectedIndex].value
+        window.location = '{{ $.Site.Params.devpath}}/neighborhood_reports/'+ locVal + {{ .Params.urlExtension}}
+      });
+   </script>
 
 {{ end }}

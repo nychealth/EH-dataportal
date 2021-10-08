@@ -8,38 +8,14 @@
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/</loc>
     <lastmod>2021-09-10T13:58:59-04:00</lastmod>
   </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/airquality/</loc>
-    <lastmod>2021-09-08T11:14:56-04:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/</loc>
-    <lastmod>2021-09-08T11:14:56-04:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/climatehealth/</loc>
-    <lastmod>2021-09-08T11:14:56-04:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/heat-report/</loc>
-    <lastmod>2021-09-08T11:14:56-04:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/nyccas/</loc>
-    <lastmod>2021-09-08T11:14:56-04:00</lastmod>
-  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/</loc>
     <lastmod>2021-09-02T08:49:22-04:00</lastmod>
   </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/syndromic/</loc>
-    <lastmod>2021-08-30T11:51:01-04:00</lastmod>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/</loc>
+    <lastmod>2021-08-20T12:52:43-04:00</lastmod>
   </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/housing/</loc>
-    <lastmod>2021-08-25T10:49:05-04:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/hvi/</loc>
-    <lastmod>2021-08-25T10:49:05-04:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/</loc>
-    <lastmod>2021-08-25T10:49:05-04:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/aqe/</loc>
-    <lastmod>2021-08-24T12:04:44-04:00</lastmod>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/climatehealth/</loc>
+    <lastmod>2021-08-20T12:52:43-04:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/localtemp/</loc>
     <lastmod>2021-08-20T12:52:43-04:00</lastmod>
@@ -48,6 +24,9 @@
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/air-quality/</loc>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/airquality/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/alcohol-access/</loc>
@@ -140,6 +119,9 @@
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/housing/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/housing/</loc>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
+  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/housing-and-neighborhoods/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
@@ -189,6 +171,9 @@
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/restaurant-food-safety/</loc>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/social-and-economic-conditions/</loc>
@@ -283,6 +268,9 @@
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/heat/</loc>
     <lastmod>2020-09-09T08:33:22-04:00</lastmod>
+  </url><url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/internal/</loc>
+    <lastmod>2020-08-01T08:33:22-04:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/geographies/</loc>
     <lastmod>2020-08-01T08:33:22-04:00</lastmod>
