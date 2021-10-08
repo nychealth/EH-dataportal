@@ -3,7 +3,7 @@ title: "A brief history of redlining"
 date: 2021-01-06T08:07:31-04:00
 draft: false
 tags:
-categories: ["housing","social","childhealth"]
+categories: ["housing","social","childhealth","neighborhoods"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism"]
 image: ds-povasthma.jpg
 menu:

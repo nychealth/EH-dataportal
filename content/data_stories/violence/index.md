@@ -2,7 +2,7 @@
 title: "Why violence is a public health issue"
 date: 2021-02-08T08:07:31-04:00
 draft: false
-categories: ["housing","social","childhealth"]
+categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
 keywords: ["violence","assaults","injustice","poverty","social determinants","redlining","disinvestment","racism","neighborhoods"]
 image: ds-povasthma.jpg
 menu:
