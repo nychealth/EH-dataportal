@@ -75,7 +75,10 @@
                     {{ .Date.Format "January 2, 2006"}}
                 </div>
 
-                <h3 class="text-muted fs-rg mt-4">Related:</h3>
+                {{ partial "socialshare.html" . }}
+
+
+                <h3 class="text-muted fs-sm mt-4 border-bottom text-right">Related:</h3>
                 <div class="fs-sm">
                     <h4 class="mt-2 fs-md"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
                     {{ partial "related" (dict "section" "data_stories" "layout" "singlelist" "content" . ) }}
