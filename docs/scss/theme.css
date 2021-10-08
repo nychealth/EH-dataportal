@@ -9329,6 +9329,12 @@ input[type=range]:focus::-ms-fill-upper {
   padding-top: 5px;
   padding-bottom: 5px; }
 
+.greenfill {
+  background: #00923E;
+  padding: 5px;
+  color: white;
+  border-radius: 3px; }
+
 .tab-container {
   display: none; }
 

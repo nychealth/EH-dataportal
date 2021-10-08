@@ -2,25 +2,51 @@
 User-agent: *
 
 
-Disallow: /data_explorer/
+Disallow: /key_topics/airquality/
 
-Disallow: /
-
-Disallow: /key_topics/
-
-Disallow: /data_stories/
+Disallow: /categories/airquality/
 
 Disallow: /categories/
 
+Disallow: /
+
+Disallow: /key_topics/climatehealth/
+
 Disallow: /categories/climatehealth/
+
+Disallow: /key_topics/housing/
+
+Disallow: /categories/housing/
+
+Disallow: /categories/social/
+
+Disallow: /key_topics/social/
+
+Disallow: /categories/transportation/
+
+Disallow: /key_topics/transportation/
+
+Disallow: /data_explorer/
+
+Disallow: /key_topics/
+
+Disallow: /key_topics/climatehealth/heat-report/heat-report/
+
+Disallow: /key_topics/airquality/nyccas/nyccas/
+
+Disallow: /data_stories/
+
+Disallow: /key_topics/climatehealth/syndromic/syndromic/
+
+Disallow: /key_topics/climatehealth/hvi/hvi/
+
+Disallow: /key_topics/airquality/aqe/aqe/
 
 Disallow: /data_stories/localtemp/
 
 Disallow: /data_explorer/active-design/
 
 Disallow: /data_explorer/air-quality/
-
-Disallow: /categories/airquality/
 
 Disallow: /data_explorer/alcohol-access/
 
@@ -78,8 +104,6 @@ Disallow: /data_explorer/heart-attacks/
 
 Disallow: /data_explorer/housing/
 
-Disallow: /categories/housing/
-
 Disallow: /data_explorer/housing-and-neighborhoods/
 
 Disallow: /data_explorer/large-city-air-quality-comparison/
@@ -114,8 +138,6 @@ Disallow: /data_explorer/race-and-ethnicity/
 
 Disallow: /data_explorer/restaurant-food-safety/
 
-Disallow: /categories/social/
-
 Disallow: /data_explorer/social-and-economic-conditions/
 
 Disallow: /data_explorer/solid-waste/
@@ -125,8 +147,6 @@ Disallow: /data_explorer/sugary-drink-consumption/
 Disallow: /data_explorer/traffic/
 
 Disallow: /data_explorer/transportation/
-
-Disallow: /categories/transportation/
 
 Disallow: /data_explorer/transportation-related-injuries/
 
@@ -148,21 +168,11 @@ Disallow: /data_explorer/worker-health/
 
 Disallow: /key_topics/childhealth/
 
-Disallow: /key_topics/social/
-
 Disallow: /key_topics/pests/
 
 Disallow: /key_topics/foodanddrink/
 
-Disallow: /key_topics/transportation/
-
-Disallow: /key_topics/housing/
-
 Disallow: /data_explorer/asthma_mm/
-
-Disallow: /key_topics/climatehealth/
-
-Disallow: /key_topics/airquality/
 
 Disallow: /data_stories/aq-cooking/
 

@@ -6,22 +6,49 @@
     <description>Recent content in Categories on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Aug 2021 12:52:43 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Oct 2021 12:32:15 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>airquality</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/airquality/</link>
+      <pubDate>Mon, 04 Oct 2021 12:32:15 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/airquality/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>climatehealth</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/climatehealth/</link>
-      <pubDate>Fri, 20 Aug 2021 12:52:43 -0400</pubDate>
+      <pubDate>Sun, 03 Oct 2021 12:33:17 -0400</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/climatehealth/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>airquality</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/airquality/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <title>housing</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/housing/</link>
+      <pubDate>Sat, 02 Oct 2021 07:56:00 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/airquality/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/housing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>social</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/</link>
+      <pubDate>Fri, 01 Oct 2021 07:59:16 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>transportation</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/transportation/</link>
+      <pubDate>Thu, 30 Sep 2021 07:58:01 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/transportation/</guid>
       <description></description>
     </item>
     
@@ -44,38 +71,11 @@
     </item>
     
     <item>
-      <title>housing</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/housing/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/housing/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>pests</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/pests/</link>
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/pests/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>social</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>transportation</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/transportation/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/transportation/</guid>
       <description></description>
     </item>
     
