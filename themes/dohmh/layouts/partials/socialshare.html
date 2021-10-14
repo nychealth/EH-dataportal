@@ -1,4 +1,5 @@
 <!-- Social Share Button HTML -->
+<!--This partial used with gratitude from: https://codingnconcepts.com/hugo/social-icons-hugo/ -->
 
   {{ $title := .Title }}
   {{ $url := printf "%s" .Permalink }}
@@ -10,7 +11,7 @@
       <!-- Twitter -->
       <li>
         <a href="https://twitter.com/intent/tweet?&amp;url={{ .Permalink }}&amp;text={{ .Title }}" target="_blank" rel="noopener" aria-label="Share on Twitter" class="share-btn twitter">
-          {{ partial "svg/twitter.svg" (dict "class" "widget-social__link-icon") }}
+          <i class="fab fa-twitter-square fs-xl"></i>
           <p>Twitter</p>
           </a>
       </li>
@@ -18,7 +19,7 @@
       <!-- Facebook -->
       <li>
         <a href="https://www.facebook.com/sharer.php?u={{ $url }}" target="_blank" rel="noopener" aria-label="Share on Facebook" class="share-btn facebook">
-          {{ partial "svg/facebook.svg" (dict "class" "widget-social__link-icon") }}
+          <i class="fab fa-facebook-square fs-xl"></i>
           <p>Facebook</p>
           </a>
       </li>
@@ -26,18 +27,18 @@
       <!-- LinkedIn -->
       <li>
         <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ $url}}" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="share-btn linkedin">
-          {{ partial "svg/linkedin.svg" (dict "class" "widget-social__link-icon") }}
+          <i class="fab fa-linkedin fs-xl"></i>
             <p>LinkedIn</p>
           </a>
       </li>
 
       <!-- Email -->
-      <!-- <li>
+      <li>
         <a href="mailto:?subject={{ .Site.Title }} - {{ $title }}.&amp;body={{ $body }}" target="_blank" class="share-btn email">
-          {{ partial "svg/email.svg" (dict "class" "widget-social__link-icon") }}
+          <i class="fas fa-envelope fs-xl"></i>
           <p>Email</p>
         </a>
-      </li> -->
+      </li> 
     </ul>
   </section>
 
