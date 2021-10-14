@@ -110,15 +110,8 @@
                 </div>
 
                 <div class="mt-4">
-                    <div class="keywords">{{ if .Params.keywords }}<strong>Keywords:</strong> {{range .Params.keywords}}<a href="{{ "/keywords/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> {{end}}{{end}}</div>
+                    {{ partial "keywords" . }}
                 </div>
-
-                <style>
-                    .keywords {
-                        font-size: 10px;
-                        color: grey;
-                    }
-                </style>
 
             </div>
             <!-- .my-3 -->
