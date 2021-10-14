@@ -8,7 +8,7 @@
     </div>
 
 
-    <div class="row my-4">
+    <div class="row mt-4">
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item">
               <a class="nav-link active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">All data stories</a>
@@ -38,11 +38,18 @@
 
     </div>
 
-    <div class="row my-4">
+    <div class="row">
         <div class="col">
             <div class="tab-content" id="pills-tabContent">
-
                 <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
+                    <div class="row mb-2">
+                        <div class="col">
+                            <!-- Hugo's default pagination template. -->
+                            {{ template "_internal/pagination.html" . }}
+                        </div>
+
+                    </div>
+
                     <div class="row">
                         
                             {{ range .Paginator.Pages }}
@@ -55,10 +62,38 @@
                             {{ end }}
                     </div>
 
-                    <div class="row">
-                        <!-- Hugo's default pagination template. -->
-                        {{ template "_internal/pagination.html" . }}
-                    </div>
+
+
+                    <style>
+                        .pagination {
+                        text-align: center;
+                        }
+
+                        .pagination li {
+                            display: inline;
+                        }
+
+                        .pagination a {
+                            font-size: 24px;
+                            padding: 0px 15px;
+                            color:#b820bb;
+                            background: rgb(238, 238, 238);
+                            margin: 0px 3px;
+                            box-shadow: 2px 5px 3px #bebebe;
+                            border-radius: 3px;
+                        }
+
+                        .pagination a:hover {
+                            color: white!important;
+                            font-weight: bold;
+                            text-decoration: none;
+                            background-color: #b820bb;
+                        }
+
+
+
+
+                    </style>
 
                 </div>
 
