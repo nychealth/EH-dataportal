@@ -44,14 +44,20 @@
 
                 <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
                     <div class="row">
-                        {{ range .RegularPages }}
-                        <div class="col-md-4">
-                            <a class="h2 fs-md" href="{{ .URL}}">{{ .Title }}</a>
-                            <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                            <p class="text-right fs-sm"><a href="{{ .URL}}">Read more...</a></p>
-                        <hr class="mb-3">
-                        </div>
-                        {{end}}
+                        
+                            {{ range .Paginator.Pages }}
+                            <div class="col-md-4">
+                                <a class="h2 fs-md" href="{{ .URL}}">{{ .Title }}</a>
+                                <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
+                                <p class="text-right fs-sm"><a href="{{ .URL}}">Read more...</a></p>
+                            <hr class="mb-3">
+                            </div>
+                            {{ end }}
+                    </div>
+
+                    <div class="row">
+                        <!-- Hugo's default pagination template. -->
+                        {{ template "_internal/pagination.html" . }}
                     </div>
 
                 </div>
