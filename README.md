@@ -24,13 +24,22 @@ You will need the following things properly installed on your computer.
 
 ## Development
 
-- On your local, start the server with `hugo serve --environment local`
-- Develop on branches labelled hotfix-, content-, or feature-. 
-- After merging branches into main, run a new build on main to /docs.
+- On your local, start the server with ```hugo serve --environment local --disableFastRender```
+    - ```hugo serve``` starts the server - you can then browse the site at http://localhost:1313/ehs-data-portal-frontend-temp 
+    - ```--environment local``` specifies that it will serve the site for the local environment, using content from ```/config/local/config.toml```
+    - ```--disableFastRender``` turns off fast render mode, so more small changes are rapidly served
+- Develop on branches labelled hotfix-, content-, or feature-. Keep branch work focused on discrete tasks to avoid merge conflicts later.
+- Merge into development to test. 
+    - Run a build with ```hugo --environment local```. The ```hugo``` command builds a fresh version of the site to ```/docs```.
+    - Development is served on githubpages.  
+- Branches that pass testing and are ready for primetime can then be merged into main. 
+- After merging branches into main, run a new build on main.
 
 ## Architecture
 
-Development is largely done in the /content and the /themes directories. Functionality worth noting for ongoing development:
+Generally, Hugo works by combining content (in markdown, located in /content) with templates (located in the /themes) - you'll notice that these two directories have identical structures, because Hugo combines /content/data_stories, for example, with templates in /themes/layouts/data_stories. Templates can include Hugo code (which you can identify by {{ curly brackets }}. When Hugo serves or builds the site, it runs code, inserts content into the HTML, and produces static pages. 
+
+Functionality worth noting for ongoing development:
 
 ### Navigation
 The nav menu will highlight the content area (e.g., "Data Stories") when the user is on that area's landing page, or on a subpage within that directory. For this to work, each markdown file (especially subpages) needs the following in the front matter:
@@ -88,7 +97,7 @@ And, use the storyheader shortcode to insert headers with anchor links like this
 Note that ```text``` does not need to match ```chapter```, but ```anchor``` in the frontmatter needs to match ```anchor``` in the shortcode.
 
 ### Indicators
-Indicators can be displayed on subtopic pages. Indicators are stored as json within subtopic content markdown file's front matter - see [asthma.md](https://github.com/nycehs/ehs-neighborhoodprofiles/blob/main/content/data_explorer/asthma.md) or below:
+Indicators can be displayed on subtopic pages. Indicators are currently stored as json within subtopic content markdown file's front matter - see [asthma.md](https://github.com/nycehs/ehs-neighborhoodprofiles/blob/main/content/data_explorer/asthma.md) or below:
 
 ```
 indicators: [
@@ -114,8 +123,17 @@ Then, the template page loops through the Indicator JSON and displays each indic
 {{end}}
 ```
 
+Currently, it directs to the old version of the portal, with a pop-up window about the change in environments. 
+
 ### Ranging through items in another content section
-This code works on any template page to range through items in another content section. For example, placed on key_topics/section.html, it ranges through all of the Site's Pages that are in the data_stories section, and prints the Title.
+We have a few different ways of ingesting content across sections. One way is using the partial ```related.html```. This partial can be called with the following:
+```                    
+{{ partial "related" (dict "section" "data_explorer" "layout" "list" "content" . ) }}
+```
+
+This passes in several arguments (data explorer, list) that are used as variables in the partial itself, to determine which section's content is displayed, and how it is displayed.
+
+The basis of the code in related.html is an older approach, code that works on any template page to range through items in another content section. For example, placed on key_topics/section.html, it ranges (loops) through all of the Site's Pages that are in the data_stories section, and prints the Title.
 
 ```
     {{ range where .Site.RegularPages "Section" "data_stories" }}
@@ -147,6 +165,8 @@ Data stories, Key Topics, and Data Explorer (subtopics) markdown should have the
 - keywords: a field used to populate information for the site search function
 - tags: a freeform category we are not yet using
 
+Each Key Topic also has a single keyTopic parameter that matches its title, and other content's category tag. 
+
 ### Using custom layouts
 If a file contains ```layout: custom``` in the frontmatter,  Hugo will look for a layout named ```custom.html``` in the same directory structure within ```/themes/dohmh/layouts```. Use this for one-off data features like the Air Quality Explorer. For Key Topic landing pages, use ```layout: single``` to force these pages to display based on the ```single.html``` template instead of the list template (```section.html```).
 
@@ -168,20 +188,10 @@ Currently, config/local/config.toml has a variable ```devpath = "/ehs-data-porta
 To run a local-environment-specific serve or build, enter ```hugo serve --environment local``` or ```hugo build --environment local```. This will merge the contents of /config/local/config.toml with /config/_default/config.toml.
 
 ## Testing and checks
-
-- **Update this list** - with the project's QA/QC rules and any testing information; below are examples only
-
-- **ESLint** - We use ESLint with Airbnb's rules for JavaScript projects
-  - Add an ESLint plugin to your text editor to highlight broken rules while you code
-  - You can also run `eslint` at the command line with the `--fix` flag to automatically fix some errors.
-
-- **Testing**
-  - run `ember test --serve`
-  - Before creating a Pull Request, make sure your branch is updated with the latest `develop` and passes all tests
+The site runs a CodeQL analysis on merges/builds. 
 
 ## Deployment
-
-{Description of what type of hosting environment is required, and steps for how you deploy -- e.g `git push dokku master`.}
+The development branch is served on github pages, here: [Environment and Health Data Portal](https://nycehs.github.io/ehs-data-portal-frontend-temp).
 
 ## Contact us
 
