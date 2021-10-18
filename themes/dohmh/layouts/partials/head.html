@@ -9,7 +9,10 @@
   {{ if .Params.seo_title }}{{ .Params.seo_title }}{{ else }}{{ .Title }}{{ end }} &#x7c; {{ .Site.Title }}
 {{ end }}</title>
 {{ partial "seo" . }}
-{{ partial "chart" . }}
+
+{{ if eq .Page.Section "neighborhood_reports"}}
+  {{ partial "chart" . }}
+{{ end }}
 
 <!-- jQuery (full, compressed version) -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
