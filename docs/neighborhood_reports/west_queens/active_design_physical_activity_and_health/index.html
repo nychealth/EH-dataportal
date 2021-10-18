@@ -37,8 +37,8 @@
 <meta name="twitter:creator" content="@nycHealthy">
 <script>
     
-  const indicatorDataPath = "/visualizations/csv/"; 
-  const indicatorMapPath = "/visualizations/json/"; 
+  const indicatorDataPath = "\/ehs-data-portal-frontend-temp/visualizations/csv/"; 
+  const indicatorMapPath = "\/ehs-data-portal-frontend-temp/visualizations/json/"; 
   
   
   var summarySpec = {
@@ -299,7 +299,7 @@
 
     </div>
     
-    <div class="site-header bg-primary" style="background-image: url(/images/header_background.jpg)">
+    <div class="site-header bg-primary" style="background-image: url(/ehs-data-portal-frontend-temp/images/header_background.jpg)">
         <div class="wrap-header">
 
             <div class="container-fluid wide">
@@ -507,7 +507,7 @@
         <div class="mt-5">
             <a class="sr-only sr-only-focusable skip-menu" href="#primary-content">Skip Nav</a>
 
-            <h2>Neighborhood Reports</h2>
+            <h2>Change Report</h2>
             <nav role="navigation">
               <div class="list-group custom-active">
                 
@@ -543,7 +543,23 @@
 
               </div>
             </nav>
-            
+
+            <h2 class="mt-4">Change Neighborhood</h2>
+            <form action="../../../neighborhood_reports" method="get" class="autocomplete-form">
+              <div class="row no-gutters">
+                <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">What NYC neighborhood are you interested in?</label>
+                <div class="col-9">
+                  <div class="autocomplete-wrapper">
+                    <select name="last-neighborhood" id="last-neighborhood">
+                      <option value="">Select a neighborhood</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <button type="submit" class="btn-primary btn btn-block fs-sm">Go</button> 
+                </div>
+              </div>
+            </form>            
           
         </div>
         
@@ -1816,6 +1832,70 @@
   </div>
 </div>
 
+
+
+
+
+
+<script type="text/javascript" src="https://nycehs.github.io/ehs-data-portal-frontend-temp/js/accessible-autocomplete.min.js" integrity=""></script>
+
+
+
+<script type="text/javascript" src="https://nycehs.github.io/ehs-data-portal-frontend-temp/js/uhflist.js" integrity=""></script>
+
+<script type="text/javascript"> 
+  
+  function PopulateDropDownList() {
+        
+        
+        
+         var ddlNeighborhoods = document.getElementById("last-neighborhood");
+        
+         
+         for (var i = 0; i < neighborhoods.length; i++) {
+             var option = document.createElement("OPTION");
+
+             
+             option.innerHTML = neighborhoods[i].namezip;
+
+             
+             option.value = neighborhoods[i].page_name;
+
+             
+             ddlNeighborhoods.options.add(option);
+         }
+     }
+ </script>
+ <script type="text/javascript">
+   PopulateDropDownList();
+   var selectEl = document.querySelector('#last-neighborhood')
+   accessibleAutocomplete.enhanceSelectElement({
+     autoselect: true,
+     confirmOnBlur: true,
+     defaultValue: "",
+     minLength: 2,
+     selectElement: selectEl
+   })
+
+
+
+   var thisURL = window.location.pathname.split('/')
+   var reportExt = thisURL[4];
+   
+
+
+  
+  var searchForm = document.getElementById('last-neighborhood-select') 
+  document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
+  e.preventDefault(); 
+  var locVal = searchForm.options[searchForm.selectedIndex].value;
+  window.location = '\/ehs-data-portal-frontend-temp/neighborhood_reports/'+ locVal + "/" + reportExt;
+  });
+
+
+
+
+ </script>
 
 
 

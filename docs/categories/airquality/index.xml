@@ -6,7 +6,17 @@
     <description>Recent content in airquality on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Sep 2021 11:14:56 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/airquality/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Oct 2021 12:32:15 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/airquality/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Air Quality</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/</link>
+      <pubDate>Mon, 04 Oct 2021 12:32:15 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/</guid>
+      <description>New York City&amp;rsquo;s air contains particles, drops of liquid, gasses, and other pollution that can affect health. Bad air quality can be particularly dangerous for older adults, children, and people with heart or lung conditions.
+Air quality varies from neighborhood to neighborhood, based on local levels of emissions and many other factors. We monitor air quality using the New York City Community Air Survey (NYCCAS), NYC&amp;rsquo;s comprehensive air quality monitoring and modeling network.</description>
+    </item>
+    
     <item>
       <title>NYCCAS report</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/nyccas/</link>
@@ -35,16 +45,6 @@ If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we kn
       <description>Air Quality About Air Pollution Air quality is a measure of the condition of the air around us. The less air pollution there is, the better the air quality.
 Like many cities, New York City&amp;rsquo;s air contains particles, liquid droplets, gases, and other contaminants that could impact health. Two pollutants, particulate matter andground-level ozone, are of particular health concern.
 Although New York City&amp;rsquo;s air does not currently meet federal air quality standards, it has improved significantly over the past two decades.</description>
-    </item>
-    
-    <item>
-      <title>Asthma</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</guid>
-      <description>Asthma About Asthma Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.
-Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</description>
     </item>
     
     <item>
@@ -118,27 +118,6 @@ Asthma is a leading cause of emergency room visits, hospitalizations and missed 
     </item>
     
     <item>
-      <title>Air quality</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/airquality_mm/</link>
-      <pubDate>Wed, 14 Apr 2021 13:03:17 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/airquality_mm/</guid>
-      <description>Air quality is a measure of the condition of the air around us. The less air pollution there is, the better the air quality.
-Like many cities, New York City&amp;rsquo;s air contains particles, liquid droplets, gases, and other contaminants that could impact health. Two pollutants, particulate matter and ground-level ozone, are of particular health concern.
-Although New York City&amp;rsquo;s air does not currently meet federal air quality standards, it has improved significantly over the past two decades.</description>
-    </item>
-    
-    <item>
-      <title>Air Quality</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/</link>
-      <pubDate>Wed, 14 Apr 2021 12:32:15 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/</guid>
-      <description>New York City&amp;rsquo;s air contains particles, drops of liquid, gasses, and other pollution that can affect health. Bad air quality can be particularly dangerous for older adults, children, and people with heart or lung conditions.
-Air quality varies from neighborhood to neighborhood, based on local levels of emissions and many other factors. We monitor air quality using the New York City Community Air Survey (NYCCAS), NYC&amp;rsquo;s comprehensive air quality monitoring and modeling network.</description>
-    </item>
-    
-    <item>
       <title>Tracking changes in New York City&#39;s sources of air pollution</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/aq-cooking/</link>
       <pubDate>Mon, 12 Apr 2021 12:02:09 -0400</pubDate>
@@ -199,13 +178,12 @@ Fortunately, New York City has made great strides in recent years to improve air
     </item>
     
     <item>
-      <title>Active Design Physical Activity and Health</title>
+      <title>Active Design, Physical Activity and Health</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/activedesign/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/activedesign/</guid>
-      <description>Active Design Neighborhood Report Landing Page.
-The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood&amp;rsquo;s features can also impact the safety of its residents.</description>
+      <description>The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood&amp;rsquo;s features can also impact the safety of its residents.</description>
     </item>
     
     <item>
@@ -214,8 +192,7 @@ The design and conditions of buildings, streets, public transportation and parks
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/asthma/</guid>
-      <description>Asthma and the Environment Neighborhood Report Landing Page.
-Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma indicators by neighborhood. It also describes housing and neighborhood characteristics that can make asthma worse.</description>
+      <description>Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma indicators by neighborhood. It also describes housing and neighborhood characteristics that can make asthma worse.</description>
     </item>
     
     <item>
@@ -224,8 +201,7 @@ Asthma is a common lung disease and a leading cause of hospitalizations for chil
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/outdoorair/</guid>
-      <description>Outdoor Air and Health Neighborhood Report Landing Page.
-Air pollution is one of the most important environmental threats to urban populations and while all people are exposed, pollutant emissions, levels of exposure, and population vulnerability vary across neighborhoods. Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases, cancers, and premature deaths.</description>
+      <description>Air pollution is one of the most important environmental threats to urban populations and while all people are exposed, pollutant emissions, levels of exposure, and population vulnerability vary across neighborhoods. Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases, cancers, and premature deaths.</description>
     </item>
     
   </channel>

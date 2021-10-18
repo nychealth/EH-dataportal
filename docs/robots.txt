@@ -2,15 +2,33 @@
 User-agent: *
 
 
+Disallow: /data_explorer/
+
 Disallow: /
 
-Disallow: /key_topics/
+Disallow: /key_topics/airquality/
 
 Disallow: /categories/airquality/
 
 Disallow: /categories/
 
+Disallow: /key_topics/climatehealth/
+
 Disallow: /categories/climatehealth/
+
+Disallow: /key_topics/housing/
+
+Disallow: /categories/housing/
+
+Disallow: /categories/social/
+
+Disallow: /key_topics/social/
+
+Disallow: /categories/transportation/
+
+Disallow: /key_topics/transportation/
+
+Disallow: /key_topics/
 
 Disallow: /key_topics/climatehealth/heat-report/
 
@@ -20,11 +38,7 @@ Disallow: /data_stories/
 
 Disallow: /key_topics/climatehealth/syndromic/
 
-Disallow: /categories/housing/
-
 Disallow: /key_topics/climatehealth/hvi/
-
-Disallow: /categories/social/
 
 Disallow: /key_topics/airquality/aqe/
 
@@ -37,8 +51,6 @@ Disallow: /data_explorer/air-quality/
 Disallow: /data_explorer/alcohol-access/
 
 Disallow: /data_explorer/alcohol-use/
-
-Disallow: /data_explorer/asthma/
 
 Disallow: /data_explorer/bed-bugs/
 
@@ -71,8 +83,6 @@ Disallow: /data_explorer/climate/
 Disallow: /data_explorer/climate-change/
 
 Disallow: /data_explorer/cockroaches/
-
-Disallow: /data_explorer/
 
 Disallow: /data_explorer/diabetes-high-blood-pressure-and-high-cholesterol/
 
@@ -138,8 +148,6 @@ Disallow: /data_explorer/traffic/
 
 Disallow: /data_explorer/transportation/
 
-Disallow: /categories/transportation/
-
 Disallow: /data_explorer/transportation-related-injuries/
 
 Disallow: /data_explorer/vector-borne-disease/
@@ -160,23 +168,11 @@ Disallow: /data_explorer/worker-health/
 
 Disallow: /key_topics/childhealth/
 
-Disallow: /key_topics/social/
-
 Disallow: /key_topics/pests/
 
 Disallow: /key_topics/foodanddrink/
 
-Disallow: /key_topics/transportation/
-
-Disallow: /key_topics/housing/
-
 Disallow: /data_explorer/asthma_mm/
-
-Disallow: /data_explorer/airquality_mm/
-
-Disallow: /key_topics/climatehealth/
-
-Disallow: /key_topics/airquality/
 
 Disallow: /data_stories/aq-cooking/
 
@@ -189,6 +185,8 @@ Disallow: /data_stories/housing/
 Disallow: /data_stories/streets/
 
 Disallow: /data_stories/heat/
+
+Disallow: /categories/internal/
 
 Disallow: /data_stories/geographies/
 
@@ -211,8 +209,6 @@ Disallow: /data_stories/breatheeasy/
 Disallow: /data_stories/food/
 
 Disallow: /data_stories/povasthma/
-
-Disallow: /neighborhood_reports/activedesign/
 
 Disallow: /neighborhood_reports/bayside_little_neck/active_design_physical_activity_and_health/
 
@@ -297,6 +293,8 @@ Disallow: /neighborhood_reports/west_queens/active_design_physical_activity_and_
 Disallow: /neighborhood_reports/williamsburg_bushwick/active_design_physical_activity_and_health/
 
 Disallow: /neighborhood_reports/willowbrook/active_design_physical_activity_and_health/
+
+Disallow: /neighborhood_reports/activedesign/
 
 Disallow: /neighborhood_reports/asthma/
 

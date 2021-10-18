@@ -1,6 +1,6 @@
 ---
 title: "Social and Economic Conditions"
-date: 2021-05-05T07:59:16-04:00
+date: 2021-10-01T07:59:16-04:00
 draft: false
 tags: 
 categories: [social]

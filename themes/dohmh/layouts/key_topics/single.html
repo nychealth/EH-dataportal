@@ -28,37 +28,9 @@
                 {{ .Content}}
             </div>
 
-            <div class="row mt-2">
-                <!--Conditional if code only executes contents (related partial) if that intersection content exists. So it removes header if null content-->
-                {{ if where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) }}
-                <div class="col-md-6 pl-0">
-                    <h3><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories</h3>
-                    <div class="card content-card mb-4">
-                        <div class="card-content">
-                            <div class="card-body">
-                                    <p class="card-text">        
-
-                                        {{ partial "related" (dict "section" "data_stories" "layout" "card" "content" . ) }}
-
-                                            <a style="float:right" class="my-2" href="/data_stories/">See all Data Stories<span class="fas fa-angle-right ml-1" aria-hidden="true"></span></a>
-
-                                    </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{ end }}
-                <!--end conditional here-->
-
-
+            <div class="row my-4">
 
                 <div class="col-md-6 pl-0">
-                    {{ if where ( where .Site.RegularPages "Section" "neighborhood_reports") ".Params.categories" "intersect" ( slice .Params.keyTopic ) }}
-                        <h3><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
-                        {{ partial "related" (dict "section" "neighborhood_reports" "layout" "button" "content" . ) }}
-                        <hr class="my-2">
-                    {{ end }}
-
                     {{ if where ( where .Site.RegularPages "Section" "key_topics") ".Params.categories" "intersect" ( slice .Params.keyTopic ) }}
                         <h3><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Data Features</h3>
                         {{ partial "related" (dict "section" "key_topics" "layout" "button" "content" . ) }}     
@@ -67,24 +39,24 @@
 
 
 
-
-
-
+                <div class="col-md-6 pl-0">
+                    {{ if where ( where .Site.RegularPages "Section" "neighborhood_reports") ".Params.categories" "intersect" ( slice .Params.keyTopic ) }}
+                        <h3><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
+                        {{ partial "related" (dict "section" "neighborhood_reports" "layout" "button" "content" . ) }}
+                    {{ end }}
+                </div>
             </div>
 
 
 
 
-            <div class="row mt-4 mb-4">
-
+            <div class="row my-4">
                     <h3><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Get the data: <span class="text-muted">Related datasets in the Data Explorer</span></h3>
-
                     <hr>
                     {{ partial "related" (dict "section" "data_explorer" "layout" "list" "content" . ) }}
-                   
-                    
-
             </div>
+
+
 
 
 
@@ -92,13 +64,26 @@
         </div>
 
 
-        <div class="col-md-3 mr-auto text-right">
-            <h4>Other Key Topics</h4>
-            <hr>
-            {{ range where (where .Site.Pages "Section" "key_topics") ".File.BaseFileName" "_index" }}
-           <p class="my-2"><a href="{{ .URL}}">{{ .Title }}</a></p>
-            {{ end}}
-            
+        <div class="col-md-3 pl-4 mr-auto text-right">
+                <!--Conditional if code only executes contents (related partial) if that intersection content exists. So it removes header if null content-->
+                {{ if where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) }}
+                    <h3 class="fs-rg mt-4"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories about {{ .Title }}</h3>
+                    {{ partial "related" (dict "section" "data_stories" "layout" "singlelist" "content" . ) }}
+                {{ end }}
+                <!--end conditional here-->
+
+                <h4 class="text-muted fs-rg mt-4"><i class="fas fa-star mr-1" aria-hidden="true"></i>Other Key Topics</h4>
+    
+                    {{ range where (where .Site.Pages "Section" "key_topics") ".File.BaseFileName" "_index" }}
+                        {{ if ne .Title "Key Topics in Environmental Health"}}
+                            <a class="btn btn-outline-gray btn-sm has-icon disperse" style="text-align: left!important" href="{{.URL}}">
+                                <span class="fas fa-angle-right"></span>
+                                <span class="title">{{ .Title }}</span>
+                              </a>
+
+                        {{ end }}
+                    {{ end}}
+                <br><br>
         </div>
     
 
