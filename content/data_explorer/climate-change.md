@@ -4,7 +4,7 @@ date: 2021-05-28 18:02:58.884809
 draft: false
 tags: 
 categories: ["climatehealth"]
-keywords: 
+keywords: ["climate change","global warming"]
 indicators: [{"subtopic_id": 83, "internal_id": 776, "name": "Greenhouse Gas Emissions", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=776,719b87,83,Summarize"}]
 menu:
     main:

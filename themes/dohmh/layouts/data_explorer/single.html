@@ -26,6 +26,9 @@
                     <a href="{{.URL}}" onclick="protoPopup()">{{.name}}</a>
                     <hr>
                 {{end}}
+
+                <hr class="portalhr mt-4 mb-2">
+                {{ partial "keywords" . }}
             </div>
 
             <div class="col-md-8 fs-sm">
@@ -71,6 +74,13 @@
                     <div class="col-md-4">
                         <h4 class="fs-md"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
                         {{ partial "related" (dict "section" "neighborhood_reports" "layout" "singlelist" "content" . ) }}
+
+                    </div>
+                </div>
+
+                <div class="row mt-2 text-right">
+                    <div class="col">
+
 
                     </div>
                 </div>
