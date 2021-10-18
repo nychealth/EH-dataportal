@@ -35,188 +35,8 @@
 <meta name="twitter:image" content="/images/report_bottom_background.jpg">
 <meta name="twitter:site" content="@nycHealthy">
 <meta name="twitter:creator" content="@nycHealthy">
-<script>
-    
-  const indicatorDataPath = "\/ehs-data-portal-frontend-temp/visualizations/csv/"; 
-  const indicatorMapPath = "\/ehs-data-portal-frontend-temp/visualizations/json/"; 
-  
-  
-  var summarySpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {"url": "visualizations/csv/bikeLanP.csv"},
-    "mark": {"type": "bar", "tooltip": true},
-    "encoding": {
-      "x": {
-        "field": "Neighborhood",
-        "type": "nominal",
-        "sort": {"op": "mean", "field": "Data Value"},
-        "axis":null
-      },
-      "y": {
-        "field": "Data Value",
-        "type": "quantitative",
-        "axis": {"title":null}
-      },
-      "color": {
-          "condition": {
-              "test": "datum.Neighborhood=='Canarsie - Flatlands'",
-              "value": "#1CA970"
-          },
-          "value": "#D8D8D8"
-      }
-    }
-  }
-  ; 
-  
-  function buildSummarySpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(summarySpec));
-    
-    temp.encoding.color.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.data.url = indicatorDataPath+dataSlug+".csv"; 
-    
-    return temp;
-  };
-  
-  
-  
-  var trendSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {"url": "visualizations/csv/poveACSP_trend.csv"},
-    "layer":[{
-        "mark": {"type": "line", "point": false, "tooltip": true},
-        "encoding": {
-          "x": {
-            "field": "Time",
-            "type": "ordinal",
-            "axis": {"title": null,"labelAngle":45}
-          },
-          "y": {
-            "field": "Data Value",
-            "type": "quantitative",
-            "axis": {"title": null}
-          },
-          "detail": {
-              "field": "Neighborhood",
-              "type":"nominal"
-          },
-          "color": {
-            "value": "lightgrey"
-        }
-        }
-    },{
-        "mark": {"type": "line", "point": true, "tooltip": true},
-        "encoding": {
-          "x": {
-            "field": "Time",
-            "type": "ordinal",
-            "axis": {"title": null,"labelAngle":45}
-          },
-          "y": {
-            "field": "Data Value",
-            "type": "quantitative",
-            "axis": {"title": null}
-          },
-          "detail": {
-              "field": "Neighborhood",
-              "type":"nominal"
-          },
-          "color": {
-            "condition": {
-                "test": "datum.Neighborhood=='Canarsie - Flatlands'",
-                "value": "#1CA970"
-            },
-            "value": null
-        }
-        }
-        }]
-  }
-  ; 
-  
-  
-  function buildTrendSpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(trendSpec));
-    
-    temp.layer[1].encoding.color.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.data.url = indicatorDataPath+dataSlug+"_trend.csv"; 
-    
-    return temp;
-  };
-  
-  
-  
-  var mapSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {
-      "url": "/visualizations/json/UHF42.topo.json",
-      "format": {"type": "topojson", "feature": "collection"}
-    },
-    "transform": [
-      {
-        "lookup": "id",
-        "from": {
-          "data": {"url": "visualizations/csv/bikeLanP.csv"},
-          "key": "geo_join_id",
-          "fields": ["Data Value","Neighborhood","message"]
-        }
-      }
-    ],
-    "layer":[
-      {
-    "mark": {"type": "geoshape", "tooltip": true},
-    "encoding": {
-      "color": {"field": "Data Value", "type": "quantitative",
-        "scale": {"scheme": "greens"},
-        "legend": {"orient": "top-left", "title": null}
-        },
-      "stroke": {"value": "white" },
-      "strokeWidth":{"value":1},
-      "tooltip":[
-        {"field":"Neighborhood","type":"nominal"},
-        {"field":"Data Value","type":"quantitative"}
-      ]
-    }},
-    {  "mark": {"type": "geoshape"},
-    "encoding": {
-      "color":{"value":null},
-      "stroke": {
-        "condition": {
-          "test": "datum.properties.GEONAME=='Bedford Stuyvesant - Crown Heights'",
-          "value": "#000000"
-        }
-      },
-      "strokeWidth": {"value": 3}
-    }}]
-    }
-    ;
-  
-  
-  function buildMapSpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(mapSpec));
-    
-    temp.layer[1].encoding.stroke.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.transform[0].from.data.url = indicatorDataPath+dataSlug+".csv"; 
-    
-    temp.data.url = indicatorMapPath+"UHF42.topo.json"; 
-    
-    return temp;
-  };
-  </script>
-  
+
+
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -564,9 +384,8 @@ function buildMap2(spec) {
 <h3 id="how-do-you-choose-when-boundaries-overlap">How do you choose when boundaries overlap?</h3>
 <p>These different neighborhood boundaries can make things confusing. For example, say you live in Ditmas Park and you want to take some health data to a meeting of your Community Board. Ditmas Park is part of Community District 14, Flatbush/Midwood. But CD14 straddles two different UHF neighborhoods.</p>
 <p><a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/CommunityDistrict.aspx">We have a tool that helps you view the overlap and the differences</a> so that you can choose what Neighborhood Report to use, but it still raises a difficult question: what neighborhood&rsquo;s data would you bring to your Community Board meeting?</p>
-<figure>
-    <img src="overlap.png"
-         alt="An example of a Community District that overlaps two UHF42 neighborhoods."/> 
+<figure><img src="overlap.png"
+         alt="An example of a Community District that overlaps two UHF42 neighborhoods."/>
 </figure>
 
 <p>On the EH Data Portal, we aggregate data from lots of different sources. They might not line up exactly the way we want them to: when data are collected in different ways for different purposes, there will be differences in the underlying geography available. The fact that there’s no one consistent root unit does complicate things.</p>
@@ -1953,6 +1772,21 @@ function buildMap2(spec) {
         
 
 
+
+                </div>
+
+                <div class="mt-4">
+                    <div class="keywords">
+<strong>Keywords:</strong> 
+    <a href="../../keywords/geography">geography</a> | 
+    <a href="../../keywords/maps">maps</a> | 
+    <a href="../../keywords/neighborhoods">neighborhoods</a> | 
+    <a href="../../keywords/health-data">health data</a> | 
+    <a href="../../keywords/methods">methods</a> | 
+    <a href="../../keywords/geographic">geographic</a> | 
+    
+
+</div>
 
                 </div>
 
