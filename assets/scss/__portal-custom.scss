@@ -638,6 +638,14 @@ height: 200px;}
         text-align: center;
         }
 
+    .page-item.active a {
+        background-color: #b820bb!important;
+        color: white;
+        font-weight: bold;
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+
         .pagination li {
             display: inline;
         }
