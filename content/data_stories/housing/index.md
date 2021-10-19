@@ -12,28 +12,6 @@ menu:
 layout: advanced
 image: ds-housing.jpeg
 vega: true
-chapters: [
-    {
-        "chapter": "Introduction",
-        "anchor": "1"
-    },
-    {
-        "chapter": "Redlining",
-        "anchor": "2"
-    },
-    {
-        "chapter": "Segregation",
-        "anchor": "3"
-    },
-    {
-        "chapter": "Disrepair",
-        "anchor": "4"
-    },
-    {
-        "chapter": "Disparities",
-        "anchor": "5"
-    }
-]
 ---
 {{< storyheader text="For health, place matters." anchor="1">}}
 What determines whether or not you’re healthy? You may think about what you eat, whether you exercise, whether you smoke and your family medical history.

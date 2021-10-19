@@ -11,28 +11,6 @@ menu:
         identifier: '02'
 layout: advanced
 image: ds-redlining.jpeg
-chapters: [
-    {
-        "chapter": "Introduction",
-        "anchor": "1"
-    },
-    {
-        "chapter": "Poverty, race, and health",
-        "anchor": "2"
-    },
-    {
-        "chapter": "A brief history of redlining",
-        "anchor": "3"
-    },
-    {
-        "chapter": "Redlining in NYC",
-        "anchor": "4"
-    },
-    {
-        "chapter": "Its effects today",
-        "anchor": "5"
-    }
-]
 ---
 {{< storyheader text="Inside the 90-year-old financial policy that harms our health" anchor="1">}}
 In public health, we often cite structural racism to help explain health patterns in our society. But what, specifically, does this mean? A close look at the history of redlining shows this connection.
