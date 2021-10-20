@@ -22,42 +22,45 @@
         <div class="col-md-8 col-sm-12 ml-auto">
 
             <div class="row">
-                <h2><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
+                <h3 class="greenfill"><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
                     {{ .Title }}</h2>
         
                 {{ .Content}}
             </div>
 
-            <div class="row my-4">
 
-                <div class="col-md-6 pl-0">
+
+            <div class="row my-4 fs-sm">
+
+                <div class="col-md-4 pl-0">
                     {{ if where ( where .Site.RegularPages "Section" "key_topics") ".Params.categories" "intersect" ( slice .Params.keyTopic ) }}
-                        <h3><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Data Features</h3>
+                        <h4 class="greenfill"><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Data Features</h3>
                         {{ partial "related" (dict "section" "key_topics" "layout" "button" "content" . ) }}     
                     {{ end }}
                 </div>
 
 
 
-                <div class="col-md-6 pl-0">
+                <div class="col-md-4 pl-0">
                     {{ if where ( where .Site.RegularPages "Section" "neighborhood_reports") ".Params.categories" "intersect" ( slice .Params.keyTopic ) }}
-                        <h3><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
+                        <h4 class="greenfill"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
                         {{ partial "related" (dict "section" "neighborhood_reports" "layout" "button" "content" . ) }}
                     {{ end }}
                 </div>
+
+                <div class="col-md-4 pl-0">
+                    <!--Conditional if code only executes contents (related partial) if that intersection content exists. So it removes header if null content-->
+                    {{ if where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) }}
+                    <h4 class="greenfill"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories</h3>
+                    {{ partial "related" (dict "section" "data_stories" "layout" "singlelist" "content" . ) }}
+                    {{ end }}
+                    <!--end conditional here-->
+                </div>
             </div>
-
-
-
 
             <div class="row my-4">
-                    <h3><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Get the data: <span class="text-muted">Related datasets in the Data Explorer</span></h3>
-                    <hr>
-                    {{ partial "related" (dict "section" "data_explorer" "layout" "list" "content" . ) }}
+
             </div>
-
-
-
 
 
 
@@ -65,14 +68,14 @@
 
 
         <div class="col-md-3 pl-4 mr-auto text-right">
-                <!--Conditional if code only executes contents (related partial) if that intersection content exists. So it removes header if null content-->
-                {{ if where ( where .Site.RegularPages "Section" "data_stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) }}
-                    <h3 class="fs-rg mt-4"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories about {{ .Title }}</h3>
-                    {{ partial "related" (dict "section" "data_stories" "layout" "singlelist" "content" . ) }}
-                {{ end }}
-                <!--end conditional here-->
+            <h3 class="greenfill"><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Datasets</h3>
 
-                <h4 class="text-muted fs-rg mt-4"><i class="fas fa-star mr-1" aria-hidden="true"></i>Other Key Topics</h4>
+            {{ partial "related" (dict "section" "data_explorer" "layout" "singlelist" "content" . ) }}
+
+
+
+
+                {{/*  <h4 class="text-muted fs-rg mt-4"><i class="fas fa-star mr-1" aria-hidden="true"></i>Other Key Topics</h4>
     
                     {{ range where (where .Site.Pages "Section" "key_topics") ".File.BaseFileName" "_index" }}
                         {{ if ne .Title "Key Topics in Environmental Health"}}
@@ -82,7 +85,7 @@
                               </a>
 
                         {{ end }}
-                    {{ end}}
+                    {{ end}}  */}}
                 <br><br>
         </div>
     
