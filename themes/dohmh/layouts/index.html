@@ -9,6 +9,47 @@
         <div class="col-md-8 col-sm-12">
           <div class="accordion-group my-4" style="padding-left:0px!important" role="tablist" id="accordion-01">
 
+            <div class="card bg-lightgray mb-2" style="border-left: 10px solid #545454!important;">
+
+              <a class="card-header h4 collapse collapsed" style="color:#545454" id="acc-button-0x"
+                data-toggle="collapse" href="#panel-acc-button-0x" role="tab" aria-expanded="false"
+                aria-controls="panel-acc-button-0x">
+                <span class="title" role="heading" aria-level="3"><i class="fas fa-star"></i>&nbsp;Key
+                  Topics</span>
+              </a>
+
+              <div class="collapse show" id="panel-acc-button-0x" role="tabpanel" aria-labelledby="acc-button-0x"
+                data-parent="#accordion-01">
+
+                <div class="card-body">
+                  <p class="card-text">
+                    Explore the issues in environmental health that affect our city and our
+                    lives.
+                  </p>
+                  <div class="row mt-2">
+
+                    {{ range where (where .Site.Pages "Section" "key_topics") ".File.BaseFileName" "_index" }}
+                    {{ if ne .Title "Key Topics in Environmental Health"}}
+                    <div class="col-md-6 col-sm-12">
+                      <a class="btn btn-outline-gray btn-sm has-icon disperse mt-2" href="{{.URL}}">
+                        <span class="fas fa-angle-right"></span>
+                        <span class="title">{{ .Title }}</span>
+                      </a>
+                    </div>
+                    {{ end }}
+                    {{ end }}
+
+
+                  </div>
+
+                </div>
+
+              </div>
+              <!-- .collapse -->
+
+            </div>
+            <!-- .card -->
+
             <div class="card bg-lightgray mb-2" style="border-left: 10px solid #DC645C!important;">
 
               <a class="card-header h4 collapse collapsed" style="color:#DC645C" id="acc-button-02"
@@ -19,7 +60,7 @@
                   Reports</span>
               </a>
 
-              <div class="collapse show" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02"
+              <div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02"
                 data-parent="#accordion-01">
 
                 <div class="card-body">
@@ -46,46 +87,6 @@
                   </form>
 
                   <hr>
-                </div>
-
-              </div>
-              <!-- .collapse -->
-
-            </div>
-            <!-- .card -->
-
-
-            <div class="card bg-lightgray mb-2" style="border-left: 10px solid #545454!important;">
-
-              <a class="card-header h4 collapse collapsed" style="color:#545454" id="acc-button-0x"
-                data-toggle="collapse" href="#panel-acc-button-0x" role="tab" aria-expanded="false"
-                aria-controls="panel-acc-button-0x">
-                <span class="title" role="heading" aria-level="3"><i class="fas fa-star"></i>&nbsp;Key
-                  Topics</span>
-              </a>
-
-              <div class="collapse" id="panel-acc-button-0x" role="tabpanel" aria-labelledby="acc-button-0x"
-                data-parent="#accordion-01">
-
-                <div class="card-body">
-                  <p class="card-text">
-                    Explore the issues in environmental health that affect our city and our
-                    lives.
-                  </p>
-                  <div class="row mt-2">
-
-                    {{ range where (where .Site.Pages "Section" "key_topics") ".File.BaseFileName" "_index" }}
-                    <div class="col-md-6 col-sm-12">
-                      <a class="btn btn-outline-gray btn-sm has-icon disperse mt-2" href="{{.URL}}">
-                        <span class="fas fa-angle-right"></span>
-                        <span class="title">{{ .Title }}</span>
-                      </a>
-                    </div>
-                    {{ end}}
-
-
-                  </div>
-
                 </div>
 
               </div>
