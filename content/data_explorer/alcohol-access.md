@@ -3,7 +3,7 @@ title: Alcohol Access
 date: 2021-05-28 18:02:58.771666
 draft: false
 tags: 
-categories: ["foodanddrink"]
+categories: ["foodanddrink","neighborhoods"]
 keywords: 
 indicators: [{"subtopic_id": 95, "internal_id": 2049, "name": "Access to Alcohol", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2049,719b87,95,Summarize"}, {"subtopic_id": 95, "internal_id": 2057, "name": "Youth Access to Alcohol", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2057,719b87,95,Summarize"}]
 menu:
