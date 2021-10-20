@@ -35,7 +35,9 @@
 <meta name="twitter:image" content="/images/report_bottom_background.jpg">
 <meta name="twitter:site" content="@nycHealthy">
 <meta name="twitter:creator" content="@nycHealthy">
-<script>
+
+
+  <script>
     
   const indicatorDataPath = "\/ehs-data-portal-frontend-temp/visualizations/csv/"; 
   const indicatorMapPath = "\/ehs-data-portal-frontend-temp/visualizations/json/"; 
@@ -217,6 +219,7 @@
   };
   </script>
   
+
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -521,193 +524,202 @@
             <div class="col-4">
               <button type="submit" class="btn-primary btn btn-block">3. Get Report!</button> 
             </div>
+            <div class="fs-sm"><em>Enter a neighborhood or ZIP Code</em></div>
           </div>
         </form>
       </div>
 
-      <div id="warning" class="py-2 px-2" style="background: #f1f1f1; display:none;">
-        <h4><i class="fas fa-exclamation-triangle" aria-hidden="true" style="color:purple;"></i></h4>
-        <strong style="color:purple;"><i class="fas fa-arrow-circle-left mr-2" aria-hidden="true"></i>You must choose a report topic first!</strong>
+      <div id="warning" style="display: none;">
+        <div class="py-2 px-2" style="background: #f1f1f1;">
+          <h4 style="color:purple;"><i class="fas fa-exclamation-triangle mr-2" aria-hidden="true" ></i>Oops!</h4>
+          Make sure to choose both a report and a neighborhood. Not sure what neighborhood to choose?   <a data-toggle="collapse" href="#neighborhoodCollapse" role="button" aria-expanded="false" aria-controls="neighborhoodCollapse">
+            List all neighborhoods
+          </a>.
+        </div>
       </div>
 
     </div>
   </div>
 
-  <div class="row my-5 sr-only">
-    <div class="col">
-      <h2 class="h2 h4">Neighborhood List</h2>
-      <ul class="list-unstyled">
-                  
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bayside_little_neck/">Bayside - Little Neck</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bedford_stuyvesant_crown_heights/">Bedford Stuyvesant - Crown Heights</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bensonhurst_bay_ridge/">Bensonhurst - Bay Ridge</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/borough_park/">Borough Park</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/canarsie_flatlands/">Canarsie - Flatlands</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/central_harlem_morningside_heights/">Central Harlem - Morningside Heights</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/chelsea_clinton/">Chelsea - Clinton</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/coney_island_sheepshead_bay/">Coney Island - Sheepshead Bay</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/crotona_tremont/">Crotona -Tremont</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/downtown_heights_slope/">Downtown - Heights - Slope</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_flatbush_flatbush/">East Flatbush - Flatbush</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_harlem/">East Harlem</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_new_york/">East New York</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/flushing_clearview/">Flushing - Clearview</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/fordham_bronx_pk/">Fordham - Bronx Pk</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/fresh_meadows/">Fresh Meadows</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/gramercy_park_murray_hill/">Gramercy Park - Murray Hill</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/greenpoint/">Greenpoint</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/greenwich_village_soho/">Greenwich Village - SoHo</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/high_bridge_morrisania/">High Bridge - Morrisania</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/hunts_point_mott_haven/">Hunts Point - Mott Haven</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/jamaica/">Jamaica</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/kingsbridge_riverdale/">Kingsbridge - Riverdale</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/long_island_city_astoria/">Long Island City - Astoria</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/lower_manhattan/">Lower Manhattan</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/northeast_bronx/">Northeast Bronx</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/pelham_throgs_neck/">Pelham - Throgs Neck</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/port_richmond/">Port Richmond</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/ridgewood_forest_hills/">Ridgewood - Forest Hills</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/rockaways/">Rockaways</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/south_beach_tottenville/">South Beach - Tottenville</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/southeast_queens/">Southeast Queens</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/southwest_queens/">Southwest Queens</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/stapleton_st_george/">Stapleton - St. George</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/sunset_park/">Sunset Park</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/union_square_lower_east_side/">Union Square - Lower East Side</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/upper_east_side/">Upper East Side</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/upper_west_side/">Upper West Side</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/washington_heights/">Washington Heights</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/west_queens/">West Queens</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/williamsburg_bushwick/">Williamsburg - Bushwick</a>
-          </li>
-        
-          <li>
-              <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/willowbrook/">Willowbrook</a>
-          </li>
-        
-      </ul>
+  <div class="row my-5">
+    <div class="col-md-6 ml-auto">
+
+      <div class="collapse" id="neighborhoodCollapse">
+        <h2 class="h2 h4">Neighborhood List</h2>
+
+        <ul class="list-unstyled">
+                    
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bayside_little_neck/">Bayside - Little Neck</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bedford_stuyvesant_crown_heights/">Bedford Stuyvesant - Crown Heights</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/bensonhurst_bay_ridge/">Bensonhurst - Bay Ridge</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/borough_park/">Borough Park</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/canarsie_flatlands/">Canarsie - Flatlands</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/central_harlem_morningside_heights/">Central Harlem - Morningside Heights</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/chelsea_clinton/">Chelsea - Clinton</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/coney_island_sheepshead_bay/">Coney Island - Sheepshead Bay</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/crotona_tremont/">Crotona -Tremont</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/downtown_heights_slope/">Downtown - Heights - Slope</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_flatbush_flatbush/">East Flatbush - Flatbush</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_harlem/">East Harlem</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/east_new_york/">East New York</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/flushing_clearview/">Flushing - Clearview</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/fordham_bronx_pk/">Fordham - Bronx Pk</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/fresh_meadows/">Fresh Meadows</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/gramercy_park_murray_hill/">Gramercy Park - Murray Hill</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/greenpoint/">Greenpoint</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/greenwich_village_soho/">Greenwich Village - SoHo</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/high_bridge_morrisania/">High Bridge - Morrisania</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/hunts_point_mott_haven/">Hunts Point - Mott Haven</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/jamaica/">Jamaica</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/kingsbridge_riverdale/">Kingsbridge - Riverdale</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/long_island_city_astoria/">Long Island City - Astoria</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/lower_manhattan/">Lower Manhattan</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/northeast_bronx/">Northeast Bronx</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/pelham_throgs_neck/">Pelham - Throgs Neck</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/port_richmond/">Port Richmond</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/ridgewood_forest_hills/">Ridgewood - Forest Hills</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/rockaways/">Rockaways</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/south_beach_tottenville/">South Beach - Tottenville</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/southeast_queens/">Southeast Queens</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/southwest_queens/">Southwest Queens</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/stapleton_st_george/">Stapleton - St. George</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/sunset_park/">Sunset Park</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/union_square_lower_east_side/">Union Square - Lower East Side</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/upper_east_side/">Upper East Side</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/upper_west_side/">Upper West Side</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/washington_heights/">Washington Heights</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/west_queens/">West Queens</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/williamsburg_bushwick/">Williamsburg - Bushwick</a>
+            </li>
+          
+            <li>
+                <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood_reports/willowbrook/">Willowbrook</a>
+            </li>
+          
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -978,15 +990,20 @@ function changeDescription(x) {
 
 
   if (window.location.hash=="#Asthmareport") {
-  changeDescription("Asthma")
+  changeDescription("Asthma");
+  reportURL = '/asthma_and_the_environment/'
   } else if (window.location.hash=="#Climatereport") {
-  changeDescription("Climate")
+  changeDescription("Climate");
+  reportURL = '/climate_and_health/'
   } else if (window.location.hash=="#Housingreport") {
-  changeDescription("Housing")
+  changeDescription("Housing");
+  reportURL = '/housing_and_health/'
   }  else if (window.location.hash=="#Outdoorreport") {
-  changeDescription("Outdoor")
+  changeDescription("Outdoor");
+  reportURL = '/outdoor_air_and_health/'
   }  else if (window.location.hash=="#Activereport") {
-  changeDescription("Active")
+  changeDescription("Active");
+  reportURL = '/active_design_physical_activity_and_health/'
   };
 
 
@@ -1032,7 +1049,7 @@ function changeDescription(x) {
     e.preventDefault(); 
     var locVal = searchForm.options[searchForm.selectedIndex].value
 
-    if (reportURL) {
+    if (locVal) {
       window.location = '\/ehs-data-portal-frontend-temp/neighborhood_reports/'+ locVal + reportURL
     } else {
       document.getElementById('warning').style.display = "block" 

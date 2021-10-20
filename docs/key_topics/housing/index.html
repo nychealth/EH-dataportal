@@ -35,188 +35,8 @@
 <meta name="twitter:image" content="/images/report_bottom_background.jpg">
 <meta name="twitter:site" content="@nycHealthy">
 <meta name="twitter:creator" content="@nycHealthy">
-<script>
-    
-  const indicatorDataPath = "\/ehs-data-portal-frontend-temp/visualizations/csv/"; 
-  const indicatorMapPath = "\/ehs-data-portal-frontend-temp/visualizations/json/"; 
-  
-  
-  var summarySpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {"url": "visualizations/csv/bikeLanP.csv"},
-    "mark": {"type": "bar", "tooltip": true},
-    "encoding": {
-      "x": {
-        "field": "Neighborhood",
-        "type": "nominal",
-        "sort": {"op": "mean", "field": "Data Value"},
-        "axis":null
-      },
-      "y": {
-        "field": "Data Value",
-        "type": "quantitative",
-        "axis": {"title":null}
-      },
-      "color": {
-          "condition": {
-              "test": "datum.Neighborhood=='Canarsie - Flatlands'",
-              "value": "#1CA970"
-          },
-          "value": "#D8D8D8"
-      }
-    }
-  }
-  ; 
-  
-  function buildSummarySpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(summarySpec));
-    
-    temp.encoding.color.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.data.url = indicatorDataPath+dataSlug+".csv"; 
-    
-    return temp;
-  };
-  
-  
-  
-  var trendSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {"url": "visualizations/csv/poveACSP_trend.csv"},
-    "layer":[{
-        "mark": {"type": "line", "point": false, "tooltip": true},
-        "encoding": {
-          "x": {
-            "field": "Time",
-            "type": "ordinal",
-            "axis": {"title": null,"labelAngle":45}
-          },
-          "y": {
-            "field": "Data Value",
-            "type": "quantitative",
-            "axis": {"title": null}
-          },
-          "detail": {
-              "field": "Neighborhood",
-              "type":"nominal"
-          },
-          "color": {
-            "value": "lightgrey"
-        }
-        }
-    },{
-        "mark": {"type": "line", "point": true, "tooltip": true},
-        "encoding": {
-          "x": {
-            "field": "Time",
-            "type": "ordinal",
-            "axis": {"title": null,"labelAngle":45}
-          },
-          "y": {
-            "field": "Data Value",
-            "type": "quantitative",
-            "axis": {"title": null}
-          },
-          "detail": {
-              "field": "Neighborhood",
-              "type":"nominal"
-          },
-          "color": {
-            "condition": {
-                "test": "datum.Neighborhood=='Canarsie - Flatlands'",
-                "value": "#1CA970"
-            },
-            "value": null
-        }
-        }
-        }]
-  }
-  ; 
-  
-  
-  function buildTrendSpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(trendSpec));
-    
-    temp.layer[1].encoding.color.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.data.url = indicatorDataPath+dataSlug+"_trend.csv"; 
-    
-    return temp;
-  };
-  
-  
-  
-  var mapSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {
-      "url": "/visualizations/json/UHF42.topo.json",
-      "format": {"type": "topojson", "feature": "collection"}
-    },
-    "transform": [
-      {
-        "lookup": "id",
-        "from": {
-          "data": {"url": "visualizations/csv/bikeLanP.csv"},
-          "key": "geo_join_id",
-          "fields": ["Data Value","Neighborhood","message"]
-        }
-      }
-    ],
-    "layer":[
-      {
-    "mark": {"type": "geoshape", "tooltip": true},
-    "encoding": {
-      "color": {"field": "Data Value", "type": "quantitative",
-        "scale": {"scheme": "greens"},
-        "legend": {"orient": "top-left", "title": null}
-        },
-      "stroke": {"value": "white" },
-      "strokeWidth":{"value":1},
-      "tooltip":[
-        {"field":"Neighborhood","type":"nominal"},
-        {"field":"Data Value","type":"quantitative"}
-      ]
-    }},
-    {  "mark": {"type": "geoshape"},
-    "encoding": {
-      "color":{"value":null},
-      "stroke": {
-        "condition": {
-          "test": "datum.properties.GEONAME=='Bedford Stuyvesant - Crown Heights'",
-          "value": "#000000"
-        }
-      },
-      "strokeWidth": {"value": 3}
-    }}]
-    }
-    ;
-  
-  
-  function buildMapSpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(mapSpec));
-    
-    temp.layer[1].encoding.stroke.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.transform[0].from.data.url = indicatorDataPath+dataSlug+".csv"; 
-    
-    temp.data.url = indicatorMapPath+"UHF42.topo.json"; 
-    
-    return temp;
-  };
-  </script>
-  
+
+
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -488,7 +308,7 @@
         <div class="col-md-8 col-sm-12 ml-auto">
 
             <div class="row">
-                <h2><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
+                <h3 class="greenfill"><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
                     Housing</h2>
         
                 <p>Most people spend most of their time at home - so the household environment can significantly affect health. Disrepair that stems from longterm maintenance neglect can lead to serious health problems, including: lead poisoning from lead paint; asthma and other respiratory issues triggered by pests; and carbon monoxide poisoning.</p>
@@ -496,160 +316,63 @@
 
             </div>
 
-            <div class="row my-4">
-                
-                
-                <div class="col-md-6 pl-0">
-                    <h3><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories</h3>
-                    <div class="card content-card mb-4">
-                        <div class="card-content">
-                            <div class="card-body">
-                                    <p class="card-text">        
-
-                                        
 
 
+            <div class="row my-4 fs-sm">
 
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-            
-            <a href="../../data_stories/violence/">Why violence is a public health issue</a>
-            <hr class="my-1">
-
-            
-
-        
-
-
-    
-    
-        
-
-            
-            <a href="../../data_stories/redlining/">A brief history of redlining</a>
-            <hr class="my-1">
-
-            
-
-        
-
-
-    
-    
-        
-
-            
-            <a href="../../data_stories/housing/">Health, housing, and history</a>
-            <hr class="my-1">
-
-            
-
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-            
-            <a href="../../data_stories/povasthma/">Why asthma is a social justice issue</a>
-            <hr class="my-1">
-
-            
-
-        
-
-
-
-                                            <a style="float:right" class="my-2" href="../../data_stories/">See all Data Stories<span class="fas fa-angle-right ml-1" aria-hidden="true"></span></a>
-
-                                    </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                
-
-
-
-                <div class="col-md-6 pl-0">
+                <div class="col-md-4 pl-0">
                     
-                        <h3><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
+                        <h4 class="greenfill"><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Data Features</h3>
+                        
+
+
+
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+
+            <a class="btn btn-outline-primary btn-md has-icon disperse mb-1" href="../../key_topics/climatehealth/hvi/">
+            <span class="fas fa-angle-right" aria-hidden="true"></span>
+            <span class="title">Interactive Heat Vulnerability Index</span>
+            </a>
+
+            
+
+        
+
+
+    
+    
+        
+
+     
+                    
+                </div>
+
+
+
+                <div class="col-md-4 pl-0">
+                    
+                        <h4 class="greenfill"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
                         
 
 
@@ -872,7 +595,7 @@
 
             
 
-            <a class="btn btn-outline-primary btn-lg has-icon disperse mb-1" href="../../neighborhood_reports/activedesign/">
+            <a class="btn btn-outline-primary btn-md has-icon disperse mb-1" href="../../neighborhood_reports/activedesign/">
             <span class="fas fa-angle-right" aria-hidden="true"></span>
             <span class="title">Active Design, Physical Activity and Health</span>
             </a>
@@ -888,7 +611,7 @@
 
             
 
-            <a class="btn btn-outline-primary btn-lg has-icon disperse mb-1" href="../../neighborhood_reports/asthma/">
+            <a class="btn btn-outline-primary btn-md has-icon disperse mb-1" href="../../neighborhood_reports/asthma/">
             <span class="fas fa-angle-right" aria-hidden="true"></span>
             <span class="title">Asthma and the Environment</span>
             </a>
@@ -1149,7 +872,7 @@
 
             
 
-            <a class="btn btn-outline-primary btn-lg has-icon disperse mb-1" href="../../neighborhood_reports/climateandhealth/">
+            <a class="btn btn-outline-primary btn-md has-icon disperse mb-1" href="../../neighborhood_reports/climateandhealth/">
             <span class="fas fa-angle-right" aria-hidden="true"></span>
             <span class="title">Climate and Health</span>
             </a>
@@ -1340,7 +1063,7 @@
 
             
 
-            <a class="btn btn-outline-primary btn-lg has-icon disperse mb-1" href="../../neighborhood_reports/housing/">
+            <a class="btn btn-outline-primary btn-md has-icon disperse mb-1" href="../../neighborhood_reports/housing/">
             <span class="fas fa-angle-right" aria-hidden="true"></span>
             <span class="title">Housing and Health</span>
             </a>
@@ -1775,15 +1498,111 @@
         
 
 
-                        <hr class="my-2">
+                    
+                </div>
+
+                <div class="col-md-4 pl-0">
+                    
+                    
+                    <h4 class="greenfill"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories</h3>
                     
 
-                    
-                        <h3><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Data Features</h3>
-                        
 
 
 
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_stories/violence/">Why violence is a public health issue</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_stories/redlining/">A brief history of redlining</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_stories/housing/">Health, housing, and history</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
 
 
     
@@ -1806,526 +1625,450 @@
         
 
             
-
-            <a class="btn btn-outline-primary btn-lg has-icon disperse mb-1" href="../../key_topics/climatehealth/hvi/hvi/">
-            <span class="fas fa-angle-right" aria-hidden="true"></span>
-            <span class="title">Interactive Heat Vulnerability Index</span>
-            </a>
+            <a href="../../data_stories/povasthma/">Why asthma is a social justice issue</a>
+            <hr class="my-1">
 
             
 
         
 
 
-    
-    
-        
-
-     
+                    
                     
                 </div>
             </div>
 
-
-
-
             <div class="row my-4">
 
-                    <h3><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Get the data: <span class="text-muted">Related datasets in the Data Explorer</span></h3>
-
-                    <hr>
-                    
-
-
-
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/bed-bugs/">Bed Bugs</a></p>
             </div>
-
-
-            
-
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/cancer/">Cancer</a></p>
-            </div>
-
-
-            
-
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/carbon-monoxide-incidents/">Carbon Monoxide Incidents</a></p>
-            </div>
-
-
-            
-
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/carbon-monoxide-poisoning/">Carbon Monoxide Poisoning</a></p>
-            </div>
-
-
-            
-
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/childhood-lead-exposure/">Childhood Lead Exposure</a></p>
-            </div>
-
-
-            
-
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/cigarette-smoke/">Cigarette Smoke</a></p>
-            </div>
-
-
-            
-
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/cockroaches/">Cockroaches</a></p>
-            </div>
-
-
-            
-
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/falls-among-older-adults/">Falls Among Older Adults</a></p>
-            </div>
-
-
-            
-
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/housing/">Housing</a></p>
-            </div>
-
-
-            
-
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/housing-and-neighborhoods/">Housing and Neighborhoods</a></p>
-            </div>
-
-
-            
-
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/lead-hazards/">Lead Hazards</a></p>
-            </div>
-
-
-            
-
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/mice-and-rats/">Mice and Rats</a></p>
-            </div>
-
-
-            
-
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/social-and-economic-conditions/">Social and Economic Conditions</a></p>
-            </div>
-
-
-            
-
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/asthma_mm/">Asthma</a></p>
-            </div>
-
-
-            
-
-        
-
-
-                   
-                    
-
-            </div>
-
 
 
 
         </div>
 
 
-        <div class="col-md-3 mr-auto text-right">
-            <h4>Other Key Topics</h4>
-            <hr>
-            
-                
-                <p class="my-2"><a href="../../key_topics/airquality/">Air Quality</a></p>
-                
-            
-                
-                <p class="my-2"><a href="../../key_topics/climatehealth/">Climate and Health</a></p>
-                
-            
-                
-                <p class="my-2"><a href="../../key_topics/housing/">Housing</a></p>
-                
-            
-                
-                <p class="my-2"><a href="../../key_topics/social/">Social and Economic Conditions</a></p>
-                
-            
-                
-                <p class="my-2"><a href="../../key_topics/transportation/">Transportation and Active Design</a></p>
-                
-            
-                
-            
-                
-                <p class="my-2"><a href="../../key_topics/childhealth/">Child Health</a></p>
-                
-            
-                
-                <p class="my-2"><a href="../../key_topics/pests/">Pests and Pesticides</a></p>
-                
-            
-                
-                <p class="my-2"><a href="../../key_topics/foodanddrink/">Food and Drink</a></p>
-                
+        <div class="col-md-3 pl-4 mr-auto text-right">
+            <h3 class="greenfill"><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Datasets</h3>
+
             
 
 
+
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/asthma/">Asthma</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/bed-bugs/">Bed Bugs</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/cancer/">Cancer</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/carbon-monoxide-incidents/">Carbon Monoxide Incidents</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/carbon-monoxide-poisoning/">Carbon Monoxide Poisoning</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/childhood-lead-exposure/">Childhood Lead Exposure</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/cigarette-smoke/">Cigarette Smoke</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/cockroaches/">Cockroaches</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/falls-among-older-adults/">Falls Among Older Adults</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/housing/">Housing</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/housing-and-neighborhoods/">Housing and Neighborhoods</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/lead-hazards/">Lead Hazards</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/mice-and-rats/">Mice and Rats</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/social-and-economic-conditions/">Social and Economic Conditions</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+
+
+
+
+                
+                <br><br>
         </div>
     
 

@@ -53,6 +53,24 @@
     </item>
     
     <item>
+      <title>neighborhoods</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/neighborhoods/</link>
+      <pubDate>Wed, 08 Sep 2021 10:59:52 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/neighborhoods/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>healthoutcomes</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/healthoutcomes/</link>
+      <pubDate>Wed, 04 Aug 2021 12:32:15 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/healthoutcomes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>childhealth</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/childhealth/</link>
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>

@@ -35,188 +35,8 @@
 <meta name="twitter:image" content="/images/report_bottom_background.jpg">
 <meta name="twitter:site" content="@nycHealthy">
 <meta name="twitter:creator" content="@nycHealthy">
-<script>
-    
-  const indicatorDataPath = "\/ehs-data-portal-frontend-temp/visualizations/csv/"; 
-  const indicatorMapPath = "\/ehs-data-portal-frontend-temp/visualizations/json/"; 
-  
-  
-  var summarySpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {"url": "visualizations/csv/bikeLanP.csv"},
-    "mark": {"type": "bar", "tooltip": true},
-    "encoding": {
-      "x": {
-        "field": "Neighborhood",
-        "type": "nominal",
-        "sort": {"op": "mean", "field": "Data Value"},
-        "axis":null
-      },
-      "y": {
-        "field": "Data Value",
-        "type": "quantitative",
-        "axis": {"title":null}
-      },
-      "color": {
-          "condition": {
-              "test": "datum.Neighborhood=='Canarsie - Flatlands'",
-              "value": "#1CA970"
-          },
-          "value": "#D8D8D8"
-      }
-    }
-  }
-  ; 
-  
-  function buildSummarySpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(summarySpec));
-    
-    temp.encoding.color.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.data.url = indicatorDataPath+dataSlug+".csv"; 
-    
-    return temp;
-  };
-  
-  
-  
-  var trendSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {"url": "visualizations/csv/poveACSP_trend.csv"},
-    "layer":[{
-        "mark": {"type": "line", "point": false, "tooltip": true},
-        "encoding": {
-          "x": {
-            "field": "Time",
-            "type": "ordinal",
-            "axis": {"title": null,"labelAngle":45}
-          },
-          "y": {
-            "field": "Data Value",
-            "type": "quantitative",
-            "axis": {"title": null}
-          },
-          "detail": {
-              "field": "Neighborhood",
-              "type":"nominal"
-          },
-          "color": {
-            "value": "lightgrey"
-        }
-        }
-    },{
-        "mark": {"type": "line", "point": true, "tooltip": true},
-        "encoding": {
-          "x": {
-            "field": "Time",
-            "type": "ordinal",
-            "axis": {"title": null,"labelAngle":45}
-          },
-          "y": {
-            "field": "Data Value",
-            "type": "quantitative",
-            "axis": {"title": null}
-          },
-          "detail": {
-              "field": "Neighborhood",
-              "type":"nominal"
-          },
-          "color": {
-            "condition": {
-                "test": "datum.Neighborhood=='Canarsie - Flatlands'",
-                "value": "#1CA970"
-            },
-            "value": null
-        }
-        }
-        }]
-  }
-  ; 
-  
-  
-  function buildTrendSpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(trendSpec));
-    
-    temp.layer[1].encoding.color.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.data.url = indicatorDataPath+dataSlug+"_trend.csv"; 
-    
-    return temp;
-  };
-  
-  
-  
-  var mapSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {
-      "url": "/visualizations/json/UHF42.topo.json",
-      "format": {"type": "topojson", "feature": "collection"}
-    },
-    "transform": [
-      {
-        "lookup": "id",
-        "from": {
-          "data": {"url": "visualizations/csv/bikeLanP.csv"},
-          "key": "geo_join_id",
-          "fields": ["Data Value","Neighborhood","message"]
-        }
-      }
-    ],
-    "layer":[
-      {
-    "mark": {"type": "geoshape", "tooltip": true},
-    "encoding": {
-      "color": {"field": "Data Value", "type": "quantitative",
-        "scale": {"scheme": "greens"},
-        "legend": {"orient": "top-left", "title": null}
-        },
-      "stroke": {"value": "white" },
-      "strokeWidth":{"value":1},
-      "tooltip":[
-        {"field":"Neighborhood","type":"nominal"},
-        {"field":"Data Value","type":"quantitative"}
-      ]
-    }},
-    {  "mark": {"type": "geoshape"},
-    "encoding": {
-      "color":{"value":null},
-      "stroke": {
-        "condition": {
-          "test": "datum.properties.GEONAME=='Bedford Stuyvesant - Crown Heights'",
-          "value": "#000000"
-        }
-      },
-      "strokeWidth": {"value": 3}
-    }}]
-    }
-    ;
-  
-  
-  function buildMapSpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(mapSpec));
-    
-    temp.layer[1].encoding.stroke.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.transform[0].from.data.url = indicatorDataPath+dataSlug+".csv"; 
-    
-    temp.data.url = indicatorMapPath+"UHF42.topo.json"; 
-    
-    return temp;
-  };
-  </script>
-  
+
+
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -466,19 +286,22 @@
 
     <main id="skip-header-target" role="main">
 
-<article class="container" id="skip-header-target">
+<article id="skip-header-target">
 
+<div class="container">
     <div class="col-md-10 col-sm-12 mx-auto my-4">
         <h1><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>Key Topics in Environmental
             Health</h1>
         <p>Explore pressing issues in Environmental Health with content from across the Data Portal.</p>
     </div>
+</div>
 
+<div class="container-fluid">
     <div class="col-md-12">
         <div class="row my-4">
             
             <div class="col-md-4">
-                <div class="card content-card mb-4">
+                <div class="card content-card mb-2 itemfocus">
                     <div class="card-content">
                         <div class="card-body">
                             <h2 class="card-title"><a href="../key_topics/airquality/" class="text-primary">Air Quality</a></h5>
@@ -492,7 +315,7 @@
             </div>
             
             <div class="col-md-4">
-                <div class="card content-card mb-4">
+                <div class="card content-card mb-2 itemfocus">
                     <div class="card-content">
                         <div class="card-body">
                             <h2 class="card-title"><a href="../key_topics/climatehealth/" class="text-primary">Climate and Health</a></h5>
@@ -506,7 +329,7 @@
             </div>
             
             <div class="col-md-4">
-                <div class="card content-card mb-4">
+                <div class="card content-card mb-2 itemfocus">
                     <div class="card-content">
                         <div class="card-body">
                             <h2 class="card-title"><a href="../key_topics/housing/" class="text-primary">Housing</a></h5>
@@ -520,7 +343,7 @@
             </div>
             
             <div class="col-md-4">
-                <div class="card content-card mb-4">
+                <div class="card content-card mb-2 itemfocus">
                     <div class="card-content">
                         <div class="card-body">
                             <h2 class="card-title"><a href="../key_topics/social/" class="text-primary">Social and Economic Conditions</a></h5>
@@ -534,7 +357,7 @@
             </div>
             
             <div class="col-md-4">
-                <div class="card content-card mb-4">
+                <div class="card content-card mb-2 itemfocus">
                     <div class="card-content">
                         <div class="card-body">
                             <h2 class="card-title"><a href="../key_topics/transportation/" class="text-primary">Transportation and Active Design</a></h5>
@@ -548,7 +371,36 @@
             </div>
             
             <div class="col-md-4">
-                <div class="card content-card mb-4">
+                <div class="card content-card mb-2 itemfocus">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <h2 class="card-title"><a href="../key_topics/neighborhoods/" class="text-primary">Neighborhoods</a></h5>
+                                <p class="card-text"><p>Our neighborhoods are the world around us. The build environment and the social environment where we spend most of our time affect health.</p>
+</p>
+                                <p class="card-link"><a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/neighborhoods/">Get data, info, and more <i
+                                            class="fas fa-arrow-circle-right"></i></a></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card content-card mb-2 itemfocus">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <h2 class="card-title"><a href="../key_topics/healthoutcomes/" class="text-primary">Health outcomes</a></h5>
+                                <p class="card-text"><p>Our environment - the world around us - affects our health. Here are datasets on the effects that our environment has on our health - the health …</p></p>
+                                <p class="card-link"><a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/healthoutcomes/">Get data, info, and more <i
+                                            class="fas fa-arrow-circle-right"></i></a></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card content-card mb-2 itemfocus">
                     <div class="card-content">
                         <div class="card-body">
                             <h2 class="card-title"><a href="../key_topics/childhealth/" class="text-primary">Child Health</a></h5>
@@ -562,7 +414,7 @@
             </div>
             
             <div class="col-md-4">
-                <div class="card content-card mb-4">
+                <div class="card content-card mb-2 itemfocus">
                     <div class="card-content">
                         <div class="card-body">
                             <h2 class="card-title"><a href="../key_topics/pests/" class="text-primary">Pests and Pesticides</a></h5>
@@ -576,7 +428,7 @@
             </div>
             
             <div class="col-md-4">
-                <div class="card content-card mb-4">
+                <div class="card content-card mb-2 itemfocus">
                     <div class="card-content">
                         <div class="card-body">
                             <h2 class="card-title"><a href="../key_topics/foodanddrink/" class="text-primary">Food and Drink</a></h5>
@@ -594,6 +446,11 @@
 
 
     </div>
+</div>
+
+
+
+
 
 
 

@@ -7,6 +7,13 @@ enableRobotsTXT = true
 metaDataFormat = "yaml"
 theme = "dohmh"
 publishDir = "docs"
+paginate = 6
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  keyword = "keywords"
+
 
 [menu]
 

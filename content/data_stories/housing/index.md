@@ -3,7 +3,7 @@ title: "Health, housing, and history"
 date: 2021-01-06T08:07:31-04:00
 draft: false
 tags:
-categories: ["housing","social","childhealth"]
+categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism"]
 image: ds-povasthma.jpg
 menu:
@@ -13,7 +13,7 @@ layout: advanced
 image: ds-housing.jpeg
 vega: true
 ---
-{{< storyheader text="For health, place matters." anchor="1">}}
+### For health, place matters
 What determines whether or not you’re healthy? You may think about what you eat, whether you exercise, whether you smoke and your family medical history.
 
 {{< rawhtml>}}
@@ -52,7 +52,7 @@ In 1661, when Black people petitioned the colony for land in the area, they were
 
 Throughout history, many different practices have shaped racial and residential patterns in New York City. In the 20th century, a practice called redlining made racism a federal policy – with long-lasting repercussions for our housing and our health.
 
-{{< storyheader text="Federal policy drove residential segregation" anchor="2">}}
+### Federal policy drove residential segregation
 {{< rawhtml>}}
 <p>In the 1930s, <a href="#holccollapse" data-toggle="collapse"
         class="badge badge-pill badge-success">the federal government</a> developed
@@ -113,7 +113,7 @@ The map below shows how New York City's neighborhoods were categorized.
 <div class="wide my-2 px-5">
 {{< /rawhtml>}}
 
-{{< storyheader text="This was redlining" anchor="3">}}
+### This was redlining
 This process became known as "redlining:" systematically denying public and private resources based on where people live, targeting people of color.
 
 Redlining helped drive urban segregation in the 20th century, as new neighborhoods were built for white people while people of color were forced into neighborhoods declared to be "declining."
@@ -176,7 +176,7 @@ Coalition: Worst Evictor's List</a></div>
 
 These practices continue a legacy of housing racism, maintain residential segregation and, over time, result in **disinvestment**: when neighborhoods are deprived of resources that their residents need for health and opportunity.
 
-{{< storyheader text="Disinvestment led to housing disrepair." anchor="4">}}
+### Disinvestment led to housing disrepair
 Throughout the 20th century, redlined neighborhoods deteriorated as they were deprived of private investment and government resources.
 
 Landlords in these neighborhoods are less likely to adequately maintain homes. As a result, many homes have severe and chronic maintenance problems.
@@ -239,6 +239,8 @@ function changeMap(x) {
     vegaEmbed("#housingmap",spec)
 }
 </script>
+
+
 {{< /rawhtml>}}
 
 {{< vega id="housingmap" spec="three.vl.json" height="550px">}}
@@ -283,7 +285,7 @@ As a result of the segregation and disinvestment caused by redlining, Black and 
 {{< datawrapper "Black and Latino people have less access to healthy housing." "PTyc4/2/" "300px">}}
 
 
-{{< storyheader text="These disparities persist across income levels." anchor="5">}}
+### These disparities persist across income levels
 Black and Latino people have less access to healthy housing, but this isn’t due to higher poverty rates in these populations.
 
 Black and Latino people with higher incomes are also more likely to live in buildings with serious maintenance issues - further suggesting that racism is behind these disparities.

@@ -6,49 +6,49 @@
     <description>Recent content on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 Oct 2021 12:32:15 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Oct 2021 09:34:04 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Heat Report</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/heat-report/heat-report/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/heat-report/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/heat-report/heat-report/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/heat-report/</guid>
       <description>Heat Report Goes Here.</description>
     </item>
     
     <item>
       <title>NYCCAS report</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/nyccas/nyccas/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/nyccas/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/nyccas/nyccas/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/nyccas/</guid>
       <description>NYCCAS Report Goes Here.</description>
     </item>
     
     <item>
       <title>Real-time heat-related illness</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/syndromic/syndromic/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/syndromic/</link>
       <pubDate>Mon, 30 Aug 2021 11:51:01 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/syndromic/syndromic/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/syndromic/</guid>
       <description>Extreme heat is dangerous. It can cause heat-related illness, make chronic conditions worse, and even kill. The weather forecast is our best way to predict heat-related health outcomes. We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC.</description>
     </item>
     
     <item>
       <title>Interactive Heat Vulnerability Index</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/hvi/hvi/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/hvi/</link>
       <pubDate>Wed, 25 Aug 2021 10:49:05 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/hvi/hvi/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/hvi/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Your Neighborhood&#39;s Air Quality</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/aqe/aqe/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/aqe/</link>
       <pubDate>Tue, 24 Aug 2021 12:04:44 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/aqe/aqe/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/aqe/</guid>
       <description>We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes one neighborhood&amp;rsquo;s air quality different from another&amp;rsquo;s. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.
 If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.</description>
     </item>
@@ -103,6 +103,16 @@ This site provides data on heavy alcohol consumption and alcohol outlets in NYC.
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/alcohol-use/</guid>
       <description>Alcohol Use About Alcohol Heavy regular drinking and binge drinking contribute to a wide range of chronic health problems, including heart disease, diabetes, cancer, stroke, cirrhosis, depression and dementia. Alcohol use is also associated with suicide, homicide, domestic violence, sexually transmitted diseases and injuries. It is one of the leading behavior-related causes of death in New York City (NYC).
 This site provides data on heavy alcohol consumption and alcohol outlets in NYC.</description>
+    </item>
+    
+    <item>
+      <title>Asthma</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</guid>
+      <description>Asthma About Asthma Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.
+Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</description>
     </item>
     
     <item>
@@ -644,16 +654,6 @@ Data on work-related injuries and illness are used to show how often these preve
     </item>
     
     <item>
-      <title>Asthma</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma_mm/</link>
-      <pubDate>Wed, 14 Apr 2021 13:38:16 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma_mm/</guid>
-      <description>Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.
-Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</description>
-    </item>
-    
-    <item>
       <title>Tracking changes in New York City&#39;s sources of air pollution</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/aq-cooking/</link>
       <pubDate>Mon, 12 Apr 2021 12:02:09 -0400</pubDate>
@@ -687,7 +687,7 @@ When we analyze data on the health of New Yorkers, we often find the same geogra
       <pubDate>Wed, 06 Jan 2021 08:07:31 -0400</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/housing/</guid>
-      <description>For health, place matters.  What determines whether or not you’re healthy? You may think about what you eat, whether you exercise, whether you smoke and your family medical history.
+      <description>For health, place matters What determines whether or not you’re healthy? You may think about what you eat, whether you exercise, whether you smoke and your family medical history.
 But you may not think about how your home affects your health - and you may not think about the factors that influence where you live. For a home to be healthy, it should be free of:  Cracks Holes Leaks Smoke Pests Old, peeling paint  In other words, a healthy home is a well-maintained home.</description>
     </item>
     

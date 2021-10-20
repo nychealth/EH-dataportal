@@ -19,19 +19,19 @@ Air quality varies from neighborhood to neighborhood, based on local levels of e
     
     <item>
       <title>NYCCAS report</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/nyccas/nyccas/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/nyccas/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/nyccas/nyccas/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/nyccas/</guid>
       <description>NYCCAS Report Goes Here.</description>
     </item>
     
     <item>
       <title>Your Neighborhood&#39;s Air Quality</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/aqe/aqe/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/aqe/</link>
       <pubDate>Tue, 24 Aug 2021 12:04:44 -0400</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/aqe/aqe/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/aqe/</guid>
       <description>We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes one neighborhood&amp;rsquo;s air quality different from another&amp;rsquo;s. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.
 If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.</description>
     </item>
@@ -45,6 +45,16 @@ If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we kn
       <description>Air Quality About Air Pollution Air quality is a measure of the condition of the air around us. The less air pollution there is, the better the air quality.
 Like many cities, New York City&amp;rsquo;s air contains particles, liquid droplets, gases, and other contaminants that could impact health. Two pollutants, particulate matter andground-level ozone, are of particular health concern.
 Although New York City&amp;rsquo;s air does not currently meet federal air quality standards, it has improved significantly over the past two decades.</description>
+    </item>
+    
+    <item>
+      <title>Asthma</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</guid>
+      <description>Asthma About Asthma Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.
+Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</description>
     </item>
     
     <item>
@@ -105,16 +115,6 @@ The pollutants we measure are: fine particulate matter (PM2.5), ground-level ozo
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/walking-driving-and-cycling/</guid>
       <description>Walking, Driving, and Cycling None</description>
-    </item>
-    
-    <item>
-      <title>Asthma</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma_mm/</link>
-      <pubDate>Wed, 14 Apr 2021 13:38:16 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma_mm/</guid>
-      <description>Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.
-Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</description>
     </item>
     
     <item>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {{- partial "head.html" . -}}
+    {{- block "js_top" . }}{{- end }}
+  </head>
+  <body>
+
+    <!--
+      For data stories: 
+        - Regular Pages (individual data stories) to have header-ds.html
+        - DS landing page & all others to have header.html
+    -->
+
+    {{ if or (ne .Section "data_stories") ( eq .URL "/data_stories/") }}
+    {{- partial "header.html" . -}}
+    {{ end}}
+
+
+    {{ if and (eq .Section "data_stories") ( ne .URL "/data_stories/") }}
+    {{- partial "header-ds.html" . -}}
+    {{ end}}
+
+    <!--
+      Issue: If doesn't capture Regular Pages the way we want/expect
+    -->
+
+
+
+
+    <main id="skip-header-target" role="main">
+    <div class="row mt-4">
+        <div class="col-8 mx-auto">
+            <h2 class="mb-2">More content about <span style="color: #00923E">{{ .Title }}</span>:</h2>
+
+                {{ range .Pages}}
+                <div class="card content-card mb-3 px-0 mx-0 fs-sm">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="{{.URL}}" class="text-primary fs-rg mb-1">{{.Title}}</a></h4>
+                                <p class="card-text mt-0">{{ htmlUnescape .Content | plainify | truncate 150 }}</p>
+                        </div>
+                    </div>
+                </div>                
+                {{ end }}
+        </div>
+    </div>
+
+    </main>
+
+
+    {{- partial "footer.html" . -}}
+    {{- partial "js_bottom.html" -}}
+    {{- block "js_bot" . }}{{- end }}
+  </body>
+</html>
+
+
+
