@@ -1,0 +1,7 @@
+<div class="keywords">
+{{ if .Params.keywords }}<strong>Keywords:</strong> 
+    {{range .Params.keywords}}<a href="{{ "/keywords/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> | 
+    {{end}}
+{{end}}
+</div>
+<!-- consider making that a pill, too-->
