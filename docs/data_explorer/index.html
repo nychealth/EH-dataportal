@@ -330,6 +330,10 @@
                             </div>
                             
                             <div class="col-md-4">
+                                <p><a href="../data_explorer/asthma/">Asthma</a></p>
+                            </div>
+                            
+                            <div class="col-md-4">
                                 <p><a href="../data_explorer/bed-bugs/">Bed Bugs</a></p>
                             </div>
                             
@@ -545,10 +549,6 @@
                                 <p><a href="../data_explorer/worker-health/">Worker Health</a></p>
                             </div>
                             
-                            <div class="col-md-4">
-                                <p><a href="../data_explorer/asthma_mm/">Asthma</a></p>
-                            </div>
-                            
                         </div>
                     </div>
 
@@ -624,6 +624,14 @@
             option.innerHTML = "Alcohol Use"
             
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/alcohol-use\/'
+            
+            ddlData.options.add(option);
+           
+            var option = document.createElement("OPTION");
+            
+            option.innerHTML = "Asthma"
+            
+            option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/asthma\/'
             
             ddlData.options.add(option);
            
@@ -1056,14 +1064,6 @@
             option.innerHTML = "Worker Health"
             
             option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/worker-health\/'
-            
-            ddlData.options.add(option);
-           
-            var option = document.createElement("OPTION");
-            
-            option.innerHTML = "Asthma"
-            
-            option.value = '\/ehs-data-portal-frontend-temp/\/data_explorer\/asthma_mm\/'
             
             ddlData.options.add(option);
           

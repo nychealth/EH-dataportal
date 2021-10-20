@@ -34,6 +34,10 @@ Disallow: /key_topics/climatehealth/heat-report/
 
 Disallow: /key_topics/airquality/nyccas/
 
+Disallow: /key_topics/neighborhoods/
+
+Disallow: /categories/neighborhoods/
+
 Disallow: /data_stories/
 
 Disallow: /keywords/ed-visit/
@@ -120,6 +124,10 @@ Disallow: /data_stories/localtemp/
 
 Disallow: /keywords/urban-heat-island/
 
+Disallow: /key_topics/healthoutcomes/
+
+Disallow: /categories/healthoutcomes/
+
 Disallow: /data_explorer/active-design/
 
 Disallow: /data_explorer/air-quality/
@@ -127,6 +135,8 @@ Disallow: /data_explorer/air-quality/
 Disallow: /data_explorer/alcohol-access/
 
 Disallow: /data_explorer/alcohol-use/
+
+Disallow: /data_explorer/asthma/
 
 Disallow: /data_explorer/bed-bugs/
 
@@ -251,8 +261,6 @@ Disallow: /key_topics/childhealth/
 Disallow: /key_topics/pests/
 
 Disallow: /key_topics/foodanddrink/
-
-Disallow: /data_explorer/asthma_mm/
 
 Disallow: /keywords/air-pollution/
 
