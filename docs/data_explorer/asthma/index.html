@@ -35,188 +35,8 @@
 <meta name="twitter:image" content="/images/report_bottom_background.jpg">
 <meta name="twitter:site" content="@nycHealthy">
 <meta name="twitter:creator" content="@nycHealthy">
-<script>
-    
-  const indicatorDataPath = "\/ehs-data-portal-frontend-temp/visualizations/csv/"; 
-  const indicatorMapPath = "\/ehs-data-portal-frontend-temp/visualizations/json/"; 
-  
-  
-  var summarySpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {"url": "visualizations/csv/bikeLanP.csv"},
-    "mark": {"type": "bar", "tooltip": true},
-    "encoding": {
-      "x": {
-        "field": "Neighborhood",
-        "type": "nominal",
-        "sort": {"op": "mean", "field": "Data Value"},
-        "axis":null
-      },
-      "y": {
-        "field": "Data Value",
-        "type": "quantitative",
-        "axis": {"title":null}
-      },
-      "color": {
-          "condition": {
-              "test": "datum.Neighborhood=='Canarsie - Flatlands'",
-              "value": "#1CA970"
-          },
-          "value": "#D8D8D8"
-      }
-    }
-  }
-  ; 
-  
-  function buildSummarySpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(summarySpec));
-    
-    temp.encoding.color.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.data.url = indicatorDataPath+dataSlug+".csv"; 
-    
-    return temp;
-  };
-  
-  
-  
-  var trendSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {"url": "visualizations/csv/poveACSP_trend.csv"},
-    "layer":[{
-        "mark": {"type": "line", "point": false, "tooltip": true},
-        "encoding": {
-          "x": {
-            "field": "Time",
-            "type": "ordinal",
-            "axis": {"title": null,"labelAngle":45}
-          },
-          "y": {
-            "field": "Data Value",
-            "type": "quantitative",
-            "axis": {"title": null}
-          },
-          "detail": {
-              "field": "Neighborhood",
-              "type":"nominal"
-          },
-          "color": {
-            "value": "lightgrey"
-        }
-        }
-    },{
-        "mark": {"type": "line", "point": true, "tooltip": true},
-        "encoding": {
-          "x": {
-            "field": "Time",
-            "type": "ordinal",
-            "axis": {"title": null,"labelAngle":45}
-          },
-          "y": {
-            "field": "Data Value",
-            "type": "quantitative",
-            "axis": {"title": null}
-          },
-          "detail": {
-              "field": "Neighborhood",
-              "type":"nominal"
-          },
-          "color": {
-            "condition": {
-                "test": "datum.Neighborhood=='Canarsie - Flatlands'",
-                "value": "#1CA970"
-            },
-            "value": null
-        }
-        }
-        }]
-  }
-  ; 
-  
-  
-  function buildTrendSpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(trendSpec));
-    
-    temp.layer[1].encoding.color.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.data.url = indicatorDataPath+dataSlug+"_trend.csv"; 
-    
-    return temp;
-  };
-  
-  
-  
-  var mapSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {
-      "url": "/visualizations/json/UHF42.topo.json",
-      "format": {"type": "topojson", "feature": "collection"}
-    },
-    "transform": [
-      {
-        "lookup": "id",
-        "from": {
-          "data": {"url": "visualizations/csv/bikeLanP.csv"},
-          "key": "geo_join_id",
-          "fields": ["Data Value","Neighborhood","message"]
-        }
-      }
-    ],
-    "layer":[
-      {
-    "mark": {"type": "geoshape", "tooltip": true},
-    "encoding": {
-      "color": {"field": "Data Value", "type": "quantitative",
-        "scale": {"scheme": "greens"},
-        "legend": {"orient": "top-left", "title": null}
-        },
-      "stroke": {"value": "white" },
-      "strokeWidth":{"value":1},
-      "tooltip":[
-        {"field":"Neighborhood","type":"nominal"},
-        {"field":"Data Value","type":"quantitative"}
-      ]
-    }},
-    {  "mark": {"type": "geoshape"},
-    "encoding": {
-      "color":{"value":null},
-      "stroke": {
-        "condition": {
-          "test": "datum.properties.GEONAME=='Bedford Stuyvesant - Crown Heights'",
-          "value": "#000000"
-        }
-      },
-      "strokeWidth": {"value": 3}
-    }}]
-    }
-    ;
-  
-  
-  function buildMapSpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(mapSpec));
-    
-    temp.layer[1].encoding.stroke.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.transform[0].from.data.url = indicatorDataPath+dataSlug+".csv"; 
-    
-    temp.data.url = indicatorMapPath+"UHF42.topo.json"; 
-    
-    return temp;
-  };
-  </script>
-  
+
+
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -487,7 +307,7 @@
         <div class="row mt-3">
 
             <div class="col-md-4">
-                <h4><i class="fas fa-chart-line text-muted mr-1" aria-hidden="true"></i>Get data:</h4>
+                <h4 class="greenfill"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
                 
                     <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=18,719b87,11,Summarize" onclick="protoPopup()">Adults with Asthma in the Past 12 Months</a>
                     <hr>
@@ -532,240 +352,21 @@
                     <hr>
                 
 
+                <hr class="portalhr mt-4 mb-2">
+                <div class="keywords">
 
-                <h4 class="mt-4"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
-                
-                    
-                    
-                    
-                    
-                    
-                    
-                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/localtemp/">The Urban Heat Island Effect in New York City</a>
-                    <hr>
-                     
-                    
-                    
-                    
-                    
-                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/aq-cooking/">Tracking changes in New York City&#39;s sources of air pollution</a>
-                    <hr>
-                     
-                    
-                    
-                    
-                    
-                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/violence/">Why violence is a public health issue</a>
-                    <hr>
-                     
-                    
-                    
-                    
-                    
-                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/redlining/">A brief history of redlining</a>
-                    <hr>
-                     
-                    
-                    
-                    
-                    
-                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/housing/">Health, housing, and history</a>
-                    <hr>
-                     
-                    
-                    
-                    
-                    
-                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/streets/">Environments matter: the road to street safety in NYC</a>
-                    <hr>
-                     
-                    
-                    
-                    
-                    
-                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/heat/">Protecting New Yorkers from extreme heat</a>
-                    <hr>
-                     
-                    
-                    
-                    
-                     
-                    
-                    
-                    
-                    
-                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/aqcovid/">Air quality during COVID-19</a>
-                    <hr>
-                     
-                    
-                    
-                    
-                    
-                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/aqsnapshots/">Air quality snapshots: special findings from 10 years of NYCCAS</a>
-                    <hr>
-                     
-                    
-                    
-                    
-                     
-                    
-                    
-                    
-                     
-                    
-                    
-                    
-                    
-                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/aqts/">Air quality in car-free areas</a>
-                    <hr>
-                     
-                    
-                    
-                    
-                    
-                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/aq2/">What our air quality monitors tell us about NYC&#39;s neighborhoods</a>
-                    <hr>
-                     
-                    
-                    
-                    
-                     
-                    
-                    
-                    
-                    
-                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/breatheeasy/">Breathe easy: NYC&#39;s air quality is improving</a>
-                    <hr>
-                     
-                    
-                    
-                    
-                    
-                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/food/">What hot weather means for food safety</a>
-                    <hr>
-                     
-                    
-                    
-                    
-                    
-                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/povasthma/">Why asthma is a social justice issue</a>
-                    <hr>
-                     
-                    
-
-
-
-
-                <h4 class="mt-4"><i class="fas fa-star text-muted mr-1" aria-hidden="true"></i>Key Topics</h4>
-
-                    
-                    
-                    
-
-                    
-                    
-                    
-
-                    
-                    
-
-                    
-                    
-                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/childhealth/">Child Health</a>
-                    <hr>
-                     
-                    
-                    
-                    
-
-                    
-                    
-
-                    
-                     
-                    
-                    
-                    
-
-                    
-                    
-
-                    
-                     
-                    
-                    
-                    
-
-                    
-                    
-
-                    
-                     
-                    
-                    
-                    
-
-                    
-                    
-
-                    
-                    
-                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/transportation/">Transportation and Active Design</a>
-                    <hr>
-                     
-                    
-                    
-                    
-
-                    
-                    
-
-                    
-                    
-                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/housing/">Housing</a>
-                    <hr>
-                     
-                    
-                    
-                    
-
-                    
-                    
-
-                    
-                    
-                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/">Climate and Health</a>
-                    <hr>
-                     
-                    
-                    
-                    
-
-                    
-                    
-
-                    
-                    
-                    <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/">Air Quality</a>
-                    <hr>
-                     
-                    
-
-
-
-
+</div>
 
             </div>
 
-
             <div class="col-md-8 fs-sm">
-              <h4><i class="fas fa-info-circle text-muted" style="margin-right: 10px" aria-hidden="true"></i>About Asthma</h4>
+              <h4 class="greenfill"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Asthma</h4>
                 <h1 id="asthma">Asthma</h1>
 <h3 id="about-asthma">About Asthma</h3>
 <p>Asthma is a <strong>common disease in which the lungs become swollen, making breathing difficult</strong>. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. <strong>Asthma cannot be cured, but it can be controlled</strong>.</p>
-<p>Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&rsquo;s poorest neighborhoods. In NYC, asthma is more common among <strong>low-income Black and Latino children</strong>. </p>
+<p>Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&rsquo;s poorest neighborhoods. In NYC, asthma is more common among <strong>low-income Black and Latino children</strong>.</p>
 <h3 id="asthma-and-the-environment">Asthma and the Environment</h3>
-<p>Certain things in the environment can trigger an asthma attack or make symptoms worse. <strong>Common triggers include</strong>: </p>
+<p>Certain things in the environment can trigger an asthma attack or make symptoms worse. <strong>Common triggers include</strong>:</p>
 <ul>
 <li><strong>Tobacco smoke</strong></li>
 <li><strong>Air pollution</strong>, such as particulates, ozone and diesel exhaust</li>
@@ -773,7 +374,7 @@
 <li><strong>Pollen</strong></li>
 <li><strong>Pets</strong></li>
 </ul>
-<p>Download the <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/QuickView.aspx">Asthma and Environment Neighborhood Report</a> on this website to see how your neighborhood compares to others. </p>
+<p>Download the <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/QuickView.aspx">Asthma and Environment Neighborhood Report</a> on this website to see how your neighborhood compares to others.</p>
 <h3 id="controlling-asthma">Controlling Asthma</h3>
 <p>Asthma does not have to prevent you from leading an active and healthy life. You can take charge by having <strong>a plan to control asthma</strong>, including these strategies for avoiding asthma triggers:</p>
 <ul>
@@ -785,6 +386,1496 @@
 <li><strong><a href="http://www1.nyc.gov/site/doh/health/health-topics/pests-and-pesticides.page">Pest proof your home</a>.</strong> If building conditions may be attracting pests, contact your landlord. If your landlord does not addres your concerns, call 311.</li>
 </ul>
 
+
+
+
+
+
+                <div class="row mt-4 mb-0">
+                    <div class="col-12 mb-1">
+                        <h3 class="greenfill fs-rg my-2">Related:</h3>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h4 class="fs-md"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
+                        
+
+
+
+
+
+    
+    
+        
+
+            
+            <a href="../../data_stories/localtemp/">The Urban Heat Island Effect in New York City</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_stories/aq-cooking/">Tracking changes in New York City&#39;s sources of air pollution</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_stories/violence/">Why violence is a public health issue</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_stories/redlining/">A brief history of redlining</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_stories/housing/">Health, housing, and history</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_stories/streets/">Environments matter: the road to street safety in NYC</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_stories/heat/">Protecting New Yorkers from extreme heat</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_stories/aqcovid/">Air quality during COVID-19</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_stories/aqsnapshots/">Air quality snapshots: special findings from 10 years of NYCCAS</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_stories/assaults/">Disparities in violence</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_stories/aqts/">Air quality in car-free areas</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_stories/aq2/">What our air quality monitors tell us about NYC&#39;s neighborhoods</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_stories/breatheeasy/">Breathe easy: NYC&#39;s air quality is improving</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_stories/food/">What hot weather means for food safety</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_stories/povasthma/">Why asthma is a social justice issue</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+
+                    </div>
+
+                    <div class="col-md-4 mt-0">
+                        <h4 class="fs-md"><i class="fas fa-star text-muted mr-1" aria-hidden="true"></i>Key Topics</h4>
+                        
+                        
+                        
+
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                        <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/airquality/">Air Quality</a>
+                        <hr class="my-1">
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                        <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/">Climate and Health</a>
+                        <hr class="my-1">
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                        <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/housing/">Housing</a>
+                        <hr class="my-1">
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                        <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/transportation/">Transportation and Active Design</a>
+                        <hr class="my-1">
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                        <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/healthoutcomes/">Health outcomes</a>
+                        <hr class="my-1">
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                        <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/childhealth/">Child Health</a>
+                        <hr class="my-1">
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                         
+                        
+                    </div>
+
+                    <div class="col-md-4">
+                        <h4 class="fs-md"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
+                        
+
+
+
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../neighborhood_reports/activedesign/">Active Design, Physical Activity and Health</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../neighborhood_reports/asthma/">Asthma and the Environment</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../neighborhood_reports/climateandhealth/">Climate and Health</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../neighborhood_reports/housing/">Housing and Health</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../neighborhood_reports/outdoorair/">Outdoor Air and Health</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+
+                    </div>
+                </div>
+
+                <div class="row mt-2 text-right">
+                    <div class="col">
+
+
+                    </div>
+                </div>
 
             </div>
 

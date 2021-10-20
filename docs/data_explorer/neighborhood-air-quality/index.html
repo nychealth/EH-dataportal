@@ -35,188 +35,8 @@
 <meta name="twitter:image" content="/images/report_bottom_background.jpg">
 <meta name="twitter:site" content="@nycHealthy">
 <meta name="twitter:creator" content="@nycHealthy">
-<script>
-    
-  const indicatorDataPath = "\/ehs-data-portal-frontend-temp/visualizations/csv/"; 
-  const indicatorMapPath = "\/ehs-data-portal-frontend-temp/visualizations/json/"; 
-  
-  
-  var summarySpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {"url": "visualizations/csv/bikeLanP.csv"},
-    "mark": {"type": "bar", "tooltip": true},
-    "encoding": {
-      "x": {
-        "field": "Neighborhood",
-        "type": "nominal",
-        "sort": {"op": "mean", "field": "Data Value"},
-        "axis":null
-      },
-      "y": {
-        "field": "Data Value",
-        "type": "quantitative",
-        "axis": {"title":null}
-      },
-      "color": {
-          "condition": {
-              "test": "datum.Neighborhood=='Canarsie - Flatlands'",
-              "value": "#1CA970"
-          },
-          "value": "#D8D8D8"
-      }
-    }
-  }
-  ; 
-  
-  function buildSummarySpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(summarySpec));
-    
-    temp.encoding.color.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.data.url = indicatorDataPath+dataSlug+".csv"; 
-    
-    return temp;
-  };
-  
-  
-  
-  var trendSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {"url": "visualizations/csv/poveACSP_trend.csv"},
-    "layer":[{
-        "mark": {"type": "line", "point": false, "tooltip": true},
-        "encoding": {
-          "x": {
-            "field": "Time",
-            "type": "ordinal",
-            "axis": {"title": null,"labelAngle":45}
-          },
-          "y": {
-            "field": "Data Value",
-            "type": "quantitative",
-            "axis": {"title": null}
-          },
-          "detail": {
-              "field": "Neighborhood",
-              "type":"nominal"
-          },
-          "color": {
-            "value": "lightgrey"
-        }
-        }
-    },{
-        "mark": {"type": "line", "point": true, "tooltip": true},
-        "encoding": {
-          "x": {
-            "field": "Time",
-            "type": "ordinal",
-            "axis": {"title": null,"labelAngle":45}
-          },
-          "y": {
-            "field": "Data Value",
-            "type": "quantitative",
-            "axis": {"title": null}
-          },
-          "detail": {
-              "field": "Neighborhood",
-              "type":"nominal"
-          },
-          "color": {
-            "condition": {
-                "test": "datum.Neighborhood=='Canarsie - Flatlands'",
-                "value": "#1CA970"
-            },
-            "value": null
-        }
-        }
-        }]
-  }
-  ; 
-  
-  
-  function buildTrendSpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(trendSpec));
-    
-    temp.layer[1].encoding.color.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.data.url = indicatorDataPath+dataSlug+"_trend.csv"; 
-    
-    return temp;
-  };
-  
-  
-  
-  var mapSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {
-      "url": "/visualizations/json/UHF42.topo.json",
-      "format": {"type": "topojson", "feature": "collection"}
-    },
-    "transform": [
-      {
-        "lookup": "id",
-        "from": {
-          "data": {"url": "visualizations/csv/bikeLanP.csv"},
-          "key": "geo_join_id",
-          "fields": ["Data Value","Neighborhood","message"]
-        }
-      }
-    ],
-    "layer":[
-      {
-    "mark": {"type": "geoshape", "tooltip": true},
-    "encoding": {
-      "color": {"field": "Data Value", "type": "quantitative",
-        "scale": {"scheme": "greens"},
-        "legend": {"orient": "top-left", "title": null}
-        },
-      "stroke": {"value": "white" },
-      "strokeWidth":{"value":1},
-      "tooltip":[
-        {"field":"Neighborhood","type":"nominal"},
-        {"field":"Data Value","type":"quantitative"}
-      ]
-    }},
-    {  "mark": {"type": "geoshape"},
-    "encoding": {
-      "color":{"value":null},
-      "stroke": {
-        "condition": {
-          "test": "datum.properties.GEONAME=='Bedford Stuyvesant - Crown Heights'",
-          "value": "#000000"
-        }
-      },
-      "strokeWidth": {"value": 3}
-    }}]
-    }
-    ;
-  
-  
-  function buildMapSpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(mapSpec));
-    
-    temp.layer[1].encoding.stroke.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.transform[0].from.data.url = indicatorDataPath+dataSlug+".csv"; 
-    
-    temp.data.url = indicatorMapPath+"UHF42.topo.json"; 
-    
-    return temp;
-  };
-  </script>
-  
+
+
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -507,6 +327,12 @@
                     <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2026,719b87,91,Summarize" onclick="protoPopup()">Sulfur Dioxide (SO2)</a>
                     <hr>
                 
+
+                <hr class="portalhr mt-4 mb-2">
+                <div class="keywords">
+
+</div>
+
             </div>
 
             <div class="col-md-8 fs-sm">
@@ -559,6 +385,14 @@
     
         
 
+            
+            <a href="../../data_stories/localtemp/">The Urban Heat Island Effect in New York City</a>
+            <hr class="my-1">
+
+            
+
+        
+
 
     
     
@@ -577,9 +411,12 @@
     
         
 
+            
+            <a href="../../data_stories/violence/">Why violence is a public health issue</a>
+            <hr class="my-1">
 
-    
-    
+            
+
         
 
 
@@ -587,9 +424,12 @@
     
         
 
+            
+            <a href="../../data_stories/redlining/">A brief history of redlining</a>
+            <hr class="my-1">
 
-    
-    
+            
+
         
 
 
@@ -597,9 +437,51 @@
     
         
 
+            
+            <a href="../../data_stories/housing/">Health, housing, and history</a>
+            <hr class="my-1">
+
+            
+
+        
+
 
     
     
+        
+
+            
+            <a href="../../data_stories/streets/">Environments matter: the road to street safety in NYC</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_stories/heat/">Protecting New Yorkers from extreme heat</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_stories/geographies/">Neighborhood boundaries on the EH Data Portal</a>
+            <hr class="my-1">
+
+            
+
         
 
 
@@ -631,6 +513,14 @@
 
     
     
+        
+
+            
+            <a href="../../data_stories/assaults/">Disparities in violence</a>
+            <hr class="my-1">
+
+            
+
         
 
 
@@ -692,6 +582,14 @@
     
         
 
+            
+            <a href="../../data_stories/povasthma/">Why asthma is a social justice issue</a>
+            <hr class="my-1">
+
+            
+
+        
+
 
 
                     </div>
@@ -749,6 +647,27 @@
                         
 
                         
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                        <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/neighborhoods/">Neighborhoods</a>
+                        <hr class="my-1">
                          
                         
                         
@@ -1895,6 +1814,13 @@
     
         
 
+
+
+                    </div>
+                </div>
+
+                <div class="row mt-2 text-right">
+                    <div class="col">
 
 
                     </div>

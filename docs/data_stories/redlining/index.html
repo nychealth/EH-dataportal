@@ -35,188 +35,8 @@
 <meta name="twitter:image" content="/images/report_bottom_background.jpg">
 <meta name="twitter:site" content="@nycHealthy">
 <meta name="twitter:creator" content="@nycHealthy">
-<script>
-    
-  const indicatorDataPath = "\/ehs-data-portal-frontend-temp/visualizations/csv/"; 
-  const indicatorMapPath = "\/ehs-data-portal-frontend-temp/visualizations/json/"; 
-  
-  
-  var summarySpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {"url": "visualizations/csv/bikeLanP.csv"},
-    "mark": {"type": "bar", "tooltip": true},
-    "encoding": {
-      "x": {
-        "field": "Neighborhood",
-        "type": "nominal",
-        "sort": {"op": "mean", "field": "Data Value"},
-        "axis":null
-      },
-      "y": {
-        "field": "Data Value",
-        "type": "quantitative",
-        "axis": {"title":null}
-      },
-      "color": {
-          "condition": {
-              "test": "datum.Neighborhood=='Canarsie - Flatlands'",
-              "value": "#1CA970"
-          },
-          "value": "#D8D8D8"
-      }
-    }
-  }
-  ; 
-  
-  function buildSummarySpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(summarySpec));
-    
-    temp.encoding.color.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.data.url = indicatorDataPath+dataSlug+".csv"; 
-    
-    return temp;
-  };
-  
-  
-  
-  var trendSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {"url": "visualizations/csv/poveACSP_trend.csv"},
-    "layer":[{
-        "mark": {"type": "line", "point": false, "tooltip": true},
-        "encoding": {
-          "x": {
-            "field": "Time",
-            "type": "ordinal",
-            "axis": {"title": null,"labelAngle":45}
-          },
-          "y": {
-            "field": "Data Value",
-            "type": "quantitative",
-            "axis": {"title": null}
-          },
-          "detail": {
-              "field": "Neighborhood",
-              "type":"nominal"
-          },
-          "color": {
-            "value": "lightgrey"
-        }
-        }
-    },{
-        "mark": {"type": "line", "point": true, "tooltip": true},
-        "encoding": {
-          "x": {
-            "field": "Time",
-            "type": "ordinal",
-            "axis": {"title": null,"labelAngle":45}
-          },
-          "y": {
-            "field": "Data Value",
-            "type": "quantitative",
-            "axis": {"title": null}
-          },
-          "detail": {
-              "field": "Neighborhood",
-              "type":"nominal"
-          },
-          "color": {
-            "condition": {
-                "test": "datum.Neighborhood=='Canarsie - Flatlands'",
-                "value": "#1CA970"
-            },
-            "value": null
-        }
-        }
-        }]
-  }
-  ; 
-  
-  
-  function buildTrendSpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(trendSpec));
-    
-    temp.layer[1].encoding.color.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.data.url = indicatorDataPath+dataSlug+"_trend.csv"; 
-    
-    return temp;
-  };
-  
-  
-  
-  var mapSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {
-      "url": "/visualizations/json/UHF42.topo.json",
-      "format": {"type": "topojson", "feature": "collection"}
-    },
-    "transform": [
-      {
-        "lookup": "id",
-        "from": {
-          "data": {"url": "visualizations/csv/bikeLanP.csv"},
-          "key": "geo_join_id",
-          "fields": ["Data Value","Neighborhood","message"]
-        }
-      }
-    ],
-    "layer":[
-      {
-    "mark": {"type": "geoshape", "tooltip": true},
-    "encoding": {
-      "color": {"field": "Data Value", "type": "quantitative",
-        "scale": {"scheme": "greens"},
-        "legend": {"orient": "top-left", "title": null}
-        },
-      "stroke": {"value": "white" },
-      "strokeWidth":{"value":1},
-      "tooltip":[
-        {"field":"Neighborhood","type":"nominal"},
-        {"field":"Data Value","type":"quantitative"}
-      ]
-    }},
-    {  "mark": {"type": "geoshape"},
-    "encoding": {
-      "color":{"value":null},
-      "stroke": {
-        "condition": {
-          "test": "datum.properties.GEONAME=='Bedford Stuyvesant - Crown Heights'",
-          "value": "#000000"
-        }
-      },
-      "strokeWidth": {"value": 3}
-    }}]
-    }
-    ;
-  
-  
-  function buildMapSpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(mapSpec));
-    
-    temp.layer[1].encoding.stroke.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.transform[0].from.data.url = indicatorDataPath+dataSlug+".csv"; 
-    
-    temp.data.url = indicatorMapPath+"UHF42.topo.json"; 
-    
-    return temp;
-  };
-  </script>
-  
+
+
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -408,30 +228,8 @@
 
     <div class="row">
 
-        <div class="col-xl-3">
-            <div class="sticky-top container-fluid collapse d-lg-block px-0 border-lg-top border-lg-bottom"
-                id="main-nav" style="background-color:white;">
-                <div id="list-example" class="list-group">
-                    <p class="list-group-item">Table of Contents</p>
-                    
-                    <a class="list-group-item" href="#1">Introduction</a>
-
-                    
-                    <a class="list-group-item" href="#2">Poverty, race, and health</a>
-
-                    
-                    <a class="list-group-item" href="#3">A brief history of redlining</a>
-
-                    
-                    <a class="list-group-item" href="#4">Redlining in NYC</a>
-
-                    
-                    <a class="list-group-item" href="#5">Its effects today</a>
-
-                    
-
-                </div>
-            </div>
+        <div class="col-xl-2">
+            
 
 
 
@@ -440,7 +238,7 @@
 
 
         
-        <div class="col-xl-7 overflow-hidden fs-rg" id="primary-content">
+        <div class="col-xl-7 overflow-hidden fs-rg mr-auto" id="primary-content">
             <div class="wide my-2 px-5">
                 <p><h3 id='1'>
     Inside the 90-year-old financial policy that harms our health
@@ -466,13 +264,11 @@ style="width: 0; min-width: 100% !important; border: none;" height="400px"></ifr
 </h3>
 In the 1930s, during the Great Depression, unemployment rates were high and many people couldn&rsquo;t make their mortgage payments. A wave of foreclosures swept the country. To help keep people in their homes, the federal government established the Home Owners Loan Corporation (HOLC). Its goal was to refinance mortgages with better terms, like lower interest rates and longer repayment periods, to help people make payments and avoid foreclosure.</p>
 <p>To determine what loans they would guarantee, HOLC sent people to appraise neighborhoods in cities across the US. They documented the types of housing in neighborhoods, along with information about the people who lived there. They also catalogued “detrimental influences,” with racist descriptions like “infiltration of Negroes” and “mixed races&quot; as characteristics that lowered a neighborhood&rsquo;s value.</p>
-<p><figure>
-    <img src="rl1.png"/> 
+<p><figure><img src="rl1.png"/>
 </figure>
 
 <em>A redlining document that details housing, construction type, average age, repair condition, occupancy, price range, and other information.</em></p>
-<p><figure>
-    <img src="rl2.png"/> 
+<p><figure><img src="rl2.png"/>
 </figure>
 
 <em>A redining document that reads: Detrimental influences: Obsolescence and poor maintenance. Infiltration of Negroes. Elevated structures on Lexington Ave &amp; Fulton &amp; Grand Avenue. Mixed races.</em></p>
@@ -743,9 +539,25 @@ Policies like redlining show us that poverty isn&rsquo;t a bit of bad luck, inab
     
         
 
+            
+            <a href="../../data_stories/localtemp/">The Urban Heat Island Effect in New York City</a>
+            <hr class="my-1">
+
+            
+
+        
+
 
     
     
+        
+
+            
+            <a href="../../data_stories/aq-cooking/">Tracking changes in New York City&#39;s sources of air pollution</a>
+            <hr class="my-1">
+
+            
+
         
 
 
@@ -784,6 +596,14 @@ Policies like redlining show us that poverty isn&rsquo;t a bit of bad luck, inab
     
         
 
+            
+            <a href="../../data_stories/streets/">Environments matter: the road to street safety in NYC</a>
+            <hr class="my-1">
+
+            
+
+        
+
 
     
     
@@ -800,6 +620,14 @@ Policies like redlining show us that poverty isn&rsquo;t a bit of bad luck, inab
 
     
     
+        
+
+            
+            <a href="../../data_stories/geographies/">Neighborhood boundaries on the EH Data Portal</a>
+            <hr class="my-1">
+
+            
+
         
 
 
@@ -838,6 +666,14 @@ Policies like redlining show us that poverty isn&rsquo;t a bit of bad luck, inab
 
     
     
+        
+
+            
+            <a href="../../data_stories/aq2/">What our air quality monitors tell us about NYC&#39;s neighborhoods</a>
+            <hr class="my-1">
+
+            
+
         
 
 
@@ -926,6 +762,27 @@ Policies like redlining show us that poverty isn&rsquo;t a bit of bad luck, inab
                         
 
                         
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                        <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/neighborhoods/">Neighborhoods</a>
+                        <hr class="my-1">
                          
                         
                         

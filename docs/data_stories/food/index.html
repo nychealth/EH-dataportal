@@ -35,188 +35,8 @@
 <meta name="twitter:image" content="/images/report_bottom_background.jpg">
 <meta name="twitter:site" content="@nycHealthy">
 <meta name="twitter:creator" content="@nycHealthy">
-<script>
-    
-  const indicatorDataPath = "\/ehs-data-portal-frontend-temp/visualizations/csv/"; 
-  const indicatorMapPath = "\/ehs-data-portal-frontend-temp/visualizations/json/"; 
-  
-  
-  var summarySpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {"url": "visualizations/csv/bikeLanP.csv"},
-    "mark": {"type": "bar", "tooltip": true},
-    "encoding": {
-      "x": {
-        "field": "Neighborhood",
-        "type": "nominal",
-        "sort": {"op": "mean", "field": "Data Value"},
-        "axis":null
-      },
-      "y": {
-        "field": "Data Value",
-        "type": "quantitative",
-        "axis": {"title":null}
-      },
-      "color": {
-          "condition": {
-              "test": "datum.Neighborhood=='Canarsie - Flatlands'",
-              "value": "#1CA970"
-          },
-          "value": "#D8D8D8"
-      }
-    }
-  }
-  ; 
-  
-  function buildSummarySpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(summarySpec));
-    
-    temp.encoding.color.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.data.url = indicatorDataPath+dataSlug+".csv"; 
-    
-    return temp;
-  };
-  
-  
-  
-  var trendSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {"url": "visualizations/csv/poveACSP_trend.csv"},
-    "layer":[{
-        "mark": {"type": "line", "point": false, "tooltip": true},
-        "encoding": {
-          "x": {
-            "field": "Time",
-            "type": "ordinal",
-            "axis": {"title": null,"labelAngle":45}
-          },
-          "y": {
-            "field": "Data Value",
-            "type": "quantitative",
-            "axis": {"title": null}
-          },
-          "detail": {
-              "field": "Neighborhood",
-              "type":"nominal"
-          },
-          "color": {
-            "value": "lightgrey"
-        }
-        }
-    },{
-        "mark": {"type": "line", "point": true, "tooltip": true},
-        "encoding": {
-          "x": {
-            "field": "Time",
-            "type": "ordinal",
-            "axis": {"title": null,"labelAngle":45}
-          },
-          "y": {
-            "field": "Data Value",
-            "type": "quantitative",
-            "axis": {"title": null}
-          },
-          "detail": {
-              "field": "Neighborhood",
-              "type":"nominal"
-          },
-          "color": {
-            "condition": {
-                "test": "datum.Neighborhood=='Canarsie - Flatlands'",
-                "value": "#1CA970"
-            },
-            "value": null
-        }
-        }
-        }]
-  }
-  ; 
-  
-  
-  function buildTrendSpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(trendSpec));
-    
-    temp.layer[1].encoding.color.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.data.url = indicatorDataPath+dataSlug+"_trend.csv"; 
-    
-    return temp;
-  };
-  
-  
-  
-  var mapSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {
-      "url": "/visualizations/json/UHF42.topo.json",
-      "format": {"type": "topojson", "feature": "collection"}
-    },
-    "transform": [
-      {
-        "lookup": "id",
-        "from": {
-          "data": {"url": "visualizations/csv/bikeLanP.csv"},
-          "key": "geo_join_id",
-          "fields": ["Data Value","Neighborhood","message"]
-        }
-      }
-    ],
-    "layer":[
-      {
-    "mark": {"type": "geoshape", "tooltip": true},
-    "encoding": {
-      "color": {"field": "Data Value", "type": "quantitative",
-        "scale": {"scheme": "greens"},
-        "legend": {"orient": "top-left", "title": null}
-        },
-      "stroke": {"value": "white" },
-      "strokeWidth":{"value":1},
-      "tooltip":[
-        {"field":"Neighborhood","type":"nominal"},
-        {"field":"Data Value","type":"quantitative"}
-      ]
-    }},
-    {  "mark": {"type": "geoshape"},
-    "encoding": {
-      "color":{"value":null},
-      "stroke": {
-        "condition": {
-          "test": "datum.properties.GEONAME=='Bedford Stuyvesant - Crown Heights'",
-          "value": "#000000"
-        }
-      },
-      "strokeWidth": {"value": 3}
-    }}]
-    }
-    ;
-  
-  
-  function buildMapSpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(mapSpec));
-    
-    temp.layer[1].encoding.stroke.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.transform[0].from.data.url = indicatorDataPath+dataSlug+".csv"; 
-    
-    temp.data.url = indicatorMapPath+"UHF42.topo.json"; 
-    
-    return temp;
-  };
-  </script>
-  
+
+
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -420,9 +240,8 @@ style="width: 0; min-width: 100% !important; border: none;" height="532"></ifram
 <p>Many of these are viruses and bacteria that spread through unsafe food handling practices. For example, if bacteria from raw meat or eggs contaminate other ready-to-eat food, it can make people sick.</p>
 <h3 id="food-safety-inspectors-work-to-keep-you-safe">Food safety inspectors work to keep you safe</h3>
 <p>When you eat at a restaurant, you&rsquo;re placing your trust in both the restaurant and in our food safety inspectors. The Health Department employs about 100 of them, and they visit each of nearly 27,000 NYC restaurants at least once per year, to make sure restaurants meet Health Code requirements. Restaurants receive an inspection score, which gets converted into the letter grade you see posted in the window.</p>
-<figure>
-    <img src="ds-foodletter.jpg"
-         alt="A sanitary inspection A grade"/> 
+<figure><img src="ds-foodletter.jpg"
+         alt="A sanitary inspection A grade"/>
 </figure>
 
 <p>As part of the inspection process, food safety inspectors educate restaurant operators about food safety practices, and collect data on violations they observe. Then, our team at the Health Department analyzes the inspection data to identify common violations and understand patterns in the violations. We use this data to figure out what food safety practices need improvement - helping to reduce risks to customers like you.</p>
@@ -430,9 +249,8 @@ style="width: 0; min-width: 100% !important; border: none;" height="532"></ifram
 <p>Certain foodborne illnesses increase in the summertime, possibly because bacteria are more likely to multiply in warmer temperatures.</p>
 <p>Potentially hazardous cold food needs to be stored at or below 41° F, to minimize the growth of microorganisms that can make you sick. Cold holding violations - not storing food at or below 41° F - are one of the most common violations that our food safety inspectors find. When potentially hazardous foods - like meat, poultry, fish, and cut melons - aren&rsquo;t kept cold enough, bacteria can multiply rapidly.</p>
 <p>We investigated how outdoor temperature affects restaurant food safety patterns. To do this, we analyzed data from 64,661 inspections that took place over five summers. Of these inspections, 45 percent found cold holding violations.</p>
-<figure>
-    <img src="ds-food2.png"
-         alt="A waffle chart showing nearly 65,000 inspections, of which 45 percent had cold holding violations"/> 
+<figure><img src="ds-food2.png"
+         alt="A waffle chart showing nearly 65,000 inspections, of which 45 percent had cold holding violations"/>
 </figure>
 
 <p>We looked at inspections conducted on higher and lower maximum temperature days, and we found a 20 percent increase in cold food holding violations on the hottest days (93° or higher) compared with average summer days (temperatures around 82°).</p>
@@ -694,6 +512,24 @@ style="width: 0; min-width: 100% !important; border: none;" height="210"></ifram
                         
                         <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/climatehealth/">Climate and Health</a>
                         <hr class="my-1">
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
                          
                         
                         
@@ -1855,6 +1691,24 @@ style="width: 0; min-width: 100% !important; border: none;" height="210"></ifram
         
 
 
+
+                </div>
+
+                <div class="mt-4">
+                    <div class="keywords">
+<strong>Keywords:</strong> 
+    <a href="../../keywords/foodborne-illness">foodborne illness</a> | 
+    <a href="../../keywords/food-poisoning">food poisoning</a> | 
+    <a href="../../keywords/restaurant">restaurant</a> | 
+    <a href="../../keywords/restaurants">restaurants</a> | 
+    <a href="../../keywords/inspections">inspections</a> | 
+    <a href="../../keywords/heat">heat</a> | 
+    <a href="../../keywords/hot-weater">hot weater</a> | 
+    <a href="../../keywords/grades">grades</a> | 
+    <a href="../../keywords/eating">eating</a> | 
+    
+
+</div>
 
                 </div>
 
