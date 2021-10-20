@@ -3,7 +3,7 @@ title: Neighborhood Air Quality
 date: 2021-05-28 18:02:58.795124
 draft: false
 tags: 
-categories: ["airquality"]
+categories: ["airquality","neighborhoods"]
 keywords: 
 indicators: [{"subtopic_id": 91, "internal_id": 2024, "name": "Black Carbon", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2024,719b87,91,Summarize"}, {"subtopic_id": 91, "internal_id": 2023, "name": "Fine Particulate Matter (PM2.5)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2023,719b87,91,Summarize"}, {"subtopic_id": 91, "internal_id": 2028, "name": "Nitric Oxide (NO)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2028,719b87,91,Summarize"}, {"subtopic_id": 91, "internal_id": 2025, "name": "Nitrogen Dioxide (NO2)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2025,719b87,91,Summarize"}, {"subtopic_id": 91, "internal_id": 2027, "name": "Ozone (O3)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2027,719b87,91,Summarize"}, {"subtopic_id": 91, "internal_id": 2026, "name": "Sulfur Dioxide (SO2)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2026,719b87,91,Summarize"}]
 menu:

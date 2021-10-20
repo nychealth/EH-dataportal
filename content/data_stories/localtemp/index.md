@@ -3,7 +3,7 @@ title: "The Urban Heat Island Effect in New York City"
 date: 2021-08-20T12:52:43-04:00
 draft: false
 tags:
-categories: ["climatehealth"]
+categories: ["climatehealth","neighborhoods"]
 keywords: ["heat","hot weather","weather","climate","temperature","summer","greenspace","parks","green space","heat island","urban heat island","cooling","air conditioning","building","housing"]
 image: ds-localtemp.jpeg
 menu:
