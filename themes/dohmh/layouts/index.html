@@ -199,8 +199,10 @@
               <p class="card-text fs-sm">About the Environmental Public Health Tracking Program.
               </p>
               <hr>
-              <a href="" class="btn btn-outline-gray btn-sm mt-2" style="float:right">About
+              {{ with .Site.GetPage "about.md" }}
+              <a href="{{ .URL }}" class="btn btn-outline-gray btn-sm mt-2" style="float:right">About
                 Us&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
+              {{ end }}
             </div>
           </div>
         </div>
@@ -209,7 +211,7 @@
 
 
 
-      <div class="row mb-4">
+      <!-- <div class="row mb-4">
         <div class="col-md-6 col-sm-12 mb-2">
 
           <div class="card bg-lightgray h-100">
@@ -241,9 +243,7 @@
           </div>
 
         </div>
-
-
-      </div>
+      </div> -->
 
 
     </div>
