@@ -103,10 +103,10 @@ module.exports = function(grunt) {
 
             var href = S(abspath).chompLeft(CONTENT_PATH_PREFIX).chompRight(".md").s;
             // href for index.md files stops at the folder name
-            if (filename === "_index.md") {
+
                 href = S(abspath).chompLeft(CONTENT_PATH_PREFIX).chompRight(filename).s;
                 href = SUBDIRECTORY+href;
-            }
+
 
             console.log('frontmatter: ', frontMatter);
             // Build Lunr index for this page
