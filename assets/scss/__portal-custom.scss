@@ -652,39 +652,39 @@ height: 200px;}
     }
 
 
-    // pagination styles
-    .pagination {
-        text-align: center;
-        }
+// pagination styles
+.pagination {
+    text-align: center;
+}
 
-    .page-item.active a {
-        background-color: #b820bb!important;
-        color: white;
-        font-weight: bold;
-        padding-top: 7px;
-        padding-bottom: 7px;
-    }
+    // .page-item.active a {
+    //     background-color: #b820bb!important;
+    //     color: white;
+    //     font-weight: bold;
+    //     padding-top: 7px;
+    //     padding-bottom: 7px;
+    // }
 
-        .pagination li {
-            display: inline;
-        }
+    //     .pagination li {
+    //         display: inline;
+    //     }
 
-        .pagination a {
-            font-size: 18px;
-            padding: 0px 15px;
-            color:#b820bb;
-            background: rgb(238, 238, 238);
-            margin: 0px 3px;
-            box-shadow: 2px 5px 3px #bebebe;
-            border-radius: 3px;
-        }
+    //     .pagination a {
+    //         font-size: 18px;
+    //         padding: 0px 15px;
+    //         color:#b820bb;
+    //         background: rgb(238, 238, 238);
+    //         margin: 0px 3px;
+    //         box-shadow: 2px 5px 3px #bebebe;
+    //         border-radius: 3px;
+    //     }
 
-        .pagination a:hover {
-            color: white!important;
-            font-weight: bold;
-            text-decoration: none;
-            background-color: #b820bb;
-        }
+    //     .pagination a:hover {
+    //         color: white!important;
+    //         font-weight: bold;
+    //         text-decoration: none;
+    //         background-color: #b820bb;
+    //     }
 
 
         // item focus
