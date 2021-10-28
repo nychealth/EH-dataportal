@@ -50,6 +50,16 @@ This site provides data on heavy alcohol consumption and alcohol outlets in NYC.
     </item>
     
     <item>
+      <title>Asthma</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</guid>
+      <description>Asthma About Asthma Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.
+Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</description>
+    </item>
+    
+    <item>
       <title>Bed Bugs</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/bed-bugs/</link>
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
@@ -585,16 +595,6 @@ New York State sets water quality standards, and NYC monitors New York Harbor wa
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/worker-health/</guid>
       <description>Worker Health About Worker Health and Safety Every year in New York City, workers are injured on the job or become ill as a result of exposure to health hazards at work. However, most work-related illnesses and injuries are preventable – safer work environments can be achieved when workplace hazards are understood and appropriate prevention measures are put in place.
 Data on work-related injuries and illness are used to show how often these preventable events occur and to identify factors that place workers at risk.</description>
-    </item>
-    
-    <item>
-      <title>Asthma</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma_mm/</link>
-      <pubDate>Wed, 14 Apr 2021 13:38:16 -0400</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma_mm/</guid>
-      <description>Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.
-Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</description>
     </item>
     
   </channel>

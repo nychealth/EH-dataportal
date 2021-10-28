@@ -35,188 +35,8 @@
 <meta name="twitter:image" content="/images/report_bottom_background.jpg">
 <meta name="twitter:site" content="@nycHealthy">
 <meta name="twitter:creator" content="@nycHealthy">
-<script>
-    
-  const indicatorDataPath = "\/ehs-data-portal-frontend-temp/visualizations/csv/"; 
-  const indicatorMapPath = "\/ehs-data-portal-frontend-temp/visualizations/json/"; 
-  
-  
-  var summarySpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {"url": "visualizations/csv/bikeLanP.csv"},
-    "mark": {"type": "bar", "tooltip": true},
-    "encoding": {
-      "x": {
-        "field": "Neighborhood",
-        "type": "nominal",
-        "sort": {"op": "mean", "field": "Data Value"},
-        "axis":null
-      },
-      "y": {
-        "field": "Data Value",
-        "type": "quantitative",
-        "axis": {"title":null}
-      },
-      "color": {
-          "condition": {
-              "test": "datum.Neighborhood=='Canarsie - Flatlands'",
-              "value": "#1CA970"
-          },
-          "value": "#D8D8D8"
-      }
-    }
-  }
-  ; 
-  
-  function buildSummarySpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(summarySpec));
-    
-    temp.encoding.color.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.data.url = indicatorDataPath+dataSlug+".csv"; 
-    
-    return temp;
-  };
-  
-  
-  
-  var trendSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {"url": "visualizations/csv/poveACSP_trend.csv"},
-    "layer":[{
-        "mark": {"type": "line", "point": false, "tooltip": true},
-        "encoding": {
-          "x": {
-            "field": "Time",
-            "type": "ordinal",
-            "axis": {"title": null,"labelAngle":45}
-          },
-          "y": {
-            "field": "Data Value",
-            "type": "quantitative",
-            "axis": {"title": null}
-          },
-          "detail": {
-              "field": "Neighborhood",
-              "type":"nominal"
-          },
-          "color": {
-            "value": "lightgrey"
-        }
-        }
-    },{
-        "mark": {"type": "line", "point": true, "tooltip": true},
-        "encoding": {
-          "x": {
-            "field": "Time",
-            "type": "ordinal",
-            "axis": {"title": null,"labelAngle":45}
-          },
-          "y": {
-            "field": "Data Value",
-            "type": "quantitative",
-            "axis": {"title": null}
-          },
-          "detail": {
-              "field": "Neighborhood",
-              "type":"nominal"
-          },
-          "color": {
-            "condition": {
-                "test": "datum.Neighborhood=='Canarsie - Flatlands'",
-                "value": "#1CA970"
-            },
-            "value": null
-        }
-        }
-        }]
-  }
-  ; 
-  
-  
-  function buildTrendSpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(trendSpec));
-    
-    temp.layer[1].encoding.color.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.data.url = indicatorDataPath+dataSlug+"_trend.csv"; 
-    
-    return temp;
-  };
-  
-  
-  
-  var mapSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "data": {
-      "url": "/visualizations/json/UHF42.topo.json",
-      "format": {"type": "topojson", "feature": "collection"}
-    },
-    "transform": [
-      {
-        "lookup": "id",
-        "from": {
-          "data": {"url": "visualizations/csv/bikeLanP.csv"},
-          "key": "geo_join_id",
-          "fields": ["Data Value","Neighborhood","message"]
-        }
-      }
-    ],
-    "layer":[
-      {
-    "mark": {"type": "geoshape", "tooltip": true},
-    "encoding": {
-      "color": {"field": "Data Value", "type": "quantitative",
-        "scale": {"scheme": "greens"},
-        "legend": {"orient": "top-left", "title": null}
-        },
-      "stroke": {"value": "white" },
-      "strokeWidth":{"value":1},
-      "tooltip":[
-        {"field":"Neighborhood","type":"nominal"},
-        {"field":"Data Value","type":"quantitative"}
-      ]
-    }},
-    {  "mark": {"type": "geoshape"},
-    "encoding": {
-      "color":{"value":null},
-      "stroke": {
-        "condition": {
-          "test": "datum.properties.GEONAME=='Bedford Stuyvesant - Crown Heights'",
-          "value": "#000000"
-        }
-      },
-      "strokeWidth": {"value": 3}
-    }}]
-    }
-    ;
-  
-  
-  function buildMapSpec(neighborhood,dataSlug) {
-    
-    var temp = JSON.parse(JSON.stringify(mapSpec));
-    
-    temp.layer[1].encoding.stroke.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
-    
-    temp.transform[0].from.data.url = indicatorDataPath+dataSlug+".csv"; 
-    
-    temp.data.url = indicatorMapPath+"UHF42.topo.json"; 
-    
-    return temp;
-  };
-  </script>
-  
+
+
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -488,7 +308,7 @@
         <div class="col-md-8 col-sm-12 ml-auto">
 
             <div class="row">
-                <h2><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
+                <h3 class="greenfill"><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
                     Air Quality</h2>
         
                 <p>New York City&rsquo;s air contains particles, drops of liquid, gasses, and other pollution that can affect health. Bad air quality can be particularly dangerous for older adults, children, and people with heart or lung conditions.</p>
@@ -496,11 +316,13 @@
 
             </div>
 
-            <div class="row my-4">
 
-                <div class="col-md-6 pl-0">
+
+            <div class="row my-4 fs-sm">
+
+                <div class="col-md-4 pl-0">
                     
-                        <h3><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Data Features</h3>
+                        <h4 class="greenfill"><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Data Features</h3>
                         
 
 
@@ -518,7 +340,7 @@
 
             
 
-            <a class="btn btn-outline-primary btn-lg has-icon disperse mb-1" href="../../key_topics/airquality/nyccas/">
+            <a class="btn btn-outline-primary btn-md has-icon disperse mb-1" href="../../key_topics/airquality/nyccas/">
             <span class="fas fa-angle-right" aria-hidden="true"></span>
             <span class="title">NYCCAS report</span>
             </a>
@@ -544,7 +366,7 @@
 
             
 
-            <a class="btn btn-outline-primary btn-lg has-icon disperse mb-1" href="../../key_topics/airquality/aqe/">
+            <a class="btn btn-outline-primary btn-md has-icon disperse mb-1" href="../../key_topics/airquality/aqe/">
             <span class="fas fa-angle-right" aria-hidden="true"></span>
             <span class="title">Your Neighborhood&#39;s Air Quality</span>
             </a>
@@ -559,9 +381,9 @@
 
 
 
-                <div class="col-md-6 pl-0">
+                <div class="col-md-4 pl-0">
                     
-                        <h3><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
+                        <h4 class="greenfill"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
                         
 
 
@@ -784,7 +606,7 @@
 
             
 
-            <a class="btn btn-outline-primary btn-lg has-icon disperse mb-1" href="../../neighborhood_reports/activedesign/">
+            <a class="btn btn-outline-primary btn-md has-icon disperse mb-1" href="../../neighborhood_reports/activedesign/">
             <span class="fas fa-angle-right" aria-hidden="true"></span>
             <span class="title">Active Design, Physical Activity and Health</span>
             </a>
@@ -800,7 +622,7 @@
 
             
 
-            <a class="btn btn-outline-primary btn-lg has-icon disperse mb-1" href="../../neighborhood_reports/asthma/">
+            <a class="btn btn-outline-primary btn-md has-icon disperse mb-1" href="../../neighborhood_reports/asthma/">
             <span class="fas fa-angle-right" aria-hidden="true"></span>
             <span class="title">Asthma and the Environment</span>
             </a>
@@ -1586,7 +1408,7 @@
 
             
 
-            <a class="btn btn-outline-primary btn-lg has-icon disperse mb-1" href="../../neighborhood_reports/outdoorair/">
+            <a class="btn btn-outline-primary btn-md has-icon disperse mb-1" href="../../neighborhood_reports/outdoorair/">
             <span class="fas fa-angle-right" aria-hidden="true"></span>
             <span class="title">Outdoor Air and Health</span>
             </a>
@@ -1678,401 +1500,11 @@
 
                     
                 </div>
-            </div>
 
-
-
-
-            <div class="row my-4">
-                    <h3><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Get the data: <span class="text-muted">Related datasets in the Data Explorer</span></h3>
-                    <hr>
+                <div class="col-md-4 pl-0">
                     
-
-
-
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/air-quality/">Air Quality</a></p>
-            </div>
-
-            
-
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/chronic-obstructive-pulmonary-disease/">Chronic Obstructive Pulmonary Disease</a></p>
-            </div>
-
-            
-
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/citywide-air-quality/">Citywide Air Quality</a></p>
-            </div>
-
-            
-
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/health-impacts-of-air-pollution/">Health Impacts of Air Pollution</a></p>
-            </div>
-
-            
-
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/large-city-air-quality-comparison/">Large City Air Quality Comparison</a></p>
-            </div>
-
-            
-
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/neighborhood-air-quality/">Neighborhood Air Quality</a></p>
-            </div>
-
-            
-
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/walking-driving-and-cycling/">Walking, Driving, and Cycling</a></p>
-            </div>
-
-            
-
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-
-    
-    
-        
-
-            
-            <div class="col-md-6 pl-0">
-                <p><a href="../../data_explorer/asthma_mm/">Asthma</a></p>
-            </div>
-
-            
-
-        
-
-
-            </div>
-
-
-
-
-
-
-        </div>
-
-
-        <div class="col-md-3 pl-4 mr-auto text-right">
-                
-                
-                    <h3 class="fs-rg mt-4"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories about Air Quality</h3>
+                    
+                    <h4 class="greenfill"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories</h3>
                     
 
 
@@ -2217,78 +1649,393 @@
         
 
 
-                
-                
+                    
+                    
+                </div>
+            </div>
 
-                <h4 class="text-muted fs-rg mt-4"><i class="fas fa-star mr-1" aria-hidden="true"></i>Other Key Topics</h4>
+            <div class="row my-4">
+
+            </div>
+
+
+
+        </div>
+
+
+        <div class="col-md-3 pl-4 mr-auto text-right">
+            <h3 class="greenfill"><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Datasets</h3>
+
+            
+
+
+
+
+
     
-                    
-                        
-                            <a class="btn btn-outline-gray btn-sm has-icon disperse" style="text-align: left!important" href="../../key_topics/airquality/">
-                                <span class="fas fa-angle-right"></span>
-                                <span class="title">Air Quality</span>
-                              </a>
+    
+        
 
-                        
-                    
-                        
-                            <a class="btn btn-outline-gray btn-sm has-icon disperse" style="text-align: left!important" href="../../key_topics/climatehealth/">
-                                <span class="fas fa-angle-right"></span>
-                                <span class="title">Climate and Health</span>
-                              </a>
 
-                        
-                    
-                        
-                            <a class="btn btn-outline-gray btn-sm has-icon disperse" style="text-align: left!important" href="../../key_topics/housing/">
-                                <span class="fas fa-angle-right"></span>
-                                <span class="title">Housing</span>
-                              </a>
+    
+    
+        
 
-                        
-                    
-                        
-                            <a class="btn btn-outline-gray btn-sm has-icon disperse" style="text-align: left!important" href="../../key_topics/social/">
-                                <span class="fas fa-angle-right"></span>
-                                <span class="title">Social and Economic Conditions</span>
-                              </a>
+            
+            <a href="../../data_explorer/air-quality/">Air Quality</a>
+            <hr class="my-1">
 
-                        
-                    
-                        
-                            <a class="btn btn-outline-gray btn-sm has-icon disperse" style="text-align: left!important" href="../../key_topics/transportation/">
-                                <span class="fas fa-angle-right"></span>
-                                <span class="title">Transportation and Active Design</span>
-                              </a>
+            
 
-                        
-                    
-                        
-                    
-                        
-                            <a class="btn btn-outline-gray btn-sm has-icon disperse" style="text-align: left!important" href="../../key_topics/childhealth/">
-                                <span class="fas fa-angle-right"></span>
-                                <span class="title">Child Health</span>
-                              </a>
+        
 
-                        
-                    
-                        
-                            <a class="btn btn-outline-gray btn-sm has-icon disperse" style="text-align: left!important" href="../../key_topics/pests/">
-                                <span class="fas fa-angle-right"></span>
-                                <span class="title">Pests and Pesticides</span>
-                              </a>
 
-                        
-                    
-                        
-                            <a class="btn btn-outline-gray btn-sm has-icon disperse" style="text-align: left!important" href="../../key_topics/foodanddrink/">
-                                <span class="fas fa-angle-right"></span>
-                                <span class="title">Food and Drink</span>
-                              </a>
+    
+    
+        
 
-                        
-                    
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/asthma/">Asthma</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/chronic-obstructive-pulmonary-disease/">Chronic Obstructive Pulmonary Disease</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/citywide-air-quality/">Citywide Air Quality</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/health-impacts-of-air-pollution/">Health Impacts of Air Pollution</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/large-city-air-quality-comparison/">Large City Air Quality Comparison</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/neighborhood-air-quality/">Neighborhood Air Quality</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="../../data_explorer/walking-driving-and-cycling/">Walking, Driving, and Cycling</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+
+
+
+
+                
                 <br><br>
         </div>
     

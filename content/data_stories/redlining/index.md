@@ -3,7 +3,7 @@ title: "A brief history of redlining"
 date: 2021-01-06T08:07:31-04:00
 draft: false
 tags:
-categories: ["housing","social","childhealth"]
+categories: ["housing","social","childhealth","neighborhoods"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism"]
 image: ds-povasthma.jpg
 menu:
@@ -11,30 +11,8 @@ menu:
         identifier: '02'
 layout: advanced
 image: ds-redlining.jpeg
-chapters: [
-    {
-        "chapter": "Introduction",
-        "anchor": "1"
-    },
-    {
-        "chapter": "Poverty, race, and health",
-        "anchor": "2"
-    },
-    {
-        "chapter": "A brief history of redlining",
-        "anchor": "3"
-    },
-    {
-        "chapter": "Redlining in NYC",
-        "anchor": "4"
-    },
-    {
-        "chapter": "Its effects today",
-        "anchor": "5"
-    }
-]
 ---
-{{< storyheader text="Inside the 90-year-old financial policy that harms our health" anchor="1">}}
+### Inside the 90-year-old financial policy that harms our health
 In public health, we often cite structural racism to help explain health patterns in our society. But what, specifically, does this mean? A close look at the history of redlining shows this connection.
 
 When we analyze data on the health of New Yorkers, we often find the same geographic patterns, with higher rates of preventable health conditions in high-poverty neighborhoods. For example, [we've written about how asthma and poverty are closely connected]({{< ref "/data_stories/povasthma" >}}).
@@ -43,12 +21,11 @@ These high-poverty neighborhoods are also home to a higher proportion of people 
 
 The chart below shows the relationship between each neighborhood's poverty rate and percent population of color, with the rate of childhood asthma ED visits represented by the size of each bubble.
 
-{{< storyheader text="" anchor="2">}}
 {{< datawrapper "Race, Poverty, and Health in NYC" "KOI8H/4/" "400px">}}
 
 This dynamic extends beyond asthma. To understand why poverty, race, and health are related in New York City, we look back at **redlining**. This government policy from the 1930s illustrates the nature of poverty and racism in our society - and how racism affects health.
 
-{{< storyheader text="A Brief History of Redlining" anchor="3">}}
+### A Brief History of Redlining
 In the 1930s, during the Great Depression, unemployment rates were high and many people couldn't make their mortgage payments. A wave of foreclosures swept the country. To help keep people in their homes, the federal government established the Home Owners Loan Corporation (HOLC). Its goal was to refinance mortgages with better terms, like lower interest rates and longer repayment periods, to help people make payments and avoid foreclosure.
 
 To determine what loans they would guarantee, HOLC sent people to appraise neighborhoods in cities across the US. They documented the types of housing in neighborhoods, along with information about the people who lived there. They also catalogued “detrimental influences,” with racist descriptions like “infiltration of Negroes” and “mixed races" as characteristics that lowered a neighborhood's value.
@@ -87,7 +64,7 @@ The map below shows the extent of redlining in New York City.
 </div>
 {{< /rawhtml>}}
 
-{{< storyheader text="Redlining drove residential segregation" anchor="4">}}
+### Redlining drove residential segregation
 As a result of redlining, people of color were denied access to “desirable” neighborhoods by racist real estate practices - and denied loans to buy homes in neighborhoods labeled "declining" or "hazardous." Real estate agents also used exploitative tactics like {{< rawhtml>}}<a href="#bbcollapse" data-toggle="collapse"
         class="badge badge-pill badge-warning">blockbusting</a>, <a
         href="#contractcollapse" data-toggle="collapse"
@@ -245,7 +222,7 @@ Enormous areas of New York City were redlined. Explore the extent of HOLC's redl
 
 Large parts of Manhattan were redlined. However, reinvestment in recent decades has lead to rising property values and the displacement of some former residents. Neighborhoods that were once redlined now have some of the city's most expensive real estate.
 
-{{< storyheader text="Redlining's effects continue today" anchor="5">}}
+### Redlining's effects continue today
 In New York City, many once-thriving neighborhoods experienced severe disinvestment as a result of redlining, which caused inequality that continued from one generation to the next. Neighborhoods that were redlined in the 1930s have higher rates of poverty even today – nearly 90 years after the maps were created. According to the [National Community Reinvestment Coalition](https://ncrc.org/holc/), 3 out of every 4 neighborhoods in the USA that were redlined in the 1930s are still low-to-moderate income today - and 2 out of every 3 are predominantly populated by people of color.
 
 Redlining is a prime example of {{< rawhtml>}}  <a href="#disinvestmentCollapseTwo" data-toggle="collapse"

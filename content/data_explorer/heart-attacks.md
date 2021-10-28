@@ -3,7 +3,7 @@ title: Heart Attacks
 date: 2021-05-28 18:02:58.879198
 draft: false
 tags: 
-categories: []
+categories: ["healthoutcomes"]
 keywords: 
 indicators: [{"subtopic_id": 13, "internal_id": 90, "name": "Heart Attack Hospitalizations", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=90,719b87,13,Summarize"}]
 menu:

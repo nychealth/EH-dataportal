@@ -34,15 +34,99 @@ Disallow: /key_topics/climatehealth/heat-report/
 
 Disallow: /key_topics/airquality/nyccas/
 
+Disallow: /key_topics/neighborhoods/
+
+Disallow: /categories/neighborhoods/
+
 Disallow: /data_stories/
+
+Disallow: /keywords/ed-visit/
+
+Disallow: /keywords/emergency-department/
+
+Disallow: /keywords/emergency-room/
+
+Disallow: /keywords/extreme-heat/
+
+Disallow: /keywords/heat/
+
+Disallow: /keywords/heat-mortality/
+
+Disallow: /keywords/heat-related-illness/
+
+Disallow: /keywords/hot-weather/
+
+Disallow: /keywords/interactive/
+
+Disallow: /keywords/
 
 Disallow: /key_topics/climatehealth/syndromic/
 
+Disallow: /keywords/weather/
+
+Disallow: /keywords/data/
+
+Disallow: /keywords/disparities/
+
+Disallow: /keywords/disparity/
+
+Disallow: /keywords/health-disparities/
+
+Disallow: /keywords/inequality/
+
+Disallow: /keywords/inequity/
+
 Disallow: /key_topics/climatehealth/hvi/
+
+Disallow: /keywords/vulnerability/
+
+Disallow: /keywords/air-quality/
+
+Disallow: /keywords/buildings/
+
+Disallow: /keywords/cars/
+
+Disallow: /keywords/emissions/
+
+Disallow: /keywords/exhaust/
+
+Disallow: /keywords/neighborhoods/
+
+Disallow: /keywords/traffic/
+
+Disallow: /keywords/transportation/
 
 Disallow: /key_topics/airquality/aqe/
 
+Disallow: /keywords/air-conditioning/
+
+Disallow: /keywords/building/
+
+Disallow: /keywords/climate/
+
+Disallow: /keywords/cooling/
+
+Disallow: /keywords/green-space/
+
+Disallow: /keywords/greenspace/
+
+Disallow: /keywords/heat-island/
+
+Disallow: /keywords/housing/
+
+Disallow: /keywords/parks/
+
+Disallow: /keywords/summer/
+
+Disallow: /keywords/temperature/
+
 Disallow: /data_stories/localtemp/
+
+Disallow: /keywords/urban-heat-island/
+
+Disallow: /key_topics/healthoutcomes/
+
+Disallow: /categories/healthoutcomes/
 
 Disallow: /data_explorer/active-design/
 
@@ -51,6 +135,8 @@ Disallow: /data_explorer/air-quality/
 Disallow: /data_explorer/alcohol-access/
 
 Disallow: /data_explorer/alcohol-use/
+
+Disallow: /data_explorer/asthma/
 
 Disallow: /data_explorer/bed-bugs/
 
@@ -82,6 +168,8 @@ Disallow: /data_explorer/climate/
 
 Disallow: /data_explorer/climate-change/
 
+Disallow: /keywords/climate-change/
+
 Disallow: /data_explorer/cockroaches/
 
 Disallow: /data_explorer/diabetes-high-blood-pressure-and-high-cholesterol/
@@ -95,6 +183,8 @@ Disallow: /data_explorer/energy/
 Disallow: /data_explorer/falls-among-older-adults/
 
 Disallow: /categories/foodanddrink/
+
+Disallow: /keywords/global-warming/
 
 Disallow: /data_explorer/health-care/
 
@@ -172,39 +262,163 @@ Disallow: /key_topics/pests/
 
 Disallow: /key_topics/foodanddrink/
 
-Disallow: /data_explorer/asthma_mm/
+Disallow: /keywords/air-pollution/
+
+Disallow: /keywords/breathing/
+
+Disallow: /keywords/cooking/
+
+Disallow: /keywords/density/
+
+Disallow: /keywords/fine-particles/
+
+Disallow: /keywords/lungs/
+
+Disallow: /keywords/pm2.5/
+
+Disallow: /keywords/pollution/
+
+Disallow: /keywords/restaurants/
 
 Disallow: /data_stories/aq-cooking/
+
+Disallow: /keywords/assaults/
+
+Disallow: /keywords/disinvestment/
+
+Disallow: /keywords/injustice/
+
+Disallow: /keywords/poverty/
+
+Disallow: /keywords/racism/
+
+Disallow: /keywords/redlining/
+
+Disallow: /keywords/social-determinants/
+
+Disallow: /keywords/violence/
 
 Disallow: /data_stories/violence/
 
 Disallow: /data_stories/redlining/
 
+Disallow: /keywords/asthma/
+
 Disallow: /data_stories/housing/
+
+Disallow: /keywords/active-design/
+
+Disallow: /keywords/bike-lanes/
+
+Disallow: /keywords/biking/
+
+Disallow: /keywords/built-environment/
+
+Disallow: /keywords/cycle-lanes/
+
+Disallow: /keywords/cycling/
 
 Disallow: /data_stories/streets/
 
+Disallow: /keywords/fatalities/
+
+Disallow: /keywords/injuries/
+
+Disallow: /keywords/roads/
+
+Disallow: /keywords/safety/
+
+Disallow: /keywords/streets/
+
+Disallow: /keywords/air-conditioner/
+
+Disallow: /keywords/death/
+
+Disallow: /keywords/mortality/
+
 Disallow: /data_stories/heat/
 
+Disallow: /keywords/geographic/
+
+Disallow: /keywords/geography/
+
+Disallow: /keywords/health-data/
+
 Disallow: /categories/internal/
+
+Disallow: /keywords/maps/
+
+Disallow: /keywords/methods/
 
 Disallow: /data_stories/geographies/
 
 Disallow: /data_stories/aqcovid/
 
+Disallow: /keywords/coronavirus/
+
+Disallow: /keywords/covid/
+
+Disallow: /keywords/covid-19/
+
 Disallow: /data_stories/aqsnapshots/
 
+Disallow: /keywords/environmental-justice/
+
+Disallow: /keywords/justice/
+
+Disallow: /keywords/civic-service-design/
+
+Disallow: /keywords/design/
+
 Disallow: /data_stories/assaults/
+
+Disallow: /keywords/how-we-work/
+
+Disallow: /keywords/technology/
 
 Disallow: /data_stories/codesign/
 
 Disallow: /data_stories/aqts/
+
+Disallow: /keywords/bikes/
+
+Disallow: /keywords/car-free/
+
+Disallow: /keywords/carfree/
+
+Disallow: /keywords/pedestrians/
 
 Disallow: /data_stories/aq2/
 
 Disallow: /data_stories/newlook/
 
 Disallow: /data_stories/breatheeasy/
+
+Disallow: /keywords/children/
+
+Disallow: /keywords/eating/
+
+Disallow: /keywords/ed-visits/
+
+Disallow: /keywords/emergency-department-visits/
+
+Disallow: /keywords/food-poisoning/
+
+Disallow: /keywords/foodborne-illness/
+
+Disallow: /keywords/grades/
+
+Disallow: /keywords/heart-disease/
+
+Disallow: /keywords/hot-weater/
+
+Disallow: /keywords/inspections/
+
+Disallow: /keywords/lung-disease/
+
+Disallow: /keywords/restaurant/
+
+Disallow: /keywords/stroke/
 
 Disallow: /data_stories/food/
 

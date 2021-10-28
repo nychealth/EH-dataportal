@@ -55,6 +55,16 @@ At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weathe
     </item>
     
     <item>
+      <title>Asthma</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</guid>
+      <description>Asthma About Asthma Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.
+Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</description>
+    </item>
+    
+    <item>
       <title>Climate</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/climate/</link>
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
