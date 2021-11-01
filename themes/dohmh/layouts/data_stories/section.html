@@ -42,15 +42,9 @@
         <div class="col">
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
-                    <div class="row mb-2">
-                        <div class="col">
-                            <!-- Hugo's default pagination template. -->
-                            {{ template "_internal/pagination.html" . }}
-                        </div>
 
-                    </div>
 
-                    <div class="row">
+                    <div class="row pb-2">
                         
                             {{ range .Paginator.Pages }}
                             <div class="col-md-4 itemfocus">
@@ -62,17 +56,14 @@
                             {{ end }}
                     </div>
 
+                    <div class="row my-3">
+                        <div class="col-md-4 mx-auto">
+                            <!-- Hugo's default pagination template. -->
+                            {{ template "_internal/pagination.html" . }}
+                        </div>
 
+                    </div>
 
-                    <style>
-
-
-
-
-
-
-
-                    </style>
 
                 </div>
 
