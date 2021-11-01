@@ -33,7 +33,7 @@
         <div class="col-8 mx-auto">
             <h2 class="mb-2">More content about <span style="color: #00923E">{{ .Title }}</span>:</h2>
 
-                {{ range .Pages}}
+                {{ range .Paginator.Pages}}
                 <div class="card content-card mb-3 px-0 mx-0 fs-sm">
                     <div class="card-content">
                         <div class="card-body">
@@ -44,6 +44,14 @@
                     </div>
                 </div>                
                 {{ end }}
+
+                <div class="row my-3">
+                  <div class="col-md-4 mx-auto">
+                      <!-- Hugo's default pagination template. -->
+                      {{ template "_internal/pagination.html" . }}
+                  </div>
+
+              </div>
         </div>
     </div>
 

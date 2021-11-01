@@ -9330,9 +9330,9 @@ input[type=range]:focus::-ms-fill-upper {
   padding-bottom: 5px; }
 
 .greenfill {
-  background: #00923E;
+  background: #dff0d8;
   padding: 5px;
-  color: white;
+  color: #3c763d;
   border-radius: 3px;
   width: 100%; }
 
