@@ -3332,6 +3332,57 @@ select {
   .accordion > .card .card-header {
     margin-bottom: -1px; }
 
+.pagination {
+  display: flex;
+  padding-left: 0;
+  list-style: none; }
+
+.page-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: #0029F7;
+  background-color: #fff;
+  border: 1px solid #dee2e6; }
+  .page-link:hover {
+    z-index: 2;
+    color: #001cab;
+    text-decoration: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6; }
+  .page-link:focus {
+    z-index: 2;
+    outline: 0;
+    box-shadow: 0 0 0 2px rgba(0, 41, 247, 0.75); }
+
+.page-item:first-child .page-link {
+  margin-left: 0; }
+
+.page-item.active .page-link {
+  z-index: 1;
+  color: #fff;
+  background-color: #A513B6;
+  border-color: #A513B6; }
+
+.page-item.disabled .page-link {
+  color: #777677;
+  pointer-events: none;
+  cursor: auto;
+  background-color: #fff;
+  border-color: #dee2e6; }
+
+.pagination-lg .page-link {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
+  line-height: 1.5; }
+
+.pagination-sm .page-link {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5; }
+
 .badge {
   display: inline-block;
   padding: 0.25em 0.4em;
@@ -9360,31 +9411,6 @@ input[type=range]:focus::-ms-fill-upper {
 
 .pagination {
   text-align: center; }
-
-.page-item.active a {
-  background-color: #b820bb !important;
-  color: white;
-  font-weight: bold;
-  padding-top: 7px;
-  padding-bottom: 7px; }
-
-.pagination li {
-  display: inline; }
-
-.pagination a {
-  font-size: 18px;
-  padding: 0px 15px;
-  color: #b820bb;
-  background: #eeeeee;
-  margin: 0px 3px;
-  box-shadow: 2px 5px 3px #bebebe;
-  border-radius: 3px; }
-
-.pagination a:hover {
-  color: white !important;
-  font-weight: bold;
-  text-decoration: none;
-  background-color: #b820bb; }
 
 .itemfocus:hover {
   background-color: #EFFAF4;
