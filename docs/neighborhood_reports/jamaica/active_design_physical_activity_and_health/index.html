@@ -39,8 +39,8 @@
 
   <script>
     
-  const indicatorDataPath = "/visualizations/csv/"; 
-  const indicatorMapPath = "/visualizations/json/"; 
+  const indicatorDataPath = "\/ehs-data-portal-frontend-temp/visualizations/csv/"; 
+  const indicatorMapPath = "\/ehs-data-portal-frontend-temp/visualizations/json/"; 
   
   
   var summarySpec = {
@@ -305,7 +305,7 @@
 
     </div>
     
-    <div class="site-header bg-primary" style="background-image: url(/images/header_background.jpg)">
+    <div class="site-header bg-primary" style="background-image: url(/ehs-data-portal-frontend-temp/images/header_background.jpg)">
         <div class="wrap-header">
 
             <div class="container-fluid wide">
@@ -1895,7 +1895,7 @@
   document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
   e.preventDefault(); 
   var locVal = searchForm.options[searchForm.selectedIndex].value;
-  window.location = '/neighborhood_reports/'+ locVal + "/" + reportExt;
+  window.location = '\/ehs-data-portal-frontend-temp/neighborhood_reports/'+ locVal + "/" + reportExt;
   });
 
 
