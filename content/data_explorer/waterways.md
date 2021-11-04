@@ -4,7 +4,7 @@ date: 2021-05-28 18:02:58.751855
 draft: false
 tags: 
 categories: ["transportation","neighborhoods"]
-keywords: 
+keywords: ["water","harbor","pollution"]
 indicators: [{"subtopic_id": 89, "internal_id": 2008, "name": "New York Harbor Water Quality", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2008,719b87,89,Summarize"}]
 menu:
     main:

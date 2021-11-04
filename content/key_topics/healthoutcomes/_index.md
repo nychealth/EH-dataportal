@@ -5,7 +5,7 @@ draft: false
 tags: 
 categories: [healthoutcomes]
 keyTopic: healthoutcomes
-keywords: 
+keywords: ["health","public health","health outcomes"]
 menu:
     main:
         identifier: '05'

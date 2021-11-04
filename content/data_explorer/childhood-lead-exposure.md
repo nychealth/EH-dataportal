@@ -4,7 +4,7 @@ date: 2021-05-28 18:02:58.848903
 draft: false
 tags: 
 categories: ["housing","childhealth","social"]
-keywords: 
+keywords: ["lead","poisoning","housing","children","child","testing","blood"]
 indicators: [{"subtopic_id": 14, "internal_id": 2189, "name": "Children tested for lead by age 3 years", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2189,719b87,14,Summarize"}, {"subtopic_id": 14, "internal_id": 2184, "name": "Children under 6 years with elevated blood lead levels (BLL)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2184,719b87,14,Summarize"}, {"subtopic_id": 14, "internal_id": 2216, "name": "Children under 6 years with elevated blood lead levels by NTA", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2216,719b87,14,Summarize"}]
 menu:
     main:

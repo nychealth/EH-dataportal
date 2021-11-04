@@ -4,7 +4,7 @@ date: 2021-05-28 18:02:58.806398
 draft: false
 tags: 
 categories: ["foodanddrink"]
-keywords: 
+keywords: ["food","restaurants","safety","food and drink","drink","inspection"]
 indicators: [{"subtopic_id": 98, "internal_id": 2065, "name": "Restaurants with A Grades", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2065,719b87,98,Summarize"}]
 menu:
     main:

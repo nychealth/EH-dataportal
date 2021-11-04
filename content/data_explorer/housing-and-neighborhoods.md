@@ -4,7 +4,7 @@ date: 2021-05-28 18:02:58.727801
 draft: false
 tags: 
 categories: ["housing","social","neighborhoods"]
-keywords: 
+keywords: ["built environments","neighborhoods","active design","safety","social","housing"]
 indicators: [{"subtopic_id": 87, "internal_id": 2003, "name": "Housing Affordability", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2003,719b87,87,Summarize"}, {"subtopic_id": 87, "internal_id": 2002, "name": "Housing Supply ", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2002,719b87,87,Summarize"}, {"subtopic_id": 87, "internal_id": 2004, "name": "Housing Sustainability", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2004,719b87,87,Summarize"}]
 menu:
     main:

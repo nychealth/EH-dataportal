@@ -5,7 +5,7 @@ draft: false
 tags: 
 categories: [neighborhoods]
 keyTopic: neighborhoods
-keywords: 
+keywords: ["built environments","neighborhoods","active design","safety"]
 menu:
     main:
         identifier: '05'
