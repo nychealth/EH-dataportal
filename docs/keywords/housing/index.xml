@@ -6,7 +6,17 @@
     <description>Recent content in housing on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Aug 2021 12:52:43 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/housing/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Oct 2021 07:56:00 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/housing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Housing</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/housing/</link>
+      <pubDate>Sat, 02 Oct 2021 07:56:00 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/housing/</guid>
+      <description>Most people spend most of their time at home - so the household environment can significantly affect health. Disrepair that stems from longterm maintenance neglect can lead to serious health problems, including: lead poisoning from lead paint; asthma and other respiratory issues triggered by pests; and carbon monoxide poisoning.
+In NYC, substandard housing is disproportionately located in low-income neighborhoods, as historical disinvestment lead to severe, systemic maintenance deficiencies that threatens people&amp;rsquo;s health.</description>
+    </item>
+    
     <item>
       <title>The Urban Heat Island Effect in New York City</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/localtemp/</link>
@@ -15,6 +25,147 @@
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/localtemp/</guid>
       <description>In New York City and across the country, more people die from extreme heat than from all other natural disasters combined. To understand how to keep New Yorkers safe from extreme heat, we studied neighborhood factors that affect temperature, and found that grass, shrubs, and trees can play a major role. Let’s take a look.
 At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weather Station was 89° Fahrenheit (F).</description>
+    </item>
+    
+    <item>
+      <title>Asthma</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</guid>
+      <description>Asthma About Asthma Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.
+Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</description>
+    </item>
+    
+    <item>
+      <title>Bed Bugs</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/bed-bugs/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/bed-bugs/</guid>
+      <description>Bed Bugs About Bed Bugs Bed bugs are small insects that feed mainly on human blood. They are often confused with other insects, and many people are not even aware of their presence until they have been bitten. However, not everyone has a reaction to bed bug bites. You may not discover that you have bed bugs until you see other signs of the pests such as, bed bugs themselves, their eggs or droppings, or the blood stains they leave behind in mattresses, box springs, chairs or other materials.</description>
+    </item>
+    
+    <item>
+      <title>Carbon Monoxide Incidents</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/carbon-monoxide-incidents/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/carbon-monoxide-incidents/</guid>
+      <description>Carbon Monoxide Incidents About Carbon Monoxide Carbon monoxide (CO) is a poisonous gas that forms when fuel or other materials are burned. It is invisible and has no odor. Even short-term exposure to high levels of carbon monoxide can be fatal.
+This site contains data on unintentional carbon monoxide incidents and emergency responses by the New York City Fire Department (FDNY), reports to the NYC Poison Control Center (PCC) of actual or potential carbon monoxide exposure and hospitalizations of NYC residents who have been poisoned by carbon monoxide.</description>
+    </item>
+    
+    <item>
+      <title>Carbon Monoxide Poisoning</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/carbon-monoxide-poisoning/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/carbon-monoxide-poisoning/</guid>
+      <description>Carbon Monoxide Poisoning About Carbon Monoxide Carbon monoxide (CO) is a poisonous gas that forms when fuel or other materials are burned. It is invisible and has no odor. Even short-term exposure to high levels of carbon monoxide can be fatal.
+This site contains data on unintentional carbon monoxide incidents and emergency responses by the New York City Fire Department (FDNY), reports to the NYC Poison Control Center (PCC) of actual or potential carbon monoxide exposure and hospitalizations of NYC residents who have been poisoned by carbon monoxide.</description>
+    </item>
+    
+    <item>
+      <title>Childhood Lead Exposure</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/childhood-lead-exposure/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/childhood-lead-exposure/</guid>
+      <description>Childhood Lead Exposure About Childhood Lead Exposure Childhood lead poisoning is a serious but preventable public health problem. Lead is a toxic metal that can cause learning and behavior problems, and delay physical growth and mental development. Testing for lead poisoning is a key component of childhood lead poisoning prevention, since most children with elevated blood lead levels exhibit no symptoms.
+This site provides data on blood lead testing and on elevated blood lead levels among NYC children.</description>
+    </item>
+    
+    <item>
+      <title>Cockroaches</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/cockroaches/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/cockroaches/</guid>
+      <description>Cockroaches About Cockroaches Cockroaches, or just &amp;ldquo;roaches&amp;rdquo;, are a common urban pest. Though there are more than a thousand species of roaches, just a few are found in NYC homes. The most common are American Cockroaches, typically found in moist basements and lower floors, and German Cockroaches, found anywhere inside homes.
+Cockroaches like warm, dark places such as toasters, clocks, microwave ovens, walls, and cabinets. They need regular access to food and water to live and breed.</description>
+    </item>
+    
+    <item>
+      <title>Drinking Water Quality</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/drinking-water-quality/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/drinking-water-quality/</guid>
+      <description>Drinking Water Quality About Drinking Water Quality All NYC residences receive drinking water from a public water system. Most water is gravity fed from a network of reservoirs and lakes in protected watersheds, up to 125 miles from the city (view map).
+The NYC water system consists of two surface water systems (Croton and Catskill/Delaware) and a Southwestern Queens ground water system. Since 1999, the Croton system has served as a supplemental water system, and the Catskill/Delaware reservoir system has supplied almost all NYC drinking water.</description>
+    </item>
+    
+    <item>
+      <title>Falls Among Older Adults</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/falls-among-older-adults/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/falls-among-older-adults/</guid>
+      <description>Falls Among Older Adults About falls among older adults in New York City Each year, one in three older adults (65 years and older) falls. Among New York City&amp;rsquo;s older adults, there are approximately 30,500 emergency department (ED) visits, 16,600 hospitalizations, and 300 deaths each year. Falls are not a normal part of aging, and research shows that many falls can be prevented.
+Falls and the environment Although falls can occur anywhere, falls among older adults frequently happen at home.</description>
+    </item>
+    
+    <item>
+      <title>Housing</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/housing/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/housing/</guid>
+      <description>Housing About Housing Quality No family should have to choose between affordable and healthy housing. All tenants are entitled to safe, decent and sanitary housing, which prevents disease and injury.
+In New York City, substandard or poor housing tends to cluster in neighborhoods. Homes that are deteriorating or dilapidated, or homes near buildings with broken or boarded-up windows, disproportionately tend to be in low-income neighborhoods, although the differences for these indicators have decreased.</description>
+    </item>
+    
+    <item>
+      <title>Housing and Neighborhoods</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/housing-and-neighborhoods/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/housing-and-neighborhoods/</guid>
+      <description>Housing and Neighborhoods Housing and Neighborhoods OneNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future.
+Goal: Create homes for nearly a million more New Yorkers while making housing and neighborhoods more affordable and sustainable.
+Housing Supply We are tracking the number of new housing units created since the start of the plan in 2007, as well as the size of the total housing stock, to ensure that the city is meeting the supply portion of its goal.</description>
+    </item>
+    
+    <item>
+      <title>Lead Hazards</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/lead-hazards/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/lead-hazards/</guid>
+      <description>Lead Hazards About Lead Hazards The main source of childhood lead poisoning in NYC, as in most of the United States, is lead-based paint in older, deteriorated housing. Nationwide, lead poisoning is associated with housing constructed before 1950, when lead-based paint was widely used and contained more lead than in later decades. In 1960, NYC banned the use of lead-based paint in homes and a national ban went into effect in 1978.</description>
+    </item>
+    
+    <item>
+      <title>Mice and Rats</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/mice-and-rats/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/mice-and-rats/</guid>
+      <description>Mice and Rats About Mice and Rats Rats and mice are common, but preventable. In NYC, rats tend to be seen on streets and sidewalks, and in backyards and basements, while mice are almost always found inside homes.
+Rats and mice thrive where there are sources of food and shelter and where property owners fail to prevent and adequately respond to their presence.
+This site provides survey data on the prevalence of mice or rats inside and outside of buildings.</description>
+    </item>
+    
+    <item>
+      <title>Social and Economic Conditions</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/social-and-economic-conditions/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/social-and-economic-conditions/</guid>
+      <description>Social and Economic Conditions Social and economic conditions Social and economic conditions affect people’s health. These conditions (also called “social determinants of health”) are conditions that people may be born into or fall into over the course of their lives. They are shaped by local, national and global distribution of resources and power.
+People tend to be healthier when they have access to:
+ Economic and financial stability Higher education Adequate health care Healthy neighborhoods and safe, strong communities   But when people don’t have access to these conditions, they experience worse health outcomes.</description>
+    </item>
+    
+    <item>
+      <title>Child Health</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/childhealth/</link>
+      <pubDate>Wed, 05 May 2021 07:59:26 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/childhealth/</guid>
+      <description>Lifelong health can be determined by your health when you are a child. Plus, children can be fragile, and can be more harmed by environmental threats. So, ways that the environment can affect health often are particularly important for child health.
+In New York City, several environmental factors play a key role in determining childhood health.</description>
     </item>
     
     <item>
