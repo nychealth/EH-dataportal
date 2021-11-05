@@ -11,15 +11,10 @@ menu:
     main:
         identifier: '03'
 ---
-# Active Design
-### About Active Design
-
 
 Physical inactivity and unhealthy diet rank among the leading risk factors for premature death in the United States. Active design promotes health by using architectural and urban design strategies to encourage stair climbing, walking, bicycling, transit use, active recreation and healthy eating.
 
-
 What we can do:
-
 
 * Increase access to public parks and recreation.
 * Create pedestrian plazas.
@@ -27,7 +22,6 @@ What we can do:
 * Plant street trees.
 * Provide secure bicycle storage.
 * Make stairways in buildings attractive and accessible.
-
 
 This site provides data on components of active design and associated health conditions by New York City neighborhood.
 

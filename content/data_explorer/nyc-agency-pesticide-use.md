@@ -1,7 +1,7 @@
 ---
 title: NYC Agency Pesticide Use
 date: 2021-05-28 18:02:58.870213
-draft: false
+draft: true
 tags: 
 categories: ["pests"]
 keywords: ["pesticides","pests"]
@@ -10,5 +10,5 @@ menu:
     main:
         identifier: '03'
 ---
-# NYC Agency Pesticide Use
+
 None

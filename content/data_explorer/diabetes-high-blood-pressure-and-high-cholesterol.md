@@ -1,7 +1,7 @@
 ---
 title: Diabetes, High Blood Pressure and High Cholesterol
 date: 2021-05-28 18:02:58.723926
-draft: false
+draft: true
 tags: 
 categories: ["healthoutcomes"]
 keywords: ["diabetes","high blood pressure","cholesterol","chronic illness"]
@@ -10,16 +10,10 @@ menu:
     main:
         identifier: '03'
 ---
-# Diabetes, High Blood Pressure and High Cholesterol
-### About Diabetes, High Blood Pressure and High Cholesterol
-
-
 
 Health impact text here
 
 ### About the Data and Indicators
-
-
 
 Risk message text here
 
