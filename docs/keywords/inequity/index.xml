@@ -16,14 +16,5 @@
       <description></description>
     </item>
     
-    <item>
-      <title>Disparity</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/disparity/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/disparity/</guid>
-      <description>Disparity Neighborhood Poverty</description>
-    </item>
-    
   </channel>
 </rss>

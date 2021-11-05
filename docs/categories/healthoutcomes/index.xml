@@ -22,7 +22,7 @@
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</guid>
-      <description>Asthma About Asthma Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.
+      <description>Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.
 Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</description>
     </item>
     
@@ -32,7 +32,7 @@ Asthma is a leading cause of emergency room visits, hospitalizations and missed 
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/birth-defects/</guid>
-      <description>Birth Defects About Birth Defects Birth defects (also called congenital malformations) are conditions that happen when a baby does not develop normally during pregnancy. Structural defects may include missing limbs, malformed hearts, spina bifida and genetic conditions like Down syndrome. Most birth defects happen during the first three months of pregnancy and are detected within the first year of life. Some birth defects (such as cleft lip or clubfoot) are easy to see, but others (such as heart defects or hearing loss) are found using special tests (such as x-rays, CT scans, or hearing tests).</description>
+      <description>Birth defects (also called congenital malformations) are conditions that happen when a baby does not develop normally during pregnancy. Structural defects may include missing limbs, malformed hearts, spina bifida and genetic conditions like Down syndrome. Most birth defects happen during the first three months of pregnancy and are detected within the first year of life. Some birth defects (such as cleft lip or clubfoot) are easy to see, but others (such as heart defects or hearing loss) are found using special tests (such as x-rays, CT scans, or hearing tests).</description>
     </item>
     
     <item>
@@ -41,8 +41,8 @@ Asthma is a leading cause of emergency room visits, hospitalizations and missed 
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/birth-outcomes/</guid>
-      <description>Birth Outcomes About Birth Outcomes Close to 125,000 live births occur in New York City (NYC) each year. Most babies are born healthy, but those born prematurely or with low birth weight are at greater risk of disability or death. This site tracks indicators of fetal growth and development, infant and perinatal mortality, fertility and sex ratio at birth.
- Birth Outcomes and the Environment Because many genetic and lifestyle factors influence growth and development of fetuses and babies, it can be difficult for researchers to study the effects of environmental exposures on birth outcomes.</description>
+      <description>Close to 125,000 live births occur in New York City (NYC) each year. Most babies are born healthy, but those born prematurely or with low birth weight are at greater risk of disability or death. This site tracks indicators of fetal growth and development, infant and perinatal mortality, fertility and sex ratio at birth.
+Birth Outcomes and the Environment Because many genetic and lifestyle factors influence growth and development of fetuses and babies, it can be difficult for researchers to study the effects of environmental exposures on birth outcomes.</description>
     </item>
     
     <item>
@@ -51,7 +51,7 @@ Asthma is a leading cause of emergency room visits, hospitalizations and missed 
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/cancer/</guid>
-      <description>Cancer About Cancer Cancer is the general name for a group of more than 100 diseases in which cells in a part of the body begin to grow out of control. Cancers are named for the organ or type of cell in which they start.
+      <description>Cancer is the general name for a group of more than 100 diseases in which cells in a part of the body begin to grow out of control. Cancers are named for the organ or type of cell in which they start.
 Cancer occurs at all ages, but the risk increases with age. One of every two men, and one of every three women, will be diagnosed with cancer at some time in their life.</description>
     </item>
     
@@ -61,7 +61,7 @@ Cancer occurs at all ages, but the risk increases with age. One of every two men
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/cancers-in-children/</guid>
-      <description>Cancers in Children About Childhood Cancers Cancer begins when cells in a part of the body start to grow out of control. There are many kinds of cancer, but they all start because of out-of-control growth of abnormal cells. Leukemia (cancer of the blood-forming cells) is the most common form of childhood cancer. There are different kinds of childhood leukemia. The most common kinds are acute lymphocytic leukemia (ALL) and acute myeloid leukemia (AML).</description>
+      <description>Cancer begins when cells in a part of the body start to grow out of control. There are many kinds of cancer, but they all start because of out-of-control growth of abnormal cells. Leukemia (cancer of the blood-forming cells) is the most common form of childhood cancer. There are different kinds of childhood leukemia. The most common kinds are acute lymphocytic leukemia (ALL) and acute myeloid leukemia (AML). Brain and other nervous system cancers are the second most common types of childhood cancers.</description>
     </item>
     
     <item>
@@ -70,7 +70,7 @@ Cancer occurs at all ages, but the risk increases with age. One of every two men
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/carbon-monoxide-poisoning/</guid>
-      <description>Carbon Monoxide Poisoning About Carbon Monoxide Carbon monoxide (CO) is a poisonous gas that forms when fuel or other materials are burned. It is invisible and has no odor. Even short-term exposure to high levels of carbon monoxide can be fatal.
+      <description>Carbon monoxide (CO) is a poisonous gas that forms when fuel or other materials are burned. It is invisible and has no odor. Even short-term exposure to high levels of carbon monoxide can be fatal.
 This site contains data on unintentional carbon monoxide incidents and emergency responses by the New York City Fire Department (FDNY), reports to the NYC Poison Control Center (PCC) of actual or potential carbon monoxide exposure and hospitalizations of NYC residents who have been poisoned by carbon monoxide.</description>
     </item>
     
@@ -80,18 +80,7 @@ This site contains data on unintentional carbon monoxide incidents and emergency
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/chronic-obstructive-pulmonary-disease/</guid>
-      <description>Chronic Obstructive Pulmonary Disease More information coming soon.</description>
-    </item>
-    
-    <item>
-      <title>Diabetes, High Blood Pressure and High Cholesterol</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/diabetes-high-blood-pressure-and-high-cholesterol/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/diabetes-high-blood-pressure-and-high-cholesterol/</guid>
-      <description>Diabetes, High Blood Pressure and High Cholesterol About Diabetes, High Blood Pressure and High Cholesterol Health impact text here
-About the Data and Indicators Risk message text here
-Key Messages </description>
+      <description>More information coming soon.</description>
     </item>
     
     <item>
@@ -100,8 +89,8 @@ Key Messages </description>
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/falls-among-older-adults/</guid>
-      <description>Falls Among Older Adults About falls among older adults in New York City Each year, one in three older adults (65 years and older) falls. Among New York City&amp;rsquo;s older adults, there are approximately 30,500 emergency department (ED) visits, 16,600 hospitalizations, and 300 deaths each year. Falls are not a normal part of aging, and research shows that many falls can be prevented.
-Falls and the environment Although falls can occur anywhere, falls among older adults frequently happen at home.</description>
+      <description>Each year, one in three older adults (65 years and older) falls. Among New York City&amp;rsquo;s older adults, there are approximately 30,500 emergency department (ED) visits, 16,600 hospitalizations, and 300 deaths each year. Falls are not a normal part of aging, and research shows that many falls can be prevented.
+Falls and the environment Although falls can occur anywhere, falls among older adults frequently happen at home. More than one-half of fall-related hospitalizations among older adults were due to falls in the home.</description>
     </item>
     
     <item>
@@ -110,7 +99,7 @@ Falls and the environment Although falls can occur anywhere, falls among older a
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/health-impacts-of-air-pollution/</guid>
-      <description>Health Impacts of Air Pollution About Estimated Health Impacts of Air Pollution Air pollution is an important environmental threat to the health of New York City residents. Exposures to two common air pollutants, fine particulate matter (PM2.5) and ozone (O3), can worsen respiratory illness and heart conditions and contribute to premature deaths. Older adults, children and people with existing heart and lung disease are especially affected. This site provides estimates of the impact of air pollution on the health of NYC residents as measured by the numbers of emergency department visits, hospitalizations, and deaths attributable to PM2.</description>
+      <description>Air pollution is an important environmental threat to the health of New York City residents. Exposures to two common air pollutants, fine particulate matter (PM2.5) and ozone (O3), can worsen respiratory illness and heart conditions and contribute to premature deaths. Older adults, children and people with existing heart and lung disease are especially affected. This site provides estimates of the impact of air pollution on the health of NYC residents as measured by the numbers of emergency department visits, hospitalizations, and deaths attributable to PM2.</description>
     </item>
     
     <item>
@@ -119,7 +108,7 @@ Falls and the environment Although falls can occur anywhere, falls among older a
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/heart-attacks/</guid>
-      <description>Heart Attacks About Heart Attacks A heart attack is referred to medically as an acute myocardial infarction. It is caused when the blood flow that brings oxygen to the heart is severely reduced or cut off altogether. Without adequate blood flow, heart cells can quickly become injured or die. Most heart attacks are an acute event that follows years of atherosclerosis - a build up of plaque in the arteries around the heart.</description>
+      <description>A heart attack is referred to medically as an acute myocardial infarction. It is caused when the blood flow that brings oxygen to the heart is severely reduced or cut off altogether. Without adequate blood flow, heart cells can quickly become injured or die. Most heart attacks are an acute event that follows years of atherosclerosis - a build up of plaque in the arteries around the heart. Factors in the environment may contribute to both atherosclerosis and to the acute event itself.</description>
     </item>
     
     <item>
@@ -128,7 +117,7 @@ Falls and the environment Although falls can occur anywhere, falls among older a
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/mortality/</guid>
-      <description>Mortality Coming soon. </description>
+      <description>Coming soon. </description>
     </item>
     
     <item>
@@ -137,7 +126,7 @@ Falls and the environment Although falls can occur anywhere, falls among older a
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/overweight/</guid>
-      <description>Overweight About Weight and Health People who are overweight or obese are at increased risk for heart disease and diabetes. Physical activity and healthy eating can promote well-being and relieve stress.
+      <description>People who are overweight or obese are at increased risk for heart disease and diabetes. Physical activity and healthy eating can promote well-being and relieve stress.
 Weight and the Environment Neighborhood conditions and resources can encourage or discourage healthy behaviors. The density and types of food retail outlets available in neighborhoods may affect food shopping habits and nutrition choices of residents. Healthy food choices combined with physically active lifestyle support maintenance of an optimal bodyweight and overall good health.</description>
     </item>
     
@@ -147,7 +136,7 @@ Weight and the Environment Neighborhood conditions and resources can encourage o
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/transportation-related-injuries/</guid>
-      <description>Transportation-related Injuries About traffic injuries in New York City Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.
+      <description>Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.
 In February 2014, NYC launched “Vision Zero”, an action plan to reduce injuries and deaths on city streets. Vision Zero is a multi-agency effort, incorporating road engineering, traffic enforcement, community outreach and education, and policy work to make NYC streets safer.</description>
     </item>
     
@@ -157,9 +146,8 @@ In February 2014, NYC launched “Vision Zero”, an action plan to reduce injur
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/vector-borne-disease/</guid>
-      <description>Vector-borne Disease About Vectorborne Diseases
-Vectorborne diseasesare diseases that are transmitted from an arthropod (usually a tick or mosquito, etc.) to humans or other animals. Some vectorborne disease agents are maintained primarily through transmission between arthropods and humans (e.g., dengue virus and malaria), while others are maintained between arthropods and animal reservoirs (e.g., Lyme disease and West Nile virus) and humans may become infected incidentally.
- Vectorborne Disease and the Environment</description>
+      <description>Vectorborne diseasesare diseases that are transmitted from an arthropod (usually a tick or mosquito, etc.) to humans or other animals. Some vectorborne disease agents are maintained primarily through transmission between arthropods and humans (e.g., dengue virus and malaria), while others are maintained between arthropods and animal reservoirs (e.g., Lyme disease and West Nile virus) and humans may become infected incidentally.
+Vectorborne Disease and the Environment Climate is one of many important interacting variables that affect people’s risk for vectorborne diseases in New York City.</description>
     </item>
     
     <item>
@@ -168,7 +156,7 @@ Vectorborne diseasesare diseases that are transmitted from an arthropod (usually
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/violence/</guid>
-      <description>Violence About Violence in New York City Violence is the use of physical, verbal, and/or emotional force to injure, harm, abuse, damage, or destroy. Interpersonal violence includes child abuse and neglect, youth violence, intimate partner violence, sexual violence, and elder abuse. Violence can involve injury to self, including self-harm, suicide attempts, and death by suicide. Violence can also take the form of power against a group or community.
+      <description>Violence is the use of physical, verbal, and/or emotional force to injure, harm, abuse, damage, or destroy. Interpersonal violence includes child abuse and neglect, youth violence, intimate partner violence, sexual violence, and elder abuse. Violence can involve injury to self, including self-harm, suicide attempts, and death by suicide. Violence can also take the form of power against a group or community.
 Violence is a public health issue because it is a cause of morbidity and mortality, leading to physical and emotional harm, an increase in negative health outcomes, premature death, psychological trauma and persistent fear to individuals and communities.</description>
     </item>
     
@@ -178,7 +166,7 @@ Violence is a public health issue because it is a cause of morbidity and mortali
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/weather-related-illness/</guid>
-      <description>Weather-Related Illness About Climate, Weather, and Health A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events such as heat waves, droughts, and hurricanes. New York City (NYC) faces public health risks from extreme weather events such as heat waves and coastal storms. With climate change, the severity of some of these risks will increase. A 2013 New York City Panel on Climate Change (NPCC) report predicts that by the 2020s, average summer temperatures in New York City will increase by 2.</description>
+      <description>A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events such as heat waves, droughts, and hurricanes. New York City (NYC) faces public health risks from extreme weather events such as heat waves and coastal storms. With climate change, the severity of some of these risks will increase. A 2013 New York City Panel on Climate Change (NPCC) report predicts that by the 2020s, average summer temperatures in New York City will increase by 2.</description>
     </item>
     
     <item>
@@ -187,7 +175,7 @@ Violence is a public health issue because it is a cause of morbidity and mortali
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/worker-health/</guid>
-      <description>Worker Health About Worker Health and Safety Every year in New York City, workers are injured on the job or become ill as a result of exposure to health hazards at work. However, most work-related illnesses and injuries are preventable – safer work environments can be achieved when workplace hazards are understood and appropriate prevention measures are put in place.
+      <description>Every year in New York City, workers are injured on the job or become ill as a result of exposure to health hazards at work. However, most work-related illnesses and injuries are preventable – safer work environments can be achieved when workplace hazards are understood and appropriate prevention measures are put in place.
 Data on work-related injuries and illness are used to show how often these preventable events occur and to identify factors that place workers at risk.</description>
     </item>
     

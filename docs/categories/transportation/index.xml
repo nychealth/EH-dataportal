@@ -23,9 +23,9 @@ Designing to increase access to parks, create pedestrian plazas, ensure well-mai
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/active-design/</guid>
-      <description>Active Design About Active Design Physical inactivity and unhealthy diet rank among the leading risk factors for premature death in the United States. Active design promotes health by using architectural and urban design strategies to encourage stair climbing, walking, bicycling, transit use, active recreation and healthy eating.
+      <description>Physical inactivity and unhealthy diet rank among the leading risk factors for premature death in the United States. Active design promotes health by using architectural and urban design strategies to encourage stair climbing, walking, bicycling, transit use, active recreation and healthy eating.
 What we can do:
- Increase access to public parks and recreation. Create pedestrian plazas. Ensure well-maintained sidewalks. Plant street trees. Provide secure bicycle storage.</description>
+ Increase access to public parks and recreation. Create pedestrian plazas. Ensure well-maintained sidewalks. Plant street trees. Provide secure bicycle storage. Make stairways in buildings attractive and accessible.</description>
     </item>
     
     <item>
@@ -34,7 +34,7 @@ What we can do:
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/air-quality/</guid>
-      <description>Air Quality About Air Pollution Air quality is a measure of the condition of the air around us. The less air pollution there is, the better the air quality.
+      <description>Air quality is a measure of the condition of the air around us. The less air pollution there is, the better the air quality.
 Like many cities, New York City&amp;rsquo;s air contains particles, liquid droplets, gases, and other contaminants that could impact health. Two pollutants, particulate matter andground-level ozone, are of particular health concern.
 Although New York City&amp;rsquo;s air does not currently meet federal air quality standards, it has improved significantly over the past two decades.</description>
     </item>
@@ -45,19 +45,8 @@ Although New York City&amp;rsquo;s air does not currently meet federal air quali
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</guid>
-      <description>Asthma About Asthma Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.
+      <description>Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.
 Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</description>
-    </item>
-    
-    <item>
-      <title>Citywide Air Quality</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/citywide-air-quality/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/citywide-air-quality/</guid>
-      <description>Citywide Air Quality About Air Pollution Air quality is a measure of the condition of the air around us. The less air pollution there is, the better the air quality.
-Like many cities, New York City&amp;rsquo;s air contains particles, liquid droplets, gases, and other contaminants that could impact health. Two pollutants, particulate matter and ground-level ozone, are of particular health concern.
-Although New York City&amp;rsquo;s air does not current meet federal air quality standards, it has improved significantly over the past two decades.</description>
     </item>
     
     <item>
@@ -66,7 +55,7 @@ Although New York City&amp;rsquo;s air does not current meet federal air quality
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/health-impacts-of-air-pollution/</guid>
-      <description>Health Impacts of Air Pollution About Estimated Health Impacts of Air Pollution Air pollution is an important environmental threat to the health of New York City residents. Exposures to two common air pollutants, fine particulate matter (PM2.5) and ozone (O3), can worsen respiratory illness and heart conditions and contribute to premature deaths. Older adults, children and people with existing heart and lung disease are especially affected. This site provides estimates of the impact of air pollution on the health of NYC residents as measured by the numbers of emergency department visits, hospitalizations, and deaths attributable to PM2.</description>
+      <description>Air pollution is an important environmental threat to the health of New York City residents. Exposures to two common air pollutants, fine particulate matter (PM2.5) and ozone (O3), can worsen respiratory illness and heart conditions and contribute to premature deaths. Older adults, children and people with existing heart and lung disease are especially affected. This site provides estimates of the impact of air pollution on the health of NYC residents as measured by the numbers of emergency department visits, hospitalizations, and deaths attributable to PM2.</description>
     </item>
     
     <item>
@@ -75,7 +64,7 @@ Although New York City&amp;rsquo;s air does not current meet federal air quality
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/large-city-air-quality-comparison/</guid>
-      <description>Large City Air Quality Comparison Air Quality OneNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future.
+      <description>OneNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future.
 Goal: Achieve the cleanest air quality of any big United States (US) city.
 To measure progress towards this goal, we are tracking atmospheric concentrations of fine particulate matter (PM 2.5) in NYC compared to other large cities (populations greater than 1 million) in the US.
 Air Quality and Sustainability Particulate matter is a complex mixture of very small solids and droplets suspended in air.</description>
@@ -87,7 +76,7 @@ Air Quality and Sustainability Particulate matter is a complex mixture of very s
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/noise/</guid>
-      <description>Noise About Noise Ambient noise is sound from an environmental source, such as traffic, construction, industrial or recreation activities, animals, or people’s voices, that is unwanted to the person who hears it.
+      <description>Ambient noise is sound from an environmental source, such as traffic, construction, industrial or recreation activities, animals, or people’s voices, that is unwanted to the person who hears it.
 Noise and the Environment Exposure to any noise has long been recognized as an important occupational health hazard in workplaces and is increasingly viewed as a prevalent urban environmental hazard associated with adverse psychosocial and physiologic health effects such as sleep disturbance, higher blood pressure, cardiovascular disease, and impaired cognitive performance in children.</description>
     </item>
     
@@ -97,7 +86,7 @@ Noise and the Environment Exposure to any noise has long been recognized as an i
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/parks-and-public-space/</guid>
-      <description>Parks and Public Space Parks and Public Space OneNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future.
+      <description>OneNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future.
 Goal: Ensure that all New Yorkers live within a ten minute walk of a park.
 Park Distance To be sure that nearly everyone is within a ten minute walk, we are tracking the numbers of New Yorkers who live within both a ½ and a ¼ mile of a park. These distances were chosen because people walk at different speeds.</description>
     </item>
@@ -108,7 +97,8 @@ Park Distance To be sure that nearly everyone is within a ten minute walk, we ar
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/physical-activity/</guid>
-      <description>Physical Activity About Physical Activity Physical activity is an important part of a healthy lifestyle. Regular physical activity is associated with many health benefits, including improved fitness, prevention of weight gain, and lower risk of heart disease, stroke, high blood pressure, diabetes and some cancers. In addition, regular physical activity and healthy eating can promote well-being and relieve stress. For children, regular physical activity is also associated with improved academic performance.</description>
+      <description>Physical activity is an important part of a healthy lifestyle. Regular physical activity is associated with many health benefits, including improved fitness, prevention of weight gain, and lower risk of heart disease, stroke, high blood pressure, diabetes and some cancers. In addition, regular physical activity and healthy eating can promote well-being and relieve stress. For children, regular physical activity is also associated with improved academic performance.
+Physical Activity and the Environment Neighborhood conditions and resources can encourage or discourage healthy behaviors.</description>
     </item>
     
     <item>
@@ -117,7 +107,7 @@ Park Distance To be sure that nearly everyone is within a ten minute walk, we ar
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/traffic/</guid>
-      <description>Traffic Coming soon</description>
+      <description>Coming soon</description>
     </item>
     
     <item>
@@ -126,7 +116,7 @@ Park Distance To be sure that nearly everyone is within a ten minute walk, we ar
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/transportation/</guid>
-      <description>Transportation Transportation OneNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future.
+      <description>OneNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future.
 Goal: Expand sustainable transportation choices and ensure the reliability and quality of our transportation network.
 To measure progress towards this goal, we are tracking the switch to more sustainable modes of transportation (modal shift) and mass transit capacity, as well as whether our transportation system is meeting a state of good repair.
 Modal Shift We are tracking the extent to which people are using non-automobile modes of transit including public transportation (e.</description>
@@ -138,7 +128,7 @@ Modal Shift We are tracking the extent to which people are using non-automobile 
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/transportation-related-injuries/</guid>
-      <description>Transportation-related Injuries About traffic injuries in New York City Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.
+      <description>Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.
 In February 2014, NYC launched “Vision Zero”, an action plan to reduce injuries and deaths on city streets. Vision Zero is a multi-agency effort, incorporating road engineering, traffic enforcement, community outreach and education, and policy work to make NYC streets safer.</description>
     </item>
     
@@ -148,7 +138,7 @@ In February 2014, NYC launched “Vision Zero”, an action plan to reduce injur
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/walking-driving-and-cycling/</guid>
-      <description>Walking, Driving, and Cycling None</description>
+      <description>None</description>
     </item>
     
     <item>
@@ -157,7 +147,7 @@ In February 2014, NYC launched “Vision Zero”, an action plan to reduce injur
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/waterways/</guid>
-      <description>Waterways Waterways OneNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future.
+      <description>OneNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future.
 Goal: Improve the quality of our waterways to increase opportunities for recreation and to restore coastal ecosystems.
 New York State sets water quality standards, and NYC monitors New York Harbor water quality on an annual basis through the Harbor Survey. The survey uses 36 stations located throughout the open waters of the harbor and 19 stations located in smaller tributaries within the city.</description>
     </item>

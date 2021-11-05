@@ -374,9 +374,6 @@
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/blood/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/brownfields/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/bugs/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
@@ -401,9 +398,6 @@
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/carbon-monoxide-poisoning/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/characteristics/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/child/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
@@ -416,12 +410,6 @@
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/children/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/cholesterol/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/chronic-illness/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/chronic-obstructive-pulmonary-disease/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
@@ -429,9 +417,6 @@
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/cigarettes/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/citywide-air-quality/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/climate/</loc>
@@ -461,19 +446,7 @@
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/death/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/demographics/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/diabetes/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/diabetes-high-blood-pressure-and-high-cholesterol/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/disease/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/disparity/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/doctors/</loc>
@@ -501,9 +474,6 @@
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/environmental-health/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/ethnicity/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/falls/</loc>
@@ -546,9 +516,6 @@
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/heart-attacks/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/high-blood-pressure/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/home/</loc>
@@ -602,25 +569,16 @@
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/mortality/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/neighborhood-air-quality/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/noise/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/noise/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/nyc-agency-pesticide-use/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/obesity/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/older-adults/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/other-nyc-data/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/overweight/</loc>
@@ -650,19 +608,7 @@
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/poisoning/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/population/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/population-characteristics/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/pregnancy/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/race/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/race-and-ethnicity/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/respiratory/</loc>
@@ -744,9 +690,6 @@
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/violence/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url><url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/vulnerability/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url><url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/walking-driving-and-cycling/</loc>
