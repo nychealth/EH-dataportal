@@ -5,7 +5,7 @@ draft: false
 tags: 
 categories: [housing]
 keyTopic: housing
-keywords: 
+keywords: ["housing","maintenance","maintenance deficiencies","homes","lead","carbon monoxide","mice","rats","pests","cockroaches","asthma","bed bugs","poverty","injustice"]
 menu:
     main:
         identifier: '05'

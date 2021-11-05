@@ -4,7 +4,7 @@ date: 2021-05-28 18:02:58.881702
 draft: false
 tags: 
 categories: ["social"]
-keywords: 
+keywords: ["race","ethnicity"]
 indicators: []
 menu:
     main:

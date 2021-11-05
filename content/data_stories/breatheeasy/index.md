@@ -4,7 +4,7 @@ date: 2019-10-24T08:18:56-04:00
 draft: false
 tags:
 categories: ["airquality"]
-keywords: ["air quality","pollution","PM2.5","traffic","breathing","asthma","heart disease","lung disease","stroke"]
+keywords: ["air quality","pollution","PM2.5","traffic","breathing","asthma","heart disease","lung disease","stroke","emissions"]
 image: ds-breatheeasy.jpg
 menu:
     main:

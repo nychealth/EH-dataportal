@@ -4,7 +4,7 @@ date: 2020-09-20T10:54:51-04:00
 draft: false
 tags:
 categories: ["transportation","healthoutcomes","neighborhoods"]
-keywords: ["transportation","built environment","streets","cycling", "biking", "active design","injuries","fatalities","roads","safety","bike lanes","cycle lanes"]
+keywords: ["transportation","built environment","streets","cycling", "biking", "active design","injuries","fatalities","roads","safety","bike lanes","cycle lanes","hospitalizations","emergency department visits"]
 image: ds-streets.jpg
 layout: flexible
 menu:
