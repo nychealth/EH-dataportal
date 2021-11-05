@@ -4,7 +4,7 @@ date: 2021-05-28 18:02:58.757692
 draft: false
 tags: 
 categories: ["transportation","neighborhoods"]
-keywords: 
+keywords: ["parks","neighborhoods","transportation","green","trees","greenspace"]
 indicators: [{"subtopic_id": 78, "internal_id": 2025, "name": "Nitrogen Dioxide (NO2)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2025,719b87,78,Summarize"}, {"subtopic_id": 78, "internal_id": 775, "name": "Park Distance", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=775,719b87,78,Summarize"}]
 menu:
     main:

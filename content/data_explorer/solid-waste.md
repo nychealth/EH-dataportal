@@ -4,7 +4,7 @@ date: 2021-05-28 18:02:58.840943
 draft: false
 tags: 
 categories: []
-keywords: 
+keywords: ["waste","garbage"]
 indicators: []
 menu:
     main:

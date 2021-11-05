@@ -4,7 +4,7 @@ date: 2021-05-28 18:02:58.725915
 draft: false
 tags: 
 categories: ["transportation","neighborhoods"]
-keywords: 
+keywords: ["transportation","traffic","cars","trucks","roads","streets","safety","emissions","driving","cars","hospitalizations","emergency department visits","biking","cycling","bikes"]
 indicators: [{"subtopic_id": 90, "internal_id": 2390, "name": "Bicycle Network Coverage", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2390,719b87,90,Summarize"}, {"subtopic_id": 90, "internal_id": 2011, "name": "Modal Shift - All Travel", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2011,719b87,90,Summarize"}, {"subtopic_id": 90, "internal_id": 2012, "name": "Modal Shift - Travel to the Central Business District", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2012,719b87,90,Summarize"}, {"subtopic_id": 90, "internal_id": 774, "name": "State of Good Repair", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=774,719b87,90,Summarize"}, {"subtopic_id": 90, "internal_id": 2014, "name": "Transit Capacity ", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2014,719b87,90,Summarize"}]
 menu:
     main:

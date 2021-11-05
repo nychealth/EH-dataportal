@@ -5,7 +5,7 @@ draft: false
 tags: 
 categories: ["childhealth"]
 keyTopic: childhealth
-keywords: 
+keywords: ["children","child health","housing","asthma","lead","housing"]
 menu:
     main:
         identifier: '05'

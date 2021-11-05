@@ -5,7 +5,7 @@ draft: false
 tags: 
 categories: [foodanddrink]
 keyTopic: foodanddrink
-keywords: 
+keywords: ["food","drink","restaurant","inspection","environmental health","dining","alcohol","sugary drinks","soda","water"]
 menu:
     main:
         identifier: '05'

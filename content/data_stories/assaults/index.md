@@ -4,7 +4,7 @@ date: 2020-02-13T08:29:34-04:00
 draft: false
 tags: 
 categories: ["social","healthoutcomes","neighborhoods"]
-keywords: ["violence","assaults","poverty"]
+keywords: ["violence","assaults","poverty","public health","injuries","hospitalizations","emergency department visits","ED visits"]
 image: ds-assaults.jpg
 menu:
     main:

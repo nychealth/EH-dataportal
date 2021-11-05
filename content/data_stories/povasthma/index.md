@@ -4,7 +4,7 @@ date: 2019-10-24T08:18:56-04:00
 draft: false
 tags:
 categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
-keywords: ["poverty","asthma","injustice","housing","children","emergency department visits","ed visits","emergency room","social determinants"]
+keywords: ["poverty","asthma","injustice","housing","children","emergency department visits","ed visits","emergency room","social determinants","kids"]
 image: ds-povasthma.jpg
 menu:
     main:

@@ -4,7 +4,7 @@ date: 2021-05-28 18:02:58.809035
 draft: false
 tags: 
 categories: ["pests","climatehealth","healthoutcomes"]
-keywords: 
+keywords: ["ticks","lyme disease","lyme","disease","climate change"]
 indicators: [{"subtopic_id": 116, "internal_id": 2218, "name": "Babesiosis", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2218,719b87,116,Summarize"}, {"subtopic_id": 116, "internal_id": 2340, "name": "West Nile virus", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2340,719b87,116,Summarize"}]
 menu:
     main:

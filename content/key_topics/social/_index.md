@@ -5,7 +5,7 @@ draft: false
 tags: 
 categories: [social]
 keyTopic: social
-keywords: 
+keywords: ["social justice","poverty","racism","oppression","social determinants","public health"]
 menu:
     main:
         identifier: '05'

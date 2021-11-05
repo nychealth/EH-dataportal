@@ -4,7 +4,7 @@ date: 2021-05-28 18:02:58.745496
 draft: false
 tags: 
 categories: ["transportation","healthoutcomes"]
-keywords: 
+keywords: ["transportation","traffic","cars","trucks","roads","streets","safety","emissions","driving","cars","hospitalizations","emergency department visits","biking","cycling","bikes"]
 indicators: [{"subtopic_id": 101, "internal_id": 2092, "name": "Bicycle Injury Emergency Department Visits", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2092,719b87,101,Summarize"}, {"subtopic_id": 101, "internal_id": 2086, "name": "Bicycle Injury Hospitalizations", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2086,719b87,101,Summarize"}, {"subtopic_id": 101, "internal_id": 2094, "name": "Pedestrian Injury Emergency Department Visits", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2094,719b87,101,Summarize"}, {"subtopic_id": 101, "internal_id": 2093, "name": "Pedestrian Injury Hospitalizations", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2093,719b87,101,Summarize"}]
 menu:
     main:

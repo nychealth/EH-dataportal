@@ -5,7 +5,7 @@ draft: false
 tags: 
 categories: [pests]
 keyTopic: pests
-keywords: 
+keywords: ["pests","mice","rats","cockroaches","roaches","bed bugs","bugs","extermination","ticks","lyme disease","pesticides"]
 menu:
     main:
         identifier: '05'

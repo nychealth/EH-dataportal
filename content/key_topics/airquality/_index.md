@@ -5,7 +5,7 @@ draft: false
 tags: 
 categories: [airquality]
 keyTopic: airquality
-keywords: 
+keywords: ["air quality","pollution","emissions","smog","PM2.5","asthma","breathing","lungs"]
 menu:
     main:
         identifier: '05'
