@@ -6,7 +6,26 @@
     <description>Recent content in social determinants on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 08 Feb 2021 08:07:31 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/social-determinants/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Oct 2021 07:59:16 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/social-determinants/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Social and Economic Conditions</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/social/</link>
+      <pubDate>Fri, 01 Oct 2021 07:59:16 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key_topics/social/</guid>
+      <description>Social and economic conditions affect people’s health. These conditions (also called “social determinants of health”) are conditions that people may be born into or fall into over the course of their lives. They are shaped by local, national and global distribution of resources and power.
+People tend to be healthier when they have access to economic and financial stability, higher education, adequate health care, healthy neighborhoods, and safe, strong communities.</description>
+    </item>
+    
+    <item>
+      <title>Disparity</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/disparity/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/disparity/</guid>
+      <description>Disparity Neighborhood Poverty</description>
+    </item>
+    
     <item>
       <title>Why violence is a public health issue</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_stories/violence/</link>
