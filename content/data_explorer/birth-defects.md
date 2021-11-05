@@ -10,32 +10,19 @@ menu:
     main:
         identifier: '03'
 ---
-# Birth Defects
-### About Birth Defects
-
-
-
 
 Birth defects (also called congenital malformations) are conditions that happen when a baby does not develop normally during pregnancy. Structural defects may include missing limbs, malformed hearts, [spina bifida](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Spina_Bifida) and genetic conditions like [Down syndrome](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Down_Syndrome). Most birth defects happen during the first three months of pregnancy and are detected within the first year of life. Some birth defects (such as [cleft lip](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Cleft_Lip) or clubfoot) are easy to see, but others (such as heart defects or hearing loss) are found using special tests (such as x-rays, CT scans, or hearing tests). Birth defects can vary from mild to severe.
 
-
 This site provides data on NYC children born with one or more of 12 major birth defects. Each of the 12 birth defects is defined in the glossary on this site. The data comes from the [NYS Department of Health Congenital Malformations Registry](http://www.health.state.ny.us/diseases/congenital_malformations/cmrhome.htm).
-
-
- 
 
 ### Birth Defects and the Environment
 
-  
 Scientists believe most birth defects are caused by a complex mix of factors including our genes, behaviors and environment. However, the causes of most birth defects are unknown. The fetus is more sensitive to exposures than an adult and if exposures happen during important periods of development, birth defects may result. Although there has been some research into how environmental exposures might cause birth defects, there is still much more work that needs to be done to understand the relationship of these exposures to birth defects.  
   
 Known and probable risk factors for birth defects include the following: smoking, use of alcohol and other drugs, poor nutrition and/or health (such as low levels of folic acid, obesity and poorly controlled diabetes), some medicines (prescription & over-the-counter), toxic chemicals (such as lead, paint and paint thinner, gasoline, pesticides, and secondhand smoke), infectious agents (such as rubella and toxoplasmosis) and ionizing radiation (x-rays).   
   
-
-
 ### About the Data and Indicators
 
-  
 Collecting and sharing good data about the occurrence of birth defects is a first step in understanding how they might be related to the environment. Looking at patterns of birth defect rates can help health officials plan services and create ideas for research into environmental causes of birth defects.  
   
 All birth defects in any child less than two years old are reportable under New York State law to the State Congenital Malformations Registry.   
@@ -44,15 +31,9 @@ Most birth defect reports are abstracted from inpatient hospital records, since 
   
 Accurate hospital clinical recognition of birth defects depends on clinical expertise and interest. This is particularly true of conditions more difficult to diagnose. As a result, identification of birth defects may vary by area and by time. Areas with hospitals that provide higher levels of care may have more thorough diagnoses and, thus, apparently higher rates. Similarly, areas with hospitals that report cases more completely will also appear to have higher rates.  
   
-
-
 ### Prevention
 
-
-
-
 Not all birth defects can be prevented, but actions that increase the chance of having a healthy baby include:
-
 
 * Have regular medical checkups and check with a provider before taking any medications.
 * Eat healthy foods and maintain a healthy weight; avoid alcohol and don't use street drugs.
@@ -64,7 +45,6 @@ Not all birth defects can be prevented, but actions that increase the chance of 
 
 ### Key Messages
 
-  
 About one out of every 33 babies is born with a birth defect. A birth defect can affect almost any part of the body. The well being of the child who is born with a birth defect depends mostly on which organ or body part is involved, how much it is affected and the quality of rehabilitative support received in early childhood.   
   
 Heart defects make up about one-third to one-fourth of all birth defects, affecting about one in every 100 to 200 births. Some of these heart defects can be serious, and a few are very severe.   
@@ -72,7 +52,3 @@ Heart defects make up about one-third to one-fourth of all birth defects, affect
 Other common birth defects are "neural tube defects," which are defects of the spine ([spina bifida](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Spina_Bifida)) and brain ([anencephaly](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Anencephaly)). They affect about one of every 1,000 pregnancies. These defects can be serious and are often life threatening.   
   
 Birth defects of the lip and roof of the mouth, known as "[orofacial clefts](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Orofacial_clefts)," include [cleft lip](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Cleft_Lip), [cleft palate](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Cleft_Palate), and combined cleft lip and cleft palate. These defects are also common and occur in about one in 700 to 1,000 babies.   
-  
-
-
-

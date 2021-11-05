@@ -10,5 +10,5 @@ menu:
     main:
         identifier: '03'
 ---
-# Race and Ethnicity
+
 None

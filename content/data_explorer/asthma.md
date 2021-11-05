@@ -10,41 +10,27 @@ menu:
     main:
         identifier: '03'
 ---
-# Asthma
-### About Asthma
-
 
 Asthma is a **common disease in which the lungs become swollen, making breathing difficult**. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. **Asthma cannot be cured, but it can be controlled**.
 
-
 Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City's poorest neighborhoods. In NYC, asthma is more common among **low-income Black and Latino children**. 
 
-
 ### Asthma and the Environment
-
-
 Certain things in the environment can trigger an asthma attack or make symptoms worse. **Common triggers include**: 
-
-
-* **Tobacco smoke**
-* **Air pollution**, such as particulates, ozone and diesel exhaust
-* **Dust mites, cockroaches and mold**
-* **Pollen**
-* **Pets**
-
+* Tobacco smoke
+* Air pollution, such as particulates, ozone and diesel exhaust
+* Dust mites, cockroaches and mold
+* Pollen
+* Pets
 
 Download the [Asthma and Environment Neighborhood Report](http://a816-dohbesp.nyc.gov/IndicatorPublic/QuickView.aspx) on this website to see how your neighborhood compares to others. 
 
-
 ### Controlling Asthma
-
-
 Asthma does not have to prevent you from leading an active and healthy life. You can take charge by having **a plan to control asthma**, including these strategies for avoiding asthma triggers:
-
 
 * **Check the weather report daily for air pollution level** ("air quality index") and pollen counts. Limit time outside when air pollution levels or pollen counts are high.
 * **If you smoke, [quit](http://www1.nyc.gov/site/doh/health/health-topics/smoking-how-to-quit.page "NYC Quits")**. Don't allow smoking in your home or car.
 * Remove clutter and clean regularly to **reduce dust levels in your home**.
 * Work with your landlord to fix leaks promptly to **prevent mold**. If your landlord fails to fix the problem, call 311.
 * Do not allow furry pets on the furniture or in the bedroom.
-* **[Pest proof your home](http://www1.nyc.gov/site/doh/health/health-topics/pests-and-pesticides.page).** If building conditions may be attracting pests, contact your landlord. If your landlord does not addres your concerns, call 311.
+* [Pest proof your home](http://www1.nyc.gov/site/doh/health/health-topics/pests-and-pesticides.page). If building conditions may be attracting pests, contact your landlord. If your landlord does not addres your concerns, call 311.

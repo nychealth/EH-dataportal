@@ -10,10 +10,6 @@ menu:
     main:
         identifier: '03'
 ---
-# Other NYC data
+
 Coming soon!
-
-
-limit
-
 

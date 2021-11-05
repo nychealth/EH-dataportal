@@ -10,16 +10,10 @@ menu:
     main:
         identifier: '03'
 ---
-# Diabetes, High Blood Pressure and High Cholesterol
-### About Diabetes, High Blood Pressure and High Cholesterol
-
-
 
 Health impact text here
 
 ### About the Data and Indicators
-
-
 
 Risk message text here
 
