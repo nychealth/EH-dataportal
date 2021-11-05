@@ -5,13 +5,13 @@
   <div class="row">
     <div class="col-md-10 col-sm-12 mx-auto">
       <!--start main column-->
-        <div class="row">
-            <div class="col-10">
+        <div class="row mt-4">
+            <div class="col-9 mx-auto">
                 <h1>Oops!</h1><br>
                 <p>This isn't a page on this site. 
                     {{ with .Site.GetPage "_index.md" }}
-                    <a href="{{ .URL }}">
-                        {{ .Title }}
+                    Return to the <a href="{{ .URL }}">
+                        Environment and Health Data Portal Home Page
                     </a>.{{ end }}</p>
             </div>
           
