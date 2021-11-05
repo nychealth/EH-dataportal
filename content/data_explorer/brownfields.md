@@ -1,7 +1,7 @@
 ---
 title: Brownfields
 date: 2021-05-28 18:02:58.750940
-draft: false
+draft: true
 tags: 
 categories: ["neighborhoods"]
 keywords: ["pollution","neighborhoods"]

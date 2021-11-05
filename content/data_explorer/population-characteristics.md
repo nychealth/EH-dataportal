@@ -1,7 +1,7 @@
 ---
 title: Population Characteristics
 date: 2021-05-28 18:02:58.738869
-draft: false
+draft: true
 tags: 
 categories: ["social"]
 keywords: ["population","characteristics","demographics"]

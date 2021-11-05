@@ -1,7 +1,7 @@
 ---
 title: Other NYC data
 date: 2021-05-28 18:02:58.861226
-draft: false
+draft: true
 tags: 
 categories: []
 keywords: 
