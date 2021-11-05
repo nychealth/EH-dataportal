@@ -1,7 +1,7 @@
 ---
 title: Worker Health
 date: 2021-05-28 18:02:58.823781
-draft: true
+draft: false
 tags: 
 categories: ["social","healthoutcomes"]
 keywords: ["workers"]
