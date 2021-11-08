@@ -5,7 +5,7 @@ draft: false
 tags: 
 categories: ["housing","childhealth","healthoutcomes"]
 keywords: ["carbon","monoxide","poisoning","hospitalization","emergency department visits","children","housing"] 
-indicators: [{"subtopic_id": 15, "internal_id": 2398, "name": "Carbon Monoxide Deaths", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2398,719b87,15,Summarize"}]
+indicators: [{"subtopic_id": 51, "internal_id": 2405, "name": "Carbon Monoxide Emergency Department Visits", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2405,719b87,51,Summarize"}, {"subtopic_id": 51, "internal_id": 2406, "name": "Carbon Monoxide Hospitalizations", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2406,719b87,51,Summarize"}, {"subtopic_id": 15, "internal_id": 2398, "name": "Carbon Monoxide Deaths", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2398,719b87,15,Summarize"}]
 menu:
     main:
         identifier: '03'
