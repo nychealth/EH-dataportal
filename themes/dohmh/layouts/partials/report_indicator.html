@@ -27,7 +27,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>{{ .location }}</strong>, the {{ lower .ind.indicator_name }} is {{ if eq (string .ind.data_value_rank) "1" }}<span class="better">Better</span>{{ else if eq (string .ind.data_value_rank) "2" }}<span class="middle">Middle</span>{{ else }}<span class="worse">Worse</span>{{ end }} than the NYC average.</p>
+        <p>In <strong>{{ .location }}</strong>, the {{ lower .ind.indicator_name }} is {{ if eq (string .ind.data_value_rank) "1" }}<span class="worse">Worse</span>{{ else if eq (string .ind.data_value_rank) "2" }}<span class="middle">Middle</span>{{ else }}<span class="better">Better</span>{{ end }} than the NYC average.</p>
         {{ .ind.indicator_description | safeHTML }}
       </div>
         <hr>
