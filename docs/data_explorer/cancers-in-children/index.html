@@ -308,21 +308,21 @@
         <div class="row mt-3">
 
             <div class="col-md-4">
-                <h4 class="greenfill"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
+                <h2 class="greenfill fs-lg"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2037,719b87,93,Summarize" onclick="protoPopup()">Acute Lymphocytic Leukemia in Children</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2037,719b87,93,Summarize&#34;)">Acute Lymphocytic Leukemia in Children</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2035,719b87,93,Summarize" onclick="protoPopup()">Acute Myeloid Leukemia in Children</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2035,719b87,93,Summarize&#34;)">Acute Myeloid Leukemia in Children</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2033,719b87,93,Summarize" onclick="protoPopup()">Brain and CNS Cancer in Children</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2033,719b87,93,Summarize&#34;)">Brain and CNS Cancer in Children</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2031,719b87,93,Summarize" onclick="protoPopup()">Leukemia in Children</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2031,719b87,93,Summarize&#34;)">Leukemia in Children</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2039,719b87,93,Summarize" onclick="protoPopup()">Total Cancer in Children</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2039,719b87,93,Summarize&#34;)">Total Cancer in Children</a>
                     <hr>
                 
 
@@ -339,11 +339,11 @@
 
             </div>
 
-            <div class="col-md-8 fs-sm">
-              <h4 class="greenfill"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Cancers in Children</h4>
-                <h1 id="cancers-in-children">Cancers in Children</h1>
-<h3 id="about-childhood-cancers">About Childhood Cancers</h3>
-<p>Cancer begins when cells in a part of the body start to grow out of control. There are many kinds of cancer, but they all start because of out-of-control growth of abnormal cells. Leukemia (cancer of the blood-forming cells) is the most common form of childhood cancer. There are different kinds of childhood leukemia. The most common kinds are <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Leukemia">acute lymphocytic leukemia (ALL)</a> and <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Leukemia">acute myeloid leukemia (AML)</a>. Brain and other nervous system cancers are the second most common types of childhood cancers. Of all childhood cancer, leukemias and brain and other nervous system cancers account for about 50% of cases among children less than 15 years old.</p>
+
+
+            <div class="col-md-8 fs-sm subtopiccontainer">
+              <h1 class="greenfill fs-xl"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Cancers in Children</h4>
+                <p>Cancer begins when cells in a part of the body start to grow out of control. There are many kinds of cancer, but they all start because of out-of-control growth of abnormal cells. Leukemia (cancer of the blood-forming cells) is the most common form of childhood cancer. There are different kinds of childhood leukemia. The most common kinds are <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Leukemia">acute lymphocytic leukemia (ALL)</a> and <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Leukemia">acute myeloid leukemia (AML)</a>. Brain and other nervous system cancers are the second most common types of childhood cancers. Of all childhood cancer, leukemias and brain and other nervous system cancers account for about 50% of cases among children less than 15 years old.</p>
 <p>This site contains data on total cancers, total leukemias, ALL and AML separately, and brain and other nervous system cancers in children. The data comes from the <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#NYS_Cancer_Registry">NYS Cancer Registry</a>.</p>
 <h3 id="childhood-cancer-and-the-environment">Childhood Cancer and the Environment</h3>
 <p>The causes of most childhood cancer are unknown. It is especially difficult to identify environmental factors related to childhood cancers because - like adult cancer - they are likely to be the result of a mix of genetic, environmental, and behavioral causes, and not just one factor by itself. Exposures to the parent, the fetus in the womb, or the child after birth may all play a role. Some risk factors that explain a small percentage of cases include:</p>
@@ -1778,12 +1778,43 @@
 </article>
 
 
+
 <script>
-    function protoPopup() {
-        alert("This link is taking you to a dataset displayed on the old version of the EH Data Portal. To continue to the data, click OK. To return to the prototype, just hit the back button.");
+    var destination;
+
+    function protoPopup(URL) {
+        destination = URL;
+        $('#prototypeModal').modal('show')
+        document.getElementById('modalDestination').setAttribute("href", destination)
     }
 
 </script>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="prototypeModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">You're leaving the prototype.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>This link is taking you to a dataset displayed on the old version of the EH Data Portal.</p> 
+          <p>If you want to return to this prototype, just hit the back button in your web browser.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary-outline float-left" data-dismiss="modal">Go Back</button>
+
+            <a href="" id="modalDestination">
+            <button  type="button" class="btn btn-secondary float-right">Get the data <i class="far fa-arrow-alt-circle-right ml-1"></i></button></a>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

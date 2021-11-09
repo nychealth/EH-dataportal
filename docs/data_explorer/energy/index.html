@@ -308,15 +308,15 @@
         <div class="row mt-3">
 
             <div class="col-md-4">
-                <h4 class="greenfill"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
+                <h2 class="greenfill fs-lg"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2005,719b87,86,Summarize" onclick="protoPopup()">Cleaner Energy</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2005,719b87,86,Summarize&#34;)">Cleaner Energy</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2007,719b87,86,Summarize" onclick="protoPopup()">Energy Efficiency</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2007,719b87,86,Summarize&#34;)">Energy Efficiency</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2006,719b87,86,Summarize" onclick="protoPopup()">Energy Reliability</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2006,719b87,86,Summarize&#34;)">Energy Reliability</a>
                     <hr>
                 
 
@@ -332,11 +332,11 @@
 
             </div>
 
-            <div class="col-md-8 fs-sm">
-              <h4 class="greenfill"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Energy</h4>
-                <h1 id="energy">Energy</h1>
-<h3 id="energy-1">Energy</h3>
-<p><a href="http://www1.nyc.gov/html/onenyc/index.html">OneNYC</a> is a comprehensive sustainability plan for New York City&rsquo;s future.</p>
+
+
+            <div class="col-md-8 fs-sm subtopiccontainer">
+              <h1 class="greenfill fs-xl"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Energy</h4>
+                <p><a href="http://www1.nyc.gov/html/onenyc/index.html">OneNYC</a> is a comprehensive sustainability plan for New York City&rsquo;s future.</p>
 <p>Goal: Reduce energy consumption and make our energy systems cleaner and more reliable. To measure progress, we are tracking how our buildings are becoming more energy efficient as well as the extent to which our energy is becoming cleaner and more reliable.</p>
 <h3 id="cleaner-energy">Cleaner Energy</h3>
 <p>To determine whether energy in NYC is getting cleaner, we track the carbon intensity of our electricity supply using a measure called an emissions coefficient. This measure is the number of pounds of emissions - normalized in terms of carbon dioxide equivalents (CO2e) - divided by electricity use in megawatt hours. New York City is striving to lower its emissions coefficient by generating more electricity from cleaner fuels or renewable sources, improving the efficiency of its power plants, and upgrading its distribution network, so that less energy is wasted through grid loss.</p>
@@ -1709,12 +1709,43 @@
 </article>
 
 
+
 <script>
-    function protoPopup() {
-        alert("This link is taking you to a dataset displayed on the old version of the EH Data Portal. To continue to the data, click OK. To return to the prototype, just hit the back button.");
+    var destination;
+
+    function protoPopup(URL) {
+        destination = URL;
+        $('#prototypeModal').modal('show')
+        document.getElementById('modalDestination').setAttribute("href", destination)
     }
 
 </script>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="prototypeModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">You're leaving the prototype.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>This link is taking you to a dataset displayed on the old version of the EH Data Portal.</p> 
+          <p>If you want to return to this prototype, just hit the back button in your web browser.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary-outline float-left" data-dismiss="modal">Go Back</button>
+
+            <a href="" id="modalDestination">
+            <button  type="button" class="btn btn-secondary float-right">Get the data <i class="far fa-arrow-alt-circle-right ml-1"></i></button></a>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

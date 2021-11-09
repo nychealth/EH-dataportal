@@ -308,9 +308,9 @@
         <div class="row mt-3">
 
             <div class="col-md-4">
-                <h4 class="greenfill"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
+                <h2 class="greenfill fs-lg"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2065,719b87,98,Summarize" onclick="protoPopup()">Restaurants with A Grades</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2065,719b87,98,Summarize&#34;)">Restaurants with A Grades</a>
                     <hr>
                 
 
@@ -329,11 +329,11 @@
 
             </div>
 
-            <div class="col-md-8 fs-sm">
-              <h4 class="greenfill"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Restaurant Food Safety</h4>
-                <h1 id="restaurant-food-safety">Restaurant Food Safety</h1>
-<h3 id="about-restaurant-food-safety">About Restaurant Food Safety</h3>
-<p>New York City has approximately 24,000 restaurants that the Health Department inspects every year to monitor compliance with city and state food safety regulations. At the end of an inspection, the Health Department gives restaurants a score, which is eventually converted to a grade of A, B or C. This site describes the distribution of A grades across New York City restaurants.</p>
+
+
+            <div class="col-md-8 fs-sm subtopiccontainer">
+              <h1 class="greenfill fs-xl"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Restaurant Food Safety</h4>
+                <p>New York City has approximately 24,000 restaurants that the Health Department inspects every year to monitor compliance with city and state food safety regulations. At the end of an inspection, the Health Department gives restaurants a score, which is eventually converted to a grade of A, B or C. This site describes the distribution of A grades across New York City restaurants.</p>
 <h3 id="restaurant-food-safety-and-health">Restaurant Food Safety and Health</h3>
 <p>Safe food handling can protect diners from foodborne illness. During inspections, health inspectors look to ensure that restaurants and their employees are maintaining proper food safety practices. They measure food temperature; look for evidence of food contamination; check for roaches and other vermin; and examine a restaurant&rsquo;s cooking, refrigeration, and cleaning equipment. If the inspector finds violations, she marks points on her inspection checklist. More points mean a lower grade. If conditions are so bad that they pose a public health hazard, the Health Department may close the restaurant until they are fixed.</p>
 <h3 id="about-the-data-and-indicators">About the Data and Indicators</h3>
@@ -1686,12 +1686,43 @@
 </article>
 
 
+
 <script>
-    function protoPopup() {
-        alert("This link is taking you to a dataset displayed on the old version of the EH Data Portal. To continue to the data, click OK. To return to the prototype, just hit the back button.");
+    var destination;
+
+    function protoPopup(URL) {
+        destination = URL;
+        $('#prototypeModal').modal('show')
+        document.getElementById('modalDestination').setAttribute("href", destination)
     }
 
 </script>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="prototypeModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">You're leaving the prototype.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>This link is taking you to a dataset displayed on the old version of the EH Data Portal.</p> 
+          <p>If you want to return to this prototype, just hit the back button in your web browser.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary-outline float-left" data-dismiss="modal">Go Back</button>
+
+            <a href="" id="modalDestination">
+            <button  type="button" class="btn btn-secondary float-right">Get the data <i class="far fa-arrow-alt-circle-right ml-1"></i></button></a>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

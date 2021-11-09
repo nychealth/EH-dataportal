@@ -13,7 +13,7 @@
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/asthma/</guid>
-      <description>Asthma About Asthma Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.
+      <description>Asthma is a common disease in which the lungs become swollen, making breathing difficult. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. Asthma cannot be cured, but it can be controlled.
 Asthma is a leading cause of emergency room visits, hospitalizations and missed school days in New York City&amp;rsquo;s poorest neighborhoods. In NYC, asthma is more common among low-income Black and Latino children.</description>
     </item>
     
@@ -23,8 +23,8 @@ Asthma is a leading cause of emergency room visits, hospitalizations and missed 
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/falls-among-older-adults/</guid>
-      <description>Falls Among Older Adults About falls among older adults in New York City Each year, one in three older adults (65 years and older) falls. Among New York City&amp;rsquo;s older adults, there are approximately 30,500 emergency department (ED) visits, 16,600 hospitalizations, and 300 deaths each year. Falls are not a normal part of aging, and research shows that many falls can be prevented.
-Falls and the environment Although falls can occur anywhere, falls among older adults frequently happen at home.</description>
+      <description>Each year, one in three older adults (65 years and older) falls. Among New York City&amp;rsquo;s older adults, there are approximately 30,500 emergency department (ED) visits, 16,600 hospitalizations, and 300 deaths each year. Falls are not a normal part of aging, and research shows that many falls can be prevented.
+Falls and the environment Although falls can occur anywhere, falls among older adults frequently happen at home. More than one-half of fall-related hospitalizations among older adults were due to falls in the home.</description>
     </item>
     
     <item>
@@ -33,7 +33,7 @@ Falls and the environment Although falls can occur anywhere, falls among older a
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/health-impacts-of-air-pollution/</guid>
-      <description>Health Impacts of Air Pollution About Estimated Health Impacts of Air Pollution Air pollution is an important environmental threat to the health of New York City residents. Exposures to two common air pollutants, fine particulate matter (PM2.5) and ozone (O3), can worsen respiratory illness and heart conditions and contribute to premature deaths. Older adults, children and people with existing heart and lung disease are especially affected. This site provides estimates of the impact of air pollution on the health of NYC residents as measured by the numbers of emergency department visits, hospitalizations, and deaths attributable to PM2.</description>
+      <description>Air pollution is an important environmental threat to the health of New York City residents. Exposures to two common air pollutants, fine particulate matter (PM2.5) and ozone (O3), can worsen respiratory illness and heart conditions and contribute to premature deaths. Older adults, children and people with existing heart and lung disease are especially affected. This site provides estimates of the impact of air pollution on the health of NYC residents as measured by the numbers of emergency department visits, hospitalizations, and deaths attributable to PM2.</description>
     </item>
     
     <item>
@@ -42,7 +42,7 @@ Falls and the environment Although falls can occur anywhere, falls among older a
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/heart-attacks/</guid>
-      <description>Heart Attacks About Heart Attacks A heart attack is referred to medically as an acute myocardial infarction. It is caused when the blood flow that brings oxygen to the heart is severely reduced or cut off altogether. Without adequate blood flow, heart cells can quickly become injured or die. Most heart attacks are an acute event that follows years of atherosclerosis - a build up of plaque in the arteries around the heart.</description>
+      <description>A heart attack is referred to medically as an acute myocardial infarction. It is caused when the blood flow that brings oxygen to the heart is severely reduced or cut off altogether. Without adequate blood flow, heart cells can quickly become injured or die. Most heart attacks are an acute event that follows years of atherosclerosis - a build up of plaque in the arteries around the heart. Factors in the environment may contribute to both atherosclerosis and to the acute event itself.</description>
     </item>
     
     <item>
@@ -51,20 +51,10 @@ Falls and the environment Although falls can occur anywhere, falls among older a
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/large-city-air-quality-comparison/</guid>
-      <description>Large City Air Quality Comparison Air Quality OneNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future.
+      <description>OneNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future.
 Goal: Achieve the cleanest air quality of any big United States (US) city.
 To measure progress towards this goal, we are tracking atmospheric concentrations of fine particulate matter (PM 2.5) in NYC compared to other large cities (populations greater than 1 million) in the US.
 Air Quality and Sustainability Particulate matter is a complex mixture of very small solids and droplets suspended in air.</description>
-    </item>
-    
-    <item>
-      <title>Neighborhood Air Quality</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/neighborhood-air-quality/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/neighborhood-air-quality/</guid>
-      <description>Neighborhood Air Quality About Neighborhood Air Quality Air quality can vary from neighborhood to neighborhood. That is why the **New York City Community Air Survey (NYCCAS)**keeps track of street-level air pollution from about 100 locations throughout New York City every season. NYCCAS is part of OneNYC, New York City&amp;rsquo;s long-term plan for sustainability.
-The pollutants we measure are: fine particulate matter (PM2.5), ground-level ozone (O3, summer), nitrogen oxides (NOx), black carbon from diesel exhaust, sulfur dioxide (SO2, winter) and nickel (Ni, winter).</description>
     </item>
     
     <item>
@@ -73,7 +63,7 @@ The pollutants we measure are: fine particulate matter (PM2.5), ground-level ozo
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/transportation/</guid>
-      <description>Transportation Transportation OneNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future.
+      <description>OneNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future.
 Goal: Expand sustainable transportation choices and ensure the reliability and quality of our transportation network.
 To measure progress towards this goal, we are tracking the switch to more sustainable modes of transportation (modal shift) and mass transit capacity, as well as whether our transportation system is meeting a state of good repair.
 Modal Shift We are tracking the extent to which people are using non-automobile modes of transit including public transportation (e.</description>
@@ -85,7 +75,7 @@ Modal Shift We are tracking the extent to which people are using non-automobile 
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/transportation-related-injuries/</guid>
-      <description>Transportation-related Injuries About traffic injuries in New York City Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.
+      <description>Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.
 In February 2014, NYC launched “Vision Zero”, an action plan to reduce injuries and deaths on city streets. Vision Zero is a multi-agency effort, incorporating road engineering, traffic enforcement, community outreach and education, and policy work to make NYC streets safer.</description>
     </item>
     
@@ -95,7 +85,7 @@ In February 2014, NYC launched “Vision Zero”, an action plan to reduce injur
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/weather-related-illness/</guid>
-      <description>Weather-Related Illness About Climate, Weather, and Health A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events such as heat waves, droughts, and hurricanes. New York City (NYC) faces public health risks from extreme weather events such as heat waves and coastal storms. With climate change, the severity of some of these risks will increase. A 2013 New York City Panel on Climate Change (NPCC) report predicts that by the 2020s, average summer temperatures in New York City will increase by 2.</description>
+      <description>A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events such as heat waves, droughts, and hurricanes. New York City (NYC) faces public health risks from extreme weather events such as heat waves and coastal storms. With climate change, the severity of some of these risks will increase. A 2013 New York City Panel on Climate Change (NPCC) report predicts that by the 2020s, average summer temperatures in New York City will increase by 2.</description>
     </item>
     
     <item>

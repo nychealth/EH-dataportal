@@ -308,9 +308,9 @@
         <div class="row mt-3">
 
             <div class="col-md-4">
-                <h4 class="greenfill"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
+                <h2 class="greenfill fs-lg"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2134,719b87,105,Summarize" onclick="protoPopup()">Disruptive Noise Exposure</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2134,719b87,105,Summarize&#34;)">Disruptive Noise Exposure</a>
                     <hr>
                 
 
@@ -327,11 +327,11 @@
 
             </div>
 
-            <div class="col-md-8 fs-sm">
-              <h4 class="greenfill"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Noise</h4>
-                <h1 id="noise">Noise</h1>
-<h3 id="about-noise">About Noise</h3>
-<p>Ambient noise is sound from an environmental source, such as traffic, construction, industrial or recreation activities, animals, or people’s voices, that is unwanted to the person who hears it.</p>
+
+
+            <div class="col-md-8 fs-sm subtopiccontainer">
+              <h1 class="greenfill fs-xl"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Noise</h4>
+                <p>Ambient noise is sound from an environmental source, such as traffic, construction, industrial or recreation activities, animals, or people’s voices, that is unwanted to the person who hears it.</p>
 <h3 id="noise-and-the-environment">Noise and the Environment</h3>
 <p>Exposure to any noise has long been recognized as an important occupational health hazard in workplaces and is increasingly viewed as a prevalent urban environmental hazard associated with adverse psychosocial and physiologic health effects such as sleep disturbance, higher blood pressure, cardiovascular disease, and impaired cognitive performance in children.</p>
 <h3 id="about-the-data-and-indicators">About the Data and Indicators</h3>
@@ -339,12 +339,12 @@
 <p>Like most cities in the United States, New York City (NYC) does not systematically monitor ambient noise or the prevalence of noise disturbance. However, the city tracks noise complaints through the NYC 311 call system and enforces the New York City Noise Code. 311 complaint data do not allow a full understanding of the burden of ambient noise because they may not capture information about all noise exposure; some New Yorkers are more likely to call about noise and some types of noise are most likely to generate a complaint. Thus, to gain a better understanding of noise disturbance among all New Yorkers, the Community Health Survey asked adults about how often they were disrupted by noise within the previous three months and about sources of disruptive noise.</p>
 <h3 id="prevention">Prevention</h3>
 <p>To reduce environmental noise, one can consider the following methods:</p>
-<p>(a) Control at noise sources;</p>
-<p>It is often a primary consideration to reduce noise at its source. Whenever possible, quieter working methods or technologies should be used.</p>
-<p>(b) Noise reduction at the transmission path:</p>
-<p>An obvious way of reducing noise is to separate the sources of noise from noise sensitive uses. Options to avoid or minimize noise, say, through adopting alternative transport such as railway, pedestrian link, cycling path, underground roads can also be considered at the early planning stage.</p>
-<p>(c) Protection at the receiver end:</p>
-<p>By arranging noise sensitive uses such as bedrooms facing away from the noise sources or acoustic insulation by good glazing, the impact of noise on the receiver end can be reduced.</p>
+<p>(a) Control at noise sources;
+It is often a primary consideration to reduce noise at its source. Whenever possible, quieter working methods or technologies should be used.</p>
+<p>(b) Noise reduction at the transmission path:
+An obvious way of reducing noise is to separate the sources of noise from noise sensitive uses. Options to avoid or minimize noise, say, through adopting alternative transport such as railway, pedestrian link, cycling path, underground roads can also be considered at the early planning stage.</p>
+<p>(c) Protection at the receiver end:
+By arranging noise sensitive uses such as bedrooms facing away from the noise sources or acoustic insulation by good glazing, the impact of noise on the receiver end can be reduced.</p>
 <h3 id="key-messages">Key Messages</h3>
 <p> Ambient noise in the home, work or school often disrupts people’s concentration. According to the <a href="http://www.cdc.gov/niosh/">National Institute for Occupational Safety and Health</a>, ambient noise also affects people’s health by increasing general stress levels and aggravating stress-related conditions such as high blood pressure, coronary disease, peptic ulcers and migraine headaches. Continued exposure does not lead to habituation; in fact, the effects worsen. </p>
 <p>The <a href="http://www.cdc.gov/niosh/">National Institute for Occupational Safety and Health</a> offers detailed guides on noise and hearing loss prevention.</p>
@@ -1819,12 +1819,43 @@
 </article>
 
 
+
 <script>
-    function protoPopup() {
-        alert("This link is taking you to a dataset displayed on the old version of the EH Data Portal. To continue to the data, click OK. To return to the prototype, just hit the back button.");
+    var destination;
+
+    function protoPopup(URL) {
+        destination = URL;
+        $('#prototypeModal').modal('show')
+        document.getElementById('modalDestination').setAttribute("href", destination)
     }
 
 </script>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="prototypeModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">You're leaving the prototype.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>This link is taking you to a dataset displayed on the old version of the EH Data Portal.</p> 
+          <p>If you want to return to this prototype, just hit the back button in your web browser.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary-outline float-left" data-dismiss="modal">Go Back</button>
+
+            <a href="" id="modalDestination">
+            <button  type="button" class="btn btn-secondary float-right">Get the data <i class="far fa-arrow-alt-circle-right ml-1"></i></button></a>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

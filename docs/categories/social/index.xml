@@ -32,17 +32,8 @@ People tend to be healthier when they have access to economic and financial stab
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/childhood-lead-exposure/</guid>
-      <description>Childhood Lead Exposure About Childhood Lead Exposure Childhood lead poisoning is a serious but preventable public health problem. Lead is a toxic metal that can cause learning and behavior problems, and delay physical growth and mental development. Testing for lead poisoning is a key component of childhood lead poisoning prevention, since most children with elevated blood lead levels exhibit no symptoms.
+      <description>Childhood lead poisoning is a serious but preventable public health problem. Lead is a toxic metal that can cause learning and behavior problems, and delay physical growth and mental development. Testing for lead poisoning is a key component of childhood lead poisoning prevention, since most children with elevated blood lead levels exhibit no symptoms.
 This site provides data on blood lead testing and on elevated blood lead levels among NYC children.</description>
-    </item>
-    
-    <item>
-      <title>Disparity</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/disparity/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/disparity/</guid>
-      <description>Disparity Neighborhood Poverty</description>
     </item>
     
     <item>
@@ -51,7 +42,7 @@ This site provides data on blood lead testing and on elevated blood lead levels 
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/health-care/</guid>
-      <description>Health Care More information coming soon. </description>
+      <description>More information coming soon. </description>
     </item>
     
     <item>
@@ -60,8 +51,9 @@ This site provides data on blood lead testing and on elevated blood lead levels 
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/housing/</guid>
-      <description>Housing About Housing Quality No family should have to choose between affordable and healthy housing. All tenants are entitled to safe, decent and sanitary housing, which prevents disease and injury.
-In New York City, substandard or poor housing tends to cluster in neighborhoods. Homes that are deteriorating or dilapidated, or homes near buildings with broken or boarded-up windows, disproportionately tend to be in low-income neighborhoods, although the differences for these indicators have decreased.</description>
+      <description>No family should have to choose between affordable and healthy housing. All tenants are entitled to safe, decent and sanitary housing, which prevents disease and injury.
+In New York City, substandard or poor housing tends to cluster in neighborhoods. Homes that are deteriorating or dilapidated, or homes near buildings with broken or boarded-up windows, disproportionately tend to be in low-income neighborhoods, although the differences for these indicators have decreased.
+Housing and Health Housing quality impacts health directly and indirectly.</description>
     </item>
     
     <item>
@@ -70,7 +62,7 @@ In New York City, substandard or poor housing tends to cluster in neighborhoods.
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/housing-and-neighborhoods/</guid>
-      <description>Housing and Neighborhoods Housing and Neighborhoods OneNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future.
+      <description>OneNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future.
 Goal: Create homes for nearly a million more New Yorkers while making housing and neighborhoods more affordable and sustainable.
 Housing Supply We are tracking the number of new housing units created since the start of the plan in 2007, as well as the size of the total housing stock, to ensure that the city is meeting the supply portion of its goal.</description>
     </item>
@@ -81,25 +73,7 @@ Housing Supply We are tracking the number of new housing units created since the
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/lead-hazards/</guid>
-      <description>Lead Hazards About Lead Hazards The main source of childhood lead poisoning in NYC, as in most of the United States, is lead-based paint in older, deteriorated housing. Nationwide, lead poisoning is associated with housing constructed before 1950, when lead-based paint was widely used and contained more lead than in later decades. In 1960, NYC banned the use of lead-based paint in homes and a national ban went into effect in 1978.</description>
-    </item>
-    
-    <item>
-      <title>Population Characteristics</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/population-characteristics/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/population-characteristics/</guid>
-      <description>Population Characteristics Coming Soon.</description>
-    </item>
-    
-    <item>
-      <title>Race and Ethnicity</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/race-and-ethnicity/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/race-and-ethnicity/</guid>
-      <description>Race and Ethnicity None</description>
+      <description>The main source of childhood lead poisoning in NYC, as in most of the United States, is lead-based paint in older, deteriorated housing. Nationwide, lead poisoning is associated with housing constructed before 1950, when lead-based paint was widely used and contained more lead than in later decades. In 1960, NYC banned the use of lead-based paint in homes and a national ban went into effect in 1978. Older layers of lead paint may still be present in older buildings and can become a lead hazard when the paint chips, peels or is abraded, or when renovations or repairs are conducted without taking appropriate actions to control dust.</description>
     </item>
     
     <item>
@@ -108,9 +82,9 @@ Housing Supply We are tracking the number of new housing units created since the
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/social-and-economic-conditions/</guid>
-      <description>Social and Economic Conditions Social and economic conditions Social and economic conditions affect people’s health. These conditions (also called “social determinants of health”) are conditions that people may be born into or fall into over the course of their lives. They are shaped by local, national and global distribution of resources and power.
+      <description>Social and economic conditions affect people’s health. These conditions (also called “social determinants of health”) are conditions that people may be born into or fall into over the course of their lives. They are shaped by local, national and global distribution of resources and power.
 People tend to be healthier when they have access to:
- Economic and financial stability Higher education Adequate health care Healthy neighborhoods and safe, strong communities   But when people don’t have access to these conditions, they experience worse health outcomes.</description>
+ Economic and financial stability Higher education Adequate health care Healthy neighborhoods and safe, strong communities  But when people don’t have access to these conditions, they experience worse health outcomes.</description>
     </item>
     
     <item>
@@ -119,17 +93,8 @@ People tend to be healthier when they have access to:
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/violence/</guid>
-      <description>Violence About Violence in New York City Violence is the use of physical, verbal, and/or emotional force to injure, harm, abuse, damage, or destroy. Interpersonal violence includes child abuse and neglect, youth violence, intimate partner violence, sexual violence, and elder abuse. Violence can involve injury to self, including self-harm, suicide attempts, and death by suicide. Violence can also take the form of power against a group or community.
+      <description>Violence is the use of physical, verbal, and/or emotional force to injure, harm, abuse, damage, or destroy. Interpersonal violence includes child abuse and neglect, youth violence, intimate partner violence, sexual violence, and elder abuse. Violence can involve injury to self, including self-harm, suicide attempts, and death by suicide. Violence can also take the form of power against a group or community.
 Violence is a public health issue because it is a cause of morbidity and mortality, leading to physical and emotional harm, an increase in negative health outcomes, premature death, psychological trauma and persistent fear to individuals and communities.</description>
-    </item>
-    
-    <item>
-      <title>Vulnerability</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/vulnerability/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/vulnerability/</guid>
-      <description>Vulnerability More information coming soon.</description>
     </item>
     
     <item>
@@ -138,7 +103,7 @@ Violence is a public health issue because it is a cause of morbidity and mortali
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/weather-related-illness/</guid>
-      <description>Weather-Related Illness About Climate, Weather, and Health A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events such as heat waves, droughts, and hurricanes. New York City (NYC) faces public health risks from extreme weather events such as heat waves and coastal storms. With climate change, the severity of some of these risks will increase. A 2013 New York City Panel on Climate Change (NPCC) report predicts that by the 2020s, average summer temperatures in New York City will increase by 2.</description>
+      <description>A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events such as heat waves, droughts, and hurricanes. New York City (NYC) faces public health risks from extreme weather events such as heat waves and coastal storms. With climate change, the severity of some of these risks will increase. A 2013 New York City Panel on Climate Change (NPCC) report predicts that by the 2020s, average summer temperatures in New York City will increase by 2.</description>
     </item>
     
     <item>
@@ -147,7 +112,7 @@ Violence is a public health issue because it is a cause of morbidity and mortali
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/worker-health/</guid>
-      <description>Worker Health About Worker Health and Safety Every year in New York City, workers are injured on the job or become ill as a result of exposure to health hazards at work. However, most work-related illnesses and injuries are preventable – safer work environments can be achieved when workplace hazards are understood and appropriate prevention measures are put in place.
+      <description>Every year in New York City, workers are injured on the job or become ill as a result of exposure to health hazards at work. However, most work-related illnesses and injuries are preventable – safer work environments can be achieved when workplace hazards are understood and appropriate prevention measures are put in place.
 Data on work-related injuries and illness are used to show how often these preventable events occur and to identify factors that place workers at risk.</description>
     </item>
     

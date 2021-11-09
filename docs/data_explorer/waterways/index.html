@@ -308,9 +308,9 @@
         <div class="row mt-3">
 
             <div class="col-md-4">
-                <h4 class="greenfill"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
+                <h2 class="greenfill fs-lg"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2008,719b87,89,Summarize" onclick="protoPopup()">New York Harbor Water Quality</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2008,719b87,89,Summarize&#34;)">New York Harbor Water Quality</a>
                     <hr>
                 
 
@@ -326,11 +326,11 @@
 
             </div>
 
-            <div class="col-md-8 fs-sm">
-              <h4 class="greenfill"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Waterways</h4>
-                <h1 id="waterways">Waterways</h1>
-<h3 id="waterways-1">Waterways</h3>
-<p><a href="http://www1.nyc.gov/html/onenyc/index.html">OneNYC</a> is a comprehensive sustainability plan for New York City&rsquo;s future.</p>
+
+
+            <div class="col-md-8 fs-sm subtopiccontainer">
+              <h1 class="greenfill fs-xl"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Waterways</h4>
+                <p><a href="http://www1.nyc.gov/html/onenyc/index.html">OneNYC</a> is a comprehensive sustainability plan for New York City&rsquo;s future.</p>
 <p>Goal: Improve the quality of our waterways to increase opportunities for recreation and to restore coastal ecosystems.</p>
 <p>New York State sets water quality standards, and NYC monitors New York Harbor water quality on an annual basis through the Harbor Survey. The survey uses 36 stations located throughout the open waters of the harbor and 19 stations located in smaller tributaries within the city. These stations take water samples every month and test for a number of contaminants. Average dissolved oxygen concentration and fecal coliform levels are two of the most commonly-accepted indicators of harbor health.</p>
 <h3 id="dissolved-oxygen">Dissolved Oxygen</h3>
@@ -1810,12 +1810,43 @@
 </article>
 
 
+
 <script>
-    function protoPopup() {
-        alert("This link is taking you to a dataset displayed on the old version of the EH Data Portal. To continue to the data, click OK. To return to the prototype, just hit the back button.");
+    var destination;
+
+    function protoPopup(URL) {
+        destination = URL;
+        $('#prototypeModal').modal('show')
+        document.getElementById('modalDestination').setAttribute("href", destination)
     }
 
 </script>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="prototypeModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">You're leaving the prototype.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>This link is taking you to a dataset displayed on the old version of the EH Data Portal.</p> 
+          <p>If you want to return to this prototype, just hit the back button in your web browser.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary-outline float-left" data-dismiss="modal">Go Back</button>
+
+            <a href="" id="modalDestination">
+            <button  type="button" class="btn btn-secondary float-right">Get the data <i class="far fa-arrow-alt-circle-right ml-1"></i></button></a>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

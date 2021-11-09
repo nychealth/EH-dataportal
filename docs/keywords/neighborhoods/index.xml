@@ -32,18 +32,9 @@ If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we kn
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/alcohol-access/</guid>
-      <description>Alcohol Access About Alcohol Heavy regular drinking and binge drinking contribute to a wide range of chronic health problems, including heart disease, diabetes, cancer, stroke, cirrhosis, depression and dementia. Alcohol use is also associated with suicide, homicide, domestic violence, sexually transmitted diseases and injuries. It is one of the leading behavior-related causes of death in New York City (NYC).
-This site provides data on heavy alcohol consumption and alcohol outlets in NYC.</description>
-    </item>
-    
-    <item>
-      <title>Brownfields</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/brownfields/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/brownfields/</guid>
-      <description>Brownfields Brownfields PlaNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future. Goal: Clean up all contaminated land in the city.
-Brownfields are defined as vacant commercial or industrial properties that remain undeveloped because of real or perceived contamination that may complicate redevelopment. To measure progress towards this goal, we are tracking the number of brownfield sites that currently exist, and the number that have been successfully cleaned up through an official city, state or federal program.</description>
+      <description>Heavy regular drinking and binge drinking contribute to a wide range of chronic health problems, including heart disease, diabetes, cancer, stroke, cirrhosis, depression and dementia. Alcohol use is also associated with suicide, homicide, domestic violence, sexually transmitted diseases and injuries. It is one of the leading behavior-related causes of death in New York City (NYC).
+This site provides data on heavy alcohol consumption and alcohol outlets in NYC.
+Alcohol and the Environment Greater alcohol outlet density has been associated with a variety of health and social consequences, including:</description>
     </item>
     
     <item>
@@ -52,8 +43,9 @@ Brownfields are defined as vacant commercial or industrial properties that remai
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/housing/</guid>
-      <description>Housing About Housing Quality No family should have to choose between affordable and healthy housing. All tenants are entitled to safe, decent and sanitary housing, which prevents disease and injury.
-In New York City, substandard or poor housing tends to cluster in neighborhoods. Homes that are deteriorating or dilapidated, or homes near buildings with broken or boarded-up windows, disproportionately tend to be in low-income neighborhoods, although the differences for these indicators have decreased.</description>
+      <description>No family should have to choose between affordable and healthy housing. All tenants are entitled to safe, decent and sanitary housing, which prevents disease and injury.
+In New York City, substandard or poor housing tends to cluster in neighborhoods. Homes that are deteriorating or dilapidated, or homes near buildings with broken or boarded-up windows, disproportionately tend to be in low-income neighborhoods, although the differences for these indicators have decreased.
+Housing and Health Housing quality impacts health directly and indirectly.</description>
     </item>
     
     <item>
@@ -62,7 +54,7 @@ In New York City, substandard or poor housing tends to cluster in neighborhoods.
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/housing-and-neighborhoods/</guid>
-      <description>Housing and Neighborhoods Housing and Neighborhoods OneNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future.
+      <description>OneNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future.
 Goal: Create homes for nearly a million more New Yorkers while making housing and neighborhoods more affordable and sustainable.
 Housing Supply We are tracking the number of new housing units created since the start of the plan in 2007, as well as the size of the total housing stock, to ensure that the city is meeting the supply portion of its goal.</description>
     </item>
@@ -73,7 +65,7 @@ Housing Supply We are tracking the number of new housing units created since the
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/noise/</guid>
-      <description>Noise About Noise Ambient noise is sound from an environmental source, such as traffic, construction, industrial or recreation activities, animals, or people’s voices, that is unwanted to the person who hears it.
+      <description>Ambient noise is sound from an environmental source, such as traffic, construction, industrial or recreation activities, animals, or people’s voices, that is unwanted to the person who hears it.
 Noise and the Environment Exposure to any noise has long been recognized as an important occupational health hazard in workplaces and is increasingly viewed as a prevalent urban environmental hazard associated with adverse psychosocial and physiologic health effects such as sleep disturbance, higher blood pressure, cardiovascular disease, and impaired cognitive performance in children.</description>
     </item>
     
@@ -83,7 +75,7 @@ Noise and the Environment Exposure to any noise has long been recognized as an i
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/parks-and-public-space/</guid>
-      <description>Parks and Public Space Parks and Public Space OneNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future.
+      <description>OneNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future.
 Goal: Ensure that all New Yorkers live within a ten minute walk of a park.
 Park Distance To be sure that nearly everyone is within a ten minute walk, we are tracking the numbers of New Yorkers who live within both a ½ and a ¼ mile of a park. These distances were chosen because people walk at different speeds.</description>
     </item>
@@ -94,7 +86,7 @@ Park Distance To be sure that nearly everyone is within a ten minute walk, we ar
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/violence/</guid>
-      <description>Violence About Violence in New York City Violence is the use of physical, verbal, and/or emotional force to injure, harm, abuse, damage, or destroy. Interpersonal violence includes child abuse and neglect, youth violence, intimate partner violence, sexual violence, and elder abuse. Violence can involve injury to self, including self-harm, suicide attempts, and death by suicide. Violence can also take the form of power against a group or community.
+      <description>Violence is the use of physical, verbal, and/or emotional force to injure, harm, abuse, damage, or destroy. Interpersonal violence includes child abuse and neglect, youth violence, intimate partner violence, sexual violence, and elder abuse. Violence can involve injury to self, including self-harm, suicide attempts, and death by suicide. Violence can also take the form of power against a group or community.
 Violence is a public health issue because it is a cause of morbidity and mortality, leading to physical and emotional harm, an increase in negative health outcomes, premature death, psychological trauma and persistent fear to individuals and communities.</description>
     </item>
     

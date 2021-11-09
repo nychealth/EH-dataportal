@@ -308,18 +308,18 @@
         <div class="row mt-3">
 
             <div class="col-md-4">
-                <h4 class="greenfill"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
+                <h2 class="greenfill fs-lg"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2044,719b87,52,Summarize" onclick="protoPopup()">Arsenic in Drinking Water</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2044,719b87,52,Summarize&#34;)">Arsenic in Drinking Water</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2043,719b87,52,Summarize" onclick="protoPopup()">Disinfection By-Product in Drinking Water (HAA5)</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2043,719b87,52,Summarize&#34;)">Disinfection By-Product in Drinking Water (HAA5)</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2207,719b87,52,Summarize" onclick="protoPopup()">Disinfection By-Product in Drinking Water (TTHM)</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2207,719b87,52,Summarize&#34;)">Disinfection By-Product in Drinking Water (TTHM)</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2041,719b87,52,Summarize" onclick="protoPopup()">Nitrate in Drinking Water</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2041,719b87,52,Summarize&#34;)">Nitrate in Drinking Water</a>
                     <hr>
                 
 
@@ -336,11 +336,11 @@
 
             </div>
 
-            <div class="col-md-8 fs-sm">
-              <h4 class="greenfill"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Drinking Water Quality</h4>
-                <h1 id="drinking-water-quality">Drinking Water Quality</h1>
-<h3 id="about-drinking-water-quality">About Drinking Water Quality</h3>
-<p>All NYC residences receive drinking water from a public water system. Most water is gravity fed from a network of reservoirs and lakes in protected watersheds, up to 125 miles from the city (<a href="http://www.nyc.gov/html/dep/html/drinking_water/wsmaps_wide.shtml">view map</a>).</p>
+
+
+            <div class="col-md-8 fs-sm subtopiccontainer">
+              <h1 class="greenfill fs-xl"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Drinking Water Quality</h4>
+                <p>All NYC residences receive drinking water from a public water system. Most water is gravity fed from a network of reservoirs and lakes in protected watersheds, up to 125 miles from the city (<a href="http://www.nyc.gov/html/dep/html/drinking_water/wsmaps_wide.shtml">view map</a>).</p>
 <p>The NYC water system consists of two surface water systems (Croton and Catskill/Delaware) and a Southwestern Queens ground water system. Since 1999, the Croton system has served as a supplemental water system, and the Catskill/Delaware reservoir system has supplied almost all NYC drinking water.</p>
 <p>We display data on disinfection by-products, nitrates, and arsenic in NYC drinking water because these contaminants occur most frequently at levels that may be of public health significance in drinking water nationwide. Additional contaminants of emerging concern nationwide have either not been detected or detected at very low levels in the NYC drinking water system. These include atrazine, di(2-ethylhexyl)phthalate (DEHP), tetrachloroethylene (PCE), trichloroethylene (TCE), radium, and uranium.</p>
 <p>According to the <a href="http://www.nyc.gov/html/dep/html/drinking_water/lead_index.shtml">NYC DEP</a> drinking water enters the NYC water system “virtually lead-free”.The DEP then uses anti-corrosion methods to reduce the leaching of any lead that may be present in plumbing fixtures, solder, or pipes that connect the water system to the thousands of buildings in NYC. Federal regulations require that lead testing of water is done at the tap of a sample NYC buildings each year.  In 2015, 90% of those samples tested below the action level of 15 μg/L. More detailed data on NYC drinking water quality and lead testing procedures and results can be found <a href="http://www.nyc.gov/html/dep/html/drinking_water/wsstate.shtml">here.</a></p>
@@ -1715,12 +1715,43 @@
 </article>
 
 
+
 <script>
-    function protoPopup() {
-        alert("This link is taking you to a dataset displayed on the old version of the EH Data Portal. To continue to the data, click OK. To return to the prototype, just hit the back button.");
+    var destination;
+
+    function protoPopup(URL) {
+        destination = URL;
+        $('#prototypeModal').modal('show')
+        document.getElementById('modalDestination').setAttribute("href", destination)
     }
 
 </script>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="prototypeModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">You're leaving the prototype.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>This link is taking you to a dataset displayed on the old version of the EH Data Portal.</p> 
+          <p>If you want to return to this prototype, just hit the back button in your web browser.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary-outline float-left" data-dismiss="modal">Go Back</button>
+
+            <a href="" id="modalDestination">
+            <button  type="button" class="btn btn-secondary float-right">Get the data <i class="far fa-arrow-alt-circle-right ml-1"></i></button></a>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

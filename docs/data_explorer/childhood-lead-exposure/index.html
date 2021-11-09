@@ -308,15 +308,15 @@
         <div class="row mt-3">
 
             <div class="col-md-4">
-                <h4 class="greenfill"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
+                <h2 class="greenfill fs-lg"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2189,719b87,14,Summarize" onclick="protoPopup()">Children tested for lead by age 3 years</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2189,719b87,14,Summarize&#34;)">Children tested for lead by age 3 years</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2184,719b87,14,Summarize" onclick="protoPopup()">Children under 6 years with elevated blood lead levels (BLL)</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2184,719b87,14,Summarize&#34;)">Children under 6 years with elevated blood lead levels (BLL)</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2216,719b87,14,Summarize" onclick="protoPopup()">Children under 6 years with elevated blood lead levels by NTA</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2216,719b87,14,Summarize&#34;)">Children under 6 years with elevated blood lead levels by NTA</a>
                     <hr>
                 
 
@@ -336,11 +336,11 @@
 
             </div>
 
-            <div class="col-md-8 fs-sm">
-              <h4 class="greenfill"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Childhood Lead Exposure</h4>
-                <h1 id="childhood-lead-exposure">Childhood Lead Exposure</h1>
-<h3 id="about-childhood-lead-exposure">About Childhood Lead Exposure</h3>
-<p>Childhood lead poisoning is a serious but preventable public health problem. Lead is a toxic metal that can cause learning and behavior problems, and delay physical growth and mental development. Testing for lead poisoning is a key component of childhood lead poisoning prevention, since most children with elevated blood lead levels exhibit no symptoms.</p>
+
+
+            <div class="col-md-8 fs-sm subtopiccontainer">
+              <h1 class="greenfill fs-xl"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Childhood Lead Exposure</h4>
+                <p>Childhood lead poisoning is a serious but preventable public health problem. Lead is a toxic metal that can cause learning and behavior problems, and delay physical growth and mental development. Testing for lead poisoning is a key component of childhood lead poisoning prevention, since most children with elevated blood lead levels exhibit no symptoms.</p>
 <p>This site provides data on blood lead testing and on elevated blood lead levels among NYC children. The data are collected by the NYC Health Department&rsquo;s <a href="http://www1.nyc.gov/site/doh/health/health-topics/lead-poisoning-prevention.page">Healthy Homes Program</a>.</p>
 <h3 id="childhood-lead-exposure-and-health">Childhood Lead Exposure and Health</h3>
 <p>Lead is found naturally in the environment but is also found in manufactured products. In the past, it was used in products such as gasoline and paint, ceramic products, caulking and pipes and solder, but its use in these products has been dramatically reduced. In 1960, NYC banned the use of lead-based paint in homes. A national ban came into effect in 1978. Leaded gasoline was phased out beginning in the 1970&rsquo;s. However, lead can still be found in some products and in our environment. People may be exposed to lead by absorbing, breathing or swallowing lead or lead dust. Once it enters the body, lead can become a health hazard. Children are more vulnerable to lead poisoning in the first six years of life, particularly the first three, when the brain grows the fastest, and when critical connections in the brain and nervous system that control thought, learning, hearing, movement, behavior and emotions are formed. </p>
@@ -1787,12 +1787,43 @@
 </article>
 
 
+
 <script>
-    function protoPopup() {
-        alert("This link is taking you to a dataset displayed on the old version of the EH Data Portal. To continue to the data, click OK. To return to the prototype, just hit the back button.");
+    var destination;
+
+    function protoPopup(URL) {
+        destination = URL;
+        $('#prototypeModal').modal('show')
+        document.getElementById('modalDestination').setAttribute("href", destination)
     }
 
 </script>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="prototypeModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">You're leaving the prototype.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>This link is taking you to a dataset displayed on the old version of the EH Data Portal.</p> 
+          <p>If you want to return to this prototype, just hit the back button in your web browser.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary-outline float-left" data-dismiss="modal">Go Back</button>
+
+            <a href="" id="modalDestination">
+            <button  type="button" class="btn btn-secondary float-right">Get the data <i class="far fa-arrow-alt-circle-right ml-1"></i></button></a>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

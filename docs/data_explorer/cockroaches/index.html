@@ -308,15 +308,15 @@
         <div class="row mt-3">
 
             <div class="col-md-4">
-                <h4 class="greenfill"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
+                <h2 class="greenfill fs-lg"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=22,719b87,8,Summarize" onclick="protoPopup()">Adults Reporting Cockroaches in the Home</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=22,719b87,8,Summarize&#34;)">Adults Reporting Cockroaches in the Home</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2393,719b87,8,Summarize" onclick="protoPopup()">Children living in homes with cockroaches (ages 0-13 years)</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2393,719b87,8,Summarize&#34;)">Children living in homes with cockroaches (ages 0-13 years)</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=107,719b87,8,Summarize" onclick="protoPopup()">Homes with Cockroaches</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=107,719b87,8,Summarize&#34;)">Homes with Cockroaches</a>
                     <hr>
                 
 
@@ -334,11 +334,11 @@
 
             </div>
 
-            <div class="col-md-8 fs-sm">
-              <h4 class="greenfill"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Cockroaches</h4>
-                <h1 id="cockroaches">Cockroaches</h1>
-<h3 id="about-cockroaches">About Cockroaches</h3>
-<p>Cockroaches, or just &ldquo;roaches&rdquo;, are a common urban pest. Though there are more than a thousand species of roaches, just a few are found in NYC homes.  The most common are American Cockroaches, typically found in moist basements and lower floors, and German Cockroaches, found anywhere inside homes.</p>
+
+
+            <div class="col-md-8 fs-sm subtopiccontainer">
+              <h1 class="greenfill fs-xl"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Cockroaches</h4>
+                <p>Cockroaches, or just &ldquo;roaches&rdquo;, are a common urban pest. Though there are more than a thousand species of roaches, just a few are found in NYC homes.  The most common are American Cockroaches, typically found in moist basements and lower floors, and German Cockroaches, found anywhere inside homes.</p>
 <p>Cockroaches like warm, dark places such as toasters, clocks, microwave ovens, walls, and cabinets.  They need regular access to food and water to live and breed.</p>
 <p>This site provides survey data on the prevalence of cockroaches in NYC homes.  </p>
 <h3 id="cockroaches-and-health">Cockroaches and Health</h3>
@@ -1817,12 +1817,43 @@
 </article>
 
 
+
 <script>
-    function protoPopup() {
-        alert("This link is taking you to a dataset displayed on the old version of the EH Data Portal. To continue to the data, click OK. To return to the prototype, just hit the back button.");
+    var destination;
+
+    function protoPopup(URL) {
+        destination = URL;
+        $('#prototypeModal').modal('show')
+        document.getElementById('modalDestination').setAttribute("href", destination)
     }
 
 </script>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="prototypeModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">You're leaving the prototype.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>This link is taking you to a dataset displayed on the old version of the EH Data Portal.</p> 
+          <p>If you want to return to this prototype, just hit the back button in your web browser.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary-outline float-left" data-dismiss="modal">Go Back</button>
+
+            <a href="" id="modalDestination">
+            <button  type="button" class="btn btn-secondary float-right">Get the data <i class="far fa-arrow-alt-circle-right ml-1"></i></button></a>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

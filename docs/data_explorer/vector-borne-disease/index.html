@@ -308,12 +308,12 @@
         <div class="row mt-3">
 
             <div class="col-md-4">
-                <h4 class="greenfill"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
+                <h2 class="greenfill fs-lg"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2218,719b87,116,Summarize" onclick="protoPopup()">Babesiosis</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2218,719b87,116,Summarize&#34;)">Babesiosis</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2340,719b87,116,Summarize" onclick="protoPopup()">West Nile virus</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2340,719b87,116,Summarize&#34;)">West Nile virus</a>
                     <hr>
                 
 
@@ -331,15 +331,14 @@
 
             </div>
 
-            <div class="col-md-8 fs-sm">
-              <h4 class="greenfill"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Vector-borne Disease</h4>
-                <h1 id="vector-borne-disease">Vector-borne Disease</h1>
-<p><strong>About Vectorborne Diseases</strong></p>
-<p>Vectorborne diseasesare diseases that are transmitted from an arthropod (usually a tick or mosquito, etc.) to humans or other animals. Some vectorborne disease agents are maintained primarily through transmission between arthropods and humans (e.g., dengue virus and malaria), while others are maintained between arthropods and animal reservoirs (e.g., Lyme disease and West Nile virus) and humans may become infected incidentally.</p>
-<p> <strong>Vectorborne Disease and the Environment</strong></p>
+
+
+            <div class="col-md-8 fs-sm subtopiccontainer">
+              <h1 class="greenfill fs-xl"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Vector-borne Disease</h4>
+                <p>Vectorborne diseasesare diseases that are transmitted from an arthropod (usually a tick or mosquito, etc.) to humans or other animals. Some vectorborne disease agents are maintained primarily through transmission between arthropods and humans (e.g., dengue virus and malaria), while others are maintained between arthropods and animal reservoirs (e.g., Lyme disease and West Nile virus) and humans may become infected incidentally.</p>
+<h3 id="vectorborne-disease-and-the-environment">Vectorborne Disease and the Environment</h3>
 <p>Climate is one of many important interacting variables that affect people’s risk for vectorborne diseases in New York City. Warmer winters make it easier for ticks to survive in NYC year-round, while a longer warm season increases the length of time that ticks are active each year. Warming temperatures can lengthen the season in which mosquitoes are out and biting, and accelerate the mosquito life cycle. This can mean more frequent contact between mosquitoes and their hosts, which can facilitate the spread of diseases.</p>
-<p> Changing precipitation patterns, with longer periods between rains but heavier rain events, may affect the amount of standing water that mosquitoes have to breed in. Climate change may also alter bird migration patterns or result in changes in deer and small mammal populations that serve as hosts for vectorborne diseases.</p>
-<p> </p>
+<p>Changing precipitation patterns, with longer periods between rains but heavier rain events, may affect the amount of standing water that mosquitoes have to breed in. Climate change may also alter bird migration patterns or result in changes in deer and small mammal populations that serve as hosts for vectorborne diseases.</p>
 
 
 
@@ -1750,12 +1749,43 @@
 </article>
 
 
+
 <script>
-    function protoPopup() {
-        alert("This link is taking you to a dataset displayed on the old version of the EH Data Portal. To continue to the data, click OK. To return to the prototype, just hit the back button.");
+    var destination;
+
+    function protoPopup(URL) {
+        destination = URL;
+        $('#prototypeModal').modal('show')
+        document.getElementById('modalDestination').setAttribute("href", destination)
     }
 
 </script>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="prototypeModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">You're leaving the prototype.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>This link is taking you to a dataset displayed on the old version of the EH Data Portal.</p> 
+          <p>If you want to return to this prototype, just hit the back button in your web browser.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary-outline float-left" data-dismiss="modal">Go Back</button>
+
+            <a href="" id="modalDestination">
+            <button  type="button" class="btn btn-secondary float-right">Get the data <i class="far fa-arrow-alt-circle-right ml-1"></i></button></a>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

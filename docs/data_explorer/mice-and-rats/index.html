@@ -308,18 +308,18 @@
         <div class="row mt-3">
 
             <div class="col-md-4">
-                <h4 class="greenfill"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
+                <h2 class="greenfill fs-lg"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2105,719b87,7,Summarize" onclick="protoPopup()">Adults Reporting Mice in the Home</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2105,719b87,7,Summarize&#34;)">Adults Reporting Mice in the Home</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=24,719b87,7,Summarize" onclick="protoPopup()">Adults Reporting Rats or Mice outside Their Building</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=24,719b87,7,Summarize&#34;)">Adults Reporting Rats or Mice outside Their Building</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=48,719b87,7,Summarize" onclick="protoPopup()">Homes with Mice or Rats in the Building</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=48,719b87,7,Summarize&#34;)">Homes with Mice or Rats in the Building</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2025,719b87,7,Summarize" onclick="protoPopup()">Nitrogen Dioxide (NO2)</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2394,719b87,36,Summarize&#34;)">Children living in homes with mice (ages 0-13  years)</a>
                     <hr>
                 
 
@@ -337,11 +337,11 @@
 
             </div>
 
-            <div class="col-md-8 fs-sm">
-              <h4 class="greenfill"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Mice and Rats</h4>
-                <h1 id="mice-and-rats">Mice and Rats</h1>
-<h3 id="about-mice-and-rats">About Mice and Rats</h3>
-<p>Rats and mice are common, but preventable. In NYC, rats tend to be seen on streets and sidewalks, and in backyards and basements, while mice are almost always found inside homes.</p>
+
+
+            <div class="col-md-8 fs-sm subtopiccontainer">
+              <h1 class="greenfill fs-xl"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Mice and Rats</h4>
+                <p>Rats and mice are common, but preventable. In NYC, rats tend to be seen on streets and sidewalks, and in backyards and basements, while mice are almost always found inside homes.</p>
 <p>Rats and mice thrive where there are sources of food and shelter and where property owners fail to prevent and adequately respond to their presence.</p>
 <p>This site provides survey data on the prevalence of mice or rats inside and outside of buildings. This information is collected by the US Census Bureau through the <a href="http://www.census.gov/housing/nychvs/">NYC Housing and Vacancy Survey</a>, and by the <a href="http://www1.nyc.gov/site/doh/data/data-sets/community-health-survey.page">NYC Health Department through Community Health Surveys</a>.</p>
 <h3 id="mice-rats-and-health">Mice, Rats and Health</h3>
@@ -1764,12 +1764,43 @@
 </article>
 
 
+
 <script>
-    function protoPopup() {
-        alert("This link is taking you to a dataset displayed on the old version of the EH Data Portal. To continue to the data, click OK. To return to the prototype, just hit the back button.");
+    var destination;
+
+    function protoPopup(URL) {
+        destination = URL;
+        $('#prototypeModal').modal('show')
+        document.getElementById('modalDestination').setAttribute("href", destination)
     }
 
 </script>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="prototypeModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">You're leaving the prototype.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>This link is taking you to a dataset displayed on the old version of the EH Data Portal.</p> 
+          <p>If you want to return to this prototype, just hit the back button in your web browser.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary-outline float-left" data-dismiss="modal">Go Back</button>
+
+            <a href="" id="modalDestination">
+            <button  type="button" class="btn btn-secondary float-right">Get the data <i class="far fa-arrow-alt-circle-right ml-1"></i></button></a>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

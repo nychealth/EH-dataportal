@@ -308,18 +308,18 @@
         <div class="row mt-3">
 
             <div class="col-md-4">
-                <h4 class="greenfill"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
+                <h2 class="greenfill fs-lg"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2092,719b87,101,Summarize" onclick="protoPopup()">Bicycle Injury Emergency Department Visits</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2092,719b87,101,Summarize&#34;)">Bicycle Injury Emergency Department Visits</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2086,719b87,101,Summarize" onclick="protoPopup()">Bicycle Injury Hospitalizations</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2086,719b87,101,Summarize&#34;)">Bicycle Injury Hospitalizations</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2094,719b87,101,Summarize" onclick="protoPopup()">Pedestrian Injury Emergency Department Visits</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2094,719b87,101,Summarize&#34;)">Pedestrian Injury Emergency Department Visits</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2093,719b87,101,Summarize" onclick="protoPopup()">Pedestrian Injury Hospitalizations</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2093,719b87,101,Summarize&#34;)">Pedestrian Injury Hospitalizations</a>
                     <hr>
                 
 
@@ -347,11 +347,11 @@
 
             </div>
 
-            <div class="col-md-8 fs-sm">
-              <h4 class="greenfill"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Transportation-related Injuries</h4>
-                <h1 id="transportation-related-injuries">Transportation-related Injuries</h1>
-<h3 id="about-traffic-injuries-in-new-york-city">About traffic injuries in New York City</h3>
-<p>Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.</p>
+
+
+            <div class="col-md-8 fs-sm subtopiccontainer">
+              <h1 class="greenfill fs-xl"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Transportation-related Injuries</h4>
+                <p>Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.</p>
 <p>In February 2014, NYC launched <a href="http://www.nyc.gov/html/visionzero/pages/home/home.html">“Vision Zero”</a>, an action plan to reduce injuries and deaths on city streets. Vision Zero is a multi-agency effort, incorporating road engineering, traffic enforcement, community outreach and education, and policy work to make NYC streets safer.</p>
 <h3 id="traffic-safety-and-the-environment">Traffic Safety and the Environment</h3>
 <p>Many factors contribute to traffic injuries, including human, vehicle and environmental factors. The built environment influences traffic injury outcomes by shaping the actions of road users, which can prevent crashes from happening, as well as mitigating the effects of crashes, when they do happen. Built environment features, such as road design and traffic calming strategies include: pedestrian islands, signal timing, separated bicycle paths, speed humps and bumps, signage, and more. Environmental interventions can be tailored for a community’s specific needs to improve traffic safety and reduce injuries.</p>
@@ -1806,12 +1806,43 @@
 </article>
 
 
+
 <script>
-    function protoPopup() {
-        alert("This link is taking you to a dataset displayed on the old version of the EH Data Portal. To continue to the data, click OK. To return to the prototype, just hit the back button.");
+    var destination;
+
+    function protoPopup(URL) {
+        destination = URL;
+        $('#prototypeModal').modal('show')
+        document.getElementById('modalDestination').setAttribute("href", destination)
     }
 
 </script>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="prototypeModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">You're leaving the prototype.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>This link is taking you to a dataset displayed on the old version of the EH Data Portal.</p> 
+          <p>If you want to return to this prototype, just hit the back button in your web browser.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary-outline float-left" data-dismiss="modal">Go Back</button>
+
+            <a href="" id="modalDestination">
+            <button  type="button" class="btn btn-secondary float-right">Get the data <i class="far fa-arrow-alt-circle-right ml-1"></i></button></a>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

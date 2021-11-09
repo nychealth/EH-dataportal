@@ -250,8 +250,6 @@ Disallow: /data_explorer/birth-outcomes/
 
 Disallow: /keywords/blood/
 
-Disallow: /data_explorer/brownfields/
-
 Disallow: /keywords/bugs/
 
 Disallow: /data_explorer/cancer/
@@ -268,8 +266,6 @@ Disallow: /data_explorer/carbon-monoxide-incidents/
 
 Disallow: /data_explorer/carbon-monoxide-poisoning/
 
-Disallow: /keywords/characteristics/
-
 Disallow: /keywords/child/
 
 Disallow: /categories/childhealth/
@@ -278,17 +274,11 @@ Disallow: /data_explorer/childhood-lead-exposure/
 
 Disallow: /keywords/children/
 
-Disallow: /keywords/cholesterol/
-
-Disallow: /keywords/chronic-illness/
-
 Disallow: /data_explorer/chronic-obstructive-pulmonary-disease/
 
 Disallow: /data_explorer/cigarette-smoke/
 
 Disallow: /keywords/cigarettes/
-
-Disallow: /data_explorer/citywide-air-quality/
 
 Disallow: /data_explorer/climate/
 
@@ -308,15 +298,7 @@ Disallow: /keywords/copd/
 
 Disallow: /keywords/death/
 
-Disallow: /keywords/demographics/
-
-Disallow: /keywords/diabetes/
-
-Disallow: /data_explorer/diabetes-high-blood-pressure-and-high-cholesterol/
-
 Disallow: /keywords/disease/
-
-Disallow: /data_explorer/disparity/
 
 Disallow: /keywords/doctors/
 
@@ -335,8 +317,6 @@ Disallow: /data_explorer/energy/
 Disallow: /keywords/energy/
 
 Disallow: /keywords/environmental-health/
-
-Disallow: /keywords/ethnicity/
 
 Disallow: /keywords/falls/
 
@@ -365,8 +345,6 @@ Disallow: /keywords/healthy-housing/
 Disallow: /keywords/heart/
 
 Disallow: /data_explorer/heart-attacks/
-
-Disallow: /keywords/high-blood-pressure/
 
 Disallow: /keywords/home/
 
@@ -402,19 +380,13 @@ Disallow: /data_explorer/mortality/
 
 Disallow: /keywords/mortality/
 
-Disallow: /data_explorer/neighborhood-air-quality/
-
 Disallow: /data_explorer/noise/
 
 Disallow: /keywords/noise/
 
-Disallow: /data_explorer/nyc-agency-pesticide-use/
-
 Disallow: /keywords/obesity/
 
 Disallow: /keywords/older-adults/
-
-Disallow: /data_explorer/other-nyc-data/
 
 Disallow: /data_explorer/overweight/
 
@@ -434,15 +406,7 @@ Disallow: /keywords/physical-activity/
 
 Disallow: /keywords/poisoning/
 
-Disallow: /keywords/population/
-
-Disallow: /data_explorer/population-characteristics/
-
 Disallow: /keywords/pregnancy/
-
-Disallow: /keywords/race/
-
-Disallow: /data_explorer/race-and-ethnicity/
 
 Disallow: /keywords/respiratory/
 
@@ -497,8 +461,6 @@ Disallow: /data_explorer/vector-borne-disease/
 Disallow: /data_explorer/violence/
 
 Disallow: /keywords/violence/
-
-Disallow: /data_explorer/vulnerability/
 
 Disallow: /data_explorer/walking-driving-and-cycling/
 

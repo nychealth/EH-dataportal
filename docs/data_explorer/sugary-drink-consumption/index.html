@@ -308,12 +308,12 @@
         <div class="row mt-3">
 
             <div class="col-md-4">
-                <h4 class="greenfill"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
+                <h2 class="greenfill fs-lg"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2097,719b87,102,Summarize" onclick="protoPopup()">Adult Consumption of 1 or More Sugary Drinks Per Day</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2097,719b87,102,Summarize&#34;)">Adult Consumption of 1 or More Sugary Drinks Per Day</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2098,719b87,102,Summarize" onclick="protoPopup()">Youth Consumption of 1 or More Sugary Drinks Per Day</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2098,719b87,102,Summarize&#34;)">Youth Consumption of 1 or More Sugary Drinks Per Day</a>
                     <hr>
                 
 
@@ -330,11 +330,11 @@
 
             </div>
 
-            <div class="col-md-8 fs-sm">
-              <h4 class="greenfill"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Sugary Drink Consumption</h4>
-                <h1 id="sugary-drink-consumption">Sugary Drink Consumption</h1>
-<h3 id="about-sugary-drinks">About Sugary Drinks</h3>
-<p>Sugary drinks contribute to a higher-calorie diet, long-term weight gain, and increased risk of heart disease and diabetes. Sugary drinks provide little or no nutritional value, and because they don’t fill you up the way food does, you end up consuming more calories. Also, food and beverage portion sizes have exploded over the past several decades, and studies have shown that when given larger portions, people consume more without recognizing it.</p>
+
+
+            <div class="col-md-8 fs-sm subtopiccontainer">
+              <h1 class="greenfill fs-xl"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Sugary Drink Consumption</h4>
+                <p>Sugary drinks contribute to a higher-calorie diet, long-term weight gain, and increased risk of heart disease and diabetes. Sugary drinks provide little or no nutritional value, and because they don’t fill you up the way food does, you end up consuming more calories. Also, food and beverage portion sizes have exploded over the past several decades, and studies have shown that when given larger portions, people consume more without recognizing it.</p>
 <h3 id="sugary-drinks-and-health">Sugary Drinks and Health</h3>
 <p>Obesity is at epidemic proportions in New York City. More than half of New York City adults (58%) are overweight or obese; nearly 40% of New York City’s public school students (K-8) are obese or overweight; and the percentage of adults with diagnosed diabetes is increasing, with nearly 10% of New Yorkers now diagnosed with diabetes.</p>
 <h3 id="about-the-data-and-indicators">About the Data and Indicators</h3>
@@ -1701,12 +1701,43 @@
 </article>
 
 
+
 <script>
-    function protoPopup() {
-        alert("This link is taking you to a dataset displayed on the old version of the EH Data Portal. To continue to the data, click OK. To return to the prototype, just hit the back button.");
+    var destination;
+
+    function protoPopup(URL) {
+        destination = URL;
+        $('#prototypeModal').modal('show')
+        document.getElementById('modalDestination').setAttribute("href", destination)
     }
 
 </script>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="prototypeModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">You're leaving the prototype.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>This link is taking you to a dataset displayed on the old version of the EH Data Portal.</p> 
+          <p>If you want to return to this prototype, just hit the back button in your web browser.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary-outline float-left" data-dismiss="modal">Go Back</button>
+
+            <a href="" id="modalDestination">
+            <button  type="button" class="btn btn-secondary float-right">Get the data <i class="far fa-arrow-alt-circle-right ml-1"></i></button></a>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

@@ -854,15 +854,6 @@
     </item>
     
     <item>
-      <title>characteristics</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/characteristics/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/characteristics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>child</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/child/</link>
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
@@ -877,24 +868,6 @@
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/children/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>cholesterol</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/cholesterol/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/cholesterol/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>chronic illness</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/chronic-illness/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/chronic-illness/</guid>
       <description></description>
     </item>
     
@@ -958,24 +931,6 @@
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/death/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>demographics</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/demographics/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/demographics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>diabetes</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/diabetes/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/diabetes/</guid>
       <description></description>
     </item>
     
@@ -1048,15 +1003,6 @@
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/environmental-health/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ethnicity</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/ethnicity/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/ethnicity/</guid>
       <description></description>
     </item>
     
@@ -1138,15 +1084,6 @@
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/heart/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>high blood pressure</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/high-blood-pressure/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/high-blood-pressure/</guid>
       <description></description>
     </item>
     
@@ -1313,29 +1250,11 @@
     </item>
     
     <item>
-      <title>population</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/population/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/population/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>pregnancy</title>
       <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/pregnancy/</link>
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/pregnancy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>race</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/race/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/race/</guid>
       <description></description>
     </item>
     

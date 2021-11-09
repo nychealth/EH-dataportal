@@ -308,21 +308,24 @@
         <div class="row mt-3">
 
             <div class="col-md-4">
-                <h4 class="greenfill"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
+                <h2 class="greenfill fs-lg"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2135,719b87,108,Summarize" onclick="protoPopup()">Fall-related emergency department visits among older adults</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2135,719b87,108,Summarize&#34;)">Fall-related emergency department visits among older adults</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2136,719b87,108,Summarize" onclick="protoPopup()">Fall-related hospitalizations among older adults</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2136,719b87,108,Summarize&#34;)">Fall-related hospitalizations among older adults</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2408,719b87,108,Summarize" onclick="protoPopup()">Home fall-related emergency department visits among older adults</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2408,719b87,108,Summarize&#34;)">Home fall-related emergency department visits among older adults</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2409,719b87,108,Summarize" onclick="protoPopup()">Home fall-related hospitalizations among older adults</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2409,719b87,108,Summarize&#34;)">Home fall-related hospitalizations among older adults</a>
                     <hr>
                 
-                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2403,719b87,108,Summarize" onclick="protoPopup()">Homes with reported falls among adults 65 and older</a>
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2403,719b87,108,Summarize&#34;)">Homes with reported falls among adults 65 and older</a>
+                    <hr>
+                
+                    <a href="#" onclick="protoPopup(&#34;https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2188,4466a0,108,Summarize&#34;)">Homes with Grab Bars in Bathroom (among older adult households)</a>
                     <hr>
                 
 
@@ -340,11 +343,11 @@
 
             </div>
 
-            <div class="col-md-8 fs-sm">
-              <h4 class="greenfill"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Falls Among Older Adults</h4>
-                <h1 id="falls-among-older-adults">Falls Among Older Adults</h1>
-<h3 id="about-falls-among-older-adults-in-new-york-city">About falls among older adults in New York City</h3>
-<p>Each year, one in three older adults (65 years and older) falls. Among New York City&rsquo;s older adults, there are approximately 30,500 emergency department (ED) visits, 16,600 hospitalizations, and 300 deaths each year. Falls are not a normal part of aging, and research shows that many falls can be prevented.</p>
+
+
+            <div class="col-md-8 fs-sm subtopiccontainer">
+              <h1 class="greenfill fs-xl"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Falls Among Older Adults</h4>
+                <p>Each year, one in three older adults (65 years and older) falls. Among New York City&rsquo;s older adults, there are approximately 30,500 emergency department (ED) visits, 16,600 hospitalizations, and 300 deaths each year. Falls are not a normal part of aging, and research shows that many falls can be prevented.</p>
 <h3 id="falls-and-the-environment">Falls and the environment</h3>
 <p>Although falls can occur anywhere, falls among older adults frequently happen at home. More than one-half of fall-related hospitalizations among older adults were due to falls in the home. There are many risk factors for falls among older adults including previous falls, gait or balance problems, and use of multiple medications that interact with one another or cause side effects. Physical features of the environment can also put seniors at risk. Common fall risks hazards in homes include slippery surfaces, inadequate lighting, and tripping hazards, such as clutter, loose rugs, or uneven flooring.</p>
 <h3 id="about-the-data-and-indicators">About the data and indicators</h3>
@@ -1782,12 +1785,43 @@
 </article>
 
 
+
 <script>
-    function protoPopup() {
-        alert("This link is taking you to a dataset displayed on the old version of the EH Data Portal. To continue to the data, click OK. To return to the prototype, just hit the back button.");
+    var destination;
+
+    function protoPopup(URL) {
+        destination = URL;
+        $('#prototypeModal').modal('show')
+        document.getElementById('modalDestination').setAttribute("href", destination)
     }
 
 </script>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="prototypeModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">You're leaving the prototype.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>This link is taking you to a dataset displayed on the old version of the EH Data Portal.</p> 
+          <p>If you want to return to this prototype, just hit the back button in your web browser.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary-outline float-left" data-dismiss="modal">Go Back</button>
+
+            <a href="" id="modalDestination">
+            <button  type="button" class="btn btn-secondary float-right">Get the data <i class="far fa-arrow-alt-circle-right ml-1"></i></button></a>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

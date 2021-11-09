@@ -308,7 +308,7 @@
         <div class="row mt-3">
 
             <div class="col-md-4">
-                <h4 class="greenfill"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
+                <h2 class="greenfill fs-lg"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
                 
 
                 <hr class="portalhr mt-4 mb-2">
@@ -334,11 +334,11 @@
 
             </div>
 
-            <div class="col-md-8 fs-sm">
-              <h4 class="greenfill"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Large City Air Quality Comparison</h4>
-                <h1 id="large-city-air-quality-comparison">Large City Air Quality Comparison</h1>
-<h3 id="air-quality">Air Quality</h3>
-<p><a href="http://www1.nyc.gov/html/onenyc/index.html">OneNYC</a> is a comprehensive sustainability plan for New York City&rsquo;s future.</p>
+
+
+            <div class="col-md-8 fs-sm subtopiccontainer">
+              <h1 class="greenfill fs-xl"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About Large City Air Quality Comparison</h4>
+                <p><a href="http://www1.nyc.gov/html/onenyc/index.html">OneNYC</a> is a comprehensive sustainability plan for New York City&rsquo;s future.</p>
 <p>Goal: Achieve the cleanest air quality of any big United States (US) city.</p>
 <p>To measure progress towards this goal, we are tracking atmospheric concentrations of fine particulate matter (PM 2.5) in NYC compared to other large cities (populations greater than 1 million) in the US.</p>
 <h3 id="air-quality-and-sustainability">Air Quality and Sustainability</h3>
@@ -1761,12 +1761,43 @@
 </article>
 
 
+
 <script>
-    function protoPopup() {
-        alert("This link is taking you to a dataset displayed on the old version of the EH Data Portal. To continue to the data, click OK. To return to the prototype, just hit the back button.");
+    var destination;
+
+    function protoPopup(URL) {
+        destination = URL;
+        $('#prototypeModal').modal('show')
+        document.getElementById('modalDestination').setAttribute("href", destination)
     }
 
 </script>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="prototypeModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">You're leaving the prototype.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>This link is taking you to a dataset displayed on the old version of the EH Data Portal.</p> 
+          <p>If you want to return to this prototype, just hit the back button in your web browser.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary-outline float-left" data-dismiss="modal">Go Back</button>
+
+            <a href="" id="modalDestination">
+            <button  type="button" class="btn btn-secondary float-right">Get the data <i class="far fa-arrow-alt-circle-right ml-1"></i></button></a>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
