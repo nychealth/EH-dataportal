@@ -10,7 +10,6 @@ menu:
     main:
         identifier: '03'
 ---
-# Chronic Obstructive Pulmonary Disease
 More information coming soon.
 
 

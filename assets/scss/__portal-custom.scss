@@ -815,3 +815,9 @@ height: 200px;}
     .share-btn.pinterest:hover   { background: #AD0000; }
     .share-btn.reddit:hover      { background: #e54e00; }
     .share-btn.email:hover       { background: #363636; }
+
+// Revises header styles within subtopic pages
+.subtopiccontainer h3 {
+    font-size: 18px;
+    color: #656565;
+}
