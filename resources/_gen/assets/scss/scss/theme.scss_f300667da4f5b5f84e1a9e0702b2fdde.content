@@ -8859,6 +8859,54 @@ In this file:
 .btn-outline-gray:not(:disabled):not(.disabled):active:focus, .btn-outline-gray:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-gray.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.15rem rgba(0, 146, 62, 0.5); }
 
+.btn-outline-green {
+  color: #00923E;
+  border-color: #545454; }
+
+.btn-outline-green:hover {
+  color: #00923E;
+  background-color: #d1d1d1;
+  border-color: #545454; }
+
+.btn-outline-green:focus, .btn-outline-green.focus {
+  box-shadow: 0 0 0 0.15rem rgba(0, 146, 62, 0.5); }
+
+.btn-outline-green.disabled, .btn-outline-green:disabled {
+  color: #545454;
+  background-color: transparent; }
+
+.btn-outline-green:not(:disabled):not(.disabled):active, .btn-outline-green:not(:disabled):not(.disabled).active, .show > .btn-outline-green.dropdown-toggle {
+  color: #fff;
+  background-color: #d1d1d1;
+  border-color: #545454; }
+
+.btn-outline-green:not(:disabled):not(.disabled):active:focus, .btn-outline-green:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-green.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.15rem rgba(0, 146, 62, 0.5); }
+
+.btn-outline-blue {
+  color: #197BBD;
+  border-color: #545454; }
+
+.btn-outline-blue:hover {
+  color: #197BBD;
+  background-color: #d1d1d1;
+  border-color: #545454; }
+
+.btn-outline-blue:focus, .btn-outline-blue.focus {
+  box-shadow: 0 0 0 0.15rem rgba(0, 146, 62, 0.5); }
+
+.btn-outline-blue.disabled, .btn-outline-blue:disabled {
+  color: #545454;
+  background-color: transparent; }
+
+.btn-outline-blue:not(:disabled):not(.disabled):active, .btn-outline-blue:not(:disabled):not(.disabled).active, .show > .btn-outline-blue.dropdown-toggle {
+  color: #fff;
+  background-color: #d1d1d1;
+  border-color: #545454; }
+
+.btn-outline-blue:not(:disabled):not(.disabled):active:focus, .btn-outline-blue:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-blue.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.15rem rgba(0, 146, 62, 0.5); }
+
 .breadcrumb {
   display: flex;
   flex-wrap: wrap;
@@ -9381,9 +9429,10 @@ input[type=range]:focus::-ms-fill-upper {
   padding-bottom: 5px; }
 
 .greenfill {
-  background: #dff0d8;
+  border-bottom: 5px solid #e4e4e4;
+  background: #f8f8f8;
   padding: 5px;
-  color: #3c763d;
+  color: #00923E;
   border-radius: 3px;
   width: 100%; }
 
