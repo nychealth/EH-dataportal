@@ -35,9 +35,9 @@
         <h3>Neighborhood Comparison</h3>
         <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">{{ .location }} <span class="indicator-value">{{ .ind.data_value_geo_entity }}&#37;</span></div>
-          <div class="col-sm-4">{{ .borough }} <span class="indicator-value">{{ .ind.data_value_borough }}&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">{{ .ind.data_value_nyc }}&#37;</span></div>
+          <div class="col-sm-4 text-primary">{{ .location }} <span class="indicator-value">{{ .ind.data_value_geo_entity }}</span></div>
+          <div class="col-sm-4">{{ .borough }} <span class="indicator-value">{{ .ind.data_value_borough }}</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">{{ .ind.data_value_nyc }}</span></div>
         </div>
         {{ if isset .ind "nabe_data_note" }}
           <div class="data-note">{{ .ind.nabe_data_note }}</div>
