@@ -228,14 +228,15 @@ To run a local-environment-specific serve or build, enter ```hugo serve --enviro
 
 ### Report Pages
 
-* Report data for the site is stored in the `/data/reports/` folder. 
-* There is a markdown file for each report in site content that references the report metadata from its front matter.
+* Report specs (metadata) are stored in the `/data/reports/` folder (one for each neighborhood-report combination).
+* Report data are stored in the `/static/visualizations/csv` folder (one for each report type; and one for each indicator).
+* There is a markdown file for each report in site `content/neighborhood_reports` that references the report spec (metadata) from its front matter (via the `data_json` field).
 * There are two main templates used for reports `themes/dohmh/layouts/neighborhood_reports/single` is the main report template along with the partial that is loaded for each indicator `themes/dohmh/partials/report_indicator`.
 
 ### Visualizations
 Visualizations are powered by Vega-Lite with code and basic implementation approach provided by DOHMH team.
 
-* Visualization specifications and functions to generate them are included in `assets/js/site.js`.
+* Visualization specifications and functions to generate them are included in `assets/js/site.js`. This is previously `chart.html` and functions to identify the correct indicator CSV and neighborhood name and inject it into the Vega-Lite specification.
 * CSV data for visualizations is stored in the `/static/visualizations/csv/`folder.
 * SVG images for visualizations is stored in the `/static/visualizations/images/`folder.
 * All html, function calls, and dynamic variables are found in the `themes/dohmh/partials/report_indicator` partial.
