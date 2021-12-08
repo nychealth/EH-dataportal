@@ -33,12 +33,13 @@
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
+        <p><em>{{ .ind.measurement_type}} {{ .ind.units}}</em></p>
         <div class="row comparison">
           <div class="col-sm-4 text-primary">{{ .location }} <span class="indicator-value">{{ .ind.data_value_geo_entity }}</span></div>
           <div class="col-sm-4">{{ .borough }} <span class="indicator-value">{{ .ind.data_value_borough }}</span></div>
           <div class="col-sm-4">New York City <span class="indicator-value">{{ .ind.data_value_nyc }}</span></div>
         </div>
+
         {{ if isset .ind "nabe_data_note" }}
           <div class="data-note">{{ .ind.nabe_data_note }}</div>
         {{ end }}
@@ -50,14 +51,14 @@
       <div class="modal-body">
 
         <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-{{.ind.indicator_data_name}}-{{ .count }}"></div> 
+        <div style="width:100%; height:40vmin; z-index:10000;" id="trend-{{.ind.indicator_data_name}}-{{ .count }}"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
         <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-{{.ind.indicator_data_name}}-{{ .count }}"></div>
+        <div style="width:100%; height:60vmin; z-index:10000;" id="map-{{.ind.indicator_data_name}}-{{ .count }}"></div>
 
       </div>
       <!-- .modal-body -->
