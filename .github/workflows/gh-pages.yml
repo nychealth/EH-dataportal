@@ -1,4 +1,4 @@
-name: Auto build to gh-pages, re-set
+name: Build to gh-pages branch
 
 on:
   push:
