@@ -1,3 +1,9 @@
-/node_modules
-/node_modules
-/resources/_gen/
+#don't track changes to node_modules
+node_modules
+
+# don't track resources folder (temp files for serve)
+resources
+
+# don't track mac file 
+.DS_Store
+
