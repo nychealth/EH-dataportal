@@ -1,45 +1,71 @@
 # A new frontend for the Environment and Health Data portal
-
+## Brief overview
 This repository contains a new prototype of the Environment and Health Data Portal. You can view a staged development version [here](https://nycehs.github.io/ehs-data-portal-frontend-temp/).
 
-## How you can help
+This prototype is a static site built with [Hugo](https://gohugo.io/). Generally, Hugo works by combining content (written in markdown) with templates (HTML) to produce the site's HTML files. 
+
+This site has four main sections:
+- Data Stories: pages with narrative content and data visualizations
+- Key Topics: pages that ingest content from across the site
+- Neighborhood Reports: pages that read JSON and CSV data to generate neighborhood reports about health topics
+- Data Explorer: pages that read JSON and CSV data to generate visualizations of datasets
+
+### How you can help
 
 In the spirit of free software, everyone is encouraged to help improve this project.  Here are some ways you can contribute.
 
-- Comment on or clarify [issues](https://github.com/nycehs/ehs-data-portal-frontend-temp/issues)
-- Suggest new features
-- Write or edit documentation
-- Write code (no patch is too small)
-- Fix typos
-- Add comments
-- Clean up code
-- Add new features
+- Comment on or clarify [issues](link to issues).
+- Suggest new features.
+- Write or edit documentation.
+- Write code to fix typos, add comments, clean up code, or add new features. No patch is too small.
 
-## Requirements
+### Contact us
+
+You can comment on issues and we'll follow up as soon as we can. 
+
+### Communications disclaimer
+
+With regard to GitHub platform communications, staff from the New York City Department of Health & Mental Hygiene are authorized to answer specific questions of a technical nature with regard to this repository. Staff may not disclose private or sensitive data. 
+
+---
+## How we build and develop this site
+
+### Requirements
 
 You will need the following things properly installed on your computer.
 
 - [Git](https://git-scm.com/)
 - [Hugo](https://gohugo.io/) 
+- [NPM](https://www.npmjs.com/)
+- [Grunt](https://gruntjs.com/installing-grunt)
 
-## Development
+### Testing and checks
+The site runs a CodeQL analysis on merges/builds. 
+
+### Architecture
+
+Generally, Hugo works by combining content (in markdown, located in /content) with templates (located in the /themes) - you'll notice that these two directories have identical structures, because Hugo combines /content/data_stories, for example, with templates in /themes/layouts/data_stories. Templates can include Hugo code (which you can identify by {{ curly brackets }}. When Hugo serves or builds the site, it runs code, inserts content into the HTML, and produces static pages. 
+
+### Development
 
 - On your local, start the server with ```hugo serve --environment local --disableFastRender```
     - ```hugo serve``` starts the server - you can then browse the site at http://localhost:1313/ehs-data-portal-frontend-temp 
     - ```--environment local``` specifies that it will serve the site for the local environment, using content from ```/config/local/config.toml```
     - ```--disableFastRender``` turns off fast render mode, so more small changes are rapidly served
+
+### Development guidelines
+- Create a new branch off of main to begin work.
 - Develop on branches labelled hotfix-, content-, or feature-. Keep branch work focused on discrete tasks to avoid merge conflicts later.
-- Merge into development to test. 
-    - Run a build with ```hugo --environment local```. The ```hugo``` command builds a fresh version of the site to ```/docs```.
-    - Development is served on githubpages.  
-- Branches that pass testing and are ready for primetime can then be merged into main. 
-- After merging branches into main, run a new build on main.
+- Commit often, with descriptive commit messages/notes.
+- To test, stage, or review, merge a working branch into development. 
+    - Open a pull request for team review.
+    - When the work is merged into development, run a build on development with ```hugo --environment local```. The ```hugo``` command builds a fresh version of the site to ```/docs```. Development is served on githubpages.  
+- Branches that pass testing and are ready for primetime can then be merged into main. **Important**: merge the working branch into main. Do not merge development into main.
+- After merging branches into main, run a new build on main following the instructions above.
 
-## Architecture
+---
 
-Generally, Hugo works by combining content (in markdown, located in /content) with templates (located in the /themes) - you'll notice that these two directories have identical structures, because Hugo combines /content/data_stories, for example, with templates in /themes/layouts/data_stories. Templates can include Hugo code (which you can identify by {{ curly brackets }}. When Hugo serves or builds the site, it runs code, inserts content into the HTML, and produces static pages. 
-
-Functionality worth noting for ongoing development:
+## Content management guidelines
 
 ### Navigation
 The nav menu will highlight the content area (e.g., "Data Stories") when the user is on that area's landing page, or on a subpage within that directory. For this to work, each markdown file (especially subpages) needs the following in the front matter:
@@ -187,17 +213,114 @@ Currently, config/local/config.toml has a variable ```devpath = "/ehs-data-porta
 
 To run a local-environment-specific serve or build, enter ```hugo serve --environment local``` or ```hugo build --environment local```. This will merge the contents of /config/local/config.toml with /config/_default/config.toml.
 
-## Testing and checks
-The site runs a CodeQL analysis on merges/builds. 
-
-## Deployment
-The development branch is served on github pages, here: [Environment and Health Data Portal](https://nycehs.github.io/ehs-data-portal-frontend-temp).
-
-## Contact us
-
-You can comment on issues and we'll follow up as soon as we can. 
 
 
-## Communications disclaimer
+---
 
-With regard to GitHub platform communications, staff from the New York City Department of Health & Mental Hygiene are authorized to answer specific questions of a technical nature with regard to this repository. Staff may not disclose private or sensitive data. 
+## Neighborhood Reports
+
+### General
+
+* Project is using NYC's Core Framework which is based on Bootstrap 4. SASS is being processed by Hugo's [Pipes](https://gohugo.io/hugo-pipes/) capabilities.
+* NYC Framework files are organized in the `/assets` folder. 
+* Site unique CSS is in the `/assets/scss/_theme.scss` file
+* Image and other assets used by site are stored in `/static/images/`
+
+### Report Pages
+
+* Report specs (metadata) are stored in the `/data/reports/` folder (one for each neighborhood-report combination).
+* Report data are stored in the `/static/visualizations/csv` folder (one for each report type; and one for each indicator).
+* There is a markdown file for each report in site `content/neighborhood_reports` that references the report spec (metadata) from its front matter (via the `data_json` field).
+* There are two main templates used for reports `themes/dohmh/layouts/neighborhood_reports/single` is the main report template along with the partial that is loaded for each indicator `themes/dohmh/partials/report_indicator`.
+
+### Visualizations
+Visualizations are powered by Vega-Lite with code and basic implementation approach provided by DOHMH team.
+
+* Visualization specifications and functions to generate them are included in `assets/js/site.js`. This is previously `chart.html` and functions to identify the correct indicator CSV and neighborhood name and inject it into the Vega-Lite specification.
+* CSV data for visualizations is stored in the `/static/visualizations/csv/`folder.
+* SVG images for visualizations is stored in the `/static/visualizations/images/`folder.
+* All html, function calls, and dynamic variables are found in the `themes/dohmh/partials/report_indicator` partial.
+* Functions are initiated on modal open following methods detailed in Bootstrap 4.5 docs.
+
+### SEO
+The site has been configured to support both site wide SEO meta defaults as well as per page overrides.
+
+* The `themes/dohmh/layouts/partials/seo.html` file is the template for SEO meta that is pulled into the html head and related partial.
+* Default data are set in two places `/data/globals/seo_defaults.yml` has basic meta settings while `/data/globals/social.yml` has any of your social destinations.
+* In content front matter the following fields can override the site-wide defaults.
+  * `title` entry title will override default title.
+  * `seo_title` will override both page `title` and default title.
+  * `seo_description` will override default description
+  * `seo_image` will override default image. NOTE - you should use a relative path to the image. LOCATION TBD.
+
+  ### Primary Navigation
+
+The menu portion of the Primary navigation is powered by [hugo's menus](https://gohugo.io/content-management/menus/). The main menu is located in the `config.toml` file. 
+
+NOTE: When adding a url for a menu node be sure to include a closing `/`
+
+### Globals
+
+There are some critical content elements that are site wide or used in multiple pages and are stored in `data/globals`. 
+
+* `data/globals/report_content/...` - There should be five of these files. One for each report type. These include the content in the four cards at the bottom of each report page.
+* `data/globals/seo_defaults.yml` - These are the Site default meta values. The SEO image should stored in the `assets/images` folder. Image dimensions should be 2400 × 1260 for a 2x image resolution.
+
+### Homepage
+
+`_index.md` in root of content folder. There are frontmatter params and content. Content can be formatted using markdown.
+
+### Neighborhood Reports
+
+`_index.md` in `neighborhood_reports` of content folder. There are frontmatter params and content. Content can be formatted using markdown.
+
+### Location (Neighborhood page)
+
+Content for this page is dynamically generated from the specific child report pages.
+
+- Report page opengraph image is what is used for the card image on this page.
+
+### Report Pages for neighborhood
+
+These pages have content in their frontmatter to power key features and content in hugo templates. They also dictate data fields that include the report data themselves.
+
+- `seo_image` should target an image with the following syntax `image/file_name_of_image.jpg`. These images should stored in the `assets/images` folder. Image dimensions should be 2400 × 1260 for a 2x image resolution.
+
+---
+## Site Search
+
+### search-results.js
+
+#### Update the path to the generated Lunr search index file:
+line 9 : `request.open('GET', '/ehs-neighborhoodprofiles/js/lunr/PagesIndex.json', true);`
+
+#### Update the homepage path:
+Line 87: `window.location.href = "/ehs-neighborhoodprofiles/"`
+
+### search.js
+
+#### Path to the search results page:
+Line 5:  `window.location.href = "/ehs-neighborhoodprofiles/search_results/index.html?search=${search}";`
+
+### config.toml
+
+#### Update the baseUrl
+Line 1:  `baseURL = "https://blenderbox.github.io/ehs-neighborhoodprofiles/"`
+If the baseURL has a subdirectory like on GitHub Pages you will need to set : `canonifyURLs = "true”` and `relativeURLs = "true"`
+https://nycehs.github.io/ehs-data-portal-frontend-temp/
+
+[Blenderbox repo's github pages](https://blenderbox.github.io/ehs-neighborhoodprofiles/)
+
+The command to build the search index if you want to run it locally is `grunt lunr-index`
+
+For local dev you can remove the `/ehs-neighborhoodprofiles/` from and update the `baseUrl`
+
+---
+## Additional Resources
+
+The following are some reasources you might find helpful for working with hugo.
+
+Regis Philibert - [https://regisphilibert.com/blog/](https://regisphilibert.com/blog/) - Regis is a notable member of the hugo community and has written some great resources that we have found helpful over the years. Some specific articles that we'd recommend reading.
+ * Hugo, the scope, the context and the dot - [https://regisphilibert.com/blog/2018/02/hugo-the-scope-the-context-and-the-dot/](https://regisphilibert.com/blog/2018/02/hugo-the-scope-the-context-and-the-dot/) - This is a must read. The most challenging concept of using Hugo is the concept of scope. When you loop through content/data and then have loops within loops and/or pass data down to partials as is needed on this site keep track of scope of the data variables is important. This article should help a lot.
+ * Hugo Scratch Explained - [https://regisphilibert.com/blog/2017/04/hugo-scratch-explained-variable/](https://regisphilibert.com/blog/2017/04/hugo-scratch-explained-variable/) - Scratch is a way to store data in a variable to be used elsehwere in your page processing. We use this in a few notable ways to help with reports and making data from one scope available to another.
+ * Hugo Pipes - [https://regisphilibert.com/blog/2018/07/hugo-pipes-and-asset-processing-pipeline/](https://regisphilibert.com/blog/2018/07/hugo-pipes-and-asset-processing-pipeline/) - We are using pipes to process and prepare both the SCSS and Javascript on the site.
