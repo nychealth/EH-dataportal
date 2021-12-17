@@ -2,6 +2,8 @@
 
 <article class="container-fluid overflow-hidden" id="primary-content">
 
+  {{ .Content }}
+
   <div class="row">
     <div class="col-md-10 col-sm-12 mx-auto">
       <!--start main column-->
@@ -199,7 +201,7 @@
               <p class="card-text fs-sm">About the Environmental Public Health Tracking Program.
               </p>
               <hr>
-              {{ with .Site.GetPage "about.md" }}
+              {{ with .Site.GetPage "about/about.md" }}
               <a href="{{ .URL }}" class="btn btn-outline-gray btn-sm mt-2" style="float:right">About
                 Us&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
               {{ end }}
