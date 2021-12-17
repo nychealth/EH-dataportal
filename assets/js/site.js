@@ -15,19 +15,19 @@ const summarySpec = {
     "mark": {"type": "bar", "tooltip": true},
     "encoding": {
       "x": {
-        "field": "Neighborhood",
+        "field": "neighborhood",
         "type": "nominal",
-        "sort": {"op": "mean", "field": "Data Value"},
+        "sort": {"op": "mean", "field": "data_value"},
         "axis": null
       },
       "y": {
-        "field": "Data Value",
+        "field": "data_value",
         "type": "quantitative",
         "axis": {"title": null}
       },
       "color": {
         "condition": {
-          "test": "datum.Neighborhood=='Canarsie - Flatlands'",
+          "test": "datum.neighborhood=='Canarsie - Flatlands'",
           "value": "#1CA970"
         },
         "value": "#D8D8D8"
@@ -40,7 +40,7 @@ window.buildSummarySpec = function (neighborhood, dataSlug) {
   // make a copy of the vega-lite spec
   const temp = JSON.parse(JSON.stringify(summarySpec));
   // graft the neighborhood on to the specification for the color-coding
-  temp.encoding.color.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
+  temp.encoding.color.condition.test = "datum.neighborhood=='"+neighborhood+"'";
   // graft the data file path on to the specification for the indicator
   temp.data.url = indicatorDataPath+dataSlug+".csv"; //note the function needs access to the indicatorDataPath global var
   // return the vega-lite spec
@@ -59,17 +59,17 @@ const trendSpec = {
       "mark": {"type": "line", "point": false, "tooltip": true},
       "encoding": {
         "x": {
-          "field": "Time",
+          "field": "time",
           "type": "ordinal",
           "axis": {"title": null, "labelAngle": 45}
         },
         "y": {
-          "field": "Data Value",
+          "field": "data_value",
           "type": "quantitative",
           "axis": {"title": null}
         },
         "detail": {
-          "field": "Neighborhood",
+          "field": "neighborhood",
           "type": "nominal"
         },
         "color": {
@@ -80,22 +80,22 @@ const trendSpec = {
       "mark": {"type": "line", "point": true, "tooltip": true},
       "encoding": {
         "x": {
-          "field": "Time",
+          "field": "time",
           "type": "ordinal",
           "axis": {"title": null, "labelAngle": 45}
         },
         "y": {
-          "field": "Data Value",
+          "field": "data_value",
           "type": "quantitative",
           "axis": {"title": null}
         },
         "detail": {
-          "field": "Neighborhood",
+          "field": "neighborhood",
           "type": "nominal"
         },
         "color": {
           "condition": {
-            "test": "datum.Neighborhood=='Canarsie - Flatlands'",
+            "test": "datum.neighborhood=='Canarsie - Flatlands'",
             "value": "#1CA970"
           },
           "value": null
@@ -111,7 +111,7 @@ window.buildTrendSpec = function(neighborhood,dataSlug) {
   // make a copy of the vega-lite spec
   const temp = JSON.parse(JSON.stringify(trendSpec));
   // graft the neighborhood on to the specification for the color-coding
-  temp.layer[1].encoding.color.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
+  temp.layer[1].encoding.color.condition.test = "datum.neighborhood=='"+neighborhood+"'";
   // graft the data file path on to the specification for the indicator
   temp.data.url = indicatorDataPath+dataSlug+"_trend.csv"; //note the function needs access to the indicatorDataPath global var
   // return the vega-lite spec
@@ -135,7 +135,7 @@ const mapSpec = {
         "from": {
           "data": {"url": "visualizations/csv/bikeLanP.csv"},
           "key": "geo_join_id",
-          "fields": ["Data Value", "Neighborhood", "message"]
+          "fields": ["data_value", "neighborhood", "message"]
         }
       }
     ],
@@ -144,15 +144,15 @@ const mapSpec = {
         "mark": {"type": "geoshape", "tooltip": true},
         "encoding": {
           "color": {
-            "field": "Data Value", "type": "quantitative",
+            "field": "data_value", "type": "quantitative",
             "scale": {"scheme": "greens"},
             "legend": {"orient": "top-left", "title": null}
           },
           "stroke": {"value": "white"},
           "strokeWidth": {"value": 1},
           "tooltip": [
-            {"field": "Neighborhood", "type": "nominal"},
-            {"field": "Data Value", "type": "quantitative"}
+            {"field": "neighborhood", "type": "nominal"},
+            {"field": "data_value", "type": "quantitative"}
           ]
         }
       },
@@ -177,7 +177,7 @@ window.buildMapSpec = function (neighborhood,dataSlug) {
   // make a copy of the vega-lite spec
   const temp = JSON.parse(JSON.stringify(mapSpec));
   // graft the neighborhood on to the specification for the color-coding
-  temp.layer[1].encoding.stroke.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
+  temp.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='"+neighborhood+"'";
   // graft the data file path on to the specification for the indicator
   temp.transform[0].from.data.url = indicatorDataPath+dataSlug+".csv"; //note the function needs access to the indicatorDataPath global var
   // graft the data file path on to the specification for the indicator
