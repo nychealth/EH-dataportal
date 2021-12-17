@@ -6,9 +6,7 @@ const { pathToFileURL } = require('url');
 
 
 var CONTENT_PATH_PREFIX = "./content";
-var HTML_PATH_PREFIX = "./docs";
-// subdirectory variable below has been added to assist in updating hrefs for results; change in one place
-var SUBDIRECTORY = "/ehs-data-portal-frontend-temp";
+var HTML_PATH_PREFIX = "./public";
 
 module.exports = function(grunt) {
 
@@ -74,7 +72,6 @@ module.exports = function(grunt) {
             var pageName = S(filename).chompRight(".html").s;
             var href = S(abspath)
                 .chompLeft(CONTENT_PATH_PREFIX).s;
-                href = SUBDIRECTORY+href;
             return {
                 title: pageName,
                 href: href,
@@ -87,9 +84,9 @@ module.exports = function(grunt) {
             var pageIndex;
             // First separate the Front Matter from the content and parse it
             content = content.split("---");
-            // Changing 'public' to 'docs' 
-            if (abspath.includes('docs')) {
-                console.log('docs-public path: ', abspath)
+
+            if (abspath.includes('public')) {
+                console.log('public path: ', abspath)
             } else {
                 console.log('content path: ', abspath)
             }
@@ -103,10 +100,9 @@ module.exports = function(grunt) {
 
             var href = S(abspath).chompLeft(CONTENT_PATH_PREFIX).chompRight(".md").s;
             // href for index.md files stops at the folder name
-
+            if (filename === "_index.md") {
                 href = S(abspath).chompLeft(CONTENT_PATH_PREFIX).chompRight(filename).s;
-                href = SUBDIRECTORY+href;
-
+            }
 
             console.log('frontmatter: ', frontMatter);
             // Build Lunr index for this page

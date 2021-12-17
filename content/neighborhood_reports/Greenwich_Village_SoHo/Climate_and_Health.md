@@ -8,4 +8,7 @@ type: location
 seo_title: "Climate and Health in Greenwich Village - SoHo"
 seo_description: "Climate and Health data profile for the Greenwich Village - SoHo neighborhood of NYC."
 seo_image: "images/nyc_health_report_climate_health.jpg"
+menu:
+    main:
+        identifier: '04'
 ---
