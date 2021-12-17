@@ -8,4 +8,7 @@ type: location
 seo_title: "Housing and Health  in Bedford Stuyvesant - Crown Heights"
 seo_description: "Housing and Health  data profile for the Bedford Stuyvesant - Crown Heights neighborhood of NYC."
 seo_image: "images/nyc_health_report_housing_and_health.jpg"
+menu:
+    main:
+        identifier: '04'
 ---

@@ -8,4 +8,7 @@ type: location
 seo_title: "Climate and Health in Upper West Side"
 seo_description: "Climate and Health data profile for the Upper West Side neighborhood of NYC."
 seo_image: "images/nyc_health_report_climate_health.jpg"
+menu:
+    main:
+        identifier: '04'
 ---
