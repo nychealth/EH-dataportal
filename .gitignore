@@ -7,3 +7,5 @@ resources
 # don't track mac file 
 .DS_Store
 
+# don't track hugo lock file
+.hugo_build.lock
