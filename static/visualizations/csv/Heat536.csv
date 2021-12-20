@@ -1,0 +1,421 @@
+geo_join_id,neighborhood,data_value,message
+101,Kingsbridge - Riverdale,11.1,Estimate is based on small numbers so should be interpreted with caution.
+101,Kingsbridge - Riverdale,10.1,Estimate is based on small numbers so should be interpreted with caution.
+101,Kingsbridge - Riverdale,3.3,Estimate is based on small numbers so should be interpreted with caution.
+101,Kingsbridge - Riverdale,6.7,Estimate is based on small numbers so should be interpreted with caution.
+101,Kingsbridge - Riverdale,5.6,Estimate is based on small numbers so should be interpreted with caution.
+101,Kingsbridge - Riverdale,2.2,Estimate is based on small numbers so should be interpreted with caution.
+101,Kingsbridge - Riverdale,8.8,Estimate is based on small numbers so should be interpreted with caution.
+101,Kingsbridge - Riverdale,2.2,Estimate is based on small numbers so should be interpreted with caution.
+101,Kingsbridge - Riverdale,4.3,Estimate is based on small numbers so should be interpreted with caution.
+101,Kingsbridge - Riverdale,4.3,Estimate is based on small numbers so should be interpreted with caution.
+102,Northeast Bronx,9.6,
+102,Northeast Bronx,13.9,
+102,Northeast Bronx,2.9,Estimate is based on small numbers so should be interpreted with caution.
+102,Northeast Bronx,9.1,
+102,Northeast Bronx,11.7,
+102,Northeast Bronx,4.2,Estimate is based on small numbers so should be interpreted with caution.
+102,Northeast Bronx,7.9,
+102,Northeast Bronx,11,
+102,Northeast Bronx,4.7,Estimate is based on small numbers so should be interpreted with caution.
+102,Northeast Bronx,9.8,
+103,Fordham - Bronx Pk,15.3,
+103,Fordham - Bronx Pk,8.8,
+103,Fordham - Bronx Pk,8.1,
+103,Fordham - Bronx Pk,6.3,
+103,Fordham - Bronx Pk,3.8,Estimate is based on small numbers so should be interpreted with caution.
+103,Fordham - Bronx Pk,11.2,
+103,Fordham - Bronx Pk,7.2,
+103,Fordham - Bronx Pk,4.8,
+103,Fordham - Bronx Pk,8.7,
+103,Fordham - Bronx Pk,7.8,
+104,Pelham - Throgs Neck,1.7,Estimate is based on small numbers so should be interpreted with caution.
+104,Pelham - Throgs Neck,8.9,
+104,Pelham - Throgs Neck,18.6,
+104,Pelham - Throgs Neck,6.5,
+104,Pelham - Throgs Neck,3.9,
+104,Pelham - Throgs Neck,11.2,
+104,Pelham - Throgs Neck,7,
+104,Pelham - Throgs Neck,11.7,
+104,Pelham - Throgs Neck,4.3,
+104,Pelham - Throgs Neck,8.9,
+105,Crotona -Tremont,19.3,
+105,Crotona -Tremont,5.5,
+105,Crotona -Tremont,9.3,
+105,Crotona -Tremont,10.7,
+105,Crotona -Tremont,5.4,Estimate is based on small numbers so should be interpreted with caution.
+105,Crotona -Tremont,11.1,
+105,Crotona -Tremont,13.7,
+105,Crotona -Tremont,7.4,
+105,Crotona -Tremont,9.9,
+105,Crotona -Tremont,9.5,
+106,High Bridge - Morrisania,13.1,
+106,High Bridge - Morrisania,18.1,
+106,High Bridge - Morrisania,3.2,Estimate is based on small numbers so should be interpreted with caution.
+106,High Bridge - Morrisania,15.8,
+106,High Bridge - Morrisania,11.1,
+106,High Bridge - Morrisania,3.3,Estimate is based on small numbers so should be interpreted with caution.
+106,High Bridge - Morrisania,4,Estimate is based on small numbers so should be interpreted with caution.
+106,High Bridge - Morrisania,2.4,Estimate is based on small numbers so should be interpreted with caution.
+106,High Bridge - Morrisania,8.6,
+106,High Bridge - Morrisania,8.4,
+107,Hunts Point - Mott Haven,15.5,
+107,Hunts Point - Mott Haven,9.9,
+107,Hunts Point - Mott Haven,11.3,
+107,Hunts Point - Mott Haven,6.4,Estimate is based on small numbers so should be interpreted with caution.
+107,Hunts Point - Mott Haven,20.8,
+107,Hunts Point - Mott Haven,5.6,Estimate is based on small numbers so should be interpreted with caution.
+107,Hunts Point - Mott Haven,3.7,Estimate is based on small numbers so should be interpreted with caution.
+107,Hunts Point - Mott Haven,11.7,
+107,Hunts Point - Mott Haven,10.9,
+107,Hunts Point - Mott Haven,7.9,Estimate is based on small numbers so should be interpreted with caution.
+201,Greenpoint,2.2,Estimate is based on small numbers so should be interpreted with caution.
+201,Greenpoint,9,Estimate is based on small numbers so should be interpreted with caution.
+201,Greenpoint,4.9,Estimate is based on small numbers so should be interpreted with caution.
+201,Greenpoint,7.2,Estimate is based on small numbers so should be interpreted with caution.
+201,Greenpoint,2.4,Estimate is based on small numbers so should be interpreted with caution.
+201,Greenpoint,8.7,Estimate is based on small numbers so should be interpreted with caution.
+201,Greenpoint,6.3,Estimate is based on small numbers so should be interpreted with caution.
+201,Greenpoint,0.8,Estimate is based on small numbers so should be interpreted with caution.
+201,Greenpoint,6.3,Estimate is based on small numbers so should be interpreted with caution.
+201,Greenpoint,11.6,
+202,Downtown - Heights - Slope,23.2,
+202,Downtown - Heights - Slope,9.4,
+202,Downtown - Heights - Slope,4.4,Estimate is based on small numbers so should be interpreted with caution.
+202,Downtown - Heights - Slope,6.5,
+202,Downtown - Heights - Slope,11.6,
+202,Downtown - Heights - Slope,11.9,
+202,Downtown - Heights - Slope,8.5,
+202,Downtown - Heights - Slope,25.9,
+202,Downtown - Heights - Slope,10.1,
+202,Downtown - Heights - Slope,15.1,
+203,Bedford Stuyvesant - Crown Heights,11.4,
+203,Bedford Stuyvesant - Crown Heights,18.7,
+203,Bedford Stuyvesant - Crown Heights,7.7,
+203,Bedford Stuyvesant - Crown Heights,9.9,
+203,Bedford Stuyvesant - Crown Heights,15.6,
+203,Bedford Stuyvesant - Crown Heights,6.3,
+203,Bedford Stuyvesant - Crown Heights,9.4,
+203,Bedford Stuyvesant - Crown Heights,16.5,
+203,Bedford Stuyvesant - Crown Heights,8.1,
+203,Bedford Stuyvesant - Crown Heights,16.6,
+204,East New York,11.1,
+204,East New York,10,
+204,East New York,16.9,
+204,East New York,11.7,
+204,East New York,8.2,
+204,East New York,16.9,
+204,East New York,6.8,
+204,East New York,7,
+204,East New York,11.7,
+204,East New York,13.8,
+205,Sunset Park,4.9,Estimate is based on small numbers so should be interpreted with caution.
+205,Sunset Park,4,Estimate is based on small numbers so should be interpreted with caution.
+205,Sunset Park,6.9,Estimate is based on small numbers so should be interpreted with caution.
+205,Sunset Park,1.5,Estimate is based on small numbers so should be interpreted with caution.
+205,Sunset Park,6.5,Estimate is based on small numbers so should be interpreted with caution.
+205,Sunset Park,6.5,Estimate is based on small numbers so should be interpreted with caution.
+205,Sunset Park,2.3,Estimate is based on small numbers so should be interpreted with caution.
+205,Sunset Park,8.9,
+205,Sunset Park,7.7,Estimate is based on small numbers so should be interpreted with caution.
+205,Sunset Park,4.6,Estimate is based on small numbers so should be interpreted with caution.
+206,Borough Park,4.3,
+206,Borough Park,5,
+206,Borough Park,1.7,Estimate is based on small numbers so should be interpreted with caution.
+206,Borough Park,2.1,Estimate is based on small numbers so should be interpreted with caution.
+206,Borough Park,3.9,
+206,Borough Park,2.1,Estimate is based on small numbers so should be interpreted with caution.
+206,Borough Park,4.9,
+206,Borough Park,7.7,
+206,Borough Park,4.6,
+206,Borough Park,5.9,
+207,East Flatbush - Flatbush,10.6,
+207,East Flatbush - Flatbush,6.4,
+207,East Flatbush - Flatbush,2.3,Estimate is based on small numbers so should be interpreted with caution.
+207,East Flatbush - Flatbush,12,
+207,East Flatbush - Flatbush,7.7,
+207,East Flatbush - Flatbush,7.7,
+207,East Flatbush - Flatbush,3.3,Estimate is based on small numbers so should be interpreted with caution.
+207,East Flatbush - Flatbush,1.3,Estimate is based on small numbers so should be interpreted with caution.
+207,East Flatbush - Flatbush,8.4,
+207,East Flatbush - Flatbush,11.6,
+208,Canarsie - Flatlands,11.4,
+208,Canarsie - Flatlands,5.2,Estimate is based on small numbers so should be interpreted with caution.
+208,Canarsie - Flatlands,8.2,
+208,Canarsie - Flatlands,10.2,
+208,Canarsie - Flatlands,15.7,
+208,Canarsie - Flatlands,13.1,
+208,Canarsie - Flatlands,7.7,
+208,Canarsie - Flatlands,7.1,
+208,Canarsie - Flatlands,4.6,Estimate is based on small numbers so should be interpreted with caution.
+208,Canarsie - Flatlands,10.1,
+208,Bensonhurst - Bay Ridge,8,
+208,Bensonhurst - Bay Ridge,4.6,Estimate is based on small numbers so should be interpreted with caution.
+208,Bensonhurst - Bay Ridge,2,Estimate is based on small numbers so should be interpreted with caution.
+208,Bensonhurst - Bay Ridge,4.8,Estimate is based on small numbers so should be interpreted with caution.
+208,Bensonhurst - Bay Ridge,5.5,Estimate is based on small numbers so should be interpreted with caution.
+208,Bensonhurst - Bay Ridge,5.5,Estimate is based on small numbers so should be interpreted with caution.
+208,Bensonhurst - Bay Ridge,0.9,Estimate is based on small numbers so should be interpreted with caution.
+208,Bensonhurst - Bay Ridge,1.9,Estimate is based on small numbers so should be interpreted with caution.
+208,Bensonhurst - Bay Ridge,6,
+208,Bensonhurst - Bay Ridge,5.4,
+210,Coney Island - Sheepshead Bay,6.9,
+210,Coney Island - Sheepshead Bay,11.1,
+210,Coney Island - Sheepshead Bay,8.7,
+210,Coney Island - Sheepshead Bay,5.1,
+210,Coney Island - Sheepshead Bay,3,Estimate is based on small numbers so should be interpreted with caution.
+210,Coney Island - Sheepshead Bay,9.3,
+210,Coney Island - Sheepshead Bay,4.1,
+210,Coney Island - Sheepshead Bay,2.4,Estimate is based on small numbers so should be interpreted with caution.
+210,Coney Island - Sheepshead Bay,5.5,
+210,Coney Island - Sheepshead Bay,8,
+211,Williamsburg - Bushwick,22,
+211,Williamsburg - Bushwick,15,
+211,Williamsburg - Bushwick,15.5,
+211,Williamsburg - Bushwick,15.5,
+211,Williamsburg - Bushwick,7.2,
+211,Williamsburg - Bushwick,18,
+211,Williamsburg - Bushwick,15.2,
+211,Williamsburg - Bushwick,8.9,
+211,Williamsburg - Bushwick,12.7,
+211,Williamsburg - Bushwick,6.2,
+301,Washington Heights,6.1,
+301,Washington Heights,5.9,
+301,Washington Heights,12.4,
+301,Washington Heights,8.7,
+301,Washington Heights,9.2,
+301,Washington Heights,4.4,Estimate is based on small numbers so should be interpreted with caution.
+301,Washington Heights,2.8,Estimate is based on small numbers so should be interpreted with caution.
+301,Washington Heights,11.8,
+301,Washington Heights,6.6,
+301,Washington Heights,7.5,
+302,Central Harlem - Morningside Heights,3.1,Estimate is based on small numbers so should be interpreted with caution.
+302,Central Harlem - Morningside Heights,14.1,
+302,Central Harlem - Morningside Heights,10.1,
+302,Central Harlem - Morningside Heights,21.4,
+302,Central Harlem - Morningside Heights,8.7,
+302,Central Harlem - Morningside Heights,4.4,Estimate is based on small numbers so should be interpreted with caution.
+302,Central Harlem - Morningside Heights,8.1,
+302,Central Harlem - Morningside Heights,7.9,
+302,Central Harlem - Morningside Heights,8.5,
+302,Central Harlem - Morningside Heights,17.6,
+303,East Harlem,11.8,
+303,East Harlem,14.6,
+303,East Harlem,11.6,
+303,East Harlem,14.5,
+303,East Harlem,13.3,
+303,East Harlem,13.3,
+303,East Harlem,3.5,Estimate is based on small numbers so should be interpreted with caution.
+303,East Harlem,16.4,
+303,East Harlem,20.1,
+303,East Harlem,24.5,
+304,Upper West Side,7.2,
+304,Upper West Side,4.5,Estimate is based on small numbers so should be interpreted with caution.
+304,Upper West Side,2.7,Estimate is based on small numbers so should be interpreted with caution.
+304,Upper West Side,3.6,Estimate is based on small numbers so should be interpreted with caution.
+304,Upper West Side,3.6,Estimate is based on small numbers so should be interpreted with caution.
+304,Upper West Side,1.8,Estimate is based on small numbers so should be interpreted with caution.
+304,Upper West Side,5,Estimate is based on small numbers so should be interpreted with caution.
+304,Upper West Side,2.7,Estimate is based on small numbers so should be interpreted with caution.
+304,Upper West Side,3.6,Estimate is based on small numbers so should be interpreted with caution.
+304,Upper West Side,7.1,
+305,Upper East Side,4.1,Estimate is based on small numbers so should be interpreted with caution.
+305,Upper East Side,3.2,Estimate is based on small numbers so should be interpreted with caution.
+305,Upper East Side,2.3,Estimate is based on small numbers so should be interpreted with caution.
+305,Upper East Side,3.5,Estimate is based on small numbers so should be interpreted with caution.
+305,Upper East Side,5.3,
+305,Upper East Side,1.4,Estimate is based on small numbers so should be interpreted with caution.
+305,Upper East Side,1.8,Estimate is based on small numbers so should be interpreted with caution.
+305,Upper East Side,0.5,Estimate is based on small numbers so should be interpreted with caution.
+305,Upper East Side,4.1,Estimate is based on small numbers so should be interpreted with caution.
+305,Upper East Side,3.6,Estimate is based on small numbers so should be interpreted with caution.
+306,Chelsea - Clinton,7.9,Estimate is based on small numbers so should be interpreted with caution.
+306,Chelsea - Clinton,1.4,Estimate is based on small numbers so should be interpreted with caution.
+306,Chelsea - Clinton,6.7,Estimate is based on small numbers so should be interpreted with caution.
+306,Chelsea - Clinton,6.4,Estimate is based on small numbers so should be interpreted with caution.
+306,Chelsea - Clinton,1.4,Estimate is based on small numbers so should be interpreted with caution.
+306,Chelsea - Clinton,5.8,Estimate is based on small numbers so should be interpreted with caution.
+306,Chelsea - Clinton,5.5,Estimate is based on small numbers so should be interpreted with caution.
+306,Chelsea - Clinton,6.1,Estimate is based on small numbers so should be interpreted with caution.
+306,Chelsea - Clinton,4.1,Estimate is based on small numbers so should be interpreted with caution.
+306,Chelsea - Clinton,3.2,Estimate is based on small numbers so should be interpreted with caution.
+307,Gramercy Park - Murray Hill,5.3,Estimate is based on small numbers so should be interpreted with caution.
+307,Gramercy Park - Murray Hill,3.7,Estimate is based on small numbers so should be interpreted with caution.
+307,Gramercy Park - Murray Hill,5.2,Estimate is based on small numbers so should be interpreted with caution.
+307,Gramercy Park - Murray Hill,2.9,Estimate is based on small numbers so should be interpreted with caution.
+307,Gramercy Park - Murray Hill,3.1,Estimate is based on small numbers so should be interpreted with caution.
+307,Gramercy Park - Murray Hill,0.8,Estimate is based on small numbers so should be interpreted with caution.
+307,Gramercy Park - Murray Hill,3.1,Estimate is based on small numbers so should be interpreted with caution.
+307,Gramercy Park - Murray Hill,7.4,Estimate is based on small numbers so should be interpreted with caution.
+307,Gramercy Park - Murray Hill,4.4,Estimate is based on small numbers so should be interpreted with caution.
+307,Gramercy Park - Murray Hill,2.9,Estimate is based on small numbers so should be interpreted with caution.
+308,Greenwich Village - SoHo,3.6,Estimate is based on small numbers so should be interpreted with caution.
+308,Greenwich Village - SoHo,0,Estimate is based on small numbers so should be interpreted with caution.
+308,Greenwich Village - SoHo,0,Estimate is based on small numbers so should be interpreted with caution.
+308,Greenwich Village - SoHo,4.7,Estimate is based on small numbers so should be interpreted with caution.
+308,Greenwich Village - SoHo,3.5,Estimate is based on small numbers so should be interpreted with caution.
+308,Greenwich Village - SoHo,3.6,Estimate is based on small numbers so should be interpreted with caution.
+308,Greenwich Village - SoHo,3.6,Estimate is based on small numbers so should be interpreted with caution.
+308,Greenwich Village - SoHo,4.7,Estimate is based on small numbers so should be interpreted with caution.
+308,Greenwich Village - SoHo,7.2,Estimate is based on small numbers so should be interpreted with caution.
+308,Greenwich Village - SoHo,4.8,Estimate is based on small numbers so should be interpreted with caution.
+309,Union Square - Lower East Side,8.5,
+309,Union Square - Lower East Side,2.5,Estimate is based on small numbers so should be interpreted with caution.
+309,Union Square - Lower East Side,1,Estimate is based on small numbers so should be interpreted with caution.
+309,Union Square - Lower East Side,6.9,
+309,Union Square - Lower East Side,7,
+309,Union Square - Lower East Side,12.1,
+309,Union Square - Lower East Side,1,Estimate is based on small numbers so should be interpreted with caution.
+309,Union Square - Lower East Side,5,Estimate is based on small numbers so should be interpreted with caution.
+309,Union Square - Lower East Side,7,
+309,Union Square - Lower East Side,2.5,Estimate is based on small numbers so should be interpreted with caution.
+310,Lower Manhattan,4.4,Estimate is based on small numbers so should be interpreted with caution.
+310,Lower Manhattan,8,Estimate is based on small numbers so should be interpreted with caution.
+310,Lower Manhattan,5.6,Estimate is based on small numbers so should be interpreted with caution.
+310,Lower Manhattan,9.2,Estimate is based on small numbers so should be interpreted with caution.
+310,Lower Manhattan,0,Estimate is based on small numbers so should be interpreted with caution.
+310,Lower Manhattan,3.6,Estimate is based on small numbers so should be interpreted with caution.
+310,Lower Manhattan,7,Estimate is based on small numbers so should be interpreted with caution.
+310,Lower Manhattan,3.4,Estimate is based on small numbers so should be interpreted with caution.
+310,Lower Manhattan,4.2,Estimate is based on small numbers so should be interpreted with caution.
+310,Lower Manhattan,1.9,Estimate is based on small numbers so should be interpreted with caution.
+401,Long Island City - Astoria,5.7,
+401,Long Island City - Astoria,13.1,
+401,Long Island City - Astoria,8,
+401,Long Island City - Astoria,8.8,
+401,Long Island City - Astoria,7.1,
+401,Long Island City - Astoria,6.9,
+401,Long Island City - Astoria,18.1,
+401,Long Island City - Astoria,2.8,Estimate is based on small numbers so should be interpreted with caution.
+401,Long Island City - Astoria,7.1,
+401,Long Island City - Astoria,4.2,Estimate is based on small numbers so should be interpreted with caution.
+402,West Queens,2.3,Estimate is based on small numbers so should be interpreted with caution.
+402,West Queens,1.2,Estimate is based on small numbers so should be interpreted with caution.
+402,West Queens,8.3,
+402,West Queens,6.8,
+402,West Queens,5.3,
+402,West Queens,5.7,
+402,West Queens,7.9,
+402,West Queens,5,
+402,West Queens,6.5,
+402,West Queens,4.2,
+403,Flushing - Clearview,5.2,
+403,Flushing - Clearview,3.2,Estimate is based on small numbers so should be interpreted with caution.
+403,Flushing - Clearview,1.2,Estimate is based on small numbers so should be interpreted with caution.
+403,Flushing - Clearview,6.4,
+403,Flushing - Clearview,2.7,Estimate is based on small numbers so should be interpreted with caution.
+403,Flushing - Clearview,2.7,Estimate is based on small numbers so should be interpreted with caution.
+403,Flushing - Clearview,4.3,Estimate is based on small numbers so should be interpreted with caution.
+403,Flushing - Clearview,6.3,
+403,Flushing - Clearview,3.1,Estimate is based on small numbers so should be interpreted with caution.
+403,Flushing - Clearview,6.2,
+404,Bayside - Little Neck,10.2,Estimate is based on small numbers so should be interpreted with caution.
+404,Bayside - Little Neck,1.1,Estimate is based on small numbers so should be interpreted with caution.
+404,Bayside - Little Neck,8.1,Estimate is based on small numbers so should be interpreted with caution.
+404,Bayside - Little Neck,8.2,Estimate is based on small numbers so should be interpreted with caution.
+404,Bayside - Little Neck,3.5,Estimate is based on small numbers so should be interpreted with caution.
+404,Bayside - Little Neck,4.5,Estimate is based on small numbers so should be interpreted with caution.
+404,Bayside - Little Neck,0,Estimate is based on small numbers so should be interpreted with caution.
+404,Bayside - Little Neck,1.2,Estimate is based on small numbers so should be interpreted with caution.
+404,Bayside - Little Neck,3.4,Estimate is based on small numbers so should be interpreted with caution.
+404,Bayside - Little Neck,3.3,Estimate is based on small numbers so should be interpreted with caution.
+405,Ridgewood - Forest Hills,8.8,
+405,Ridgewood - Forest Hills,9.1,
+405,Ridgewood - Forest Hills,1.7,Estimate is based on small numbers so should be interpreted with caution.
+405,Ridgewood - Forest Hills,7.7,
+405,Ridgewood - Forest Hills,1.9,Estimate is based on small numbers so should be interpreted with caution.
+405,Ridgewood - Forest Hills,5.8,
+405,Ridgewood - Forest Hills,4.9,
+405,Ridgewood - Forest Hills,6.9,
+405,Ridgewood - Forest Hills,2,Estimate is based on small numbers so should be interpreted with caution.
+405,Ridgewood - Forest Hills,7.3,
+406,Fresh Meadows,5.3,Estimate is based on small numbers so should be interpreted with caution.
+406,Fresh Meadows,1,Estimate is based on small numbers so should be interpreted with caution.
+406,Fresh Meadows,4.1,Estimate is based on small numbers so should be interpreted with caution.
+406,Fresh Meadows,7.5,Estimate is based on small numbers so should be interpreted with caution.
+406,Fresh Meadows,4.3,Estimate is based on small numbers so should be interpreted with caution.
+406,Fresh Meadows,2.1,Estimate is based on small numbers so should be interpreted with caution.
+406,Fresh Meadows,2.1,Estimate is based on small numbers so should be interpreted with caution.
+406,Fresh Meadows,4.1,Estimate is based on small numbers so should be interpreted with caution.
+406,Fresh Meadows,4.1,Estimate is based on small numbers so should be interpreted with caution.
+406,Fresh Meadows,3,Estimate is based on small numbers so should be interpreted with caution.
+407,Southwest Queens,7.9,
+407,Southwest Queens,3.1,Estimate is based on small numbers so should be interpreted with caution.
+407,Southwest Queens,7,
+407,Southwest Queens,3.4,Estimate is based on small numbers so should be interpreted with caution.
+407,Southwest Queens,4.2,Estimate is based on small numbers so should be interpreted with caution.
+407,Southwest Queens,1.9,Estimate is based on small numbers so should be interpreted with caution.
+407,Southwest Queens,13.5,
+407,Southwest Queens,6.5,
+407,Southwest Queens,10.8,
+407,Southwest Queens,6.3,
+408,Jamaica,6.7,
+408,Jamaica,2.1,Estimate is based on small numbers so should be interpreted with caution.
+408,Jamaica,7.8,
+408,Jamaica,13.9,
+408,Jamaica,8.6,
+408,Jamaica,8.2,
+408,Jamaica,5.3,
+408,Jamaica,10,
+408,Jamaica,6.4,
+408,Jamaica,3.1,Estimate is based on small numbers so should be interpreted with caution.
+409,Southeast Queens,4.1,Estimate is based on small numbers so should be interpreted with caution.
+409,Southeast Queens,5.6,Estimate is based on small numbers so should be interpreted with caution.
+409,Southeast Queens,8.5,
+409,Southeast Queens,6.1,
+409,Southeast Queens,3.5,Estimate is based on small numbers so should be interpreted with caution.
+409,Southeast Queens,0.9,Estimate is based on small numbers so should be interpreted with caution.
+409,Southeast Queens,3.6,Estimate is based on small numbers so should be interpreted with caution.
+409,Southeast Queens,6.7,
+409,Southeast Queens,2.1,Estimate is based on small numbers so should be interpreted with caution.
+409,Southeast Queens,5.6,Estimate is based on small numbers so should be interpreted with caution.
+410,Rockaways,2.8,Estimate is based on small numbers so should be interpreted with caution.
+410,Rockaways,0.9,Estimate is based on small numbers so should be interpreted with caution.
+410,Rockaways,8.7,Estimate is based on small numbers so should be interpreted with caution.
+410,Rockaways,3.2,Estimate is based on small numbers so should be interpreted with caution.
+410,Rockaways,6.3,Estimate is based on small numbers so should be interpreted with caution.
+410,Rockaways,3.5,Estimate is based on small numbers so should be interpreted with caution.
+410,Rockaways,13,
+410,Rockaways,7.3,Estimate is based on small numbers so should be interpreted with caution.
+410,Rockaways,4.3,Estimate is based on small numbers so should be interpreted with caution.
+410,Rockaways,12.1,
+501,Port Richmond,21.1,
+501,Port Richmond,8.9,Estimate is based on small numbers so should be interpreted with caution.
+501,Port Richmond,8.7,Estimate is based on small numbers so should be interpreted with caution.
+501,Port Richmond,9.9,Estimate is based on small numbers so should be interpreted with caution.
+501,Port Richmond,23.7,
+501,Port Richmond,20.9,
+501,Port Richmond,4.3,Estimate is based on small numbers so should be interpreted with caution.
+501,Port Richmond,18.4,
+501,Port Richmond,15.5,Estimate is based on small numbers so should be interpreted with caution.
+501,Port Richmond,11.9,Estimate is based on small numbers so should be interpreted with caution.
+502,Stapleton - St. George,12.3,
+502,Stapleton - St. George,17.7,
+502,Stapleton - St. George,16.7,
+502,Stapleton - St. George,9.1,Estimate is based on small numbers so should be interpreted with caution.
+502,Stapleton - St. George,0.8,Estimate is based on small numbers so should be interpreted with caution.
+502,Stapleton - St. George,20.7,
+502,Stapleton - St. George,10.8,
+502,Stapleton - St. George,15.2,
+502,Stapleton - St. George,14.5,
+502,Stapleton - St. George,4.9,Estimate is based on small numbers so should be interpreted with caution.
+503,Willowbrook,12.9,Estimate is based on small numbers so should be interpreted with caution.
+503,Willowbrook,12.9,Estimate is based on small numbers so should be interpreted with caution.
+503,Willowbrook,5.8,Estimate is based on small numbers so should be interpreted with caution.
+503,Willowbrook,5.9,Estimate is based on small numbers so should be interpreted with caution.
+503,Willowbrook,9.3,Estimate is based on small numbers so should be interpreted with caution.
+503,Willowbrook,3.4,Estimate is based on small numbers so should be interpreted with caution.
+503,Willowbrook,7,Estimate is based on small numbers so should be interpreted with caution.
+503,Willowbrook,12.9,Estimate is based on small numbers so should be interpreted with caution.
+503,Willowbrook,7,Estimate is based on small numbers so should be interpreted with caution.
+503,Willowbrook,5.8,Estimate is based on small numbers so should be interpreted with caution.
+504,South Beach - Tottenville,12.1,
+504,South Beach - Tottenville,14.8,
+504,South Beach - Tottenville,9,
+504,South Beach - Tottenville,9.7,
+504,South Beach - Tottenville,8,
+504,South Beach - Tottenville,11.6,
+504,South Beach - Tottenville,5.8,Estimate is based on small numbers so should be interpreted with caution.
+504,South Beach - Tottenville,7,
+504,South Beach - Tottenville,7,
+504,South Beach - Tottenville,5.1,Estimate is based on small numbers so should be interpreted with caution.
