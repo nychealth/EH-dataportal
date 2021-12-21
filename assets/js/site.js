@@ -31,7 +31,11 @@ const summarySpec = {
           "value": "#1CA970"
         },
         "value": "#D8D8D8"
-      }
+      },
+      "tooltip": [
+        {"field": "neighborhood", "type": "nominal","title": "Neighborhood"},
+        {"field": "data_value", "type": "quantitative","title": "Value"}
+      ]
     }
   }
  // this is the template vega-lite json
@@ -151,8 +155,8 @@ const mapSpec = {
           "stroke": {"value": "white"},
           "strokeWidth": {"value": 1},
           "tooltip": [
-            {"field": "neighborhood", "type": "nominal"},
-            {"field": "data_value", "type": "quantitative"}
+            {"field": "neighborhood", "type": "nominal","title": "Neighborhood"},
+            {"field": "data_value", "type": "quantitative","title": "Value"}
           ]
         }
       },
