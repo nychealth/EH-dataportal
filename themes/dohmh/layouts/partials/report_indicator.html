@@ -27,7 +27,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>{{ .location }}</strong>, the {{ lower .ind.indicator_name }} is {{ if eq (string .ind.data_value_rank) "1" }}<span class="worse">Worse</span>{{ else if eq (string .ind.data_value_rank) "2" }}<span class="middle">Middle</span>{{ else }}<span class="better">Better</span>{{ end }} than the NYC average.</p>
+        <p>In <strong>{{ .location }}</strong>, the {{ lower .ind.indicator_name }} is {{ if eq (string .ind.data_value_rank) "1" }}<span class="worse">Worse</span>{{ else if eq (string .ind.data_value_rank) "2" }}<span class="middle">Middle</span>{{ else }}<span class="better">Better</span>{{ end }} compared to the NYC average.</p>
         {{ .ind.indicator_description | safeHTML }}
       </div>
         <hr>
@@ -51,6 +51,7 @@
       <div class="modal-body">
 
         <h3>Trend</h3>
+        <p><em>{{ .ind.measurement_type}} {{ .ind.units}}</em></p>
         <div style="width:100%; height:40vmin; z-index:10000;" id="trend-{{.ind.indicator_data_name}}-{{ .count }}"></div> 
       
       </div>
@@ -58,6 +59,7 @@
       <div class="modal-body">
 
         <h3>Map</h3>
+        <p><em>{{ .ind.measurement_type}} {{ .ind.units}}</em></p>
         <div style="width:100%; height:60vmin; z-index:10000;" id="map-{{.ind.indicator_data_name}}-{{ .count }}"></div>
 
       </div>
