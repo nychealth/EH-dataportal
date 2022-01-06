@@ -78,7 +78,11 @@ const trendSpec = {
         },
         "color": {
           "value": "lightgrey"
-        }
+        },
+        "tooltip": [
+          {"field": "neighborhood", "title": "Neighborhood"},
+          {"field": "data_value", "title": "Value"}
+        ]
       }
     }, {
       "mark": {"type": "line", "point": true, "tooltip": true},
@@ -103,7 +107,11 @@ const trendSpec = {
             "value": "#1CA970"
           },
           "value": null
-        }
+        },
+        "tooltip": [
+          {"field": "neighborhood", "title": "Neighborhood"},
+          {"field": "data_value", "title": "Value"}
+        ]
       }
     }]
   }
