@@ -153,7 +153,22 @@ const mapSpec = {
     ],
     "layer": [
       {
-        "mark": {"type": "geoshape", "tooltip": true},
+        "mark": {
+            "type": "geoshape",
+            "color": "lightgray",
+            "stroke": "white",
+            "strokeWidth": 1,
+            "tooltip": true
+        },
+        "encoding": {
+            "tooltip": [
+                {"field": "neighborhood", "type": "nominal","title": "Neighborhood"},
+                {"field": "data_value", "type": "quantitative", "title": "Value"}
+          ]
+        }
+      },
+      {
+        "mark": {"type": "geoshape", "tooltip": false},
         "encoding": {
           "color": {
             "field": "data_value", "type": "quantitative",
@@ -189,7 +204,7 @@ window.buildMapSpec = function (neighborhood,dataSlug) {
   // make a copy of the vega-lite spec
   const temp = JSON.parse(JSON.stringify(mapSpec));
   // graft the neighborhood on to the specification for the color-coding
-  temp.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='"+neighborhood+"'";
+  temp.layer[2].encoding.stroke.condition.test = "datum.neighborhood=='"+neighborhood+"'";
   // graft the data file path on to the specification for the indicator
   temp.transform[0].from.data.url = indicatorDataPath+dataSlug+".csv"; //note the function needs access to the indicatorDataPath global var
   // graft the data file path on to the specification for the indicator
