@@ -53,7 +53,7 @@ menu:
 Use 01 for subpages of the home page, 02  for data stories, 03 for the data explorer, 04 for neighborhood reports, and 05 for Key Topics (per config.toml).
 
 ### Asset management
-Assets like images or other files can be stored in /static, or in a content directory. Follow these guidelines for asset managemetn:
+Assets like images or other files can be stored in /static, or in a content directory. Follow these guidelines for asset management:
 - If an asset is likely to be used across the site, it should be stored in /static. 
 - Store data files in /static, so that an update workflow might overwrite /static/visualizations/csv rather than finding individual data files in content directories. 
 - If it's page-specific, store it in a content directory close to the content that uses it.
