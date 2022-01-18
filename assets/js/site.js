@@ -109,7 +109,7 @@ const trendSpec = {
           "value": null
         },
         "tooltip": [
-          {"field": "neighborhood", "title": "Neighborhood"},
+          {"field": "neighborhood", "title": "Your Neighborhood"},
           {"field": "data_value", "title": "Value"}
         ]
       }
