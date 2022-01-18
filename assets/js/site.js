@@ -162,8 +162,7 @@ const mapSpec = {
         },
         "encoding": {
             "tooltip": [
-                {"field": "neighborhood", "type": "nominal","title": "Neighborhood"},
-                {"field": "data_value", "type": "quantitative", "title": "Value"}
+                {"field": "neighborhood", "type": "nominal","title": "Neighborhood"}
           ]
         }
       },
