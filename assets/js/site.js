@@ -11,6 +11,18 @@ const summarySpec = {
     "width": "container",
     "height": "container",
     "autosize": "fit",
+    "config": {
+      "axisX": {
+        "labelFontSize": 14
+      },
+      "axisY": {
+        "labelFontSize": 14
+      },
+      "legend": {
+        "labelFontSize": 14
+      },
+      "view": {"stroke": "transparent"}
+    },
     "data": {"url": "visualizations/csv/bikeLanP.csv"},
     "mark": {"type": "bar", "tooltip": true},
     "encoding": {
@@ -58,6 +70,18 @@ const trendSpec = {
     "width": "container",
     "height": "container",
     "autosize": "fit",
+    "config": {
+      "axisX": {
+        "labelFontSize": 14
+      },
+      "axisY": {
+        "labelFontSize": 14
+      },
+      "legend": {
+        "labelFontSize": 14
+      },
+      "view": {"stroke": "transparent"}
+    },
     "data": {"url": "visualizations/csv/poveACSP_trend.csv"},
     "layer": [{
       "mark": {"type": "line", "point": false, "tooltip": true},
@@ -137,6 +161,18 @@ const mapSpec = {
     "width": "container",
     "height": "container",
     "autosize": "fit",
+    "config": {
+      "axisX": {
+        "labelFontSize": 14
+      },
+      "axisY": {
+        "labelFontSize": 14
+      },
+      "legend": {
+        "labelFontSize": 14
+      },
+      "view": {"stroke": "transparent"}
+    },
     "data": {
       "url": "/visualizations/json/UHF42.topo.json",
       "format": {"type": "topojson", "feature": "collection"}
