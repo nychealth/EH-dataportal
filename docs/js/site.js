@@ -14,19 +14,19 @@
     "mark": { "type": "bar", "tooltip": true },
     "encoding": {
       "x": {
-        "field": "Neighborhood",
+        "field": "neighborhood",
         "type": "nominal",
-        "sort": { "op": "mean", "field": "Data Value" },
+        "sort": { "op": "mean", "field": "data_value" },
         "axis": null
       },
       "y": {
-        "field": "Data Value",
+        "field": "data_value",
         "type": "quantitative",
         "axis": { "title": null }
       },
       "color": {
         "condition": {
-          "test": "datum.Neighborhood=='Canarsie - Flatlands'",
+          "test": "datum.neighborhood=='Canarsie - Flatlands'",
           "value": "#1CA970"
         },
         "value": "#D8D8D8"
@@ -35,7 +35,7 @@
   };
   window.buildSummarySpec = function(neighborhood, dataSlug) {
     const temp = JSON.parse(JSON.stringify(summarySpec));
-    temp.encoding.color.condition.test = "datum.Neighborhood=='" + neighborhood + "'";
+    temp.encoding.color.condition.test = "datum.neighborhood=='" + neighborhood + "'";
     temp.data.url = indicatorDataPath + dataSlug + ".csv";
     return temp;
   };
@@ -49,17 +49,17 @@
       "mark": { "type": "line", "point": false, "tooltip": true },
       "encoding": {
         "x": {
-          "field": "Time",
+          "field": "time",
           "type": "ordinal",
           "axis": { "title": null, "labelAngle": 45 }
         },
         "y": {
-          "field": "Data Value",
+          "field": "data_value",
           "type": "quantitative",
           "axis": { "title": null }
         },
         "detail": {
-          "field": "Neighborhood",
+          "field": "neighborhood",
           "type": "nominal"
         },
         "color": {
@@ -70,22 +70,22 @@
       "mark": { "type": "line", "point": true, "tooltip": true },
       "encoding": {
         "x": {
-          "field": "Time",
+          "field": "time",
           "type": "ordinal",
           "axis": { "title": null, "labelAngle": 45 }
         },
         "y": {
-          "field": "Data Value",
+          "field": "data_value",
           "type": "quantitative",
           "axis": { "title": null }
         },
         "detail": {
-          "field": "Neighborhood",
+          "field": "neighborhood",
           "type": "nominal"
         },
         "color": {
           "condition": {
-            "test": "datum.Neighborhood=='Canarsie - Flatlands'",
+            "test": "datum.neighborhood=='Canarsie - Flatlands'",
             "value": "#1CA970"
           },
           "value": null
@@ -95,7 +95,7 @@
   };
   window.buildTrendSpec = function(neighborhood, dataSlug) {
     const temp = JSON.parse(JSON.stringify(trendSpec));
-    temp.layer[1].encoding.color.condition.test = "datum.Neighborhood=='" + neighborhood + "'";
+    temp.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + neighborhood + "'";
     temp.data.url = indicatorDataPath + dataSlug + "_trend.csv";
     return temp;
   };
@@ -114,7 +114,7 @@
         "from": {
           "data": { "url": "visualizations/csv/bikeLanP.csv" },
           "key": "geo_join_id",
-          "fields": ["Data Value", "Neighborhood", "message"]
+          "fields": ["data_value", "neighborhood", "message"]
         }
       }
     ],
@@ -123,7 +123,7 @@
         "mark": { "type": "geoshape", "tooltip": true },
         "encoding": {
           "color": {
-            "field": "Data Value",
+            "field": "data_value",
             "type": "quantitative",
             "scale": { "scheme": "greens" },
             "legend": { "orient": "top-left", "title": null }
@@ -131,8 +131,8 @@
           "stroke": { "value": "white" },
           "strokeWidth": { "value": 1 },
           "tooltip": [
-            { "field": "Neighborhood", "type": "nominal" },
-            { "field": "Data Value", "type": "quantitative" }
+            { "field": "neighborhood", "type": "nominal" },
+            { "field": "data_value", "type": "quantitative" }
           ]
         }
       },
@@ -153,7 +153,7 @@
   };
   window.buildMapSpec = function(neighborhood, dataSlug) {
     const temp = JSON.parse(JSON.stringify(mapSpec));
-    temp.layer[1].encoding.stroke.condition.test = "datum.Neighborhood=='" + neighborhood + "'";
+    temp.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + neighborhood + "'";
     temp.transform[0].from.data.url = indicatorDataPath + dataSlug + ".csv";
     temp.data.url = indicatorMapPath + "UHF42.topo.json";
     return temp;

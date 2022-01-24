@@ -465,7 +465,7 @@ h2.report-info {
         font-size: 1.25rem;
         line-height: 1.75rem;
         @include media-breakpoint-up(md){ 
-            font-size: 1.5rem;
+            font-size: 1.25rem;
         }
     }
     &:hover {
@@ -486,7 +486,7 @@ h2.report-info {
 }
 
 .data-note {
-    margin-top: -30px;
+    margin-top: -10px;
     font-size: .8125rem;
     font-style: italic;
     margin-bottom: 20px;
@@ -542,7 +542,7 @@ h2.report-info {
 }
 .comparison {
     font-weight: 600;
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
     .indicator-value {
         font-size: 1.5rem;
         @include media-breakpoint-up(lg){

@@ -86,7 +86,7 @@
           <p class="mt-3"><a href="{{ .data_download_loc }}" class="btn btn-md btn-report" target="_blank">Download Report Data <span class="sr-only">(opens in a new tab)</span></a></p>
 
           <h2 class="mt-3 report-info">Neighborhood Information</h2>
-          <p><strong>{{ .geo_entity_name }}</strong> is comprised of Zip codes {{.zip_code }}</p>
+          <p><strong>{{ .geo_entity_name }}</strong> includes Zip codes {{.zip_code }}</p>
           
           <hr class="mt-4">
           
@@ -209,6 +209,7 @@
 </section>
 {{ end }}
 
+<!--
 <section class="py-6">
   <div class="container">
     <div class="row">
@@ -221,6 +222,7 @@
     </div>
   </div>
 </section>
+-->
 
 <!-- Modal-Rank -->
 <div class="modal fade report-modal" id="modal-rank" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
