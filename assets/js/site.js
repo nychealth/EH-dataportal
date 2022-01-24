@@ -11,27 +11,43 @@ const summarySpec = {
     "width": "container",
     "height": "container",
     "autosize": "fit",
+    "config": {
+      "axisX": {
+        "labelFontSize": 14
+      },
+      "axisY": {
+        "labelFontSize": 14
+      },
+      "legend": {
+        "labelFontSize": 14
+      },
+      "view": {"stroke": "transparent"}
+    },
     "data": {"url": "visualizations/csv/bikeLanP.csv"},
     "mark": {"type": "bar", "tooltip": true},
     "encoding": {
       "x": {
-        "field": "Neighborhood",
+        "field": "neighborhood",
         "type": "nominal",
-        "sort": {"op": "mean", "field": "Data Value"},
+        "sort": {"op": "mean", "field": "data_value"},
         "axis": null
       },
       "y": {
-        "field": "Data Value",
+        "field": "data_value",
         "type": "quantitative",
         "axis": {"title": null}
       },
       "color": {
         "condition": {
-          "test": "datum.Neighborhood=='Canarsie - Flatlands'",
+          "test": "datum.neighborhood=='Canarsie - Flatlands'",
           "value": "#1CA970"
         },
         "value": "#D8D8D8"
-      }
+      },
+      "tooltip": [
+        {"field": "neighborhood", "type": "nominal","title": "Neighborhood"},
+        {"field": "data_value", "type": "quantitative","title": "Value"}
+      ]
     }
   }
  // this is the template vega-lite json
@@ -40,7 +56,7 @@ window.buildSummarySpec = function (neighborhood, dataSlug) {
   // make a copy of the vega-lite spec
   const temp = JSON.parse(JSON.stringify(summarySpec));
   // graft the neighborhood on to the specification for the color-coding
-  temp.encoding.color.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
+  temp.encoding.color.condition.test = "datum.neighborhood=='"+neighborhood+"'";
   // graft the data file path on to the specification for the indicator
   temp.data.url = indicatorDataPath+dataSlug+".csv"; //note the function needs access to the indicatorDataPath global var
   // return the vega-lite spec
@@ -54,52 +70,72 @@ const trendSpec = {
     "width": "container",
     "height": "container",
     "autosize": "fit",
+    "config": {
+      "axisX": {
+        "labelFontSize": 14
+      },
+      "axisY": {
+        "labelFontSize": 14
+      },
+      "legend": {
+        "labelFontSize": 14
+      },
+      "view": {"stroke": "transparent"}
+    },
     "data": {"url": "visualizations/csv/poveACSP_trend.csv"},
     "layer": [{
       "mark": {"type": "line", "point": false, "tooltip": true},
       "encoding": {
         "x": {
-          "field": "Time",
+          "field": "time",
           "type": "ordinal",
           "axis": {"title": null, "labelAngle": 45}
         },
         "y": {
-          "field": "Data Value",
+          "field": "data_value",
           "type": "quantitative",
           "axis": {"title": null}
         },
         "detail": {
-          "field": "Neighborhood",
+          "field": "neighborhood",
           "type": "nominal"
         },
         "color": {
           "value": "lightgrey"
-        }
+        },
+        "tooltip": [
+          {"field": "neighborhood", "title": "Neighborhood"},
+          {"field": "data_value", "title": "Value"}
+        ]
       }
     }, {
       "mark": {"type": "line", "point": true, "tooltip": true},
       "encoding": {
         "x": {
-          "field": "Time",
+          "field": "time",
           "type": "ordinal",
           "axis": {"title": null, "labelAngle": 45}
         },
         "y": {
-          "field": "Data Value",
+          "field": "data_value",
           "type": "quantitative",
           "axis": {"title": null}
         },
         "detail": {
-          "field": "Neighborhood",
+          "field": "neighborhood",
           "type": "nominal"
         },
         "color": {
           "condition": {
-            "test": "datum.Neighborhood=='Canarsie - Flatlands'",
+            "test": "datum.neighborhood=='Canarsie - Flatlands'",
             "value": "#1CA970"
           },
           "value": null
-        }
+        },
+        "tooltip": [
+          {"field": "neighborhood", "title": "Your Neighborhood"},
+          {"field": "data_value", "title": "Value"}
+        ]
       }
     }]
   }
@@ -111,7 +147,7 @@ window.buildTrendSpec = function(neighborhood,dataSlug) {
   // make a copy of the vega-lite spec
   const temp = JSON.parse(JSON.stringify(trendSpec));
   // graft the neighborhood on to the specification for the color-coding
-  temp.layer[1].encoding.color.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
+  temp.layer[1].encoding.color.condition.test = "datum.neighborhood=='"+neighborhood+"'";
   // graft the data file path on to the specification for the indicator
   temp.data.url = indicatorDataPath+dataSlug+"_trend.csv"; //note the function needs access to the indicatorDataPath global var
   // return the vega-lite spec
@@ -125,6 +161,18 @@ const mapSpec = {
     "width": "container",
     "height": "container",
     "autosize": "fit",
+    "config": {
+      "axisX": {
+        "labelFontSize": 14
+      },
+      "axisY": {
+        "labelFontSize": 14
+      },
+      "legend": {
+        "labelFontSize": 14
+      },
+      "view": {"stroke": "transparent"}
+    },
     "data": {
       "url": "/visualizations/json/UHF42.topo.json",
       "format": {"type": "topojson", "feature": "collection"}
@@ -135,24 +183,38 @@ const mapSpec = {
         "from": {
           "data": {"url": "visualizations/csv/bikeLanP.csv"},
           "key": "geo_join_id",
-          "fields": ["Data Value", "Neighborhood", "message"]
+          "fields": ["data_value", "neighborhood", "message"]
         }
       }
     ],
     "layer": [
       {
-        "mark": {"type": "geoshape", "tooltip": true},
+        "mark": {
+            "type": "geoshape",
+            "color": "lightgray",
+            "stroke": "white",
+            "strokeWidth": 1,
+            "tooltip": true
+        },
+        "encoding": {
+            "tooltip": [
+                {"field": "neighborhood", "type": "nominal","title": "Neighborhood"}
+          ]
+        }
+      },
+      {
+        "mark": {"type": "geoshape", "tooltip": false},
         "encoding": {
           "color": {
-            "field": "Data Value", "type": "quantitative",
+            "field": "data_value", "type": "quantitative",
             "scale": {"scheme": "greens"},
             "legend": {"orient": "top-left", "title": null}
           },
           "stroke": {"value": "white"},
           "strokeWidth": {"value": 1},
           "tooltip": [
-            {"field": "Neighborhood", "type": "nominal"},
-            {"field": "Data Value", "type": "quantitative"}
+            {"field": "neighborhood", "type": "nominal","title": "Neighborhood"},
+            {"field": "data_value", "type": "quantitative","title": "Value"}
           ]
         }
       },
@@ -177,7 +239,7 @@ window.buildMapSpec = function (neighborhood,dataSlug) {
   // make a copy of the vega-lite spec
   const temp = JSON.parse(JSON.stringify(mapSpec));
   // graft the neighborhood on to the specification for the color-coding
-  temp.layer[1].encoding.stroke.condition.test = "datum.Neighborhood=='"+neighborhood+"'";
+  temp.layer[2].encoding.stroke.condition.test = "datum.neighborhood=='"+neighborhood+"'";
   // graft the data file path on to the specification for the indicator
   temp.transform[0].from.data.url = indicatorDataPath+dataSlug+".csv"; //note the function needs access to the indicatorDataPath global var
   // graft the data file path on to the specification for the indicator
