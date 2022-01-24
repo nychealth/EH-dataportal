@@ -1,5 +1,3 @@
-#don't track changes to node_modules
-node_modules
 
 # don't track resources folder (temp files for serve)
 resources
@@ -9,3 +7,6 @@ resources
 
 # don't track hugo lock file
 .hugo_build.lock
+
+# don't track node modules
+node_modules

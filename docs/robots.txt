@@ -2,9 +2,15 @@
 User-agent: *
 
 
-Disallow: /data_explorer/
+Disallow: /about/about/
+
+Disallow: /about/
 
 Disallow: /
+
+Disallow: /about/jobs/
+
+Disallow: /data_explorer/
 
 Disallow: /key_topics/airquality/
 

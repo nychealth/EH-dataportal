@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Abouts on Environment &amp; Health Data Portal</title>
+    <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/about/</link>
+    <description>Recent content in Abouts on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 24 Nov 2021 13:30:21 -0500</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/about/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About the EH Data Portal</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/about/about/</link>
+      <pubDate>Wed, 24 Nov 2021 13:30:21 -0500</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/about/about/</guid>
+      <description>The NYC Environment &amp;amp; Health Data Portal shows how environments affect health, by publishing data and information that explain the connection.
+The Environment &amp;amp; Health Data Portal is a project by the NYC Department of Health and Mental Hygiene&amp;rsquo;s Environmental Public Health Tracking Program. We are a part of the National Environmental Public Health Tracking Network, an effort led by the Centers for Disease Control and Prevention to share data and analyze trends in environmental public health across the nation.</description>
+    </item>
+    
+    <item>
+      <title>We&#39;re Hiring</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/about/jobs/</link>
+      <pubDate>Wed, 24 Nov 2021 13:30:21 -0500</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/about/jobs/</guid>
+      <description>We&amp;rsquo;re hiring! See below for information about open positions on our team. We welcome your application.
+Job opening title 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non dui euismod, egestas mi eget, blandit ligula. Proin aliquam gravida odio quis imperdiet. Suspendisse aliquam convallis iaculis. Suspendisse vel dapibus lectus, et consequat eros. Etiam venenatis dui diam, vitae porttitor sapien rutrum quis. Nam dignissim iaculis metus ac faucibus. Fusce posuere in orci eu rhoncus.</description>
+    </item>
+    
+  </channel>
+</rss>
