@@ -1,4 +1,4 @@
 ---
 title: "Search Results"
-type: "search_results"
+type: "search-results"
 ---
