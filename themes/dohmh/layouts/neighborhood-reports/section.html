@@ -41,7 +41,7 @@
     <div class="col-md-6">
       <h3>2. Choose Neighborhood</h3>
       <div class="bg-active p-2 p-md-4 mb-4">
-        <form action="/neighborhood_reports" method="get" class="autocomplete-form">
+        <form action="/neighborhood-reports" method="get" class="autocomplete-form">
           <div class="row no-gutters">
             <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">What NYC neighborhood are you interested in?</label>
             <div class="col-8">
@@ -78,7 +78,7 @@
         <h2 class="h2 h4">Neighborhood List</h2>
 
         <ul class="list-unstyled">
-          <!-- Ranges through content/neighborhood_reports/NEIGHBORHOOD/*.md -->          
+          <!-- Ranges through content/neighborhood-reports/NEIGHBORHOOD/*.md -->          
           {{ range .Sections.ByTitle }}
             <li>
                 <a href="{{.Permalink}}">{{.Title}}</a>
@@ -206,7 +206,7 @@ function changeDescription(x) {
     var locVal = searchForm.options[searchForm.selectedIndex].value
 
     if (locVal) {
-      window.location = '{{ $.Site.Params.devpath}}/neighborhood_reports/'+ locVal + reportURL
+      window.location = '{{ $.Site.Params.devpath}}/neighborhood-reports/'+ locVal + reportURL
     } else {
       document.getElementById('warning').style.display = "block" // this is our error handling
     }

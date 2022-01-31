@@ -11,7 +11,7 @@
                 <nav aria-label="breadcrumb" class="my-3">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/data_explorer/">Data Explorer</a></li>
+                        <li class="breadcrumb-item"><a href="/data-explorer/">Data Explorer</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                         </ul>
                 </nav>
@@ -48,7 +48,7 @@
 
                     <div class="col-md-4">
                         <h4 class="fs-md"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
-                        {{ partial "related" (dict "section" "data_stories" "layout" "singlelist" "content" . ) }}
+                        {{ partial "related" (dict "section" "data-stories" "layout" "singlelist" "content" . ) }}
 
                     </div>
 
@@ -58,7 +58,7 @@
                         {{ $page_link := .Permalink }}
                         {{ $cats := .Params.categories }}
 
-                        {{ range where (where .Site.Pages "Section" "key_topics") ".File.BaseFileName" "_index" }}
+                        {{ range where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index" }}
                         <!--$page equals values we find when ranging through-->
                         {{ $page := . }}
 
@@ -75,7 +75,7 @@
 
                     <div class="col-md-4">
                         <h4 class="fs-md"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
-                        {{ partial "related" (dict "section" "neighborhood_reports" "layout" "singlelist" "content" . ) }}
+                        {{ partial "related" (dict "section" "neighborhood-reports" "layout" "singlelist" "content" . ) }}
 
                     </div>
                 </div>

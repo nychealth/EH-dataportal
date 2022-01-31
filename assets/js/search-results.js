@@ -115,10 +115,10 @@ function search(query) {
 function renderResults(results) {
     const $searchResultsTitle = document.querySelector('.search-results-title');
     const $other = document.getElementById("other");
-    const $nieghborhoodReports = document.getElementById("neighborhood_reports");
-    const $dataStories = document.getElementById("data_stories");
-    const $keyTopics = document.getElementById("key_topics");
-    const $dataExplorer = document.getElementById("data_explorer");
+    const $nieghborhoodReports = document.getElementById("neighborhood-reports");
+    const $dataStories = document.getElementById("data-stories");
+    const $keyTopics = document.getElementById("key-topics");
+    const $dataExplorer = document.getElementById("data-explorer");
 
     let resultsCount = 0;
     let nieghborhoodReportsCount = 0;
@@ -156,14 +156,14 @@ function renderResults(results) {
             }
         }
 
-        if (section('neighborhood_reports')) {
+        if (section('neighborhood-reports')) {
             ahref.text = result.seo_title;
             nieghborhoodResults.push(ahref);
-        } else if (section('data_stories')) {
+        } else if (section('data-stories')) {
             dataStoriesResults.push(ahref);
-        } else if (section('key_topics')) {
+        } else if (section('key-topics')) {
             keyTopicsResults.push(ahref);
-        } else if (section('data_explorer')) {
+        } else if (section('data-explorer')) {
             dataExplorerResults.push(ahref);
         } else {
             otherResults.push(ahref);

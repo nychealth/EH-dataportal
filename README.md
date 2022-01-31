@@ -97,7 +97,7 @@ And, use the storyheader shortcode to insert headers with anchor links like this
 Note that ```text``` does not need to match ```chapter```, but ```anchor``` in the frontmatter needs to match ```anchor``` in the shortcode.
 
 ### Indicators
-Indicators can be displayed on subtopic pages. Indicators are currently stored as json within subtopic content markdown file's front matter - see [asthma.md](https://github.com/nycehs/ehs-neighborhoodprofiles/blob/main/content/data_explorer/asthma.md) or below:
+Indicators can be displayed on subtopic pages. Indicators are currently stored as json within subtopic content markdown file's front matter - see [asthma.md](https://github.com/nycehs/ehs-neighborhoodprofiles/blob/main/content/data-explorer/asthma.md) or below:
 
 ```
 indicators: [
@@ -128,12 +128,12 @@ Currently, it directs to the old version of the portal, with a pop-up window abo
 ### Ranging through items in another content section
 We have a few different ways of ingesting content across sections. One way is using the partial ```related.html```. This partial can be called with the following:
 ```                    
-{{ partial "related" (dict "section" "data_explorer" "layout" "list" "content" . ) }}
+{{ partial "related" (dict "section" "data-explorer" "layout" "list" "content" . ) }}
 ```
 
 This passes in several arguments (data explorer, list) that are used as variables in the partial itself, to determine which section's content is displayed, and how it is displayed.
 
-The basis of the code in related.html is an older approach, code that works on any template page to range through items in another content section. For example, placed on key_topics/section.html, it ranges (loops) through all of the Site's Pages that are in the data_stories section, and prints the Title.
+The basis of the code in related.html is an older approach, code that works on any template page to range through items in another content section. For example, placed on key-topics/section.html, it ranges (loops) through all of the Site's Pages that are in the data_stories section, and prints the Title.
 
 ```
     {{ range where .Site.RegularPages "Section" "data_stories" }}
@@ -148,7 +148,7 @@ This is more complex code that looks for the intersection of two areas' categori
     {{ $page_link := .Permalink }}
     {{ $cats := .Params.categories }}
     <!--Ranges through the section we want to ingest into this page-->
-    {{ range where .Site.RegularPages "Section" "data_explorer" }}
+    {{ range where .Site.RegularPages "Section" "data-explorer" }}
     <!--Places the contents of that range, ., into a variable called $page-->
     {{ $page := . }}
     <!--Defines a variable as the intersection of the ranged pages .Params.categories, and this page's-->

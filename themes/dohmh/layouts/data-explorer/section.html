@@ -75,7 +75,7 @@
     // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
     function populateDropDownList() {          
            var ddlData = document.getElementById("all-data");
-          {{ range .Pages }} // range through data_explorer pages
+          {{ range .Pages }} // range through data-explorer pages
             var option = document.createElement("OPTION");
             //Set Neighborhood Name in Text part.
             option.innerHTML = {{ .Title}}

@@ -44,14 +44,14 @@
         <div class="col-lg-3 ml-auto">
             <div class="fs-sm">
                 <h4 class="mt-2 fs-md"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
-                {{ partial "related" (dict "section" "data_stories" "layout" "singlelist" "content" . ) }}
+                {{ partial "related" (dict "section" "data-stories" "layout" "singlelist" "content" . ) }}
             </div>
         </div>
 
         <div class="col-lg-4">
             <div class="fs-sm">
                 <h4 class="fs-md mt-2"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
-                {{ partial "related" (dict "section" "neighborhood_reports" "layout" "singlelist" "content" . ) }}
+                {{ partial "related" (dict "section" "neighborhood-reports" "layout" "singlelist" "content" . ) }}
 
             </div>
         </div>
@@ -62,7 +62,7 @@
             {{ $page_link := .Permalink }}
             {{ $cats := .Params.categories }}
 
-            {{ range where (where .Site.Pages "Section" "key_topics") ".File.BaseFileName" "_index" }}
+            {{ range where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index" }}
             <!--$page equals values we find when ranging through-->
             {{ $page := . }}
 

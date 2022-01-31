@@ -6,7 +6,7 @@
             <nav aria-label="breadcrumb" class="mb-4">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="/neighborhood_reports/">Neighborhood Reports</a></li>
+                    <li class="breadcrumb-item"><a href="/neighborhood-reports/">Neighborhood Reports</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                 </ul>
             </nav>
@@ -21,7 +21,7 @@
             <p>{{ .Content}}</p>
             <p>Get a neighborhood report by searching for your neighborhood:</p>
             <div class="bg-active p-2 p-md-4 mb-4">
-                <form action="/neighborhood_reports" method="get" class="autocomplete-form">
+                <form action="/neighborhood-reports" method="get" class="autocomplete-form">
                   <div class="row no-gutters">
                     <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-3">What NYC neighborhood are you interested in?</label>
                     <div class="col-8">
@@ -42,23 +42,23 @@
         <div class="col-md-4 text-right">
             <h3 class="fs-rg mb-2">Neighborhood Reports</h3>
             <hr class="my-2">
-                {{ with .Site.GetPage "/neighborhood_reports/activedesign.md" }}
+                {{ with .Site.GetPage "/neighborhood-reports/activedesign.md" }}
                 <p><a href="{{ .URL}}">{{ .Title }}
                 </a></p>
                 {{ end }}
-                {{ with .Site.GetPage "/neighborhood_reports/asthma.md" }}
+                {{ with .Site.GetPage "/neighborhood-reports/asthma.md" }}
                 <p><a href="{{ .URL}}">{{ .Title }}
                 </a></p>
                 {{ end }}
-                {{ with .Site.GetPage "/neighborhood_reports/climateandhealth.md" }}
+                {{ with .Site.GetPage "/neighborhood-reports/climateandhealth.md" }}
                 <p><a href="{{ .URL}}">{{ .Title }}
                 </a></p>
                 {{ end }}
-                {{ with .Site.GetPage "/neighborhood_reports/housing.md" }}
+                {{ with .Site.GetPage "/neighborhood-reports/housing.md" }}
                 <p><a href="{{ .URL}}">{{ .Title }}
                 </a></p>
                 {{ end }}
-                {{ with .Site.GetPage "/neighborhood_reports/outdoorair.md" }}
+                {{ with .Site.GetPage "/neighborhood-reports/outdoorair.md" }}
                 <p><a href="{{ .URL}}">{{ .Title }}
                 </a></p>
                 {{ end }}
@@ -123,7 +123,7 @@
     document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
         e.preventDefault(); // prevent page re-load
         var locVal = searchForm.options[searchForm.selectedIndex].value
-        window.location = '{{ $.Site.Params.devpath}}/neighborhood_reports/'+ locVal + {{ .Params.urlExtension}}
+        window.location = '{{ $.Site.Params.devpath}}/neighborhood-reports/'+ locVal + {{ .Params.urlExtension}}
       });
    </script>
 
