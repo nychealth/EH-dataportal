@@ -1,6 +1,6 @@
 <script>
     // Constants used for both visualizations
-  const indicatorDataPath = "{{ $.Site.Params.devpath}}/visualizations/csv/"; //change this to alter the path to the data file
+  const indicatorDataPath = "{{ $.Site.Params.devpath}}/visualizations/csv/nr/"; //change this to alter the path to the data file
   const indicatorMapPath = "{{ $.Site.Params.devpath}}/visualizations/json/"; //change this to alter the path to the data file
   
   // Function and config used for summary data visualizations.
@@ -9,7 +9,7 @@
     "width": "container",
     "height": "container",
     "autosize": "fit",
-    "data": {"url": "visualizations/csv/bikeLanP.csv"},
+    "data": {"url": "visualizations/csv/nr/bikeLanP.csv"},
     "mark": {"type": "bar", "tooltip": true},
     "encoding": {
       "x": {
@@ -52,7 +52,7 @@
     "width": "container",
     "height": "container",
     "autosize": "fit",
-    "data": {"url": "visualizations/csv/poveACSP_trend.csv"},
+    "data": {"url": "visualizations/csv/nr/poveACSP_trend.csv"},
     "layer":[{
         "mark": {"type": "line", "point": false, "tooltip": true},
         "encoding": {
@@ -130,7 +130,7 @@
       {
         "lookup": "id",
         "from": {
-          "data": {"url": "visualizations/csv/bikeLanP.csv"},
+          "data": {"url": "visualizations/csv/nr/bikeLanP.csv"},
           "key": "geo_join_id",
           "fields": ["Data Value","Neighborhood","message"]
         }

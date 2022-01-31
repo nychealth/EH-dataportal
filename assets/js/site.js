@@ -1,7 +1,7 @@
 import * as params from '@params';
 
 // Constants used for both visualizations
-const indicatorDataPath = `${params.devpath}/visualizations/csv/`; //change this to alter the path to the data file
+const indicatorDataPath = `${params.devpath}/visualizations/csv/nr/`; //change this to alter the path to the data file
 const indicatorMapPath = `${params.devpath}/visualizations/json/`; //change this to alter the path to the data file
   
 
@@ -23,7 +23,7 @@ const summarySpec = {
       },
       "view": {"stroke": "transparent"}
     },
-    "data": {"url": "visualizations/csv/bikeLanP.csv"},
+    "data": {"url": "visualizations/csv/nr/bikeLanP.csv"},
     "mark": {"type": "bar", "tooltip": true},
     "encoding": {
       "x": {
@@ -82,7 +82,7 @@ const trendSpec = {
       },
       "view": {"stroke": "transparent"}
     },
-    "data": {"url": "visualizations/csv/poveACSP_trend.csv"},
+    "data": {"url": "visualizations/csv/nr/poveACSP_trend.csv"},
     "layer": [{
       "mark": {"type": "line", "point": false, "tooltip": true},
       "encoding": {
@@ -181,7 +181,7 @@ const mapSpec = {
       {
         "lookup": "id",
         "from": {
-          "data": {"url": "visualizations/csv/bikeLanP.csv"},
+          "data": {"url": "visualizations/csv/nr/bikeLanP.csv"},
           "key": "geo_join_id",
           "fields": ["data_value", "neighborhood", "message"]
         }

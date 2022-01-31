@@ -30,7 +30,7 @@ This site is currently build with the Hugo static site generator.
 Visualizations are powered by Vega-Lite with code and basic implementation approach provided by DOHMH team.
 
 * Visualization specifications and functions to generate them are included in `assets/js/site.js`.
-* CSV data for visualizations is stored in the `/static/visualizations/csv/`folder.
+* CSV data for visualizations is stored in the `/static/visualizations/csv/nr/`folder.
 * SVG images for visualizations is stored in the `/static/visualizations/images/`folder.
 * All html, function calls, and dynamic variables are found in the `themes/dohmh/partials/report_indicator` partial.
 * Functions are initiated on modal open following methods detailed in Bootstrap 4.5 docs.
