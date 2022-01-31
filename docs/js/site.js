@@ -10,6 +10,18 @@
     "width": "container",
     "height": "container",
     "autosize": "fit",
+    "config": {
+      "axisX": {
+        "labelFontSize": 14
+      },
+      "axisY": {
+        "labelFontSize": 14
+      },
+      "legend": {
+        "labelFontSize": 14
+      },
+      "view": { "stroke": "transparent" }
+    },
     "data": { "url": "visualizations/csv/bikeLanP.csv" },
     "mark": { "type": "bar", "tooltip": true },
     "encoding": {
@@ -30,7 +42,11 @@
           "value": "#1CA970"
         },
         "value": "#D8D8D8"
-      }
+      },
+      "tooltip": [
+        { "field": "neighborhood", "type": "nominal", "title": "Neighborhood" },
+        { "field": "data_value", "type": "quantitative", "title": "Value" }
+      ]
     }
   };
   window.buildSummarySpec = function(neighborhood, dataSlug) {
@@ -44,6 +60,18 @@
     "width": "container",
     "height": "container",
     "autosize": "fit",
+    "config": {
+      "axisX": {
+        "labelFontSize": 14
+      },
+      "axisY": {
+        "labelFontSize": 14
+      },
+      "legend": {
+        "labelFontSize": 14
+      },
+      "view": { "stroke": "transparent" }
+    },
     "data": { "url": "visualizations/csv/poveACSP_trend.csv" },
     "layer": [{
       "mark": { "type": "line", "point": false, "tooltip": true },
@@ -64,7 +92,11 @@
         },
         "color": {
           "value": "lightgrey"
-        }
+        },
+        "tooltip": [
+          { "field": "neighborhood", "title": "Neighborhood" },
+          { "field": "data_value", "title": "Value" }
+        ]
       }
     }, {
       "mark": { "type": "line", "point": true, "tooltip": true },
@@ -89,7 +121,11 @@
             "value": "#1CA970"
           },
           "value": null
-        }
+        },
+        "tooltip": [
+          { "field": "neighborhood", "title": "Your Neighborhood" },
+          { "field": "data_value", "title": "Value" }
+        ]
       }
     }]
   };
@@ -104,6 +140,18 @@
     "width": "container",
     "height": "container",
     "autosize": "fit",
+    "config": {
+      "axisX": {
+        "labelFontSize": 14
+      },
+      "axisY": {
+        "labelFontSize": 14
+      },
+      "legend": {
+        "labelFontSize": 14
+      },
+      "view": { "stroke": "transparent" }
+    },
     "data": {
       "url": "/visualizations/json/UHF42.topo.json",
       "format": { "type": "topojson", "feature": "collection" }
@@ -120,7 +168,21 @@
     ],
     "layer": [
       {
-        "mark": { "type": "geoshape", "tooltip": true },
+        "mark": {
+          "type": "geoshape",
+          "color": "lightgray",
+          "stroke": "white",
+          "strokeWidth": 1,
+          "tooltip": true
+        },
+        "encoding": {
+          "tooltip": [
+            { "field": "neighborhood", "type": "nominal", "title": "Neighborhood" }
+          ]
+        }
+      },
+      {
+        "mark": { "type": "geoshape", "tooltip": false },
         "encoding": {
           "color": {
             "field": "data_value",
@@ -131,8 +193,8 @@
           "stroke": { "value": "white" },
           "strokeWidth": { "value": 1 },
           "tooltip": [
-            { "field": "neighborhood", "type": "nominal" },
-            { "field": "data_value", "type": "quantitative" }
+            { "field": "neighborhood", "type": "nominal", "title": "Neighborhood" },
+            { "field": "data_value", "type": "quantitative", "title": "Value" }
           ]
         }
       },
@@ -153,7 +215,7 @@
   };
   window.buildMapSpec = function(neighborhood, dataSlug) {
     const temp = JSON.parse(JSON.stringify(mapSpec));
-    temp.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + neighborhood + "'";
+    temp.layer[2].encoding.stroke.condition.test = "datum.neighborhood=='" + neighborhood + "'";
     temp.transform[0].from.data.url = indicatorDataPath + dataSlug + ".csv";
     temp.data.url = indicatorMapPath + "UHF42.topo.json";
     return temp;

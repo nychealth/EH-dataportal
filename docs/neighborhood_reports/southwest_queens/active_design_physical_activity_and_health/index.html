@@ -407,12 +407,236 @@
           <p class="mt-3"><a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/EPHTCsv/Active_Design_Physical_Activity_and_Health.csv" class="btn btn-md btn-report" target="_blank">Download Report Data <span class="sr-only">(opens in a new tab)</span></a></p>
 
           <h2 class="mt-3 report-info">Neighborhood Information</h2>
-          <p><strong>Southwest Queens</strong> is comprised of Zip codes 11414,11415,11416,11417,11418,11419,11420,11421,11424</p>
+          <p><strong>Southwest Queens</strong> includes Zip codes 11414,11415,11416,11417,11418,11419,11420,11421,11424</p>
           
           <hr class="mt-4">
           
           <div>
           
+            
+            
+            
+            
+            
+            <div class="report-topic">
+
+              <div class="topic-header">
+                <h2>Injury and Health</h2>
+                <p>
+                  Neighborhood design can influence health both directly -- by way of immediate hazards in the environment, and indirectly, for example, by encouraging exercise.
+                </p>
+              </div>
+              
+              <div class="container-fluid px-0 mb-4">
+                <div class="row indicator-headings mb-2">
+                  <div class="col-6 col-md-5 pl-3">
+                    Topic
+                  </div>
+                  <div class="col-6 col-md-4">
+                    
+                    <div class="position-relative">
+                      Comparison<br>
+                      <span class="meta"> to NYC average</span></a>
+                      <a href="#" data-toggle="modal" data-target="#modal-rank" class="info-modal"><i class="fas fa-question-circle fs-rg"></i></a>
+                    </div>
+                    
+                  </div>
+                  <div class="d-none d-md-inline col-md-3">
+                    Rank<br>
+                    <span class="meta"> out of the 42 neighborhoods</span>
+                  </div>
+                </div>
+
+                
+                    
+                    
+                    <button data-toggle="modal" data-target="#modal-obesityP-1" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Overweight</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/obesityP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="middle">Middle</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/obesityP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-obesityP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header text-left">
+        <h2 class="modal-title fs-xl" id="exampleModalLabel">Overweight</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2 class="fs-xl">Adults with overweight or obesity (percent), 2017</h2>
+        <p>In <strong>Southwest Queens</strong>, the adults with overweight or obesity (percent), 2017 is <span class="middle">Middle</span> compared to the NYC average.</p>
+        People who are overweight or obese are at increased risk for heart disease and diabetes.
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">60.5</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">58.2</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">57.4</span></div>
+        </div>
+        <p><em>Percent </em></p>
+
+
+        
+          <div class="data-note"></div>
+        
+
+    
+      </div>
+      <hr>
+      <div class="modal-body">
+        <h3>Adults with overweight or obesity (percent), 2017</h3>
+        <p>  <em>Percent </em></p>
+        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-obesityP-1"></div> 
+        
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trends Over Time</h3>
+        <p><em>Percent </em></p>
+        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-obesityP-1"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>By Neighborhood</h3>
+        <p><em>Percent </em></p>
+        <div style="width:100%; height:75vmin; z-index:10000;" id="map-obesityP-1"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-obesityP-1" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-obesityP-1", buildSummarySpec(NeighborhoodName,"obesityP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-obesityP-1", buildTrendSpec(NeighborhoodName,"obesityP"),opt).then().catch(console.error);
+    vegaEmbed("#map-obesityP-1", buildMapSpec(NeighborhoodName,"obesityP"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-preMorAA-1" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Death before 65</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/preMorAA_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="middle">Middle</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/preMorAA_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-preMorAA-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header text-left">
+        <h2 class="modal-title fs-xl" id="exampleModalLabel">Death before 65</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2 class="fs-xl">Premature mortality (age-adjusted rate per 100,000), 2016</h2>
+        <p>In <strong>Southwest Queens</strong>, the premature mortality (age-adjusted rate per 100,000), 2016 is <span class="middle">Middle</span> compared to the NYC average.</p>
+        The rate of people who die before age 65 can indicate the overall health of a population.
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">137.1</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">130.8</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">189.4</span></div>
+        </div>
+        <p><em>Age-Adjusted Rate per 100,000</em></p>
+
+
+        
+          <div class="data-note"></div>
+        
+
+    
+      </div>
+      <hr>
+      <div class="modal-body">
+        <h3>Premature mortality (age-adjusted rate per 100,000), 2016</h3>
+        <p>  <em>Age-Adjusted Rate per 100,000</em></p>
+        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-preMorAA-1"></div> 
+        
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trends Over Time</h3>
+        <p><em>Age-Adjusted Rate per 100,000</em></p>
+        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-preMorAA-1"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>By Neighborhood</h3>
+        <p><em>Age-Adjusted Rate per 100,000</em></p>
+        <div style="width:100%; height:75vmin; z-index:10000;" id="map-preMorAA-1"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-preMorAA-1" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-preMorAA-1", buildSummarySpec(NeighborhoodName,"preMorAA"),opt).then().catch(console.error);
+    vegaEmbed("#trend-preMorAA-1", buildTrendSpec(NeighborhoodName,"preMorAA"),opt).then().catch(console.error);
+    vegaEmbed("#map-preMorAA-1", buildMapSpec(NeighborhoodName,"preMorAA"),opt).then().catch(console.error);
+  });
+</script>
+                  
+              </div>
+              
+
+            </div>
+            
             
             
             
@@ -450,301 +674,76 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-treeCovP-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Tree shade </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/treeCovP_407.svg" alt="Visualization showing neighborhood rank of 26 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="middle">Middle</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/treeCovP_407.svg" alt="Visualization showing neighborhood rank of 26 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-treeCovP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Tree shade :<br>Tree canopy cover (percent of land area), 2014</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Southwest Queens</strong>, the tree canopy cover (percent of land area), 2014 is <span class="middle">Middle</span> than the NYC average.</p>
-        <p>The number of trees and the area shaded by them influences many neighborhood factors, such as attractiveness and lower summer temperatures that, in turn, encourage residents and visitors to walk and do other physical activity. &ldquo;Tree canopy cover&rdquo; measures the percent of a neighborhood that is covered (or shaded) by trees.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">15.7&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">19.8&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">21.1&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-treeCovP-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-treeCovP-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-treeCovP-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-treeCovP-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-treeCovP-1", buildSummarySpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-treeCovP-1", buildTrendSpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
-    vegaEmbed("#map-treeCovP-1", buildMapSpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-sidwalkP-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Sidewalk area</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/sidwalkP_407.svg" alt="Visualization showing neighborhood rank of 20 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="middle">Middle</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/sidwalkP_407.svg" alt="Visualization showing neighborhood rank of 20 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-sidwalkP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Sidewalk area:<br>Sidewalk area (percent of land area), 2014</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Southwest Queens</strong>, the sidewalk area (percent of land area), 2014 is <span class="middle">Middle</span> than the NYC average.</p>
-        <p>Sidewalks are a critical component of New York City residents&rsquo; commute. Ample sidewalks in neighborhoods are important for commuting, businesses, and physical activity. Greater sidewalk area facilitates safer pedestrian traffic that, in turn, attracts businesses and fosters community. &ldquo;Sidewalk area&rdquo; measures the percent of a neighborhood that is covered by sidewalk area.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">8.0&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">7&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">6.6&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-sidwalkP-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-sidwalkP-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-sidwalkP-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-sidwalkP-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-sidwalkP-1", buildSummarySpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-sidwalkP-1", buildTrendSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
-    vegaEmbed("#map-sidwalkP-1", buildMapSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-parkDisP-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Park access</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/parkDisP_407.svg" alt="Visualization showing neighborhood rank of 35 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/parkDisP_407.svg" alt="Visualization showing neighborhood rank of 35 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-parkDisP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Park access:<br>People living in walking distance to a park (percent), 2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Southwest Queens</strong>, the people living in walking distance to a park (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Walking distance to a park is defined as 1/4-mile or less to entrances of smaller sites, such as sitting areas and playgrounds, and 1/2-mile or less to entrances of larger parks. Parks and open space that are not under the NYC Parks Department jurisdiction are also included.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">65.0&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">69&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">81&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-parkDisP-1"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-parkDisP-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-parkDisP-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-parkDisP-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-parkDisP-1", buildSummarySpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-parkDisP-1", buildTrendSpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
-    vegaEmbed("#map-parkDisP-1", buildMapSpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-subDistP-1" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-subDistP-2" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
       <span class="indicator-short-name">Subway access</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/subDistP_407.svg" alt="Visualization showing neighborhood rank of 28 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <img src="../../../visualizations/images/subDistP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="middle">Middle</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/subDistP_407.svg" alt="Visualization showing neighborhood rank of 28 out of 42." class="viz">
+      <img src="../../../visualizations/images/subDistP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-subDistP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-subDistP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Subway access:<br>People living in walking distance to a subway station (percent), 2018</h2>
+      <div class="modal-header text-left">
+        <h2 class="modal-title fs-xl" id="exampleModalLabel">Subway access</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Southwest Queens</strong>, the people living in walking distance to a subway station (percent), 2018 is <span class="worse">Worse</span> than the NYC average.</p>
+        <h2 class="fs-xl">People living in walking distance to a subway station (percent), 2018</h2>
+        <p>In <strong>Southwest Queens</strong>, the people living in walking distance to a subway station (percent), 2018 is <span class="middle">Middle</span> compared to the NYC average.</p>
         <p>Percentage of population within a quarter-mile of a subway station entrance.</p>
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">39.0&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">29&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">48&#37;</span></div>
+          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">39.0</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">29</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">48</span></div>
         </div>
+        <p><em>Percent </em></p>
+
+
         
           <div class="data-note"></div>
         
+
+    
+      </div>
+      <hr>
+      <div class="modal-body">
+        <h3>People living in walking distance to a subway station (percent), 2018</h3>
+        <p>  <em>Percent </em></p>
+        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-subDistP-2"></div> 
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-subDistP-1"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-subDistP-1"></div> 
+        <h3>Trends Over Time</h3>
+        <p><em>Percent </em></p>
+        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-subDistP-2"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-subDistP-1"></div>
+        <h3>By Neighborhood</h3>
+        <p><em>Percent </em></p>
+        <div style="width:100%; height:75vmin; z-index:10000;" id="map-subDistP-2"></div>
 
       </div>
       
@@ -758,72 +757,84 @@
 
 
 <script type="text/javascript">
-  $( "#modal-subDistP-1" ).on('shown.bs.modal', function() {
+  $( "#modal-subDistP-2" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-subDistP-1", buildSummarySpec(NeighborhoodName,"subDistP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-subDistP-1", buildTrendSpec(NeighborhoodName,"subDistP"),opt).then().catch(console.error);
-    vegaEmbed("#map-subDistP-1", buildMapSpec(NeighborhoodName,"subDistP"),opt).then().catch(console.error);
+    vegaEmbed("#summary-subDistP-2", buildSummarySpec(NeighborhoodName,"subDistP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-subDistP-2", buildTrendSpec(NeighborhoodName,"subDistP"),opt).then().catch(console.error);
+    vegaEmbed("#map-subDistP-2", buildMapSpec(NeighborhoodName,"subDistP"),opt).then().catch(console.error);
   });
 </script>
                     
-                    <button data-toggle="modal" data-target="#modal-bikeLanP-1" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-treeCovP-2" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Bike lanes </span>
+      <span class="indicator-short-name">Tree shade</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/bikeLanP_407.svg" alt="Visualization showing neighborhood rank of 38 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
+      <img src="../../../visualizations/images/treeCovP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="middle">Middle</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/bikeLanP_407.svg" alt="Visualization showing neighborhood rank of 38 out of 42." class="viz">
+      <img src="../../../visualizations/images/treeCovP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-bikeLanP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-treeCovP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Bike lanes :<br>Streets with bicycle lanes (percent), 2017</h2>
+      <div class="modal-header text-left">
+        <h2 class="modal-title fs-xl" id="exampleModalLabel">Tree shade</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Southwest Queens</strong>, the streets with bicycle lanes (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>The percent of streets with bike lanes can affect cyclist and pedestrian safety, physical activity, and sustainable transportation use. </p>
+        <h2 class="fs-xl">Tree canopy cover (percent of land area), 2014</h2>
+        <p>In <strong>Southwest Queens</strong>, the tree canopy cover (percent of land area), 2014 is <span class="middle">Middle</span> compared to the NYC average.</p>
+        <p>The number of trees and the area shaded by them influences many neighborhood factors, such as attractiveness and lower summer temperatures that, in turn, encourage residents and visitors to walk and do other physical activity. &ldquo;Tree canopy cover&rdquo; measures the percent of a neighborhood that is covered (or shaded) by trees.</p>
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">3.0&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">6&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">10&#37;</span></div>
+          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">15.7</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">19.8</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">21.1</span></div>
         </div>
+        <p><em>Percent </em></p>
+
+
         
           <div class="data-note"></div>
         
+
+    
+      </div>
+      <hr>
+      <div class="modal-body">
+        <h3>Tree canopy cover (percent of land area), 2014</h3>
+        <p>  <em>Percent </em></p>
+        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-treeCovP-2"></div> 
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-bikeLanP-1"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-bikeLanP-1"></div> 
+        <h3>Trends Over Time</h3>
+        <p><em>Percent </em></p>
+        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-treeCovP-2"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-bikeLanP-1"></div>
+        <h3>By Neighborhood</h3>
+        <p><em>Percent </em></p>
+        <div style="width:100%; height:75vmin; z-index:10000;" id="map-treeCovP-2"></div>
 
       </div>
       
@@ -837,11 +848,284 @@
 
 
 <script type="text/javascript">
-  $( "#modal-bikeLanP-1" ).on('shown.bs.modal', function() {
+  $( "#modal-treeCovP-2" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-bikeLanP-1", buildSummarySpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-bikeLanP-1", buildTrendSpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
-    vegaEmbed("#map-bikeLanP-1", buildMapSpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
+    vegaEmbed("#summary-treeCovP-2", buildSummarySpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-treeCovP-2", buildTrendSpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
+    vegaEmbed("#map-treeCovP-2", buildMapSpec(NeighborhoodName,"treeCovP"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-sidwalkP-2" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Sidewalk area</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/sidwalkP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="middle">Middle</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/sidwalkP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-sidwalkP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header text-left">
+        <h2 class="modal-title fs-xl" id="exampleModalLabel">Sidewalk area</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2 class="fs-xl">Sidewalk area (percent of land area), 2014</h2>
+        <p>In <strong>Southwest Queens</strong>, the sidewalk area (percent of land area), 2014 is <span class="middle">Middle</span> compared to the NYC average.</p>
+        <p>Sidewalks are a critical component of New York City residents&rsquo; commute. Ample sidewalks in neighborhoods are important for commuting, businesses, and physical activity. Greater sidewalk area facilitates safer pedestrian traffic that, in turn, attracts businesses and fosters community. &ldquo;Sidewalk area&rdquo; measures the percent of a neighborhood that is covered by sidewalk area.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">8.0</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">7</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">6.6</span></div>
+        </div>
+        <p><em>Percent of Land Area </em></p>
+
+
+        
+          <div class="data-note"></div>
+        
+
+    
+      </div>
+      <hr>
+      <div class="modal-body">
+        <h3>Sidewalk area (percent of land area), 2014</h3>
+        <p>  <em>Percent of Land Area </em></p>
+        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-sidwalkP-2"></div> 
+        
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trends Over Time</h3>
+        <p><em>Percent of Land Area </em></p>
+        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-sidwalkP-2"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>By Neighborhood</h3>
+        <p><em>Percent of Land Area </em></p>
+        <div style="width:100%; height:75vmin; z-index:10000;" id="map-sidwalkP-2"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-sidwalkP-2" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-sidwalkP-2", buildSummarySpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-sidwalkP-2", buildTrendSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
+    vegaEmbed("#map-sidwalkP-2", buildMapSpec(NeighborhoodName,"sidwalkP"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-parkDisP-2" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Park access</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/parkDisP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/parkDisP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-parkDisP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header text-left">
+        <h2 class="modal-title fs-xl" id="exampleModalLabel">Park access</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2 class="fs-xl">People living in walking distance to a park (percent), 2017</h2>
+        <p>In <strong>Southwest Queens</strong>, the people living in walking distance to a park (percent), 2017 is <span class="worse">Worse</span> compared to the NYC average.</p>
+        <p>Walking distance to a park is defined as 1/4-mile or less to entrances of smaller sites, such as sitting areas and playgrounds, and 1/2-mile or less to entrances of larger parks. Parks and open space that are not under the NYC Parks Department jurisdiction are also included.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">65.0</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">69</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">81</span></div>
+        </div>
+        <p><em>Percent of Population </em></p>
+
+
+        
+          <div class="data-note"></div>
+        
+
+    
+      </div>
+      <hr>
+      <div class="modal-body">
+        <h3>People living in walking distance to a park (percent), 2017</h3>
+        <p>  <em>Percent of Population </em></p>
+        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-parkDisP-2"></div> 
+        
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trends Over Time</h3>
+        <p><em>Percent of Population </em></p>
+        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-parkDisP-2"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>By Neighborhood</h3>
+        <p><em>Percent of Population </em></p>
+        <div style="width:100%; height:75vmin; z-index:10000;" id="map-parkDisP-2"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-parkDisP-2" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-parkDisP-2", buildSummarySpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-parkDisP-2", buildTrendSpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
+    vegaEmbed("#map-parkDisP-2", buildMapSpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-bikeLanP-2" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Bike lanes</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/bikeLanP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="worse">Worse</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/bikeLanP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-bikeLanP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header text-left">
+        <h2 class="modal-title fs-xl" id="exampleModalLabel">Bike lanes</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2 class="fs-xl">Streets with bicycle lanes (percent), 2017</h2>
+        <p>In <strong>Southwest Queens</strong>, the streets with bicycle lanes (percent), 2017 is <span class="worse">Worse</span> compared to the NYC average.</p>
+        The�percent of streets with bike lanes can affect cyclist and pedestrian safety, physical activity, and sustainable transportation use.�
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">3.0</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">6</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">10</span></div>
+        </div>
+        <p><em>Percent of Streets with Bicycle Lanes </em></p>
+
+
+        
+          <div class="data-note"></div>
+        
+
+    
+      </div>
+      <hr>
+      <div class="modal-body">
+        <h3>Streets with bicycle lanes (percent), 2017</h3>
+        <p>  <em>Percent of Streets with Bicycle Lanes </em></p>
+        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-bikeLanP-2"></div> 
+        
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trends Over Time</h3>
+        <p><em>Percent of Streets with Bicycle Lanes </em></p>
+        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-bikeLanP-2"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>By Neighborhood</h3>
+        <p><em>Percent of Streets with Bicycle Lanes </em></p>
+        <div style="width:100%; height:75vmin; z-index:10000;" id="map-bikeLanP-2"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-bikeLanP-2" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-bikeLanP-2", buildSummarySpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-bikeLanP-2", buildTrendSpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
+    vegaEmbed("#map-bikeLanP-2", buildMapSpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
   });
 </script>
                   
@@ -887,64 +1171,76 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-nabSafeP-2" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-nabSafeP-3" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
       <span class="indicator-short-name">Neighborhood safety</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nabSafeP_407.svg" alt="Visualization showing neighborhood rank of 20 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/nabSafeP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="middle">Middle</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nabSafeP_407.svg" alt="Visualization showing neighborhood rank of 20 out of 42." class="viz">
+      <img src="../../../visualizations/images/nabSafeP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-nabSafeP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-nabSafeP-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Neighborhood safety:<br>Adults perceiving neighborhood as safe from crime (percent), 2016</h2>
+      <div class="modal-header text-left">
+        <h2 class="modal-title fs-xl" id="exampleModalLabel">Neighborhood safety</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Southwest Queens</strong>, the adults perceiving neighborhood as safe from crime (percent), 2016 is <span class="middle">Middle</span> than the NYC average.</p>
-        <p>Whether people perceive their neighborhood as safe can affect whether they will spend time outside, use parks, and use active and sustainable forms of transportation. It can also affect mental well-being.</p>
+        <h2 class="fs-xl">Adults perceiving neighborhood as safe from crime (percent), 2016</h2>
+        <p>In <strong>Southwest Queens</strong>, the adults perceiving neighborhood as safe from crime (percent), 2016 is <span class="middle">Middle</span> compared to the NYC average.</p>
+        Whether people perceive their neighborhood as safe can affect whether they will spend time outside, use parks, and use active and sustainable forms of transportation. It can also affect mental well-being.
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">88.4&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">88.6&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">85.5&#37;</span></div>
+          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">88.4</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">88.6</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">85.5</span></div>
         </div>
+        <p><em>Percent Neighborhood Safe from Crime </em></p>
+
+
         
           <div class="data-note"></div>
         
+
+    
+      </div>
+      <hr>
+      <div class="modal-body">
+        <h3>Adults perceiving neighborhood as safe from crime (percent), 2016</h3>
+        <p>  <em>Percent Neighborhood Safe from Crime </em></p>
+        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-nabSafeP-3"></div> 
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-nabSafeP-2"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-nabSafeP-2"></div> 
+        <h3>Trends Over Time</h3>
+        <p><em>Percent Neighborhood Safe from Crime </em></p>
+        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-nabSafeP-3"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-nabSafeP-2"></div>
+        <h3>By Neighborhood</h3>
+        <p><em>Percent Neighborhood Safe from Crime </em></p>
+        <div style="width:100%; height:75vmin; z-index:10000;" id="map-nabSafeP-3"></div>
 
       </div>
       
@@ -958,72 +1254,84 @@
 
 
 <script type="text/javascript">
-  $( "#modal-nabSafeP-2" ).on('shown.bs.modal', function() {
+  $( "#modal-nabSafeP-3" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-nabSafeP-2", buildSummarySpec(NeighborhoodName,"nabSafeP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-nabSafeP-2", buildTrendSpec(NeighborhoodName,"nabSafeP"),opt).then().catch(console.error);
-    vegaEmbed("#map-nabSafeP-2", buildMapSpec(NeighborhoodName,"nabSafeP"),opt).then().catch(console.error);
+    vegaEmbed("#summary-nabSafeP-3", buildSummarySpec(NeighborhoodName,"nabSafeP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-nabSafeP-3", buildTrendSpec(NeighborhoodName,"nabSafeP"),opt).then().catch(console.error);
+    vegaEmbed("#map-nabSafeP-3", buildMapSpec(NeighborhoodName,"nabSafeP"),opt).then().catch(console.error);
   });
 </script>
                     
-                    <button data-toggle="modal" data-target="#modal-poveACSP-2" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-poveACSP-3" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
       <span class="indicator-short-name">Poverty</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/poveACSP_407.svg" alt="Visualization showing neighborhood rank of 28 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/poveACSP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="middle">Middle</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/poveACSP_407.svg" alt="Visualization showing neighborhood rank of 28 out of 42." class="viz">
+      <img src="../../../visualizations/images/poveACSP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-poveACSP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-poveACSP-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Poverty:<br>People living in poverty (percent), 2013-17</h2>
+      <div class="modal-header text-left">
+        <h2 class="modal-title fs-xl" id="exampleModalLabel">Poverty</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Southwest Queens</strong>, the people living in poverty (percent), 2013-17 is <span class="middle">Middle</span> than the NYC average.</p>
-        <p>Neighborhood poverty is a major determinant of health, since poverty deprives people of access to health and safety resources.</p>
+        <h2 class="fs-xl">People living in poverty (percent), 2013-17</h2>
+        <p>In <strong>Southwest Queens</strong>, the people living in poverty (percent), 2013-17 is <span class="middle">Middle</span> compared to the NYC average.</p>
+        Neighborhood poverty is a major determinant of health, since poverty deprives people of access to health and safety resources.
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">13.5&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">13.7&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">19.6&#37;</span></div>
+          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">13.5</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">13.7</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">19.6</span></div>
         </div>
+        <p><em>Percent </em></p>
+
+
         
           <div class="data-note"></div>
         
+
+    
+      </div>
+      <hr>
+      <div class="modal-body">
+        <h3>People living in poverty (percent), 2013-17</h3>
+        <p>  <em>Percent </em></p>
+        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-poveACSP-3"></div> 
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-poveACSP-2"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-poveACSP-2"></div> 
+        <h3>Trends Over Time</h3>
+        <p><em>Percent </em></p>
+        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-poveACSP-3"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-poveACSP-2"></div>
+        <h3>By Neighborhood</h3>
+        <p><em>Percent </em></p>
+        <div style="width:100%; height:75vmin; z-index:10000;" id="map-poveACSP-3"></div>
 
       </div>
       
@@ -1037,72 +1345,84 @@
 
 
 <script type="text/javascript">
-  $( "#modal-poveACSP-2" ).on('shown.bs.modal', function() {
+  $( "#modal-poveACSP-3" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-poveACSP-2", buildSummarySpec(NeighborhoodName,"poveACSP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-poveACSP-2", buildTrendSpec(NeighborhoodName,"poveACSP"),opt).then().catch(console.error);
-    vegaEmbed("#map-poveACSP-2", buildMapSpec(NeighborhoodName,"poveACSP"),opt).then().catch(console.error);
+    vegaEmbed("#summary-poveACSP-3", buildSummarySpec(NeighborhoodName,"poveACSP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-poveACSP-3", buildTrendSpec(NeighborhoodName,"poveACSP"),opt).then().catch(console.error);
+    vegaEmbed("#map-poveACSP-3", buildMapSpec(NeighborhoodName,"poveACSP"),opt).then().catch(console.error);
   });
 </script>
                     
-                    <button data-toggle="modal" data-target="#modal-ratRepoP-2" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-ratRepoP-3" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Mice or rats (outside) </span>
+      <span class="indicator-short-name">Mice or rats (outside)</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/ratRepoP_407.svg" alt="Visualization showing neighborhood rank of 23 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/ratRepoP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="middle">Middle</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/ratRepoP_407.svg" alt="Visualization showing neighborhood rank of 23 out of 42." class="viz">
+      <img src="../../../visualizations/images/ratRepoP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-ratRepoP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-ratRepoP-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Mice or rats (outside) :<br>Adults reporting rats or mice outside their building (percent), 2010</h2>
+      <div class="modal-header text-left">
+        <h2 class="modal-title fs-xl" id="exampleModalLabel">Mice or rats (outside)</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Southwest Queens</strong>, the adults reporting rats or mice outside their building (percent), 2010 is <span class="middle">Middle</span> than the NYC average.</p>
-        <p>Mice and rats outside a building can indicate the presence of mice and rats in people's homes - which can trigger asthma and indicate other health-threatening maintenance deficiencies.</p>
+        <h2 class="fs-xl">Adults reporting rats or mice outside their building (percent), 2010</h2>
+        <p>In <strong>Southwest Queens</strong>, the adults reporting rats or mice outside their building (percent), 2010 is <span class="middle">Middle</span> compared to the NYC average.</p>
+        Mice and rats outside a building can indicate the presence of mice and rats in people's homes - which can trigger asthma and indicate other health-threatening maintenance deficiencies.
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">18.5&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">14.6&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">27.3&#37;</span></div>
+          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">18.5</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">14.6</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">27.3</span></div>
         </div>
+        <p><em>Percent </em></p>
+
+
         
           <div class="data-note"></div>
         
+
+    
+      </div>
+      <hr>
+      <div class="modal-body">
+        <h3>Adults reporting rats or mice outside their building (percent), 2010</h3>
+        <p>  <em>Percent </em></p>
+        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-ratRepoP-3"></div> 
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-ratRepoP-2"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-ratRepoP-2"></div> 
+        <h3>Trends Over Time</h3>
+        <p><em>Percent </em></p>
+        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-ratRepoP-3"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-ratRepoP-2"></div>
+        <h3>By Neighborhood</h3>
+        <p><em>Percent </em></p>
+        <div style="width:100%; height:75vmin; z-index:10000;" id="map-ratRepoP-3"></div>
 
       </div>
       
@@ -1116,11 +1436,11 @@
 
 
 <script type="text/javascript">
-  $( "#modal-ratRepoP-2" ).on('shown.bs.modal', function() {
+  $( "#modal-ratRepoP-3" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-ratRepoP-2", buildSummarySpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-ratRepoP-2", buildTrendSpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
-    vegaEmbed("#map-ratRepoP-2", buildMapSpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
+    vegaEmbed("#summary-ratRepoP-3", buildSummarySpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-ratRepoP-3", buildTrendSpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
+    vegaEmbed("#map-ratRepoP-3", buildMapSpec(NeighborhoodName,"ratRepoP"),opt).then().catch(console.error);
   });
 </script>
                   
@@ -1166,64 +1486,76 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-recExerP-3" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-recExerP-4" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Exercise </span>
+      <span class="indicator-short-name">Exercise</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/recExerP_407.svg" alt="Visualization showing neighborhood rank of 34 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/recExerP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/recExerP_407.svg" alt="Visualization showing neighborhood rank of 34 out of 42." class="viz">
+      <img src="../../../visualizations/images/recExerP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-recExerP-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-recExerP-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Exercise :<br>Adults reporting exercise in the past 30 days (percent), 2017</h2>
+      <div class="modal-header text-left">
+        <h2 class="modal-title fs-xl" id="exampleModalLabel">Exercise</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Southwest Queens</strong>, the adults reporting exercise in the past 30 days (percent), 2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Regular exercise is a key way to stay healthy.</p>
+        <h2 class="fs-xl">Adults reporting exercise in the past 30 days (percent), 2017</h2>
+        <p>In <strong>Southwest Queens</strong>, the adults reporting exercise in the past 30 days (percent), 2017 is <span class="worse">Worse</span> compared to the NYC average.</p>
+        Regular exercise is a key way to stay healthy.
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">70.5&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">74&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">74.5&#37;</span></div>
+          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">70.5</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">74</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">74.5</span></div>
         </div>
+        <p><em>Percent </em></p>
+
+
         
           <div class="data-note"></div>
         
+
+    
+      </div>
+      <hr>
+      <div class="modal-body">
+        <h3>Adults reporting exercise in the past 30 days (percent), 2017</h3>
+        <p>  <em>Percent </em></p>
+        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-recExerP-4"></div> 
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-recExerP-3"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-recExerP-3"></div> 
+        <h3>Trends Over Time</h3>
+        <p><em>Percent </em></p>
+        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-recExerP-4"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-recExerP-3"></div>
+        <h3>By Neighborhood</h3>
+        <p><em>Percent </em></p>
+        <div style="width:100%; height:75vmin; z-index:10000;" id="map-recExerP-4"></div>
 
       </div>
       
@@ -1237,72 +1569,84 @@
 
 
 <script type="text/javascript">
-  $( "#modal-recExerP-3" ).on('shown.bs.modal', function() {
+  $( "#modal-recExerP-4" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-recExerP-3", buildSummarySpec(NeighborhoodName,"recExerP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-recExerP-3", buildTrendSpec(NeighborhoodName,"recExerP"),opt).then().catch(console.error);
-    vegaEmbed("#map-recExerP-3", buildMapSpec(NeighborhoodName,"recExerP"),opt).then().catch(console.error);
+    vegaEmbed("#summary-recExerP-4", buildSummarySpec(NeighborhoodName,"recExerP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-recExerP-4", buildTrendSpec(NeighborhoodName,"recExerP"),opt).then().catch(console.error);
+    vegaEmbed("#map-recExerP-4", buildMapSpec(NeighborhoodName,"recExerP"),opt).then().catch(console.error);
   });
 </script>
                     
-                    <button data-toggle="modal" data-target="#modal-recBikeP-3" class="indicator-anchor">
+                    <button data-toggle="modal" data-target="#modal-recBikeP-4" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Bicycling </span>
+      <span class="indicator-short-name">Bicycling</span>
     </div>
     <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/recBikeP_407.svg" alt="Visualization showing neighborhood rank of 35 out of 42." width="100%" class="viz d-md-none mb-1">
+      <img src="../../../visualizations/images/recBikeP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
       <span class="worse">Worse</span>
       
     </div>
     <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/recBikeP_407.svg" alt="Visualization showing neighborhood rank of 35 out of 42." class="viz">
+      <img src="../../../visualizations/images/recBikeP_407.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
     </div>
   </div>
 </button>
 
 
-<div class="modal fade report-modal" id="modal-recBikeP-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-recBikeP-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Bicycling :<br>Adults who rode a bicycle in the past 30 days (percent) 2017</h2>
+      <div class="modal-header text-left">
+        <h2 class="modal-title fs-xl" id="exampleModalLabel">Bicycling</h2>
         <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
           <span class="fas fa-times-circle"></span>
         </button>
       </div>
       <div class="modal-body">
-        <p>In <strong>Southwest Queens</strong>, the adults who rode a bicycle in the past 30 days (percent) 2017 is <span class="worse">Worse</span> than the NYC average.</p>
-        <p>Monthly bicycle use is an indicator of physical activity and regular cycling.</p>
+        <h2 class="fs-xl">Adults who rode a bicycle in the past 30 days (percent) 2017</h2>
+        <p>In <strong>Southwest Queens</strong>, the adults who rode a bicycle in the past 30 days (percent) 2017 is <span class="worse">Worse</span> compared to the NYC average.</p>
+        Monthly bicycle use is an indicator of physical activity and regular cycling.
       </div>
         <hr>
       <div class="modal-body">
         <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
         <div class="row comparison">
-          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">10.6&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">12.3&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">15.5&#37;</span></div>
+          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">10.6</span></div>
+          <div class="col-sm-4">Queens <span class="indicator-value">12.3</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">15.5</span></div>
         </div>
+        <p><em>Percent </em></p>
+
+
         
           <div class="data-note"></div>
         
+
+    
+      </div>
+      <hr>
+      <div class="modal-body">
+        <h3>Adults who rode a bicycle in the past 30 days (percent) 2017</h3>
+        <p>  <em>Percent </em></p>
+        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-recBikeP-4"></div> 
         
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-recBikeP-3"></div> 
 
       </div>
         <hr>
       <div class="modal-body">
 
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-recBikeP-3"></div> 
+        <h3>Trends Over Time</h3>
+        <p><em>Percent </em></p>
+        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-recBikeP-4"></div> 
       
       </div>
         <hr>
       <div class="modal-body">
 
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-recBikeP-3"></div>
+        <h3>By Neighborhood</h3>
+        <p><em>Percent </em></p>
+        <div style="width:100%; height:75vmin; z-index:10000;" id="map-recBikeP-4"></div>
 
       </div>
       
@@ -1316,211 +1660,11 @@
 
 
 <script type="text/javascript">
-  $( "#modal-recBikeP-3" ).on('shown.bs.modal', function() {
+  $( "#modal-recBikeP-4" ).on('shown.bs.modal', function() {
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-recBikeP-3", buildSummarySpec(NeighborhoodName,"recBikeP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-recBikeP-3", buildTrendSpec(NeighborhoodName,"recBikeP"),opt).then().catch(console.error);
-    vegaEmbed("#map-recBikeP-3", buildMapSpec(NeighborhoodName,"recBikeP"),opt).then().catch(console.error);
-  });
-</script>
-                  
-              </div>
-              
-
-            </div>
-            
-            
-            
-            
-            
-            
-            <div class="report-topic">
-
-              <div class="topic-header">
-                <h2>Injury and Health</h2>
-                <p>
-                  Neighborhood design can influence health both directly -- by way of immediate hazards in the environment, and indirectly, for example, by encouraging exercise.
-                </p>
-              </div>
-              
-              <div class="container-fluid px-0 mb-4">
-                <div class="row indicator-headings mb-2">
-                  <div class="col-6 col-md-5 pl-3">
-                    Topic
-                  </div>
-                  <div class="col-6 col-md-4">
-                    
-                    <div class="position-relative">
-                      Comparison<br>
-                      <span class="meta"> to NYC average</span></a>
-                      <a href="#" data-toggle="modal" data-target="#modal-rank" class="info-modal"><i class="fas fa-question-circle fs-rg"></i></a>
-                    </div>
-                    
-                  </div>
-                  <div class="d-none d-md-inline col-md-3">
-                    Rank<br>
-                    <span class="meta"> out of the 42 neighborhoods</span>
-                  </div>
-                </div>
-
-                
-                    
-                    
-                    <button data-toggle="modal" data-target="#modal-obesityP-4" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Overweight </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/obesityP_407.svg" alt="Visualization showing neighborhood rank of 18 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="middle">Middle</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/obesityP_407.svg" alt="Visualization showing neighborhood rank of 18 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-obesityP-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Overweight :<br>Adults with overweight or obesity (percent), 2017</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Southwest Queens</strong>, the adults with overweight or obesity (percent), 2017 is <span class="middle">Middle</span> than the NYC average.</p>
-        <p>People who are overweight or obese are at increased risk for heart disease and diabetes.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">60.5&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">58.2&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">57.4&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-obesityP-4"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-obesityP-4"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-obesityP-4"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-obesityP-4" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-obesityP-4", buildSummarySpec(NeighborhoodName,"obesityP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-obesityP-4", buildTrendSpec(NeighborhoodName,"obesityP"),opt).then().catch(console.error);
-    vegaEmbed("#map-obesityP-4", buildMapSpec(NeighborhoodName,"obesityP"),opt).then().catch(console.error);
-  });
-</script>
-                    
-                    <button data-toggle="modal" data-target="#modal-preMorAA-4" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Death before 65 </span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/preMorAA_407.svg" alt="Visualization showing neighborhood rank of 27 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="middle">Middle</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/preMorAA_407.svg" alt="Visualization showing neighborhood rank of 27 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-preMorAA-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLabel">Death before 65 :<br>Premature mortality (age-adjusted rate per 100,000), 2016</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>In <strong>Southwest Queens</strong>, the premature mortality (age-adjusted rate per 100,000), 2016 is <span class="middle">Middle</span> than the NYC average.</p>
-        <p>The rate of people who die before age 65 can indicate the overall health of a population.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <p><em>Compared to NYC</em></p>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">137.1&#37;</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">130.8&#37;</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">189.4&#37;</span></div>
-        </div>
-        
-          <div class="data-note"></div>
-        
-        
-        <div style="width:100%; height:25vmin; z-index:10000;" id="summary-preMorAA-4"></div> 
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trend</h3>
-        <div style="width:100%; height:25vmin; z-index:10000;" id="trend-preMorAA-4"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Map</h3>
-        <div style="width:100%; height:40vmin; z-index:10000;" id="map-preMorAA-4"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-preMorAA-4" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-preMorAA-4", buildSummarySpec(NeighborhoodName,"preMorAA"),opt).then().catch(console.error);
-    vegaEmbed("#trend-preMorAA-4", buildTrendSpec(NeighborhoodName,"preMorAA"),opt).then().catch(console.error);
-    vegaEmbed("#map-preMorAA-4", buildMapSpec(NeighborhoodName,"preMorAA"),opt).then().catch(console.error);
+    vegaEmbed("#summary-recBikeP-4", buildSummarySpec(NeighborhoodName,"recBikeP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-recBikeP-4", buildTrendSpec(NeighborhoodName,"recBikeP"),opt).then().catch(console.error);
+    vegaEmbed("#map-recBikeP-4", buildMapSpec(NeighborhoodName,"recBikeP"),opt).then().catch(console.error);
   });
 </script>
                   
@@ -1600,7 +1744,7 @@
           <div class="card-body">
             <ul class="list-group list-group-flush">
               
-              <li class="list-group-item border-0 py-1 bg-transparent">More data entries go here</li>
+              <li class="list-group-item border-0 py-1 bg-transparent"><a href="https://www1.nyc.gov/site/doh/data/data-publications/profiles.page">NYC Community Health Profiles</a></li>
               
             </ul>
           </div>
@@ -1614,18 +1758,7 @@
 </section>
 
 
-<section class="py-6">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 offset-lg-4 overflow-hidden">
-        <div class="narrow">
-          <h2>More Information</h2>
-          <p>Active Design, Physical Activity and Health</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 
 <div class="modal fade report-modal" id="modal-rank" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
