@@ -22,19 +22,21 @@
         <div class="col-md-8 col-sm-12 ml-auto">
 
             <div class="row">
-                <h3 class="greenfill"><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
-                    {{ .Title }}</h2>
+                <h1 class="greenfill"><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
+                    {{ .Title }}</h1>
         
                 {{ .Content}}
             </div>
 
 
+            <div class="row sr-only">
+                <h2>Get data for {{ .Title }}</h2>
+            </div>
 
             <div class="row my-4 fs-sm">
-
                 <div class="col-md-4 pl-0">
                     {{ if where ( where .Site.RegularPages "Section" "key-topics") ".Params.categories" "intersect" ( slice .Params.keyTopic ) }}
-                        <h4 class="greenfill"><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Data Features</h3>
+                        <h3 class="greenfill fs-lg"><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Data Features</h3>
                         {{ partial "related" (dict "section" "key-topics" "layout" "button" "content" . ) }}     
                     {{ end }}
                 </div>
@@ -43,7 +45,7 @@
 
                 <div class="col-md-4 pl-0">
                     {{ if where ( where .Site.RegularPages "Section" "neighborhood-reports") ".Params.categories" "intersect" ( slice .Params.keyTopic ) }}
-                        <h4 class="greenfill"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
+                        <h3 class="greenfill fs-lg"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
                         {{ partial "related" (dict "section" "neighborhood-reports" "layout" "button" "content" . ) }}
                     {{ end }}
                 </div>
@@ -51,7 +53,7 @@
                 <div class="col-md-4 pl-0">
                     <!--Conditional if code only executes contents (related partial) if that intersection content exists. So it removes header if null content-->
                     {{ if where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) }}
-                    <h4 class="greenfill"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories</h3>
+                    <h3 class="greenfill fs-lg"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories</h3>
                     {{ partial "related" (dict "section" "data-stories" "layout" "singlelist" "content" . ) }}
                     {{ end }}
                     <!--end conditional here-->
@@ -59,7 +61,7 @@
             </div>
 
             <div class="row my-4">
-
+                <!-- blank! -->
             </div>
 
 
@@ -68,7 +70,7 @@
 
 
         <div class="col-md-3 pl-4 mr-auto text-right">
-            <h3 class="greenfill"><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Datasets</h3>
+            <h3 class="greenfill fs-lg"><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Datasets</h3>
 
             {{ partial "related" (dict "section" "data-explorer" "layout" "singlelist" "content" . ) }}
 
