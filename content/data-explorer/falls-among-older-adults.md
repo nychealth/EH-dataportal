@@ -2,6 +2,8 @@
 title: Falls Among Older Adults
 date: 2021-05-28 18:02:58.721805
 draft: false
+seo_title: "Falls among older adulst: data for NYC."
+seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["housing","healthoutcomes"]
 keywords: ["older adults","falls","hospitalizations","emergency department visits","housing"]

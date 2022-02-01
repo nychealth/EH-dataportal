@@ -2,6 +2,8 @@
 title: Cancers in Children
 date: 2021-05-28 18:02:58.766134
 draft: false
+seo_title: "Childhood cancer data for NYC."
+seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["childhealth","healthoutcomes"]
 keywords: ["cancer","cancers","children","environmental health"]

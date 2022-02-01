@@ -2,6 +2,8 @@
 title: "Why we're working with you to redesign the data portal"
 date: 2020-02-13T08:29:34-04:00
 draft: false
+seo_title: "Working together to redesign this website."
+seo_description: "How you can help us make NYC's health data easier to use."
 tags: 
 categories: ["internal"]
 keywords: ["how we work","civic service design","design","technology","research","user research"]

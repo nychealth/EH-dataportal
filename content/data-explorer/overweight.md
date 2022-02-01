@@ -2,6 +2,8 @@
 title: Overweight
 date: 2021-05-28 18:02:58.764067
 draft: false
+seo_title: "Overweight data for NYC."
+seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["healthoutcomes"]
 keywords: ["overweight","obesity"]

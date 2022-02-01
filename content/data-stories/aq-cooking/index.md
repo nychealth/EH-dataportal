@@ -2,6 +2,8 @@
 title: "Tracking changes in New York City's sources of air pollution"
 date: 2021-04-12T12:02:09-04:00
 draft: false
+seo_title: "Restaurants and air quality."
+seo_description: "Tracking changes in New York City's sources of air pollution."
 tags: 
 categories: ["foodanddrink","airquality","neighborhoods"]
 keywords: ["air quality","PM2.5","fine particles","cooking","restaurants","buildings","density","emissions","pollution","air pollution", "lungs","breathing"]

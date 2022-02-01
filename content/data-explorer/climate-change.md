@@ -2,6 +2,8 @@
 title: Climate Change
 date: 2021-05-28 18:02:58.884809
 draft: false
+seo_title: "Climate change data for NYC."
+seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["climatehealth"]
 keywords: ["climate change","global warming","health","climate","weather-related illness","storms"]

@@ -2,6 +2,8 @@
 title: Asthma
 date: 2021-05-28 18:02:58.749912
 draft: false
+seo_title: "Asthma data for NYC."
+seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["airquality","childhealth","housing","transportation","climatehealth","healthoutcomes"]
 keywords: ["asthma","children","hospitalizations","emergency department visits","breathing","housing","physical activity"]

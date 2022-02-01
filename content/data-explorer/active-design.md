@@ -2,6 +2,8 @@
 title: Active Design
 date: 2021-05-28 18:02:58.738512
 draft: false
+seo_title: "Active Design data in NYC."
+seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["transportation","neighborhoods"]
 keyTopic: transportation

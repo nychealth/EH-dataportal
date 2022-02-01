@@ -2,6 +2,8 @@
 title: "Environments matter: the road to street safety in NYC"
 date: 2020-09-20T10:54:51-04:00
 draft: false
+seo_title: "The road to street safety in NYC."
+seo_description: "A data story on safety for pedestrians and cyclists."
 tags:
 categories: ["transportation","healthoutcomes","neighborhoods"]
 keywords: ["transportation","built environment","streets","cycling", "biking", "active design","injuries","fatalities","roads","safety","bike lanes","cycle lanes","hospitalizations","emergency department visits"]

@@ -2,6 +2,8 @@
 title: "Health outcomes"
 date: 2021-08-04T12:32:15-04:00
 draft: false
+seo_title: "Health outcomes in NYC."
+seo_description: "Data, data stories, interactives, and more."
 tags: 
 categories: [healthoutcomes]
 keyTopic: healthoutcomes

@@ -2,6 +2,8 @@
 title: "Social and Economic Conditions"
 date: 2021-10-01T07:59:16-04:00
 draft: false
+seo_title: "Social and Economic Conditions in NYC."
+seo_description: "Data, data stories, interactives, and more."
 tags: 
 categories: [social]
 keyTopic: social

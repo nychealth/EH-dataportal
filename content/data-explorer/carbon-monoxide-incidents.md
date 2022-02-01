@@ -2,6 +2,8 @@
 title: Carbon Monoxide Incidents
 date: 2021-05-28 18:02:58.897914
 draft: false
+seo_title: "Carbon monoxide incident data for NYC."
+seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["housing","childhealth"]
 keywords: ["carbon","monoxide","poisoning","hospitalization","emergency department visits","children","housing"]

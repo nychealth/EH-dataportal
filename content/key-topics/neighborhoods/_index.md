@@ -2,6 +2,8 @@
 title: "Neighborhoods"
 date: 2021-09-08T10:59:52-04:00
 draft: false
+seo_title: "Neighborhood Data in NYC."
+seo_description: "Data, data stories, interactives, and more."
 tags: 
 categories: [neighborhoods]
 keyTopic: neighborhoods

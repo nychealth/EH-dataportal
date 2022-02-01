@@ -2,6 +2,8 @@
 title: "Protecting New Yorkers from extreme heat"
 date: 2020-09-09T08:33:22-04:00
 draft: false
+seo_title: "Protecting New Yorkers from extreme heat."
+seo_description: "A data story on the dangers of hot weather."
 tags: 
 categories: ["climatehealth","social","healthoutcomes","neighborhoods"]
 keywords: ["climate","heat","weather","mortality","death","climate change","air conditioner", "air conditioning","global warming"]

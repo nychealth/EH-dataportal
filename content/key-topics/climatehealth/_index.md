@@ -2,6 +2,8 @@
 title: "Climate and Health"
 date: 2021-10-03T12:33:17-04:00
 draft: false
+seo_title: "Climate and Health in NYC."
+seo_description: "Data, data stories, interactives, and more."
 tags: 
 categories: [climatehealth]
 keyTopic: climatehealth

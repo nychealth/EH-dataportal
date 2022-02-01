@@ -2,6 +2,8 @@
 title: Pesticides
 date: 2021-05-28 18:02:58.904121
 draft: false
+seo_title: "Pesticide data for NYC."
+seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["pests"]
 keywords: ["pests","pesticides","mice","rats","cockroaches","bed bugs","rodents"]

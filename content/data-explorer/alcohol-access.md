@@ -2,6 +2,9 @@
 title: Alcohol Access
 date: 2021-05-28 18:02:58.771666
 draft: false
+draft: false
+seo_title: "Alcohol access data for NYC."
+seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["foodanddrink","neighborhoods"]
 keywords: ["drink","alcohol","neighborhoods"]

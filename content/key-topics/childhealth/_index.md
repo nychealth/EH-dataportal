@@ -2,6 +2,8 @@
 title: "Child Health"
 date: 2021-05-05T07:59:26-04:00
 draft: false
+seo_title: "Child Health in NYC."
+seo_description: "Data, data stories, interactives, and more."
 tags: 
 categories: ["childhealth"]
 keyTopic: childhealth
