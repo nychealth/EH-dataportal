@@ -3,7 +3,7 @@
   var devpath = "/ehs-data-portal-frontend-temp";
 
   // <stdin>
-  var indicatorDataPath = `${devpath}/visualizations/csv/`;
+  var indicatorDataPath = `${devpath}/visualizations/csv/nr/`;
   var indicatorMapPath = `${devpath}/visualizations/json/`;
   var summarySpec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
@@ -22,7 +22,7 @@
       },
       "view": { "stroke": "transparent" }
     },
-    "data": { "url": "visualizations/csv/bikeLanP.csv" },
+    "data": { "url": "visualizations/csv/nr/bikeLanP.csv" },
     "mark": { "type": "bar", "tooltip": true },
     "encoding": {
       "x": {
@@ -72,7 +72,7 @@
       },
       "view": { "stroke": "transparent" }
     },
-    "data": { "url": "visualizations/csv/poveACSP_trend.csv" },
+    "data": { "url": "visualizations/csv/nr/poveACSP_trend.csv" },
     "layer": [{
       "mark": { "type": "line", "point": false, "tooltip": true },
       "encoding": {
@@ -160,7 +160,7 @@
       {
         "lookup": "id",
         "from": {
-          "data": { "url": "visualizations/csv/bikeLanP.csv" },
+          "data": { "url": "visualizations/csv/nr/bikeLanP.csv" },
           "key": "geo_join_id",
           "fields": ["data_value", "neighborhood", "message"]
         }
