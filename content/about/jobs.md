@@ -2,6 +2,8 @@
 title: "We're Hiring"
 date: 2021-11-24T13:30:21-05:00
 draft: false
+seo_title: "The NYC Environment and Health Data Portal is hiring."
+seo_description: "Join our team."
 ---
 
 We're hiring! See below for information about open positions on our team. We welcome your application.

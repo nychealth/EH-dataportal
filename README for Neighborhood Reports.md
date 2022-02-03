@@ -24,13 +24,13 @@ This site is currently build with the Hugo static site generator.
 
 * Report data for the site is stored in the `/data/reports/` folder. 
 * There is a markdown file for each report in site content that references the report metadata from its front matter.
-* There are two main templates used for reports `themes/dohmh/layouts/neighborhood_reports/single` is the main report template along with the partial that is loaded for each indicator `themes/dohmh/partials/report_indicator`.
+* There are two main templates used for reports `themes/dohmh/layouts/neighborhood-reports/single` is the main report template along with the partial that is loaded for each indicator `themes/dohmh/partials/report_indicator`.
 
 ### Visualizations
 Visualizations are powered by Vega-Lite with code and basic implementation approach provided by DOHMH team.
 
 * Visualization specifications and functions to generate them are included in `assets/js/site.js`.
-* CSV data for visualizations is stored in the `/static/visualizations/csv/`folder.
+* CSV data for visualizations is stored in the `/static/visualizations/csv/nr/`folder.
 * SVG images for visualizations is stored in the `/static/visualizations/images/`folder.
 * All html, function calls, and dynamic variables are found in the `themes/dohmh/partials/report_indicator` partial.
 * Functions are initiated on modal open following methods detailed in Bootstrap 4.5 docs.
@@ -71,7 +71,7 @@ There are some critical content elements that are site wide or used in multiple 
 
 ### Neighborhood Reports
 
-`_index.md` in `neighborhood_reports` of content folder. There are frontmatter params and content. Content can be formatted using markdown.
+`_index.md` in `neighborhood-reports` of content folder. There are frontmatter params and content. Content can be formatted using markdown.
 
 ### Location (Neighborhood page)
 

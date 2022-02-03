@@ -2,6 +2,8 @@
 title: "Teaching Resources"
 date: 2021-12-09T09:34:06-05:00
 draft: true
+seo_title: "Teaching resources on environments and health in NYC."
+seo_description: "Download resources to use in your classroom."
 ---
 
 Download lesson plans that use the New York City data on this site to teach math, science and health concepts.

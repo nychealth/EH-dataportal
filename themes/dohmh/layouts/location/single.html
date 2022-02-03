@@ -53,7 +53,7 @@
             </nav>
 
             <h2 class="mt-4">Change Neighborhood</h2>
-            <form action="/neighborhood_reports" method="get" class="autocomplete-form">
+            <form action="/neighborhood-reports" method="get" class="autocomplete-form">
               <div class="row no-gutters">
                 <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">What NYC neighborhood are you interested in?</label>
                 <div class="col-9">
@@ -315,7 +315,7 @@
   document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
   e.preventDefault(); // prevent page re-load
   var locVal = searchForm.options[searchForm.selectedIndex].value;
-  window.location = '{{ $.Site.Params.devpath}}/neighborhood_reports/'+ locVal + "/" + reportExt;
+  window.location = '{{ $.Site.Params.devpath}}/neighborhood-reports/'+ locVal + "/" + reportExt;
   });
 
 

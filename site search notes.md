@@ -12,7 +12,7 @@ Line 87: `window.location.href = "/ehs-neighborhoodprofiles/"`
 ## search.js
 
 ### Path to the search results page:
-Line 5:  `window.location.href = "/ehs-neighborhoodprofiles/search_results/index.html?search=${search}";`
+Line 5:  `window.location.href = "/ehs-neighborhoodprofiles/search-results/index.html?search=${search}";`
 
 ## config.toml
 

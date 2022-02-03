@@ -28,7 +28,7 @@
                   </p>
                   <div class="row mt-2">
 
-                    {{ range where (where .Site.Pages "Section" "key_topics") ".File.BaseFileName" "_index" }}
+                    {{ range where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index" }}
                     {{ if ne .Title "Key Topics in Environmental Health"}}
                     <div class="col-md-6 col-sm-12">
                       <a class="btn btn-outline-gray btn-sm has-icon disperse mt-2" href="{{.URL}}">
@@ -68,7 +68,7 @@
                     How does the environment in your neighborhood affect health? Get the data here. 
                   </p>
 
-                  <form action="/neighborhood_reports" method="get" class="autocomplete-form">
+                  <form action="/neighborhood-reports" method="get" class="autocomplete-form">
                     <div class="row no-gutters mb-2">
                       <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-1 fs-sm">Choose a
                         neighborhood:</label>
@@ -115,7 +115,7 @@
 
 
                   <hr>
-                  <a href="/data_explorer/" class="btn btn-outline-green btn-sm my-2" style="float:right;">Browse
+                  <a href="/data-explorer/" class="btn btn-outline-green btn-sm my-2" style="float:right;">Browse
                     all topics&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
                 </div>
 
@@ -143,13 +143,13 @@
                   Brief explainers and infographics on key health and environment topics.
                 </p>
                 <div class="fs-sm">
-                  {{ range first 5 ((where .Site.RegularPages "Section" "data_stories")) }}
+                  {{ range first 5 ((where .Site.RegularPages "Section" "data-stories")) }}
                  <a href="{{ .RelPermalink }}">{{ .Title }}</a>
                  <hr class="my-1">
                   {{ end }}
                 </div>
 
-                <a href="/data_stories/" class="btn btn-outline-blue btn-sm my-2" style="float:right;">Browse
+                <a href="/data-stories/" class="btn btn-outline-blue btn-sm my-2" style="float:right;">Browse
                   all data stories&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
 
               </div>
@@ -330,7 +330,7 @@
   document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
   e.preventDefault(); // prevent page re-load
   var locVal = searchForm.options[searchForm.selectedIndex].value;
-  window.location = '{{ $.Site.Params.devpath}}/neighborhood_reports/'+ locVal;
+  window.location = '{{ $.Site.Params.devpath}}/neighborhood-reports/'+ locVal;
   });
 </script>
 
