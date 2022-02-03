@@ -1,5 +1,12 @@
 [
     {
+        "title": "Environment & Health Data Portal",
+        "seo_title": "NYC Environment and Health Data Portal",
+        "seo_description": "Explore data on how environments shape health in New York City.",
+        "href": "/ehs-data-portal-frontend-temp/",
+        "content": ""
+    },
+    {
         "title": "About the EH Data Portal",
         "seo_title": "About the NYC Environment and Health Data Portal",
         "seo_description": "A project from the NYC Department of Health.",
@@ -19,6 +26,13 @@
         "seo_description": "Download resources to use in your classroom.",
         "href": "/ehs-data-portal-frontend-temp/about/teachingresources",
         "content": "Download lesson plans that use the New York City data on this site to teach math science and health concepts Heat Health Training Materials for Professionals and Community Leaders Collecting and Sharing your own Data Template for Community Groups Greenhouse Gases Climate Change Grade 6 Science Air Quality in NYC Our Health and Transportation Options Grade 8 Science Researching Smoking among Adolescents High School Health Links to follow"
+    },
+    {
+        "title": "Data Explorer",
+        "seo_title": "Data Explorer: NYC Environment and Health Data Portal.",
+        "seo_description": "Explore data on environments and health in NYC.",
+        "href": "/ehs-data-portal-frontend-temp/data-explorer/",
+        "content": "Get data sets on important environment and health topics for NYC View maps charts and more"
     },
     {
         "title": "Active Design",
@@ -3241,11 +3255,33 @@
         "content": "Every year in New York City workers are injured on the job or become ill as a result of exposure to health hazards at work However most workrelated illnesses and injuries are preventable safer work environments can be achieved when workplace hazards are understood and appropriate prevention measures are put in place Data on workrelated injuries and illness are used to show how often these preventable events occur and to identify factors that place workers at risk These data are also used to design target and evaluate prevention strategies and regulations that aim to keep workers safe and healthy Work Workplaces and Health Highquality work benefits physical and mental health in a variety of ways In addition to economic benefits work can be a source of identity and pride an avenue for social participation and a way to learn new skills Individuals who work have lower rates of illness and live longer than those who are unemployed On the other hand unfavorable work environments expose workers to serious health hazards which regularly result in injury illness disability and death Although many factors contribute to worker health such as workplace design organization worker characteristics and culture it is the employers responsibility to provide safe and healthful workplaces for their workers Preventing Workplace Injury and Disease Both workers and employers play important roles in keeping workplaces safe and healthy Employers should Demonstrate and communicate an ongoing commitment to safety and wellbeing Eliminate known hazards if possible and design work processes and environments to minimize exposure Ask workers or their representatives what safety and health issues are most important to them and act on their concerns Provide safety and health education and resources to all workers Workers should Communicate concerns about potential hazards to their employer in a timely manner Follow established work safety practices such as wearing recommended personal protective equipment and following safety protocols"
     },
     {
-        "title": "Data Explorer",
-        "seo_title": "Data Explorer: NYC Environment and Health Data Portal.",
-        "seo_description": "Explore data on environments and health in NYC.",
-        "href": "/ehs-data-portal-frontend-temp/data-explorer/",
-        "content": "Get data sets on important environment and health topics for NYC View maps charts and more"
+        "title": "Air quality snapshots: special findings from 10 years of NYCCAS",
+        "tags": null,
+        "categories": [
+            "transportation",
+            "airquality"
+        ],
+        "keywords": [
+            "air quality",
+            "traffic",
+            "transportation",
+            "air pollution",
+            "lungs",
+            "breathing",
+            "environmental justice",
+            "justice"
+        ],
+        "seo_title": "Air quality snapshots.",
+        "seo_description": "Special findings from 10 years of NYCCAS.",
+        "href": "/ehs-data-portal-frontend-temp/data-stories/aqsnapshots/",
+        "content": " Skip Nav Air quality snapshots 10 years of NYC air quality monitoring A traffic health threat air toxics Noise levels that harm health The benefits of cleaner fuel Special monitoring for environmental justice For 10 years the New York City Community Air Survey NYCCAS has measured air quality at 100 locations around NYC Weve combined these measurements with data on things related to air quality like traffic building emissions green space and much more to model seasonal air quality in every New York City neighborhood Our full findings are available in our annual report but here are a few other interesting things weve found along the way Additional health threats of traffic volume Traffic is a part of life in New York City and urban areas around the world While transportation is critical to a healthy functioning city it can also contribute to poor health and quality of life for both commuters and residents NYCCAS air monitoring data shows that traffic is associated with higher levels of harmful pollutants NO2 PM25 and black carbon BC In addition studies show that traffic is associated with two more health threats air toxics and noise Air toxics Air toxics are air pollutants that increase the risk of cancer and other serious health effects A study by the Environmental Protection Agency found that 49 of New York City residents live in census tracts that exceed a common benchmark for cancer risk because of exposure to benzene and formaldehyde compared with 48 of the population nationwide To further understand New Yorkers exposure to these air toxics we measured air toxics including benzene formaldehyde and other compounds at 70 sites across the city in 2011 We found that average levels of benzene and formaldehyde varied across NYC with some sites showing two three or even six times more air toxics than cleaner sites mostly due to traffic volume congestion and fuelburning buildings functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx Noise City residents are exposed to significant environmental noise A Health Department survey showed that one in five adult New Yorkers experience noise that disrupts sleep and other home life three or more times per week and some highpoverty neighborhoods experience even greater rates of noise disruption Noise is more than an annoyance it can cause stress increase blood pressure and the risk of heart disease and interfere with cognitive development in children To measure noise levels we collected weeklong sound pressure measurements at 56 sites across the city by mounting small soundlevel meters on lampposts in 2012 We found that for weeklong average values All sites exceeded noise guidelines set by the EPA and World Health Organization to protect health and quality of life 55 dBA Over half of sites exceeded EPA noise guidelines to prevent hearing loss 70 dBA The highest noise levels were recorded during the daytime hours of weekdays in areas where there was a lot of traffic within 100 meters Its no surprise that where there are high levels of noise there are also high levels of air pollution from vehicles Reducing emissions of both noise and air pollution from vehicles and other sources would improve health and quality of life in many of our most burdened neighborhoods functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx The benefits of cleaner heating fuel With cold weather and high population density the Northeast is the nations largest consumer of heating oil We use these fuels year round in building boiler systems for heat and hot water New York City has been phasing out the dirtiest heating fuel with high amounts of sulfur through recent City and State regulations These heating fuel regulations will be fully implemented by 2030 NYCCAS data shows that neighborhoods with higher proportions of buildings that burn highsulfur heating oil have worse air pollution So how can we estimate the public health benefits of cleaner heating fuel To estimate the impact of those heating oil regulations we used model simulations Heres what we did We gathered emissions data using boiler permits and other buildings and emissions data to see how boiler emissions changed after the regulations were put in place We estimated the resulting change in PM25 concentration using a complex air quality computer model that combines emissions information meteorology data and simulations of atmospheric chemical reactions This map shows estimated reductions in PM25 by neighborhood from 2008 before the regulations took effect to 2030 when the regulations will be fully implemented functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx Then we estimated the health benefits of reduced exposure to air pollution We gathered neighborhoodlevel population and health outcome data and we estimated the health events like asthma deaths and more that New Yorkers avoided due to this cleaner air Heres what we found Mortality reductions in areas with the worst air quality Cleaner fuels will save the most lives in areas with the greatest reduction in PM25 and areas with the highest rates of baseline premature mortality These are the neighborhoods that already have poor air quality and high rates of death including the Upper East and West Sides and Northern Manhattan Fewer adverse health events throughout the city Cleaner fuels will result in reductions in other health events throughout the city notably in the Bronx and Brooklyn Even in neighborhoods with better air quality hospitalizations and emergency department visits for cardiovascular disease asthma emergency department visits and respiratory diseases will go down as PM25 levels drop In other words reducing PM25 benefits areas that have high PM25 but also communities with lower PM25 but high rates of respiratory diseases You can explore these findings in the maps below Deaths Heart disease Asthma Respiratory disease functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx Special monitoring for environmental justice Across public health research we see that communities with higher concentrations of poverty have higher rates of a variety of health conditions including health conditions that are sensitive to air pollution This makes people in these communities more vulnerable to harm from air pollution We make sure that our monitoring network accurately models air quality in highpoverty neighborhoods with supplemental monitoring at 15 environmental justice EJ sites We placed monitors in highpoverty neighborhoods with lower than average density of air quality monitors or near important emissions sources starting in 2014 High poverty Low monitor density EJ neighborhoods functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx Previously our network of air quality monitors at 60 core sites gathered data that we used to model air quality across the entire city With these 15 EJ sites we can assess how well the model predicts air pollution levels in these communities with greater risk of air qualityrelated health impacts To do this we compared the modeled estimates to the actual measured levels at these locations Heres what we found Only small differences between predicted estimates and monitored values We found no meaningful statistically significant difference in the winter summer fall and annual average levels of PM25 or NO2 functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx Lower average concentrations of pollutants at 15 EJ sites The 15 environmental justice sites measured on average 4 less PM25 than the citywide average of the 60 core sites and 6 lower average NO2 But like other sites citywide there was variation in the levels measured at the new sites functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx Additional confidence in our model These findings show that the original model based on the 60 core monitoring sites is useful for predicting PM25 and NO2 levels even in highpoverty neighborhoods that previously had fewer monitors They offer additional confidence in our air quality monitor network and model and tell us that NYCCAS does a good job of describing pollution levels in all NYC neighborhoods even locations without monitors For more information about NYCCAS and our findings over 10 years of air quality monitoring visit the Air Quality Hub Questions about this data story Ideas for another one Email us "
+    },
+    {
+        "title": "Data Stories",
+        "seo_title": "Data Stories.",
+        "seo_description": "Explanations of important health topics in NYC.",
+        "href": "/ehs-data-portal-frontend-temp/data-stories/",
+        "content": ""
     },
     {
         "title": "Tracking changes in New York City's sources of air pollution",
@@ -3326,28 +3362,6 @@
         "seo_description": "What our air quality monitors show when NYC stays home.",
         "href": "/ehs-data-portal-frontend-temp/data-stories/aqcovid/",
         "content": "What happens when NYC stays home The COVID19 pandemic upended the lives of all New Yorkers The outbreak has affected many aspects of our daily life but there are also less apparent effects such as impacts on our environment The NYC Community Air Survey uses air quality monitors to take hourly measurements of fine particulate PM25 at a few sites around the city Generally locations around the city see changes in PM25 levels driven by time of day air quality gets worse during rush hour and business hours and weather conditions which can trap pollution in the city or blow it in from other states As New York City and surrounding communities implemented measures to slow the spread of COVID19 however the citys air quality changed significantly For example when we look at air quality in Midtown Manhattan we can decreasing PM25 levels as NYC began to stay home PM25 levels tend to be lower in the spring and fall than in the winter or summer so it is normal to see levels going down during March and early April However hightraffic sites such as midtown Manhattan usually have consistently higher levels of PM25 than lowtraffic sites Starting in the spring the midtown sites PM25 levels were much closer than usual to the lowtraffic Queens reference location In addition to these unusually low PM25 levels there was a sizeable decrease in nitrogen dioxide a pollutant which mostly comes from traffic The following data is measured by the NYS Department of Environmental Conservation at a nearroad site along the Long Island Expressway in Queens We will continue to track this so check back for updates to these charts throughout the COVID19 outbreak and recovery in NYC"
-    },
-    {
-        "title": "Air quality snapshots: special findings from 10 years of NYCCAS",
-        "tags": null,
-        "categories": [
-            "transportation",
-            "airquality"
-        ],
-        "keywords": [
-            "air quality",
-            "traffic",
-            "transportation",
-            "air pollution",
-            "lungs",
-            "breathing",
-            "environmental justice",
-            "justice"
-        ],
-        "seo_title": "Air quality snapshots.",
-        "seo_description": "Special findings from 10 years of NYCCAS.",
-        "href": "/ehs-data-portal-frontend-temp/data-stories/aqsnapshots/",
-        "content": " Skip Nav Air quality snapshots 10 years of NYC air quality monitoring A traffic health threat air toxics Noise levels that harm health The benefits of cleaner fuel Special monitoring for environmental justice For 10 years the New York City Community Air Survey NYCCAS has measured air quality at 100 locations around NYC Weve combined these measurements with data on things related to air quality like traffic building emissions green space and much more to model seasonal air quality in every New York City neighborhood Our full findings are available in our annual report but here are a few other interesting things weve found along the way Additional health threats of traffic volume Traffic is a part of life in New York City and urban areas around the world While transportation is critical to a healthy functioning city it can also contribute to poor health and quality of life for both commuters and residents NYCCAS air monitoring data shows that traffic is associated with higher levels of harmful pollutants NO2 PM25 and black carbon BC In addition studies show that traffic is associated with two more health threats air toxics and noise Air toxics Air toxics are air pollutants that increase the risk of cancer and other serious health effects A study by the Environmental Protection Agency found that 49 of New York City residents live in census tracts that exceed a common benchmark for cancer risk because of exposure to benzene and formaldehyde compared with 48 of the population nationwide To further understand New Yorkers exposure to these air toxics we measured air toxics including benzene formaldehyde and other compounds at 70 sites across the city in 2011 We found that average levels of benzene and formaldehyde varied across NYC with some sites showing two three or even six times more air toxics than cleaner sites mostly due to traffic volume congestion and fuelburning buildings functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx Noise City residents are exposed to significant environmental noise A Health Department survey showed that one in five adult New Yorkers experience noise that disrupts sleep and other home life three or more times per week and some highpoverty neighborhoods experience even greater rates of noise disruption Noise is more than an annoyance it can cause stress increase blood pressure and the risk of heart disease and interfere with cognitive development in children To measure noise levels we collected weeklong sound pressure measurements at 56 sites across the city by mounting small soundlevel meters on lampposts in 2012 We found that for weeklong average values All sites exceeded noise guidelines set by the EPA and World Health Organization to protect health and quality of life 55 dBA Over half of sites exceeded EPA noise guidelines to prevent hearing loss 70 dBA The highest noise levels were recorded during the daytime hours of weekdays in areas where there was a lot of traffic within 100 meters Its no surprise that where there are high levels of noise there are also high levels of air pollution from vehicles Reducing emissions of both noise and air pollution from vehicles and other sources would improve health and quality of life in many of our most burdened neighborhoods functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx The benefits of cleaner heating fuel With cold weather and high population density the Northeast is the nations largest consumer of heating oil We use these fuels year round in building boiler systems for heat and hot water New York City has been phasing out the dirtiest heating fuel with high amounts of sulfur through recent City and State regulations These heating fuel regulations will be fully implemented by 2030 NYCCAS data shows that neighborhoods with higher proportions of buildings that burn highsulfur heating oil have worse air pollution So how can we estimate the public health benefits of cleaner heating fuel To estimate the impact of those heating oil regulations we used model simulations Heres what we did We gathered emissions data using boiler permits and other buildings and emissions data to see how boiler emissions changed after the regulations were put in place We estimated the resulting change in PM25 concentration using a complex air quality computer model that combines emissions information meteorology data and simulations of atmospheric chemical reactions This map shows estimated reductions in PM25 by neighborhood from 2008 before the regulations took effect to 2030 when the regulations will be fully implemented functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx Then we estimated the health benefits of reduced exposure to air pollution We gathered neighborhoodlevel population and health outcome data and we estimated the health events like asthma deaths and more that New Yorkers avoided due to this cleaner air Heres what we found Mortality reductions in areas with the worst air quality Cleaner fuels will save the most lives in areas with the greatest reduction in PM25 and areas with the highest rates of baseline premature mortality These are the neighborhoods that already have poor air quality and high rates of death including the Upper East and West Sides and Northern Manhattan Fewer adverse health events throughout the city Cleaner fuels will result in reductions in other health events throughout the city notably in the Bronx and Brooklyn Even in neighborhoods with better air quality hospitalizations and emergency department visits for cardiovascular disease asthma emergency department visits and respiratory diseases will go down as PM25 levels drop In other words reducing PM25 benefits areas that have high PM25 but also communities with lower PM25 but high rates of respiratory diseases You can explore these findings in the maps below Deaths Heart disease Asthma Respiratory disease functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx Special monitoring for environmental justice Across public health research we see that communities with higher concentrations of poverty have higher rates of a variety of health conditions including health conditions that are sensitive to air pollution This makes people in these communities more vulnerable to harm from air pollution We make sure that our monitoring network accurately models air quality in highpoverty neighborhoods with supplemental monitoring at 15 environmental justice EJ sites We placed monitors in highpoverty neighborhoods with lower than average density of air quality monitors or near important emissions sources starting in 2014 High poverty Low monitor density EJ neighborhoods functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx Previously our network of air quality monitors at 60 core sites gathered data that we used to model air quality across the entire city With these 15 EJ sites we can assess how well the model predicts air pollution levels in these communities with greater risk of air qualityrelated health impacts To do this we compared the modeled estimates to the actual measured levels at these locations Heres what we found Only small differences between predicted estimates and monitored values We found no meaningful statistically significant difference in the winter summer fall and annual average levels of PM25 or NO2 functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx Lower average concentrations of pollutants at 15 EJ sites The 15 environmental justice sites measured on average 4 less PM25 than the citywide average of the 60 core sites and 6 lower average NO2 But like other sites citywide there was variation in the levels measured at the new sites functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightforvar e in adatadatawrapperheightvar tdocumentgetElementByIddatawrapperchartedocumentquerySelectoriframesrcettstyleheightadatadatawrapperheightepx Additional confidence in our model These findings show that the original model based on the 60 core monitoring sites is useful for predicting PM25 and NO2 levels even in highpoverty neighborhoods that previously had fewer monitors They offer additional confidence in our air quality monitor network and model and tell us that NYCCAS does a good job of describing pollution levels in all NYC neighborhoods even locations without monitors For more information about NYCCAS and our findings over 10 years of air quality monitoring visit the Air Quality Hub Questions about this data story Ideas for another one Email us "
     },
     {
         "title": "Air quality in car-free areas",
@@ -3694,11 +3708,32 @@
         "content": " Using public health to prevent violence Experiencing violence affects people in many ways It not only causes physical injury or death but being exposed to it can also cause emotional and psychological trauma Violence doesnt just affect the immediate victim it affects their surrounding community too Violence can affect people throughout their lives it is associated with worse birth outcomes childhood developmental delays physical and mental illness and premature deaths Violence is an epidemic and with any epidemic prevention is key And like any health issue that leads to disability disease and death there is a role for public health and healthcare to play in preventing it A common understanding of violence can help promote public health approaches to violence prevention and shift the focus from violence as a criminal behavior to instead viewing the experience of violence as a public health issue Yes violence is a behavior that some people do but were focused on how people experience violence the social and environmental contexts that predict whether they do what happens as a result and how we can protect them We can use data and research to understand what leads to violence to advocate for and help implement strategies to reduce peoples exposure to violence to keep them safe and prevent lifelong harm to their health nbspAre you or is somebody you know affected by violence Help is available and you dont have to go through it alone Call 1888NYCWELL 18886929355 for a free confidential help line for New York City residents Background on violence in New York City NYCs homicide rate has declined There is a lot less violence than there used to be in NYC Note on the COVID19 pandemic Data for 2020 is not included here but since the start of the COVID19 pandemic NYC has seen an increase in assaults shooting incidents and nonfatal assault emergency room visits and hospitalizations Similar patterns have been observed nationally as the country experiences unprecedented unemployment housing and food insecurity political unrest and uncertainty about the future The social economic and environmental factors that can influence violence rates have been amplified during this historic crisis To look at violence people often look at homicide rates In recent years NYCs rate of homicides the most extreme episodes of violence has been under 5 per 100000 people down from a high of over 25 per 100000 people from 19861990 function use strict windowaddEventListenermessage function a if void 0 adatadatawrapperheight for var e in adatadatawrapperheight var t documentgetElementByIddatawrapperchart e documentquerySelectoriframesrc e t tstyleheight adatadatawrapperheighte px but a drop in the homicide rate doesnt tell the whole story In this chart we look at three types of violent outcomes and how violence levels differ across the city nonfatal assault emergency department visits nonfatal assault hospitalizations and homicides These data show a larger burden of violence When broken down by geography the data show that some neighborhoods experience violence at much higher rates than others Neighborhoods experiencing the most violence have nonfatal assault hospitalization rates that are 10 times higher than neighborhoods experiencing the lowest rates and 4 times higher than the citywide rate This pattern is consistent across the three indicators And neighborhoods that experience higher rates of violence have larger populations of people of color showing that these populations shoulder a disproportionate burden of violence function use strict windowaddEventListenermessage function a if void 0 adatadatawrapperheight for var e in adatadatawrapperheight var t documentgetElementByIddatawrapperchart e documentquerySelectoriframesrc e t tstyleheight adatadatawrapperheighte px A public health approach to addressing violence Residents of some neighborhoods are at much greater risk of experiencing violence and its many health effects To prevent violence among those most affected by it we need to explore what factors lead to it Violence is rooted in historical disinvestment and racism Evidence shows that violence results from social structures that limit access to basic needs structures that are fueled by racism residential segregation and neighborhood disinvestment Where these structures persist people are exposed to violence For example lowincome neighborhoods of color are known to be hit the hardest This map shows the parts of NYC that were redlined 90 years ago as part of racist housing policy that set off decades of disinvestment and intergenerational poverty Redlining was a federal policy that started in the 1930s A government agency drew maps of hundreds of cities throughout the USA and graded neighborhoods within them from Best to Hazardous Their criteria included the race of people who lived in those neighborhoods Both the federal government and private banks used these maps to determine whether or not to back loans so that people could buy homes Through this system people of color were denied the opportunity to buy homes and white people had their home purchases federally subsidized Redlining drove segregation and economic inequality along racial lines Its effects persist today According to the National Community Reinvestment Coalition 3 out of every 4 neighborhoods in the USA that were redlined in the 1930s are still lowtomoderate income today and 2 out of every 3 are predominantly populated by people of color Click here to for more information about redlining A map of recent shootings lines up with the heavily redlined areas of the Bronx Harlem and northern and eastern Brooklyn showing clearly how todays violence is closely related to the ways that racist policies are embedded in our society Decades of government and societal disinvestment from practices like redlining means limited opportunity and resources and results in higher rates of poverty in some neighborhoods Disinvestment is when either government agencies or private companies deliberately withhold or withdraw resources and opportunity from a neighborhood or community The history of disinvesment is tied to racist practices and policies like denyng people of color loans to buy homes Disinvestment is also planned shrinkage a steady decline of public funding for public housing services education especially in cities and especially in neighborhoods populated mostly by people of color As a result of this disinvestment we see a clear relationship between poverty and violence As a neighborhoods poverty level increases so do assaults function use strict windowaddEventListenermessage function a if void 0 adatadatawrapperheight for var e in adatadatawrapperheight var t documentgetElementByIddatawrapperchart e documentquerySelectoriframesrc e t tstyleheight adatadatawrapperheighte px Disinvestment creates environments that threaten health Disinvestment takes many forms It promotes segregation limits peoples access to basic resources and creates environments that threaten peoples health Disinvestment can be Denying people access to loans to buy homes like redlining and other welldocumented racist real estate practices Housing neglect by landlords leading to unhealthy housing Poorlyfunded schools Fewer job opportunities and lowerpaying jobs Emphasis on policing over prosocial resources In terms of public health we say that disinvestment produces environmental factors that make certain health outcomes more likely Environmental factors Health outcomes Due to a history of disinvestment New York City neighborhoods experience very different environmental factors that predict violence and other health outcomes By environmental we mean the entire physical social and economic context around us the built environment like housing and parks and access to schools jobs opportunity healthcare and more Whether or not a neighborhood experiences more violence can be explained by looking at whether its environment has protective factors which help prevent violence before it starts or risk factors which make violence a more likely outcome Protective factors include nbspChild health nbspEconomic stability nbspHigh quality education nbspHousing stability Risk factors include nbspPoverty and child poverty nbspEconomic instability nbspHousing instability nbspExperiencing trauma or violence What does this mean for NYCs neighborhoods NYCs neighborhoods experience these protective and risk factors very differently Some neighborhoods have a lot less of the protective factors and a lot more of the risk factors Lets explore how by comparing two neighborhoods BelmontEast Tremont in the Bronx and TottenvilleGreat Kills in Staten Island function use strict windowaddEventListenermessage function a if void 0 adatadatawrapperheight for var e in adatadatawrapperheight var t documentgetElementByIddatawrapperchart e documentquerySelectoriframesrc e t tstyleheight adatadatawrapperheighte px Poverty ranges from 62 to 415 among NYC neighborhoods BelmontEast Tremont has one of the highest poverty rates in the city while TottenvilleGreat Kills has one of the lowest Neighborhood poverty is one of the environmental factors that can predict violence with neighborhoods with higher rates of poverty more likely to also have high rates of nonfatal assault hospitalizations BelmontEast Tremont also has a high rate of nonfatal assault hospitalizations one of the highest in the city 107 per 100000 people TottenvilleGreat Kills follows the same pattern with one of the lowest rates of nonfatal assault hospitalizations only 15 per 100000 people function use strict windowaddEventListenermessage function a if void 0 adatadatawrapperheight for var e in adatadatawrapperheight var t documentgetElementByIddatawrapperchart e documentquerySelectoriframesrc e t tstyleheight adatadatawrapperheighte px Another way to compare poverty and violence rates is to rank neighborhoods from highest to lowest for each and compare their positions Below we can see that BelmontEast Tremont ranks high in both poverty and assaults while TottenvilleGreat Kills ranks low for both function use strict windowaddEventListenermessage function a if void 0 adatadatawrapperheight for var e in adatadatawrapperheight var t documentgetElementByIddatawrapperchart e documentquerySelectoriframesrc e t tstyleheight adatadatawrapperheighte px When we add in other risk factors an even more significant pattern emerges Below each vertical line represents the neighborhood rankings for the risk factors of total poverty child poverty child homelessness high school incompletion disconnected youth unemployment evictions foreclosures and the violent outcome of assault hospitalizations shootings and homicides Each line connects one neighborhood through its ranks the flatter the line the more consistent the ranks These risk factors describe a network of threatening environmental factors in communities that have experienced disinvestment place residents in poverty and expose them to risks throughout their lives culminating in higher rates of violence Environmental factors in the chart below Child wellbeing Poverty child poverty and child homelessness Education and employment high school incompletion disconnected youth and unemployment Housing stability evictions foreclosures nbspAbout the data Violence outcomes in the chart below Nonfatal assault hospitalizations Shootings Homicides nbspAbout the data BelmontEast Tremont ranks highly for these risk factors that make violence more likely By comparison TottenvilleGreat Kills ranks low for these factors function use strict windowaddEventListenermessage function a if void 0 adatadatawrapperheight for var e in adatadatawrapperheight var t documentgetElementByIddatawrapperchart e documentquerySelectoriframesrc e t tstyleheight adatadatawrapperheighte px nbspAbout the data About the data times Poverty the percent of people whose annual income is below 100 of the Federal Poverty Level 20132017 American Community Survey Explore the data Child poverty children under 5 years old living in poverty 20132017 American Community Survey Explore the data Child homelessness homeless children age 0 to 17 per 1000 2015 Department of Homeless Services Explore the data High school incompletion estimated percent of people age 25 who did not graduate from high school 20132017 American Community Survey Explore the data Disconnected youth percent of people age 16 to 24 who did not graduate high school and are unemployed 20152017 American Community Survey Explore the data Unemployment estimated percent of people age 16 in the civilian labor force who are unemployed 20132017 American Community Survey Explore the data Evictions courtordered evictions 2017 Explore the data Foreclosures rate of foreclosures per 1000 1 to 4family properties 2018 Explore the data Assault hospitalizations ageadjusted rate of nonfatal assault hospitalizations per 100000 people 2016 Explore the data Shootings number of shootings from 2008 2018 Explore the data Homicides rate of homicides per 100000 people 20132016 Explore the data Close A pattern emerges neighborhoods with the highest poverty rates consistently rank high for risk factors experience more violence Neighborhoods with the lowest poverty rates consistently rank low for risk factors experience less violence Why does this happen These risk factors make up a network of environmental threats in communities that have experienced disinvestment Due to the inequitable distribution of resources and opportunities some neighborhoods face a disproportionate amount of risk These threats place residents in poverty and expose them to risks throughout their lives culminating in higher rates of violence In environments where risk factors far outweigh protective factors higher rates of neighborhood violence emerge and threaten the health of residents of these neighborhoods function use strict windowaddEventListenermessage function a if void 0 adatadatawrapperheight for var e in adatadatawrapperheight var t documentgetElementByIddatawrapperchart e documentquerySelectoriframesrc e t tstyleheight adatadatawrapperheighte px Breaking the cycle of violence Addressing factors that lead to violence The Health Department takes a public health approach to violence This means promoting conditions that prevent violence and addressing outcomes triggered by violence It means working across systems and communities to reinvest in neighborhoods most affected by violence This work includes Research on the most effective policies to reduce violence collecting and analyzing data that can be used to develop new interventions Through the Crisis Management System working with other city organizations to support communityled efforts to deescalate violence providing support to atrisk youth with employment legal therapeutic and educational opportunities Strengthening the Neighborhood Health Action Centers in the South Bronx Harlem and Central Brooklyn neighborhoods that all experience higher levels of violence The Action Centers serve as community hubs for programs and resources that can decrease risk and increase protective factors Working with hospitals to help them respond to the many needs physical social and emotional of people injured by violence Were partnering with communities to respond to neighborhoodlevel mental health crises and traumatic events through Rapid Assessment and Response With this work the Health Department is reinvesting in communities that have experienced disinvestment so that we can build environments where protective factors outweigh risk factors to reduce rates of violence Public health is about assuring the conditions in which people can be healthy A public health approach to violence prevention relies on a response from all sectors of society to address the inequities that lead to violence It relies on creating and supporting systems so that both institutions and neighborhoods support the health of their residents A public health approach to violence presents an opportunity to find sustainable solutions to create healthy spaces for New Yorkers to live and thrive It means that we can prevent violence by eliminating poverty providing jobs healthy housing and education creating a society based on justice and equality that offers opportunity to all More resources Mayors Office to End Domestic and Genderbased Violence Mayors Office to End Gun Violence nbspAre you or is somebody you know affected by violence Help is available and you dont have to go through it alone Call 1888NYCWELL 18886929355 for a free confidential help line for New York City residents or get support here "
     },
     {
-        "title": "Data Stories",
-        "seo_title": "Data Stories.",
-        "seo_description": "Explanations of important health topics in NYC.",
-        "href": "/ehs-data-portal-frontend-temp/data-stories/",
+        "title": "Key Topics in Environmental Health",
+        "seo_title": "Key topics in Environmental Health.",
+        "seo_description": "Data, data stories, interactives, and more.",
+        "href": "/ehs-data-portal-frontend-temp/key-topics/",
         "content": ""
+    },
+    {
+        "title": "Air Quality",
+        "tags": null,
+        "categories": [
+            "airquality"
+        ],
+        "keywords": [
+            "air quality",
+            "pollution",
+            "emissions",
+            "smog",
+            "PM2.5",
+            "asthma",
+            "breathing",
+            "lungs"
+        ],
+        "seo_title": "Air Quality in NYC.",
+        "seo_description": "Data, data stories, interactives, and more.",
+        "href": "/ehs-data-portal-frontend-temp/key-topics/airquality/",
+        "content": "New York Citys air contains particles drops of liquid gasses and other pollution that can affect health Bad air quality can be particularly dangerous for older adults children and people with heart or lung conditions Air quality varies from neighborhood to neighborhood based on local levels of emissions and many other factors We monitor air quality using the New York City Community Air Survey NYCCAS NYCs comprehensive air quality monitoring and modeling network NYCCAS allows us to understand neighborhood differences in air quality and what contributes to those differences"
     },
     {
         "title": "Your Neighborhood's Air Quality",
@@ -3744,27 +3779,6 @@
         "content": "NYCCAS Report Goes Here"
     },
     {
-        "title": "Air Quality",
-        "tags": null,
-        "categories": [
-            "airquality"
-        ],
-        "keywords": [
-            "air quality",
-            "pollution",
-            "emissions",
-            "smog",
-            "PM2.5",
-            "asthma",
-            "breathing",
-            "lungs"
-        ],
-        "seo_title": "Air Quality in NYC.",
-        "seo_description": "Data, data stories, interactives, and more.",
-        "href": "/ehs-data-portal-frontend-temp/key-topics/airquality/",
-        "content": "New York Citys air contains particles drops of liquid gasses and other pollution that can affect health Bad air quality can be particularly dangerous for older adults children and people with heart or lung conditions Air quality varies from neighborhood to neighborhood based on local levels of emissions and many other factors We monitor air quality using the New York City Community Air Survey NYCCAS NYCs comprehensive air quality monitoring and modeling network NYCCAS allows us to understand neighborhood differences in air quality and what contributes to those differences"
-    },
-    {
         "title": "Child Health",
         "tags": null,
         "categories": [
@@ -3782,6 +3796,29 @@
         "seo_description": "Data, data stories, interactives, and more.",
         "href": "/ehs-data-portal-frontend-temp/key-topics/childhealth/",
         "content": "Lifelong health can be determined by your health when you are a child Plus children can be fragile and can be more harmed by environmental threats So ways that the environment can affect health often are particularly important for child health In New York City several environmental factors play a key role in determining childhood health"
+    },
+    {
+        "title": "Climate and Health",
+        "tags": null,
+        "categories": [
+            "climatehealth"
+        ],
+        "keywords": [
+            "climate",
+            "climate change",
+            "public health",
+            "emergencies",
+            "heat",
+            "heat-related illness",
+            "storms",
+            "hurricanes",
+            "weather-related illness",
+            "weather"
+        ],
+        "seo_title": "Climate and Health in NYC.",
+        "seo_description": "Data, data stories, interactives, and more.",
+        "href": "/ehs-data-portal-frontend-temp/key-topics/climatehealth/",
+        "content": "Climate including extreme weather has a direct impact on health As NYCs climate changes along with the worlds climate we expect more frequent and intense heat waves increased rainfall and more severe storms These will add to existing weatherrelated risks Already heat kills more people than all other natural disasters combined In New York City those most vulnerable to the dangers of hot weather are older adults and people with health conditions like heart disease diabetes and cognitive impairment especially those in lowincome Black and Brown communities Air conditioning is the best defense against the heat Equitable access and responsible use of air conditioning is crucial to protect the lives of all New Yorkers while reducing impacts on the environment"
     },
     {
         "title": "Heat Report",
@@ -3836,29 +3873,6 @@
         ],
         "href": "/ehs-data-portal-frontend-temp/key-topics/climatehealth/syndromic/",
         "content": "Extreme heat is dangerous It can cause heatrelated illness make chronic conditions worse and even kill The weather forecast is our best way to predict heatrelated health outcomes We can also track heatrelated illness with near realtime electronic data from emergency departments at hospitals throughout NYC"
-    },
-    {
-        "title": "Climate and Health",
-        "tags": null,
-        "categories": [
-            "climatehealth"
-        ],
-        "keywords": [
-            "climate",
-            "climate change",
-            "public health",
-            "emergencies",
-            "heat",
-            "heat-related illness",
-            "storms",
-            "hurricanes",
-            "weather-related illness",
-            "weather"
-        ],
-        "seo_title": "Climate and Health in NYC.",
-        "seo_description": "Data, data stories, interactives, and more.",
-        "href": "/ehs-data-portal-frontend-temp/key-topics/climatehealth/",
-        "content": "Climate including extreme weather has a direct impact on health As NYCs climate changes along with the worlds climate we expect more frequent and intense heat waves increased rainfall and more severe storms These will add to existing weatherrelated risks Already heat kills more people than all other natural disasters combined In New York City those most vulnerable to the dangers of hot weather are older adults and people with health conditions like heart disease diabetes and cognitive impairment especially those in lowincome Black and Brown communities Air conditioning is the best defense against the heat Equitable access and responsible use of air conditioning is crucial to protect the lives of all New Yorkers while reducing impacts on the environment"
     },
     {
         "title": "Food and Drink",
@@ -4008,37 +4022,6 @@
         "seo_description": "Data, data stories, interactives, and more.",
         "href": "/ehs-data-portal-frontend-temp/key-topics/transportation/",
         "content": "Physical inactivity and unhealthy diet rank among the leading risk factors for premature death in the United States Active design however promotes health by using architectural and urban design strategies to encourage walking bicycling stair climbing transit use active recreation and healthy eating Designing to increase access to parks create pedestrian plazas ensure wellmaintained sidewalks plant street trees provide secure bicycle storage and make stairwaus in buildings attractive and accessible can have a measurable effect on peoples ability to safetly get regular physical activity that can keep them healthy"
-    },
-    {
-        "title": "Key Topics in Environmental Health",
-        "seo_title": "Key topics in Environmental Health.",
-        "seo_description": "Data, data stories, interactives, and more.",
-        "href": "/ehs-data-portal-frontend-temp/key-topics/",
-        "content": ""
-    },
-    {
-        "title": "Active Design, Physical Activity and Health",
-        "categories": [
-            "airquality",
-            "transportation",
-            "housing"
-        ],
-        "seo_title": "Active Design, Physical Activity and Health in NYC",
-        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/activedesign",
-        "content": "The design and conditions of buildings streets public transportation and parks influence physical activity use of active transportation and other healthy behavior A neighborhoods features can also impact the safety of its residents"
-    },
-    {
-        "title": "Asthma and the Environment",
-        "categories": [
-            "airquality",
-            "transportation",
-            "childhealth",
-            "social",
-            "housing"
-        ],
-        "seo_title": "Asthma and the Environment in NYC",
-        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/asthma",
-        "content": "Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old This report provides a summary of asthma indicators by neighborhood It also describes housing and neighborhood characteristics that can make asthma worse"
     },
     {
         "title": "Active Design Physical Activity and Health",
@@ -4338,80 +4321,6 @@
     },
     {
         "title": "Active Design Physical Activity and Health",
-        "neighborhood": "Canarsie - Flatlands",
-        "summary": "The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood's features can also impact the safety of its residents.",
-        "data_json": "Active Design Physical Activity and Health in Canarsie - Flatlands",
-        "content_yml": "active_design",
-        "type": "location",
-        "seo_title": "Active Design Physical Activity and Health in Canarsie - Flatlands",
-        "seo_description": "Active Design Physical Activity and Health data profile for the Canarsie - Flatlands neighborhood of NYC.",
-        "seo_image": "images/nyc_health_report_active_design_health.jpg",
-        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/canarsie_flatlands/active_design_physical_activity_and_health",
-        "content": ""
-    },
-    {
-        "title": "Asthma and the Environment",
-        "neighborhood": "Canarsie - Flatlands",
-        "summary": "Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma indicators by neighborhood. It also describes housing and neighborhood characteristics that can make asthma worse.",
-        "data_json": "Asthma and the Environment in Canarsie - Flatlands",
-        "content_yml": "asthma",
-        "type": "location",
-        "seo_title": "Asthma and the Environment in Canarsie - Flatlands",
-        "seo_description": "Asthma and the Environment data profile for the Canarsie - Flatlands neighborhood of NYC.",
-        "seo_image": "images/nyc_health_report_asthma_environment.jpg",
-        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/canarsie_flatlands/asthma_and_the_environment",
-        "content": ""
-    },
-    {
-        "title": "Climate and Health",
-        "neighborhood": "Canarsie - Flatlands",
-        "summary": "Extreme heat, coastal storms, flooding and episodes of elevated ozone are climate-related hazards that may increase with climate change and have important public health impacts in New York City. Extreme weather can cause power outages, which also threaten public health. This report provides neighborhood indicators of climate-related hazards, vulnerability and health impacts.",
-        "data_json": "Climate and Health in Canarsie - Flatlands",
-        "content_yml": "climate",
-        "type": "location",
-        "seo_title": "Climate and Health in Canarsie - Flatlands",
-        "seo_description": "Climate and Health data profile for the Canarsie - Flatlands neighborhood of NYC.",
-        "seo_image": "images/nyc_health_report_climate_health.jpg",
-        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/canarsie_flatlands/climate_and_health",
-        "content": ""
-    },
-    {
-        "title": "Housing and Health ",
-        "neighborhood": "Canarsie - Flatlands",
-        "summary": "This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can increase vulnerability to housing hazards.",
-        "data_json": "Housing and Health  in Canarsie - Flatlands",
-        "content_yml": "housing",
-        "type": "location",
-        "seo_title": "Housing and Health  in Canarsie - Flatlands",
-        "seo_description": "Housing and Health  data profile for the Canarsie - Flatlands neighborhood of NYC.",
-        "seo_image": "images/nyc_health_report_housing_and_health.jpg",
-        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/canarsie_flatlands/housing_and_health",
-        "content": ""
-    },
-    {
-        "title": "Outdoor Air and Health",
-        "neighborhood": "Canarsie - Flatlands",
-        "summary": "Air pollution is one of the most important environmental threats to urban populations and while all people are exposed, pollutant emissions, levels of exposure, and population vulnerability vary across neighborhoods. Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases, cancers, and premature deaths.",
-        "data_json": "Outdoor Air and Health in Canarsie - Flatlands",
-        "content_yml": "outdoor",
-        "type": "location",
-        "seo_title": "Outdoor Air and Health in Canarsie - Flatlands",
-        "seo_description": "Outdoor Air and Health data profile for the Canarsie - Flatlands neighborhood of NYC.",
-        "seo_image": "images/nyc_health_report_outdoor_air_health.jpg",
-        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/canarsie_flatlands/outdoor_air_and_health",
-        "content": ""
-    },
-    {
-        "title": "Canarsie - Flatlands",
-        "type": "location",
-        "seo_title": "Canarsie - Flatlands",
-        "seo_description": "Environmental Health data profiles for the Canarsie - Flatlands neighborhood of NYC.",
-        "seo_image": "",
-        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/canarsie_flatlands/",
-        "content": ""
-    },
-    {
-        "title": "Active Design Physical Activity and Health",
         "neighborhood": "Central Harlem - Morningside Heights",
         "summary": "The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood's features can also impact the safety of its residents.",
         "data_json": "Active Design Physical Activity and Health in Central Harlem - Morningside Heights",
@@ -4557,17 +4466,6 @@
         "seo_image": "",
         "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/chelsea_clinton/",
         "content": ""
-    },
-    {
-        "title": "Climate and Health",
-        "categories": [
-            "climatehealth",
-            "housing",
-            "social"
-        ],
-        "seo_title": "Climate and Health in NYC",
-        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/climateandhealth",
-        "content": "Extreme heat coastal storms flooding and episodes of elevated ozone are climaterelated hazards that may increase with climate change and have important public health impacts in New York City Extreme weather can cause power outages which also threaten public health This report provides neighborhood indicators of climaterelated hazards vulnerability and health impacts"
     },
     {
         "title": "Active Design Physical Activity and Health",
@@ -5532,16 +5430,6 @@
         "content": ""
     },
     {
-        "title": "Housing and Health",
-        "categories": [
-            "housing",
-            "childhealth",
-            "social"
-        ],
-        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/housing",
-        "content": "This report provides a neighborhood summary of housing conditions and related health outcomes It also describes population characteristics that can increase vulnerability to housing hazards"
-    },
-    {
         "title": "Active Design Physical Activity and Health",
         "neighborhood": "Hunts Point - Mott Haven",
         "summary": "The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood's features can also impact the safety of its residents.",
@@ -5986,16 +5874,6 @@
         "content": ""
     },
     {
-        "title": "Outdoor Air and Health",
-        "categories": [
-            "airquality",
-            "childhealth",
-            "transportation"
-        ],
-        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/outdoorair",
-        "content": "Air pollution is one of the most important environmental threats to urban populations and while all people are exposed pollutant emissions levels of exposure and population vulnerability vary across neighborhoods Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases cancers and premature deaths"
-    },
-    {
         "title": "Active Design Physical Activity and Health",
         "neighborhood": "Pelham - Throgs Neck",
         "summary": "The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood's features can also impact the safety of its residents.",
@@ -6293,6 +6171,80 @@
     },
     {
         "title": "Active Design Physical Activity and Health",
+        "neighborhood": "South Beach - Tottenville",
+        "summary": "The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood's features can also impact the safety of its residents.",
+        "data_json": "Active Design Physical Activity and Health in South Beach - Tottenville",
+        "content_yml": "active_design",
+        "type": "location",
+        "seo_title": "Active Design Physical Activity and Health in South Beach - Tottenville",
+        "seo_description": "Active Design Physical Activity and Health data profile for the South Beach - Tottenville neighborhood of NYC.",
+        "seo_image": "images/nyc_health_report_active_design_health.jpg",
+        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/south_beach_tottenville/active_design_physical_activity_and_health",
+        "content": ""
+    },
+    {
+        "title": "Asthma and the Environment",
+        "neighborhood": "South Beach - Tottenville",
+        "summary": "Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma indicators by neighborhood. It also describes housing and neighborhood characteristics that can make asthma worse.",
+        "data_json": "Asthma and the Environment in South Beach - Tottenville",
+        "content_yml": "asthma",
+        "type": "location",
+        "seo_title": "Asthma and the Environment in South Beach - Tottenville",
+        "seo_description": "Asthma and the Environment data profile for the South Beach - Tottenville neighborhood of NYC.",
+        "seo_image": "images/nyc_health_report_asthma_environment.jpg",
+        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/south_beach_tottenville/asthma_and_the_environment",
+        "content": ""
+    },
+    {
+        "title": "Climate and Health",
+        "neighborhood": "South Beach - Tottenville",
+        "summary": "Extreme heat, coastal storms, flooding and episodes of elevated ozone are climate-related hazards that may increase with climate change and have important public health impacts in New York City. Extreme weather can cause power outages, which also threaten public health. This report provides neighborhood indicators of climate-related hazards, vulnerability and health impacts.",
+        "data_json": "Climate and Health in South Beach - Tottenville",
+        "content_yml": "climate",
+        "type": "location",
+        "seo_title": "Climate and Health in South Beach - Tottenville",
+        "seo_description": "Climate and Health data profile for the South Beach - Tottenville neighborhood of NYC.",
+        "seo_image": "images/nyc_health_report_climate_health.jpg",
+        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/south_beach_tottenville/climate_and_health",
+        "content": ""
+    },
+    {
+        "title": "Housing and Health ",
+        "neighborhood": "South Beach - Tottenville",
+        "summary": "This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can increase vulnerability to housing hazards.",
+        "data_json": "Housing and Health  in South Beach - Tottenville",
+        "content_yml": "housing",
+        "type": "location",
+        "seo_title": "Housing and Health  in South Beach - Tottenville",
+        "seo_description": "Housing and Health  data profile for the South Beach - Tottenville neighborhood of NYC.",
+        "seo_image": "images/nyc_health_report_housing_and_health.jpg",
+        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/south_beach_tottenville/housing_and_health",
+        "content": ""
+    },
+    {
+        "title": "Outdoor Air and Health",
+        "neighborhood": "South Beach - Tottenville",
+        "summary": "Air pollution is one of the most important environmental threats to urban populations and while all people are exposed, pollutant emissions, levels of exposure, and population vulnerability vary across neighborhoods. Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases, cancers, and premature deaths.",
+        "data_json": "Outdoor Air and Health in South Beach - Tottenville",
+        "content_yml": "outdoor",
+        "type": "location",
+        "seo_title": "Outdoor Air and Health in South Beach - Tottenville",
+        "seo_description": "Outdoor Air and Health data profile for the South Beach - Tottenville neighborhood of NYC.",
+        "seo_image": "images/nyc_health_report_outdoor_air_health.jpg",
+        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/south_beach_tottenville/outdoor_air_and_health",
+        "content": ""
+    },
+    {
+        "title": "South Beach - Tottenville",
+        "type": "location",
+        "seo_title": "South Beach - Tottenville",
+        "seo_description": "Environmental Health data profiles for the South Beach - Tottenville neighborhood of NYC.",
+        "seo_image": "",
+        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/south_beach_tottenville/",
+        "content": ""
+    },
+    {
+        "title": "Active Design Physical Activity and Health",
         "neighborhood": "Southeast Queens",
         "summary": "The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood's features can also impact the safety of its residents.",
         "data_json": "Active Design Physical Activity and Health in Southeast Queens",
@@ -6437,80 +6389,6 @@
         "seo_description": "Environmental Health data profiles for the Southwest Queens neighborhood of NYC.",
         "seo_image": "",
         "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/southwest_queens/",
-        "content": ""
-    },
-    {
-        "title": "Active Design Physical Activity and Health",
-        "neighborhood": "South Beach - Tottenville",
-        "summary": "The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood's features can also impact the safety of its residents.",
-        "data_json": "Active Design Physical Activity and Health in South Beach - Tottenville",
-        "content_yml": "active_design",
-        "type": "location",
-        "seo_title": "Active Design Physical Activity and Health in South Beach - Tottenville",
-        "seo_description": "Active Design Physical Activity and Health data profile for the South Beach - Tottenville neighborhood of NYC.",
-        "seo_image": "images/nyc_health_report_active_design_health.jpg",
-        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/south_beach_tottenville/active_design_physical_activity_and_health",
-        "content": ""
-    },
-    {
-        "title": "Asthma and the Environment",
-        "neighborhood": "South Beach - Tottenville",
-        "summary": "Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma indicators by neighborhood. It also describes housing and neighborhood characteristics that can make asthma worse.",
-        "data_json": "Asthma and the Environment in South Beach - Tottenville",
-        "content_yml": "asthma",
-        "type": "location",
-        "seo_title": "Asthma and the Environment in South Beach - Tottenville",
-        "seo_description": "Asthma and the Environment data profile for the South Beach - Tottenville neighborhood of NYC.",
-        "seo_image": "images/nyc_health_report_asthma_environment.jpg",
-        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/south_beach_tottenville/asthma_and_the_environment",
-        "content": ""
-    },
-    {
-        "title": "Climate and Health",
-        "neighborhood": "South Beach - Tottenville",
-        "summary": "Extreme heat, coastal storms, flooding and episodes of elevated ozone are climate-related hazards that may increase with climate change and have important public health impacts in New York City. Extreme weather can cause power outages, which also threaten public health. This report provides neighborhood indicators of climate-related hazards, vulnerability and health impacts.",
-        "data_json": "Climate and Health in South Beach - Tottenville",
-        "content_yml": "climate",
-        "type": "location",
-        "seo_title": "Climate and Health in South Beach - Tottenville",
-        "seo_description": "Climate and Health data profile for the South Beach - Tottenville neighborhood of NYC.",
-        "seo_image": "images/nyc_health_report_climate_health.jpg",
-        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/south_beach_tottenville/climate_and_health",
-        "content": ""
-    },
-    {
-        "title": "Housing and Health ",
-        "neighborhood": "South Beach - Tottenville",
-        "summary": "This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can increase vulnerability to housing hazards.",
-        "data_json": "Housing and Health  in South Beach - Tottenville",
-        "content_yml": "housing",
-        "type": "location",
-        "seo_title": "Housing and Health  in South Beach - Tottenville",
-        "seo_description": "Housing and Health  data profile for the South Beach - Tottenville neighborhood of NYC.",
-        "seo_image": "images/nyc_health_report_housing_and_health.jpg",
-        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/south_beach_tottenville/housing_and_health",
-        "content": ""
-    },
-    {
-        "title": "Outdoor Air and Health",
-        "neighborhood": "South Beach - Tottenville",
-        "summary": "Air pollution is one of the most important environmental threats to urban populations and while all people are exposed, pollutant emissions, levels of exposure, and population vulnerability vary across neighborhoods. Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases, cancers, and premature deaths.",
-        "data_json": "Outdoor Air and Health in South Beach - Tottenville",
-        "content_yml": "outdoor",
-        "type": "location",
-        "seo_title": "Outdoor Air and Health in South Beach - Tottenville",
-        "seo_description": "Outdoor Air and Health data profile for the South Beach - Tottenville neighborhood of NYC.",
-        "seo_image": "images/nyc_health_report_outdoor_air_health.jpg",
-        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/south_beach_tottenville/outdoor_air_and_health",
-        "content": ""
-    },
-    {
-        "title": "South Beach - Tottenville",
-        "type": "location",
-        "seo_title": "South Beach - Tottenville",
-        "seo_description": "Environmental Health data profiles for the South Beach - Tottenville neighborhood of NYC.",
-        "seo_image": "",
-        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/south_beach_tottenville/",
         "content": ""
     },
     {
@@ -7185,16 +7063,138 @@
         "content": "What affects health in your neighborhood and how does it compare with other parts of the city"
     },
     {
-        "title": "Search Results",
-        "type": "search-results",
-        "href": "/ehs-data-portal-frontend-temp/search-results/",
+        "title": "Active Design, Physical Activity and Health",
+        "categories": [
+            "airquality",
+            "transportation",
+            "housing"
+        ],
+        "seo_title": "Active Design, Physical Activity and Health in NYC",
+        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/activedesign",
+        "content": "The design and conditions of buildings streets public transportation and parks influence physical activity use of active transportation and other healthy behavior A neighborhoods features can also impact the safety of its residents"
+    },
+    {
+        "title": "Asthma and the Environment",
+        "categories": [
+            "airquality",
+            "transportation",
+            "childhealth",
+            "social",
+            "housing"
+        ],
+        "seo_title": "Asthma and the Environment in NYC",
+        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/asthma",
+        "content": "Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old This report provides a summary of asthma indicators by neighborhood It also describes housing and neighborhood characteristics that can make asthma worse"
+    },
+    {
+        "title": "Active Design Physical Activity and Health",
+        "neighborhood": "Canarsie - Flatlands",
+        "summary": "The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood's features can also impact the safety of its residents.",
+        "data_json": "Active Design Physical Activity and Health in Canarsie - Flatlands",
+        "content_yml": "active_design",
+        "type": "location",
+        "seo_title": "Active Design Physical Activity and Health in Canarsie - Flatlands",
+        "seo_description": "Active Design Physical Activity and Health data profile for the Canarsie - Flatlands neighborhood of NYC.",
+        "seo_image": "images/nyc_health_report_active_design_health.jpg",
+        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/canarsie_flatlands/active_design_physical_activity_and_health",
         "content": ""
     },
     {
-        "title": "Environment & Health Data Portal",
-        "seo_title": "NYC Environment and Health Data Portal",
-        "seo_description": "Explore data on how environments shape health in New York City.",
-        "href": "/ehs-data-portal-frontend-temp/",
+        "title": "Asthma and the Environment",
+        "neighborhood": "Canarsie - Flatlands",
+        "summary": "Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma indicators by neighborhood. It also describes housing and neighborhood characteristics that can make asthma worse.",
+        "data_json": "Asthma and the Environment in Canarsie - Flatlands",
+        "content_yml": "asthma",
+        "type": "location",
+        "seo_title": "Asthma and the Environment in Canarsie - Flatlands",
+        "seo_description": "Asthma and the Environment data profile for the Canarsie - Flatlands neighborhood of NYC.",
+        "seo_image": "images/nyc_health_report_asthma_environment.jpg",
+        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/canarsie_flatlands/asthma_and_the_environment",
+        "content": ""
+    },
+    {
+        "title": "Climate and Health",
+        "neighborhood": "Canarsie - Flatlands",
+        "summary": "Extreme heat, coastal storms, flooding and episodes of elevated ozone are climate-related hazards that may increase with climate change and have important public health impacts in New York City. Extreme weather can cause power outages, which also threaten public health. This report provides neighborhood indicators of climate-related hazards, vulnerability and health impacts.",
+        "data_json": "Climate and Health in Canarsie - Flatlands",
+        "content_yml": "climate",
+        "type": "location",
+        "seo_title": "Climate and Health in Canarsie - Flatlands",
+        "seo_description": "Climate and Health data profile for the Canarsie - Flatlands neighborhood of NYC.",
+        "seo_image": "images/nyc_health_report_climate_health.jpg",
+        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/canarsie_flatlands/climate_and_health",
+        "content": ""
+    },
+    {
+        "title": "Outdoor Air and Health",
+        "neighborhood": "Canarsie - Flatlands",
+        "summary": "Air pollution is one of the most important environmental threats to urban populations and while all people are exposed, pollutant emissions, levels of exposure, and population vulnerability vary across neighborhoods. Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases, cancers, and premature deaths.",
+        "data_json": "Outdoor Air and Health in Canarsie - Flatlands",
+        "content_yml": "outdoor",
+        "type": "location",
+        "seo_title": "Outdoor Air and Health in Canarsie - Flatlands",
+        "seo_description": "Outdoor Air and Health data profile for the Canarsie - Flatlands neighborhood of NYC.",
+        "seo_image": "images/nyc_health_report_outdoor_air_health.jpg",
+        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/canarsie_flatlands/outdoor_air_and_health",
+        "content": ""
+    },
+    {
+        "title": "Canarsie - Flatlands",
+        "type": "location",
+        "seo_title": "Canarsie - Flatlands",
+        "seo_description": "Environmental Health data profiles for the Canarsie - Flatlands neighborhood of NYC.",
+        "seo_image": "",
+        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/canarsie_flatlands/",
+        "content": ""
+    },
+    {
+        "title": "Housing and Health ",
+        "neighborhood": "Canarsie - Flatlands",
+        "summary": "This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can increase vulnerability to housing hazards.",
+        "data_json": "Housing and Health  in Canarsie - Flatlands",
+        "content_yml": "housing",
+        "type": "location",
+        "seo_title": "Housing and Health  in Canarsie - Flatlands",
+        "seo_description": "Housing and Health  data profile for the Canarsie - Flatlands neighborhood of NYC.",
+        "seo_image": "images/nyc_health_report_housing_and_health.jpg",
+        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/canarsie_flatlands/housing_and_health",
+        "content": ""
+    },
+    {
+        "title": "Climate and Health",
+        "categories": [
+            "climatehealth",
+            "housing",
+            "social"
+        ],
+        "seo_title": "Climate and Health in NYC",
+        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/climateandhealth",
+        "content": "Extreme heat coastal storms flooding and episodes of elevated ozone are climaterelated hazards that may increase with climate change and have important public health impacts in New York City Extreme weather can cause power outages which also threaten public health This report provides neighborhood indicators of climaterelated hazards vulnerability and health impacts"
+    },
+    {
+        "title": "Housing and Health",
+        "categories": [
+            "housing",
+            "childhealth",
+            "social"
+        ],
+        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/housing",
+        "content": "This report provides a neighborhood summary of housing conditions and related health outcomes It also describes population characteristics that can increase vulnerability to housing hazards"
+    },
+    {
+        "title": "Outdoor Air and Health",
+        "categories": [
+            "airquality",
+            "childhealth",
+            "transportation"
+        ],
+        "href": "/ehs-data-portal-frontend-temp/neighborhood-reports/outdoorair",
+        "content": "Air pollution is one of the most important environmental threats to urban populations and while all people are exposed pollutant emissions levels of exposure and population vulnerability vary across neighborhoods Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases cancers and premature deaths"
+    },
+    {
+        "title": "Search Results",
+        "type": "search-results",
+        "href": "/ehs-data-portal-frontend-temp/search-results/",
         "content": ""
     }
 ]
