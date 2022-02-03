@@ -2,7 +2,7 @@ const handleSearch = (e) => {
   const search = $('form[role="search"] input').val()
   e.preventDefault();
   if (search.length > 2) {
-    window.location.href = `/ehs-data-portal-frontend-temp/search_results/index.html?search=${search}`;
+    window.location.href = `/ehs-data-portal-frontend-temp/search-results/index.html?search=${search}`;
   }
 }
 
