@@ -1,50 +1,29 @@
-# A new frontend for the Environment and Health Data portal
+# The NYC Environment and Health Data portal - frontend development
 
-This repository contains a new prototype of the Environment and Health Data Portal. You can view a staged development version [here](https://nycehs.github.io/ehs-data-portal-frontend-temp/).
+This repository contains a prototype of the Environment and Health Data Portal. You can view a staged development version [here](https://nycehs.github.io/ehs-data-portal-frontend-temp/).
 
-## General information
+## General Development
 
-### How you can help
-
-In the spirit of free software, everyone is encouraged to help improve this project.  Here are some ways you can contribute.
-
-- Comment on or clarify [issues](https://github.com/nycehs/ehs-data-portal-frontend-temp/issues)
-- Suggest new features
-- Write or edit documentation
-- Write code (no patch is too small)
-- Fix typos
-- Add comments
-- Clean up code
-- Add new features
-
-### Requirements
-
+### Getting started
 You will need the following things properly installed on your computer.
 
 - [Git](https://git-scm.com/)
 - [Hugo](https://gohugo.io/) 
 - [Grunt] (https://gruntjs.com/)
 
-## Development
-
-### Getting started
-
-#### Our git patterns:
-- Develop on branches labelled hotfix-, content-, or feature-. 
-- Keep branch work focused on discrete tasks to avoid merge conflicts later.
+Our git patterns are to develop on branches labelled hotfix-, content-, or feature-. Keep breanch work focused on discrete tasks to avoid merge conflicts later. 
 
 #### Local development:
 
-- On your local, start the server with ```hugo serve --environment local --disableFastRender```
-    - ```hugo serve``` starts the server - you can then browse the site at http://localhost:1313/ehs-data-portal-frontend-temp 
-    - ```--environment local``` specifies that it will serve the site for the local environment, using content from ```/config/local/config.toml```
-    - ```--disableFastRender``` turns off fast render mode, so more small changes are rapidly served
-
+- In your local development environment, start the server by typing `hugo serve --environment local --disableFastRender` into the terminal.
+    - `hugo serve` starts the server - you can then browse the site at http://localhost:1313/ehs-data-portal-frontend-temp 
+    - `--environment local` specifies that it will serve the site for the local environment, using content from `/config/local/config.toml`
+    - `--disableFastRender` turns off fast render mode, so more small changes are rapidly served
+- Develop your work. 
 - Merge into development to test. 
-    - Run a build with ```hugo --environment local```. The ```hugo``` command builds a fresh version of the site to ```/docs```.
+    - Run a build with `hugo --environment local`. The `hugo` command builds a fresh version of the site to `/docs`. This build location is specified in `config.toml`.
     - Development is served on githubpages.  
-- Branches that pass testing and are ready for primetime can then be merged into main. 
-- After merging branches into main, run a new build on main.
+- Branches that pass testing and are ready for primetime can then be merged into main. After merging branches into main, run a new build on main.
 
 ## Main Components
 ### Neighborhood Reports
@@ -253,7 +232,11 @@ To deploy to a new environment, update the baseURL in `config.toml`. Update the 
 
 ## Contact us
 
-You can comment on issues and we'll follow up as soon as we can. 
+You can comment on issues and we'll follow up as soon as we can. In the spirit of free software, everyone is encouraged to help improve this project.  Here are some ways you can contribute.
+
+- Comment on or clarify [issues](https://github.com/nycehs/ehs-data-portal-frontend-temp/issues)
+- Suggest new features
+- Write code (no patch is too small), clean up code, or add new features
 
 ## Communications disclaimer
 
