@@ -9,7 +9,7 @@ You will need the following things properly installed on your computer.
 
 - [Git](https://git-scm.com/)
 - [Hugo](https://gohugo.io/) 
-- [Grunt] (https://gruntjs.com/)
+- [Grunt](https://gruntjs.com/)
 
 Our git patterns are to develop on branches labelled hotfix-, content-, or feature-. Keep breanch work focused on discrete tasks to avoid merge conflicts later. 
 
