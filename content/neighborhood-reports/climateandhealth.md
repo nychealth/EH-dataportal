@@ -2,6 +2,7 @@
 title: 'Climate and Health'
 categories: ["climatehealth","housing","social"]
 layout: topiclanding
+seo_title: 'Climate and Health in NYC'
 menu:
     main:
         identifier: '04'

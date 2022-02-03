@@ -2,6 +2,7 @@
 title: 'Active Design, Physical Activity and Health'
 categories: ["airquality","transportation","housing"]
 layout: topiclanding
+seo_title: 'Active Design, Physical Activity and Health in NYC'
 menu:
     main:
         identifier: '04'

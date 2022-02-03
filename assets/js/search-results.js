@@ -4,14 +4,15 @@ $results,
 pagesIndex;
 
 // Initialize lunrjs using our generated index file
+
 function initLunr() {
     var request = new XMLHttpRequest();
     request.open('GET', '/ehs-data-portal-frontend-temp/js/lunr/PagesIndex.json', true);
-
+    
     request.onload = function () {
         if (request.status >= 200 && request.status < 400) {
             pagesIndex = JSON.parse(request.responseText);
-
+            
             // Set up lunrjs by declaring the fields we use
             // Also provide their boost level for the ranking
             lunrIndex = lunr(function () {
@@ -49,9 +50,10 @@ function initLunr() {
                     boost: 5
                 });
                 this.field("content");
-
+                
                 // ref is the result item identifier (I chose the page URL)
                 this.ref("href");
+                
                 for (var i = 0; i < pagesIndex.length; ++i) {
                     this.add(pagesIndex[i]);
                 }
@@ -62,14 +64,14 @@ function initLunr() {
             console.error("Error getting Hugo index flie:", err);
         }
     };
-
+    
     request.send();
 }
 
 // Nothing crazy here, just hook up a event handler on the input field
 function initUI() {
     const textSearchTerms = document.querySelectorAll('.search_term');
-
+    
     if (searchTerm) {
         textSearchTerms.forEach(term => {
             term.innerHTML = `'${searchTerm}'`
@@ -78,10 +80,12 @@ function initUI() {
         // add some fuzzyness to the string matching to help with spelling mistakes.
         var fuzzLength = Math.round(Math.min(Math.max(searchTerm.length / 4, 1), 3));
         var fuzzyQuery = searchTerm + '~' + fuzzLength;
-
+        
         // var results = search(fuzzyQuery);
         var results = search(searchTerm);
+        
         renderResults(results);
+        
     } else {
         // redirect to the homepage if there is no search term
         window.location.href = '/ehs-data-portal-frontend-temp/'
@@ -119,26 +123,27 @@ function renderResults(results) {
     const $dataStories = document.getElementById("data-stories");
     const $keyTopics = document.getElementById("key-topics");
     const $dataExplorer = document.getElementById("data-explorer");
-
+    
     let resultsCount = 0;
     let nieghborhoodReportsCount = 0;
     let dataStoriesCount = 0;
     let keyTopicsCount = 0;
     let dataExplorerCount = 0;
     let othersCount = 0;
-
+    
     const nieghborhoodResults = [];
     const dataStoriesResults = [];
     const keyTopicsResults = [];
     const dataExplorerResults = [];
     const otherResults = [];
-
+    
     if (!results.length) {
         $searchResultsTitle.innerHTML = `We couldn't find any results for '${searchTerm}'`;
         return;
     }
-
+    
     results.forEach(function (result) {
+        
         var li = document.createElement('li');
         var ahref = document.createElement('a');
         ahref.href = result.href;
@@ -147,7 +152,7 @@ function renderResults(results) {
         resultsCount = resultsCount += 1;
         $searchResultsTitle.innerHTML = 
             `<span class="fas fa-search fa-md"></span> ${resultsCount} results for '${searchTerm}'`;
-
+        
         const section = (str) => {
             if (result.href.includes(str)) {
                 return true;
@@ -155,57 +160,76 @@ function renderResults(results) {
                 return false;
             }
         }
-
+        
         if (section('neighborhood-reports')) {
             ahref.text = result.seo_title;
             nieghborhoodResults.push(ahref);
+
         } else if (section('data-stories')) {
             dataStoriesResults.push(ahref);
+            
         } else if (section('key-topics')) {
             keyTopicsResults.push(ahref);
+
         } else if (section('data-explorer')) {
             dataExplorerResults.push(ahref);
+            
         } else {
             otherResults.push(ahref);
         }
     });
-
+    
     const displaySection = (count, el) => {
         if (count > 0) {
             el.querySelector('.search-results-info').innerHTML =
-                `<strong>${count}</strong> results for <strong>'${searchTerm}'</strong>`;
+            `<strong>${count}</strong> results for <strong>'${searchTerm}'</strong>`;
             el.removeAttribute('hidden');
         }
     }
-
+    
     const handleResults = (el, arr, count) => {
+        
         count = arr.length;
+        
         if (count > 0) {
+            
             const ol = document.createElement('ol');
             el.append(ol)
             
+            // slice from beginning to 5
+            
             arr.slice(0, 5).map(link => {
+                
                 const li = document.createElement('li');
-                li.setAttribute('class', 'pb-3 pb-sm-0')
+                li.setAttribute('class', 'pb-3 pb-sm-0');
                 li.append(link);
                 el.querySelector('ol').appendChild(li);
+                
             })
         }
         
         if (count > 5) {
+            
             const btn = document.createElement("BUTTON");
             btn.innerHTML = "Show more";
             btn.setAttribute('class', 'btn btn-md btn-report');
             el.append(btn);
+            
             const showMoreResults = () => {
-                arr.slice(10).map(link => {
+                
+                // slice from 5 to end
+                
+                arr.slice(5).map(link => {
+                    
                     var li = document.createElement('li');
                     li.append(link);
                     el.querySelector('ol').appendChild(li);
+                    
                 });
+                
                 removeBtn();
             }
-
+            
             btn.addEventListener('click', showMoreResults);
             const removeBtn = () => {
                 btn.remove();
@@ -213,10 +237,10 @@ function renderResults(results) {
             }
             
         }
-
+        
         displaySection(count, el);
     }
-
+    
     handleResults($nieghborhoodReports, nieghborhoodResults, nieghborhoodReportsCount);
     handleResults($dataStories, dataStoriesResults, dataStoriesCount);
     handleResults($keyTopics, keyTopicsResults, keyTopicsCount);

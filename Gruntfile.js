@@ -119,7 +119,7 @@ module.exports = function(grunt) {
             
             var href = S(abspath).chompLeft("content").chompRight(".md").s;
 
-            if (filename === "_index.md") {
+            if (filename === "_index.md" || filename === "index.md") {
                 
                 href = S(abspath).chompLeft("content").chompRight(filename).s;
                 
