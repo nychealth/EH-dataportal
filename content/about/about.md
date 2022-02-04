@@ -12,4 +12,13 @@ The Environment & Health Data Portal is a project by the NYC Department of Healt
 
 Public health professionals, community-based organizations, community boards, city agencies, elected officials, health workers, advocates, and everyday New Yorkers use this website to get important information that they need to do their jobs and make important, informed decisions about health.
 
-[Email us with thoughts, questions, or concerns](mailto:trackingportal@health.nyc.gov).
+{{< rawhtml >}}<i class="fas fa-envelope mr-1"></i>{{< /rawhtml>}}[Email us with thoughts, questions, or concerns](mailto:trackingportal@health.nyc.gov).
+
+---
+
+{{< rawhtml >}}<h2 class="mt-4">Browse other Health Department data resources</h2>{{< /rawhtml>}}
+
+Can't find what you're looking for on our site? Try these other Health Department data resources:
+- [EpiQuery](https://a816-health.nyc.gov/hdi/epiquery/): Analyze and visualize NYC health data from surveys, disease reports and vital records by sex, race/ethnicity, age and other stratifications.
+- [Community Health Profiles](https://a816-health.nyc.gov/hdi/profiles/): Learn about the social, economic and health conditions and outcomes of New Yorkers, neighborhood-by-neighborhood.
+- [All Health Department Data resources](https://www1.nyc.gov/site/doh/data/data-home.page).
