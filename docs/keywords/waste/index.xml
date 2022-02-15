@@ -9,10 +9,10 @@
     <lastBuildDate>Fri, 28 May 2021 18:02:58 +0000</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/waste/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Solid Waste</title>
-      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/solid-waste/</link>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/solid-waste/</link>
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
-      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data_explorer/solid-waste/</guid>
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/solid-waste/</guid>
       <description>PlaNYC is a comprehensive sustainability plan for New York City&amp;rsquo;s future.
 Goal: Divert 75% of solid waste from landfills.
 Divert Solid Waste Of the city&amp;rsquo;s 13.6 million tons of waste per year, we currently recycle 51% of solid waste (including fill) and send 43% to landfills. The remainder is composted or converted to energy.

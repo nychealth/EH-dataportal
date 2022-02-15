@@ -9944,7 +9944,7 @@ h2.report-info {
     line-height: 1.75rem; }
     @media (min-width: 720px) {
       .indicator-anchor .indicator-short-name {
-        font-size: 1.5rem; } }
+        font-size: 1.25rem; } }
   .indicator-anchor:hover {
     text-decoration: none;
     color: #000;
@@ -9959,7 +9959,7 @@ h2.report-info {
   display: block; }
 
 .data-note {
-  margin-top: -30px;
+  margin-top: -10px;
   font-size: .8125rem;
   font-style: italic;
   margin-bottom: 20px; }
@@ -9999,7 +9999,7 @@ h2.report-info {
 
 .comparison {
   font-weight: 600;
-  margin-bottom: 2rem; }
+  margin-bottom: 1.25rem; }
   .comparison .indicator-value {
     font-size: 1.5rem; }
     @media (min-width: 960px) {
