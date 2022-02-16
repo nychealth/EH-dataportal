@@ -43,6 +43,42 @@ The branch deploy-Neighborhood-Reports is a dead-end branch meant for deploying 
 To deploy to a new environment, update the baseURL in `config.toml`. Update the path, if necessary, in the environment-specific `config.toml` file. And, you may need to update paths in other files, like `search-results.js`.
 
 ---
+## How-to: Creating new content
+This section contains brief descriptions of how to create new content types. Additional details are available below, in "Architecture and Functioning."
+
+### Creating a new data story
+- First create the markdown file with `hugo new data-stories/TITLE/index.md`. 
+- Add a banner image to the same folder.
+- Copy, paste, and edit the frontmatter from pre-existing data stories. You will need these fields:
+    - `title`, `date`, and `draft` 
+    - `seo_title` and `seo_description`
+    - `categories`: this determines what Key Topics this data story is associated with
+    - `keywords` to support search functions
+    - `image` to associate with the image filename
+    - `menu.main.identifier` to highlight the correct button in the nav menu
+- Write the data story in markdown. You can use Datawrapper and Vega shortcodes (see additional information on shortcodes, below)
+- To publish, set `draft: false`. The data story will be a part of the site when you serve or build it, and it will appear on the related pages if it's been tagged properly via `categories`.
+
+### Key Topics
+Key Topics associate different content types by theme, and they also host their own child pages (such as the Air Quality Explorer, or the interactive Heat Vulnerability Index). Each Key Topic page is an `_index.md` file in a titled folder. Child pages are subfolders within that - for example, see the folder structure under `content/key-topics/airquality`.
+
+To create a new Key Topic:
+- Create a markdown file with `hugo new key-topics/TITLE/_index.md`
+- Copy, paste, and edit the frontmatter from pre-existing Key Topic files. In particular, you will need the following frontmatter fields: 
+    -  `keyTopic` (for example, `keyTopic: airquality`). This associates this Key Topic with any other content that has `airquality` as one of its `categories`.
+    - `layout: single` to give it the correct template
+
+### Data Explorer
+The data explorer includes markdown files for each subtopic. For the prototype version, the subtopic includes json that connects to Portal data on the old version of the portal. For the future build, it will include an array with indicator IDs associating indicators with the subtopic.
+
+### Neighborhood Reports
+To publish a new neighborhood report, you'd need:
+- JSON files for each neighborhood stored in `data/reports`
+- YML stored in `data/globals`
+- Preview chart images stored in `static/visualizations/images`
+- Indicator data files stored in `static/visualizations/csv/nr`
+
+---
 
 ## Architecture and Functioning
 Development might entail:
