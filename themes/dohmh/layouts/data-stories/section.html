@@ -48,9 +48,9 @@
                         
                             {{ range .Paginator.Pages }}
                             <div class="col-md-4  my-2 py-2 itemfocus">
-                                <a class="h2 fs-md" href="{{ .URL}}">{{ .Title }}</a>
+                                <a class="h2 fs-md" href="{{ .Permalink}}">{{ .Title }}</a>
                                 <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                                <p class="text-right fs-sm"><a href="{{ .URL}}">Read more...</a></p>
+                                <p class="text-right fs-sm"><a href="{{ .Permalink}}">Read more...</a></p>
                                 </div>
                             {{ end }}
                     </div>
@@ -70,9 +70,9 @@
                     <div class="row">
                         {{ range where .RegularPages "Params.categories" "intersect" (slice "airquality") }}
                         <div class="col-md-4  my-2 py-2 itemfocus">
-                        <a class="h2 fs-md" href="{{ .URL}}">{{ .Title }}</a>
+                        <a class="h2 fs-md" href="{{ .Permalink}}">{{ .Title }}</a>
                         <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                        <p class="text-right fs-sm"><a href="{{ .URL}}">Read more...</a></p>
+                        <p class="text-right fs-sm"><a href="{{ .Permalink}}">Read more...</a></p>
                         </div>
                         {{end}}
                     </div>
@@ -82,9 +82,9 @@
                     <div class="row">
                         {{ range where .RegularPages "Params.categories" "intersect" (slice "transportation") }}
                         <div class="col-md-4  my-2 py-2 itemfocus">
-                            <a class="h2 fs-md" href="{{ .URL}}">{{ .Title }}</a>
+                            <a class="h2 fs-md" href="{{ .Permalink}}">{{ .Title }}</a>
                             <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                            <p class="text-right fs-sm"><a href="{{ .URL}}">Read more...</a></p>
+                            <p class="text-right fs-sm"><a href="{{ .Permalink}}">Read more...</a></p>
                             </div>
                         {{end}}
                     </div>
@@ -94,9 +94,9 @@
                     <div class="row">
                         {{ range where .RegularPages "Params.categories" "intersect" (slice "social") }}
                         <div class="col-md-4  my-2 py-2 itemfocus">
-                            <a class="h2 fs-md" href="{{ .URL}}">{{ .Title }}</a>
+                            <a class="h2 fs-md" href="{{ .Permalink}}">{{ .Title }}</a>
                             <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                            <p class="text-right fs-sm"><a href="{{ .URL}}">Read more...</a></p>
+                            <p class="text-right fs-sm"><a href="{{ .Permalink}}">Read more...</a></p>
                             </div>
                         {{end}}
                     </div>
@@ -106,9 +106,9 @@
                     <div class="row">
                         {{ range where .RegularPages "Params.categories" "intersect" (slice "climatehealth") }}
                         <div class="col-md-4  my-2 py-2 itemfocus">
-                            <a class="h2 fs-md" href="{{ .URL}}">{{ .Title }}</a>
+                            <a class="h2 fs-md" href="{{ .Permalink}}">{{ .Title }}</a>
                             <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                            <p class="text-right fs-sm"><a href="{{ .URL}}">Read more...</a></p>
+                            <p class="text-right fs-sm"><a href="{{ .Permalink}}">Read more...</a></p>
                             </div>
                         {{end}}
                     </div>
@@ -118,9 +118,9 @@
                     <div class="row">
                         {{ range where .RegularPages "Params.categories" "intersect" (slice "housing") }}
                         <div class="col-md-4  my-2 py-2 itemfocus">
-                            <a class="h2 fs-md" href="{{ .URL}}">{{ .Title }}</a>
+                            <a class="h2 fs-md" href="{{ .Permalink}}">{{ .Title }}</a>
                             <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                            <p class="text-right fs-sm"><a href="{{ .URL}}">Read more...</a></p>
+                            <p class="text-right fs-sm"><a href="{{ .Permalink}}">Read more...</a></p>
                             </div>
                         {{end}}
                     </div>
@@ -130,9 +130,9 @@
                     <div class="row">
                         {{ range where .RegularPages "Params.categories" "intersect" (slice "foodanddrink") }}
                         <div class="col-md-4  my-2 py-2 itemfocus">
-                            <a class="h2 fs-md" href="{{ .URL}}">{{ .Title }}</a>
+                            <a class="h2 fs-md" href="{{ .Permalink}}">{{ .Title }}</a>
                             <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                            <p class="text-right fs-sm"><a href="{{ .URL}}">Read more...</a></p>
+                            <p class="text-right fs-sm"><a href="{{ .Permalink}}">Read more...</a></p>
                             </div>
                         {{end}}
                     </div>
@@ -142,9 +142,9 @@
                     <div class="row">
                         {{ range where .RegularPages "Params.categories" "intersect" (slice "internal") }}
                         <div class="col-md-4  my-2 py-2 itemfocus">
-                            <a class="h2 fs-md" href="{{ .URL}}">{{ .Title }}</a>
+                            <a class="h2 fs-md" href="{{ .Permalink}}">{{ .Title }}</a>
                             <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                            <p class="text-right fs-sm"><a href="{{ .URL}}">Read more...</a></p>
+                            <p class="text-right fs-sm"><a href="{{ .Permalink}}">Read more...</a></p>
                             </div>
                         {{end}}
                     </div>
