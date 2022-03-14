@@ -37,7 +37,7 @@ disease.
 {{< /rawhtml>}}
 You can see in the chart below that neighborhoods with high building density have reliably higher wintertime concentrations of PM2.5 than medium or low-density neighborhoods. (Since there’s seasonal variation in PM2.5 concentration, it’s easier to look at one season at a time.)
 
-{{< datawrapper "Winter PM2.5 levels (in µg/m³) by neighborhood building density" "XPYgD/2/" "400">}}
+{{< datawrapper title="Winter PM2.5 levels (in µg/m³) by neighborhood building density" src="XPYgD/2/" height="400">}}
 
 You can also see that the wintertime PM2.5 concentrations have gone down dramatically over time, largely because the city has required buildings to {{< rawhtml>}}<a href="#laws" data-toggle="collapse" class="badge badge-pill badge-primary">reduce emissions</a>.</p>
 
@@ -62,7 +62,7 @@ more about the NEI</a>.
 </div>
 {{< /rawhtml>}}
 
-{{< datawrapper "Tons of PM2.5 emitted per year, NYC" "3bOXl/3/" "400">}}
+{{< datawrapper title="Tons of PM2.5 emitted per year, NYC" src="3bOXl/3/" height="400" >}}
 
 We can see these trends in our PM2.5 land-use regression model, which links neighborhood factors to measured pollution, and allows us to estimate pollution levels in places where we don't measure it. Our model tells us which emissions sources explain the {{< rawhtml>}}<a href="#var" data-toggle="collapse" class="badge badge-pill badge-primary">differences across neighborhoods</a>.
 </p>
@@ -78,7 +78,7 @@ quality data at the NYCCAS Annual Report</a>.
 
 With the increase in commercial cooking emissions, our model shows that the number of restaurants with permits for grills or charbroilers in a neighborhood is now a better predictor of PM2.5 concentrations than building density and explains most of the variation across the city.
 
-{{< datawrapper "Percent of variation explained" "AEQXF/2/" "400">}}
+{{< datawrapper title="Percent of variation explained" src="AEQXF/2/" height="400" >}}
 
 What can we do about this?
 
