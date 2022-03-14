@@ -23,7 +23,7 @@ These high-poverty neighborhoods are also home to a higher proportion of people 
 
 The chart below shows the relationship between each neighborhood's poverty rate and percent population of color, with the rate of childhood asthma ED visits represented by the size of each bubble.
 
-{{< datawrapper "Race, Poverty, and Health in NYC" "KOI8H/4/" "400px">}}
+{{< datawrapper title="Race, Poverty, and Health in NYC" src="KOI8H/4/" height="400px" >}}
 
 This dynamic extends beyond asthma. To understand why poverty, race, and health are related in New York City, we look back at **redlining**. This government policy from the 1930s illustrates the nature of poverty and racism in our society - and how racism affects health.
 

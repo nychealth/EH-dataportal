@@ -19,7 +19,7 @@ Heat stress happens when your body’s temperature increases quickly. When the b
 
 At the NYC Health Department, we track heat stress deaths by reviewing causes of death recorded by the Bureau of Vital Statistics. More people usually die of heat stress during hotter summers. From 1999 to 2016, NYC had 4 spikes due to severe heat, in 1999, 2006, 2011, and 2013.
 
-{{< datawrapper "Heat can be deadly" "F8xiB/4/" "400" >}}
+{{< datawrapper title="Heat can be deadly" src="F8xiB/4/" height="400" >}}
 
 But deaths due to heat stress only tell part of the story. Summer heat can also kill people by worsening chronic illnesses, such as heart disease. Since the effects of heat can be hard to recognize, these are often not recorded as heat-related deaths on death certificates.
 
@@ -42,7 +42,7 @@ What prevents heat-related illness at home? Air conditioning. Of the records wit
 90% of households in NYC report having an air conditioner – but in some of NYC’s low-income neighborhoods, this drops to as low as 76%.
 
 
-{{< datawrapper "Air conditioning access is a matter of health equity." "z0BAM/1/" "1203" >}}
+{{< datawrapper title="Air conditioning access is a matter of health equity." src="z0BAM/1/" height="1203" >}}
 
 
 Having an air conditioner is one thing – but using it is another. [When we surveyed New Yorkers](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6069135/), we found that 15% of New Yorkers have AC but don't use it during hot weather. Of those, 1 out of 4 said they don't use AC because of the cost of electricity. ([Low-income New Yorkers can apply to receive money from the State to buy an air conditioner](https://www1.nyc.gov/site/hra/help/energy-assistance.page).)

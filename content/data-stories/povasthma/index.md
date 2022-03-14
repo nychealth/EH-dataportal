@@ -18,11 +18,11 @@ Poverty affects health in many ways. In New York City, the story of asthma clear
 To understand the connection between poverty and asthma, take a look at this map of poverty rates in New York City, below. The darker the color, the more residents living in poverty.
 
 
-{{< datawrapper "Poverty in New York City" "s32oq/3/" "600" >}}
+{{< datawrapper title="Poverty in New York City" src="s32oq/3/" height="600" >}}
 
 Now, compare that to a map of emergency department visits for asthma in children age 5 to 17, below. The darker the color, the higher the rate of children visiting the emergency department with asthma.
 
-{{< datawrapper "Child asthma in NYC" "5S8mf/4/" "600" >}}
+{{< datawrapper title="Child asthma in NYC" src="5S8mf/4/" height="600" >}}
 
 The similarities are clear. Throughout the city, neighborhoods with higher rates of poverty also experience higher rates of childhood asthma, which we can see from the rates of emergency department visits.
 
@@ -31,7 +31,7 @@ We can look at the connections between these two maps, of poverty and asthma, wi
 
 On the scatter plot below, each dot represents one neighborhood. Its horizontal position represents the neighborhood's poverty rate, and its vertical position represents its asthma rate. The pattern of dots, roughly grouped around an ascending line, shows a connection between poverty and asthma: the higher the poverty rate, the higher the asthma rate.
 
-{{< datawrapper "The correlation between poverty and asthma" "YiBqa/2/" "409" >}}
+{{< datawrapper title="The correlation between poverty and asthma" src="YiBqa/2/" height="409" >}}
 
 ### Why does this connection exist?
 The connection between poverty and asthma is due to a variety of factors, including:
