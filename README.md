@@ -268,6 +268,7 @@ To embed a Vega/Vega-Lite visualization, simply add this:. The shortcut inserts 
 ```{{< vega id="uniqueDivID" spec="../../visualizations/spec/bartest.vl.json" >}}```
 
 For Datawrapper, the shortcode is:
+
 ```{{< datawrapper title="Title" src="chartID/version/" height="Height" >}}```
 
 ---
