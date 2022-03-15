@@ -12,21 +12,14 @@
         - DS landing page & all others to have header.html
     -->
 
-    {{ if or (ne .Section "data-stories") ( eq .URL "/data-stories/") }}
+    {{ if or (ne .Section "data-stories") ( eq .RelPermalink "/data-stories/") }}
     {{- partial "header.html" . -}}
     {{ end}}
 
 
-    {{ if and (eq .Section "data-stories") ( ne .URL "/data-stories/") }}
+    {{ if and (eq .Section "data-stories") ( ne .RelPermalink "/data-stories/") }}
     {{- partial "header-ds.html" . -}}
     {{ end}}
-
-    <!--
-      Issue: If doesn't capture Regular Pages the way we want/expect
-    -->
-
-
-
 
     <main id="skip-header-target" role="main">
     {{- block "main" . }}{{- end }}

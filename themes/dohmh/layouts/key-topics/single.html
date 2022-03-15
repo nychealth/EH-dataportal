@@ -81,7 +81,7 @@
     
                     {{ range where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index" }}
                         {{ if ne .Title "Key Topics in Environmental Health"}}
-                            <a class="btn btn-outline-gray btn-sm has-icon disperse" style="text-align: left!important" href="{{.URL}}">
+                            <a class="btn btn-outline-gray btn-sm has-icon disperse" style="text-align: left!important" href="{{.Permalink}}">
                                 <span class="fas fa-angle-right"></span>
                                 <span class="title">{{ .Title }}</span>
                               </a>

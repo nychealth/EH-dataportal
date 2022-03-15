@@ -24,21 +24,21 @@ Violence is a real and pressing public health threat, and it doesn't affect New 
 
 We can look at violence by looking at data on non-fatal assault hospitalizations - violence that results in somebody going to the hospital, but not dying. While the hospitalization data capture where the person injured in the assault lives – and not where the assault occurred – they can be interpreted as indicators of violence in the neighborhood.
 
-{{< datawrapper "Violence rates are highest in the Bronx and Brooklyn" "dVe0S/4/" "559" >}}
+{{< datawrapper title="Violence rates are highest in the Bronx and Brooklyn" src="dVe0S/4/" height="559" >}}
 
 
 In this map, we can see that the highest rates of non-fatal assault hospitalizations - the darkest shades of purple on the map - are concentrated in the Bronx, parts of Harlem, northeastern Brooklyn, and northern Staten Island.
 
 Hospitalization rates for these neighborhoods are nearly 4 times the City’s average:
 
-{{< datawrapper "A huge disparity in NYC's neighborhood violence rates" "062qz/2/" "357" >}}
+{{< datawrapper title="A huge disparity in NYC's neighborhood violence rates" src="062qz/2/" height="357" >}}
 
 
 These higher rates of violence means that the health consequences ripple throughout the residents of these neighborhoods - often with devastating consequences.
 
 A major inequity is driving these different rates - poverty.
 
-{{< datawrapper "A disparity in violence by neighborhood poverty rate" "vBeo1/3/" "400" >}}
+{{< datawrapper title="A disparity in violence by neighborhood poverty rate" src="vBeo1/3/" height="400" >}}
 
 Violence is highest in NYC neighborhoods with higher rates of poverty.
 

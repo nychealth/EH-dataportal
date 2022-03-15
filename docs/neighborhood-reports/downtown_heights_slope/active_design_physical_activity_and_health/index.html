@@ -674,97 +674,6 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-parkDisP-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Park access</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nr/parkDisP_202.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nr/parkDisP_202.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-parkDisP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header text-left">
-        <h2 class="modal-title fs-xl" id="exampleModalLabel">Park access</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h2 class="fs-xl">People living in walking distance to a park (percent), 2017</h2>
-        <p>In <strong>Downtown - Heights - Slope</strong>, the people living in walking distance to a park (percent), 2017 is <span class="better">Better</span> compared to the NYC average.</p>
-        <p>Walking distance to a park is defined as 1/4-mile or less to entrances of smaller sites, such as sitting areas and playgrounds, and 1/2-mile or less to entrances of larger parks. Parks and open space that are not under the NYC Parks Department jurisdiction are also included.</p>
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Downtown - Heights - Slope <span class="indicator-value">94.0</span></div>
-          <div class="col-sm-4">Brooklyn <span class="indicator-value">82</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">81</span></div>
-        </div>
-        <p><em>Percent of Population </em></p>
-
-
-        
-          <div class="data-note"></div>
-        
-
-    
-      </div>
-      <hr>
-      <div class="modal-body">
-        <h3>People living in walking distance to a park (percent), 2017</h3>
-        <p>  <em>Percent of Population </em></p>
-        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-parkDisP-2"></div> 
-        
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trends Over Time</h3>
-        <p><em>Percent of Population </em></p>
-        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-parkDisP-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>By Neighborhood</h3>
-        <p><em>Percent of Population </em></p>
-        <div style="width:100%; height:75vmin; z-index:10000;" id="map-parkDisP-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-parkDisP-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-parkDisP-2", buildSummarySpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
-    vegaEmbed("#trend-parkDisP-2", buildTrendSpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
-    vegaEmbed("#map-parkDisP-2", buildMapSpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
-  });
-</script>
-                    
                     <button data-toggle="modal" data-target="#modal-subDistP-2" class="indicator-anchor">
   <div class="row align-items-center">
     <div class="col-6 col-md-5">
@@ -944,6 +853,97 @@
     vegaEmbed("#summary-bikeLanP-2", buildSummarySpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
     vegaEmbed("#trend-bikeLanP-2", buildTrendSpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
     vegaEmbed("#map-bikeLanP-2", buildMapSpec(NeighborhoodName,"bikeLanP"),opt).then().catch(console.error);
+  });
+</script>
+                    
+                    <button data-toggle="modal" data-target="#modal-parkDisP-2" class="indicator-anchor">
+  <div class="row align-items-center">
+    <div class="col-6 col-md-5">
+      <span class="indicator-short-name">Park access</span>
+    </div>
+    <div class="col-6 col-md-4 topic-list">
+      <img src="../../../visualizations/images/nr/parkDisP_202.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+      <span class="middle">Middle</span>
+      
+    </div>
+    <div class="d-none d-md-inline col-md-3">
+      <img src="../../../visualizations/images/nr/parkDisP_202.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+    </div>
+  </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-parkDisP-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header text-left">
+        <h2 class="modal-title fs-xl" id="exampleModalLabel">Park access</h2>
+        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+          <span class="fas fa-times-circle"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2 class="fs-xl">People living in walking distance to a park (percent), 2017</h2>
+        <p>In <strong>Downtown - Heights - Slope</strong>, the people living in walking distance to a park (percent), 2017 is <span class="middle">Middle</span> compared to the NYC average.</p>
+        <p>Walking distance to a park is defined as 1/4-mile or less to entrances of smaller sites, such as sitting areas and playgrounds, and 1/2-mile or less to entrances of larger parks. Parks and open space that are not under the NYC Parks Department jurisdiction are also included.</p>
+      </div>
+        <hr>
+      <div class="modal-body">
+        <h3>Neighborhood Comparison</h3>
+        <div class="row comparison">
+          <div class="col-sm-4 text-primary">Downtown - Heights - Slope <span class="indicator-value">94.0</span></div>
+          <div class="col-sm-4">Brooklyn <span class="indicator-value">82</span></div>
+          <div class="col-sm-4">New York City <span class="indicator-value">81</span></div>
+        </div>
+        <p><em>Percent of Population </em></p>
+
+
+        
+          <div class="data-note"></div>
+        
+
+    
+      </div>
+      <hr>
+      <div class="modal-body">
+        <h3>People living in walking distance to a park (percent), 2017</h3>
+        <p>  <em>Percent of Population </em></p>
+        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-parkDisP-2"></div> 
+        
+
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>Trends Over Time</h3>
+        <p><em>Percent of Population </em></p>
+        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-parkDisP-2"></div> 
+      
+      </div>
+        <hr>
+      <div class="modal-body">
+
+        <h3>By Neighborhood</h3>
+        <p><em>Percent of Population </em></p>
+        <div style="width:100%; height:75vmin; z-index:10000;" id="map-parkDisP-2"></div>
+
+      </div>
+      
+      <div class="modal-footer flex-column">
+        
+        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $( "#modal-parkDisP-2" ).on('shown.bs.modal', function() {
+    var opt = {"renderer": "svg"};
+    vegaEmbed("#summary-parkDisP-2", buildSummarySpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
+    vegaEmbed("#trend-parkDisP-2", buildTrendSpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
+    vegaEmbed("#map-parkDisP-2", buildMapSpec(NeighborhoodName,"parkDisP"),opt).then().catch(console.error);
   });
 </script>
                     

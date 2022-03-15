@@ -284,7 +284,7 @@ These problems go far beyond inconvenience or mess. {{< rawhtml>}}
 
 As a result of the segregation and disinvestment caused by redlining, Black and Latino people have less access to healthy housing. They are more likely to live in buildings that have health-threatening maintenance issues.
 
-{{< datawrapper "Black and Latino people have less access to healthy housing." "PTyc4/2/" "300px">}}
+{{< datawrapper title="Black and Latino people have less access to healthy housing." src="PTyc4/2/" height="300px" >}}
 
 
 ### These disparities persist across income levels

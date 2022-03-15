@@ -348,7 +348,7 @@
               </div>
             </div>
             <div class="col-4">
-              <button type="submit" class="btn-primary btn btn-block">3. Get Report!</button> 
+              <button type="submit" id="submitbutton" class="btn-primary btn btn-block" disabled>3. Get Report!</button> 
             </div>
             <div class="fs-sm"><em>Enter a neighborhood or ZIP Code</em></div>
           </div>
@@ -788,17 +788,24 @@ document.getElementById('report').addEventListener('change', function(event) {
   window.location.hash = target + "report"; 
   changeDescription(target)
 
+  var submitbtn = document.getElementById('submitbutton')
+
   
   if (report=="Asthma") {
     reportURL = '/asthma_and_the_environment/'
+    submitbtn.disabled = false;
   } else if (report=="Climate") {
     reportURL = '/climate_and_health/'
+    submitbtn.disabled = false;
   } else if (report=="Housing") {
     reportURL = '/housing_and_health/'
+    submitbtn.disabled = false;
   } else if (report=="Outdoor") {
     reportURL = '/outdoor_air_and_health/'
+    submitbtn.disabled = false;
   } else if (report=="Active") {
     reportURL = '/active_design_physical_activity_and_health/'
+    submitbtn.disabled = false;
   };
 });
 
