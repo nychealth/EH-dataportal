@@ -24,7 +24,7 @@
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/povasthma/</guid>
       <description>Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.
 To understand the connection between poverty and asthma, take a look at this map of poverty rates in New York City, below. The darker the color, the more residents living in poverty.
-  !function () { &#34;use strict&#34;; window.addEventListener(&#34;message&#34;, function (a) { if (void 0 !== a.data[&#34;datawrapper-height&#34;]) for (var e in a.</description>
+!function () { &#34;use strict&#34;; window.addEventListener(&#34;message&#34;, function (a) { if (void 0 !== a.data[&#34;datawrapper-height&#34;]) for (var e in a.</description>
     </item>
     
   </channel>

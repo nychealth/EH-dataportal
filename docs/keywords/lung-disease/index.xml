@@ -15,7 +15,7 @@
       <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/breatheeasy/</guid>
       <description>The air we breathe can have a major effect on our health — air pollution can make asthma worse and can cause heart disease, lung disease, strokes, and even cancer.
 Fortunately, New York City has made great strides in recent years to improve air quality. Let’s take a look.
-  !function () { &#34;use strict&#34;; window.addEventListener(&#34;message&#34;, function (a) { if (void 0 !== a.data[&#34;datawrapper-height&#34;]) for (var e in a.data[&#34;datawrapper-height&#34;]) { var t = document.</description>
+!function () { &#34;use strict&#34;; window.addEventListener(&#34;message&#34;, function (a) { if (void 0 !== a.data[&#34;datawrapper-height&#34;]) for (var e in a.data[&#34;datawrapper-height&#34;]) { var t = document.</description>
     </item>
     
   </channel>
