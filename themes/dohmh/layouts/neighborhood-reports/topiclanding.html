@@ -43,23 +43,23 @@
             <h3 class="fs-rg mb-2">Neighborhood Reports</h3>
             <hr class="my-2">
                 {{ with .Site.GetPage "/neighborhood-reports/activedesign.md" }}
-                <p><a href="{{ .URL}}">{{ .Title }}
+                <p><a href="{{ .Permalink}}">{{ .Title }}
                 </a></p>
                 {{ end }}
                 {{ with .Site.GetPage "/neighborhood-reports/asthma.md" }}
-                <p><a href="{{ .URL}}">{{ .Title }}
+                <p><a href="{{ .Permalink}}">{{ .Title }}
                 </a></p>
                 {{ end }}
                 {{ with .Site.GetPage "/neighborhood-reports/climateandhealth.md" }}
-                <p><a href="{{ .URL}}">{{ .Title }}
+                <p><a href="{{ .Permalink}}">{{ .Title }}
                 </a></p>
                 {{ end }}
                 {{ with .Site.GetPage "/neighborhood-reports/housing.md" }}
-                <p><a href="{{ .URL}}">{{ .Title }}
+                <p><a href="{{ .Permalink}}">{{ .Title }}
                 </a></p>
                 {{ end }}
                 {{ with .Site.GetPage "/neighborhood-reports/outdoorair.md" }}
-                <p><a href="{{ .URL}}">{{ .Title }}
+                <p><a href="{{ .Permalink}}">{{ .Title }}
                 </a></p>
                 {{ end }}
         </div>
@@ -123,7 +123,7 @@
     document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
         e.preventDefault(); // prevent page re-load
         var locVal = searchForm.options[searchForm.selectedIndex].value
-        window.location = '{{ $.Site.Params.devpath}}/neighborhood-reports/'+ locVal + {{ .Params.urlExtension}}
+        window.location = '{{ $.Site.Params.devpath}}/neighborhood-reports/'+ locVal + {{ .Params.PermalinkExtension}}
       });
    </script>
 
