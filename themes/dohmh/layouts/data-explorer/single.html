@@ -23,7 +23,7 @@
             <div class="col-md-4">
                 <h2 class="greenfill fs-lg"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
                 {{ range .Params.indicators}}
-                    <a href="#" onclick="protoPopup({{ .Permalink}})">{{.name}}</a>
+                    <a href="#" onclick="protoPopup({{ .URL}})">{{.name}}</a>
                     <hr>
                 {{end}}
 
