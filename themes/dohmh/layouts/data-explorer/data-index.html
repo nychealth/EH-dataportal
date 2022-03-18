@@ -1,0 +1,178 @@
+{{ define "main" }}
+
+  <!--D3-->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+
+  <!--DataTables CSS-->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
+
+  <!--jQuery and DataTables JS-->
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
+  <script src="https://cdn.datatables.net/rowgroup/1.1.4/js/dataTables.rowGroup.min.js"></script>
+
+
+  <style>
+
+    body {
+    font-family: arial;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0
+    }
+    th, td {
+      padding: 10px 20px;
+      border: 1px solid #e5e5e5;
+    }
+    th {
+      color: white;
+      font-style: bold;
+      background-color: #fafafa;
+      text-align: left;
+    }
+
+    tr {
+    font-size: 12px;
+  }
+  </style>
+
+<article class="container" id="skip-header-target">
+
+    <div class="col-md-10 col-sm-12 mx-auto my-4">
+
+        <div class="row no-gutters mb-2">
+            <div class="col">
+                <nav aria-label="breadcrumb" class="my-3">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/data-explorer/">Data Explorer</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                        </ul>
+                </nav>
+            </div>
+        </div>
+
+        <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title}}</h1>
+        {{ .Content }}
+
+        <table id="indicators" class="display">
+            <thead>
+              <tr>
+                <th>Indicator</th>
+                <th>Measurements</th>
+                <th>Geographies</th>
+                <th>Most recent year</th>
+              </tr>
+            </thead>
+      
+            <tbody id="tablebody">
+      
+            </tbody>
+      
+          </table>
+
+    </div>
+
+</article>
+
+<script>
+    var indicators;
+    var indicatorIndex = []
+  
+  
+    // First, load Indicators.json
+    d3.json('https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/indicators.json').then(function (data) {
+      indicators = data;
+      loopThroughIndicators() // run loops.
+  
+    }); 
+  
+    // Separating json load from subsequent functions, so we can filter or modify later without reloading json
+    function loopThroughIndicators() {
+      //  loop through indicators
+      for (let i = 0; i < indicators.length; i++) {
+        let row_i = document.createElement('tr'); // create row
+        let cell_1 = document.createElement('td') // create cell
+        cell_1.innerHTML = indicators[i].IndicatorName // fill cell with indicator name.
+        row_i.appendChild(cell_1); // add this cell to this row
+  
+        // create other cells. 
+        let cell_2 = document.createElement('td')
+        let cell_3 = document.createElement('td')
+        let cell_4 = document.createElement('td')
+        let cell_5 = document.createElement('td')
+  
+        // loop through each indicator's measure:
+          for (let n = 0; n < indicators[i].Measures.length; n++) {
+            // push Measurement Types to the second cell
+            var measurements = [];
+            measurements.push(indicators[i].Measures[n].MeasurementType)
+  
+            // loop through Available Geographies
+            var geographies = [];
+            var finestGeography = [];
+            for (let y = 0; y < indicators[i].Measures[n].AvailableGeographyTypes.length; y++) {
+              geographies.push(indicators[i].Measures[n].AvailableGeographyTypes[y].GeoType)
+              // here, can embed a loop through geographies to find the finest.
+            }
+  
+            //loop through times
+            var times = [];
+            var lastTime;
+            for (let z = 0; z < indicators[i].Measures[n].AvailableTimes.length; z++) {
+              times.push(indicators[i].Measures[n].AvailableTimes[z].TimeDescription)
+              cell_5.innerHTML = times;
+            }
+  
+          }
+  
+        // And, dump measurements, geographies, and times into cells:
+  
+        cell_2.innerHTML = measurements;
+        row_i.appendChild(cell_2);
+  
+        cell_3.innerHTML = geographies; // can change this to finestGeography to only display one. 
+        row_i.appendChild(cell_3)
+  
+        // show final value of all times, only. keeping both last and all columns for now to doublecheck. 
+        lastTime = times.pop();
+        cell_4.innerHTML = lastTime;
+        row_i.appendChild(cell_4);
+  
+        // row_i.appendChild(cell_5); - commented out. Add this back in to show.
+  
+        // Finally, place the row into the table body.
+        document.getElementById('tablebody').appendChild(row_i) 
+    } 
+  
+    // call DataTables.
+    initializeDataTables()
+    
+    }
+  
+    
+    function initializeDataTables() {
+      let table = new DataTable('#indicators', {
+        // options
+        scrollY: 600,
+        paging: false
+    });
+    }
+  
+  
+  
+  
+  
+  
+  </script>
+
+{{end}}
