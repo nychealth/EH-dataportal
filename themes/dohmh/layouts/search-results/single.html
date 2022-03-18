@@ -36,9 +36,8 @@
 
       <hr class="my-2">
       <p><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em> 
-        {{ with .Site.GetPage "content/data-explorer/all-data.md" }}
-        <a href="{{ .Permalink }}">Browse an index of all our datasets</a>.
-        {{ end }}
+
+        <a href='{{ ref . "content/data-explorer/all-data.md" }}'>Browse an index of all our datasets</a>
         
       <p>Or, try these other Health Department resources:
       <ul>

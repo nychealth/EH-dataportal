@@ -129,7 +129,7 @@
             var times = [];
             var lastTime;
             for (let z = 0; z < indicators[i].Measures[n].AvailableTimes.length; z++) {
-              times.push(indicators[i].Measures[n].AvailableTimes[z].TimeDescription)
+              times.push(indicators[i].Measures[n].AvailableTimes[z].end_period) // use end_period to get time
               cell_5.innerHTML = times;
             }
   
@@ -144,8 +144,11 @@
         row_i.appendChild(cell_3)
   
         // show final value of all times, only. keeping both last and all columns for now to doublecheck. 
-        lastTime = times.pop();
-        cell_4.innerHTML = lastTime;
+        lastTime = times.pop(); // retrieve the last value
+        lastTime = new Date(lastTime) // convert to date
+        var year = 1900 + lastTime.getYear(); // get the year from it
+
+        cell_4.innerHTML = year;
         row_i.appendChild(cell_4);
   
         // row_i.appendChild(cell_5); - commented out. Add this back in to show.
