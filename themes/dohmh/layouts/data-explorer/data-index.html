@@ -64,39 +64,55 @@
         <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title}}</h1>
         {{ .Content }}
 
-        <!-- Generate JSON object with subtopic pages and keys, and internal_ids in value objects -->
-
+        <!-- Generate JSON object with subtopic pages and keys, and internal_ids in arrays -->
+        
         {{ $scratch_out := newScratch }}
 
-        {{ range $j, $page := .Site.Pages }}
+        {{/*  iterate over all pages on the site  */}}
 
-            {{ $scratch_in := newScratch }}
+        {{ range .Site.Pages }}
 
-            {{ if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer"))  }}
+            {{/*  create a new "slice" (i.e., an array)  */}}
 
-                {{ $j_index := string $j }}
-                {{ $link := string .RelPermalink }}
+            {{ $indicators := slice }}
 
-                {{ range $i, $ind := .Params.indicators }}
+            {{/*  only process if it's a data explorer page */}}
 
-                    {{ $i_index := string $i }}
-                    {{ $internal_id := string .internal_id }}
-                    
-                    {{ $scratch_in.SetInMap $link $i_index $internal_id  }}
+            {{ if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (ne (path.Base .RelPermalink) "all-data")) }}
+
+                {{/*  turn params into strings  */}}
+
+                {{ $subtopic := .RelPermalink | path.Base | string }}
+
+                {{/*  get internal_ids  */}}
+
+                {{ range .Params.indicators }}
+
+                    {{/*  create an array of internal_ids  */}}
+
+                    {{ $indicators = $indicators | append .internal_id }}
 
                 {{ end }}
 
-                {{ $scratch_out.SetInMap "subtopic_indicators" $link ($scratch_in.Get $link) }}
+                {{/*  create a map with subtopic as key and array of internal_ids as value */}}
+
+                {{ $scratch_out.SetInMap "subtopic_indicators" $subtopic $indicators }}
 
             {{ end }}
         
         {{ end }}
 
-        {{ $subtopic_indicators := $scratch_out.Get "subtopic_indicators" | jsonify }} 
+        {{/*  turn the subtopic indicators map into a JSON string  */}}
+
+        {{ $subtopic_indicators := $scratch_out.Get "subtopic_indicators" }} 
+        {{ $subtopic_indicators_json := $subtopic_indicators | jsonify }} 
 
         <h2> Here's a json-formatted list of subtopics and indicator_ids, stored in the variable <code>$subtopic_indicators</code>:</h2>
-        {{ $subtopic_indicators }} <br>
+        <h3>(I'm also printing it to the console)</h3>
 
+        {{ $subtopic_indicators_json }} <br>
+
+        <script>console.log({{ $subtopic_indicators }});</script>
 
 
         <table id="indicators" class="display">
