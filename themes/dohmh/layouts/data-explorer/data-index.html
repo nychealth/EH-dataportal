@@ -64,6 +64,41 @@
         <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title}}</h1>
         {{ .Content }}
 
+        <!-- Generate JSON object with subtopic pages and keys, and internal_ids in value objects -->
+
+        {{ $scratch_out := newScratch }}
+
+        {{ range $j, $page := .Site.Pages }}
+
+            {{ $scratch_in := newScratch }}
+
+            {{ if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer"))  }}
+
+                {{ $j_index := string $j }}
+                {{ $link := string .RelPermalink }}
+
+                {{ range $i, $ind := .Params.indicators }}
+
+                    {{ $i_index := string $i }}
+                    {{ $internal_id := string .internal_id }}
+                    
+                    {{ $scratch_in.SetInMap $link $i_index $internal_id  }}
+
+                {{ end }}
+
+                {{ $scratch_out.SetInMap "subtopic_indicators" $link ($scratch_in.Get $link) }}
+
+            {{ end }}
+        
+        {{ end }}
+
+        {{ $subtopic_indicators := $scratch_out.Get "subtopic_indicators" | jsonify }} 
+
+        <h2> Here's a json-formatted list of subtopics and indicator_ids, stored in the variable <code>$subtopic_indicators</code>:</h2>
+        {{ $subtopic_indicators }} <br>
+
+
+
         <table id="indicators" class="display">
             <thead>
               <tr>
