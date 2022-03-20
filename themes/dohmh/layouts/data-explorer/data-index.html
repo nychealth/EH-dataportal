@@ -18,6 +18,8 @@
   <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
   <script src="https://cdn.datatables.net/rowgroup/1.1.4/js/dataTables.rowGroup.min.js"></script>
 
+  <!--Arquero-->
+  <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
 
   <style>
 
@@ -105,14 +107,17 @@
         {{/*  turn the subtopic indicators map into a JSON string  */}}
 
         {{ $subtopic_indicators := $scratch_out.Get "subtopic_indicators" }} 
-        {{ $subtopic_indicators_json := $subtopic_indicators | jsonify }} 
 
-        <h2> Here's a json-formatted list of subtopics and indicator_ids, stored in the variable <code>$subtopic_indicators</code>:</h2>
-        <h3>(I'm also printing it to the console)</h3>
+        <h3>This produces a list of subtopics and IndicatorIDs, stored in the variable <code>$subtopic_indicators</code>, 
+        and printed to the console as a JavaScript variable, and then as an Arquero table.</h3>
 
-        {{ $subtopic_indicators_json }} <br>
+        <script>
+            console.log({{ $subtopic_indicators }});
+            
+            var arqTable = aq.from({{$subtopic_indicators}}).rename({key: "subtopic", value: "IndicatorID"}).unroll("IndicatorID");
+            arqTable.print(20);
 
-        <script>console.log({{ $subtopic_indicators }});</script>
+        </script>
 
 
         <table id="indicators" class="display">
