@@ -18,6 +18,8 @@
   <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
   <script src="https://cdn.datatables.net/rowgroup/1.1.4/js/dataTables.rowGroup.min.js"></script>
 
+  <!--Arquero-->
+  <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
 
   <style>
 
@@ -63,6 +65,60 @@
 
         <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title}}</h1>
         {{ .Content }}
+
+        <!-- Generate JSON object with subtopic pages and keys, and internal_ids in arrays -->
+        
+        {{ $scratch_out := newScratch }}
+
+        {{/*  iterate over all pages on the site  */}}
+
+        {{ range .Site.Pages }}
+
+            {{/*  create a new "slice" (i.e., an array)  */}}
+
+            {{ $indicators := slice }}
+
+            {{/*  only process if it's a data explorer page */}}
+
+            {{ if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (ne (path.Base .RelPermalink) "all-data")) }}
+
+                {{/*  turn params into strings  */}}
+
+                {{ $subtopic := .RelPermalink | path.Base | string }}
+
+                {{/*  get internal_ids  */}}
+
+                {{ range .Params.indicators }}
+
+                    {{/*  create an array of internal_ids  */}}
+
+                    {{ $indicators = $indicators | append .internal_id }}
+
+                {{ end }}
+
+                {{/*  create a map with subtopic as key and array of internal_ids as value */}}
+
+                {{ $scratch_out.SetInMap "subtopic_indicators" $subtopic $indicators }}
+
+            {{ end }}
+        
+        {{ end }}
+
+        {{/*  turn the subtopic indicators map into a JSON string  */}}
+
+        {{ $subtopic_indicators := $scratch_out.Get "subtopic_indicators" }} 
+
+        <h3>This produces a list of subtopics and IndicatorIDs, stored in the variable <code>$subtopic_indicators</code>, 
+        and printed to the console as a JavaScript variable, and then as an Arquero table.</h3>
+
+        <script>
+            console.log({{ $subtopic_indicators }});
+            
+            var arqTable = aq.from({{$subtopic_indicators}}).rename({key: "subtopic", value: "IndicatorID"}).unroll("IndicatorID");
+            arqTable.print(20);
+
+        </script>
+
 
         <table id="indicators" class="display">
             <thead>
