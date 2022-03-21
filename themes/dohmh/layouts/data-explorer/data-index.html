@@ -123,12 +123,12 @@
         (which on build will be put into <code>/docs/IndicatorData/</code>)</strong>
 
         {{ $si_json_output_path := "/IndicatorData/subtopic_indicators.json" }}
-        {{ $vars := $subtopic_indicators | jsonify | resources.FromString $si_json_output_path }}
+        {{ $si_resource := $subtopic_indicators | jsonify | resources.FromString $si_json_output_path }}
         
 
         <script>
             console.log("$si_json_output_path", {{$si_json_output_path}})
-            console.log("$vars.Permalink", {{$vars.Permalink}})
+            console.log("$si_resource.Permalink", {{$si_resource.Permalink}})
         </script>
         
         <table id="indicators" class="display">
