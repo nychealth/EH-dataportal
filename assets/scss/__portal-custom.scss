@@ -860,3 +860,20 @@ height: 200px;}
     font-size: 18px;
     color: #656565;
 }
+
+
+// for data-index table
+.geobullets {
+    padding-left: 0px!important
+  }
+
+  .geobullets li {
+    background-color: darkblue;
+    color: white;
+    padding: 5px 5px;
+    border-radius: 3px;
+    font-size: 10px;
+    display: inline;
+    margin: 2px 2px;
+
+  }
