@@ -211,7 +211,14 @@
       
       // measurements
       let unique_measurements = [...new Set(measurements)];
-      cell_2.innerHTML = unique_measurements;
+        let ums = document.createElement('ul')
+        cell_2.appendChild(ums);
+        for (m = 0; m < unique_measurements.length; m++) {
+          let li = document.createElement('li')
+          li.innerHTML = unique_measurements[m]
+          ums.appendChild(li)
+        }
+
       row_i.appendChild(cell_2);
       
       // geographies
