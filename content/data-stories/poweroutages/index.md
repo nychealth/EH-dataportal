@@ -1,6 +1,6 @@
 ---
 title: "How Power Outages Affect Health"
-date: 2022-03-21T12:34:38-04:00
+date: 2022-01-10T12:34:38-04:00
 draft: false
 seo_title: "How Power Outages Affect Health."
 seo_description: "As we experience a changing climate, a reliable supply of electricity is crucial."
@@ -32,7 +32,7 @@ As the chart above shows, neighborhoods with more households that rely on electr
 
 {{< rawhtml >}}
 
-<div class="bg-light text-secondary px-2 py-2 my-4">
+<div class="bg-light text-secondary px-2 py-2 my-4 fs-sm">
     <p><em>Poverty is created by current and historical racist practices, like <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/redlining/index.html"><u>redlining</u></a>, that deprive people and communities of resources and harm people’s health. <a href="https://www1.nyc.gov/site/doh/about/press/pr2021/board-of-health-declares-racism-public-health-crisis.page"><u>The Health Department has declared racism a public health crisis</u></a>.</p></em>
 </div>
 
