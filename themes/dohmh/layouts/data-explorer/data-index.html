@@ -118,8 +118,19 @@
             arqTable.print(20);
 
         </script>
+        
+        <strong>Also outputting a JSON version of the list to <code><a href="/IndicatorData/subtopic_indicators.json">/IndicatorData/subtopic_indicators.json</code></a> 
+        (which on build will be put into <code>/docs/IndicatorData/</code>)</strong>
 
+        {{ $si_json_output_path := "/IndicatorData/subtopic_indicators.json" }}
+        {{ $vars := $subtopic_indicators | jsonify | resources.FromString $si_json_output_path }}
+        
 
+        <script>
+            console.log("$si_json_output_path", {{$si_json_output_path}})
+            console.log("$vars.Permalink", {{$vars.Permalink}})
+        </script>
+        
         <table id="indicators" class="display">
             <thead>
               <tr>
