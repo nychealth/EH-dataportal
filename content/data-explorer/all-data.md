@@ -12,6 +12,7 @@ menu:
     main:
         identifier: '03'
 layout: data-index
+datalibraries: true
 ---
 
 Browse all data sets on the Environment and Health Data Portal.
