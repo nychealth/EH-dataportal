@@ -7,7 +7,7 @@ seo_description: "As we experience a changing climate, a reliable supply of elec
 tags: 
 categories: ["social", "healthoutcomes", "climatehealth"]
 keywords: ["asthma", "weather", "mortality", "death", "cooling", "air conditioning", "built environment"]
-image: title1.jpg
+image: title7.jpg
 menu:
     main:
         identifier: '02'
@@ -19,7 +19,7 @@ Your child starts to have trouble breathing. Usually, you’d use a home nebuliz
 
 But the power is out. Without the nebulizer, your child’s breathing gets worse - and you wonder, is it time to go to the hospital again?
 
-## This scenario - or something like it - is a reality for many New Yorkers.
+#### This scenario - or something like it - is a reality for many New Yorkers.
 
 Asthma and many other medical conditions are treated at-home with electrical medical equipment. [Citywide, 7.6% of households include someone who uses electric medical equipment, with some neighborhoods at nearly 17%](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2377,719b87,107,Summarize).
 
@@ -38,7 +38,7 @@ As the chart above shows, neighborhoods with more households that rely on electr
 
 {{< /rawhtml >}}
 
-## Power outages threaten health.
+#### Power outages threaten health.
 
 On Thursday, August 14, 2003, a widespread power outage stretched from NYC to Ontario, Canada, affecting 55 million people. Many areas, including here in New York City, were without power for days.
 
@@ -64,7 +64,7 @@ The deaths could have been caused by many dangers of power outages: people not b
 
 And, when we studied hospitalization and mortality data around NYC’s smaller blackouts in July 1999 and July 2006, we saw that [localized power outages also threaten health](https://pubmed.ncbi.nlm.nih.gov/29894117/). We found an increase in hospitalizations for respiratory disease, renal (kidney) disease, and an increase in all-cause mortality (deaths).
 
-## Climate change is likely to bring more power outages...
+#### Climate change is likely to bring more power outages...
 
 Weather-related power outages are increasing, as climate change brings more frequent, more powerful storms that threaten our power grid and other physical infrastructure.
 
@@ -73,13 +73,13 @@ The chart below from [www.climatecentral.org](https://www.climatecentral.org) sh
 <!-- CHART 4 --> 
 {{< datawrapper title="Increasing weather-related power outages in the Northeast U.S." src="sbTUE/1/" height="407">}}
 
-## ...but not all NYC residents are prepared.
+#### ...but not all NYC residents are prepared.
 
 [Our survey found that 58% of NYC residents have basic preparation for power outages](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6181821/): a working flashlight and a 3-day supply of water and food.
 
 People with household members who depend on electrical medical equipment are more likely to be prepared for power outages (70% vs. 56% of respondents without electric-dependent household members). However, even though they are more prepared, they report not _feeling_ more prepared as they face the challenge of ensuring that their medical equipment runs during power outages: when you need electricity to stay healthy, it’s hard to feel completely prepared for a blackout.
 
-## Stay prepared.
+#### Stay prepared.
 
 It’s important for our City to build a power grid that is resilient, since we expect more extreme weather as our climate continues to change. As we experience this changing climate, a reliable supply of electricity is crucial to support life-saving equipment. And it’s vital that this resiliency be equitable, so that people in high-poverty neighborhoods that have been deprived of resources aren’t made additionally vulnerable by climate change and power outages.
 
