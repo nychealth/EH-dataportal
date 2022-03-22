@@ -110,12 +110,12 @@
   var indicatorIndex = []
 
   // geography buttons
-  var citywide = `<li>Citywide</li>`
-  var borough = `<li>Borough</li>`
-  var UHF42 = `<li>UHF42</li>`
-  var UHF34 = `<li>UHF34</li>`
-  var CD = `<li>CD</li>`
-  var NTA = `<li>NTA</li>`
+  {{/*  var citywide = `<li id="citywide">Citywide</li>`
+  var borough = `<li id="borough">Borough</li>`
+  var UHF42 = `<li id="uhf42">UHF42</li>`
+  var UHF34 = `<li id="uhf34">UHF34</li>`
+  var CD = `<li id="cd">CD</li>`
+  var NTA = `<li id="nta">NTA</li>`  */}}
   
   
   // First, load Indicators.json
@@ -186,16 +186,35 @@
       row_i.appendChild(cell_2);
       
       // geographies
-      let unique_geographies = [...new Set(geographies)];
-        let geobullets = document.createElement('ul')
-        geobullets.classList.add('geobullets')  
-        cell_3.appendChild(geobullets)
 
-        for (l = 0; l < unique_geographies.length; l++) {
-          let li = document.createElement('li')
-          li.innerHTML = unique_geographies[l]
-          geobullets.appendChild(li)
-        }
+      var geos_order = ["Citywide", "Borough", "NYCKIDS", "UHF33", "UHF34", "UHF42", "Subboro", "CD", "NTA"];
+      let unique_geographies = [...new Set(geographies)];
+
+      // sorting unique_geographies based on order of geos_order
+      unique_geographies.sort(function(a, b){
+          return geos_order.indexOf(a) - geos_order.indexOf(b)
+      });
+      
+      let geobullets = document.createElement('ul')
+      cell_3.appendChild(geobullets)
+      
+      for (l = 0; l < unique_geographies.length; l++) {
+        
+        let li = document.createElement('li')
+
+        // setting 'onclick' action for each geography, with the geo as the argument
+        li.setAttribute("onclick", 'toggle_button(' + "'" + unique_geographies[l] + "'" + ')');
+
+        // setting id as geo name
+        li.setAttribute("id", unique_geographies[l]);
+
+        // li.setAttribute("onclick", 'console.log(' + "'" + unique_geographies[l] + "'" + ')');
+
+        li.innerHTML = unique_geographies[l];
+        li.classList.add("btn", "btn-sm", "geobullets", unique_geographies[l])
+        geobullets.appendChild(li);
+        
+    }
 
       row_i.appendChild(cell_3)
       
@@ -230,6 +249,60 @@
       fixedColumns: true
     });
   }
+
+
+// filter function
+
+function geobullet_filter(active_geo) {
+
+  // join geo types for regex (this will be an OR search)
+  console.log("active_geo.join('|')", active_geo.join('|'))
+
+  $('#indicators').DataTable().column(2).search(active_geo.join('|'), true, false, false).draw()
+
+
+}
+
+function toggle_button(geo) {
+
+    // clicked button
+    var button = document.getElementById(geo);
+
+    // all buttons of this geo type
+    var geo_buttons = document.getElementsByClassName(geo);
+
+    // if the clicked button isn't active, add active class to buttons with this geo type
+    if (button.classList.contains("active") == false) {
+
+      for (item of geo_buttons) {
+        item.classList.add("active");
+      }
+      
+    }
+    // if the clicked button is active, remove active class to buttons with this geo type
+    else if (button.classList.contains("active") == true) {
+
+      for (item of geo_buttons) {
+        item.classList.remove("active");
+      }
+
+    }
+    
+    var active = document.getElementsByClassName("geobullets active");
+    var active_ids = [];
+
+    for (item of active) {
+      active_ids.push(item.id);
+    }
+    let active_geographies = [...new Set(active_ids)];
+
+    console.log("active_geographies:", active_geographies);
+    
+    {{/*  console.log("is active:", active);  */}}
+    
+    geobullet_filter(active_geographies);
+
+}
 
 
   
