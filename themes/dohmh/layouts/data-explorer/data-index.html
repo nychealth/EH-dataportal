@@ -204,15 +204,10 @@
         
         let li = document.createElement('li')
 
-        {{/*  console.log(indicators[i].IndicatorName + "--" + unique_geographies[l])  */}}
-
-
         // setting id as geo name
         li.innerHTML = unique_geographies[l];
         li.setAttribute("geo", unique_geographies[l]);
         li.classList.add("btn", "btn-sm", "geobullets", unique_geographies[l])
-
-        {{/*  console.log(indicators[i].IndicatorName + "--" + li.classList)  */}}
 
         // setting 'onclick' action for each geography, with the geo as the argument
 
@@ -231,12 +226,6 @@
       maxTime = new Date(Math.max(...times));
       cell_4.innerHTML = maxTime.getFullYear();
       row_i.appendChild(cell_4)
-
-      // all years
-      // all_years = times.map(time => time.getFullYear());
-      // let unique_years = [...new Set(all_years)];
-      // cell_5.innerHTML = unique_years.sort();
-      // row_i.appendChild(cell_5)
 
       // Finally, place the row into the table body.
       document.getElementById('tablebody').appendChild(row_i) 
@@ -265,10 +254,8 @@
 function geobullet_filter(active_geo) {
 
   // join geo types for regex (this will be an OR search)
-  {{/*  console.log("active_geo.join('|')", active_geo.join('|'))  */}}
 
   $('#indicators').DataTable().column(2).search(active_geo.join('|'), true, false, false).draw()
-
 
 }
 
@@ -277,85 +264,45 @@ function toggle_button(e) {
     // clicked button
     var button = e.target;
 
-
-    // if the clicked button isn't active, add active class to buttons with this geo type
     if (button.classList.contains("active") == false) {
-
-      console.log("geo [false]", button.attributes.geo.value)
+      // if the clicked button isn't active, add active class to buttons with this geo type
 
       // all buttons of this geo type
+      // for some reason, this misses NTA and CD buttons when they're the only geo for an indicator, and when another geo is already active
 
-      // for some reason, this will often miss some buttons, esp NTA and CD
-
-      // let geo_buttons = document.querySelectorAll("." + button.attributes.geo.value);
       let geo_buttons = document.querySelectorAll("[geo=" + button.attributes.geo.value + "]");
 
-      console.log("geo_buttons.length [false]", geo_buttons.length)
-
-      // console.log("geo_buttons [false]", geo_buttons)
-
       for (let i = 0; i < geo_buttons.length; i++) {
-
         geo_buttons[i].classList.add("active");
-
       }
 
-      {{/*  for (item of geo_buttons) {
-        item.classList.add("active");
-      }  */}}
-
-      let active = document.querySelectorAll("li.active");
-      // console.log("active [false]:", active)
-      console.log("active.length [false]:", active.length)
-      
     }
-    // if the clicked button is active, remove active class to buttons with this geo type
     else if (button.classList.contains("active") == true) {
-
-      console.log("geo [true]", button.attributes.geo.value)
+      // if the clicked button is active, remove active class to buttons with this geo type
 
       // all buttons of this geo type
-      // let geo_buttons = document.querySelectorAll("." + button.attributes.geo.value);
       let geo_buttons = document.querySelectorAll("[geo=" + button.attributes.geo.value + "]");
 
-      console.log("geo_buttons.length [true]", geo_buttons.length)
-
       for (let i = 0; i < geo_buttons.length; i++) {
-        
         geo_buttons[i].classList.remove("active");
-        
       }
 
-      {{/*  for (item of geo_buttons) {
-        item.classList.remove("active");
-      }  */}}
-
-      let active = document.querySelectorAll("li.active");
-      console.log("active.length [true]:", active.length)
     }
 
     let active = document.querySelectorAll("li.active");
-    // let active = document.querySelectorAll("[geo] ~ li.active");
-
-    console.log("active.length:", active.length)
-
     let active_geos = [];
 
     for (let i = 0; i < active.length; i++) {
-      
+
       if (typeof active[i].attributes.geo != "undefined") {
-        // console.log("item.attributes.geo.value", item.attributes.geo.value)
+
         active_geos.push(active[i].attributes.geo.value);
+
       }
-      
     }
     
-    console.log("active_geos.length:", active_geos.length)
-
     let active_geographies = [...new Set(active_geos)];
 
-    console.log("active_geographies:", active_geographies);
-    
     geobullet_filter(active_geographies);
 
 }
