@@ -1,0 +1,662 @@
+{{ define "main" }}
+
+<!--NYC Core Framework Theme-->
+<link rel="stylesheet" href="https://nycehs.github.io/Portal-Core-Repo/css/theme.css">
+<!--Custom additions for Portal items-->
+<link rel="stylesheet" href="https://nycehs.github.io/Portal-Core-Repo/css/custom.css">
+
+<!--Air Quality CSS-->
+<link rel="stylesheet" href="aqe.css">
+
+<!-- Popper.js and Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+<!-- leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+
+<!-- leaflet source -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+
+<style>
+    #map {
+        height: 400px;
+        width: 600px;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    leaflet-tooltip-box {
+        border: 1px solid
+    }
+
+</style>
+
+<!-- easybutton -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+<script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+
+<!-- Leaflet.colorIcon -->
+<script src="js/L.colorIcon.js"></script>
+
+<!-- color name to hex converter -->
+<script type="text/javascript" src="js/color-convert.js"></script>
+
+<!--Arquero-->
+<script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
+
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-4 pl-0">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href="/key-topics/airquality/">Air Quality</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col-md-2 mr-auto"></div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 col-sm-12 mx-auto">
+                <h2><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
+                    {{ .Title }}</h2>
+        
+                {{ .Content}}
+    
+        </div>
+
+
+    </div>
+
+    <!-- map + chart -->
+    <!-- location selection buttons -->
+    
+    <div class="row no-padding mt-4 mb-0">
+        
+        <div class="col-12 ml-auto">
+
+            <button onclick="restore()" type="button" id="btnrestore" class="mb-1 selectorbtn btn btn-sm btn-dark">
+                Reset</button>
+            
+            <button onclick="changeData(0)" type="button" id="btn0" class="mb-1 selectorbtn btn btn-sm btn-outline-primary no-underline">
+                <span style="color: purple">
+                    <i class="fas fa-square mr-1"></i>
+                </span>
+                Cross Bronx Expy</button>
+            
+            <button onclick="changeData(1)" type="button" id="btn1" class="mb-1 selectorbtn btn btn-sm btn-outline-primary no-underline">
+                <span style="color: red">
+                    <i class="fas fa-square mr-1"></i>
+                </span>
+                Queensboro Bridge</button>
+                
+            <button onclick="changeData(2)" type="button" id="btn2" class="mb-1 selectorbtn btn btn-sm btn-outline-primary no-underline">
+                <span style="color: limegreen">
+                    <i class="fas fa-square mr-1"></i>
+                </span>
+                Manhattan Bridge</button>
+            
+            <button onclick="changeData(3)" type="button" id="btn3" class="mb-1 selectorbtn btn btn-sm btn-outline-primary no-underline">
+                <span style="color: orange">
+                    <i class="fas fa-square mr-1"></i>
+                </span>
+                Queens College</button>
+            
+            <button onclick="changeData(4)" type="button" id="btn4" class="mb-1 selectorbtn btn btn-sm btn-outline-primary no-underline">
+                <span style="color: blue">
+                    <i class="fas fa-square mr-1"></i>
+                </span>
+                Williamsburg Bridge</button>
+            
+
+            <button onclick="changeData(5)" type="button" id="btn5" class="mb-1 selectorbtn btn btn-sm btn-outline-primary no-underline">
+                <span style="color: violet">
+                    <i class="fas fa-square mr-1"></i>
+                </span>
+                Broadway/35th St</button>
+            
+
+            <div id="numberinput" class="float-right pt-1"
+            style="font-size: 12px;">
+                <label for="inputNum" style="display:inline-block; font-size: 12px;">Show last</label>
+                <input inputmode="numeric" pattern="[0-9]*" type="number" style="display:inline-block" id="inputNum" name="inputNum" min="1" max="7">
+                days.
+                </form>
+            </div>
+
+        </div>
+        
+    </div>
+    
+    <!-- map element -->
+    <div class="row align-self-center">
+        <div class="col-md-4 mt-2 pt-0">
+            <div id="map">
+            </div>
+        </div>
+        
+        <!-- chart element -->
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col pl-2 mt-1">
+                    <em class="pl-2">Hourly PM2.5 measurements (in µg/m<sup>3</sup>)</em>
+                    <div id="vis2" style="width: 100%; height: 400px;" class="mt-1">
+                        
+                    </div>
+                </div>
+            </div>
+            
+
+            
+        </div>
+    </div>
+
+    <style>
+        .infobox {
+            background-color: #f1f1f1;
+            border-left: 5px solid darkblue;
+            padding: 10px;
+        }
+    </style>
+
+    <div class="row">
+        <div class="col-12">
+            <!-- last 24-hour info box -->
+            <div class="infobox" id="locInfoBox" style="display:none">
+                <div id="locInfoDesc">
+                    
+                    <div class="col mx-1">
+                        <p>Most recent 24-hour average reading by this monitor: <span class="badge badge-primary badge-custom badge-custom-dark"><span id="24av">n/a</span> µg/m3</span>. This is <span id="comparison" class="badge badge-primary badge-custom">N/A</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">national standard</a> of 35 µg/m3 for 24 hours. <span id="goodBad" class="badge badge-primary badge-custom"></span></p>                                    
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+    
+    <div class="row px-0">
+    
+    <div class="row mt-4">
+
+    <div class="col-md-6">
+        <h3>Air quality varies because sources vary</h3>
+        <p>In New York City, about 45% of PM2.5 comes from far-away sources, like coal-burning power plants
+            in the Midwest. But more than half comes from <b>local sources</b>. </p>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="fs-lg"><i class="fas fa-building mr-1" aria-hidden="true"></i>Buildings</h4>
+                <p>Building density affects a neighborhood's air quality because like vehicles, buildings
+                    burn fuel and emit pollutants: their boilers burn oil and gas to produce heat and hot
+                    water. This is one reason we often see more air pollution in the winter. Because of new heating oil regulations, PM2.5 has gone down dramatically, and SO2 levels
+                    are now indetectable. <a href="https://nyccas.cityofnewyork.us/report">Read more at
+                        the NYCCAS annual report</a>. </p>
+
+                <h4 class="fs-lg"><i class="fas fa-industry mr-1" aria-hidden="true"></i>Industrial area
+                </h4>
+                <p> Industrial areas affect a neighborhood's air quality because of diesel exhaust from
+                    trucks idling and traveling through industrial areas, and from industrial combustion
+                    equipment.</p>
+
+                <h4 class="fs-lg"> <i class="fas fa-car mr-1" aria-hidden="true"></i>Traffic</h4>
+                <p> Traffic density affects a neighborhood's air quality because engines produce PM2.5,
+                    black carbon, and NOx. While electric vehicles help reduce emissions, all vehicles also
+                    contribute to PM2.5 through tire wear and braking. Traffic volume is one reason we often
+                    see daily spikes in PM2.5 concentration in the mornings and evenings.</p>
+
+                <h4 class="fs-lg"><i class="fas fa-truck mr-1" aria-hidden="true"></i>Trucks</h4>
+                <p>Truck traffic density affects a neighborhood's air quality because diesel combustion
+                    produces additional pollutants.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <h3>Common patterns in the data</h3>
+        <p>There are several patterns that commonly show up in the data from our air quality monitors:</p>
+        
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="fs-lg"><i class="fas fa-map-signs mr-1" aria-hidden="true"></i>Spatial differences</h4>
+                <p>The monitors are in neighborhoods with different emissions sources, so have
+                    different PM2.5 levels. <span style="color:rgb(109, 109, 109)"><b>Midtown</b></span>, which has
+                    the highest traffic density, usually has the most PM2.5. </p>
+
+                <h4 class="fs-lg"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Daily spikes
+                </h4>
+                <p>PM2.5 levels usually rise in the morning as traffic volume increases. These
+                    <em>temporal</em> differences (time spikes) are usually greater than
+                    <em>spatial</em> differences (the differences between neighborhoods).</p>
+
+                <h4 class="fs-lg"> <i class="fas fa-cloud-showers-heavy mr-1" aria-hidden="true"></i>Weather patterns</h4>
+                <p> Weather can trap emissions and cause PM2.5 to build up. Sometimes we see a
+                    clear west-to-east pattern in rising PM2.5, likely related to a weather
+                    pattern moving into New York City and causing pollution levels to rise as
+                    emissions are trapped.</p>
+
+                <h4 class="fs-lg"><i class="fas fa-exclamation-triangle mr-1" aria-hidden="true"></i>Other spikes</h4>
+                <p>Sometimes there are dramatic, short-term spikes
+                    at unexpected times, and without having a camera on each monitor, we don't
+                    know what causes them. However, they can be explained by something as
+                    simple as a truck idling for a few minutes underneath the monitor.</p>
+            </div>
+        </div>
+    </div>
+
+    <!--drawing charts-->
+
+    <script>
+        
+        var current_spec;
+        var dt;
+        var fullTable;
+        var shortTable;
+        var locSelect = "No location"
+        
+        d3.json("js/origSpec.json").then(data => {
+            
+            current_spec = $.extend({}, data);
+            
+        }).then(() => {
+            
+            // ---- Loads the csv as an arquero table ---- //
+            
+            aq.loadCSV(
+                "https://raw.githubusercontent.com/nychealth/realtime-air-quality/main/RT_flat.csv"
+            ).then(data => {
+                dt = data;
+                
+                fullTable = dt.objects(); // puts the data into fullTable to use. 
+                shortTable = fullTable; // creating an array we'll slice for time-selection
+                
+                vegaEmbed("#vis2", current_spec).then((res) => {
+
+                    res.view.insert("lineData", fullTable).run()
+                    
+                });
+                
+            });
+        });
+        
+        var inputNum; // the number of days we want to select
+        
+        // event listener on the time-selection form
+        document.getElementById('inputNum').addEventListener('change', function (event) {
+            event.preventDefault();
+            inputNum = document.getElementById('inputNum').value;
+            updateChart(inputNum);
+            
+        });
+        
+        
+        // ---- this function updates the chart based on timeselection ---- //
+
+        function updateChart(x) {
+            
+            var inputHours // hours in a day
+            inputHours = x * 24;
+            
+            var startingPoint;
+            startingPoint = fullTable.length - inputHours;
+            // console.log('show chart for ' + inputHours + " hours");
+            
+            shortTable = fullTable.slice(startingPoint, fullTable.length)
+            
+            // inserts fullTable into the spec and draws the chart
+            vegaEmbed("#vis2", current_spec).then((res) => {
+                
+                res.view.insert("lineData", shortTable).run()
+                
+            });
+            
+        }
+        
+        // ---- establish the spec that we'll manipulate and chart ---- //
+        
+        // Grab the buttons for manipulation later
+        var buttons = document.querySelectorAll('.selectorbtn');
+        var buttons_orig = buttons;
+        var locSelect;
+        var color;
+        
+        // Save the original locInfoBox & locInfoDesc
+        locInfoBox = document.getElementById('locInfoBox').outerHTML;
+        locInfoDesc = document.getElementById('locInfoDesc').innerHTML;
+        
+        // this function updates the chart based on the location selection
+
+        function changeData(x) {
+            
+            // zoom to the corresponding leaflet marker
+            map.setView(monitors[x].getLatLng(), 13);
+
+            // open marker's popup
+            monitors[x].openPopup();
+            
+            // create a color variable
+            color = monitor_locations[x].Color;
+            locSelect = monitor_locations[x].Location;
+            
+            // ensure `locInfoDesc` has original innerHTML elements
+            
+            document.getElementById('locInfoDesc').innerHTML = locInfoDesc
+            
+            // remove active class from buttons and add default class
+            buttons.forEach(button => button.classList.remove('btn-primary'))
+            buttons.forEach(button => button.classList.add('btn-outline-primary'))
+            document.getElementById("btnrestore").classList.remove('btn-outline-primary')
+            
+            // add active class for selected button and remove default class
+            var btn = "btn" + x;
+            document.getElementById(btn).classList.add('btn-primary');
+            document.getElementById(btn).classList.remove('btn-outline-primary')
+            document.getElementById("btnrestore").classList.remove('btn-primary')
+            
+            // make all lines gray, thinner, and unmarked
+            for (let i = 0; i < current_spec.layer.length; i++) {
+                current_spec.layer[i].encoding.color.value = "lightgray"
+                current_spec.layer[i].mark.strokeWidth = 1
+                current_spec.layer[i].mark.point = false
+            };
+            
+            // style the selected series
+            current_spec.layer[x].encoding.color.value = color
+            current_spec.layer[x].mark.strokeWidth = 2.5
+            current_spec.layer[x].mark.point = true
+            
+            // redraw the chart
+            vegaEmbed("#vis2", current_spec).then((res) => {
+                
+                res.view.insert("lineData", shortTable).run(); // shortTable is fullTable until updateChart is called
+                
+            });
+            
+            // show the summary box
+            document.getElementById('locInfoBox').style.display = "block";
+            
+            // run getAverage
+            getAverage();
+            
+        }
+        
+
+        var avTable; // creating an abridged data table
+        var selectedLoc;
+        var arqTable;
+        
+        // Here, we'll calculate the most recent 24-hour average for a selected neighborhood.
+
+        function getAverage() {
+            
+            var startAt = fullTable.length - 24; // get a starting point of most recent 24 hours
+            avTable = fullTable.slice(startAt, fullTable.length) // slicing the table to most recent 24 hours
+
+            arqTable = aq.from(avTable);
+
+            // ---- Filter by selected neighborhood ---- //
+
+            // deriving a new column `new_col` for the parsed selected column. I want the parsed column to have the 
+            //	selected column's name, so I'm creating a Map object which will rename "new_col" to the value of `locSelect`
+
+            const new_col = new Map()
+
+            new_col.set("new_col", locSelect)
+            console.log("new_col:", new_col)
+
+            // you can use an object that contains a variable name by enclosing the whole expression in back-ticks, then 
+            //	using `${var}` to insert the value
+            // described at https://uwdata.github.io/arquero/api/expressions#limitations
+
+            arqTable = arqTable
+                .derive({new_col: `d => aq.op.parse_float(d['${locSelect}'])`})
+                .rename(new_col)
+            
+            console.log("arqTable (after parse_float and rename):")
+            arqTable.slice(-24,).print(Infinity)
+            
+            // Count number of valid entries.
+            valid_vals = aq.agg(arqTable, aq.op.valid(locSelect));
+            console.log("valid_vals:", valid_vals)
+            
+            // ---- change info in locInfoBox depending on number of valid values ---- //
+
+            if (valid_vals >= 18) {
+                
+                // If there are 18 or more valid values, average them
+
+                avg_24 = aq.agg(arqTable, aq.op.mean(locSelect));
+                
+                // Print this value to 24av (NEED TO ROUND)
+                
+                document.getElementById('24av').innerHTML = avg_24.toFixed(1)
+                
+                if (avg_24 > 35) {
+
+                    // If this is above 35, print "above" to `comparison`
+                    
+                    document.getElementById('comparison').innerHTML = "above"
+                    document.getElementById('comparison').classList.remove('badge-custom-below')
+                    document.getElementById('comparison').classList.add('badge-custom-above')
+                    
+                    // That's not great!
+
+                    document.getElementById('goodBad').innerHTML = "That's not great!"
+                    document.getElementById('goodBad').classList.remove('badge-custom-below')
+                    document.getElementById('goodBad').classList.add('badge-custom-above')
+
+                    
+                } else if (avg_24 <= 35) {
+                    
+                    // if less than 35, print "below" to `comparison`
+
+                    document.getElementById('comparison').innerHTML = "below"
+                    document.getElementById('comparison').classList.remove('badge-custom-above')
+                    document.getElementById('comparison').classList.add('badge-custom-below')
+                    
+                    // That's good!
+
+                    document.getElementById('goodBad').innerHTML = "That's good!"
+                    document.getElementById('goodBad').classList.remove('badge-custom-above')
+                    document.getElementById('goodBad').classList.add('badge-custom-below')
+                
+                }
+
+            } else if (valid_vals < 18) {
+                
+                // If there are less than 18 valid values, print a 'no-value' message
+
+                document.getElementById('locInfoDesc').innerHTML = "<p class=fs-sm><strong>No value:</strong> sometimes monitors go down or have other problems. We only produce average values if there are more than 18 hourly readings over the last 24 hours.</p>"
+
+            }
+
+            // Note - this may be easier with long version; location-selection buttons can apply a filter to the long file, which we can then pipe into the chart. 
+            
+        }
+        
+        
+        // ---- function to reset zoom on click ---- //
+        
+        function resetZoom() {
+            map.setView(monitors_center, 11).fitBounds(monitors_bounds);
+        }
+        
+        // ---- creating variables for leaflet objects ---- //
+        
+        var map;
+        var monitors_group = L.featureGroup();
+        var monitors;
+        var monitors_center = L.Point();
+        var monitors_bounds = L.Bounds();
+        var monitor_locations;
+        
+        d3.csv("data/monitor_locations.csv").then(data => {
+            
+            monitor_locations = data;
+            
+            // adding each monitor to the feature group
+            
+            monitor_locations.forEach((monitor, i) => {
+                
+                let this_icon = L.colorIcon({
+                    iconSize : [30, 30],
+                    popupAnchor : [0, -15],
+                    iconUrl: "images/map-marker.svg",
+                    color: color_convert.to_hex(monitor_locations[i].Color)
+                });
+                
+                var this_monitor = 
+                    L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
+                    .bindTooltip(monitor.Location, {permanent: true, opacity: 0.85, interactive: true})
+                    .addTo(monitors_group)
+
+                // setting tooltip mouseover rise-to-top
+
+                var this_tooltip = this_monitor.getTooltip();
+                
+                this_monitor.on('mouseover', function (e) {
+
+                    this_tooltip._container.style.borderColor = color_convert.to_hex(monitor_locations[i].Color);
+                    this_tooltip.bringToFront();
+                    this_tooltip.setOpacity(1.0);
+                });
+
+                this_monitor.on('mouseout', function (e) {
+
+                    this_tooltip.setOpacity(0.85);
+                    this_tooltip._container.style.borderColor = "";
+
+                });
+
+                // setting up zoom on click
+                
+                this_monitor.on('click', function (e) {
+                    map.setView(e.latlng, 13);
+                    changeData(i);
+                });
+                
+            });
+
+            monitors = monitors_group.getLayers();
+            
+            // getting the bounds of the markers
+            
+            monitors_bounds = monitors_group.getBounds();
+            
+            // now getting the center of the counds
+            
+            monitors_center = monitors_bounds.getCenter();
+            
+            // initiating the map object 
+            
+            map = L.map('map').setView(monitors_center, 10).fitBounds(monitors_bounds);
+
+            // adding a tile layer
+            
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                subdomains: 'abcd',
+                maxZoom: 20
+            }).addTo(map);
+            
+            // adding the monitor markers to the map
+            
+            monitors_group.addTo(map);
+
+            // ---- easyButton to clear the markers and lines ---- //
+            
+            L.easyButton({
+                position: "bottomleft",
+                states: [{
+                    title: "Zoom to fit",
+                    icon: "fas fa-undo",
+                    
+                    onClick: function() {
+                        
+                        resetZoom();
+                    }
+                }]
+            }).addTo(map);                            
+            
+        });
+        
+        // ---- restore defaults ---- //
+
+        function restore() {
+
+            // chart vars
+            
+            locSelect = "No location";
+            inputNum = [];
+            color = [];
+            
+            // reset map zoom
+            
+            resetZoom();
+
+            // close popups
+
+            monitors.forEach(monitor => {monitor.closePopup()})
+            
+            // reset info box to be blank (like initial)
+
+            document.getElementById('locInfoBox').outerHTML = locInfoBox;
+            document.getElementById('inputNum').value = "";
+            
+            // remove active class from buttons and add default class
+
+            buttons.forEach(button => button.classList.remove('btn-primary'))
+            buttons.forEach(button => button.classList.add('btn-outline-primary'))     
+            document.getElementById("btnrestore").classList.remove('btn-outline-primary')
+
+            var restore_spec;
+            
+            d3.json("js/origSpec.json")
+            .then(data => {
+                
+                // create 1-time use spec
+                restore_spec = $.extend({}, data);
+
+                // reset current_spec to default
+                current_spec = $.extend({}, data);
+                
+                // redraw the chart
+                vegaEmbed("#vis2", restore_spec).then((res) => {
+                        
+                        res.view.insert("lineData", fullTable).run(); // shortTable is fullTable until updateChart is called
+                        
+                    });
+
+                })
+            }
+            
+        </script>
+
+</article>
+
+
+<!--This code uses the JS file specified in the page's frontmatter-->
+{{ with .Params.accessibleAutocomplete}}
+<script type="text/javascript" src="{{ . }}"></script>
+{{ end}}
+
+{{end}}
