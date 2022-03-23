@@ -257,6 +257,14 @@ function geobullet_filter(active_geo) {
 
   $('#indicators').DataTable().column(2).search(active_geo.join('|'), true, false, false).draw()
 
+  // Adding this here is sort of a kludge, but I'd have to refactor the entire pattern to avoid it
+  // buttons with either geo as a class
+  let geo_buttons = document.querySelectorAll(active_geo.map(i => "." + i).toString());
+
+  for (let i = 0; i < geo_buttons.length; i++) {
+    geo_buttons[i].classList.add("active");
+  }
+
 }
 
 function toggle_button(e) {
