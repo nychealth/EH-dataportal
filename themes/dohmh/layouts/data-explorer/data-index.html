@@ -110,12 +110,12 @@
   var indicatorIndex = []
 
   // geography buttons
-  var citywide = `<li>Citywide</li>`
-  var borough = `<li>Borough</li>`
-  var UHF42 = `<li>UHF42</li>`
-  var UHF34 = `<li>UHF34</li>`
-  var CD = `<li>CD</li>`
-  var NTA = `<li>NTA</li>`
+  {{/*  var citywide = `<li id="citywide">Citywide</li>`
+  var borough = `<li id="borough">Borough</li>`
+  var UHF42 = `<li id="uhf42">UHF42</li>`
+  var UHF34 = `<li id="uhf34">UHF34</li>`
+  var CD = `<li id="cd">CD</li>`
+  var NTA = `<li id="nta">NTA</li>`  */}}
   
   
   // First, load Indicators.json
@@ -136,11 +136,11 @@
       cell_1.innerHTML = indicators[i].IndicatorName // fill cell with indicator name.
       row_i.appendChild(cell_1); // add this cell to this row
       
-      var measurements = [];
-      var geographies = [];
-      var times = [];
-      var all_years;
-      var maxTime;
+      let measurements = [];
+      let geographies = [];
+      let times = [];
+      let all_years;
+      let maxTime;
       
       // create other cells. 
       let cell_2 = document.createElement('td')
@@ -186,16 +186,39 @@
       row_i.appendChild(cell_2);
       
       // geographies
-      let unique_geographies = [...new Set(geographies)];
-        let geobullets = document.createElement('ul')
-        geobullets.classList.add('geobullets')  
-        cell_3.appendChild(geobullets)
 
-        for (l = 0; l < unique_geographies.length; l++) {
-          let li = document.createElement('li')
-          li.innerHTML = unique_geographies[l]
-          geobullets.appendChild(li)
-        }
+      const geos_order = ["Citywide", "Borough", "NYCKIDS", "UHF33", "UHF34", "UHF42", "Subboro", "CD", "NTA"];
+      let unique_geographies = [...new Set(geographies)];
+
+      // sorting unique_geographies based on order of geos_order
+      unique_geographies.sort(function(a, b){
+          return geos_order.indexOf(a) - geos_order.indexOf(b)
+      });
+      
+      let geobullets = document.createElement('ul')
+      cell_3.appendChild(geobullets)
+      
+      // looping through indicator's unique geos
+      
+      for (l = 0; l < unique_geographies.length; l++) {
+        
+        let li = document.createElement('li')
+
+        // setting id as geo name
+        li.innerHTML = unique_geographies[l];
+        li.setAttribute("geo", unique_geographies[l]);
+        li.classList.add("btn", "btn-sm", "geobullets", unique_geographies[l])
+
+        // setting 'onclick' action for each geography, with the geo as the argument
+
+        li.addEventListener('click', e => {
+          console.log("classList [e]", e.target.classList)
+          toggle_button(e);
+        });
+
+        geobullets.appendChild(li);
+        
+      }
 
       row_i.appendChild(cell_3)
       
@@ -203,12 +226,6 @@
       maxTime = new Date(Math.max(...times));
       cell_4.innerHTML = maxTime.getFullYear();
       row_i.appendChild(cell_4)
-
-      // all years
-      // all_years = times.map(time => time.getFullYear());
-      // let unique_years = [...new Set(all_years)];
-      // cell_5.innerHTML = unique_years.sort();
-      // row_i.appendChild(cell_5)
 
       // Finally, place the row into the table body.
       document.getElementById('tablebody').appendChild(row_i) 
@@ -232,10 +249,64 @@
   }
 
 
-  
-  
-  
-  
+// filter function
+
+function geobullet_filter(active_geo) {
+
+  // join geo types for regex (this will be an OR search)
+
+  $('#indicators').DataTable().column(2).search(active_geo.join('|'), true, false, false).draw()
+
+}
+
+function toggle_button(e) {
+
+    // clicked button
+    var button = e.target;
+
+    if (button.classList.contains("active") == false) {
+      // if the clicked button isn't active, add active class to buttons with this geo type
+
+      // all buttons of this geo type
+      // for some reason, this misses NTA and CD buttons when they're the only geo for an indicator, and when another geo is already active
+
+      let geo_buttons = document.querySelectorAll("[geo=" + button.attributes.geo.value + "]");
+
+      for (let i = 0; i < geo_buttons.length; i++) {
+        geo_buttons[i].classList.add("active");
+      }
+
+    }
+    else if (button.classList.contains("active") == true) {
+      // if the clicked button is active, remove active class to buttons with this geo type
+
+      // all buttons of this geo type
+      let geo_buttons = document.querySelectorAll("[geo=" + button.attributes.geo.value + "]");
+
+      for (let i = 0; i < geo_buttons.length; i++) {
+        geo_buttons[i].classList.remove("active");
+      }
+
+    }
+
+    let active = document.querySelectorAll("li.active");
+    let active_geos = [];
+
+    for (let i = 0; i < active.length; i++) {
+
+      if (typeof active[i].attributes.geo != "undefined") {
+
+        active_geos.push(active[i].attributes.geo.value);
+
+      }
+    }
+    
+    let active_geographies = [...new Set(active_geos)];
+
+    geobullet_filter(active_geographies);
+
+}
+
   
 </script>
 
