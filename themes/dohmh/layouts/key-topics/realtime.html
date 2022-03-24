@@ -1,15 +1,5 @@
 {{ define "main" }}
 
-<!-- NYC Core Framework Theme -->
-<link rel="stylesheet" href="https://nycehs.github.io/Portal-Core-Repo/css/theme.css">
-<!-- Custom additions for Portal items -->
-<link rel="stylesheet" href="https://nycehs.github.io/Portal-Core-Repo/css/custom.css">
-
-{{/*  loading resources for realtime  */}}
-
-<!-- Air Quality CSS -->
-<link rel="stylesheet" href="css/aqe.css">
-
 <!-- leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -87,38 +77,38 @@
             <button onclick="restore()" type="button" id="btnrestore" class="mb-1 selectorbtn btn btn-sm btn-dark">
                 Reset</button>
             
-            <button onclick="changeData(0)" type="button" id="btn0" class="mb-1 selectorbtn btn btn-sm btn-outline-primary no-underline">
+            <button onclick="changeData(0)" type="button" id="btn0" class="mb-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
                 <span style="color: purple">
                     <i class="fas fa-square mr-1"></i>
                 </span>
                 Cross Bronx Expy</button>
             
-            <button onclick="changeData(1)" type="button" id="btn1" class="mb-1 selectorbtn btn btn-sm btn-outline-primary no-underline">
+            <button onclick="changeData(1)" type="button" id="btn1" class="mb-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
                 <span style="color: red">
                     <i class="fas fa-square mr-1"></i>
                 </span>
                 Queensboro Bridge</button>
                 
-            <button onclick="changeData(2)" type="button" id="btn2" class="mb-1 selectorbtn btn btn-sm btn-outline-primary no-underline">
+            <button onclick="changeData(2)" type="button" id="btn2" class="mb-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
                 <span style="color: limegreen">
                     <i class="fas fa-square mr-1"></i>
                 </span>
                 Manhattan Bridge</button>
             
-            <button onclick="changeData(3)" type="button" id="btn3" class="mb-1 selectorbtn btn btn-sm btn-outline-primary no-underline">
+            <button onclick="changeData(3)" type="button" id="btn3" class="mb-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
                 <span style="color: orange">
                     <i class="fas fa-square mr-1"></i>
                 </span>
                 Queens College</button>
             
-            <button onclick="changeData(4)" type="button" id="btn4" class="mb-1 selectorbtn btn btn-sm btn-outline-primary no-underline">
+            <button onclick="changeData(4)" type="button" id="btn4" class="mb-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
                 <span style="color: blue">
                     <i class="fas fa-square mr-1"></i>
                 </span>
                 Williamsburg Bridge</button>
             
 
-            <button onclick="changeData(5)" type="button" id="btn5" class="mb-1 selectorbtn btn btn-sm btn-outline-primary no-underline">
+            <button onclick="changeData(5)" type="button" id="btn5" class="mb-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
                 <span style="color: violet">
                     <i class="fas fa-square mr-1"></i>
                 </span>
@@ -195,63 +185,71 @@
         <p>In New York City, about 45% of PM2.5 comes from far-away sources, like coal-burning power plants
             in the Midwest. But more than half comes from <b>local sources</b>. </p>
 
-        <div class="card mb-4">
-            <div class="card-body">
-                <h4 class="fs-lg"><i class="fas fa-building mr-1" aria-hidden="true"></i>Buildings</h4>
-                <p>Building density affects a neighborhood's air quality because like vehicles, buildings
-                    burn fuel and emit pollutants: their boilers burn oil and gas to produce heat and hot
-                    water. This is one reason we often see more air pollution in the winter. Because of new heating oil regulations, PM2.5 has gone down dramatically, and SO2 levels
-                    are now indetectable. <a href="https://nyccas.cityofnewyork.us/report">Read more at
-                        the NYCCAS annual report</a>. </p>
-
-                <h4 class="fs-lg"><i class="fas fa-industry mr-1" aria-hidden="true"></i>Industrial area
-                </h4>
-                <p> Industrial areas affect a neighborhood's air quality because of diesel exhaust from
-                    trucks idling and traveling through industrial areas, and from industrial combustion
-                    equipment.</p>
-
-                <h4 class="fs-lg"> <i class="fas fa-car mr-1" aria-hidden="true"></i>Traffic</h4>
-                <p> Traffic density affects a neighborhood's air quality because engines produce PM2.5,
-                    black carbon, and NOx. While electric vehicles help reduce emissions, all vehicles also
-                    contribute to PM2.5 through tire wear and braking. Traffic volume is one reason we often
-                    see daily spikes in PM2.5 concentration in the mornings and evenings.</p>
-
-                <h4 class="fs-lg"><i class="fas fa-truck mr-1" aria-hidden="true"></i>Trucks</h4>
-                <p>Truck traffic density affects a neighborhood's air quality because diesel combustion
-                    produces additional pollutants.</p>
+        <div class="card content-card mb-4">
+            <div class="card-content">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <i class="fas fa-building mr-1" aria-hidden="true"></i>Buildings
+                    </h4>
+                    <p>Building density affects a neighborhood's air quality because like vehicles, buildings
+                        burn fuel and emit pollutants: their boilers burn oil and gas to produce heat and hot
+                        water. This is one reason we often see more air pollution in the winter. Because of new heating oil regulations, PM2.5 has gone down dramatically, and SO2 levels
+                        are now indetectable. <a href="https://nyccas.cityofnewyork.us/report">Read more at
+                            the NYCCAS annual report</a>. </p>
+    
+                    <h4 class="card-title"><i class="fas fa-industry mr-1" aria-hidden="true"></i>Industrial area
+                    </h4>
+                    <p> Industrial areas affect a neighborhood's air quality because of diesel exhaust from
+                        trucks idling and traveling through industrial areas, and from industrial combustion
+                        equipment.</p>
+    
+                    <h4 class="card-title"> <i class="fas fa-car mr-1" aria-hidden="true"></i>Traffic</h4>
+                    <p> Traffic density affects a neighborhood's air quality because engines produce PM2.5,
+                        black carbon, and NOx. While electric vehicles help reduce emissions, all vehicles also
+                        contribute to PM2.5 through tire wear and braking. Traffic volume is one reason we often
+                        see daily spikes in PM2.5 concentration in the mornings and evenings.</p>
+    
+                    <h4 class="card-title"><i class="fas fa-truck mr-1" aria-hidden="true"></i>Trucks</h4>
+                    <p>Truck traffic density affects a neighborhood's air quality because diesel combustion
+                        produces additional pollutants.</p>
+                </div>
             </div>
+
         </div>
     </div>
     
     <div class="col-md-6">
         <h3>Common patterns in the data</h3>
-        <p>There are several patterns that commonly show up in the data from our air quality monitors:</p>
+        <p>There are several patterns that commonly show up in the data from our air quality monitors. Look at the recent data and see if you can spot:</p>
         
-        <div class="card mb-4">
-            <div class="card-body">
-                <h4 class="fs-lg"><i class="fas fa-map-signs mr-1" aria-hidden="true"></i>Spatial differences</h4>
-                <p>The monitors are in neighborhoods with different emissions sources, so have
-                    different PM2.5 levels. <span style="color:rgb(109, 109, 109)"><b>Midtown</b></span>, which has
-                    the highest traffic density, usually has the most PM2.5. </p>
-
-                <h4 class="fs-lg"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Daily spikes
-                </h4>
-                <p>PM2.5 levels usually rise in the morning as traffic volume increases. These
-                    <em>temporal</em> differences (time spikes) are usually greater than
-                    <em>spatial</em> differences (the differences between neighborhoods).</p>
-
-                <h4 class="fs-lg"> <i class="fas fa-cloud-showers-heavy mr-1" aria-hidden="true"></i>Weather patterns</h4>
-                <p> Weather can trap emissions and cause PM2.5 to build up. Sometimes we see a
-                    clear west-to-east pattern in rising PM2.5, likely related to a weather
-                    pattern moving into New York City and causing pollution levels to rise as
-                    emissions are trapped.</p>
-
-                <h4 class="fs-lg"><i class="fas fa-exclamation-triangle mr-1" aria-hidden="true"></i>Other spikes</h4>
-                <p>Sometimes there are dramatic, short-term spikes
-                    at unexpected times, and without having a camera on each monitor, we don't
-                    know what causes them. However, they can be explained by something as
-                    simple as a truck idling for a few minutes underneath the monitor.</p>
+        <div class="card content-card mb-4">
+            <div class="card-content">
+                <div class="card-body">
+                    <h4 class="card-title"><i class="fas fa-map-signs mr-1" aria-hidden="true"></i>Spatial differences</h4>
+                    <p>The monitors are in neighborhoods with different emissions sources, so have
+                        different PM2.5 levels. <span style="color:rgb(109, 109, 109)"><b>Midtown</b></span>, which has
+                        the highest traffic density, usually has the most PM2.5. </p>
+    
+                    <h4 class="card-title"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Daily spikes
+                    </h4>
+                    <p>PM2.5 levels usually rise in the morning as traffic volume increases. These
+                        <em>temporal</em> differences (time spikes) are usually greater than
+                        <em>spatial</em> differences (the differences between neighborhoods).</p>
+    
+                    <h4 class="card-title"> <i class="fas fa-cloud-showers-heavy mr-1" aria-hidden="true"></i>Weather patterns</h4>
+                    <p> Weather can trap emissions and cause PM2.5 to build up. Sometimes we see a
+                        clear west-to-east pattern in rising PM2.5, likely related to a weather
+                        pattern moving into New York City and causing pollution levels to rise as
+                        emissions are trapped.</p>
+    
+                    <h4 class="card-title"><i class="fas fa-exclamation-triangle mr-1" aria-hidden="true"></i>Other spikes</h4>
+                    <p>Sometimes there are dramatic, short-term spikes
+                        at unexpected times, and without having a camera on each monitor, we don't
+                        know what causes them. However, they can be explained by something as
+                        simple as a truck idling for a few minutes underneath the monitor.</p>
+                </div>
             </div>
+
         </div>
     </div>
 
@@ -354,15 +352,15 @@
             document.getElementById('locInfoDesc').innerHTML = locInfoDesc
             
             // remove active class from buttons and add default class
-            buttons.forEach(button => button.classList.remove('btn-primary'))
-            buttons.forEach(button => button.classList.add('btn-outline-primary'))
-            document.getElementById("btnrestore").classList.remove('btn-outline-primary')
+            buttons.forEach(button => button.classList.remove('btn-secondary'))
+            buttons.forEach(button => button.classList.add('btn-outline-secondary'))
+            document.getElementById("btnrestore").classList.remove('btn-outline-secondary')
             
             // add active class for selected button and remove default class
             var btn = "btn" + x;
-            document.getElementById(btn).classList.add('btn-primary');
-            document.getElementById(btn).classList.remove('btn-outline-primary')
-            document.getElementById("btnrestore").classList.remove('btn-primary')
+            document.getElementById(btn).classList.add('btn-secondary');
+            document.getElementById(btn).classList.remove('btn-outline-secondary')
+            document.getElementById("btnrestore").classList.remove('btn-secondary')
             
             // make all lines gray, thinner, and unmarked
             for (let i = 0; i < current_spec.layer.length; i++) {
@@ -616,9 +614,9 @@
             
             // remove active class from buttons and add default class
 
-            buttons.forEach(button => button.classList.remove('btn-primary'))
-            buttons.forEach(button => button.classList.add('btn-outline-primary'))     
-            document.getElementById("btnrestore").classList.remove('btn-outline-primary')
+            buttons.forEach(button => button.classList.remove('btn-secondary'))
+            buttons.forEach(button => button.classList.add('btn-outline-secondary'))     
+            document.getElementById("btnrestore").classList.remove('btn-outline-secondary')
 
             var restore_spec;
             
