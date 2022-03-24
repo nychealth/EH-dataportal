@@ -11,7 +11,6 @@ menu:
     main:
         identifier: '05'
 layout: realtime
-accessibleAutocomplete: /js/accessible-autocomplete.min.js
 vega: true
 arquero: true
 ---
