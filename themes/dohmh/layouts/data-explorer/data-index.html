@@ -90,7 +90,7 @@
                 (which on build will be put into <code>/docs/IndicatorData/</code>)</strong>
                 
                 {{ $si_json_output_path := "/IndicatorData/subtopic_indicators.json" }}
-                {{ $si_resource := $subtopic_indicators_map | jsonify | resources.FromString $si_json_output_path }}
+                {{ $si_resource := $subtopic_indicators_map.Get "subtopic_indicators" | jsonify | resources.FromString $si_json_output_path }}
                 
 
                 
