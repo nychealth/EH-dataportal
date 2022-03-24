@@ -23,12 +23,3 @@ Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure
 For PM2.5, NYC meets the national air quality standard of an annual average under {{< rawhtml >}}12 μg/m<sup>3</sup>{{< /rawhtml >}}, and a 24-hour average under {{< rawhtml >}}35 μg/m<sup>3</sup>{{< /rawhtml >}}. But hour-to-hour and location-by-location, PM2.5 levels vary dramatically and can spike to levels that could harm health, especially for sensitive populations. These higher levels are driven by daily changes in traffic volume, weather patterns that can trap emissions, and other short-term events.
 
 Explore near real-time PM2.5 measurements from sensors around NYC below.
-
-**About the Data**
-
-Data are hourly measurements of PM2.5, in micrograms per cubic meter of air {{< rawhtml >}}(µg/m<sup>3</sup>){{< /rawhtml >}}.
-
-{{< rawhtml >}}
-<p>Data come from the NYCCAS near-real-time monitor network. External factors can sometimes affect monitor functioning; these data are preliminary and subject to change. <a href="https://github.com/nychealth/realtime-air-quality" target="_blank">Download these data on Github</a>. </p>
-{{< /rawhtml >}}
-

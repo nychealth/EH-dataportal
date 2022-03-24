@@ -50,18 +50,27 @@
             </nav>
         </div>
 
-        <div class="col-md-2 mr-auto"></div>
-
     </div>
 
     <div class="row">
-        <div class="col-md-8 col-sm-12 mx-auto">
+        <div class="col-md-7 col-sm-12 pl-0 ml-auto">
                 <h2><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
                     {{ .Title }}</h2>
         
                 {{ .Content}}
     
         </div>
+
+        <div class="col-md-4 mr-auto my-4">
+            <div class="aboutbox">
+                <strong>About the Data</strong>
+                <p>Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>).</p>
+    
+                <p>Data come from the NYCCAS near-real-time monitor network. External factors can sometimes affect monitor functioning; these data are preliminary and subject to change. <a href="https://github.com/nychealth/realtime-air-quality" target="_blank">Download these data on Github</a>.</p>
+            </div>
+
+            
+             </div>
 
 
     </div>
@@ -150,13 +159,6 @@
         </div>
     </div>
 
-    <style>
-        .infobox {
-            background-color: #f1f1f1;
-            border-left: 5px solid darkblue;
-            padding: 10px;
-        }
-    </style>
 
     <div class="row">
         <div class="col-12">
