@@ -20,56 +20,69 @@
         
         <!-- Generate JSON object with subtopic pages and keys, and internal_ids in arrays -->
         
-        {{ $scratch_out := newScratch }}
+        {{ $subtopic_indicators_dict := newScratch }}
+        {{ $subtopic_indicators_map := newScratch }}
         
         {{/*  iterate over all pages on the site  */}}
         
         {{ range .Site.Pages }}
-        
-        {{/*  create a new "slice" (i.e., an array)  */}}
-        
-        {{ $indicators := slice }}
-        
-        {{/*  only process if it's a data explorer page */}}
-        
-        {{ if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (ne (path.Base .RelPermalink) "all-data")) }}
-        
-        {{/*  turn params into strings  */}}
-        
-        {{ $subtopic := .RelPermalink | path.Base | string }}
-        
-        {{/*  get internal_ids  */}}
-        
-        {{ range .Params.indicators }}
-        
-        {{/*  create an array of internal_ids  */}}
-        
-        {{ $indicators = $indicators | append .internal_id }}
-        
+            
+            {{/*  create a new "slice" (i.e., an array)  */}}
+            
+            {{ $indicators := slice }}
+            {{ $subtopic_name := slice }}
+            
+            {{/*  only process if it's a data explorer page */}}
+            
+            {{ if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (ne (path.Base .RelPermalink) "all-data")) }}
+                
+                {{/*  turn params into strings  */}}
+                
+                {{ $subtopic := .RelPermalink | path.Base | string }}
+
+                {{/*  subtopic names  */}}
+                
+                {{ $subtopic_title := .Title }}
+
+                {{/*  get internal_ids  */}}
+                
+                {{ range .Params.indicators }}
+                    
+                    {{/*  create an array of internal_ids  */}}
+                    
+                    {{ $indicators = $indicators | append .internal_id }}
+                
+                {{ end }}
+                
+                {{/*  create a map with subtopic as key and array of internal_ids as value */}}
+                
+                {{ $subtopic_indicators_dict := dict "subtopic_name" $subtopic_title "IndicatorID" $indicators }}
+                {{ $subtopic_indicators_map.SetInMap "subtopic_indicators" $subtopic ($subtopic_indicators_dict) }}
+
+            {{ end }}
+            
         {{ end }}
-        
-        {{/*  create a map with subtopic as key and array of internal_ids as value */}}
-        
-        {{ $scratch_out.SetInMap "subtopic_indicators" $subtopic $indicators }}
-        
-        {{ end }}
-        
-        {{ end }}
-        
-        {{/*  turn the subtopic indicators map into a JSON string  */}}
-        
-        {{ $subtopic_indicators := $scratch_out.Get "subtopic_indicators" }} 
+
         
         <p class="sr-only">This produces a list of subtopics and IndicatorIDs, stored in the variable <code>$subtopic_indicators</code>, 
             and printed to the console as a JavaScript variable, and then as an Arquero table.</p>
             
             <script>
-                console.log({{ $subtopic_indicators }});
-                
-                var arqTable = aq.from({{$subtopic_indicators}}).rename({key: "subtopic", value: "IndicatorID"}).unroll("IndicatorID");
+
+                var subtopic_indicators = {{ $subtopic_indicators_map.Get "subtopic_indicators" }};
+
+                var arqTable = aq.from(subtopic_indicators)
+                .rename({key: "subtopic"})
+                .derive({
+                    IndicatorID: d => d.value.IndicatorID,
+                    subtopic_name: d => d.value.subtopic_name
+                })
+                .select(aq.not("value"))
+                .unroll("IndicatorID");
                 arqTable.print(20);
                 
                 var subtopicIndicatorsTable = arqTable.objects();
+                
                 
             </script>
             
@@ -77,7 +90,7 @@
                 (which on build will be put into <code>/docs/IndicatorData/</code>)</strong>
                 
                 {{ $si_json_output_path := "/IndicatorData/subtopic_indicators.json" }}
-                {{ $si_resource := $subtopic_indicators | jsonify | resources.FromString $si_json_output_path }}
+                {{ $si_resource := $subtopic_indicators_map | jsonify | resources.FromString $si_json_output_path }}
                 
                 
                 <script>
@@ -111,14 +124,6 @@
             var indicators;
             var indicatorIndex = []
             
-            // geography buttons
-            {{/*  var citywide = `<li id="citywide">Citywide</li>`
-            var borough = `<li id="borough">Borough</li>`
-            var UHF42 = `<li id="uhf42">UHF42</li>`
-            var UHF34 = `<li id="uhf34">UHF34</li>`
-            var CD = `<li id="cd">CD</li>`
-            var NTA = `<li id="nta">NTA</li>`  */}}
-            
             
             // First, load Indicators.json
             d3.json('https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/indicators.json').then(function (data) {
@@ -149,6 +154,7 @@
                     let cell_2 = document.createElement('td')
                     
                     // get all subtopics for this indicator
+                    {{/*  let subtopics = subtopicIndicatorsTable.filter(element => element.value.IndicatorID.includes(indicators[i].IndicatorID));  */}}
                     let subtopics = subtopicIndicatorsTable.filter(element => element.IndicatorID == indicators[i].IndicatorID);
                     
                     let st_li = document.createElement('ul');
@@ -158,9 +164,9 @@
                     for (st = 0; st < subtopics.length; st++) {
 
                         let li = document.createElement('li');
-                        li.innerHTML = "<a href='" + {{ .Site.BaseURL }} + "data-explorer/" + subtopics[st].subtopic + "/'>" + subtopics[st].subtopic + "</a>"
+                        li.innerHTML = "<a href='" + {{ .Site.BaseURL }} + "data-explorer/" + subtopics[st].subtopic + "/'>" + subtopics[st].subtopic_name + "</a>"
                         // can eventually add an anchor or other deep-linking method
-                        
+
                         st_li.appendChild(li)
                     }
                     
@@ -300,7 +306,6 @@
                     // if the clicked button isn't active, add active class to buttons with this geo type
                     
                     // all buttons of this geo type
-                    // for some reason, this misses NTA and CD buttons when they're the only geo for an indicator, and when another geo is already active
                     
                     let geo_buttons = document.querySelectorAll("[geo=" + button.attributes.geo.value + "]");
                     
@@ -342,4 +347,4 @@
             
         </script>
         
-        {{end}}
+    {{end}}
