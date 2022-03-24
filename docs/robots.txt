@@ -2,13 +2,41 @@
 User-agent: *
 
 
+Disallow: /keywords/air-quality/
+
+Disallow: /categories/airquality/
+
+Disallow: /keywords/buildings/
+
+Disallow: /keywords/cars/
+
+Disallow: /categories/
+
+Disallow: /keywords/data/
+
+Disallow: /keywords/emissions/
+
+Disallow: /
+
+Disallow: /keywords/exhaust/
+
+Disallow: /keywords/interactive/
+
+Disallow: /keywords/
+
+Disallow: /keywords/neighborhoods/
+
+Disallow: /key-topics/airquality/realtime/
+
+Disallow: /keywords/traffic/
+
+Disallow: /keywords/transportation/
+
 Disallow: /keywords/air-conditioning/
 
 Disallow: /keywords/asthma/
 
 Disallow: /keywords/built-environment/
-
-Disallow: /categories/
 
 Disallow: /categories/climatehealth/
 
@@ -16,13 +44,9 @@ Disallow: /keywords/cooling/
 
 Disallow: /keywords/death/
 
-Disallow: /
-
 Disallow: /categories/healthoutcomes/
 
 Disallow: /data-stories/poweroutages/
-
-Disallow: /keywords/
 
 Disallow: /keywords/mortality/
 
@@ -40,13 +64,7 @@ Disallow: /data-explorer/
 
 Disallow: /key-topics/airquality/
 
-Disallow: /keywords/air-quality/
-
-Disallow: /categories/airquality/
-
 Disallow: /keywords/breathing/
-
-Disallow: /keywords/emissions/
 
 Disallow: /keywords/lungs/
 
@@ -128,8 +146,6 @@ Disallow: /keywords/subways/
 
 Disallow: /keywords/transit/
 
-Disallow: /keywords/transportation/
-
 Disallow: /categories/transportation/
 
 Disallow: /key-topics/transportation/
@@ -137,8 +153,6 @@ Disallow: /key-topics/transportation/
 Disallow: /keywords/walking/
 
 Disallow: /key-topics/
-
-Disallow: /keywords/exhaust/
 
 Disallow: /key-topics/climatehealth/heat-report/
 
@@ -155,8 +169,6 @@ Disallow: /keywords/active-design/
 Disallow: /keywords/built-environments/
 
 Disallow: /key-topics/neighborhoods/
-
-Disallow: /keywords/neighborhoods/
 
 Disallow: /categories/neighborhoods/
 
@@ -176,11 +188,7 @@ Disallow: /keywords/heat-mortality/
 
 Disallow: /keywords/hot-weather/
 
-Disallow: /keywords/interactive/
-
 Disallow: /key-topics/climatehealth/syndromic/
-
-Disallow: /keywords/data/
 
 Disallow: /keywords/disparities/
 
@@ -195,12 +203,6 @@ Disallow: /keywords/inequity/
 Disallow: /key-topics/climatehealth/hvi/
 
 Disallow: /keywords/vulnerability/
-
-Disallow: /keywords/buildings/
-
-Disallow: /keywords/cars/
-
-Disallow: /keywords/traffic/
 
 Disallow: /key-topics/airquality/aqe/
 
@@ -239,6 +241,8 @@ Disallow: /keywords/alcohol/
 Disallow: /data-explorer/alcohol-access/
 
 Disallow: /data-explorer/alcohol-use/
+
+Disallow: /data-explorer/all-data/
 
 Disallow: /data-explorer/asthma/
 

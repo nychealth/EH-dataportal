@@ -6,46 +6,46 @@
   var indicatorDataPath = `${devpath}/visualizations/csv/nr/`;
   var indicatorMapPath = `${devpath}/visualizations/json/`;
   var summarySpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "config": {
-      "axisX": {
-        "labelFontSize": 14
+    $schema: "https://vega.github.io/schema/vega-lite/v4.json",
+    width: "container",
+    height: "container",
+    autosize: "fit",
+    config: {
+      axisX: {
+        labelFontSize: 14
       },
-      "axisY": {
-        "labelFontSize": 14
+      axisY: {
+        labelFontSize: 14
       },
-      "legend": {
-        "labelFontSize": 14
+      legend: {
+        labelFontSize: 14
       },
-      "view": { "stroke": "transparent" }
+      view: {stroke: "transparent"}
     },
-    "data": { "url": "visualizations/csv/nr/bikeLanP.csv" },
-    "mark": { "type": "bar", "tooltip": true },
-    "encoding": {
-      "x": {
-        "field": "neighborhood",
-        "type": "nominal",
-        "sort": { "op": "mean", "field": "data_value" },
-        "axis": null
+    data: {url: "visualizations/csv/nr/bikeLanP.csv"},
+    mark: {type: "bar", tooltip: true},
+    encoding: {
+      x: {
+        field: "neighborhood",
+        type: "nominal",
+        sort: {op: "mean", field: "data_value"},
+        axis: null
       },
-      "y": {
-        "field": "data_value",
-        "type": "quantitative",
-        "axis": { "title": null }
+      y: {
+        field: "data_value",
+        type: "quantitative",
+        axis: {title: null}
       },
-      "color": {
-        "condition": {
-          "test": "datum.neighborhood=='Canarsie - Flatlands'",
-          "value": "#1CA970"
+      color: {
+        condition: {
+          test: "datum.neighborhood=='Canarsie - Flatlands'",
+          value: "#1CA970"
         },
-        "value": "#D8D8D8"
+        value: "#D8D8D8"
       },
-      "tooltip": [
-        { "field": "neighborhood", "type": "nominal", "title": "Neighborhood" },
-        { "field": "data_value", "type": "quantitative", "title": "Value" }
+      tooltip: [
+        {field: "neighborhood", type: "nominal", title: "Neighborhood"},
+        {field: "data_value", type: "quantitative", title: "Value"}
       ]
     }
   };
@@ -56,75 +56,75 @@
     return temp;
   };
   var trendSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "config": {
-      "axisX": {
-        "labelFontSize": 14
+    $schema: "https://vega.github.io/schema/vega-lite/v4.json",
+    width: "container",
+    height: "container",
+    autosize: "fit",
+    config: {
+      axisX: {
+        labelFontSize: 14
       },
-      "axisY": {
-        "labelFontSize": 14
+      axisY: {
+        labelFontSize: 14
       },
-      "legend": {
-        "labelFontSize": 14
+      legend: {
+        labelFontSize: 14
       },
-      "view": { "stroke": "transparent" }
+      view: {stroke: "transparent"}
     },
-    "data": { "url": "visualizations/csv/nr/poveACSP_trend.csv" },
-    "layer": [{
-      "mark": { "type": "line", "point": false, "tooltip": true },
-      "encoding": {
-        "x": {
-          "field": "time",
-          "type": "ordinal",
-          "axis": { "title": null, "labelAngle": 45 }
+    data: {url: "visualizations/csv/nr/poveACSP_trend.csv"},
+    layer: [{
+      mark: {type: "line", point: false, tooltip: true},
+      encoding: {
+        x: {
+          field: "time",
+          type: "ordinal",
+          axis: {title: null, labelAngle: 45}
         },
-        "y": {
-          "field": "data_value",
-          "type": "quantitative",
-          "axis": { "title": null }
+        y: {
+          field: "data_value",
+          type: "quantitative",
+          axis: {title: null}
         },
-        "detail": {
-          "field": "neighborhood",
-          "type": "nominal"
+        detail: {
+          field: "neighborhood",
+          type: "nominal"
         },
-        "color": {
-          "value": "lightgrey"
+        color: {
+          value: "lightgrey"
         },
-        "tooltip": [
-          { "field": "neighborhood", "title": "Neighborhood" },
-          { "field": "data_value", "title": "Value" }
+        tooltip: [
+          {field: "neighborhood", title: "Neighborhood"},
+          {field: "data_value", title: "Value"}
         ]
       }
     }, {
-      "mark": { "type": "line", "point": true, "tooltip": true },
-      "encoding": {
-        "x": {
-          "field": "time",
-          "type": "ordinal",
-          "axis": { "title": null, "labelAngle": 45 }
+      mark: {type: "line", point: true, tooltip: true},
+      encoding: {
+        x: {
+          field: "time",
+          type: "ordinal",
+          axis: {title: null, labelAngle: 45}
         },
-        "y": {
-          "field": "data_value",
-          "type": "quantitative",
-          "axis": { "title": null }
+        y: {
+          field: "data_value",
+          type: "quantitative",
+          axis: {title: null}
         },
-        "detail": {
-          "field": "neighborhood",
-          "type": "nominal"
+        detail: {
+          field: "neighborhood",
+          type: "nominal"
         },
-        "color": {
-          "condition": {
-            "test": "datum.neighborhood=='Canarsie - Flatlands'",
-            "value": "#1CA970"
+        color: {
+          condition: {
+            test: "datum.neighborhood=='Canarsie - Flatlands'",
+            value: "#1CA970"
           },
-          "value": null
+          value: null
         },
-        "tooltip": [
-          { "field": "neighborhood", "title": "Your Neighborhood" },
-          { "field": "data_value", "title": "Value" }
+        tooltip: [
+          {field: "neighborhood", title: "Your Neighborhood"},
+          {field: "data_value", title: "Value"}
         ]
       }
     }]
@@ -136,79 +136,79 @@
     return temp;
   };
   var mapSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "width": "container",
-    "height": "container",
-    "autosize": "fit",
-    "config": {
-      "axisX": {
-        "labelFontSize": 14
+    $schema: "https://vega.github.io/schema/vega-lite/v4.json",
+    width: "container",
+    height: "container",
+    autosize: "fit",
+    config: {
+      axisX: {
+        labelFontSize: 14
       },
-      "axisY": {
-        "labelFontSize": 14
+      axisY: {
+        labelFontSize: 14
       },
-      "legend": {
-        "labelFontSize": 14
+      legend: {
+        labelFontSize: 14
       },
-      "view": { "stroke": "transparent" }
+      view: {stroke: "transparent"}
     },
-    "data": {
-      "url": "/visualizations/json/UHF42.topo.json",
-      "format": { "type": "topojson", "feature": "collection" }
+    data: {
+      url: "/visualizations/json/UHF42.topo.json",
+      format: {type: "topojson", feature: "collection"}
     },
-    "transform": [
+    transform: [
       {
-        "lookup": "id",
-        "from": {
-          "data": { "url": "visualizations/csv/nr/bikeLanP.csv" },
-          "key": "geo_join_id",
-          "fields": ["data_value", "neighborhood", "message"]
+        lookup: "id",
+        from: {
+          data: {url: "visualizations/csv/nr/bikeLanP.csv"},
+          key: "geo_join_id",
+          fields: ["data_value", "neighborhood", "message"]
         }
       }
     ],
-    "layer": [
+    layer: [
       {
-        "mark": {
-          "type": "geoshape",
-          "color": "lightgray",
-          "stroke": "white",
-          "strokeWidth": 1,
-          "tooltip": true
+        mark: {
+          type: "geoshape",
+          color: "lightgray",
+          stroke: "white",
+          strokeWidth: 1,
+          tooltip: true
         },
-        "encoding": {
-          "tooltip": [
-            { "field": "neighborhood", "type": "nominal", "title": "Neighborhood" }
+        encoding: {
+          tooltip: [
+            {field: "neighborhood", type: "nominal", title: "Neighborhood"}
           ]
         }
       },
       {
-        "mark": { "type": "geoshape", "tooltip": false },
-        "encoding": {
-          "color": {
-            "field": "data_value",
-            "type": "quantitative",
-            "scale": { "scheme": "greens" },
-            "legend": { "orient": "top-left", "title": null }
+        mark: {type: "geoshape", tooltip: false},
+        encoding: {
+          color: {
+            field: "data_value",
+            type: "quantitative",
+            scale: {scheme: "greens"},
+            legend: {orient: "top-left", title: null}
           },
-          "stroke": { "value": "white" },
-          "strokeWidth": { "value": 1 },
-          "tooltip": [
-            { "field": "neighborhood", "type": "nominal", "title": "Neighborhood" },
-            { "field": "data_value", "type": "quantitative", "title": "Value" }
+          stroke: {value: "white"},
+          strokeWidth: {value: 1},
+          tooltip: [
+            {field: "neighborhood", type: "nominal", title: "Neighborhood"},
+            {field: "data_value", type: "quantitative", title: "Value"}
           ]
         }
       },
       {
-        "mark": { "type": "geoshape" },
-        "encoding": {
-          "color": { "value": null },
-          "stroke": {
-            "condition": {
-              "test": "datum.properties.GEONAME=='Bedford Stuyvesant - Crown Heights'",
-              "value": "#000000"
+        mark: {type: "geoshape"},
+        encoding: {
+          color: {value: null},
+          stroke: {
+            condition: {
+              test: "datum.properties.GEONAME=='Bedford Stuyvesant - Crown Heights'",
+              value: "#000000"
             }
           },
-          "strokeWidth": { "value": 3 }
+          strokeWidth: {value: 3}
         }
       }
     ]
