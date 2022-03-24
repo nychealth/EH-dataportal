@@ -1,7 +1,7 @@
 {{ define "main" }}
 
 <article class="container-fluid" id="skip-header-target">
-    <div class="col-md-10 col-sm-12 mx-auto my-4">
+    <div class="col-md-11 col-sm-12 mx-auto my-4">
         
         <div class="row no-gutters mb-2">
             <div class="col">
@@ -92,13 +92,14 @@
                 {{ $si_json_output_path := "/IndicatorData/subtopic_indicators.json" }}
                 {{ $si_resource := $subtopic_indicators_map | jsonify | resources.FromString $si_json_output_path }}
                 
+
                 
                 <script>
                     console.log("$si_json_output_path", {{$si_json_output_path}})
                     console.log("$si_resource.Permalink", {{$si_resource.Permalink}})
                 </script>
                 
-                <table id="indicators" class="display fs-sm my-1">
+                <table id="indicators" class="display fs-sm my-1" style="font-size:12px;">
                     <thead>
                         <tr>
                             <th class="tablehead">Indicator</th>
