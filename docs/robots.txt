@@ -2,11 +2,37 @@
 User-agent: *
 
 
+Disallow: /keywords/air-conditioning/
+
+Disallow: /keywords/asthma/
+
+Disallow: /keywords/built-environment/
+
+Disallow: /categories/
+
+Disallow: /categories/climatehealth/
+
+Disallow: /keywords/cooling/
+
+Disallow: /keywords/death/
+
+Disallow: /
+
+Disallow: /categories/healthoutcomes/
+
+Disallow: /data-stories/poweroutages/
+
+Disallow: /keywords/
+
+Disallow: /keywords/mortality/
+
+Disallow: /categories/social/
+
+Disallow: /keywords/weather/
+
 Disallow: /about/about/
 
 Disallow: /about/
-
-Disallow: /
 
 Disallow: /about/jobs/
 
@@ -18,15 +44,9 @@ Disallow: /keywords/air-quality/
 
 Disallow: /categories/airquality/
 
-Disallow: /keywords/asthma/
-
 Disallow: /keywords/breathing/
 
-Disallow: /categories/
-
 Disallow: /keywords/emissions/
-
-Disallow: /keywords/
 
 Disallow: /keywords/lungs/
 
@@ -42,8 +62,6 @@ Disallow: /key-topics/climatehealth/
 
 Disallow: /keywords/climate-change/
 
-Disallow: /categories/climatehealth/
-
 Disallow: /keywords/emergencies/
 
 Disallow: /keywords/heat/
@@ -55,8 +73,6 @@ Disallow: /keywords/hurricanes/
 Disallow: /keywords/public-health/
 
 Disallow: /keywords/storms/
-
-Disallow: /keywords/weather/
 
 Disallow: /keywords/weather-related-illness/
 
@@ -94,8 +110,6 @@ Disallow: /keywords/oppression/
 
 Disallow: /keywords/racism/
 
-Disallow: /categories/social/
-
 Disallow: /key-topics/social/
 
 Disallow: /keywords/social-determinants/
@@ -103,8 +117,6 @@ Disallow: /keywords/social-determinants/
 Disallow: /keywords/social-justice/
 
 Disallow: /keywords/biking/
-
-Disallow: /keywords/built-environment/
 
 Disallow: /keywords/buses/
 
@@ -192,11 +204,7 @@ Disallow: /keywords/traffic/
 
 Disallow: /key-topics/airquality/aqe/
 
-Disallow: /keywords/air-conditioning/
-
 Disallow: /keywords/building/
-
-Disallow: /keywords/cooling/
 
 Disallow: /keywords/global-warming/
 
@@ -221,8 +229,6 @@ Disallow: /keywords/health/
 Disallow: /key-topics/healthoutcomes/
 
 Disallow: /keywords/health-outcomes/
-
-Disallow: /categories/healthoutcomes/
 
 Disallow: /data-explorer/active-design/
 
@@ -301,8 +307,6 @@ Disallow: /keywords/cold-weather/
 Disallow: /keywords/construction/
 
 Disallow: /keywords/copd/
-
-Disallow: /keywords/death/
 
 Disallow: /keywords/disease/
 
@@ -383,8 +387,6 @@ Disallow: /data-explorer/mice-and-rats/
 Disallow: /keywords/monoxide/
 
 Disallow: /data-explorer/mortality/
-
-Disallow: /keywords/mortality/
 
 Disallow: /data-explorer/noise/
 
