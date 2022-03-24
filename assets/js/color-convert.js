@@ -1,3 +1,4 @@
+// Color to hex and rgba converter
 // from https://gist.github.com/njvack/02ad8efcb0d552b0230d
 
 color_convert = function() {

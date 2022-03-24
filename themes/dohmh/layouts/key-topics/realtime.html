@@ -1,24 +1,5 @@
 {{ define "main" }}
 
-<!-- leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-    crossorigin="" />
-
-<!-- leaflet source -->
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-    crossorigin=""></script>
-
-<!-- easybutton -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
-<script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
-
-<!-- Leaflet.colorIcon -->
-<script src="js/L.colorIcon.js"></script>
-
-<!-- color name to hex converter -->
-<script src="js/color-convert.js"></script>
 
 <style>
     #map {
@@ -256,6 +237,11 @@
     </div>
 
 </article>
+
+<!-- color name to hex converter -->
+<!-- from https://gist.github.com/njvack/02ad8efcb0d552b0230d -->
+{{ $color_convert := resources.Get "js/color-convert.js" }}
+<script src="{{ $color_convert.Permalink }}"></script>
 
 <!--bring in realtime JS -->
 <script type="text/javascript" src="js/realtime.js"></script>

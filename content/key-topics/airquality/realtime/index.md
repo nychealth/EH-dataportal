@@ -13,6 +13,7 @@ menu:
 layout: realtime
 vega: true
 arquero: true
+leaflet: true
 ---
 
 NYC's air quality is generally good [and has been improving over time](http://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/breatheeasy/index.html). But hour to hour, there's large variation in our air quality - even in neighborhoods with the cleanest air. That means that for short periods, some New Yorkers are exposed to high levels of pollutants.
