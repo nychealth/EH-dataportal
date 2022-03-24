@@ -264,12 +264,18 @@ If a file contains ```layout: custom``` in the frontmatter,  Hugo will look for 
 ### Data visualization shortcodes
 Shortcodes for Datawraper and Vega/Vega-Lite both exist. With shortcodes, you enter simple code in markdown that inserts components into pre-written code. 
 
-To embed a Vega/Vega-Lite visualization, simply add this:. The shortcut inserts the id and the spec into standard V/VL code. Store chart specifications in ```static/visualizations/spec```. Additionally, the markdown file needs ```vega: true``` which adds Vega libraries to ```head.html```. 
+To embed a Vega/Vega-Lite visualization, simply add this:. The shortcut inserts the id and the spec into standard V/VL code. Store chart specifications in ```static/visualizations/spec```. 
+
+Vega shortcode example:
 ```{{< vega id="uniqueDivID" spec="../../visualizations/spec/bartest.vl.json" >}}```
 
 For Datawrapper, the shortcode is:
-
 ```{{< datawrapper title="Title" src="chartID/version/" height="Height" >}}```
+
+### Data visualization libraries
+Content markdown needs frontmatter parameters so that the page template adds necessary reference for visualization libraries. Use ```vega:true``` in the markdown to add Vega libraries to ```head.html```. Use ```arquero:true``` to add Arquero, ```datatables:true``` to add datatables, and ```leaflet:true``` to add leaflet. 
+
+The partial `head.html` has a bunch of conditionals that add references to these libraries to the page if the associated variable is set to true in the frontmatter. 
 
 ---
 
