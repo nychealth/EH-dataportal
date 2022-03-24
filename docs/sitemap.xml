@@ -3,17 +3,82 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/air-conditioning/</loc>
+    <lastmod>2022-01-10T12:34:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/asthma/</loc>
+    <lastmod>2022-01-10T12:34:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/built-environment/</loc>
+    <lastmod>2022-01-10T12:34:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/</loc>
+    <lastmod>2022-01-10T12:34:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/climatehealth/</loc>
+    <lastmod>2022-01-10T12:34:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/cooling/</loc>
+    <lastmod>2022-01-10T12:34:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/death/</loc>
+    <lastmod>2022-01-10T12:34:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/</loc>
+    <lastmod>2022-01-10T12:34:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/healthoutcomes/</loc>
+    <lastmod>2022-01-10T12:34:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/poweroutages/</loc>
+    <lastmod>2022-01-10T12:34:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/</loc>
+    <lastmod>2022-01-10T12:34:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/mortality/</loc>
+    <lastmod>2022-01-10T12:34:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/</loc>
+    <lastmod>2022-01-10T12:34:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/weather/</loc>
+    <lastmod>2022-01-10T12:34:38-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/about/about/</loc>
     <lastmod>2021-11-24T13:30:21-05:00</lastmod>
   </url>
   
   <url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/about/</loc>
-    <lastmod>2021-11-24T13:30:21-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/</loc>
     <lastmod>2021-11-24T13:30:21-05:00</lastmod>
   </url>
   
@@ -43,27 +108,12 @@
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/asthma/</loc>
-    <lastmod>2021-10-04T12:32:15-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/breathing/</loc>
     <lastmod>2021-10-04T12:32:15-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/</loc>
-    <lastmod>2021-10-04T12:32:15-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/emissions/</loc>
-    <lastmod>2021-10-04T12:32:15-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/</loc>
     <lastmod>2021-10-04T12:32:15-04:00</lastmod>
   </url>
   
@@ -103,11 +153,6 @@
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/climatehealth/</loc>
-    <lastmod>2021-10-03T12:33:17-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/emergencies/</loc>
     <lastmod>2021-10-03T12:33:17-04:00</lastmod>
   </url>
@@ -134,11 +179,6 @@
   
   <url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/storms/</loc>
-    <lastmod>2021-10-03T12:33:17-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/weather/</loc>
     <lastmod>2021-10-03T12:33:17-04:00</lastmod>
   </url>
   
@@ -233,11 +273,6 @@
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/social/</loc>
-    <lastmod>2021-10-01T07:59:16-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key-topics/social/</loc>
     <lastmod>2021-10-01T07:59:16-04:00</lastmod>
   </url>
@@ -254,11 +289,6 @@
   
   <url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/biking/</loc>
-    <lastmod>2021-09-30T07:58:01-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/built-environment/</loc>
     <lastmod>2021-09-30T07:58:01-04:00</lastmod>
   </url>
   
@@ -478,17 +508,7 @@
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/air-conditioning/</loc>
-    <lastmod>2021-08-20T12:52:43-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/building/</loc>
-    <lastmod>2021-08-20T12:52:43-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/cooling/</loc>
     <lastmod>2021-08-20T12:52:43-04:00</lastmod>
   </url>
   
@@ -549,11 +569,6 @@
   
   <url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/health-outcomes/</loc>
-    <lastmod>2021-08-04T12:32:15-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/healthoutcomes/</loc>
     <lastmod>2021-08-04T12:32:15-04:00</lastmod>
   </url>
   
@@ -749,11 +764,6 @@
   
   <url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/copd/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/death/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url>
   
@@ -954,11 +964,6 @@
   
   <url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/mortality/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/mortality/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url>
   
