@@ -99,7 +99,7 @@
                     console.log("$si_resource.Permalink", {{$si_resource.Permalink}})
                 </script>
                 
-                <table id="indicators" class="display fs-sm my-1" style="font-size:12px;">
+                <table id="indicators" class="display fs-sm my-1" style="font-size:12px; width:100%">
                     <thead>
                         <tr>
                             <th class="tablehead">Indicator</th>
@@ -275,7 +275,7 @@
                 let table = new DataTable('#indicators', {
                     // options
                     scrollY: 600,
-                    // scrollX: 100,
+                    scrollX: true,
                     paging: false,
                     responsive: true,
                     fixedColumns: true
