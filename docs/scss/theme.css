@@ -9597,6 +9597,127 @@ ul.share-icons li > * .label {
   font-size: 18px;
   color: #656565; }
 
+.geobullets {
+  color: white;
+  padding: 5px 5px;
+  border-radius: 3px;
+  font-size: 11px;
+  display: inline;
+  margin: 2px 2px;
+  border-width: 2px; }
+
+.geobullets:hover {
+  text-decoration: none; }
+
+.Citywide {
+  color: black;
+  background-color: #0057E764;
+  border-color: #0057E7; }
+
+.Citywide:hover, .Citywide.active {
+  color: white;
+  background-color: #0057E7;
+  border-color: #0057E7; }
+
+.Borough {
+  color: black;
+  background-color: #ffa70064;
+  border-color: #ffa700; }
+
+.Borough:hover, .Borough.active {
+  color: white;
+  background-color: #ffa700;
+  border-color: #ffa700; }
+
+.UHF42 {
+  color: black;
+  background-color: #00800064;
+  border-color: #008744; }
+
+.UHF42:hover, .UHF42.active {
+  color: white;
+  background-color: green;
+  border-color: green; }
+
+.UHF34 {
+  color: black;
+  background-color: #cc59ca64;
+  border-color: #cc59ca; }
+
+.UHF34:hover, .UHF34.active {
+  color: white;
+  background-color: #cc59ca;
+  border-color: #cc59ca; }
+
+.CD {
+  color: black;
+  background-color: #dc143c64;
+  border-color: crimson; }
+
+.CD:hover, .CD.active {
+  color: white;
+  background-color: crimson;
+  border-color: crimson; }
+
+.NTA {
+  color: black;
+  background-color: #00d27f64;
+  border-color: #00d27f; }
+
+.NTA:hover, .NTA.active {
+  color: white;
+  background-color: #00d27f;
+  border-color: #00d27f; }
+
+.UHF33 {
+  color: black;
+  background-color: #69696964;
+  border-color: dimgray; }
+
+.UHF33:hover, .UHF33.active {
+  color: white;
+  background-color: dimgray;
+  border-color: dimgray; }
+
+.Subboro {
+  color: black;
+  background-color: #ae914164;
+  border-color: #ae9141; }
+
+.Subboro:hover, .Subboro.active {
+  color: white;
+  background-color: #ae9141;
+  border-color: #ae9141; }
+
+.NYCKIDS {
+  color: black;
+  background-color: #1ebbd764;
+  border-color: #1ebbd7; }
+
+.NYCKIDS:hover, .NYCKIDS.active {
+  color: white;
+  background-color: #1EBBD7;
+  border-color: #1ebbd7; }
+
+th.tablehead {
+  font-style: bold;
+  background-color: #fafafa;
+  text-align: left; }
+
+.infobox {
+  background-color: #f1f1f1;
+  border-left: 5px solid darkblue;
+  padding: 10px; }
+
+.aboutbox {
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 5px; }
+
+.no-bullets {
+  padding-left: 0px;
+  list-style-type: none; }
+
 a {
   color: #00923E; }
   a:hover {
