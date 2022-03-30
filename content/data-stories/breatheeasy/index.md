@@ -11,6 +11,7 @@ image: ds-breatheeasy.jpg
 menu:
     main:
         identifier: '02'
+photocredit: "Ed Reed/Mayoral Photography Office"
 ---
 
 The air we breathe can have a major effect on our health — air pollution can make asthma worse and can cause heart disease, lung disease, strokes, and even cancer.

@@ -12,6 +12,7 @@ layout: flexible
 menu:
     main:
         identifier: '02'
+photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 
 {{< rawhtml>}}

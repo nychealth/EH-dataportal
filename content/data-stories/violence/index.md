@@ -13,6 +13,7 @@ menu:
 image: ds-violence.jpg
 vega: true
 layout: flexible
+photocredit: "Benjamin Kanter/Mayoral Photography Office"
 ---
 
 {{< rawhtml>}}
