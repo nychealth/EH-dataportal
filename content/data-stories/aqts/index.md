@@ -11,6 +11,7 @@ image: ds-aqts.jpeg
 menu:
     main:
         identifier: '02'
+photocredit: "Ed Reed/Mayoral Photography Office"
 ---
 
 Does the air improve in car-free zones? People often ask us this, and it's a great question. To answer, we turn to the NYC Community Air Survey, or NYCCAS. NYCCAS is our network of air quality monitors around the city.

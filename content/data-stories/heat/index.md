@@ -11,6 +11,7 @@ image: ds-heat.jpg
 menu:
     main:
         identifier: '02'
+photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 
 Hot weather is dangerous. In New York City and across the country, more people on average die from extreme heat each year than from all other natural disasters.

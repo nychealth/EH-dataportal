@@ -30,9 +30,20 @@
     <div class="row my-3">
         <div class="col-3 mx-auto">
             <div class="fs-sm">
-                <strong>Published on:</strong>
+                {{ if .Params.photocredit }}
+                    <i class="fas fa-images mr-1"></i><strong>Banner image:</strong><br>
+                    {{ .Params.photocredit }}
+                    <hr class="my-2">
+                {{ end}}
+
+
+
+                <strong>Published on:</strong><br>
                 {{ .Date.Format "January 2, 2006"}}
+
             </div>
+
+            {{ partial "socialshare.html" . }}
         </div>
     </div>
 

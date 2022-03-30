@@ -11,6 +11,7 @@ image: title7.jpg
 menu:
     main:
         identifier: '02'
+photocredit: "Benjamin Kanter/Mayoral Photography Office"
 ---
 
 Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out.

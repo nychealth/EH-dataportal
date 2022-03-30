@@ -11,6 +11,7 @@ image: ds-povasthma.jpg
 menu:
     main:
         identifier: '02'
+photocredit: "Benjamin Kanter/Mayoral Photography Office"
 ---
 
 Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.
