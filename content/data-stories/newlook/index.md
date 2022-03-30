@@ -11,6 +11,7 @@ image: ds-newlook.jpg
 menu:
     main:
         identifier: '02'
+photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 
 We've made a few changes.

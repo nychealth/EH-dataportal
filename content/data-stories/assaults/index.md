@@ -11,6 +11,7 @@ image: ds-assaults.jpg
 menu:
     main:
         identifier: '02'
+photocredit: "Benjamin Kanter/Mayoral Photography Office"
 ---
 
 Violence has profound effects. An assault, a shooting, a homicide, or any use of force affects people in many deep ways.

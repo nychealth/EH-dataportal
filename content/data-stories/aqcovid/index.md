@@ -11,6 +11,7 @@ image: ds-aqcovid.jpeg
 menu:
     main:
         identifier: '02'
+photocredit: "Ed Reed/Mayoral Photography Office"
 ---
 
 What happens when NYC stays home? The COVID-19 pandemic upended the lives of all New Yorkers. The outbreak has affected many aspects of our daily life, but there are also less apparent effects, such as impacts on our environment.

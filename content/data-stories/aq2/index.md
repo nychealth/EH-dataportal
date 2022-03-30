@@ -11,6 +11,7 @@ image: ds-aq2.jpeg
 menu:
     main:
         identifier: '02'
+photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 
 In [Part 1]({{< ref "/data-stories/aqts" >}}), we looked at data from the New York City Community Air Survey (NYCCAS) - a network of about 100 air quality monitors - to see if air quality improves in areas that go car-free. And the answer is yes.
