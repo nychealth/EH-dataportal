@@ -107,6 +107,7 @@
                             <th class="tablehead">Measurements</th>
                             <th class="tablehead">Geographies</th>
                             <th class="tablehead">Most recent data</th>
+                            <th class="tablehead">Data Source</th>
                             
                         </tr>
                     </thead>
@@ -160,6 +161,7 @@
                     let times = [];
                     let all_years;
                     let maxTime;
+                    let sources = [];
                     
                     // subtopics
                     
@@ -189,6 +191,7 @@
                     let cell_3 = document.createElement('td')
                     let cell_4 = document.createElement('td')
                     let cell_5 = document.createElement('td')
+                    let cell_6 = document.createElement('td')
                     
                     // loop through each indicator's measure:
                     for (let n = 0; n < indicators[i].Measures.length; n++) {
@@ -211,9 +214,12 @@
                             
                         }
                         
+                        // push Sources
+                        sources.push(indicators[i].Measures[n].Sources)
+                        
                     }
                     
-                    // And, dump measurements, geographies, and times into cells:
+                    // And, dump measurements, geographies, times, and sources into cells:
                     
                     // measurements
                     let unique_measurements = [...new Set(measurements)];
@@ -271,6 +277,22 @@
                     maxTime = new Date(Math.max(...times));
                     cell_5.innerHTML = maxTime.getFullYear();
                     row_i.appendChild(cell_5)
+
+                                        
+                    // sources
+                    let unique_sources = [...new Set(sources)];
+                    console.log("unique_sources", unique_sources);
+                    let usrc = document.createElement('ul')
+                    usrc.classList.add('no-bullets')
+                    cell_6.appendChild(usrc);
+
+                    for (src = 0; src < unique_sources.length; src++) {
+                        let li = document.createElement('li')
+                        li.innerHTML = unique_sources[src]
+                        usrc.appendChild(li)
+                    }
+                    
+                    row_i.appendChild(cell_6);
                     
                     // Finally, place the row into the table body.
                     document.getElementById('tablebody').appendChild(row_i) 
