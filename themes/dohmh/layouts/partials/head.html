@@ -14,7 +14,7 @@
 <!-- jQuery (full, compressed version) -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
-{{ if eq .Page.Section "neighborhood-reports"}}
+{{- if eq .Page.Section "neighborhood-reports" -}}
 
     <!-- Site specific JS -->
     {{ $js := resources.Get "js/site.js" | js.Build (dict "params" (dict "devpath" $.Site.Params.devpath)) }}
@@ -22,24 +22,24 @@
     {{ $secureJS := $js }}
     <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-{{ end }}
+{{- end -}}
 
 <!-- Font Awesome -->
 <link rel="stylesheet" href="/fontawesome/css/all.min.css">
 {{ $sass := resources.Get "scss/theme.scss" }}
-{{ $style := $sass | resources.ToCSS }}
+{{- $style := $sass | resources.ToCSS -}}
 <link rel="stylesheet" href="{{ $style.Permalink }}" />
 
 <!--Vega. To call, have vega: true in a page's frontmatter-->
-{{ if .Params.vega }}
+{{- if .Params.vega -}}
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-{{ end }}
+{{- end -}}
 
 <!--Other data libraries. To call, have datatables: true in a page's frontmatter-->
-{{ if .Params.datatables }}
+{{- if .Params.datatables -}}
     <!--D3-->
     <script src="https://d3js.org/d3.v5.min.js"></script>
 
@@ -56,15 +56,15 @@
     <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/rowgroup/1.1.4/js/dataTables.rowGroup.min.js"></script>
-{{ end }}
+{{- end -}}
 
 <!-- Arquero -->
-{{ if .Params.arquero }}
+{{- if .Params.arquero -}}
     <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
-{{ end }}
+{{- end -}}
 
 <!-- Leaflet -->
-{{ if .Params.leaflet }}
+{{- if .Params.leaflet -}}
 
     <!-- leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -86,10 +86,10 @@
     <script src="{{ $colorIcon.Permalink }}"></script>
     
 
-{{ end }}
+{{- end -}}
 
 <!--Other data libraries. To call, have data: true in a page's frontmatter-->
-{{ if .Params.datalibraries }}
+{{- if .Params.datalibraries -}}
   <!--D3-->
   <script src="https://d3js.org/d3.v5.min.js"></script>
 
@@ -109,9 +109,9 @@
 
   <!--Arquero-->
   <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
-{{ end }}
+{{- end -}}
 
 <!-- Analytics placeholder -->
-{{ if eq (getenv "HUGO_ENV") "production" }} 
+{{- if eq (getenv "HUGO_ENV") "production" -}} 
     <!--insert Analytics code here-->
-{{ end }} 
+{{- end -}} 

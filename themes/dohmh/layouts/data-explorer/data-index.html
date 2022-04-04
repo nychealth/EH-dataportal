@@ -1,4 +1,4 @@
-{{ define "main" }}
+{{- define "main" -}}
 
 <article class="container-fluid" id="skip-header-target">
     <div class="col-md-11 col-sm-12 mx-auto my-4">
@@ -16,52 +16,52 @@
         </div>
         
         <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title}}</h1>
-        {{ .Content }}
+        {{- .Content -}}
         
         <!-- Generate JSON object with subtopic pages and keys, and internal_ids in arrays -->
         
-        {{ $subtopic_indicators_dict := newScratch }}
-        {{ $subtopic_indicators_map := newScratch }}
+        {{- $subtopic_indicators_dict := newScratch -}}
+        {{- $subtopic_indicators_map := newScratch -}}
         
         {{/*  iterate over all pages on the site  */}}
         
-        {{ range .Site.Pages }}
+        {{- range .Site.Pages -}}
             
             {{/*  create a new "slice" (i.e., an array)  */}}
             
-            {{ $indicators := slice }}
-            {{ $subtopic_name := slice }}
+            {{- $indicators := slice -}}
+            {{- $subtopic_name := slice -}}
             
             {{/*  only process if it's a data explorer page */}}
             
-            {{ if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (ne (path.Base .RelPermalink) "all-data")) }}
+            {{- if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (ne (path.Base .RelPermalink) "all-data")) -}}
                 
                 {{/*  turn params into strings  */}}
                 
-                {{ $subtopic := .RelPermalink | path.Base | string }}
+                {{- $subtopic := .RelPermalink | path.Base | string -}}
 
                 {{/*  subtopic names  */}}
                 
-                {{ $subtopic_title := .Title }}
+                {{- $subtopic_title := .Title -}}
 
                 {{/*  get internal_ids  */}}
                 
-                {{ range .Params.indicators }}
+                {{- range .Params.indicators -}}
                     
                     {{/*  create an array of internal_ids  */}}
                     
-                    {{ $indicators = $indicators | append .internal_id }}
+                    {{- $indicators = $indicators | append .internal_id -}}
                 
-                {{ end }}
+                {{- end -}}
                 
                 {{/*  create a map with subtopic as key and array of internal_ids as value */}}
                 
-                {{ $subtopic_indicators_dict := dict "subtopic_name" $subtopic_title "IndicatorID" $indicators }}
-                {{ $subtopic_indicators_map.SetInMap "subtopic_indicators" $subtopic ($subtopic_indicators_dict) }}
+                {{- $subtopic_indicators_dict := dict "subtopic_name" $subtopic_title "IndicatorID" $indicators -}}
+                {{- $subtopic_indicators_map.SetInMap "subtopic_indicators" $subtopic ($subtopic_indicators_dict) -}}
 
-            {{ end }}
+            {{- end -}}
             
-        {{ end }}
+        {{- end -}}
 
         
         <p class="sr-only">This produces a list of subtopics and IndicatorIDs, stored in the variable <code>$subtopic_indicators</code>, 
@@ -384,4 +384,4 @@
             
         </script>
         
-    {{end}}
+    {{- end -}}

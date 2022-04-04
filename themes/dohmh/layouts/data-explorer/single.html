@@ -1,4 +1,4 @@
-{{ define "main" }}
+{{- define "main" -}}
 
 
 <article class="container-fluid" id="skip-header-target">
@@ -22,20 +22,20 @@
 
             <div class="col-md-4">
                 <h2 class="greenfill fs-lg"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
-                {{ range .Params.indicators}}
+                {{- range .Params.indicators -}}
                     <a href="#" onclick="protoPopup({{ .URL}})">{{.name}}</a>
                     <hr>
-                {{end}}
+                {{- end -}}
 
                 <hr class="portalhr mt-4 mb-2">
-                {{ partial "keywords" . }}
+                {{- partial "keywords" . -}}
             </div>
 
 
 
             <div class="col-md-8 fs-sm subtopiccontainer">
               <h1 class="greenfill fs-xl"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About {{ .Title}}</h4>
-                {{ .Content }}
+                {{- .Content -}}
 
 
 
@@ -48,34 +48,34 @@
 
                     <div class="col-md-4">
                         <h4 class="fs-md"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
-                        {{ partial "related" (dict "section" "data-stories" "layout" "singlelist" "content" . ) }}
+                        {{- partial "related" (dict "section" "data-stories" "layout" "singlelist" "content" . ) -}}
 
                     </div>
 
                     <div class="col-md-4 mt-0">
                         <h4 class="fs-md"><i class="fas fa-star text-muted mr-1" aria-hidden="true"></i>Key Topics</h4>
                         <!--sets variables-->
-                        {{ $page_link := .Permalink }}
-                        {{ $cats := .Params.categories }}
+                        {{- $page_link := .Permalink -}}
+                        {{- $cats := .Params.categories -}}
 
-                        {{ range where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index" }}
+                        {{- range where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index" -}}
                         <!--$page equals values we find when ranging through-->
-                        {{ $page := . }}
+                        {{- $page := . -}}
 
                         <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
-                        {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
+                        {{- $has_common_cats := intersect $cats .Params.categories | len | lt 0 -}}
 
                         <!--Show commonalities, except for page we're on -->
-                        {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
+                        {{- if and $has_common_cats (ne $page_link $page.Permalink) -}}
                         <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
                         <hr class="my-1">
-                        {{ end }} 
-                        {{ end }}
+                        {{- end -}} 
+                        {{- end -}}
                     </div>
 
                     <div class="col-md-4">
                         <h4 class="fs-md"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
-                        {{ partial "related" (dict "section" "neighborhood-reports" "layout" "singlelist" "content" . ) }}
+                        {{- partial "related" (dict "section" "neighborhood-reports" "layout" "singlelist" "content" . ) -}}
 
                     </div>
                 </div>
