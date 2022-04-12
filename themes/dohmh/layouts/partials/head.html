@@ -9,6 +9,14 @@
     {{ if .Params.seo_title }}{{ .Params.seo_title }}{{ else }}{{ .Title }}{{ end }} &#x7c; {{ .Site.Title }}
 {{ end }}</title>
 
+{{/*  content translations  */}}
+
+{{ if .IsTranslated }}
+	{{ range .Translations }}
+	<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
+	{{ end }}
+{{ end }}
+
 {{ partial "seo" . }}
 
 <!-- jQuery (full, compressed version) -->

@@ -30,6 +30,22 @@
         <div class="col-xl-8 overflow-hidden fs-rg" id="primary-content">
 
 
+        
+        <!-- language selection -->
+        
+        {{ if .IsTranslated }}
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    {{ range .Translations }}
+                    <li><a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>  
+                    {{ end }}
+                </ul>
+            </div>
+        </nav>
+        {{ end }}
+
+
 
             <div class="narrow my-2">
 
