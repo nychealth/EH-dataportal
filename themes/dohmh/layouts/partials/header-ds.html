@@ -66,8 +66,8 @@
         <div class="wide">
 
             <nav class="nav nav-pills border-bottom" role="navigation">
-                {{ $currentPage := . }}
-                {{ range .Site.Menus.main }}
+                {{- $currentPage := . -}}
+                {{- range .Site.Menus.main -}}
                 <div class="nav-item{{ if $currentPage.IsMenuCurrent `main` . }} active{{ end }}">
 
                     <a class="nav-link" href="{{ .URL }}" id="nav-item-{{ .Identifier }}">
@@ -76,7 +76,7 @@
 
                 </div>
                 <!-- .nav-item -->
-                {{ end }}
+                {{- end -}}
                 
             </nav>
 
