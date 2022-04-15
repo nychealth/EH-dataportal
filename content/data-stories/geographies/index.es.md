@@ -84,7 +84,7 @@ Cada PUMA se divide en áreas de tabulación de vecindarios (NTA), y cada NTA se
 {{< rawhtml >}}
 <input type="radio" name="mainRadioGroup" value="CD" id="ucd" checked> <label for="ucd">Distritos Comunitarios</label> &nbsp;&nbsp;
 <input type="radio" name="mainRadioGroup" value="PUMA" id="upuma"/> <label for="upuma">PUMA</label> &nbsp;&nbsp;
-<input type="radio" name="mainRadioGroup" value="nta" id="unta"><label for="unta">NTA</label>
+<input type="radio" name="mainRadioGroup" value="nta" id="unta"> <label for="unta">NTA</label>
 
 <script>
 let cdSpec = "mapcd.vl.json";
@@ -135,7 +135,7 @@ En el siguiente mapa, observe cómo tres vecindarios de UHF42 en South Bronx se 
 {{< rawhtml >}}
   <input type="radio" name="uhfRadioGroup" value="42" id="42" checked> <label for="42">UHF42</label> &nbsp;&nbsp;
   <input type="radio" name="uhfRadioGroup" value="34" id="34"/> <label for="34">UHF34</label> &nbsp;&nbsp;
-  <input type="radio" name="uhfRadioGroup" value="zip" id="zip"><label for="zip">Códigos postales</label>
+  <input type="radio" name="uhfRadioGroup" value="zip" id="zip"> <label for="zip">Códigos postales</label>
 
 <script>
 let uhf42Spec = "map42.vl.json";
