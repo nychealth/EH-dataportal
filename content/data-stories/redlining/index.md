@@ -222,7 +222,6 @@ Enormous areas of New York City were redlined. Explore the extent of HOLC's redl
 </div>
 {{< /rawhtml>}}
 
-Large parts of Manhattan were redlined. However, reinvestment in recent decades has lead to rising property values and the displacement of some former residents. Neighborhoods that were once redlined now have some of the city's most expensive real estate.
 
 ### Redlining's effects continue today
 In New York City, many once-thriving neighborhoods experienced severe disinvestment as a result of redlining, which caused inequality that continued from one generation to the next. Neighborhoods that were redlined in the 1930s have higher rates of poverty even today – nearly 90 years after the maps were created. According to the [National Community Reinvestment Coalition](https://ncrc.org/holc/), 3 out of every 4 neighborhoods in the USA that were redlined in the 1930s are still low-to-moderate income today - and 2 out of every 3 are predominantly populated by people of color.
