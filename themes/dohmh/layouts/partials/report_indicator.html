@@ -83,10 +83,18 @@
 <!-- .modal -->
 
 <script type="text/javascript">
+
   $( "#modal-{{.ind.indicator_data_name}}-{{ .count }}" ).on('shown.bs.modal', function() {
+
     var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-{{.ind.indicator_data_name}}-{{ .count }}", buildSummarySpec(NeighborhoodName,"{{.ind.indicator_data_name}}"),opt).then().catch(console.error);
-    vegaEmbed("#trend-{{.ind.indicator_data_name}}-{{ .count }}", buildTrendSpec(NeighborhoodName,"{{.ind.indicator_data_name}}"),opt).then().catch(console.error);
-    vegaEmbed("#map-{{.ind.indicator_data_name}}-{{ .count }}", buildMapSpec(NeighborhoodName,"{{.ind.indicator_data_name}}"),opt).then().catch(console.error);
+
+    vegaEmbed("#summary-{{.ind.indicator_data_name}}-{{ .count }}", buildSummarySpec(NeighborhoodName, "{{.ind.indicator_data_name}}"), opt).then().catch(console.error);
+
+    vegaEmbed("#trend-{{.ind.indicator_data_name}}-{{ .count }}", buildTrendSpec(NeighborhoodName, "{{.ind.indicator_data_name}}"), opt).then().catch(console.error);
+
+    vegaEmbed("#map-{{.ind.indicator_data_name}}-{{ .count }}", buildMapSpec(NeighborhoodName, "{{.ind.indicator_data_name}}"), opt).then().catch(console.error);
+
+  
   });
+
 </script>

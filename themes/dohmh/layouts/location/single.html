@@ -4,9 +4,12 @@
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
 <!-- Import vega-embed -->
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<!-- Import Arquero -->
 {{ end }}
 
 {{ define "main" }}
+
+{{/*  {{- partial "chart.html" . -}}  */}}
 
 {{/* Set scratch variables for neighborhood directory and report filename to be used in side bar */}}
 {{ $.Scratch.Set "neighborhoodDir" .Parent.File.Dir }}
@@ -27,9 +30,12 @@
 
 </div>
 
-{{/* First loop of report JSON to get first level parameters */}}
-{{ range (index .Site.Data.reports $.Params.data_json) }}
+{{/*  get report JSON from EHDP-data as a resource  */}}
 
+{{ $reports_data := (resources.GetRemote (print "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/reports/" $.Params.data_json ".json")) | transform.Unmarshal }}
+
+{{/* First loop of report JSON to get first level parameters */}}
+{{ range $reports_data }}
 
 
 <script>

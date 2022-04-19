@@ -17,8 +17,8 @@
 {{- if eq .Page.Section "neighborhood-reports" -}}
 
     <!-- Site specific JS -->
-    {{ $js := resources.Get "js/site.js" | js.Build (dict "params" (dict "devpath" $.Site.Params.devpath)) }}
-    {{/*  {{ $js := resources.Get "js/site.js" }}  */}}
+    {{/*  {{ $js := resources.Get "js/site.js" | js.Build (dict "params" (dict "devpath" $.Site.Params.devpath)) }}  */}}
+    {{ $js := resources.Get "js/site.js" }}
     {{ $secureJS := $js }}
     <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
