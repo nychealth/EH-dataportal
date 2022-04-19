@@ -1,8 +1,8 @@
 ---
-title: "Why asthma is a social justice issue"
+title: "Por qué el asma es un problema de justicia social"
 date: 2019-10-24T08:18:56-04:00
 draft: false
-seo_title: "Why asthma is a social justice issue."
+seo_title: "Por qué el asma es un problema de justicia social."
 seo_description: "A data story on asthma and justice in NYC."
 tags:
 categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
@@ -14,41 +14,35 @@ menu:
 photocredit: "Benjamin Kanter/Mayoral Photography Office"
 ---
 
-Poverty affects health in many ways. In New York City, the story of asthma clearly illustrates this connection.
+La pobreza afecta la salud de muchas formas. En la ciudad de Nueva York, la historia del asma ilustra con claridad esta conexión.
 
-To understand the connection between poverty and asthma, take a look at this map of poverty rates in New York City, below. The darker the color, the more residents living in poverty.
+Para entender la conexión entre la pobreza y el asma, observe el siguiente mapa de los índices de pobreza en la ciudad de Nueva York. Mientras más oscuro sea el color, más son los residentes que viven en la pobreza.
 
+{{< datawrapper title="La pobreza en la ciudad de Nueva York" src="QsR87/1/" height="600" >}}
 
-{{< datawrapper title="Poverty in New York City" src="s32oq/3/" height="600" >}}
-
-Now, compare that to a map of emergency department visits for asthma in children age 5 to 17, below. The darker the color, the higher the rate of children visiting the emergency department with asthma.
+Ahora, compare estas cifras con el siguiente mapa de visitas por asma a la sala de emergencias de niños de entre 5 y 17 años. Mientras más oscuro sea el color, más alta será la tasa de niños que acuden a la sala de emergencias con asma.
 
 {{< datawrapper title="Child asthma in NYC" src="5S8mf/4/" height="600" >}}
 
-The similarities are clear. Throughout the city, neighborhoods with higher rates of poverty also experience higher rates of childhood asthma, which we can see from the rates of emergency department visits.
+Las similitudes son claras. En toda la ciudad, los vecindarios con los índices de pobreza más altos también presentan mayores índices de asma infantil, lo cual se puede ver en los índices de visitas a la sala de emergencias.
 
-### They look connected. Are they?
-We can look at the connections between these two maps, of poverty and asthma, with a scatter plot.
+### Parecen estar relacionados. ¿Lo están?
+Podemos ver las conexiones entre estos dos mapas, de la pobreza y el asma, con un diagrama de dispersión.
 
-On the scatter plot below, each dot represents one neighborhood. Its horizontal position represents the neighborhood's poverty rate, and its vertical position represents its asthma rate. The pattern of dots, roughly grouped around an ascending line, shows a connection between poverty and asthma: the higher the poverty rate, the higher the asthma rate.
+En el siguiente diagrama de dispersión, cada punto representa un vecindario. La posición horizontal representa el índice de pobreza del vecindario, y la posición vertical representa el índice de asma. El patrón de puntos, que se agrupa bruscamente alrededor de la línea ascendente, muestra una conexión entre la pobreza y el asma: cuanto más elevado sea el índice de pobreza, más elevado será el índice de asma.
 
-{{< datawrapper title="The correlation between poverty and asthma" src="YiBqa/2/" height="409" >}}
+{{< datawrapper title="Más pobreza significa más asma infantil" src="A6CtV/1/" height="409" >}}
 
-### Why does this connection exist?
-The connection between poverty and asthma is due to a variety of factors, including:
-- **A shortage of healthy housing** in poor neighborhoods means that people experience a range of housing conditions like mold, pests, and leaks that trigger asthma and make it worse.
-- **A lack of access to high-quality health care** means that people with asthma may not be on the right medicine to prevent attacks.
+### ¿Por qué existe esta conexión?
+La conexión entre la pobreza y el asma se debe a una variedad de factores, incluidos los siguientes:
+- **La escasez de viviendas saludables** ien los vecindarios pobres significa que las personas conviven con una variedad de condiciones edilicias como moho, plagas y goteras que provocan asma y la empeoran.
+- **La falta de acceso a atención médica de calidad** significa que es posible que las personas con asma no estén tomando los medicamentos correctos para prevenir los ataques.
 
-[This Epi Data Brief](https://www1.nyc.gov/assets/doh/downloads/pdf/epi/databrief90.pdf) highlights how asthma disproportionately affects children of color and those in low-income neighborhoods. Reducing children’s emergency department visits for asthma and other inequities associated with poverty is a central component of [Take Care New York](https://www1.nyc.gov/assets/doh/downloads/pdf/tcny/tcny-2020.pdf), the city’s plan to create healthier, more equitable neighborhoods.
+[Este Resumen de Datos Epi](https://www1.nyc.gov/assets/doh/downloads/pdf/epi/databrief90.pdf) destaca cómo el asma afecta desproporcionalmente a los niños negros y a aquellos que viven en vecindarios de bajos ingresos. Reducir las visitas por asma infantil a la sala de emergencias y otras desigualdades relacionadas con la pobreza es un componente central de [Take Care New York](https://www1.nyc.gov/assets/doh/downloads/pdf/tcny/tcny-2020.pdf), el plan de la ciudad para crear vecindarios más saludables y equitativos.
 
-### So what does this connection mean?
-Some studies have concluded that the place you’re born largely determines your economic future. Other studies have concluded that where you’re born is determined by income, race and ethnicity.
+### Entonces, ¿qué significa esta conexión?
+Algunos estudios llegaron a la conclusión de que el lugar en el que nacemos determina en gran medida nuestro futuro económico. Otros estudios sugieren que el lugar en el que nacemos está determinado por los ingresos, la raza y la etnia.
 
-This means that in our society, too many outcomes of health and well-being are determined before we’re born. To improve public health, we need to address poverty and racial inequities.
-
-### Get the Data
-- Poverty
-- Asthma
-
+Esto significa que, en nuestra sociedad, demasiadas consecuencias de salud y bienestar están determinadas antes de que nazcamos. Para mejorar la salud pública, debemos abordar la pobreza y las desigualdades raciales.
 
 
