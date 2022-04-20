@@ -2,8 +2,7 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
     "width": "container",
     "height": "container",
-    "autosize": "fit",
-    
+    "autosize": {"type": "fit", "contains": "content", "resize": true},
     "data": {
       "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/main/geography/UHF42.topo.json",
       "format": {"type": "topojson", "feature": "collection"}
@@ -18,7 +17,6 @@
         }
       }
     ],
-    
     "layer":[
       {
         "mark": {"type": "geoshape", "tooltip": true},

@@ -2,7 +2,7 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
     "width": "container",
     "height": "container",
-    "autosize": "fit",
+    "autosize": {"type": "fit", "contains": "content", "resize": true},
     "data": {"name": "trendData"},
     "layer":[{
       "mark": {"type": "line", "point": false, "tooltip": true},

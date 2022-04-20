@@ -2,7 +2,7 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
     "width": "container",
     "height": "container",
-    "autosize": "fit",
+    "autosize": {"type": "fit", "contains": "content", "resize": true},
     "data": {"name": "summaryData"},
     "mark": {"type": "bar", "tooltip": true},
     "encoding": {
@@ -17,7 +17,7 @@
         "field": "data_value",
         "title": "Value",
         "type": "quantitative",
-        "axis": {"title":null}
+        "axis": {"title": ""}
       },
       "color": {
         "condition": {
