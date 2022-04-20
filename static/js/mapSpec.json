@@ -12,7 +12,7 @@
       {
         "lookup": "id",
         "from": {
-          "data": {"url": "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/bikeLanP.csv"},
+        "data": {"name": "mapData"},
           "key": "geo_join_id",
           "fields": ["data_value", "neighborhood", "message"]
         }
