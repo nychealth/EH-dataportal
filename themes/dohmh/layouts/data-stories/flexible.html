@@ -18,6 +18,21 @@
 <!-- This flexible data story template puts content only within a row, and puts related content below -->
 
 <article class="container-fluid" id="skip-header-target">
+
+    <!-- language selection -->
+    
+    {{ if .IsTranslated }}
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                {{ range .Translations }}
+                <li><a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>  
+                {{ end }}
+            </ul>
+        </div>
+    </nav>
+    {{ end }}
+    
     <div class="row">
         {{ .Content}}
     </div>

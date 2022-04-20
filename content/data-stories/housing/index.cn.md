@@ -214,28 +214,29 @@ Explore NYC's common housing problems in the map below.
 function changeMap(x) {
     var spec;
     if (x==0) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/none.vl.json";
+        spec = "none.vl.json";
     } else if (x==3) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/three.vl.json"
+        spec = "three.vl.json"
     } else if (x==4) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/cockroaches.vl.json"
+        spec = "cockroaches.vl.json"
     } else if (x==5) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/micerats.vl.json"
+        spec = "micerats.vl.json"
     } else if (x==6) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/cracks.vl.json"
+        spec = "cracks.vl.json"
     } else if (x==7) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/water.vl.json"
+        spec = "water.vl.json"
     } else if (x==8) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/broken.vl.json"
+        spec = "broken.vl.json"
     } else if (x==9) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/breakdown.vl.json"
+        spec = "breakdown.vl.json"
     } else if (x==10) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/supplemental.vl.json"
+        spec = "supplemental.vl.json"
     } else if (x==11) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/noac.vl.json"
+        spec = "noac.vl.json"
     } else if (x==12) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/toilet.vl.json"
+        spec = "toilet.vl.json"
     } else {};
+
 
     vegaEmbed("#housingmap",spec)
 }
@@ -244,7 +245,7 @@ function changeMap(x) {
 
 {{< /rawhtml>}}
 
-{{< vega id="housingmap" spec="https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/three.vl.json" height="550px">}}
+{{< vega id="housingmap" spec="three.vl.json" height="550px">}}
 
 ### Who shoulders the burden of housing disrepair?
 These problems go far beyond inconvenience or mess. {{< rawhtml>}}
