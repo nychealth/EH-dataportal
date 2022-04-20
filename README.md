@@ -172,7 +172,7 @@ indicators: [
 
 For the future iteration of the Data Vis Module, the following functions will be in place:
 - Indicators will be associated with subtopics via frontmatter
-- The page will display Indicator metadata that is stored in [`EHDP-data/indicators/Indicators.json`](https://github.com/nychealth/EHDP-data/tree/main/indicators/Indicators.json)
+- The page will display Indicator metadata that is stored in [`EHDP-data/indicators/indicators.json`](https://github.com/nychealth/EHDP-data/tree/main/indicators/indicators.json)
 - Upon indicator selection, the page will display data stored in `EHDP-data/indicators/data/(indicatorID).json`.
 
 ### Key Topics
