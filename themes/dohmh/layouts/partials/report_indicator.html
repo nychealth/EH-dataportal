@@ -80,6 +80,8 @@
         </div>
     </div>
 </div>
+
+
 <!-- .modal -->
 
 <script type="text/javascript">
@@ -87,6 +89,8 @@
     $( "#modal-{{.ind.indicator_data_name}}-{{ .count }}" ).on('shown.bs.modal', function() {
         
         var opt = {"renderer": "svg"};
+
+        // loading report-level CSV data
         
         aq.loadCSV(
 
@@ -96,14 +100,12 @@
         
         ).then(data => {
             
-            console.log("arq data", data);
-            
             arqTable = data;
-            
-            all_data = data.objects();
             
 
             // ---- summary ---- //
+
+            // get most recent data for each neighborhood
             
             var summaryData = 
                 arqTable
@@ -112,24 +114,21 @@
                 .dedupe()
                 .groupby("neighborhood")
                 .orderby("neighborhood", aq.desc("end_date"))
-                .slice(0,1)
+                .slice(0,1) // most recent row in neighborhood group
                 .ungroup()
-                .orderby("data_value")
+                .orderby("data_value") // sort for ordered bar chart
                 .select(aq.not("end_date"))
                 .objects()
                 
-            {{/*  summaryData.print(50)  */}}
-
             console.log("summaryData", summaryData);
             
             d3.json("{{site.BaseURL}}js/summarySpec.json").then(data => {
                 
                 summarySpec = $.extend({}, data);
-                
-                summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
-                
-                {{/*  console.log("summarySpec", summarySpec);  */}}
 
+                // highlight current neighborhood
+
+                summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
                 
             }).then(() => {
                 
@@ -138,8 +137,6 @@
                     summarySpec, 
                     opt
                 ).then((res) => {
-                    
-                    {{/*  console.log("embed res", res);  */}}
                     
                     res.view.insert("summaryData", summaryData).run()
                     
@@ -150,7 +147,7 @@
 
             // ---- map ---- //
 
-            // uses summary data, but named dataset is in "transform" object
+            // uses summary data, but named dataset is in spec's '"transform" object
 
             var mapData = summaryData;
             
@@ -158,7 +155,7 @@
                 
                 mapSpec = $.extend({}, data);
                 
-                {{/*  console.log("mapSpec", mapSpec);  */}}
+                // highlight current neighborhood
 
                 mapSpec.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
                 
@@ -171,8 +168,6 @@
                     opt
                 ).then((res) => {
                     
-                    {{/*  console.log("embed res", res);  */}}
-                    
                     res.view.insert("mapData", mapData).run()
                     
                 }).catch(console.error);;
@@ -181,6 +176,8 @@
 
             
             // ---- trend ---- //
+
+            // get all data points for this indicator
             
             var trendData = 
                 arqTable
@@ -193,9 +190,9 @@
                 
                 trendSpec = $.extend({}, data);
                 
+                // highlight current neighborhood
+
                 trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
-                
-                {{/*  console.log("trendSpec", trendSpec);  */}}
                 
             }).then(() => {
                 
@@ -204,8 +201,6 @@
                     trendSpec, 
                     opt
                 ).then((res) => {
-                    
-                    {{/*  console.log("embed res", res);  */}}
                     
                     res.view.insert("trendData", trendData).run()
                     
