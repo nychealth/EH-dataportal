@@ -23,18 +23,19 @@
       {
         "mark": {"type": "geoshape", "tooltip": true},
         "encoding": {
-          "color": {"field": "data_value", "type": "quantitative",
+          "color": {"field": "data_value", "title": "Value", "type": "quantitative",
           "scale": {"scheme": "greens"},
           "legend": {"orient": "top-left", "title": null}
         },
         "stroke": {"value": "white" },
         "strokeWidth":{"value":1},
         "tooltip":[
-          {"field":"neighborhood","type":"nominal"},
-          {"field":"data_value","type":"quantitative"}
+          {"field":"neighborhood", "title": "Neighborhood", "type":"nominal"},
+          {"field":"data_value", "title": "Value", "type":"quantitative"}
         ]
       }},
-      {  "mark": {"type": "geoshape"},
+      {  
+      "mark": {"type": "geoshape"},
       "encoding": {
         "color":{"value":null},
         "stroke": {

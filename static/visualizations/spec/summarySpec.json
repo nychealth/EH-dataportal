@@ -8,12 +8,14 @@
     "encoding": {
       "x": {
         "field": "neighborhood",
+        "title": "Neighborhood",
         "type": "nominal",
         "sort": {"op": "mean", "field": "data_value"},
         "axis":null
       },
       "y": {
         "field": "data_value",
+        "title": "Value",
         "type": "quantitative",
         "axis": {"title":null}
       },
