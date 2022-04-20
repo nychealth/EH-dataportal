@@ -1,6 +1,6 @@
 
 # don't track resources folder (temp files for serve)
-resources/_gen/
+resources/_gen/assets/
 
 # don't track mac file 
 .DS_Store
