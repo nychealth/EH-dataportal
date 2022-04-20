@@ -135,31 +135,16 @@
 
     // switch data and transform
 
-    //"data": {
-    //  "url": indicatorMapPath + "UHF42.topo.json",
-    //  "format": {"type": "topojson", "feature": "collection"}
-    //},
-    //"transform": [
-    //  {
-    //    "lookup": "id",
-    //    "from": {
-    //      "data": {"url": indicatorDataPath + "bikeLanP.csv"},
-    //      "key": "geo_join_id",
-    //      "fields": ["Data Value", "Neighborhood", "message"]
-    //    }
-    //  }
-    //],
-    
-    "data": {"url": indicatorDataPath + "bikeLanP.csv"},
+    "data": {
+      "url": indicatorMapPath + "UHF42.topo.json",
+      "format": {"type": "topojson", "feature": "collection"}
+    },
     "transform": [
       {
-        "lookup": "geo_join_id",
+        "lookup": "id",
         "from": {
-          "data": {
-            "url": indicatorMapPath + "UHF42.topo.json",
-            "format": {"type": "topojson", "feature": "collection"}
-          },
-          "key": "id",
+          "data": {"url": indicatorDataPath + "bikeLanP.csv"},
+          "key": "geo_join_id",
           "fields": ["Data Value", "Neighborhood", "message"]
         }
       }

@@ -85,16 +85,96 @@
 <script type="text/javascript">
 
   $( "#modal-{{.ind.indicator_data_name}}-{{ .count }}" ).on('shown.bs.modal', function() {
-
+    
     var opt = {"renderer": "svg"};
+    
+    // abstract this into function
+    // use big dataset
+    // sort values
+    // filter
+    
+    // summary
 
-    vegaEmbed("#summary-{{.ind.indicator_data_name}}-{{ .count }}", buildSummarySpec(NeighborhoodName, "{{.ind.indicator_data_name}}"), opt).then().catch(console.error);
+    aq.loadCSV(
+    
+      "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/" + {{.ind.indicator_data_name}} + ".csv"
+    
+    ).then(data => {
 
-    vegaEmbed("#trend-{{.ind.indicator_data_name}}-{{ .count }}", buildTrendSpec(NeighborhoodName, "{{.ind.indicator_data_name}}"), opt).then().catch(console.error);
+      console.log("arq data", data);
+      
+      all_data = data.objects();
+      
+      d3.json("{{site.BaseURL}}js/summarySpec.json").then(data => {
+        
+        current_spec = $.extend({}, data);
+
+        current_spec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+        
+        console.log("current_spec", current_spec);
+
+      }).then(() => {
+        
+        vegaEmbed(
+          "#summary-{{.ind.indicator_data_name}}-{{ .count }}", 
+          current_spec, 
+          opt
+        ).then((res) => {
+
+          console.log("embed res", res);
+          
+          res.view.insert("summaryData", all_data).run()
+          
+        }).catch(console.error);;
+        
+      });
+
+    });
+    
+    // trend
+    
+    aq.loadCSV(
+    
+      "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/{{.ind.indicator_data_name}}_trend.csv"
+    
+    ).then(data => {
+
+      console.log("arq data", data);
+      
+      all_data = data.objects();
+      
+      d3.json("{{site.BaseURL}}js/trendSpec.json").then(data => {
+        
+        current_spec = $.extend({}, data);
+
+        current_spec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+        
+        console.log("current_spec", current_spec);
+
+      }).then(() => {
+        
+        vegaEmbed(
+          "#trend-{{.ind.indicator_data_name}}-{{ .count }}", 
+          current_spec, 
+          opt
+        ).then((res) => {
+
+          console.log("embed res", res);
+          
+          res.view.insert("trendData", all_data).run()
+          
+        }).catch(console.error);;
+        
+      });
+
+    });
 
     vegaEmbed("#map-{{.ind.indicator_data_name}}-{{ .count }}", buildMapSpec(NeighborhoodName, "{{.ind.indicator_data_name}}"), opt).then().catch(console.error);
-
-  
+    
+    {{/*  vegaEmbed("#trend-{{.ind.indicator_data_name}}-{{ .count }}", buildTrendSpec(NeighborhoodName, "{{.ind.indicator_data_name}}"), opt).then().catch(console.error);  */}}
+    
+    
+    
   });
 
 </script>

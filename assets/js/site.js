@@ -9,7 +9,7 @@ var summarySpec = {
   "width": "container",
   "height": "container",
   "autosize": "fit",
-  "data": {"url": indicatorDataPath + "bikeLanP.csv"},
+  "data": {"name": "summaryData"},
   "mark": {"type": "bar", "tooltip": true},
   "encoding": {
     "x": {
@@ -34,19 +34,13 @@ var summarySpec = {
 }
 ; //this is the template vega-lite json
 
-function buildSummarySpec(neighborhood, dataSlug) {
+function buildSummarySpec(neighborhood) {
 
-  console.log("neighborhood", neighborhood);
-  console.log("dataSlug", dataSlug);
-  
   // make a copy of the vega-lite spec
   var temp = JSON.parse(JSON.stringify(summarySpec));
   
   // graft the neighborhood on to the specification for the color-coding
   temp.encoding.color.condition.test = "datum.neighborhood=='" + neighborhood + "'";
-  
-  // graft the data file path on to the specification for the indicator
-  temp.data.url = indicatorDataPath + dataSlug + ".csv"; //note the function needs access to the indicatorDataPath global var
   
   // return the vega-lite spec
   return temp;
@@ -153,21 +147,6 @@ var mapSpec = {
     }
   ],
   
-  //"data": {"url": indicatorDataPath + "bikeLanP.csv"},
-  //"transform": [
-  //  {
-  //    "lookup": "geo_join_id",
-  //    "from": {
-  //      "data": {
-  //        "url": indicatorMapPath + "UHF42.topo.json",
-  //        "format": {"type": "topojson", "feature": "collection"}
-  //      },
-  //      "key": "id",
-  //      "fields": ["data_value", "neighborhood", "message"]
-  //    }
-  //  }
-  //],
-  
   "layer":[
     {
       "mark": {"type": "geoshape", "tooltip": true},
@@ -188,7 +167,7 @@ var mapSpec = {
       "color":{"value":null},
       "stroke": {
         "condition": {
-          "test": "datum.properties.GEONAME=='Bedford Stuyvesant - Crown Heights'",
+          "test": "datum.neighborhood=='Bedford Stuyvesant - Crown Heights'",
           "value": "#000000"
         }
       },
