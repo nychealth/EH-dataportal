@@ -122,7 +122,7 @@
                 
             console.log("summaryData", summaryData);
             
-            d3.json("{{site.BaseURL}}js/summarySpec.json").then(data => {
+            d3.json("{{site.BaseURL}}visualizations/spec/summarySpec.json").then(data => {
                 
                 summarySpec = $.extend({}, data);
 
@@ -151,7 +151,7 @@
 
             var mapData = summaryData;
             
-            d3.json("{{site.BaseURL}}js/mapSpec.json").then(data => {
+            d3.json("{{site.BaseURL}}visualizations/spec/mapSpec.json").then(data => {
                 
                 mapSpec = $.extend({}, data);
                 
@@ -186,7 +186,7 @@
                 .dedupe()
                 .objects()
             
-            d3.json("{{site.BaseURL}}js/trendSpec.json").then(data => {
+            d3.json("{{site.BaseURL}}visualizations/spec/trendSpec.json").then(data => {
                 
                 trendSpec = $.extend({}, data);
                 

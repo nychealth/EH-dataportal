@@ -14,15 +14,6 @@
 <!-- jQuery (full, compressed version) -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
-{{- if eq .Page.Section "neighborhood-reports" -}}
-
-    <!-- Site specific JS -->
-    {{/*  {{ $js := resources.Get "js/site.js" | js.Build (dict "params" (dict "devpath" $.Site.Params.devpath)) }}  */}}
-    {{ $js := resources.Get "js/site.js" }}
-    {{ $secureJS := $js }}
-    <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
-
-{{- end -}}
 
 <!-- Font Awesome -->
 <link rel="stylesheet" href="/fontawesome/css/all.min.css">
