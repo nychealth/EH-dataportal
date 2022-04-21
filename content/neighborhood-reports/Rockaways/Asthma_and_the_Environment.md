@@ -11,4 +11,6 @@ seo_image: "images/nyc_health_report_asthma_environment.jpg"
 menu:
     main:
         identifier: '04'
+vega: true
+arquero: true
 ---

@@ -8,6 +8,23 @@ metaDataFormat = "yaml"
 theme = "dohmh"
 publishDir = "docs"
 paginate = 9
+ignoreFiles = ['Simplified.Chinese', 'Spanish']
+
+[languages.en]
+languageName = "English"
+languageDesc = "English"
+weight = 1
+
+[languages.es]
+languageName = "Español"
+languageDesc = "Spanish-US"
+weight = 2
+
+[languages.cn]
+languageName = "中文"
+languageDesc = "Chinese-Simplified"
+weight = 3
+
 
 [taxonomies]
   tag = "tags"

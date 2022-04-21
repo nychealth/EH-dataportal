@@ -23,7 +23,7 @@ To understand the connection between poverty and asthma, take a look at this map
 
 Now, compare that to a map of emergency department visits for asthma in children age 5 to 17, below. The darker the color, the higher the rate of children visiting the emergency department with asthma.
 
-{{< datawrapper title="Child asthma in NYC" src="5S8mf/4/" height="600" >}}
+{{< datawrapper title="Child asthma in NYC" src="xHdgu/1/" height="600" >}}
 
 The similarities are clear. Throughout the city, neighborhoods with higher rates of poverty also experience higher rates of childhood asthma, which we can see from the rates of emergency department visits.
 
@@ -45,10 +45,6 @@ The connection between poverty and asthma is due to a variety of factors, includ
 Some studies have concluded that the place you’re born largely determines your economic future. Other studies have concluded that where you’re born is determined by income, race and ethnicity.
 
 This means that in our society, too many outcomes of health and well-being are determined before we’re born. To improve public health, we need to address poverty and racial inequities.
-
-### Get the Data
-- Poverty
-- Asthma
 
 
 
