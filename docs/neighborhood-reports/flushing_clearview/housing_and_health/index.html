@@ -43,20 +43,16 @@
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    
-    
-    
-    <script type="text/javascript" src="https://nycehs.github.io/ehs-data-portal-frontend-temp/js/site.js" integrity=""></script>
+
+
+
 <link rel="stylesheet" href="../../../fontawesome/css/all.min.css">
 <link rel="stylesheet" href="https://nycehs.github.io/ehs-data-portal-frontend-temp/scss/theme.css" />
 
-
-
-<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-<script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-
+<script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script><script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
   </head>
   <body>
 
@@ -277,6 +273,8 @@
 
 
 
+
+
 <div class="d-flex flex-column report-header">
 
   
@@ -297,8 +295,12 @@
 
 
 
+
+
+
 <script>
   var NeighborhoodName = "Flushing - Clearview"; 
+  var report_name = "Housing and Health "
 </script>
 
 <section class="container-fluid pl-lg-6" id="skip-header-target">
@@ -422,369 +424,873 @@
                 
                     
                     
-                    <button data-toggle="modal" data-target="#modal-Asth1201-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Asthma hospitalizations (children)</span>
-    </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nr/Asth1201_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nr/Asth1201_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
-</button>
-
-
-<div class="modal fade report-modal" id="modal-Asth1201-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header text-left">
-        <h2 class="modal-title fs-xl" id="exampleModalLabel">Asthma hospitalizations (children)</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h2 class="fs-xl">Asthma Hospitalizations among Children 5 to 17 Yrs Old (Rate per 10,000 residents) 2016</h2>
-        <p>In <strong>Flushing - Clearview</strong>, the asthma hospitalizations among children 5 to 17 yrs old (rate per 10,000 residents) 2016 is <span class="better">Better</span> compared to the NYC average.</p>
-        Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">12.5</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">15.4</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">27.2</span></div>
-        </div>
-        <p><em>Estimated Annual Rate per 10,000 residents</em></p>
-
-
-        
-          <div class="data-note"></div>
-        
-
-    
-      </div>
-      <hr>
-      <div class="modal-body">
-        <h3>Asthma Hospitalizations among Children 5 to 17 Yrs Old (Rate per 10,000 residents) 2016</h3>
-        <p>  <em>Estimated Annual Rate per 10,000 residents</em></p>
-        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Asth1201-1"></div> 
-        
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trends Over Time</h3>
-        <p><em>Estimated Annual Rate per 10,000 residents</em></p>
-        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Asth1201-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>By Neighborhood</h3>
-        <p><em>Estimated Annual Rate per 10,000 residents</em></p>
-        <div style="width:100%; height:75vmin; z-index:10000;" id="map-Asth1201-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $( "#modal-Asth1201-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Asth1201-1", buildSummarySpec(NeighborhoodName,"Asth1201"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Asth1201-1", buildTrendSpec(NeighborhoodName,"Asth1201"),opt).then().catch(console.error);
-    vegaEmbed("#map-Asth1201-1", buildMapSpec(NeighborhoodName,"Asth1201"),opt).then().catch(console.error);
-  });
-</script>
-                    
                     <button data-toggle="modal" data-target="#modal-Asth1204-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Asthma hospitalizations (adults)</span>
+    <div class="row align-items-center">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Asthma hospitalizations (adults)</span>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Asth1204_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+            <span class="better">Better</span>
+            
+        </div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Asth1204_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+        </div>
     </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nr/Asth1204_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nr/Asth1204_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
 </button>
 
 
 <div class="modal fade report-modal" id="modal-Asth1204-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header text-left">
-        <h2 class="modal-title fs-xl" id="exampleModalLabel">Asthma hospitalizations (adults)</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h2 class="fs-xl">Asthma Hospitalizations among Adults (Age-Adjusted Rate per 10,000 residents) 2016</h2>
-        <p>In <strong>Flushing - Clearview</strong>, the asthma hospitalizations among adults (age-adjusted rate per 10,000 residents) 2016 is <span class="better">Better</span> compared to the NYC average.</p>
-        Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">4.5</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">6.8</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">11.1</span></div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Asthma hospitalizations (adults)</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Asthma Hospitalizations among Adults (Age-Adjusted Rate per 10,000 residents) 2018</h2>
+                <p>In <strong>Flushing - Clearview</strong>, the asthma hospitalizations among adults (age-adjusted rate per 10,000 residents) 2018 is <span class="better">Better</span> compared to the NYC average.</p>
+                Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">4.6</span></div>
+                    <div class="col-sm-4">Queens <span class="indicator-value">6.1</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">10.3</span></div>
+                </div>
+                <p><em>Age-Adjusted Rate per 10,000 residents</em></p>
+                
+                
+                
+                <div class="data-note"></div>
+                
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Asthma Hospitalizations among Adults (Age-Adjusted Rate per 10,000 residents) 2018</h3>
+                <p>  <em>Age-Adjusted Rate per 10,000 residents</em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Asth1204-1"></div> 
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>Trends Over Time</h3>
+                <p><em>Age-Adjusted Rate per 10,000 residents</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Asth1204-1"></div> 
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>By Neighborhood</h3>
+                <p><em>Age-Adjusted Rate per 10,000 residents</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Asth1204-1"></div>
+                
+            </div>
+            
+            <div class="modal-footer flex-column">
+                
+                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <p><em>Age-Adjusted Rate per 10,000 residents</em></p>
-
-
-        
-          <div class="data-note"></div>
-        
-
-    
-      </div>
-      <hr>
-      <div class="modal-body">
-        <h3>Asthma Hospitalizations among Adults (Age-Adjusted Rate per 10,000 residents) 2016</h3>
-        <p>  <em>Age-Adjusted Rate per 10,000 residents</em></p>
-        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Asth1204-1"></div> 
-        
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trends Over Time</h3>
-        <p><em>Age-Adjusted Rate per 10,000 residents</em></p>
-        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Asth1204-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>By Neighborhood</h3>
-        <p><em>Age-Adjusted Rate per 10,000 residents</em></p>
-        <div style="width:100%; height:75vmin; z-index:10000;" id="map-Asth1204-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
 </div>
 
 
+
+
 <script type="text/javascript">
-  $( "#modal-Asth1204-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Asth1204-1", buildSummarySpec(NeighborhoodName,"Asth1204"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Asth1204-1", buildTrendSpec(NeighborhoodName,"Asth1204"),opt).then().catch(console.error);
-    vegaEmbed("#map-Asth1204-1", buildMapSpec(NeighborhoodName,"Asth1204"),opt).then().catch(console.error);
-  });
-</script>
+    
+    $( "#modal-Asth1204-1" ).on('shown.bs.modal', function() {
+        
+        var opt = {"renderer": "svg"};
+
+        
+        
+        aq.loadCSV(
+
+            
+            
+            "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/" + report_name + "_data.csv"
+        
+        ).then(data => {
+            
+            arqTable = data;
+            
+
+            
+
+            
+            
+            var summaryData = 
+                arqTable
+                .filter(d => d.data_field_name == "Asth1204")
+                .select("geo_join_id", "neighborhood", "data_value", "message", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .orderby("data_value") 
+                .select(aq.not("end_date"))
+                .objects()
+                
+            console.log("summaryData", summaryData);
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/summarySpec.json").then(data => {
+                
+                summarySpec = data;
+
+                
+
+                summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#summary-Asth1204-1", 
+                    summarySpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("summaryData", summaryData).run()
+
+                }).catch(console.error);;
+                
+            });
+            
+
+            
+
+            
+
+            var mapData = summaryData;
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/mapSpec.json").then(data => {
+                
+                mapSpec = data;
+                
+                
+
+                mapSpec.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#map-Asth1204-1", 
+                    mapSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("mapData", mapData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+
+            
+            
+
+            
+            
+            var trendData = 
+                arqTable
+                .filter(d => d.data_field_name == "Asth1204")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "data_value", "message")
+                .dedupe()
+                .objects()
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/trendSpec.json").then(data => {
+                
+                
+                
+                trendSpec = data;
+                
+                
+
+                trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#trend-Asth1204-1", 
+                    trendSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("trendData", trendData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+            
+        });
+            
+    });
+        
+    </script>
+    
                     
                     <button data-toggle="modal" data-target="#modal-Chil777-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Child lead poisoning</span>
+    <div class="row align-items-center">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Child lead poisoning</span>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Chil777_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+            <span class="better">Better</span>
+            
+        </div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Chil777_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+        </div>
     </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nr/Chil777_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nr/Chil777_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
 </button>
 
 
 <div class="modal fade report-modal" id="modal-Chil777-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header text-left">
-        <h2 class="modal-title fs-xl" id="exampleModalLabel">Child lead poisoning</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h2 class="fs-xl">Children under 6 years with elevated blood lead levels (BLL)(Rate  BLL&gt;=5 per 1,000 tested) 2019</h2>
-        <p>In <strong>Flushing - Clearview</strong>, the children under 6 years with elevated blood lead levels (bll)(rate  bll&gt;=5 per 1,000 tested) 2019 is <span class="better">Better</span> compared to the NYC average.</p>
-        There is no safe level of lead in the blood. Lead poisoning can cause learning and behavior problems, and delay growth and mental development.
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">4.7</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">9.6</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">10.7</span></div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Child lead poisoning</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Children under 6 years with elevated blood lead levels (BLL)(Rate  BLL&gt;=5 per 1,000 tested) 2019</h2>
+                <p>In <strong>Flushing - Clearview</strong>, the children under 6 years with elevated blood lead levels (bll)(rate  bll&gt;=5 per 1,000 tested) 2019 is <span class="better">Better</span> compared to the NYC average.</p>
+                There is no safe level of lead in the blood. Lead poisoning can cause learning and behavior problems, and delay growth and mental development.
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">4.7</span></div>
+                    <div class="col-sm-4">Queens <span class="indicator-value">9.6</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">10.7</span></div>
+                </div>
+                <p><em>Rate BLL &gt;=5 µg/dL per 1,000 tested</em></p>
+                
+                
+                
+                <div class="data-note"></div>
+                
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Children under 6 years with elevated blood lead levels (BLL)(Rate  BLL&gt;=5 per 1,000 tested) 2019</h3>
+                <p>  <em>Rate BLL &gt;=5 µg/dL per 1,000 tested</em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Chil777-1"></div> 
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>Trends Over Time</h3>
+                <p><em>Rate BLL &gt;=5 µg/dL per 1,000 tested</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Chil777-1"></div> 
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>By Neighborhood</h3>
+                <p><em>Rate BLL &gt;=5 µg/dL per 1,000 tested</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Chil777-1"></div>
+                
+            </div>
+            
+            <div class="modal-footer flex-column">
+                
+                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <p><em>Rate BLL &gt;=5 µg/dL per 1,000 tested</em></p>
-
-
-        
-          <div class="data-note"></div>
-        
-
-    
-      </div>
-      <hr>
-      <div class="modal-body">
-        <h3>Children under 6 years with elevated blood lead levels (BLL)(Rate  BLL&gt;=5 per 1,000 tested) 2019</h3>
-        <p>  <em>Rate BLL &gt;=5 µg/dL per 1,000 tested</em></p>
-        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Chil777-1"></div> 
-        
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trends Over Time</h3>
-        <p><em>Rate BLL &gt;=5 µg/dL per 1,000 tested</em></p>
-        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Chil777-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>By Neighborhood</h3>
-        <p><em>Rate BLL &gt;=5 µg/dL per 1,000 tested</em></p>
-        <div style="width:100%; height:75vmin; z-index:10000;" id="map-Chil777-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
 </div>
 
 
+
+
 <script type="text/javascript">
-  $( "#modal-Chil777-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Chil777-1", buildSummarySpec(NeighborhoodName,"Chil777"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Chil777-1", buildTrendSpec(NeighborhoodName,"Chil777"),opt).then().catch(console.error);
-    vegaEmbed("#map-Chil777-1", buildMapSpec(NeighborhoodName,"Chil777"),opt).then().catch(console.error);
-  });
-</script>
+    
+    $( "#modal-Chil777-1" ).on('shown.bs.modal', function() {
+        
+        var opt = {"renderer": "svg"};
+
+        
+        
+        aq.loadCSV(
+
+            
+            
+            "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/" + report_name + "_data.csv"
+        
+        ).then(data => {
+            
+            arqTable = data;
+            
+
+            
+
+            
+            
+            var summaryData = 
+                arqTable
+                .filter(d => d.data_field_name == "Chil777")
+                .select("geo_join_id", "neighborhood", "data_value", "message", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .orderby("data_value") 
+                .select(aq.not("end_date"))
+                .objects()
+                
+            console.log("summaryData", summaryData);
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/summarySpec.json").then(data => {
+                
+                summarySpec = data;
+
+                
+
+                summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#summary-Chil777-1", 
+                    summarySpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("summaryData", summaryData).run()
+
+                }).catch(console.error);;
+                
+            });
+            
+
+            
+
+            
+
+            var mapData = summaryData;
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/mapSpec.json").then(data => {
+                
+                mapSpec = data;
+                
+                
+
+                mapSpec.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#map-Chil777-1", 
+                    mapSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("mapData", mapData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+
+            
+            
+
+            
+            
+            var trendData = 
+                arqTable
+                .filter(d => d.data_field_name == "Chil777")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "data_value", "message")
+                .dedupe()
+                .objects()
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/trendSpec.json").then(data => {
+                
+                
+                
+                trendSpec = data;
+                
+                
+
+                trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#trend-Chil777-1", 
+                    trendSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("trendData", trendData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+            
+        });
+            
+    });
+        
+    </script>
+    
                     
                     <button data-toggle="modal" data-target="#modal-Heat540-1" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Heat hospitalizations</span>
+    <div class="row align-items-center">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Heat hospitalizations</span>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Heat540_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+            <span class="better">Better</span>
+            
+        </div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Heat540_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+        </div>
     </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nr/Heat540_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nr/Heat540_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
 </button>
 
 
 <div class="modal fade report-modal" id="modal-Heat540-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header text-left">
-        <h2 class="modal-title fs-xl" id="exampleModalLabel">Heat hospitalizations</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h2 class="fs-xl">Heat stress hospitalizations (age-adjusted rate per 100,000 residents) 2015</h2>
-        <p>In <strong>Flushing - Clearview</strong>, the heat stress hospitalizations (age-adjusted rate per 100,000 residents) 2015 is <span class="better">Better</span> compared to the NYC average.</p>
-        Hospitalizations due to heat stress represent part of the public health burden of extreme heat.
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">0.0*</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">0.5</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">0.8</span></div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Heat hospitalizations</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Heat stress hospitalizations (age-adjusted rate per 100,000 residents) 2015</h2>
+                <p>In <strong>Flushing - Clearview</strong>, the heat stress hospitalizations (age-adjusted rate per 100,000 residents) 2015 is <span class="better">Better</span> compared to the NYC average.</p>
+                Hospitalizations due to heat stress represent part of the public health burden of extreme heat.
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">0.0*</span></div>
+                    <div class="col-sm-4">Queens <span class="indicator-value">0.5</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">0.8</span></div>
+                </div>
+                <p><em>Age-Adjusted Rate per 100,000 residents</em></p>
+                
+                
+                
+                <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
+                
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Heat stress hospitalizations (age-adjusted rate per 100,000 residents) 2015</h3>
+                <p>  <em>Age-Adjusted Rate per 100,000 residents</em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Heat540-1"></div> 
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>Trends Over Time</h3>
+                <p><em>Age-Adjusted Rate per 100,000 residents</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Heat540-1"></div> 
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>By Neighborhood</h3>
+                <p><em>Age-Adjusted Rate per 100,000 residents</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Heat540-1"></div>
+                
+            </div>
+            
+            <div class="modal-footer flex-column">
+                
+                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <p><em>Age-Adjusted Rate per 100,000 residents</em></p>
-
-
-        
-          <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
-        
-
-    
-      </div>
-      <hr>
-      <div class="modal-body">
-        <h3>Heat stress hospitalizations (age-adjusted rate per 100,000 residents) 2015</h3>
-        <p>  <em>Age-Adjusted Rate per 100,000 residents</em></p>
-        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Heat540-1"></div> 
-        
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trends Over Time</h3>
-        <p><em>Age-Adjusted Rate per 100,000 residents</em></p>
-        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Heat540-1"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>By Neighborhood</h3>
-        <p><em>Age-Adjusted Rate per 100,000 residents</em></p>
-        <div style="width:100%; height:75vmin; z-index:10000;" id="map-Heat540-1"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
 </div>
 
 
+
+
 <script type="text/javascript">
-  $( "#modal-Heat540-1" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Heat540-1", buildSummarySpec(NeighborhoodName,"Heat540"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Heat540-1", buildTrendSpec(NeighborhoodName,"Heat540"),opt).then().catch(console.error);
-    vegaEmbed("#map-Heat540-1", buildMapSpec(NeighborhoodName,"Heat540"),opt).then().catch(console.error);
-  });
-</script>
+    
+    $( "#modal-Heat540-1" ).on('shown.bs.modal', function() {
+        
+        var opt = {"renderer": "svg"};
+
+        
+        
+        aq.loadCSV(
+
+            
+            
+            "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/" + report_name + "_data.csv"
+        
+        ).then(data => {
+            
+            arqTable = data;
+            
+
+            
+
+            
+            
+            var summaryData = 
+                arqTable
+                .filter(d => d.data_field_name == "Heat540")
+                .select("geo_join_id", "neighborhood", "data_value", "message", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .orderby("data_value") 
+                .select(aq.not("end_date"))
+                .objects()
+                
+            console.log("summaryData", summaryData);
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/summarySpec.json").then(data => {
+                
+                summarySpec = data;
+
+                
+
+                summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#summary-Heat540-1", 
+                    summarySpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("summaryData", summaryData).run()
+
+                }).catch(console.error);;
+                
+            });
+            
+
+            
+
+            
+
+            var mapData = summaryData;
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/mapSpec.json").then(data => {
+                
+                mapSpec = data;
+                
+                
+
+                mapSpec.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#map-Heat540-1", 
+                    mapSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("mapData", mapData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+
+            
+            
+
+            
+            
+            var trendData = 
+                arqTable
+                .filter(d => d.data_field_name == "Heat540")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "data_value", "message")
+                .dedupe()
+                .objects()
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/trendSpec.json").then(data => {
+                
+                
+                
+                trendSpec = data;
+                
+                
+
+                trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#trend-Heat540-1", 
+                    trendSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("trendData", trendData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+            
+        });
+            
+    });
+        
+    </script>
+    
+                    
+                    <button data-toggle="modal" data-target="#modal-Asth1201-1" class="indicator-anchor">
+    <div class="row align-items-center">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Asthma hospitalizations (children)</span>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Asth1201_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+            <span class="middle">Middle</span>
+            
+        </div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Asth1201_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+        </div>
+    </div>
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Asth1201-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Asthma hospitalizations (children)</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Asthma Hospitalizations among Children 5 to 17 Yrs Old (Rate per 10,000 residents) 2018</h2>
+                <p>In <strong>Flushing - Clearview</strong>, the asthma hospitalizations among children 5 to 17 yrs old (rate per 10,000 residents) 2018 is <span class="middle">Middle</span> compared to the NYC average.</p>
+                Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">14.6</span></div>
+                    <div class="col-sm-4">Queens <span class="indicator-value">16.7</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">25.1</span></div>
+                </div>
+                <p><em>Estimated Annual Rate per 10,000 residents</em></p>
+                
+                
+                
+                <div class="data-note"></div>
+                
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Asthma Hospitalizations among Children 5 to 17 Yrs Old (Rate per 10,000 residents) 2018</h3>
+                <p>  <em>Estimated Annual Rate per 10,000 residents</em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Asth1201-1"></div> 
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>Trends Over Time</h3>
+                <p><em>Estimated Annual Rate per 10,000 residents</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Asth1201-1"></div> 
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>By Neighborhood</h3>
+                <p><em>Estimated Annual Rate per 10,000 residents</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Asth1201-1"></div>
+                
+            </div>
+            
+            <div class="modal-footer flex-column">
+                
+                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    
+    $( "#modal-Asth1201-1" ).on('shown.bs.modal', function() {
+        
+        var opt = {"renderer": "svg"};
+
+        
+        
+        aq.loadCSV(
+
+            
+            
+            "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/" + report_name + "_data.csv"
+        
+        ).then(data => {
+            
+            arqTable = data;
+            
+
+            
+
+            
+            
+            var summaryData = 
+                arqTable
+                .filter(d => d.data_field_name == "Asth1201")
+                .select("geo_join_id", "neighborhood", "data_value", "message", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .orderby("data_value") 
+                .select(aq.not("end_date"))
+                .objects()
+                
+            console.log("summaryData", summaryData);
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/summarySpec.json").then(data => {
+                
+                summarySpec = data;
+
+                
+
+                summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#summary-Asth1201-1", 
+                    summarySpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("summaryData", summaryData).run()
+
+                }).catch(console.error);;
+                
+            });
+            
+
+            
+
+            
+
+            var mapData = summaryData;
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/mapSpec.json").then(data => {
+                
+                mapSpec = data;
+                
+                
+
+                mapSpec.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#map-Asth1201-1", 
+                    mapSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("mapData", mapData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+
+            
+            
+
+            
+            
+            var trendData = 
+                arqTable
+                .filter(d => d.data_field_name == "Asth1201")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "data_value", "message")
+                .dedupe()
+                .objects()
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/trendSpec.json").then(data => {
+                
+                
+                
+                trendSpec = data;
+                
+                
+
+                trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#trend-Asth1201-1", 
+                    trendSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("trendData", trendData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+            
+        });
+            
+    });
+        
+    </script>
+    
                   
               </div>
               
@@ -829,641 +1335,1523 @@
                     
                     
                     <button data-toggle="modal" data-target="#modal-Hous781-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Households with AC</span>
+    <div class="row align-items-center">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Households with AC</span>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Hous781_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+            <span class="better">Better</span>
+            
+        </div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Hous781_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+        </div>
     </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nr/Hous781_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nr/Hous781_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
 </button>
 
 
 <div class="modal fade report-modal" id="modal-Hous781-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header text-left">
-        <h2 class="modal-title fs-xl" id="exampleModalLabel">Households with AC</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h2 class="fs-xl">Homes reporting air conditioning (percent) 2017</h2>
-        <p>In <strong>Flushing - Clearview</strong>, the homes reporting air conditioning (percent) 2017 is <span class="better">Better</span> compared to the NYC average.</p>
-        Air conditioning is an important way to avoid heat stress, especially for persons with limited mobility.
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">94.1*</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">92.3</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">91</span></div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Households with AC</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Homes reporting air conditioning (percent) 2017</h2>
+                <p>In <strong>Flushing - Clearview</strong>, the homes reporting air conditioning (percent) 2017 is <span class="better">Better</span> compared to the NYC average.</p>
+                Air conditioning is an important way to avoid heat stress, especially for persons with limited mobility.
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">94.1*</span></div>
+                    <div class="col-sm-4">Queens <span class="indicator-value">92.3</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">91</span></div>
+                </div>
+                <p><em>Percent of Households </em></p>
+                
+                
+                
+                <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
+                
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Homes reporting air conditioning (percent) 2017</h3>
+                <p>  <em>Percent of Households </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Hous781-2"></div> 
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>Trends Over Time</h3>
+                <p><em>Percent of Households </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Hous781-2"></div> 
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>By Neighborhood</h3>
+                <p><em>Percent of Households </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Hous781-2"></div>
+                
+            </div>
+            
+            <div class="modal-footer flex-column">
+                
+                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <p><em>Percent of Households </em></p>
-
-
-        
-          <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
-        
-
-    
-      </div>
-      <hr>
-      <div class="modal-body">
-        <h3>Homes reporting air conditioning (percent) 2017</h3>
-        <p>  <em>Percent of Households </em></p>
-        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Hous781-2"></div> 
-        
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trends Over Time</h3>
-        <p><em>Percent of Households </em></p>
-        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Hous781-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>By Neighborhood</h3>
-        <p><em>Percent of Households </em></p>
-        <div style="width:100%; height:75vmin; z-index:10000;" id="map-Hous781-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
 </div>
 
 
+
+
 <script type="text/javascript">
-  $( "#modal-Hous781-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Hous781-2", buildSummarySpec(NeighborhoodName,"Hous781"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Hous781-2", buildTrendSpec(NeighborhoodName,"Hous781"),opt).then().catch(console.error);
-    vegaEmbed("#map-Hous781-2", buildMapSpec(NeighborhoodName,"Hous781"),opt).then().catch(console.error);
-  });
-</script>
+    
+    $( "#modal-Hous781-2" ).on('shown.bs.modal', function() {
+        
+        var opt = {"renderer": "svg"};
+
+        
+        
+        aq.loadCSV(
+
+            
+            
+            "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/" + report_name + "_data.csv"
+        
+        ).then(data => {
+            
+            arqTable = data;
+            
+
+            
+
+            
+            
+            var summaryData = 
+                arqTable
+                .filter(d => d.data_field_name == "Hous781")
+                .select("geo_join_id", "neighborhood", "data_value", "message", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .orderby("data_value") 
+                .select(aq.not("end_date"))
+                .objects()
+                
+            console.log("summaryData", summaryData);
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/summarySpec.json").then(data => {
+                
+                summarySpec = data;
+
+                
+
+                summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#summary-Hous781-2", 
+                    summarySpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("summaryData", summaryData).run()
+
+                }).catch(console.error);;
+                
+            });
+            
+
+            
+
+            
+
+            var mapData = summaryData;
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/mapSpec.json").then(data => {
+                
+                mapSpec = data;
+                
+                
+
+                mapSpec.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#map-Hous781-2", 
+                    mapSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("mapData", mapData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+
+            
+            
+
+            
+            
+            var trendData = 
+                arqTable
+                .filter(d => d.data_field_name == "Hous781")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "data_value", "message")
+                .dedupe()
+                .objects()
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/trendSpec.json").then(data => {
+                
+                
+                
+                trendSpec = data;
+                
+                
+
+                trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#trend-Hous781-2", 
+                    trendSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("trendData", trendData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+            
+        });
+            
+    });
+        
+    </script>
+    
                     
                     <button data-toggle="modal" data-target="#modal-Home76-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Cracks</span>
+    <div class="row align-items-center">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Cracks</span>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Home76_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+            <span class="better">Better</span>
+            
+        </div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Home76_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+        </div>
     </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nr/Home76_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nr/Home76_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
 </button>
 
 
 <div class="modal fade report-modal" id="modal-Home76-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header text-left">
-        <h2 class="modal-title fs-xl" id="exampleModalLabel">Cracks</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h2 class="fs-xl">Homes with cracks or holes (percent) 2017</h2>
-        <p>In <strong>Flushing - Clearview</strong>, the homes with cracks or holes (percent) 2017 is <span class="better">Better</span> compared to the NYC average.</p>
-        Cracks or holes are a maintenance deficiency linked to the presence of mice, rats, and cockroaches - which can harm residents' health.
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">5.8*</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">7.9</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">12.3</span></div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Cracks</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Homes with cracks or holes (percent) 2017</h2>
+                <p>In <strong>Flushing - Clearview</strong>, the homes with cracks or holes (percent) 2017 is <span class="better">Better</span> compared to the NYC average.</p>
+                Cracks or holes are a maintenance deficiency linked to the presence of mice, rats, and cockroaches - which can harm residents' health.
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">5.8*</span></div>
+                    <div class="col-sm-4">Queens <span class="indicator-value">7.9</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">12.3</span></div>
+                </div>
+                <p><em>Percent of Households </em></p>
+                
+                
+                
+                <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
+                
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Homes with cracks or holes (percent) 2017</h3>
+                <p>  <em>Percent of Households </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home76-2"></div> 
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>Trends Over Time</h3>
+                <p><em>Percent of Households </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home76-2"></div> 
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>By Neighborhood</h3>
+                <p><em>Percent of Households </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home76-2"></div>
+                
+            </div>
+            
+            <div class="modal-footer flex-column">
+                
+                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <p><em>Percent of Households </em></p>
-
-
-        
-          <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
-        
-
-    
-      </div>
-      <hr>
-      <div class="modal-body">
-        <h3>Homes with cracks or holes (percent) 2017</h3>
-        <p>  <em>Percent of Households </em></p>
-        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home76-2"></div> 
-        
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trends Over Time</h3>
-        <p><em>Percent of Households </em></p>
-        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home76-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>By Neighborhood</h3>
-        <p><em>Percent of Households </em></p>
-        <div style="width:100%; height:75vmin; z-index:10000;" id="map-Home76-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
 </div>
 
 
+
+
 <script type="text/javascript">
-  $( "#modal-Home76-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Home76-2", buildSummarySpec(NeighborhoodName,"Home76"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Home76-2", buildTrendSpec(NeighborhoodName,"Home76"),opt).then().catch(console.error);
-    vegaEmbed("#map-Home76-2", buildMapSpec(NeighborhoodName,"Home76"),opt).then().catch(console.error);
-  });
-</script>
+    
+    $( "#modal-Home76-2" ).on('shown.bs.modal', function() {
+        
+        var opt = {"renderer": "svg"};
+
+        
+        
+        aq.loadCSV(
+
+            
+            
+            "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/" + report_name + "_data.csv"
+        
+        ).then(data => {
+            
+            arqTable = data;
+            
+
+            
+
+            
+            
+            var summaryData = 
+                arqTable
+                .filter(d => d.data_field_name == "Home76")
+                .select("geo_join_id", "neighborhood", "data_value", "message", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .orderby("data_value") 
+                .select(aq.not("end_date"))
+                .objects()
+                
+            console.log("summaryData", summaryData);
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/summarySpec.json").then(data => {
+                
+                summarySpec = data;
+
+                
+
+                summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#summary-Home76-2", 
+                    summarySpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("summaryData", summaryData).run()
+
+                }).catch(console.error);;
+                
+            });
+            
+
+            
+
+            
+
+            var mapData = summaryData;
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/mapSpec.json").then(data => {
+                
+                mapSpec = data;
+                
+                
+
+                mapSpec.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#map-Home76-2", 
+                    mapSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("mapData", mapData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+
+            
+            
+
+            
+            
+            var trendData = 
+                arqTable
+                .filter(d => d.data_field_name == "Home76")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "data_value", "message")
+                .dedupe()
+                .objects()
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/trendSpec.json").then(data => {
+                
+                
+                
+                trendSpec = data;
+                
+                
+
+                trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#trend-Home76-2", 
+                    trendSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("trendData", trendData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+            
+        });
+            
+    });
+        
+    </script>
+    
                     
                     <button data-toggle="modal" data-target="#modal-Home80-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Leaks</span>
+    <div class="row align-items-center">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Leaks</span>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Home80_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+            <span class="better">Better</span>
+            
+        </div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Home80_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+        </div>
     </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nr/Home80_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nr/Home80_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
 </button>
 
 
 <div class="modal fade report-modal" id="modal-Home80-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header text-left">
-        <h2 class="modal-title fs-xl" id="exampleModalLabel">Leaks</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h2 class="fs-xl">Homes with leaks (percent) 2017</h2>
-        <p>In <strong>Flushing - Clearview</strong>, the homes with leaks (percent) 2017 is <span class="better">Better</span> compared to the NYC average.</p>
-        Leaks are a maintenance deficiency that can harm health by introducing mold, which can worsen respiratory conditions like asthma.
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">6.8</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">9.1</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">13.4</span></div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Leaks</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Homes with leaks (percent) 2017</h2>
+                <p>In <strong>Flushing - Clearview</strong>, the homes with leaks (percent) 2017 is <span class="better">Better</span> compared to the NYC average.</p>
+                Leaks are a maintenance deficiency that can harm health by introducing mold, which can worsen respiratory conditions like asthma.
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">6.8</span></div>
+                    <div class="col-sm-4">Queens <span class="indicator-value">9.1</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">13.4</span></div>
+                </div>
+                <p><em>Percent of Households </em></p>
+                
+                
+                
+                <div class="data-note"></div>
+                
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Homes with leaks (percent) 2017</h3>
+                <p>  <em>Percent of Households </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home80-2"></div> 
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>Trends Over Time</h3>
+                <p><em>Percent of Households </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home80-2"></div> 
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>By Neighborhood</h3>
+                <p><em>Percent of Households </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home80-2"></div>
+                
+            </div>
+            
+            <div class="modal-footer flex-column">
+                
+                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <p><em>Percent of Households </em></p>
-
-
-        
-          <div class="data-note"></div>
-        
-
-    
-      </div>
-      <hr>
-      <div class="modal-body">
-        <h3>Homes with leaks (percent) 2017</h3>
-        <p>  <em>Percent of Households </em></p>
-        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home80-2"></div> 
-        
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trends Over Time</h3>
-        <p><em>Percent of Households </em></p>
-        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home80-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>By Neighborhood</h3>
-        <p><em>Percent of Households </em></p>
-        <div style="width:100%; height:75vmin; z-index:10000;" id="map-Home80-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
 </div>
 
 
+
+
 <script type="text/javascript">
-  $( "#modal-Home80-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Home80-2", buildSummarySpec(NeighborhoodName,"Home80"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Home80-2", buildTrendSpec(NeighborhoodName,"Home80"),opt).then().catch(console.error);
-    vegaEmbed("#map-Home80-2", buildMapSpec(NeighborhoodName,"Home80"),opt).then().catch(console.error);
-  });
-</script>
+    
+    $( "#modal-Home80-2" ).on('shown.bs.modal', function() {
+        
+        var opt = {"renderer": "svg"};
+
+        
+        
+        aq.loadCSV(
+
+            
+            
+            "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/" + report_name + "_data.csv"
+        
+        ).then(data => {
+            
+            arqTable = data;
+            
+
+            
+
+            
+            
+            var summaryData = 
+                arqTable
+                .filter(d => d.data_field_name == "Home80")
+                .select("geo_join_id", "neighborhood", "data_value", "message", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .orderby("data_value") 
+                .select(aq.not("end_date"))
+                .objects()
+                
+            console.log("summaryData", summaryData);
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/summarySpec.json").then(data => {
+                
+                summarySpec = data;
+
+                
+
+                summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#summary-Home80-2", 
+                    summarySpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("summaryData", summaryData).run()
+
+                }).catch(console.error);;
+                
+            });
+            
+
+            
+
+            
+
+            var mapData = summaryData;
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/mapSpec.json").then(data => {
+                
+                mapSpec = data;
+                
+                
+
+                mapSpec.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#map-Home80-2", 
+                    mapSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("mapData", mapData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+
+            
+            
+
+            
+            
+            var trendData = 
+                arqTable
+                .filter(d => d.data_field_name == "Home80")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "data_value", "message")
+                .dedupe()
+                .objects()
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/trendSpec.json").then(data => {
+                
+                
+                
+                trendSpec = data;
+                
+                
+
+                trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#trend-Home80-2", 
+                    trendSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("trendData", trendData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+            
+        });
+            
+    });
+        
+    </script>
+    
                     
                     <button data-toggle="modal" data-target="#modal-Pre-78-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Peeling paint</span>
+    <div class="row align-items-center">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Peeling paint</span>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Pre-78_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+            <span class="better">Better</span>
+            
+        </div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Pre-78_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+        </div>
     </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nr/Pre-78_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nr/Pre-78_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
 </button>
 
 
 <div class="modal fade report-modal" id="modal-Pre-78-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header text-left">
-        <h2 class="modal-title fs-xl" id="exampleModalLabel">Peeling paint</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h2 class="fs-xl">Pre-1960 homes with peeling paint (percent)  2017</h2>
-        <p>In <strong>Flushing - Clearview</strong>, the pre-1960 homes with peeling paint (percent)  2017 is <span class="better">Better</span> compared to the NYC average.</p>
-        Older housing and peeling paint can put residents at risk of lead poisoning, due to lead paint - which was banned from household paints in the USA in 1978.
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">0.1*</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">2</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">3.9</span></div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Peeling paint</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Pre-1960 homes with peeling paint (percent)  2017</h2>
+                <p>In <strong>Flushing - Clearview</strong>, the pre-1960 homes with peeling paint (percent)  2017 is <span class="better">Better</span> compared to the NYC average.</p>
+                Older housing and peeling paint can put residents at risk of lead poisoning, due to lead paint - which was banned from household paints in the USA in 1978.
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">0.1*</span></div>
+                    <div class="col-sm-4">Queens <span class="indicator-value">2</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">3.9</span></div>
+                </div>
+                <p><em>Percent of Households </em></p>
+                
+                
+                
+                <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
+                
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Pre-1960 homes with peeling paint (percent)  2017</h3>
+                <p>  <em>Percent of Households </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Pre-78-2"></div> 
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>Trends Over Time</h3>
+                <p><em>Percent of Households </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Pre-78-2"></div> 
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>By Neighborhood</h3>
+                <p><em>Percent of Households </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Pre-78-2"></div>
+                
+            </div>
+            
+            <div class="modal-footer flex-column">
+                
+                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <p><em>Percent of Households </em></p>
-
-
-        
-          <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
-        
-
-    
-      </div>
-      <hr>
-      <div class="modal-body">
-        <h3>Pre-1960 homes with peeling paint (percent)  2017</h3>
-        <p>  <em>Percent of Households </em></p>
-        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Pre-78-2"></div> 
-        
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trends Over Time</h3>
-        <p><em>Percent of Households </em></p>
-        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Pre-78-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>By Neighborhood</h3>
-        <p><em>Percent of Households </em></p>
-        <div style="width:100%; height:75vmin; z-index:10000;" id="map-Pre-78-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
 </div>
 
 
+
+
 <script type="text/javascript">
-  $( "#modal-Pre-78-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Pre-78-2", buildSummarySpec(NeighborhoodName,"Pre-78"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Pre-78-2", buildTrendSpec(NeighborhoodName,"Pre-78"),opt).then().catch(console.error);
-    vegaEmbed("#map-Pre-78-2", buildMapSpec(NeighborhoodName,"Pre-78"),opt).then().catch(console.error);
-  });
-</script>
+    
+    $( "#modal-Pre-78-2" ).on('shown.bs.modal', function() {
+        
+        var opt = {"renderer": "svg"};
+
+        
+        
+        aq.loadCSV(
+
+            
+            
+            "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/" + report_name + "_data.csv"
+        
+        ).then(data => {
+            
+            arqTable = data;
+            
+
+            
+
+            
+            
+            var summaryData = 
+                arqTable
+                .filter(d => d.data_field_name == "Pre-78")
+                .select("geo_join_id", "neighborhood", "data_value", "message", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .orderby("data_value") 
+                .select(aq.not("end_date"))
+                .objects()
+                
+            console.log("summaryData", summaryData);
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/summarySpec.json").then(data => {
+                
+                summarySpec = data;
+
+                
+
+                summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#summary-Pre-78-2", 
+                    summarySpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("summaryData", summaryData).run()
+
+                }).catch(console.error);;
+                
+            });
+            
+
+            
+
+            
+
+            var mapData = summaryData;
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/mapSpec.json").then(data => {
+                
+                mapSpec = data;
+                
+                
+
+                mapSpec.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#map-Pre-78-2", 
+                    mapSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("mapData", mapData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+
+            
+            
+
+            
+            
+            var trendData = 
+                arqTable
+                .filter(d => d.data_field_name == "Pre-78")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "data_value", "message")
+                .dedupe()
+                .objects()
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/trendSpec.json").then(data => {
+                
+                
+                
+                trendSpec = data;
+                
+                
+
+                trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#trend-Pre-78-2", 
+                    trendSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("trendData", trendData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+            
+        });
+            
+    });
+        
+    </script>
+    
                     
                     <button data-toggle="modal" data-target="#modal-Home90-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Supplemental heat</span>
+    <div class="row align-items-center">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Supplemental heat</span>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Home90_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+            <span class="better">Better</span>
+            
+        </div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Home90_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+        </div>
     </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nr/Home90_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nr/Home90_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
 </button>
 
 
 <div class="modal fade report-modal" id="modal-Home90-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header text-left">
-        <h2 class="modal-title fs-xl" id="exampleModalLabel">Supplemental heat</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h2 class="fs-xl">Homes using supplemental heat (percent)  2017</h2>
-        <p>In <strong>Flushing - Clearview</strong>, the homes using supplemental heat (percent)  2017 is <span class="better">Better</span> compared to the NYC average.</p>
-        The need for supplemental heat may mean a building's main heat source doesn't work - and can indicate the presence of other health-threatening maintenance deficiencies
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">9.1*</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">10.5</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">13.3</span></div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Supplemental heat</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Homes using supplemental heat (percent)  2017</h2>
+                <p>In <strong>Flushing - Clearview</strong>, the homes using supplemental heat (percent)  2017 is <span class="better">Better</span> compared to the NYC average.</p>
+                The need for supplemental heat may mean a building's main heat source doesn't work - and can indicate the presence of other health-threatening maintenance deficiencies
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">9.1*</span></div>
+                    <div class="col-sm-4">Queens <span class="indicator-value">10.5</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">13.3</span></div>
+                </div>
+                <p><em>Percent </em></p>
+                
+                
+                
+                <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
+                
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Homes using supplemental heat (percent)  2017</h3>
+                <p>  <em>Percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home90-2"></div> 
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>Trends Over Time</h3>
+                <p><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home90-2"></div> 
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>By Neighborhood</h3>
+                <p><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home90-2"></div>
+                
+            </div>
+            
+            <div class="modal-footer flex-column">
+                
+                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <p><em>Percent </em></p>
-
-
-        
-          <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
-        
-
-    
-      </div>
-      <hr>
-      <div class="modal-body">
-        <h3>Homes using supplemental heat (percent)  2017</h3>
-        <p>  <em>Percent </em></p>
-        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home90-2"></div> 
-        
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trends Over Time</h3>
-        <p><em>Percent </em></p>
-        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home90-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>By Neighborhood</h3>
-        <p><em>Percent </em></p>
-        <div style="width:100%; height:75vmin; z-index:10000;" id="map-Home90-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
 </div>
 
 
+
+
 <script type="text/javascript">
-  $( "#modal-Home90-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Home90-2", buildSummarySpec(NeighborhoodName,"Home90"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Home90-2", buildTrendSpec(NeighborhoodName,"Home90"),opt).then().catch(console.error);
-    vegaEmbed("#map-Home90-2", buildMapSpec(NeighborhoodName,"Home90"),opt).then().catch(console.error);
-  });
-</script>
+    
+    $( "#modal-Home90-2" ).on('shown.bs.modal', function() {
+        
+        var opt = {"renderer": "svg"};
+
+        
+        
+        aq.loadCSV(
+
+            
+            
+            "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/" + report_name + "_data.csv"
+        
+        ).then(data => {
+            
+            arqTable = data;
+            
+
+            
+
+            
+            
+            var summaryData = 
+                arqTable
+                .filter(d => d.data_field_name == "Home90")
+                .select("geo_join_id", "neighborhood", "data_value", "message", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .orderby("data_value") 
+                .select(aq.not("end_date"))
+                .objects()
+                
+            console.log("summaryData", summaryData);
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/summarySpec.json").then(data => {
+                
+                summarySpec = data;
+
+                
+
+                summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#summary-Home90-2", 
+                    summarySpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("summaryData", summaryData).run()
+
+                }).catch(console.error);;
+                
+            });
+            
+
+            
+
+            
+
+            var mapData = summaryData;
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/mapSpec.json").then(data => {
+                
+                mapSpec = data;
+                
+                
+
+                mapSpec.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#map-Home90-2", 
+                    mapSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("mapData", mapData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+
+            
+            
+
+            
+            
+            var trendData = 
+                arqTable
+                .filter(d => d.data_field_name == "Home90")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "data_value", "message")
+                .dedupe()
+                .objects()
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/trendSpec.json").then(data => {
+                
+                
+                
+                trendSpec = data;
+                
+                
+
+                trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#trend-Home90-2", 
+                    trendSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("trendData", trendData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+            
+        });
+            
+    });
+        
+    </script>
+    
                     
                     <button data-toggle="modal" data-target="#modal-Carb716-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Carbon monoxide</span>
+    <div class="row align-items-center">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Carbon monoxide</span>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Carb716_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+            <span class="better">Better</span>
+            
+        </div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Carb716_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+        </div>
     </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nr/Carb716_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nr/Carb716_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
 </button>
 
 
 <div class="modal fade report-modal" id="modal-Carb716-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header text-left">
-        <h2 class="modal-title fs-xl" id="exampleModalLabel">Carbon monoxide</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h2 class="fs-xl">Carbon monoxide incidents without a detector (average annual rate per 10,000 buildings) 2014-2016</h2>
-        <p>In <strong>Flushing - Clearview</strong>, the carbon monoxide incidents without a detector (average annual rate per 10,000 buildings) 2014-2016 is <span class="better">Better</span> compared to the NYC average.</p>
-        Carbon monoxide detectors are required in NYC homes by law. Failure to provide or maintain a detector can put residents at risk for carbon monoxide poisoning and death.
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">0.3*</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">0.5</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">0.9</span></div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Carbon monoxide</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Carbon monoxide incidents without a detector (average annual rate per 10,000 buildings) 2014-2016</h2>
+                <p>In <strong>Flushing - Clearview</strong>, the carbon monoxide incidents without a detector (average annual rate per 10,000 buildings) 2014-2016 is <span class="better">Better</span> compared to the NYC average.</p>
+                Carbon monoxide detectors are required in NYC homes by law. Failure to provide or maintain a detector can put residents at risk for carbon monoxide poisoning and death.
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">0.3*</span></div>
+                    <div class="col-sm-4">Queens <span class="indicator-value">0.5</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">0.9</span></div>
+                </div>
+                <p><em>Average Annual Rate per 10,000 buildings</em></p>
+                
+                
+                
+                <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
+                
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Carbon monoxide incidents without a detector (average annual rate per 10,000 buildings) 2014-2016</h3>
+                <p>  <em>Average Annual Rate per 10,000 buildings</em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Carb716-2"></div> 
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>Trends Over Time</h3>
+                <p><em>Average Annual Rate per 10,000 buildings</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Carb716-2"></div> 
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>By Neighborhood</h3>
+                <p><em>Average Annual Rate per 10,000 buildings</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Carb716-2"></div>
+                
+            </div>
+            
+            <div class="modal-footer flex-column">
+                
+                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <p><em>Average Annual Rate per 10,000 buildings</em></p>
-
-
-        
-          <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
-        
-
-    
-      </div>
-      <hr>
-      <div class="modal-body">
-        <h3>Carbon monoxide incidents without a detector (average annual rate per 10,000 buildings) 2014-2016</h3>
-        <p>  <em>Average Annual Rate per 10,000 buildings</em></p>
-        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Carb716-2"></div> 
-        
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trends Over Time</h3>
-        <p><em>Average Annual Rate per 10,000 buildings</em></p>
-        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Carb716-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>By Neighborhood</h3>
-        <p><em>Average Annual Rate per 10,000 buildings</em></p>
-        <div style="width:100%; height:75vmin; z-index:10000;" id="map-Carb716-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
 </div>
 
 
+
+
 <script type="text/javascript">
-  $( "#modal-Carb716-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Carb716-2", buildSummarySpec(NeighborhoodName,"Carb716"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Carb716-2", buildTrendSpec(NeighborhoodName,"Carb716"),opt).then().catch(console.error);
-    vegaEmbed("#map-Carb716-2", buildMapSpec(NeighborhoodName,"Carb716"),opt).then().catch(console.error);
-  });
-</script>
+    
+    $( "#modal-Carb716-2" ).on('shown.bs.modal', function() {
+        
+        var opt = {"renderer": "svg"};
+
+        
+        
+        aq.loadCSV(
+
+            
+            
+            "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/" + report_name + "_data.csv"
+        
+        ).then(data => {
+            
+            arqTable = data;
+            
+
+            
+
+            
+            
+            var summaryData = 
+                arqTable
+                .filter(d => d.data_field_name == "Carb716")
+                .select("geo_join_id", "neighborhood", "data_value", "message", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .orderby("data_value") 
+                .select(aq.not("end_date"))
+                .objects()
+                
+            console.log("summaryData", summaryData);
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/summarySpec.json").then(data => {
+                
+                summarySpec = data;
+
+                
+
+                summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#summary-Carb716-2", 
+                    summarySpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("summaryData", summaryData).run()
+
+                }).catch(console.error);;
+                
+            });
+            
+
+            
+
+            
+
+            var mapData = summaryData;
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/mapSpec.json").then(data => {
+                
+                mapSpec = data;
+                
+                
+
+                mapSpec.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#map-Carb716-2", 
+                    mapSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("mapData", mapData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+
+            
+            
+
+            
+            
+            var trendData = 
+                arqTable
+                .filter(d => d.data_field_name == "Carb716")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "data_value", "message")
+                .dedupe()
+                .objects()
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/trendSpec.json").then(data => {
+                
+                
+                
+                trendSpec = data;
+                
+                
+
+                trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#trend-Carb716-2", 
+                    trendSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("trendData", trendData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+            
+        });
+            
+    });
+        
+    </script>
+    
                     
                     <button data-toggle="modal" data-target="#modal-Rent1248-2" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Maintenance problems</span>
+    <div class="row align-items-center">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Maintenance problems</span>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Rent1248_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+            <span class="middle">Middle</span>
+            
+        </div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Rent1248_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+        </div>
     </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nr/Rent1248_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="middle">Middle</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nr/Rent1248_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
 </button>
 
 
 <div class="modal fade report-modal" id="modal-Rent1248-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header text-left">
-        <h2 class="modal-title fs-xl" id="exampleModalLabel">Maintenance problems</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h2 class="fs-xl">Renter-occupied homes with any health-related maintenance problems (percent) 2017</h2>
-        <p>In <strong>Flushing - Clearview</strong>, the renter-occupied homes with any health-related maintenance problems (percent) 2017 is <span class="middle">Middle</span> compared to the NYC average.</p>
-        Housing without health-threatening maintenance deficiencies is an important environmental component of health.
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">55.6*</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">55.6</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">61.5</span></div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Maintenance problems</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Renter-occupied homes with any health-related maintenance problems (percent) 2017</h2>
+                <p>In <strong>Flushing - Clearview</strong>, the renter-occupied homes with any health-related maintenance problems (percent) 2017 is <span class="middle">Middle</span> compared to the NYC average.</p>
+                Housing without health-threatening maintenance deficiencies is an important environmental component of health.
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">55.6*</span></div>
+                    <div class="col-sm-4">Queens <span class="indicator-value">55.6</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">61.5</span></div>
+                </div>
+                <p><em>Percent of Households </em></p>
+                
+                
+                
+                <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
+                
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Renter-occupied homes with any health-related maintenance problems (percent) 2017</h3>
+                <p>  <em>Percent of Households </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Rent1248-2"></div> 
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>Trends Over Time</h3>
+                <p><em>Percent of Households </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Rent1248-2"></div> 
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>By Neighborhood</h3>
+                <p><em>Percent of Households </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Rent1248-2"></div>
+                
+            </div>
+            
+            <div class="modal-footer flex-column">
+                
+                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <p><em>Percent of Households </em></p>
-
-
-        
-          <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
-        
-
-    
-      </div>
-      <hr>
-      <div class="modal-body">
-        <h3>Renter-occupied homes with any health-related maintenance problems (percent) 2017</h3>
-        <p>  <em>Percent of Households </em></p>
-        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Rent1248-2"></div> 
-        
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trends Over Time</h3>
-        <p><em>Percent of Households </em></p>
-        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Rent1248-2"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>By Neighborhood</h3>
-        <p><em>Percent of Households </em></p>
-        <div style="width:100%; height:75vmin; z-index:10000;" id="map-Rent1248-2"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
 </div>
 
 
+
+
 <script type="text/javascript">
-  $( "#modal-Rent1248-2" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Rent1248-2", buildSummarySpec(NeighborhoodName,"Rent1248"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Rent1248-2", buildTrendSpec(NeighborhoodName,"Rent1248"),opt).then().catch(console.error);
-    vegaEmbed("#map-Rent1248-2", buildMapSpec(NeighborhoodName,"Rent1248"),opt).then().catch(console.error);
-  });
-</script>
+    
+    $( "#modal-Rent1248-2" ).on('shown.bs.modal', function() {
+        
+        var opt = {"renderer": "svg"};
+
+        
+        
+        aq.loadCSV(
+
+            
+            
+            "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/" + report_name + "_data.csv"
+        
+        ).then(data => {
+            
+            arqTable = data;
+            
+
+            
+
+            
+            
+            var summaryData = 
+                arqTable
+                .filter(d => d.data_field_name == "Rent1248")
+                .select("geo_join_id", "neighborhood", "data_value", "message", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .orderby("data_value") 
+                .select(aq.not("end_date"))
+                .objects()
+                
+            console.log("summaryData", summaryData);
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/summarySpec.json").then(data => {
+                
+                summarySpec = data;
+
+                
+
+                summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#summary-Rent1248-2", 
+                    summarySpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("summaryData", summaryData).run()
+
+                }).catch(console.error);;
+                
+            });
+            
+
+            
+
+            
+
+            var mapData = summaryData;
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/mapSpec.json").then(data => {
+                
+                mapSpec = data;
+                
+                
+
+                mapSpec.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#map-Rent1248-2", 
+                    mapSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("mapData", mapData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+
+            
+            
+
+            
+            
+            var trendData = 
+                arqTable
+                .filter(d => d.data_field_name == "Rent1248")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "data_value", "message")
+                .dedupe()
+                .objects()
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/trendSpec.json").then(data => {
+                
+                
+                
+                trendSpec = data;
+                
+                
+
+                trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#trend-Rent1248-2", 
+                    trendSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("trendData", trendData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+            
+        });
+            
+    });
+        
+    </script>
+    
                   
               </div>
               
@@ -1508,368 +2896,872 @@
                     
                     
                     <button data-toggle="modal" data-target="#modal-Home94-3" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Mice or rats (inside)</span>
+    <div class="row align-items-center">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Mice or rats (inside)</span>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Home94_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+            <span class="better">Better</span>
+            
+        </div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Home94_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+        </div>
     </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nr/Home94_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nr/Home94_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
 </button>
 
 
 <div class="modal fade report-modal" id="modal-Home94-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header text-left">
-        <h2 class="modal-title fs-xl" id="exampleModalLabel">Mice or rats (inside)</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h2 class="fs-xl">Homes with mice or rats in the building (percent)  2017</h2>
-        <p>In <strong>Flushing - Clearview</strong>, the homes with mice or rats in the building (percent)  2017 is <span class="better">Better</span> compared to the NYC average.</p>
-        The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and contribute to the development and exacerbation of asthma and its symptoms.
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">8.5*</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">14.8</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">18.8</span></div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Mice or rats (inside)</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Homes with mice or rats in the building (percent)  2017</h2>
+                <p>In <strong>Flushing - Clearview</strong>, the homes with mice or rats in the building (percent)  2017 is <span class="better">Better</span> compared to the NYC average.</p>
+                The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and contribute to the development and exacerbation of asthma and its symptoms.
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">8.5*</span></div>
+                    <div class="col-sm-4">Queens <span class="indicator-value">14.8</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">18.8</span></div>
+                </div>
+                <p><em>Percent of Households </em></p>
+                
+                
+                
+                <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
+                
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Homes with mice or rats in the building (percent)  2017</h3>
+                <p>  <em>Percent of Households </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home94-3"></div> 
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>Trends Over Time</h3>
+                <p><em>Percent of Households </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home94-3"></div> 
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>By Neighborhood</h3>
+                <p><em>Percent of Households </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home94-3"></div>
+                
+            </div>
+            
+            <div class="modal-footer flex-column">
+                
+                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <p><em>Percent of Households </em></p>
-
-
-        
-          <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
-        
-
-    
-      </div>
-      <hr>
-      <div class="modal-body">
-        <h3>Homes with mice or rats in the building (percent)  2017</h3>
-        <p>  <em>Percent of Households </em></p>
-        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home94-3"></div> 
-        
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trends Over Time</h3>
-        <p><em>Percent of Households </em></p>
-        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home94-3"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>By Neighborhood</h3>
-        <p><em>Percent of Households </em></p>
-        <div style="width:100%; height:75vmin; z-index:10000;" id="map-Home94-3"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
 </div>
 
 
+
+
 <script type="text/javascript">
-  $( "#modal-Home94-3" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Home94-3", buildSummarySpec(NeighborhoodName,"Home94"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Home94-3", buildTrendSpec(NeighborhoodName,"Home94"),opt).then().catch(console.error);
-    vegaEmbed("#map-Home94-3", buildMapSpec(NeighborhoodName,"Home94"),opt).then().catch(console.error);
-  });
-</script>
+    
+    $( "#modal-Home94-3" ).on('shown.bs.modal', function() {
+        
+        var opt = {"renderer": "svg"};
+
+        
+        
+        aq.loadCSV(
+
+            
+            
+            "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/" + report_name + "_data.csv"
+        
+        ).then(data => {
+            
+            arqTable = data;
+            
+
+            
+
+            
+            
+            var summaryData = 
+                arqTable
+                .filter(d => d.data_field_name == "Home94")
+                .select("geo_join_id", "neighborhood", "data_value", "message", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .orderby("data_value") 
+                .select(aq.not("end_date"))
+                .objects()
+                
+            console.log("summaryData", summaryData);
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/summarySpec.json").then(data => {
+                
+                summarySpec = data;
+
+                
+
+                summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#summary-Home94-3", 
+                    summarySpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("summaryData", summaryData).run()
+
+                }).catch(console.error);;
+                
+            });
+            
+
+            
+
+            
+
+            var mapData = summaryData;
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/mapSpec.json").then(data => {
+                
+                mapSpec = data;
+                
+                
+
+                mapSpec.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#map-Home94-3", 
+                    mapSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("mapData", mapData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+
+            
+            
+
+            
+            
+            var trendData = 
+                arqTable
+                .filter(d => d.data_field_name == "Home94")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "data_value", "message")
+                .dedupe()
+                .objects()
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/trendSpec.json").then(data => {
+                
+                
+                
+                trendSpec = data;
+                
+                
+
+                trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#trend-Home94-3", 
+                    trendSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("trendData", trendData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+            
+        });
+            
+    });
+        
+    </script>
+    
                     
                     <button data-toggle="modal" data-target="#modal-Adul625-3" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Mold</span>
+    <div class="row align-items-center">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Mold</span>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Adul625_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+            <span class="better">Better</span>
+            
+        </div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Adul625_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+        </div>
     </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nr/Adul625_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nr/Adul625_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
 </button>
 
 
 <div class="modal fade report-modal" id="modal-Adul625-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header text-left">
-        <h2 class="modal-title fs-xl" id="exampleModalLabel">Mold</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h2 class="fs-xl">Adults reporting mold in the home (percent) 2012</h2>
-        <p>In <strong>Flushing - Clearview</strong>, the adults reporting mold in the home (percent) 2012 is <span class="better">Better</span> compared to the NYC average.</p>
-        Mold can worsen respiratory conditions like asthma, and indicate maintenance deficiencies in a building.
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">5.4*</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">8.6</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">9.5</span></div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Mold</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Adults reporting mold in the home (percent) 2012</h2>
+                <p>In <strong>Flushing - Clearview</strong>, the adults reporting mold in the home (percent) 2012 is <span class="better">Better</span> compared to the NYC average.</p>
+                Mold can worsen respiratory conditions like asthma, and indicate maintenance deficiencies in a building.
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">5.4*</span></div>
+                    <div class="col-sm-4">Queens <span class="indicator-value">8.6</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">9.5</span></div>
+                </div>
+                <p><em>Percent </em></p>
+                
+                
+                
+                <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
+                
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Adults reporting mold in the home (percent) 2012</h3>
+                <p>  <em>Percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Adul625-3"></div> 
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>Trends Over Time</h3>
+                <p><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Adul625-3"></div> 
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>By Neighborhood</h3>
+                <p><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Adul625-3"></div>
+                
+            </div>
+            
+            <div class="modal-footer flex-column">
+                
+                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <p><em>Percent </em></p>
-
-
-        
-          <div class="data-note">*Estimate is based on small numbers so should be interpreted with caution.</div>
-        
-
-    
-      </div>
-      <hr>
-      <div class="modal-body">
-        <h3>Adults reporting mold in the home (percent) 2012</h3>
-        <p>  <em>Percent </em></p>
-        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Adul625-3"></div> 
-        
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trends Over Time</h3>
-        <p><em>Percent </em></p>
-        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Adul625-3"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>By Neighborhood</h3>
-        <p><em>Percent </em></p>
-        <div style="width:100%; height:75vmin; z-index:10000;" id="map-Adul625-3"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
 </div>
 
 
+
+
 <script type="text/javascript">
-  $( "#modal-Adul625-3" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Adul625-3", buildSummarySpec(NeighborhoodName,"Adul625"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Adul625-3", buildTrendSpec(NeighborhoodName,"Adul625"),opt).then().catch(console.error);
-    vegaEmbed("#map-Adul625-3", buildMapSpec(NeighborhoodName,"Adul625"),opt).then().catch(console.error);
-  });
-</script>
+    
+    $( "#modal-Adul625-3" ).on('shown.bs.modal', function() {
+        
+        var opt = {"renderer": "svg"};
+
+        
+        
+        aq.loadCSV(
+
+            
+            
+            "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/" + report_name + "_data.csv"
+        
+        ).then(data => {
+            
+            arqTable = data;
+            
+
+            
+
+            
+            
+            var summaryData = 
+                arqTable
+                .filter(d => d.data_field_name == "Adul625")
+                .select("geo_join_id", "neighborhood", "data_value", "message", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .orderby("data_value") 
+                .select(aq.not("end_date"))
+                .objects()
+                
+            console.log("summaryData", summaryData);
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/summarySpec.json").then(data => {
+                
+                summarySpec = data;
+
+                
+
+                summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#summary-Adul625-3", 
+                    summarySpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("summaryData", summaryData).run()
+
+                }).catch(console.error);;
+                
+            });
+            
+
+            
+
+            
+
+            var mapData = summaryData;
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/mapSpec.json").then(data => {
+                
+                mapSpec = data;
+                
+                
+
+                mapSpec.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#map-Adul625-3", 
+                    mapSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("mapData", mapData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+
+            
+            
+
+            
+            
+            var trendData = 
+                arqTable
+                .filter(d => d.data_field_name == "Adul625")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "data_value", "message")
+                .dedupe()
+                .objects()
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/trendSpec.json").then(data => {
+                
+                
+                
+                trendSpec = data;
+                
+                
+
+                trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#trend-Adul625-3", 
+                    trendSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("trendData", trendData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+            
+        });
+            
+    });
+        
+    </script>
+    
                     
                     <button data-toggle="modal" data-target="#modal-Home245-3" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Cockroaches</span>
+    <div class="row align-items-center">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Cockroaches</span>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Home245_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+            <span class="middle">Middle</span>
+            
+        </div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Home245_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+        </div>
     </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nr/Home245_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="middle">Middle</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nr/Home245_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
 </button>
 
 
 <div class="modal fade report-modal" id="modal-Home245-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header text-left">
-        <h2 class="modal-title fs-xl" id="exampleModalLabel">Cockroaches</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h2 class="fs-xl">Homes with cockroaches (percent)  2017</h2>
-        <p>In <strong>Flushing - Clearview</strong>, the homes with cockroaches (percent)  2017 is <span class="middle">Middle</span> compared to the NYC average.</p>
-        The saliva, feces, and shedding body parts of cockroaches are an allergen and can trigger asthma.
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">19.9</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">19.8</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">24.1</span></div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Cockroaches</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Homes with cockroaches (percent)  2017</h2>
+                <p>In <strong>Flushing - Clearview</strong>, the homes with cockroaches (percent)  2017 is <span class="middle">Middle</span> compared to the NYC average.</p>
+                The saliva, feces, and shedding body parts of cockroaches are an allergen and can trigger asthma.
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">19.9</span></div>
+                    <div class="col-sm-4">Queens <span class="indicator-value">19.8</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">24.1</span></div>
+                </div>
+                <p><em>Percent of Households </em></p>
+                
+                
+                
+                <div class="data-note"></div>
+                
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Homes with cockroaches (percent)  2017</h3>
+                <p>  <em>Percent of Households </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home245-3"></div> 
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>Trends Over Time</h3>
+                <p><em>Percent of Households </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home245-3"></div> 
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>By Neighborhood</h3>
+                <p><em>Percent of Households </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home245-3"></div>
+                
+            </div>
+            
+            <div class="modal-footer flex-column">
+                
+                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <p><em>Percent of Households </em></p>
-
-
-        
-          <div class="data-note"></div>
-        
-
-    
-      </div>
-      <hr>
-      <div class="modal-body">
-        <h3>Homes with cockroaches (percent)  2017</h3>
-        <p>  <em>Percent of Households </em></p>
-        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home245-3"></div> 
-        
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trends Over Time</h3>
-        <p><em>Percent of Households </em></p>
-        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home245-3"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>By Neighborhood</h3>
-        <p><em>Percent of Households </em></p>
-        <div style="width:100%; height:75vmin; z-index:10000;" id="map-Home245-3"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
 </div>
 
 
+
+
 <script type="text/javascript">
-  $( "#modal-Home245-3" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Home245-3", buildSummarySpec(NeighborhoodName,"Home245"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Home245-3", buildTrendSpec(NeighborhoodName,"Home245"),opt).then().catch(console.error);
-    vegaEmbed("#map-Home245-3", buildMapSpec(NeighborhoodName,"Home245"),opt).then().catch(console.error);
-  });
-</script>
+    
+    $( "#modal-Home245-3" ).on('shown.bs.modal', function() {
+        
+        var opt = {"renderer": "svg"};
+
+        
+        
+        aq.loadCSV(
+
+            
+            
+            "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/" + report_name + "_data.csv"
+        
+        ).then(data => {
+            
+            arqTable = data;
+            
+
+            
+
+            
+            
+            var summaryData = 
+                arqTable
+                .filter(d => d.data_field_name == "Home245")
+                .select("geo_join_id", "neighborhood", "data_value", "message", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .orderby("data_value") 
+                .select(aq.not("end_date"))
+                .objects()
+                
+            console.log("summaryData", summaryData);
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/summarySpec.json").then(data => {
+                
+                summarySpec = data;
+
+                
+
+                summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#summary-Home245-3", 
+                    summarySpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("summaryData", summaryData).run()
+
+                }).catch(console.error);;
+                
+            });
+            
+
+            
+
+            
+
+            var mapData = summaryData;
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/mapSpec.json").then(data => {
+                
+                mapSpec = data;
+                
+                
+
+                mapSpec.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#map-Home245-3", 
+                    mapSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("mapData", mapData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+
+            
+            
+
+            
+            
+            var trendData = 
+                arqTable
+                .filter(d => d.data_field_name == "Home245")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "data_value", "message")
+                .dedupe()
+                .objects()
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/trendSpec.json").then(data => {
+                
+                
+                
+                trendSpec = data;
+                
+                
+
+                trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#trend-Home245-3", 
+                    trendSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("trendData", trendData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+            
+        });
+            
+    });
+        
+    </script>
+    
                     
                     <button data-toggle="modal" data-target="#modal-Adul292-3" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Smoke-free homes</span>
+    <div class="row align-items-center">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Smoke-free homes</span>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Adul292_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+            <span class="worse">Worse</span>
+            
+        </div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Adul292_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+        </div>
     </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nr/Adul292_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="worse">Worse</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nr/Adul292_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
 </button>
 
 
 <div class="modal fade report-modal" id="modal-Adul292-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header text-left">
-        <h2 class="modal-title fs-xl" id="exampleModalLabel">Smoke-free homes</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h2 class="fs-xl">Adults who allow smoking in the home (percent)  2013</h2>
-        <p>In <strong>Flushing - Clearview</strong>, the adults who allow smoking in the home (percent)  2013 is <span class="worse">Worse</span> compared to the NYC average.</p>
-        A smoke-free home policy can limit people's exposure to secondhand smoke, which is especially dangerous to children.
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">36.0</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">22.3</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">22.9</span></div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Smoke-free homes</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Adults who allow smoking in the home (percent)  2013</h2>
+                <p>In <strong>Flushing - Clearview</strong>, the adults who allow smoking in the home (percent)  2013 is <span class="worse">Worse</span> compared to the NYC average.</p>
+                A smoke-free home policy can limit people's exposure to secondhand smoke, which is especially dangerous to children.
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">36.0</span></div>
+                    <div class="col-sm-4">Queens <span class="indicator-value">22.3</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">22.9</span></div>
+                </div>
+                <p><em>Percent </em></p>
+                
+                
+                
+                <div class="data-note"></div>
+                
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Adults who allow smoking in the home (percent)  2013</h3>
+                <p>  <em>Percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Adul292-3"></div> 
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>Trends Over Time</h3>
+                <p><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Adul292-3"></div> 
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>By Neighborhood</h3>
+                <p><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Adul292-3"></div>
+                
+            </div>
+            
+            <div class="modal-footer flex-column">
+                
+                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <p><em>Percent </em></p>
-
-
-        
-          <div class="data-note"></div>
-        
-
-    
-      </div>
-      <hr>
-      <div class="modal-body">
-        <h3>Adults who allow smoking in the home (percent)  2013</h3>
-        <p>  <em>Percent </em></p>
-        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Adul292-3"></div> 
-        
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trends Over Time</h3>
-        <p><em>Percent </em></p>
-        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Adul292-3"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>By Neighborhood</h3>
-        <p><em>Percent </em></p>
-        <div style="width:100%; height:75vmin; z-index:10000;" id="map-Adul292-3"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
 </div>
 
 
+
+
 <script type="text/javascript">
-  $( "#modal-Adul292-3" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Adul292-3", buildSummarySpec(NeighborhoodName,"Adul292"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Adul292-3", buildTrendSpec(NeighborhoodName,"Adul292"),opt).then().catch(console.error);
-    vegaEmbed("#map-Adul292-3", buildMapSpec(NeighborhoodName,"Adul292"),opt).then().catch(console.error);
-  });
-</script>
+    
+    $( "#modal-Adul292-3" ).on('shown.bs.modal', function() {
+        
+        var opt = {"renderer": "svg"};
+
+        
+        
+        aq.loadCSV(
+
+            
+            
+            "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/" + report_name + "_data.csv"
+        
+        ).then(data => {
+            
+            arqTable = data;
+            
+
+            
+
+            
+            
+            var summaryData = 
+                arqTable
+                .filter(d => d.data_field_name == "Adul292")
+                .select("geo_join_id", "neighborhood", "data_value", "message", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .orderby("data_value") 
+                .select(aq.not("end_date"))
+                .objects()
+                
+            console.log("summaryData", summaryData);
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/summarySpec.json").then(data => {
+                
+                summarySpec = data;
+
+                
+
+                summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#summary-Adul292-3", 
+                    summarySpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("summaryData", summaryData).run()
+
+                }).catch(console.error);;
+                
+            });
+            
+
+            
+
+            
+
+            var mapData = summaryData;
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/mapSpec.json").then(data => {
+                
+                mapSpec = data;
+                
+                
+
+                mapSpec.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#map-Adul292-3", 
+                    mapSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("mapData", mapData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+
+            
+            
+
+            
+            
+            var trendData = 
+                arqTable
+                .filter(d => d.data_field_name == "Adul292")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "data_value", "message")
+                .dedupe()
+                .objects()
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/trendSpec.json").then(data => {
+                
+                
+                
+                trendSpec = data;
+                
+                
+
+                trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#trend-Adul292-3", 
+                    trendSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("trendData", trendData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+            
+        });
+            
+    });
+        
+    </script>
+    
                   
               </div>
               
@@ -1914,186 +3806,438 @@
                     
                     
                     <button data-toggle="modal" data-target="#modal-Chil755-4" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Child poverty</span>
+    <div class="row align-items-center">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Child poverty</span>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Chil755_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+            <span class="better">Better</span>
+            
+        </div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Chil755_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+        </div>
     </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nr/Chil755_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="better">Better</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nr/Chil755_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
 </button>
 
 
 <div class="modal fade report-modal" id="modal-Chil755-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header text-left">
-        <h2 class="modal-title fs-xl" id="exampleModalLabel">Child poverty</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h2 class="fs-xl">Children under 5 years old in poverty (percent) 2013-17</h2>
-        <p>In <strong>Flushing - Clearview</strong>, the children under 5 years old in poverty (percent) 2013-17 is <span class="better">Better</span> compared to the NYC average.</p>
-        Poverty is a major determinant of health, since poverty deprives people of access to health and safety resources.
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">14.1</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">17.5</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">26.5</span></div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Child poverty</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Children under 5 years old in poverty (percent) 2015-19</h2>
+                <p>In <strong>Flushing - Clearview</strong>, the children under 5 years old in poverty (percent) 2015-19 is <span class="better">Better</span> compared to the NYC average.</p>
+                Poverty is a major determinant of health, since poverty deprives people of access to health and safety resources.
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">14.2</span></div>
+                    <div class="col-sm-4">Queens <span class="indicator-value">15.7</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">24.4</span></div>
+                </div>
+                <p><em>Percent </em></p>
+                
+                
+                
+                <div class="data-note"></div>
+                
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Children under 5 years old in poverty (percent) 2015-19</h3>
+                <p>  <em>Percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Chil755-4"></div> 
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>Trends Over Time</h3>
+                <p><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Chil755-4"></div> 
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>By Neighborhood</h3>
+                <p><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Chil755-4"></div>
+                
+            </div>
+            
+            <div class="modal-footer flex-column">
+                
+                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <p><em>Percent </em></p>
-
-
-        
-          <div class="data-note"></div>
-        
-
-    
-      </div>
-      <hr>
-      <div class="modal-body">
-        <h3>Children under 5 years old in poverty (percent) 2013-17</h3>
-        <p>  <em>Percent </em></p>
-        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Chil755-4"></div> 
-        
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trends Over Time</h3>
-        <p><em>Percent </em></p>
-        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Chil755-4"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>By Neighborhood</h3>
-        <p><em>Percent </em></p>
-        <div style="width:100%; height:75vmin; z-index:10000;" id="map-Chil755-4"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
 </div>
 
 
+
+
 <script type="text/javascript">
-  $( "#modal-Chil755-4" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Chil755-4", buildSummarySpec(NeighborhoodName,"Chil755"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Chil755-4", buildTrendSpec(NeighborhoodName,"Chil755"),opt).then().catch(console.error);
-    vegaEmbed("#map-Chil755-4", buildMapSpec(NeighborhoodName,"Chil755"),opt).then().catch(console.error);
-  });
-</script>
+    
+    $( "#modal-Chil755-4" ).on('shown.bs.modal', function() {
+        
+        var opt = {"renderer": "svg"};
+
+        
+        
+        aq.loadCSV(
+
+            
+            
+            "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/" + report_name + "_data.csv"
+        
+        ).then(data => {
+            
+            arqTable = data;
+            
+
+            
+
+            
+            
+            var summaryData = 
+                arqTable
+                .filter(d => d.data_field_name == "Chil755")
+                .select("geo_join_id", "neighborhood", "data_value", "message", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .orderby("data_value") 
+                .select(aq.not("end_date"))
+                .objects()
+                
+            console.log("summaryData", summaryData);
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/summarySpec.json").then(data => {
+                
+                summarySpec = data;
+
+                
+
+                summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#summary-Chil755-4", 
+                    summarySpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("summaryData", summaryData).run()
+
+                }).catch(console.error);;
+                
+            });
+            
+
+            
+
+            
+
+            var mapData = summaryData;
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/mapSpec.json").then(data => {
+                
+                mapSpec = data;
+                
+                
+
+                mapSpec.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#map-Chil755-4", 
+                    mapSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("mapData", mapData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+
+            
+            
+
+            
+            
+            var trendData = 
+                arqTable
+                .filter(d => d.data_field_name == "Chil755")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "data_value", "message")
+                .dedupe()
+                .objects()
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/trendSpec.json").then(data => {
+                
+                
+                
+                trendSpec = data;
+                
+                
+
+                trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#trend-Chil755-4", 
+                    trendSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("trendData", trendData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+            
+        });
+            
+    });
+        
+    </script>
+    
                     
                     <button data-toggle="modal" data-target="#modal-Crow25-4" class="indicator-anchor">
-  <div class="row align-items-center">
-    <div class="col-6 col-md-5">
-      <span class="indicator-short-name">Crowding</span>
+    <div class="row align-items-center">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Crowding</span>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Crow25_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
+            <span class="middle">Middle</span>
+            
+        </div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/Crow25_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
+        </div>
     </div>
-    <div class="col-6 col-md-4 topic-list">
-      <img src="../../../visualizations/images/nr/Crow25_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." width="100%" class="viz d-md-none mb-1">
-      <span class="middle">Middle</span>
-      
-    </div>
-    <div class="d-none d-md-inline col-md-3">
-      <img src="../../../visualizations/images/nr/Crow25_403.svg" alt="Visualization showing neighborhood rank of 4 out of 42." class="viz">
-    </div>
-  </div>
 </button>
 
 
 <div class="modal fade report-modal" id="modal-Crow25-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header text-left">
-        <h2 class="modal-title fs-xl" id="exampleModalLabel">Crowding</h2>
-        <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
-          <span class="fas fa-times-circle"></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h2 class="fs-xl">Crowding (percent of homes with &gt; 1 person per room), 2013-17</h2>
-        <p>In <strong>Flushing - Clearview</strong>, the crowding (percent of homes with &gt; 1 person per room), 2013-17 is <span class="middle">Middle</span> compared to the NYC average.</p>
-         Occupied housing units with more than one person per room are considered crowded.
-      </div>
-        <hr>
-      <div class="modal-body">
-        <h3>Neighborhood Comparison</h3>
-        <div class="row comparison">
-          <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">8.7</span></div>
-          <div class="col-sm-4">Queens <span class="indicator-value">9.4</span></div>
-          <div class="col-sm-4">New York City <span class="indicator-value">9</span></div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Crowding</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Crowding (percent of homes with &gt; 1 person per room), 2015-19</h2>
+                <p>In <strong>Flushing - Clearview</strong>, the crowding (percent of homes with &gt; 1 person per room), 2015-19 is <span class="middle">Middle</span> compared to the NYC average.</p>
+                 Occupied housing units with more than one person per room are considered crowded.
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Flushing - Clearview <span class="indicator-value">9.0</span></div>
+                    <div class="col-sm-4">Queens <span class="indicator-value">9.4</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">9</span></div>
+                </div>
+                <p><em>Percent of Households </em></p>
+                
+                
+                
+                <div class="data-note"></div>
+                
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                <h3>Crowding (percent of homes with &gt; 1 person per room), 2015-19</h3>
+                <p>  <em>Percent of Households </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Crow25-4"></div> 
+                
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>Trends Over Time</h3>
+                <p><em>Percent of Households </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Crow25-4"></div> 
+                
+            </div>
+            <hr>
+            <div class="modal-body">
+                
+                <h3>By Neighborhood</h3>
+                <p><em>Percent of Households </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Crow25-4"></div>
+                
+            </div>
+            
+            <div class="modal-footer flex-column">
+                
+                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <p><em>Percent of Households </em></p>
-
-
-        
-          <div class="data-note"></div>
-        
-
-    
-      </div>
-      <hr>
-      <div class="modal-body">
-        <h3>Crowding (percent of homes with &gt; 1 person per room), 2013-17</h3>
-        <p>  <em>Percent of Households </em></p>
-        <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Crow25-4"></div> 
-        
-
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>Trends Over Time</h3>
-        <p><em>Percent of Households </em></p>
-        <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Crow25-4"></div> 
-      
-      </div>
-        <hr>
-      <div class="modal-body">
-
-        <h3>By Neighborhood</h3>
-        <p><em>Percent of Households </em></p>
-        <div style="width:100%; height:75vmin; z-index:10000;" id="map-Crow25-4"></div>
-
-      </div>
-      
-      <div class="modal-footer flex-column">
-        
-        <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
 </div>
 
 
+
+
 <script type="text/javascript">
-  $( "#modal-Crow25-4" ).on('shown.bs.modal', function() {
-    var opt = {"renderer": "svg"};
-    vegaEmbed("#summary-Crow25-4", buildSummarySpec(NeighborhoodName,"Crow25"),opt).then().catch(console.error);
-    vegaEmbed("#trend-Crow25-4", buildTrendSpec(NeighborhoodName,"Crow25"),opt).then().catch(console.error);
-    vegaEmbed("#map-Crow25-4", buildMapSpec(NeighborhoodName,"Crow25"),opt).then().catch(console.error);
-  });
-</script>
+    
+    $( "#modal-Crow25-4" ).on('shown.bs.modal', function() {
+        
+        var opt = {"renderer": "svg"};
+
+        
+        
+        aq.loadCSV(
+
+            
+            
+            "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/" + report_name + "_data.csv"
+        
+        ).then(data => {
+            
+            arqTable = data;
+            
+
+            
+
+            
+            
+            var summaryData = 
+                arqTable
+                .filter(d => d.data_field_name == "Crow25")
+                .select("geo_join_id", "neighborhood", "data_value", "message", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .orderby("data_value") 
+                .select(aq.not("end_date"))
+                .objects()
+                
+            console.log("summaryData", summaryData);
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/summarySpec.json").then(data => {
+                
+                summarySpec = data;
+
+                
+
+                summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#summary-Crow25-4", 
+                    summarySpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("summaryData", summaryData).run()
+
+                }).catch(console.error);;
+                
+            });
+            
+
+            
+
+            
+
+            var mapData = summaryData;
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/mapSpec.json").then(data => {
+                
+                mapSpec = data;
+                
+                
+
+                mapSpec.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#map-Crow25-4", 
+                    mapSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("mapData", mapData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+
+            
+            
+
+            
+            
+            var trendData = 
+                arqTable
+                .filter(d => d.data_field_name == "Crow25")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "data_value", "message")
+                .dedupe()
+                .objects()
+            
+            d3.json("https:\/\/nycehs.github.io\/ehs-data-portal-frontend-temp\/visualizations/spec/trendSpec.json").then(data => {
+                
+                
+                
+                trendSpec = data;
+                
+                
+
+                trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+                
+            }).then(() => {
+                
+                vegaEmbed(
+                    "#trend-Crow25-4", 
+                    trendSpec, 
+                    opt
+                ).then((res) => {
+                    
+                    res.view.insert("trendData", trendData).run()
+                    
+                }).catch(console.error);;
+                
+            });
+            
+        });
+            
+    });
+        
+    </script>
+    
                   
               </div>
               

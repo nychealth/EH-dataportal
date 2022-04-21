@@ -448,11 +448,6 @@
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key-topics/housing/</loc>
-    <lastmod>2021-10-02T07:56:00-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/housing/</loc>
     <lastmod>2021-10-02T07:56:00-04:00</lastmod>
     <xhtml:link
@@ -490,6 +485,11 @@
                 hreflang="en"
                 href="https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/housing/"
                 />
+  </url>
+  
+  <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key-topics/housing/</loc>
+    <lastmod>2021-10-02T07:56:00-04:00</lastmod>
   </url>
   
   <url>
@@ -763,11 +763,6 @@
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key-topics/neighborhoods/</loc>
-    <lastmod>2021-09-08T10:59:52-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/neighborhoods/</loc>
     <lastmod>2021-09-08T10:59:52-04:00</lastmod>
     <xhtml:link
@@ -785,6 +780,11 @@
                 hreflang="en"
                 href="https://nycehs.github.io/ehs-data-portal-frontend-temp/categories/neighborhoods/"
                 />
+  </url>
+  
+  <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key-topics/neighborhoods/</loc>
+    <lastmod>2021-09-08T10:59:52-04:00</lastmod>
   </url>
   
   <url>
@@ -958,12 +958,12 @@
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key-topics/healthoutcomes/</loc>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/health-outcomes/</loc>
     <lastmod>2021-08-04T12:32:15-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/health-outcomes/</loc>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key-topics/healthoutcomes/</loc>
     <lastmod>2021-08-04T12:32:15-04:00</lastmod>
   </url>
   
@@ -1033,12 +1033,12 @@
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/birth-defects/</loc>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/birth-defects/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/birth-defects/</loc>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/birth-defects/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url>
   
@@ -1058,12 +1058,12 @@
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/cancer/</loc>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/cancer/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/cancer/</loc>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/cancer/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url>
   
@@ -1248,12 +1248,12 @@
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/energy/</loc>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/energy/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/energy/</loc>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/energy/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url>
   
@@ -1303,12 +1303,12 @@
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/health-care/</loc>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/health-care/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/health-care/</loc>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/health-care/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url>
   
@@ -1413,12 +1413,12 @@
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/noise/</loc>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/noise/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/noise/</loc>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/noise/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url>
   
@@ -1433,12 +1433,12 @@
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/overweight/</loc>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/overweight/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/overweight/</loc>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/overweight/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url>
   
@@ -1448,12 +1448,12 @@
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/pesticides/</loc>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/pesticides/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/pesticides/</loc>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/pesticides/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url>
   
@@ -1463,12 +1463,12 @@
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/physical-activity/</loc>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/physical-activity/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/physical-activity/</loc>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/physical-activity/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url>
   
@@ -1608,11 +1608,6 @@
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/violence/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/violence/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod>
     <xhtml:link
@@ -1630,6 +1625,11 @@
                 hreflang="en"
                 href="https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/violence/"
                 />
+  </url>
+  
+  <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-explorer/violence/</loc>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod>
   </url>
   
   <url>
@@ -1683,12 +1683,12 @@
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key-topics/childhealth/</loc>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/child-health/</loc>
     <lastmod>2021-05-05T07:59:26-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/child-health/</loc>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/key-topics/childhealth/</loc>
     <lastmod>2021-05-05T07:59:26-04:00</lastmod>
   </url>
   

@@ -102,11 +102,11 @@ Disallow: /keywords/cockroaches/
 
 Disallow: /keywords/homes/
 
-Disallow: /key-topics/housing/
-
 Disallow: /keywords/housing/
 
 Disallow: /categories/housing/
+
+Disallow: /key-topics/housing/
 
 Disallow: /keywords/injustice/
 
@@ -168,9 +168,9 @@ Disallow: /keywords/active-design/
 
 Disallow: /keywords/built-environments/
 
-Disallow: /key-topics/neighborhoods/
-
 Disallow: /categories/neighborhoods/
+
+Disallow: /key-topics/neighborhoods/
 
 Disallow: /keywords/safety/
 
@@ -228,9 +228,9 @@ Disallow: /keywords/urban-heat-island/
 
 Disallow: /keywords/health/
 
-Disallow: /key-topics/healthoutcomes/
-
 Disallow: /keywords/health-outcomes/
+
+Disallow: /key-topics/healthoutcomes/
 
 Disallow: /data-explorer/active-design/
 
@@ -258,9 +258,9 @@ Disallow: /keywords/binge-drinking/
 
 Disallow: /keywords/birth/
 
-Disallow: /data-explorer/birth-defects/
-
 Disallow: /keywords/birth-defects/
+
+Disallow: /data-explorer/birth-defects/
 
 Disallow: /data-explorer/birth-outcomes/
 
@@ -268,9 +268,9 @@ Disallow: /keywords/blood/
 
 Disallow: /keywords/bugs/
 
-Disallow: /data-explorer/cancer/
-
 Disallow: /keywords/cancer/
+
+Disallow: /data-explorer/cancer/
 
 Disallow: /keywords/cancers/
 
@@ -326,9 +326,9 @@ Disallow: /keywords/dying/
 
 Disallow: /keywords/emergency-department-visits/
 
-Disallow: /data-explorer/energy/
-
 Disallow: /keywords/energy/
+
+Disallow: /data-explorer/energy/
 
 Disallow: /keywords/environmental-health/
 
@@ -348,9 +348,9 @@ Disallow: /keywords/green/
 
 Disallow: /keywords/harbor/
 
-Disallow: /data-explorer/health-care/
-
 Disallow: /keywords/health-care/
+
+Disallow: /data-explorer/health-care/
 
 Disallow: /data-explorer/health-impacts-of-air-pollution/
 
@@ -392,29 +392,29 @@ Disallow: /keywords/monoxide/
 
 Disallow: /data-explorer/mortality/
 
-Disallow: /data-explorer/noise/
-
 Disallow: /keywords/noise/
+
+Disallow: /data-explorer/noise/
 
 Disallow: /keywords/obesity/
 
 Disallow: /keywords/older-adults/
 
-Disallow: /data-explorer/overweight/
-
 Disallow: /keywords/overweight/
+
+Disallow: /data-explorer/overweight/
 
 Disallow: /data-explorer/parks-and-public-space/
 
-Disallow: /data-explorer/pesticides/
-
 Disallow: /keywords/pesticides/
+
+Disallow: /data-explorer/pesticides/
 
 Disallow: /categories/pests/
 
-Disallow: /data-explorer/physical-activity/
-
 Disallow: /keywords/physical-activity/
+
+Disallow: /data-explorer/physical-activity/
 
 Disallow: /keywords/poisoning/
 
@@ -470,9 +470,9 @@ Disallow: /keywords/trucks/
 
 Disallow: /data-explorer/vector-borne-disease/
 
-Disallow: /data-explorer/violence/
-
 Disallow: /keywords/violence/
+
+Disallow: /data-explorer/violence/
 
 Disallow: /data-explorer/walking-driving-and-cycling/
 
@@ -494,9 +494,9 @@ Disallow: /data-explorer/worker-health/
 
 Disallow: /keywords/workers/
 
-Disallow: /key-topics/childhealth/
-
 Disallow: /keywords/child-health/
+
+Disallow: /key-topics/childhealth/
 
 Disallow: /keywords/extermination/
 

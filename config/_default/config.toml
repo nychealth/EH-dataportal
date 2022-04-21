@@ -8,6 +8,7 @@ metaDataFormat = "yaml"
 theme = "dohmh"
 publishDir = "docs"
 paginate = 9
+ignoreFiles = ['Simplified.Chinese', 'Spanish']
 
 [languages.en]
 languageName = "English"
