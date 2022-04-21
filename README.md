@@ -8,6 +8,8 @@ This repository contains a prototype of the Environment and Health Data Portal. 
 
 Most of the data used by the site is stored in the separate [EHDP-data](https://github.com/nychealth/EHDP-data) repository. This setup allows us to update the site's data without needing to re-build the entire site. Look there for descriptions of the data files, and for the code used to generate the them.
 
+Note that any file required to *build* the site should remain with the source code, but anything required only for display can and should be stored in the remote data repo, EHDP-data. 
+
 ### Getting started
 You will need the following things properly installed on your computer.
 
@@ -15,7 +17,7 @@ You will need the following things properly installed on your computer.
 - [Hugo](https://gohugo.io/) 
 - [Grunt](https://gruntjs.com/)
 
-Our git patterns are to develop on branches labelled hotfix-, content-, or feature-. Keep breanch work focused on discrete tasks to avoid merge conflicts later. 
+Our git patterns are to develop on branches labelled hotfix-, content-, or feature-. Keep branch work focused on discrete tasks to avoid merge conflicts later. 
 
 In your local development environment, start the server by typing `hugo serve --environment local --disableFastRender` into the terminal.
 - `hugo serve` starts the server - you can then browse the site at http://localhost:1313/ehs-data-portal-frontend-temp 
