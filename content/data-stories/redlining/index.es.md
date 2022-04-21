@@ -1,9 +1,9 @@
 ---
-title: "A brief history of redlining"
+title: "Una breve historia del redlining "
 date: 2021-01-06T08:07:31-04:00
 draft: false
-seo_title: "A brief history of redlining."
-seo_description: "A data story on how redlining affected NYC."
+seo_title: "Una breve historia del redlining."
+seo_description: "La política financiera de 90 años que daña nuestra salud ."
 tags:
 categories: ["housing","social","childhealth","neighborhoods"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism"]
@@ -14,50 +14,50 @@ menu:
 layout: advanced
 image: ds-redlining.jpeg
 ---
-### Inside the 90-year-old financial policy that harms our health
-In public health, we often cite structural racism to help explain health patterns in our society. But what, specifically, does this mean? A close look at the history of redlining shows this connection.
+### La política financiera de 90 años que daña nuestra salud.
+En la salud pública, solemos citar el racismo estructural para ayudar a explicar los patrones sanitarios en nuestra sociedad. Pero, ¿qué significa esto específicamente? Una mirada más profunda a la historia del redlining muestra esta conexión. 
 
-When we analyze data on the health of New Yorkers, we often find the same geographic patterns, with higher rates of preventable health conditions in high-poverty neighborhoods. For example, [we've written about how asthma and poverty are closely connected]({{< ref "/data-stories/povasthma" >}}).
+Cuando analizamos datos sobre la salud de los neoyorquinos, solemos encontrar los mismos patrones geográficos, con índices más altos de afecciones médicas evitables en vecindarios con más pobreza. Por ejemplo, [escribimos sobre cómo el asma y la pobreza están estrechamente relacionadas.]({{< ref "/data-stories/es/povasthma" >}}).
 
-These high-poverty neighborhoods are also home to a higher proportion of people of color than other communities.
+Estos vecindarios con altos índices de pobreza también albergan una mayor cantidad de personas negras que otras comunidades. 
 
-The chart below shows the relationship between each neighborhood's poverty rate and percent population of color, with the rate of childhood asthma ED visits represented by the size of each bubble.
+La siguiente tabla muestra la relación entre el índice de pobreza de cada vecindario y el porcentaje de la población negra, con el índice de visitas infantiles por asma a la sala de emergencias representado por el tamaño de cada burbuja. 
 
-{{< datawrapper title="Race, Poverty, and Health in NYC" src="KOI8H/4/" height="400px" >}}
+{{< datawrapper title="La raza, la pobreza y la salud están conectadas en la ciudad de Nueva York" src="yS05f/1/" height="400px" >}}
 
-This dynamic extends beyond asthma. To understand why poverty, race, and health are related in New York City, we look back at **redlining**. This government policy from the 1930s illustrates the nature of poverty and racism in our society - and how racism affects health.
+Esta dinámica de extiende más allá del asma. Para entender por qué la pobreza, la raza y la salud están relacionadas en la ciudad de Nueva York, es necesario revisar el **redlining**. Esta política del gobierno de la década de 1930 ilustra la naturaleza de la pobreza y el racismo en nuestra sociedad, y muestra cómo el racismo afecta la salud. 
 
-### A Brief History of Redlining
-In the 1930s, during the Great Depression, unemployment rates were high and many people couldn't make their mortgage payments. A wave of foreclosures swept the country. To help keep people in their homes, the federal government established the Home Owners Loan Corporation (HOLC). Its goal was to refinance mortgages with better terms, like lower interest rates and longer repayment periods, to help people make payments and avoid foreclosure.
+### Una breve historia del redlining 
+En la década de 1930, durante la Gran Depresión, las tasas de desempleo eran altas y muchas personas no podían pagar su hipoteca. Una ola de ejecuciones hipotecarias se extendió en el país. Para ayudar a que las personas conservaran sus viviendas, el gobierno federal estableció la Corporación de Préstamos para Propietarios de Viviendas (Home Owners Loan Corporation, HOLC). Su objetivo era refinanciar las hipotecas con mejores términos, como tasas de interés más bajas y períodos de compensación más prolongados, para ayudar a las personas a efectuar los pagos y evitar las ejecuciones hipotecarias. 
 
-To determine what loans they would guarantee, HOLC sent people to appraise neighborhoods in cities across the US. They documented the types of housing in neighborhoods, along with information about the people who lived there. They also catalogued “detrimental influences,” with racist descriptions like “infiltration of Negroes” and “mixed races" as characteristics that lowered a neighborhood's value.
+Para determinar qué préstamos podía garantizar, la HOLC envió personas a tasar vecindarios en las ciudades de los EE. UU. Determinaron los tipos de viviendas en los vecindarios, junto con información sobre las personas que vivían allí. También catalogaron las “influencias perjudiciales” con descripciones racistas como “infiltración de negros” y “razas mixtas” como características que reducían el valor de un vecindario. 
 
 {{< figure src="rl1.png" Alt="A redlining document that details housing, construction type, average age, repair condition, occupancy, price range, and other information" >}}
-*A redlining document that details housing, construction type, average age, repair condition, occupancy, price range, and other information.*
+*Documento de redlining que detalla las viviendas, el tipo de construcción, la antigüedad promedio, las condiciones de reparación, la ocupación, el rango de precio y otra información. *
 
 {{< figure src="rl2.png" Alt="A redining document that reads: Detrimental influences: Obsolescence and poor maintenance. Infiltration of Negroes. Elevated structures on Lexington Ave & Fulton & Grand Avenue. Mixed races." >}}
-*A redining document that reads: Detrimental influences: Obsolescence and poor maintenance. Infiltration of Negroes. Elevated structures on Lexington Ave & Fulton & Grand Avenue. Mixed races.*
+*Un documento de redlining que indica lo siguiente: "Influencias perjudiciales: Obsolescencia y mantenimiento deficiente. Infiltración de negros. Estructuras elevadas en Lexington Ave., y Fulton y Grand Avenue. Razas mixtas."*
 
-With this information, HOLC made “residential security maps” for almost 250 cities, including New York City. On these maps, HOLC gave each neighborhood a classification:
+Con esta información, la HOLC diagramó “mapas de seguridad residencial” para casi 250 ciudades, incluida la ciudad de Nueva York. En estos mapas, la HOLC les dio a los vecindarios una clasificación: 
 
 {{< rawhtml >}}
 <ul style="list-style:none;">
     <li><strong><span style="color:#4FCF23"><i class="fas fa-square-full"></i></span>
-            Best</strong></li>
+            Mejores</strong></li>
     <li><strong><span style="color:rgb(136, 145, 218)"><i
-                    class="fas fa-square-full"></i></span> Still desirable</strong></li>
+                    class="fas fa-square-full"></i></span> Aún atractivos </strong></li>
     <li><strong><span style="color:#e4eb83"><i class="fas fa-square-full"></i></span>
-            Definitely declining</strong></li>
+            Definitivamente en declive </strong></li>
     <li><strong><span style="color:#DF0E0E"><i class="fas fa-square-full"></i></span>
-            Hazardous</strong></li>
+            Peligrosos</strong></li>
 </ul>
 {{< /rawhtml >}}
 
-The government used these classifications to determine whether to guarantee loans. Banks used them to determine if people were eligible for mortgages, and wouldn't provide loans to buy homes in the "declining" or "hazardous" neighborhoods.
+El gobierno usaba estas clasificaciones para determinar si otorgaría préstamos. Los bancos las usaban para determinar si las personas eran elegibles para una hipoteca, y no otorgaban préstamos para comprar viviendas en los vecindarios “en declive” o “peligrosos”. 
 
-This was **redlining** - drawing boundaries around neighborhoods based on residents' race and depriving them of resources and opportunities - effectively racializing poverty in cities across the U.S.. This is structural racism: where racism is built into the rules of society.
+Esto era el **redlining**: el establecimiento de límites alrededor de los vecindarios según la raza de los residentes y la privación de recursos y oportunidades, lo que efectivamente racializaba la pobreza en las ciudades de todos los EE. UU. Esto es el racismo estructural: donde el racismo se introduce en las normas de la sociedad. 
 
-The map below shows the extent of redlining in New York City.
+El mapa a continuación muestra el alcance del redlining en la ciudad de Nueva York. 
 
 {{< rawhtml>}}
 <div class="py-0">
@@ -66,48 +66,36 @@ The map below shows the extent of redlining in New York City.
 </div>
 {{< /rawhtml>}}
 
-### Redlining drove residential segregation
-As a result of redlining, people of color were denied access to “desirable” neighborhoods by racist real estate practices - and denied loans to buy homes in neighborhoods labeled "declining" or "hazardous." Real estate agents also used exploitative tactics like {{< rawhtml>}}<a href="#bbcollapse" data-toggle="collapse"
-        class="badge badge-pill badge-warning">blockbusting</a>, <a
+### El redlining impulsó la segregación residencial 
+Como resultado del redlining, a las personas negras se les negaba el acceso a los vecindarios “atractivos” con prácticas inmobiliarias racistas, y se les negaban préstamos para comprar viviendas en vecindarios catalogados como “en declive” o “peligrosos”. Los agentes inmobiliarios también usaban tácticas explotadoras, como el acoso inmobiliario, la venta de contratos y los convenios racialmente restrictivos, para profundizar y reforzar la segregación en los vecindarios.  {{< rawhtml>}}<a href="#bbcollapse" data-toggle="collapse"
+        class="badge badge-pill badge-warning">el acoso inmobiliario</a>, <a
         href="#contractcollapse" data-toggle="collapse"
-        class="badge badge-pill badge-warning">contract selling</a>, and <a
+        class="badge badge-pill badge-warning">la venta de contratos </a>, y <a
         href="#rrccollapse" data-toggle="collapse"
-        class="badge badge-pill badge-warning">racially restrictive covenants</a>, to
-    deepen and enforce neighborhood segregation.</p>
+        class="badge badge-pill badge-warning">los convenios racialmente restrictivos</a>, para profundizar y reforzar la segregación en los vecindarios.</p>
 
 <div class="collapse fs-sm py-2 px-2 mb-2 mx-2" id="bbcollapse"
     style="margin-top: 0px!important; background-color: #f9f9f9;">
-    <p><strong>Blockbusting</strong> was a practice used by real estate agents. Since
-        many white people viewed people of color as a social and economic threat to
-        their neighborhoods, agents would tell white homeowners that people of color
-        were about to move into the neighborhood. </p>
-    <p>This would convince homeowners that their house's value would fall - and they
-        would sell for a lower price. Real estate agents would then turn around and sell
-        property to people of color for inflated prices.</p>
+    <p><strong>El acoso inmobiliario </strong> era una práctica empleada por los agentes inmobiliarios. Como muchas personas blancas consideraban a las personas negras una amenaza social y económica para sus vecindarios, los agentes les decían a los propietarios blancos que había personas negras que estaban por mudarse al vecindario. </p>
+    <p>Esto convencía a los propietarios de que el valor de sus viviendas descendería, y vendían las propiedades a un precio más bajo. Luego, los agentes inmobiliarios les vendían las propiedades a las personas negras a precios excesivos. </p>
 </div>
 <div class="collapse fs-sm py-2 px-2 mb-2 mx-2" id="contractcollapse"
     style="background-color: #f9f9f9;">
-    <p><strong>Contract selling</strong> was a deceptive and exploitative real estate
-        practice that targeted people of color with private loans to buy homes. These
-        loans often had high interests rates and manipulative terms - in some cases,
-        forcing the buyer to give up their home if they missed even one loan payment.
+    <p><strong>La venta de contratos </strong> era una práctica inmobiliaria engañosa y explotadora que tenía como objetivo a las personas negras con préstamos privados para comprar viviendas. Estos préstamos solían tener tasas de interés altas y términos manipuladores que, en algunos casos, obligaban al comprador a renunciar a la vivienda si dejaba pasar apenas un pago del préstamo.
     </p>
-    <p>These contracts often made people responsible for paying back far more money than
-        the house they bought was worth. </p>
+    <p>Por lo general, estos contratos hacían que las personas debieran pagar mucho más dinero que el valor de la vivienda que compraban. </p>
 </div>
 <div class="collapse fs-sm py-2 px-2 mb-2 mx-2" id="rrccollapse"
     style="background-color: #f9f9f9;">
-    <p>A <strong>racially-restrictive covenant</strong> is a clause in the deed for a
-        property that prevents the owner from selling the property to people of color.
+    <p><strong>Un convenio racialmente restrictivo </strong>  es una cláusula en el título de la propiedad que evita que el propietario les venda la vivienda a personas negras.
     </p>
-    <p>Racially-restrictive covenants were a way to enforce residential segregation, to
-        ensure that people of color were kept out of white neighborhoods. </p>
+    <p>Los convenios racialmente restrictivos eran una manera de imponer la segregación residencial, para garantizar que las personas negras permanecieran fuera de los vecindarios blancos.  </p>
 </div>
 {{< /rawhtml>}}
 
-Owning a home is a powerful way to achieve financial stability. These policies concentrated people of color in neighborhoods deprived of investment and prevented them from accessing loans and buying property - while while white residents were provided more resources and opportunities.
+Ser propietario de una vivienda es una forma poderosa de alcanzar estabilidad financiera. Estas políticas concentraban a las personas negras en vecindarios privados de inversiones y no les permitían acceder a préstamos ni comprar una vivienda, mientras que los residentes blancos recibían más recursos y oportunidades. 
 
-Enormous areas of New York City were redlined. Explore the extent of HOLC's redlining in NYC's five boroughs:
+Se discriminaron grandes áreas de la ciudad de Nueva York. Explore el alcance del redlining de la HOLC en los cinco distritos de la ciudad de Nueva York: 
 
 {{< rawhtml>}}
 <ul class="nav nav-tabs fs-sm" id="myTab" role="tablist">
@@ -134,36 +122,20 @@ Enormous areas of New York City were redlined. Explore the extent of HOLC's redl
     </li>
     <li class="nav-item">
         <a class="nav-link" id="map-tab" data-toggle="tab" href="#citywidemap"
-            role="tab" aria-controls="citywidemap" aria-selected="false">Citywide
-            Map</a>
+            role="tab" aria-controls="citywidemap" aria-selected="false">Mapa de toda la ciudad </a>
     </li>
 </ul>
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="manhattan" role="tabpanel"
         aria-labelledby="manhattan-tab">
         <br>
-        <iframe title="Redlining in Manhattan" aria-label="Stacked Bars"
-            id="datawrapper-chart-8RvsX" src="//datawrapper.dwcdn.net/8RvsX/4/"
-            scrolling="no" frameborder="0"
-            style="width: 0; min-width: 100% !important; border: none;"
-            height="426"></iframe>
-        <script
-            type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();</script>
+        <iframe title="Manhattan - Spanish" aria-label="Stacked Bars" id="datawrapper-chart-9btl1" src="https://datawrapper.dwcdn.net/9btl1/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="349"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
         <br><br>
-        <p>Large parts of Manhattan were redlined. However, reinvestment in recent
-            decades has lead to rising property values and the displacement of some
-            former residents. Neighborhoods that were once redlined now have some of the
-            city's most expensive real estate. </p>
+        <p>Se discriminaron grandes zonas de Manhattan. Sin embargo, la reinversión en las últimas décadas ha provocado el aumento de los valores inmobiliarios y el desplazamiento de algunos exresidentes. Los vecindarios que alguna vez fueron discriminados ahora tienen algunos de los valores inmobiliarios más altos de la ciudad. [FLAG - DIFFERENT TEXT HERE FOR DIFFERENT TABS] </p>
     </div>
     <div class="tab-pane fade" id="bronx" role="tabpanel" aria-labelledby="bronx-tab">
         <br>
-        <iframe title="Redlining in the Bronx" aria-label="Stacked Bars"
-            id="datawrapper-chart-kO9TQ" src="//datawrapper.dwcdn.net/kO9TQ/4/"
-            scrolling="no" frameborder="0"
-            style="width: 0; min-width: 100% !important; border: none;"
-            height="426"></iframe>
-        <script
-            type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();</script>
+        <iframe title="Bx - Spanish" aria-label="Stacked Bars" id="datawrapper-chart-P5YVE" src="https://datawrapper.dwcdn.net/P5YVE/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="381"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
         <br><br>
         <p>As with Manhattan, huge swaths of residential neighborhoods in the Bronx were
             declared "declining" or "hazardous" in HOLC's redlining map. Unlike
@@ -173,84 +145,60 @@ Enormous areas of New York City were redlined. Explore the extent of HOLC's redl
     <div class="tab-pane fade" id="brooklyn" role="tabpanel"
         aria-labelledby="brooklyn-tab">
         <br>
-        <iframe title="Redlining in Brooklyn" aria-label="Stacked Bars"
-            id="datawrapper-chart-9oZ0R" src="//datawrapper.dwcdn.net/9oZ0R/4/"
-            scrolling="no" frameborder="0"
-            style="width: 0; min-width: 100% !important; border: none;"
-            height="570"></iframe>
-        <script
-            type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();</script>
+        <iframe title="Bklyn - Sp" aria-label="Stacked Bars" id="datawrapper-chart-YRGLD" src="https://datawrapper.dwcdn.net/YRGLD/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="493"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
         <br><br>
         <p>Brooklyn also saw extensive redlining that lead to deep disinvestment and
             generations of poverty.</p>
     </div>
     <div class="tab-pane fade" id="queens" role="tabpanel" aria-labelledby="queens-tab">
         <br>
-        <iframe title="Redlining in Queens" aria-label="Stacked Bars"
-            id="datawrapper-chart-eAlbF" src="//datawrapper.dwcdn.net/eAlbF/4/"
-            scrolling="no" frameborder="0"
-            style="width: 0; min-width: 100% !important; border: none;"
-            height="474"></iframe>
-        <script
-            type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();</script>
+        <iframe title="Qns - Sp" aria-label="Stacked Bars" id="datawrapper-chart-bq8UR" src="https://datawrapper.dwcdn.net/bq8UR/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="397"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+        </script>
         <br><br>
         <p>Queens saw significantly less redlining than other boroughs.</p>
     </div>
     <div class="tab-pane fade" id="staten" role="tabpanel" aria-labelledby="staten-tab">
         <br>
-        <iframe title="Redlining in Staten Island" aria-label="Stacked Bars"
-            id="datawrapper-chart-n8cgy" src="//datawrapper.dwcdn.net/n8cgy/4/"
-            scrolling="no" frameborder="0"
-            style="width: 0; min-width: 100% !important; border: none;"
-            height="210"></iframe>
-        <script
-            type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();</script>
+        <iframe title="Si - Sp" aria-label="Stacked Bars" id="datawrapper-chart-f2OOZ" src="https://datawrapper.dwcdn.net/f2OOZ/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="133"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
         <br><br>
         <p>Like Queens, Staten Island saw much less redlining than other boroughs.</p>
     </div>
     <div class="tab-pane fade" id="citywidemap" role="tabpanel"
         aria-labelledby="map-tab">
-        <iframe title="Aggressive redlining of the Bronx, Brooklyn, and Manhattan"
-            aria-label="USA new york city community districts choropleth map"
-            id="datawrapper-chart-4Vuf4" src="//datawrapper.dwcdn.net/4Vuf4/4/"
-            scrolling="no" frameborder="0"
-            style="width: 0; min-width: 100% !important; border: none;"
-            height="400"></iframe>
-        <script
-            type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();</script>
+        <iframe title="Map - Sp." aria-label="Map" id="datawrapper-chart-NBnYv" src="https://datawrapper.dwcdn.net/NBnYv/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="661"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
     </div>
 </div>
 {{< /rawhtml>}}
 
 
-### Redlining's effects continue today
-In New York City, many once-thriving neighborhoods experienced severe disinvestment as a result of redlining, which caused inequality that continued from one generation to the next. Neighborhoods that were redlined in the 1930s have higher rates of poverty even today – nearly 90 years after the maps were created. According to the [National Community Reinvestment Coalition](https://ncrc.org/holc/), 3 out of every 4 neighborhoods in the USA that were redlined in the 1930s are still low-to-moderate income today - and 2 out of every 3 are predominantly populated by people of color.
+### Los efectos del redlining continúan en la actualidad 
+En la ciudad de Nueva York, muchos vecindarios que alguna vez fueron prósperos sufrieron una grave falta de inversión como resultado del redlining, lo que provocó desigualdades que continuaron de una generación a otra. Los vecindarios discriminados en la década de 1930 tienen índices de pobreza más altos incluso en la actualidad, casi 90 años después de la creación de los mapas. Según [la Coalición Nacional de Reinversión Comunitaria](https://ncrc.org/holc/), 3 de cada 4 vecindarios en los EE. UU. que fueron discriminados en la década de 1930 aún son de ingresos bajos a moderados en la actualidad, y 2 de cada 3 poseen una población mayoritariamente negra. 
+
+El redlining es el principal ejemplo de 
 
 Redlining is a prime example of {{< rawhtml>}}  <a href="#disinvestmentCollapseTwo" data-toggle="collapse"
-class="badge badge-pill badge-warning">neighborhood disinvestment</a>{{< /rawhtml>}}: denying or withholding public and private funding, city services, or other resources that neighborhoods - and their residents - need to thrive. When these resources are withheld, it creates ["environments that make [people] sick"](https://www.who.int/hdp/poverty/en/).
+class="badge badge-pill badge-warning">la falta de inversión en los vecindarios</a>{{< /rawhtml>}}: : negar o retener fondos públicos y privados, servicios de la ciudad y otros recursos que los vecindarios y sus residentes necesitan para progresar. Cuando se retienen estos recursos, se crean [“entornos que enferman [a las personas]”]((https://www.who.int/hdp/poverty/en/)). 
 
 {{< rawhtml>}}
 <div class="collapse py-2 px-2 mx-2 fs-sm" id="disinvestmentCollapseTwo"
     style="margin-top: 0px!important; background-color: #f9f9f9;">
-    <p><strong>Disinvestment</strong> can be:
+    <p><strong>La falta de inversión </strong> puede darse mediante lo siguiente:
     <ul>
-        <li>Denying people loans to buy homes - like through <span
-                style="font-weight: bold; color:#7e0000">redlining</span> and other
-            well-documented racist real estate practices</li>
-        <li>Housing neglect by landlords, leading to unhealthy housing</li>
-        <li>A decline in public funding for housing, schools, and other vital services
+        <li>Negarles a las personas préstamos para comprar viviendas, como a través del redlining y otras prácticas inmobiliarias racistas bien documentadas. </li>
+        <li>Negligencia edilicia por parte de los arrendadores, lo que hace que las viviendas sean insalubres. </li>
+        <li>Reducción de los fondos públicos para viviendas, escuelas y otros servicios fundamentales. 
         </li>
-        <li>Fewer job opportunities and lower-paying jobs</li>
-        <li>Emphasis on policing over pro-social resources</li>
+        <li>Menos oportunidades laborales y empleos con menor remuneración. </li>
+        <li>Énfasis en las políticas por sobre los recursos prosociales. </li>
     </ul>
     </p>
 </div>
 {{< /rawhtml>}}
-Policies like redlining show us that poverty isn't a bit of bad luck, inability to find a good job, or not working hard enough. Poverty is deeper and more powerful: generations of deprivation and disinvestment withholding resources, opportunity, wealth, and health from people and neighborhoods - often, driven by racism.
+Las políticas como el redlining nos demuestran que la pobreza no se trata solo de la mala suerte, la incapacidad para encontrar un buen empleo o el hecho de no trabajar lo suficiente. La pobreza es más profunda y más poderosa: generaciones de carencias y falta de inversión que niegan recursos, oportunidades, riqueza y salud a las personas y los vecindarios, a menudo, impulsados por el racismo. 
 
-Though redlining was banned in 1968, other forms of housing discrimination persist. But redlining was special: because of how it worsened poverty and segregation in cities across the United States, leaving a legacy of income and racial disparities in health outcomes.
+Si bien el redlining se prohibió en 1968, persisten otras formas de discriminación edilicia. Sin embargo, el redlining fue especial, por el modo en el que empeoró la pobreza y la segregación en las ciudades de todos los EE. UU., dejando un legado de disparidades económicas y raciales en las consecuencias para la salud. 
 
-Public health is about far more than changing people's behaviors at the individual level: it's about building a society that supports health and well-being, and moving into our future by confronting the past.
+La salud pública implica mucho más que cambiar las conductas de las personas a nivel individual: se trata de construir una sociedad que apoye la salud y el bienestar, y avanzar hacia nuestro futuro confrontando el pasado. 
 
 *More resources about redlining:*
 - [Mapping Inequality: Redlining in New Deal America](https://dsl.richmond.edu/panorama/redlining/#loc=4/36.71/-96.93&opacity=0.8), where you can explore redlining maps and original documents for your neighborhood.
