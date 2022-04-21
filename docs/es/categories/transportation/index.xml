@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>transportation on Environment &amp; Health Data Portal</title>
+    <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/es/categories/transportation/</link>
+    <description>Recent content in transportation on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 22 Apr 2020 08:33:22 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/es/categories/transportation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>La calidad el aire durante la COVID-19</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/es/data-stories/aqcovid/</link>
+      <pubDate>Wed, 22 Apr 2020 08:33:22 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/es/data-stories/aqcovid/</guid>
+      <description>¿Qué sucede cuando la ciudad de Nueva York se queda en casa? La pandemia de la COVID-19 cambió por completo la vida de todos los neoyorquinos. El brote afectó muchos aspectos de nuestra vida diaria, pero también hay efectos menos evidentes, como los impactos en el medio ambiente.
+La Encuesta del Aire de la Comunidad de la Ciudad de Nueva York (NYC Community Air Survey) usa monitores de la calidad del aire para tomar mediciones por hora de partículas finas (PM2.</description>
+    </item>
+    
+  </channel>
+</rss>

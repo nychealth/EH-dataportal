@@ -57,6 +57,21 @@
 
         <!--start main content section-->
         <div class="col-xl-7 overflow-hidden fs-rg mr-auto" id="primary-content">
+            
+            <!-- language selection -->
+            
+            {{ if .IsTranslated }}
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                        {{ range .Translations }}
+                        <li><a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>  
+                        {{ end }}
+                    </ul>
+                </div>
+            </nav>
+            {{ end }}
+
             <div class="wide my-2 px-5">
                 {{ .Content}}
             </div>

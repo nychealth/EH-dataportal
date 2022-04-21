@@ -12,6 +12,16 @@
 </title>
 
 
+
+
+	
+	<link rel="alternate" hreflang="es" href="https://nycehs.github.io/ehs-data-portal-frontend-temp/es/data-stories/housing/" title="Español">
+	
+	<link rel="alternate" hreflang="cn" href="https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/housing/" title="中文">
+	
+
+
+
 <meta name="description" content="Here is the site global SEO description">
 <link rel="canonical" href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/housing/" />
 <meta name="robots" content="all" />
@@ -215,6 +225,23 @@
 
         
         <div class="col-xl-7 overflow-hidden fs-rg mr-auto" id="primary-content">
+            
+            
+            
+            
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                        
+                        <li><a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/es/data-stories/housing/">Español</a>&nbsp;|&nbsp;</li>  
+                        
+                        <li><a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/housing/">中文</a>&nbsp;|&nbsp;</li>  
+                        
+                    </ul>
+                </div>
+            </nav>
+            
+
             <div class="wide my-2 px-5">
                 <h3 id="for-health-place-matters">For health, place matters</h3>
 <p>What determines whether or not you’re healthy? You may think about what you eat, whether you exercise, whether you smoke and your family medical history.</p>
@@ -398,29 +425,28 @@ Coalition: Worst Evictor's List</a></div>
 function changeMap(x) {
     var spec;
     if (x==0) {
-        spec = "none.vl.json";
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/none.vl.json";
     } else if (x==3) {
-        spec = "three.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/three.vl.json"
     } else if (x==4) {
-        spec = "cockroaches.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/cockroaches.vl.json"
     } else if (x==5) {
-        spec = "micerats.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/micerats.vl.json"
     } else if (x==6) {
-        spec = "cracks.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/cracks.vl.json"
     } else if (x==7) {
-        spec = "water.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/water.vl.json"
     } else if (x==8) {
-        spec = "broken.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/broken.vl.json"
     } else if (x==9) {
-        spec = "breakdown.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/breakdown.vl.json"
     } else if (x==10) {
-        spec = "supplemental.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/supplemental.vl.json"
     } else if (x==11) {
-        spec = "noac.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/noac.vl.json"
     } else if (x==12) {
-        spec = "toilet.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/toilet.vl.json"
     } else {};
-
 
     vegaEmbed("#housingmap",spec)
 }
@@ -430,7 +456,7 @@ function changeMap(x) {
 </p>
 <div id='housingmap' style="width:100%; height: 550px"></div>
 <script type="text/javascript">
-  var spec = 'three.vl.json';
+  var spec = 'https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/main\/datastories\/housing\/mapspec-en\/three.vl.json';
   vegaEmbed('#housingmap', spec).then(function(result) {
     
   }).catch(console.error);

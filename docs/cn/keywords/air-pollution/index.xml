@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>air pollution on Environment &amp; Health Data Portal</title>
+    <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/keywords/air-pollution/</link>
+    <description>Recent content in air pollution on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 22 Apr 2020 08:33:22 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/keywords/air-pollution/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>COVID-19期间的空气质量</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/aqcovid/</link>
+      <pubDate>Wed, 22 Apr 2020 08:33:22 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/aqcovid/</guid>
+      <description>纽约市民待在家里会发生什么？ COVID-19大流行颠覆了所有纽约人的生活。疫情影响了我们日常生活的许多方面，但也有一些不太明显的影响，例如对我们的环境的影响。
+纽约市社区空气调查（NYC Community Air Survey）使用空气质量监测器在纽约市周围的几个站点每小时测量细小颗粒物（PM2.5）。
+一般来说，纽约市周边地区的PM2.5水平会因一天中的特定时间（上下班高峰时段和营业时间的空气质量会变差）和天气状况（可能会将污染困在纽约市或从其他州吹进来）而发生变化。
+然而，随着纽约市及周边社区采取减缓COVID-19传播的措施，纽约市的空气质量发生了显著变化。例如，随着纽约市民开始居家隔离，当我们查看Midtown Manhattan的空气质量时，PM2.5水平得到降低。
+  !function () { &#34;use strict&#34;; window.addEventListener(&#34;message&#34;, function (a) { if (void 0 !== a.data[&#34;datawrapper-height&#34;]) for (var e in a.data[&#34;datawrapper-height&#34;]) { var t = document.getElementById(&#34;datawrapper-chart-&#34; + e) || document.querySelector(&#34;iframe[src*=&#39;&#34; + e + &#34;&#39;]&#34;); t &amp;&amp; (t.style.height = a.data[&#34;datawrapper-height&#34;][e] + &#34;px&#34;) } }) }();   春季和秋季的PM2.5水平往往低于冬季或夏季，因此3月和4月初的水平下降是正常的。然而，像midtown Manhattan这样交通流量大的站点的PM2.5水平通常始终高于交通流量小的站点。从春季开始，Midtown站点的PM2.5水平比往常更接近交通流量小的Queens区的参考位置。
+除了异常低的PM2.5水平外，二氧化氮的含量也大幅下降，这是一种主要来自交通的污染物。以下数据由纽约州环境保护厅（NYS Department of Environmental Conservation）在Queens区Long Island Expressway沿线一个临近马路的站点测量得出。
+  !function () { &#34;use strict&#34;</description>
+    </item>
+    
+  </channel>
+</rss>
