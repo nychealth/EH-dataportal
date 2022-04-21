@@ -9,7 +9,7 @@ resources/_gen/assets/
 .hugo_build.lock
 
 # don't track node modules
-node_modules
+node_modules/
 
 content/Simplified Chinese/
 content/Spanish/
