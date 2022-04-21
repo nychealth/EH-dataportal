@@ -4,6 +4,12 @@ This repository contains a prototype of the Environment and Health Data Portal. 
 
 ## General Development
 
+### Data repository
+
+Most of the data used by the site is stored in the separate [EHDP-data](https://github.com/nychealth/EHDP-data) repository. This setup allows us to update the site's data without needing to re-build the entire site. Look there for descriptions of the data files, and for the code used to generate the them.
+
+Note that any file required to *build* the site should remain with the source code, but anything required only for display can and should be stored in the remote data repo, EHDP-data. 
+
 ### Getting started
 You will need the following things properly installed on your computer.
 
@@ -11,7 +17,7 @@ You will need the following things properly installed on your computer.
 - [Hugo](https://gohugo.io/) 
 - [Grunt](https://gruntjs.com/)
 
-Our git patterns are to develop on branches labelled hotfix-, content-, or feature-. Keep breanch work focused on discrete tasks to avoid merge conflicts later. 
+Our git patterns are to develop on branches labelled hotfix-, content-, or feature-. Keep branch work focused on discrete tasks to avoid merge conflicts later. 
 
 In your local development environment, start the server by typing `hugo serve --environment local --disableFastRender` into the terminal.
 - `hugo serve` starts the server - you can then browse the site at http://localhost:1313/ehs-data-portal-frontend-temp 
@@ -34,6 +40,8 @@ Currently, config/local/config.toml has a variable ```devpath = "/ehs-data-porta
 ```<div class="site-header bg-primary" style="background-image: url({{ $.Site.Params.devpath}}/images/header_background.jpg)">``` 
 
 To run a local-environment-specific serve or build, enter ```hugo serve --environment local``` or ```hugo build --environment local```. This will merge the contents of /config/local/config.toml with /config/_default/config.toml.
+
+**You may find it useful to create aliases for these functions ([in Powershell](https://www.tutorialspoint.com/how-to-create-powershell-alias-permanently), or [Bash](https://www.shell-tips.com/bash/alias/))**.
 
 ### Deployment
 The development branch is served on github pages, here: [Environment and Health Data Portal](https://nycehs.github.io/ehs-data-portal-frontend-temp).
@@ -60,7 +68,7 @@ This section contains brief descriptions of how to create new content types. Add
 - To publish, set `draft: false`. The data story will be a part of the site when you serve or build it, and it will appear on the related pages if it's been tagged properly via `categories`.
 
 ### Key Topics
-Key Topics associate different content types by theme, and they also host their own child pages (such as the Air Quality Explorer, or the interactive Heat Vulnerability Index). Each Key Topic page is an `_index.md` file in a titled folder. Child pages are subfolders within that - for example, see the folder structure under `content/key-topics/airquality`.
+Key Topics associate different content types by theme, and they also host their own child pages (such as the Air Quality Explorer, or the interactive Heat Vulnerability Index). Each Key Topic page is an `_index.md` file in a titled folder. Child pages are subfolders within that - for example, see the folder structure under `/content/key-topics/airquality`.
 
 To create a new Key Topic:
 - Create a markdown file with `hugo new key-topics/TITLE/_index.md`
@@ -73,10 +81,10 @@ The data explorer includes markdown files for each subtopic. For the prototype v
 
 ### Neighborhood Reports
 To publish a new neighborhood report, you'd need:
-- JSON files for each neighborhood stored in `data/reports`
-- YML stored in `data/globals`
-- Preview chart images stored in `static/visualizations/images`
-- Indicator data files stored in `static/visualizations/csv/nr`
+- JSON files for each neighborhood stored in `EHDP-data/neighborhoodreports/reports`
+- YML stored in `/data/globals`
+- Preview chart images stored in `EHDP-data/neighborhoodreports/images`
+- Indicator data files stored in `EHDP-data/neighborhoodreports/data`
 
 ---
 
@@ -114,7 +122,9 @@ Other shortcodes, like our Vega-lite and Datawrapper shortcodes, can have argume
 ---
 
 ## Main Components
+
 ### Data Stories
+
 New data stories can be produced by adding a content markdown file to `/content/data-stories`. 
 
 **Banner images**: Data stories include a banner image. This image is added to the data story's directory. It should be called ```ds-[storyname].jpg```. The image should be referenced in the front matter with: `images: ds-assults.jpg`.
@@ -128,20 +138,20 @@ It is referenced via in-line CSS in themes/dohmh/layouts/data_stories/single.htm
 ## Neighborhood Reports
 Neighborhood Reports use content markdown, json data, and CSV data to generate the reports.
 
-* Report data for the site is stored in the `/data/reports/` folder. These json exist for each neighborhood-and-report combination, and specify what indicators and summary statistics are a part of the report.
+* Report data for the site is stored in [`EHDP-data/neighborhoodreports/reports`](https://github.com/nychealth/EHDP-data/tree/main/neighborhoodreports/reports). These json exist for each neighborhood-and-report combination, and specify what indicators and summary statistics are a part of the report.
 * There is a markdown file for each report in site content that references the report metadata from its front matter.
-* There are two main templates used for reports `themes/dohmh/layouts/location/single` is the main report template along with the partial that is loaded for each indicator `themes/dohmh/partials/report_indicator`.
+* There are two main templates used for reports `/themes/dohmh/layouts/location/single.html` is the main report template along with the partial that is loaded for each indicator `/themes/dohmh/partials/report_indicator.html`.
 
 Visualizations are powered by Vega-Lite with code and basic implementation approach provided by DOHMH team.
-* Visualization specifications and functions to generate them are included in `assets/js/site.js`.
-* CSV data for visualizations is stored in the `/static/visualizations/csv/nr/`folder.
-* SVG images for visualizations is stored in the `/static/visualizations/images/`folder.
-* All html, function calls, and dynamic variables are found in the `themes/dohmh/partials/report_indicator` partial.
+* Visualization specifications for the summary, trend, and map are included in `/static/visualizations/spec`.
+* CSV data for visualizations is stored in [`EHDP-data/neighborhoodreports/data`](https://github.com/nychealth/EHDP-data/tree/main/neighborhoodreports/data).
+* SVG images for visualizations is stored in [`EHDP-data/neighborhoodreports/images`](https://github.com/nychealth/EHDP-data/tree/main/neighborhoodreports/images).
+* All html, function calls, and dynamic variables are found in the `/themes/dohmh/partials/report_indicator.html` partial.
 * Functions are initiated on modal open following methods detailed in Bootstrap 4.5 docs.
 
-There are some critical content elements that are site wide or used in multiple pages and are stored in `data/globals`. 
-* `data/globals/report_content/...` - There should be five of these files. One for each report type. These include the content in the four cards at the bottom of each report page.
-* `data/globals/seo_defaults.yml` - These are the Site default meta values. The SEO image should stored in the `assets/images` folder. Image dimensions should be 2400 × 1260 for a 2x image resolution.
+There are some critical content elements that are site wide or used in multiple pages and are stored in `/data/globals`. 
+* `/data/globals/report_content/...` - There should be five of these files. One for each report type. These include the content in the four cards at the bottom of each report page.
+* `/data/globals/seo_defaults.yml` - These are the Site default meta values. The SEO image should stored in the `/assets/images` folder. Image dimensions should be 2400 × 1260 for a 2x image resolution.
 
 ### Data Explorer
 Currently, the Data Explorer just includes subtopics that link to Indicator Pages on the extant Portal. 
@@ -164,8 +174,8 @@ indicators: [
 
 For the future iteration of the Data Vis Module, the following functions will be in place:
 - Indicators will be associated with subtopics via frontmatter
-- The page will display Indicator metadata that is stored in `Indicators.json`
-- Upon indicator selection, the page will display data stored in `(indicatorID).json`.
+- The page will display Indicator metadata that is stored in [`EHDP-data/indicators/indicators.json`](https://github.com/nychealth/EHDP-data/tree/main/indicators/indicators.json)
+- Upon indicator selection, the page will display data stored in `EHDP-data/indicators/data/(indicatorID).json`.
 
 ### Key Topics
 Key topic pages ingest content in other sections (neighborhood-reports, data-stories, and data-explorer) as well as child pages, to display related content from across the site.
@@ -186,7 +196,7 @@ When you add or update content, re-Index the site by running `grunt lunr-index` 
 ### SEO
 The site has been configured to support both site wide SEO meta defaults as well as per page overrides.
 
-* The `themes/dohmh/layouts/partials/seo.html` file is the template for SEO meta that is pulled into the html head and related partial.
+* The `/themes/dohmh/layouts/partials/seo.html` file is the template for SEO meta that is pulled into the html head and related partial.
 * Default data are set in two places `/data/globals/seo_defaults.yml` has basic meta settings while `/data/globals/social.yml` has any of your social destinations.
 * In content front matter the following fields can override the site-wide defaults.
   * `title` entry title will override default title.
@@ -264,7 +274,7 @@ If a file contains ```layout: custom``` in the frontmatter,  Hugo will look for 
 ### Data visualization shortcodes
 Shortcodes for Datawraper and Vega/Vega-Lite both exist. With shortcodes, you enter simple code in markdown that inserts components into pre-written code. 
 
-To embed a Vega/Vega-Lite visualization, simply add this:. The shortcut inserts the id and the spec into standard V/VL code. Store chart specifications in ```static/visualizations/spec```. 
+To embed a Vega/Vega-Lite visualization, simply add this:. The shortcut inserts the id and the spec into standard V/VL code. Store chart specifications in ```/static/visualizations/spec```. 
 
 Vega shortcode example:
 ```{{< vega id="uniqueDivID" spec="../../visualizations/spec/bartest.vl.json" >}}```

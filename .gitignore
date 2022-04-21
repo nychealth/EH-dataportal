@@ -1,6 +1,6 @@
 
 # don't track resources folder (temp files for serve)
-resources
+resources/_gen/assets/
 
 # don't track mac file 
 .DS_Store
@@ -11,5 +11,5 @@ resources
 # don't track node modules
 node_modules
 
-content/Simplified Chinese
-content/Spanish
+content/Simplified Chinese/
+content/Spanish/
