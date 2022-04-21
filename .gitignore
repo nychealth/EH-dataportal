@@ -10,3 +10,5 @@ resources
 
 # don't track node modules
 node_modules
+content/Simplified Chinese/
+content/Spanish/
