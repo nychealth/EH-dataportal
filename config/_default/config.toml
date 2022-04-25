@@ -9,6 +9,9 @@ theme = "dohmh"
 publishDir = "docs"
 paginate = 9
 
+[markup.goldmark.renderer]
+  unsafe = true # Allow HTML in md files
+
 [languages.en]
 languageName = "English"
 languageDesc = "English"
