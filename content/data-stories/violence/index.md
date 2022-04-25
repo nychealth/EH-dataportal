@@ -26,14 +26,8 @@ A common understanding of violence can help promote public health approaches to 
 
 We can use data and research to understand what leads to violence, to advocate for and help implement strategies to reduce people’s exposure to violence - to keep them safe and prevent lifelong harm to their health.
 
-{{< rawhtml>}}
-        <span class="text-muted"><i class="fs-xl fas fa-hands-helping text-center"></i>&nbsp;<em>Are you
-                or is somebody you know affected by violence? Help is available and you don't have to go
-                through it alone. Call 1-888-NYC-WELL (1-888-692-9355) for a free, confidential help
-                line
-                for New York City residents.</em></span><br><br>
-{{< /rawhtml>}}
-
+<span class="text-muted"><i class="fs-xl fas fa-hands-helping text-center"></i>&nbsp;<em>Are you
+or is somebody you know affected by violence? Help is available and you don't have to go through it alone. Call 1-888-NYC-WELL (1-888-692-9355) for a free, confidential help line for New York City residents.</em></span><br><br>
 
 ## Background on violence in New York City
 
