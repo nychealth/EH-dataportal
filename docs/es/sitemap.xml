@@ -243,6 +243,26 @@
   </url>
   
   <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/es/data-stories/violence/</loc>
+    <lastmod>2021-02-08T08:07:31-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/violence/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/violence/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/es/data-stories/violence/"
+                />
+  </url>
+  
+  <url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/es/keywords/poverty/</loc>
     <lastmod>2021-02-08T08:07:31-04:00</lastmod>
     <xhtml:link
@@ -359,46 +379,6 @@
                 rel="alternate"
                 hreflang="es"
                 href="https://nycehs.github.io/ehs-data-portal-frontend-temp/es/keywords/violence/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/es/data-stories/violence/</loc>
-    <lastmod>2021-02-08T08:07:31-04:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/violence/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="cn"
-                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/violence/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/es/data-stories/violence/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/es/data-stories/redlining/</loc>
-    <lastmod>2021-01-06T08:07:31-04:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/redlining/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="cn"
-                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/redlining/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/es/data-stories/redlining/"
                 />
   </url>
   
@@ -539,6 +519,26 @@
                 rel="alternate"
                 hreflang="es"
                 href="https://nycehs.github.io/ehs-data-portal-frontend-temp/es/data-stories/housing/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/es/data-stories/redlining/</loc>
+    <lastmod>2021-01-06T08:07:31-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/redlining/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/redlining/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/es/data-stories/redlining/"
                 />
   </url>
   

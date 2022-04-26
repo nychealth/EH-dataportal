@@ -383,26 +383,6 @@
   </url>
   
   <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/redlining/</loc>
-    <lastmod>2021-01-06T08:07:31-04:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/redlining/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/es/data-stories/redlining/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="cn"
-                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/redlining/"
-                />
-  </url>
-  
-  <url>
     <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/keywords/asthma/</loc>
     <lastmod>2021-01-06T08:07:31-04:00</lastmod>
     <xhtml:link
@@ -419,26 +399,6 @@
                 rel="alternate"
                 hreflang="cn"
                 href="https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/keywords/asthma/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/housing/</loc>
-    <lastmod>2021-01-06T08:07:31-04:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/housing/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/es/data-stories/housing/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="cn"
-                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/housing/"
                 />
   </url>
   
@@ -539,6 +499,46 @@
                 rel="alternate"
                 hreflang="cn"
                 href="https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/keywords/renting/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/housing/</loc>
+    <lastmod>2021-01-06T08:07:31-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/housing/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/es/data-stories/housing/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/housing/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/redlining/</loc>
+    <lastmod>2021-01-06T08:07:31-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/redlining/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/es/data-stories/redlining/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/redlining/"
                 />
   </url>
   
