@@ -259,7 +259,7 @@ The Health Department takes a public health approach to violence. This means pro
 
 With this work, the Health Department is reinvesting in communities that have experienced disinvestment so that we can build environments where protective factors outweigh risk factors.
 
-### ......to reduce rates of violence.
+### ...to reduce rates of violence.
 Public health is about assuring the conditions in which people can be healthy.
 
 A public health approach to violence prevention relies on a response from all sectors of society to address the inequities that lead to violence. It relies on creating and supporting systems so that both institutions and neighborhoods support the health of their residents.
