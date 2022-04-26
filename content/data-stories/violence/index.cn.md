@@ -39,7 +39,7 @@ There is a lot less violence than there used to be in NYC. {{< rawhtml>}}<a href
 
 To look at violence, people often look at homicide rates. In recent years, NYC’s rate of homicides - the most extreme episodes of violence - has been under 5 per 100,000 people, down from a high of over 25 per 100,000 people from 1986-1990.
 
-{{< datawrapper title="NYC'S homicide rates have declined" src="bqQeD/1/" height="484" >}}
+{{< datawrapper title="NYC'S homicide rates have declined" src="VhCxX/1/" height="484" >}}
 
 ### ...but a drop in the homicide rate doesn't tell the whole story.
  In this chart, we look at three types of violent outcomes and how violence levels differ across the city: non-fatal assault emergency department visits, non-fatal assault hospitalizations, and homicides. These data show a larger burden of violence.
@@ -48,7 +48,7 @@ When broken down by geography, the data show that some neighborhoods experience 
 
 This pattern is consistent across the three indicators. And, neighborhoods that experience higher rates of violence have larger populations of people of color - showing that these populations shoulder a disproportionate burden of violence.
             
-{{< datawrapper title="Violence in NYC" src="PldhR/2" height="603" >}}
+{{< datawrapper title="Violence in NYC" src="Q8zbO/1" height="603" >}}
 
 <br>
 
@@ -198,7 +198,7 @@ Another way to compare poverty and violence rates is to rank neighborhoods from 
 
 Below, we can see that <span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span> ranks high in both poverty and assaults, while <span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span> ranks low for both.
 
-{{< datawrapper title="Poverty and assaults - ranks" src="639n0/1/" height="600" >}}
+{{< datawrapper title="Poverty and assaults - ranks" src="MDJ20/1/" height="600" >}}
 
 #### When we add in other risk factors, an even more significant pattern emerges.
 
@@ -234,7 +234,7 @@ data</button>
 
 <span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span> ranks highly for these risk factors that make violence more likely. By comparison, <span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span> ranks low for these factors.
 
-{{< datawrapper title="Environmental factors and violence outcomes" src="7Dx2d/4/" height="714" >}}
+{{< datawrapper title="Environmental factors and violence outcomes" src="aVd3y/1/" height="714" >}}
 <button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal" data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;About the data</button>
 
 A pattern emerges: <span style="font-weight: bold; color: #b820bb;">neighborhoods with the highest poverty rates</span> consistently rank high for risk factors experience more violence. <span style="font-weight:bold; color: #5c8ea5">Neighborhoods with the lowest poverty rates</span> consistently rank low for risk factors experience less violence.
@@ -244,7 +244,7 @@ These risk factors make up a network of environmental threats in communities tha
 
 In environments where risk factors far outweigh protective factors, higher rates of neighborhood violence emerge - and threaten the health of residents of these neighborhoods.
 
-{{< datawrapper title="Environmental factors and violence outcomes" src="CZuTa/6/" height="714" >}}
+{{< datawrapper title="Environmental factors and violence outcomes" src="ASU8a/1/" height="714" >}}
 <button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal" data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;About the data</button>
 <br>
 
