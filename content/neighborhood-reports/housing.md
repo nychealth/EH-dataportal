@@ -1,6 +1,6 @@
 ---
 title: 'Housing and Health'
-categories: ["housing","childhealth","social"]
+categories: ["housing","childhealth","social","neighborhoods"]
 layout: topiclanding
 title: 'Housing and Health in NYC'
 menu:

@@ -14,4 +14,4 @@ menu:
 layout: single
 ---
 
-Our neighborhoods are the world around us. The build environment and the social environment where we spend most of our time affect health. 
+Our neighborhoods are the world around us. The built environment and the social environment where we spend most of our time affect health. 
