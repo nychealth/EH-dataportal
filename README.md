@@ -12,11 +12,14 @@ Note that any file required to *build* the site should remain with the source co
 
 ### Getting started
 You will need the following things properly installed on your computer.
-
 - [Git](https://git-scm.com/)
-- [Hugo](https://gohugo.io/) 
+- [Hugo](https://gohugo.io/). We are currently on v0.97, and builds may not work from older versions. Run `brew upgrade hugo` to update.
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 - [Grunt](https://gruntjs.com/)
 
+If your repo doesn't contain npm node modules (which are ignored via `gitignore`), run `npm init` to create `package.json` and `npm install` to install the necessary packages (including Grunt).
+
+### Basic workflow 
 Our git patterns are to develop on branches labelled hotfix-, content-, or feature-. Keep branch work focused on discrete tasks to avoid merge conflicts later. 
 
 In your local development environment, start the server by typing `hugo serve --environment local --disableFastRender` into the terminal.
