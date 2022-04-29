@@ -3,14 +3,11 @@ name: Hugo Build to GitHub Pages [main]
 # run action on a merged PR on development
 
 on:
-  push:
+  pull_request:
     branches: 
       - devcopy
-  # pull_request:
-  #   branches: 
-  #     - 'devcopy'
-    # types:
-    #     - closed
+    types:
+      - closed
 
 jobs:
   deploy:
