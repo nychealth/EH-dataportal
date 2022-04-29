@@ -5,7 +5,7 @@ name: Hugo Build to GitHub Pages
 on:
     push:
         branches:
-            - dev-copy
+            - 'dev-copy'
         # types:
         #     - closed
 
