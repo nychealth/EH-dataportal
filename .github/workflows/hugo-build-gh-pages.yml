@@ -5,7 +5,7 @@ name: Hugo Build to GitHub Pages
 on:
   push:
     branches: 
-      - 'devcopy'
+    - 'devcopy'
   # pull_request:
   #   branches: 
   #     - 'devcopy'
@@ -21,31 +21,31 @@ jobs:
     #   group: ${{ github.workflow }}-${{ github.ref }}
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@v3
 
-      - name: Hugo setup
-        uses: peaceiris/actions-hugo@v2.4.13
-        with:
-          hugo-version: '0.97.0'
-          extended: true
+    - name: Hugo setup
+      uses: peaceiris/actions-hugo@v2.4.13
+      with:
+        hugo-version: '0.97.0'
+        extended: true
 
-      - name: Hugo cache
-        uses: actions/cache@v2
-        with:
-          path: /tmp/hugo_cache
-          key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-hugomod-
+    - name: Hugo cache
+      uses: actions/cache@v2
+      with:
+        path: /tmp/hugo_cache
+        key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-hugomod-
 
-      - name: Hugo Build
-        run: hugo --environment local
+    - name: Hugo Build
+      run: hugo --environment local
 
-      - name: Deploy to gh-p
-        uses: peaceiris/actions-gh-pages@v3
-        # if: ${{ github.ref == 'refs/heads/main' }}
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: ./docs
-          enable_jekyll: false
+    - name: Deploy to gh-p
+      uses: peaceiris/actions-gh-pages@v3
+      # if: ${{ github.ref == 'refs/heads/main' }}
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: ./docs
+        enable_jekyll: false
