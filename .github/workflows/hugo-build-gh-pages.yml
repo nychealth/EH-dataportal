@@ -1,4 +1,4 @@
-name: Hugo Build to GitHub Pages [main copy]
+name: Hugo Build to GitHub Pages [main]
 
 # run action on a merged PR on development
 
