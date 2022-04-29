@@ -44,7 +44,7 @@ To run a local-environment-specific serve or build, enter ```hugo serve --enviro
 **You may find it useful to create aliases for these functions ([in Powershell](https://www.tutorialspoint.com/how-to-create-powershell-alias-permanently), or [Bash](https://www.shell-tips.com/bash/alias/))**.
 
 ### Deployment
-The development branch is served on github pages, here: [Environment and Health Data Portal](https://nycehs.github.io/ehs-data-portal-frontend-temp).
+The `gh-pages` branch is served on GitHub Pages, here: [Environment and Health Data Portal](https://nycehs.github.io/ehs-data-portal-frontend-temp). This branch is [built](https://github.com/peaceiris/actions-hugo) and [served](https://github.com/peaceiris/actions-gh-pages) automatically by Hugo using GitHub Actions, triggered by a merged pull request on `development`. _(Note that this requires a workflow YAML file in both [`main`](https://github.com/nycehs/ehs-data-portal-frontend-temp/blob/main/.github/workflows/hugo-build-gh-pages.yml) and [`development`](https://github.com/nycehs/ehs-data-portal-frontend-temp/blob/development/.github/workflows/hugo-build-gh-pages.yml).)_
 
 The branch deploy-Neighborhood-Reports is a dead-end branch meant for deploying only the NRs to our servers.
 
