@@ -8,9 +8,39 @@ on:
       - devcopy
 
 jobs:
-  nothing:
-    name: Deploy Job [main]
-    # if: github.event.pull_request.merged == true
+  deploy:
+    name: Deploy Job [devcopy]
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-20.04
-    # concurrency:
-    #   group: ${{ github.workflow }}-${{ github.ref }}
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+
+    steps:
+    - name: Checkout [devcopy]
+      uses: actions/checkout@v3
+
+    - name: Hugo setup [devcopy]
+      uses: peaceiris/actions-hugo@v2.4.13
+      with:
+        hugo-version: '0.97.0'
+        extended: true
+
+    - name: Hugo cache [devcopy]
+      uses: actions/cache@v2
+      with:
+        path: /tmp/hugo_cache
+        key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-hugomod-
+
+    - name: Hugo Build [devcopy]
+      run: hugo --environment local
+
+    - name: Deploy to gh-p [devcopy]
+      uses: peaceiris/actions-gh-pages@v3
+      if: ${{ github.ref == 'refs/heads/gh-pages' }}
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: ./docs
+        enable_jekyll: false
