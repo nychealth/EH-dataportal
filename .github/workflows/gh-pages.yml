@@ -1,0 +1,48 @@
+name: "GitHub Pages 2"
+
+on:
+  pull_request:
+    branches:
+      - development 
+    types:
+      - closed
+
+jobs:
+  deploy:
+    name: "Deploy job 1"
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+
+    steps:
+      - name: "checkout 1"
+        uses: actions/checkout@v3
+        # with:
+        #   submodules: recursive  # Fetch Hugo themes (true OR recursive)
+        #   fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - name: "Hugo setup 1"
+        uses: peaceiris/actions-hugo@v2.4.13
+        with:
+          hugo-version: '0.97.0'
+          extended: true
+
+      # - name: cache
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: /tmp/hugo_cache
+      #     key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-hugomod-
+
+      - name: "Build 1"
+        run: hugo --environment local
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./docs
+          enable_jekyll: false
