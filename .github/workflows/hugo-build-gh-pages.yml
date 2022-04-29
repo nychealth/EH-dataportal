@@ -12,6 +12,7 @@ on:
 jobs:
   deploy:
     name: "Deploy Job"
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-20.04
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
