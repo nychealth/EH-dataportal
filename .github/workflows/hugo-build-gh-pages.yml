@@ -1,4 +1,6 @@
-name: "GitHub Pages 2"
+name: "Hugo Build to GitHub Pages"
+
+# run action on a closed PR on development
 
 on:
   pull_request:
@@ -9,36 +11,33 @@ on:
 
 jobs:
   deploy:
-    name: "Deploy job 1"
+    name: "Deploy Job"
     runs-on: ubuntu-20.04
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
 
     steps:
-      - name: "checkout 1"
+      - name: "Checkout"
         uses: actions/checkout@v3
-        # with:
-        #   submodules: recursive  # Fetch Hugo themes (true OR recursive)
-        #   fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
-      - name: "Hugo setup 1"
+      - name: "Hugo setup"
         uses: peaceiris/actions-hugo@v2.4.13
         with:
           hugo-version: '0.97.0'
           extended: true
 
-      # - name: cache
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: /tmp/hugo_cache
-      #     key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-hugomod-
+      - name: "Hugo cache"
+        uses: actions/cache@v2
+        with:
+          path: /tmp/hugo_cache
+          key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-hugomod-
 
-      - name: "Build 1"
+      - name: "Hugo Build"
         run: hugo --environment local
 
-      - name: Deploy
+      - name: "Deploy to gh-p"
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
