@@ -4,6 +4,7 @@ resources/_gen/assets/
 
 # don't track mac file 
 .DS_Store
+.DS_Store?
 
 # don't track hugo lock file
 .hugo_build.lock
@@ -13,3 +14,6 @@ node_modules/
 
 content/Simplified Chinese/
 content/Spanish/
+
+# don't track build folder
+docs 
