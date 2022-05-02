@@ -12,14 +12,11 @@ Note that any file required to *build* the site should remain with the source co
 
 ### Getting started
 You will need the following things properly installed on your computer.
+
 - [Git](https://git-scm.com/)
-- [Hugo](https://gohugo.io/). We are currently on v0.97, and builds may not work from older versions. Run `brew upgrade hugo` to update.
-- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- [Hugo](https://gohugo.io/) 
 - [Grunt](https://gruntjs.com/)
 
-If your repo doesn't contain npm node modules (which are ignored via `gitignore`), run `npm init` to create `package.json` and `npm install` to install the necessary packages (including Grunt).
-
-### Basic workflow 
 Our git patterns are to develop on branches labelled hotfix-, content-, or feature-. Keep branch work focused on discrete tasks to avoid merge conflicts later. 
 
 In your local development environment, start the server by typing `hugo serve --environment local --disableFastRender` into the terminal.
@@ -47,7 +44,7 @@ To run a local-environment-specific serve or build, enter ```hugo serve --enviro
 **You may find it useful to create aliases for these functions ([in Powershell](https://www.tutorialspoint.com/how-to-create-powershell-alias-permanently), or [Bash](https://www.shell-tips.com/bash/alias/))**.
 
 ### Deployment
-The development branch is served on github pages, here: [Environment and Health Data Portal](https://nycehs.github.io/ehs-data-portal-frontend-temp).
+The `gh-pages` branch is served on GitHub Pages, here: [Environment and Health Data Portal](https://nycehs.github.io/ehs-data-portal-frontend-temp). This branch is [built](https://github.com/peaceiris/actions-hugo) and [served](https://github.com/peaceiris/actions-gh-pages) automatically by Hugo using GitHub Actions, triggered by a merged pull request on `development`. _(Note that this requires a workflow YAML file in both [`main`](https://github.com/nycehs/ehs-data-portal-frontend-temp/blob/main/.github/workflows/hugo-build-gh-pages.yml) and [`development`](https://github.com/nycehs/ehs-data-portal-frontend-temp/blob/development/.github/workflows/hugo-build-gh-pages.yml).)_
 
 The branch deploy-Neighborhood-Reports is a dead-end branch meant for deploying only the NRs to our servers.
 
