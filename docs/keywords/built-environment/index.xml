@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>built environment on Environment &amp; Health Data Portal</title>
+    <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/built-environment/</link>
+    <description>Recent content in built environment on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 10 Jan 2022 12:34:38 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/keywords/built-environment/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How Power Outages Affect Health</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/poweroutages/</link>
+      <pubDate>Mon, 10 Jan 2022 12:34:38 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/poweroutages/</guid>
+      <description>Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out.
+Your child starts to have trouble breathing. Usually, you’d use a home nebulizer, an electric machine that turns liquid medicine into a mist that your child breathes in through a face mask.
+But the power is out. Without the nebulizer, your child’s breathing gets worse - and you wonder, is it time to go to the hospital again?</description>
+    </item>
+    
+    <item>
+      <title>Transportation and Active Design</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/key-topics/transportation/</link>
+      <pubDate>Thu, 30 Sep 2021 07:58:01 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/key-topics/transportation/</guid>
+      <description>Physical inactivity and unhealthy diet rank among the leading risk factors for premature death in the United States. Active design, however, promotes health by using architectural and urban design strategies to encourage walking, bicycling, stair climbing, transit use, active recreation, and healthy eating.
+Designing to increase access to parks, create pedestrian plazas, ensure well-maintained sidewalks, plant street trees, provide secure bicycle storage, and make stairwaus in buildings attractive and accessible can have a measurable effect on people&amp;rsquo;s ability to safetly get regular physical activity that can keep them healthy.</description>
+    </item>
+    
+    <item>
+      <title>Environments matter: the road to street safety in NYC</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/streets/</link>
+      <pubDate>Sun, 20 Sep 2020 10:54:51 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/streets/</guid>
+      <description>The COVID-19 public health emergency has changed New York City in many ways - including how we get around the city. As the city continues to adapt to COVID-19, New Yorkers will look for ways to get around that feel safe - redistributing transit among different modes to ease crowding and increase safety on public transportation. As more New Yorkers use bicycles, let&#39;s take a look at safety on our streets.</description>
+    </item>
+    
+  </channel>
+</rss>

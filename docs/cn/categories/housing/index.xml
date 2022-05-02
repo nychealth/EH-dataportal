@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>housing on Environment &amp; Health Data Portal</title>
+    <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/categories/housing/</link>
+    <description>Recent content in housing on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 08 Feb 2021 08:07:31 -0400</lastBuildDate><atom:link href="https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/categories/housing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>为什么暴力是一个公共卫生问题 </title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/violence/</link>
+      <pubDate>Mon, 08 Feb 2021 08:07:31 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/violence/</guid>
+      <description>利用公共卫生预防暴力 经历暴力会以多种方式影响人们。它不仅会导致身体伤害或死亡，而且接触它还会导致情感和心理创伤。暴力不仅会影响直接受害者，还会影响他们周围的群众。
+暴力会影响人们的一生：会导致糟糕的生育率、儿童发育迟缓、身体和精神疾病以及过早死亡。
+暴力是一种流行病，对于任何流行病，预防是关键。就像任何导致残疾、疾病和死亡的健康问题一样，公共卫生和医疗保健在预防这方面也可以发挥作用。
+对暴力的普遍了解有助于促进预防暴力的公共卫生方法，并将重点从暴力作为犯罪行为转变为将暴力经历视为一种公共卫生问题。是的，暴力是某些人的行为，但是，我们关注的是人们如何经历暴力：预测会发生暴力的社会和环境背景、最终会发生什么以及我们如何保护受害者。
+我们可以使用数据和研究来了解导致暴力的原因，倡导并帮助实施减少人们接触暴力的方法，目的是确保他们的安全并防止他们的健康受到终身伤害。
+ 您或您认识的人是否受到暴力影响？您可以得到帮助，您不必独自承受。致电1-888-NYC-WELL (1-888-692-9355)获取免费、保密的纽约市居民帮助热线。 .
+有关纽约市的暴力背景 纽约市的凶杀率已经下降…… 纽约市的暴力事件比过去少了很多。 关于COVID-19大流行的注意事项
+此处不包括2020年的数据，但自COVID-19疫情开始以来，纽约市的袭击、枪击事件以及非致命袭击急诊室就诊和住院人数有所增加。由于国家经历了前所未有的失业、住房和粮食不安全、政治动荡以及对未来的不确定性，在全国范围内也观察到了类似的情况。在这场历史性危机中，可能影响暴力率的社会、经济和环境因素被放大。 
+对待暴力，人们常将他看待为凶杀率。近年来，纽约市的凶杀率（最极端的暴力事件）一直为100,000人中不到5人，从1986年至1990年每100,000人中超过25人的高位下降。
+  !function () { &#34;use strict&#34;; window.addEventListener(&#34;message&#34;, function (a) { if (void 0 !== a.data[&#34;datawrapper-height&#34;]) for (var e in a.data[&#34;datawrapper-height&#34;]) { var t = document.getElementById(&#34;datawrapper-chart-&#34; + e) || document.querySelector(&#34;iframe[src*=&#39;&#34; + e + &#34;&#39;]&#34;); t &amp;&amp; (t.style.height = a.data[&#34;datawrapper-height&#34;][e] + &#34;px&#34;) } }) }();   ……但凶杀率的下降并不能说明全部情况。 在此图表中，我们研究了三种类型的暴力结果以及整个城市的暴力程度有何不同：非致命袭击急诊就诊、非致命袭击住院和凶杀。这些数据显示了更大的暴力负担。
+按地理划分时，数据显示，一些社区遭受暴力的比率远高于其他社区。遭受暴力最严重的社区的非致命袭击住院率比遭受最低比率的社区高10倍，比全市范围的比率高4倍。
+在三个指标中，这个模式是一致的。而且，暴力发生率较高的社区有更多的有色人种，这表明这些人群承担了不成比例的暴力负担。
+  !function () { &#34;</description>
+    </item>
+    
+    <item>
+      <title>健康、住房和历史。</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/housing/</link>
+      <pubDate>Wed, 06 Jan 2021 08:07:31 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/housing/</guid>
+      <description>为了健康，地点很重要。 什么决定您是否健康？您可能会考虑您吃了什么，您是否锻炼，您是否吸烟和您的家庭病史。
+但您可能不会想到 您的住房会怎样影响您的健康 - 您可能也不会考虑会影响您选择住房的因素。 对于一个健康的住房，应当不会出现：  裂缝 孔洞 渗漏 烟雾 害虫 老旧的，剥落的油漆  也就是说，健康的住房应当维护良好。
+ 但有些建筑并不适合居住。 有维修问题和年久失修的建筑物会损害健康。在纽约市，低收入社区年久失修的建筑比例更高，黑人和拉丁裔居民获得健康住房的机会更少。
+如今的不平等可以追溯到种族主义和忽视的历史：一种被称为红线圈定的做法导致了住宅隔离，这反过来又导致住房年久失修，导致了这些健康住房方面的差距。
+我们来看下这是怎么形成的。
+自殖民时代以来，种族主义就决定了人们的居住地。 种族主义对于纽约市居住模式的形成一直扮演着重要角色。当纽约市还是荷兰殖民地时，它只是Manhattan的南端。Wall Street（华尔街）得名于这座城市的防护墙。
+1661年，黑人向殖民地申请在此拥有土地，他们得到了城墙以北、市区以外的土地。
+ 纵观历史，许多不同的做法塑造了纽约市的种族主义居住模式。在20世纪，一种被称为“红线圈定”的做法使种族主义成为一项联邦政策，对我们的住房和健康产生了持久的影响。
+联邦政策导致了住宅隔离。 20世纪30年代, 联邦政府 开发了彩色编码的地图，为全美各城市的潜在购房者提供贷款指导。 20世纪30年代，经济大萧条导致了全国范围内的取消抵押品赎回权的浪潮。失业率居高不下，许多人无法偿还抵押贷款。为了帮助人们保住自己的房子，联邦政府成立了房主贷款公司（Home Owners Loan Corporation，HOLC）。目标是用更优惠的条件（更低的利息和更长的还款时间）为抵押贷款提供再融资。这将有助于人们还款，避免取消抵押品赎回权。 然而，为了确定他们可以安全地担保哪些贷款，HOLC派人去评估美国各地城市的社区房屋价值，并制作出了歧视性的红线圈定地图，这些地图将指导房地产行业几十年。  在这些颜色编码的地图上，社区分为4类:
+ 最好的  还算理想的   肯定是没落中的  危险的  这种分类显然是基于种族主义的，因为对社区的描述包括这样的陈述:
+&#34;不利影响：黑人渗透。混合民族。&#34; 政府拒绝向打算在红线圈定社区购买房屋的黑人和拉丁裔人提供贷款。相反，这些资源流向了新的仅供白人居住的郊区社区。
+下面的地图显示了纽约市的社区是如何分类的。
+    这是红线圈定。 这一过程被称为“红线圈定”：针对有色人种，系统地拒绝向某些社区提供公共和私人资源。
+20世纪，当为白人建造新的社区时，有色人种被迫住进被宣称为“没落中”的社区，“红线圈定”加深了城市的种族隔离。
+由于住房是积累财富的一个重要途径，红线圈定也导致了经济不平等，因为它剥夺了有色人种像白人一样拥有住房的机会。
+其他一些歧视性做法使得住宅隔离持续。  诱骗房产主贱卖房地产&amp;nbsp;合同操纵 &amp;nbsp;种族限制条款 等其他房地产行为使住宅隔离持续。 诱骗房产主贱卖房地产 是房地产经纪人使用的一种手段。由于许多白人将有色人种视为对他们所在社区的社会和经济威胁，房地产经纪人会告诉白人房主，有色人种即将搬进该社区。 这将使房主相信他们的房子会贬值，因此他们会以更低的价格出售。房地产经纪人转手就把房产以抬高的价格卖给有色人种。
+ 合同操纵是 一种欺骗性和剥削性的房地产行为，以通过私人贷款购买住房的有色人种为目标。这些贷款通常利率很高且包含操纵条款——在某些情况下，买家仅错过一次还款期限就会迫使其放弃他们的房子。 这些合同通常迫使买主支付比房屋价值本身更高的价格。  种族限制条款 是房产契约中防止业主将房产卖给有色人种的一项条款。 种族限制条款是一种强制实行住宅隔离的方式，以确保有色人种被排除在白人社区之外。</description>
+    </item>
+    
+    <item>
+      <title>红线圈定的简史 </title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/redlining/</link>
+      <pubDate>Wed, 06 Jan 2021 08:07:31 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/redlining/</guid>
+      <description>危害我们健康90年的金融政策 在公共卫生领域，我们经常引用结构性种族主义来解读我们社会的健康模式。但是，具体来说，这意味着什么？仔细看一下红线圈定的历史就可以看出这种联系。
+当我们分析纽约人健康的数据时，我们经常会发现相同的地理模式，在高贫困率的社区中，可预防的健康状况发生率更高。例如，我们已经写过哮喘和贫困是如何密切相关的。
+这些高贫困率的社区中，有色人种的比例也高于其他社区。
+下面的图表显示了每个社区的贫困率和有色人种的百分比之间的关系，每个气泡的大小代表了儿童哮喘患者的急诊就诊率。
+  !function () { &#34;use strict&#34;; window.addEventListener(&#34;message&#34;, function (a) { if (void 0 !== a.data[&#34;datawrapper-height&#34;]) for (var e in a.data[&#34;datawrapper-height&#34;]) { var t = document.getElementById(&#34;datawrapper-chart-&#34; + e) || document.querySelector(&#34;iframe[src*=&#39;&#34; + e + &#34;&#39;]&#34;); t &amp;&amp; (t.style.height = a.data[&#34;datawrapper-height&#34;][e] + &#34;px&#34;) } }) }();   这种趋势在哮喘以外的疾病中也适用。要了解在纽约市为什么贫困、种族和健康是息息相关的，我们回顾一下红线圈定。20世纪30年代的这项政府政策说明了我们社会中贫困和种族主义的本质，以及种族主义如何影响健康。
+红线圈定的简史 在20世纪30年代的大萧条时期，许多人无法偿还抵押贷款。一波止赎法拍的浪潮席卷全国。为了帮助人们保住自己的房子，联邦政府成立了房主贷款公司（Home Owners Loan Corporation，HOLC）。其目标是用更优惠的条件（例如更低的利率和更长的还款期）为抵押贷款提供再融资，以帮助人们还款并避免房屋被止赎法拍。
+为了确定他们可以担保哪些贷款，HOLC派人去评估美国各地城市的社区房屋价值。他们记录了社区的住房类型，以及居住者的信息。他们还对“有害影响”进行了分类，将“黑人渗透”和“混血”等种族主义描述作为降低社区价值的特征。
+ 详细说明住房、建筑类型、平均屋龄、维修条件、入住率、价格范围和其他信息的红线圈定文档。
+ 一份红线圈定文件，内容如下：有害影响：过时和维护不善。黑人渗透。Lexington Ave和Fulton和Grand Avenue上的高架结构。混合人种。
+根据这些信息，HOLC为包括纽约市在内的近250个城市制作了“住宅安全地图”。在这些地图上，HOLC给每个社区指定一个分类：
+ 最好的   还算理想的   肯定是没落中的   危险的   政府使用这些分类来确定是否为贷款提供担保。银行利用它们来确定人们是否有资格获得抵押贷款，并且不会提供贷款在“没落中”或“危险”社区购买住房。</description>
+    </item>
+    
+    <item>
+      <title>为什么哮喘是一个社会正义问题</title>
+      <link>https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/povasthma/</link>
+      <pubDate>Thu, 24 Oct 2019 08:18:56 -0400</pubDate>
+      
+      <guid>https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/povasthma/</guid>
+      <description>贫困以多种方式影响健康。在纽约市，哮喘病例清楚地说明了这种联系。
+要想了解贫穷与哮喘之间的关系，请看下面这张纽约市贫穷率的统计图。颜色越深，身处贫困的居民就越多
+  !function () { &#34;use strict&#34;; window.addEventListener(&#34;message&#34;, function (a) { if (void 0 !== a.data[&#34;datawrapper-height&#34;]) for (var e in a.data[&#34;datawrapper-height&#34;]) { var t = document.getElementById(&#34;datawrapper-chart-&#34; + e) || document.querySelector(&#34;iframe[src*=&#39;&#34; + e + &#34;&#39;]&#34;); t &amp;&amp; (t.style.height = a.data[&#34;datawrapper-height&#34;][e] + &#34;px&#34;) } }) }();   现在，将其与下面5至17岁儿童哮喘紧急就诊情况统计图进行比较。颜色越深，接受哮喘紧急就诊的孩子数量就越多
+  !function () { &#34;use strict&#34;; window.addEventListener(&#34;message&#34;, function (a) { if (void 0 !== a.data[&#34;datawrapper-height&#34;]) for (var e in a.data[&#34;datawrapper-height&#34;]) { var t = document.</description>
+    </item>
+    
+  </channel>
+</rss>
