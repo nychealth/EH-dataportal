@@ -1,6 +1,6 @@
 ---
 title: 'Climate and Health'
-categories: ["climatehealth","housing","social"]
+categories: ["climatehealth","housing","social","neighborhoods"]
 layout: topiclanding
 seo_title: 'Climate and Health in NYC'
 menu:

@@ -1,6 +1,6 @@
 ---
 title: 'Outdoor Air and Health'
-categories: ["airquality","childhealth","transportation"]
+categories: ["airquality","childhealth","transportation","neighborhoods"]
 layout: topiclanding
 title: 'Outdoor Air and Health in NYC'
 menu:
