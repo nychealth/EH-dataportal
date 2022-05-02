@@ -653,10 +653,9 @@ height: 200px;}
 
 
     .greenfill {
-        border-bottom: 5px solid #e4e4e4;
-        background: #f8f8f8;
+        border-bottom: 5px solid $info;
         padding: 5px;
-        color: #00923E;;
+        color: $info;
         border-radius: 3px;
         width: 100%;
     }
