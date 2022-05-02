@@ -1,6 +1,6 @@
 ---
 title: 'Asthma and the Environment'
-categories: ["airquality","transportation","childhealth","social","housing"]
+categories: ["airquality","transportation","childhealth","social","housing","neighborhoods"]
 layout: topiclanding
 seo_title: 'Asthma and the Environment in NYC'
 menu:
