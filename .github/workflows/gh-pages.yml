@@ -1,0 +1,46 @@
+name: Hugo Build to GitHub Pages
+
+# run action on a merged PR on development
+
+on:
+  pull_request:
+    branches: 
+      - development
+    types:
+      - closed
+
+jobs:
+  deploy:
+    name: Deploy Job
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Hugo setup
+      uses: peaceiris/actions-hugo@v2.4.13
+      with:
+        hugo-version: '0.97.0'
+        extended: true
+
+    - name: Hugo cache
+      uses: actions/cache@v2
+      with:
+        path: /tmp/hugo_cache
+        key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-hugomod-
+
+    - name: Hugo Build
+      run: hugo --environment local
+
+    - name: Deploy to gh-p
+      uses: peaceiris/actions-gh-pages@v3
+      if: ${{ github.ref == 'refs/heads/gh-pages' }}
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        enable_jekyll: false
