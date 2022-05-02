@@ -1,0 +1,2354 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+    Why violence is a public health issue. &#x7c; Environment &amp; Health Data Portal
+</title>
+
+
+
+
+	
+	<link rel="alternate" hreflang="es" href="https://nycehs.github.io/ehs-data-portal-frontend-temp/es/data-stories/violence/" title="Español">
+	
+	<link rel="alternate" hreflang="cn" href="https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/violence/" title="中文">
+	
+
+
+
+<meta name="description" content="Here is the site global SEO description">
+<link rel="canonical" href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/violence/" />
+<meta name="robots" content="all" />
+<meta name="geo.region" content="" />
+<meta name="geo.placename" content="Environment &amp; Health Data Portal" />
+
+
+<meta property="fb:profile_id" content="0" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_us" />
+<meta property="og:url" content="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/violence/" />
+<meta property="og:title" content="Why violence is a public health issue. &ndash; Environment &amp; Health Data Portal" />
+<meta property="og:description" content="A data story on violence, disparties, and real public health justice in NYC." />
+<meta property="og:site_name" content="Environment &amp; Health Data Portal" />
+<meta property="og:image" content="https://nycehs.github.io/ehs-data-portal-frontend-temp/images/report_bottom_background_hu55023dbc37de342337a21cf33dcc5889_222582_2400x1260_fill_q75_box_smart1.jpg">
+
+<meta property="og:see_also" content="https://twitter.com/nycHealthy" />
+
+
+<meta name="twitter:title" content="Why violence is a public health issue. &ndash; Environment &amp; Health Data Portal">
+<meta name="twitter:description" content="A data story on violence, disparties, and real public health justice in NYC.">
+<meta name="twitter:image" content="/images/report_bottom_background.jpg">
+<meta name="twitter:site" content="@nycHealthy">
+<meta name="twitter:creator" content="@nycHealthy">
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="../../fontawesome/css/all.min.css">
+<link rel="stylesheet" href="https://nycehs.github.io/ehs-data-portal-frontend-temp/scss/theme.css" />
+
+<script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  </head>
+  <body>
+
+    
+
+    
+
+
+    
+<a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
+
+<header id="global-header" role="banner">
+
+    <div class="bg-black text-white" id="nyc-top-header">
+
+        <div class="container-fluid wide">
+
+            <div class="row py-1 align-items-center justify-content-between">
+
+                <div class="col-auto">
+                    <p class="d-none d-md-flex fs-md">
+                        <a class="text-reset" href="https://www1.nyc.gov/">
+                            <strong>nyc.gov</strong>
+                        </a>
+                        <span class="mx-1" aria-hidden="true">|</span>
+                        Health
+                    </p>
+                </div>
+                
+
+                <div class="col-auto">
+
+                    <ul class="extensible-list horizontal fs-md">
+                        <li>
+                            <a class="text-reset" href="https://www1.nyc.gov/">
+                                <strong>
+                                    311
+                                </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-reset" href="https://www1.nyc.gov/home/search/index.page">
+                                <strong>
+                                    Search all NYC.gov
+                                </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
+                                <img class="d-block" src="../../images/nyc-bubble-logo.svg" width="45" alt="NYC Logo">
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+                
+
+            </div>
+            
+
+        </div>
+        
+
+    </div>
+    
+
+    
+
+
+
+
+    <div class="container-fluid collapse d-lg-block px-0 border-lg-top" id="nav-primary">
+
+        <div class="wide">
+
+            <nav class="nav nav-pills border-bottom" role="navigation"><div class="nav-item">
+
+                    <a class="nav-link" href="../../" id="nav-item-01">
+                        <span class='text-primary'><i class='fa fa-home' aria-hidden='true'></i></span> Home
+                    </a>
+
+                </div>
+                <div class="nav-item active">
+
+                    <a class="nav-link" href="../../data-stories/" id="nav-item-02">
+                        <span class='text-primary'><i class='fas fa-passport' aria-hidden='true'></i></span> Data Stories
+                    </a>
+
+                </div>
+                <div class="nav-item">
+
+                    <a class="nav-link" href="../../neighborhood-reports/" id="nav-item-04">
+                        <span class='text-primary'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span> Neighborhood Reports
+                    </a>
+
+                </div>
+                <div class="nav-item">
+
+                    <a class="nav-link" href="../../key-topics/" id="nav-item-05">
+                        <span class='text-primary'><i class='fas fa-star' aria-hidden='true'></i></span> Key Topics
+                    </a>
+
+                </div>
+                <div class="nav-item">
+
+                    <a class="nav-link" href="../../data-explorer/" id="nav-item-03">
+                        <span class='text-primary'><i class='fas fa-chart-line' aria-hidden='true'></i></span> Data Explorer
+                    </a>
+
+                </div>
+                </nav>
+
+        </div>
+        
+
+    </div>
+
+</header>
+
+
+    <main id="skip-header-target" role="main">
+
+<style>
+    body {
+        position: relative;
+    }
+</style>
+
+<div class="container-fluid px-0">
+
+        <div id="datastoryheader"  style="background-image: URL(ds-violence.jpg)">
+
+            <div class="medium my-auto">
+                <h1 class="titleheader py-2 px-4">
+                    Why violence is a public health issue
+                </h1>
+            </div>
+
+
+        </div>
+
+</div>
+
+<div class="container-fluid d-xl-none d-lg-none">
+    <div class="narrow">
+        <div class="btn-toggle narrow">
+            <button class="btn btn-block btn-lg btn-primary shadow" data-toggle="collapse"
+                data-target="#main-nav" aria-expanded="false" aria-controls="sidebar-nav">
+                <span class="title">Contents</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+
+        <div class="col-xl-2">
+            
+
+
+
+        </div>
+        
+
+
+        
+        <div class="col-xl-7 overflow-hidden fs-rg mr-auto" id="primary-content">
+            
+        
+        
+            <nav class="navbar navbar-default my-2">
+                    <ul class="nav navbar-nav fs-sm">
+                        <span class="mr-2">Read this data story in:</span> 
+                        
+                        <li class="mb-1"><a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/es/data-stories/violence/">Español</a>&nbsp;|&nbsp;</li>  
+                        
+                        <li class="mb-1"><a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/cn/data-stories/violence/">中文</a>&nbsp;|&nbsp;</li>  
+                        
+                    </ul>
+            </nav>
+        
+
+            <div class="wide my-2 px-5">
+                <h2 id="using-public-health-to-prevent-violence">Using public health to prevent violence</h2>
+<p>Experiencing violence affects people in many ways. It not only causes physical injury or death, but being exposed to it can also cause emotional and psychological trauma. Violence doesn’t just affect the immediate victim, it affects their surrounding community, too.</p>
+<p>Violence can affect people throughout their lives: it is associated with worse birth outcomes, childhood developmental delays, physical and mental illness, and premature deaths.</p>
+<p>Violence is an epidemic, and with any epidemic, prevention is key. And like any health issue that leads to disability, disease and death, there is a role for public health and healthcare to play in preventing it.</p>
+<p>A common understanding of violence can help promote public health approaches to violence prevention, and shift the focus from violence as a criminal behavior to instead viewing the experience of violence as a public health issue. Yes, violence is a behavior that some people do – but we’re focused on how people experience violence: the social and environmental contexts that predict whether they do, what happens as a result, and how we can protect them.</p>
+<p>We can use data and research to understand what leads to violence, to advocate for and help implement strategies to reduce people’s exposure to violence - to keep them safe and prevent lifelong harm to their health.</p>
+<p><span class="text-muted"><i class="fs-xl fas fa-hands-helping text-center"></i> <em>Are you
+or is somebody you know affected by violence? Help is available and you don&rsquo;t have to go through it alone. Call 1-888-NYC-WELL (1-888-692-9355) for a free, confidential help line for New York City residents.</em></span><br><br></p>
+<h2 id="background-on-violence-in-new-york-city">Background on violence in New York City</h2>
+<h3 id="nycs-homicide-rate-has-declined">NYC&rsquo;s homicide rate has declined&hellip;</h3>
+<p>There is a lot less violence than there used to be in NYC. 
+<a href="#covidcollapse" data-toggle="collapse" class="badge badge-outline badge-pill badge-danger">Note on the COVID-19 pandemic</a></p>
+<div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="covidcollapse">
+    <p>Data for 2020 is not included here, but since the start of the COVID-19 pandemic, NYC has seen an increase in assaults, shooting incidents, and non-fatal assault emergency room visits and hospitalizations.</p>
+    <p>Similar patterns have been observed nationally as the country experiences unprecedented unemployment, housing and food insecurity, political unrest and uncertainty about the future. The social, economic and environmental factors that can influence violence rates have been amplified during this historic crisis.</p> </div></p>
+<p>To look at violence, people often look at homicide rates. In recent years, NYC’s rate of homicides - the most extreme episodes of violence - has been under 5 per 100,000 people, down from a high of over 25 per 100,000 people from 1986-1990.</p>
+</div>
+<div class="wide my-4">
+    <iframe title='NYC&#39;S homicide rates have declined' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
+        src='//datawrapper.dwcdn.net/bqQeD/1/' scrolling="no" frameborder="0"
+        style="width: 0; min-width: 100% !important; border: none;" height='484'></iframe>
+    <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+    </script>
+</div>
+<div class="narrow">
+<h3 id="but-a-drop-in-the-homicide-rate-doesnt-tell-the-whole-story">&hellip;but a drop in the homicide rate doesn&rsquo;t tell the whole story.</h3>
+<p>In this chart, we look at three types of violent outcomes and how violence levels differ across the city: non-fatal assault emergency department visits, non-fatal assault hospitalizations, and homicides. These data show a larger burden of violence.</p>
+<p>When broken down by geography, the data show that some neighborhoods experience violence at much higher rates than others. Neighborhoods experiencing the most violence have non-fatal assault hospitalization rates that are <strong>10 times higher</strong> than neighborhoods experiencing the lowest rates – and <strong>4 times higher</strong> than the citywide rate.</p>
+<p>This pattern is consistent across the three indicators. And, neighborhoods that experience higher rates of violence have larger populations of people of color - showing that these populations shoulder a disproportionate burden of violence.</p>
+</div>
+<div class="wide my-4">
+    <iframe title='Violence in NYC' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
+        src='//datawrapper.dwcdn.net/PldhR/2' scrolling="no" frameborder="0"
+        style="width: 0; min-width: 100% !important; border: none;" height='603'></iframe>
+    <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+    </script>
+</div>
+<div class="narrow">
+<br>
+<h2 id="a-public-health-approach-to-addressing-violence">A public health approach to addressing violence</h2>
+<p>Residents of some neighborhoods are at much greater risk of experiencing violence - and its many health effects.</p>
+<p>To prevent violence among those most affected by it, we need to explore what factors lead to it.</p>
+<h3 id="violence-is-rooted-in-historical-disinvestment-and-racism">Violence is rooted in historical disinvestment and racism</h3>
+<p>Evidence shows that violence results from social structures that limit access to basic needs - structures that are fueled by racism, residential segregation, and neighborhood disinvestment. Where these structures persist, people are exposed to violence. For example, low-income neighborhoods of color are known to be hit the hardest.</p>
+<p>This map shows the parts of NYC that were 
+<a href="#redliningCollapse" data-toggle="collapse" class="badge badge-pill badge-warning">redlined</a> 90 years ago as part of racist housing policy that set off decades of disinvestment and intergenerational poverty.</p>
+    <div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="redliningCollapse">
+    <p><span style="font-weight: bold; color:#7e0000">Redlining</span> was a federal policy that
+    started in the 1930s. A government agency drew maps of hundreds of cities throughout the
+    USA, and graded neighborhoods within them from "Best" to "Hazardous." Their criteria
+    included the race of people who lived in those neighborhoods.</p>
+    <p>Both the federal government and private banks used these maps to determine whether or not
+    to back loans so that people could buy homes. Through this system, people of color were
+    denied the opportunity to buy homes, and white people had their home purchases federally
+    subsidized. </p>
+    <p>Redlining drove segregation and economic inequality - along racial lines. <a href="../../IndicatorPublic/Closerlook/housing/index.html">Its effects persist today</a>. According to the <a
+    href="https://ncrc.org/holc/">National Community Reinvestment Coalition</a>, 3 out
+    of every 4 neighborhoods in the USA that were redlined in the 1930s are still
+    low-to-moderate income today - and 2 out of every 3 are predominantly populated by
+    people of color.</p>
+    </div>
+</p>
+<p>A map of recent shootings lines up with the heavily <span style="font-weight: bold; color: #7e0000">redlined</span> areas of the Bronx, Harlem, and northern and eastern Brooklyn - showing clearly how today&rsquo;s violence is closely related to the ways that racist policies are embedded in our society.</p>
+
+
+<div class="my-3">
+<iframe src="HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
+</div>
+
+<p>Decades of government and societal 
+<a href="#disinvestmentCollapse" data-toggle="collapse" class="badge badge-pill badge-warning">disinvestment</a> from practices like redlining means limited opportunity and resources, and results in higher rates of poverty in some neighborhoods.</p>
+<div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="disinvestmentCollapse">
+    <strong>Disinvestment</strong> is when either government agencies or private companies deliberately withhold or withdraw resources and opportunity from a neighborhood or community. </p>
+    <p>The history of disinvesment is tied to racist practices and policies - like denyng people of color loans to buy homes. Disinvestment is also planned shrinkage, a steady decline of public funding for public housing, services, education - especially in cities, and especially in neighborhoods populated mostly by people of color.</p>
+    </div></p>
+<p>As a result of this disinvestment, we see a clear relationship between poverty and violence. As a neighborhood&rsquo;s poverty level increases, so do assaults.</p>
+</div>
+<div class="wide my-4">
+    <iframe title='Poverty and assaults in NYC' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
+        src='//datawrapper.dwcdn.net/DlEvR/2/' scrolling="no" frameborder="0"
+        style="width: 0; min-width: 100% !important; border: none;" height='533'></iframe>
+    <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+    </script>
+</div>
+<div class="narrow">
+<h3 id="disinvestment-creates-environments-that-threaten-health">Disinvestment creates environments that threaten health</h3>
+
+
+    <p><a href="#disinvestmentCollapseTwo" data-toggle="collapse" class="badge badge-pill badge-warning">Disinvestment takes many forms</a>. It promotes segregation, limits people’s access to basic resources, and creates environments that threaten people’s health. </p>
+    <div class="collapse py-2 px-2 mx-2 mb-2 drawerbg" id="disinvestmentCollapseTwo">
+    <p>Disinvestment can be:
+        <ul>
+            <li>Denying people access to loans to buy homes - like <span style="font-weight: bold; color:#7e0000">redlining</span> and other well-documented racist real estate practices</li>
+            <li>Housing neglect by landlords, leading to unhealthy housing</li>
+            <li>Poorly-funded schools</li>
+            <li>Fewer job opportunities and lower-paying jobs</li>
+            <li>Emphasis on policing over pro-social resources</li>
+        </ul>
+    </p>
+    </div>
+
+<p>In terms of public health, we say that disinvestment produces environmental factors that make certain health outcomes more likely.</p>
+
+
+<div class="d-sm-none d-md-block">
+    <div class="row py-2">
+        <div class="col-4 ml-auto"><button type="button" class="btn btn-light btn-med btn-block"
+                disabled>Environmental factors</button></div>
+        <div class="col-1 text-center"><i class="fas fa-arrow-alt-circle-right h2"
+                style="color: #999999"></i></div>
+        <div class="col-4 mr-auto"><button type="button" class="btn btn-light btn-med btn-block"
+                disabled>Health outcomes</button></div>
+    </div>
+</div>
+
+<p>Due to a history of disinvestment, New York City neighborhoods experience very different environmental factors that predict violence and other health outcomes.</p>
+<p>By “environmental,” we mean the entire physical, social, and economic context around us: the built environment, like housing and parks, and access to schools, jobs, opportunity, healthcare, and more.</p>
+<p>Whether or not a neighborhood experiences more violence can be explained by looking at whether its environment has protective factors, which help prevent violence before it starts, or risk factors, which make violence a more likely outcome.</p>
+
+
+<div class="row d-sm-none d-md-block">
+    <div class="col mx-auto">
+        <div class="medium">
+            <div class="row mt-4 mb-2">
+                <div class="col-5 mr-auto">
+                    <div class="card text-white bg-success w-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Protective factors include:</h5>
+                            <p class="card-text">
+                                <i class="far fa-check-square"></i>&nbsp;Child health<br>
+                                <i class="far fa-check-square"></i>&nbsp;Economic stability<br>
+                                <i class="far fa-check-square"></i>&nbsp;High quality
+                                education<br>
+                                <i class="far fa-check-square"></i>&nbsp;Housing stability<br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5 ml-auto">
+                    <div class="card text-white bg-danger float-right w-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Risk factors include:</h5>
+                            <p class="card-text">
+                                <i class="fas fa-exclamation-circle"></i>&nbsp;Poverty, and
+                                child poverty<br>
+                                <i class="fas fa-exclamation-circle"></i>&nbsp;Economic
+                                instability<br>
+                                <i class="fas fa-exclamation-circle"></i>&nbsp;Housing
+                                instability<br>
+                                <i class="fas fa-exclamation-circle"></i>&nbsp;Experiencing
+                                trauma or violence<br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end row-->
+
+
+<h2 id="what-does-this-mean-for-nycs-neighborhoods">What does this mean for NYC&rsquo;s neighborhoods?</h2>
+<p>NYC&rsquo;s neighborhoods experience these protective and risk factors very differently. Some neighborhoods have a lot less of the protective factors – and a lot more of the risk factors.</p>
+<p>Let&rsquo;s explore how by comparing two neighborhoods: <span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span>, in the Bronx, and <span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span>, in Staten Island.</p>
+</div>
+<div class="wide my-4">
+    <iframe title='Poverty in NYC neighborhoods' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
+        src='//datawrapper.dwcdn.net/GXRIu/1/' scrolling="no" frameborder="0"
+        style="width: 0; min-width: 100% !important; border: none;" height='1468'></iframe>
+    <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+    </script>
+</div>
+<div class="narrow">
+<p>Poverty ranges from 6.2% to 41.5% among NYC neighborhoods. <span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span> has one of the highest poverty rates in the city, while <span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span> has one of the lowest.</p>
+<p>Neighborhood poverty is one of the environmental factors that can predict violence, with neighborhoods with higher rates of poverty more likely to also have high rates of non-fatal assault hospitalizations.</p>
+<p><span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span> also has a high rate of non-fatal assault hospitalizations - one of the highest in the city (107 per 100,000 people).</p></p>
+</div>
+<div class="wide my-4">
+    <iframe title='Non-fatal assault hospitalizations' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
+        src='//datawrapper.dwcdn.net/PqnEK/1' scrolling="no" frameborder="0"
+        style="width: 0; min-width: 100% !important; border: none;" height='1468'></iframe>
+    <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+    </script>
+</div>
+<div class="narrow">
+<p><span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span> follows the same pattern, with one of the lowest rates of non-fatal assault hospitalizations - only 15 per 100,000 people.</p>
+<p>Another way to compare poverty and violence rates is to rank neighborhoods from highest to lowest for each and compare their positions.</p>
+<p>Below, we can see that <span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span> ranks high in both poverty and assaults, while <span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span> ranks low for both.</p>
+</div>
+<div class="wide my-4">
+    <iframe title='Poverty and assaults - ranks' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
+        src='//datawrapper.dwcdn.net/639n0/1/' scrolling="no" frameborder="0"
+        style="width: 0; min-width: 100% !important; border: none;" height='600'></iframe>
+    <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+    </script>
+</div>
+<div class="narrow">
+<h4 id="when-we-add-in-other-risk-factors-an-even-more-significant-pattern-emerges">When we add in other risk factors, an even more significant pattern emerges.</h4>
+<p>Below, each vertical line represents the neighborhood rankings for the risk factors of total poverty, child poverty, child homelessness, high school incompletion, disconnected youth, unemployment, evictions, foreclosures – and the violent outcome of assault hospitalizations, shootings, and homicides. Each line connects one neighborhood through its ranks – the flatter the line, the more consistent the ranks.</p>
+<p>These risk factors describe a network of threatening 
+<a href="#envcollapse" data-toggle="collapse" class="badge badge-pill badge-warning">environmental factors</a>
+in communities that have experienced disinvestment, place residents in poverty and expose them to risks throughout their lives – culminating in higher rates of <a href="#violcollapse" data-toggle="collapse" class="badge badge-pill badge-warning">violence</a>.</p>
+<div class="collapse drawerbg my-2 pt-2 pb-2 mx-2" id="envcollapse">
+Environmental factors in the chart below:
+    <ul>
+        <li><strong>Child well-being</strong>: Poverty, child poverty, and child homelessness
+        </li>
+        <li><strong>Education and employment</strong>: high school incompletion, disconnected
+            youth, and unemployment</li>
+        <li><strong>Housing stability</strong>: evictions, foreclosures</li>
+    </ul>
+<button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal"
+data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;About the
+data</button>
+</div>
+<div class="collapse drawerbg my-2 pt-2 pb-2 mx-2" id="violcollapse">
+    Violence outcomes in the chart below:
+    <ul>
+        <li>Non-fatal assault hospitalizations</li>
+        <li>Shootings</li>
+        <li>Homicides</li>
+    </ul>
+    <button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal"
+        data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;About the
+        data</button>
+</div>
+</p>
+<p><span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span> ranks highly for these risk factors that make violence more likely. By comparison, <span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span> ranks low for these factors.</p>
+<p></div>
+<div class="wide my-4">
+    <iframe title='Environmental factors and violence outcomes' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
+        src='//datawrapper.dwcdn.net/7Dx2d/4/' scrolling="no" frameborder="0"
+        style="width: 0; min-width: 100% !important; border: none;" height='714'></iframe>
+    <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+    </script>
+</div>
+<div class="narrow">
+<button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal" data-target="#dataModal"><i class="fas fa-question-circle"></i> About the data</button></p>
+<p>A pattern emerges: <span style="font-weight: bold; color: #b820bb;">neighborhoods with the highest poverty rates</span> consistently rank high for risk factors experience more violence. <span style="font-weight:bold; color: #5c8ea5">Neighborhoods with the lowest poverty rates</span> consistently rank low for risk factors experience less violence.</p>
+<h3 id="why-does-this-happen">Why does this happen?</h3>
+<p>These risk factors make up a network of environmental threats in communities that have experienced disinvestment. Due to the inequitable distribution of resources and opportunities, some neighborhoods face a disproportionate amount of risk. These threats place residents in poverty and expose them to risks throughout their lives – culminating in higher rates of violence.</p>
+<p>In environments where risk factors far outweigh protective factors, higher rates of neighborhood violence emerge - and threaten the health of residents of these neighborhoods.</p>
+<p></div>
+<div class="wide my-4">
+    <iframe title='Environmental factors and violence outcomes' aria-label="Interactive chart" id="datawrapper-chart-O0SUA"
+        src='//datawrapper.dwcdn.net/CZuTa/6/' scrolling="no" frameborder="0"
+        style="width: 0; min-width: 100% !important; border: none;" height='714'></iframe>
+    <script type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();
+    </script>
+</div>
+<div class="narrow">
+<button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal" data-target="#dataModal"><i class="fas fa-question-circle"></i> About the data</button>
+<br></p>
+<h2 id="breaking-the-cycle-of-violence">Breaking the cycle of violence</h2>
+<h3 id="addressing-factors-that-lead-to-violence">Addressing factors that lead to violence&hellip;</h3>
+<p>The Health Department takes a public health approach to violence. This means promoting conditions that prevent violence, and addressing outcomes triggered by violence. It means working across systems and communities to reinvest in neighborhoods most affected by violence. This work includes:</p>
+<ul>
+<li><strong>Research on the most effective policies</strong> to reduce violence, collecting and analyzing data that can be used to develop new interventions.</li>
+<li>Through the <a href="https://www1.nyc.gov/site/peacenyc/interventions/crisis-management.page">Crisis Management System</a>, working with other city organizations to <strong>support community-led efforts to de-escalate violence</strong>, providing support to at-risk youth with employment, legal, therapeutic, and educational opportunities.</li>
+<li>Strengthening the <strong>Neighborhood Health Action Centers</strong> in the South Bronx, Harlem and Central Brooklyn, neighborhoods that all experience higher levels of violence. The Action Centers serve as community hubs for programs and resources that can decrease risk and increase protective factors.</li>
+<li>Working with hospitals to help them <strong>respond to the many needs</strong> – physical, social, and emotional – of people injured by violence.</li>
+<li><strong>Partnering with communities</strong> to respond to neighborhood-level mental health crises and traumatic events through Rapid Assessment and Response.</li>
+</ul>
+<p>With this work, the Health Department is reinvesting in communities that have experienced disinvestment so that we can build environments where protective factors outweigh risk factors.</p>
+<h3 id="to-reduce-rates-of-violence">&hellip;to reduce rates of violence.</h3>
+<p>Public health is about assuring the conditions in which people can be healthy.</p>
+<p>A public health approach to violence prevention relies on a response from all sectors of society to address the inequities that lead to violence. It relies on creating and supporting systems so that both institutions and neighborhoods support the health of their residents.</p>
+<p>A public health approach to violence presents an opportunity to find sustainable solutions to create healthy spaces for New Yorkers to live and thrive.</p>
+<p>It means that we can prevent violence by eliminating poverty, providing jobs, healthy housing, and education, creating a society based on justice and equality, that offers opportunity to all.</p>
+<p><span class="text-muted"><i class="fs-xl fas fa-hands-helping text-center"></i> <em>Are you
+or is somebody you know affected by violence? Help is available and you don&rsquo;t have to go
+through it alone. Call 1-888-NYC-WELL (1-888-692-9355) for a free, confidential help
+line for New York City residents, or <a href="https://www1.nyc.gov/site/ocdv/get-help/covid-19-update.page">get support here</a>.</em></span></p>
+
+
+<!-- Data Modal -->
+<div class="modal fade" id="dataModal" tabindex="-1" role="dialog" aria-labelledby="dataModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dataModalTitle">About the data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Poverty:</strong> the percent of people whose annual income is below 100% of
+                    the Federal Poverty Level, 2013-2017 American Community Survey. <a
+                        href="../../IndicatorPublic/VisualizationData.aspx?id=103,4466a0,109,Summarize">Explore
+                        the data</a>.</p>
+                <p><strong>Child poverty:</strong> children under 5 years old living in poverty,
+                    2013-2017 American Community Survey. <a
+                        href="ht/IndicatorPublic/VisualizationData.aspx?id=2176,4466a0,109,Summarize">Explore
+                        the data</a>.</p>
+                <p><strong>Child homelessness:</strong> homeless children age 0 to 17, per 1,000, 2015
+                    Department of Homeless Services. <a
+                        href="https://www.data2go.nyc/map/?id=107*36047015900*homeless_children_rate_cd!undefined!ns*!other_pop_cd_506~ahdi_puma_1~sch_enrol_cd_112~age_pyramid_male_85_plus_cd_20~median_household_income_puma_397~median_personal_earnings_puma_400~dis_y_perc_puma_102~poverty_ceo_cd_417~unemployment_cd_408~pre_k_cd_107!*air_qual_cd~ahdi_puma*family_homeless_cd_245#10/40.8273/-73.9586">Explore
+                        the data</a>.</p>
+                <p><strong>High school incompletion:</strong> estimated percent of people age 25+ who
+                    did not graduate from high school, 2013-2017 American Community Survey. <a
+                        href="../../IndicatorPublic/VisualizationData.aspx?id=2334,4466a0,109,Summarize">Explore
+                        the data</a>.</p>
+                <p><strong>Disconnected youth:</strong> percent of people age 16 to 24 who did not
+                    graduate high school and are unemployed, 2015-2017 American Community Survey. <a
+                        href="https://www.data2go.nyc/map/?id=107*36047015900*dis_y_perc_puma!undefined!ns*!other_pop_cd_506~ahdi_puma_1~sch_enrol_cd_112~age_pyramid_male_85_plus_cd_20~median_household_income_puma_397~median_personal_earnings_puma_400~dis_y_perc_puma_102~poverty_ceo_cd_417~unemployment_cd_408~pre_k_cd_107!*air_qual_cd~ahdi_puma*family_homeless_cd_245#10/40.8273/-73.9586">Explore
+                        the data</a>.</p>
+                <p><strong>Unemployment:</strong> estimated percent of people age 16+ in the civilian
+                    labor force who are unemployed, 2013-2017 American Community Survey. <a
+                        href="../../IndicatorPublic/VisualizationData.aspx?id=2337,4466a0,109,Summarize">Explore
+                        the data</a>.</p>
+                <p><strong>Evictions:</strong> court-ordered evictions, 2017. <a
+                        href="../../IndicatorPublic/VisualizationData.aspx?id=2365,4466a0,109,Summarize">Explore
+                        the data</a>.</p>
+                <p><strong>Foreclosures</strong>: rate of foreclosures per 1,000 1- to 4-family
+                    properties, 2018. <a
+                        href="https://www.data2go.nyc/map/?id=107*36047015900*foreclosure_cd!undefined!ns*!other_pop_cd_506~ahdi_puma_1~sch_enrol_cd_112~age_pyramid_male_85_plus_cd_20~median_household_income_puma_397~median_personal_earnings_puma_400~dis_y_perc_puma_102~poverty_ceo_cd_417~unemployment_cd_408~pre_k_cd_107!*air_qual_cd~ahdi_puma*family_homeless_cd_245#10/40.8273/-73.9586">Explore
+                        the data</a>. </p>
+                <p><strong>Assault hospitalizations:</strong> age-adjusted rate of non-fatal assault
+                    hospitalizations, per 100,000 people, 2016. <a
+                        href="../../IndicatorPublic/VisualizationData.aspx?id=2375,4466a0,125,Summarize">Explore
+                        the data</a>. </p>
+                <p><strong>Shootings</strong>: number of shootings from 2008 - 2018. <a
+                        href="https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Historic-/833y-fsy8">Explore
+                        the data</a>.</p>
+                <p><strong>Homicides:</strong> rate of homicides per 100,000 people, 2013-2016. <a
+                        href="https://a816-health.nyc.gov/hdi/epiquery/visualizations?PageType=tsi&PopulationSource=Death&Topic=8&Subtopic=49&Indicator=Assault%20(Homicide)&Year=2015">Explore
+                        the data</a>. </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+            </div>
+
+
+
+
+
+            <footer class="narrow my-4" id="article-footer">
+
+                <div class="border-top border-dark">
+
+                    <ul class="extensible-list horizontal text-muted mt-3">
+
+                        <li>
+                            <a class="text-muted" href="mailto:trackingportal@health.nyc.gov"
+                                title="Share through email">
+                                <span class="fa fa-envelope"></span> Questions about this data story? Ideas
+                                for another one? Email us.</a>
+
+                        </li>
+                    </ul>
+
+                </div>
+                
+
+            </footer>
+            
+
+        </div>
+        
+
+
+        
+        <div class="col-xl-2 border-xl-left">
+
+            <div class="py-3 mt-n3 mt-xl-0 sticky-top fs-sm" style="z-index: 0">
+                <div class="fs-sm">
+                    
+                        <i class="fas fa-images mr-1"></i><strong>Banner image:</strong><br>
+                        Benjamin Kanter/Mayoral Photography Office
+                        <hr class="my-2">
+                    
+
+
+
+                    <strong>Published on:</strong><br>
+                    February 8, 2021
+
+                </div>
+
+                
+
+
+  
+  
+  
+
+  <section class="social-share">
+      <h3 class="fs-sm mt-3">Share this:</h3>
+    <ul class="share-icons">
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?&amp;url=https%3a%2f%2fnycehs.github.io%2fehs-data-portal-frontend-temp%2fdata-stories%2fviolence%2f&amp;text=Why%20violence%20is%20a%20public%20health%20issue" target="_blank" rel="noopener" aria-label="Share on Twitter" class="share-btn twitter">
+          <i class="fab fa-twitter-square fs-xl"></i>
+          <p>Twitter</p>
+          </a>
+      </li>
+
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fnycehs.github.io%2fehs-data-portal-frontend-temp%2fdata-stories%2fviolence%2f" target="_blank" rel="noopener" aria-label="Share on Facebook" class="share-btn facebook">
+          <i class="fab fa-facebook-square fs-xl"></i>
+          <p>Facebook</p>
+          </a>
+      </li>
+
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fnycehs.github.io%2fehs-data-portal-frontend-temp%2fdata-stories%2fviolence%2f" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="share-btn linkedin">
+          <i class="fab fa-linkedin fs-xl"></i>
+            <p>LinkedIn</p>
+          </a>
+      </li>
+
+      
+      <li>
+        <a href="mailto:?subject=Environment%20%26%20Health%20Data%20Portal - Why%20violence%20is%20a%20public%20health%20issue.&amp;body=Why%20violence%20is%20a%20public%20health%20issue%2c%20by%20Environment%20%26%20Health%20Data%20Portal%0a%3cnil%3e%0a%0ahttps%3a%2f%2fnycehs.github.io%2fehs-data-portal-frontend-temp%2fdata-stories%2fviolence%2f%0a" target="_blank" class="share-btn email">
+          <i class="fas fa-envelope fs-xl"></i>
+          <p>Email</p>
+        </a>
+      </li> 
+    </ul>
+  </section>
+
+
+
+                <h3 class="text-muted fs-rg mt-4">Related:</h3>
+                    <h4 class="mt-2 fs-md"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
+                    
+
+
+
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/poweroutages/">How Power Outages Affect Health</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/localtemp/">The Urban Heat Island Effect in New York City</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/aq-cooking/">Tracking changes in New York City&#39;s sources of air pollution</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/redlining/">A brief history of redlining</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/housing/">Health, housing, and history</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/streets/">Environments matter: the road to street safety in NYC</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/heat/">Protecting New Yorkers from extreme heat</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/geographies/">Neighborhood boundaries on the EH Data Portal</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/assaults/">Disparities in violence</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/aq2/">What our air quality monitors tell us about NYC&#39;s neighborhoods</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/data-stories/povasthma/">Why asthma is a social justice issue</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+
+                <div class="mt-4">
+                    <h4 class="fs-md"><i class="fas fa-star text-muted mr-1" aria-hidden="true"></i>Key Topics</h4>
+                        
+                        
+                        
+
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                        <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key-topics/housing/">Housing</a>
+                        <hr class="my-1">
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                        <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key-topics/social/">Social and Economic Conditions</a>
+                        <hr class="my-1">
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                        <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key-topics/neighborhoods/">Neighborhoods</a>
+                        <hr class="my-1">
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                        <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key-topics/healthoutcomes/">Health outcomes</a>
+                        <hr class="my-1">
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+                        <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/key-topics/childhealth/">Child Health</a>
+                        <hr class="my-1">
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                         
+                        
+                        
+                        
+
+                        
+                        
+
+                        
+                         
+                        
+                </div>
+
+                <div class="mt-4">
+                    <h4 class="fs-md"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
+                    
+
+
+
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood-reports/activedesign/">Active Design, Physical Activity and Health</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+            
+            <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood-reports/asthma/">Asthma and the Environment</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood-reports/climateandhealth/">Climate and Health</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood-reports/housing/">Housing and Health in NYC</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+
+    
+    
+        
+
+            
+            <a href="https://nycehs.github.io/ehs-data-portal-frontend-temp/neighborhood-reports/outdoorair/">Outdoor Air and Health in NYC</a>
+            <hr class="my-1">
+
+            
+
+        
+
+
+                </div>
+
+
+            </div>
+            
+
+        </div>
+        
+
+    </div>
+    
+
+</article>
+
+
+
+
+      <ul id="results"></ul>
+    </main><footer class="bg-black" id="global-footer" role="contentinfo">
+
+  <h2 class="sr-only">
+      Page Footer
+  </h2>
+
+  <div class="bg-opacity-black-25 text-white" id="nyc-footer">
+
+      <div class="container py-3 d-none" id="languages">
+
+          <div class="row fs-md">
+
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+                  </ul>
+              </div>
+          </div>
+
+      </div>
+      
+
+      <div class="container py-3" id="languages">
+
+          <ul class="fs-md" role="list">
+              <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+          </ul>
+
+      </div>
+      
+
+      <hr class="opacity-10" aria-hidden="true">
+
+      <div class="container py-3">
+
+          <div class="row">
+
+              <div class="col-md-6 col-lg-8 mb-3 mb-lg-0">
+
+                  <nav class="row fs-md" role="navigation">
+
+                      <div class="col-lg mb-3 mb-lg-0">
+
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/nyc-resources/agencies.page">
+                                      <strong>City Agencies</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://a858-nycnotify.nyc.gov/notifynyc/">
+                                      <strong>Notify NYC</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://www1.nyc.gov/connect/mobile-applications.page">
+                                      <strong>NYC Mobile Apps</strong>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                      
+
+                      <div class="col-lg mb-3 mb-lg-0">
+
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/home/contact-us.page">
+                                      <strong>Contact NYC Government</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://a856-citystore.nyc.gov/">
+                                      <strong>CityStore</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://maps.nyc.gov/doitt/nycitymap/">
+                                      <strong>Maps</strong>
+                                  </a>
+                              </li>
+                          </ul>
+
+                      </div>
+                      
+
+                      <div class="col-lg mb-3 mb-lg-0">
+
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://a127-ess.nyc.gov/psp/prdess/?cmd=login&languageCd=ENG&">
+                                      <strong>City Employees</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/connect/social-media.page">
+                                      <strong>Stay Connected</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://www1.nyc.gov/nyc-resources/resident-toolkit.page">
+                                      <strong>Resident Toolkit</strong>
+                                  </a>
+                              </li>
+                          </ul>
+
+                      </div>
+                      
+
+                  </nav>
+
+              </div>
+              
+
+              <div class="col-md-6 col-lg-4">
+
+                  <a class="mb-2" href="https://www1.nyc.gov" title="Go to nyc.gov" target="_blank">
+                      
+                      <img class="mb-2" src="https://nycehs.github.io/ehs-data-portal-frontend-temp/images/nyc-bubble-logo.svg" width="90" alt="NYC Logo">
+                      <span class="sr-only">(opens in a new tab)</span>
+                  </a>
+                  <p class="fs-sm">City of New York - 2019 All Rights Reserved. NYC is a trademark and service
+                      mark of the City of New York.</p>
+
+                  <ul class="extensible-list horizontal fs-sm">
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/home/privacy-policy.page">Privacy
+                              Policy</a>
+                      </li>
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/home/terms-of-use.page">Terms
+                              of Use</a>
+                      </li>
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/site/mopd/index.page"
+                              title="Mayor's Office for People with Disabilities">
+                              <span class="sr-only">Mayor's Office for People with Disabilities</span>
+                              <span class="fab fa-lg fa-accessible-icon"></span>
+                          </a>
+                      </li>
+                  </ul>
+
+              </div>
+              
+
+          </div>
+          
+
+      </div>
+      
+
+  </div>
+  
+
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+
+<script>
+  function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+          pageLanguage: 'en'
+      }, 'google_translate_element');
+  }
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script src="https://unpkg.com/lunr/lunr.js"></script>
+
+<script type="text/javascript" src="https://nycehs.github.io/ehs-data-portal-frontend-temp/js/search.js" integrity=""></script>
+  </body>
+</html>
