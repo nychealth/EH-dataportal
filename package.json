@@ -1,0 +1,28 @@
+{
+  "name": "ehs-data-portal-frontend-temp",
+  "version": "1.0.0",
+  "description": "This repository contains a prototype of the Environment and Health Data Portal. You can view a staged development version [here](https://nycehs.github.io/ehs-data-portal-frontend-temp/). We are in the process of fully developing this. If you're interested in helping, you can [email us](mailto:trackingportal@health.nyc.gov) - we are always looking for people interested in user testing and co-design work.",
+  "main": "Gruntfile.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "grunt": "^1.4.1",
+    "string": "^3.3.3",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nycehs/ehs-data-portal-frontend-temp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nycehs/ehs-data-portal-frontend-temp/issues"
+  },
+  "homepage": "https://github.com/nycehs/ehs-data-portal-frontend-temp#readme"
+}

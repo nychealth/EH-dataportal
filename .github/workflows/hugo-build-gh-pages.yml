@@ -1,4 +1,4 @@
-name: Hugo Build to GitHub Pages [main]
+name: Hugo Build to GitHub Pages
 
 # run action on a merged PR on development
 
@@ -11,23 +11,23 @@ on:
 
 jobs:
   deploy:
-    name: Deploy Job [main]
+    name: Deploy Job
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-20.04
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
 
     steps:
-    - name: Checkout [main]
+    - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Hugo setup [main]
+    - name: Hugo setup
       uses: peaceiris/actions-hugo@v2.4.13
       with:
         hugo-version: '0.97.0'
         extended: true
 
-    - name: Hugo cache [main]
+    - name: Hugo cache
       uses: actions/cache@v2
       with:
         path: /tmp/hugo_cache
@@ -35,10 +35,10 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-hugomod-
 
-    - name: Hugo Build [main]
+    - name: Hugo Build
       run: hugo --environment local
 
-    - name: Deploy to gh-p [main]
+    - name: Deploy to gh-p
       uses: peaceiris/actions-gh-pages@v3
       if: ${{ github.ref == 'refs/heads/gh-pages' }}
       with:
