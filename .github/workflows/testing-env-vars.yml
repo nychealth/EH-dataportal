@@ -15,8 +15,8 @@ jobs:
 
     steps:
 
-    # - name: print machine env vars
-    #   run: printenv
+    - name: print machine env vars
+      run: printenv
 
     - name: Checkout
       uses: actions/checkout@v3
