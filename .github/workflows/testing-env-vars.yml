@@ -5,8 +5,8 @@ on:
     branches: 
       - feature-gha-indexing
 
-env:
-  SOME_VAR: a-value
+# env:
+#   SOME_VAR: a-value
 
 jobs:
   test:
@@ -15,20 +15,19 @@ jobs:
 
     steps:
 
-    - name: print machine env vars
-      run: printenv
-
-    - name: printing steps vars [pre-checkout]
-      run: env
+    # - name: print machine env vars
+    #   run: printenv
 
     - name: Checkout
       uses: actions/checkout@v3
+      with:
+        path: development
+      run: |
+        ls ${{ github.workspace }}
 
-    - name: printing steps vars [post-checkout]
-      run: env
-    - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-    - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-
-    - name: List files in the repository
+    - name: Checkout tools repo
+      uses: actions/checkout@v3
+      with:
+        path: gh-pages
       run: |
         ls ${{ github.workspace }}
