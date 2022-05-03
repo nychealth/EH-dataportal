@@ -1,0 +1,34 @@
+name: Testing environment variables
+
+on:
+  push:
+    branches: 
+      - feature-gha-indexing
+
+env:
+  SOME_VAR: a-value
+
+jobs:
+  test:
+    name: Test env vars
+    runs-on: ubuntu-20.04
+
+    steps:
+
+    - name: print machine env vars
+      run: printenv
+
+    - name: printing steps vars [pre-checkout]
+      run: env
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: printing steps vars [post-checkout]
+      run: env
+    - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+    - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+
+    - name: List files in the repository
+      run: |
+        ls ${{ github.workspace }}
