@@ -3,24 +3,73 @@ name: Hugo Build to GitHub Pages
 # run action on a merged PR on development
 
 on:
-  pull_request:
+  push:
     branches: 
-      - development
-    types:
-      - closed
+      - feature-gha-indexing
+    # types:
+    #   - closed
 
 jobs:
   deploy:
-    name: Deploy Job
-    if: github.event.pull_request.merged == true
+    name: Build & Deploy w/ Hugo
     runs-on: ubuntu-20.04
+
+    # only run on PR that is also merged
+    
+    # if: github.event.pull_request.merged == true
+
+    # don't run two of these jobs at the same time
+
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
+
+    # define job's steps
 
     steps:
     - name: Checkout
       uses: actions/checkout@v3
 
+    # set up node and cache for npm
+    
+    - name: Setup node
+      uses: actions/setup-node@v3
+      with: 
+        node_version: 14
+        cache: 'npm'
+
+    - name: Installing npm 
+      run: npm install
+    
+    - name: Testing npm
+      run: npm test
+
+    # set up cache for node modules
+
+    - name: Cache node_modules
+      id: cache-nodemodules
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+    
+    # install grunt and lunr if not cached
+    
+    - name: Install grunt
+      if: steps.cache-nodemodules.outputs.cache-hit != 'true'
+      run: npm install grunt
+
+    - name: Install lunr
+      if: steps.cache-nodemodules.outputs.cache-hit != 'true'
+      run: npm install lunr
+
+    # set up Hugo
+    
     - name: Hugo setup
       uses: peaceiris/actions-hugo@v2.4.13
       with:
