@@ -22,12 +22,14 @@ jobs:
       uses: actions/checkout@v3
       with:
         path: development
-      run: |
+
+    - run: |
         ls ${{ github.workspace }}
 
     - name: Checkout tools repo
       uses: actions/checkout@v3
       with:
         path: gh-pages
-      run: |
+
+    - run: |
         ls ${{ github.workspace }}
