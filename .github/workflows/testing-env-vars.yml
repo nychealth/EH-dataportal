@@ -1,7 +1,5 @@
 name: Testing environment variables
 
-# run action on a merged PR on development
-
 on:
   push:
     branches: 
