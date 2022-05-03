@@ -40,9 +40,6 @@ jobs:
     - name: Installing npm 
       run: npm install
     
-    # - name: Testing npm
-    #   run: npm test
-
     # set up cache for node modules
 
     - name: Cache node_modules
