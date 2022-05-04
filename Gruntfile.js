@@ -124,15 +124,15 @@ module.exports = function(grunt) {
             var pageName = S(filename).chompRight(".html").s;
             
             // delete path up through "content", then turn into a string
-
+            
             var href = S(abspath).chompLeft("content").s;
             
             // "site_root" is the page root, and the URL is that + md/html folder + the page title
-
-            href = site_root + "/" + href;
-
+            
             console.log("abspath [HTML]", abspath);
             console.log("href [HTML]", href);
+            
+            href = site_root + href;
             
             return {
                 title: pageName,
@@ -141,7 +141,7 @@ module.exports = function(grunt) {
             };
         };
         
-
+        
         //--------------------------------------------------------------------------------//
         //  defining MD-specific function
         //--------------------------------------------------------------------------------//
@@ -165,18 +165,20 @@ module.exports = function(grunt) {
             
             // href for index.md files stops at the folder name
             
-            var href = S(abspath).chompLeft("content").chompRight(".md").s;
-
-            if (filename === "_index.md" || filename === "index.md") {
+            // replace all file extensions, i.e. everything after a period
+            var href = S(abspath).chompLeft("content").replace(/\..*/, "").s;
+            
+            // if the filename has "index", maybe has 3 characters (".cn" or ".es") and then ends with ".md"
+            if (filename.search(/index.{0,3}\.md/) >= 0) {
                 
                 href = S(abspath).chompLeft("content").chompRight(filename).s;
                 
             }
             
-            href = site_root + "/" + href;
-            
             console.log("abspath [MD]", abspath);
             console.log("href [MD]", href);
+            
+            href = site_root + href;
 
             // Build Lunr index for this page
 
