@@ -56,15 +56,16 @@ jobs:
           ${{ runner.os }}-build-
           ${{ runner.os }}-
     
-    # install grunt and lunr if not cached
+    # install npm dependencies (if not cached)
     
-    - name: Install grunt
+    - name: Install dependencies
       if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-      run: npm install grunt
-
-    - name: Install lunr
-      if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-      run: npm install lunr
+      run: | 
+        npm install grunt
+        npm install lunr
+        npm install yamljs
+        npm install string
+        npm install url
 
     # set up Hugo
     
@@ -117,7 +118,10 @@ jobs:
     # run gruntfile action
 
     - name: Build index with Grunt
-      uses: elstudio/actions-js-build/build@v4
+      run: | 
+        cd '${{ github.workspace }}/gh-pages/'
+        grunt lunr-index
+      # uses: elstudio/actions-js-build/build@v4
 
     # commit built index
 
@@ -126,4 +130,3 @@ jobs:
       with:
         commitMessage: Regenerate index    
         wdPath: '${{ github.workspace }}/gh-pages/'
-        

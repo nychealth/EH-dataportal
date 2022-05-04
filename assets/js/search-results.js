@@ -1,13 +1,33 @@
+var S = require("string");
+
 const searchTerm = new URL(location.href).searchParams.get("search");
 let lunrIndex,
 $results,
 pagesIndex;
 
+// these are hard-coded for now, but GHA vars would allow us to change them dynamically
+
+var build_dir   = process.env.GITHUB_WORKSPACE + "/gh-pages";
+
+console.log("content_dir", content_dir);
+console.log("build_dir", build_dir);
+
+// site_root variable, constructed from repo name and github organization
+
+var repo_name  = process.env.GITHUB_REPOSITORY;               // nycehs/ehs-data-portal-frontend-temp"
+var repo_owner = process.env.GITHUB_REPOSITORY_OWNER;         // nycehs
+var site_root  = S(repo_name).chompLeft(repo_owner + "/").s;  // ehs-data-portal-frontend-temp
+
+console.log("repo_name", repo_name);
+console.log("repo_owner", repo_owner);
+console.log("site_root", site_root);
+
+
 // Initialize lunrjs using our generated index file
 
 function initLunr() {
     var request = new XMLHttpRequest();
-    request.open('GET', '/ehs-data-portal-frontend-temp/js/lunr/PagesIndex.json', true);
+    request.open('GET', build_dir + "/js/lunr/PagesIndex.json", true);
     
     request.onload = function () {
         if (request.status >= 200 && request.status < 400) {
@@ -88,7 +108,8 @@ function initUI() {
         
     } else {
         // redirect to the homepage if there is no search term
-        window.location.href = '/ehs-data-portal-frontend-temp/'
+        // window.location.href = '/ehs-data-portal-frontend-temp/'
+        window.location.href = site_root;
     }
 }
 
