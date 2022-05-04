@@ -74,6 +74,8 @@ jobs:
         hugo-version: '0.97.0'
         extended: true
 
+    # cache Hugo modules
+
     - name: Hugo cache
       uses: actions/cache@v2
       with:
@@ -82,9 +84,13 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-hugomod-
 
+    # build sit with Hugo
+
     - name: Hugo Build
       run: hugo --environment local
-
+      
+    # deploying built site
+      
     - name: Deploy to gh-p
       uses: peaceiris/actions-gh-pages@v3
       with:
@@ -92,3 +98,32 @@ jobs:
         publish_branch: gh-pages
         publish_dir: ./docs
         enable_jekyll: false
+        
+    # running indexing
+
+    # checking out the two relevant branches, which makes them available in the workspace
+
+    - name: Checkout development
+      uses: actions/checkout@v3
+      with:
+        path: development
+
+    - name: Checkout gh-pages
+      uses: actions/checkout@v3
+      with:
+        path: gh-pages
+        wdPath: '${{ github.workspace }}/gh-pages/'
+    
+    # run gruntfile action
+
+    - name: Build index with Grunt
+      uses: elstudio/actions-js-build/build@v4
+
+    # commit built index
+
+    - name: Commit changes to PagesIndex.json
+      uses: elstudio/actions-js-build/commit@v4
+      with:
+        commitMessage: Regenerate index    
+        wdPath: '${{ github.workspace }}/gh-pages/'
+        
