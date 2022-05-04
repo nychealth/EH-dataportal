@@ -9,7 +9,7 @@ var site_root = "ehs-data-portal-frontend-temp";
 
 function initLunr() {
     var request = new XMLHttpRequest();
-    request.open('GET', site_root + "/js/lunr/PagesIndex.json", true);
+    request.open('GET', "/" + site_root + "/js/lunr/PagesIndex.json", true);
     
     request.onload = function () {
         if (request.status >= 200 && request.status < 400) {
