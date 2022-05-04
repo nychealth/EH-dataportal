@@ -8,15 +8,24 @@ var site_root = "ehs-data-portal-frontend-temp";
 // Initialize lunrjs using our generated index file
 
 function initLunr() {
+
     var request = new XMLHttpRequest();
+
+    // download grunt-generated index data
+
     request.open('GET', "/" + site_root + "/js/lunr/PagesIndex.json", true);
     
     request.onload = function () {
+
         if (request.status >= 200 && request.status < 400) {
+
+            // parse index data
+
             pagesIndex = JSON.parse(request.responseText);
             
             // Set up lunrjs by declaring the fields we use
             // Also provide their boost level for the ranking
+
             lunrIndex = lunr(function () {
                 this.field("title", {
                     boost: 10
@@ -60,7 +69,9 @@ function initLunr() {
                     this.add(pagesIndex[i]);
                 }
             });
+
             initUI();
+
         } else {
             var err = textStatus + ", " + error;
             console.error("Error getting Hugo index flie:", err);
@@ -72,6 +83,7 @@ function initLunr() {
 
 // Nothing crazy here, just hook up a event handler on the input field
 function initUI() {
+    
     const textSearchTerms = document.querySelectorAll('.search_term');
     
     if (searchTerm) {

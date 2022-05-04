@@ -123,13 +123,16 @@ module.exports = function(grunt) {
             var content = grunt.file.read(abspath);
             var pageName = S(filename).chompRight(".html").s;
             
-            // delete path up to "content", then turn into a string
+            // delete path up through "content", then turn into a string
 
             var href = S(abspath).chompLeft("content").s;
             
             // "site_root" is the page root, and the URL is that + md/html folder + the page title
 
             href = site_root + "/" + href;
+
+            console.log("abspath [HTML]", abspath);
+            console.log("href [HTML]", href);
             
             return {
                 title: pageName,
@@ -172,6 +175,9 @@ module.exports = function(grunt) {
             
             href = site_root + "/" + href;
             
+            console.log("abspath [MD]", abspath);
+            console.log("href [MD]", href);
+
             // Build Lunr index for this page
 
             pageIndex = {
