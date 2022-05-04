@@ -3,11 +3,13 @@ let lunrIndex,
 $results,
 pagesIndex;
 
+var site_root = "ehs-data-portal-frontend-temp";
+
 // Initialize lunrjs using our generated index file
 
 function initLunr() {
     var request = new XMLHttpRequest();
-    request.open('GET', '/ehs-data-portal-frontend-temp/js/lunr/PagesIndex.json', true);
+    request.open('GET', "/" + site_root + "/js/lunr/PagesIndex.json", true);
     
     request.onload = function () {
         if (request.status >= 200 && request.status < 400) {
@@ -88,7 +90,8 @@ function initUI() {
         
     } else {
         // redirect to the homepage if there is no search term
-        window.location.href = '/ehs-data-portal-frontend-temp/'
+        // window.location.href = '/ehs-data-portal-frontend-temp/'
+        window.location.href = site_root;
     }
 }
 

@@ -7,11 +7,11 @@
     "doc": "docs"
   },
   "dependencies": {
+    "core-js": "^3.22.4",
     "grunt": "^1.4.1",
     "string": "^3.3.3",
     "yamljs": "^0.3.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

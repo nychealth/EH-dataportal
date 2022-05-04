@@ -1,0 +1,32 @@
+name: Testing environment variables
+
+on:
+  push:
+    branches: 
+      - feature-gha-indexing
+
+# env:
+#   SOME_VAR: a-value
+
+jobs:
+  test:
+    name: Test env vars
+    runs-on: ubuntu-20.04
+
+    steps:
+
+    - name: print machine env vars
+      run: printenv
+
+    - name: Checkout development
+      uses: actions/checkout@v3
+      with:
+        path: development
+
+    - name: Checkout gh-pages
+      uses: actions/checkout@v3
+      with:
+        path: gh-pages
+
+    - run: |
+        ls ${{ github.workspace }}
