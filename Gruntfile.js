@@ -123,11 +123,13 @@ module.exports = function(grunt) {
                 
                 if (S(filename).endsWith(".html")) {
                     
-                    pageIndex = processHTMLFile(abspath, rootdir, subdir, filename);
+                    // pageIndex = processHTMLFile(abspath, rootdir, subdir, filename);
+                    pageIndex = processHTMLFile(abspath, filename);
                     
                 } else if (S(filename).endsWith(".md")) {
                     
-                    pageIndex = processMDFile(abspath, rootdir, subdir, filename);
+                    // pageIndex = processMDFile(abspath, rootdir, subdir, filename);
+                    pageIndex = processMDFile(abspath, filename);
                     
                 }
                 
@@ -143,7 +145,8 @@ module.exports = function(grunt) {
 
         // this only processes files from "build_dir"
         
-        var processHTMLFile = function(abspath, rootdir, subdir, filename) {
+        // var processHTMLFile = function(abspath, rootdir, subdir, filename) {
+        var processHTMLFile = function(abspath, filename) {
             
             var content = grunt.file.read(abspath);
             
@@ -173,7 +176,8 @@ module.exports = function(grunt) {
         //  defining MD-specific function
         //--------------------------------------------------------------------------------//
         
-        var processMDFile = function(abspath, rootdir, subdir, filename) {
+        // var processMDFile = function(abspath, rootdir, subdir, filename) {
+        var processMDFile = function(abspath, filename) {
             
             var content = grunt.file.read(abspath);
             var pageIndex;
