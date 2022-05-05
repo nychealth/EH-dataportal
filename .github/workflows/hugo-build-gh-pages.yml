@@ -91,26 +91,6 @@ jobs:
     - name: Hugo Build
       run: hugo --environment local
            
-    # checking out the two relevant branches, which makes them available in the workspace
-
-    # - name: Checkout development
-    #   uses: actions/checkout@v3
-    #   with:
-    #     path: development
-
-    # - name: Checkout gh-pages
-    #   uses: actions/checkout@v3
-    #   with:
-    #     path: gh-pages
-
-    # - name: list gh-pages files
-    #   run: |
-    #     ls '${{ github.workspace }}'
-    #     echo '---'
-    #     ls '${{ github.workspace }}/docs/'
-    #     echo '---'
-    #     ls '${{ github.workspace }}/gh-pages/'
-
     # run gruntfile action
 
     - name: Build index with Grunt
@@ -122,27 +102,6 @@ jobs:
 
     - name: Commit changes to PagesIndex.json
       uses: elstudio/actions-js-build/commit@v4
-      # run: |
-      #   cd ${{ github.workspace }}
-
-      #   # Set up .netrc file with GitHub credentials
-      #     git_setup ( ) {
-      #       # Git requires our "name" and email address -- use GitHub handle
-      #       git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-      #       git config user.name "$GITHUB_ACTOR"
-      #     }
-
-      #     # This section only runs if there have been file changes
-      #     echo "Checking for uncommitted changes in the git working tree."
-      #     if expr $(git status --porcelain | wc -l) \> 0
-      #     then 
-      #       git_setup
-      #       git add .
-      #       git commit -m "Regenerate index"
-      #       git push
-      #     else 
-      #       echo "Working tree clean. Nothing to commit."
-      #     fi
       with:
         commitMessage: Regenerate index    
       

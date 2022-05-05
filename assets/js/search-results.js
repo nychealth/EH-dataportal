@@ -3,7 +3,7 @@ let lunrIndex,
 $results,
 pagesIndex;
 
-var site_root = "ehs-data-portal-frontend-temp";
+var site_root = "/ehs-data-portal-frontend-temp";
 
 // Initialize lunrjs using our generated index file
 
@@ -13,7 +13,7 @@ function initLunr() {
 
     // download grunt-generated index data
 
-    request.open('GET', "/" + site_root + "/js/lunr/PagesIndex.json", true);
+    request.open('GET', site_root + "/js/lunr/PagesIndex.json", true);
     
     request.onload = function () {
 
