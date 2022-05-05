@@ -161,7 +161,7 @@ module.exports = function(grunt) {
 
             var pageName = S(filename).replace(/\..*/, "").s;
             
-            href = site_root + subdir + "/" + pageName;
+            href = site_root + "/" + subdir + "/" + pageName;
 
             console.log("href [HTML]:", href);
             
@@ -203,11 +203,11 @@ module.exports = function(grunt) {
 
             if (filename.search(/index.{0,3}\.md/) >= 0) {
                 
-                href = site_root + subdir;
+                href = site_root + "/" + subdir;
                 
             } else {
 
-                href = site_root + subdir + "/" + pageName;
+                href = site_root + "/" + subdir + "/" + pageName;
 
             }
             
