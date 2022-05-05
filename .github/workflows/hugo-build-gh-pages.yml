@@ -90,7 +90,37 @@ jobs:
 
     - name: Hugo Build
       run: hugo --environment local
-    
+           
+    # deploying built site
+      
+    - name: Deploy to gh-p
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: ./docs/
+        enable_jekyll: false
+        
+    # checking out the two relevant branches, which makes them available in the workspace
+
+    - name: Checkout development
+      uses: actions/checkout@v3
+      with:
+        path: development
+
+    - name: Checkout gh-pages
+      uses: actions/checkout@v3
+      with:
+        path: gh-pages
+
+    - name: list gh-pages files
+      run: |
+        ls '${{ github.workspace }}'
+        echo '---'
+        ls '${{ github.workspace }}/docs/'
+        echo '---'
+        ls '${{ github.workspace }}/gh-pages/'
+
     # run gruntfile action
 
     - name: Build index with Grunt
