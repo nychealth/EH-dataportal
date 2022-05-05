@@ -9,7 +9,7 @@ const { pathToFileURL } = require('url');
 // these are hard-coded for now, but GHA vars would allow us to change them dynamically
 
 var content_dir = process.env.GITHUB_WORKSPACE + "/development/content";
-var build_dir   = process.env.GITHUB_WORKSPACE + "/gh-pages";
+var build_dir   = process.env.GITHUB_WORKSPACE + "/docs";
 
 // console.log("content_dir", content_dir);
 // console.log("build_dir", build_dir);

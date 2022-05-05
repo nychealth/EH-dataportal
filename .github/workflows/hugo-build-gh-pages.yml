@@ -90,40 +90,6 @@ jobs:
 
     - name: Hugo Build
       run: hugo --environment local
-      
-    # deploying built site
-      
-    - name: Deploy to gh-p
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages
-        publish_dir: ./docs/
-        enable_jekyll: false
-        
-    # running indexing
-
-    # checking out the two relevant branches, which makes them available in the workspace
-
-    - name: Checkout development
-      uses: actions/checkout@v3
-      with:
-        path: development
-
-    - name: Checkout gh-pages
-      uses: actions/checkout@v3
-      with:
-        path: gh-pages
-
-    - name: list gh-pages files
-      run: |
-        ls '${{ github.workspace }}'
-        echo '---'
-        ls '${{ github.workspace }}/feature-gha-indexing/'
-        echo '---'
-        ls '${{ github.workspace }}/feature-gha-indexing/docs/'
-        echo '---'
-        ls '${{ github.workspace }}/gh-pages/'
     
     # run gruntfile action
 
@@ -137,7 +103,7 @@ jobs:
     - name: Commit changes to PagesIndex.json
       # uses: elstudio/actions-js-build/commit@v4
       run: |
-        cd ${{ github.workspace }}/gh-pages/
+        cd ${{ github.workspace }}
 
         # Set up .netrc file with GitHub credentials
           git_setup ( ) {
@@ -160,3 +126,16 @@ jobs:
       # with:
       #   commitMessage: Regenerate index    
       #   wdPath: '${{ github.workspace }}/gh-pages/'
+      
+    # deploying built site
+      
+    - name: Deploy to gh-p
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: ./docs/
+        enable_jekyll: false
+        
+    # running indexing
+
