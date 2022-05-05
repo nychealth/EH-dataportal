@@ -115,7 +115,8 @@ module.exports = function(grunt) {
         //  defining general `processFile` function, which calls type-specific functions
         //--------------------------------------------------------------------------------//
         
-        var processFile = function(abspath, rootdir, subdir, filename) {
+        // var processFile = function(abspath, rootdir, subdir, filename) {
+        var processFile = function(abspath, filename) {
             
             var pageIndex;
             
