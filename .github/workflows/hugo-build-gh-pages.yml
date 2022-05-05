@@ -98,7 +98,7 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: gh-pages
-        publish_dir: ./
+        publish_dir: ./docs/
         enable_jekyll: false
         
     # running indexing
@@ -118,6 +118,11 @@ jobs:
     - name: list gh-pages files
       run: |
         ls '${{ github.workspace }}'
+        echo '---'
+        ls '${{ github.workspace }}/feature-gha-indexing/'
+        echo '---'
+        ls '${{ github.workspace }}/feature-gha-indexing/docs/'
+        echo '---'
         ls '${{ github.workspace }}/gh-pages/'
     
     # run gruntfile action
