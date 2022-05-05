@@ -117,6 +117,8 @@ jobs:
 
     - name: list gh-pages files
       run: |
+        cd '${{ github.workspace }}'
+        ls
         cd '${{ github.workspace }}/gh-pages/'
         ls
     
@@ -124,7 +126,7 @@ jobs:
 
     - name: Build index with Grunt
       run: | 
-        cd '${{ github.workspace }}/gh-pages/'
+        cd '${{ github.workspace }}'
         grunt lunr-index
 
     # commit built index
