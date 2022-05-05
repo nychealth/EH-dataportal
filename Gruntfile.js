@@ -11,8 +11,8 @@ const { pathToFileURL } = require('url');
 var content_dir = process.env.GITHUB_WORKSPACE + "/development/content";
 var build_dir   = process.env.GITHUB_WORKSPACE + "/gh-pages";
 
-console.log("content_dir", content_dir);
-console.log("build_dir", build_dir);
+// console.log("content_dir", content_dir);
+// console.log("build_dir", build_dir);
 
 // site_root variable, constructed from repo name and github organization
 
@@ -20,9 +20,9 @@ var repo_name  = process.env.GITHUB_REPOSITORY;               // nycehs/ehs-data
 var repo_owner = process.env.GITHUB_REPOSITORY_OWNER;         // nycehs
 var site_root  = S(repo_name).chompLeft(repo_owner + "/").s;  // ehs-data-portal-frontend-temp
 
-console.log("repo_name", repo_name);
-console.log("repo_owner", repo_owner);
-console.log("site_root", site_root);
+// console.log("repo_name", repo_name);
+// console.log("repo_owner", repo_owner);
+// console.log("site_root", site_root);
 
 
 module.exports = function(grunt) {
@@ -39,12 +39,30 @@ module.exports = function(grunt) {
             
 
             //--------------------------------------------------------------------------------//
-            // running `processFile` on all HTML files in "docs"
+            // running `processFile` on all HTML files on gh-pages branch
             //--------------------------------------------------------------------------------//
 
             // ([rootdir, subdir] are necessary in the function call, or else grunt throws an error, so we need them, even though they don't do anything)
             
             grunt.file.recurse(build_dir, function(abspath, rootdir, subdir, filename) {
+
+                // The full path to the current file, which is nothing more than
+                // the rootdir + subdir + filename arguments, joined.
+                // abspath
+
+                // The root directory, as originally specified.
+                // rootdir
+
+                // The current file's directory, relative to rootdir.
+                // subdir
+
+                // The filename of the current file, without any directory parts.
+                // filename                
+
+                console.log("abspath [HTML recurse]:", abspath);
+                console.log("rootdir [HTML recurse]:", rootdir);
+                console.log("subdir [HTML recurse]:", subdir);
+                console.log("filename [HTML recurse]:", filename);
 
                 if (S(filename).endsWith(".html")) {
                     
@@ -70,7 +88,7 @@ module.exports = function(grunt) {
             
 
             //--------------------------------------------------------------------------------//
-            // adding related HTML content to MD index
+            // adding page's HTML content to its MD index
             //--------------------------------------------------------------------------------//
             
             mdPagesIndex.forEach(function(page){
@@ -117,11 +135,15 @@ module.exports = function(grunt) {
         //--------------------------------------------------------------------------------//
         // defining HTML-specific function
         //--------------------------------------------------------------------------------//
+
+        // this only processes files from "build_dir"
         
         var processHTMLFile = function(abspath, filename) {
             
             var content = grunt.file.read(abspath);
-            var pageName = S(filename).chompRight(".html").s;
+            
+            // replace all file extensions, i.e. everything after a period
+            var pageName = S(filename).replace(/\..*/, "").s;
             
             // delete path up through "content", then turn into a string
             
@@ -129,8 +151,8 @@ module.exports = function(grunt) {
             
             // "site_root" is the page root, and the URL is that + md/html folder + the page title
             
-            console.log("abspath [HTML]", abspath);
-            console.log("href [HTML]", href);
+            console.log("[HTML]:", abspath);
+            // console.log("href [HTML]", href);
             
             href = site_root + href;
             
@@ -175,8 +197,8 @@ module.exports = function(grunt) {
                 
             }
             
-            console.log("abspath [MD]", abspath);
-            console.log("href [MD]", href);
+            console.log("[MD]:", abspath);
+            // console.log("href [MD]", href);
             
             href = site_root + href;
 
