@@ -117,10 +117,8 @@ jobs:
 
     - name: list gh-pages files
       run: |
-        cd '${{ github.workspace }}'
-        ls
-        cd '${{ github.workspace }}/gh-pages/'
-        ls
+        ls '${{ github.workspace }}'
+        ls '${{ github.workspace }}/gh-pages/'
     
     # run gruntfile action
 
