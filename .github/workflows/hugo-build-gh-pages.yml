@@ -98,7 +98,7 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: gh-pages
-        publish_dir: ./docs
+        publish_dir: ./
         enable_jekyll: false
         
     # running indexing
@@ -114,6 +114,11 @@ jobs:
       uses: actions/checkout@v3
       with:
         path: gh-pages
+
+    - name: list gh-pages files
+      run: |
+        cd '${{ github.workspace }}/gh-pages/'
+        ls
     
     # run gruntfile action
 
@@ -122,15 +127,31 @@ jobs:
         cd '${{ github.workspace }}/gh-pages/'
         grunt lunr-index
 
-    - name: list gh-pages files
-      run: |
-        cd '${{ github.workspace }}/gh-pages/'
-        ls
-
     # commit built index
 
     - name: Commit changes to PagesIndex.json
-      uses: elstudio/actions-js-build/commit@v4
-      with:
-        commitMessage: Regenerate index    
-        wdPath: '${{ github.workspace }}/gh-pages/'
+      # uses: elstudio/actions-js-build/commit@v4
+      run: |
+        cd ${{ github.workspace }}/gh-pages/
+
+        # Set up .netrc file with GitHub credentials
+          git_setup ( ) {
+            # Git requires our "name" and email address -- use GitHub handle
+            git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+            git config user.name "$GITHUB_ACTOR"
+          }
+
+          # This section only runs if there have been file changes
+          echo "Checking for uncommitted changes in the git working tree."
+          if expr $(git status --porcelain | wc -l) \> 0
+          then 
+            git_setup
+            git add .
+            git commit -m "Regenerate index"
+            git push
+          else 
+            echo "Working tree clean. Nothing to commit."
+          fi
+      # with:
+      #   commitMessage: Regenerate index    
+      #   wdPath: '${{ github.workspace }}/gh-pages/'
