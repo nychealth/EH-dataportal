@@ -158,10 +158,10 @@ module.exports = function(grunt) {
             var content = grunt.file.read(abspath);
             
             // replace all file extensions, i.e. everything after a period
-            
+
             var pageName = S(filename).replace(/\..*/, "").s;
             
-            href = site_root + subdir + pageName;
+            href = site_root + subdir + "/" + pageName;
 
             console.log("href [HTML]:", href);
             
@@ -207,7 +207,7 @@ module.exports = function(grunt) {
                 
             } else {
 
-                href = site_root + subdir + pageName;
+                href = site_root + subdir + "/" + pageName;
 
             }
             

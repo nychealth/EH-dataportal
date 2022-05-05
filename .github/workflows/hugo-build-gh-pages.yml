@@ -122,6 +122,11 @@ jobs:
         cd '${{ github.workspace }}/gh-pages/'
         grunt lunr-index
 
+    - name: list gh-pages files
+      run: |
+        cd '${{ github.workspace }}/gh-pages/'
+        ls
+
     # commit built index
 
     - name: Commit changes to PagesIndex.json
