@@ -96,7 +96,18 @@ function initUI() {
         var fuzzyQuery = searchTerm + '~' + fuzzLength;
         
         // var results = search(fuzzyQuery);
+        
+        // ----------------------------------------------------- //
+        // search call
+        // ----------------------------------------------------- //
+        // get search results
+
         var results = search(searchTerm);
+        
+        // ----------------------------------------------------- //
+        // renderResults call
+        // ----------------------------------------------------- //
+        // render search results
         
         renderResults(results);
         
@@ -106,6 +117,10 @@ function initUI() {
         window.location.href = site_root;
     }
 }
+
+// ----------------------------------------------------- //
+// search def
+// ----------------------------------------------------- //
 
 /**
 * Trigger a search in lunr and transform the result
@@ -131,12 +146,17 @@ function search(query) {
     });
 }
 
+
+// ----------------------------------------------------- //
+// renderResults def
+// ----------------------------------------------------- //
 /**
 * Display the results
 *
 * @param  {Array} results to display
 */
 function renderResults(results) {
+
     const $searchResultsTitle = document.querySelector('.search-results-title');
     const $other = document.getElementById("other");
     const $nieghborhoodReports = document.getElementById("neighborhood-reports");
@@ -168,7 +188,10 @@ function renderResults(results) {
         var ahref = document.createElement('a');
         ahref.href = result.href;
         ahref.text = result.title;
+
         li.append(ahref);
+        console.log("ahref", ahref);
+
         resultsCount = resultsCount += 1;
         $searchResultsTitle.innerHTML = 
             `<span class="fas fa-search fa-md"></span> ${resultsCount} results for '${searchTerm}'`;
@@ -207,6 +230,11 @@ function renderResults(results) {
         }
     }
     
+    
+    // ----------------------------------------------------- //
+    // handleResults def
+    // ----------------------------------------------------- //
+
     const handleResults = (el, arr, count) => {
 
         console.log("handleResults", arr);
@@ -265,6 +293,11 @@ function renderResults(results) {
         displaySection(count, el);
     }
     
+    
+    // ----------------------------------------------------- //
+    // handleResults call
+    // ----------------------------------------------------- //
+
     handleResults($nieghborhoodReports, nieghborhoodResults, nieghborhoodReportsCount);
     handleResults($dataStories, dataStoriesResults, dataStoriesCount);
     handleResults($keyTopics, keyTopicsResults, keyTopicsCount);
