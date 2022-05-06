@@ -121,7 +121,12 @@ function search(query) {
     //  {title:"Page1", href:"/section/page1", ...}
     return lunrIndex.search(query).map(function (result) {
         return pagesIndex.filter(function (page) {
+
+            console.log("page.ref [pagesIndex]", page.ref);
+            console.log("result.ref [lunrIndex]", result.ref);
+
             return page.href === result.ref;
+
         })[0];
     });
 }
