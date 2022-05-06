@@ -190,7 +190,7 @@ function renderResults(results) {
         ahref.text = result.title;
 
         li.append(ahref);
-        console.log("ahref", ahref);
+        // console.log("ahref", ahref);
 
         resultsCount = resultsCount += 1;
         $searchResultsTitle.innerHTML = 
@@ -237,7 +237,7 @@ function renderResults(results) {
 
     const handleResults = (el, arr, count) => {
 
-        console.log("handleResults", arr);
+        // console.log("handleResults", arr);
         
         count = arr.length;
         
@@ -250,7 +250,7 @@ function renderResults(results) {
             
             arr.slice(0, 5).map(link => {
                 
-                console.log("link", link);
+                // console.log("link", link);
                 
                 const li = document.createElement('li');
                 li.setAttribute('class', 'pb-3 pb-sm-0');

@@ -3,11 +3,11 @@ name: Hugo Build to GitHub Pages
 # run action on a merged PR on development
 
 on:
-  push:
+  pull_request:
     branches: 
-      - feature-gha-indexing
-    # types:
-    #   - closed
+      - development
+    types:
+      - closed
 
 jobs:
   deploy:
@@ -16,7 +16,7 @@ jobs:
 
     # only run on PR that is also merged
     
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
 
     # don't run two of these jobs at the same time
 

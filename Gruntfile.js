@@ -1,6 +1,6 @@
 
 // this sits at the top level of the local dir, so "content" and "docs" are folders at the top level
-// in GHA it sits in GITHUB_WORKSPACE/[branch_name]
+// in GHA it sits in GITHUB_WORKSPACE
 
 var YAML = require('yamljs');
 var S = require("string");
@@ -16,8 +16,8 @@ var build_dir   = process.env.GITHUB_WORKSPACE + "/docs";
 
 // site_root variable, constructed from repo name and github organization
 
-var repo_name  = process.env.GITHUB_REPOSITORY;               // nycehs/ehs-data-portal-frontend-temp"
-var repo_owner = process.env.GITHUB_REPOSITORY_OWNER;         // nycehs
+var repo_name  = process.env.GITHUB_REPOSITORY;         // nycehs/ehs-data-portal-frontend-temp"
+var repo_owner = process.env.GITHUB_REPOSITORY_OWNER;   // nycehs
 var site_root  = S(repo_name).chompLeft(repo_owner).s;  // ehs-data-portal-frontend-temp
 
 // console.log("repo_name", repo_name);
@@ -61,10 +61,10 @@ module.exports = function(grunt) {
                 
                 if (S(filename).endsWith(".html")) {
                     
-                    console.log("abspath [HTML recurse]:", abspath);
-                    console.log("rootdir [HTML recurse]:", rootdir);
-                    console.log("subdir [HTML recurse]:", subdir);
-                    console.log("filename [HTML recurse]:", filename);
+                    // console.log("abspath [HTML recurse]:", abspath);
+                    // console.log("rootdir [HTML recurse]:", rootdir);
+                    // console.log("subdir [HTML recurse]:", subdir);
+                    // console.log("filename [HTML recurse]:", filename);
                     
                     pageObj = processFile(abspath, rootdir, subdir, filename);
 
@@ -82,16 +82,12 @@ module.exports = function(grunt) {
                 
                 if (S(filename).endsWith(".md")) {
                     
-                    console.log("abspath [MD recurse]:", abspath);
-                    console.log("rootdir [MD recurse]:", rootdir);
-                    console.log("subdir [MD recurse]:", subdir);
-                    console.log("filename [MD recurse]:", filename);
-                    
-                    // pageObj = processFile(abspath, filename);
-                    // pagesIndex.push(processFile(abspath, filename));
+                    // console.log("abspath [MD recurse]:", abspath);
+                    // console.log("rootdir [MD recurse]:", rootdir);
+                    // console.log("subdir [MD recurse]:", subdir);
+                    // console.log("filename [MD recurse]:", filename);
                     
                     pageObj = processFile(abspath, rootdir, subdir, filename);
-                    // pagesIndex.push(processFile(abspath, rootdir, subdir, filename));
                     pagesIndex.push(pageObj);
 
                     // put the pageObj data into the index, labeled with pageObj.href
@@ -163,7 +159,7 @@ module.exports = function(grunt) {
             
             href = site_root + "/" + subdir + "/" + pageName;
 
-            console.log("href [HTML]:", href);
+            // console.log("href [HTML]:", href);
             
             return {
                 title: pageName,
@@ -206,19 +202,19 @@ module.exports = function(grunt) {
                 if (filename.search(/\.cn/) >= 0) {
                     
                     href = site_root + "/cn/" + subdir;
-
-                    console.log("href [cn]", href);
+                    
+                    // console.log("href [cn]", href);
                     
                 } else if (filename.search(/\.es/) >= 0) {
                     
                     href = site_root + "/es/" + subdir;
                     
-                    console.log("href [es]", href);
-
+                    // console.log("href [es]", href);
+                    
                 } else {
                     
                     href = site_root + "/" + subdir;
-
+                    
                 }
                 
             } else {
@@ -227,7 +223,7 @@ module.exports = function(grunt) {
                 
             }
             
-            console.log("href [MD]:", href);
+            // console.log("href [MD]:", href);
             
 
             // Build Lunr index for this page
