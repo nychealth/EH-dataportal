@@ -3,18 +3,29 @@ let lunrIndex,
 $results,
 pagesIndex;
 
+var site_root = "/ehs-data-portal-frontend-temp";
+
 // Initialize lunrjs using our generated index file
 
 function initLunr() {
+
     var request = new XMLHttpRequest();
-    request.open('GET', '/ehs-data-portal-frontend-temp/js/lunr/PagesIndex.json', true);
+
+    // download grunt-generated index data
+
+    request.open('GET', site_root + "/js/lunr/PagesIndex.json", true);
     
     request.onload = function () {
+
         if (request.status >= 200 && request.status < 400) {
+
+            // parse index data
+
             pagesIndex = JSON.parse(request.responseText);
             
             // Set up lunrjs by declaring the fields we use
             // Also provide their boost level for the ranking
+
             lunrIndex = lunr(function () {
                 this.field("title", {
                     boost: 10
@@ -58,7 +69,9 @@ function initLunr() {
                     this.add(pagesIndex[i]);
                 }
             });
+
             initUI();
+
         } else {
             var err = textStatus + ", " + error;
             console.error("Error getting Hugo index flie:", err);
@@ -70,6 +83,7 @@ function initLunr() {
 
 // Nothing crazy here, just hook up a event handler on the input field
 function initUI() {
+    
     const textSearchTerms = document.querySelectorAll('.search_term');
     
     if (searchTerm) {
@@ -82,15 +96,31 @@ function initUI() {
         var fuzzyQuery = searchTerm + '~' + fuzzLength;
         
         // var results = search(fuzzyQuery);
+        
+        // ----------------------------------------------------- //
+        // search call
+        // ----------------------------------------------------- //
+        // get search results
+
         var results = search(searchTerm);
+        
+        // ----------------------------------------------------- //
+        // renderResults call
+        // ----------------------------------------------------- //
+        // render search results
         
         renderResults(results);
         
     } else {
         // redirect to the homepage if there is no search term
-        window.location.href = '/ehs-data-portal-frontend-temp/'
+        // window.location.href = '/ehs-data-portal-frontend-temp/'
+        window.location.href = site_root;
     }
 }
+
+// ----------------------------------------------------- //
+// search def
+// ----------------------------------------------------- //
 
 /**
 * Trigger a search in lunr and transform the result
@@ -106,17 +136,27 @@ function search(query) {
     //  {title:"Page1", href:"/section/page1", ...}
     return lunrIndex.search(query).map(function (result) {
         return pagesIndex.filter(function (page) {
+
+            // console.log("page.ref [pagesIndex]", page.href);
+            // console.log("result.ref [lunrIndex]", result.ref);
+
             return page.href === result.ref;
+
         })[0];
     });
 }
 
+
+// ----------------------------------------------------- //
+// renderResults def
+// ----------------------------------------------------- //
 /**
 * Display the results
 *
 * @param  {Array} results to display
 */
 function renderResults(results) {
+
     const $searchResultsTitle = document.querySelector('.search-results-title');
     const $other = document.getElementById("other");
     const $nieghborhoodReports = document.getElementById("neighborhood-reports");
@@ -148,7 +188,10 @@ function renderResults(results) {
         var ahref = document.createElement('a');
         ahref.href = result.href;
         ahref.text = result.title;
+
         li.append(ahref);
+        // console.log("ahref", ahref);
+
         resultsCount = resultsCount += 1;
         $searchResultsTitle.innerHTML = 
             `<span class="fas fa-search fa-md"></span> ${resultsCount} results for '${searchTerm}'`;
@@ -187,7 +230,14 @@ function renderResults(results) {
         }
     }
     
+    
+    // ----------------------------------------------------- //
+    // handleResults def
+    // ----------------------------------------------------- //
+
     const handleResults = (el, arr, count) => {
+
+        // console.log("handleResults", arr);
         
         count = arr.length;
         
@@ -199,6 +249,8 @@ function renderResults(results) {
             // slice from beginning to 5
             
             arr.slice(0, 5).map(link => {
+                
+                // console.log("link", link);
                 
                 const li = document.createElement('li');
                 li.setAttribute('class', 'pb-3 pb-sm-0');
@@ -241,6 +293,11 @@ function renderResults(results) {
         displaySection(count, el);
     }
     
+    
+    // ----------------------------------------------------- //
+    // handleResults call
+    // ----------------------------------------------------- //
+
     handleResults($nieghborhoodReports, nieghborhoodResults, nieghborhoodReportsCount);
     handleResults($dataStories, dataStoriesResults, dataStoriesCount);
     handleResults($keyTopics, keyTopicsResults, keyTopicsCount);
