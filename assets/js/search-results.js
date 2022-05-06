@@ -222,6 +222,8 @@ function renderResults(results) {
             
             arr.slice(0, 5).map(link => {
                 
+                console.log("link", link);
+                
                 const li = document.createElement('li');
                 li.setAttribute('class', 'pb-3 pb-sm-0');
                 li.append(link);
