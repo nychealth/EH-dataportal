@@ -3,11 +3,11 @@ name: Hugo Build to GitHub Pages
 # run action on a merged PR on development
 
 on:
-  push:
+  pull_request:
     branches: 
-      - feature-gha-indexing
-    # types:
-    #   - closed
+      - development
+    types:
+      - closed
 
 jobs:
   deploy:
@@ -16,7 +16,7 @@ jobs:
 
     # only run on PR that is also merged
     
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
 
     # don't run two of these jobs at the same time
 
@@ -89,36 +89,12 @@ jobs:
 
     - name: Hugo Build
       run: hugo --environment local
-      
-    # deploying built site
-      
-    - name: Deploy to gh-p
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages
-        publish_dir: ./docs
-        enable_jekyll: false
-        
-    # running indexing
-
-    # checking out the two relevant branches, which makes them available in the workspace
-
-    - name: Checkout development
-      uses: actions/checkout@v3
-      with:
-        path: development
-
-    - name: Checkout gh-pages
-      uses: actions/checkout@v3
-      with:
-        path: gh-pages
-    
+           
     # run gruntfile action
 
     - name: Build index with Grunt
       run: | 
-        cd '${{ github.workspace }}/gh-pages/'
+        cd '${{ github.workspace }}'
         grunt lunr-index
 
     # commit built index
@@ -127,4 +103,14 @@ jobs:
       uses: elstudio/actions-js-build/commit@v4
       with:
         commitMessage: Regenerate index    
-        wdPath: '${{ github.workspace }}/gh-pages/'
+      
+    # deploying built site
+      
+    - name: Deploy to gh-p
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: ./docs/
+        enable_jekyll: false
+        
