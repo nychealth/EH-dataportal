@@ -205,13 +205,13 @@ module.exports = function(grunt) {
                 
                 if (filename.search(/\.cn/) >= 0) {
                     
-                    href = site_root + "/" + subdir;
+                    href = site_root + "/cn/" + subdir;
 
                     console.log("href [cn]", href);
                     
                 } else if (filename.search(/\.es/) >= 0) {
                     
-                    href = site_root + "/" + subdir;
+                    href = site_root + "/es/" + subdir;
                     
                     console.log("href [es]", href);
 
