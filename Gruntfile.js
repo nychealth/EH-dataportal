@@ -200,15 +200,31 @@ module.exports = function(grunt) {
             var pageName = S(filename).replace(/\..*/, "").s;
             
             // if the filename has "index", maybe has 3 characters (".cn" or ".es") and then ends with ".md"
-
+            
             if (filename.search(/index.{0,3}\.md/) >= 0) {
                 
-                href = site_root + "/" + subdir;
+                if (filename.search(/\.cn/) >= 0) {
+                    
+                    href = site_root + "/" + subdir;
+
+                    console.log("href [cn]", href);
+                    
+                } else if (filename.search(/\.es/) >= 0) {
+                    
+                    href = site_root + "/" + subdir;
+                    
+                    console.log("href [es]", href);
+
+                } else {
+                    
+                    href = site_root + "/" + subdir;
+
+                }
                 
             } else {
-
+                
                 href = site_root + "/" + subdir + "/" + pageName;
-
+                
             }
             
             console.log("href [MD]:", href);
