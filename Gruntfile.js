@@ -18,7 +18,7 @@ var build_dir   = process.env.GITHUB_WORKSPACE + "/docs";
 
 var repo_name  = process.env.GITHUB_REPOSITORY;               // nycehs/ehs-data-portal-frontend-temp"
 var repo_owner = process.env.GITHUB_REPOSITORY_OWNER;         // nycehs
-var site_root  = "/" + S(repo_name).chompLeft(repo_owner + "/").s;  // ehs-data-portal-frontend-temp
+var site_root  = S(repo_name).chompLeft(repo_owner).s;  // ehs-data-portal-frontend-temp
 
 // console.log("repo_name", repo_name);
 // console.log("repo_owner", repo_owner);
