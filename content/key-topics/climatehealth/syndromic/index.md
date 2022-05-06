@@ -10,6 +10,10 @@ menu:
 layout: syndromic
 ---
 
-Extreme heat is dangerous. It can cause heat-related illness, make chronic conditions worse, and even kill. The weather forecast is our best way to predict heat-related health outcomes. We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC.
+Extreme heat is dangerous. It can cause illness, make chronic conditions worse, and even kill. Heat-related illnesses happen when the body cannot cool down enough, and include heat exhaustion, muscle cramps, fainting and heat stroke, the most serious form of heat-related illness. Heat can exacerbate chronic conditions, such as cardiovascular diseases or kidney conditions, that may not be recognized or labeled as heat-related.
+
+The weather forecast is the best way to predict heat-related health outcomes. We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat, not the full burden of heat-related health impacts.
+
+
 
 
