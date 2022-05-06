@@ -122,7 +122,7 @@ function search(query) {
     return lunrIndex.search(query).map(function (result) {
         return pagesIndex.filter(function (page) {
 
-            console.log("page.ref [pagesIndex]", page.ref);
+            console.log("page.ref [pagesIndex]", page.href);
             console.log("result.ref [lunrIndex]", result.ref);
 
             return page.href === result.ref;
