@@ -1,7 +1,7 @@
 ---
 title: Housing and Neighborhoods
 date: 2021-05-28 18:02:58.727801
-draft: false
+draft: true
 seo_title: "Housing and neighborhood data for NYC."
 seo_description: "Explore data, visualizations, and more."
 tags: 
