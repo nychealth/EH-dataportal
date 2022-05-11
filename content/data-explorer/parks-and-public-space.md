@@ -1,7 +1,7 @@
 ---
 title: Parks and Public Space
 date: 2021-05-28 18:02:58.757692
-draft: false
+draft: true
 seo_title: "Parks and public space data for NYC."
 seo_description: "Explore data, visualizations, and more."
 tags: 
