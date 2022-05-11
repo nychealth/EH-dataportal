@@ -1,8 +1,8 @@
 ---
-title: "Social and Economic Conditions"
+title: "Inequality and health inequities"
 date: 2021-10-01T07:59:16-04:00
 draft: false
-seo_title: "Social and Economic Conditions in NYC."
+seo_title: "Data on health equity and social and economic conditions in NYC."
 seo_description: "Data, data stories, interactives, and more."
 tags: 
 categories: [social]
@@ -18,5 +18,5 @@ Social and economic conditions affect people’s health. These conditions (also 
 
 People tend to be healthier when they have access to economic and financial stability, higher education, adequate health care, healthy neighborhoods, and safe, strong communities.
 
-But when people don’t have access to these conditions, they experience worse health outcomes. This is health inequity – avoidable and unfair health outcomes. Discrimination based on race (and other personal characteristics) often results in disparities in access to these conditions –and thus, disparities in health outcomes.
+But when people don’t have access to these conditions, they experience worse health outcomes. This is health inequity – avoidable and unfair health outcomes. Discrimination based on race (and other personal characteristics) often results in disparities in access to these conditions – and thus, disparities in health outcomes.
 
