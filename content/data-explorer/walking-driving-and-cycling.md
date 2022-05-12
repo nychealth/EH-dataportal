@@ -13,8 +13,8 @@ menu:
         identifier: '03'
 ---
  
- People get around New York City in many ways - public transit, walking, cycling, driving, and other modes too. 
+ People get around New York City in many ways - public transit, walking, cycling, driving, and other modes too. When these individual behaviors are added up, they can shape our city and our health. 
  
- Our built environment can shape these behaviors, with things like bicycle lanes or dedicated bus lanes having the potential to increase both the usage and safety of those modes. Meanwhile, car and truck traffic takes a toll on our public health, contributing significantly to air pollution and transportation-related injuries.
+ Our built environment incfluences these behaviors. Infrastructure like bicycle lanes or dedicated bus lanes having the potential to increase both the usage and safety of these ways to get around. Meanwhile, car and truck traffic takes a toll on our public health, contributing to air pollution, transportation-related injuries, and climate change.
 
 
