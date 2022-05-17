@@ -167,7 +167,6 @@ image: ds-redlining.jpeg
 
 公共卫生不仅仅是在个人层面上改变人们的行为：它关乎于建立一个支持健康和福祉的社会，并通过直面过去走向未来。 
 
-*More resources about redlining:*
-- [Mapping Inequality: Redlining in New Deal America](https://dsl.richmond.edu/panorama/redlining/#loc=4/36.71/-96.93&opacity=0.8), where you can explore redlining maps and original documents for your neighborhood.
-- [The persistent structure of segregation and economic inequality](https://ncrc.org/holc/) from the National Community Reinvestment Coalition.
-
+*关于红线圈定的更多资源:*
+- [反映不平等：美国新政时期的红线圈定（Redlining in New Deal America）](https://dsl.richmond.edu/panorama/redlining/#loc=4/36.71/-96.93&opacity=0.8), 在此处您可以探索您所在社区的红线圈定图和原始文档。
+- [种族隔离和经济不平等的持续结构](https://ncrc.org/holc/) 来自全国社区再投资联盟（National Community Reinvestment Coalition）。

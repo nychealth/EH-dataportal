@@ -401,7 +401,7 @@ function changeMap(x) {
 </div>
 {{< /rawhtml>}}
 
-#### Get the data
-- Data on housing maintenance conditions come from the [2017 Housing and Vancancy Survey](https://www.census.gov/programs-surveys/nychvs.html).
-- [Data on childhood asthma emergency department visits](https://a816-dohbesp.nyc.gov/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=11) come from the New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data.
-- [Data on the race/ethnicity of people by neighborhood](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2325,4466a0,109,Summarize) come from the American Community Survey.
+#### 获取数据 
+- 有关住房维护状况的数据来自 [年住房和空置调查（Housing and Vancancy Survey）](https://www.census.gov/programs-surveys/nychvs.html)。
+- [有关儿童哮喘急诊科就诊的数据](https://a816-dohbesp.nyc.gov/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=11) 来自纽约全州计划和研究合作系统（New York State Statewide Planning and Research Cooperative System，SPARCS）去身份化的出院数据。
+- [有关依社区划分的人口种族/族裔数据](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2325,4466a0,109,Summarize) 来自美国社区调查（American Community Survey）。
