@@ -200,7 +200,7 @@ Si bien el redlining se prohibió en 1968, persisten otras formas de discriminac
 
 La salud pública implica mucho más que cambiar las conductas de las personas a nivel individual: se trata de construir una sociedad que apoye la salud y el bienestar, y avanzar hacia nuestro futuro confrontando el pasado. 
 
-*More resources about redlining:*
-- [Mapping Inequality: Redlining in New Deal America](https://dsl.richmond.edu/panorama/redlining/#loc=4/36.71/-96.93&opacity=0.8), where you can explore redlining maps and original documents for your neighborhood.
-- [The persistent structure of segregation and economic inequality](https://ncrc.org/holc/) from the National Community Reinvestment Coalition.
+*Más recursos sobre el redlining:*
+- [Diagramar la desigualdad: el redlining en los Estados Unidos del New Deal (Mapping Inequality: Redlining in New Deal America)](https://dsl.richmond.edu/panorama/redlining/#loc=4/36.71/-96.93&opacity=0.8), donde puede explorar mapas de redlining y documentos originales sobre su vecindario.
+- [La estructura persistente de segregación y desigualdad económica (The persistent structure of segregation and economic inequality)](https://ncrc.org/holc/) de la Coalición Nacional de Reinversión Comunitaria (National Community Reinvestment Coalition).
 

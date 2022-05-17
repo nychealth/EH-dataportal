@@ -399,10 +399,10 @@ Los propietarios y los arrendadores de edificios deben mantener los apartamentos
 </div>
 {{< /rawhtml>}}
 
-#### Get the data
-- Data on housing maintenance conditions come from the [2017 Housing and Vancancy Survey](https://www.census.gov/programs-surveys/nychvs.html).
-- [Data on childhood asthma emergency department visits](https://a816-dohbesp.nyc.gov/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=11) come from the New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data.
-- [Data on the race/ethnicity of people by neighborhood](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2325,4466a0,109,Summarize) come from the American Community Survey.
+#### Obtenga los datos 
+- Los datos sobre las condiciones de mantenimiento de viviendas provienen de la [Encuesta de Viviendas y Vacantes (Housing and Vancancy Survey) de 2017.](https://www.census.gov/programs-surveys/nychvs.html).
+- [La información sobre las visitas a la sala de emergencias por asma infantil ](https://a816-dohbesp.nyc.gov/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=11) provienen de los Datos anonimizados de alta hospitalaria del Sistema Cooperativo de Investigación y Planificación Estatal (Statewide Planning and Research Cooperative System, SPARCS).
+- [Los datos sobre la raza/etnia de las personas por vecindario](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2325,4466a0,109,Summarize) provienen de la Encuesta Comunitaria Estadounidense (American Community Survey).
 
 
 

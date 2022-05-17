@@ -266,50 +266,32 @@ Significa que podemos prevenir la violencia eliminando la pobreza; ofreciendo em
                 </button>
             </div>
             <div class="modal-body">
-                <p><strong>Poverty:</strong> the percent of people whose annual income is below 100% of
-                    the Federal Poverty Level, 2013-2017 American Community Survey. <a
-                        href="/IndicatorPublic/VisualizationData.aspx?id=103,4466a0,109,Summarize">Explore
-                        the data</a>.</p>
-                <p><strong>Child poverty:</strong> children under 5 years old living in poverty,
-                    2013-2017 American Community Survey. <a
-                        href="ht/IndicatorPublic/VisualizationData.aspx?id=2176,4466a0,109,Summarize">Explore
-                        the data</a>.</p>
-                <p><strong>Child homelessness:</strong> homeless children age 0 to 17, per 1,000, 2015
-                    Department of Homeless Services. <a
+                <p><strong>Pobreza:</strong> thel porcentaje de personas cuyos ingresos anuales son inferiores al 100 % del nivel de pobreza federal, Encuesta Comunitaria Estadounidense (American Community Survey) de 2013-2017. <a
+                        href="/IndicatorPublic/VisualizationData.aspx?id=103,4466a0,109,Summarize">Explore los datos</a>.</p>
+                <p><strong>Pobreza infantil:</strong> niños menores de 5 años que viven en la pobreza, Encuesta Comunitaria Estadounidense de 2013-2017. <a
+                        href="ht/IndicatorPublic/VisualizationData.aspx?id=2176,4466a0,109,Summarize">Explore los datos</a>.</p>
+                <p><strong>Desamparo infantil:</strong> niños sin hogar de entre 0 y 17 años, por cada 1,000 personas, Departamento de Servicios para Personas sin Hogar (Department of Homeless Services), 2015.  <a
                         href="https://www.data2go.nyc/map/?id=107*36047015900*homeless_children_rate_cd!undefined!ns*!other_pop_cd_506~ahdi_puma_1~sch_enrol_cd_112~age_pyramid_male_85_plus_cd_20~median_household_income_puma_397~median_personal_earnings_puma_400~dis_y_perc_puma_102~poverty_ceo_cd_417~unemployment_cd_408~pre_k_cd_107!*air_qual_cd~ahdi_puma*family_homeless_cd_245#10/40.8273/-73.9586">Explore
                         the data</a>.</p>
-                <p><strong>High school incompletion:</strong> estimated percent of people age 25+ who
-                    did not graduate from high school, 2013-2017 American Community Survey. <a
-                        href="/IndicatorPublic/VisualizationData.aspx?id=2334,4466a0,109,Summarize">Explore
-                        the data</a>.</p>
-                <p><strong>Disconnected youth:</strong> percent of people age 16 to 24 who did not
-                    graduate high school and are unemployed, 2015-2017 American Community Survey. <a
-                        href="https://www.data2go.nyc/map/?id=107*36047015900*dis_y_perc_puma!undefined!ns*!other_pop_cd_506~ahdi_puma_1~sch_enrol_cd_112~age_pyramid_male_85_plus_cd_20~median_household_income_puma_397~median_personal_earnings_puma_400~dis_y_perc_puma_102~poverty_ceo_cd_417~unemployment_cd_408~pre_k_cd_107!*air_qual_cd~ahdi_puma*family_homeless_cd_245#10/40.8273/-73.9586">Explore
-                        the data</a>.</p>
-                <p><strong>Unemployment:</strong> estimated percent of people age 16+ in the civilian
-                    labor force who are unemployed, 2013-2017 American Community Survey. <a
-                        href="/IndicatorPublic/VisualizationData.aspx?id=2337,4466a0,109,Summarize">Explore
-                        the data</a>.</p>
-                <p><strong>Evictions:</strong> court-ordered evictions, 2017. <a
-                        href="/IndicatorPublic/VisualizationData.aspx?id=2365,4466a0,109,Summarize">Explore
-                        the data</a>.</p>
-                <p><strong>Foreclosures</strong>: rate of foreclosures per 1,000 1- to 4-family
-                    properties, 2018. <a
-                        href="https://www.data2go.nyc/map/?id=107*36047015900*foreclosure_cd!undefined!ns*!other_pop_cd_506~ahdi_puma_1~sch_enrol_cd_112~age_pyramid_male_85_plus_cd_20~median_household_income_puma_397~median_personal_earnings_puma_400~dis_y_perc_puma_102~poverty_ceo_cd_417~unemployment_cd_408~pre_k_cd_107!*air_qual_cd~ahdi_puma*family_homeless_cd_245#10/40.8273/-73.9586">Explore
-                        the data</a>. </p>
-                <p><strong>Assault hospitalizations:</strong> age-adjusted rate of non-fatal assault
-                    hospitalizations, per 100,000 people, 2016. <a
-                        href="/IndicatorPublic/VisualizationData.aspx?id=2375,4466a0,125,Summarize">Explore
-                        the data</a>. </p>
-                <p><strong>Shootings</strong>: number of shootings from 2008 - 2018. <a
-                        href="https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Historic-/833y-fsy8">Explore
-                        the data</a>.</p>
-                <p><strong>Homicides:</strong> rate of homicides per 100,000 people, 2013-2016. <a
-                        href="https://a816-health.nyc.gov/hdi/epiquery/visualizations?PageType=tsi&PopulationSource=Death&Topic=8&Subtopic=49&Indicator=Assault%20(Homicide)&Year=2015">Explore
-                        the data</a>. </p>
+                <p><strong>Educación secundaria incompleta:</strong> porcentaje estimado de personas mayores de 25 años que no se graduaron de la escuela secundaria, Encuesta Comunitaria Estadounidense de 2013-2017. <a
+                        href="/IndicatorPublic/VisualizationData.aspx?id=2334,4466a0,109,Summarize">Explore los datos</a>.</p>
+                <p><strong>Juventud desconectada:</strong> porcentaje de personas de entre 16 y 24 años que no se graduaron de la escuela secundaria y están desempleadas, Encuesta Comunitaria Estadounidense de 2015-2017. <a
+                        href="https://www.data2go.nyc/map/?id=107*36047015900*dis_y_perc_puma!undefined!ns*!other_pop_cd_506~ahdi_puma_1~sch_enrol_cd_112~age_pyramid_male_85_plus_cd_20~median_household_income_puma_397~median_personal_earnings_puma_400~dis_y_perc_puma_102~poverty_ceo_cd_417~unemployment_cd_408~pre_k_cd_107!*air_qual_cd~ahdi_puma*family_homeless_cd_245#10/40.8273/-73.9586">Explore los datos</a>.</p>
+                <p><strong>Desempleo:</strong> porcentaje estimado de personas mayores de 16 años en la fuerza laboral civil que están desempleadas, Encuesta Comunitaria Estadounidense de 2013-2017. <a
+                        href="/IndicatorPublic/VisualizationData.aspx?id=2337,4466a0,109,Summarize">Explore los datos</a>.</p>
+                <p><strong>Desalojos:</strong> desalojos ordenados por un tribunal, 2017. <a
+                        href="/IndicatorPublic/VisualizationData.aspx?id=2365,4466a0,109,Summarize">Explore los datos</a>.</p>
+                <p><strong>Ejecuciones hipotecarias</strong>: índice de ejecuciones hipotecarias por cada 1,000 propiedades familiares de 1 a 4, 2018. <a
+                        href="https://www.data2go.nyc/map/?id=107*36047015900*foreclosure_cd!undefined!ns*!other_pop_cd_506~ahdi_puma_1~sch_enrol_cd_112~age_pyramid_male_85_plus_cd_20~median_household_income_puma_397~median_personal_earnings_puma_400~dis_y_perc_puma_102~poverty_ceo_cd_417~unemployment_cd_408~pre_k_cd_107!*air_qual_cd~ahdi_puma*family_homeless_cd_245#10/40.8273/-73.9586">Explore los datos</a>. </p>
+                <p><strong>Hospitalizaciones por agresiones:</strong> índice ajustado según la edad de hospitalizaciones por agresiones no mortales, por cada 100,000 personas, 2016. <a
+                        href="/IndicatorPublic/VisualizationData.aspx?id=2375,4466a0,125,Summarize">Explore los datos</a>. </p>
+                <p><strong>Tiroteos</strong>: cantidad de tiroteos desde 2008 hasta 2018. <a
+                        href="https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Historic-/833y-fsy8">Explore los datos</a>.</p>
+                <p><strong>Homicidios:</strong> índice de homicidios por cada 100,000 personas desde 2013 hasta 2016. <a
+                        href="https://a816-health.nyc.gov/hdi/epiquery/visualizations?PageType=tsi&PopulationSource=Death&Topic=8&Subtopic=49&Indicator=Assault%20(Homicide)&Year=2015">Explore los datos</a>. </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
