@@ -16,8 +16,12 @@ d3.json("js/origSpec.json").then(data => {
     aq.loadCSV(
         // "https://raw.githubusercontent.com/nychealth/realtime-air-quality/main/RT_flat.csv"
         "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_hub.csv"
+
     ).then(data => {
-        dt = data;
+
+        dt = data
+            .derive({starttime: d => op.parse_date(d.starttime)})
+            .orderby("starttime");
 
         console.log("dt:", dt);
         

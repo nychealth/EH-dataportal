@@ -74,9 +74,11 @@
                         "title": "PM2.5 (µg/m3)"
                     },
                     {
-                        "field": "TOD",
-                        "type": "nominal",
-                        "title": "Time"
+                        "field": "starttime",
+                        "type": "temporal",
+                        "title": "Time",
+                        "timeUnit": "hoursminutes",
+                        "format": "%I:%M %p"
                     },
                     {
                         "field": "starttime",
@@ -114,9 +116,11 @@
                         "title": "PM2.5 (µg/m3)"
                     },
                     {
-                        "field": "TOD",
-                        "type": "nominal",
-                        "title": "Time"
+                        "field": "starttime",
+                        "type": "temporal",
+                        "title": "Time",
+                        "timeUnit": "hoursminutes",
+                        "format": "%I:%M %p"
                     },
                     {
                         "field": "starttime",
@@ -154,9 +158,11 @@
                         "title": "PM2.5 (µg/m3)"
                     },
                     {
-                        "field": "TOD",
-                        "type": "nominal",
-                        "title": "Time"
+                        "field": "starttime",
+                        "type": "temporal",
+                        "title": "Time",
+                        "timeUnit": "hoursminutes",
+                        "format": "%I:%M %p"
                     },
                     {
                         "field": "starttime",
@@ -194,9 +200,11 @@
                         "title": "PM2.5 (µg/m3)"
                     },
                     {
-                        "field": "TOD",
-                        "type": "nominal",
-                        "title": "Time"
+                        "field": "starttime",
+                        "type": "temporal",
+                        "title": "Time",
+                        "timeUnit": "hoursminutes",
+                        "format": "%I:%M %p"
                     },
                     {
                         "field": "starttime",
@@ -234,9 +242,11 @@
                         "title": "PM2.5 (µg/m3)"
                     },
                     {
-                        "field": "TOD",
-                        "type": "nominal",
-                        "title": "Time"
+                        "field": "starttime",
+                        "type": "temporal",
+                        "title": "Time",
+                        "timeUnit": "hoursminutes",
+                        "format": "%I:%M %p:%M %p"
                     },
                     {
                         "field": "starttime",
