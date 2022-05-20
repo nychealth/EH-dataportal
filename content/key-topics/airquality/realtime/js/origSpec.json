@@ -58,7 +58,7 @@
                     }
                 },
                 "y": {
-                    "field": "Cross Bronx Expy",
+                    "field": "Queensboro_Bridge",
                     "type": "quantitative",
                     "title": " ",
                     "axis": {
@@ -66,57 +66,19 @@
                     }
                 },
                 "color": {
-                    "value": "purple"
-                },
-                "tooltip": [
-                    {
-                        "field": "Cross Bronx Expy",
-                        "title": "PM2.5 (µg/m3)"
-                    },
-                    {
-                        "field": "TOD",
-                        "type": "nominal",
-                        "title": "Time"
-                    },
-                    {
-                        "field": "starttime",
-                        "type": "temporal",
-                        "title": "Date"
-                    }
-                ]
-            }
-        },
-        {
-            "mark": {
-                "type": "line",
-                "point": false,
-                "tooltip": true,
-                "interpolate": "monotone",
-                "strokeWidth": 1.5
-            },
-            "encoding": {
-                "x": {
-                    "field": "starttime",
-                    "type": "temporal",
-                    "title": " "
-                },
-                "y": {
-                    "field": "Queensboro Bridge",
-                    "type": "quantitative",
-                    "title": " "
-                },
-                "color": {
                     "value": "red"
                 },
                 "tooltip": [
                     {
-                        "field": "Queensboro Bridge",
+                        "field": "Queensboro_Bridge",
                         "title": "PM2.5 (µg/m3)"
                     },
                     {
-                        "field": "TOD",
-                        "type": "nominal",
-                        "title": "Time"
+                        "field": "starttime",
+                        "type": "temporal",
+                        "title": "Time",
+                        "timeUnit": "hoursminutes",
+                        "format": "%I:%M %p"
                     },
                     {
                         "field": "starttime",
@@ -141,7 +103,7 @@
                     "title": " "
                 },
                 "y": {
-                    "field": "Manhattan Bridge",
+                    "field": "Hunts_Point",
                     "type": "quantitative",
                     "title": " "
                 },
@@ -150,13 +112,15 @@
                 },
                 "tooltip": [
                     {
-                        "field": "Manhattan Bridge",
+                        "field": "Hunts_Point",
                         "title": "PM2.5 (µg/m3)"
                     },
                     {
-                        "field": "TOD",
-                        "type": "nominal",
-                        "title": "Time"
+                        "field": "starttime",
+                        "type": "temporal",
+                        "title": "Time",
+                        "timeUnit": "hoursminutes",
+                        "format": "%I:%M %p"
                     },
                     {
                         "field": "starttime",
@@ -181,7 +145,7 @@
                     "title": " "
                 },
                 "y": {
-                    "field": "Queens College",
+                    "field": "Queens_College",
                     "type": "quantitative",
                     "title": " "
                 },
@@ -190,13 +154,15 @@
                 },
                 "tooltip": [
                     {
-                        "field": "Queens College",
+                        "field": "Queens_College",
                         "title": "PM2.5 (µg/m3)"
                     },
                     {
-                        "field": "TOD",
-                        "type": "nominal",
-                        "title": "Time"
+                        "field": "starttime",
+                        "type": "temporal",
+                        "title": "Time",
+                        "timeUnit": "hoursminutes",
+                        "format": "%I:%M %p"
                     },
                     {
                         "field": "starttime",
@@ -221,7 +187,7 @@
                     "title": " "
                 },
                 "y": {
-                    "field": "Williamsburg Bridge",
+                    "field": "Williamsburg_Bridge",
                     "type": "quantitative",
                     "title": " "
                 },
@@ -230,13 +196,15 @@
                 },
                 "tooltip": [
                     {
-                        "field": "Williamsburg Bridge",
+                        "field": "Williamsburg_Bridge",
                         "title": "PM2.5 (µg/m3)"
                     },
                     {
-                        "field": "TOD",
-                        "type": "nominal",
-                        "title": "Time"
+                        "field": "starttime",
+                        "type": "temporal",
+                        "title": "Time",
+                        "timeUnit": "hoursminutes",
+                        "format": "%I:%M %p"
                     },
                     {
                         "field": "starttime",
@@ -261,7 +229,7 @@
                     "title": " "
                 },
                 "y": {
-                    "field": "Broadway/35th St",
+                    "field": "Broadway_35th_St",
                     "type": "quantitative",
                     "title": " "
                 },
@@ -270,13 +238,15 @@
                 },
                 "tooltip": [
                     {
-                        "field": "Broadway/35th St",
+                        "field": "Broadway_35th_St",
                         "title": "PM2.5 (µg/m3)"
                     },
                     {
-                        "field": "TOD",
-                        "type": "nominal",
-                        "title": "Time"
+                        "field": "starttime",
+                        "type": "temporal",
+                        "title": "Time",
+                        "timeUnit": "hoursminutes",
+                        "format": "%I:%M %p:%M %p"
                     },
                     {
                         "field": "starttime",
