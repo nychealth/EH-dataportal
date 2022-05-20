@@ -23,12 +23,12 @@ d3.json("js/origSpec.json").then(data => {
             .derive({starttime: d => op.parse_date(d.starttime)})
             .orderby("starttime");
 
-        console.log("dt:", dt);
+        // console.log("dt:", dt);
         
         fullTable = dt.objects(); // puts the data into fullTable to use. 
         shortTable = fullTable; // creating an array we'll slice for time-selection
         
-        console.log("fullTable:", fullTable);
+        // console.log("fullTable:", fullTable);
 
         vegaEmbed("#vis2", current_spec).then((res) => {
 
@@ -162,7 +162,7 @@ function getAverage() {
     const new_col = new Map()
 
     new_col.set("new_col", locSelect)
-    console.log("new_col:", new_col)
+    // console.log("new_col:", new_col)
 
     // you can use an object that contains a variable name by enclosing the whole expression in back-ticks, then 
     //	using `${var}` to insert the value
