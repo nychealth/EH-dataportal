@@ -14,8 +14,7 @@ d3.json("js/origSpec.json").then(data => {
     // ---- Loads the csv as an arquero table ---- //
     
     aq.loadCSV(
-        // "https://raw.githubusercontent.com/nychealth/realtime-air-quality/main/RT_flat.csv"
-        "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_hub.csv"
+        "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime.csv"
 
     ).then(data => {
 
