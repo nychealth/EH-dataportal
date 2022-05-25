@@ -7,7 +7,7 @@
                 <ul class="breadcrumb mr-auto">
                     <li class="breadcrumb-item"><a href="{{.Site.BaseURL}}">Home</a></li>
                     <li class="breadcrumb-item"><a href="{{.Site.BaseURL}}/data-explorer/">Data Explorer</a></li>
-                    <li class="breadcrumb-item active"><a href="/key_topics/airquality/">{{ .Title}}</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ .Page.RelPermalink }}">{{ .Title}}</a></li>
                 </ul>
             </nav>
 
@@ -201,6 +201,7 @@
                 }
 
                 const loadData = (indicatorId) => {
+                    console.log('indicator ID: ', indicatorId)
                     // Loads data as an arquero table
                     fetch(`https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/data/${indicatorId}.json`)
                         .then(response => response.json())
@@ -1046,9 +1047,6 @@
                     })
                     
                     loadData(indicatorId)
-                    // loadGeo()
-
-                    
                     renderTrendChart();
                 }
 
