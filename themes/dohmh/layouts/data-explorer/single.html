@@ -5,8 +5,8 @@
         <div class="col-md-11 mx-auto mt-4 mx-1">
             <nav aria-label="breadcrumb" class="mb-2">
                 <ul class="breadcrumb mr-auto">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="/data_explorer/">Data Explorer</a></li>
+                    <li class="breadcrumb-item"><a href="{{.Site.BaseURL}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{.Site.BaseURL}}/data-explorer/">Data Explorer</a></li>
                     <li class="breadcrumb-item active"><a href="/key_topics/airquality/">{{ .Title}}</a></li>
                 </ul>
             </nav>
@@ -65,13 +65,994 @@
                 }
             </style>
 
+            <!-- Arquero -->
+            <script src="https://cdn.jsdelivr.net/npm/apache-arrow@latest"></script>
+            <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
+
+            <!-- DataTables -->
+            <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+            <!-- Vega-Lite -->
+            <script src="https://cdn.jsdelivr.net/npm/vega@5.21.0"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.2"></script>
+            
+            <!--D3-->
+            <script src="https://d3js.org/d3.v5.min.js"></script>
+
             <script>
+                let indicators = []; // indicator data
+                let selectedSummaryYears = [];
+                let selectedSummaryGeography = [];
+                let measureAbout = `N/A`;
+                let measureSources = `N/A`;
+                let geoTable;
+                let aqData;
+                let joinedAqData;
+                let fullDataMapObjects;
+                let fullDataTrendObjects;
+
                 function reveal() {
                     document.getElementById('truncate').classList.toggle('hide')
                     document.getElementById('full').classList.toggle('show')
                     document.getElementById('contenttoggle').innerHTML = `Show less... <i class="fas fa-caret-square-up" aria-hidden="true"></i>`
+                }
+
+                fetch('https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/indicators.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        indicators = data
+                        loadIndicator()
+                    })
+                    .catch(error => console.log(error));            
+
+
+                const handleToggle = () => { 
+                    $('body').off('click', '#summary-table tr.group td');
+                    $('body').on('click', '#summary-table tr.group td', (e) => {
+                        const td = $(e.target);
+                        const tr = td.parent();
+                        const group = td.data('group');
+                        const groupLevel = td.data('group-level');
+
+                        const handleGroupToggle = () => {
+                            
+                            const subGroupToggle = $(`td[data-group-level="1"]`);
+                            const subGroupRow = $(`tr[data-group*="${group}"]`);
+
+                            if (subGroupToggle.css('display') === 'none') {
+                                subGroupToggle.removeClass('hidden');
+                                subGroupRow.removeClass('hidden');
+                                td.removeClass('hidden');
+                                subGroupToggle.show();
+                                subGroupRow.show();
+                            } else {
+                                subGroupToggle.addClass('hidden');
+                                subGroupRow.addClass('hidden');
+                                td.addClass('hidden');
+                                subGroupToggle.hide();
+                                subGroupRow.hide();
+                            }
+                        }
+
+                        const handleSubGroupToggle = () => {
+                            const subDataGroup = tr.next(`tr`).data(`group`);
+                            const parentDataGroup = subDataGroup.split('-')[0];
+                            const subGroupRow = $(`tr[data-group="${subDataGroup}"]`);
+                            const parentGroupToggle = $(`td[data-group="${parentDataGroup}"]`);
+
+                            if (subGroupRow.css('display') == 'none')  {
+                                subGroupRow.show();
+                                td.removeClass('hidden');
+                                subGroupRow.removeClass('hidden');
+                                parentGroupToggle.removeClass('hidden');
+                            } else {
+                                subGroupRow.hide();
+                                td.addClass('hidden');
+                                subGroupRow.addClass('hidden');
+                            }
+                        }
+
+                        if (groupLevel === 0) {
+                            handleGroupToggle();
+                        } else {
+                            handleSubGroupToggle();
+                        }
+
+                    });
+                }
+
+                // join the data
+                const joinData = () => {
+                    joinedAqData = aqData
+                        .join(geoTable, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
+                            .relocate(['Name'], { after: 'GeoID' })
+                            .relocate(['Geotype'], { before: 'GeoID' })
+                            .rename({
+                                'Name': 'Geography',
+                            })
+                    fullDataMapObjects = joinedAqData.filter(d => d.GeoType  == 'UHF42').objects();
+                    fullDataTrendObjects = joinedAqData.filter(d => d.GeoType  !== 'UHF42').objects();
+
+                    const filteredTableData = joinedAqData.objects().filter(d =>
+                        selectedSummaryYears.includes(d.Time) && selectedSummaryGeography.includes(d.GeoType)
+                    )
+                    const filteredTableAqData = aq.from(filteredTableData)
+
+                    // call function to show table
+                    document.getElementById('summary-table').innerHTML = filteredTableAqData.toHTML(); // print dataTable to HTML
+                    document.querySelector('#summary-table table').id = "tableID"
+                    document.querySelector('#summary-table table').className = "cell-border stripe compact" // this gives the table an ID (table code generated by Arquero)
+                    renderTable();
+                    renderMap()
+                }
+
+                const loadGeo = () => {
+                    const geoUrl = `https://raw.githubusercontent.com/nychealth/EHDP-data/main/geography/GeoLookup.csv`;
+                    const geoStatic = `/ehs-data-portal-frontend-temp/IndicatorData/GeoLookup.csv`;
+
+                    aq.loadCSV(geoStatic)
+                        .then(data => {
+                            geoTable = data;
+                            // console.log("---- Geo Names 1 (post-load) ----")
+                            // geoTable.print();
+                            joinData(); // run the next function 
+                        });
+                }
+
+                const loadData = (indicatorId) => {
+                    // Loads data as an arquero table
+                    fetch(`https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/data/${indicatorId}.json`)
+                        .then(response => response.json())
+                        .then(data => {
+
+                            loadGeo(); // run the next function
+                            aqData = aq.from(data)
+                                .groupby("Time", "GeoType", "GeoID")
+                                .pivot("MeasurementType", "Value")
+                            
+                            aqData.print();
+                        })
+                }
+
+                const handleYearFilter = (el, indicatorId) => {
+                    el.addEventListener('change',(e) => {
+                        if (e.target.checked) {
+                            console.log('checked')
+                            selectedSummaryYears.push(e.target.value)
+                        } else {
+                            selectedSummaryYears = selectedSummaryYears.filter(item => item !== e.target.value);
+                        }
+                        console.log('years selected: ', selectedSummaryYears)
+                        loadData(indicatorId)
+                    })
+                }
+
+                const handleGeoFilter = (el, indicatorId) => {
+                    el.addEventListener('change',(e) => {
+                        if (e.target.checked) {
+                            selectedSummaryGeography.push(e.target.value)
+                        } else {
+                            selectedSummaryGeography = selectedSummaryGeography.filter(item => item !== e.target.value);
+                        }
+                        console.log('geo selected: ', selectedSummaryGeography)
+                        loadData(indicatorId)
+                    })
+                }
+
+                // Renders the Indicator Title and Description
+                const renderTitleDescription = (title, desc) => {
+                    const indicatorTitle = document.querySelector('.indicator-title');
+                    const indicatorDescription = document.querySelector('.indicator-description');
+                    indicatorTitle.innerHTML = title;
+                    indicatorDescription.innerHTML = `<strong>Indicator description: </strong> ${desc}`;
+                }
+
+                // Renders copy for the About the measures and the Data sources sections
+                const renderAboutSources = (about, sources) => {
+                    const aboutMeasures = document.querySelector('.indicator-measures');
+                    const dataSources = document.querySelector('.indicator-sources');
+                    aboutMeasures.innerHTML = about;
+                    dataSources.innerHTML = sources;
+                }
+
+
+                // this is the embed function that delivers the data as an object (dataFile). This lets us filter/manipuate dataFile in the browser before delivering it. 
+                // dest is the destination id; spec is the json spec variable; name is the name given in the VL json spec; and array is the JS variable holding the array. 
+                // function embed(dest, spec, name, array) {
+                //     vegaEmbed(dest, spec).then(res =>
+                //         res.view
+                //             .insert(name, array)
+                //             .runAsync()
+                //     );
+                // }
+
+                // Render Table usein DataTables
+                const renderTable = () => {
+                    const groupColumnYear = 0
+                    const groupColumnGeo = 1;
+
+                    $('#tableID').DataTable({
+                        scrollY: 500,
+                        scrollCollapse: true,
+                        searching: false,
+                        paging: false,
+                        bInfo: false,
+                        "columnDefs": [
+                            // { className: "dt-body-center", "targets": "_all" },
+                            { "visible": false, "targets": [0, 1, 2, 3 ]}
+                        ],
+                        "createdRow": function ( row, data, index ) {
+                            const time    = data[0];
+                            const geoType = data[1];
+                            if (time && geoType) {
+                                row.setAttribute(`data-group`, `${time}-${geoType}`);
+                            }
+                        },
+                        "drawCallback": function ( settings ) {
+                            console.log('Draw call back')
+                            const api = this.api();
+                            const rows = api.rows( {page:'current'} ).nodes();
+                            const visibleColumnsCount = api.columns(':visible').count();
+                            var last = null;
+                            const createGroupRow = (groupColumn, lvl) => {
+                                api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
+                                    if ( last !== group ) {
+                                        $(rows).eq( i ).before(
+                                            `<tr class="group"><td colspan="${visibleColumnsCount}" data-group="${group}" data-group-level="${lvl}"> ${group}</td></tr>`
+                                        );
+                    
+                                        last = group;
+                                    }
+                                } );
+                            }
+
+                            createGroupRow(groupColumnYear, 0);
+                            createGroupRow(groupColumnGeo, 1);
+                            handleToggle();
+                        }
+                    })
+                }
+
+                 // Render Map using Vegalite
+                 const renderMap = (selectedData, selectedMeasure, display, date) => {
+
+                    let spec2 = {
+                        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                        "title": "This is my good schema!",
+                        "width": 700,
+                        "data": {
+                            "url": "https://gist.githubusercontent.com/mmontesanonyc/28953366ac41a0ecf24470a3cefb6cea/raw/4b2869cc9fe93a4ae4e33b2acc0aad5570c498a0/2380-reduced.csv"
+                        },
+                        "params": [
+                            {"name": "highlight", "select": {"type": "point", "on": "mouseover"}}
+                        ],
+                        "projection": {"type": "mercator"},
+                        "vconcat": [
+                            {
+                            "height": 550,
+                            "width": 900,
+                            "mark": {"type": "geoshape", "stroke": "#000000"},
+                            "encoding": {
+                                "shape": {"field": "geo", "type": "geojson"},
+                                "color": {
+                                "bin": false,
+                                "field": "Value",
+                                "type": "quantitative",
+                                "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}}
+                                },
+                                "strokeWidth": {
+                                "condition": [{"param": "highlight", "empty": false, "value": 2}],
+                                "value": 0.5
+                                },
+                                "tooltip": [
+                                    {"field": "GeoID", "title": "GeoID"},
+                                    {
+                                        "field": "Value",
+                                        "type": "quantitative",
+                                        "title": "Value"
+                                    },
+                                    {"field":"MeasureID","title":"Measure"}
+                                ],
+                            },
+                            "transform": [
+                                {
+                                "lookup": "Geography-ID",
+                                "from": {
+                                    "data": {
+                                    "url": "https://raw.githubusercontent.com/nycehs/NYC_geography/master/UHF42.topo.json",
+                                    "format": {"type": "topojson", "feature": "collection"}
+                                    },
+                                    "key": "properties.GEOCODE"
+                                },
+                                "as": "geo"
+                                }
+                            ]
+                            },
+                            {
+                            "height": 150,
+                            "width": "container",
+                            "mark": {"type": "bar", "tooltip": true, "stroke": "#000000"},
+                            "encoding": {
+                                "y": {"field": "Value", "type": "quantitative", "title": null},
+                                "tooltip": [
+                                {"field": "Geography-ID", "title": "GeoID"},
+                                {"field": "Value", "type": "quantitative", "title": "Value"},
+                                {"field": "MeasureID", "title": "Measure"}
+                                ],
+                                "x": {"field": "Geography-ID", "sort": true, "axis": null},
+                                "color": {
+                                "bin": false,
+                                "field": "Value",
+                                "type": "quantitative",
+                                "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}}
+                                },
+                                "strokeWidth": {
+                                "condition": [{"param": "highlight", "empty": false, "value": 2}],
+                                "value": 0.5
+                                }
+                            }
+                            }
+                        ]
+                    }
+
+                    if (selectedData && selectedMeasure && date) {
+
+                        spec3 = {
+                            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                            "title": `${date} - ${selectedMeasure} ${display && `(${display})`} `,
+                            "width": "container",
+                            "data": {
+                                "values": selectedData,
+                            },
+                            "params": [
+                                {"name": "highlight", "select": {"type": "point", "on": "mouseover"}}
+                            ],
+                            "projection": {"type": "mercator"},
+                            "vconcat": [
+                                {
+                                "height": 550,
+                                "width": "container",
+                                "mark": {"type": "geoshape", "stroke": "#000000"},
+                                "encoding": {
+                                    "shape": {"field": "geo", "type": "geojson"},
+                                    "color": {
+                                    "bin": false,
+                                    "field": selectedMeasure,
+                                    "type": "quantitative",
+                                    "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}}
+                                    },
+                                    "strokeWidth": {
+                                    "condition": [{"param": "highlight", "empty": false, "value": 2}],
+                                    "value": 0.5
+                                    },
+                                    "tooltip": [
+                                        {"field": "Geography", "title": "Geography"},
+                                        {
+                                            "field": selectedMeasure,
+                                            "type": "quantitative",
+                                            "title": "Value"
+                                        },
+                                    ],
+                                },
+                                "transform": [
+                                    {
+                                    "lookup": "GeoID",
+                                    "from": {
+                                        "data": {
+                                        "url": "https://raw.githubusercontent.com/nycehs/NYC_geography/master/UHF42.topo.json",
+                                        "format": {"type": "topojson", "feature": "collection"}
+                                        },
+                                        "key": "properties.GEOCODE"
+                                    },
+                                    "as": "geo"
+                                    }
+                                ]
+                                },
+                                {
+                                    "mark": {
+                                        "type": "bar", 
+                                        "tooltip": true, 
+                                        "stroke": "#000000"},
+                                        "orient": "x",
+                                    "encoding": {
+                                        "color": {
+                                            "field": "valiues",
+                                            "type": "quantitative",
+                                            "legend": {
+                                                "direction": "horizontal",
+                                                "orient": "bottom",
+                                            }
+                                        }
+                                    }
+                                }
+                                // {
+                                // "height": 150,
+                                // "width": "container",
+                                // "mark": {"type": "bar", "tooltip": true, "stroke": "#000000"},
+                                // "encoding": {
+                                //     "y": {"field": "Value", "type": "quantitative", "title": null},
+                                //     "tooltip": [
+                                //     {"field": "GeoID", "title": "GeoID"},
+                                //     {"field": "Value", "type": "quantitative", "title": "Value"},
+                                //     {"field": "MeasureID", "title": "Measure"}
+                                //     ],
+                                //     "x": {"field": "GeoID", "sort": true, "axis": null},
+                                //         "color": {
+                                //         "bin": false,
+                                //         "field": selectedMeasure,
+                                //         "type": "quantitative",
+                                //         "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}}
+                                //     },
+                                //     "strokeWidth": {
+                                //     "condition": [{"param": "highlight", "empty": false, "value": 2}],
+                                //     "value": 0.5
+                                //     }
+                                // }
+                                // }
+                            ]
+                        }
+
+                        vegaEmbed("#map", spec3);
+                    } else {
+                        vegaEmbed("#map", spec2);
+                    }
+                }
+
+                // Render Trend Chart using Vegalite
+                const renderTrendChart = (selectedData, selectedMeasure, display, date, startdate, enddate) => {
+                    console.log('Render Trend Chart')
+
+                    const chartTab = document.querySelector('.tab-pane')
+                    const chartTabWidth = chartTab.offsetWidth - 150
+
+                    // console.log('trend chart width: ', chartTab.offsetWidth)
+
+                    // vega Lite ////////////////////////////////////
+                    var spec = {
+                        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                        "config": {
+                        "background": "#FFFFFF",
+                        "title": {"anchor": "start", "fontSize": 18, "font": "Calibri"},
+                        "axisX": {
+                        "domain": true,
+                        "domainColor": "#000000",
+                        "domainWidth": 1,
+                        "grid": false,
+                        "labelFontSize": 12,
+                        "labelAngle": 0,
+                        "tickColor": "#000000",
+                        "tickSize": 5,
+                        "titleFontSize": 12,
+                        "titlePadding": 10
+                        },
+                        
+                        "axisY": {
+                        "domain": false,
+                        "domainWidth": 1,
+                        "grid": true,
+                        "gridColor": "#DEDDDD",
+                        "gridWidth": 1,
+                        "labelFontSize": 12,
+                        "labelPadding": 8,
+                        "ticks": false,
+                        "titleFontSize": 12,
+                        "titlePadding": 10,
+                        "titleFont": "Lato",
+                        "titleAngle": 0,
+                        "titleY": -10,
+                        "titleX": 18
+                        },
+
+
+                        "view": {"stroke": "transparent"},
+
+                        "range": {
+                        "category": [
+                            "#1696d2",
+                            "#000000",
+                            "#fdbf11",
+                            "#ec008b",
+                            "#d2d2d2",
+                            "#55b748"
+                        ]
+                        },
+
+                        "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 3},
+
+
+                        "point": {"filled": true},
+                        "text": {
+                        "color": "#1696d2",
+                        "fontSize": 11,
+                        "align": "center",
+                        "fontWeight": 400,
+                        "size": 11
+                        }
+                    },
+                        "data": {
+                            "url": "https://gist.githubusercontent.com/mmontesanonyc/6b0aa75affc6a60978f73e11d2f58bb3/raw/e944d335042e3da0c8e99a4df0fbebc8aac4cc15/asthmatrend.csv"
+                        },
+                        "width": chartTabWidth,
+                        "height": 550,
+                        "encoding": {
+                        "x": {
+                            "field": "Year",
+                            "type": "temporal",
+                            "title": ""
+                        }
+                        },
+                        "layer": [
+                        {
+                            "encoding": {
+                            "color": {
+                                "field": "GeoName",
+                                "type": "nominal",
+                                "legend": {
+                                "orient": "right",
+                                "title": null
+                                }
+                            },
+                            "y": {
+                                "field": "Value",
+                                "type": "quantitative",
+                                "title": ""
+                            }
+                            },
+                            "layer": [
+                            {
+                                "mark": {
+                                "type": "line",
+                                "point": {"filled": false, "fill": "white"}
+                                }
+
+                            },
+                            {
+                                "transform": [
+                                {
+                                    "filter": {
+                                    "param": "hover",
+                                    "empty": false
+                                    }
+                                }
+                                ],
+                                "mark": "point"
+                            }
+                            ]
+                        },
+                        {
+                            "transform": [
+                            {
+                                "pivot": "GeoName",
+                                "value": "Value",
+                                "groupby": [
+                                "Year"
+                                ]
+                            }
+                            ],
+                            "mark": "rule",
+                            "encoding": {
+                            "opacity": {
+                                "condition": {
+                                "value": 0.3,
+                                "param": "hover",
+                                "empty": false
+                                },
+                                "value": 0
+                            },
+                            "tooltip": [
+                                {
+                                "field": "Citywide",
+                                "type": "quantitative"
+                                },
+                                {
+                                "field": "The Bronx",
+                                "type": "quantitative"
+                                },
+                                {
+                                "field": "Brooklyn",
+                                "type": "quantitative"
+                                },
+                                {
+                                "field": "Manhattan",
+                                "type": "quantitative"
+                                },
+                                {
+                                "field": "Queens",
+                                "type": "quantitative"
+                                }
+                            ]
+                            },
+                            "params": [
+                            {
+                                "name": "hover",
+                                "select": {
+                                "type": "point",
+                                "fields": [
+                                    "Year"
+                                ],
+                                "nearest": true,
+                                "on": "mouseover",
+                                "clear": "mouseout"
+                                }
+                            }
+                            ]
+                        }
+                        ]
+                    }
+                    
+
+                    if (selectedData && selectedMeasure && date) {
+                        console.log('selectedMeasure: ', selectedMeasure, date, startdate, enddate)
+                        var spec2 = {
+                            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                            "config": {
+                            "background": "#FFFFFF",
+                            "title": `${date} - ${selectedMeasure} ${display && `(${display})`} `,
+                            // "title": {"anchor": "start", "fontSize": 18, "font": "Calibri"},
+                            "axisX": {
+                            "domain": true,
+                            "domainColor": "#000000",
+                            "domainWidth": 1,
+                            "grid": false,
+                            "labelFontSize": 12,
+                            "labelAngle": 0,
+                            "tickColor": "#000000",
+                            "tickSize": 5,
+                            "titleFontSize": 12,
+                            "titlePadding": 10
+                            },
+                            
+                            "axisY": {
+                            "domain": false,
+                            "domainWidth": 1,
+                            "grid": true,
+                            "gridColor": "#DEDDDD",
+                            "gridWidth": 1,
+                            "labelFontSize": 12,
+                            "labelPadding": 8,
+                            "ticks": false,
+                            "titleFontSize": 12,
+                            "titlePadding": 10,
+                            "titleFont": "Lato",
+                            "titleAngle": 0,
+                            "titleY": -10,
+                            "titleX": 18
+                            },
+
+
+                            "view": {"stroke": "transparent"},
+
+                            "range": {
+                            "category": [
+                                "#1696d2",
+                                "#000000",
+                                "#fdbf11",
+                                "#ec008b",
+                                "#d2d2d2",
+                                "#55b748"
+                            ]
+                            },
+
+                            "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 3},
+
+
+                            "point": {"filled": true},
+                            "text": {
+                            "color": "#1696d2",
+                            "fontSize": 11,
+                            "align": "center",
+                            "fontWeight": 400,
+                            "size": 11
+                            }
+                        },
+                            // "data": {
+                            //     "url": "https://gist.githubusercontent.com/mmontesanonyc/6b0aa75affc6a60978f73e11d2f58bb3/raw/e944d335042e3da0c8e99a4df0fbebc8aac4cc15/asthmatrend.csv"
+                            // },
+                            "data": {
+                                "values": selectedData,
+                            },
+                            "width": "container",
+                            "height": 550,
+                            "encoding": {
+                            "x": {
+                                "field": "Time",
+                                "type": "nominal",
+                                "title": ""
+                            }
+                            },
+                            "layer": [
+                            {
+                                "encoding": {
+                                "color": {
+                                    "field": "Geography",
+                                    "type": "nominal",
+                                    "legend": {
+                                    "orient": "right",
+                                    "title": null
+                                    }
+                                },
+                                "y": {
+                                    "field": selectedMeasure,
+                                    "type": "quantitative",
+                                    "title": ""
+                                }
+                                },
+                                "layer": [
+                                {
+                                    "mark": {
+                                    "type": "line",
+                                    "point": {"filled": false, "fill": "white"}
+                                    }
+
+                                },
+                                {
+                                    "transform": [
+                                    {
+                                        "filter": {
+                                        "param": "hover",
+                                        "empty": false
+                                        }
+                                    }
+                                    ],
+                                    "mark": "point"
+                                }
+                                ]
+                            },
+                            {
+                                "transform": [
+                                {
+                                    "pivot": "Geography",
+                                    "value": selectedMeasure,
+                                    "groupby": [
+                                    "Time"
+                                    ]
+                                }
+                                ],
+                                "mark": "rule",
+                                "encoding": {
+                                    "opacity": {
+                                            "condition": {
+                                            "value": 0.3,
+                                            "param": "hover",
+                                            "empty": false
+                                        },
+                                        "value": 0
+                                    },
+                                    "tooltip": [
+                                        {
+                                        "field": "Citywide",
+                                        "type": "quantitative"
+                                        },
+                                        {
+                                        "field": "The Bronx",
+                                        "type": "quantitative"
+                                        },
+                                        {
+                                        "field": "Brooklyn",
+                                        "type": "quantitative"
+                                        },
+                                        {
+                                        "field": "Manhattan",
+                                        "type": "quantitative"
+                                        },
+                                        {
+                                        "field": "Queens",
+                                        "type": "quantitative"
+                                        }
+                                    ]
+                                },
+                                "params": [
+                                {
+                                    "name": "hover",
+                                    "select": {
+                                    "type": "point",
+                                    "fields": [
+                                        "Time"
+                                    ],
+                                    "nearest": true,
+                                    "on": "mouseover",
+                                    "clear": "mouseout"
+                                    }
+                                }
+                                ]
+                            }
+                            ]
+                        }
+
+                        vegaEmbed("#trend", spec2);
+                    } else {
+                        setTimeout(() => {
+                            vegaEmbed("#trend", spec);
+                        }, 1)
+                    }
+                    
 
                 }
+
+                const updateMapData = (e) => {
+                    const measure = e.target.dataset.measure;
+                    const date = e.target.dataset.date;
+                    const startdate = e.target.dataset.datestart;
+                    const enddate = e.target.dataset.dateend;
+                    const display = e.target.dataset.display;
+                    console.log('updateMapData',  fullDataMapObjects)
+                    const filteredData = fullDataMapObjects.filter(obj => 
+                        obj.Time === date && obj
+                    )
+
+                    console.log('filter:     ----- ', filteredData, measure)
+                    renderMap(filteredData, measure, display, date, startdate, enddate)
+                }
+
+                const updateTrendData = (e) => {
+                    const measure = e.target.dataset.measure;
+                    const date = e.target.dataset.date;
+                    const startdate = e.target.dataset.datestart;
+                    const enddate = e.target.dataset.dateend;
+                    const display = e.target.dataset.display;
+                    console.log('updateTrendData',  fullDataTrendObjects)
+                    renderTrendChart(fullDataTrendObjects, measure, display, date, startdate, enddate)
+                }
+                
+                const loadIndicator = (data) => {
+                    let data2 = data
+                    const firstIndicatorId = document.querySelectorAll('#indicator-dropdown button')[0].getAttribute('data-internal-id');
+                    const defaultIndicatorId = parseInt(firstIndicatorId)
+                    console.log('default ', defaultIndicatorId)
+                    if (!data2) {
+                        data2 = {
+                            internal_id: defaultIndicatorId
+                        }
+                    }
+
+
+                    const indicator = indicators.find(indicator => indicator.IndicatorID === data2.internal_id)
+                    console.log('Indicator Data: ', indicator);
+                    const indicatorName = indicator.IndicatorName ? indicator.IndicatorName : data.name;
+                    const indicatorDesc = indicator.IndicatorDescription ? indicator.IndicatorDescription : `N/A`;
+                    const indicatorShortName = indicator.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
+                    const indicatorMeasurses = indicator.Measures;
+                    const indicatorId = indicator.IndicatorID;
+
+                    console.log('measures: +========> ', indicatorMeasurses)
+
+                    const contentSummary = document.querySelector('#tab-table');
+                    const contentMap = document.querySelector('#tab-map')
+                    const contentTrend = document.querySelector('#tab-trend');
+                    const contentLinks = document.querySelector('#tab-links');
+                    const dropdownTableYear = contentSummary.querySelector('div[aria-labelledby="dropdownTableYear"]');
+                    const dropdownMapMeasures = document.querySelector('div[aria-labelledby="dropdownMapMeasures"]');
+                    const dropdownMapYear = contentMap.querySelector('div[aria-labelledby="dropdownMapYear"]');
+                    const dropdownTableGeo = contentSummary.querySelector('div[aria-labelledby="dropdownTableGeo"]');
+                    const dropdownTrendMeasures = contentTrend.querySelector('div[aria-labelledby="dropdownTrendMeasures"]');
+
+                
+                    indicatorMeasurses.map((measure, index) => {
+                        const type = measure?.MeasurementType;
+                        const displayType = measure?.DisplayType;
+                        const years = measure?.AvailableTimes.reverse();
+                        const geography = measure?.AvailableGeographyTypes;
+                        const links = measure?.VisOptions[0].Links;
+                        const map = measure?.VisOptions[0].Map;
+                        const trend = measure?.VisOptions[0].Trend;
+                        
+                        years.forEach((year, index) => {
+                            if (index === 0) {
+                                dropdownTableYear.innerHTML = ``;
+                                dropdownTableYear.innerHTML += `<label class="dropdown-item checkbox-year"><input type="checkbox" value="${year.TimeDescription}" checked /> ${year.TimeDescription}</label>`;
+                                selectedSummaryYears.push(year.TimeDescription);
+                            } else {
+                                dropdownTableYear.innerHTML += `<label class="dropdown-item checkbox-year"><input type="checkbox" value="${year.TimeDescription}" /> ${year.TimeDescription}</label>`;
+                            }
+                        });
+
+                        geography.forEach((geo, index) => {
+                            if (index === 0) {
+                                dropdownTableGeo.innerHTML = ``;
+                            }
+                            dropdownTableGeo.innerHTML += `<label class="dropdown-item checkbox-geo"><input type="checkbox" value="${geo.GeoType}" checked /> ${geo.GeoType}</label>`;
+                            selectedSummaryGeography.push(geo.GeoType);
+                        });
+
+                        if (map) {
+                            if  (fullDataMapObjects) {
+                                const mapYears =  [...new Set(fullDataMapObjects.map(item => item.Time))]
+                                dropdownMapMeasures.innerHTML += `<div><strong> ${type}</strong></div>`;
+                                mapYears.map((time, index) => {
+                                    const year = years.filter(item => item.TimeDescription === time)
+                                    dropdownMapMeasures.innerHTML += `<button class="link-measure" data-measure="${type}" data-display="${displayType}" data-date="${year[0].TimeDescription}" data-datestart="${year[0].start_period}" data-dateend="${year[0].end_period}"> ${time}</button>`
+                                })
+                            }
+                        }
+
+                        if (trend) {
+                            if  (fullDataTrendObjects) {
+                                const mapYears =  [...new Set(fullDataTrendObjects.map(item => item.Time))]
+                                dropdownTrendMeasures.innerHTML += `<button class="link-measure" data-measure="${type}" data-display="${displayType}" data-date="${years[index].TimeDescription}" data-datestart="${years[index].start_period}" data-dateend="${years[index].end_period}"> ${type}</button>`;
+                            }
+                        }
+
+                        if (links) {
+                            if  (fullDataTrendObjects) {
+                                const mapYears =  [...new Set(fullDataTrendObjects.map(item => item.Time))]
+                                dropdownTrendMeasures.innerHTML += `<button class="link-measure" data-measure="${type}" data-display="${displayType}" data-date="${years[index].TimeDescription}" data-datestart="${years[index].start_period}" data-dateend="${years[index].end_period}"> ${type}</button>`;
+                            }
+                        }
+
+                        
+                        measureAbout = measure.how_calculated;
+                        measureSources = measure.Sources;
+                        renderTitleDescription(indicatorShortName, indicatorDesc)
+                        renderAboutSources(measureAbout, measureSources);
+
+                        
+                    })
+
+
+                    const mapMeasuresLinks = document.querySelectorAll('#tab-map .link-measure');
+                    const trendMeasuresLinks = document.querySelectorAll('#tab-trend .link-measure');
+
+                    mapMeasuresLinks.forEach(link => {
+                        link.addEventListener('click', e => updateMapData(e))
+                    })
+                    
+                    trendMeasuresLinks.forEach(link => {
+                        link.addEventListener('click', e => updateTrendData(e))
+                    })
+                    
+
+                    const url = `https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/data/${indicatorId}.json`;
+
+                    
+
+                   
+
+
+                     // this is logic to find the default measure. There may be better ways to loop through the measures and stop at the priority measure type.
+                    // function getDefaultMeasure() {
+                    //     for (var i = 0; i < selectedIndicator[0].Measures.length; i++) {
+                    //     if (selectedIndicator[0].Measures[i].MeasurementType.includes("Adjusted Rate")) {
+                    //         defaultMeasure = selectedIndicator[0].Measures[i].MeasureID;
+                    //         break; // break from loop if it finds an adjusted rate
+                    //     } else if (selectedIndicator[0].Measures[i].MeasurementType.includes("Rate")) {
+                    //         defaultMeasure = selectedIndicator[0].Measures[i].MeasureID;
+                    //     } else if (selectedIndicator[0].Measures[i].MeasurementType.includes("Percent")) {
+                    //         defaultMeasure = selectedIndicator[0].Measures[i].MeasureID;
+                    //     } else {
+                    //         defaultMeasure = selectedIndicator[0].Measures[0].MeasureID;
+                    //     };
+                    //     }
+                    //     console.log('default measure is: ' + defaultMeasure);
+                    //     selectedMeasure = selectedIndicator[0].Measures.filter(measure => measure.MeasureID == defaultMeasure)
+                    //     // Create drop-down lists (this could be refactored/simplified)
+                    //     printMeasures();
+                    //     // create measure-specific options
+                    //     printYears();
+                    //     printGeographies();
+
+                    //     // load data
+                    //     loadData(indicatorId);
+                    // }
+
+                    const checkboxYear = document.querySelectorAll('.checkbox-year');
+                    const checkboxGeo = document.querySelectorAll('.checkbox-geo');
+
+                    checkboxYear.forEach(checkbox => {
+                        handleYearFilter(checkbox, indicatorId);
+                    })
+                    checkboxGeo.forEach(checkbox => {
+                        handleGeoFilter(checkbox, indicatorId);
+                    })
+                    
+                    loadData(indicatorId)
+                    // loadGeo()
+
+                    
+                    renderTrendChart();
+                }
+
+                
             </script>
 
             <div class="row">
@@ -91,155 +1072,130 @@
                         <!-- Show/hide button (a crude implementation)-->
                         <button class="btn-sm btn-outline-secondary float-right" onclick="reveal()" id="contenttoggle">Show more...<i class="fas fa-caret-square-down" aria-hidden="true"></i></button>
                     </div>
-
-
                 </div>
 
                 <div class="col-md-8">
                     <div class="dropdown float-right">
-                        <button class="btn btn-outline-primary float-right dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-align:right!important">
+                        <button class="btn btn-outline-primary float-right dropdown-toggle" type="button" id="dropdownTableYear" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-align:right!important">
                           More {{ .Title}} data
                         </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownTableYear" id="indicator-dropdown">
                         {{ range .Params.Indicators}}
-                          <a class="dropdown-item" href="{{ .URL}}">{{ .name}}</a>
+                            <button onClick="loadIndicator({{ . }})" data-internal-id="{{ .internal_id }}">{{ .name}}</button>
+                            <a class="dropdown-item" href="{{ .URL}}">{{ .name}}</a>
                         {{ end }}
                         </div>
                     </div>
-                    <h3>{{ (index .Params.indicators 0).name }}</h3>
+                    <h3 class="indicator-title">{{ (index .Params.indicators 0).name }}</h3>
 
 
                     <div style="clear:both" class="my-3">
-                        <p class="fs-sm"><strong>Indicator description:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras risus velit, tincidunt ac ornare at, sodales quis massa. Maecenas malesuada nisi id velit varius, vitae convallis lorem tristique. Ut imperdiet mollis efficitur. </p>
+                        <p class="fs-sm indicator-description"><strong>Indicator description:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras risus velit, tincidunt ac ornare at, sodales quis massa. Maecenas malesuada nisi id velit varius, vitae convallis lorem tristique. Ut imperdiet mollis efficitur. </p>
                     </div>
 
 
                     <div class="nav nav-pills bg-white device-sm" role="tablist">
 
-                        <a class="nav-item nav-link flex-fill active" id="tab-btn-01-a" href="#tab-01-a"
-                            data-toggle="pill" aria-controls="tab-01-a" aria-selected="true" role="tab">
+                        <a class="nav-item nav-link flex-fill active" id="tab-btn-table" href="#tab-table"
+                            data-toggle="pill" aria-controls="tab-table" aria-selected="true" role="tab">
                             <i class="fas fa-list h4 fa-fw"></i><div class="d-none d-lg-block">Summary</div>
                         </a>
                     
-                        <a class="nav-item nav-link flex-fill" id="tab-btn-01-b" href="#tab-01-b"
-                            data-toggle="pill" aria-controls="tab-01-b" aria-selected="false" role="tab">
+                        <a class="nav-item nav-link flex-fill" id="tab-btn-map" href="#tab-map"
+                            data-toggle="pill" aria-controls="tab-map" aria-selected="false" role="tab">
                             <i class="fas fa-map-marker-alt h4 fa-fw"></i><div class="d-none d-lg-block">Map</div>
                         </a>
                     
-                        <a class="nav-item nav-link flex-fill" id="tab-btn-01-c" href="#tab-01-c"
-                            data-toggle="pill" aria-controls="tab-01-c" aria-selected="false" role="tab">
+                        <a class="nav-item nav-link flex-fill" id="tab-btn-trend" href="#tab-trend"
+                            data-toggle="pill" aria-controls="tab-trend" aria-selected="false" role="tab">
                             <i class="fas fa-chart-line h4 fa-fw"></i><div class="d-none d-lg-block">Trend</div>
                         </a>
 
 
-                     <a class="nav-item nav-link flex-fill" id="tab-btn-01-e" href="#tab-01-e"
-                     data-toggle="pill" aria-controls="tab-01-e" aria-selected="false" role="tab">
+                     <a class="nav-item nav-link flex-fill" id="tab-btn-links" href="#tab-links"
+                     data-toggle="pill" aria-controls="tab-links" aria-selected="false" role="tab">
                      <i class="fas fa-link h4 fa-fw"></i><div class="d-none d-lg-block">Links</div>
                         </a>
                     
                     </div>
                     
                     <div class="tab-content bg-white mb-4" id="tabs-01-content">
-                    
-                        <div class="tab-pane fade show active py-2" id="tab-01-a" aria-labelledby="tab-btn-01-a" role="tabpanel">
+                        <!-- TABLE TAB -->
+                        <div class="tab-pane fade show active py-2" id="tab-table" aria-labelledby="tab-btn-table" role="tabpanel">
                             <div class="float right">
                                 <div class="dropdown">
-                                        <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select year
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">Radio buttons:</a>
-                                            <a class="dropdown-item" href="#">2016</a>
-                                          <a class="dropdown-item" href="#">2015</a>
-                                        </div>
-                                      </div>
-
-                                      <div class="dropdown">
-                                            <button class="btn btn-sm mr-1 float-right btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select geography
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                                <a class="dropdown-item" href="#">Check boxes:</a>
-                                              <a class="dropdown-item" href="#">City</a>
-                                              <a class="dropdown-item" href="#">Borough</a>
-                                              <a class="dropdown-item" href="#">Neighborhood</a>
-                                            </div>
-                                          </div>
+                                    <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button" id="dropdownTableYear" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select year
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownTableYear">
+                                        <!-- INSERT MENU ITEMS HERE -->
+                                    </div>
                                 </div>
-                            <div class="border mt-4" style="height: 550px; clear:both">
-                                INSERT SUMMARY TABLE HERE
+
+                                <div class="dropdown">
+                                    <button class="btn btn-sm mr-1 float-right btn-outline-success dropdown-toggle" type="button" id="dropdownTableGeo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select geography
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownTableGeo">
+                                        <!-- INSERT MENU ITEMS HERE -->
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    
-                        <div class="tab-pane fade py-2" id="tab-01-b" aria-labelledby="tab-btn-01-b" role="tabpanel">
-
+                            <div id="summary-table" class="border mt-4">
+                                <!-- INSERT SUMMARY TABLE HERE -->
+                            </div>
+                        </div> 
+                        <!-- MAP TAB -->
+                        <div class="tab-pane fade py-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
                             <div class="float right">
                                 <div class="dropdown">
-                                        <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select year
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">Radio buttons:</a>
-                                            <a class="dropdown-item" href="#">2016</a>
-                                          <a class="dropdown-item" href="#">2015</a>
-                                        </div>
-                                      </div>
-
-                                      <div class="dropdown">
-                                            <button class="btn btn-sm mr-1 float-right btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select measure
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                                <a class="dropdown-item" href="#">Radio buttons:</a>
-                                              <a class="dropdown-item" href="#">Measure 1</a>
-                                              <a class="dropdown-item" href="#">Other measure</a>
-                                              <a class="dropdown-item" href="#">Other measure</a>
-                                            </div>
-                                          </div>
+                                    <button class="btn btn-sm mr-1 float-right btn-outline-success dropdown-toggle" type="button" id="dropdownMapMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select measure
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMapMeasures">
+                                        <!-- INSERT MENU ITEMS HERE -->
+                                    </div>
                                 </div>
-
-
-
-                            <div class="border mt-4" style="height: 550px; clear: both">
-                                INSERT MAP HERE
+                            </div>
+                            <div class="border mt-4">
+                                <div id="map" width=600 height=500 style="width: 100%; min-height: 450px; margin-bottom: 50px;"></div>
                             </div>                        
                         </div>
-                    
-                        <div class="tab-pane fade py-2" id="tab-01-c" aria-labelledby="tab-btn-01-c" role="tabpanel">
+                        <!-- TREND TAB -->
+                        <div class="tab-pane fade py-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
                             <div class="dropdown float-right">
-                                <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose measure
+                                <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button" id="dropdownTrendMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose measure
                                 </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                  <a class="dropdown-item" href="#">Radio buttons:</a>
-                                  <a class="dropdown-item" href="#">Measure 1</a>
-                                  <a class="dropdown-item" href="#">Other measure</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownTrendMeasures">
+                                  <!-- INSERT MENU ITEMS HERE -->
                                 </div>
-                              </div>
-                            <div class="border mt-4" style="height: 550px; clear: both">
-                                INSERT TREND CHART HERE
+                            </div>
+                            <div class="border mt-4">
+                                <!-- INSERT TREND CHART HERE -->
+                                <div id="trend" style="width: 100%"></div>
                             </div>
                         </div>
-
-                            <div class="tab-pane fade py-2" id="tab-01-e" aria-labelledby="tab-btn-01-e" role="tabpanel">
-                                <div class="dropdown float-right">
-                                    <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select data to link
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      <a class="dropdown-item" href="#">Option 1</a>
-                                      <a class="dropdown-item" href="#">Option 2</a>
-                                    </div>
-                                  </div>
-                                <div class="border mt-4" style="height: 550px; clear: both">
-                                    INSERT LINKS CHART HERE
+                        <!-- LINKS TAB -->
+                        <div class="tab-pane fade py-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
+                            <div class="dropdown float-right">
+                                <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button" id="dropdownLinksYear" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select data to link
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownLinksYear">
+                                    <!-- INSERT MENU ITEMS HERE -->
                                 </div>
-                                </div>
+                            </div>
+                            <div class="border mt-4" style="height: 550px; clear: both">
+                                INSERT LINKS CHART HERE
+                            </div>
+                        </div>
                     </div>
 
                     <hr class="my-2">
                     <div class="row">
                         <div class="col-6">
                             <h4 class="fs-rg">About the measures</h4>
-                            <p class="fs-sm">Insert from `How_Calculated.` Vivamus consequat id nibh et tempor. Cras augue enim, iaculis quis purus sit amet, interdum accumsan neque. In blandit varius blandit. Praesent vel leo ac urna dapibus faucibus. Donec sed luctus neque. Nulla porta finibus elit, luctus eleifend felis ornare vitae. Ut consequat laoreet libero eu venenatis.</p>
+                            <p class="fs-sm indicator-measures">Insert from `How_Calculated.` Vivamus consequat id nibh et tempor. Cras augue enim, iaculis quis purus sit amet, interdum accumsan neque. In blandit varius blandit. Praesent vel leo ac urna dapibus faucibus. Donec sed luctus neque. Nulla porta finibus elit, luctus eleifend felis ornare vitae. Ut consequat laoreet libero eu venenatis.</p>
                         </div>
                         <div class="col-6">
                             <h4 class="fs-rg">Data sources</h4>
-                            <p class="fs-sm">Insert from `Sources.` Pellentesque blandit ante vel augue mattis, lacinia tincidunt velit feugiat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec nulla nisl, sollicitudin et volutpat at, finibus ac quam. Pellentesque faucibus turpis egestas tellus luctus, nec porttitor diam bibendum. Sed mauris augue, tempus id urna sit amet, hendrerit blandit libero. Cras sit amet luctus nunc, nec mattis leo. </p>
+                            <p class="fs-sm indicator-sources">Insert from `Sources.` Pellentesque blandit ante vel augue mattis, lacinia tincidunt velit feugiat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec nulla nisl, sollicitudin et volutpat at, finibus ac quam. Pellentesque faucibus turpis egestas tellus luctus, nec porttitor diam bibendum. Sed mauris augue, tempus id urna sit amet, hendrerit blandit libero. Cras sit amet luctus nunc, nec mattis leo. </p>
 
                         </div>
                     </div>

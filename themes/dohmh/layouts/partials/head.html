@@ -23,11 +23,16 @@
 
 {{ end }}
 
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
 <!-- Font Awesome -->
 <link rel="stylesheet" href="/fontawesome/css/all.min.css">
 {{ $sass := resources.Get "scss/theme.scss" }}
 {{ $style := $sass | resources.ToCSS }}
 <link rel="stylesheet" href="{{ $style.Permalink }}" />
+
+
+
 
 <!--Vega. To call, have vega: true in a page's frontmatter-->
 {{ if .Params.vega }}
