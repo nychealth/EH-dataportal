@@ -218,6 +218,7 @@
                         .then(response => response.json())
                         .then(data => {
 
+
                             loadGeo(); // run the next function
                             aqData = aq.from(data)
                                 .groupby("Time", "GeoType", "GeoID")
@@ -538,195 +539,197 @@
 
                 // Render Trend Chart using Vegalite
                 const renderTrendChart = (selectedData, selectedMeasure, selectedDisplay, slectedDisparities) => {
-                    console.log('selectedMeasure', selectedMeasure, selectedData)
-                    let trendMeasure = selectedMeasure ? selectedMeasure : defaultTrendMeasure[0].MeasurementType;
-                    let trendData = selectedData ?  selectedData : fullDataTrendObjects;
-                    let trendDisplay = selectedDisplay ? selectedDisplay : defaultTrendMeasure[0].DisplayType;
-                    let trendDisparity = slectedDisparities ? slectedDisparities : defaultTrendMeasure[0].VisOptions[0]?.Trend[0]?.Disparities
+                    console.log('^^^^^^^^ selectedMeasure', selectedMeasure, selectedData, defaultTrendMeasure.length)
 
-                    console.log('TREND CHART DATA: ', trendMeasure, trendDisplay, trendData)
-                    console.log('check disaprities: ', defaultTrendMeasure[0].VisOptions[0]?.Trend[0]?.Disparities)
-
-                    if (trendDisparity == 1) {
-                        console.log('show disparity button')
-                    }
-
-                    // vega Lite ////////////////////////////////////
-                    var spec = {
-                        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-                        "config": {
-                        "background": "#FFFFFF",
-                        "title": {"anchor": "start", "fontSize": 18, "font": "Calibri"},
-                        "axisX": {
-                        "domain": true,
-                        "domainColor": "#000000",
-                        "domainWidth": 1,
-                        "grid": false,
-                        "labelFontSize": 12,
-                        "labelAngle": 0,
-                        "tickColor": "#000000",
-                        "tickSize": 5,
-                        "titleFontSize": 12,
-                        "titlePadding": 10
-                        },
+                    
+                    if (defaultTrendMeasure.length > 0) {
+                        console.log('TRNED CHART - DEFAULT MEASURE: ', defaultTrendMeasure)
+                        let trendMeasure = selectedMeasure ? selectedMeasure : defaultTrendMeasure[0].MeasurementType;
+                        let trendData = selectedData ?  selectedData : fullDataTrendObjects;
+                        let trendDisplay = selectedDisplay ? selectedDisplay : defaultTrendMeasure[0].DisplayType;
+                        let trendDisparity = slectedDisparities ? slectedDisparities : defaultTrendMeasure[0].VisOptions[0]?.Trend[0]?.Disparities
                         
-                        "axisY": {
-                        "domain": false,
-                        "domainWidth": 1,
-                        "grid": true,
-                        "gridColor": "#DEDDDD",
-                        "gridWidth": 1,
-                        "labelFontSize": 12,
-                        "labelPadding": 8,
-                        "ticks": false,
-                        "titleFontSize": 12,
-                        "titlePadding": 10,
-                        "titleFont": "Lato",
-                        "titleAngle": 0,
-                        "titleY": -10,
-                        "titleX": 18
-                        },
+                        console.log('TREND CHART DATA: ', trendMeasure, trendDisplay, trendData)
+                        console.log('check disaprities: ', defaultTrendMeasure[0].VisOptions[0]?.Trend[0]?.Disparities)
 
-
-                        "view": {"stroke": "transparent"},
-
-                        "range": {
-                        "category": [
-                            "#1696d2",
-                            "#000000",
-                            "#fdbf11",
-                            "#ec008b",
-                            "#d2d2d2",
-                            "#55b748"
-                        ]
-                        },
-
-                        "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 3},
-
-
-                        "point": {"filled": true},
-                        "text": {
-                        "color": "#1696d2",
-                        "fontSize": 11,
-                        "align": "center",
-                        "fontWeight": 400,
-                        "size": 11
+                        if (trendDisparity == 1) {
+                            console.log('show disparity button')
                         }
-                    },
-                        "data": {
-                            "url": "https://gist.githubusercontent.com/mmontesanonyc/6b0aa75affc6a60978f73e11d2f58bb3/raw/e944d335042e3da0c8e99a4df0fbebc8aac4cc15/asthmatrend.csv"
-                        },
-                        "width": "container",
-                        "height": 550,
-                        "encoding": {
-                        "x": {
-                            "field": "Year",
-                            "type": "temporal",
-                            "title": ""
-                        }
-                        },
-                        "layer": [
-                        {
-                            "encoding": {
-                            "color": {
-                                "field": "GeoName",
-                                "type": "nominal",
-                                "legend": {
-                                "orient": "right",
-                                "title": null
-                                }
+
+                        // vega Lite ////////////////////////////////////
+                        var spec = {
+                            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                            "config": {
+                            "background": "#FFFFFF",
+                            "title": {"anchor": "start", "fontSize": 18, "font": "Calibri"},
+                            "axisX": {
+                            "domain": true,
+                            "domainColor": "#000000",
+                            "domainWidth": 1,
+                            "grid": false,
+                            "labelFontSize": 12,
+                            "labelAngle": 0,
+                            "tickColor": "#000000",
+                            "tickSize": 5,
+                            "titleFontSize": 12,
+                            "titlePadding": 10
                             },
-                            "y": {
-                                "field": "Value",
-                                "type": "quantitative",
+                            
+                            "axisY": {
+                            "domain": false,
+                            "domainWidth": 1,
+                            "grid": true,
+                            "gridColor": "#DEDDDD",
+                            "gridWidth": 1,
+                            "labelFontSize": 12,
+                            "labelPadding": 8,
+                            "ticks": false,
+                            "titleFontSize": 12,
+                            "titlePadding": 10,
+                            "titleFont": "Lato",
+                            "titleAngle": 0,
+                            "titleY": -10,
+                            "titleX": 18
+                            },
+
+
+                            "view": {"stroke": "transparent"},
+
+                            "range": {
+                            "category": [
+                                "#1696d2",
+                                "#000000",
+                                "#fdbf11",
+                                "#ec008b",
+                                "#d2d2d2",
+                                "#55b748"
+                            ]
+                            },
+
+                            "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 3},
+
+
+                            "point": {"filled": true},
+                            "text": {
+                            "color": "#1696d2",
+                            "fontSize": 11,
+                            "align": "center",
+                            "fontWeight": 400,
+                            "size": 11
+                            }
+                        },
+                            "data": {
+                                "url": "https://gist.githubusercontent.com/mmontesanonyc/6b0aa75affc6a60978f73e11d2f58bb3/raw/e944d335042e3da0c8e99a4df0fbebc8aac4cc15/asthmatrend.csv"
+                            },
+                            "width": "container",
+                            "height": 550,
+                            "encoding": {
+                            "x": {
+                                "field": "Year",
+                                "type": "temporal",
                                 "title": ""
                             }
                             },
                             "layer": [
                             {
-                                "mark": {
-                                "type": "line",
-                                "point": {"filled": false, "fill": "white"}
+                                "encoding": {
+                                "color": {
+                                    "field": "GeoName",
+                                    "type": "nominal",
+                                    "legend": {
+                                    "orient": "right",
+                                    "title": null
+                                    }
+                                },
+                                "y": {
+                                    "field": "Value",
+                                    "type": "quantitative",
+                                    "title": ""
                                 }
+                                },
+                                "layer": [
+                                {
+                                    "mark": {
+                                    "type": "line",
+                                    "point": {"filled": false, "fill": "white"}
+                                    }
 
+                                },
+                                {
+                                    "transform": [
+                                    {
+                                        "filter": {
+                                        "param": "hover",
+                                        "empty": false
+                                        }
+                                    }
+                                    ],
+                                    "mark": "point"
+                                }
+                                ]
                             },
                             {
                                 "transform": [
                                 {
-                                    "filter": {
+                                    "pivot": "GeoName",
+                                    "value": "Value",
+                                    "groupby": [
+                                    "Year"
+                                    ]
+                                }
+                                ],
+                                "mark": "rule",
+                                "encoding": {
+                                "opacity": {
+                                    "condition": {
+                                    "value": 0.3,
                                     "param": "hover",
                                     "empty": false
+                                    },
+                                    "value": 0
+                                },
+                                "tooltip": [
+                                    {
+                                    "field": "Citywide",
+                                    "type": "quantitative"
+                                    },
+                                    {
+                                    "field": "The Bronx",
+                                    "type": "quantitative"
+                                    },
+                                    {
+                                    "field": "Brooklyn",
+                                    "type": "quantitative"
+                                    },
+                                    {
+                                    "field": "Manhattan",
+                                    "type": "quantitative"
+                                    },
+                                    {
+                                    "field": "Queens",
+                                    "type": "quantitative"
+                                    }
+                                ]
+                                },
+                                "params": [
+                                {
+                                    "name": "hover",
+                                    "select": {
+                                    "type": "point",
+                                    "fields": [
+                                        "Year"
+                                    ],
+                                    "nearest": true,
+                                    "on": "mouseover",
+                                    "clear": "mouseout"
                                     }
                                 }
-                                ],
-                                "mark": "point"
-                            }
-                            ]
-                        },
-                        {
-                            "transform": [
-                            {
-                                "pivot": "GeoName",
-                                "value": "Value",
-                                "groupby": [
-                                "Year"
                                 ]
-                            }
-                            ],
-                            "mark": "rule",
-                            "encoding": {
-                            "opacity": {
-                                "condition": {
-                                "value": 0.3,
-                                "param": "hover",
-                                "empty": false
-                                },
-                                "value": 0
-                            },
-                            "tooltip": [
-                                {
-                                "field": "Citywide",
-                                "type": "quantitative"
-                                },
-                                {
-                                "field": "The Bronx",
-                                "type": "quantitative"
-                                },
-                                {
-                                "field": "Brooklyn",
-                                "type": "quantitative"
-                                },
-                                {
-                                "field": "Manhattan",
-                                "type": "quantitative"
-                                },
-                                {
-                                "field": "Queens",
-                                "type": "quantitative"
-                                }
-                            ]
-                            },
-                            "params": [
-                            {
-                                "name": "hover",
-                                "select": {
-                                "type": "point",
-                                "fields": [
-                                    "Year"
-                                ],
-                                "nearest": true,
-                                "on": "mouseover",
-                                "clear": "mouseout"
-                                }
                             }
                             ]
                         }
-                        ]
-                    }
-                    
+                        
 
-                    // if (trendMeasure && trendData) {
-                        // console.log('selectedMeasure: ', selectedMeasure)
                         var spec2 = {
                             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
                             "config": {
@@ -912,6 +915,10 @@
                         }
                         
                         vegaEmbed("#trend", spec2);
+
+                        
+                    }
+                    
                 }
 
                 // Render Links Chart using Vegalight
@@ -1179,38 +1186,40 @@
                 }
 
                 const setDefaultMeasure = (defaultArray, visArray) => {
-                    console.log('SET DEFAULT MEASURE: ', mapMeasures, trendMeasures, defaultArray)
                     defaultArray.length = 0;
 
-                    const hasAgeAdjustedRate = visArray.filter(measure =>
-                        measure.MeasurementType.includes('Age Adjusted Rate')
-                    )
-                    const hasRate = visArray.filter(measure =>
-                        measure.MeasurementType.includes('Rate')
-                    )
-                    const hasPercent = visArray.filter(measure =>
-                        measure.MeasurementType.includes('Percent')
-                    )
-
-                    const nope = false
-                    if (hasAgeAdjustedRate.length) {
-                        const hasAgeAdjustedRateTotal = hasAgeAdjustedRate.filter(measure => 
-                            measure.MeasurementType.includes('Total')
+                    if (visArray.length > 0) {
+                        const hasAgeAdjustedRate = visArray.filter(measure =>
+                            measure.MeasurementType.includes('Age Adjusted Rate')
                         )
-                        // Set total as default if available
-                        if (hasAgeAdjustedRateTotal.length) {
-                            defaultArray.push(hasAgeAdjustedRateTotal[0]);
+                        const hasRate = visArray.filter(measure =>
+                            measure.MeasurementType.includes('Rate')
+                        )
+                        const hasPercent = visArray.filter(measure =>
+                            measure.MeasurementType.includes('Percent')
+                        )
+
+                        const nope = false
+                        if (hasAgeAdjustedRate.length) {
+                            const hasAgeAdjustedRateTotal = hasAgeAdjustedRate.filter(measure => 
+                                measure.MeasurementType.includes('Total')
+                            )
+                            // Set total as default if available
+                            if (hasAgeAdjustedRateTotal.length) {
+                                defaultArray.push(hasAgeAdjustedRateTotal[0]);
+                            } else {
+                                defaultArray.push(hasAgeAdjustedRate[0]);
+                            }
+                            
+                        } else if (hasRate.length) {
+                            defaultArray.push(hasRate[0]);
+                        } else if (hasPercent.length) {
+                            defaultArray.push(hasPercent[0]);
                         } else {
-                            defaultArray.push(hasAgeAdjustedRate[0]);
+                            defaultArray.push(visArray[0]);
                         }
-                        
-                    } else if (hasRate.length) {
-                        defaultArray.push(hasRate[0]);
-                    } else if (hasPercent.length) {
-                        defaultArray.push(hasPercent[0]);
-                    } else {
-                        defaultArray.push(visArray[0]);
                     }
+                    
                 }
                 
                 const loadIndicator = (data) => {
@@ -1352,18 +1361,21 @@
                         disableLink(tabMap);
                     } else {
                         enableLink(tabMap);
+                        renderMap();
                     }
 
                     if (trendMeasures.length === 0) {
                         disableLink(tabTrend);
                     } else {
                         enableLink(tabTrend);
+                        renderTrendChart();
                     }
 
                     if (linksMeasures.length === 0) {
                         disableLink(tabLinks);
                     } else {
                         enableLink(tabLinks);
+                        renderLinksChart();
                     }
 
                     const mapMeasuresLinks = document.querySelectorAll('#tab-map .link-measure');
@@ -1410,9 +1422,9 @@
                     renderAboutSources(measureAbout, measureSources);
 
                     renderTable();
-                    renderMap();
-                    renderTrendChart();
-                    renderLinksChart();
+                    
+                    
+                    
 
                     const checkboxYear = document.querySelectorAll('.checkbox-year');
                     const checkboxGeo = document.querySelectorAll('.checkbox-geo');
