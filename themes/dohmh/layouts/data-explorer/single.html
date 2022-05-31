@@ -87,7 +87,6 @@
             <script src="https://d3js.org/d3.v5.min.js"></script>
 
             <script>
-                document.addEventListener("DOMContentLoaded", () => {
                     let indicators = []; // indicator data
                     let selectedSummaryYears = [];
                     let selectedSummaryGeography = [];
@@ -117,9 +116,26 @@
                     let trendMeasures = [];
                     let linksMeasures = [];
 
-                    const tabMap = document.querySelector('#tab-btn-map');
-                    const tabTrend = document.querySelector('#tab-btn-trend');
-                    const tabLinks = document.querySelector('#tab-btn-links');
+                    let tabMap;
+                    let tabTrend;
+                    let tabLinks;
+
+                    document.addEventListener("DOMContentLoaded", () => {
+                        tabMap = document.querySelector('#tab-btn-map');
+                        tabTrend = document.querySelector('#tab-btn-trend');
+                        tabLinks = document.querySelector('#tab-btn-links');
+                        
+                        const updateChartPlotSize = () => {
+                            setTimeout(() => {
+                                window.dispatchEvent(new Event('resize'));
+                            }, 200)
+                        }
+
+                        tabMap.addEventListener('click', updateChartPlotSize);
+                        tabTrend.addEventListener('click', updateChartPlotSize);
+                        tabLinks.addEventListener('click', updateChartPlotSize);
+                    });
+
 
                     function reveal() {
                         document.getElementById('truncate').classList.toggle('hide')
@@ -1278,14 +1294,14 @@
                                 mapMeasures.push(measure)
                                 dropdownMapMeasures.innerHTML += `<div><strong> ${type}</strong></div>`;
                                 mapYears.map((time, index) => {
-                                    dropdownMapMeasures.innerHTML += `<button class="link-measure" data-measure="${type}" data-display="${displayType}" data-date="${time}" data-about="${about}" data-sources="${sources}"> ${time}</button>`
+                                    dropdownMapMeasures.innerHTML += `<button class="dropdown-item link-measure" data-measure="${type}" data-display="${displayType}" data-date="${time}" data-about="${about}" data-sources="${sources}"> ${time}</button>`
                                 })
                             }
 
                             if (trend === 1) {
                                 trendMeasures.push(measure)
                                 if  (fullDataTrendObjects) {
-                                    dropdownTrendMeasures.innerHTML += `<button class="link-measure" data-measure="${type}" data-display="${displayType}" data-about="${about}" data-sources="${sources}" data-disparities="${trendDisparities}"> ${type}</button>`;
+                                    dropdownTrendMeasures.innerHTML += `<button class="dropdown-item link-measure" data-measure="${type}" data-display="${displayType}" data-about="${about}" data-sources="${sources}" data-disparities="${trendDisparities}"> ${type}</button>`;
                                 }
                             }
 
@@ -1293,7 +1309,7 @@
                                 linksMeasures.push(measure)
                                 if  (fullDataTrendObjects) {
                                     const linkYears =  [...new Set(fullDataTrendObjects.map(item => item.Time))]
-                                    dropdownLinksMeasures.innerHTML += `<button class="link-measure" data-measure="${type}" data-display="${displayType}" data-date="${years[index].TimeDescription}"  data-about="${about}" data-sources="${sources}" data-datestart="${years[index].start_period}" data-dateend="${years[index].end_period}"> ${type}</button>`;
+                                    dropdownLinksMeasures.innerHTML += `<button class="dropdown-item link-measure" data-measure="${type}" data-display="${displayType}" data-date="${years[index].TimeDescription}"  data-about="${about}" data-sources="${sources}" data-datestart="${years[index].start_period}" data-dateend="${years[index].end_period}"> ${type}</button>`;
                                 }
                             }
                         })
@@ -1372,18 +1388,6 @@
                     }
 
 
-                    const updateChartPlotSize = () => {
-                        setTimeout(() => {
-                            window.dispatchEvent(new Event('resize'));
-                        }, 200)
-                    }
-
-                    tabMap.addEventListener('click', updateChartPlotSize);
-                    tabTrend.addEventListener('click', updateChartPlotSize);
-                    tabLinks.addEventListener('click', updateChartPlotSize);
-                });
-
-
             </script>
 
             <div class="row">
@@ -1412,8 +1416,8 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownTableYear" id="indicator-dropdown">
                         {{ range .Params.Indicators}}
-                            <button onClick="loadIndicator({{ . }})" data-internal-id="{{ .internal_id }}">{{ .name}}</button>
-                            <a class="dropdown-item" href="{{ .URL}}">{{ .name}}</a>
+                            <button class="dropdown-item" onClick="loadIndicator({{ . }})" data-internal-id="{{ .internal_id }}">{{ .name}}</button>
+                            <!-- <a class="dropdown-item" href="{{ .URL}}">{{ .name}}</a> -->
                         {{ end }}
                         </div>
                     </div>
