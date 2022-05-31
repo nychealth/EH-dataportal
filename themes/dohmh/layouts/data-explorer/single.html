@@ -622,8 +622,13 @@
                         console.log('RENDER TREND DATA - Maeasure Filtered Default Data: ', fullDataTrendObjects)
                         console.log('RENDER TREND DATA - Maeasure Filtered Selcted Data: ', selectedData)
                         console.log('RENDER TREND DATA - Maeasure Disparity: ', trendDisparity)
-                        if (trendDisparity == 1) {
-                            console.log('show disparity button')
+                        const tabTrendDropDown = document.querySelector('#tab-trend  .dropdown');
+                        const btnShowDisparitires = document.querySelector('.btn-show-disparities');
+
+                        if (trendDisparity == 1 && !btnShowDisparitires) {
+                            tabTrendDropDown.innerHTML += `<button class="btn btn-sm float-right btn-outline-success btn-show-disparities">Show Dispartites</button> `;
+                        }   else if (btnShowDisparitires) {
+                            tabTrendDropDown.removeChild(btnShowDisparitires)
                         }
 
                         var spec = {
@@ -1395,7 +1400,7 @@
 
                         if (mapMeasures.length === 0) {
                             disableLink(tabMap);
-                            if (tabMapSelected) {
+                            if (tabMapSelected === true) {
                                 $('#tab-btn-table').tab('show');
                             }
                         } else {
@@ -1405,7 +1410,7 @@
 
                         if (trendMeasures.length === 0) {
                             disableLink(tabTrend);
-                            if (tabTrendSelected) {
+                            if (tabTrendSelected === true) {
                                 $('#tab-btn-table').tab('show');
                             }
                         } else {
