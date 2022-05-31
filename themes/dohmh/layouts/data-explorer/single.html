@@ -130,7 +130,7 @@
                     let tabMap;
                     let tabTrend;
                     let tabLinks;
-
+                
                     const updateChartPlotSize = () => {
                         setTimeout(() => {
                             window.dispatchEvent(new Event('resize'));
@@ -147,6 +147,7 @@
                         tabMap = document.querySelector('#tab-btn-map');
                         tabTrend = document.querySelector('#tab-btn-trend');
                         tabLinks = document.querySelector('#tab-btn-links');
+                        
 
                         // calculates table width
                         $('#tab-btn-table').on('shown.bs.tab', function(e){
@@ -1365,6 +1366,11 @@
                         setDefaultMeasure(defaultTrendMeasure, trendMeasures);
 
                         // disable tabs if there are no measures
+
+                        const tabMapSelected = tabMap.getAttribute('aria-selected');
+                        const tabTrendSelected = tabTrend.getAttribute('aria-selected');
+                        const tabLinksSelected = tabLinks.getAttribute('aria-selected');
+                        
                         const disableLink = (el) => {
                             el.classList.add('disabled');
                             el.setAttribute('aria-disabled', true);
@@ -1377,6 +1383,9 @@
 
                         if (mapMeasures.length === 0) {
                             disableLink(tabMap);
+                            if (tabMapSelected) {
+                                $('#tab-btn-table').tab('show');
+                            }
                         } else {
                             enableLink(tabMap);
                             renderMap();
@@ -1384,6 +1393,9 @@
 
                         if (trendMeasures.length === 0) {
                             disableLink(tabTrend);
+                            if (trendMapSelected) {
+                                $('#tab-btn-table').tab('show');
+                            }
                         } else {
                             enableLink(tabTrend);
                             renderTrendChart();
@@ -1391,6 +1403,9 @@
 
                         if (linksMeasures.length === 0) {
                             disableLink(tabLinks);
+                            if (LinksMapSelected) {
+                                $('#tab-btn-table').tab('show');
+                            }
                         } else {
                             enableLink(tabLinks);
                             renderLinksChart();
