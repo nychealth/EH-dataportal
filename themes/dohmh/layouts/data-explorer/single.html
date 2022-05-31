@@ -69,6 +69,10 @@
                     opacity: 1 !important;
                 } */
 
+                .dropdown-title {
+                    padding: 0.25rem 1.5rem;
+                }
+
             </style>
 
             <!-- Arquero -->
@@ -245,8 +249,8 @@
 
                             const handleGroupToggle = () => {
                                 
-                                const subGroupToggle = $(`td[data-group-level="1"]`);
-                                const subGroupRow = $(`tr[data-group*="${group}"]`);
+                                const subGroupToggle = $(`td[data-year="${group}"][data-group-level="1"]`);
+                                const subGroupRow = $(`tr[data-year="${group}"]`);
 
                                 if (subGroupToggle.css('display') === 'none') {
                                     subGroupToggle.removeClass('hidden');
@@ -311,6 +315,7 @@
                         
                         const groupColumnYear = 0
                         const groupColumnGeo = 1;
+                        const groupId = 0
 
                         const filteredTableData = joinedAqData.objects().filter(d =>
                             selectedSummaryYears.includes(d.Time) && selectedSummaryGeography.includes(d.GeoType)
@@ -339,24 +344,30 @@
                                 const time    = data[0];
                                 const geoType = data[1];
                                 if (time && geoType) {
-                                    row.setAttribute(`data-group`, `${time}-${geoType}`);
+                                    row.setAttribute(`data-group`, `${time}-${geoType}`)
+                                    row.setAttribute(`data-year`, `${time}`);
                                 }
                             },
                             "drawCallback": function ( settings ) {
                                 console.log('RENDER TABLE FUNCTION - DrawCallback')
                                 const api = this.api();
+                                const data = api.rows( {page:'current'} ).data()
                                 const rows = api.rows( {page:'current'} ).nodes();
                                 const totaleColumnsCount = api.columns().count()
                                 const visibleColumnsCount =  totaleColumnsCount - 4;
-                                console.log('---------------> visible columns: ', 4, api.columns().count())
+
                                 var last = null;
+                                var lastYr = null;
                                 const createGroupRow = (groupColumn, lvl) => {
                                     api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
-                                        if ( last !== group ) {
+                                        const year = data[i][0]
+                                        const groupName = `${year}-${group}`
+                                        if ( last !== group || lastYr !== year ) {
                                             $(rows).eq( i ).before(
-                                                `<tr class="group"><td colspan="${visibleColumnsCount}" data-group="${group}" data-group-level="${lvl}"> ${group}</td></tr>`
+                                                `<tr class="group"><td colspan="${visibleColumnsCount}" data-year="${year}" data-group="${group}" data-group-level="${lvl}"> ${group}</td></tr>`
                                             );
                                             last = group;
+                                            lastYr = year
                                         }
                                     });
                                 }
@@ -1300,7 +1311,7 @@
 
                             if (map === 1) {
                                 mapMeasures.push(measure)
-                                dropdownMapMeasures.innerHTML += `<div><strong> ${type}</strong></div>`;
+                                dropdownMapMeasures.innerHTML += `<div class="dropdown-title"><strong> ${type}</strong></div>`;
                                 mapYears.map((time, index) => {
                                     dropdownMapMeasures.innerHTML += `<button class="dropdown-item link-measure" data-measure="${type}" data-display="${displayType}" data-date="${time}" data-about="${about}" data-sources="${sources}"> ${time}</button>`
                                 })
