@@ -73,6 +73,10 @@
                     padding: 0.25rem 1.5rem;
                 }
 
+                .indicator-measures h6 {
+                    margin-top: 0.5em;
+                }
+
             </style>
 
             <!-- Arquero -->
@@ -115,6 +119,9 @@
                     let defaultTrendMeasure = [];
                     let defaultMapMeasure = [];
                     let defaultLinksMeasure = [];
+                    let selectedMapMeasure = false
+                    let selectedTrendMeasure = false;
+                    let selectedLinksMeasure = false;
                     
                     let mapMeasures = [];
                     let trendMeasures = [];
@@ -123,6 +130,18 @@
                     let tabMap;
                     let tabTrend;
                     let tabLinks;
+
+                    const updateChartPlotSize = () => {
+                        setTimeout(() => {
+                            window.dispatchEvent(new Event('resize'));
+                        }, 200)
+                    }
+
+                    const renderTabDefaultAboutSource = (selectedMeasure, defaultMeasure) => {
+                        if (!selectedMeasure) {
+                            renderAboutSources(defaultMeasure[0].how_calculated, defaultMeasure[0].Sources);
+                        }
+                    }
 
                     document.addEventListener("DOMContentLoaded", () => {
                         tabMap = document.querySelector('#tab-btn-map');
@@ -135,28 +154,31 @@
                                 .columns.adjust();
                         });
                         
-                        const updateChartPlotSize = () => {
-                            setTimeout(() => {
-                                window.dispatchEvent(new Event('resize'));
-                            }, 200)
-                        }
-
-                        tabMap.addEventListener('click', updateChartPlotSize);
-                        tabTrend.addEventListener('click', updateChartPlotSize);
-                        tabLinks.addEventListener('click', updateChartPlotSize);
+                        tabMap.addEventListener('click', () => {
+                            updateChartPlotSize();
+                            renderTabDefaultAboutSource(selectedMapMeasure, defaultMapMeasure);
+                        });
+                        tabTrend.addEventListener('click', () => {
+                            updateChartPlotSize();
+                            renderTabDefaultAboutSource(selectedTrendMeasure, defaultTrendMeasure);
+                        });
+                        tabLinks.addEventListener('click', () => {
+                            updateChartPlotSize();
+                            renderTabDefaultAboutSource(selectedLinksMeasure, defaultLinksMeasure);
+                        });
                     });
 
 
                     function reveal() {
-                        document.getElementById('truncate').classList.toggle('hide')
-                        document.getElementById('full').classList.toggle('show')
-                        document.getElementById('contenttoggle').innerHTML = `Show less... <i class="fas fa-caret-square-up" aria-hidden="true"></i>`
+                        document.getElementById('truncate').classList.toggle('hide');
+                        document.getElementById('full').classList.toggle('show');
+                        document.getElementById('contenttoggle').innerHTML = `Show less... <i class="fas fa-caret-square-up" aria-hidden="true"></i>`;
                     }
 
                     fetch('https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/indicators.json')
                         .then(response => response.json())
                         .then(data => {
-                            indicators = data
+                            indicators = data;
                             loadIndicator()
                             // loadData(indicatorId)
                         })
@@ -390,6 +412,10 @@
                         let mapDisplay = selectedDisplay ? selectedDisplay : defaultMapMeasure[0].DisplayType;
                         let mapDate = selectedDate ? selectedDate : filteredfullDataMapObjects[0].Time;
                         
+
+                        if (!selectedMeasure) {
+                            
+                        }
                         console.log('==========================================================================')
                         console.log('RENDER MAP DATA - Maeasure Default: ', defaultMapMeasure)
                         console.log('RENDER MAP DATA - Maeasure Selected: ', selectedMeasure)
@@ -1143,6 +1169,7 @@
                         )
                         renderAboutSources(measureAbout, measureSources);
                         renderMap(filteredData, measure, display, date);
+                        selectedMapMeasure =  true;
                     }
 
                     const updateTrendData = (e) => {
@@ -1153,6 +1180,7 @@
                         const display = e.target.dataset.display;
                         renderAboutSources(measureAbout, measureSources);
                         renderTrendChart(fullDataTrendObjects, measure, display, disparities)
+                        selectedTrendMeasure = true
                     }
 
                     const setDefaultMapMeasure = (defaultArray, visArray) => {
@@ -1444,7 +1472,7 @@
 
 
                     <div style="clear:both" class="my-3">
-                        <p class="fs-sm indicator-description"><strong>Indicator description:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras risus velit, tincidunt ac ornare at, sodales quis massa. Maecenas malesuada nisi id velit varius, vitae convallis lorem tristique. Ut imperdiet mollis efficitur. </p>
+                        <p class="fs-sm indicator-description"><strong>Indicator description:</strong></p>
                     </div>
 
 
