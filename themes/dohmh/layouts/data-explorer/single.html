@@ -124,6 +124,12 @@
                         tabMap = document.querySelector('#tab-btn-map');
                         tabTrend = document.querySelector('#tab-btn-trend');
                         tabLinks = document.querySelector('#tab-btn-links');
+
+                        // calculates table width
+                        $('#tab-btn-table').on('shown.bs.tab', function(e){
+                            $($.fn.dataTable.tables(true)).DataTable()
+                                .columns.adjust();
+                        });
                         
                         const updateChartPlotSize = () => {
                             setTimeout(() => {
@@ -340,7 +346,9 @@
                                 console.log('RENDER TABLE FUNCTION - DrawCallback')
                                 const api = this.api();
                                 const rows = api.rows( {page:'current'} ).nodes();
-                                const visibleColumnsCount = api.columns(':visible').count();
+                                const totaleColumnsCount = api.columns().count()
+                                const visibleColumnsCount =  totaleColumnsCount - 4;
+                                console.log('---------------> visible columns: ', 4, api.columns().count())
                                 var last = null;
                                 const createGroupRow = (groupColumn, lvl) => {
                                     api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
