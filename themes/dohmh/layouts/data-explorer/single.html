@@ -98,6 +98,9 @@
                     let indicators = []; // indicator data
                     let selectedSummaryYears = [];
                     let selectedSummaryGeography = [];
+                    let aboutMeasures;
+                    let dataSources;
+
                     let measureAbout = `N/A`;
                     let measureSources = `N/A`;
                     let geoTable;
@@ -122,10 +125,15 @@
                     let selectedMapMeasure = false
                     let selectedTrendMeasure = false;
                     let selectedLinksMeasure = false;
+                    let selectedMapAbout;
+                    let selectedMapSources;
+                    let selectedTrendAbout;
+                    let selectedTrendSources;
                     
                     let mapMeasures = [];
                     let trendMeasures = [];
                     let linksMeasures = [];
+
 
                     let tabMap;
                     let tabTrend;
@@ -137,35 +145,40 @@
                         }, 200)
                     }
 
-                    const renderTabDefaultAboutSource = (selectedMeasure, defaultMeasure) => {
-                        if (!selectedMeasure) {
-                            renderAboutSources(defaultMeasure[0].how_calculated, defaultMeasure[0].Sources);
-                        }
-                    }
-
                     document.addEventListener("DOMContentLoaded", () => {
+                        tabTable = document.querySelector('#tab-btn-table');
                         tabMap = document.querySelector('#tab-btn-map');
                         tabTrend = document.querySelector('#tab-btn-trend');
                         tabLinks = document.querySelector('#tab-btn-links');
+                        aboutMeasures = document.querySelector('.indicator-measures');
+                        dataSources = document.querySelector('.indicator-sources');
                         
-
-                        // calculates table width
                         $('#tab-btn-table').on('shown.bs.tab', function(e){
                             $($.fn.dataTable.tables(true)).DataTable()
                                 .columns.adjust();
+
+                            renderAboutSources(measureAbout, measureSources)
                         });
                         
                         tabMap.addEventListener('click', () => {
                             updateChartPlotSize();
-                            renderTabDefaultAboutSource(selectedMapMeasure, defaultMapMeasure);
+                            if (!selectedMapMeasure) {
+                                renderAboutSources(defaultMapMeasure[0].how_calculated, defaultMapMeasure[0].Sources);
+                            } else {
+                                renderAboutSources(selectedMapAbout, selectedMapSources);
+                            }
                         });
                         tabTrend.addEventListener('click', () => {
                             updateChartPlotSize();
-                            renderTabDefaultAboutSource(selectedTrendMeasure, defaultTrendMeasure);
+                            if (!selectedTrendMeasure) {
+                                renderAboutSources(defaultTrendMeasure[0].how_calculated, defaultTrendMeasure[0].Sources);
+                            } else {
+                                renderAboutSources(selectedTrendAbout, selectedTrendSources);
+                            }
+                            
                         });
                         tabLinks.addEventListener('click', () => {
                             updateChartPlotSize();
-                            renderTabDefaultAboutSource(selectedLinksMeasure, defaultLinksMeasure);
                         });
                     });
 
@@ -327,8 +340,6 @@
 
                     // Renders copy for the About the measures and the Data sources sections
                     const renderAboutSources = (about, sources) => {
-                        const aboutMeasures = document.querySelector('.indicator-measures');
-                        const dataSources = document.querySelector('.indicator-sources');
                         aboutMeasures.innerHTML = about;
                         dataSources.innerHTML = sources;
                     }
@@ -403,7 +414,7 @@
                     }
 
                     // Render Map using Vegalite
-                    const renderMap = (selectedData, selectedMeasure, selectedDisplay, selectedDate) => {
+                    const renderMap = (selectedData, selectedMeasure, selectedDisplay, selectedDate, selectedAbout, selectedSources) => {
                         const mapYears =  [...new Set(fullDataMapObjects.map(item => item.Time))];
                         const filteredfullDataMapObjects = fullDataMapObjects.filter(obj => 
                             obj.Time === mapYears[0]
@@ -412,11 +423,7 @@
                         let mapData = selectedData ?  selectedData : filteredfullDataMapObjects;
                         let mapDisplay = selectedDisplay ? selectedDisplay : defaultMapMeasure[0].DisplayType;
                         let mapDate = selectedDate ? selectedDate : filteredfullDataMapObjects[0].Time;
-                        
 
-                        if (!selectedMeasure) {
-                            
-                        }
                         console.log('==========================================================================')
                         console.log('RENDER MAP DATA - Maeasure Default: ', defaultMapMeasure)
                         console.log('RENDER MAP DATA - Maeasure Selected: ', selectedMeasure)
@@ -1162,13 +1169,16 @@
                     const updateMapData = (e) => {
                         const measure = e.target.dataset.measure;
                         const date = e.target.dataset.date;
-                        const measureAbout = e.target.dataset.about;
-                        const measureSources = e.target.dataset.sources;
+                        const about = e.target.dataset.about;
+                        const sources = e.target.dataset.sources;
                         const display = e.target.dataset.display;
+                        selectedMapAbout = about;
+                        selectedMapSources =  sources;
+                        
                         const filteredData = fullDataMapObjects.filter(obj => 
                             obj.Time === date && obj
                         )
-                        renderAboutSources(measureAbout, measureSources);
+                        renderAboutSources(about, sources);
                         renderMap(filteredData, measure, display, date);
                         selectedMapMeasure =  true;
                     }
@@ -1176,10 +1186,12 @@
                     const updateTrendData = (e) => {
                         const measure = e.target.dataset.measure;
                         const disparities = e.target.dataset.disparities;
-                        const measureAbout = e.target.dataset.about;
-                        const measureSources = e.target.dataset.sources;
+                        const about = e.target.dataset.about;
+                        const sources = e.target.dataset.sources;
                         const display = e.target.dataset.display;
-                        renderAboutSources(measureAbout, measureSources);
+                        selectedTrendAbout = about;
+                        selectedTrendSources =  sources;
+                        renderAboutSources(about, sources);
                         renderTrendChart(fullDataTrendObjects, measure, display, disparities)
                         selectedTrendMeasure = true
                     }
@@ -1370,7 +1382,7 @@
                         const tabMapSelected = tabMap.getAttribute('aria-selected');
                         const tabTrendSelected = tabTrend.getAttribute('aria-selected');
                         const tabLinksSelected = tabLinks.getAttribute('aria-selected');
-                        
+
                         const disableLink = (el) => {
                             el.classList.add('disabled');
                             el.setAttribute('aria-disabled', true);
@@ -1393,7 +1405,7 @@
 
                         if (trendMeasures.length === 0) {
                             disableLink(tabTrend);
-                            if (trendMapSelected) {
+                            if (tabTrendSelected) {
                                 $('#tab-btn-table').tab('show');
                             }
                         } else {
@@ -1403,7 +1415,7 @@
 
                         if (linksMeasures.length === 0) {
                             disableLink(tabLinks);
-                            if (LinksMapSelected) {
+                            if (tabLinksSelected) {
                                 $('#tab-btn-table').tab('show');
                             }
                         } else {
@@ -1412,18 +1424,18 @@
                         }
 
                         renderTable();
-                        renderTitleDescription(indicatorShortName, indicatorDesc)
+                        renderTitleDescription(indicatorShortName, indicatorDesc);
                         renderAboutSources(measureAbout, measureSources);
 
                         const mapMeasuresLinks = document.querySelectorAll('#tab-map .link-measure');
                         const trendMeasuresLinks = document.querySelectorAll('#tab-trend .link-measure');
 
                         mapMeasuresLinks.forEach(link => {
-                            link.addEventListener('click', e => updateMapData(e))
+                            link.addEventListener('click', e => updateMapData(e));
                         })
                         
                         trendMeasuresLinks.forEach(link => {
-                            link.addEventListener('click', e => updateTrendData(e))
+                            link.addEventListener('click', e => updateTrendData(e));
                         })
                         
 
@@ -1445,7 +1457,8 @@
                                 measureAbout += `<h6>${measure.MeasurementType}</h5>${measure.how_calculated}`;
                                 measureSources += `<h6>${measure.MeasurementType}</h5><p>${measure.Sources}</p>`;
                             })
-                            renderAboutSources(measureAbout, measureSources)
+                            
+                            renderAboutSources(measureAbout, measureSources);
                         }
                     }
 
