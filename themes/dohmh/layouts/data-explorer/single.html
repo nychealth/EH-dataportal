@@ -1,144 +1,1824 @@
 {{- define "main" -}}
 
-
 <article class="container-fluid" id="skip-header-target">
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-4 mx-1">
+            <nav aria-label="breadcrumb" class="mb-2">
+                <ul class="breadcrumb mr-auto">
+                    <li class="breadcrumb-item"><a href="{{.Site.BaseURL}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{.Site.BaseURL}}/data-explorer/">Data Explorer</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ .Page.RelPermalink }}">{{ .Title}}</a></li>
+                </ul>
+            </nav>
 
-
-    <div class="col-md-10 col-sm-12 mx-auto my-4">
-
-        <div class="row no-gutters mb-2">
-            <div class="col">
-                <nav aria-label="breadcrumb" class="my-3">
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/data-explorer/">Data Explorer</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
-                        </ul>
-                </nav>
+            <div class="row">
+               <div class="col-3 ml-auto my-1">
+                <form class="autocomplete-form">
+                    <div class="row no-gutters">
+                    <label for="all-data" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">Search data</label>
+                    <div class="col-9">
+                        <div class="autocomplete-wrapper" width="100%">
+                        <select name="all-data" id="all-data">
+                            <option value=""><i class="fas fa-search mr-2"></i>Search data</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" class="btn-primary btn btn-block" style="height:40px;"><i class="fas fa-search"></i></button> 
+                    </div>
+                    </div>
+                </form>
+               </div>
             </div>
-        </div>
 
-        <div class="row mt-3">
-
-            <div class="col-md-4">
-                <h2 class="greenfill fs-lg"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data:</h4>
-                {{- range .Params.indicators -}}
-                    <a href="#" onclick="protoPopup({{ .URL}})">{{.name}}</a>
-                    <hr>
-                {{- end -}}
-
-                <hr class="portalhr mt-4 mb-2">
-                {{- partial "keywords" . -}}
+            <div class="row mb-2">
+                <div class="col border-bottom mx-2 ml-0 pl-0 pb-2 mb-2">
+                    <h2>{{ .Title}}</h2>
+                </div>
             </div>
 
+            <style>
+                /*This CSS controls read more/show less toggle.*/
+                [aria-expanded="false"] > .expanded,
+                [aria-expanded="true"] > .collapsed {
+                  display: none;
+                }
+
+                #truncate {
+                    display: block;
+                }
+
+                #full {
+                    display: none;
+                }
+
+                #expand-collapse {
+                    cursor: pointer;
+                }
+
+                .show {
+                display: block!important;
+                }
+
+                .hide {
+                display: none!important;
+                }
+
+                /* .tab-content > .tab-pane {
+                    display: block !important;
+                    opacity: 1 !important;
+                } */
+
+                .dropdown-title {
+                    padding: 0.25rem 1.5rem;
+                }
+
+                .indicator-measures h6 {
+                    margin-top: 0.5em;
+                }
+
+            </style>
+
+            <!-- Arquero -->
+            <script src="https://cdn.jsdelivr.net/npm/apache-arrow@latest"></script>
+            <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
+
+            <!-- DataTables -->
+            <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+            <!-- Vega-Lite -->
+            <script src="https://cdn.jsdelivr.net/npm/vega@5.21.0"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.2"></script>
+            
+            <!--D3-->
+            <script src="https://d3js.org/d3.v5.min.js"></script>
+
+            <script>
+                    let indicators = []; // indicator data
+                    let selectedSummaryYears = [];
+                    let selectedSummaryGeography = [];
+                    let aboutMeasures;
+                    let dataSources;
+
+                    let measureAbout = `N/A`;
+                    let measureSources = `N/A`;
+                    let geoTable;
+                    let aqData;
+                    let joinedAqData;
+
+                    let fullDataMapObjects;
+                    let fullDataTrendObjects;
+                    let fullDataLinksObjects;
+
+                    let indicator;
+                    let defaultIndicator = false;
+                    let indicatorName;
+                    let indicatorDesc;
+                    let indicatorShortName;
+                    let indicatorMeasurses;
+                    let indicatorId;
+
+                    let defaultTrendMeasure = [];
+                    let defaultMapMeasure = [];
+                    let defaultLinksMeasure = [];
+                    let selectedMapMeasure = false
+                    let selectedTrendMeasure = false;
+                    let selectedLinksMeasure = false;
+                    let selectedMapAbout;
+                    let selectedMapSources;
+                    let selectedTrendAbout;
+                    let selectedTrendSources;
+                    
+                    let mapMeasures = [];
+                    let trendMeasures = [];
+                    let linksMeasures = [];
 
 
-            <div class="col-md-8 fs-sm subtopiccontainer">
-              <h1 class="greenfill fs-xl"><i class="fas fa-info-circle" style="margin-right: 10px" aria-hidden="true"></i>About {{ .Title}}</h4>
-                {{- .Content -}}
+                    let tabMap;
+                    let tabTrend;
+                    let tabLinks;
+                
+                    const updateChartPlotSize = () => {
+                        setTimeout(() => {
+                            window.dispatchEvent(new Event('resize'));
+                        }, 200)
+                    }
+
+                    document.addEventListener("DOMContentLoaded", () => {
+                        tabTable = document.querySelector('#tab-btn-table');
+                        tabMap = document.querySelector('#tab-btn-map');
+                        tabTrend = document.querySelector('#tab-btn-trend');
+                        tabLinks = document.querySelector('#tab-btn-links');
+                        aboutMeasures = document.querySelector('.indicator-measures');
+                        dataSources = document.querySelector('.indicator-sources');
+                        
+                        $('#tab-btn-table').on('shown.bs.tab', function(e){
+                            $($.fn.dataTable.tables(true)).DataTable()
+                                .columns.adjust();
+
+                            renderAboutSources(measureAbout, measureSources)
+                        });
+                        
+                        tabMap.addEventListener('click', () => {
+                            updateChartPlotSize();
+                            if (!selectedMapMeasure) {
+                                renderAboutSources(defaultMapMeasure[0].how_calculated, defaultMapMeasure[0].Sources);
+                            } else {
+                                renderAboutSources(selectedMapAbout, selectedMapSources);
+                            }
+                        });
+                        tabTrend.addEventListener('click', () => {
+                            updateChartPlotSize();
+                            if (!selectedTrendMeasure) {
+                                renderAboutSources(defaultTrendMeasure[0].how_calculated, defaultTrendMeasure[0].Sources);
+                            } else {
+                                renderAboutSources(selectedTrendAbout, selectedTrendSources);
+                            }
+                            
+                        });
+                        tabLinks.addEventListener('click', () => {
+                            updateChartPlotSize();
+                        });
+                    });
 
 
+                    function reveal() {
+                        document.getElementById('truncate').classList.toggle('hide');
+                        document.getElementById('full').classList.toggle('show');
+                        document.getElementById('contenttoggle').innerHTML = `Show less... <i class="fas fa-caret-square-up" aria-hidden="true"></i>`;
+                    }
+
+                    fetch('https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/indicators.json')
+                        .then(response => response.json())
+                        .then(data => {
+                            indicators = data;
+                            loadIndicator()
+                            // loadData(indicatorId)
+                        })
+                        .catch(error => console.log(error));            
+
+                    // join the data
+                    const joinData = () => {
+                        joinedAqData = aqData
+                            .join(geoTable, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
+                                .relocate(['Name'], { after: 'GeoID' })
+                                .relocate(['Geotype'], { before: 'GeoID' })
+                                .rename({
+                                    'Name': 'Geography',
+                                })
+                        
+                        const filterUHF42 = joinedAqData.filter(d => d.GeoType == 'UHF42').objects();
+                        const filterUHF34 = joinedAqData.filter(d => d.GeoType == 'UHF34').objects();
+                        const filterBorough = joinedAqData.filter(d => d.GeoType  == 'Borough').objects();
+                        const filterCitywide = joinedAqData.filter(d => d.GeoType  == 'Citywide').objects();
+
+                        fullDataMapObjects = filterUHF42;
+                        fullDataTrendObjects = [...filterBorough].concat(filterCitywide);
+                        fullDataLinksObjects = joinedAqData;
+
+                        renderMeasures();
+                    }
+
+                    const loadGeo = () => {
+                        // const geoUrl = `https://raw.githubusercontent.com/nychealth/EHDP-data/main/geography/GeoLookup.csv`;
+                        const geoStatic = `/ehs-data-portal-frontend-temp/IndicatorData/GeoLookup.csv`;
+
+                        aq.loadCSV(geoStatic)
+                            .then(data => {
+                                geoTable = data
+                                    .derive({ GeoID: d => op.parse_int(d.GeoID) }) // convert GeoIDs to numbers
+                                // console.log("---- Geo Names 1 (post-load) ----")
+                                // geoTable.print();
+                                joinData(); // run the next function 
+                            });
+                    }
+
+                    const loadData = (indicatorId) => {
+                        // Loads data as an arquero table
+                        fetch(`https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/data/${indicatorId}.json`)
+                            .then(response => response.json())
+                            .then(data => {
+
+                                loadGeo(); // run the next function
+                                aqData = aq.from(data)
+                                    .groupby("Time", "GeoType", "GeoID")
+                                    .pivot("MeasurementType", "Value")
+                                console.log('==========================================================================')
+                                console.log('Load Date - aqData')
+                                aqData.print();
+                            })
+                    }
+
+                    const handleYearFilter = (el, indicatorId) => {
+                        el.addEventListener('change',(e) => {
+                            if (e.target.checked) {
+                                console.log('checked')
+                                selectedSummaryYears.push(e.target.value)
+                            } else {
+                                selectedSummaryYears = selectedSummaryYears.filter(item => item !== e.target.value);
+                            }
+                            console.log('years selected: ', selectedSummaryYears)
+                            renderTable()
+                        })
+                    }
+
+                    const handleGeoFilter = (el, indicatorId) => {
+                        el.addEventListener('change',(e) => {
+                            if (e.target.checked) {
+                                selectedSummaryGeography.push(e.target.value)
+                            } else {
+                                selectedSummaryGeography = selectedSummaryGeography.filter(item => item !== e.target.value);
+                            }
+                            console.log('geo selected: ', selectedSummaryGeography)
+                            renderTable()
+                        })
+                    }
+
+                    const handleToggle = () => { 
+                        $('body').off('click', '#summary-table tr.group td');
+                        $('body').on('click', '#summary-table tr.group td', (e) => {
+                            const td = $(e.target);
+                            const tr = td.parent();
+                            const group = td.data('group');
+                            const groupLevel = td.data('group-level');
+
+                            const handleGroupToggle = () => {
+                                
+                                const subGroupToggle = $(`td[data-year="${group}"][data-group-level="1"]`);
+                                const subGroupRow = $(`tr[data-year="${group}"]`);
+
+                                if (subGroupToggle.css('display') === 'none') {
+                                    subGroupToggle.removeClass('hidden');
+                                    subGroupRow.removeClass('hidden');
+                                    td.removeClass('hidden');
+                                    subGroupToggle.show();
+                                    subGroupRow.show();
+                                } else {
+                                    subGroupToggle.addClass('hidden');
+                                    subGroupRow.addClass('hidden');
+                                    td.addClass('hidden');
+                                    subGroupToggle.hide();
+                                    subGroupRow.hide();
+                                }
+                            }
+
+                            const handleSubGroupToggle = () => {
+                                const subDataGroup = tr.next(`tr`).data(`group`);
+                                const parentDataGroup = subDataGroup.split('-')[0];
+                                const subGroupRow = $(`tr[data-group="${subDataGroup}"]`);
+                                const parentGroupToggle = $(`td[data-group="${parentDataGroup}"]`);
+
+                                if (subGroupRow.css('display') == 'none')  {
+                                    subGroupRow.show();
+                                    td.removeClass('hidden');
+                                    subGroupRow.removeClass('hidden');
+                                    parentGroupToggle.removeClass('hidden');
+                                } else {
+                                    subGroupRow.hide();
+                                    td.addClass('hidden');
+                                    subGroupRow.addClass('hidden');
+                                }
+                            }
+
+                            if (groupLevel === 0) {
+                                handleGroupToggle();
+                            } else {
+                                handleSubGroupToggle();
+                            }
+
+                        });
+                    }
+
+                    // Renders the Indicator Title and Description
+                    const renderTitleDescription = (title, desc) => {
+                        const indicatorTitle = document.querySelector('.indicator-title');
+                        const indicatorDescription = document.querySelector('.indicator-description');
+                        indicatorTitle.innerHTML = title;
+                        indicatorDescription.innerHTML = `<strong>Indicator description: </strong> ${desc}`;
+                    }
+
+                    // Renders copy for the About the measures and the Data sources sections
+                    const renderAboutSources = (about, sources) => {
+                        aboutMeasures.innerHTML = about;
+                        dataSources.innerHTML = sources;
+                    }
+
+                    // Render Table usein DataTables
+                    const renderTable = () => {
+                        
+                        const groupColumnYear = 0
+                        const groupColumnGeo = 1;
+                        const groupId = 0
+
+                        const filteredTableData = joinedAqData.objects().filter(d =>
+                            selectedSummaryYears.includes(d.Time) && selectedSummaryGeography.includes(d.GeoType)
+                        )
+                        const filteredTableAqData = aq.from(filteredTableData)
+
+                        console.log('==========================================================================')
+                        console.log('RENDER TABLE DATA - Filtered Data: ', filteredTableAqData)
+
+                        // call function to show table
+                        document.getElementById('summary-table').innerHTML = filteredTableAqData.toHTML(); // print dataTable to HTML
+                        document.querySelector('#summary-table table').id = "tableID"
+                        document.querySelector('#summary-table table').className = "cell-border stripe compact" // this gives the table an ID (table code generated by Arquero)
+
+                        $('#tableID').DataTable({
+                            scrollY: 500,
+                            scrollCollapse: true,
+                            searching: false,
+                            paging: false,
+                            bInfo: false,
+                            "columnDefs": [
+                                { "visible": false, "targets": [0, 1, 2, 3 ]}
+                            ],
+                            "createdRow": function ( row, data, index ) {
+                                console.log('RENDER TABLE FUNCTION - CreatedRow')
+                                const time    = data[0];
+                                const geoType = data[1];
+                                if (time && geoType) {
+                                    row.setAttribute(`data-group`, `${time}-${geoType}`)
+                                    row.setAttribute(`data-year`, `${time}`);
+                                }
+                            },
+                            "drawCallback": function ( settings ) {
+                                console.log('RENDER TABLE FUNCTION - DrawCallback')
+                                const api = this.api();
+                                const data = api.rows( {page:'current'} ).data()
+                                const rows = api.rows( {page:'current'} ).nodes();
+                                const totaleColumnsCount = api.columns().count()
+                                const visibleColumnsCount =  totaleColumnsCount - 4;
+
+                                var last = null;
+                                var lastYr = null;
+                                const createGroupRow = (groupColumn, lvl) => {
+                                    api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
+                                        const year = data[i][0]
+                                        const groupName = `${year}-${group}`
+                                        if ( last !== group || lastYr !== year ) {
+                                            $(rows).eq( i ).before(
+                                                `<tr class="group"><td colspan="${visibleColumnsCount}" data-year="${year}" data-group="${group}" data-group-level="${lvl}"> ${group}</td></tr>`
+                                            );
+                                            last = group;
+                                            lastYr = year
+                                        }
+                                    });
+                                }
+
+                                createGroupRow(groupColumnYear, 0);
+                                createGroupRow(groupColumnGeo, 1);
+                                handleToggle();
+                            }
+                        })
+                    }
+
+                    // Render Map using Vegalite
+                    const renderMap = (selectedData, selectedMeasure, selectedDisplay, selectedDate, selectedAbout, selectedSources) => {
+                        const mapYears =  [...new Set(fullDataMapObjects.map(item => item.Time))];
+                        const filteredfullDataMapObjects = fullDataMapObjects.filter(obj => 
+                            obj.Time === mapYears[0]
+                        )
+                        let mapMeasure = selectedMeasure ? selectedMeasure : defaultMapMeasure[0].MeasurementType;
+                        let mapData = selectedData ?  selectedData : filteredfullDataMapObjects;
+                        let mapDisplay = selectedDisplay ? selectedDisplay : defaultMapMeasure[0].DisplayType;
+                        let mapDate = selectedDate ? selectedDate : filteredfullDataMapObjects[0].Time;
+
+                        console.log('==========================================================================')
+                        console.log('RENDER MAP DATA - Maeasure Default: ', defaultMapMeasure)
+                        console.log('RENDER MAP DATA - Maeasure Selected: ', selectedMeasure)
+                        console.log('RENDER MAP DATA - Maeasure Filtered Default Data: ', filteredfullDataMapObjects)
+                        console.log('RENDER MAP DATA - Maeasure Filtered Selcted Data: ', selectedData)
+
+                        // let spec2 = {
+                        //     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                        //     "title": "This is my good schema!",
+                        //     "width": 700,
+                        //     "data": {
+                        //         "url": "https://gist.githubusercontent.com/mmontesanonyc/28953366ac41a0ecf24470a3cefb6cea/raw/4b2869cc9fe93a4ae4e33b2acc0aad5570c498a0/2380-reduced.csv"
+                        //     },
+                        //     "params": [
+                        //         {"name": "highlight", "select": {"type": "point", "on": "mouseover"}}
+                        //     ],
+                        //     "projection": {"type": "mercator"},
+                        //     "vconcat": [
+                        //         {
+                        //         "height": 550,
+                        //         "width": 900,
+                        //         "mark": {"type": "geoshape", "stroke": "#000000"},
+                        //         "encoding": {
+                        //             "shape": {"field": "geo", "type": "geojson"},
+                        //             "color": {
+                        //             "bin": false,
+                        //             "field": "Value",
+                        //             "type": "quantitative",
+                        //             "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}}
+                        //             },
+                        //             "strokeWidth": {
+                        //             "condition": [{"param": "highlight", "empty": false, "value": 2}],
+                        //             "value": 0.5
+                        //             },
+                        //             "tooltip": [
+                        //                 {"field": "GeoID", "title": "GeoID"},
+                        //                 {
+                        //                     "field": "Value",
+                        //                     "type": "quantitative",
+                        //                     "title": "Value"
+                        //                 },
+                        //                 {"field":"MeasureID","title":"Measure"}
+                        //             ],
+                        //         },
+                        //         "transform": [
+                        //             {
+                        //             "lookup": "Geography-ID",
+                        //             "from": {
+                        //                 "data": {
+                        //                 "url": "https://raw.githubusercontent.com/nycehs/NYC_geography/master/UHF42.topo.json",
+                        //                 "format": {"type": "topojson", "feature": "collection"}
+                        //                 },
+                        //                 "key": "properties.GEOCODE"
+                        //             },
+                        //             "as": "geo"
+                        //             }
+                        //         ]
+                        //         },
+                        //         {
+                        //         "height": 150,
+                        //         "width": "container",
+                        //         "mark": {"type": "bar", "tooltip": true, "stroke": "#000000"},
+                        //         "encoding": {
+                        //             "y": {"field": "Value", "type": "quantitative", "title": null},
+                        //             "tooltip": [
+                        //             {"field": "Geography-ID", "title": "GeoID"},
+                        //             {"field": "Value", "type": "quantitative", "title": "Value"},
+                        //             {"field": "MeasureID", "title": "Measure"}
+                        //             ],
+                        //             "x": {"field": "Geography-ID", "sort": true, "axis": null},
+                        //             "color": {
+                        //             "bin": false,
+                        //             "field": "Value",
+                        //             "type": "quantitative",
+                        //             "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}}
+                        //             },
+                        //             "strokeWidth": {
+                        //             "condition": [{"param": "highlight", "empty": false, "value": 2}],
+                        //             "value": 0.5
+                        //             }
+                        //         }
+                        //         }
+                        //     ]
+                        // }
+
+                        spec3 = {
+                            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                            "title": `${mapDate} - ${mapMeasure} ${mapDisplay && `(${mapDisplay})`} `,
+                            "width": "container",
+                            "data": {
+                                "values": mapData,
+                            },
+                            "params": [
+                                {"name": "highlight", "select": {"type": "point", "on": "mouseover"}}
+                            ],
+                            "projection": {"type": "mercator"},
+                            "vconcat": [
+                                {
+                                "height": 550,
+                                "width": "container",
+                                "mark": {"type": "geoshape", "stroke": "#000000"},
+                                "encoding": {
+                                    "shape": {"field": "geo", "type": "geojson"},
+                                    "color": {
+                                    "bin": false,
+                                    "field": mapMeasure,
+                                    "type": "quantitative",
+                                    "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}}
+                                    },
+                                    "strokeWidth": {
+                                    "condition": [{"param": "highlight", "empty": false, "value": 2}],
+                                    "value": 0.5
+                                    },
+                                    "tooltip": [
+                                        {"field": "Geography", "title": "Geography"},
+                                        {
+                                            "field": mapMeasure,
+                                            "type": "quantitative",
+                                            "title": "Value"
+                                        },
+                                    ],
+                                },
+                                "transform": [
+                                    {
+                                    "lookup": "GeoID",
+                                    "from": {
+                                        "data": {
+                                        "url": "https://raw.githubusercontent.com/nycehs/NYC_geography/master/UHF42.topo.json",
+                                        "format": {"type": "topojson", "feature": "collection"}
+                                        },
+                                        "key": "properties.GEOCODE"
+                                    },
+                                    "as": "geo"
+                                    }
+                                ]
+                                },
+                                // {
+                                //     "mark": {
+                                //         "type": "bar", 
+                                //         "tooltip": true, 
+                                //         "stroke": "#000000"},
+                                //         "orient": "x",
+                                //     "encoding": {
+                                //         "color": {
+                                //             "field": "valiues",
+                                //             "type": "quantitative",
+                                //             "legend": {
+                                //                 "direction": "horizontal",
+                                //                 "orient": "bottom",
+                                //             }
+                                //         }
+                                //     }
+                                // },
+                                {
+                                "height": 150,
+                                "width": "container",
+                                "mark": {"type": "bar", "tooltip": true, "stroke": "#000000"},
+                                "encoding": {
+                                    "y": {"field": mapMeasure, "type": "quantitative", "title": null},
+                                    "tooltip": [
+                                        {"field": "Geography", "title": "GeoID"},
+                                        {"field": mapMeasure, "type": "quantitative", "title": "Value"},
+                                        // {"field": "MeasureID", "title": "Measure"}
+                                    ],
+                                    "x": {"field": "GeoID", "sort": true, "axis": null},
+                                        "color": {
+                                        "bin": false,
+                                        "field": mapMeasure,
+                                        "type": "quantitative",
+                                        "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}},
+                                        "legend": null
+                                    },
+                                    "strokeWidth": {
+                                        "condition": [{"param": "highlight", "empty": false, "value": 2}],
+                                    "value": 0.5
+                                    }
+                                }
+                                }
+                            ]
+                        }
+
+                        vegaEmbed("#map", spec3);
+                    }
+
+                    // Render Trend Chart using Vegalite
+                    const renderTrendChart = (selectedData, selectedMeasure, selectedDisplay, slectedDisparities) => {
+
+                        let trendMeasure = selectedMeasure ? selectedMeasure : defaultTrendMeasure[0].MeasurementType;
+                        let trendData = selectedData ?  selectedData : fullDataTrendObjects;
+                        let trendDisplay = selectedDisplay ? selectedDisplay : defaultTrendMeasure[0].DisplayType;
+                        let trendDisparity = slectedDisparities ? slectedDisparities : defaultTrendMeasure[0].VisOptions[0]?.Trend[0]?.Disparities
+                        
+                        console.log('==========================================================================')
+                        console.log('RENDER TREND DATA - Maeasure Default: ', defaultTrendMeasure)
+                        console.log('RENDER TREND DATA - Maeasure Selected: ', selectedMeasure)
+                        console.log('RENDER TREND DATA - Maeasure Filtered Default Data: ', fullDataTrendObjects)
+                        console.log('RENDER TREND DATA - Maeasure Filtered Selcted Data: ', selectedData)
+                        console.log('RENDER TREND DATA - Maeasure Disparity: ', trendDisparity)
+                        const tabTrendDropDown = document.querySelector('#tab-trend  .dropdown');
+                        const btnShowDisparitires = document.querySelector('.btn-show-disparities');
+
+                        if (trendDisparity == 1 && !btnShowDisparitires) {
+                            tabTrendDropDown.innerHTML += `<button class="btn btn-sm float-right btn-outline-success btn-show-disparities">Show Dispartites</button> `;
+                        }   else if (btnShowDisparitires) {
+                            tabTrendDropDown.removeChild(btnShowDisparitires)
+                        }
+
+                        var spec = {
+                            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                            "config": {
+                            "background": "#FFFFFF",
+                            "title": {"anchor": "start", "fontSize": 18, "font": "Calibri"},
+                            "axisX": {
+                            "domain": true,
+                            "domainColor": "#000000",
+                            "domainWidth": 1,
+                            "grid": false,
+                            "labelFontSize": 12,
+                            "labelAngle": 0,
+                            "tickColor": "#000000",
+                            "tickSize": 5,
+                            "titleFontSize": 12,
+                            "titlePadding": 10
+                            },
+                            
+                            "axisY": {
+                            "domain": false,
+                            "domainWidth": 1,
+                            "grid": true,
+                            "gridColor": "#DEDDDD",
+                            "gridWidth": 1,
+                            "labelFontSize": 12,
+                            "labelPadding": 8,
+                            "ticks": false,
+                            "titleFontSize": 12,
+                            "titlePadding": 10,
+                            "titleFont": "Lato",
+                            "titleAngle": 0,
+                            "titleY": -10,
+                            "titleX": 18
+                            },
 
 
+                            "view": {"stroke": "transparent"},
 
-                <div class="row mt-4 mb-0">
-                    <div class="col-12 mb-1">
-                        <h3 class="greenfill fs-rg my-2">Related:</h3>
-                    </div>
+                            "range": {
+                            "category": [
+                                "#1696d2",
+                                "#000000",
+                                "#fdbf11",
+                                "#ec008b",
+                                "#d2d2d2",
+                                "#55b748"
+                            ]
+                            },
 
-                    <div class="col-md-4">
-                        <h4 class="fs-md"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
-                        {{- partial "related" (dict "section" "data-stories" "layout" "singlelist" "content" . ) -}}
+                            "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 3},
 
-                    </div>
 
-                    <div class="col-md-4 mt-0">
-                        <h4 class="fs-md"><i class="fas fa-star text-muted mr-1" aria-hidden="true"></i>Key Topics</h4>
-                        <!--sets variables-->
-                        {{- $page_link := .Permalink -}}
-                        {{- $cats := .Params.categories -}}
+                            "point": {"filled": true},
+                            "text": {
+                            "color": "#1696d2",
+                            "fontSize": 11,
+                            "align": "center",
+                            "fontWeight": 400,
+                            "size": 11
+                            }
+                        },
+                            "data": {
+                                "url": "https://gist.githubusercontent.com/mmontesanonyc/6b0aa75affc6a60978f73e11d2f58bb3/raw/e944d335042e3da0c8e99a4df0fbebc8aac4cc15/asthmatrend.csv"
+                            },
+                            "width": "container",
+                            "height": 550,
+                            "encoding": {
+                            "x": {
+                                "field": "Year",
+                                "type": "temporal",
+                                "title": ""
+                            }
+                            },
+                            "layer": [
+                            {
+                                "encoding": {
+                                "color": {
+                                    "field": "GeoName",
+                                    "type": "nominal",
+                                    "legend": {
+                                    "orient": "right",
+                                    "title": null
+                                    }
+                                },
+                                "y": {
+                                    "field": "Value",
+                                    "type": "quantitative",
+                                    "title": ""
+                                }
+                                },
+                                "layer": [
+                                {
+                                    "mark": {
+                                    "type": "line",
+                                    "point": {"filled": false, "fill": "white"}
+                                    }
 
-                        {{- range where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index" -}}
-                        <!--$page equals values we find when ranging through-->
-                        {{- $page := . -}}
+                                },
+                                {
+                                    "transform": [
+                                    {
+                                        "filter": {
+                                        "param": "hover",
+                                        "empty": false
+                                        }
+                                    }
+                                    ],
+                                    "mark": "point"
+                                }
+                                ]
+                            },
+                            {
+                                "transform": [
+                                {
+                                    "pivot": "GeoName",
+                                    "value": "Value",
+                                    "groupby": [
+                                    "Year"
+                                    ]
+                                }
+                                ],
+                                "mark": "rule",
+                                "encoding": {
+                                "opacity": {
+                                    "condition": {
+                                    "value": 0.3,
+                                    "param": "hover",
+                                    "empty": false
+                                    },
+                                    "value": 0
+                                },
+                                "tooltip": [
+                                    {
+                                    "field": "Citywide",
+                                    "type": "quantitative"
+                                    },
+                                    {
+                                    "field": "The Bronx",
+                                    "type": "quantitative"
+                                    },
+                                    {
+                                    "field": "Brooklyn",
+                                    "type": "quantitative"
+                                    },
+                                    {
+                                    "field": "Manhattan",
+                                    "type": "quantitative"
+                                    },
+                                    {
+                                    "field": "Queens",
+                                    "type": "quantitative"
+                                    }
+                                ]
+                                },
+                                "params": [
+                                {
+                                    "name": "hover",
+                                    "select": {
+                                    "type": "point",
+                                    "fields": [
+                                        "Year"
+                                    ],
+                                    "nearest": true,
+                                    "on": "mouseover",
+                                    "clear": "mouseout"
+                                    }
+                                }
+                                ]
+                            }
+                            ]
+                        }
+                        
 
-                        <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
-                        {{- $has_common_cats := intersect $cats .Params.categories | len | lt 0 -}}
+                        var spec2 = {
+                            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                            "config": {
+                            "background": "#FFFFFF",
+                            // "title": {"anchor": "start", "fontSize": 18, "font": "Calibri"},
+                            "axisX": {
+                            "domain": true,
+                            "domainColor": "#000000",
+                            "domainWidth": 1,
+                            "grid": false,
+                            "labelFontSize": 12,
+                            "labelAngle": 0,
+                            "tickColor": "#000000",
+                            "tickSize": 5,
+                            "titleFontSize": 12,
+                            "titlePadding": 10
+                            },
+                            
+                            "axisY": {
+                            "domain": false,
+                            "domainWidth": 1,
+                            "grid": true,
+                            "gridColor": "#DEDDDD",
+                            "gridWidth": 1,
+                            "labelFontSize": 12,
+                            "labelPadding": 8,
+                            "ticks": false,
+                            "titleFontSize": 12,
+                            "titlePadding": 10,
+                            "titleFont": "Lato",
+                            "titleAngle": 0,
+                            "titleY": -10,
+                            "titleX": 18
+                            },
 
-                        <!--Show commonalities, except for page we're on -->
-                        {{- if and $has_common_cats (ne $page_link $page.Permalink) -}}
-                        <a href="{{ $page.Permalink}}">{{ $page.Title }}</a>
-                        <hr class="my-1">
-                        {{- end -}} 
-                        {{- end -}}
-                    </div>
 
-                    <div class="col-md-4">
-                        <h4 class="fs-md"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
-                        {{- partial "related" (dict "section" "neighborhood-reports" "layout" "singlelist" "content" . ) -}}
+                            "view": {"stroke": "transparent"},
 
+                            "range": {
+                            "category": [
+                                "#1696d2",
+                                "#000000",
+                                "#fdbf11",
+                                "#ec008b",
+                                "#d2d2d2",
+                                "#55b748"
+                            ]
+                            },
+
+                            "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 3},
+
+
+                            "point": {"filled": true},
+                            "text": {
+                            "color": "#1696d2",
+                            "fontSize": 11,
+                            "align": "center",
+                            "fontWeight": 400,
+                            "size": 11
+                            }
+                        },
+                            // "data": {
+                            //     "url": "https://gist.githubusercontent.com/mmontesanonyc/6b0aa75affc6a60978f73e11d2f58bb3/raw/e944d335042e3da0c8e99a4df0fbebc8aac4cc15/asthmatrend.csv"
+                            // },
+                            "data": {
+                                "values": trendData,
+                            },
+                            "width": "container",
+                            "height": 550,
+                            "encoding": {
+                            "x": {
+                                "field": "Time",
+                                "type": "nominal",
+                                "title": "Year"
+                            }
+                            },
+                            "layer": [
+                            {
+                                "encoding": {
+                                "color": {
+                                    "field": "Geography",
+                                    "type": "nominal",
+                                    "legend": {
+                                    "orient": "right",
+                                    "title": null
+                                    }
+                                },
+                                "y": {
+                                    "field": trendMeasure,
+                                    "type": "quantitative",
+                                    "title": `${trendMeasure} ${trendDisplay && `(${trendDisplay})`} `
+                                }
+                                },
+                                "layer": [
+                                {
+                                    "mark": {
+                                    "type": "line",
+                                    "point": {"filled": false, "fill": "white"}
+                                    }
+
+                                },
+                                {
+                                    "transform": [
+                                    {
+                                        "filter": {
+                                        "param": "hover",
+                                        "empty": false
+                                        }
+                                    }
+                                    ],
+                                    "mark": "point"
+                                }
+                                ]
+                            },
+                            {
+                                "transform": [
+                                {
+                                    "pivot": "Geography",
+                                    "value": trendMeasure,
+                                    "groupby": [
+                                    "Time"
+                                    ]
+                                }
+                                ],
+                                "mark": "rule",
+                                "encoding": {
+                                    "opacity": {
+                                            "condition": {
+                                            "value": 0.3,
+                                            "param": "hover",
+                                            "empty": false
+                                        },
+                                        "value": 0
+                                    },
+                                    "tooltip": [
+                                        {
+                                            "title": "Year",
+                                            "field": "Time",
+                                            "type": "nominal"
+                                        },
+                                        {
+                                        "field": "New York City",
+                                        "type": "quantitative"
+                                        },
+                                        {
+                                        "field": "Bronx",
+                                        "type": "quantitative"
+                                        },
+                                        {
+                                        "field": "Brooklyn",
+                                        "type": "quantitative"
+                                        },
+                                        {
+                                        "field": "Manhattan",
+                                        "type": "quantitative"
+                                        },
+                                        {
+                                        "field": "Queens",
+                                        "type": "quantitative"
+                                        },
+                                        {
+                                        "field": "Staten Island",
+                                        "type": "quantitative"
+                                        }
+                                    ]
+                                },
+                                "params": [
+                                {
+                                    "name": "hover",
+                                    "select": {
+                                    "type": "point",
+                                    "fields": [
+                                        "Time"
+                                    ],
+                                    "nearest": true,
+                                    "on": "mouseover",
+                                    "clear": "mouseout"
+                                    }
+                                }
+                                ]
+                            }
+                            ]
+                        }
+                        
+                        vegaEmbed("#trend", spec2);
+                    }
+                        
+
+                    // Render Links Chart using Vegalight
+                    const renderLinksChart = (selectedData, selectedMeasure) => {
+                        console.log('==========================================================================')
+                        console.log('RENDER Links DATA ', )
+
+
+                        var spec = {
+                            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                            "description": "Asthma 5-17 ED visit rate and poverty scatterplot",
+                            "width": "container",
+                            "height": 400,
+                            "config": {
+                                "background": "#FFFFFF",
+                                "title": {"anchor": "start", "fontSize": 18, "font": "Calibri"},
+                                "axisX": {
+                                    "domain": true,
+                                    "domainColor": "#000000",
+                                    "domainWidth": 1,
+                                    "grid": false,
+                                    "labelFontSize": 12,
+                                    "labelAngle": 0,
+                                    "tickColor": "#000000",
+                                    "tickSize": 5,
+                                    "titleFontSize": 12,
+                                    "titlePadding": 10,
+                                    "title": null
+                                },
+                                "axisY": {
+                                    "domain": false,
+                                    "domainWidth": 1,
+                                    "grid": true,
+                                    "gridColor": "#DEDDDD",
+                                    "gridWidth": 1,
+                                    "labelFontSize": 12,
+                                    "labelPadding": 8,
+                                    "ticks": false,
+                                    "titleFontSize": 12,
+                                    "titlePadding": 10,
+                                    "titleFont": "Lato",
+                                    "titleAngle": 0,
+                                    "titleY": -10,
+                                    "titleX": 18,
+                                    "title": null
+                                },
+                                "view": {"stroke": "transparent"},
+                                "range": {
+                                    "category": [
+                                        "#1696d2",
+                                        "#000000",
+                                        "#fdbf11",
+                                        "#ec008b",
+                                        "#d2d2d2",
+                                        "#55b748"
+                                    ]
+                                },
+                                "text": {
+                                    "color": "#1696d2",
+                                    "fontSize": 11,
+                                    "align": "center",
+                                    "fontWeight": 400,
+                                    "size": 11
+                                }
+                            },
+                            "data": {"url": "https://gist.githubusercontent.com/mmontesanonyc/436de650b919784691ed42dd321c38f2/raw/074bd84e78473b8a2099e66a0d6bf8caba32b594/scatter-sample-data.csv"},
+                            "mark": {"type": "circle", "filled": true, "size": 500, "stroke": "#727272", "strokeWidth": 2},
+                                "params": [{
+                                    "name": "Borough",
+                                    "select": {"type": "point", "fields": ["Borough"]},
+                                    "bind": "legend"
+                                }
+                            ],
+                            "encoding": {
+                                "y": {"field": "Estimated Annual Rate (per 10,000 residents)", "type": "quantitative"},
+                                "x": {"field": "Poverty (percent)", "type": "quantitative"},
+                                "tooltip": [{"field": "Geography", "type": "nominal"},
+                                {"field": "Estimated Annual Rate (per 10,000 residents)", "type": "quantitative"},
+                                {"field": "Poverty (percent)", "type": "quantitative"}
+                                ],
+                                "color": {
+                                    "condition": {
+                                    "param": "Borough", "field": "Borough", "type": "nominal"},
+                                    "value": "#fafafa"
+                                }
+                            }
+                            }
+
+
+                            vegaEmbed("#links", spec);
+
+                            var spec2 = {
+                                "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                                "description": "Asthma 5-17 ED visit rate and poverty scatterplot",
+                                "width": "container",
+                                "height": 400,
+                                "config": {
+                                    "background": "#FFFFFF",
+                                    "title": {"anchor": "start", "fontSize": 18, "font": "Calibri"},
+                                    "axisX": {
+                                    "domain": true,
+                                    "domainColor": "#000000",
+                                    "domainWidth": 1,
+                                    "grid": false,
+                                    "labelFontSize": 14,
+                                    "labelAngle": 0,
+                                    "tickColor": "#000000",
+                                    "tickSize": 5,
+                                    "titleFontSize": 12,
+                                    "titlePadding": 10
+                                    },
+                                    "axisY": {
+                                        "domain": false,
+                                        "domainWidth": 1,
+                                        "grid": true,
+                                        "gridColor": "#DEDDDD",
+                                        "gridWidth": 1,
+                                        "labelFontSize": 14,
+                                        "labelPadding": 8,
+                                        "ticks": false,
+                                        "titleFontSize": 12,
+                                        "titlePadding": 10,
+                                        "titleFont": "Lato",
+                                        "titleAngle": 0,
+                                        "titleY": -10,
+                                        "titleX": 80
+                                    },
+                                    "legend": {
+                                        "labelFontSize": 14,
+                                        "symbolSize": 140
+                                    },
+                                    "view": {"stroke": "transparent"},
+                                    "range": {
+                                        "category": [
+                                            "#1696d2",
+                                            "#fdbf11",
+                                            "#55b748",
+                                            "#ec008b",
+                                            "#d2d2d2"
+                                        ]
+                                    },
+                                    "text": {
+                                    "color": "#1696d2",
+                                    "fontSize": 11,
+                                    "align": "center",
+                                    "fontWeight": 400,
+                                    "size": 11
+                                    }
+                                },
+                                "data": {"url": "https://gist.githubusercontent.com/mmontesanonyc/436de650b919784691ed42dd321c38f2/raw/074bd84e78473b8a2099e66a0d6bf8caba32b594/scatter-sample-data.csv"},
+                                "mark": {"type": "circle", "filled": true, "size": 500, "stroke": "#727272", "strokeWidth": 2},
+                                "params": [
+                                    {
+                                        "name": "hover",
+                                        "select": {"type": "point", "on": "mouseover"}
+                                    }
+                                ],
+                                "encoding": {
+                                    "y": {"field": "Estimated Annual Rate (per 10,000 residents)", "type": "quantitative"},
+                                    "x": {"field": "Poverty (percent)", "type": "quantitative"},
+                                    "tooltip": [{"field": "Geography", "type": "nominal"},
+                                    {"field": "Estimated Annual Rate (per 10,000 residents)", "type": "quantitative"},
+                                    {"field": "Poverty (percent)", "type": "quantitative"}
+                                    ],
+                                    "color": {
+                                        "field": "Borough", "type": "nominal"
+                                    },
+                                    "opacity": {
+                                        "condition": {
+                                        "param": "hover",
+                                        "value": 1
+                                        },
+                                        "value": 0.5
+                                    }
+                                }
+                            }
+
+                            vegaEmbed("#links", spec2);
+                    }
+
+                    const updateMapData = (e) => {
+                        const measure = e.target.dataset.measure;
+                        const date = e.target.dataset.date;
+                        const about = e.target.dataset.about;
+                        const sources = e.target.dataset.sources;
+                        const display = e.target.dataset.display;
+                        selectedMapAbout = about;
+                        selectedMapSources =  sources;
+                        
+                        const filteredData = fullDataMapObjects.filter(obj => 
+                            obj.Time === date && obj
+                        )
+                        renderAboutSources(about, sources);
+                        renderMap(filteredData, measure, display, date);
+                        selectedMapMeasure =  true;
+                    }
+
+                    const updateTrendData = (e) => {
+                        const measure = e.target.dataset.measure;
+                        const disparities = e.target.dataset.disparities;
+                        const about = e.target.dataset.about;
+                        const sources = e.target.dataset.sources;
+                        const display = e.target.dataset.display;
+                        selectedTrendAbout = about;
+                        selectedTrendSources =  sources;
+                        renderAboutSources(about, sources);
+                        renderTrendChart(fullDataTrendObjects, measure, display, disparities)
+                        selectedTrendMeasure = true
+                    }
+
+                    const setDefaultMapMeasure = (defaultArray, visArray) => {
+                        console.log('SET DEFAULT MEASURE: ', mapMeasures, trendMeasures, defaultArray)
+                        defaultArray.length = 0;
+
+                        const hasAgeAdjustedRate = visArray.filter(measure =>
+                            measure.MeasurementType.includes('Age Adjusted Rate')
+                        )
+                        const hasRate = visArray.filter(measure =>
+                            measure.MeasurementType.includes('Rate')
+                        )
+                        const hasPercent = visArray.filter(measure =>
+                            measure.MeasurementType.includes('Percent')
+                        )
+
+                        if (hasAgeAdjustedRate.length) {
+                            const hasAgeAdjustedRateTotal = hasAgeAdjustedRate.filter(measure => 
+                                measure.MeasurementType.includes('Total')
+                            )
+
+                            // Set total as default if available
+                            if (hasAgeAdjustedRateTotal.length) {
+                                defaultArray.push(hasAgeAdjustedRateTotal[0]);
+                            } else {
+                                defaultArray.push(hasAgeAdjustedRate[0]);
+                            }
+                            
+                        } else if (hasRate.length) {
+                            defaultArray.push(hasRate[0]);
+                        } else if (hasPercent.length) {
+                            defaultArray.push(hasPercent[0]);
+                        } else {
+                            defaultArray.push(visArray[0]);
+                        }
+                    }
+
+                    const setDefaultMeasure = (defaultArray, visArray) => {
+                        defaultArray.length = 0;
+
+                        if (visArray.length > 0) {
+                            const hasAgeAdjustedRate = visArray.filter(measure =>
+                                measure.MeasurementType.includes('Age Adjusted Rate')
+                            )
+                            const hasRate = visArray.filter(measure =>
+                                measure.MeasurementType.includes('Rate')
+                            )
+                            const hasPercent = visArray.filter(measure =>
+                                measure.MeasurementType.includes('Percent')
+                            )
+
+                            if (hasAgeAdjustedRate.length) {
+                                const hasAgeAdjustedRateTotal = hasAgeAdjustedRate.filter(measure => 
+                                    measure.MeasurementType.includes('Total')
+                                )
+                                // Set total as default if available
+                                if (hasAgeAdjustedRateTotal.length) {
+                                    defaultArray.push(hasAgeAdjustedRateTotal[0]);
+                                } else {
+                                    defaultArray.push(hasAgeAdjustedRate[0]);
+                                }
+                                
+                            } else if (hasRate.length) {
+                                defaultArray.push(hasRate[0]);
+                            } else if (hasPercent.length) {
+                                defaultArray.push(hasPercent[0]);
+                            } else {
+                                defaultArray.push(visArray[0]);
+                            }
+                        }
+                        
+                    }
+                    
+                    const loadIndicator = (data) => {
+                        let data2 = data
+                        selectedSummaryYears = [];
+                        selectedSummaryGeography = [];
+                        const firstIndicatorId = document.querySelectorAll('#indicator-dropdown button')[0].getAttribute('data-internal-id');
+                        const defaultIndicatorId = parseInt(firstIndicatorId);
+                        defaultIndicator = false
+                        if (!data2) { 
+                            data2 = {
+                                internal_id: defaultIndicatorId
+                            }
+                            defaultIndicator = true;
+                        }
+
+                        indicator = indicators.find(indicator => indicator.IndicatorID === data2.internal_id)
+                        indicatorName = indicator.IndicatorName ? indicator.IndicatorName : data.name;
+                        indicatorDesc = indicator.IndicatorDescription ? indicator.IndicatorDescription : `N/A`;
+                        indicatorShortName = indicator.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
+                        indicatorMeasurses = indicator.Measures;
+                        indicatorId = indicator.IndicatorID;     
+                        
+                        console.log('==========================================================================')
+                        console.log('Load Indicator - IndicatorId: ', indicatorId)
+                        console.log('Load Indicator - Indicator: ', indicator)
+                        console.log('Load Indicator - Measures: ', indicatorMeasurses)
+
+                        loadData(indicatorId)
+                    }
+
+                    const renderMeasures = () => {
+                        console.log('==========================================================================')
+                        console.log('Render Measures')
+
+                        const contentSummary = document.querySelector('#tab-table');
+                        const contentMap = document.querySelector('#tab-map')
+                        const contentTrend = document.querySelector('#tab-trend');
+                        const contentLinks = document.querySelector('#tab-links');
+                        const dropdownTableYear = contentSummary.querySelector('div[aria-labelledby="dropdownTableYear"]');
+                        const dropdownMapMeasures = document.querySelector('div[aria-labelledby="dropdownMapMeasures"]');
+                        const dropdownMapYear = contentMap.querySelector('div[aria-labelledby="dropdownMapYear"]');
+                        const dropdownTableGeo = contentSummary.querySelector('div[aria-labelledby="dropdownTableGeo"]');
+                        const dropdownTrendMeasures = contentTrend.querySelector('div[aria-labelledby="dropdownTrendMeasures"]');
+                        const dropdownLinksMeasures = contentLinks.querySelector('div[aria-labelledby="dropdownLinksMeasures"]');
+                        const tableGeoTypes =  [...new Set(joinedAqData.objects().map(item => item.GeoType))];
+                        const tableYears =  [...new Set(joinedAqData.objects().map(item => item.Time))];
+                        const mapYears =  [...new Set(fullDataMapObjects.map(item => item.Time))];
+
+                        // clear Measure Dropdowns
+                        dropdownTableYear.innerHTML = ``;
+                        dropdownTableGeo.innerHTML = ``;
+                        dropdownMapMeasures.innerHTML = ``;
+                        dropdownTrendMeasures.innerHTML = ``;
+                        dropdownLinksMeasures.innerHTML = ``;
+
+                        mapMeasures.length = 0;
+                        trendMeasures.length = 0;
+
+                        tableYears.forEach((year, index) => {
+                            if (index === 0) {
+                                selectedSummaryYears.push(year);
+                                dropdownTableYear.innerHTML += `<label class="dropdown-item checkbox-year"><input type="checkbox" value="${year}" checked /> ${year}</label>`;
+                            } else {
+                                dropdownTableYear.innerHTML += `<label class="dropdown-item checkbox-year"><input type="checkbox" value="${year}" /> ${year}</label>`;
+                            }
+                        });
+
+                        tableGeoTypes.forEach((geoType, index) => {
+                            selectedSummaryGeography.push(geoType);
+                            dropdownTableGeo.innerHTML += `<label class="dropdown-item checkbox-geo"><input type="checkbox" value="${geoType}" checked /> ${geoType}</label>`;
+                        });
+
+                        indicatorMeasurses.map((measure, index) => {
+                            const type = measure?.MeasurementType;
+                            const displayType = measure?.DisplayType;
+                            const years = measure?.AvailableTimes.sort((a, b) => b.start_period - a.start_period);
+                            const geography = measure?.AvailableGeographyTypes;
+                            const links = measure?.VisOptions[0].Links && measure?.VisOptions[0]?.Links[0];
+                            const map = measure?.VisOptions[0].Map && measure?.VisOptions[0].Map[0]?.On;
+                            const trend = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0]?.On;
+                            const trendDisparities = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0]?.Disparities;
+                            const about = measure.how_calculated;
+                            const sources = measure.Sources;
+
+                            if (map === 1) {
+                                mapMeasures.push(measure)
+                                dropdownMapMeasures.innerHTML += `<div class="dropdown-title"><strong> ${type}</strong></div>`;
+                                mapYears.map((time, index) => {
+                                    dropdownMapMeasures.innerHTML += `<button class="dropdown-item link-measure" data-measure="${type}" data-display="${displayType}" data-date="${time}" data-about="${about}" data-sources="${sources}"> ${time}</button>`
+                                })
+                            }
+
+                            if (trend === 1) {
+                                trendMeasures.push(measure)
+                                if  (fullDataTrendObjects) {
+                                    dropdownTrendMeasures.innerHTML += `<button class="dropdown-item link-measure" data-measure="${type}" data-display="${displayType}" data-about="${about}" data-sources="${sources}" data-disparities="${trendDisparities}"> ${type}</button>`;
+                                }
+                            }
+
+                            if (links) {
+                                linksMeasures.push(measure)
+                                if  (fullDataTrendObjects) {
+                                    const linkYears =  [...new Set(fullDataTrendObjects.map(item => item.Time))]
+                                    dropdownLinksMeasures.innerHTML += `<button class="dropdown-item link-measure" data-measure="${type}" data-display="${displayType}" data-date="${years[index].TimeDescription}"  data-about="${about}" data-sources="${sources}" data-datestart="${years[index].start_period}" data-dateend="${years[index].end_period}"> ${type}</button>`;
+                                }
+                            }
+                        })
+
+                        setDefaultMapMeasure(defaultMapMeasure, mapMeasures);
+                        setDefaultMeasure(defaultTrendMeasure, trendMeasures);
+
+                        // disable tabs if there are no measures
+
+                        const tabMapSelected = tabMap.getAttribute('aria-selected');
+                        const tabTrendSelected = tabTrend.getAttribute('aria-selected');
+                        const tabLinksSelected = tabLinks.getAttribute('aria-selected');
+
+                        const disableLink = (el) => {
+                            el.classList.add('disabled');
+                            el.setAttribute('aria-disabled', true);
+                        }
+
+                        const enableLink = (el) => {
+                            el.classList.remove('disabled');
+                            el.setAttribute('aria-disabled', false);
+                        }
+
+                        if (mapMeasures.length === 0) {
+                            disableLink(tabMap);
+                            if (tabMapSelected === true) {
+                                $('#tab-btn-table').tab('show');
+                            }
+                        } else {
+                            enableLink(tabMap);
+                            renderMap();
+                        }
+
+                        if (trendMeasures.length === 0) {
+                            disableLink(tabTrend);
+                            if (tabTrendSelected === true) {
+                                $('#tab-btn-table').tab('show');
+                            }
+                        } else {
+                            enableLink(tabTrend);
+                            renderTrendChart();
+                        }
+
+                        if (linksMeasures.length === 0) {
+                            disableLink(tabLinks);
+                            if (tabLinksSelected) {
+                                $('#tab-btn-table').tab('show');
+                            }
+                        } else {
+                            enableLink(tabLinks);
+                            renderLinksChart();
+                        }
+
+                        renderTable();
+                        renderTitleDescription(indicatorShortName, indicatorDesc);
+                        renderAboutSources(measureAbout, measureSources);
+
+                        const mapMeasuresLinks = document.querySelectorAll('#tab-map .link-measure');
+                        const trendMeasuresLinks = document.querySelectorAll('#tab-trend .link-measure');
+
+                        mapMeasuresLinks.forEach(link => {
+                            link.addEventListener('click', e => updateMapData(e));
+                        })
+                        
+                        trendMeasuresLinks.forEach(link => {
+                            link.addEventListener('click', e => updateTrendData(e));
+                        })
+                        
+
+                        const checkboxYear = document.querySelectorAll('.checkbox-year');
+                        const checkboxGeo = document.querySelectorAll('.checkbox-geo');
+
+                        checkboxYear.forEach(checkbox => {
+                            handleYearFilter(checkbox, indicatorId);
+                        })
+                        checkboxGeo.forEach(checkbox => {
+                            handleGeoFilter(checkbox, indicatorId);
+                        })
+
+                        // Render default Measure About and Sources
+                        if (defaultIndicator) {
+                            measureAbout = '';
+                            measureSources = '';
+                            indicatorMeasurses.map(measure => {
+                                measureAbout += `<h6>${measure.MeasurementType}</h5>${measure.how_calculated}`;
+                                measureSources += `<h6>${measure.MeasurementType}</h5><p>${measure.Sources}</p>`;
+                            })
+                            
+                            renderAboutSources(measureAbout, measureSources);
+                        }
+                    }
+
+
+            </script>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card fs-sm mb-2">
+                        <!-- Content truncate-->
+                        <div id="truncate" class="text-truncate">
+                            {{ .Content | truncate 350}}
+                        </div>
+
+                        <!-- Full content-->
+                        <div id="full">
+                            {{ .Content }}
+                        </div>
+                        <p>
+
+                        <!-- Show/hide button (a crude implementation)-->
+                        <button class="btn-sm btn-outline-secondary float-right" onclick="reveal()" id="contenttoggle">Show more...<i class="fas fa-caret-square-down" aria-hidden="true"></i></button>
                     </div>
                 </div>
 
-                <div class="row mt-2 text-right">
-                    <div class="col">
-
-
+                <div class="col-md-8">
+                    <div class="dropdown float-right">
+                        <button class="btn btn-outline-primary float-right dropdown-toggle" type="button" id="dropdownTableYear" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-align:right!important">
+                          More {{ .Title}} data
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownTableYear" id="indicator-dropdown">
+                        {{ range .Params.Indicators}}
+                            <button class="dropdown-item" onClick="loadIndicator({{ . }})" data-internal-id="{{ .internal_id }}">{{ .name}}</button>
+                            <!-- <a class="dropdown-item" href="{{ .URL}}">{{ .name}}</a> -->
+                        {{ end }}
+                        </div>
                     </div>
-                </div>
+                    <h3 class="indicator-title">{{ (index .Params.indicators 0).name }}</h3>
 
+
+                    <div style="clear:both" class="my-3">
+                        <p class="fs-sm indicator-description"><strong>Indicator description:</strong></p>
+                    </div>
+
+                <div class="col-md-8">
+                    <div class="dropdown float-right">
+                        <button class="btn btn-outline-primary float-right dropdown-toggle" type="button" id="dropdownTableYear" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-align:right!important">
+                          More {{ .Title}} data
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownTableYear" id="indicator-dropdown">
+                        {{ range .Params.Indicators}}
+                            <button class="dropdown-item" onClick="loadIndicator({{ . }})" data-internal-id="{{ .internal_id }}">{{ .name}}</button>
+                            <!-- <a class="dropdown-item" href="{{ .URL}}">{{ .name}}</a> -->
+                        {{ end }}
+                        </div>
+                    </div>
+                    <h3 class="indicator-title">{{ (index .Params.indicators 0).name }}</h3>
+
+                    <div class="nav nav-pills bg-white device-sm" role="tablist">
+
+                        <a class="nav-item nav-link flex-fill active" id="tab-btn-table" href="#tab-table"
+                            data-toggle="pill" aria-controls="tab-table" aria-selected="true" role="tab">
+                            <i class="fas fa-list h4 fa-fw"></i><div class="d-none d-lg-block">Summary</div>
+                        </a>
+                    
+                        <a class="nav-item nav-link flex-fill" id="tab-btn-map" href="#tab-map"
+                            data-toggle="pill" aria-controls="tab-map" aria-selected="false" role="tab">
+                            <i class="fas fa-map-marker-alt h4 fa-fw"></i><div class="d-none d-lg-block">Map</div>
+                        </a>
+                    
+                        <a class="nav-item nav-link flex-fill" id="tab-btn-trend" href="#tab-trend"
+                            data-toggle="pill" aria-controls="tab-trend" aria-selected="false" role="tab">
+                            <i class="fas fa-chart-line h4 fa-fw"></i><div class="d-none d-lg-block">Trend</div>
+                        </a>
+
+
+                        <a class="nav-item nav-link flex-fill" id="tab-btn-links" href="#tab-links"
+                            data-toggle="pill" aria-controls="tab-links" aria-selected="false" aria-disabled="true" role="tab">
+                            <i class="fas fa-link h4 fa-fw"></i><div class="d-none d-lg-block">Links</div>
+                        </a>
+                    
+                    </div>
+                    
+                    <div class="tab-content bg-white mb-4" id="tabs-01-content">
+                        <!-- TABLE TAB -->
+                        <div class="tab-pane fade show active py-2" id="tab-table" aria-labelledby="tab-btn-table" role="tabpanel">
+                            <div class="float right">
+                                <div class="dropdown">
+                                    <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button" id="dropdownTableYear" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select year
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownTableYear">
+                                        <!-- INSERT MENU ITEMS HERE -->
+                                    </div>
+                                </div>
+
+                                <div class="dropdown">
+                                    <button class="btn btn-sm mr-1 float-right btn-outline-success dropdown-toggle" type="button" id="dropdownTableGeo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select geography
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownTableGeo">
+                                        <!-- INSERT MENU ITEMS HERE -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="summary-table" class="border mt-4">
+                                <!-- INSERT SUMMARY TABLE HERE -->
+                            </div>
+                        </div> 
+                        <!-- MAP TAB -->
+                        <div class="tab-pane fade py-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
+                            <div class="float right">
+                                <div class="dropdown">
+                                    <button class="btn btn-sm mr-1 float-right btn-outline-success dropdown-toggle" type="button" id="dropdownMapMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select measure
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMapMeasures">
+                                        <!-- INSERT MENU ITEMS HERE -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border mt-4">
+                                <div id="map" width=600 height=500 style="width: 100%; min-height: 450px; margin-bottom: 50px;"></div>
+                            </div>                        
+                        </div>
+                        <!-- TREND TAB -->
+                        <div class="tab-pane fade py-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
+                            <div class="dropdown float-right">
+                                <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button" id="dropdownTrendMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose measure
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownTrendMeasures">
+                                  <!-- INSERT MENU ITEMS HERE -->
+                                </div>
+                            </div>
+                            <div class="border mt-4">
+                                <!-- INSERT TREND CHART HERE -->
+                                <div id="trend" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <!-- LINKS TAB -->
+                        <div class="tab-pane fade py-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
+                            <div class="dropdown float-right">
+                                <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button" id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select data to link
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownLinksMeasures">
+                                    <!-- INSERT MENU ITEMS HERE -->
+                                </div>
+                            </div>
+                            <div class="border mt-4" style="height: 550px; clear: both">
+                                <!-- INSERT LINKS CHART HERE -->
+                                <div id="links" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-2">
+                    <div class="row">
+                        <div class="col-6">
+                            <h4 class="fs-rg">About the measures</h4>
+                            <p class="fs-sm indicator-measures">Insert from `How_Calculated.` Vivamus consequat id nibh et tempor. Cras augue enim, iaculis quis purus sit amet, interdum accumsan neque. In blandit varius blandit. Praesent vel leo ac urna dapibus faucibus. Donec sed luctus neque. Nulla porta finibus elit, luctus eleifend felis ornare vitae. Ut consequat laoreet libero eu venenatis.</p>
+                        </div>
+                        <div class="col-6">
+                            <h4 class="fs-rg">Data sources</h4>
+                            <p class="fs-sm indicator-sources">Insert from `Sources.` Pellentesque blandit ante vel augue mattis, lacinia tincidunt velit feugiat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec nulla nisl, sollicitudin et volutpat at, finibus ac quam. Pellentesque faucibus turpis egestas tellus luctus, nec porttitor diam bibendum. Sed mauris augue, tempus id urna sit amet, hendrerit blandit libero. Cras sit amet luctus nunc, nec mattis leo. </p>
+
+                        </div>
+                    </div>
+                    
+                    <hr class="my-2">
+
+                    <div class="row mb-4">
+                        <div class="col">
+                            <h4>Related:</h4>
+                            <p>Insert related content via partial, here.</p>
+                        </div>
+                    </div>
+
+
+            
+                </div>
             </div>
 
-
         </div>
-
-
-
-
-
-
     </div>
+
+                    <div style="clear:both" class="my-3">
+                        <p class="fs-sm indicator-description"><strong>Indicator description:</strong></p>
+                    </div>
+
+
+                    <div class="nav nav-pills bg-white device-sm" role="tablist">
+
+                        <a class="nav-item nav-link flex-fill active" id="tab-btn-table" href="#tab-table"
+                            data-toggle="pill" aria-controls="tab-table" aria-selected="true" role="tab">
+                            <i class="fas fa-list h4 fa-fw"></i><div class="d-none d-lg-block">Summary</div>
+                        </a>
+                    
+                        <a class="nav-item nav-link flex-fill" id="tab-btn-map" href="#tab-map"
+                            data-toggle="pill" aria-controls="tab-map" aria-selected="false" role="tab">
+                            <i class="fas fa-map-marker-alt h4 fa-fw"></i><div class="d-none d-lg-block">Map</div>
+                        </a>
+                    
+                        <a class="nav-item nav-link flex-fill" id="tab-btn-trend" href="#tab-trend"
+                            data-toggle="pill" aria-controls="tab-trend" aria-selected="false" role="tab">
+                            <i class="fas fa-chart-line h4 fa-fw"></i><div class="d-none d-lg-block">Trend</div>
+                        </a>
+
+
+                        <a class="nav-item nav-link flex-fill" id="tab-btn-links" href="#tab-links"
+                            data-toggle="pill" aria-controls="tab-links" aria-selected="false" aria-disabled="true" role="tab">
+                            <i class="fas fa-link h4 fa-fw"></i><div class="d-none d-lg-block">Links</div>
+                        </a>
+                    
+                    </div>
+                    
+                    <div class="tab-content bg-white mb-4" id="tabs-01-content">
+                        <!-- TABLE TAB -->
+                        <div class="tab-pane fade show active py-2" id="tab-table" aria-labelledby="tab-btn-table" role="tabpanel">
+                            <div class="float right">
+                                <div class="dropdown">
+                                    <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button" id="dropdownTableYear" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select year
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownTableYear">
+                                        <!-- INSERT MENU ITEMS HERE -->
+                                    </div>
+                                </div>
+
+                                <div class="dropdown">
+                                    <button class="btn btn-sm mr-1 float-right btn-outline-success dropdown-toggle" type="button" id="dropdownTableGeo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select geography
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownTableGeo">
+                                        <!-- INSERT MENU ITEMS HERE -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="summary-table" class="border mt-4">
+                                <!-- INSERT SUMMARY TABLE HERE -->
+                            </div>
+                        </div> 
+                        <!-- MAP TAB -->
+                        <div class="tab-pane fade py-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
+                            <div class="float right">
+                                <div class="dropdown">
+                                    <button class="btn btn-sm mr-1 float-right btn-outline-success dropdown-toggle" type="button" id="dropdownMapMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select measure
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMapMeasures">
+                                        <!-- INSERT MENU ITEMS HERE -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border mt-4">
+                                <div id="map" width=600 height=500 style="width: 100%; min-height: 450px; margin-bottom: 50px;"></div>
+                            </div>                        
+                        </div>
+                        <!-- TREND TAB -->
+                        <div class="tab-pane fade py-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
+                            <div class="dropdown float-right">
+                                <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button" id="dropdownTrendMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose measure
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownTrendMeasures">
+                                  <!-- INSERT MENU ITEMS HERE -->
+                                </div>
+                            </div>
+                            <div class="border mt-4">
+                                <!-- INSERT TREND CHART HERE -->
+                                <div id="trend" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <!-- LINKS TAB -->
+                        <div class="tab-pane fade py-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
+                            <div class="dropdown float-right">
+                                <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button" id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select data to link
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownLinksMeasures">
+                                    <!-- INSERT MENU ITEMS HERE -->
+                                </div>
+                            </div>
+                            <div class="border mt-4" style="height: 550px; clear: both">
+                                <!-- INSERT LINKS CHART HERE -->
+                                <div id="links" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-2">
+                    <div class="row">
+                        <div class="col-6">
+                            <h4 class="fs-rg">About the measures</h4>
+                            <p class="fs-sm indicator-measures">Insert from `How_Calculated.` Vivamus consequat id nibh et tempor. Cras augue enim, iaculis quis purus sit amet, interdum accumsan neque. In blandit varius blandit. Praesent vel leo ac urna dapibus faucibus. Donec sed luctus neque. Nulla porta finibus elit, luctus eleifend felis ornare vitae. Ut consequat laoreet libero eu venenatis.</p>
+                        </div>
+                        <div class="col-6">
+                            <h4 class="fs-rg">Data sources</h4>
+                            <p class="fs-sm indicator-sources">Insert from `Sources.` Pellentesque blandit ante vel augue mattis, lacinia tincidunt velit feugiat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec nulla nisl, sollicitudin et volutpat at, finibus ac quam. Pellentesque faucibus turpis egestas tellus luctus, nec porttitor diam bibendum. Sed mauris augue, tempus id urna sit amet, hendrerit blandit libero. Cras sit amet luctus nunc, nec mattis leo. </p>
+
+                        </div>
+                    </div>
+                    
+                    <hr class="my-2">
+
+                    <div class="row mb-4">
+                        <div class="col">
+                            <h4>Related:</h4>
+                            <p>Insert related content via partial, here.</p>
+                        </div>
+                    </div>
+
+
+            
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
 
 </article>
 
+{{ $js := resources.Get "js/accessible-autocomplete.min.js" }}
+{{ $secureJS := $js }}
+<script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-<!--Script powers exit modal-->
-<script>
-    var destination;
+<script type="text/javascript"> 
+    // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
+    function populateDropDownList() {          
+           var ddlData = document.getElementById("all-data");
+          {{ range (where .Site.Pages "Section" "data-explorer") }} // range through data_explorer pages
+            var option = document.createElement("OPTION");
+            //Set Neighborhood Name in Text part.
+            option.innerHTML = {{ .Title}}
+            // set the option value - this adds the environment variable to give it the base URL.
+            option.value = '{{ .Site.Params.devpath}}/{{ .RelPermalink }}'
+            //Add the Option element to DropDownList.
+            ddlData.options.add(option);
+          {{ end}}
+       };
 
-    function protoPopup(URL) {
-        destination = URL;
-        $('#prototypeModal').modal('show')
-        document.getElementById('modalDestination').setAttribute("href", destination)
-    }
+       populateDropDownList(); // runs the function above.
 
-</script>
-
-<!-- Exit modal-->
-<div class="modal" tabindex="-1" role="dialog" id="prototypeModal">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">You're leaving the prototype.</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>This link is taking you to a dataset displayed on the old version of the EH Data Portal.</p> 
-          <p>If you want to return to this prototype, just hit the back button in your web browser.</p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary-outline float-left" data-dismiss="modal">Go Back</button>
-
-            <a href="" id="modalDestination">
-            <button  type="button" class="btn btn-secondary float-right">Get the data <i class="far fa-arrow-alt-circle-right ml-1"></i></button></a>
+       // this handles AA highlighting.
+       var selectEl = document.querySelector('#all-data')
+        accessibleAutocomplete.enhanceSelectElement({
+        autoselect: true,
+        confirmOnBlur: true,
+        defaultValue: "",
+        minLength: 2,
+        selectElement: selectEl
+            });
 
 
-        </div>
-      </div>
-    </div>
-  </div>
+    // this takes the AA form and on submit, sends page to a new location.
+    var dataSearchForm = document.getElementById('all-data-select') // this isn't all-data, but all-data-select because of changes applied by the AA JS.
+    document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
+        e.preventDefault(); // prevent page re-load
+        window.location.assign(dataSearchForm.options[dataSearchForm.selectedIndex].value)
+      });
 
+
+
+   </script>
 
 {{end}}

@@ -1,0 +1,27 @@
+table {
+  .group {
+    td {
+      background-color: #F0F0F0;
+      color: #669DB1;
+      font-weight: bold;
+      
+
+      &::before {
+        @extend %fa-icon;
+      }      
+
+      &:not(.hidden)::before {
+        content: "\f068";
+      }
+
+      &.hidden::before {
+        content: "\f067";
+        @extend %fa-icon;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
