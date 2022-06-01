@@ -11,13 +11,14 @@ image: ds-breatheeasy.jpg
 menu:
     main:
         identifier: '02'
+photocredit: "Ed Reed/Mayoral Photography Office"
 ---
 
 The air we breathe can have a major effect on our health — air pollution can make asthma worse and can cause heart disease, lung disease, strokes, and even cancer.
 
 Fortunately, New York City has made great strides in recent years to improve air quality. Let’s take a look.
 
-{{< datawrapper "Chart: Better air quality means fewer dangerous days" "sXhjH/3/" "428" >}}
+{{< datawrapper title="Chart: Better air quality means fewer dangerous days" src="sXhjH/3/" height="428" >}}
 
 An air quality advisory day happens when air pollution builds up to dangerous levels. It means that people who are sensitive to air pollution (like people with respiratory or heart problems) should spend less time outside and avoid outdoor exercise. If the air quality is bad enough, then most people will be affected by it.
 
@@ -43,7 +44,7 @@ In New York City, the current PM2.5 levels contribute to an estimated 2,300 deat
 
 So it’s good news that since monitoring neighborhood-level air pollution began in 2009, the levels of PM2.5 have steadily gone down — which you can see in the chart below.
 
-{{< datawrapper "Chart: PM2.5 levels have decreased by 28%" "DLHxS/3/" "400" >}}
+{{< datawrapper title="Chart: PM2.5 levels have decreased by 28%" src="DLHxS/3/" height="400" >}}
 
 By burning heating oil, New York City's buildings are responsible for about 50 percent of the city’s PM2.5 emissions — and traffic is responsible for another 17 percent (see a data story on the Public Health Impacts of PM2.5 from Air Pollution). That means that reducing traffic and working to make sure that buildings burn cleaner fuel are great ways to clean up the air and help keep our air cleaner - and both are important parts of OneNYC, the city’s sustainability plan.
 

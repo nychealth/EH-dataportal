@@ -11,6 +11,7 @@ image: ds-aqts.jpeg
 menu:
     main:
         identifier: '02'
+photocredit: "Ed Reed/Mayoral Photography Office"
 ---
 
 Does the air improve in car-free zones? People often ask us this, and it's a great question. To answer, we turn to the NYC Community Air Survey, or NYCCAS. NYCCAS is our network of air quality monitors around the city.
@@ -31,14 +32,14 @@ We use these monitors to measure levels of six different pollutants: fine partic
 ### What happens to air quality when an area goes car-free?
 We can look at changes to Times Square to understand what happens to local air quality when a street is relieved of car traffic. Starting in the summer of 2009, five blocks of Broadway through Times Square (and some adjacent space) were closed to cars, increasing the amount of plaza space available for pedestrians.
 
-{{< datawrapper "Times Square: more space for pedestrians, less for cars" "Rnsgj/4/" "543" >}}
+{{< datawrapper title="Times Square: more space for pedestrians, less for cars" src="Rnsgj/4/" height="543" >}}
 
 
 NYCCAS' nearby air quality monitor measured the air pollutants before and after the change. With this monitor, we could see whether redirecting traffic led to any changes in air quality.
 
 First, let’s look at NO, a pollutant that primarily comes from car emissions. In early 2009, Times Square’s NO concentration was higher than the average concentration in Midtown. But when Times Square went car-free, the NO concentration fell to below the Midtown average.
 
-{{< datawrapper "Nitric Oxide in a car-free Times Square" "Un0yG/1/" "450" >}}
+{{< datawrapper title="Nitric Oxide in a car-free Times Square" src="Un0yG/1/" height="450" >}}
 
 
 ### NO went down. Did other pollutants?
@@ -46,7 +47,7 @@ Next, let’s look at PM2.5. This pollutant comes from traffic emissions, but it
 
 In winter 2008, Times Square’s PM2.5 was a little bit higher than the Midtown average.
 
-{{< datawrapper "PM2.5 in a car-free Times Square" "xBWEn/1/" "450" >}}
+{{< datawrapper title="PM2.5 in a car-free Times Square" src="xBWEn/1/" height="450" >}}
 
 
 Unlike NO, the PM2.5 concentration in Times Square didn’t change much. That’s because there are a lot more sources of PM2.5 in the area – like buildings.

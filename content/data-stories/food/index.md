@@ -11,6 +11,7 @@ image: ds-food.JPG
 menu:
     main:
         identifier: '02'
+photocredit: "Edwin J. Torres/Mayoral Photography Office"
 ---
 
 New Yorkers eat out more than a billion times a year. To help keep diners safe, the Health Department educates restaurant operators about food safety practices and inspects all 27,000 city restaurants at least once a year. Over 90 percent of NYC restaurants have "A" grades in the window, showing excellent compliance with food safety requirements.
@@ -20,7 +21,7 @@ However, warmer weather creates special challenges keeping food safe. We dug int
 ### Some background on foodborne illnesses
 Though most foodborne illnesses are relatively minor, the Centers for Disease Control and Prevention estimates that there are 128,000 hospitalizations and 3,000 deaths per year from foodborne illnesses in the USA.
 
-{{< datawrapper "In NYC, there are thousands of cases per year" "TWYcr/6/" "532" >}}
+{{< datawrapper title="In NYC, there are thousands of cases per year" src="TWYcr/6/" height="532" >}}
 
 Many of these are viruses and bacteria that spread through unsafe food handling practices. For example, if bacteria from raw meat or eggs contaminate other ready-to-eat food, it can make people sick.
 
@@ -42,7 +43,7 @@ We investigated how outdoor temperature affects restaurant food safety patterns.
 
 We looked at inspections conducted on higher and lower maximum temperature days, and we found a 20 percent increase in cold food holding violations on the hottest days (93° or higher) compared with average summer days (temperatures around 82°).
 
-{{< datawrapper "Hot weather means more cold food holding violations" "PpaPF/4/" "210" >}}
+{{< datawrapper title="Hot weather means more cold food holding violations" src="PpaPF/4/" height="210" >}}
 
 ### We talked over our findings with restaurant staff
 After reviewing these data, we convened restaurant operators to talk about common challenges to keeping food cool.

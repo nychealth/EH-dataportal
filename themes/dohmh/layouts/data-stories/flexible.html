@@ -18,6 +18,21 @@
 <!-- This flexible data story template puts content only within a row, and puts related content below -->
 
 <article class="container-fluid" id="skip-header-target">
+
+    <!-- language selection -->
+    
+    {{ if .IsTranslated }}
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                {{ range .Translations }}
+                <li><a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>  
+                {{ end }}
+            </ul>
+        </div>
+    </nav>
+    {{ end }}
+    
     <div class="row">
         {{ .Content}}
     </div>
@@ -30,9 +45,20 @@
     <div class="row my-3">
         <div class="col-3 mx-auto">
             <div class="fs-sm">
-                <strong>Published on:</strong>
+                {{ if .Params.photocredit }}
+                    <i class="fas fa-images mr-1"></i><strong>Banner image:</strong><br>
+                    {{ .Params.photocredit }}
+                    <hr class="my-2">
+                {{ end}}
+
+
+
+                <strong>Published on:</strong><br>
                 {{ .Date.Format "January 2, 2006"}}
+
             </div>
+
+            {{ partial "socialshare.html" . }}
         </div>
     </div>
 

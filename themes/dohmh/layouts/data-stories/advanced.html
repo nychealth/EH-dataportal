@@ -57,6 +57,19 @@
 
         <!--start main content section-->
         <div class="col-xl-7 overflow-hidden fs-rg mr-auto" id="primary-content">
+            
+        <!-- language selection -->
+        {{ if .IsTranslated }}
+            <nav class="navbar navbar-default my-2">
+                    <ul class="nav navbar-nav fs-sm">
+                        <span class="mr-2">Read this data story in:</span> 
+                        {{ range .Translations }}
+                        <li class="mb-1"><a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>  
+                        {{ end }}
+                    </ul>
+            </nav>
+        {{ end }}
+
             <div class="wide my-2 px-5">
                 {{ .Content}}
             </div>
@@ -95,9 +108,20 @@
 
             <div class="py-3 mt-n3 mt-xl-0 sticky-top fs-sm" style="z-index: 0">
                 <div class="fs-sm">
+                    {{ if .Params.photocredit }}
+                        <i class="fas fa-images mr-1"></i><strong>Banner image:</strong><br>
+                        {{ .Params.photocredit }}
+                        <hr class="my-2">
+                    {{ end}}
+
+
+
                     <strong>Published on:</strong><br>
                     {{ .Date.Format "January 2, 2006"}}
+
                 </div>
+
+                {{ partial "socialshare.html" . }}
 
                 <h3 class="text-muted fs-rg mt-4">Related:</h3>
                     <h4 class="mt-2 fs-md"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>

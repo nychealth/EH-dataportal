@@ -12,6 +12,7 @@ keywords: ["air quality","traffic","transportation","air pollution", "lungs","br
 menu:
     main:
         identifier: '02'
+photocredit: "Mayoral Photography Office"
 ---
 
 {{< rawhtml>}}

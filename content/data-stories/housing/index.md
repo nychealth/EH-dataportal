@@ -214,29 +214,28 @@ Explore NYC's common housing problems in the map below.
 function changeMap(x) {
     var spec;
     if (x==0) {
-        spec = "none.vl.json";
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/none.vl.json";
     } else if (x==3) {
-        spec = "three.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/three.vl.json"
     } else if (x==4) {
-        spec = "cockroaches.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/cockroaches.vl.json"
     } else if (x==5) {
-        spec = "micerats.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/micerats.vl.json"
     } else if (x==6) {
-        spec = "cracks.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/cracks.vl.json"
     } else if (x==7) {
-        spec = "water.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/water.vl.json"
     } else if (x==8) {
-        spec = "broken.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/broken.vl.json"
     } else if (x==9) {
-        spec = "breakdown.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/breakdown.vl.json"
     } else if (x==10) {
-        spec = "supplemental.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/supplemental.vl.json"
     } else if (x==11) {
-        spec = "noac.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/noac.vl.json"
     } else if (x==12) {
-        spec = "toilet.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/toilet.vl.json"
     } else {};
-
 
     vegaEmbed("#housingmap",spec)
 }
@@ -245,7 +244,7 @@ function changeMap(x) {
 
 {{< /rawhtml>}}
 
-{{< vega id="housingmap" spec="three.vl.json" height="550px">}}
+{{< vega id="housingmap" spec="https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-en/three.vl.json" height="550px">}}
 
 ### Who shoulders the burden of housing disrepair?
 These problems go far beyond inconvenience or mess. {{< rawhtml>}}
@@ -284,7 +283,7 @@ These problems go far beyond inconvenience or mess. {{< rawhtml>}}
 
 As a result of the segregation and disinvestment caused by redlining, Black and Latino people have less access to healthy housing. They are more likely to live in buildings that have health-threatening maintenance issues.
 
-{{< datawrapper "Black and Latino people have less access to healthy housing." "PTyc4/2/" "300px">}}
+{{< datawrapper title="Black and Latino people have less access to healthy housing." src="PTyc4/2/" height="300px" >}}
 
 
 ### These disparities persist across income levels

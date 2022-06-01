@@ -1,0 +1,387 @@
+{{- define "main" -}}
+
+<article class="container-fluid" id="skip-header-target">
+    <div class="col-md-11 col-sm-12 mx-auto my-4">
+        
+        <div class="row no-gutters mb-2">
+            <div class="col">
+                <nav aria-label="breadcrumb" class="my-3">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/data-explorer/">Data Explorer</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        
+        <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title}}</h1>
+        {{- .Content -}}
+        
+        <!-- Generate JSON object with subtopic pages and keys, and internal_ids in arrays -->
+        
+        {{- $subtopic_indicators_dict := newScratch -}}
+        {{- $subtopic_indicators_map := newScratch -}}
+        
+        {{/*  iterate over all pages on the site  */}}
+        
+        {{- range .Site.Pages -}}
+            
+            {{/*  create a new "slice" (i.e., an array)  */}}
+            
+            {{- $indicators := slice -}}
+            {{- $subtopic_name := slice -}}
+            
+            {{/*  only process if it's a data explorer page */}}
+            
+            {{- if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (ne (path.Base .RelPermalink) "all-data")) -}}
+                
+                {{/*  turn params into strings  */}}
+                
+                {{- $subtopic := .RelPermalink | path.Base | string -}}
+
+                {{/*  subtopic names  */}}
+                
+                {{- $subtopic_title := .Title -}}
+
+                {{/*  get internal_ids  */}}
+                
+                {{- range .Params.indicators -}}
+                    
+                    {{/*  create an array of internal_ids  */}}
+                    
+                    {{- $indicators = $indicators | append .internal_id -}}
+                
+                {{- end -}}
+                
+                {{/*  create a map with subtopic as key and array of internal_ids as value */}}
+                
+                {{- $subtopic_indicators_dict := dict "subtopic_name" $subtopic_title "IndicatorID" $indicators -}}
+                {{- $subtopic_indicators_map.SetInMap "subtopic_indicators" $subtopic ($subtopic_indicators_dict) -}}
+
+            {{- end -}}
+            
+        {{- end -}}
+
+        
+        <p class="sr-only">This produces a list of subtopics and IndicatorIDs, stored in the variable <code>$subtopic_indicators</code>, 
+            and printed to the console as a JavaScript variable, and then as an Arquero table.</p>
+            
+            <script>
+
+                var subtopic_indicators = {{ $subtopic_indicators_map.Get "subtopic_indicators" }};
+
+                var arqTable = aq.from(subtopic_indicators)
+                .rename({key: "subtopic"})
+                .derive({
+                    IndicatorID: d => d.value.IndicatorID,
+                    subtopic_name: d => d.value.subtopic_name
+                })
+                .select(aq.not("value"))
+                .unroll("IndicatorID");
+                arqTable.print(20);
+                
+                var subtopicIndicatorsTable = arqTable.objects();
+                
+                
+            </script>
+            
+            <p class="sr-only">Also outputting a JSON version of the list to <code><a href="/IndicatorData/subtopic_indicators.json">/IndicatorData/subtopic_indicators.json</code></a> 
+                (which on build will be put into <code>/docs/IndicatorData/</code>)</strong>
+                
+                {{ $si_json_output_path := "/IndicatorData/subtopic_indicators.json" }}
+                {{ $si_resource := $subtopic_indicators_map.Get "subtopic_indicators" | jsonify | resources.FromString $si_json_output_path }}
+                
+
+                
+                <script>
+                    console.log("$si_json_output_path", {{$si_json_output_path}})
+                    console.log("$si_resource.Permalink", {{$si_resource.Permalink}})
+                </script>
+                
+                <table id="indicators" class="display fs-sm my-1" style="font-size:12px; width:100%">
+                    <thead>
+                        <tr>
+                            <th class="tablehead">Indicator</th>
+                            <th class="tablehead">Subtopics</th>
+                            <th class="tablehead">Measurements</th>
+                            <th class="tablehead">Geographies</th>
+                            <th class="tablehead">Most recent data</th>
+                            <th class="tablehead">Data Source</th>
+                            
+                        </tr>
+                    </thead>
+                    
+                    <tbody id="tablebody">
+                        
+                    </tbody>
+                    
+                </table>
+
+                <hr class="my-2">
+                <p><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em> Try these other Health Department resources:
+                <ul>
+                  <li><a href="https://a816-health.nyc.gov/hdi/epiquery/">EpiQuery</a>: Analyze and visualize NYC health data from surveys, disease reports and vital records by sex, race/ethnicity, age and other stratifications.
+                  </li>
+                  <li><a href="https://a816-health.nyc.gov/hdi/profiles/">Community Health Profiles</a>: Learn about the social, economic and health conditions and outcomes of New Yorkers, neighborhood-by-neighborhood.
+                  </li>
+                </ul>
+                <a href="https://www1.nyc.gov/site/doh/data/data-home.page">Browse all Health Department data resources here</a>.
+                </p>
+                
+            </div>
+            
+        </article>
+        
+        <script>
+            var indicators;
+            var indicatorIndex = []
+            
+            
+            // First, load Indicators.json
+            d3.json('https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/indicators.json').then(function (data) {
+                indicators = data;
+                loopThroughIndicators() // run loops.
+                
+            }); 
+            
+            // Separating json load from subsequent functions, so we can filter or modify later without reloading json
+            function loopThroughIndicators() {
+                //  loop through indicators
+                
+                for (let i = 0; i < indicators.length; i++) {  // change the 1 to indicators.length to get back to normal
+                    
+                    let row_i = document.createElement('tr'); // create row
+                    let cell_1 = document.createElement('td') // create cell
+                    cell_1.innerHTML = indicators[i].IndicatorName // fill cell with indicator name.
+                    row_i.appendChild(cell_1); // add this cell to this row
+                    
+                    let measurements = [];
+                    let geographies = [];
+                    let times = [];
+                    let all_years;
+                    let maxTime;
+                    let sources = [];
+                    
+                    // subtopics
+                    
+                    let cell_2 = document.createElement('td')
+                    
+                    // get all subtopics for this indicator
+                    {{/*  let subtopics = subtopicIndicatorsTable.filter(element => element.value.IndicatorID.includes(indicators[i].IndicatorID));  */}}
+                    let subtopics = subtopicIndicatorsTable.filter(element => element.IndicatorID == indicators[i].IndicatorID);
+                    
+                    let st_li = document.createElement('ul');
+                    st_li.classList.add('no-bullets')
+                    cell_2.appendChild(st_li);
+                    
+                    // create links for subtopics
+                    for (st = 0; st < subtopics.length; st++) {
+
+                        let li = document.createElement('li');
+                        li.innerHTML = "<a href='" + {{ .Site.BaseURL }} + "data-explorer/" + subtopics[st].subtopic + "/'>" + subtopics[st].subtopic_name + "</a>"
+                        // can eventually add an anchor or other deep-linking method
+        
+                        st_li.appendChild(li)
+                    }
+                    
+                    row_i.appendChild(cell_2);      
+                    
+                    // create other cells. 
+                    let cell_3 = document.createElement('td')
+                    let cell_4 = document.createElement('td')
+                    let cell_5 = document.createElement('td')
+                    let cell_6 = document.createElement('td')
+                    
+                    // loop through each indicator's measure:
+                    for (let n = 0; n < indicators[i].Measures.length; n++) {
+                        
+                        // push Measurement Types to the second cell
+                        measurements.push(indicators[i].Measures[n].MeasurementType)
+                        
+                        // loop through Available Geographies
+                        // var finestGeography = [];
+                        for (let y = 0; y < indicators[i].Measures[n].AvailableGeographyTypes.length; y++) {
+                            geographies.push(indicators[i].Measures[n].AvailableGeographyTypes[y].GeoType)
+                            // here, can embed a loop through geographies to find the finest.
+                        }
+                        
+                        //loop through times
+                        
+                        for (let z = 0; z < indicators[i].Measures[n].AvailableTimes.length; z++) {
+                            
+                            times.push(new Date(indicators[i].Measures[n].AvailableTimes[z].end_period));
+                            
+                        }
+                        
+                        // push Sources
+                        sources.push(indicators[i].Measures[n].Sources)
+                        
+                    }
+                    
+                    // And, dump measurements, geographies, times, and sources into cells:
+                    
+                    // measurements
+                    let unique_measurements = [...new Set(measurements)];
+                    let ums = document.createElement('ul')
+                    ums.classList.add('no-bullets')
+                    cell_3.appendChild(ums);
+                    for (m = 0; m < unique_measurements.length; m++) {
+                        let li = document.createElement('li')
+                        li.innerHTML = unique_measurements[m]
+                        ums.appendChild(li)
+                    }
+                    
+                    row_i.appendChild(cell_3);
+                    
+                    // geographies
+                    
+                    const geos_order = ["Citywide", "Borough", "NYCKIDS", "UHF33", "UHF34", "UHF42", "Subboro", "CD", "NTA"];
+                    let unique_geographies = [...new Set(geographies)];
+                    
+                    // sorting unique_geographies based on order of geos_order
+                    unique_geographies.sort(function(a, b){
+                        return geos_order.indexOf(a) - geos_order.indexOf(b)
+                    });
+                    
+                    let geobullets = document.createElement('ul')
+                    geobullets.classList.add('no-bullets')
+                    cell_4.appendChild(geobullets)
+                    
+                    // looping through indicator's unique geos
+                    
+                    for (l = 0; l < unique_geographies.length; l++) {
+                        
+                        
+                        let li = document.createElement('li')
+                        
+                        // setting id as geo name
+                        li.innerHTML = unique_geographies[l];
+                        li.setAttribute("geo", unique_geographies[l]);
+                        li.classList.add("btn", "btn-sm", "geobullets", unique_geographies[l])
+                        
+                        // setting 'onclick' action for each geography, with the geo as the argument
+                        
+                        li.addEventListener('click', e => {
+                            console.log("classList [e]", e.target.classList)
+                            toggle_button(e);
+                        });
+                        
+                        geobullets.appendChild(li);
+                        
+                    }
+                    
+                    row_i.appendChild(cell_4)
+                    
+                    // max year
+                    maxTime = new Date(Math.max(...times));
+                    cell_5.innerHTML = maxTime.getFullYear();
+                    row_i.appendChild(cell_5)
+
+                                        
+                    // sources
+                    let unique_sources = [...new Set(sources)];
+                    console.log("unique_sources", unique_sources);
+                    let usrc = document.createElement('ul')
+                    usrc.classList.add('no-bullets')
+                    cell_6.appendChild(usrc);
+
+                    for (src = 0; src < unique_sources.length; src++) {
+                        let li = document.createElement('li')
+                        li.innerHTML = unique_sources[src]
+                        usrc.appendChild(li)
+                    }
+                    
+                    row_i.appendChild(cell_6);
+                    
+                    // Finally, place the row into the table body.
+                    document.getElementById('tablebody').appendChild(row_i) 
+                } 
+                
+                // call DataTables.
+                initializeDataTables()
+                
+            }
+            
+            
+            function initializeDataTables() {
+                let table = new DataTable('#indicators', {
+                    // options
+                    scrollY: 600,
+                    scrollX: true,
+                    paging: false,
+                    responsive: true,
+                    fixedColumns: true
+                });
+            }
+            
+            
+            // filter function
+            
+            function geobullet_filter(active_geo) {
+                
+                // join geo types for regex (this will be an OR search)
+                
+                $('#indicators').DataTable().column(":contains(Geographies)").search(active_geo.join('|'), true, false, false).draw()
+                
+                // Adding this here is sort of a kludge, but I'd have to refactor the entire pattern to avoid it
+                // buttons with either geo as a class
+                let geo_buttons = document.querySelectorAll(active_geo.map(i => "." + i).toString());
+                
+                for (let i = 0; i < geo_buttons.length; i++) {
+                    geo_buttons[i].classList.add("active");
+                }
+                
+            }
+            
+            function toggle_button(e) {
+                
+                // clicked button
+                var button = e.target;
+                
+                if (button.classList.contains("active") == false) {
+                    // if the clicked button isn't active, add active class to buttons with this geo type
+                    
+                    // all buttons of this geo type
+                    
+                    let geo_buttons = document.querySelectorAll("[geo=" + button.attributes.geo.value + "]");
+                    
+                    for (let i = 0; i < geo_buttons.length; i++) {
+                        geo_buttons[i].classList.add("active");
+                    }
+                    
+                }
+                else if (button.classList.contains("active") == true) {
+                    // if the clicked button is active, remove active class to buttons with this geo type
+                    
+                    // all buttons of this geo type
+                    let geo_buttons = document.querySelectorAll("[geo=" + button.attributes.geo.value + "]");
+                    
+                    for (let i = 0; i < geo_buttons.length; i++) {
+                        geo_buttons[i].classList.remove("active");
+                    }
+                    
+                }
+                
+                let active = document.querySelectorAll("li.active");
+                let active_geos = [];
+                
+                for (let i = 0; i < active.length; i++) {
+                    
+                    if (typeof active[i].attributes.geo != "undefined") {
+                        
+                        active_geos.push(active[i].attributes.geo.value);
+                        
+                    }
+                }
+                
+                let active_geographies = [...new Set(active_geos)];
+                
+                geobullet_filter(active_geographies);
+                
+            }
+            
+            
+        </script>
+        
+    {{- end -}}

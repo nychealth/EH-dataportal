@@ -1,12 +1,19 @@
 
 # don't track resources folder (temp files for serve)
-resources
+resources/_gen/assets/
 
 # don't track mac file 
 .DS_Store
+.DS_Store?
 
 # don't track hugo lock file
 .hugo_build.lock
 
 # don't track node modules
-node_modules
+node_modules/
+
+content/Simplified Chinese/
+content/Spanish/
+
+# don't track build folder
+docs 

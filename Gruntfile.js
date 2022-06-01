@@ -1,58 +1,114 @@
 
+// this sits at the top level of the local dir, so "content" and "docs" are folders at the top level
+// in GHA it sits in GITHUB_WORKSPACE
+
 var YAML = require('yamljs');
 var S = require("string");
 const { pathToFileURL } = require('url');
 
-var CONTENT_PATH_PREFIX = "./content";
-var HTML_PATH_PREFIX = "./docs";
+// these are hard-coded for now, but GHA vars would allow us to change them dynamically
 
-// subdirectory variable below has been added to assist in updating hrefs for results; change in one place
+var content_dir = process.env.GITHUB_WORKSPACE + "/content";
+var build_dir   = process.env.GITHUB_WORKSPACE + "/docs";
 
-var SUBDIRECTORY = "/ehs-data-portal-frontend-temp";
+// console.log("content_dir", content_dir);
+// console.log("build_dir", build_dir);
+
+// site_root variable, constructed from repo name and github organization
+
+var repo_name  = process.env.GITHUB_REPOSITORY;         // nycehs/ehs-data-portal-frontend-temp"
+var repo_owner = process.env.GITHUB_REPOSITORY_OWNER;   // nycehs
+var site_root  = S(repo_name).chompLeft(repo_owner).s;  // ehs-data-portal-frontend-temp
+
+// console.log("repo_name", repo_name);
+// console.log("repo_owner", repo_owner);
+// console.log("site_root", site_root);
+
 
 module.exports = function(grunt) {
     
     grunt.registerTask("lunr-index", function() {
         
-        grunt.log.writeln("Build pages index");
-        
-        //  top-level indexing function  //
+        // top-level indexing function //
         
         var indexPages = function() {
+
             var mdPagesIndex = [];
             var htmlPagesIndex = [];
             var pagesIndex = [];
             
-            // running `processFile` on all HTML files in "docs"
+
+            //--------------------------------------------------------------------------------//
+            // running `processFile` on all HTML files on gh-pages branch
+            //--------------------------------------------------------------------------------//
+
+            // ([rootdir, subdir] are necessary in the function call, or else grunt throws an error, so we need them, even though they don't do anything)
             
-            grunt.file.recurse(HTML_PATH_PREFIX, function(abspath, rootdir, subdir, filename) {
+            grunt.file.recurse(build_dir, function(abspath, rootdir, subdir, filename) {
+
+                // The full path to the current file, which is nothing more than
+                // the rootdir + subdir + filename arguments, joined.
+                // abspath
+
+                // The root directory, as originally specified.
+                // rootdir
+
+                // The current file's directory, relative to rootdir.
+                // subdir
+                
+                // The filename of the current file, without any directory parts.
+                // filename                
+                
                 if (S(filename).endsWith(".html")) {
-                    // grunt.verbose.writeln("Parse file:",abspath);
-                    pageObj = processFile(abspath, filename);
+                    
+                    // console.log("abspath [HTML recurse]:", abspath);
+                    // console.log("rootdir [HTML recurse]:", rootdir);
+                    // console.log("subdir [HTML recurse]:", subdir);
+                    // console.log("filename [HTML recurse]:", filename);
+                    
+                    pageObj = processFile(abspath, rootdir, subdir, filename);
+
+                    // put the pageObj data into the index, labeled with pageObj.href
                     htmlPagesIndex[pageObj.href] = pageObj;
                 }
             });
             
+
+            //--------------------------------------------------------------------------------//
             // running `processFile` on all MD files in "content"
+            //--------------------------------------------------------------------------------//
             
-            grunt.file.recurse(CONTENT_PATH_PREFIX, function(abspath, rootdir, subdir, filename) {
+            grunt.file.recurse(content_dir, function(abspath, rootdir, subdir, filename) {
+                
                 if (S(filename).endsWith(".md")) {
-                    // grunt.verbose.writeln("Parse file:",abspath);
-                    pageObj = processFile(abspath, filename);
-                    pagesIndex.push(processFile(abspath, filename));
+                    
+                    // console.log("abspath [MD recurse]:", abspath);
+                    // console.log("rootdir [MD recurse]:", rootdir);
+                    // console.log("subdir [MD recurse]:", subdir);
+                    // console.log("filename [MD recurse]:", filename);
+                    
+                    pageObj = processFile(abspath, rootdir, subdir, filename);
+                    pagesIndex.push(pageObj);
+
+                    // put the pageObj data into the index, labeled with pageObj.href
                     mdPagesIndex[pageObj.href] = pageObj;
                 }
             });
             
-            // adding related HTML content to MD index
+
+            //--------------------------------------------------------------------------------//
+            // adding page's HTML content to its MD index
+            //--------------------------------------------------------------------------------//
             
             mdPagesIndex.forEach(function(page){
+
+                // add html content to md content
                 
                 pageObj = {
                     content: htmlPagesIndex[page.href].content,
                     keywords: page.keywords 
                 };
-                // console.log('Page Object: ', pageObj)
+                
                 pagesIndex.push(pageObj);
                 
             })
@@ -60,17 +116,25 @@ module.exports = function(grunt) {
             return pagesIndex;
         };
         
-        //  defining  general`processFile` function, which calls type-specific functions  //
+
+        //--------------------------------------------------------------------------------//
+        //  defining general `processFile` function, which calls type-specific functions
+        //--------------------------------------------------------------------------------//
         
-        var processFile = function(abspath, filename) {
+        var processFile = function(abspath, rootdir, subdir, filename) {
             
             var pageIndex;
             
             if (filename !== '.DS_Store') {
+                
                 if (S(filename).endsWith(".html")) {
-                    pageIndex = processHTMLFile(abspath, filename);
+                    
+                    pageIndex = processHTMLFile(abspath, rootdir, subdir, filename);
+                    
                 } else if (S(filename).endsWith(".md")) {
-                    pageIndex = processMDFile(abspath, filename);
+                    
+                    pageIndex = processMDFile(abspath, rootdir, subdir, filename);
+                    
                 }
                 
                 return pageIndex;
@@ -78,16 +142,24 @@ module.exports = function(grunt) {
             
         };
         
-        //  defining HTML-specific function  //
+
+        //--------------------------------------------------------------------------------//
+        // defining HTML-specific function
+        //--------------------------------------------------------------------------------//
+
+        // this only processes files from "build_dir"
         
-        var processHTMLFile = function(abspath, filename) {
+        var processHTMLFile = function(abspath, rootdir, subdir, filename) {
             
             var content = grunt.file.read(abspath);
-            var pageName = S(filename).chompRight(".html").s;
-            var href = S(abspath).chompLeft("content").s;
             
-            // href = SUBDIRECTORY + "/" + href;
-            href = SUBDIRECTORY + href;
+            // replace all file extensions, i.e. everything after a period
+
+            var pageName = S(filename).replace(/\..*/, "").s;
+            
+            href = site_root + "/" + subdir + "/" + pageName;
+
+            // console.log("href [HTML]:", href);
             
             return {
                 title: pageName,
@@ -96,9 +168,12 @@ module.exports = function(grunt) {
             };
         };
         
-        //  defining MD-specific function  //
         
-        var processMDFile = function(abspath, filename) {
+        //--------------------------------------------------------------------------------//
+        //  defining MD-specific function
+        //--------------------------------------------------------------------------------//
+        
+        var processMDFile = function(abspath, rootdir, subdir, filename) {
             
             var content = grunt.file.read(abspath);
             var pageIndex;
@@ -115,19 +190,42 @@ module.exports = function(grunt) {
                 console.log(e.message);
             }
             
-            // href for index.md files stops at the folder name
             
-            var href = S(abspath).chompLeft("content").chompRight(".md").s;
+            // replace all file extensions, i.e. everything after a period
 
-            if (filename === "_index.md" || filename === "index.md") {
+            var pageName = S(filename).replace(/\..*/, "").s;
+            
+            // if the filename has "index", maybe has 3 characters (".cn" or ".es") and then ends with ".md"
+            
+            if (filename.search(/index.{0,3}\.md/) >= 0) {
                 
-                href = S(abspath).chompLeft("content").chompRight(filename).s;
+                if (filename.search(/\.cn/) >= 0) {
+                    
+                    href = site_root + "/cn/" + subdir;
+                    
+                    // console.log("href [cn]", href);
+                    
+                } else if (filename.search(/\.es/) >= 0) {
+                    
+                    href = site_root + "/es/" + subdir;
+                    
+                    // console.log("href [es]", href);
+                    
+                } else {
+                    
+                    href = site_root + "/" + subdir;
+                    
+                }
+                
+            } else {
+                
+                href = site_root + "/" + subdir + "/" + pageName;
                 
             }
             
-            // href = SUBDIRECTORY + "/" + href;
-            href = SUBDIRECTORY + href;
+            // console.log("href [MD]:", href);
             
+
             // Build Lunr index for this page
 
             pageIndex = {
@@ -151,7 +249,8 @@ module.exports = function(grunt) {
             return pageIndex;
         };
 
-        grunt.file.write("./static/js/lunr/PagesIndex.json", JSON.stringify(indexPages(), replacer = null, space = 4));
+        grunt.file.write(build_dir + "/js/lunr/PagesIndex.json", JSON.stringify(indexPages(), replacer = null, space = 4));
         grunt.log.ok("Index built");
+
     });
 };

@@ -26,9 +26,11 @@
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                             <div class="row">
                             {{ range .Pages }}
-                            <div class="col-md-4">
-                                <p><a href="{{ .Permalink}}">{{ .Title}}</a></p>
-                            </div>
+                                {{ if ne .RelPermalink "/data-explorer/all-data/"}}
+                                    <div class="col-md-4">
+                                        <p><a href="{{ .Permalink}}">{{ .Title}}</a></p>
+                                    </div>
+                                {{ end }}
                             {{end}}
                         </div>
                     </div>
@@ -59,6 +61,16 @@
                   </div>
             </div>
 
+        </div>
+
+        <div class="row mt-4">
+            <div class="col">
+            <p><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em> 
+                {{ with .Site.GetPage "content/data-explorer/all-data.md" }}
+                <a href="{{ .Permalink }}">Browse an index of all our datasets</a>.
+                {{ end }}
+                </p>
+            </div>
         </div>
 
     </div>
