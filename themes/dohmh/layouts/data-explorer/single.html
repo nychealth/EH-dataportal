@@ -1507,20 +1507,6 @@
                         <p class="fs-sm indicator-description"><strong>Indicator description:</strong></p>
                     </div>
 
-                <div class="col-md-8">
-                    <div class="dropdown float-right">
-                        <button class="btn btn-outline-primary float-right dropdown-toggle" type="button" id="dropdownTableYear" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-align:right!important">
-                          More {{ .Title}} data
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownTableYear" id="indicator-dropdown">
-                        {{ range .Params.Indicators}}
-                            <button class="dropdown-item" onClick="loadIndicator({{ . }})" data-internal-id="{{ .internal_id }}">{{ .name}}</button>
-                            <!-- <a class="dropdown-item" href="{{ .URL}}">{{ .name}}</a> -->
-                        {{ end }}
-                        </div>
-                    </div>
-                    <h3 class="indicator-title">{{ (index .Params.indicators 0).name }}</h3>
-
                     <div class="nav nav-pills bg-white device-sm" role="tablist">
 
                         <a class="nav-item nav-link flex-fill active" id="tab-btn-table" href="#tab-table"
