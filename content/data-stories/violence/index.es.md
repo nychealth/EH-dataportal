@@ -43,7 +43,7 @@ Para analizar la violencia, las personas por lo general observan los índices de
 ### ...pero la reducción en el índice de homicidios no cuenta toda la historia. 
 En esta tabla, observamos tres tipos de consecuencias violentas y cómo los niveles de violencia varían en la ciudad: visitas a la sala de emergencias por agresiones no mortales, hospitalizaciones por agresiones no mortales y homicidios. Estos datos muestran una mayor carga de violencia. 
 
-Cuando se desglosan según la geografía, los datos muestran que algunos vecindarios tienen índices de violencia mucho más altos que otros. Los vecindarios con mayor violencia tienen índices de hospitalización por agresiones no mortales que son 10 veces más altos que los vecindarios con los índices más bajos, y 4 veces más altos que el índice de toda la ciudad. 
+Cuando se desglosan según la geografía, los datos muestran que algunos vecindarios tienen índices de violencia mucho más altos que otros. Los vecindarios con mayor violencia tienen índices de hospitalización por agresiones no mortales que son **10 veces más altos** que los vecindarios con los índices más bajos, y **4 veces más altos** que el índice de toda la ciudad. 
 
 Este patrón se mantiene en los tres indicadores. Además, los vecindarios con índices más altos de violencia tienen poblaciones más grandes de personas negras, lo que muestra que estas poblaciones asumen una carga desproporcionada de violencia. 
             
@@ -81,7 +81,7 @@ Las décadas de {{< rawhtml>}}<a href="#disinvestmentCollapse" data-toggle="coll
     <p>La historia de la falta de inversión está vinculada con prácticas y políticas racistas, como negarles préstamos a las personas negras para comprar viviendas. La falta de inversión también es una disminución planificada: un descenso estable de los fondos públicos para viviendas, servicios y educación de carácter público, en especial en ciudades y en vecindarios con una población mayormente negra.</p>
     </div>{{< /rawhtml>}}
 
-Como resultado de esta falta de inversión, vemos una clara relación entre la pobreza y la violencia. Cuando el nivel de pobreza de un vecindario aumenta, las agresiones también lo hacen. 
+Como resultado de esta falta de inversión, vemos **una clara relación entre la pobreza y la violencia**. Cuando el nivel de pobreza de un vecindario aumenta, las agresiones también lo hacen. 
 
 {{< datawrapper title="Poverty and assaults in NYC" src="qIuF8/1/" height="533" >}}
 
@@ -101,7 +101,7 @@ Como resultado de esta falta de inversión, vemos una clara relación entre la
     </div>
 {{< /rawhtml>}}
 
-En términos de salud pública, decimos que la falta de inversión genera factores ambientales que hacen que sean más probables determinadas consecuencias en la salud. 
+En términos de salud pública, decimos que la falta de inversión genera **factores ambientales** que hacen que sean más probables determinadas **consecuencias en la salud**. 
 
 {{< rawhtml>}}
 <div class="d-sm-none d-md-block">
@@ -116,7 +116,7 @@ En términos de salud pública, decimos que la falta de inversión genera fact
 </div>
 {{< /rawhtml>}}
 
-Debido a una historia de falta de inversión, los vecindarios de la ciudad de Nueva York experimentan factores ambientales muy diferentes que predicen violencia y otras consecuencias en la salud. 
+Debido a una historia de falta de inversión, los vecindarios de la ciudad de Nueva York experimentan **factores ambientales** muy diferentes que predicen violencia y otras consecuencias en la salud. 
 
 Al decir “ambiental”, nos referimos a todo el contexto físico, social y económico que nos rodea: el entorno construido, como las viviendas y los parques, y el acceso a escuelas, empleos, oportunidades, atención médica y más. 
 

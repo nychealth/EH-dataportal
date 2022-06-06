@@ -18,7 +18,7 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office"
 
 La ciudad de Nueva York posee cientos de vecindarios y casi la misma cantidad de formas de diagramar los límites de los vecindarios. Cuando [visita el Portal de Datos Ambientales y Sanitarios](https://a816-dohbesp.nyc.gov/IndicatorPublic/Subtopic.aspx) u otros recursos de datos del Departamento de Salud (Health Department), es posible que note que la información está disponible en diferentes esquemas de vecindarios.
 
-Por ejemplo, si busca en las páginas de datos sobre asma, encontrará que NTA ofrece datos sobre [Adultos con asma](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=18,4466a0,11,Summarize) presentados a través de los vecindarios de UHF34, [Niños de escuelas públicas con asma](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2147,4466a0,11,Summarize) presentados a través de los vecindarios de UHF42 y [Visitas por asma a la sala de emergencias](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2383,4466a0,11,Summarize) - FLAG INCOMPLETE SENTENCE?. Se ofrecen otros datos del portal por CD, código postal, PUMA y, en ocasiones, incluso por distrito policial. **¿Qué son estos esquemas de vecindarios, por qué usamos uno y no el otro, y por qué no está integrado todo el sistema?**
+Por ejemplo, si busca en las páginas de datos sobre asma, encontrará que [los adultos con asma](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=18,4466a0,11,Summarize) se presentan por vecindario de UHF34, [los niños de escuelas públicas con asma](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2147,4466a0,11,Summarize) se presentan por vecindarios de UHF42 y [las visitas por asma a la sala de emergencias](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2383,4466a0,11,Summarize) se ofrecen por NTA. Se ofrecen otros datos del portal por CD, código postal, PUMA y, en ocasiones, incluso por distrito policial. **¿Qué son estos esquemas de vecindarios, por qué usamos uno y no el otro, y por qué no está integrado todo el sistema?**
 
 Los límites más comunes de vecindarios en los datos del Departamento de Salud son vecindarios de Distritos Comunitarios (Community Districts, CD), Áreas de Microdatos de Uso Público (Public Use Microdata Areas, PUMA) y Fondo Hospitalario Unido (United Hospital Fund, UHF). Estos tres esquemas de vecindarios tradicionales poseen diferentes pilares principales. Analicémoslos.
 
@@ -53,7 +53,7 @@ Los límites más comunes de vecindarios en los datos del Departamento de Salud 
                 </div>
             </div>
             <div class="col-lg-4 col-sm-8 mx-auto mb-2">
-                <p>Los <span style="font-weight: bold; color: #104e34;">UHF</span>están compuestos por áreas de tabulación de códigos postales (ZCTA).</p>
+                <p>Los <span style="font-weight: bold; color: #104e34;">UHF</span> están compuestos por áreas de tabulación de códigos postales (ZCTA).</p>
                 <div style="width: 100%; height: 275px; background-color: #b4ccc2; border-radius: 10px; border: 1px solid grey;">
                     <div id="uhfparent" style="width:50%; height:100%; float:right">
                         <div style="width: 100%; height: 50%;"></div>
@@ -75,9 +75,9 @@ Existen 59 Distritos Comunitarios (Community Districts, CD) en la ciudad de Nuev
 #### Áreas de Microdatos de Uso Público
 Las Áreas de Microdatos de Uso Público (Public Use Microdata Areas, PUMA) tienen límites definidos por el Censo de los EE. UU. Están compuestas por grupos de áreas de censo.
 
-Hay 55 PUMA en la ciudad de Nueva York. Las PUMA tienen límites similares a los Distritos Comunitarios, lo que significa que, a menudo, uno puede usarse como representación del otro. En el siguiente mapa, observe cómo el CD 1 de Brooklyn, en Greenpoint/Williamsburg, es casi idéntico a la PUMA.
+Hay 55 PUMA en la ciudad de Nueva York. Las PUMA tienen límites similares a los Distritos Comunitarios, lo que significa que, a menudo, uno puede usarse como representación del otro. En el siguiente mapa, observe cómo **el CD 1 de Brooklyn, en Greenpoint/Williamsburg**, es casi idéntico a la PUMA.
 
-Hay cuatro PUMA compuestas por dos CD combinados en uno. Observe cómo dos CD en South Bronx se combinan para formar una PUMA.
+Hay cuatro PUMA compuestas por dos CD combinados en uno. Observe cómo **dos CD en South Bronx** se combinan para formar una PUMA.
 
 Cada PUMA se divide en áreas de tabulación de vecindarios (NTA), y cada NTA se divide aún más en áreas de censo.
 
@@ -130,7 +130,7 @@ Los datos sanitarios, como el registro de hospitalización de alguien, por ejemp
 
 A fin de proteger la privacidad, solemos agrupar (o conglomerar) datos de un área más grande, por lo que necesitamos un esquema de vecindarios que estén compuestos por un conjunto de códigos postales: UHF. La recolección de datos por código postal y su posterior “transformación” en vecindarios de UHF se ha utilizado en la investigación sanitaria durante décadas. Los métodos para nuestras encuestas (como la Encuesta de Salud Comunitaria) están diseñados para incluir a suficientes personas de cada vecindario de UHF a fin de que haya una “muestra representativa” de todos los neoyorquinos, y para que podamos comparar los vecindarios con una alta fiabilidad estadística. Por lo general, usamos los vecindarios de UHF42, que dividen a la ciudad en 42 vecindarios. Sin embargo, a veces usamos los vecindarios de UHF34; agrupando algunos de los vecindarios, podemos aumentar el poder estadístico de una encuesta.
 
-En el siguiente mapa, observe cómo tres vecindarios de UHF42 en South Bronx se combinan en un vecindario de UHF34, y cómo los vecindarios de UHF tienen códigos postales (o, más precisamente, áreas de tabulación de códigos postales) como su unidad de origen.
+En el siguiente mapa, observe cómo **tres vecindarios de UHF42 en South Bronx** se combinan en un vecindario de UHF34, y cómo los vecindarios de UHF tienen códigos postales (o, más precisamente, áreas de tabulación de códigos postales) como su unidad de origen.
 
 {{< rawhtml >}}
   <input type="radio" name="uhfRadioGroup" value="42" id="42" checked> <label for="42">UHF42</label> &nbsp;&nbsp;
@@ -181,7 +181,7 @@ Tenemos [una herramienta que ayuda a ver la superposición y las diferencias](ht
 
 En el Portal de Datos Ambientales y Sanitarios (EH), sumamos datos de múltiples fuentes diferentes. Es posible que no se alineen exactamente de la forma que queremos: cuando los datos se recopilan de diferentes formas para fines distintos, habrá diferencias en la geografía subyacente disponible. El hecho de que no haya una unidad de origen consistente dificulta las cosas.
 
-Sim embargo, cualquier forma de diagramar los límites o de sumar datos aplacará algunas variaciones en los grupos. A pesar de las limitaciones en los datos, aún podemos observar patrones sanitarios por geografía, y obtener información valiosa sobre cómo los vecindarios se diferencian y por qué. Los datos sanitarios de los vecindarios tienen mucho que decirnos, incluso cuando sus límites no son representaciones perfectas de las comunidades de la ciudad de Nueva York.
+Sin embargo, *cualquier* forma de diagramar los límites o de sumar datos aplacará algunas variaciones en los grupos. A pesar de las limitaciones en los datos, aún podemos observar patrones sanitarios por geografía, y obtener información valiosa sobre cómo los vecindarios se diferencian y por qué. Los datos sanitarios de los vecindarios tienen mucho que decirnos, incluso cuando sus límites no son representaciones perfectas de las comunidades de la ciudad de Nueva York.
 
 ---
 
