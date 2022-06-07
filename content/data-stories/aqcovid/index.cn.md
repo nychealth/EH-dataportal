@@ -22,7 +22,7 @@ photocredit: "Ed Reed/Mayoral Photography Office"
 
 然而，随着纽约市及周边社区采取减缓COVID-19传播的措施，纽约市的空气质量发生了显著变化。例如，随着纽约市民开始居家隔离，当我们查看Midtown Manhattan的空气质量时，PM2.5水平得到降低。
 
-{{< datawrapper title="空中监测显示纽约市民都待在家里" src="1LJJ1/1/" height="400" >}}
+{{< datawrapper title="空气监测显示纽约市民都待在家里" src="1LJJ1/1/" height="400" >}}
 
 春季和秋季的PM2.5水平往往低于冬季或夏季，因此3月和4月初的水平下降是正常的。然而，像midtown Manhattan这样交通流量大的站点的PM2.5水平通常始终高于交通流量小的站点。从春季开始，Midtown站点的PM2.5水平比往常更接近交通流量小的Queens区的参考位置。
 

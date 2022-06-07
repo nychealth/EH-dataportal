@@ -62,12 +62,12 @@ photocredit: "Benjamin Kanter/Mayoral Photography Office"
     <div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="redliningCollapse">
     <p>红线圈定是一项始于20世纪30年代的联邦政策。一个政府机构绘制了美国数百个城市的地图，并将其中的社区从“最好”到“危险”进行分级。他们的标准包括居住在这些社区的人的种族。 </p>
     <p>联邦政府和私人银行都使用这些地图来确定是否提供贷款支持，以便人们可以购买房屋。通过这个系统，有色人种被剥夺了购房的机会，而白人的购房则得到了联邦政府的补贴。 </p>
-    <p>根据种族界限进行红线圈定的做法推动了种族隔离和经济不平等。它的影响一直持续至今。根据全国社区再投资联盟（<a
-    href="https://ncrc.org/holc/">National Community Reinvestment Coalition</a>），在1930年代划红线圈定的美国，每4个社区中就有3个在今天仍然是中低收入，并且每3个社区中有2个主要由有色人种居住。</p>
+    <p>根据种族界限进行红线圈定的做法推动了种族隔离和经济不平等。它的影响一直持续至今。根据 <a
+    href="https://ncrc.org/holc/">全国社区再投资联盟 (National Community Reinvestment Coalition)</a>，在1930年代划红线圈定的美国，每4个社区中就有3个在今天仍然是中低收入，并且每3个社区中有2个主要由有色人种居住。</p>
     </div>
 {{< /rawhtml>}}
 
-最近枪击事件的地图与Bronx、Harlem以及Northern Brooklyn和Eastern Brooklyn的红线圈定区域保持一致，这清楚地显示了如今的暴力与种族主义与我们的社会结构密不可分。 
+最近枪击事件的地图与Bronx、Harlem以及Northern Brooklyn和Eastern Brooklyn的红线圈定区域保持一致，这清楚地显示了如今的暴力与种族主义与我**们的社会**结构密不可分。 
 
 {{< rawhtml>}}
 <div class="my-3">
@@ -91,7 +91,7 @@ photocredit: "Benjamin Kanter/Mayoral Photography Office"
     <div class="collapse py-2 px-2 mx-2 mb-2 drawerbg" id="disinvestmentCollapseTwo">
     <p>投资缩减可以是： 
         <ul>
-            <li>拒绝人们获得贷款购买房屋，例如红线圈定和其他有据可查的种族主义类的房地产行为。 </li>
+            <li>拒绝人们获得贷款购买房屋，例如红线圈定和其他有据可查的种族主义类的房地产行为 </li>
             <li>业主忽视住房，导致住房不健康 </li>
             <li>资金不足的学校 </li>
             <li>工作机会减少和低薪工作 </li>

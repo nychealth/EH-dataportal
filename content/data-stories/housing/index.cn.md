@@ -328,7 +328,7 @@ function changeMap(x) {
 ### 种族主义和投资缩减带来的问题也体现在健康数据中。
 对有色人种社区的投资缩减导致住房年久失修，进而产生不健康的住房。年久失修、霉菌和害虫会引发哮喘发作，使患有哮喘的儿童被送进医院——这对儿童和他们的看护人来说通常是可怕的经历。
 
-因此，5至14岁儿童哮喘病急诊科就诊率最高的社区是有色人种聚居区。
+因此，5至14岁儿童哮喘急诊就诊率最高的社区是有色人种聚居区。
 
 {{< rawhtml>}}
 </div>
@@ -372,7 +372,7 @@ function changeMap(x) {
 {{< /rawhtml>}}
 {{< figure src="h1.jpeg" Alt="Workers work on a building.">}}
 政策制定者和社区倡导者可以支持种族正义倡议：
-- 投资那些被结构性种族主义历史所伤害的社区。促进经济和教育平等，支持[Where We Live initiatives](https://wherewelive.cityofnewyork.us/).
+- 投资那些被结构性种族主义历史所伤害的社区。促进经济和教育公平，支持[Where We Live 倡议](https://wherewelive.cityofnewyork.us/)。
 - 支持房屋维护及发展局（Department of Housing Preservation and Development，DHPD）为修复老房而提出的倡议。
 {{< rawhtml>}}
 </div>
@@ -382,8 +382,8 @@ function changeMap(x) {
 {{< figure src="h2.jpeg" Alt="A New York City residential street.">}}
 
 租户和业主可以进入此处的系统以为您提供援助：
-- 向您的建筑物管理人报告维修问题。如果您的建筑物管理人不解决问题,可以拨打311[发起业主维修投诉。](https://www1.nyc.gov/nyc-resources/service/1950/residential-maintenance-complaint).
-- 如果需要，请获取帮助：如果您被诊断患有哮喘，且住在有老鼠或蟑螂的家里，您可能有资格接受卫生局（Health Department）[健康社区计划](https://www1.nyc.gov/site/doh/health/health-topics/healthy-neighborhoods-asthma-triggers.page) 的免费住房评估。
+- [如果您的建筑物管理人不解决问题，可以拨打311发起业主维修投诉。](https://www1.nyc.gov/nyc-resources/service/1950/residential-maintenance-complaint).
+- 如果需要，请获取帮助：[您可能有资格接受卫生局（Health Department）健康社区计划 的免费住房评估。](https://www1.nyc.gov/site/doh/health/health-topics/healthy-neighborhoods-asthma-triggers.page) 的免费住房评估。
 - [加入Where We Live，为实现公平住房一起行动。](https://wherewelive.cityofnewyork.us/)
 {{< rawhtml>}}
 </div>
@@ -396,7 +396,7 @@ function changeMap(x) {
 建筑物所有者和业主应保持公寓的安全和卫生——这是法律的要求。
 - 及时修理租户报告的问题。
 - 除虫、除霉、封缝、补漏、改善垃圾管理。
-- 雇佣一个好的害虫管理专业人员，使用综合的害虫管理方法（IPM）。关于如何安全管理害虫的信息，请见卫生局的 [IPM工具包。](https://www1.nyc.gov/assets/doh/downloads/pdf/pesticide/ipm-toolkit.pdf).
+- [关于如何安全管理害虫的信息，请见卫生局的 IPM工具包。](https://www1.nyc.gov/assets/doh/downloads/pdf/pesticide/ipm-toolkit.pdf)
 {{< rawhtml>}}
 </div>
 {{< /rawhtml>}}
