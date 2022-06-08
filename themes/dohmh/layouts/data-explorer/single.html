@@ -110,6 +110,7 @@
                     let fullDataMapObjects;
                     let fullDataTrendObjects;
                     let fullDataLinksObjects;
+                    let joinedDataLinksObjects;
 
                     let indicator;
                     let defaultIndicator = false;
@@ -122,6 +123,8 @@
                     let defaultTrendMeasure = [];
                     let defaultMapMeasure = [];
                     let defaultLinksMeasure = [];
+                    let defaultLinkMeasureTimes = [];
+
                     let selectedMapMeasure = false
                     let selectedTrendMeasure = false;
                     let selectedLinksMeasure = false;
@@ -129,6 +132,12 @@
                     let selectedMapSources;
                     let selectedTrendAbout;
                     let selectedTrendSources;
+                    let selectedLinksAbout;
+                    let selectedLinksSources;
+                    let selectedLinkMeasureData = [];
+                    let selectedlinksSecondaryIndicatorData = [];
+                    let selectedlinksSecondaryMeasureData = [];
+                    let selectedlinksSecondaryMeasureTime;
                     
                     let mapMeasures = [];
                     let trendMeasures = [];
@@ -179,6 +188,11 @@
                         });
                         tabLinks.addEventListener('click', () => {
                             updateChartPlotSize();
+                            if (!selectedLinksMeasure) {
+                                renderAboutSources(defaultLinksMeasure[0].how_calculated, defaultLinksMeasure[0].Sources);
+                            } else {
+                                renderAboutSources(selectedLinksAbout, selectedLinksSources);
+                            }
                         });
                     });
 
@@ -215,8 +229,9 @@
 
                         fullDataMapObjects = filterUHF42;
                         fullDataTrendObjects = [...filterBorough].concat(filterCitywide);
-                        fullDataLinksObjects = joinedAqData;
-
+                        fullDataLinksObjects = joinedAqData.objects();
+                        joinedAqData.print
+                        console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& render')
                         renderMeasures();
                     }
 
@@ -247,6 +262,167 @@
                                 console.log('==========================================================================')
                                 console.log('Load Date - aqData')
                                 aqData.print();
+                            })
+                    }
+
+                    // returned the array of measure in indicators.json
+                    const filterSecondaryIndicatorMeasure = (primaryMeasure) => {
+                        console.log('==========================================================================')
+                        console.log("PRIMARY MEASURE DATA: ", primaryMeasure)
+                        const primaryMeasureId = primaryMeasure[0].VisOptions[0].Links[0].MeasureID;
+                        const primaryMeasureTimes = primaryMeasure[0].AvailableTimes;
+                        const filteredSecondaryIndicator =  indicators.filter(indicator =>
+                            indicator.Measures.some(measure => 
+                                measure.MeasureID === primaryMeasureId)
+                        )
+
+                        const filteredSecondaryMeasure = filteredSecondaryIndicator[0].Measures.filter(m =>
+                            m.MeasureID === primaryMeasureId
+                        )
+
+                        selectedlinksSecondaryIndicatorData = filteredSecondaryIndicator
+                        selectedlinksSecondaryMeasureData = filteredSecondaryMeasure
+
+                        console.log('PRIMARY MEASURE TIMES: +++++++++++ ', primaryMeasureTimes)
+                        console.log('FILTERED AXIS INDICATOR: --------- ', filteredSecondaryIndicator)
+                        console.log('FILTERED AXIS MEASURE: +++++++++++ ', filteredSecondaryMeasure)
+
+                        const sortedPrimaryMeasureTimes = primaryMeasureTimes.sort((a, b) => b.end_period - a.end_period)
+                        const mostRecentPrimaryMeasureTime = sortedPrimaryMeasureTimes[0].TimeDescription;
+                        const mostRecentPrimaryMeasureStartTime = sortedPrimaryMeasureTimes[0].start_period;
+                        const mostRecentPrimaryMeasureEndTime = sortedPrimaryMeasureTimes[0].end_period;
+
+                        const aqPrimaryMeasureTimes = aq.from(primaryMeasureTimes);
+
+                        console.log('MOST RECENT PRIMARY MEASURE START + END TIME: -------------- ', mostRecentPrimaryMeasureTime, mostRecentPrimaryMeasureStartTime, mostRecentPrimaryMeasureEndTime)
+
+                        aqPrimaryMeasureTimes.print()
+                        
+                        console.log('most recent mmmm ', aq.from([sortedPrimaryMeasureTimes[0]]))
+                        const secondaryMeasureTimes = filteredSecondaryMeasure[0].AvailableTimes;
+                        const sortedSecondaryMeasureTimes = secondaryMeasureTimes.sort((a, b) => b.end_period - a.end_period)
+                        const mostRecentSecondaryMeasureTime = sortedSecondaryMeasureTimes[0].TimeDescription;
+                        const mostRecentSecondaryMeasureStartTime = sortedSecondaryMeasureTimes[0].start_period;
+                        const mostRecentSecondaryMeasureEndTime = sortedSecondaryMeasureTimes[0].end_period;
+
+                        const aqSecondaryMeasureTimes = aq.from(secondaryMeasureTimes);
+                        
+
+
+                        const filteredMatchingTimes = sortedSecondaryMeasureTimes.filter(t => 
+                                // t.start_period >= mostRecentPrimaryMeasureStartTime && t.end_period <= mostRecentPrimaryMeasureEndTime
+                                t.start_period >= 'no' && t.end_period <= 'yes'
+                            )
+
+                            if (!filteredMatchingTimes.length) {
+                                console.log('no match')
+                                const mostRecentMatchingTime = sortedSecondaryMeasureTimes.filter(t => 
+                                    t.end_period === mostRecentPrimaryMeasureEndTime
+                                    // t.start_period >= 'no' && t.end_period <= 'yes'
+                                )
+                                console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ most recent mathcing time: ', mostRecentMatchingTime)
+                            }
+
+                            console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> mathcing times', filteredMatchingTimes)
+                        console.log('SORTED SECONDARY MEASURE TIMES: ', sortedSecondaryMeasureTimes )
+                        console.log('MOST RECENT SECONDARY MEASURE START + END TIME: -------------- ', mostRecentSecondaryMeasureTime, mostRecentSecondaryMeasureStartTime, mostRecentSecondaryMeasureEndTime)
+
+                        const filteredSecondaryIndicatorId = filteredSecondaryIndicator[0].IndicatorID;
+                            const sortedPrimaryT = aq.from(sortedPrimaryMeasureTimes)
+
+                        fetch(`https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/data/${filteredSecondaryIndicatorId}.json`)
+                            .then(response => response.json())
+                            .then(data => {
+                                
+                                const filteredSecondaryMeasureData = data.filter(d => d.MeasureID === primaryMeasureId)
+                                console.log('data: -----------------------------------> ', filteredSecondaryMeasureData)
+                                console.log('swwwwdwdadwdadadwadad ', sortedSecondaryMeasureTimes)
+
+                                // const testData = aq.from(fullDataLinksObjects)
+                                //     .join(sortedSecondaryT, ["Time", "TimeDescription"])
+                                //     .filter(d => d.Time === '2007-2011')
+                                const aqJoinedSecondaryLinksData = aq.from(filteredSecondaryMeasureData)
+                                    .groupby("Time", "GeoType", "GeoID", 'MeasureID')
+                                    .pivot("MeasurementType", "Value")
+                                    .join(geoTable, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
+                                    .join(aqSecondaryMeasureTimes, ["Time", "TimeDescription"])
+                                    .relocate(['Name'], { after: 'GeoID' })
+                                    .relocate(['Geotype'], { before: 'GeoID' })
+                                    .rename({
+                                        'Name': 'Geography',
+                                    })
+                                    
+                                    
+                                    // .filter(d => op.parse_int(d.Time) >= 2007 && op.parse_int(d.Time) === 2011)
+                                    // .join(testData, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
+                                    
+                                    // aq.from(fullDataLinksObjects).filter(d => d.Time === '2007-2011').print()
+                                    console.log('^^^^^^^^^^^^^^^^^ full data ^^^^^^^^^^^^^^^^^^^^^^^^', fullDataLinksObjects)
+
+
+                                const  aqJoinedPrimaryLinksData = aq.from(fullDataLinksObjects)
+                                    .join(aqPrimaryMeasureTimes, ["Time", "TimeDescription"])
+
+                                    console.log('@@@@@@@@@@@@@@@@@@@@ AQ PRIMARY DATA @@@@@@@@@@@@@@@@@@@@@@@@@ ', )
+                                    aqJoinedPrimaryLinksData.print()
+
+                                    const joinedPrimaryLinksDataObject = aqJoinedPrimaryLinksData.objects();
+                                    const filteredJoinedPrimaryLinksDataObject = joinedPrimaryLinksDataObject.filter(d => 
+                                        d.start_period == mostRecentPrimaryMeasureStartTime && d.end_period == mostRecentPrimaryMeasureEndTime)
+
+                                    
+
+
+                                    const joinedSecondaryLinksDataObject = aqJoinedSecondaryLinksData.objects();
+
+                                    let mostRecentJoinedSecondaryLinksDataObject = []
+
+                                    const overlappedData = joinedSecondaryLinksDataObject.filter(d => 
+                                        d.start_period >=  mostRecentPrimaryMeasureStartTime && d.end_period <= mostRecentPrimaryMeasureEndTime)
+
+                                    const matchEndData = joinedSecondaryLinksDataObject.filter(d => 
+                                        d.end_period === mostRecentPrimaryMeasureEndTime)
+
+                                        console.log('lllllllllllllll ', matchEndData)
+                                    
+                                    if (overlappedData.length) {
+                                        mostRecentJoinedSecondaryLinksDataObject = overlappedData
+                                    } else {
+                                        mostRecentJoinedSecondaryLinksDataObject = matchEndData
+                                    }
+
+                                    console.log('````````````````````` this `````````````', matchEndData)
+
+                                    const secondaryYears =  [...new Set(mostRecentJoinedSecondaryLinksDataObject.map(item => item.Time))];
+
+                                    const highest = Math.max(...secondaryYears);
+
+                                    // get lowest number
+                                    const lowest = Math.min(...secondaryYears);
+
+                                    if (secondaryYears.length > 1) {
+                                        selectedlinksSecondaryMeasureTime = `${lowest}-${highest}`;
+                                    } else {
+                                        selectedlinksSecondaryMeasureTime = `${secondaryYears[0]}`
+                                    }
+                                    
+                                    console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SEONDARY YEARS', secondaryYears, highest, lowest)
+
+
+                                    const aqMostRecentJoinedSecondaryLinksDataObject = aq.from(mostRecentJoinedSecondaryLinksDataObject)
+
+                                    const aqJoinedPrimarySecondaryData = aq.from(filteredJoinedPrimaryLinksDataObject)
+                                        .join(aqMostRecentJoinedSecondaryLinksDataObject, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
+                                    
+                                        aqJoinedPrimarySecondaryData.print()
+                                    
+                                    joinedDataLinksObjects = aqJoinedPrimarySecondaryData.objects();
+
+                                    
+
+                                // console.log('==========================================================================')
+                                // console.log('Load Date - aqJoinedSecondaryLinksData')
+                                // aq.from(mostRecentJoinedSecondaryLinksDataObject).print();
                             })
                     }
 
@@ -810,33 +986,33 @@
                             "background": "#FFFFFF",
                             // "title": {"anchor": "start", "fontSize": 18, "font": "Calibri"},
                             "axisX": {
-                            "domain": true,
-                            "domainColor": "#000000",
-                            "domainWidth": 1,
-                            "grid": false,
-                            "labelFontSize": 12,
+                            // "domain": true,
+                            // "domainColor": "#000000",
+                            // "domainWidth": 1,
+                            // "grid": false,
+                            // "labelFontSize": 12,
                             "labelAngle": 0,
-                            "tickColor": "#000000",
-                            "tickSize": 5,
-                            "titleFontSize": 12,
-                            "titlePadding": 10
+                            // "tickColor": "#000000",
+                            // "tickSize": 5,
+                            // "titleFontSize": 12,
+                            // "titlePadding": 10
                             },
                             
                             "axisY": {
-                            "domain": false,
-                            "domainWidth": 1,
-                            "grid": true,
-                            "gridColor": "#DEDDDD",
-                            "gridWidth": 1,
-                            "labelFontSize": 12,
-                            "labelPadding": 8,
-                            "ticks": false,
-                            "titleFontSize": 12,
-                            "titlePadding": 10,
-                            "titleFont": "Lato",
-                            "titleAngle": 0,
-                            "titleY": -10,
-                            "titleX": 18
+                            // "domain": false,
+                            // "domainWidth": 1,
+                            // "grid": true,
+                            // "gridColor": "#DEDDDD",
+                            // "gridWidth": 1,
+                            // "labelFontSize": 12,
+                            // "labelPadding": 8,
+                            // "ticks": false,
+                            // "titleFontSize": 12,
+                            // "titlePadding": 10,
+                            // "titleFont": "Lato",
+                            // "titleAngle": 0,
+                            // "titleY": -10,
+                            // "titleX": 18
                             },
 
 
@@ -993,12 +1169,76 @@
                         
 
                     // Render Links Chart using Vegalight
-                    const renderLinksChart = (selectedData, selectedMeasure) => {
+                    const renderLinksChart = (selectedData, selectedMeasure, selectedDisplay, selectedAxis, selectedMeasureId, selectedSecondaryMeasureId) => {
                         console.log('==========================================================================')
-                        console.log('RENDER Links DATA ', )
+                        const defaultLinksMeasureId = defaultLinksMeasure[0].VisOptions[0].Links[0].MeasureID;
+                        const defaultLinksAxis = defaultLinksMeasure[0].VisOptions[0].Links[0].Axis;
+                        const linkAxisMeasure = selectedData ? filterSecondaryIndicatorMeasure(selectedData) : filterSecondaryIndicatorMeasure(defaultLinksMeasure)
+                        const linkAxisMeasureId = selectedSecondaryMeasureId ? selectedSecondaryMeasureId : defaultLinksMeasureId;
+                        const linksMeasure = selectedMeasure ? selectedMeasure : defaultLinksMeasure[0].MeasurementType;
+                        const linkAxis = selectedAxis ? selectedAxis : defaultLinksAxis;
+                        const linksDisplay = selectedDisplay ? selectedDisplay : defaultLinksMeasure[0].DisplayType;
+                        const linkAxisDisplay = selectedlinksSecondaryMeasureData[0].DisplayType;
+                        const linksTime = selectedData ? selectedData[0].AvailableTimes[0].TimeDescription : defaultLinksMeasure[0].AvailableTimes[0].TimeDescription;
+                        const linksAxisTime = selectedlinksSecondaryMeasureTime;
 
+                        console.log('RENDER Links DATA ', linksMeasures)
+                        console.log('RENDER LINKS DEFAULT MEASURE: ', defaultLinksMeasure)
+                        console.log('RENDER LINKS DEFAULT MEASURE ID: ', defaultLinksMeasureId)
+                        console.log('RENDER LINKS DEFAULT AXIS: ', defaultLinksAxis)
+                        console.log('RENDER LINKS SELECTED DATA: ', selectedData)
+                        console.log('RENDER LINKS SELECTED MEASURE: ', selectedMeasure)
+                        console.log('RENDER LINKS SELECTED SECONDARY MEASURE ID: ', selectedSecondaryMeasureId)
+                        console.log('RENDER LINKS SELECTED AXIS: ', selectedMeasureId)
+                        console.log('RENDDER LINKS DISPLAY: ', linksDisplay)
+                        console.log('indicators: ', indicators)
 
-                        var spec = {
+                        const filteredIndicator =  indicators.filter(indicator =>
+                            indicator.Measures.some(measure => 
+                                measure.MeasureID === linkAxisMeasureId)
+                        )
+
+                        const thisMeasure = filteredIndicator[0].Measures.filter(m =>
+                            m.MeasureID === linkAxisMeasureId
+                        )
+
+                        const linkAxisMeas = thisMeasure[0].MeasurementType
+                        
+                        let xMeasure;
+                        let yMeasure;
+                        let xDisplay = null;
+                        let yDisplay = null;
+                        let xTime;
+                        let yTime;
+                        let xIndicatorName;
+                        let yIndicatorname;
+
+                        switch(linkAxis) {
+                            case 'y': 
+                                yMeasure = linkAxisMeas;
+                                xMeasure = linksMeasure;
+                                yDisplay = linkAxisDisplay ? linkAxisDisplay : '';
+                                xDisplay = linksDisplay ? linksDisplay : '';
+                                yTime = linksAxisTime;
+                                xTime = linksTime;
+                                yIndicatorName = selectedlinksSecondaryIndicatorData[0].IndicatorName;
+                                xIndicatorName = indicatorName;
+                                break;
+                            case 'x':
+                                yMeasure = linksMeasure;
+                                xMeasure = linkAxisMeas;
+                                yDisplay = linksDisplay ? linksDisplay : '';
+                                xDisplay = linkAxisDisplay ? linkAxisDisplay : '';
+                                yTime = linksTime;
+                                xTime = linksAxisTime;
+                                yIndicatorName = indicatorName;
+                                xIndicatorName = selectedlinksSecondaryIndicatorData[0].IndicatorName;
+                                break;
+                        }
+
+                        console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>> ', selectedlinksSecondaryMeasureData, selectedlinksSecondaryIndicatorData)
+
+                        /* var spec = {
                             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
                             "description": "Asthma 5-17 ED visit rate and poverty scatterplot",
                             "width": "container",
@@ -1080,42 +1320,44 @@
 
 
                             vegaEmbed("#links", spec);
+                            */
 
-                            var spec2 = {
+                            setTimeout(() => {
+                                var spec2 = {
                                 "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
                                 "description": "Asthma 5-17 ED visit rate and poverty scatterplot",
                                 "width": "container",
-                                "height": 400,
+                                "height": "container",
                                 "config": {
                                     "background": "#FFFFFF",
                                     "title": {"anchor": "start", "fontSize": 18, "font": "Calibri"},
                                     "axisX": {
-                                    "domain": true,
-                                    "domainColor": "#000000",
-                                    "domainWidth": 1,
-                                    "grid": false,
-                                    "labelFontSize": 14,
-                                    "labelAngle": 0,
-                                    "tickColor": "#000000",
-                                    "tickSize": 5,
-                                    "titleFontSize": 12,
-                                    "titlePadding": 10
+                                    // "domain": true,
+                                    // "domainColor": "#000000",
+                                    // "domainWidth": 1,
+                                    // "grid": false,
+                                    // "labelFontSize": 14,
+                                    // "labelAngle": 0,
+                                    // "tickColor": "#000000",
+                                    // "tickSize": 5,
+                                    // "titleFontSize": 12,
+                                    // "titlePadding": 10
                                     },
                                     "axisY": {
-                                        "domain": false,
-                                        "domainWidth": 1,
-                                        "grid": true,
-                                        "gridColor": "#DEDDDD",
-                                        "gridWidth": 1,
-                                        "labelFontSize": 14,
-                                        "labelPadding": 8,
-                                        "ticks": false,
+                                        // "domain": false,
+                                        // "domainWidth": 1,
+                                        // "grid": true,
+                                        // "gridColor": "#DEDDDD",
+                                        // "gridWidth": 1,
+                                        // "labelFontSize": 14,
+                                        // "labelPadding": 8,
+                                        // "ticks": false,
                                         "titleFontSize": 12,
                                         "titlePadding": 10,
-                                        "titleFont": "Lato",
-                                        "titleAngle": 0,
-                                        "titleY": -10,
-                                        "titleX": 80
+                                        // "titleFont": "Calibri",
+                                        // "titleAngle": -90,
+                                        // "titleY": 0,
+                                        // "titleX": 0
                                     },
                                     "legend": {
                                         "labelFontSize": 14,
@@ -1139,7 +1381,9 @@
                                     "size": 11
                                     }
                                 },
-                                "data": {"url": "https://gist.githubusercontent.com/mmontesanonyc/436de650b919784691ed42dd321c38f2/raw/074bd84e78473b8a2099e66a0d6bf8caba32b594/scatter-sample-data.csv"},
+                                "data": {
+                                    "values": joinedDataLinksObjects
+                                },
                                 "mark": {"type": "circle", "filled": true, "size": 500, "stroke": "#727272", "strokeWidth": 2},
                                 "params": [
                                     {
@@ -1148,14 +1392,39 @@
                                     }
                                 ],
                                 "encoding": {
-                                    "y": {"field": "Estimated Annual Rate (per 10,000 residents)", "type": "quantitative"},
-                                    "x": {"field": "Poverty (percent)", "type": "quantitative"},
-                                    "tooltip": [{"field": "Geography", "type": "nominal"},
-                                    {"field": "Estimated Annual Rate (per 10,000 residents)", "type": "quantitative"},
-                                    {"field": "Poverty (percent)", "type": "quantitative"}
+                                    "y": {
+                                        "title": [`${yIndicatorName && `${yIndicatorName}`}`, `- ${yMeasure} ${yDisplay && `(${yDisplay})`} ${yTime}`],
+                                        "field": yMeasure,
+                                        "type": "quantitative",
+                                        // "labelAngle": 0
+                                    },
+                                    "x": {
+                                        "title": `${xIndicatorName && `${xIndicatorName} - `} ${xMeasure} ${xDisplay && `(${xDisplay})`} ${xTime}`,
+                                        "field": xMeasure,
+                                        "type": "quantitative"
+                                    },
+                                    "tooltip": [
+                                        {
+                                            "title": "Time",
+                                            "field": "Time_2",
+                                            "type": "nominal"
+                                        },
+                                        {
+                                            "title": "Geography",
+                                            "field": "Geography_1",
+                                            "type": "nominal"
+                                        },
+                                        {
+                                            "field": yMeasure,
+                                            "type": "quantitative"},
+                                        {
+                                            "field": xMeasure,
+                                            "type": "quantitative"
+                                        }
                                     ],
                                     "color": {
-                                        "field": "Borough", "type": "nominal"
+                                        "field": "Geography_1",
+                                        "type": "nominal"
                                     },
                                     "opacity": {
                                         "condition": {
@@ -1168,6 +1437,9 @@
                             }
 
                             vegaEmbed("#links", spec2);
+                            }, 300)
+                                
+                            
                     }
 
                     const updateMapData = (e) => {
@@ -1196,8 +1468,24 @@
                         selectedTrendAbout = about;
                         selectedTrendSources =  sources;
                         renderAboutSources(about, sources);
-                        renderTrendChart(fullDataTrendObjects, measure, display, disparities)
-                        selectedTrendMeasure = true
+                        renderTrendChart(fullDataTrendObjects, measure, display, disparities);
+                        selectedTrendMeasure = true;
+                    }
+
+                    const updateLinksData = (e) => {
+                        const measure = e.target.dataset.measure;
+                        const axis = e.target.dataset.axis;
+                        const measureId = parseInt(e.target.dataset.measureId);
+                        const secondaryMeasureId = parseInt(e.target.dataset.secondaryMeasureId);
+                        const about = e.target.dataset.about;
+                        const sources = e.target.dataset.sources;
+                        const display = e.target.dataset.display;
+                        selectedLinkMeasureData = linksMeasures.filter(m => m.MeasureID === measureId)
+                        selectedLinksAbout = about;
+                        selectedLinksSources =  sources;
+                        renderAboutSources(about, sources);
+                        renderLinksChart(selectedLinkMeasureData, measure, display, axis, measureId, secondaryMeasureId)
+                        selectedLinksMeasure = true;
                     }
 
                     const setDefaultMapMeasure = (defaultArray, visArray) => {
@@ -1267,6 +1555,46 @@
                             } else {
                                 defaultArray.push(visArray[0]);
                             }
+                        }                        
+                    }
+
+                    const setDefaultLinksMeasure = (defaultArray, visArray) => {
+                        defaultArray.length = 0;
+
+                        console.log('-------------------------- Vis ', visArray)
+
+                        if (visArray.length > 0) {
+                            const hasAgeAdjustedRate = visArray.filter(measure =>
+                                measure.MeasurementType.includes('Age Adjusted Rate')
+                            )
+                            const hasRate = visArray.filter(measure =>
+                                measure.MeasurementType.includes('Rate')
+                            )
+                            const hasPercent = visArray.filter(measure =>
+                                measure.MeasurementType.includes('Percent')
+                            )
+
+                            if (hasAgeAdjustedRate.length) {
+                                const hasAgeAdjustedRateTotal = hasAgeAdjustedRate.filter(measure => 
+                                    measure.MeasurementType.includes('Total')
+                                )
+                                // Set total as default if available
+                                if (hasAgeAdjustedRateTotal.length) {
+                                    defaultArray.push(hasAgeAdjustedRateTotal[0]);
+                                } else {
+                                    defaultArray.push(hasAgeAdjustedRate[0]);
+                                }
+                                
+                            } else if (hasRate.length) {
+                                defaultArray.push(hasRate[0]);
+                            } else if (hasPercent.length) {
+                                defaultArray.push(hasPercent[0]);
+                            } else {
+                                defaultArray.push(visArray[0]);
+                            }
+                            defaultLinkMeasureTimes = defaultArray[0].AvailableTime;
+                            const defaultArrayMeasureId = defaultArray[0].VisOptions[0].Links[0].MeasureID;
+                            filterSecondaryIndicatorMeasure(defaultArray)
                         }
                         
                     }
@@ -1303,6 +1631,7 @@
                     const renderMeasures = () => {
                         console.log('==========================================================================')
                         console.log('Render Measures')
+                        linksMeasures.length = 0
 
                         const contentSummary = document.querySelector('#tab-table');
                         const contentMap = document.querySelector('#tab-map')
@@ -1358,7 +1687,7 @@
                                 mapMeasures.push(measure)
                                 dropdownMapMeasures.innerHTML += `<div class="dropdown-title"><strong> ${type}</strong></div>`;
                                 mapYears.map((time, index) => {
-                                    dropdownMapMeasures.innerHTML += `<button class="dropdown-item link-measure" data-measure="${type}" data-display="${displayType}" data-date="${time}" data-about="${about}" data-sources="${sources}"> ${time}</button>`
+                                    dropdownMapMeasures.innerHTML += `<button class="dropdown-item link-measure" data-measure="${type}" data-display="${displayType}" data-date="${time}" data-about="${about}" data-sources="${sources}"> ${time}</button>`;
                                 })
                             }
 
@@ -1371,16 +1700,19 @@
 
                             if (links) {
                                 linksMeasures.push(measure)
-                                if  (fullDataTrendObjects) {
-                                    const linkYears =  [...new Set(fullDataTrendObjects.map(item => item.Time))]
-                                    dropdownLinksMeasures.innerHTML += `<button class="dropdown-item link-measure" data-measure="${type}" data-display="${displayType}" data-date="${years[index].TimeDescription}"  data-about="${about}" data-sources="${sources}" data-datestart="${years[index].start_period}" data-dateend="${years[index].end_period}"> ${type}</button>`;
+                                const linkAxis = measure.VisOptions[0].Links[0].Axis;
+                                const linkMeasureId = measure.MeasureID;
+                                const linkSecondaryMeasureId = measure.VisOptions[0].Links[0].MeasureID;
+                                if  (fullDataLinksObjects) {
+                                    const linkYears =  [...new Set(fullDataLinksObjects.map(item => item.Time))];
+                                    dropdownLinksMeasures.innerHTML += `<button class="dropdown-item link-measure" data-measure="${type}" data-display="${displayType}" data-axis="${linkAxis}" data-measure-id="${linkMeasureId}" data-secondary-measure-id="${linkSecondaryMeasureId}" data-about="${about}" data-sources="${sources}"> ${type}</button>`;
                                 }
                             }
                         })
 
                         setDefaultMapMeasure(defaultMapMeasure, mapMeasures);
                         setDefaultMeasure(defaultTrendMeasure, trendMeasures);
-
+                        setDefaultLinksMeasure(defaultLinksMeasure, linksMeasures);
                         // disable tabs if there are no measures
 
                         const tabMapSelected = tabMap.getAttribute('aria-selected');
@@ -1433,6 +1765,7 @@
 
                         const mapMeasuresLinks = document.querySelectorAll('#tab-map .link-measure');
                         const trendMeasuresLinks = document.querySelectorAll('#tab-trend .link-measure');
+                        const linksMeasuresLinks = document.querySelectorAll('#tab-links .link-measure');
 
                         mapMeasuresLinks.forEach(link => {
                             link.addEventListener('click', e => updateMapData(e));
@@ -1440,6 +1773,10 @@
                         
                         trendMeasuresLinks.forEach(link => {
                             link.addEventListener('click', e => updateTrendData(e));
+                        })
+
+                        linksMeasuresLinks.forEach(link => {
+                            link.addEventListener('click', e => updateLinksData(e));
                         })
                         
 
