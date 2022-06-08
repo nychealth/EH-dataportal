@@ -150,9 +150,9 @@ image: ds-redlining.jpeg
 
 
 ### 红线圈定的影响今天仍在继续 
-在纽约市，许多曾经欣欣向荣的社区由于红线圈定而经历了严重的投资缩减，这导致了一代又一代的不平等。即使在地图绘制近90年后的今天，20世纪30年代被红线圈定的社区仍然有更高的贫困率。根据全国社区再投资联盟（[National Community Reinvestment Coalition](https://ncrc.org/holc/)）的数据，在20世纪30年代被红线圈定的美国社区中，每4个中就有3个至今仍处于低收入到中等收入水平，并且每3个中就有2个主要居民为有色人种。 
+在纽约市，许多曾经欣欣向荣的社区由于红线圈定而经历了严重的投资缩减，这导致了一代又一代的不平等。即使在地图绘制近90年后的今天，20世纪30年代被红线圈定的社区仍然有更高的贫困率。根据全国社区再投资联盟 [全国社区再投资联盟 (National Community Reinvestment Coalition](https://ncrc.org/holc/)）的数据，在20世纪30年代被红线圈定的美国社区中，每4个中就有3个至今仍处于低收入到中等收入水平，并且每3个中就有2个主要居民为有色人种。 
 
-红线圈定是社区投资缩减的一个主要例子：拒绝或扣留公共和私人资金、城市服务或社区及其居民繁荣所需的其他资源。当这些资源被扣留时，它会创造“让[人们]厌恶的环境”。 
+红线圈定是社区投资缩减的一个主要例子：拒绝或扣留公共和私人资金、城市服务或社区及其居民繁荣所需的其他资源。当这些资源被扣留时，它会创造 [“让[人们]厌恶的环境”](https://www.who.int/hdp/poverty/en/)。 
 
 投资缩减可以是： 
 - 拒绝为人们提供贷款买房：例如通过红线圈定和其他有据可查的种族主义房地产行为 
@@ -167,7 +167,6 @@ image: ds-redlining.jpeg
 
 公共卫生不仅仅是在个人层面上改变人们的行为：它关乎于建立一个支持健康和福祉的社会，并通过直面过去走向未来。 
 
-*More resources about redlining:*
-- [Mapping Inequality: Redlining in New Deal America](https://dsl.richmond.edu/panorama/redlining/#loc=4/36.71/-96.93&opacity=0.8), where you can explore redlining maps and original documents for your neighborhood.
-- [The persistent structure of segregation and economic inequality](https://ncrc.org/holc/) from the National Community Reinvestment Coalition.
-
+*关于红线圈定的更多资源:*
+- [反映不平等：美国新政时期的红线圈定（Redlining in New Deal America）](https://dsl.richmond.edu/panorama/redlining/#loc=4/36.71/-96.93&opacity=0.8), 在此处您可以探索您所在社区的红线圈定图和原始文档。
+- [种族隔离和经济不平等的持续结构](https://ncrc.org/holc/) 来自全国社区再投资联盟（National Community Reinvestment Coalition）。

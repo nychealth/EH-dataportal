@@ -17,7 +17,7 @@ image: ds-redlining.jpeg
 ### La política financiera de 90 años que daña nuestra salud.
 En la salud pública, solemos citar el racismo estructural para ayudar a explicar los patrones sanitarios en nuestra sociedad. Pero, ¿qué significa esto específicamente? Una mirada más profunda a la historia del redlining muestra esta conexión. 
 
-Cuando analizamos datos sobre la salud de los neoyorquinos, solemos encontrar los mismos patrones geográficos, con índices más altos de afecciones médicas evitables en vecindarios con más pobreza. Por ejemplo, [escribimos sobre cómo el asma y la pobreza están estrechamente relacionadas.]({{< ref "/data-stories/povasthma" >}}).
+Cuando analizamos datos sobre la salud de los neoyorquinos, solemos encontrar los mismos patrones geográficos, con índices más altos de afecciones médicas evitables en vecindarios con más pobreza. Por ejemplo, [escribimos sobre cómo el asma y la pobreza están estrechamente relacionadas]({{< ref "/data-stories/povasthma" >}}).
 
 Estos vecindarios con altos índices de pobreza también albergan una mayor cantidad de personas negras que otras comunidades. 
 
@@ -67,7 +67,7 @@ El mapa a continuación muestra el alcance del redlining en la ciudad de Nueva Y
 {{< /rawhtml>}}
 
 ### El redlining impulsó la segregación residencial 
-Como resultado del redlining, a las personas negras se les negaba el acceso a los vecindarios “atractivos” con prácticas inmobiliarias racistas, y se les negaban préstamos para comprar viviendas en vecindarios catalogados como “en declive” o “peligrosos”. Los agentes inmobiliarios también usaban tácticas explotadoras, como el acoso inmobiliario, la venta de contratos y los convenios racialmente restrictivos, para profundizar y reforzar la segregación en los vecindarios.  {{< rawhtml>}}<a href="#bbcollapse" data-toggle="collapse"
+Como resultado del redlining, a las personas negras se les negaba el acceso a los vecindarios “atractivos” con prácticas inmobiliarias racistas, y se les negaban préstamos para comprar viviendas en vecindarios catalogados como “en declive” o “peligrosos”. Los agentes inmobiliarios también usaban tácticas explotadoras, como {{< rawhtml>}}<a href="#bbcollapse" data-toggle="collapse"
         class="badge badge-pill badge-warning">el acoso inmobiliario</a>, <a
         href="#contractcollapse" data-toggle="collapse"
         class="badge badge-pill badge-warning">la venta de contratos </a>, y <a
@@ -131,7 +131,7 @@ Se discriminaron grandes áreas de la ciudad de Nueva York. Explore el alcance d
         <br>
         <iframe title="Manhattan - Spanish" aria-label="Stacked Bars" id="datawrapper-chart-9btl1" src="https://datawrapper.dwcdn.net/9btl1/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="349"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
         <br><br>
-        <p>Se discriminaron grandes zonas de Manhattan. Sin embargo, la reinversión en las últimas décadas ha provocado el aumento de los valores inmobiliarios y el desplazamiento de algunos exresidentes. Los vecindarios que alguna vez fueron discriminados ahora tienen algunos de los valores inmobiliarios más altos de la ciudad. [FLAG - DIFFERENT TEXT HERE FOR DIFFERENT TABS] </p>
+        <p>Se discriminaron grandes zonas de Manhattan. Sin embargo, la reinversión en las últimas décadas ha provocado el aumento de los valores inmobiliarios y el desplazamiento de algunos exresidentes. Los vecindarios que alguna vez fueron discriminados ahora tienen algunos de los valores inmobiliarios más altos de la ciudad. </p>
     </div>
     <div class="tab-pane fade" id="bronx" role="tabpanel" aria-labelledby="bronx-tab">
         <br>
@@ -174,9 +174,7 @@ Se discriminaron grandes áreas de la ciudad de Nueva York. Explore el alcance d
 ### Los efectos del redlining continúan en la actualidad 
 En la ciudad de Nueva York, muchos vecindarios que alguna vez fueron prósperos sufrieron una grave falta de inversión como resultado del redlining, lo que provocó desigualdades que continuaron de una generación a otra. Los vecindarios discriminados en la década de 1930 tienen índices de pobreza más altos incluso en la actualidad, casi 90 años después de la creación de los mapas. Según [la Coalición Nacional de Reinversión Comunitaria](https://ncrc.org/holc/), 3 de cada 4 vecindarios en los EE. UU. que fueron discriminados en la década de 1930 aún son de ingresos bajos a moderados en la actualidad, y 2 de cada 3 poseen una población mayoritariamente negra. 
 
-El redlining es el principal ejemplo de 
-
-Redlining is a prime example of {{< rawhtml>}}  <a href="#disinvestmentCollapseTwo" data-toggle="collapse"
+El redlining es el principal ejemplo de {{< rawhtml>}}  <a href="#disinvestmentCollapseTwo" data-toggle="collapse"
 class="badge badge-pill badge-warning">la falta de inversión en los vecindarios</a>{{< /rawhtml>}}: : negar o retener fondos públicos y privados, servicios de la ciudad y otros recursos que los vecindarios y sus residentes necesitan para progresar. Cuando se retienen estos recursos, se crean [“entornos que enferman [a las personas]”]((https://www.who.int/hdp/poverty/en/)). 
 
 {{< rawhtml>}}
@@ -200,7 +198,7 @@ Si bien el redlining se prohibió en 1968, persisten otras formas de discriminac
 
 La salud pública implica mucho más que cambiar las conductas de las personas a nivel individual: se trata de construir una sociedad que apoye la salud y el bienestar, y avanzar hacia nuestro futuro confrontando el pasado. 
 
-*More resources about redlining:*
-- [Mapping Inequality: Redlining in New Deal America](https://dsl.richmond.edu/panorama/redlining/#loc=4/36.71/-96.93&opacity=0.8), where you can explore redlining maps and original documents for your neighborhood.
-- [The persistent structure of segregation and economic inequality](https://ncrc.org/holc/) from the National Community Reinvestment Coalition.
+*Más recursos sobre el redlining:*
+- [Diagramar la desigualdad: el redlining en los Estados Unidos del New Deal (Mapping Inequality: Redlining in New Deal America)](https://dsl.richmond.edu/panorama/redlining/#loc=4/36.71/-96.93&opacity=0.8), donde puede explorar mapas de redlining y documentos originales sobre su vecindario.
+- [La estructura persistente de segregación y desigualdad económica (The persistent structure of segregation and economic inequality)](https://ncrc.org/holc/) de la Coalición Nacional de Reinversión Comunitaria (National Community Reinvestment Coalition).
 

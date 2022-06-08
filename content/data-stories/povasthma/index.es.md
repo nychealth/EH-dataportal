@@ -31,11 +31,11 @@ Podemos ver las conexiones entre estos dos mapas, de la pobreza y el asma, con u
 
 En el siguiente diagrama de dispersión, cada punto representa un vecindario. La posición horizontal representa el índice de pobreza del vecindario, y la posición vertical representa el índice de asma. El patrón de puntos, que se agrupa bruscamente alrededor de la línea ascendente, muestra una conexión entre la pobreza y el asma: cuanto más elevado sea el índice de pobreza, más elevado será el índice de asma.
 
-{{< datawrapper title="Más pobreza significa más asma infantil" src="A6CtV/1/" height="409" >}}
+{{< datawrapper title="Más pobreza significa más asma infantil" src="A6CtV/1/" height="600" >}}
 
 ### ¿Por qué existe esta conexión?
 La conexión entre la pobreza y el asma se debe a una variedad de factores, incluidos los siguientes:
-- **La escasez de viviendas saludables** ien los vecindarios pobres significa que las personas conviven con una variedad de condiciones edilicias como moho, plagas y goteras que provocan asma y la empeoran.
+- **La escasez de viviendas saludables** en los vecindarios pobres significa que las personas conviven con una variedad de condiciones edilicias como moho, plagas y goteras que provocan asma y la empeoran.
 - **La falta de acceso a atención médica de calidad** significa que es posible que las personas con asma no estén tomando los medicamentos correctos para prevenir los ataques.
 
 [Este Resumen de Datos Epi](https://www1.nyc.gov/assets/doh/downloads/pdf/epi/databrief90.pdf) destaca cómo el asma afecta desproporcionalmente a los niños negros y a aquellos que viven en vecindarios de bajos ingresos. Reducir las visitas por asma infantil a la sala de emergencias y otras desigualdades relacionadas con la pobreza es un componente central de [Take Care New York](https://www1.nyc.gov/assets/doh/downloads/pdf/tcny/tcny-2020.pdf), el plan de la ciudad para crear vecindarios más saludables y equitativos.
