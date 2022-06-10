@@ -92,7 +92,7 @@
             //Set Neighborhood Name in Text part.
             option.innerHTML = {{ .Title}}
             // set the option value - this adds the environment variable to give it the base URL.
-            option.value = '{{ .Site.Params.devpath}}/{{ .Permalink }}'
+            option.value = '{{ .Permalink }}'
             //Add the Option element to DropDownList.
             ddlData.options.add(option);
           {{ end}}
