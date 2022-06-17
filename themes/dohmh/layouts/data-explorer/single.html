@@ -194,15 +194,14 @@
                             updateChartPlotSize();
 
                             const primaryMeasureId = defaultLinksMeasure[0].VisOptions[0].Links[0].MeasureID;
-                                const linksSecondaryIndicator =  indicators.filter(indicator =>
-                                    indicator.Measures.some(m => 
-                                        m.MeasureID === primaryMeasureId)
-                                )
+                            const linksSecondaryIndicator =  indicators.filter(indicator =>
+                                indicator.Measures.some(m => 
+                                    m.MeasureID === primaryMeasureId)
+                            )
 
-                                const linksSecondaryMeasure = linksSecondaryIndicator[0].Measures.filter(m =>
-                                    m.MeasureID === primaryMeasureId
-                                )
-                            console.log('tab link selected sources', indicator,  selectedLinksSources)
+                            const linksSecondaryMeasure = linksSecondaryIndicator[0].Measures.filter(m =>
+                                m.MeasureID === primaryMeasureId
+                            )
                             const primaryIndicator = indicator.IndicatorName;
                             const primaryMeasure = defaultLinksMeasure[0].MeasurementType;
                             const primaryAbout = defaultLinksMeasure[0].how_calculated;
