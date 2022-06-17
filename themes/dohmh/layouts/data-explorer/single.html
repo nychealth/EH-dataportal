@@ -192,8 +192,30 @@
                         });
                         tabLinks.addEventListener('click', () => {
                             updateChartPlotSize();
+
+                            const primaryMeasureId = defaultLinksMeasure[0].VisOptions[0].Links[0].MeasureID;
+                                const linksSecondaryIndicator =  indicators.filter(indicator =>
+                                    indicator.Measures.some(m => 
+                                        m.MeasureID === primaryMeasureId)
+                                )
+
+                                const linksSecondaryMeasure = linksSecondaryIndicator[0].Measures.filter(m =>
+                                    m.MeasureID === primaryMeasureId
+                                )
+                            console.log('tab link selected sources', indicator,  selectedLinksSources)
+                            const primaryIndicator = indicator.IndicatorName;
+                            const primaryMeasure = defaultLinksMeasure[0].MeasurementType;
+                            const primaryAbout = defaultLinksMeasure[0].how_calculated;
+                            const primarySources = defaultLinksMeasure[0].Sources;
+                            const secondaryIndicator = linksSecondaryIndicator[0].IndicatorLabel;
+                            const secondaryMeasure = linksSecondaryMeasure[0].MeasurementType;
+                            const secondaryAbout = linksSecondaryMeasure[0].how_calculated;
+                            const secondarySources = linksSecondaryMeasure[0].Sources;
+
+                            const combinedAbout = `<h6>${primaryIndicator} - ${primaryMeasure}</h6><p>${primaryAbout}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondaryAbout}</p>`;
+                            const combinedSources = `<h6>${primaryIndicator} - ${primaryMeasure}</h6><p>${primarySources}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondarySources}</p>`;
                             if (!selectedLinksMeasure) {
-                                renderAboutSources(defaultLinksMeasure[0].how_calculated, defaultLinksMeasure[0].Sources);
+                                renderAboutSources(combinedAbout, combinedSources);
                             } else {
                                 renderAboutSources(selectedLinksAbout, selectedLinksSources);
                             }
