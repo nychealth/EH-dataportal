@@ -77,6 +77,10 @@
                     margin-top: 0.5em;
                 }
 
+                .dropdown-menu {
+                    z-index: 2000;
+                }
+
             </style>
 
             <!-- Arquero -->
@@ -231,7 +235,6 @@
                         fullDataTrendObjects = [...filterBorough].concat(filterCitywide);
                         fullDataLinksObjects = joinedAqData.objects();
                         joinedAqData.print
-                        console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& render')
                         renderMeasures();
                     }
 
@@ -370,45 +373,20 @@
                                     const filteredJoinedPrimaryLinksDataObject = joinedPrimaryLinksDataObject.filter(d => 
                                         d.start_period == mostRecentPrimaryMeasureStartTime && d.end_period == mostRecentPrimaryMeasureEndTime)
 
-                                    
-
-
                                     const joinedSecondaryLinksDataObject = aqJoinedSecondaryLinksData.objects();
 
                                     let mostRecentJoinedSecondaryLinksDataObject = []
 
-                                    const overlappedData = joinedSecondaryLinksDataObject.filter(d => 
-                                        d.start_period >=  mostRecentPrimaryMeasureStartTime && d.end_period <= mostRecentPrimaryMeasureEndTime)
-
-                                    const matchEndData = joinedSecondaryLinksDataObject.filter(d => 
-                                        d.end_period === mostRecentPrimaryMeasureEndTime)
-
-                                        console.log('lllllllllllllll ', matchEndData)
-                                    
-                                    // if (overlappedData.length) {
-                                    //     mostRecentJoinedSecondaryLinksDataObject = overlappedData
-                                    // } else {
-                                    //     mostRecentJoinedSecondaryLinksDataObject = matchEndData
-                                    // }
-
-                                    // mostRecentPrimaryMeasureEndTime
-
-                                    const closest = joinedSecondaryLinksDataObject.reduce((prev, curr) => {
+                                    // get the closest secondary end time 
+                                    const closestSecondaryTime = joinedSecondaryLinksDataObject.reduce((prev, curr) => {
                                         return (Math.abs(curr.end_period - mostRecentPrimaryMeasureEndTime) < Math.abs(prev.end_period - mostRecentPrimaryMeasureEndTime) ? curr : prev);
                                     });
 
-                                    const closestEndData = joinedSecondaryLinksDataObject.filter(d => 
-                                        d.end_period === closest.end_period)
+                                    const closestSecondaryData = joinedSecondaryLinksDataObject.filter(d => 
+                                        d.end_period === closestSecondaryTime.end_period)
 
-                                    console.log('CLOSEST END TIME: ====== ', closestEndData)
+                                    mostRecentJoinedSecondaryLinksDataObject = closestSecondaryData
 
-                                    // if (matchEndData.length === 0) {
-
-                                    // }
-
-                                    mostRecentJoinedSecondaryLinksDataObject = closestEndData
-
-                                    console.log('````````````````````` this `````````````', matchEndData)
 
                                     const secondaryYears =  [...new Set(mostRecentJoinedSecondaryLinksDataObject.map(item => item.Time))];
 
@@ -1459,6 +1437,7 @@
                                         }
                                     ],
                                     "color": {
+                                        "title": "Geography",
                                         "field": "Geography_1",
                                         "type": "nominal"
                                     },
@@ -1503,6 +1482,7 @@
                         const display = e.target.dataset.display;
                         selectedTrendAbout = about;
                         selectedTrendSources =  sources;
+                        console.log('tend sources', sources)
                         renderAboutSources(about, sources);
                         renderTrendChart(fullDataTrendObjects, measure, display, disparities);
                         selectedTrendMeasure = true;
@@ -1510,16 +1490,23 @@
 
                     const updateLinksData = (e) => {
                         const measure = e.target.dataset.measure;
+                        const secondaryMeasure = e.target.dataset.secondaryMeasure;
+                        const secondaryIndicator = e.target.dataset.secondaryIndicator;
                         const axis = e.target.dataset.axis;
                         const measureId = parseInt(e.target.dataset.measureId);
                         const secondaryMeasureId = parseInt(e.target.dataset.secondaryMeasureId);
                         const about = e.target.dataset.about;
+                        const secondaryAbout = e.target.dataset.secondaryAbout;
                         const sources = e.target.dataset.sources;
+                        const secondarySources = e.target.dataset.secondarySources;
                         const display = e.target.dataset.display;
+                        const combindSources = `<h6>${indicator.IndicatorName} - ${measure}</h6><p>${sources}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondarySources}</p>`;
+                        const combinedAbout = `<h6>${indicator.IndicatorName} - ${measure}</h6><p>${about}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondaryAbout}</p>`;
+                        
                         selectedLinkMeasureData = linksMeasures.filter(m => m.MeasureID === measureId)
-                        selectedLinksAbout = about;
-                        selectedLinksSources =  sources;
-                        renderAboutSources(about, sources);
+                        selectedLinksAbout = combinedAbout;
+                        selectedLinksSources =  combindSources;
+                        renderAboutSources(combinedAbout, combindSources);
                         renderLinksChart(selectedLinkMeasureData, measure, display, axis, measureId, secondaryMeasureId)
                         selectedLinksMeasure = true;
                     }
@@ -1723,25 +1710,66 @@
                                 mapMeasures.push(measure)
                                 dropdownMapMeasures.innerHTML += `<div class="dropdown-title"><strong> ${type}</strong></div>`;
                                 mapYears.map((time, index) => {
-                                    dropdownMapMeasures.innerHTML += `<button class="dropdown-item link-measure" data-measure="${type}" data-display="${displayType}" data-date="${time}" data-about="${about}" data-sources="${sources}"> ${time}</button>`;
+                                    dropdownMapMeasures.innerHTML += `<button class="dropdown-item link-measure"
+                                        data-measure="${type}"
+                                        data-display="${displayType}"
+                                        data-date="${time}"
+                                        data-about="${about}"
+                                        data-sources="${sources}">
+                                            ${time}
+                                        </button>`;
                                 })
                             }
 
                             if (trend === 1) {
                                 trendMeasures.push(measure)
                                 if  (fullDataTrendObjects) {
-                                    dropdownTrendMeasures.innerHTML += `<button class="dropdown-item link-measure" data-measure="${type}" data-display="${displayType}" data-about="${about}" data-sources="${sources}" data-disparities="${trendDisparities}"> ${type}</button>`;
+                                    dropdownTrendMeasures.innerHTML += `<button class="dropdown-item link-measure"
+                                        data-measure="${type}"
+                                        data-display="${displayType}"
+                                        data-about="${about}"
+                                        data-sources="${sources}"
+                                        data-disparities="${trendDisparities}"> 
+                                            ${type}
+                                        </button>`;
                                 }
                             }
 
                             if (links) {
                                 linksMeasures.push(measure)
+                                const primaryMeasureId = measure.VisOptions[0].Links[0].MeasureID;
+                                const linksSecondaryIndicator =  indicators.filter(indicator =>
+                                    indicator.Measures.some(m => 
+                                        m.MeasureID === primaryMeasureId)
+                                )
+
+                                const linksSecondaryMeasure = linksSecondaryIndicator[0].Measures.filter(m =>
+                                    m.MeasureID === primaryMeasureId
+                                )
+                                console.log('measure link', linksSecondaryIndicator, linksSecondaryMeasure, measure.VisOptions[0].Links, measure.MeasureID)
+
                                 const linkAxis = measure.VisOptions[0].Links[0].Axis;
                                 const linkMeasureId = measure.MeasureID;
                                 const linkSecondaryMeasureId = measure.VisOptions[0].Links[0].MeasureID;
+
                                 if  (fullDataLinksObjects) {
                                     const linkYears =  [...new Set(fullDataLinksObjects.map(item => item.Time))];
-                                    dropdownLinksMeasures.innerHTML += `<button class="dropdown-item link-measure" data-measure="${type}" data-display="${displayType}" data-axis="${linkAxis}" data-measure-id="${linkMeasureId}" data-secondary-measure-id="${linkSecondaryMeasureId}" data-about="${about}" data-sources="${sources}"> ${type}</button>`;
+                                    dropdownLinksMeasures.innerHTML += `<div class="dropdown-title"><strong> ${type}</strong></div>`;
+                                    measure.VisOptions[0].Links.map(link => {
+                                        dropdownLinksMeasures.innerHTML += `<button class="dropdown-item link-measure" 
+                                            data-measure="${type}"
+                                            data-secondary-measure="${linksSecondaryMeasure[0].MeasurementType}"
+                                            data-secondary-indicator="${linksSecondaryIndicator[0].IndicatorLabel}"
+                                            data-display="${displayType}" data-axis="${link.Axis}"
+                                            data-measure-id="${linkMeasureId}"
+                                            data-secondary-measure-id="${link.MeasureID}"
+                                            data-sources="${sources}"
+                                            data-secondary-sources="${linksSecondaryMeasure[0].Sources}"
+                                            data-about="${about}"
+                                            data-secondary-about="${linksSecondaryMeasure[0].how_calculated}">
+                                                ${linksSecondaryIndicator[0].IndicatorLabel}
+                                            </button>`;
+                                    })
                                 }
                             }
                         })
