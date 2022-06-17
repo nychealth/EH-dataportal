@@ -1760,14 +1760,15 @@
                                             data-measure="${type}"
                                             data-secondary-measure="${linksSecondaryMeasure[0].MeasurementType}"
                                             data-secondary-indicator="${linksSecondaryIndicator[0].IndicatorLabel}"
-                                            data-display="${displayType}" data-axis="${link.Axis}"
+                                            data-display="${displayType}"
+                                            data-axis="${link.Axis}"
                                             data-measure-id="${linkMeasureId}"
                                             data-secondary-measure-id="${link.MeasureID}"
                                             data-sources="${sources}"
                                             data-secondary-sources="${linksSecondaryMeasure[0].Sources}"
                                             data-about="${about}"
                                             data-secondary-about="${linksSecondaryMeasure[0].how_calculated}">
-                                                ${linksSecondaryIndicator[0].IndicatorLabel}
+                                                ${linksSecondaryIndicator[0].IndicatorLabel} - ${linksSecondaryMeasure[0].MeasurementType}
                                             </button>`;
                                     })
                                 }
