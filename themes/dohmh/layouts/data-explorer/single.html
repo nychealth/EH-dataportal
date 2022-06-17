@@ -117,7 +117,6 @@
                     let joinedDataLinksObjects;
 
                     let indicator;
-                    let defaultIndicator = false;
                     let indicatorName;
                     let indicatorDesc;
                     let indicatorShortName;
@@ -1649,12 +1648,10 @@
                         selectedSummaryGeography = [];
                         const firstIndicatorId = document.querySelectorAll('#indicator-dropdown button')[0].getAttribute('data-internal-id');
                         const defaultIndicatorId = parseInt(firstIndicatorId);
-                        defaultIndicator = false
                         if (!data2) { 
                             data2 = {
                                 internal_id: defaultIndicatorId
                             }
-                            defaultIndicator = true;
                         }
 
                         indicator = indicators.find(indicator => indicator.IndicatorID === data2.internal_id)
@@ -1877,7 +1874,6 @@
                         })
 
                         // Render default Measure About and Sources
-                        if (defaultIndicator) {
                             measureAbout = '';
                             measureSources = '';
                             indicatorMeasurses.map(measure => {
@@ -1886,7 +1882,6 @@
                             })
                             
                             renderAboutSources(measureAbout, measureSources);
-                        }
                     }
 
 
