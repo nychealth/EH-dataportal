@@ -310,20 +310,20 @@
 
 
                         const filteredMatchingTimes = sortedSecondaryMeasureTimes.filter(t => 
-                                // t.start_period >= mostRecentPrimaryMeasureStartTime && t.end_period <= mostRecentPrimaryMeasureEndTime
-                                t.start_period >= 'no' && t.end_period <= 'yes'
+                            // t.start_period >= mostRecentPrimaryMeasureStartTime && t.end_period <= mostRecentPrimaryMeasureEndTime
+                            t.start_period >= 'no' && t.end_period <= 'yes'
+                        )
+
+                        if (!filteredMatchingTimes.length) {
+                            console.log('no match')
+                            const mostRecentMatchingTime = sortedSecondaryMeasureTimes.filter(t => 
+                                t.end_period === mostRecentPrimaryMeasureEndTime
+                                // t.start_period >= 'no' && t.end_period <= 'yes'
                             )
+                            console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ most recent mathcing time: ', mostRecentMatchingTime)
+                        }
 
-                            if (!filteredMatchingTimes.length) {
-                                console.log('no match')
-                                const mostRecentMatchingTime = sortedSecondaryMeasureTimes.filter(t => 
-                                    t.end_period === mostRecentPrimaryMeasureEndTime
-                                    // t.start_period >= 'no' && t.end_period <= 'yes'
-                                )
-                                console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ most recent mathcing time: ', mostRecentMatchingTime)
-                            }
-
-                            console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> mathcing times', filteredMatchingTimes)
+                        console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> mathcing times', filteredMatchingTimes)
                         console.log('SORTED SECONDARY MEASURE TIMES: ', sortedSecondaryMeasureTimes )
                         console.log('MOST RECENT SECONDARY MEASURE START + END TIME: -------------- ', mostRecentSecondaryMeasureTime, mostRecentSecondaryMeasureStartTime, mostRecentSecondaryMeasureEndTime)
 
@@ -385,11 +385,28 @@
 
                                         console.log('lllllllllllllll ', matchEndData)
                                     
-                                    if (overlappedData.length) {
-                                        mostRecentJoinedSecondaryLinksDataObject = overlappedData
-                                    } else {
-                                        mostRecentJoinedSecondaryLinksDataObject = matchEndData
-                                    }
+                                    // if (overlappedData.length) {
+                                    //     mostRecentJoinedSecondaryLinksDataObject = overlappedData
+                                    // } else {
+                                    //     mostRecentJoinedSecondaryLinksDataObject = matchEndData
+                                    // }
+
+                                    // mostRecentPrimaryMeasureEndTime
+
+                                    const closest = joinedSecondaryLinksDataObject.reduce((prev, curr) => {
+                                        return (Math.abs(curr.end_period - mostRecentPrimaryMeasureEndTime) < Math.abs(prev.end_period - mostRecentPrimaryMeasureEndTime) ? curr : prev);
+                                    });
+
+                                    const closestEndData = joinedSecondaryLinksDataObject.filter(d => 
+                                        d.end_period === closest.end_period)
+
+                                    console.log('CLOSEST END TIME: ====== ', closestEndData)
+
+                                    // if (matchEndData.length === 0) {
+
+                                    // }
+
+                                    mostRecentJoinedSecondaryLinksDataObject = closestEndData
 
                                     console.log('````````````````````` this `````````````', matchEndData)
 
@@ -590,7 +607,14 @@
                     }
 
                     // Render Map using Vegalite
-                    const renderMap = (selectedData, selectedMeasure, selectedDisplay, selectedDate, selectedAbout, selectedSources) => {
+                    const renderMap = (
+                        selectedData,
+                        selectedMeasure,
+                        selectedDisplay,
+                        selectedDate,
+                        selectedAbout, 
+                        selectedSources
+                    ) => {
                         const mapYears =  [...new Set(fullDataMapObjects.map(item => item.Time))];
                         const filteredfullDataMapObjects = fullDataMapObjects.filter(obj => 
                             obj.Time === mapYears[0]
@@ -785,7 +809,12 @@
                     }
 
                     // Render Trend Chart using Vegalite
-                    const renderTrendChart = (selectedData, selectedMeasure, selectedDisplay, slectedDisparities) => {
+                    const renderTrendChart = (
+                        selectedData,
+                        selectedMeasure,
+                        selectedDisplay,
+                        slectedDisparities
+                    ) => {
 
                         let trendMeasure = selectedMeasure ? selectedMeasure : defaultTrendMeasure[0].MeasurementType;
                         let trendData = selectedData ?  selectedData : fullDataTrendObjects;
@@ -1169,7 +1198,14 @@
                         
 
                     // Render Links Chart using Vegalight
-                    const renderLinksChart = (selectedData, selectedMeasure, selectedDisplay, selectedAxis, selectedMeasureId, selectedSecondaryMeasureId) => {
+                    const renderLinksChart = (
+                        selectedData,
+                        selectedMeasure,
+                        selectedDisplay,
+                        selectedAxis,
+                        selectedMeasureId,
+                        selectedSecondaryMeasureId
+                    ) => {
                         console.log('==========================================================================')
                         const defaultLinksMeasureId = defaultLinksMeasure[0].VisOptions[0].Links[0].MeasureID;
                         const defaultLinksAxis = defaultLinksMeasure[0].VisOptions[0].Links[0].Axis;
