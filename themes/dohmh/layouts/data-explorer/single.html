@@ -359,7 +359,7 @@
                                 
                                 const filteredSecondaryMeasureData = data.filter(d => d.MeasureID === primaryMeasureId)
                                 console.log('data: -----------------------------------> ', filteredSecondaryMeasureData)
-                                console.log('swwwwdwdadwdadadwadad ', sortedSecondaryMeasureTimes)
+                                console.log('SORTED SECONDARY MEASURE TIMES ', sortedSecondaryMeasureTimes)
 
                                 // const testData = aq.from(fullDataLinksObjects)
                                 //     .join(sortedSecondaryT, ["Time", "TimeDescription"])
@@ -623,10 +623,12 @@
                         let mapDate = selectedDate ? selectedDate : filteredfullDataMapObjects[0].Time;
 
                         console.log('==========================================================================')
-                        console.log('RENDER MAP DATA - Maeasure Default: ', defaultMapMeasure)
-                        console.log('RENDER MAP DATA - Maeasure Selected: ', selectedMeasure)
-                        console.log('RENDER MAP DATA - Maeasure Filtered Default Data: ', filteredfullDataMapObjects)
-                        console.log('RENDER MAP DATA - Maeasure Filtered Selcted Data: ', selectedData)
+                        console.log('MAP DATA: ', mapData)
+                        console.log('RENDER MAP DATA: ', mapData)
+                        console.log('RENDER MAP DATA - Measure Default: ', defaultMapMeasure)
+                        console.log('RENDER MAP DATA - Measure Selected: ', selectedMeasure)
+                        console.log('RENDER MAP DATA - Measure Filtered Default Data: ', filteredfullDataMapObjects)
+                        console.log('RENDER MAP DATA - Measure Filtered Selcted Data: ', selectedData)
 
                         // let spec2 = {
                         //     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -820,16 +822,16 @@
                         let trendDisparity = slectedDisparities ? slectedDisparities : defaultTrendMeasure[0].VisOptions[0]?.Trend[0]?.Disparities
                         
                         console.log('==========================================================================')
-                        console.log('RENDER TREND DATA - Maeasure Default: ', defaultTrendMeasure)
-                        console.log('RENDER TREND DATA - Maeasure Selected: ', selectedMeasure)
-                        console.log('RENDER TREND DATA - Maeasure Filtered Default Data: ', fullDataTrendObjects)
-                        console.log('RENDER TREND DATA - Maeasure Filtered Selcted Data: ', selectedData)
-                        console.log('RENDER TREND DATA - Maeasure Disparity: ', trendDisparity)
+                        console.log('RENDER TREND DATA - Measure Default: ', defaultTrendMeasure)
+                        console.log('RENDER TREND DATA - Measure Selected: ', selectedMeasure)
+                        console.log('RENDER TREND DATA - Measure Filtered Default Data: ', fullDataTrendObjects)
+                        console.log('RENDER TREND DATA - Measure Filtered Selcted Data: ', selectedData)
+                        console.log('RENDER TREND DATA - Measure Disparity: ', trendDisparity)
                         const tabTrendDropDown = document.querySelector('#tab-trend  .dropdown');
                         const btnShowDisparitires = document.querySelector('.btn-show-disparities');
 
                         if (trendDisparity == 1 && !btnShowDisparitires) {
-                            tabTrendDropDown.innerHTML += `<button class="btn btn-sm float-right btn-outline-success btn-show-disparities">Show Dispartites</button> `;
+                            tabTrendDropDown.innerHTML += `<button class="btn btn-sm mr-1 float-right btn-outline-success btn-show-disparities">Show Dispartites</button> `;
                         }   else if (btnShowDisparitires) {
                             tabTrendDropDown.removeChild(btnShowDisparitires)
                         }
@@ -1478,11 +1480,18 @@
                     }
 
                     const updateMapData = (e) => {
-                        const measure = e.target.dataset.measure;
+                        const measureId = parseInt(e.target.dataset.id);
+                        const measure = mapMeasures.filter(m => m.MeasureID == measureId);
+                        console.log('MAP MEASURE: ', measure)
+                        const measurementType = measure[0].MeasurementType;
+                        
                         const date = e.target.dataset.date;
-                        const about = e.target.dataset.about;
-                        const sources = e.target.dataset.sources;
-                        const display = e.target.dataset.display;
+                        const about = measure[0].how_calculated;
+                        const sources = measure[0].Sources;
+                        const display = measure[0].DisplayType;
+
+                        console.log('DATE: ', date)
+
                         selectedMapAbout = about;
                         selectedMapSources =  sources;
                         
@@ -1490,44 +1499,59 @@
                             obj.Time === date && obj
                         )
                         renderAboutSources(about, sources);
-                        renderMap(filteredData, measure, display, date);
+                        renderMap(filteredData, measurementType, display, date);
                         selectedMapMeasure =  true;
                     }
 
                     const updateTrendData = (e) => {
-                        const measure = e.target.dataset.measure;
-                        const disparities = e.target.dataset.disparities;
-                        const about = e.target.dataset.about;
-                        const sources = e.target.dataset.sources;
-                        const display = e.target.dataset.display;
+                        const measureId = parseInt(e.target.dataset.id);
+                        const measure = trendMeasures.filter(m => m.MeasureID == measureId);
+                        const measurementType = measure[0].MeasurementType;
+                        const disparities = measure[0].VisOptions[0].Trend && measure[0].VisOptions[0].Trend[0]?.Disparities;
+                        const about = measure[0].how_calculated;
+                        const sources = measure[0].Sources;
+                        const display = measure[0].DisplayType;
+                       
                         selectedTrendAbout = about;
                         selectedTrendSources =  sources;
-                        console.log('tend sources', sources)
+                        
                         renderAboutSources(about, sources);
-                        renderTrendChart(fullDataTrendObjects, measure, display, disparities);
+                        renderTrendChart(fullDataTrendObjects, measurementType, display, disparities);
                         selectedTrendMeasure = true;
                     }
 
                     const updateLinksData = (e) => {
-                        const measure = e.target.dataset.measure;
-                        const secondaryMeasure = e.target.dataset.secondaryMeasure;
-                        const secondaryIndicator = e.target.dataset.secondaryIndicator;
-                        const axis = e.target.dataset.axis;
                         const measureId = parseInt(e.target.dataset.measureId);
-                        const secondaryMeasureId = parseInt(e.target.dataset.secondaryMeasureId);
-                        const about = e.target.dataset.about;
-                        const secondaryAbout = e.target.dataset.secondaryAbout;
-                        const sources = e.target.dataset.sources;
-                        const secondarySources = e.target.dataset.secondarySources;
-                        const display = e.target.dataset.display;
-                        const combindSources = `<h6>${indicator.IndicatorName} - ${measure}</h6><p>${sources}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondarySources}</p>`;
-                        const combinedAbout = `<h6>${indicator.IndicatorName} - ${measure}</h6><p>${about}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondaryAbout}</p>`;
+                        const primaryMeasureId = parseInt(e.target.dataset.primaryMeasureId);
+                        const linksSecondaryIndicator =  indicators.filter(indicator =>
+                            indicator.Measures.some(m => 
+                                m.MeasureID === primaryMeasureId)
+                        )
+                        const linksSecondaryMeasure = linksSecondaryIndicator[0].Measures.filter(m =>
+                            m.MeasureID === primaryMeasureId
+                        )
+                        const measure = linksMeasures.filter(m => m.MeasureID == measureId);
                         
+                        const measurementType = measure[0].MeasurementType;
+                        const secondaryMeasure = linksSecondaryMeasure[0].MeasurementType;
+                        const secondaryIndicator = linksSecondaryIndicator[0].IndicatorLabel;
+                        const axis = measure[0].VisOptions[0].Links[0].Axis;
+                        
+                        const secondaryMeasureId = parseInt(e.target.dataset.secondaryMeasureId);
+                        const about = measure[0].how_calculated;
+                        const secondaryAbout = linksSecondaryMeasure[0].how_calculated;
+                        const sources = measure[0].Sources;
+                        const secondarySources = linksSecondaryMeasure[0].Sources;
+                        const display = measure[0].DisplayType;
+                        const combindSources = `<h6>${indicator.IndicatorName} - ${measurementType}</h6><p>${sources}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondarySources}</p>`;
+                        const combinedAbout = `<h6>${indicator.IndicatorName} - ${measurementType}</h6><p>${about}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondaryAbout}</p>`;
+                        
+                        console.log('LINKS MEASURES: ', indicators, primaryMeasureId, linksSecondaryIndicator)
                         selectedLinkMeasureData = linksMeasures.filter(m => m.MeasureID === measureId)
                         selectedLinksAbout = combinedAbout;
                         selectedLinksSources =  combindSources;
                         renderAboutSources(combinedAbout, combindSources);
-                        renderLinksChart(selectedLinkMeasureData, measure, display, axis, measureId, secondaryMeasureId)
+                        renderLinksChart(selectedLinkMeasureData, measurementType, display, axis, measureId, secondaryMeasureId)
                         selectedLinksMeasure = true;
                     }
 
@@ -1723,17 +1747,15 @@
                             const trendDisparities = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0]?.Disparities;
                             const about = measure.how_calculated;
                             const sources = measure.Sources;
+                            const measureId = measure.MeasureID;
 
                             if (map === 1) {
                                 mapMeasures.push(measure)
                                 dropdownMapMeasures.innerHTML += `<div class="dropdown-title"><strong> ${type}</strong></div>`;
                                 mapYears.map((time, index) => {
                                     dropdownMapMeasures.innerHTML += `<button class="dropdown-item link-measure"
-                                        data-measure="${type}"
-                                        data-display="${displayType}"
-                                        data-date="${time}"
-                                        data-about="${about}"
-                                        data-sources="${sources}">
+                                        data-id="${measureId}"
+                                        data-date="${time}">
                                             ${time}
                                         </button>`;
                                 })
@@ -1743,11 +1765,7 @@
                                 trendMeasures.push(measure)
                                 if  (fullDataTrendObjects) {
                                     dropdownTrendMeasures.innerHTML += `<button class="dropdown-item link-measure"
-                                        data-measure="${type}"
-                                        data-display="${displayType}"
-                                        data-about="${about}"
-                                        data-sources="${sources}"
-                                        data-disparities="${trendDisparities}"> 
+                                        data-id="${measureId}"> 
                                             ${type}
                                         </button>`;
                                 }
@@ -1764,27 +1782,16 @@
                                 const linksSecondaryMeasure = linksSecondaryIndicator[0].Measures.filter(m =>
                                     m.MeasureID === primaryMeasureId
                                 )
-                                console.log('measure link', linksSecondaryIndicator, linksSecondaryMeasure, measure.VisOptions[0].Links, measure.MeasureID)
-
-                                const linkAxis = measure.VisOptions[0].Links[0].Axis;
-                                const linkMeasureId = measure.MeasureID;
-                                const linkSecondaryMeasureId = measure.VisOptions[0].Links[0].MeasureID;
+                                console.log('measure link', measureId, primaryMeasureId, linksSecondaryIndicator, linksSecondaryMeasure, measure.VisOptions[0].Links, measure.MeasureID)
 
                                 if  (fullDataLinksObjects) {
                                     const linkYears =  [...new Set(fullDataLinksObjects.map(item => item.Time))];
                                     dropdownLinksMeasures.innerHTML += `<div class="dropdown-title"><strong> ${type}</strong></div>`;
                                     measure.VisOptions[0].Links.map(link => {
                                         dropdownLinksMeasures.innerHTML += `<button class="dropdown-item link-measure" 
-                                            data-measure="${type}"
-                                            data-secondary-measure="${linksSecondaryMeasure[0].MeasurementType}"
-                                            data-secondary-indicator="${linksSecondaryIndicator[0].IndicatorLabel}"
-                                            data-display="${displayType}"
-                                            data-axis="${link.Axis}"
-                                            data-measure-id="${linkMeasureId}"
+                                            data-primary-measure-id="${primaryMeasureId}"
+                                            data-measure-id="${measure.MeasureID}"
                                             data-secondary-measure-id="${link.MeasureID}"
-                                            data-sources="${sources}"
-                                            data-secondary-sources="${linksSecondaryMeasure[0].Sources}"
-                                            data-about="${about}"
                                             data-secondary-about="${linksSecondaryMeasure[0].how_calculated}">
                                                 ${linksSecondaryIndicator[0].IndicatorLabel} - ${linksSecondaryMeasure[0].MeasurementType}
                                             </button>`;
