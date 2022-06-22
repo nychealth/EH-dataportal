@@ -652,26 +652,26 @@
                         console.log('RENDER MAP DATA - Measure Filtered Default Data: ', filteredfullDataMapObjects)
                         console.log('RENDER MAP DATA - Measure Filtered Selcted Data: ', selectedData)
                             
-                        switch (mapGeoType) {
-                            case 'UHF42':
-                                topoFile = 'UHF42.topo.json';
-                                break;
-                            case 'UHF34':
-                                topoFile = 'UHF34.topo.json';
-                                break;
-                             case 'CD':
-                                 topoFile = 'CD.topo.json';
-                                 break;
-                            case 'Borough':
-                                topoFile = 'borough.topo.json';
-                                break;
-                            case 'Puma':
-                                topoFile = 'PUMA_or_Subborough.topo.json';
-                                break;
-                            case 'Subboro':
-                                topoFile = 'PUMA_or_Subborough.topo.json';
-                                break;
-                        }
+                        // switch (mapGeoType) {
+                        //     case 'UHF42':
+                        //         topoFile = 'UHF42.topo.json';
+                        //         break;
+                        //     case 'UHF34':
+                        //         topoFile = 'UHF34.topo.json';
+                        //         break;
+                        //      case 'CD':
+                        //          topoFile = 'CD.topo.json';
+                        //          break;
+                        //     case 'Borough':
+                        //         topoFile = 'borough.topo.json';
+                        //         break;
+                        //     case 'Puma':
+                        //         topoFile = 'PUMA_or_Subborough.topo.json';
+                        //         break;
+                        //     case 'Subboro':
+                        //         topoFile = 'PUMA_or_Subborough.topo.json';
+                        //         break;
+                        // }
                         
                         const filterGeoTypeMeasurementType = (geoType) => {
                             const data = testData.filter(obj => obj.Geotype === geoType && obj[mapMeasure])
@@ -686,8 +686,6 @@
 
                         let mapData = null;
 
-                        
-
                         const cdDataResults = filterGeoTypeMeasurementType('CD');
                         const uhf42DataResults = filterGeoTypeMeasurementType('UHF42');
                         const uhf34DataResults = filterGeoTypeMeasurementType('UHF34');
@@ -700,15 +698,19 @@
                         if (cdDataResults.length > 0) {
                             console.log('## CD')
                             mapData = cdData;
+                            topoFile = 'CD.topo.json';
                         } else if (subboroDataResults.length > 0) {
                             console.log('## Subboro')
                             mapData = subboroData;
+                            topoFile = 'PUMA_or_Subborough.topo.json';
                         } else if (uhf42DataResults.length > 0) {
                             console.log('## UHF42')
                             mapData = uhf42Data;
+                            topoFile = 'UHF42.topo.json';
                         } else if (uhf34DataResults.length > 0) {
                             console.log('## UHF34')
                             mapData = uhf34Data;
+                            topoFile = 'UHF34.topo.json';
                         }
 
                         // console.log('default data: ', geoTypFilteredData)
