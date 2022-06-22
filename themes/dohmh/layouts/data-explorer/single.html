@@ -81,6 +81,10 @@
                     z-index: 2000;
                 }
 
+                div[aria-labelledby="dropdownMapMeasures"].show {
+                    display: flex !important;
+                }
+
             </style>
 
             <!-- Arquero -->
@@ -239,7 +243,7 @@
                     // join the data
                     const joinData = () => {
                         joinedAqData = aqData
-                            .join(geoTable, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
+                            .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
                                 .relocate(['Name'], { after: 'GeoID' })
                                 .relocate(['Geotype'], { before: 'GeoID' })
                                 .rename({
@@ -248,21 +252,27 @@
                         
                         const filterUHF42 = joinedAqData.filter(d => d.GeoType == 'UHF42').objects();
                         const filterUHF34 = joinedAqData.filter(d => d.GeoType == 'UHF34').objects();
+                        const filterCD = joinedAqData.filter(d => d.GeoType == 'CD').objects();
                         const filterBorough = joinedAqData.filter(d => d.GeoType  == 'Borough').objects();
                         const filterCitywide = joinedAqData.filter(d => d.GeoType  == 'Citywide').objects();
+                        
+                        console.log('hhhhhhh ',aqData, joinedAqData )
+                        geoTable.print()
+                                
+                        joinedAqData.print()
 
-                        fullDataMapObjects = filterUHF42;
-                        fullDataTrendObjects = [...filterBorough].concat(filterCitywide);
+                        fullDataMapObjects = [...filterUHF42, ...filterUHF34, ...filterCD ];
+                        fullDataTrendObjects = [...filterBorough, ...filterCitywide];
                         fullDataLinksObjects = joinedAqData.objects();
                         joinedAqData.print
                         renderMeasures();
                     }
 
                     const loadGeo = () => {
-                        // const geoUrl = `https://raw.githubusercontent.com/nychealth/EHDP-data/main/geography/GeoLookup.csv`;
-                        const geoStatic = `/ehs-data-portal-frontend-temp/IndicatorData/GeoLookup.csv`;
+                        const geoUrl = `https://raw.githubusercontent.com/nychealth/EHDP-data/main/geography/GeoLookup.csv`;
+                        // const geoStatic = `/ehs-data-portal-frontend-temp/IndicatorData/GeoLookup.csv`;
 
-                        aq.loadCSV(geoStatic)
+                        aq.loadCSV(geoUrl)
                             .then(data => {
                                 geoTable = data
                                     .derive({ GeoID: d => op.parse_int(d.GeoID) }) // convert GeoIDs to numbers
@@ -616,19 +626,46 @@
                         const mapYears =  [...new Set(fullDataMapObjects.map(item => item.Time))];
                         const filteredfullDataMapObjects = fullDataMapObjects.filter(obj => 
                             obj.Time === mapYears[0]
-                        )
+                        );
+                        let mapGeoType = selectedData ? selectedData[0].GeoType : filteredfullDataMapObjects[0].GeoType;
                         let mapMeasure = selectedMeasure ? selectedMeasure : defaultMapMeasure[0].MeasurementType;
                         let mapData = selectedData ?  selectedData : filteredfullDataMapObjects;
                         let mapDisplay = selectedDisplay ? selectedDisplay : defaultMapMeasure[0].DisplayType;
                         let mapDate = selectedDate ? selectedDate : filteredfullDataMapObjects[0].Time;
+                        let topoFile = '';
 
                         console.log('==========================================================================')
-                        console.log('MAP DATA: ', mapData)
-                        console.log('RENDER MAP DATA: ', mapData)
+                        console.log('MAP DATA: ',filteredfullDataMapObjects[0].GeoType,  mapData)
+                        console.log('RENDER MAP DATA - GeoType ', mapGeoType)
                         console.log('RENDER MAP DATA - Measure Default: ', defaultMapMeasure)
                         console.log('RENDER MAP DATA - Measure Selected: ', selectedMeasure)
                         console.log('RENDER MAP DATA - Measure Filtered Default Data: ', filteredfullDataMapObjects)
                         console.log('RENDER MAP DATA - Measure Filtered Selcted Data: ', selectedData)
+                            
+                        switch (mapGeoType) {
+                            case 'UHF42':
+                                topoFile = 'UHF42.topo.json';
+                                break;
+                            case 'UHF34':
+                                topoFile = 'UHF34.topo.json';
+                                break;
+                             case 'CD':
+                                 topoFile = 'CD.topo.json';
+                                 break;
+                            case 'BOROUGH':
+                                topoFile = 'borough.topo.json';
+                                break;
+                            case 'PUMA':
+                                topoFile = 'PUMA_or_Subborough.topo.json';
+                                break;
+                            case 'SUBBORO':
+                                topoFile = 'PUMA_or_Subborough.topo.json';
+                                break;
+                        }
+
+                        console.log('RENDER MAP DATA - topoFile ', topoFile)
+
+                        
 
                         // let spec2 = {
                         //     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -715,7 +752,15 @@
                             "width": "container",
                             "data": {
                                 "values": mapData,
+                                "format": {
+                                    "parse": {
+                                        "Value": "number"
+                                    }
+                                }
                             },
+                            // "config": {
+                            //     "mark": {"invalid": null}
+                            // },
                             "params": [
                                 {"name": "highlight", "select": {"type": "point", "on": "mouseover"}}
                             ],
@@ -724,7 +769,7 @@
                                 {
                                 "height": 550,
                                 "width": "container",
-                                "mark": {"type": "geoshape", "stroke": "#000000"},
+                                "mark": {"type": "geoshape", "stroke": "#000000", "invalid": null},
                                 "encoding": {
                                     "shape": {"field": "geo", "type": "geojson"},
                                     "color": {
@@ -751,7 +796,7 @@
                                     "lookup": "GeoID",
                                     "from": {
                                         "data": {
-                                        "url": "https://raw.githubusercontent.com/nycehs/NYC_geography/master/UHF42.topo.json",
+                                        "url": `https://raw.githubusercontent.com/nycehs/NYC_geography/master/${topoFile}`,
                                         "format": {"type": "topojson", "feature": "collection"}
                                         },
                                         "key": "properties.GEOCODE"
@@ -1482,24 +1527,49 @@
                     const updateMapData = (e) => {
                         const measureId = parseInt(e.target.dataset.id);
                         const measure = mapMeasures.filter(m => m.MeasureID == measureId);
-                        console.log('MAP MEASURE: ', measure)
                         const measurementType = measure[0].MeasurementType;
-                        
                         const date = e.target.dataset.date;
                         const about = measure[0].how_calculated;
                         const sources = measure[0].Sources;
                         const display = measure[0].DisplayType;
 
-                        console.log('DATE: ', date)
-
                         selectedMapAbout = about;
                         selectedMapSources =  sources;
                         
+                        var geoTypFilteredData;
+                        
                         const filteredData = fullDataMapObjects.filter(obj => 
-                            obj.Time === date && obj
+                            obj.Time === date
                         )
+
+                        const filterGeoTypeMeasurementType = (geoType) => {
+                            const data = filteredData.filter(obj => obj.GeoType === geoType && obj[measurementType])
+                            return data
+                        }
+                        const filterGeoType = (geoType) => {
+                            const data = filteredData.filter(obj => obj.GeoType === geoType)
+                            return data
+                        }
+                        const cdDataResults = filterGeoTypeMeasurementType('CD');
+                        const uhf42DataResults = filterGeoTypeMeasurementType('UHF42');
+                        const uhf34DataResults = filterGeoTypeMeasurementType('UHF34');
+                        const cdData = filterGeoType('CD');
+                        const uhf42Data = filterGeoType('UHF42');
+                        const uhf34Data = filterGeoType('UHF34');
+
+                        if (cdDataResults.length > 0) {
+                            geoTypFilteredData = filteredData;
+                        } else if (uhf42DataResults.length > 0) {
+                            geoTypFilteredData = uhf42Data;
+                        } else if (uhf34DataResults.length > 0) {
+                            geoTypFilteredData = uhf34Data;
+                        }
+
+                       console.log('testing: ',cdData.length, uhf42Data.length, uhf34Data.length)
+
+                        console.log('filteredData', measurementType, filteredData)
                         renderAboutSources(about, sources);
-                        renderMap(filteredData, measurementType, display, date);
+                        renderMap(geoTypFilteredData, measurementType, display, date);
                         selectedMapMeasure =  true;
                     }
 
@@ -1546,10 +1616,12 @@
                         const combindSources = `<h6>${indicator.IndicatorName} - ${measurementType}</h6><p>${sources}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondarySources}</p>`;
                         const combinedAbout = `<h6>${indicator.IndicatorName} - ${measurementType}</h6><p>${about}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondaryAbout}</p>`;
                         
-                        console.log('LINKS MEASURES: ', indicators, primaryMeasureId, linksSecondaryIndicator)
+                       
                         selectedLinkMeasureData = linksMeasures.filter(m => m.MeasureID === measureId)
+                        console.log('LINKS MEASURES: ', selectedLinkMeasureData, primaryMeasureId, linksSecondaryIndicator)
                         selectedLinksAbout = combinedAbout;
                         selectedLinksSources =  combindSources;
+                        
                         renderAboutSources(combinedAbout, combindSources);
                         renderLinksChart(selectedLinkMeasureData, measurementType, display, axis, measureId, secondaryMeasureId)
                         selectedLinksMeasure = true;
@@ -1703,7 +1775,8 @@
                         const contentTrend = document.querySelector('#tab-trend');
                         const contentLinks = document.querySelector('#tab-links');
                         const dropdownTableYear = contentSummary.querySelector('div[aria-labelledby="dropdownTableYear"]');
-                        const dropdownMapMeasures = document.querySelector('div[aria-labelledby="dropdownMapMeasures"]');
+                        const dropdownMapMeasures = document.querySelector('div[aria-labelledby="dropdownMapMeasures"]');                        
+                        
                         const dropdownMapYear = contentMap.querySelector('div[aria-labelledby="dropdownMapYear"]');
                         const dropdownTableGeo = contentSummary.querySelector('div[aria-labelledby="dropdownTableGeo"]');
                         const dropdownTrendMeasures = contentTrend.querySelector('div[aria-labelledby="dropdownTrendMeasures"]');
@@ -1711,7 +1784,6 @@
                         const tableGeoTypes =  [...new Set(joinedAqData.objects().map(item => item.GeoType))];
                         const tableYears =  [...new Set(joinedAqData.objects().map(item => item.Time))];
                         const mapYears =  [...new Set(fullDataMapObjects.map(item => item.Time))];
-
                         // clear Measure Dropdowns
                         dropdownTableYear.innerHTML = ``;
                         dropdownTableGeo.innerHTML = ``;
@@ -1751,9 +1823,11 @@
 
                             if (map === 1) {
                                 mapMeasures.push(measure)
-                                dropdownMapMeasures.innerHTML += `<div class="dropdown-title"><strong> ${type}</strong></div>`;
+                                dropdownMapMeasures.innerHTML += `<div class="dropdown-column-${index}"><div class="dropdown-title"><strong> ${type}</strong></div></div>`;
+                                const dropdownMapMeasuresColumn = document.querySelector(`.dropdown-column-${index}`);
+                                console.log('dropdownMapMeasures: ', dropdownMapMeasures)
                                 mapYears.map((time, index) => {
-                                    dropdownMapMeasures.innerHTML += `<button class="dropdown-item link-measure"
+                                    dropdownMapMeasuresColumn.innerHTML += `<button class="dropdown-item link-measure"
                                         data-id="${measureId}"
                                         data-date="${time}">
                                             ${time}
