@@ -179,7 +179,7 @@
                         tabMap.addEventListener('click', () => {
                             updateChartPlotSize();
                             if (!selectedMapMeasure) {
-                                renderAboutSources(defaultMapMeasure[0].how_calculated, defaultMapMeasure[0].Sources);
+                                renderAboutSources(defaultMapMeasure[0]?.how_calculated, defaultMapMeasure[0].Sources);
                             } else {
                                 renderAboutSources(selectedMapAbout, selectedMapSources);
                             }
@@ -187,7 +187,7 @@
                         tabTrend.addEventListener('click', () => {
                             updateChartPlotSize();
                             if (!selectedTrendMeasure) {
-                                renderAboutSources(defaultTrendMeasure[0].how_calculated, defaultTrendMeasure[0].Sources);
+                                renderAboutSources(defaultTrendMeasure[0]?.how_calculated, defaultTrendMeasure[0].Sources);
                             } else {
                                 renderAboutSources(selectedTrendAbout, selectedTrendSources);
                             }
@@ -196,7 +196,7 @@
                         tabLinks.addEventListener('click', () => {
                             updateChartPlotSize();
 
-                            const primaryMeasureId = defaultLinksMeasure[0].VisOptions[0].Links[0].MeasureID;
+                            const primaryMeasureId = defaultLinksMeasure[0]?.VisOptions[0].Links[0].MeasureID;
                             const linksSecondaryIndicator =  indicators.filter(indicator =>
                                 indicator.Measures.some(m => 
                                     m.MeasureID === primaryMeasureId)
@@ -253,6 +253,7 @@
                         const filterUHF42 = joinedAqData.filter(d => d.GeoType == 'UHF42').objects();
                         const filterUHF34 = joinedAqData.filter(d => d.GeoType == 'UHF34').objects();
                         const filterCD = joinedAqData.filter(d => d.GeoType == 'CD').objects();
+                        const filterSubboro = joinedAqData.filter(d => d.GeoType == 'Subboro').objects();
                         const filterBorough = joinedAqData.filter(d => d.GeoType  == 'Borough').objects();
                         const filterCitywide = joinedAqData.filter(d => d.GeoType  == 'Citywide').objects();
                         
@@ -261,10 +262,10 @@
                                 
                         joinedAqData.print()
 
-                        fullDataMapObjects = [...filterUHF42, ...filterUHF34, ...filterCD ];
+                        fullDataMapObjects = [...filterUHF42, ...filterUHF34, ...filterCD, ...filterSubboro ];
                         fullDataTrendObjects = [...filterBorough, ...filterCitywide];
                         fullDataLinksObjects = joinedAqData.objects();
-                        joinedAqData.print
+                        joinedAqData.print()
                         renderMeasures();
                     }
 
@@ -407,18 +408,25 @@
 
                                     let mostRecentJoinedSecondaryLinksDataObject = []
 
+                                    
+
                                     // get the closest secondary end time 
                                     const closestSecondaryTime = joinedSecondaryLinksDataObject.reduce((prev, curr) => {
                                         return (Math.abs(curr.end_period - mostRecentPrimaryMeasureEndTime) < Math.abs(prev.end_period - mostRecentPrimaryMeasureEndTime) ? curr : prev);
                                     });
+
+                                    
 
                                     const closestSecondaryData = joinedSecondaryLinksDataObject.filter(d => 
                                         d.end_period === closestSecondaryTime.end_period)
 
                                     mostRecentJoinedSecondaryLinksDataObject = closestSecondaryData
 
+                                    console.log('yo', joinedSecondaryLinksDataObject)
+
 
                                     const secondaryYears =  [...new Set(mostRecentJoinedSecondaryLinksDataObject.map(item => item.Time))];
+
 
                                     const highest = Math.max(...secondaryYears);
 
@@ -629,13 +637,15 @@
                         );
                         let mapGeoType = selectedData ? selectedData[0].GeoType : filteredfullDataMapObjects[0].GeoType;
                         let mapMeasure = selectedMeasure ? selectedMeasure : defaultMapMeasure[0].MeasurementType;
-                        let mapData = selectedData ?  selectedData : filteredfullDataMapObjects;
+                       
                         let mapDisplay = selectedDisplay ? selectedDisplay : defaultMapMeasure[0].DisplayType;
                         let mapDate = selectedDate ? selectedDate : filteredfullDataMapObjects[0].Time;
                         let topoFile = '';
 
+                        let testData = selectedData ? selectedData :filteredfullDataMapObjects;
+
                         console.log('==========================================================================')
-                        console.log('MAP DATA: ',filteredfullDataMapObjects[0].GeoType,  mapData)
+                        // console.log('MAP DATA: ',filteredfullDataMapObjects[0].GeoType,  mapData)
                         console.log('RENDER MAP DATA - GeoType ', mapGeoType)
                         console.log('RENDER MAP DATA - Measure Default: ', defaultMapMeasure)
                         console.log('RENDER MAP DATA - Measure Selected: ', selectedMeasure)
@@ -652,16 +662,58 @@
                              case 'CD':
                                  topoFile = 'CD.topo.json';
                                  break;
-                            case 'BOROUGH':
+                            case 'Borough':
                                 topoFile = 'borough.topo.json';
                                 break;
-                            case 'PUMA':
+                            case 'Puma':
                                 topoFile = 'PUMA_or_Subborough.topo.json';
                                 break;
-                            case 'SUBBORO':
+                            case 'Subboro':
                                 topoFile = 'PUMA_or_Subborough.topo.json';
                                 break;
                         }
+                        
+                        const filterGeoTypeMeasurementType = (geoType) => {
+                            const data = testData.filter(obj => obj.Geotype === geoType && obj[mapMeasure])
+                            console.log('test data 1: ', geoType, testData, data )
+                            return data
+                        }
+                        const filterGeoType = (geoType) => {
+                            const data = testData.filter(obj => obj.Geotype === geoType)
+                            console.log('test data 2: ', geoType, testData, data )
+                            return data
+                        }
+
+                        let mapData = null;
+
+                        
+
+                        const cdDataResults = filterGeoTypeMeasurementType('CD');
+                        const uhf42DataResults = filterGeoTypeMeasurementType('UHF42');
+                        const uhf34DataResults = filterGeoTypeMeasurementType('UHF34');
+                        const subboroDataResults = filterGeoTypeMeasurementType('Subboro');
+                        const cdData = filterGeoType('CD');
+                        const uhf42Data = filterGeoType('UHF42');
+                        const uhf34Data = filterGeoType('UHF34');
+                        const subboroData = filterGeoType('Subboro');
+
+                        if (cdDataResults.length > 0) {
+                            console.log('## CD')
+                            mapData = cdData;
+                        } else if (subboroDataResults.length > 0) {
+                            console.log('## Subboro')
+                            mapData = subboroData;
+                        } else if (uhf42DataResults.length > 0) {
+                            console.log('## UHF42')
+                            mapData = uhf42Data;
+                        } else if (uhf34DataResults.length > 0) {
+                            console.log('## UHF34')
+                            mapData = uhf34Data;
+                        }
+
+                        // console.log('default data: ', geoTypFilteredData)
+
+                        // console.log('TEST DATA: ', testData, 'selected: ', selectedData, 'mapMeasure: ', mapMeasure, 'defaultGeoTypFilteredData', geoTypFilteredData)
 
                         console.log('RENDER MAP DATA - topoFile ', topoFile)
 
@@ -1253,13 +1305,23 @@
                     ) => {
                         console.log('==========================================================================')
                         const defaultLinksMeasureId = defaultLinksMeasure[0].VisOptions[0].Links[0].MeasureID;
+                        const linkAxisMeasureId = selectedSecondaryMeasureId ? selectedSecondaryMeasureId : defaultLinksMeasureId;
+                        const secondaryIndicator =  indicators.filter(indicator =>
+                            indicator.Measures.some(measure => 
+                                measure.MeasureID === linkAxisMeasureId)
+                        )
+
+                        const secondaryMeasure = secondaryIndicator[0].Measures.filter(m =>
+                            m.MeasureID === linkAxisMeasureId
+                        )
+                        
                         const defaultLinksAxis = defaultLinksMeasure[0].VisOptions[0].Links[0].Axis;
                         const linkAxisMeasure = selectedData ? filterSecondaryIndicatorMeasure(selectedData) : filterSecondaryIndicatorMeasure(defaultLinksMeasure)
-                        const linkAxisMeasureId = selectedSecondaryMeasureId ? selectedSecondaryMeasureId : defaultLinksMeasureId;
+                        
                         const linksMeasure = selectedMeasure ? selectedMeasure : defaultLinksMeasure[0].MeasurementType;
                         const linkAxis = selectedAxis ? selectedAxis : defaultLinksAxis;
                         const linksDisplay = selectedDisplay ? selectedDisplay : defaultLinksMeasure[0].DisplayType;
-                        const linkAxisDisplay = selectedlinksSecondaryMeasureData[0].DisplayType;
+                        const linkAxisDisplay = secondaryMeasure[0].DisplayType;
                         const linksTime = selectedData ? selectedData[0].AvailableTimes[0].TimeDescription : defaultLinksMeasure[0].AvailableTimes[0].TimeDescription;
                         const linksAxisTime = selectedlinksSecondaryMeasureTime;
 
@@ -1274,16 +1336,11 @@
                         console.log('RENDDER LINKS DISPLAY: ', linksDisplay)
                         console.log('indicators: ', indicators)
 
-                        const filteredIndicator =  indicators.filter(indicator =>
-                            indicator.Measures.some(measure => 
-                                measure.MeasureID === linkAxisMeasureId)
-                        )
+                        
 
-                        const thisMeasure = filteredIndicator[0].Measures.filter(m =>
-                            m.MeasureID === linkAxisMeasureId
-                        )
+                        const linkAxisMeas = secondaryMeasure[0].MeasurementType
 
-                        const linkAxisMeas = thisMeasure[0].MeasurementType
+                        console.log('this data: ', secondaryMeasure[0], secondaryIndicator)
                         
                         let xMeasure;
                         let yMeasure;
@@ -1302,7 +1359,7 @@
                                 xDisplay = linksDisplay ? linksDisplay : '';
                                 yTime = linksAxisTime;
                                 xTime = linksTime;
-                                yIndicatorName = selectedlinksSecondaryIndicatorData[0].IndicatorName;
+                                yIndicatorName = secondaryIndicator[0].IndicatorName;
                                 xIndicatorName = indicatorName;
                                 break;
                             case 'x':
@@ -1313,7 +1370,7 @@
                                 yTime = linksTime;
                                 xTime = linksAxisTime;
                                 yIndicatorName = indicatorName;
-                                xIndicatorName = selectedlinksSecondaryIndicatorData[0].IndicatorName;
+                                xIndicatorName = secondaryIndicator[0].IndicatorName;
                                 break;
                         }
 
@@ -1542,34 +1599,8 @@
                             obj.Time === date
                         )
 
-                        const filterGeoTypeMeasurementType = (geoType) => {
-                            const data = filteredData.filter(obj => obj.GeoType === geoType && obj[measurementType])
-                            return data
-                        }
-                        const filterGeoType = (geoType) => {
-                            const data = filteredData.filter(obj => obj.GeoType === geoType)
-                            return data
-                        }
-                        const cdDataResults = filterGeoTypeMeasurementType('CD');
-                        const uhf42DataResults = filterGeoTypeMeasurementType('UHF42');
-                        const uhf34DataResults = filterGeoTypeMeasurementType('UHF34');
-                        const cdData = filterGeoType('CD');
-                        const uhf42Data = filterGeoType('UHF42');
-                        const uhf34Data = filterGeoType('UHF34');
-
-                        if (cdDataResults.length > 0) {
-                            geoTypFilteredData = filteredData;
-                        } else if (uhf42DataResults.length > 0) {
-                            geoTypFilteredData = uhf42Data;
-                        } else if (uhf34DataResults.length > 0) {
-                            geoTypFilteredData = uhf34Data;
-                        }
-
-                       console.log('testing: ',cdData.length, uhf42Data.length, uhf34Data.length)
-
-                        console.log('filteredData', measurementType, filteredData)
                         renderAboutSources(about, sources);
-                        renderMap(geoTypFilteredData, measurementType, display, date);
+                        renderMap(filteredData, measurementType, display, date);
                         selectedMapMeasure =  true;
                     }
 
@@ -1593,13 +1624,18 @@
                     const updateLinksData = (e) => {
                         const measureId = parseInt(e.target.dataset.measureId);
                         const primaryMeasureId = parseInt(e.target.dataset.primaryMeasureId);
+                        const secondaryMeasureId = parseInt(e.target.dataset.secondaryMeasureId);
+
                         const linksSecondaryIndicator =  indicators.filter(indicator =>
                             indicator.Measures.some(m => 
-                                m.MeasureID === primaryMeasureId)
+                                m.MeasureID === secondaryMeasureId)
                         )
                         const linksSecondaryMeasure = linksSecondaryIndicator[0].Measures.filter(m =>
-                            m.MeasureID === primaryMeasureId
+                            m.MeasureID === secondaryMeasureId
                         )
+
+                 
+
                         const measure = linksMeasures.filter(m => m.MeasureID == measureId);
                         
                         const measurementType = measure[0].MeasurementType;
@@ -1607,22 +1643,26 @@
                         const secondaryIndicator = linksSecondaryIndicator[0].IndicatorLabel;
                         const axis = measure[0].VisOptions[0].Links[0].Axis;
                         
-                        const secondaryMeasureId = parseInt(e.target.dataset.secondaryMeasureId);
+                        
                         const about = measure[0].how_calculated;
                         const secondaryAbout = linksSecondaryMeasure[0].how_calculated;
                         const sources = measure[0].Sources;
                         const secondarySources = linksSecondaryMeasure[0].Sources;
                         const display = measure[0].DisplayType;
-                        const combindSources = `<h6>${indicator.IndicatorName} - ${measurementType}</h6><p>${sources}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondarySources}</p>`;
+                        const combinedSources = `<h6>${indicator.IndicatorName} - ${measurementType}</h6><p>${sources}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondarySources}</p>`;
                         const combinedAbout = `<h6>${indicator.IndicatorName} - ${measurementType}</h6><p>${about}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondaryAbout}</p>`;
                         
-                       
                         selectedLinkMeasureData = linksMeasures.filter(m => m.MeasureID === measureId)
                         console.log('LINKS MEASURES: ', selectedLinkMeasureData, primaryMeasureId, linksSecondaryIndicator)
                         selectedLinksAbout = combinedAbout;
-                        selectedLinksSources =  combindSources;
+                        selectedLinksSources =  combinedSources;
+
+
+                        console.log('fix linksSecondaryIndicator: ', linksSecondaryIndicator)
+                        console.log('fix linksSecondaryMeasure: ', linksSecondaryMeasure)
+                        console.log('fix selectedLinkMeasureData', selectedLinkMeasureData)
                         
-                        renderAboutSources(combinedAbout, combindSources);
+                        renderAboutSources(combinedAbout, combinedSources);
                         renderLinksChart(selectedLinkMeasureData, measurementType, display, axis, measureId, secondaryMeasureId)
                         selectedLinksMeasure = true;
                     }
@@ -1751,11 +1791,11 @@
                         }
 
                         indicator = indicators.find(indicator => indicator.IndicatorID === data2.internal_id)
-                        indicatorName = indicator.IndicatorName ? indicator.IndicatorName : data.name;
-                        indicatorDesc = indicator.IndicatorDescription ? indicator.IndicatorDescription : `N/A`;
-                        indicatorShortName = indicator.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
-                        indicatorMeasurses = indicator.Measures;
-                        indicatorId = indicator.IndicatorID;     
+                        indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : data2.name;
+                        indicatorDesc = indicator?.IndicatorDescription ? indicator.IndicatorDescription : `N/A`;
+                        indicatorShortName = indicator?.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
+                        indicatorMeasurses = indicator?.Measures;
+                        indicatorId = indicator?.IndicatorID;     
                         
                         console.log('==========================================================================')
                         console.log('Load Indicator - IndicatorId: ', indicatorId)
@@ -1848,26 +1888,35 @@
                             if (links) {
                                 linksMeasures.push(measure)
                                 const primaryMeasureId = measure.VisOptions[0].Links[0].MeasureID;
-                                const linksSecondaryIndicator =  indicators.filter(indicator =>
-                                    indicator.Measures.some(m => 
-                                        m.MeasureID === primaryMeasureId)
-                                )
+                                // const linksSecondaryIndicator =  indicators.filter(indicator =>
+                                //     indicator.Measures.some(m => 
+                                //         m.MeasureID === primaryMeasureId)
+                                // )
 
-                                const linksSecondaryMeasure = linksSecondaryIndicator[0].Measures.filter(m =>
-                                    m.MeasureID === primaryMeasureId
-                                )
-                                console.log('measure link', measureId, primaryMeasureId, linksSecondaryIndicator, linksSecondaryMeasure, measure.VisOptions[0].Links, measure.MeasureID)
+                                // const linksSecondaryMeasure = linksSecondaryIndicator[0].Measures.filter(m =>
+                                //     m.MeasureID === primaryMeasureId
+                                // )
+                                // console.log('measure link id', measureId, 'primaryMeasureId: ', primaryMeasureId, 'linksSecondaryIndicator: ', linksSecondaryIndicator, 'linksSecondaryMeasure: ', linksSecondaryMeasure, measure.VisOptions[0].Links, 'measure.MeasureID', measure.MeasureID)
 
                                 if  (fullDataLinksObjects) {
                                     const linkYears =  [...new Set(fullDataLinksObjects.map(item => item.Time))];
                                     dropdownLinksMeasures.innerHTML += `<div class="dropdown-title"><strong> ${type}</strong></div>`;
                                     measure.VisOptions[0].Links.map(link => {
+                                        const linksSecondaryIndicator = indicators.filter(indicator =>
+                                            indicator.Measures.some(m => 
+                                                m.MeasureID === link.MeasureID)
+                                        );
+
+                                        const linksSecondaryMeasure = linksSecondaryIndicator[0].Measures.filter(
+                                            m => m.MeasureID === link.MeasureID
+                                        );
+
+                                        console.log('linkz ', link, 'linksSecondaryIndicator: ',  linksSecondaryIndicator, 'linksSecondaryMeasure:', linksSecondaryMeasure)
                                         dropdownLinksMeasures.innerHTML += `<button class="dropdown-item link-measure" 
                                             data-primary-measure-id="${primaryMeasureId}"
                                             data-measure-id="${measure.MeasureID}"
-                                            data-secondary-measure-id="${link.MeasureID}"
-                                            data-secondary-about="${linksSecondaryMeasure[0].how_calculated}">
-                                                ${linksSecondaryIndicator[0].IndicatorLabel} - ${linksSecondaryMeasure[0].MeasurementType}
+                                            data-secondary-measure-id="${link.MeasureID}">
+                                               ${linksSecondaryIndicator[0].IndicatorLabel} - ${linksSecondaryMeasure[0].MeasurementType}
                                             </button>`;
                                     })
                                 }
