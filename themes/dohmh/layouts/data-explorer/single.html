@@ -115,6 +115,10 @@
                     let aqData;
                     let joinedAqData;
 
+                    let hasCIData = false;
+                    let hasNumberData = false;
+                    let hasPercentData = false;
+
                     let fullDataMapObjects;
                     let fullDataTrendObjects;
                     let fullDataLinksObjects;
@@ -242,13 +246,46 @@
 
                     // join the data
                     const joinData = () => {
-                        joinedAqData = aqData
-                            .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
+
+                        //Measures[2].VisOptions[0].Trend[0].Disparities
+                        // console.log('CI: ', ciAqData)
+
+                        if (hasCIData && hasNumberData) {
+                            joinedAqData = aqData
+                                .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
                                 .relocate(['Name'], { after: 'GeoID' })
                                 .relocate(['Geotype'], { before: 'GeoID' })
                                 .rename({
                                     'Name': 'Geography',
                                 })
+                                .relocate(aq.startswith("Number"), { after: "Geography" })
+                                .relocate(["Percent (95% CL)"], { after: "Number" })
+                        } else if (hasCIData && !hasNumberData && hasPercentData) {
+                            joinedAqData = aqData
+                                .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
+                                .relocate(['Name'], { after: 'GeoID' })
+                                .relocate(['Geotype'], { before: 'GeoID' })
+                                .rename({
+                                    'Name': 'Geography',
+                                })
+                                .relocate(["Percent (95% CL)"], { after: "Geography" })
+                        } else {
+                            console.log(aqData)
+                            joinedAqData = aqData
+                                .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
+                                .relocate(['Name'], { after: 'GeoID' })
+                                .relocate(['Geotype'], { before: 'GeoID' })
+                                .rename({
+                                    'Name': 'Geography',
+                                })
+                                // .relocate(["Number"], { after: "Geography" })
+                                // .relocate(["Percent"], { after: "Number" })
+                        }
+                       
+                                // .relocate(['Geography'], { after: 'MeasureName' })
+                                
+                                // .select(aq.not('Geotype', 'Long'))
+                                
                         
                         const filterUHF42 = joinedAqData.filter(d => d.GeoType == 'UHF42').objects();
                         const filterUHF34 = joinedAqData.filter(d => d.GeoType == 'UHF34').objects();
@@ -261,6 +298,7 @@
                         geoTable.print()
                                 
                         joinedAqData.print()
+
 
                         fullDataMapObjects = [...filterUHF42, ...filterUHF34, ...filterCD, ...filterSubboro ];
                         fullDataTrendObjects = [...filterBorough, ...filterCitywide];
@@ -277,6 +315,7 @@
                             .then(data => {
                                 geoTable = data
                                     .derive({ GeoID: d => op.parse_int(d.GeoID) }) // convert GeoIDs to numbers
+                                    .select(aq.not('Lat', 'Long'))
                                 // console.log("---- Geo Names 1 (post-load) ----")
                                 // geoTable.print();
                                 joinData(); // run the next function 
@@ -290,11 +329,249 @@
                             .then(data => {
 
                                 loadGeo(); // run the next function
-                                aqData = aq.from(data)
-                                    .groupby("Time", "GeoType", "GeoID")
-                                    .pivot("MeasurementType", "Value")
+
+                                const ciAqData = data.filter(d => d.CI.length > 0 )
+                                
+                                const numAqData = data.filter(d => d.MeasurementType === "Number")
+                                const pctAqData = data.filter(d => d.MeasurementType === "Percent")
+                                // Pesticide Measurement Types
+                                const sprayBombPct = data.filter(d => d.MeasurementType === "Spray/Bomb Only - %")
+                                const saferMethodsNumber = data.filter(d => d.MeasurementType === "Only Safer Methods (Bait,Gel, Boric Acid) - Number")
+                                const saferMethodsPct = data.filter(d => d.MeasurementType === "Only Safer Methods (Bait,Gel, Boric Acid) - %")
+                                const anyUseNumber = data.filter(d => d.MeasurementType === "Any Use - Number")
+                                const anyUsePct = data.filter(d => d.MeasurementType === "Any Use - %")
+                                const anyUseTempoPct = data.filter(d => d.MeasurementType === "Any use of Tempo or Chinese Chalk - %")
+
+
+
+                                // const strippedAqData = data.filter(d => d.MeasurementType !== "Percent" && d.MeasurementType !== "Number" )
+
+
+                                // 0: "Any use of Tempo or Chinese Chalk - %"
+                                // 1: "Spray/Bomb Only - %"
+                                // 2: "Only Safer Methods (Bait,Gel, Boric Acid) - Number"
+                                // 3: "Only Safer Methods (Bait,Gel, Boric Acid) - %"
+                                // 4: "Any Use - Number"
+                                // 5: "Any Use - %"
+
+                                hasCIData = ciAqData.length > 0;
+                                hasNumberData = numAqData.length > 0;
+                                hasPercentData = pctAqData.length > 0;
+                                console.log('data: ', data)
+                                console.log('CI: ', ciAqData)
+                                console.log('Number: ', pctAqData)
+                                console.log('Percent: ', pctAqData)
+                                console.log('Stripped: ', data)
+
+                                const assignGeoRank = (GeoType) => {
+                                    switch (GeoType) {
+                                        case 'Citywide':
+                                            return 0;
+                                        case 'Borough':
+                                            return 1;
+                                        case 'UHF34':
+                                            return 2;
+                                        case 'UHF42':
+                                            return 3;
+                                        case 'Subboro':
+                                            return 4;
+                                        case 'CD':
+                                            return 5;
+                                        case 'NTA':
+                                            return 6;
+                                    }
+                                }
+
+                                
+                                // debugger;
+
+                                
+                                                    
+                                                    // .relocate(["CI"], { after: "Percent" })
+                                                    
+                                                    // .relocate(["Time"], { before: "MeasureID" })
+                                                    // .relocate(["GeoType"], { after: "Time" })
+                                                    // .relocate(["CI"], { after: "Percent" })
+                                let pct
+                                let num
+                                let ful
+                                let str
+                                let aUNum
+                                let aUTPct
+                                let aUPct
+                                let sMPct
+                                let sBPct
+
+
+                                ful = aq.from(data)
+                                                .groupby("Time", "GeoType", "GeoID", { "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
+                                                // .impute({ Value: () => "**" })
+                                                .pivot("MeasurementType", "Value")
+
+                                                ful.print({limit: 100})
+                                if (hasCIData) {
+                                    console.log('---- new table ----------')
+                                    const dataMeasurementTypes = [...new Set(data.map(item => item.MeasurementType))]
+                                    console.log(dataMeasurementTypes, data)
+                                    if (pctAqData.length > 0) {
+                                    pct = aq.from(pctAqData)
+                                                .groupby("Time", "GeoType", "GeoID", "CI", { "Percent (95% CL)": d => d.Value !== null ? d.DisplayValue + " " + d.CI: "**" })
+                                                .impute({ Value: () => "**" })
+                                                .pivot("MeasurementType", "Value")
+
+                                    pct.print();
+                                }
+                                
+                                if (numAqData.length > 0) {
+                                    num = aq.from(numAqData)
+                                                .groupby("Time", "GeoType", "GeoID")
+                                                .impute({ Value: () => "**" })
+                                                .pivot("MeasurementType", "Value")
+
+                                    num.print();
+                                }
+
+
+                                if (sprayBombPct.length > 0) {
+                                    sBPct = aq.from(sprayBombPct)
+                                                .groupby("Time", "GeoType", "GeoID")
+                                                .impute({ Value: () => "**" })
+                                                .pivot("MeasurementType", "Value")
+
+                                                console.log('sprayBombPct-------------------------------------------------')
+                                                sBPct.print()
+                                } 
+                                // = data.filter(d => d.MeasurementType === "Spray/Bomb Only - %")
+                                // if (saferMethodsNumber.length > 0) {
+
+                                // } = data.filter(d => d.MeasurementType === "Only Safer Methods (Bait,Gel, Boric Acid) - Number")
+                                if (saferMethodsPct.length > 0) {
+                                    sMPct = aq.from(saferMethodsPct)
+                                                .groupby("Time", "GeoType", "GeoID")
+                                                .impute({ Value: () => "**" })
+                                                .pivot("MeasurementType", "Value")
+
+                                                console.log('saferMethodsPct-------------------------------------------------')
+                                                sMPct.print()
+                                }
+                                // = data.filter(d => d.MeasurementType === "Only Safer Methods (Bait,Gel, Boric Acid) - %")
+                               
+                                if (anyUseNumber.length > 0) {
+                                    aUNum = aq.from(anyUseNumber)
+                                                .groupby("Time", "GeoType", "GeoID")
+                                                .impute({ Value: () => "**" })
+                                                .pivot("MeasurementType", "Value")
+
+                                                console.log('anyUseNumber-------------------------------------------------')
+                                                aUNum.print()
+                                }
+                                //  = data.filter(d => d.MeasurementType === "Any Use - Number")
+                                if (anyUsePct.length > 0) {
+                                    aUPct = aq.from(anyUsePct)
+                                                .groupby("Time", "GeoType", "GeoID")
+                                                .impute({ Value: () => "**" })
+                                                .pivot("MeasurementType", "Value")
+
+                                                console.log('anyUsePct-------------------------------------------------')
+                                                aUPct.print()
+                                }
+                                
+                                // = data.filter(d => d.MeasurementType === "Any Use - %")
+                                if (anyUseTempoPct.length > 0) {
+                                    aUTPct = aq.from(anyUseTempoPct)
+                                                .groupby("Time", "GeoType", "GeoID", "CI")
+                                                .impute({ Value: () => "**" })
+                                                .pivot("MeasurementType", "Value")
+
+                                                console.log('anyUseTempoPct-------------------------------------------------')
+                                                aUTPct.print()
+                                }
+                                //  = data.filter(d => d.MeasurementType === "Any use of Tempo or Chinese Chalk - %")
+
+                                
+                                // if (strippedAqData.length > 0) {
+                                //     str = aq.from(strippedAqData)
+                                //                 .groupby("Time", "GeoType", "GeoID", { "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
+                                //                 .impute({ Value: () => "**" })
+                                //                 .pivot("MeasurementType", "Value")
+                                // } else {
+                                     
+                                // }
+                                
+                                                
+                                
+                                
+                                
+                                let newTable;
+                                if (pctAqData.length > 0 && numAqData.length > 0) {
+                                    // if (strippedAqData.length > 0) {
+                                    // newTable = str
+                                    //             .join(num, [["GeoID", "GeoType", "Time"], ["GeoID", "GeoType", "Time"]])
+                                    //             .join(pct, [["GeoID", "GeoType", "Time"], ["GeoID", "GeoType", "Time"]])
+                                    //             .orderby(aq.desc('Time'), 'GeoRank')
+                                    // } else {
+                                        console.log('test', ful)
+                                        ful.print()
+                                        newTable = ful
+                                                .join(num, [["GeoID", "GeoType", "Time", "Number"], ["GeoID", "GeoType", "Time", "Number"]])
+                                                .join(pct, [["GeoID", "GeoType", "Time", "Percent"], ["GeoID", "GeoType", "Time", "Percent"]])
+                                                .orderby(aq.desc('Time'), 'GeoRank')
+                                    // }
+                                } else if (pctAqData.length > 0 && numAqData.length === 0) {
+                                    newTable =  aq.from(strippedAqData)
+                                                .join(num, [["GeoID", "GeoType", "Time"], ["GeoID", "GeoType", "Time"]])
+                                                .join(pct, [["GeoID", "GeoType", "Time"], ["GeoID", "GeoType", "Time"]])
+                                                .orderby(aq.desc('Time'), 'GeoRank')
+                                } else if (pctAqData.length === 0 && numAqData.length === 0) {
+                                    console.log('NO NUMBER OR PERCENT')
+                                    newTable = ful
+                                            .groupby("Time", "GeoType", "GeoID")
+                                            // .join(aUNum)
+                                            // .join(aUTPct)
+                                        .join_left(sBPct, [["GeoID", "GeoType", "Time", "Spray/Bomb Only - %"], ["GeoID", "GeoType", "Time", "Spray/Bomb Only - %"]])
+                                        .join_left(sMPct, [["GeoID", "GeoType", "Time", "Only Safer Methods (Bait,Gel, Boric Acid) - %"], ["GeoID", "GeoType", "Time", "Only Safer Methods (Bait,Gel, Boric Acid) - %"]])
+                                        .join_left(aUNum, [["GeoID", "GeoType", "Time", "Any Use - Number"], ["GeoID", "GeoType", "Time", "Any Use - Number"]])
+                                        .join_left(aUPct, [["GeoID", "GeoType", "Time", "Any Use - %"], ["GeoID", "GeoType", "Time", "Any Use - %"]])
+                                        .join_left(aUTPct, [["GeoID", "GeoType", "Time", "Any use of Tempo or Chinese Chalk - %"], ["GeoID", "GeoType", "Time", "Any use of Tempo or Chinese Chalk - %"]])
+                                        // .join(aUTPct, [["GeoID", "GeoType", "Time", "Any use of Tempo or Chinese Chalk - %"], ["GeoID", "GeoType", "Time", "Any use of Tempo or Chinese Chalk - %"]])
+                                        .orderby(aq.desc('Time'), 'GeoRank')
+                                        console.log('newTable', newTable)
+                                }
+                                
+
+                                console.log('newTable====================================')
+                                newTable.print();
+                                aqData = newTable
+                                    // aqData = aq.from(data)
+                                    //     // .except([pct, num])
+                                    //     .semijoin(pct, [["GeoType"], ["GeoType"]])
+                                    //     .semijoin(pct, [["GeoType"], ["GeoType"]])
+                                        // .groupby("Time", "GeoType", "GeoID", "CI")
+                                        // .groupby({ abc: d => d.MeasurementType + d.Time})
+                                        
+                                        // .pivot("MeasurementType", "DisplayValue")
+
+                                        // .relocate(["Time"], { before: "MeasureID" })
+                                        // .relocate(["GeoType"], { after: "Time" })
+                                        // .relocate(["CI"], { after: "Percent" })
+
+                                        // .select(aq.not('Geotype', 'Long'))
+                                        // .rename({ CI: "95% CL" })
+                                        // .pivot(
+                                        // { key: d => op.lower(d.key) },
+                                        // { value: d => op.sum(d.value) }
+                                        // )
+                                } else {
+                                    console.log('hi', ful)
+                                    aqData = ful
+                                        .groupby("Time", "GeoType", "GeoID")
+                                        // .impute({ Value: () => "**" })
+                                        // .pivot("MeasurementType", "Value")
+                                        .orderby(aq.desc('Time'), 'GeoRank')
+                                }
+                                
                                 console.log('==========================================================================')
-                                console.log('Load Date - aqData')
+                                console.log('Load Date - aqData', aqData)
                                 aqData.print();
                             })
                     }
