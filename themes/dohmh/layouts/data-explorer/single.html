@@ -132,9 +132,15 @@
                     let indicatorId;
 
                     let defaultTrendMeasure = [];
+                    let defaultTrendAbout;
+                    let defaultTrendSources;
                     let defaultMapMeasure = [];
+                    let defaultMapAbout;
+                    let defaultMapSources;
                     let defaultLinksMeasure = [];
                     let defaultLinkMeasureTimes = [];
+                    let defaultLinksAbout;
+                    let defaultLinksSources;
 
                     let selectedMapMeasure = false
                     let selectedTrendMeasure = false;
@@ -176,22 +182,31 @@
                         $('#tab-btn-table').on('shown.bs.tab', function(e){
                             $($.fn.dataTable.tables(true)).DataTable()
                                 .columns.adjust();
-
                             renderAboutSources(measureAbout, measureSources)
                         });
                         
                         tabMap.addEventListener('click', () => {
                             updateChartPlotSize();
                             if (!selectedMapMeasure) {
-                                renderAboutSources(defaultMapMeasure[0]?.how_calculated, defaultMapMeasure[0].Sources);
+                                const about = defaultMapMeasure[0]?.how_calculated;
+                                const sources = defaultMapMeasure[0].Sources;
+                                const measure = defaultMapMeasure[0].MeasurementType;
+                                defaultMapbout = `<h6>${indicator.IndicatorName} - ${measure}</h6><p>${about}</p>`;
+                                defaultMapSources = `<h6>${indicator.IndicatorName} - ${measure}</h6><p>${sources}</p>`;
+                                renderAboutSources(defaultMapbout, defaultMapSources);
                             } else {
-                                renderAboutSources(selectedMapAbout, selectedMapSources);
+                                renderAboutSources(selectedMapbout, selectedMapSources);
                             }
                         });
                         tabTrend.addEventListener('click', () => {
                             updateChartPlotSize();
                             if (!selectedTrendMeasure) {
-                                renderAboutSources(defaultTrendMeasure[0]?.how_calculated, defaultTrendMeasure[0].Sources);
+                                const about = defaultTrendMeasure[0]?.how_calculated;
+                                const sources = defaultTrendMeasure[0].Sources;
+                                const measure = defaultTrendMeasure[0].MeasurementType;
+                                defaultTrendAbout = `<h6>${indicator.IndicatorName} - ${measure}</h6><p>${about}</p>`;
+                                defaultTrendSources = `<h6>${indicator.IndicatorName} - ${measure}</h6><p>${sources}</p>`;
+                                renderAboutSources(defaultTrendAbout, defaultTrendSources);
                             } else {
                                 renderAboutSources(selectedTrendAbout, selectedTrendSources);
                             }
@@ -218,10 +233,10 @@
                             const secondaryAbout = linksSecondaryMeasure[0].how_calculated;
                             const secondarySources = linksSecondaryMeasure[0].Sources;
 
-                            const combinedAbout = `<h6>${primaryIndicator} - ${primaryMeasure}</h6><p>${primaryAbout}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondaryAbout}</p>`;
-                            const combinedSources = `<h6>${primaryIndicator} - ${primaryMeasure}</h6><p>${primarySources}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondarySources}</p>`;
+                            defaultLinksAbout = `<h6>${primaryIndicator} - ${primaryMeasure}</h6><p>${primaryAbout}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondaryAbout}</p>`;
+                            defaultLinksSources = `<h6>${primaryIndicator} - ${primaryMeasure}</h6><p>${primarySources}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondarySources}</p>`;
                             if (!selectedLinksMeasure) {
-                                renderAboutSources(combinedAbout, combinedSources);
+                                renderAboutSources(defaultLinksAbout, defaultLinksSources);
                             } else {
                                 renderAboutSources(selectedLinksAbout, selectedLinksSources);
                             }
@@ -342,18 +357,6 @@
                                 const anyUsePct = data.filter(d => d.MeasurementType === "Any Use - %")
                                 const anyUseTempoPct = data.filter(d => d.MeasurementType === "Any use of Tempo or Chinese Chalk - %")
 
-
-
-                                // const strippedAqData = data.filter(d => d.MeasurementType !== "Percent" && d.MeasurementType !== "Number" )
-
-
-                                // 0: "Any use of Tempo or Chinese Chalk - %"
-                                // 1: "Spray/Bomb Only - %"
-                                // 2: "Only Safer Methods (Bait,Gel, Boric Acid) - Number"
-                                // 3: "Only Safer Methods (Bait,Gel, Boric Acid) - %"
-                                // 4: "Any Use - Number"
-                                // 5: "Any Use - %"
-
                                 hasCIData = ciAqData.length > 0;
                                 hasNumberData = numAqData.length > 0;
                                 hasPercentData = pctAqData.length > 0;
@@ -382,26 +385,15 @@
                                     }
                                 }
 
-                                
-                                // debugger;
-
-                                
-                                                    
-                                                    // .relocate(["CI"], { after: "Percent" })
-                                                    
-                                                    // .relocate(["Time"], { before: "MeasureID" })
-                                                    // .relocate(["GeoType"], { after: "Time" })
-                                                    // .relocate(["CI"], { after: "Percent" })
-                                let pct
-                                let num
-                                let ful
-                                let str
-                                let aUNum
-                                let aUTPct
-                                let aUPct
-                                let sMPct
-                                let sBPct
-
+                                let pct;
+                                let num;
+                                let ful;
+                                let str;
+                                let aUNum;
+                                let aUTPct;
+                                let aUPct;
+                                let sMPct;
+                                let sBPct;
 
                                 ful = aq.from(data)
                                                 .groupby("Time", "GeoType", "GeoID", { "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
@@ -1184,6 +1176,8 @@
                         vegaEmbed("#map", spec3);
                     }
 
+                    let renderDisparities
+
                     // Render Trend Chart using Vegalite
                     const renderTrendChart = (
                         selectedData,
@@ -1206,8 +1200,35 @@
                         const tabTrendDropDown = document.querySelector('#tab-trend  .dropdown');
                         const btnShowDisparitires = document.querySelector('.btn-show-disparities');
 
+                        renderDisparities = () => {
+                            const disparityIndicator = indicators.filter(indicator =>
+                                indicator.Measures.some(m => 
+                                    m.MeasureID === 221)
+                            );
+
+                            const disparityMeasure = disparityIndicator[0].Measures.filter(
+                                m => m.MeasureID === 221
+                            );
+
+                            console.log('TREND DISPARITIS - POVERTY INDICATOR', disparityIndicator )
+                            console.log('TREND DISPARITIS - POVERTY MEASURE', disparityMeasure )
+                            const disparityIndicatorName = disparityIndicator[0].IndicatorName
+                            const disparityMeasureType = disparityMeasure[0].MeasurementType
+                            const  disparitySources = disparityMeasure[0].Sources
+                            const disparitysAbout = disparityMeasure[0].how_calculated
+                            const trendSources = selectedTrendSources ? selectedTrendSources : defaultTrendSources;
+                            const trendAbout = selectedTrendAbout ? selectedTrendAbout : defaultTrendAbout;
+
+                            const combinedAbout = `${trendAbout}<h6>${disparityIndicatorName} - ${disparityMeasureType}</h6><p>${disparitysAbout}</p>`;
+                            const combinedSources = `${trendSources}<h6>${disparityIndicatorName} - ${disparityMeasureType}</h6><p>${disparitySources}</p>`;
+                            renderAboutSources(combinedAbout, combinedSources);
+                        }
+
+                        
+                       
+
                         if (trendDisparity == 1 && !btnShowDisparitires) {
-                            tabTrendDropDown.innerHTML += `<button class="btn btn-sm mr-1 float-right btn-outline-success btn-show-disparities">Show Dispartites</button> `;
+                            tabTrendDropDown.innerHTML += `<button class="btn btn-sm mr-1 float-right btn-outline-success btn-show-disparities" onclick="renderDisparities()">Show Dispartites</button> `;
                         }   else if (btnShowDisparitires) {
                             tabTrendDropDown.removeChild(btnShowDisparitires)
                         }
@@ -1871,6 +1892,9 @@
 
                         selectedMapAbout = about;
                         selectedMapSources =  sources;
+
+                        selectedMapSources = `<h6>${indicator.IndicatorName} - ${measurementType}</h6><p>${sources}</p>`;
+                        selectedTrendAbout = `<h6>${indicator.IndicatorName} - ${measurementType}</h6><p>${about}</p>`;
                         
                         var geoTypFilteredData;
                         
@@ -1878,7 +1902,7 @@
                             obj.Time === date
                         )
 
-                        renderAboutSources(about, sources);
+                        renderAboutSources(selectedTrendAbout, selectedMapSources);
                         renderMap(filteredData, measurementType, display, date);
                         selectedMapMeasure =  true;
                     }
@@ -1891,11 +1915,11 @@
                         const about = measure[0].how_calculated;
                         const sources = measure[0].Sources;
                         const display = measure[0].DisplayType;
-                       
-                        selectedTrendAbout = about;
-                        selectedTrendSources =  sources;
+
+                        selectedTrendSources = `<h6>${indicator.IndicatorName} - ${measurementType}</h6><p>${sources}</p>`;
+                        selectedTrendAbout = `<h6>${indicator.IndicatorName} - ${measurementType}</h6><p>${about}</p>`;
                         
-                        renderAboutSources(about, sources);
+                        renderAboutSources(selectedTrendAbout, selectedTrendSources);
                         renderTrendChart(fullDataTrendObjects, measurementType, display, disparities);
                         selectedTrendMeasure = true;
                     }
@@ -2018,8 +2042,6 @@
 
                     const setDefaultLinksMeasure = (defaultArray, visArray) => {
                         defaultArray.length = 0;
-
-                        console.log('-------------------------- Vis ', visArray)
 
                         if (visArray.length > 0) {
                             const hasAgeAdjustedRate = visArray.filter(measure =>
@@ -2167,15 +2189,6 @@
                             if (links) {
                                 linksMeasures.push(measure)
                                 const primaryMeasureId = measure.VisOptions[0].Links[0].MeasureID;
-                                // const linksSecondaryIndicator =  indicators.filter(indicator =>
-                                //     indicator.Measures.some(m => 
-                                //         m.MeasureID === primaryMeasureId)
-                                // )
-
-                                // const linksSecondaryMeasure = linksSecondaryIndicator[0].Measures.filter(m =>
-                                //     m.MeasureID === primaryMeasureId
-                                // )
-                                // console.log('measure link id', measureId, 'primaryMeasureId: ', primaryMeasureId, 'linksSecondaryIndicator: ', linksSecondaryIndicator, 'linksSecondaryMeasure: ', linksSecondaryMeasure, measure.VisOptions[0].Links, 'measure.MeasureID', measure.MeasureID)
 
                                 if  (fullDataLinksObjects) {
                                     const linkYears =  [...new Set(fullDataLinksObjects.map(item => item.Time))];
@@ -2190,7 +2203,6 @@
                                             m => m.MeasureID === link.MeasureID
                                         );
 
-                                        console.log('linkz ', link, 'linksSecondaryIndicator: ',  linksSecondaryIndicator, 'linksSecondaryMeasure:', linksSecondaryMeasure)
                                         dropdownLinksMeasures.innerHTML += `<button class="dropdown-item link-measure" 
                                             data-primary-measure-id="${primaryMeasureId}"
                                             data-measure-id="${measure.MeasureID}"
@@ -2286,8 +2298,8 @@
                             measureAbout = '';
                             measureSources = '';
                             indicatorMeasurses.map(measure => {
-                                measureAbout += `<h6>${measure.MeasurementType}</h5>${measure.how_calculated}`;
-                                measureSources += `<h6>${measure.MeasurementType}</h5><p>${measure.Sources}</p>`;
+                                measureAbout += `<h6>${measure.MeasurementType}</h6>${measure.how_calculated}`;
+                                measureSources += `<h6>${measure.MeasurementType}</h6><p>${measure.Sources}</p>`;
                             })
                             
                             renderAboutSources(measureAbout, measureSources);
