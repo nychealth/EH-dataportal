@@ -14,7 +14,8 @@ menu:
 layout: single
 ---
 
-Physical inactivity and unhealthy diet rank among the leading risk factors for premature death in the United States. Active design, however, promotes health by using architectural and urban design strategies to encourage walking, bicycling, stair climbing, transit use, active recreation, and healthy eating.
+Physical activity and healthy eating rank among the leading ways to get and stay healthy. 
 
-Designing to increase access to parks, create pedestrian plazas, ensure well-maintained sidewalks, plant street trees, provide secure bicycle storage, and make stairwaus in buildings attractive and accessible can have a measurable effect on people's ability to safetly get regular physical activity that can keep them healthy.
+Active design is an applied, evidence-informed approach to improve physical, mental and social health outcomes through the design of the built environment. Active design leverages the expertise of architects, planners, developers, community members, designers, and other stakeholders.
 
+Designing to increase access to high quality parks, pedestrian plazas, sidewalks, quiet spaces, trees and other greenery, secure bicycle storage, gathering spaces, and stairways can have a measurable effect on people’s ability to safely maintain their physical, mental, and social health.
