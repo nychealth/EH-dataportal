@@ -81,6 +81,8 @@
                     z-index: 2000;
                 }
 
+
+
                 div[aria-labelledby="dropdownMapMeasures"].show {
                     display: flex !important;
                 }
@@ -101,6 +103,12 @@
             
             <!--D3-->
             <script src="https://d3js.org/d3.v5.min.js"></script>
+
+            <!-- Data Explorer -->
+            <script src="/js/data-explorer/summary.js"></script>
+            <script src="/js/data-explorer/map.js"></script>
+            <script src="/js/data-explorer/trend.js"></script>
+            <script src="/js/data-explorer/links.js"></script>
 
             <script>
                     let indicators = []; // indicator data
@@ -162,16 +170,51 @@
                     let trendMeasures = [];
                     let linksMeasures = [];
 
-
                     let tabMap;
                     let tabTrend;
                     let tabLinks;
+
+                    let currentHash;
+
+                    const url = new URL(window.location);
                 
                     const updateChartPlotSize = () => {
                         setTimeout(() => {
                             window.dispatchEvent(new Event('resize'));
                         }, 200)
+
                     }
+
+                    window.onpopstate = function (event) {
+                        if (event.state != null){
+                            console.log('EVENT: ', event.state.id)
+                            document.url = event.state.url;                            
+                            loadIndicator(event.state.id, true)
+                        }
+                    };
+
+                    window.addEventListener("hashchange", function () {
+                        const hash =  window.location.hash.replace('#', "");
+                        currentHash = hash;
+
+                        switch(hash) {
+                            case 'display=summary':
+                                $('#tab-btn-table').tab('show');
+                            break;
+                            case 'display=map':
+                                $('#tab-btn-map').tab('show');
+                            break;
+                            case 'display=trend':
+                                $('#tab-btn-trend').tab('show');
+                            break;
+                            case 'display=links':
+                                $('#tab-btn-links').tab('show');
+                            break;
+                            default: 
+                            $('#tab-btn-table').tab('show');
+                            break;
+                        }
+                    });
 
                     document.addEventListener("DOMContentLoaded", () => {
                         tabTable = document.querySelector('#tab-btn-table');
@@ -180,69 +223,6 @@
                         tabLinks = document.querySelector('#tab-btn-links');
                         aboutMeasures = document.querySelector('.indicator-measures');
                         dataSources = document.querySelector('.indicator-sources');
-                        
-                        $('#tab-btn-table').on('shown.bs.tab', function(e){
-                            $($.fn.dataTable.tables(true)).DataTable()
-                                .columns.adjust();
-                            renderAboutSources(measureAbout, measureSources)
-                        });
-                        
-                        tabMap.addEventListener('click', () => {
-                            updateChartPlotSize();
-                            if (!selectedMapMeasure) {
-                                const about = defaultMapMeasure[0]?.how_calculated;
-                                const sources = defaultMapMeasure[0].Sources;
-                                const measure = defaultMapMeasure[0].MeasurementType;
-                                defaultMapbout = `<h6>${indicator.IndicatorName} - ${measure}</h6><p>${about}</p>`;
-                                defaultMapSources = `<h6>${indicator.IndicatorName} - ${measure}</h6><p>${sources}</p>`;
-                                renderAboutSources(defaultMapbout, defaultMapSources);
-                            } else {
-                                renderAboutSources(selectedMapbout, selectedMapSources);
-                            }
-                        });
-                        tabTrend.addEventListener('click', () => {
-                            updateChartPlotSize();
-                            if (!selectedTrendMeasure) {
-                                const about = defaultTrendMeasure[0]?.how_calculated;
-                                const sources = defaultTrendMeasure[0].Sources;
-                                const measure = defaultTrendMeasure[0].MeasurementType;
-                                defaultTrendAbout = `<h6>${indicator.IndicatorName} - ${measure}</h6><p>${about}</p>`;
-                                defaultTrendSources = `<h6>${indicator.IndicatorName} - ${measure}</h6><p>${sources}</p>`;
-                                renderAboutSources(defaultTrendAbout, defaultTrendSources);
-                            } else {
-                                renderAboutSources(selectedTrendAbout, selectedTrendSources);
-                            }
-                            
-                        });
-                        tabLinks.addEventListener('click', () => {
-                            updateChartPlotSize();
-
-                            const primaryMeasureId = defaultLinksMeasure[0]?.VisOptions[0].Links[0].MeasureID;
-                            const linksSecondaryIndicator =  indicators.filter(indicator =>
-                                indicator.Measures.some(m => 
-                                    m.MeasureID === primaryMeasureId)
-                            )
-
-                            const linksSecondaryMeasure = linksSecondaryIndicator[0].Measures.filter(m =>
-                                m.MeasureID === primaryMeasureId
-                            )
-                            const primaryIndicator = indicator.IndicatorName;
-                            const primaryMeasure = defaultLinksMeasure[0].MeasurementType;
-                            const primaryAbout = defaultLinksMeasure[0].how_calculated;
-                            const primarySources = defaultLinksMeasure[0].Sources;
-                            const secondaryIndicator = linksSecondaryIndicator[0].IndicatorLabel;
-                            const secondaryMeasure = linksSecondaryMeasure[0].MeasurementType;
-                            const secondaryAbout = linksSecondaryMeasure[0].how_calculated;
-                            const secondarySources = linksSecondaryMeasure[0].Sources;
-
-                            defaultLinksAbout = `<h6>${primaryIndicator} - ${primaryMeasure}</h6><p>${primaryAbout}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondaryAbout}</p>`;
-                            defaultLinksSources = `<h6>${primaryIndicator} - ${primaryMeasure}</h6><p>${primarySources}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondarySources}</p>`;
-                            if (!selectedLinksMeasure) {
-                                renderAboutSources(defaultLinksAbout, defaultLinksSources);
-                            } else {
-                                renderAboutSources(selectedLinksAbout, selectedLinksSources);
-                            }
-                        });
                     });
 
 
@@ -251,19 +231,23 @@
                         document.getElementById('full').classList.toggle('show');
                         document.getElementById('contenttoggle').innerHTML = `Show less... <i class="fas fa-caret-square-up" aria-hidden="true"></i>`;
                     }
-
-
+                    
 
                     fetch('https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/indicators.json')
                         .then(response => response.json())
                         .then(data => {
                             indicators = data;
+                            const paramId =  url.searchParams.get('id') !== null ? parseInt(url.searchParams.get('id')) : false;
+                            const paramDisplay =  url.searchParams.get('display') !== null ? url.searchParams.get('display') : false
 
                             const renderIndicatorDropdown = () => {
                                 const indicatorDropdown = document.getElementById("indicator-dropdown");
                                 let indicatorId;
-
+                                let header;
+                                
                                 {{ range .Params.Indicators }}
+                                        header = `{{ .header }}`
+                                        indicatorDropdown.innerHTML += header.length && `<div class="dropdown-title"><strong>${header}</strong></div>`;
                                         {{ range $index, $id := .IndicatorID }}
                                             {{ if (eq $index 0) }}
                                                 defaultIndicatorId = {{ $id }}
@@ -276,18 +260,41 @@
                                 {{ end }}
                             }
 
+
                             renderIndicatorDropdown()
-                            loadIndicator()
-                            // loadData(indicatorId)
+                            if (paramId) {
+                                loadIndicator(paramId)
+                            } else {
+                                loadIndicator()
+                            }
+
+                            const hash =  window.location.hash.replace('#', "")
+                            console.log('hash:', window.location.hash, hash)
+                            
+                            switch(hash) {
+                                case 'display=summary':
+                                    $('#tab-btn-table').tab('show');
+                                    break;
+                                case 'display=map':
+                                    $('#tab-btn-map').tab('show');
+                                    break;
+                                case 'display=trend':
+                                    $('#tab-btn-trend').tab('show');
+                                    break;
+                                case 'display=links':
+                                    $('#tab-btn-links').tab('show');
+                                 break;
+                                default: 
+                                    $('#tab-btn-table').tab('show');
+                            }
                         })
                         .catch(error => console.log(error));            
 
+
+
+
                     // join the data
                     const joinData = () => {
-
-                        //Measures[2].VisOptions[0].Trend[0].Disparities
-                        // console.log('CI: ', ciAqData)
-
                         if (hasCIData && hasNumberData) {
                             joinedAqData = aqData
                                 .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
@@ -297,7 +304,7 @@
                                     'Name': 'Geography',
                                 })
                                 .relocate(aq.startswith("Number"), { after: "Geography" })
-                                .relocate(["Percent (95% CL)"], { after: "Number" })
+                                {{/*  .relocate(["Percent (95% CL)"], { after: "Number" })  */}}
                         } else if (hasCIData && !hasNumberData && hasPercentData) {
                             joinedAqData = aqData
                                 .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
@@ -306,9 +313,8 @@
                                 .rename({
                                     'Name': 'Geography',
                                 })
-                                .relocate(["Percent (95% CL)"], { after: "Geography" })
+                                {{/*  .relocate(["Percent (95% CL)"], { after: "Geography" })  */}}
                         } else {
-                            console.log(aqData)
                             joinedAqData = aqData
                                 .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
                                 .relocate(['Name'], { after: 'GeoID' })
@@ -316,29 +322,26 @@
                                 .rename({
                                     'Name': 'Geography',
                                 })
-                                // .relocate(["Number"], { after: "Geography" })
-                                // .relocate(["Percent"], { after: "Number" })
                         }
-                       
-                                // .relocate(['Geography'], { after: 'MeasureName' })
-                                
-                                // .select(aq.not('Geotype', 'Long'))
-                                
-                        
+
                         const filterUHF42 = joinedAqData.filter(d => d.GeoType == 'UHF42').objects();
                         const filterUHF34 = joinedAqData.filter(d => d.GeoType == 'UHF34').objects();
                         const filterCD = joinedAqData.filter(d => d.GeoType == 'CD').objects();
+                        const filterNTA = joinedAqData.filter(d => d.GeoType == 'NTA').objects();
+                        const filterPuma = joinedAqData.filter(d => d.GeoType == 'Puma').objects();
                         const filterSubboro = joinedAqData.filter(d => d.GeoType == 'Subboro').objects();
                         const filterBorough = joinedAqData.filter(d => d.GeoType  == 'Borough').objects();
                         const filterCitywide = joinedAqData.filter(d => d.GeoType  == 'Citywide').objects();
                         
                         console.log('hhhhhhh ',aqData, joinedAqData )
+                        console.log('===>', filterUHF42, filterUHF34, filterCD, filterPuma, filterSubboro, filterBorough, filterCitywide)
                         geoTable.print()
                                 
                         joinedAqData.print()
 
 
-                        fullDataMapObjects = [...filterUHF42, ...filterUHF34, ...filterCD, ...filterSubboro ];
+                        fullDataMapObjects = [...filterUHF42, ...filterUHF34, ...filterCD, ...filterPuma, ...filterSubboro, ...filterNTA ];
+                        console.log('fullDataMapObjects', fullDataMapObjects)
                         fullDataTrendObjects = [...filterBorough, ...filterCitywide];
                         fullDataLinksObjects = joinedAqData.objects();
                         joinedAqData.print()
@@ -351,11 +354,18 @@
 
                         aq.loadCSV(geoUrl)
                             .then(data => {
+
+                                const standardizeGeoId = (id, type) => {
+                                    if (type === 'NTA') {
+                                        return `${id}`;
+                                    }
+                                    return parseInt(id)
+                                }
                                 geoTable = data
-                                    .derive({ GeoID: d => op.parse_int(d.GeoID) }) // convert GeoIDs to numbers
+                                    .derive({ GeoID: aq.escape(d => standardizeGeoId(d.GeoID, d.Geotype))}) // convert GeoIDs to numbers and strings
                                     .select(aq.not('Lat', 'Long'))
                                 // console.log("---- Geo Names 1 (post-load) ----")
-                                // geoTable.print();
+                                geoTable.print({ limit: 300});
                                 joinData(); // run the next function 
                             });
                     }
@@ -419,20 +429,23 @@
                                 let sBPct;
 
                                 ful = aq.from(data)
-                                                .groupby("Time", "GeoType", "GeoID", { "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
-                                                // .impute({ Value: () => "**" })
-                                                .pivot("MeasurementType", "Value")
+                                        .groupby("Time", "GeoType", "GeoID", { "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
+                                        // .impute({ Value: () => "**" })
+                                        .pivot("MeasurementType", "Value")
 
-                                                ful.print({limit: 100})
+                                        ful.print({limit: 100})
+
                                 if (hasCIData) {
                                     console.log('---- new table ----------')
                                     const dataMeasurementTypes = [...new Set(data.map(item => item.MeasurementType))]
                                     console.log(dataMeasurementTypes, data)
                                     if (pctAqData.length > 0) {
                                     pct = aq.from(pctAqData)
-                                                .groupby("Time", "GeoType", "GeoID", "CI", { "Percent (95% CL)": d => d.Value !== null ? d.DisplayValue + " " + d.CI: "**" })
+                                                .groupby("Time", "GeoType", "GeoID", "CI")
+                                                //  .groupby("Time", "GeoType", "GeoID", "CI", { "Percent (95% CL)": d => d.Value !== null ? d.DisplayValue + " " + d.CI: "**" })
                                                 .impute({ Value: () => "**" })
                                                 .pivot("MeasurementType", "Value")
+                                                .rename({ CI: "CI (95%)"})
 
                                     pct.print();
                                 }
@@ -456,10 +469,6 @@
                                                 console.log('sprayBombPct-------------------------------------------------')
                                                 sBPct.print()
                                 } 
-                                // = data.filter(d => d.MeasurementType === "Spray/Bomb Only - %")
-                                // if (saferMethodsNumber.length > 0) {
-
-                                // } = data.filter(d => d.MeasurementType === "Only Safer Methods (Bait,Gel, Boric Acid) - Number")
                                 if (saferMethodsPct.length > 0) {
                                     sMPct = aq.from(saferMethodsPct)
                                                 .groupby("Time", "GeoType", "GeoID")
@@ -469,7 +478,6 @@
                                                 console.log('saferMethodsPct-------------------------------------------------')
                                                 sMPct.print()
                                 }
-                                // = data.filter(d => d.MeasurementType === "Only Safer Methods (Bait,Gel, Boric Acid) - %")
                                
                                 if (anyUseNumber.length > 0) {
                                     aUNum = aq.from(anyUseNumber)
@@ -480,7 +488,7 @@
                                                 console.log('anyUseNumber-------------------------------------------------')
                                                 aUNum.print()
                                 }
-                                //  = data.filter(d => d.MeasurementType === "Any Use - Number")
+
                                 if (anyUsePct.length > 0) {
                                     aUPct = aq.from(anyUsePct)
                                                 .groupby("Time", "GeoType", "GeoID")
@@ -491,7 +499,6 @@
                                                 aUPct.print()
                                 }
                                 
-                                // = data.filter(d => d.MeasurementType === "Any Use - %")
                                 if (anyUseTempoPct.length > 0) {
                                     aUTPct = aq.from(anyUseTempoPct)
                                                 .groupby("Time", "GeoType", "GeoID", "CI")
@@ -501,8 +508,6 @@
                                                 console.log('anyUseTempoPct-------------------------------------------------')
                                                 aUTPct.print()
                                 }
-                                //  = data.filter(d => d.MeasurementType === "Any use of Tempo or Chinese Chalk - %")
-
                                 
                                 // if (strippedAqData.length > 0) {
                                 //     str = aq.from(strippedAqData)
@@ -536,7 +541,7 @@
                                     newTable =  aq.from(strippedAqData)
                                                 .join(num, [["GeoID", "GeoType", "Time"], ["GeoID", "GeoType", "Time"]])
                                                 .join(pct, [["GeoID", "GeoType", "Time"], ["GeoID", "GeoType", "Time"]])
-                                                .orderby(aq.desc('Time'), 'GeoRank')
+                                                .orderby(aq.desc('Time'), aq.desc('GeoRank'),  'Geography')
                                 } else if (pctAqData.length === 0 && numAqData.length === 0) {
                                     console.log('NO NUMBER OR PERCENT')
                                     newTable = ful
@@ -549,7 +554,7 @@
                                         .join_left(aUPct, [["GeoID", "GeoType", "Time", "Any Use - %"], ["GeoID", "GeoType", "Time", "Any Use - %"]])
                                         .join_left(aUTPct, [["GeoID", "GeoType", "Time", "Any use of Tempo or Chinese Chalk - %"], ["GeoID", "GeoType", "Time", "Any use of Tempo or Chinese Chalk - %"]])
                                         // .join(aUTPct, [["GeoID", "GeoType", "Time", "Any use of Tempo or Chinese Chalk - %"], ["GeoID", "GeoType", "Time", "Any use of Tempo or Chinese Chalk - %"]])
-                                        .orderby(aq.desc('Time'), 'GeoRank')
+                                        .orderby(aq.desc('Time'), aq.desc('GeoRank'), 'Geography')
                                         console.log('newTable', newTable)
                                 }
                                 
@@ -589,31 +594,31 @@
                                 console.log('Load Date - aqData', aqData)
                                 aqData.print();
                             })
-                    }
+                        }
 
                     const loadDisparitiyData = (disparityIndicator, primaryMeasure) => {
-                            const disparityIndicatorId = disparityIndicator[0].IndicatorID;
-                            const disparityMeasure = disparityIndicator[0];
-                            const primaryMeasureTimes = primaryMeasure[0].AvailableTimes;
-                            console.log('primaryMeasureTimes', primaryMeasureTimes)
+                        const disparityIndicatorId = disparityIndicator[0].IndicatorID;
+                        const disparityMeasure = disparityIndicator[0];
+                        const primaryMeasureTimes = primaryMeasure[0].AvailableTimes;
+                        console.log('primaryMeasureTimes', primaryMeasureTimes)
 
-                            const aqPrimaryMeasureTimes = aq.from(primaryMeasureTimes)
+                        const aqPrimaryMeasureTimes = aq.from(primaryMeasureTimes)
 
-                            const filteredSecondaryIndicator =  indicators.filter(indicator =>
-                                indicator.Measures.some(measure => 
-                                    measure.MeasureID === 221)
-                            )
+                        const filteredSecondaryIndicator =  indicators.filter(indicator =>
+                            indicator.Measures.some(measure => 
+                                measure.MeasureID === 221)
+                        )
 
-                            const filteredSecondaryMeasure = filteredSecondaryIndicator[0].Measures.filter(m =>
-                                m.MeasureID === 221
-                            )
+                        const filteredSecondaryMeasure = filteredSecondaryIndicator[0].Measures.filter(m =>
+                            m.MeasureID === 221
+                        )
 
-                            const secondaryMeasureTimes = filteredSecondaryMeasure[0].AvailableTimes;
-                            const secondaryMeasureGeoTypes = filteredSecondaryMeasure[0].AvailableGeographyTypes;
+                        const secondaryMeasureTimes = filteredSecondaryMeasure[0].AvailableTimes;
+                        const secondaryMeasureGeoTypes = filteredSecondaryMeasure[0].AvailableGeographyTypes;
 
-                            const aqSecondaryMeasureTimes = aq.from(secondaryMeasureTimes)
+                        const aqSecondaryMeasureTimes = aq.from(secondaryMeasureTimes)
 
-                            aqSecondaryMeasureTimes.print()
+                        aqSecondaryMeasureTimes.print()
 
                         fetch(`https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/data/${disparityIndicatorId}.json`)
                             .then(response => response.json())
@@ -837,10 +842,7 @@
 
                                     console.log('yo', joinedSecondaryLinksDataObject)
 
-
                                     const secondaryYears =  [...new Set(mostRecentJoinedSecondaryLinksDataObject.map(item => item.Time))];
-
-
                                     const highest = Math.max(...secondaryYears);
 
                                     // get lowest number
@@ -860,11 +862,8 @@
                                     const aqJoinedPrimarySecondaryData = aq.from(filteredJoinedPrimaryLinksDataObject)
                                         .join(aqMostRecentJoinedSecondaryLinksDataObject, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
                                     
-                                        aqJoinedPrimarySecondaryData.print()
-                                    
+                                    aqJoinedPrimarySecondaryData.print()
                                     joinedDataLinksObjects = aqJoinedPrimarySecondaryData.objects();
-
-                                    
 
                                 // console.log('==========================================================================')
                                 // console.log('Load Date - aqJoinedSecondaryLinksData')
@@ -876,10 +875,8 @@
                         el.addEventListener('change',(e) => {
                             if (e.target.checked) {
                                 console.log('checked')
-                                // selectedSummaryYears.push(e.target.value)
                                 selectedSummaryYears = [e.target.value]
                             }
-                            console.log('years selected: ', selectedSummaryYears)
                             renderTable()
                         })
                     }
@@ -891,7 +888,6 @@
                             } else {
                                 selectedSummaryGeography = selectedSummaryGeography.filter(item => item !== e.target.value);
                             }
-                            console.log('geo selected: ', selectedSummaryGeography)
                             renderTable()
                         })
                     }
@@ -965,1295 +961,6 @@
                         dataSources.innerHTML = sources;
                     }
 
-                    // Render Table usein DataTables
-                    const renderTable = () => {
-                        
-                        const groupColumnYear = 0
-                        const groupColumnGeo = 1;
-                        const groupId = 0
-
-                        const filteredTableData = joinedAqData.objects().filter(d =>
-                            selectedSummaryYears.includes(d.Time) && selectedSummaryGeography.includes(d.GeoType)
-                        )
-                        const filteredTableAqData = aq.from(filteredTableData)
-
-                        console.log('==========================================================================')
-                        console.log('RENDER TABLE DATA - Filtered Data: ', filteredTableAqData)
-
-                        // call function to show table
-                        document.getElementById('summary-table').innerHTML = filteredTableAqData.toHTML(); // print dataTable to HTML
-                        document.querySelector('#summary-table table').id = "tableID"
-                        document.querySelector('#summary-table table').className = "cell-border stripe compact" // this gives the table an ID (table code generated by Arquero)
-
-                        $('#tableID').DataTable({
-                            scrollY: 500,
-                            scrollCollapse: true,
-                            searching: false,
-                            paging: false,
-                            bInfo: false,
-                            "columnDefs": [
-                                { "visible": false, "targets": [0, 1, 2, 3 ]}
-                            ],
-                            "createdRow": function ( row, data, index ) {
-                                console.log('RENDER TABLE FUNCTION - CreatedRow')
-                                const time    = data[0];
-                                const geoType = data[1];
-                                if (time && geoType) {
-                                    row.setAttribute(`data-group`, `${time}-${geoType}`)
-                                    row.setAttribute(`data-year`, `${time}`);
-                                }
-                            },
-                            "drawCallback": function ( settings ) {
-                                console.log('RENDER TABLE FUNCTION - DrawCallback')
-                                const api = this.api();
-                                const data = api.rows( {page:'current'} ).data()
-                                const rows = api.rows( {page:'current'} ).nodes();
-                                const totaleColumnsCount = api.columns().count()
-                                const visibleColumnsCount =  totaleColumnsCount - 4;
-
-                                var last = null;
-                                var lastYr = null;
-                                const createGroupRow = (groupColumn, lvl) => {
-                                    api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
-                                        const year = data[i][0]
-                                        const groupName = `${year}-${group}`
-                                        if ( last !== group || lastYr !== year ) {
-                                            $(rows).eq( i ).before(
-                                                `<tr class="group"><td colspan="${visibleColumnsCount}" data-year="${year}" data-group="${group}" data-group-level="${lvl}"> ${group}</td></tr>`
-                                            );
-                                            last = group;
-                                            lastYr = year
-                                        }
-                                    });
-                                }
-
-                                createGroupRow(groupColumnYear, 0);
-                                createGroupRow(groupColumnGeo, 1);
-                                handleToggle();
-                            }
-                        })
-                    }
-
-                    // Render Map using Vegalite
-                    const renderMap = (
-                        selectedData,
-                        selectedMeasure,
-                        selectedDisplay,
-                        selectedDate,
-                        selectedAbout, 
-                        selectedSources
-                    ) => {
-                        const mapYears =  [...new Set(fullDataMapObjects.map(item => item.Time))];
-                        const filteredfullDataMapObjects = fullDataMapObjects.filter(obj => 
-                            obj.Time === mapYears[0]
-                        );
-                        let mapGeoType = selectedData ? selectedData[0].GeoType : filteredfullDataMapObjects[0].GeoType;
-                        let mapMeasure = selectedMeasure ? selectedMeasure : defaultMapMeasure[0].MeasurementType;
-                       
-                        let mapDisplay = selectedDisplay ? selectedDisplay : defaultMapMeasure[0].DisplayType;
-                        let mapDate = selectedDate ? selectedDate : filteredfullDataMapObjects[0].Time;
-                        let topoFile = '';
-
-                        let testData = selectedData ? selectedData :filteredfullDataMapObjects;
-
-                        console.log('==========================================================================')
-                        // console.log('MAP DATA: ',filteredfullDataMapObjects[0].GeoType,  mapData)
-                        console.log('RENDER MAP DATA - GeoType ', mapGeoType)
-                        console.log('RENDER MAP DATA - Measure Default: ', defaultMapMeasure)
-                        console.log('RENDER MAP DATA - Measure Selected: ', selectedMeasure)
-                        console.log('RENDER MAP DATA - Measure Filtered Default Data: ', filteredfullDataMapObjects)
-                        console.log('RENDER MAP DATA - Measure Filtered Selcted Data: ', selectedData)
-                            
-                        // switch (mapGeoType) {
-                        //     case 'UHF42':
-                        //         topoFile = 'UHF42.topo.json';
-                        //         break;
-                        //     case 'UHF34':
-                        //         topoFile = 'UHF34.topo.json';
-                        //         break;
-                        //      case 'CD':
-                        //          topoFile = 'CD.topo.json';
-                        //          break;
-                        //     case 'Borough':
-                        //         topoFile = 'borough.topo.json';
-                        //         break;
-                        //     case 'Puma':
-                        //         topoFile = 'PUMA_or_Subborough.topo.json';
-                        //         break;
-                        //     case 'Subboro':
-                        //         topoFile = 'PUMA_or_Subborough.topo.json';
-                        //         break;
-                        // }
-                        
-                        const filterGeoTypeMeasurementType = (geoType) => {
-                            const data = testData.filter(obj => obj.Geotype === geoType && obj[mapMeasure])
-                            console.log('test data 1: ', geoType, testData, data )
-                            return data
-                        }
-                        const filterGeoType = (geoType) => {
-                            const data = testData.filter(obj => obj.Geotype === geoType)
-                            console.log('test data 2: ', geoType, testData, data )
-                            return data
-                        }
-
-                        let mapData = null;
-
-                        const cdDataResults = filterGeoTypeMeasurementType('CD');
-                        const uhf42DataResults = filterGeoTypeMeasurementType('UHF42');
-                        const uhf34DataResults = filterGeoTypeMeasurementType('UHF34');
-                        const subboroDataResults = filterGeoTypeMeasurementType('Subboro');
-                        const ntaDataResults = filterGeoTypeMeasurementType('NTA');
-                        const cdData = filterGeoType('CD');
-                        const uhf42Data = filterGeoType('UHF42');
-                        const uhf34Data = filterGeoType('UHF34');
-                        const subboroData = filterGeoType('Subboro');
-                        const ntaData = filterGeoType('NTA');
-
-                        if (ntaData.length > 0) {
-                            console.log('## NTA')
-                            mapData = ntaData;
-                            topoFile = 'NTA2.topo.json';
-                        } else if (cdDataResults.length > 0) {
-                            console.log('## CD')
-                            mapData = cdData;
-                            topoFile = 'CD.topo.json';
-                        } else if (subboroDataResults.length > 0) {
-                            console.log('## Subboro')
-                            mapData = subboroData;
-                            topoFile = 'PUMA_or_Subborough.topo.json';
-                        } else if (uhf42DataResults.length > 0) {
-                            console.log('## UHF42')
-                            mapData = uhf42Data;
-                            topoFile = 'UHF42.topo.json';
-                        } else if (uhf34DataResults.length > 0) {
-                            console.log('## UHF34')
-                            mapData = uhf34Data;
-                            topoFile = 'UHF34.topo.json';
-                        }
-
-                        // console.log('default data: ', geoTypFilteredData)
-
-                        // console.log('TEST DATA: ', testData, 'selected: ', selectedData, 'mapMeasure: ', mapMeasure, 'defaultGeoTypFilteredData', geoTypFilteredData)
-
-                        console.log('RENDER MAP DATA - topoFile ', topoFile)
-
-                        
-
-                        // let spec2 = {
-                        //     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-                        //     "title": "This is my good schema!",
-                        //     "width": 700,
-                        //     "data": {
-                        //         "url": "https://gist.githubusercontent.com/mmontesanonyc/28953366ac41a0ecf24470a3cefb6cea/raw/4b2869cc9fe93a4ae4e33b2acc0aad5570c498a0/2380-reduced.csv"
-                        //     },
-                        //     "params": [
-                        //         {"name": "highlight", "select": {"type": "point", "on": "mouseover"}}
-                        //     ],
-                        //     "projection": {"type": "mercator"},
-                        //     "vconcat": [
-                        //         {
-                        //         "height": 550,
-                        //         "width": 900,
-                        //         "mark": {"type": "geoshape", "stroke": "#000000"},
-                        //         "encoding": {
-                        //             "shape": {"field": "geo", "type": "geojson"},
-                        //             "color": {
-                        //             "bin": false,
-                        //             "field": "Value",
-                        //             "type": "quantitative",
-                        //             "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}}
-                        //             },
-                        //             "strokeWidth": {
-                        //             "condition": [{"param": "highlight", "empty": false, "value": 2}],
-                        //             "value": 0.5
-                        //             },
-                        //             "tooltip": [
-                        //                 {"field": "GeoID", "title": "GeoID"},
-                        //                 {
-                        //                     "field": "Value",
-                        //                     "type": "quantitative",
-                        //                     "title": "Value"
-                        //                 },
-                        //                 {"field":"MeasureID","title":"Measure"}
-                        //             ],
-                        //         },
-                        //         "transform": [
-                        //             {
-                        //             "lookup": "Geography-ID",
-                        //             "from": {
-                        //                 "data": {
-                        //                 "url": "https://raw.githubusercontent.com/nycehs/NYC_geography/master/UHF42.topo.json",
-                        //                 "format": {"type": "topojson", "feature": "collection"}
-                        //                 },
-                        //                 "key": "properties.GEOCODE"
-                        //             },
-                        //             "as": "geo"
-                        //             }
-                        //         ]
-                        //         },
-                        //         {
-                        //         "height": 150,
-                        //         "width": "container",
-                        //         "mark": {"type": "bar", "tooltip": true, "stroke": "#000000"},
-                        //         "encoding": {
-                        //             "y": {"field": "Value", "type": "quantitative", "title": null},
-                        //             "tooltip": [
-                        //             {"field": "Geography-ID", "title": "GeoID"},
-                        //             {"field": "Value", "type": "quantitative", "title": "Value"},
-                        //             {"field": "MeasureID", "title": "Measure"}
-                        //             ],
-                        //             "x": {"field": "Geography-ID", "sort": true, "axis": null},
-                        //             "color": {
-                        //             "bin": false,
-                        //             "field": "Value",
-                        //             "type": "quantitative",
-                        //             "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}}
-                        //             },
-                        //             "strokeWidth": {
-                        //             "condition": [{"param": "highlight", "empty": false, "value": 2}],
-                        //             "value": 0.5
-                        //             }
-                        //         }
-                        //         }
-                        //     ]
-                        // }
-
-                        spec3 = {
-                            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-                            "title": `${mapDate} - ${mapMeasure} ${mapDisplay && `(${mapDisplay})`} `,
-                            "width": "container",
-                            "data": {
-                                "values": mapData,
-                                "format": {
-                                    "parse": {
-                                        "Value": "number"
-                                    }
-                                }
-                            },
-                            // "config": {
-                            //     "mark": {"invalid": null}
-                            // },
-                            "params": [
-                                {"name": "highlight", "select": {"type": "point", "on": "mouseover"}}
-                            ],
-                            "projection": {"type": "mercator"},
-                            "vconcat": [
-                                {
-                                "height": 550,
-                                "width": "container",
-                                "mark": {"type": "geoshape", "stroke": "#000000", "invalid": null},
-                                "encoding": {
-                                    "shape": {"field": "geo", "type": "geojson"},
-                                    "color": {
-                                    "bin": false,
-                                    "field": mapMeasure,
-                                    "type": "quantitative",
-                                    "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}}
-                                    },
-                                    "strokeWidth": {
-                                    "condition": [{"param": "highlight", "empty": false, "value": 2}],
-                                    "value": 0.5
-                                    },
-                                    "tooltip": [
-                                        {"field": "Geography", "title": "Geography"},
-                                        {
-                                            "field": mapMeasure,
-                                            "type": "quantitative",
-                                            "title": "Value"
-                                        },
-                                    ],
-                                },
-                                "transform": [
-                                    {
-                                    "lookup": "GeoID",
-                                    "from": {
-                                        "data": {
-                                        "url": `https://raw.githubusercontent.com/nycehs/NYC_geography/master/${topoFile}`,
-                                        "format": {"type": "topojson", "feature": "collection"}
-                                        },
-                                        "key": "properties.GEOCODE"
-                                    },
-                                    "as": "geo"
-                                    }
-                                ]
-                                },
-                                // {
-                                //     "mark": {
-                                //         "type": "bar", 
-                                //         "tooltip": true, 
-                                //         "stroke": "#000000"},
-                                //         "orient": "x",
-                                //     "encoding": {
-                                //         "color": {
-                                //             "field": "valiues",
-                                //             "type": "quantitative",
-                                //             "legend": {
-                                //                 "direction": "horizontal",
-                                //                 "orient": "bottom",
-                                //             }
-                                //         }
-                                //     }
-                                // },
-                                {
-                                "height": 150,
-                                "width": "container",
-                                "mark": {"type": "bar", "tooltip": true, "stroke": "#000000"},
-                                "encoding": {
-                                    "y": {"field": mapMeasure, "type": "quantitative", "title": null},
-                                    "tooltip": [
-                                        {"field": "Geography", "title": "GeoID"},
-                                        {"field": mapMeasure, "type": "quantitative", "title": "Value"},
-                                        // {"field": "MeasureID", "title": "Measure"}
-                                    ],
-                                    "x": {"field": "GeoID", "sort": true, "axis": null},
-                                        "color": {
-                                        "bin": false,
-                                        "field": mapMeasure,
-                                        "type": "quantitative",
-                                        "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}},
-                                        "legend": null
-                                    },
-                                    "strokeWidth": {
-                                        "condition": [{"param": "highlight", "empty": false, "value": 2}],
-                                    "value": 0.5
-                                    }
-                                }
-                                }
-                            ]
-                        }
-
-                        vegaEmbed("#map", spec3);
-                    }
-
-                    let renderDisparities;
-
-                    // Render Trend Chart using Vegalite
-                    const renderTrendChart = (
-                        selectedData,
-                        selectedMeasureType,
-                        selectedDisplay,
-                        selectedDisparities,
-                        selectedMeasure,
-                    ) => {
-                        let trendMeasure = selectedMeasure ? selectedMeasure : defaultTrendMeasure;
-                        let trendMeasurementType = selectedMeasureType ? selectedMeasureType : defaultTrendMeasure[0].MeasurementType;
-                        let trendData = selectedData ?  selectedData : fullDataTrendObjects;
-                        let trendDisplay = selectedDisplay ? selectedDisplay : defaultTrendMeasure[0].DisplayType;
-                        let trendDisparity = selectedDisparities ? selectedDisparities : defaultTrendMeasure[0].VisOptions[0]?.Trend[0]?.Disparities
-                        
-                        console.log('==========================================================================')
-                        console.log('RENDER TREND DATA - Measure Default: ', defaultTrendMeasure)
-                        console.log('RENDER TREND DATA - Measure Selected: ', selectedMeasure)
-                        console.log('RENDER TREND DATA - Measure Filtered Default Data: ', fullDataTrendObjects)
-                        console.log('RENDER TREND DATA - Measure Filtered Selcted Data: ', selectedData)
-                        console.log('RENDER TREND DATA - Measure Disparity: ', trendDisparity)
-                        const tabTrendDropDown = document.querySelector('#tab-trend  .dropdown');
-                        const btnShowDisparitires = document.querySelector('.btn-show-disparities');
-
-                        
-
-                        
-                       
-
-                        if (trendDisparity == 1 && !btnShowDisparitires) {
-                            tabTrendDropDown.innerHTML += `<button class="btn btn-sm mr-1 float-right btn-outline-success btn-show-disparities" onclick="renderDisparities()">Show Dispartites</button> `;
-                        }   else if (btnShowDisparitires) {
-                            tabTrendDropDown.removeChild(btnShowDisparitires)
-                        }
-
-                        var spec = {
-                            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-                            "config": {
-                            "background": "#FFFFFF",
-                            "title": {"anchor": "start", "fontSize": 18, "font": "Calibri"},
-                            "axisX": {
-                            "domain": true,
-                            "domainColor": "#000000",
-                            "domainWidth": 1,
-                            "grid": false,
-                            "labelFontSize": 12,
-                            "labelAngle": 0,
-                            "tickColor": "#000000",
-                            "tickSize": 5,
-                            "titleFontSize": 12,
-                            "titlePadding": 10
-                            },
-                            
-                            "axisY": {
-                            "domain": false,
-                            "domainWidth": 1,
-                            "grid": true,
-                            "gridColor": "#DEDDDD",
-                            "gridWidth": 1,
-                            "labelFontSize": 12,
-                            "labelPadding": 8,
-                            "ticks": false,
-                            "titleFontSize": 12,
-                            "titlePadding": 10,
-                            "titleFont": "Lato",
-                            "titleAngle": 0,
-                            "titleY": -10,
-                            "titleX": 18
-                            },
-
-
-                            "view": {"stroke": "transparent"},
-
-                            "range": {
-                            "category": [
-                                "#1696d2",
-                                "#000000",
-                                "#fdbf11",
-                                "#ec008b",
-                                "#d2d2d2",
-                                "#55b748"
-                            ]
-                            },
-
-                            "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 3},
-
-
-                            "point": {"filled": true},
-                            "text": {
-                            "color": "#1696d2",
-                            "fontSize": 11,
-                            "align": "center",
-                            "fontWeight": 400,
-                            "size": 11
-                            }
-                        },
-                            // "data": {
-                            //     "url": "https://gist.githubusercontent.com/mmontesanonyc/6b0aa75affc6a60978f73e11d2f58bb3/raw/e944d335042e3da0c8e99a4df0fbebc8aac4cc15/asthmatrend.csv"
-                            // },
-                            "data": {
-                                "values": joinedDataTrendDisparityObjects
-                            },
-                            "width": "container",
-                            "height": 550,
-                            "encoding": {
-                            "x": {
-                                "field": "Year",
-                                "type": "temporal",
-                                "title": ""
-                            }
-                            },
-                            "layer": [
-                            {
-                                "encoding": {
-                                "color": {
-                                    "field": "GeoName",
-                                    "type": "nominal",
-                                    "legend": {
-                                    "orient": "right",
-                                    "title": null
-                                    }
-                                },
-                                // "y": {
-                                //     "field": "Value",
-                                //     "type": "quantitative",
-                                //     "title": ""
-                                // }
-                                "y": {
-                                    "field": trendMeasurementType,
-                                    "type": "quantitative",
-                                    "title": `${trendMeasurementType} ${trendDisplay && `(${trendDisplay})`} `
-                                }
-                                },
-                                "layer": [
-                                {
-                                    "mark": {
-                                    "type": "line",
-                                    "point": {"filled": false, "fill": "white"}
-                                    }
-
-                                },
-                                {
-                                    "transform": [
-                                    {
-                                        "filter": {
-                                        "param": "hover",
-                                        "empty": false
-                                        }
-                                    }
-                                    ],
-                                    "mark": "point"
-                                }
-                                ]
-                            },
-                            {
-                                "transform": [
-                                // {
-                                //     "pivot": "GeoName",
-                                //     "value": "Value",
-                                //     "groupby": [
-                                //     "Year"
-                                //     ]
-                                // }
-                                {
-                                    "pivot": "Geography",
-                                    "value": trendMeasurementType,
-                                    "groupby": [
-                                    "Time"
-                                    ]
-                                }
-                                ],
-                                "mark": "rule",
-                                "encoding": {
-                                "opacity": {
-                                    "condition": {
-                                    "value": 0.3,
-                                    "param": "hover",
-                                    "empty": false
-                                    },
-                                    "value": 0
-                                },
-                                "tooltip": [
-                                    {
-                                    "field": "Citywide",
-                                    "type": "quantitative"
-                                    },
-                                    {
-                                    "field": "The Bronx",
-                                    "type": "quantitative"
-                                    },
-                                    {
-                                    "field": "Brooklyn",
-                                    "type": "quantitative"
-                                    },
-                                    {
-                                    "field": "Manhattan",
-                                    "type": "quantitative"
-                                    },
-                                    {
-                                    "field": "Queens",
-                                    "type": "quantitative"
-                                    }
-                                ]
-                                },
-                                "params": [
-                                {
-                                    "name": "hover",
-                                    "select": {
-                                    "type": "point",
-                                    "fields": [
-                                        "Year"
-                                    ],
-                                    "nearest": true,
-                                    "on": "mouseover",
-                                    "clear": "mouseout"
-                                    }
-                                }
-                                ]
-                            }
-                            ]
-                        }
-                        
-
-                        var spec2 = {
-                            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-                            "config": {
-                            "background": "#FFFFFF",
-                            // "title": {"anchor": "start", "fontSize": 18, "font": "Calibri"},
-                            "axisX": {
-                            // "domain": true,
-                            // "domainColor": "#000000",
-                            // "domainWidth": 1,
-                            // "grid": false,
-                            // "labelFontSize": 12,
-                            "labelAngle": 0,
-                            // "tickColor": "#000000",
-                            // "tickSize": 5,
-                            // "titleFontSize": 12,
-                            // "titlePadding": 10
-                            },
-                            
-                            "axisY": {
-                            // "domain": false,
-                            // "domainWidth": 1,
-                            // "grid": true,
-                            // "gridColor": "#DEDDDD",
-                            // "gridWidth": 1,
-                            // "labelFontSize": 12,
-                            // "labelPadding": 8,
-                            // "ticks": false,
-                            // "titleFontSize": 12,
-                            // "titlePadding": 10,
-                            // "titleFont": "Lato",
-                            // "titleAngle": 0,
-                            // "titleY": -10,
-                            // "titleX": 18
-                            },
-
-
-                            "view": {"stroke": "transparent"},
-
-                            "range": {
-                            "category": [
-                                "#1696d2",
-                                "#000000",
-                                "#fdbf11",
-                                "#ec008b",
-                                "#d2d2d2",
-                                "#55b748"
-                            ]
-                            },
-
-                            "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 3},
-
-
-                            "point": {"filled": true},
-                            "text": {
-                            "color": "#1696d2",
-                            "fontSize": 11,
-                            "align": "center",
-                            "fontWeight": 400,
-                            "size": 11
-                            }
-                        },
-                            // "data": {
-                            //     "url": "https://gist.githubusercontent.com/mmontesanonyc/6b0aa75affc6a60978f73e11d2f58bb3/raw/e944d335042e3da0c8e99a4df0fbebc8aac4cc15/asthmatrend.csv"
-                            // },
-                            "data": {
-                                "values":  trendData,
-                            },
-                            "width": "container",
-                            "height": 550,
-                            "encoding": {
-                            "x": {
-                                "field": "Time",
-                                "type": "nominal",
-                                "title": "Year"
-                            }
-                            },
-                            "layer": [
-                            {
-                                "encoding": {
-                                "color": {
-                                    "field": "Geography",
-                                    "type": "nominal",
-                                    "legend": {
-                                    "orient": "right",
-                                    "title": null
-                                    }
-                                },
-                                "y": {
-                                    "field": trendMeasurementType,
-                                    "type": "quantitative",
-                                    "title": `${trendMeasurementType} ${trendDisplay && `(${trendDisplay})`} `
-                                }
-                                },
-                                "layer": [
-                                {
-                                    "mark": {
-                                    "type": "line",
-                                    "point": {"filled": false, "fill": "white"}
-                                    }
-
-                                },
-                                {
-                                    "transform": [
-                                    {
-                                        "filter": {
-                                        "param": "hover",
-                                        "empty": false
-                                        }
-                                    }
-                                    ],
-                                    "mark": "point"
-                                }
-                                ]
-                            },
-                            {
-                                "transform": [
-                                {
-                                    "pivot": "Geography",
-                                    "value": trendMeasurementType,
-                                    "groupby": [
-                                    "Time"
-                                    ]
-                                }
-                                ],
-                                "mark": "rule",
-                                "encoding": {
-                                    "opacity": {
-                                            "condition": {
-                                            "value": 0.3,
-                                            "param": "hover",
-                                            "empty": false
-                                        },
-                                        "value": 0
-                                    },
-                                    "tooltip": [
-                                        {
-                                            "title": "Year",
-                                            "field": "Time",
-                                            "type": "nominal"
-                                        },
-                                        {
-                                        "field": "New York City",
-                                        "type": "quantitative"
-                                        },
-                                        {
-                                        "field": "Bronx",
-                                        "type": "quantitative"
-                                        },
-                                        {
-                                        "field": "Brooklyn",
-                                        "type": "quantitative"
-                                        },
-                                        {
-                                        "field": "Manhattan",
-                                        "type": "quantitative"
-                                        },
-                                        {
-                                        "field": "Queens",
-                                        "type": "quantitative"
-                                        },
-                                        {
-                                        "field": "Staten Island",
-                                        "type": "quantitative"
-                                        }
-                                    ]
-                                },
-                                "params": [
-                                {
-                                    "name": "hover",
-                                    "select": {
-                                    "type": "point",
-                                    "fields": [
-                                        "Time"
-                                    ],
-                                    "nearest": true,
-                                    "on": "mouseover",
-                                    "clear": "mouseout"
-                                    }
-                                }
-                                ]
-                            }
-                            ]
-                        }
-                        
-                        vegaEmbed("#trend", spec2);
-
-                        renderDisparities = () => {
-                            const disparityIndicator = indicators.filter(indicator =>
-                                indicator.Measures.some(m => 
-                                    m.MeasureID === 221)
-                            );
-
-                            const disparityMeasure = disparityIndicator[0].Measures.filter(
-                                m => m.MeasureID === 221
-                            );
-
-                            console.log('TREND DISPARITIS - POVERTY INDICATOR', disparityIndicator )
-                            console.log('TREND DISPARITIS - POVERTY MEASURE', disparityMeasure )
-                            const disparityIndicatorName = disparityIndicator[0].IndicatorName
-                            const disparityMeasureType = disparityMeasure[0].MeasurementType
-                            const disparitySources = disparityMeasure[0].Sources
-                            const disparitysAbout = disparityMeasure[0].how_calculated
-                            const trendSources = selectedTrendSources ? selectedTrendSources : defaultTrendSources;
-                            const trendAbout = selectedTrendAbout ? selectedTrendAbout : defaultTrendAbout;
-
-
-                            loadDisparitiyData(disparityIndicator, trendMeasure)
-
-                            const combinedAbout = `${trendAbout}<h6>${disparityIndicatorName} - ${disparityMeasureType}</h6><p>${disparitysAbout}</p>`;
-                            const combinedSources = `${trendSources}<h6>${disparityIndicatorName} - ${disparityMeasureType}</h6><p>${disparitySources}</p>`;
-                            
-                            renderAboutSources(combinedAbout, combinedSources);
-                            setTimeout(() => {
-                                console.log('joined etc: ', joinedDataTrendDisparityObjects)
-
-                            var spec3 = {
-                                "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-                                "config": {
-                                "background": "#FFFFFF",
-                                // "title": {"anchor": "start", "fontSize": 18, "font": "Calibri"},
-                                "axisX": {
-                                // "domain": true,
-                                // "domainColor": "#000000",
-                                // "domainWidth": 1,
-                                // "grid": false,
-                                // "labelFontSize": 12,
-                                "labelAngle": 0,
-                                // "tickColor": "#000000",
-                                // "tickSize": 5,
-                                // "titleFontSize": 12,
-                                // "titlePadding": 10
-                                },
-                                
-                                "axisY": {
-                                // "domain": false,
-                                // "domainWidth": 1,
-                                // "grid": true,
-                                // "gridColor": "#DEDDDD",
-                                // "gridWidth": 1,
-                                // "labelFontSize": 12,
-                                // "labelPadding": 8,
-                                // "ticks": false,
-                                // "titleFontSize": 12,
-                                // "titlePadding": 10,
-                                // "titleFont": "Lato",
-                                // "titleAngle": 0,
-                                // "titleY": -10,
-                                // "titleX": 18
-                                },
-
-
-                                "view": {"stroke": "transparent"},
-
-                                "range": {
-                                "category": [
-                                    "#1696d2",
-                                    "#000000",
-                                    "#fdbf11",
-                                    "#ec008b",
-                                    "#d2d2d2",
-                                    "#55b748"
-                                ]
-                                },
-
-                                "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 3},
-
-
-                                "point": {"filled": true},
-                                "text": {
-                                "color": "#1696d2",
-                                "fontSize": 11,
-                                "align": "center",
-                                "fontWeight": 400,
-                                "size": 11
-                                }
-                            },
-                                // "data": {
-                                //     "url": "https://gist.githubusercontent.com/mmontesanonyc/6b0aa75affc6a60978f73e11d2f58bb3/raw/e944d335042e3da0c8e99a4df0fbebc8aac4cc15/asthmatrend.csv"
-                                // },
-                                "data": {
-                                    "values": joinedDataTrendDisparityObjects,
-                                },
-                                "width": "container",
-                                "height": 550,
-                                "encoding": {
-                                "x": {
-                                    "field": "Time_1",
-                                    "type": "nominal",
-                                    "title": `${disparityIndicatorName} - ${disparityMeasureType}`
-                                }
-                                },
-                                "layer": [
-                                {
-                                    "encoding": {
-                                    "color": {
-                                        "field": "Tertile",
-                                        "type": "nominal",
-                                        "legend": {
-                                        "orient": "right",
-                                        "title": null
-                                        }
-                                    },
-                                    "y": {
-                                        "field": trendMeasurementType,
-                                        "type": "quantitative",
-                                        "title": `${trendMeasurementType} ${trendDisplay && `(${trendDisplay})`} `
-                                    }
-                                    },
-                                    "layer": [
-                                    {
-                                        "mark": {
-                                        "type": "line",
-                                        "point": {"filled": false, "fill": "white"}
-                                        }
-
-                                    },
-                                    {
-                                        "transform": [
-                                        {
-                                            "filter": {
-                                            "param": "hover",
-                                            "empty": false
-                                            }
-                                        }
-                                        ],
-                                        "mark": "point"
-                                    }
-                                    ]
-                                },
-                                {
-                                    "transform": [
-                                    {
-                                        "pivot": "Tertile",
-                                        "value": trendMeasurementType,
-                                        "groupby": [
-                                            "Time_1"
-                                            ]
-                                        }
-                                    ],
-                                    "mark": "rule",
-                                    "encoding": {
-                                        "opacity": {
-                                                "condition": {
-                                                "value": 0.3,
-                                                "param": "hover",
-                                                "empty": false
-                                            },
-                                            "value": 0
-                                        },
-                                        "tooltip": [
-                                            {
-                                                "title": "Year",
-                                                "field": "Time_1",
-                                                "type": "nominal"
-                                            },
-                                            {
-                                                "field": "High",
-                                                "type": "nominal"
-                                            },
-                                            {
-                                                "field": "Medium",
-                                                "type": "nominal"
-                                            },
-                                            {
-                                                "field": "Low",
-                                                "type": "nominal"
-                                            },
-                                            {
-                                            "field": trendMeasurementType,
-                                            "type": "quantitative"
-                                            },
-                                            {
-                                            "field": "Bronx",
-                                            "type": "quantitative"
-                                            },
-                                            // {
-                                            // "field": "Brooklyn",
-                                            // "type": "quantitative"
-                                            // },
-                                            // {
-                                            // "field": "Manhattan",
-                                            // "type": "quantitative"
-                                            // },
-                                            // {
-                                            // "field": "Queens",
-                                            // "type": "quantitative"
-                                            // },
-                                            // {
-                                            // "field": "Staten Island",
-                                            // "type": "quantitative"
-                                            // }
-                                        ]
-                                    },
-                                    "params": [
-                                        {
-                                            "name": "hover",
-                                            "select": {
-                                                "type": "point",
-                                                "fields": [
-                                                    "Time_1",
-                                                    "Tertile"
-                                                ],
-                                                "nearest": true,
-                                                "on": "mouseover",
-                                                "clear": "mouseout"
-                                            }
-                                        }
-                                    ]
-                                }
-                                ]
-                            }
-
-                                vegaEmbed("#trend", spec3);
-                            }, 300)
-                        }
-                    }
-                        
-
-                    // Render Links Chart using Vegalight
-                    const renderLinksChart = (
-                        selectedData,
-                        selectedMeasure,
-                        selectedDisplay,
-                        selectedAxis,
-                        selectedMeasureId,
-                        selectedSecondaryMeasureId
-                    ) => {
-                        console.log('==========================================================================')
-                        const defaultLinksMeasureId = defaultLinksMeasure[0].VisOptions[0].Links[0].MeasureID;
-                        const linkAxisMeasureId = selectedSecondaryMeasureId ? selectedSecondaryMeasureId : defaultLinksMeasureId;
-                        const secondaryIndicator =  indicators.filter(indicator =>
-                            indicator.Measures.some(measure => 
-                                measure.MeasureID === linkAxisMeasureId)
-                        )
-
-                        const secondaryMeasure = secondaryIndicator[0].Measures.filter(m =>
-                            m.MeasureID === linkAxisMeasureId
-                        )
-                        
-                        const defaultLinksAxis = defaultLinksMeasure[0].VisOptions[0].Links[0].Axis;
-                        const linkAxisMeasure = selectedData ? filterSecondaryIndicatorMeasure(selectedData) : filterSecondaryIndicatorMeasure(defaultLinksMeasure)
-                        
-                        const linksMeasure = selectedMeasure ? selectedMeasure : defaultLinksMeasure[0].MeasurementType;
-                        const linkAxis = selectedAxis ? selectedAxis : defaultLinksAxis;
-                        const linksDisplay = selectedDisplay ? selectedDisplay : defaultLinksMeasure[0].DisplayType;
-                        const linkAxisDisplay = secondaryMeasure[0].DisplayType;
-                        const linksTime = selectedData ? selectedData[0].AvailableTimes[0].TimeDescription : defaultLinksMeasure[0].AvailableTimes[0].TimeDescription;
-                        const linksAxisTime = selectedlinksSecondaryMeasureTime;
-
-                        console.log('RENDER Links DATA ', linksMeasures)
-                        console.log('RENDER LINKS DEFAULT MEASURE: ', defaultLinksMeasure)
-                        console.log('RENDER LINKS DEFAULT MEASURE ID: ', defaultLinksMeasureId)
-                        console.log('RENDER LINKS DEFAULT AXIS: ', defaultLinksAxis)
-                        console.log('RENDER LINKS SELECTED DATA: ', selectedData)
-                        console.log('RENDER LINKS SELECTED MEASURE: ', selectedMeasure)
-                        console.log('RENDER LINKS SELECTED SECONDARY MEASURE ID: ', selectedSecondaryMeasureId)
-                        console.log('RENDER LINKS SELECTED AXIS: ', selectedMeasureId)
-                        console.log('RENDDER LINKS DISPLAY: ', linksDisplay)
-                        console.log('indicators: ', indicators)
-
-                        
-
-                        const linkAxisMeas = secondaryMeasure[0].MeasurementType
-
-                        console.log('this data: ', secondaryMeasure[0], secondaryIndicator)
-                        
-                        let xMeasure;
-                        let yMeasure;
-                        let xDisplay = null;
-                        let yDisplay = null;
-                        let xTime;
-                        let yTime;
-                        let xIndicatorName;
-                        let yIndicatorname;
-
-                        switch(linkAxis) {
-                            case 'y': 
-                                yMeasure = linkAxisMeas;
-                                xMeasure = linksMeasure;
-                                yDisplay = linkAxisDisplay ? linkAxisDisplay : '';
-                                xDisplay = linksDisplay ? linksDisplay : '';
-                                yTime = linksAxisTime;
-                                xTime = linksTime;
-                                yIndicatorName = secondaryIndicator[0].IndicatorName;
-                                xIndicatorName = indicatorName;
-                                break;
-                            case 'x':
-                                yMeasure = linksMeasure;
-                                xMeasure = linkAxisMeas;
-                                yDisplay = linksDisplay ? linksDisplay : '';
-                                xDisplay = linkAxisDisplay ? linkAxisDisplay : '';
-                                yTime = linksTime;
-                                xTime = linksAxisTime;
-                                yIndicatorName = indicatorName;
-                                xIndicatorName = secondaryIndicator[0].IndicatorName;
-                                break;
-                        }
-
-                        console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>> ', selectedlinksSecondaryMeasureData, selectedlinksSecondaryIndicatorData)
-
-                        /* var spec = {
-                            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-                            "description": "Asthma 5-17 ED visit rate and poverty scatterplot",
-                            "width": "container",
-                            "height": 400,
-                            "config": {
-                                "background": "#FFFFFF",
-                                "title": {"anchor": "start", "fontSize": 18, "font": "Calibri"},
-                                "axisX": {
-                                    "domain": true,
-                                    "domainColor": "#000000",
-                                    "domainWidth": 1,
-                                    "grid": false,
-                                    "labelFontSize": 12,
-                                    "labelAngle": 0,
-                                    "tickColor": "#000000",
-                                    "tickSize": 5,
-                                    "titleFontSize": 12,
-                                    "titlePadding": 10,
-                                    "title": null
-                                },
-                                "axisY": {
-                                    "domain": false,
-                                    "domainWidth": 1,
-                                    "grid": true,
-                                    "gridColor": "#DEDDDD",
-                                    "gridWidth": 1,
-                                    "labelFontSize": 12,
-                                    "labelPadding": 8,
-                                    "ticks": false,
-                                    "titleFontSize": 12,
-                                    "titlePadding": 10,
-                                    "titleFont": "Lato",
-                                    "titleAngle": 0,
-                                    "titleY": -10,
-                                    "titleX": 18,
-                                    "title": null
-                                },
-                                "view": {"stroke": "transparent"},
-                                "range": {
-                                    "category": [
-                                        "#1696d2",
-                                        "#000000",
-                                        "#fdbf11",
-                                        "#ec008b",
-                                        "#d2d2d2",
-                                        "#55b748"
-                                    ]
-                                },
-                                "text": {
-                                    "color": "#1696d2",
-                                    "fontSize": 11,
-                                    "align": "center",
-                                    "fontWeight": 400,
-                                    "size": 11
-                                }
-                            },
-                            "data": {"url": "https://gist.githubusercontent.com/mmontesanonyc/436de650b919784691ed42dd321c38f2/raw/074bd84e78473b8a2099e66a0d6bf8caba32b594/scatter-sample-data.csv"},
-                            "mark": {"type": "circle", "filled": true, "size": 500, "stroke": "#727272", "strokeWidth": 2},
-                                "params": [{
-                                    "name": "Borough",
-                                    "select": {"type": "point", "fields": ["Borough"]},
-                                    "bind": "legend"
-                                }
-                            ],
-                            "encoding": {
-                                "y": {"field": "Estimated Annual Rate (per 10,000 residents)", "type": "quantitative"},
-                                "x": {"field": "Poverty (percent)", "type": "quantitative"},
-                                "tooltip": [{"field": "Geography", "type": "nominal"},
-                                {"field": "Estimated Annual Rate (per 10,000 residents)", "type": "quantitative"},
-                                {"field": "Poverty (percent)", "type": "quantitative"}
-                                ],
-                                "color": {
-                                    "condition": {
-                                    "param": "Borough", "field": "Borough", "type": "nominal"},
-                                    "value": "#fafafa"
-                                }
-                            }
-                            }
-
-
-                            vegaEmbed("#links", spec);
-                            */
-
-                            setTimeout(() => {
-                                var spec2 = {
-                                "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-                                "description": "Asthma 5-17 ED visit rate and poverty scatterplot",
-                                "width": "container",
-                                "height": "container",
-                                "config": {
-                                    "background": "#FFFFFF",
-                                    "title": {"anchor": "start", "fontSize": 18, "font": "Calibri"},
-                                    "axisX": {
-                                    // "domain": true,
-                                    // "domainColor": "#000000",
-                                    // "domainWidth": 1,
-                                    // "grid": false,
-                                    // "labelFontSize": 14,
-                                    // "labelAngle": 0,
-                                    // "tickColor": "#000000",
-                                    // "tickSize": 5,
-                                    // "titleFontSize": 12,
-                                    // "titlePadding": 10
-                                    },
-                                    "axisY": {
-                                        // "domain": false,
-                                        // "domainWidth": 1,
-                                        // "grid": true,
-                                        // "gridColor": "#DEDDDD",
-                                        // "gridWidth": 1,
-                                        // "labelFontSize": 14,
-                                        // "labelPadding": 8,
-                                        // "ticks": false,
-                                        "titleFontSize": 12,
-                                        "titlePadding": 10,
-                                        // "titleFont": "Calibri",
-                                        // "titleAngle": -90,
-                                        // "titleY": 0,
-                                        // "titleX": 0
-                                    },
-                                    "legend": {
-                                        "labelFontSize": 14,
-                                        "symbolSize": 140
-                                    },
-                                    "view": {"stroke": "transparent"},
-                                    "range": {
-                                        "category": [
-                                            "#1696d2",
-                                            "#fdbf11",
-                                            "#55b748",
-                                            "#ec008b",
-                                            "#d2d2d2"
-                                        ]
-                                    },
-                                    "text": {
-                                    "color": "#1696d2",
-                                    "fontSize": 11,
-                                    "align": "center",
-                                    "fontWeight": 400,
-                                    "size": 11
-                                    }
-                                },
-                                "data": {
-                                    "values": joinedDataLinksObjects
-                                },
-                                "mark": {"type": "circle", "filled": true, "size": 500, "stroke": "#727272", "strokeWidth": 2},
-                                "params": [
-                                    {
-                                        "name": "hover",
-                                        "select": {"type": "point", "on": "mouseover"}
-                                    }
-                                ],
-                                "encoding": {
-                                    "y": {
-                                        "title": [`${yIndicatorName && `${yIndicatorName}`}`, `- ${yMeasure} ${yDisplay && `(${yDisplay})`} ${yTime}`],
-                                        "field": yMeasure,
-                                        "type": "quantitative",
-                                        // "labelAngle": 0
-                                    },
-                                    "x": {
-                                        "title": `${xIndicatorName && `${xIndicatorName} - `} ${xMeasure} ${xDisplay && `(${xDisplay})`} ${xTime}`,
-                                        "field": xMeasure,
-                                        "type": "quantitative"
-                                    },
-                                    "tooltip": [
-                                        {
-                                            "title": "Time",
-                                            "field": "Time_2",
-                                            "type": "nominal"
-                                        },
-                                        {
-                                            "title": "Geography",
-                                            "field": "Geography_1",
-                                            "type": "nominal"
-                                        },
-                                        {
-                                            "field": yMeasure,
-                                            "type": "quantitative"},
-                                        {
-                                            "field": xMeasure,
-                                            "type": "quantitative"
-                                        }
-                                    ],
-                                    "color": {
-                                        "title": "Geography",
-                                        "field": "Geography_1",
-                                        "type": "nominal"
-                                    },
-                                    "opacity": {
-                                        "condition": {
-                                        "param": "hover",
-                                        "value": 1
-                                        },
-                                        "value": 0.5
-                                    }
-                                }
-                            }
-
-                            vegaEmbed("#links", spec2);
-                            }, 300)
-                                
-                            
-                    }
-
                     const updateMapData = (e) => {
                         const measureId = parseInt(e.target.dataset.id);
                         const measure = mapMeasures.filter(m => m.MeasureID == measureId);
@@ -2310,10 +1017,7 @@
                             m.MeasureID === secondaryMeasureId
                         )
 
-                 
-
                         const measure = linksMeasures.filter(m => m.MeasureID == measureId);
-                        
                         const measurementType = measure[0].MeasurementType;
                         const secondaryMeasure = linksSecondaryMeasure[0].MeasurementType;
                         const secondaryIndicator = linksSecondaryIndicator[0].IndicatorLabel;
@@ -2449,23 +1153,17 @@
                             const defaultArrayMeasureId = defaultArray[0].VisOptions[0].Links[0].MeasureID;
                             filterSecondaryIndicatorMeasure(defaultArray)
                         }
-                        
                     }
-
-                   
                     
-                    const loadIndicator = (data) => {
+                    const loadIndicator = (data, bypassUrlChange) => {
                         let data2 = data
                         selectedSummaryYears = [];
                         selectedSummaryGeography = [];
                         const firstIndicatorId = document.querySelectorAll('#indicator-dropdown button')[0].getAttribute('data-internal-id');
-                        {{/*  const defaultIndicatorId = parseInt(firstIndicatorId);  */}}
                         if (!data2) { 
                             data2 = defaultIndicatorId
                         }
-
-                        console.log('LOAD INDICATOR - data', data, defaultIndicatorId)
-                        
+        
                         indicator = indicators.find(indicator => indicator.IndicatorID === data2);
                         indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                         indicatorDesc = indicator?.IndicatorDescription ? indicator.IndicatorDescription : `N/A`;
@@ -2479,7 +1177,16 @@
                         console.log('Load Indicator - Indicator: ', indicator)
                         console.log('Load Indicator - Measures: ', indicatorMeasurses)
 
+
+                        if (!bypassUrlChange) {
+                            url.searchParams.set('id', indicatorId);
+                            window.history.pushState({ id: indicatorId }, '', url);
+                        }
+                        
+
                         loadData(indicatorId)
+                        const indicatorTitle = document.querySelector(".indicator-title")
+                        indicatorTitle.innerHTML = indicatorName
                     }
 
                     const renderMeasures = () => {
@@ -2501,6 +1208,7 @@
                         const tableGeoTypes =  [...new Set(joinedAqData.objects().map(item => item.GeoType))];
                         const tableYears =  [...new Set(joinedAqData.objects().map(item => item.Time))];
                         const mapYears =  [...new Set(fullDataMapObjects.map(item => item.Time))];
+
                         // clear Measure Dropdowns
                         dropdownTableYear.innerHTML = ``;
                         dropdownTableGeo.innerHTML = ``;
@@ -2595,6 +1303,83 @@
                         setDefaultMapMeasure(defaultMapMeasure, mapMeasures);
                         setDefaultMeasure(defaultTrendMeasure, trendMeasures);
                         setDefaultLinksMeasure(defaultLinksMeasure, linksMeasures);
+
+                        $('#tab-btn-table').on('shown.bs.tab', function(e){
+                            $($.fn.dataTable.tables(true)).DataTable()
+                                .columns.adjust();
+                            renderAboutSources(measureAbout, measureSources)
+                            console.log('tab')
+                            window.location.hash = 'display=summary'
+                            updateChartPlotSize();
+                        });
+
+                        $('#tab-btn-map').on('shown.bs.tab', function(e){
+                            $($.fn.dataTable.tables(true)).DataTable()
+                                .columns.adjust();
+                            window.location.hash = 'display=map'
+                            updateChartPlotSize();
+                            if (!selectedMapMeasure) {
+                                const about = defaultMapMeasure[0]?.how_calculated;
+                                const sources = defaultMapMeasure[0].Sources;
+                                const measure = defaultMapMeasure[0].MeasurementType;
+                                defaultMapbout = `<h6>${indicator.IndicatorName} - ${measure}</h6><p>${about}</p>`;
+                                defaultMapSources = `<h6>${indicator.IndicatorName} - ${measure}</h6><p>${sources}</p>`;
+                                renderAboutSources(defaultMapbout, defaultMapSources);
+                            } else {
+                                renderAboutSources(selectedMapbout, selectedMapSources);
+                            }
+                        });
+
+                        $('#tab-btn-trend').on('shown.bs.tab', function(e){
+                            $($.fn.dataTable.tables(true)).DataTable()
+                                .columns.adjust();
+                            renderAboutSources(measureAbout, measureSources);
+                            window.location.hash = 'display=trend';
+                            updateChartPlotSize();
+                            if (!selectedTrendMeasure) {
+                                const about = defaultTrendMeasure[0]?.how_calculated;
+                                const sources = defaultTrendMeasure[0].Sources;
+                                const measure = defaultTrendMeasure[0].MeasurementType;
+                                defaultTrendAbout = `<h6>${indicator.IndicatorName} - ${measure}</h6><p>${about}</p>`;
+                                defaultTrendSources = `<h6>${indicator.IndicatorName} - ${measure}</h6><p>${sources}</p>`;
+                                renderAboutSources(defaultTrendAbout, defaultTrendSources);
+                            } else {
+                                renderAboutSources(selectedTrendAbout, selectedTrendSources);
+                            }
+                        });
+
+                        $('#tab-btn-links').on('shown.bs.tab', function(e){
+                            $($.fn.dataTable.tables(true)).DataTable()
+                                .columns.adjust();
+                            window.location.hash = 'display=links';
+                            updateChartPlotSize();
+
+                            const primaryMeasureId = defaultLinksMeasure[0]?.VisOptions[0].Links[0].MeasureID;
+                            const linksSecondaryIndicator =  indicators.filter(indicator =>
+                                indicator.Measures.some(m => 
+                                    m.MeasureID === primaryMeasureId)
+                            )
+
+                            const linksSecondaryMeasure = linksSecondaryIndicator[0].Measures.filter(m =>
+                                m.MeasureID === primaryMeasureId
+                            )
+                            const primaryIndicator = indicator.IndicatorName;
+                            const primaryMeasure = defaultLinksMeasure[0].MeasurementType;
+                            const primaryAbout = defaultLinksMeasure[0].how_calculated;
+                            const primarySources = defaultLinksMeasure[0].Sources;
+                            const secondaryIndicator = linksSecondaryIndicator[0].IndicatorLabel;
+                            const secondaryMeasure = linksSecondaryMeasure[0].MeasurementType;
+                            const secondaryAbout = linksSecondaryMeasure[0].how_calculated;
+                            const secondarySources = linksSecondaryMeasure[0].Sources;
+
+                            defaultLinksAbout = `<h6>${primaryIndicator} - ${primaryMeasure}</h6><p>${primaryAbout}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondaryAbout}</p>`;
+                            defaultLinksSources = `<h6>${primaryIndicator} - ${primaryMeasure}</h6><p>${primarySources}</p><h6>${secondaryIndicator} - ${secondaryMeasure}</h6><p>${secondarySources}</p>`;
+                            if (!selectedLinksMeasure) {
+                                renderAboutSources(defaultLinksAbout, defaultLinksSources);
+                            } else {
+                                renderAboutSources(selectedLinksAbout, selectedLinksSources);
+                            }
+                        });
                         // disable tabs if there are no measures
 
                         const tabMapSelected = tabMap.getAttribute('aria-selected');
@@ -2613,7 +1398,8 @@
 
                         if (mapMeasures.length === 0) {
                             disableLink(tabMap);
-                            if (tabMapSelected === true) {
+                            if (tabMapSelected === true && currentHash === 'display=map') {
+                                console.log('crack')
                                 $('#tab-btn-table').tab('show');
                             }
                         } else {
@@ -2623,7 +1409,7 @@
 
                         if (trendMeasures.length === 0) {
                             disableLink(tabTrend);
-                            if (tabTrendSelected === true) {
+                            if (tabTrendSelected === true && currentHash === 'display=trend') {
                                 $('#tab-btn-table').tab('show');
                             }
                         } else {
@@ -2633,14 +1419,13 @@
 
                         if (linksMeasures.length === 0) {
                             disableLink(tabLinks);
-                            if (tabLinksSelected) {
+                            if (tabLinksSelected && currentHash === 'display=links') {
                                 $('#tab-btn-table').tab('show');
                             }
                         } else {
                             enableLink(tabLinks);
                             renderLinksChart();
                         }
-
                         renderTable();
                         renderTitleDescription(indicatorShortName, indicatorDesc);
                         renderAboutSources(measureAbout, measureSources);
@@ -2673,17 +1458,15 @@
                         })
 
                         // Render default Measure About and Sources
-                            measureAbout = '';
-                            measureSources = '';
-                            indicatorMeasurses.map(measure => {
-                                measureAbout += `<h6>${measure.MeasurementType}</h6>${measure.how_calculated}`;
-                                measureSources += `<h6>${measure.MeasurementType}</h6><p>${measure.Sources}</p>`;
-                            })
-                            
-                            renderAboutSources(measureAbout, measureSources);
+                        measureAbout = '';
+                        measureSources = '';
+                        indicatorMeasurses.map(measure => {
+                            measureAbout += `<h6>${measure.MeasurementType}</h6>${measure.how_calculated}`;
+                            measureSources += `<h6>${measure.MeasurementType}</h6><p>${measure.Sources}</p>`;
+                        })
+                        
+                        renderAboutSources(measureAbout, measureSources);
                     }
-
-
             </script>
 
             <div class="row">
@@ -2712,15 +1495,10 @@
                           More {{ .Title}} data
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownTableYear" id="indicator-dropdown">
-                        
-                        {# {{ range .Params.Indicators}} #}
-                            {# <button class="dropdown-item" onClick="loadIndicator({{ . }})" data-internal-id="{{ .internal_id }}">{{ .name}}</button> #}
-                            <!-- <a class="dropdown-item" href="{{ .URL}}">{{ .name}}</a> -->
-                        {# {{ end }} #}
-
+                            <!-- Dropdown itmes are rendered using renderIndicatorDropdown -->
                         </div>
                     </div>
-                    <h3 class="indicator-title">{{ (index .Params.indicators 0).name }}</h3>
+                    <h3 class="indicator-title"></h3>
 
 
                     <div style="clear:both" class="my-3">
