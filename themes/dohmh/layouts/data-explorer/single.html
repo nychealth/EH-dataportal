@@ -246,8 +246,9 @@
                                 let header;
                                 
                                 {{ range .Params.Indicators }}
-                                        header = `{{ .header }}`
-                                        indicatorDropdown.innerHTML += header.length && `<div class="dropdown-title"><strong>${header}</strong></div>`;
+                                        header = `{{ .header }}`;
+                                        console.log('Header: ', header)
+                                        indicatorDropdown.innerHTML += header.length ? `<div class="dropdown-title"><strong>${header}</strong></div>`: '';
                                         {{ range $index, $id := .IndicatorID }}
                                             {{ if (eq $index 0) }}
                                                 defaultIndicatorId = {{ $id }}
@@ -365,7 +366,7 @@
                                     .derive({ GeoID: aq.escape(d => standardizeGeoId(d.GeoID, d.Geotype))}) // convert GeoIDs to numbers and strings
                                     .select(aq.not('Lat', 'Long'))
                                 // console.log("---- Geo Names 1 (post-load) ----")
-                                geoTable.print({ limit: 300});
+                                {{/*  geoTable.print({ limit: 300});  */}}
                                 joinData(); // run the next function 
                             });
                     }
@@ -433,7 +434,7 @@
                                         // .impute({ Value: () => "**" })
                                         .pivot("MeasurementType", "Value")
 
-                                        ful.print({limit: 100})
+                                        {{/*  ful.print({limit: 100})  */}}
 
                                 if (hasCIData) {
                                     console.log('---- new table ----------')
@@ -447,7 +448,7 @@
                                                 .pivot("MeasurementType", "Value")
                                                 .rename({ CI: "CI (95%)"})
 
-                                    pct.print();
+                                    // pct.print();
                                 }
                                 
                                 if (numAqData.length > 0) {
@@ -456,7 +457,7 @@
                                                 .impute({ Value: () => "**" })
                                                 .pivot("MeasurementType", "Value")
 
-                                    num.print();
+                                    // num.print();
                                 }
 
 
@@ -466,8 +467,8 @@
                                                 .impute({ Value: () => "**" })
                                                 .pivot("MeasurementType", "Value")
 
-                                                console.log('sprayBombPct-------------------------------------------------')
-                                                sBPct.print()
+                                                // console.log('sprayBombPct-------------------------------------------------')
+                                                // sBPct.print()
                                 } 
                                 if (saferMethodsPct.length > 0) {
                                     sMPct = aq.from(saferMethodsPct)
@@ -475,8 +476,8 @@
                                                 .impute({ Value: () => "**" })
                                                 .pivot("MeasurementType", "Value")
 
-                                                console.log('saferMethodsPct-------------------------------------------------')
-                                                sMPct.print()
+                                                // console.log('saferMethodsPct-------------------------------------------------')
+                                                // sMPct.print()
                                 }
                                
                                 if (anyUseNumber.length > 0) {
@@ -485,8 +486,8 @@
                                                 .impute({ Value: () => "**" })
                                                 .pivot("MeasurementType", "Value")
 
-                                                console.log('anyUseNumber-------------------------------------------------')
-                                                aUNum.print()
+                                                 // console.log('anyUseNumber-------------------------------------------------')
+                                                 // aUNum.print()
                                 }
 
                                 if (anyUsePct.length > 0) {
@@ -495,8 +496,8 @@
                                                 .impute({ Value: () => "**" })
                                                 .pivot("MeasurementType", "Value")
 
-                                                console.log('anyUsePct-------------------------------------------------')
-                                                aUPct.print()
+                                                // console.log('anyUsePct-------------------------------------------------')
+                                                // aUPct.print()
                                 }
                                 
                                 if (anyUseTempoPct.length > 0) {
@@ -505,8 +506,8 @@
                                                 .impute({ Value: () => "**" })
                                                 .pivot("MeasurementType", "Value")
 
-                                                console.log('anyUseTempoPct-------------------------------------------------')
-                                                aUTPct.print()
+                                                // console.log('anyUseTempoPct-------------------------------------------------')
+                                                // aUTPct.print()
                                 }
                                 
                                 // if (strippedAqData.length > 0) {
@@ -559,8 +560,8 @@
                                 }
                                 
 
-                                console.log('newTable====================================')
-                                newTable.print();
+                                // console.log('newTable====================================')
+                                // newTable.print();
                                 aqData = newTable
                                     // aqData = aq.from(data)
                                     //     // .except([pct, num])
@@ -590,9 +591,9 @@
                                         .orderby(aq.desc('Time'), 'GeoRank')
                                 }
                                 
-                                console.log('==========================================================================')
-                                console.log('Load Date - aqData', aqData)
-                                aqData.print();
+                                // console.log('==========================================================================')
+                                // console.log('Load Date - aqData', aqData)
+                                // aqData.print();
                             })
                         }
 
@@ -600,7 +601,9 @@
                         const disparityIndicatorId = disparityIndicator[0].IndicatorID;
                         const disparityMeasure = disparityIndicator[0];
                         const primaryMeasureTimes = primaryMeasure[0].AvailableTimes;
-                        console.log('primaryMeasureTimes', primaryMeasureTimes)
+                        const primaryMeasurementType =  primaryMeasure[0].MeasurementType;
+                        console.log('+++++++++++++++ loadDisparitiyData +++++++++++++++++++++++++')
+                        console.log('primaryMeasureTimes: ',primaryMeasure, primaryMeasureTimes)
 
                         const aqPrimaryMeasureTimes = aq.from(primaryMeasureTimes)
 
@@ -617,7 +620,7 @@
                         const secondaryMeasureGeoTypes = filteredSecondaryMeasure[0].AvailableGeographyTypes;
 
                         const aqSecondaryMeasureTimes = aq.from(secondaryMeasureTimes)
-
+                        console.log('aqSecondaryMeasureTimes ===============================')
                         aqSecondaryMeasureTimes.print()
 
                         fetch(`https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/data/${disparityIndicatorId}.json`)
@@ -643,28 +646,40 @@
                                     primaryTimes.includes(standardizeTime(d.Time))
                                 )
 
-                                console.log('TEST: ', test, filteredSecondaryIndicator, filteredSecondaryMeasure)
+                                console.log('TEST: ', test, )
+                                console.log('DISPARITY - filteredSecondaryIndicator:  ', filteredSecondaryIndicator)
+                                console.log('DISPARITY - filteredSecondaryMeasure: ', filteredSecondaryMeasure)
                                 // console.log('disparityMeasureTimes' , disparityMeasureTimes)
                                 console.log('TREND FILTER BY TIME: ', primaryTimes, filterByTime)
 
-                                geoTable.print()
+                                // geoTable.print()
 
                           
                                 const filteredDisparityData = aq.from(filterByTime)
-                                    .join(geoTable, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
+                                    //.join(geoTable, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
                                     .join(aqSecondaryMeasureTimes, ["Time", "TimeDescription"])
-                                    .groupby("Time", "GeoType", "GeoID", "Name", "MeasureID", "end_period")
+                                    {{/*  .groupby("Time", "GeoType", "GeoID", "Name", "MeasureID", "end_period")
                                     .pivot("MeasurementType", "Value")
                                     .relocate(['Name'], { after: 'GeoID' })
                                     .relocate(['GeoType'], { before: 'GeoID' })
                                     .rename({
                                         'Name': 'Geography',
+                                    })  */}}
+                                    {{/*  .groupby("Time")
+                                    .rollup({ 
+                                        low: d => op.quantile(d.Percent,0.33),
+                                        med: d => op.quantile(d.Percent, 0.66),
+                                        hi: d => op.quantile(d.Percent, 0.99)
                                     })
-                                    .derive({ MaxPct: d => op.max(d.Percent) })
+                                    .groupby("low", "med", "hi")
+                                    .fold(["low", "med", "hi"])
+                                    .rename({ key: 'Tertile' })
+                                    .rename({ value: 'Tertile Percent' })  */}}
+                                    {{/*  .derive({ MaxPct: d => op.max(d.Percent) })  */}}
                                     // .derive({ MinPct: d => op.min(d.Percent) })
                                     // aqJoinedPrimaryTrendData.groupby('TimeDescription').rollup({ MedianPct: d => op.median(d.Percent) }).groupby("MedianPct")
 
-                                const distparityMaxPct = Math.max(...filteredDisparityData.objects().map(d => d.Percent));
+                                {{/*  const distparityMaxPct = Math.max(...filteredDisparityData.objects().map(d => d.Percent));
                                 const dispartiyMinPCt = Math.min(...filteredDisparityData.objects().map(d => d.Percent));
                                 console.log(filteredDisparityData)
                                 console.log('max percent', distparityMaxPct)
@@ -679,28 +694,54 @@
                                         return `High`
                                     }
                                     
-                                }
+                                }  */}}
 
-
-                                filteredDisparityData.print({ limit: 100 })
+                                console.log('DISPARITY - filteredDisparityData ==============================')
+                                filteredDisparityData.print({ limit: 10 })
 
                                 const aqJoinedPrimaryMeasureTimes = aq.from(fullDataTrendObjects)
                                         .join(aqPrimaryMeasureTimes, ["Time", "TimeDescription"])
 
                                         console.log("joinded time ----------- primary")
                                         aqJoinedPrimaryMeasureTimes.print()
-
+                                console.log(aqJoinedPrimaryMeasureTimes)
                                 const aqJoinedPrimaryTrendData = aq.from(aqJoinedPrimaryMeasureTimes)
-                                        .join(filteredDisparityData, [["GeoID", "GeoType", "end_period"], ["GeoID", "GeoType", "end_period"]])
-                                        .derive({ Tertile: aq.escape( d => renderTertile(d.Percent))  })
-                                        .groupby("Tertile")
-
-                                    aqJoinedPrimaryTrendData.print({ limit: 50 })
+                                        .join(filteredDisparityData, 'end_period')
+                                        .rename({'Age Adjusted Rate - Total': 'Median' })
+                                        .groupby('end_period', 'GeoType_1', 'Time_1', 'Median', 'Geography' )
+                                        .rollup({ 
+                                            low: d => op.quantile(d.Value,0.33),
+                                            med: d => op.quantile(d.Value, 0.66),
+                                            hi: d => op.quantile(d.Value, 0.99)
+                                        })
+                                        .groupby("low", "med", "hi")
+                                        .fold(["low", "med", "hi"])
+                                        .rename({ 'key': 'Tertile'})
+                                        .groupby('end_period', 'GeoType_1', 'Time_1', 'Median', 'Geography', 'Tertile' )
+{{/*                                          
+                                        .rollup({
+                                            new: d => op.median(d.Median)
+                                        })
+                                        .groupby('end_period', 'GeoType_1', 'Time_1', 'Median', 'Geography' )  */}}
+                                        //.join(filteredDisparityData, [["Time", "GeoType", "GeoID"], ["Time", "GeoType", ]])
+                                        //.cross(filteredDisparityData)
+                                        //.select('Time_1', `${primaryMeasurementType}`, 'Tertile')
+                                        //.cross(filteredDisparityData, [[`Time`, `${primaryMeasurementType}`], [`Tertile`, `Tertile Percent`]])
+                                        //.groupby("Time_1", "Tertile")
+                                        //.groupby("end_period", "GeoID")
+                                        //.rename({ 'Age Adjusted Rate - Total': 'Value' })
+                                        //.derive({ index: d => op.row_number() - 1 })
+                                        //.derive({Median: op.median('Value')})
+                               
+                                        
+                                    console.log('DISPARITY - aqJoinedPrimaryTrendData ==============================')
+                                    console.log(aqJoinedPrimaryTrendData)
+                                    aqJoinedPrimaryTrendData.print({ limit: 200 })
 
                                     console.log("TEST == TEST == TEST == TEST == TEST == TEST == TEST == TEST == TEST == TEST == ")
                                    
                                         
-                                    aqJoinedPrimaryTrendData.print()
+                                    // aqJoinedPrimaryTrendData.print()
                                     joinedDataTrendDisparityObjects = aqJoinedPrimaryTrendData.objects();
 
 
@@ -719,8 +760,8 @@
 
                     // returned the array of measure in indicators.json
                     const filterSecondaryIndicatorMeasure = (primaryMeasure) => {
-                        console.log('==========================================================================')
-                        console.log("PRIMARY MEASURE DATA: ", primaryMeasure)
+                        // console.log('==========================================================================')
+                        // console.log("PRIMARY MEASURE DATA: ", primaryMeasure)
                         const primaryMeasureId = primaryMeasure[0].VisOptions[0].Links[0].MeasureID;
                         const primaryMeasureTimes = primaryMeasure[0].AvailableTimes;
                         const filteredSecondaryIndicator =  indicators.filter(indicator =>
@@ -746,11 +787,11 @@
 
                         const aqPrimaryMeasureTimes = aq.from(primaryMeasureTimes);
 
-                        console.log('MOST RECENT PRIMARY MEASURE START + END TIME: -------------- ', mostRecentPrimaryMeasureTime, mostRecentPrimaryMeasureStartTime, mostRecentPrimaryMeasureEndTime)
+                        // console.log('MOST RECENT PRIMARY MEASURE START + END TIME: -------------- ', mostRecentPrimaryMeasureTime, mostRecentPrimaryMeasureStartTime, mostRecentPrimaryMeasureEndTime)
 
-                        aqPrimaryMeasureTimes.print()
+                        // aqPrimaryMeasureTimes.print()
                         
-                        console.log('most recent mmmm ', aq.from([sortedPrimaryMeasureTimes[0]]))
+                        // console.log('most recent mmmm ', aq.from([sortedPrimaryMeasureTimes[0]]))
                         const secondaryMeasureTimes = filteredSecondaryMeasure[0].AvailableTimes;
                         const sortedSecondaryMeasureTimes = secondaryMeasureTimes.sort((a, b) => b.end_period - a.end_period)
                         const mostRecentSecondaryMeasureTime = sortedSecondaryMeasureTimes[0].TimeDescription;
@@ -772,7 +813,7 @@
                                 t.end_period === mostRecentPrimaryMeasureEndTime
                                 // t.start_period >= 'no' && t.end_period <= 'yes'
                             )
-                            console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ most recent mathcing time: ', mostRecentMatchingTime)
+                           //  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ most recent mathcing time: ', mostRecentMatchingTime)
                         }
 
                         console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> mathcing times', filteredMatchingTimes)
@@ -815,8 +856,8 @@
                                 const  aqJoinedPrimaryLinksData = aq.from(fullDataLinksObjects)
                                     .join(aqPrimaryMeasureTimes, ["Time", "TimeDescription"])
 
-                                    console.log('@@@@@@@@@@@@@@@@@@@@ AQ PRIMARY DATA @@@@@@@@@@@@@@@@@@@@@@@@@ ', )
-                                    aqJoinedPrimaryLinksData.print()
+                                    // console.log('@@@@@@@@@@@@@@@@@@@@ AQ PRIMARY DATA @@@@@@@@@@@@@@@@@@@@@@@@@ ' )
+                                    // aqJoinedPrimaryLinksData.print()
 
                                     const joinedPrimaryLinksDataObject = aqJoinedPrimaryLinksData.objects();
                                     const filteredJoinedPrimaryLinksDataObject = joinedPrimaryLinksDataObject.filter(d => 
@@ -840,7 +881,7 @@
 
                                     mostRecentJoinedSecondaryLinksDataObject = closestSecondaryData
 
-                                    console.log('yo', joinedSecondaryLinksDataObject)
+                                    // console.log('yo', joinedSecondaryLinksDataObject)
 
                                     const secondaryYears =  [...new Set(mostRecentJoinedSecondaryLinksDataObject.map(item => item.Time))];
                                     const highest = Math.max(...secondaryYears);
@@ -854,7 +895,7 @@
                                         selectedlinksSecondaryMeasureTime = `${secondaryYears[0]}`
                                     }
                                     
-                                    console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SEONDARY YEARS', secondaryYears, highest, lowest)
+                                    // console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SEONDARY YEARS', secondaryYears, highest, lowest)
 
 
                                     const aqMostRecentJoinedSecondaryLinksDataObject = aq.from(mostRecentJoinedSecondaryLinksDataObject)
@@ -862,7 +903,7 @@
                                     const aqJoinedPrimarySecondaryData = aq.from(filteredJoinedPrimaryLinksDataObject)
                                         .join(aqMostRecentJoinedSecondaryLinksDataObject, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
                                     
-                                    aqJoinedPrimarySecondaryData.print()
+                                    // aqJoinedPrimarySecondaryData.print()
                                     joinedDataLinksObjects = aqJoinedPrimarySecondaryData.objects();
 
                                 // console.log('==========================================================================')
