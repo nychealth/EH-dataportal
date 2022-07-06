@@ -136,7 +136,7 @@ subtopic_indicator_groups <-
         header = replace_na(header, "0")
     ) %>% 
     arrange(Subtopic, header, label) %>% 
-    mutate(header = header %>% str_replace("0", "null")) %>% 
+    mutate(header = header %>% str_replace("0", "null"), order = 1:nrow(.)) %>% 
     select(Subtopic, subtopic_name, subtopic_id, header, Indicator, label, IndicatorID = internal_id)
 
 
@@ -206,10 +206,12 @@ for (i in 1:length(subtopic_md_files)) {
         this_subtopic_data <- 
             left_join(
                 current_indicators_frontmatter,
-                subtopic_indicator_groups %>% select(subtopic_id, IndicatorID, header),
+                subtopic_indicator_groups %>% select(order, subtopic_id, IndicatorID, header),
                 by = c("subtopic_id", "IndicatorID")
             ) %>% 
-            mutate(header = replace_na("null"))
+            arrange(order) %>% 
+            select(-order) %>% 
+            mutate(header = replace_na(header, "null"))
         
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
         # loop through headers
