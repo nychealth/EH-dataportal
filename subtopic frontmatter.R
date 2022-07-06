@@ -185,7 +185,7 @@ for (i in 1:length(subtopic_md_files)) {
     
     current_indicators_frontmatter <- 
         current_markdown %>% 
-        str_extract("indicators:.*(\r\n|\n)menu:") %>% 
+        str_extract("indicators:(.|\r\n|\n)*menu:") %>% 
         str_remove("menu:") %>% 
         str_remove("indicators:") %>% 
         str_remove_all("-") %>% 
@@ -193,7 +193,13 @@ for (i in 1:length(subtopic_md_files)) {
         fromJSON() %>% 
         as_tibble()
     
-    if (nrow(current_indicators_frontmatter) == 0) next
+    if (nrow(current_indicators_frontmatter) == 0) {
+        
+        cat("NEXTED", this_subtopic_file, "\n")
+        
+        next
+        
+    }
     
     current_indicators_frontmatter <- 
         current_indicators_frontmatter %>% 
