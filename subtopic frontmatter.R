@@ -243,7 +243,7 @@ for (i in 1:length(subtopic_md_files)) {
             header_list[[j]] <- 
                 list(
                     header = `class<-`(unique_headers[j], "verbatim"),
-                    IndicatorID = this_header_data$IndicatorID
+                    IndicatorID = `class<-`(this_header_data$IndicatorID, "verbatim")
                 )
             
         }
@@ -254,7 +254,8 @@ for (i in 1:length(subtopic_md_files)) {
         
         indicators_frontmatter <- 
             list(indicators = header_list) %>% 
-            as.yaml(line.sep = linebreak, indent.mapping.sequence = FALSE)
+            as.yaml(line.sep = linebreak, indent.mapping.sequence = FALSE, omap = FALSE) %>% 
+            str_replace_all("( *)(IndicatorID: *)(\\d{1,4})", paste0("\\1\\2", linebreak, "\\1- \\3"))
         
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
         # replace current indicators JSON with YAML
