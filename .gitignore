@@ -17,3 +17,4 @@ content/Spanish/
 
 # don't track build folder
 docs 
+.Rproj.user
