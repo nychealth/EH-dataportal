@@ -163,9 +163,9 @@ for (i in 1:length(subtopic_md_files)) {
     
     this_subtopic_file <- subtopic_md_files[i]
     
-    cat(i, ":", this_subtopic_file, "\n")
+    if (path_file(this_subtopic_file) %in% c("_index.md", "all-data.md")) next
     
-    if (path_file(this_subtopic_file) == "all-data.md") next
+    cat(i, ":", this_subtopic_file, "\n")
     
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
     # read in markdown file 
@@ -193,81 +193,81 @@ for (i in 1:length(subtopic_md_files)) {
         fromJSON() %>% 
         as_tibble()
     
-    if (nrow(current_indicators_frontmatter) == 0) {
+    if (nrow(current_indicators_frontmatter) != 0) {
         
-        cat("NEXTED", this_subtopic_file, "\n")
+        current_indicators_frontmatter <- 
+            current_indicators_frontmatter %>% 
+            select(subtopic_id, IndicatorID = internal_id)
         
-        next
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+        # join current subtopic indicators to header in database
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+        
+        this_subtopic_data <- 
+            left_join(
+                current_indicators_frontmatter,
+                subtopic_indicator_groups %>% select(subtopic_id, IndicatorID, header),
+                by = c("subtopic_id", "IndicatorID")
+            ) %>% 
+            mutate(header = replace_na("null"))
+        
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+        # loop through headers
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+        
+        header_list <- list()
+        
+        unique_headers <- unique(this_subtopic_data$header)
+        
+        
+        for (j in 1:length(unique_headers)) {
+            
+            
+            this_header <- unique_headers[j]
+            
+            # format object so that it converts to correct YAML
+            
+            this_header_data <- 
+                this_subtopic_data %>% 
+                filter(header == unique_headers[j])
+            
+            header_list[[j]] <- 
+                list(
+                    header = `class<-`(unique_headers[j], "verbatim"),
+                    IndicatorID = this_header_data$IndicatorID
+                )
+            
+        }
+        
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+        # convert to yaml
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+        
+        indicators_frontmatter <- 
+            list(indicators = header_list) %>% 
+            as.yaml(line.sep = linebreak, indent.mapping.sequence = FALSE)
+        
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+        # replace current indicators JSON with YAML
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+        
+        new_markdown <- 
+            current_markdown %>% 
+            str_replace("indicators:(.|\r\n|\n)*menu:", paste0(indicators_frontmatter, "menu:"))
+        
+    } else {
+        
+        new_markdown <- 
+            current_markdown %>% 
+            str_replace("indicators:(.|\r\n|\n)*menu:", paste0("indicators: ", linebreak, "menu:"))
         
     }
-    
-    current_indicators_frontmatter <- 
-        current_indicators_frontmatter %>% 
-        select(subtopic_id, IndicatorID = internal_id)
-    
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-    # join current subtopic indicators to header in database
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-    
-    this_subtopic_data <- 
-        left_join(
-            current_indicators_frontmatter,
-            subtopic_indicator_groups %>% select(subtopic_id, IndicatorID, header),
-            by = c("subtopic_id", "IndicatorID")
-        ) %>% 
-        mutate(header = replace_na("null"))
-    
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-    # loop through headers
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-    
-    header_list <- list()
-    
-    unique_headers <- unique(this_subtopic_data$header)
-    
-    
-    for (j in 1:length(unique_headers)) {
         
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+        # overwrite subtopic markdown
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
         
-        this_header <- unique_headers[j]
-        
-        # format object so that it converts to correct YAML
-        
-        this_header_data <- 
-            this_subtopic_data %>% 
-            filter(header == unique_headers[j])
-        
-        header_list[[j]] <- 
-            list(
-                header = `class<-`(unique_headers[j], "verbatim"),
-                IndicatorID = this_header_data$IndicatorID
-            )
-        
-    }
-    
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-    # convert to yaml
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-    
-    indicators_frontmatter <- 
-        list(indicators = header_list) %>% 
-        as.yaml(line.sep = linebreak, indent.mapping.sequence = FALSE)
-    
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-    # replace current indicators JSON with YAML
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-    
-    new_markdown <- 
-        current_markdown %>% 
-        str_replace("indicators:.*(\r\n|\n)menu:", paste0(indicators_frontmatter, "menu:"))
-    
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-    # overwrite subtopic markdown
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-    
-    write_file(new_markdown, this_subtopic_file)
-    
-    
+        write_file(new_markdown, this_subtopic_file)
 }
 
 
