@@ -7,7 +7,10 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["transportation","neighborhoods"]
 keywords: ["transportation","traffic","cars","trucks","roads","streets","safety","emissions","driving","cars","hospitalizations","emergency department visits","biking","cycling","bikes"]
-indicators: [{"subtopic_id": 90, "internal_id": 2390, "name": "Bicycle Network Coverage", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2390,719b87,90,Summarize"}]
+indicators:
+- header: null
+  IndicatorID: 
+  - 2390
 menu:
     main:
         identifier: '03'

@@ -5,7 +5,7 @@ draft: false
 tags: 
 categories: ["airquality","transportation"]
 keywords: ["air quality","pollution","emissions","exhaust","pollutants","pm2.5","asthma","breathing","lungs","asthma","respiratory","illness","hospitalizations","emergency department visits"]
-indicators: []
+indicators: 
 menu:
     main:
         identifier: '03'

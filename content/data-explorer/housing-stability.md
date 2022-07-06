@@ -7,7 +7,20 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["housing","social","neighborhoods","climatehealth"]
 keywords: ["built environments","neighborhoods","social","housing","maintenance","maintenance deficiencies","healthy housing","evictions","crowding","home ownership"]
-indicators: [{"subtopic_id": 36, "internal_id": 2185, "name": "Households reporting air conditioning", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2185,719b87,107,Summarize"},{"subtopic_id": 36, "internal_id": 2377, "name": "Households reporting someone who uses electric medical equipment", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2377,719b87,36,Summarize"},{"subtopic_id": 36, "internal_id": 2188, "name": "Homes with Grab Bars in Bathroom (among older adult households)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2188,719b87,36,Summarize"},{"subtopic_id": 109, "internal_id": 2336, "name": "Rent Burdened Households", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2336,719b87,109,Summarize"},{"subtopic_id": 36, "internal_id": 17, "name": "Owner-Occupied Homes", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=17,719b87,36,Summarize"},{"subtopic_id": 36, "internal_id": 15, "name": "Crowding (> 1 person/room)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=15,719b87,36,Summarize"},{"subtopic_id": 36, "internal_id": 2365, "name": "Court Ordered Evictions", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2365,719b87,36,Summarize"}]
+indicators:
+- header: Housing characteristics
+  IndicatorID:
+  - 2365
+  - 15
+  - 17
+- header: Safety
+  IndicatorID:
+  - 2188
+  - 2185
+  - 2377
+- header: null
+  IndicatorID: 
+  - 2336
 menu:
     main:
         identifier: '03'

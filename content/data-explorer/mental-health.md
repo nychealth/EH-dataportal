@@ -7,7 +7,7 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["social","transportation","healthoutcomes"]
 keywords: ["mental health","mental illness","health care","health care access","health"]
-indicators: []
+indicators: 
 menu:
     main:
         identifier: '03'

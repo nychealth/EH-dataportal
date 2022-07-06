@@ -7,7 +7,11 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["foodanddrink","neighborhoods"]
 keywords: ["drink","alcohol","neighborhoods"]
-indicators: [{"subtopic_id": 95, "internal_id": 2049, "name": "Access to Alcohol", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2049,719b87,95,Summarize"}, {"subtopic_id": 95, "internal_id": 2057, "name": "Youth Access to Alcohol", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2057,719b87,95,Summarize"}]
+indicators:
+- header: null
+  IndicatorID:
+  - 2049
+  - 2057
 menu:
     main:
         identifier: '03'

@@ -7,7 +7,18 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["housing","childhealth","social","neighborhoods"]
 keywords: ["lead","poisoning","housing","children","child","testing","blood"]
-indicators: [{"subtopic_id": 14, "internal_id": 2189, "name": "Children tested for lead by age 3 years", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2189,719b87,14,Summarize"}, {"subtopic_id": 14, "internal_id": 2184, "name": "Children under 6 years with elevated blood lead levels (BLL)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2184,719b87,14,Summarize"}, {"subtopic_id": 14, "internal_id": 2216, "name": "Children under 6 years with elevated blood lead levels by NTA", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2216,719b87,14,Summarize"},{"subtopic_id": 4, "internal_id": 2176, "name": "Children under 5 years old in Poverty", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2176,719b87,4,Summarize"}, {"subtopic_id": 4, "internal_id": 16, "name": "Pre-1950 Homes", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=16,719b87,4,Summarize"}, {"subtopic_id": 4, "internal_id": 41, "name": "Pre-1960 Homes with Peeling Paint", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=41,719b87,4,Summarize"},{"subtopic_id": 115, "internal_id": 2209, "name": "Elevated Blood Lead Levels among Persons Aged 16 or Older", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2209,719b87,115,Summarize"}]
+indicators:
+- header: null
+  IndicatorID:
+  - 2189
+  - 2184
+  - 2216
+  - 2176
+  - 16
+  - 2209
+- header: Maintenance
+  IndicatorID: 
+  - 41
 menu:
     main:
         identifier: '03'

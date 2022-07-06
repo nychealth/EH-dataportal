@@ -7,7 +7,15 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["housing","social","neighborhoods"]
 keywords: ["built environments","neighborhoods","social","housing","maintenance","maintenance deficiencies","healthy housing","asthma","allergies","trigger","childhood asthma"]
-indicators: [{"subtopic_id": 36, "internal_id": 2101, "name": "Adults Reporting Mold in the Home", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2101,719b87,36,Summarize"}, {"subtopic_id": 36, "internal_id": 25, "name": "Adults Reporting Secondhand Smoke at Home", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=25,719b87,36,Summarize"}, {"subtopic_id": 36, "internal_id": 107, "name": "Homes with Cockroaches", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=107,719b87,8,Summarize"},{"subtopic_id": 36, "internal_id": 2393, "name": "Children living in homes with cockroaches (ages 0-13 years)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2393,719b87,8,Summarize"}, {"subtopic_id": 36, "internal_id": 48, "name": "Homes with Mice or Rats in the Building", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=48,719b87,36,Summarize"}, {"subtopic_id": 36, "internal_id": 2394, "name": "Children living in homes with mice (ages 0-13  years)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2394,719b87,36,Summarize"}]
+indicators:
+- header: Asthma triggers
+  IndicatorID:
+  - 2101
+  - 25
+  - 2393
+  - 2394
+  - 107
+  - 48
 menu:
     main:
         identifier: '03'

@@ -7,7 +7,15 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["transportation","neighborhoods"]
 keywords: ["transportation","traffic","cars","trucks","roads","streets","safety","emissions","driving","cars"]
-indicators: [{"subtopic_id": 114, "internal_id": 2236, "name": "Adults Reporting Driving in the Last 30 Days", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2236,719b87,114,Summarize"}, {"subtopic_id": 114, "internal_id": 2237, "name": "Adults Reporting Messaging While Driving in the Last 30 Days", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2237,719b87,114,Summarize"}, {"subtopic_id": 114, "internal_id": 2238, "name": "Adults Reporting Speeding in the Last 30 Days", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2238,719b87,114,Summarize"}, {"subtopic_id": 114, "internal_id": 2113, "name": "Car Traffic Density", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2113,719b87,114,Summarize"}, {"subtopic_id": 90, "internal_id": 2114, "name": "Truck Traffic Density", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2114,719b87,114,Summarize"},{"subtopic_id": 90, "internal_id": 2112, "name": "Traffic Density", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2112,719b87,114,Summarize"}]
+indicators:
+- header: null
+  IndicatorID:
+  - 2236
+  - 2113
+  - 2237
+  - 2238
+  - 2114
+  - 2112
 menu:
     main:
         identifier: '03'

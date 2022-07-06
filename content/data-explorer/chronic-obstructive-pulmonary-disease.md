@@ -7,7 +7,14 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["airquality","healthoutcomes","climatehealth"]
 keywords: ["COPD","breathing","lungs","hospitalization","emergency department visits","smoking"]
-indicators: [{"subtopic_id": 123, "internal_id": 2341, "name": "Chronic Obstructive Pulmonary Disease  Hospitalization", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2341,719b87,123,Summarize"}, {"subtopic_id": 123, "internal_id": 2343, "name": "Chronic Obstructive Pulmonary Disease Emergency Department Visits", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2343,719b87,123,Summarize"},{"subtopic_id": 36, "internal_id": 2377, "name": "Households reporting someone who uses electric medical equipment", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2377,719b87,36,Summarize"}]
+indicators:
+- header: (COPD)
+  IndicatorID:
+  - 2343
+  - 2341
+- header: Safety
+  IndicatorID: 
+  - 2377
 menu:
     main:
         identifier: '03'

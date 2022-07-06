@@ -7,7 +7,10 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["healthoutcomes"]
 keywords: ["heart","attacks","hospitalizations","emergency department visits"]
-indicators: [{"subtopic_id": 13, "internal_id": 90, "name": "Heart Attack Hospitalizations", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=90,719b87,13,Summarize"}]
+indicators:
+- header: null
+  IndicatorID: 
+  - 90
 menu:
     main:
         identifier: '03'
