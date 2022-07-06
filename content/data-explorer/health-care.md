@@ -13,6 +13,8 @@ menu:
         identifier: '03'
 ---
 
-More information coming soon. 
+Health care is a valuable tool to stay healthy. 
 
+Health insurance coverage is associated with many health benefits. People with health insurance are more likely to have a regular doctor, receive preventive care services, better manage chronic health conditions, have longer life expectancy, and more.
 
+However, not all New Yorkers can access appropriate amounts of care. Many New Yorkers remain uninsured. People without access to appropriate health care don't receive the care they need to stay healthy. They may postpone care, be unable to afford medication or treatment, and become sicker and die earlier than people with good health insurance and good health care.

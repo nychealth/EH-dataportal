@@ -1,22 +1,24 @@
 ---
-title: "Social and Economic Conditions"
+title: "Inequality and health inequities"
 date: 2021-10-01T07:59:16-04:00
 draft: false
-seo_title: "Social and Economic Conditions in NYC."
+seo_title: "Data on health equity and social and economic conditions in NYC."
 seo_description: "Data, data stories, interactives, and more."
 tags: 
 categories: [social]
 keyTopic: social
-keywords: ["social justice","poverty","racism","oppression","social determinants","public health"]
+keywords: ["social justice","poverty","racism","oppression","social determinants","public health","social determinants of health","inequality","health equity","justice","injustice"]
 menu:
     main:
         identifier: '05'
 layout: single
 ---
 
-Social and economic conditions affect people’s health. These conditions (also called “social determinants of health”) are conditions that people may be born into or fall into over the course of their lives. They are shaped by local, national and global distribution of resources and power.
+Inequality is a significant driver of bad health: a society that deprives people of resources to stay healthy is a society where many people become sick, injured, or die because of factors outside of their control.
 
-People tend to be healthier when they have access to economic and financial stability, higher education, adequate health care, healthy neighborhoods, and safe, strong communities.
+People tend to be healthier when they have access to economic and financial stability, higher education, adequate health care, healthy neighborhoods, and safe, strong communities. 
 
-But when people don’t have access to these conditions, they experience worse health outcomes. This is health inequity – avoidable and unfair health outcomes. Discrimination based on race (and other personal characteristics) often results in disparities in access to these conditions –and thus, disparities in health outcomes.
+**Health inequities** are systematic differences in health outcomes that result from differences in access to the conditions that keep people healthy. These are called "social determinants of health" - conditions that people are born into or experience during their lives. 
+
+These social determinants of health are shaped by local, national, and global systems of power. When these systems deprive people of the social and economic conditions that support health, those people experience worse health outcomes. Historical and contemporary racism, economic inequality, and disinvestment all determine who is placed at greater risk for bad health outcomes. Too often, these are people in low-income neighborhoods and people of color. 
 

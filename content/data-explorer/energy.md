@@ -6,8 +6,8 @@ seo_title: "Energy data for NYC."
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["climatehealth"]
-keywords: ["climate","climate chnage","energy"]
-indicators: [{"subtopic_id": 86, "internal_id": 2005, "name": "Cleaner Energy", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2005,719b87,86,Summarize"}, {"subtopic_id": 86, "internal_id": 2007, "name": "Energy Efficiency", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2007,719b87,86,Summarize"}, {"subtopic_id": 86, "internal_id": 2006, "name": "Energy Reliability", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2006,719b87,86,Summarize"}]
+keywords: ["climate","climate change","energy"]
+indicators: [{"subtopic_id": 86, "internal_id": 2006, "name": "Energy Reliability", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2006,719b87,86,Summarize"}]
 menu:
     main:
         identifier: '03'
