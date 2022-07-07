@@ -6,7 +6,7 @@ const renderLinksChart = (
   selectedMeasureId,
   selectedSecondaryMeasureId
 ) => {
-  console.log('==========================================================================')
+  // console.log('==========================================================================')
   const defaultLinksMeasureId = defaultLinksMeasure[0].VisOptions[0].Links[0].MeasureID;
   const linkAxisMeasureId = selectedSecondaryMeasureId ? selectedSecondaryMeasureId : defaultLinksMeasureId;
   const secondaryIndicator =  indicators.filter(indicator =>
@@ -28,22 +28,22 @@ const renderLinksChart = (
   const linksTime = selectedData ? selectedData[0].AvailableTimes[0].TimeDescription : defaultLinksMeasure[0].AvailableTimes[0].TimeDescription;
   const linksAxisTime = selectedlinksSecondaryMeasureTime;
 
-  console.log('RENDER Links DATA ', linksMeasures)
-  console.log('RENDER LINKS DEFAULT MEASURE: ', defaultLinksMeasure)
-  console.log('RENDER LINKS DEFAULT MEASURE ID: ', defaultLinksMeasureId)
-  console.log('RENDER LINKS DEFAULT AXIS: ', defaultLinksAxis)
-  console.log('RENDER LINKS SELECTED DATA: ', selectedData)
-  console.log('RENDER LINKS SELECTED MEASURE: ', selectedMeasure)
-  console.log('RENDER LINKS SELECTED SECONDARY MEASURE ID: ', selectedSecondaryMeasureId)
-  console.log('RENDER LINKS SELECTED AXIS: ', selectedMeasureId)
-  console.log('RENDDER LINKS DISPLAY: ', linksDisplay)
-  console.log('indicators: ', indicators)
+  // console.log('RENDER Links DATA ', linksMeasures)
+  // console.log('RENDER LINKS DEFAULT MEASURE: ', defaultLinksMeasure)
+  // console.log('RENDER LINKS DEFAULT MEASURE ID: ', defaultLinksMeasureId)
+  // console.log('RENDER LINKS DEFAULT AXIS: ', defaultLinksAxis)
+  // console.log('RENDER LINKS SELECTED DATA: ', selectedData)
+  // console.log('RENDER LINKS SELECTED MEASURE: ', selectedMeasure)
+  // console.log('RENDER LINKS SELECTED SECONDARY MEASURE ID: ', selectedSecondaryMeasureId)
+  // console.log('RENDER LINKS SELECTED AXIS: ', selectedMeasureId)
+  // console.log('RENDDER LINKS DISPLAY: ', linksDisplay)
+  // console.log('indicators: ', indicators)
 
   
 
   const linkAxisMeas = secondaryMeasure[0].MeasurementType
 
-  console.log('this data: ', secondaryMeasure[0], secondaryIndicator)
+  // console.log('this data: ', secondaryMeasure[0], secondaryIndicator)
   
   let xMeasure;
   let yMeasure;
@@ -77,7 +77,7 @@ const renderLinksChart = (
           break;
   }
 
-  console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>> ', selectedlinksSecondaryMeasureData, selectedlinksSecondaryIndicatorData)
+  // console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>> ', selectedlinksSecondaryMeasureData, selectedlinksSecondaryIndicatorData)
 
   /* var spec = {
       "$schema": "https://vega.github.io/schema/vega-lite/v5.json",

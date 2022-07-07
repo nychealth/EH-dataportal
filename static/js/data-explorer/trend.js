@@ -13,12 +13,12 @@ const renderTrendChart = (
   let trendDisplay = selectedDisplay ? selectedDisplay : defaultTrendMeasure[0].DisplayType;
   let trendDisparity = selectedDisparities ? selectedDisparities : defaultTrendMeasure[0].VisOptions[0]?.Trend[0]?.Disparities
   
-  console.log('==========================================================================')
-  console.log('RENDER TREND DATA - Measure Default: ', defaultTrendMeasure)
-  console.log('RENDER TREND DATA - Measure Selected: ', selectedMeasure)
-  console.log('RENDER TREND DATA - Measure Filtered Default Data: ', fullDataTrendObjects)
-  console.log('RENDER TREND DATA - Measure Filtered Selcted Data: ', selectedData)
-  console.log('RENDER TREND DATA - Measure Disparity: ', trendDisparity)
+  // console.log('==========================================================================')
+  // console.log('RENDER TREND DATA - Measure Default: ', defaultTrendMeasure)
+  // console.log('RENDER TREND DATA - Measure Selected: ', selectedMeasure)
+  // console.log('RENDER TREND DATA - Measure Filtered Default Data: ', fullDataTrendObjects)
+  // console.log('RENDER TREND DATA - Measure Filtered Selcted Data: ', selectedData)
+  // console.log('RENDER TREND DATA - Measure Disparity: ', trendDisparity)
   const tabTrendDropDown = document.querySelector('#tab-trend  .dropdown');
   const btnShowDisparitires = document.querySelector('.btn-show-disparities');
 
@@ -412,8 +412,8 @@ const renderTrendChart = (
           m => m.MeasureID === 221
       );
 
-      console.log('TREND DISPARITIS - POVERTY INDICATOR', disparityIndicator )
-      console.log('TREND DISPARITIS - POVERTY MEASURE', disparityMeasure )
+      // console.log('TREND DISPARITIS - POVERTY INDICATOR', disparityIndicator )
+      // console.log('TREND DISPARITIS - POVERTY MEASURE', disparityMeasure )
       const disparityIndicatorName = disparityIndicator[0].IndicatorName
       const disparityMeasureType = disparityMeasure[0].MeasurementType
       const disparitySources = disparityMeasure[0].Sources
@@ -429,7 +429,7 @@ const renderTrendChart = (
       
       renderAboutSources(combinedAbout, combinedSources);
       setTimeout(() => {
-          console.log('joined etc: ', joinedDataTrendDisparityObjects)
+          // console.log('joined etc: ', joinedDataTrendDisparityObjects)
 
       var spec3 = {
           "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
