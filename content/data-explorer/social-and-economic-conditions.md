@@ -8,26 +8,27 @@ tags:
 categories: ["social","housing"]
 keywords: ["social","social justice","justice","injustice","social conditions","poverty","racism","housing","health"]
 indicators:
-- header: null
-  IndicatorID:
-  - 2145
-  - 2176
-  - 14
-  - 2334
-  - 2317
-  - 2335
-  - 2146
-  - 2073
-  - 103
-  - 2325
-  - 2336
-  - 2323
-  - 2337
-  - 2389
-- header: Housing characteristics
-  - 2365
-  - 15
-  - 17
+  - header: null
+    IndicatorID:
+    - 2145
+    - 2176
+    - 14
+    - 2334
+    - 2317
+    - 2335
+    - 2146
+    - 2073
+    - 103
+    - 2325
+    - 2336
+    - 2323
+    - 2337
+    - 2389
+  - header: Housing characteristics
+    IndicatorID:
+    - 2365
+    - 15
+    - 17
 menu:
     main:
         identifier: '03'
