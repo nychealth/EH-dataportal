@@ -12,11 +12,11 @@ indicators:
   IndicatorID:
   - 2141
   - 2143
-  - 2411
 - header: Heat Stress
   IndicatorID:
   - 2084
   - 2191
+  - 2411
 - header: Safety
   IndicatorID:
   - 2155

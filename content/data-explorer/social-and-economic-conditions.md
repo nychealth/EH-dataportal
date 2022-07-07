@@ -16,16 +16,18 @@ indicators:
   - 2334
   - 2317
   - 2335
+  - 2146
   - 2073
   - 103
+  - 2325
   - 2336
   - 2323
   - 2337
   - 2389
-  - 2151
-  - 2132
-  - 2345
-  - 2232
+- header: Housing characteristics
+  - 2365
+  - 15
+  - 17
 menu:
     main:
         identifier: '03'

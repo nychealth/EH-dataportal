@@ -15,6 +15,7 @@ indicators:
 - header: Commercial Use
   IndicatorID:
   - 100
+  - 2312
   - 96
   - 94
   - 93

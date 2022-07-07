@@ -13,6 +13,7 @@ indicators:
   - 2380
   - 2384
   - 2048
+  - 2378
   - 2379
   - 2383
 - header: Asthma Hospitalizations
@@ -26,7 +27,6 @@ indicators:
   IndicatorID:
   - 18
   - 2392
-  - 2147
   - 2147
   - 2149
   - 2339

@@ -11,9 +11,9 @@ indicators:
 - header: null
   IndicatorID:
   - 5
-  - 5
   - 6
-  - 6
+  - 8
+  - 2322
 menu:
     main:
         identifier: '03'
