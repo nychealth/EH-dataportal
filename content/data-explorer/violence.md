@@ -7,7 +7,11 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["social","healthoutcomes"]
 keywords: ["violence","injury","neighborhoods","social","justice","poverty"]
-indicators: [{"subtopic_id": 125, "internal_id": 2400, "name": "Non-fatal Assault Emergency Department Visits", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2400,719b87,125,Summarize"}, {"subtopic_id": 125, "internal_id": 2375, "name": "Non-fatal Assault Hospitalizations", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2375,719b87,125,Summarize"}]
+indicators:
+- header: null
+  IndicatorID:
+  - 2400
+  - 2375
 menu:
     main:
         identifier: '03'

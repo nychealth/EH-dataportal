@@ -1,13 +1,17 @@
 ---
 title: Water Supply
 date: 2021-05-28 18:02:58.819938
-draft: false
+draft: true
 seo_title: "Water supply data for NYC."
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["foodanddrink"]
 keywords: ["water","food","drink"]
-indicators: [{"subtopic_id": 85, "internal_id": 2001, "name": "Drinking Water Demand", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2001,719b87,85,Summarize"}, {"subtopic_id": 85, "internal_id": 2009, "name": "Drinking Water Quality", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2009,719b87,85,Summarize"}]
+indicators:
+- header: null
+  IndicatorID:
+  - 2001
+  - 2009
 menu:
     main:
         identifier: '03'

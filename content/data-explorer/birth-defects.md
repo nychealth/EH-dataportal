@@ -7,11 +7,30 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["childhealth","healthoutcomes"]
 keywords: ["children","birth","birth defects","babies","pregnancy"]
-indicators: [{"subtopic_id": 16, "internal_id": 26, "name": "Anencephaly", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=26,719b87,16,Summarize"}, {"subtopic_id": 16, "internal_id": 30, "name": "Cleft Lip with or without Cleft Palate ", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=30,719b87,16,Summarize"}, {"subtopic_id": 16, "internal_id": 31, "name": "Cleft Palate without Cleft Lip ", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=31,719b87,16,Summarize"}, {"subtopic_id": 16, "internal_id": 36, "name": "Down Syndrome / Trisomy 21 (Maternal Age < 35 Yrs)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=36,719b87,16,Summarize"}, {"subtopic_id": 16, "internal_id": 37, "name": "Down Syndrome / Trisomy 21 (Maternal Age 35 Yrs and Over)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=37,719b87,16,Summarize"}, {"subtopic_id": 16, "internal_id": 33, "name": "Gastroschisis ", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=33,719b87,16,Summarize"}, {"subtopic_id": 16, "internal_id": 28, "name": "Hypoplastic Left Heart Syndrome ", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=28,719b87,16,Summarize"}, {"subtopic_id": 16, "internal_id": 32, "name": "Hypospadias ", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=32,719b87,16,Summarize"}, {"subtopic_id": 16, "internal_id": 35, "name": "Lower Limb Deficiencies", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=35,719b87,16,Summarize"}, {"subtopic_id": 16, "internal_id": 27, "name": "Spina Bifida (without Anencephaly)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=27,719b87,16,Summarize"}, {"subtopic_id": 16, "internal_id": 101, "name": "Tetralogy of Fallot", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=101,719b87,16,Summarize"}, {"subtopic_id": 16, "internal_id": 29, "name": "Transposition of the Great Arteries (Vessels) ", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=29,719b87,16,Summarize"}, {"subtopic_id": 16, "internal_id": 34, "name": "Upper Limb Deficiencies", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=34,719b87,16,Summarize"}]
+indicators:
+- header: null
+  IndicatorID:
+  - 26
+  - 30
+  - 31
+  - 36
+  - 37
+  - 33
+  - 28
+  - 32
+  - 35
+  - 27
+  - 101
+  - 29
+  - 34
 menu:
     main:
         identifier: '03'
 ---
+**Note:** We are no longer updating birth defects data on the EH Data Portal. [For more recent data, visit the New York State Environmental Public Health Tracker](https://apps.health.ny.gov/statistics/environmental/public_health_tracking/tracker/index.html#/bdcounty).
+
+---
+<br>
 
 Birth defects (also called congenital malformations) are conditions that happen when a baby does not develop normally during pregnancy. Structural defects may include missing limbs, malformed hearts, [spina bifida](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Spina_Bifida) and genetic conditions like [Down syndrome](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Down_Syndrome). Most birth defects happen during the first three months of pregnancy and are detected within the first year of life. Some birth defects (such as [cleft lip](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Cleft_Lip) or clubfoot) are easy to see, but others (such as heart defects or hearing loss) are found using special tests (such as x-rays, CT scans, or hearing tests). Birth defects can vary from mild to severe.
 

@@ -7,40 +7,43 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["housing","childhealth"]
 keywords: ["smoking","cigarettes","cancer","secondhand","smoke","work","home", "children"]
-indicators: [{"subtopic_id": 36, "internal_id": 25, "name": "Adults Reporting Secondhand Smoke at Home", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=25,719b87,36,Summarize"},{"subtopic_id": 3, "internal_id": 2338, "name": "Adults Reporting Secondhand Smoke at Home from Outside Sources", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2338,719b87,3,Summarize"}, {"subtopic_id": 3, "internal_id": 2020, "name": "Adults Reporting Secondhand Smoke at Work", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2020,719b87,3,Summarize"}, {"subtopic_id": 3, "internal_id": 2017, "name": "Adults without a Smoke-Free Home Policy", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2017,719b87,3,Summarize"}, {"subtopic_id": 3, "internal_id": 2019, "name": "Cigarette Smoking among Adults", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2019,719b87,3,Summarize"}, {"subtopic_id": 3, "internal_id": 2021, "name": "Cigarette Smoking among Youths", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2021,719b87,3,Summarize"}]
+indicators:
+- header: null
+  IndicatorID:
+  - 2338
+  - 2020
+  - 2017
+  - 2019
+  - 2021
+- header: Asthma triggers
+  IndicatorID: 
+  - 25
 menu:
     main:
         identifier: '03'
 ---
 
-Cigarette smoke contains over 250 toxic chemicals, more than 50 of which cause cancer. Secondhand smoke is a dangerous combination of the smoke from the burning of a cigarette, pipe, or cigar, and the smoke exhaled by a smoker. There is no safe level of secondhand smoke exposure. Even brief exposure can be harmful.
+Smoking causes over a dozen cancers, heart disease, stroke, type 2 diabetes and many other diseases; it remains a leading cause of death in New York City (NYC). On average, people who do not smoke live about 10 years longer than people who do.
 
+Additionally, there is no safe level of exposure to secondhand smoke. Secondhand smoke causes cancer, heart disease and other illnesses in adults. Children exposed to smoke are more likely to have bronchitis, asthma attacks, ear infections, pneumonia and sudden infant death syndrome (SIDS).
 
-This site provides data on: teen and adult smoking, adults' exposure to cigarette smoke at home or at work and adults with a policy banning smoking in their home. The data are from NYC Health Department's [Community Health Surveys](http://www1.nyc.gov/site/doh/data/data-sets/community-health-survey.page), and Youth Risk Behavior Surveillance Surveys. 
+### The harms of e-cigarettes
+E-cigarettes are devices that heat a liquid, called e-liquid into an aerosol that the user can inhale. Although e-liquids do not contain tobacco, they contain chemicals, usually including flavorings, and often contain nicotine, which is addictive. E-cigarette use (also known as vaping) can be especially harmful for young people because nicotine affects them in different ways than adults. Youth who use e-cigarettes are also more likely to try cigarettes.
 
-### Cigarette Smoke and Health
+E-liquid ingredients are not closely regulated, so the nicotine content, additives and flavorings can vary extensively. The long-term health effects of vaping are unknown, but the aerosol from heated e-liquids can contain other harmful chemicals, such as formaldehyde, benzene, diacetyl and heavy metals. E-cigarettes are not approved by the FDA to help people quit smoking.
 
-Smoking is the leading cause of preventable death and disease, and causes illnesses such as cancer, heart disease, stroke, lung disease, and problems during and after pregnancy. In fact, smoking cigarettes kills more New Yorkers each year than AIDS, drugs, homicide, and suicide combined.  
-  
-Non-smokers exposed to cigarette smoke at home or work increase their risk of heart disease by 25-30% and their risk of lung cancer by 20-30%. Infants and young children are especially prone to health problems caused by secondhand smoke (e.g., pneumonia and bronchitis, ear infections, asthma, and irritation of the eyes, nose, and throat). Babies exposed to cigarette smoke or whose mothers smoked during pregnancy are at an increased risk for [Sudden Infant Death Syndrome (SIDS)](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Sudden_Infant_Death_Syndrome).  
-  
-In 2002, NYC enacted its Smoke Free Air Act, which prohibits smoking in all workplaces, including restaurants and bars. The primary intent of this law is to protect workers from exposure to secondhand smoke. In that same year, the Health Department estimated that more people (about 1,000 every year) are killed by secondhand smoke than by homicide. In addition, secondhand smoke causes illness (e.g., ear infections, asthma, and respiratory infections) in more than 40,000 NYC adults and children every year.
+Other people nearby can be harmed by breathing in the harmful chemicals in e-cigarette aerosol in the air.
 
-### About the Data and Indicators
+### Environmental Exposure to Tobacco and E-cigarette Products
+A person’s environment can affect how much they are exposed to tobacco and e-cigarette products and related marketing, as well as secondhand smoke and aerosol.
 
-Cigarette smoke exposure is measured using surveys that depend on the study participants' accurate recollections and reporting.
+Higher levels of tobacco retailer density and proximity are associated with higher tobacco use. The tobacco industry’s marketing activities, including incentivizing retailers to display their products and ads, result in increased marketing and accessibility of products in communities with higher poverty. The tobacco industry has a long history of deceptive tactics and marketing to youth, communities of color, and other marginalized communities.
 
-### Prevention
+NYC’s Smoke Free Air Act prohibits smoking and vaping in most workplaces and public spaces, including inside restaurants and bars. Under the SFAA, any smoking or vaping is also banned in all indoor common areas of residential buildings with three or more units.
 
-* Pregnant women, infants, young children, and people with breathing problems are especially vulnerable to the poisons in secondhand smoke. The only way to fully protect others from secondhand smoke is to quit smoking and have a 100% smoke-free environment.
-* Remember, it is never too late to stop smoking. Quitting smoking is the single most important thing you can do for your health. If you want help quitting, call 311.
-* Don't allow smoking in your home or car. Go outside to smoke, and smoke away from people. Ask those who visit your home or ride in your car not to smoke.
-* Ensure that children learn and play in smoke-free environments. In NY, all tobacco products are banned on public and private school grounds during school hours and school activities. Work with parent/teacher associations, school boards, and administrators to support this law.
-
-### Key Messages
-
-About 950,000 adult New Yorkers are still smoking. If you are a smoker, quitting smoking is the single most important thing you can do for your health.  
-  
-Over 300,000 adult New Yorkers were exposed to cigarette smoke in their homes in 2008. Of these, almost half were non-smokers. In fact, over 1.5 million New Yorkers do not have a policy against smoking in their home.  
-  
-There is no safe level of exposure to cigarette smoke. Even brief exposure can be harmful to your health.
+### Find Out More
+Everyone deserves the opportunity to be free from the harm that commercial tobacco and nicotine products can cause. To learn more about prevention and treatment resources, as well as how you can take action in your community visit these webpages and websites:
+- [NYC Quits](https://www1.nyc.gov/site/doh/health/health-topics/smoking-nyc-quits.page)
+- [E-cigarettes](https://www1.nyc.gov/site/doh/health/health-topics/smoking-e-cigarettes.page)
+- [Smoke Free Air Laws](https://www1.nyc.gov/site/doh/business/permits-and-licenses/smoke-free-air-act-exemptions-and-registrations.page)
+- [NYC Smoke-Free](https://nycsmokefree.org/)

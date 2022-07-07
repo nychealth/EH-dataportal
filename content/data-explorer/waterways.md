@@ -1,13 +1,16 @@
 ---
 title: Waterways
 date: 2021-05-28 18:02:58.751855
-draft: false
+draft: true
 seo_title: "Waterway data for NYC."
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["transportation","neighborhoods"]
 keywords: ["water","harbor","pollution"]
-indicators: [{"subtopic_id": 89, "internal_id": 2008, "name": "New York Harbor Water Quality", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2008,719b87,89,Summarize"}]
+indicators:
+- header: null
+  IndicatorID: 
+  - 2008
 menu:
     main:
         identifier: '03'

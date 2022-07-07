@@ -7,7 +7,10 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["housing","pests","neighborhoods"]
 keywords: ["bed bugs","pests","housing","maintenance deficiencies"]
-indicators: [{"subtopic_id": 92, "internal_id": 2030, "name": "Adults Reporting Bed Bugs in their Home", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2030,719b87,92,Summarize"}]
+indicators:
+- header: null
+  IndicatorID: 
+  - 2030
 menu:
     main:
         identifier: '03'

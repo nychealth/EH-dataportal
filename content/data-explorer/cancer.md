@@ -7,7 +7,26 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["housing","childhealth","healthoutcomes"]
 keywords: ["cancer","cancers","children","environmental health"]
-indicators: [{"subtopic_id": 39, "internal_id": 74, "name": "Acute Myeloid Leukemia", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=74,719b87,39,Summarize"}, {"subtopic_id": 39, "internal_id": 2096, "name": "Bladder Cancer", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2096,719b87,39,Summarize"}, {"subtopic_id": 39, "internal_id": 66, "name": "Brain and Other Nervous System Cancer", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=66,719b87,39,Summarize"}, {"subtopic_id": 39, "internal_id": 60, "name": "Breast Cancer in Females", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=60,719b87,39,Summarize"}, {"subtopic_id": 39, "internal_id": 770, "name": "Chronic Lymphocytic Leukemia", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=770,719b87,39,Summarize"}, {"subtopic_id": 39, "internal_id": 2077, "name": "Esophageal Cancer", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2077,719b87,39,Summarize"}, {"subtopic_id": 39, "internal_id": 2087, "name": "Kidney and Renal Pelvis Cancer", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2087,719b87,39,Summarize"}, {"subtopic_id": 39, "internal_id": 2088, "name": "Larynx Cancer", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2088,719b87,39,Summarize"}, {"subtopic_id": 39, "internal_id": 73, "name": "Leukemia", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=73,719b87,39,Summarize"}, {"subtopic_id": 39, "internal_id": 2089, "name": "Liver and Intrahepatic Bile Duct Cancer", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2089,719b87,39,Summarize"}, {"subtopic_id": 39, "internal_id": 63, "name": "Lung and Bronchus Cancer", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=63,719b87,39,Summarize"}, {"subtopic_id": 39, "internal_id": 2090, "name": "Melanoma of the Skin", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2090,719b87,39,Summarize"}, {"subtopic_id": 39, "internal_id": 2095, "name": "Mesothelioma", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2095,719b87,39,Summarize"}, {"subtopic_id": 39, "internal_id": 71, "name": "Non-Hodgkin's Lymphomas", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=71,719b87,39,Summarize"}, {"subtopic_id": 39, "internal_id": 2091, "name": "Oral Cavity and Pharynx Cancer", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2091,719b87,39,Summarize"}, {"subtopic_id": 39, "internal_id": 64, "name": "Pancreatic Cancer", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=64,719b87,39,Summarize"}, {"subtopic_id": 39, "internal_id": 690, "name": "Thyroid Cancer", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=690,719b87,39,Summarize"}]
+indicators:
+- header: null
+  IndicatorID:
+  - 74
+  - 2096
+  - 66
+  - 60
+  - 770
+  - 2077
+  - 2087
+  - 2088
+  - 73
+  - 2089
+  - 63
+  - 2090
+  - 2095
+  - 71
+  - 2091
+  - 64
+  - 690
 menu:
     main:
         identifier: '03'

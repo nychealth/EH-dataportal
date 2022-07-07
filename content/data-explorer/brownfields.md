@@ -7,7 +7,7 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["neighborhoods"]
 keywords: ["pollution","neighborhoods"]
-indicators: []
+indicators: 
 menu:
     main:
         identifier: '03'

@@ -17,3 +17,6 @@ content/Spanish/
 
 # don't track build folder
 docs 
+.Rproj.user
+QA/Persist indicator selections.PNG
+QA/Persist measure selections.PNG

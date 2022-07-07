@@ -1,13 +1,21 @@
 ---
-title: Alcohol Use
+title: Alcohol Access and Use
 date: 2021-05-28 18:02:58.812716
 draft: false
-seo_title: "Alcohol use data for NYC."
+seo_title: "Alcohol access and use data for NYC."
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["foodanddrink"]
-keywords: ["drink","alcohol","binge drinking"]
-indicators: [{"subtopic_id": 97, "internal_id": 2050, "name": "Adults Reporting Heavy Drinking", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2050,719b87,97,Summarize"}, {"subtopic_id": 97, "internal_id": 2051, "name": "Adults Who Binge Drink", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2051,719b87,97,Summarize"}, {"subtopic_id": 97, "internal_id": 2056, "name": "Underage Drinking", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2056,719b87,97,Summarize"}, {"subtopic_id": 97, "internal_id": 2055, "name": "Youth Who Binge Drink", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2055,719b87,97,Summarize"}]
+keywords: ["drinking","alcohol","binge drinking"]
+indicators:
+- header: null
+  IndicatorID:
+  - 2049
+  - 2057
+  - 2050
+  - 2051
+  - 2056
+  - 2055
 menu:
     main:
         identifier: '03'
@@ -17,7 +25,8 @@ Heavy regular drinking and binge drinking contribute to a wide range of chronic 
 
 This site provides data on heavy alcohol consumption and alcohol outlets in NYC.
 
-### Alcohol and the EnvironmentGreater alcohol outlet density has been associated with a variety of health and social consequences, including:
+### Alcohol and the Environment
+Greater alcohol outlet density has been associated with a variety of health and social consequences, including:
 
 * Alcohol-related hospitalizations
 * Violent crime, assault and homicide

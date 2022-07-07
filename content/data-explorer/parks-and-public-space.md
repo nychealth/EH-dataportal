@@ -1,13 +1,16 @@
 ---
 title: Parks and Public Space
 date: 2021-05-28 18:02:58.757692
-draft: false
+draft: true
 seo_title: "Parks and public space data for NYC."
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["transportation","neighborhoods"]
 keywords: ["parks","neighborhoods","transportation","green","trees","greenspace"]
-indicators: [{"subtopic_id": 78, "internal_id": 775, "name": "Park Distance", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=775,719b87,78,Summarize"}]
+indicators:
+- header: null
+  IndicatorID: 
+  - 775
 menu:
     main:
         identifier: '03'
