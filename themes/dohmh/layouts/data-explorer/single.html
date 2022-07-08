@@ -289,7 +289,7 @@
                                     $('#tab-btn-table').tab('show');
                             }
                         })
-                        .catch(error => // console.log(error));            
+                        .catch(error => console.log(error));
 
 
 
@@ -298,9 +298,9 @@
                     const joinData = () => {
                         if (hasCIData && hasNumberData) {
                             joinedAqData = aqData
-                                .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
+                                .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
                                 .relocate(['Name'], { after: 'GeoID' })
-                                .relocate(['Geotype'], { before: 'GeoID' })
+                                .relocate(['GeoType'], { before: 'GeoID' })
                                 .rename({
                                     'Name': 'Geography',
                                 })
@@ -308,18 +308,18 @@
                                 {{/*  .relocate(["Percent (95% CL)"], { after: "Number" })  */}}
                         } else if (hasCIData && !hasNumberData && hasPercentData) {
                             joinedAqData = aqData
-                                .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
+                                .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
                                 .relocate(['Name'], { after: 'GeoID' })
-                                .relocate(['Geotype'], { before: 'GeoID' })
+                                .relocate(['GeoType'], { before: 'GeoID' })
                                 .rename({
                                     'Name': 'Geography',
                                 })
                                 {{/*  .relocate(["Percent (95% CL)"], { after: "Geography" })  */}}
                         } else {
                             joinedAqData = aqData
-                                .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
+                                .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
                                 .relocate(['Name'], { after: 'GeoID' })
-                                .relocate(['Geotype'], { before: 'GeoID' })
+                                .relocate(['GeoType'], { before: 'GeoID' })
                                 .rename({
                                     'Name': 'Geography',
                                 })
@@ -336,16 +336,20 @@
                         
                         // console.log('hhhhhhh ',aqData, joinedAqData )
                         // console.log('===>', filterUHF42, filterUHF34, filterCD, filterPuma, filterSubboro, filterBorough, filterCitywide)
-                        geoTable.print()
+                        // geoTable.print()
                                 
-                        joinedAqData.print()
+                        // joinedAqData.print()
 
 
                         fullDataMapObjects = [...filterUHF42, ...filterUHF34, ...filterCD, ...filterPuma, ...filterSubboro, ...filterNTA ];
                         // console.log('fullDataMapObjects', fullDataMapObjects)
                         fullDataTrendObjects = [...filterBorough, ...filterCitywide];
                         fullDataLinksObjects = joinedAqData.objects();
-                        joinedAqData.print()
+
+                        console.log("==== joinedAqData ====");
+                        joinedAqData.print({limit: 100})
+                        console.log(joinedAqData);
+
                         renderMeasures();
                     }
 
@@ -357,13 +361,13 @@
                             .then(data => {
 
                                 const standardizeGeoId = (id, type) => {
-                                    if (type === 'NTA') {
-                                        return `${id}`;
-                                    }
+                                    // if (type === 'NTA') {
+                                    //     return `${id}`;
+                                    // }
                                     return parseInt(id)
                                 }
                                 geoTable = data
-                                    .derive({ GeoID: aq.escape(d => standardizeGeoId(d.GeoID, d.Geotype))}) // convert GeoIDs to numbers and strings
+                                    .derive({ GeoID: aq.escape(d => standardizeGeoId(d.GeoID, d.GeoType))}) // convert GeoIDs to numbers and strings
                                     .select(aq.not('Lat', 'Long'))
                                 // console.log("---- Geo Names 1 (post-load) ----")
                                 {{/*  geoTable.print({ limit: 300});  */}}
@@ -435,6 +439,10 @@
                                         .pivot("MeasurementType", "Value")
 
                                         {{/*  ful.print({limit: 100})  */}}
+
+                                console.log('==== ful ====')
+                                ful.print({limit: 100})
+                                console.log(ful)
 
                                 if (hasCIData) {
                                     // console.log('---- new table ----------')
@@ -532,24 +540,27 @@
                                     //             .orderby(aq.desc('Time'), 'GeoRank')
                                     // } else {
                                         // console.log('test', ful)
-                                        ful.print()
+                                        
                                         newTable = ful
-                                                .join(num, [["GeoID", "GeoType", "Time", "Number"], ["GeoID", "GeoType", "Time", "Number"]])
-                                                .join(pct, [["GeoID", "GeoType", "Time", "Percent"], ["GeoID", "GeoType", "Time", "Percent"]])
-                                                .orderby(aq.desc('Time'), 'GeoRank')
-                                    // }
-                                } else if (pctAqData.length > 0 && numAqData.length === 0) {
-                                    newTable =  aq.from(strippedAqData)
-                                                .join(num, [["GeoID", "GeoType", "Time"], ["GeoID", "GeoType", "Time"]])
-                                                .join(pct, [["GeoID", "GeoType", "Time"], ["GeoID", "GeoType", "Time"]])
-                                                .orderby(aq.desc('Time'), aq.desc('GeoRank'),  'Geography')
+                                            .join(num, [["GeoID", "GeoType", "Time", "Number"], ["GeoID", "GeoType", "Time", "Number"]])
+                                            .join(pct, [["GeoID", "GeoType", "Time", "Percent"], ["GeoID", "GeoType", "Time", "Percent"]])
+                                            .orderby(aq.desc('Time'), 'GeoRank')
+
+
+                                        
+                                        // }
+                                        // } else if (pctAqData.length > 0 && numAqData.length === 0) {
+                                //     newTable =  aq.from(strippedAqData)
+                                //                 .join(num, [["GeoID", "GeoType", "Time"], ["GeoID", "GeoType", "Time"]])
+                                //                 .join(pct, [["GeoID", "GeoType", "Time"], ["GeoID", "GeoType", "Time"]])
+                                //                 .orderby(aq.desc('Time'), aq.desc('GeoRank'),  'Geography')
                                 } else if (pctAqData.length === 0 && numAqData.length === 0) {
                                     // console.log('NO NUMBER OR PERCENT')
                                     newTable = ful
                                             .groupby("Time", "GeoType", "GeoID")
                                             // .join(aUNum)
                                             // .join(aUTPct)
-                                        .join_left(sBPct, [["GeoID", "GeoType", "Time", "Spray/Bomb Only - %"], ["GeoID", "GeoType", "Time", "Spray/Bomb Only - %"]])
+                                        .join_left(sBPct, [["GeoID", "GeoType", "Time", `Spray/Bomb Only - %`], ["GeoID", "GeoType", "Time", `Spray/Bomb Only - %`]])
                                         .join_left(sMPct, [["GeoID", "GeoType", "Time", "Only Safer Methods (Bait,Gel, Boric Acid) - %"], ["GeoID", "GeoType", "Time", "Only Safer Methods (Bait,Gel, Boric Acid) - %"]])
                                         .join_left(aUNum, [["GeoID", "GeoType", "Time", "Any Use - Number"], ["GeoID", "GeoType", "Time", "Any Use - Number"]])
                                         .join_left(aUPct, [["GeoID", "GeoType", "Time", "Any Use - %"], ["GeoID", "GeoType", "Time", "Any Use - %"]])
@@ -558,6 +569,10 @@
                                         .orderby(aq.desc('Time'), aq.desc('GeoRank'), 'Geography')
                                         // console.log('newTable', newTable)
                                 }
+
+                                console.log('==== newTable ====')
+                                newTable.print({limit: 100})
+                                console.log(newTable)
                                 
 
                                 // console.log('newTable====================================')
@@ -576,7 +591,7 @@
                                         // .relocate(["GeoType"], { after: "Time" })
                                         // .relocate(["CI"], { after: "Percent" })
 
-                                        // .select(aq.not('Geotype', 'Long'))
+                                        // .select(aq.not('GeoType', 'Long'))
                                         // .rename({ CI: "95% CL" })
                                         // .pivot(
                                         // { key: d => op.lower(d.key) },
@@ -620,8 +635,10 @@
                         const secondaryMeasureGeoTypes = filteredSecondaryMeasure[0].AvailableGeographyTypes;
 
                         const aqSecondaryMeasureTimes = aq.from(secondaryMeasureTimes)
-                        // console.log('aqSecondaryMeasureTimes ===============================')
-                        aqSecondaryMeasureTimes.print()
+
+                        console.log('==== aqSecondaryMeasureTimes ====')
+                        aqSecondaryMeasureTimes.print({limit: 100})
+                        console.log(aqSecondaryMeasureTimes);
 
                         fetch(`https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/data/${disparityIndicatorId}.json`)
                             .then(response => response.json())
@@ -656,7 +673,7 @@
 
                           
                                 const filteredDisparityData = aq.from(filterByTime)
-                                    //.join(geoTable, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
+                                    //.join(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
                                     .join(aqSecondaryMeasureTimes, ["Time", "TimeDescription"])
                                     {{/*  .groupby("Time", "GeoType", "GeoID", "Name", "MeasureID", "end_period")
                                     .pivot("MeasurementType", "Value")
@@ -697,13 +714,13 @@
                                 }  */}}
 
                                 // console.log('DISPARITY - filteredDisparityData ==============================')
-                                filteredDisparityData.print({ limit: 10 })
+                                // filteredDisparityData.print({ limit: 10 })
 
                                 const aqJoinedPrimaryMeasureTimes = aq.from(fullDataTrendObjects)
                                         .join(aqPrimaryMeasureTimes, ["Time", "TimeDescription"])
 
                                         // console.log("joinded time ----------- primary")
-                                        aqJoinedPrimaryMeasureTimes.print()
+                                        // aqJoinedPrimaryMeasureTimes.print()
                                 // console.log(aqJoinedPrimaryMeasureTimes)
                                 const aqJoinedPrimaryTrendData = aq.from(aqJoinedPrimaryMeasureTimes)
                                         .join(filteredDisparityData, 'end_period')
@@ -736,7 +753,7 @@
                                         
                                     // console.log('DISPARITY - aqJoinedPrimaryTrendData ==============================')
                                     // console.log(aqJoinedPrimaryTrendData)
-                                    aqJoinedPrimaryTrendData.print({ limit: 200 })
+                                    // aqJoinedPrimaryTrendData.print({ limit: 200 })
 
                                     // console.log("TEST == TEST == TEST == TEST == TEST == TEST == TEST == TEST == TEST == TEST == ")
                                    
@@ -837,17 +854,17 @@
                                 const aqJoinedSecondaryLinksData = aq.from(filteredSecondaryMeasureData)
                                     .groupby("Time", "GeoType", "GeoID", 'MeasureID')
                                     .pivot("MeasurementType", "Value")
-                                    .join(geoTable, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
+                                    .join(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
                                     .join(aqSecondaryMeasureTimes, ["Time", "TimeDescription"])
                                     .relocate(['Name'], { after: 'GeoID' })
-                                    .relocate(['Geotype'], { before: 'GeoID' })
+                                    .relocate(['GeoType'], { before: 'GeoID' })
                                     .rename({
                                         'Name': 'Geography',
                                     })
                                     
                                     
                                     // .filter(d => op.parse_int(d.Time) >= 2007 && op.parse_int(d.Time) === 2011)
-                                    // .join(testData, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
+                                    // .join(testData, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
                                     
                                     // aq.from(fullDataLinksObjects).filter(d => d.Time === '2007-2011').print()
                                     // console.log('^^^^^^^^^^^^^^^^^ full data ^^^^^^^^^^^^^^^^^^^^^^^^', fullDataLinksObjects)
@@ -901,7 +918,7 @@
                                     const aqMostRecentJoinedSecondaryLinksDataObject = aq.from(mostRecentJoinedSecondaryLinksDataObject)
 
                                     const aqJoinedPrimarySecondaryData = aq.from(filteredJoinedPrimaryLinksDataObject)
-                                        .join(aqMostRecentJoinedSecondaryLinksDataObject, [["GeoID", "GeoType"], ["GeoID", "Geotype"]])
+                                        .join(aqMostRecentJoinedSecondaryLinksDataObject, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
                                     
                                     // aqJoinedPrimarySecondaryData.print()
                                     joinedDataLinksObjects = aqJoinedPrimarySecondaryData.objects();

@@ -103,7 +103,8 @@ const renderMap = (
       topoFile = 'UHF34.topo.json';
   }
 
-  aq.from(mapData).print({ limit: 60 })
+  // console.log("mapData");
+  // aq.from(mapData).print({ limit: 60 })
 
   // console.log('default data: ', geoTypFilteredData)
 
