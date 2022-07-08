@@ -325,6 +325,8 @@
                                 })
                         }
 
+                        console.log("============ joinedAqData ============", joinedAqData);
+
                         const filterUHF42 = joinedAqData.filter(d => d.GeoType == 'UHF42').objects();
                         const filterUHF34 = joinedAqData.filter(d => d.GeoType == 'UHF34').objects();
                         const filterCD = joinedAqData.filter(d => d.GeoType == 'CD').objects();
