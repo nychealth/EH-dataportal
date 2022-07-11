@@ -19,13 +19,13 @@ const renderMap = (
 
   let testData = selectedData ? selectedData :filteredfullDataMapObjects;
 
-  console.log('==========================================================================')
+  // console.log('==========================================================================')
   // console.log('MAP DATA: ',filteredfullDataMapObjects[0].GeoType,  mapData)
-  console.log('RENDER MAP DATA - GeoType ', mapGeoType)
-  console.log('RENDER MAP DATA - Measure Default: ', defaultMapMeasure)
-  console.log('RENDER MAP DATA - Measure Selected: ', selectedMeasure)
-  console.log('RENDER MAP DATA - Measure Filtered Default Data: ', filteredfullDataMapObjects)
-  console.log('RENDER MAP DATA - Measure Filtered Selcted Data: ', selectedData)
+  // console.log('RENDER MAP DATA - GeoType ', mapGeoType)
+  // console.log('RENDER MAP DATA - Measure Default: ', defaultMapMeasure)
+  // console.log('RENDER MAP DATA - Measure Selected: ', selectedMeasure)
+  // console.log('RENDER MAP DATA - Measure Filtered Default Data: ', filteredfullDataMapObjects)
+  // console.log('RENDER MAP DATA - Measure Filtered Selcted Data: ', selectedData)
 
 
   
@@ -33,7 +33,7 @@ const renderMap = (
       //chnging geotype to geoType renders subborro but no names match
       const data = testData.filter(obj => obj.Geotype === geoType && obj[mapMeasure])
       const data2 = testData.filter(obj => obj.GeoType === geoType && obj[mapMeasure]) 
-      console.log('test data 1: ', geoType, data.length, data2.length )
+      // console.log('test data 1: ', geoType, data.length, data2.length )
       if (data.length > data2.length) {
         return data
       } else if (data.length < data2.length) {
@@ -47,7 +47,7 @@ const renderMap = (
       //chnging geotype to geoType renders subborro but no names match
       const data = testData.filter(obj => obj.Geotype === geoType)
       const data2 = testData.filter(obj => obj.GeoType === geoType)
-      console.log('test data 2: ', geoType, data.length, data2.length )
+      // console.log('test data 2: ', geoType, data.length, data2.length )
       if (data.length > data2.length) {
         return data
       } else if (data.length < data2.length) {
@@ -75,41 +75,42 @@ const renderMap = (
   const subboroData = filterGeoType('Subboro');
   const ntaData = filterGeoType('NTA');
 
-  console.log('NTA: ', ntaDataResults.length, pumaDataResults.length)
+  // console.log('NTA: ', ntaDataResults.length, pumaDataResults.length)
 
   if (ntaDataResults.length > 0) {
-      console.log('## NTA')
+      // console.log('## NTA')
       mapData = ntaData;
       topoFile = 'NTA2.topo.json';
   } else if (cdDataResults.length > 0) {
-      console.log('## CD')
+      // console.log('## CD')
       mapData = cdData;
       topoFile = 'CD.topo.json';
 } else if (pumaDataResults.length > 0) {
-    console.log('## Puma')
+    // console.log('## Puma')
     mapData = pumaData;
     topoFile = 'PUMA_or_Subborough.topo.json';
   } else if (subboroDataResults.length > 0) {
-      console.log('## Subboro')
+      // console.log('## Subboro')
       mapData = subboroData;
       topoFile = 'PUMA_or_Subborough.topo.json';
   } else if (uhf42DataResults.length > 0) {
-      console.log('## UHF42')
+      // console.log('## UHF42')
       mapData = uhf42Data;
       topoFile = 'UHF42.topo.json';
   } else if (uhf34DataResults.length > 0) {
-      console.log('## UHF34')
+      // console.log('## UHF34')
       mapData = uhf34Data;
       topoFile = 'UHF34.topo.json';
   }
 
-  aq.from(mapData).print({ limit: 60 })
+  // console.log("mapData");
+  // aq.from(mapData).print({ limit: 60 })
 
   // console.log('default data: ', geoTypFilteredData)
 
   // console.log('TEST DATA: ', testData, 'selected: ', selectedData, 'mapMeasure: ', mapMeasure, 'defaultGeoTypFilteredData', geoTypFilteredData)
 
-  console.log('RENDER MAP DATA - topoFile ', topoFile)
+  // console.log('RENDER MAP DATA - topoFile ', topoFile)
 
   
 
