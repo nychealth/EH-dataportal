@@ -1530,22 +1530,31 @@
                     }
             </script>
 
+            <style>
+            .topic-text {
+                background-color: #f9f9f9;
+                padding: 5px;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                border-left: 3px solid darkgray;
+            }
+
+                .topic-text h3 {
+                font-size: 18px;
+                color: #656565;
+            }
+                .topic-text p {
+                font-size: 12px;
+            }
+            </style>
+
             <div class="row">
                 <div class="col-md-4">
-                    <div class="card fs-sm mb-2">
+                    <div class="card fs-sm mb-2 topic-text d-none d-md-block">
                         <!-- Content truncate-->
-                        <div id="truncate" class="text-truncate">
-                            {{ .Content | truncate 350}}
-                        </div>
+                        {{ .Content }}
 
-                        <!-- Full content-->
-                        <div id="full">
-                            {{ .Content }}
-                        </div>
-                        <p>
 
-                        <!-- Show/hide button (a crude implementation)-->
-                        <button class="btn-sm btn-outline-secondary float-right" onclick="reveal()" id="contenttoggle">Show more...<i class="fas fa-caret-square-down" aria-hidden="true"></i></button>
                     </div>
                 </div>
 
