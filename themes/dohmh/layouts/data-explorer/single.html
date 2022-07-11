@@ -325,6 +325,8 @@
                                 })
                         }
 
+                        console.log("============ joinedAqData ============", joinedAqData);
+
                         const filterUHF42 = joinedAqData.filter(d => d.GeoType == 'UHF42').objects();
                         const filterUHF34 = joinedAqData.filter(d => d.GeoType == 'UHF34').objects();
                         const filterCD = joinedAqData.filter(d => d.GeoType == 'CD').objects();
@@ -370,8 +372,8 @@
                                 geoTable = data
                                     .derive({ GeoID: aq.escape(d => standardizeGeoId(d.GeoID, d.GeoType))}) // convert GeoIDs to numbers and strings
                                     .select(aq.not('Lat', 'Long'))
-                                // console.log("---- Geo Names 1 (post-load) ----")
-                                {{/*  geoTable.print({ limit: 300});  */}}
+                                console.log("---- Geo Names 1 (post-load) ----")
+                                geoTable.print({ limit: 300});
                                 joinData(); // run the next function 
                             });
                     }
@@ -561,7 +563,7 @@
                                             .groupby("Time", "GeoType", "GeoID")
                                             // .join(aUNum)
                                             // .join(aUTPct)
-                                        .join_left(sBPct, [["GeoID", "GeoType", "Time", `Spray/Bomb Only - %`], ["GeoID", "GeoType", "Time", `Spray/Bomb Only - %`]])
+                                        .join_left(sBPct, [["GeoID", "GeoType", "Time", "Spray/Bomb Only - %"], ["GeoID", "GeoType", "Time", "Spray/Bomb Only - %"]])
                                         .join_left(sMPct, [["GeoID", "GeoType", "Time", "Only Safer Methods (Bait,Gel, Boric Acid) - %"], ["GeoID", "GeoType", "Time", "Only Safer Methods (Bait,Gel, Boric Acid) - %"]])
                                         .join_left(aUNum, [["GeoID", "GeoType", "Time", "Any Use - Number"], ["GeoID", "GeoType", "Time", "Any Use - Number"]])
                                         .join_left(aUPct, [["GeoID", "GeoType", "Time", "Any Use - %"], ["GeoID", "GeoType", "Time", "Any Use - %"]])
