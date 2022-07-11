@@ -8,28 +8,19 @@
                     <li class="breadcrumb-item"><a href="{{.Site.BaseURL}}">Home</a></li>
                     <li class="breadcrumb-item"><a href="{{.Site.BaseURL}}/data-explorer/">Data Explorer</a></li>
                     <li class="breadcrumb-item active"><a href="{{ .Page.RelPermalink }}">{{ .Title}}</a></li>
-                </ul>
+                    <li class="nav-item ml-auto">
+                        <form class="autocomplete-form form-inline">
+                            <label for="all-data" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">Search data</label>
+                                <div class="autocomplete-wrapper" width="100%">
+                                <select name="all-data" id="all-data">
+                                    <option value=""><i class="fas fa-search mr-2"></i>Search data</option>
+                                </select>
+                                </div>
+                                <button type="submit" class="btn-primary btn" style="height:40px;"><i class="fas fa-search"></i></button> 
+                        </form>
+                    </li>
+                </ul>                
             </nav>
-
-            <div class="row">
-               <div class="col-3 ml-auto my-1">
-                <form class="autocomplete-form">
-                    <div class="row no-gutters">
-                    <label for="all-data" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">Search data</label>
-                    <div class="col-9">
-                        <div class="autocomplete-wrapper" width="100%">
-                        <select name="all-data" id="all-data">
-                            <option value=""><i class="fas fa-search mr-2"></i>Search data</option>
-                        </select>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <button type="submit" class="btn-primary btn btn-block" style="height:40px;"><i class="fas fa-search"></i></button> 
-                    </div>
-                    </div>
-                </form>
-               </div>
-            </div>
 
             <div class="row mb-2">
                 <div class="col border-bottom mx-2 ml-0 pl-0 pb-2 mb-2">
@@ -1543,9 +1534,11 @@
                 font-size: 18px;
                 color: #656565;
             }
-                .topic-text p {
+                .topic-text p li {
                 font-size: 12px;
             }
+
+            
             </style>
 
             <div class="row">
