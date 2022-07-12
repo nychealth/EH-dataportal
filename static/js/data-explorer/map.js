@@ -280,7 +280,7 @@ const renderMap = (
                   {"field": mapMeasure, "type": "quantitative", "title": "Value"},
                   // {"field": "MeasureID", "title": "Measure"}
               ],
-              "x": {"field": "GeoID", "sort": true, "axis": null},
+              "x": {"field": "GeoID", "sort": "y", "axis": null},
                   "color": {
                   "bin": false,
                   "field": mapMeasure,
