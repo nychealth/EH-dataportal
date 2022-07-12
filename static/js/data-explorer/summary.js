@@ -10,7 +10,7 @@ const renderTable = () => {
   const filteredTableAqData = aq.from(filteredTableData)
 
   // console.log('==========================================================================')
-  // console.log('RENDER TABLE DATA - Filtered Data: ', filteredTableAqData)
+  console.log('RENDER TABLE DATA - Filtered Data: ', filteredTableAqData)
 
   // call function to show table
   document.getElementById('summary-table').innerHTML = filteredTableAqData.toHTML(); // print dataTable to HTML
@@ -25,7 +25,7 @@ const renderTable = () => {
       bInfo: false,
       "orderFixed": [ 5, 'asc' ],
       "columnDefs": [
-          { "visible": false, "targets": [0, 1, 2, 3, 5 ]}
+          { "visible": false, "targets": [0, 1, 2, 5]}
       ],
       "createdRow": function ( row, data, index ) {
           // console.log('RENDER TABLE FUNCTION - CreatedRow')
