@@ -644,98 +644,44 @@
                         fetch(`https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/data/${disparityIndicatorId}.json`)
                             .then(response => response.json())
                             .then(data => {
-                                // console.log('TREND DISPARITY DATA: ', data, defaultTrendMeasure[0].MeasureID, defaultTrendMeasure[0].AvailableTimes)
-                                const test = data.filter(d => d.MeasureID === 221)
-
+                                const povertyData = data.filter(d => d.MeasureID === 221)
                                 let primaryTimes = []
 
-                                const standardizeTime =  (str) => {
-                                    
-                                    if (str.includes('-')) {
-                                        const time = str.split('-');
-                                        return `${time[0]}-20${time[1]}`;
-                                    }
-                                    return str;
-                                }
-
                                 defaultTrendMeasure[0].AvailableTimes.map(t => primaryTimes.push(`${t.TimeDescription}`) )
-                                // console.log('TREND DISPARITY FILTER', test)
-                                const filterByTime = test.filter(d => 
-                                    primaryTimes.includes(standardizeTime(d.Time))
-                                )
 
-                                // console.log('TEST: ', test, )
-                                // console.log('DISPARITY - filteredSecondaryIndicator:  ', filteredSecondaryIndicator)
-                                // console.log('DISPARITY - filteredSecondaryMeasure: ', filteredSecondaryMeasure)
-                                // console.log('disparityMeasureTimes' , disparityMeasureTimes)
-                                // console.log('TREND FILTER BY TIME: ', primaryTimes, filterByTime)
-
-                                // geoTable.print()
-
-                          
-                                const filteredDisparityData = aq.from(filterByTime)
-                                    //.join(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
+                                const filteredDisparityData = aq.from(povertyData)
                                     .join(aqSecondaryMeasureTimes, ["Time", "TimeDescription"])
-                                    {{/*  .groupby("Time", "GeoType", "GeoID", "Name", "MeasureID", "end_period")
-                                    .pivot("MeasurementType", "Value")
-                                    .relocate(['Name'], { after: 'GeoID' })
-                                    .relocate(['GeoType'], { before: 'GeoID' })
-                                    .rename({
-                                        'Name': 'Geography',
-                                    })  */}}
-                                    {{/*  .groupby("Time")
-                                    .rollup({ 
-                                        low: d => op.quantile(d.Percent,0.33),
-                                        med: d => op.quantile(d.Percent, 0.66),
-                                        hi: d => op.quantile(d.Percent, 0.99)
+                                    .derive({
+                                        bin: aq.bin('Value', { maxbins: 3 }),
                                     })
-                                    .groupby("low", "med", "hi")
-                                    .fold(["low", "med", "hi"])
-                                    .rename({ key: 'Tertile' })
-                                    .rename({ value: 'Tertile Percent' })  */}}
-                                    {{/*  .derive({ MaxPct: d => op.max(d.Percent) })  */}}
-                                    // .derive({ MinPct: d => op.min(d.Percent) })
-                                    // aqJoinedPrimaryTrendData.groupby('TimeDescription').rollup({ MedianPct: d => op.median(d.Percent) }).groupby("MedianPct")
-
-                                {{/*  const distparityMaxPct = Math.max(...filteredDisparityData.objects().map(d => d.Percent));
-                                const dispartiyMinPCt = Math.min(...filteredDisparityData.objects().map(d => d.Percent));
-                                // console.log(filteredDisparityData)
-                                // console.log('max percent', distparityMaxPct)
-                                // console.log('min percent', dispartiyMinPCt)
-
-                                const renderTertile = (value) => {
-                                    if (value >= dispartiyMinPCt && value < 16 ) {
-                                        return 'Low'
-                                    } else if (value >= 16 && value < 28) {
-                                        return 'Medium'
-                                    } else if (value >= 16 && value <= distparityMaxPct) {
-                                        return `High`
-                                    }
+                                    .derive({
+                                        Tertile: aq.escape( d => d.bin === 0 && 'low' || d.bin === 20 && 'med' || d.bin === 40 && 'hi')
+                                    })
+                                    .groupby("Tertile")
                                     
-                                }  */}}
 
-                                // console.log('DISPARITY - filteredDisparityData ==============================')
-                                // filteredDisparityData.print({ limit: 10 })
+                                console.log('DISPARITY - filteredDisparityData ==============================')
+                                filteredDisparityData.print({ limit: 10 })
 
-                                const aqJoinedPrimaryMeasureTimes = aq.from(fullDataTrendObjects)
+                                const aqJoinedPrimaryMeasureTimes = aq.from(joinedAqData) //joinedAqData //fullDataTrendObjects
                                         .join(aqPrimaryMeasureTimes, ["Time", "TimeDescription"])
+                                        
+                                        console.log("joinded time ----------- primary")
+                                        aqJoinedPrimaryMeasureTimes.print({ limit: 10 })
 
-                                        // console.log("joinded time ----------- primary")
-                                        // aqJoinedPrimaryMeasureTimes.print()
-                                // console.log(aqJoinedPrimaryMeasureTimes)
+
                                 const aqJoinedPrimaryTrendData = aq.from(aqJoinedPrimaryMeasureTimes)
-                                        .join(filteredDisparityData, 'end_period')
-                                        .rename({'Age Adjusted Rate - Total': 'Median' })
-                                        .groupby('end_period', 'GeoType_1', 'Time_1', 'Median', 'Geography' )
-                                        .rollup({ 
-                                            low: d => op.quantile(d.Value,0.33),
-                                            med: d => op.quantile(d.Value, 0.66),
-                                            hi: d => op.quantile(d.Value, 0.99)
-                                        })
-                                        .groupby("low", "med", "hi")
-                                        .fold(["low", "med", "hi"])
-                                        .rename({ 'key': 'Tertile'})
-                                        .groupby('end_period', 'GeoType_1', 'Time_1', 'Median', 'Geography', 'Tertile' )
+                                        .join(filteredDisparityData, [["end_period", "GeoID"], ["end_period", "GeoID"]])
+                                        .select('Time_1', 'Geography', 'GeoType_1', 'Age Adjusted Rate - Total', 'Value', 'Tertile')
+                                        .filter(d => d.GeoType_1 !== 'Citywide')
+
+                           
+                                        {{/*  .select(aq.not('Time_2', 'GeoID_2', 'GeoType_2', 'start_period_2', 'TimeDescription_2' ))  */}}
+                                        // .derive({
+                                        //     low1: d => d.Value > (d.min + d.bin) && d.Value,
+                                        //     medium: d => d.Value < ((d.min + d.bin) && d.Value < (d.max - d.bin)) && d.Value
+                                        // })
+                                        // .groupby("max", "min", "Value", "bin", "low1", "medium", "Time", "Name", "bin3")
 {{/*                                          
                                         .rollup({
                                             new: d => op.median(d.Median)
@@ -756,23 +702,62 @@
                                     // console.log(aqJoinedPrimaryTrendData)
                                     // aqJoinedPrimaryTrendData.print({ limit: 200 })
 
-                                    // console.log("TEST == TEST == TEST == TEST == TEST == TEST == TEST == TEST == TEST == TEST == ")
+
+                                    // const low = aq.from(aqJoinedPrimaryTrendData)
+                                    //     .filter(d => d.Tertile === 0)
+                                    //     {{/*  .groupby('Time_1', 'GeoType_1', 'Tertile')
+                                    //     .rollup({
+                                    //         median: d => op.median(d['Age Adjusted Rate - Total'])
+                                    //     })  */}}
+// 
+                                    // const med = aq.from(aqJoinedPrimaryTrendData)
+                                    //     .filter(d => d.Tertile === 18)
+                                    //     {{/*  .groupby('Time_1', 'GeoType_1', 'Tertile')
+                                    //     .rollup({
+                                    //         median: d => op.median(d['Age Adjusted Rate - Total'])
+                                    //     })  */}}
+// 
+                                    //     const hi = aq.from(aqJoinedPrimaryTrendData)
+                                    //     .filter(d => d.Tertile === 36)
+                                    //     {{/*  .groupby('Time_1', 'GeoType_1', 'Tertile')
+                                    //     .rollup({
+                                    //         median: d => op.median(d['Age Adjusted Rate - Total'])
+                                    //     })  */}}
+// 
+                                    // console.log('low --------------')
+                                    // low.print()
+                                    // console.log('med --------------')
+                                    // med.print()
+                                    // console.log('hi --------------')
+                                    // hi.print()
+
+
+
+                                    {{/*  const tea = aq.table({ x: [1, 2, 3, 4, 4, 5, 5, 5, 6, 6, 8, 9, 10] })
+                                    .groupby({
+                                      bin_0: aq.bin('x', {maxbins: 3}),
+                                    })
+                                    .count()
+
+                                        tea.print()  */}}
+
+                                    // console.log('aqJoinedPrimaryTrendData', aqJoinedPrimaryTrendData.objects())
                                    
                                         
-                                    // aqJoinedPrimaryTrendData.print()
-                                    joinedDataTrendDisparityObjects = aqJoinedPrimaryTrendData.objects();
+                                    // aqJoinedPrimaryTrendData.print({ limit: 40 })
+                                    // joinedDataTrendDisparityObjects = aqJoinedPrimaryTrendData.objects(); 
 
 
-                                    // aq.table({ x: [1, 2, 3, 4, 6, 8, 9, 10] })
-                                    //     .sample(aq.frac(1000), { replace: true })
-                                    //     .derive({ id: d => op.row_number() % 1000 })
-                                    //     .groupby('id')
-                                    //     .rollup({ mu: d => op.mean('x') })
-                                    //     .rollup({
-                                    //         lo: op.quantile('mu', 0.025), // exclude the bottom 2.5%
-                                    //         hi: op.quantile('mu', 0.975)  // exclude the top 2.5%
-                                    //     })
-                                    //     .print()
+                                    const newDisparity = aq.from(aqJoinedPrimaryTrendData)
+                                        .groupby("Time_1", "Tertile", "GeoType_1")
+                                        .rollup({
+                                            median: d => op.median(d["Age Adjusted Rate - Total"])
+                                        })
+                                        .filter(d => d.GeoType_1 === 'Subboro')
+
+                                    joinedDataTrendDisparityObjects = newDisparity.objects()
+                                    console.log('New Disparity Data ==========================')
+                                    newDisparity.print({ limit: 60 })
                             })
                     }
 

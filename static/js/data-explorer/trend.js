@@ -519,9 +519,9 @@ const renderTrendChart = (
                   }
               },
               "y": {
-                  "field": trendMeasurementType,
+                  "field": "median",
                   "type": "quantitative",
-                  "title": `${trendMeasurementType} ${trendDisplay && `(${trendDisplay})`} `
+                  "title": `${trendMeasurementType} ${trendDisplay && `(${trendDisplay})`} (Median of Neighborhood)`
               }
               },
               "layer": [
@@ -549,7 +549,7 @@ const renderTrendChart = (
               "transform": [
               {
                   "pivot": "Tertile",
-                  "value": trendMeasurementType,
+                  "value": "median",
                   "groupby": [
                       "Time_1"
                       ]
@@ -572,41 +572,17 @@ const renderTrendChart = (
                           "type": "nominal"
                       },
                       {
-                          "field": "High",
+                          "field": "hi",
                           "type": "nominal"
                       },
                       {
-                          "field": "Medium",
+                          "field": "med",
                           "type": "nominal"
                       },
                       {
-                          "field": "Low",
+                          "field": "low",
                           "type": "nominal"
                       },
-                      {
-                      "field": trendMeasurementType,
-                      "type": "quantitative"
-                      },
-                      {
-                      "field": "Bronx",
-                      "type": "quantitative"
-                      },
-                      // {
-                      // "field": "Brooklyn",
-                      // "type": "quantitative"
-                      // },
-                      // {
-                      // "field": "Manhattan",
-                      // "type": "quantitative"
-                      // },
-                      // {
-                      // "field": "Queens",
-                      // "type": "quantitative"
-                      // },
-                      // {
-                      // "field": "Staten Island",
-                      // "type": "quantitative"
-                      // }
                   ]
               },
               "params": [
