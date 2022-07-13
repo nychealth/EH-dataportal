@@ -225,21 +225,18 @@ Estos problemas van más allá de la incomodidad o el desastre. {{< rawhtml>}}
     <p>Los problemas sanitarios de vivienda, como muchas deficiencias y el mal estado general, están relacionados con numerosas consecuencias adversas en la salud.
     <ul>
         <li>El mal estado general está relacionado con la ansiedad y la depresión.</li>
-        <li>Algunas formas, como el revoque dañado o la pintura descascarada, o las grietas y los agujeros en las paredes internas, pueden <a
-                href="/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=14">exponer a los niños a pintura a base de plomo</a>.
+        <li>Algunas formas, como el revoque dañado o la pintura descascarada, o las grietas y los agujeros en las paredes internas, pueden exponer a los niños a pintura a base de plomo.
         </li>
-        <li>Las pérdidas de agua, las ventanas rotas o el baño descompuesto pueden provocar la aparición de moho, que desencadena alergias y <a
-                href="/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=11">asma</a>, y puede empeorar las afecciones crónicas.
+        <li>Las pérdidas de agua, las ventanas rotas o el baño descompuesto pueden provocar la aparición de moho, que desencadena alergias y asma, y puede empeorar las afecciones crónicas.
         </li>
         <li>Las plagas, como las cucarachas, los ratones y las ratas, pueden empeorar el asma y las alergias.</li>
-        <li>La falta de aire acondicionado hace que las personas corran riesgo de <a
-                href="/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=100">muerte los días de calor</a>.
+        <li>La falta de aire acondicionado hace que las personas corran riesgo de muerte los días de calor.
         </li>
     </ul>
 </div>
 {{< /rawhtml>}}
 
-Como resultado de la segregación y la falta de inversión provocadas por el redlining, las poblaciones negras y latinas tienen menos acceso a viviendas saludables. Es más probable que vivan en edificios que tienen problemas de mantenimiento amenazantes para la salud.
+Como resultado de la segregación y la falta de inversión provocadas por el redlining, **las poblaciones negras y latinas tienen menos acceso a viviendas saludables**. Es más probable que vivan en edificios que tienen problemas de mantenimiento amenazantes para la salud.
 
 {{< datawrapper title="Las poblaciones negras y latinas tienen menos acceso a viviendas saludables." src="XQW2t/2/" height="300px" >}}
 
@@ -361,7 +358,7 @@ Como resultado, las tasas más altas de visitas por asma a la sala de emergencia
 ### Un hogar saludable debe ser un derecho.
 Una vivienda en buen estado es fundamental. Brinda protección del clima. Es un lugar para estar a salvo. Es un lugar en el que su familia puede crecer y prosperar.
 
-Sin embargo, una vivienda insalubre y mal mantenida no puede ofrecen un lugar seguro. Al contrario, presenta un entorno peligroso.
+Sin embargo, una vivienda insalubre y mal mantenida no puede ofrecer un lugar seguro. Al contrario, presenta un entorno peligroso.
 
 ***Entonces, ¿cómo podemos crear una ciudad en la que la raza (y el racismo) no determinen si tendrá la oportunidad de mantenerse saludable?***
 
@@ -380,9 +377,9 @@ Los responsables políticos y los defensores comunitarios pueden apoyar iniciati
 {{< figure src="h2.jpeg" Alt="A New York City residential street.">}}
 
 Los inquilinos y propietarios pueden acceder a sistemas que están disponibles para ayudarles:
-- Informar los problemas de mantenimiento a la administración de su edificio. Si el administrador del edificio no resuelve el problema, llamar al 311 par [presentar una queja sobre mantenimiento contra el arrendador](https://www1.nyc.gov/nyc-resources/service/1950/residential-maintenance-complaint).
-- Obtenga ayuda si la necesita: si le diagnosticaron asma y vive en un edificio con ratones o cucarachas, es posible que sea elegible para una evaluación edilicia gratuita del [Programa Vecindarios Saludables](https://www1.nyc.gov/site/doh/health/health-topics/healthy-neighborhoods-asthma-triggers.page) del Departamento de Salud (Health Department)..
-- Actúe para tener una vivienda digna con [Where We Live.](https://wherewelive.cityofnewyork.us/).
+- Informar los problemas de mantenimiento a la administración de su edificio. Si el administrador del edificio no resuelve el problema, llamar al 311 para [presentar una queja sobre mantenimiento contra el arrendador](https://www1.nyc.gov/nyc-resources/service/1950/residential-maintenance-complaint).
+- Obtenga ayuda si la necesita: si le diagnosticaron asma y vive en un edificio con ratones o cucarachas, es posible que sea elegible para una evaluación edilicia gratuita del [Programa Vecindarios Saludables](https://www1.nyc.gov/site/doh/health/health-topics/healthy-neighborhoods-asthma-triggers.page) del Departamento de Salud (Health Department).
+- Actúe para tener una vivienda digna con [Where We Live](https://wherewelive.cityofnewyork.us/).
 {{< rawhtml>}}
 </div>
 
@@ -399,10 +396,10 @@ Los propietarios y los arrendadores de edificios deben mantener los apartamentos
 </div>
 {{< /rawhtml>}}
 
-#### Get the data
-- Data on housing maintenance conditions come from the [2017 Housing and Vancancy Survey](https://www.census.gov/programs-surveys/nychvs.html).
-- [Data on childhood asthma emergency department visits](https://a816-dohbesp.nyc.gov/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=11) come from the New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data.
-- [Data on the race/ethnicity of people by neighborhood](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2325,4466a0,109,Summarize) come from the American Community Survey.
+#### Obtenga los datos 
+- Los datos sobre las condiciones de mantenimiento de viviendas provienen de la [Encuesta de Viviendas y Vacantes (Housing and Vancancy Survey) de 2017.](https://www.census.gov/programs-surveys/nychvs.html).
+- [La información sobre las visitas a la sala de emergencias por asma infantil ](https://a816-dohbesp.nyc.gov/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=11) provienen de los Datos anonimizados de alta hospitalaria del Sistema Cooperativo de Investigación y Planificación Estatal (Statewide Planning and Research Cooperative System, SPARCS).
+- [Los datos sobre la raza/etnia de las personas por vecindario](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2325,4466a0,109,Summarize) provienen de la Encuesta Comunitaria Estadounidense (American Community Survey).
 
 
 

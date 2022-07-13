@@ -1,5 +1,5 @@
 ---
-title: "将健康数据映射到纽约市的社区"
+title: "环境与健康数据门户上的社区边界"
 date: 2020-08-01T08:33:22-04:00
 draft: false
 seo_title: "将健康数据映射到纽约市的社区"
@@ -80,12 +80,10 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office"
 
 每个PUMA都细分为社区制表区（NTA），每个NTA进一步细分为人口普查区。
 
-Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA breaks down even further into census tracts.
-
 {{< rawhtml >}}
 <input type="radio" name="mainRadioGroup" value="CD" id="ucd" checked> <label for="ucd">社区单元</label> &nbsp;&nbsp;
-<input type="radio" name="mainRadioGroup" value="PUMA" id="upuma"/> <label for="upuma">PUMAs</label> &nbsp;&nbsp;
-<input type="radio" name="mainRadioGroup" value="nta" id="unta"> <label for="unta">NTAs</label>
+<input type="radio" name="mainRadioGroup" value="PUMA" id="upuma"/> <label for="upuma">PUMA</label> &nbsp;&nbsp;
+<input type="radio" name="mainRadioGroup" value="nta" id="unta"> <label for="unta">NTA</label>
 
 <script>
 let cdSpec = "mapcd.vl.json";
@@ -176,7 +174,7 @@ function buildMap2(spec) {
 ### 当边界重叠时如何选择？
 这些不同的社区边界会使事情变得令人困惑。例如，假设您住在Ditmas Park，并且您想将一些健康数据带到您的社区委员会的一场会议上。Ditmas Park是位于Flatbush/Midwood的社区单元14的一部分。但CD14跨越两个不同的UHF社区。
 
-我们有一[个工具可以帮助您查看重叠和差异](https://a816-dohbesp.nyc.gov/IndicatorPublic/CommunityDistrict.aspx)，以便您可以选择使用哪种社区方案进行报告，但它仍然提出了一个难题：您会带哪些社区的数据参加您的社区委员会会议？
+[我们有一个工具可以帮助您查看重叠和差异](https://a816-dohbesp.nyc.gov/IndicatorPublic/CommunityDistrict.aspx)，以便您可以选择使用哪种社区方案进行报告，但它仍然提出了一个难题：您会带哪些社区的数据参加您的社区委员会会议？
 
 {{< figure src="overlap.png" alt="An example of a Community District that overlaps two UHF42 neighborhoods.">}}
 

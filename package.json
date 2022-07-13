@@ -8,8 +8,10 @@
   },
   "dependencies": {
     "core-js": "^3.22.4",
-    "grunt": "^1.4.1",
+    "grunt": "^1.5.3",
+    "lunr": "^2.3.9",
     "string": "^3.3.3",
+    "url": "^0.11.0",
     "yamljs": "^0.3.0"
   },
   "scripts": {

@@ -7,7 +7,15 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["foodanddrink"]
 keywords: ["drinking","alcohol","binge drinking"]
-indicators: [{"subtopic_id": 95, "internal_id": 2049, "name": "Access to Alcohol", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2049,719b87,95,Summarize"}, {"subtopic_id": 95, "internal_id": 2057, "name": "Youth Access to Alcohol", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2057,719b87,95,Summarize"},{"subtopic_id": 97, "internal_id": 2050, "name": "Adults Reporting Heavy Drinking", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2050,719b87,97,Summarize"}, {"subtopic_id": 97, "internal_id": 2051, "name": "Adults Who Binge Drink", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2051,719b87,97,Summarize"}, {"subtopic_id": 97, "internal_id": 2056, "name": "Underage Drinking", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2056,719b87,97,Summarize"}, {"subtopic_id": 97, "internal_id": 2055, "name": "Youth Who Binge Drink", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2055,719b87,97,Summarize"}]
+indicators:
+- header: null
+  IndicatorID:
+  - 2049
+  - 2057
+  - 2050
+  - 2051
+  - 2056
+  - 2055
 menu:
     main:
         identifier: '03'

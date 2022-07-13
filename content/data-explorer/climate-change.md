@@ -7,7 +7,10 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["climatehealth"]
 keywords: ["climate change","global warming","health","climate","weather-related illness","storms"]
-indicators: [{"subtopic_id": 83, "internal_id": 776, "name": "Greenhouse Gas Emissions", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=776,719b87,83,Summarize"}]
+indicators:
+- header: null
+  IndicatorID: 
+  - 776
 menu:
     main:
         identifier: '03'

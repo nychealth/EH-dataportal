@@ -7,7 +7,31 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["pests"]
 keywords: ["pests","pesticides","mice","rats","cockroaches","bed bugs","rodents"]
-indicators: [{"subtopic_id": 9, "internal_id": 2235, "name": "Adults Reporting Personal Use of Pesticides", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2235,719b87,9,Summarize"}, {"subtopic_id": 9, "internal_id": 100, "name": "Commercial Use of \"Best Practice\" Products", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=100,719b87,9,Summarize"}, {"subtopic_id": 9, "internal_id": 96, "name": "Commercial Use of Fungicides", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=96,719b87,9,Summarize"}, {"subtopic_id": 9, "internal_id": 94, "name": "Commercial Use of Herbicides", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=94,719b87,9,Summarize"}, {"subtopic_id": 9, "internal_id": 93, "name": "Commercial Use of Insecticides", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=93,719b87,9,Summarize"}, {"subtopic_id": 9, "internal_id": 97, "name": "Commercial Use of Insecticides (Organophosphate)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=97,719b87,9,Summarize"}, {"subtopic_id": 9, "internal_id": 98, "name": "Commercial Use of Insecticides (Pyrethroid/Pyrethrin)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=98,719b87,9,Summarize"}, {"subtopic_id": 9, "internal_id": 102, "name": "Commercial Use of Rodenticides", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=102,719b87,9,Summarize"}, {"subtopic_id": 9, "internal_id": 99, "name": "Insecticides (Carbamate)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=99,719b87,9,Summarize"}, {"subtopic_id": 9, "internal_id": 2366, "name": "NYC Agency Use of \"Best Practice\" Products", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2366,719b87,9,Summarize"}, {"subtopic_id": 9, "internal_id": 2364, "name": "NYC Agency Use of Fungicides", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2364,719b87,9,Summarize"}, {"subtopic_id": 9, "internal_id": 2367, "name": "NYC Agency Use of Glyphosate", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2367,719b87,9,Summarize"}, {"subtopic_id": 9, "internal_id": 2368, "name": "NYC Agency Use of Herbicides", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2368,719b87,9,Summarize"}, {"subtopic_id": 9, "internal_id": 2369, "name": "NYC Agency Use of Insecticides", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2369,719b87,9,Summarize"}, {"subtopic_id": 9, "internal_id": 2374, "name": "NYC Agency Use of Mosquito Control", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2374,719b87,9,Summarize"}, {"subtopic_id": 9, "internal_id": 2370, "name": "NYC Agency Use of Rodenticides", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2370,719b87,9,Summarize"}, {"subtopic_id": 9, "internal_id": 91, "name": "Regular Exterminator Service", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=91,719b87,9,Summarize"}]
+indicators:
+- header: null
+  IndicatorID:
+  - 2235
+  - 91
+- header: Commercial Use
+  IndicatorID:
+  - 100
+  - 2312
+  - 96
+  - 94
+  - 93
+  - 99
+  - 97
+  - 98
+  - 102
+- header: NYC Agency Use
+  IndicatorID:
+  - 2366
+  - 2364
+  - 2367
+  - 2368
+  - 2369
+  - 2374
+  - 2370
 menu:
     main:
         identifier: '03'

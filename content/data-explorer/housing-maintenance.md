@@ -7,7 +7,19 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["housing","social","neighborhoods"]
 keywords: ["built environments","neighborhoods","social","housing","maintenance","maintenance deficiencies","healthy housing"]
-indicators: [{"subtopic_id": 36, "internal_id": 2396, "name": "Children living in homes using supplemental heat (ages 0-13 years)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2396,719b87,36,Summarize"}, {"subtopic_id": 36, "internal_id": 2395, "name": "Children living in homes with cracks or holes (ages 0-13 years)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2395,719b87,36,Summarize"}, {"subtopic_id": 36, "internal_id": 46, "name": "Homes near Structures Rated Good or Excellent", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=46,719b87,36,Summarize"}, {"subtopic_id": 36, "internal_id": 47, "name": "Homes Using Supplemental Heat", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=47,719b87,36,Summarize"}, {"subtopic_id": 36, "internal_id": 45, "name": "Homes with 3 or More Maintenance Deficiencies", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=45,719b87,36,Summarize"}, {"subtopic_id": 36, "internal_id": 40, "name": "Homes with Cracks or Holes", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=40,719b87,36,Summarize"},  {"subtopic_id": 36, "internal_id": 42, "name": "Homes with Leaks", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=42,719b87,36,Summarize"},{"subtopic_id": 36, "internal_id": 41, "name": "Pre-1960 Homes with Peeling Paint", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=41,719b87,36,Summarize"}, {"subtopic_id": 36, "internal_id": 2399, "name": "Renter-occupied homes with any health-related maintenance problems", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2399,719b87,36,Summarize"}, {"subtopic_id": 36, "internal_id": 2179, "name": "Renter-occupied homes with no maintenance deficiencies (TCNY2020)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2179,719b87,36,Summarize"}]
+indicators:
+- header: Maintenance
+  IndicatorID:
+  - 2396
+  - 2395
+  - 46
+  - 47
+  - 45
+  - 40
+  - 42
+  - 41
+  - 2399
+  - 2179
 menu:
     main:
         identifier: '03'

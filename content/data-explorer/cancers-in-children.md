@@ -7,7 +7,14 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["childhealth","healthoutcomes"]
 keywords: ["cancer","cancers","children","environmental health"]
-indicators: [{"subtopic_id": 93, "internal_id": 2037, "name": "Acute Lymphocytic Leukemia in Children", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2037,719b87,93,Summarize"}, {"subtopic_id": 93, "internal_id": 2035, "name": "Acute Myeloid Leukemia in Children", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2035,719b87,93,Summarize"}, {"subtopic_id": 93, "internal_id": 2033, "name": "Brain and CNS Cancer in Children", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2033,719b87,93,Summarize"}, {"subtopic_id": 93, "internal_id": 2031, "name": "Leukemia in Children", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2031,719b87,93,Summarize"}, {"subtopic_id": 93, "internal_id": 2039, "name": "Total Cancer in Children", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2039,719b87,93,Summarize"}]
+indicators:
+- header: null
+  IndicatorID:
+  - 2037
+  - 2035
+  - 2033
+  - 2031
+  - 2039
 menu:
     main:
         identifier: '03'

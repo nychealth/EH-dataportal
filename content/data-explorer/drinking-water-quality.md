@@ -7,7 +7,13 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["foodanddrink"]
 keywords: ["food","drink","water","housing"]
-indicators: [{"subtopic_id": 52, "internal_id": 2044, "name": "Arsenic in Drinking Water", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2044,719b87,52,Summarize"}, {"subtopic_id": 52, "internal_id": 2043, "name": "Disinfection By-Product in Drinking Water (HAA5)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2043,719b87,52,Summarize"}, {"subtopic_id": 52, "internal_id": 2207, "name": "Disinfection By-Product in Drinking Water (TTHM)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2207,719b87,52,Summarize"}, {"subtopic_id": 52, "internal_id": 2041, "name": "Nitrate in Drinking Water", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2041,719b87,52,Summarize"}]
+indicators:
+- header: null
+  IndicatorID:
+  - 2207
+  - 2044
+  - 2043
+  - 2041
 menu:
     main:
         identifier: '03'

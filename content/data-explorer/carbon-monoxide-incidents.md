@@ -7,7 +7,14 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["housing","childhealth"]
 keywords: ["carbon","monoxide","poisoning","hospitalization","emergency department visits","children","housing"]
-indicators: [{"subtopic_id": 51, "internal_id": 38, "name": "Carbon Monoxide Incidents ", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=38,719b87,51,Summarize"}, {"subtopic_id": 51, "internal_id": 2168, "name": "Carbon Monoxide Incidents without a Detector (3 Year Avg.)", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2168,719b87,51,Summarize"},{"subtopic_id": 51, "internal_id": 2405, "name": "Carbon Monoxide Emergency Department Visits", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2405,719b87,51,Summarize"}, {"subtopic_id": 51, "internal_id": 2406, "name": "Carbon Monoxide Hospitalizations", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2406,719b87,51,Summarize"}, {"subtopic_id": 15, "internal_id": 2398, "name": "Carbon Monoxide Deaths", "URL": "https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2398,719b87,15,Summarize"}]
+indicators:
+- header: null
+  IndicatorID:
+  - 38
+  - 2168
+  - 2398
+  - 2405
+  - 2406
 menu:
     main:
         identifier: '03'

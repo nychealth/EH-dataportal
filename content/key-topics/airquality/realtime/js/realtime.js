@@ -3,6 +3,7 @@ var dt;
 var fullTable;
 var shortTable;
 var locSelect = "No location"
+var res;
 
 d3.json("js/origSpec.json").then(data => {
     
@@ -13,13 +14,21 @@ d3.json("js/origSpec.json").then(data => {
     // ---- Loads the csv as an arquero table ---- //
     
     aq.loadCSV(
-        "https://raw.githubusercontent.com/nychealth/realtime-air-quality/main/RT_flat.csv"
+        "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime.csv"
+
     ).then(data => {
-        dt = data;
+
+        dt = data
+            .derive({starttime: d => op.parse_date(d.starttime)})
+            .orderby("starttime");
+
+        // console.log("dt:", dt);
         
         fullTable = dt.objects(); // puts the data into fullTable to use. 
         shortTable = fullTable; // creating an array we'll slice for time-selection
         
+        // console.log("fullTable:", fullTable);
+
         vegaEmbed("#vis2", current_spec).then((res) => {
 
             res.view.insert("lineData", fullTable).run()
@@ -86,7 +95,7 @@ function changeData(x) {
     
     // create a color variable
     color = monitor_locations[x].Color;
-    locSelect = monitor_locations[x].Location;
+    locSelect = monitor_locations[x].loc_col;
     
     // ensure `locInfoDesc` has original innerHTML elements
     
@@ -152,7 +161,7 @@ function getAverage() {
     const new_col = new Map()
 
     new_col.set("new_col", locSelect)
-    console.log("new_col:", new_col)
+    // console.log("new_col:", new_col)
 
     // you can use an object that contains a variable name by enclosing the whole expression in back-ticks, then 
     //	using `${var}` to insert the value
@@ -162,12 +171,12 @@ function getAverage() {
         .derive({new_col: `d => aq.op.parse_float(d['${locSelect}'])`})
         .rename(new_col)
     
-    console.log("arqTable (after parse_float and rename):")
-    arqTable.slice(-24,).print(Infinity)
+    // console.log("arqTable (after parse_float and rename):")
+    // arqTable.slice(-24,).print(Infinity)
     
     // Count number of valid entries.
     valid_vals = aq.agg(arqTable, aq.op.valid(locSelect));
-    console.log("valid_vals:", valid_vals)
+    // console.log("valid_vals:", valid_vals)
     
     // ---- change info in locInfoBox depending on number of valid values ---- //
 
