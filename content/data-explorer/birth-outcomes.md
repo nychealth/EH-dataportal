@@ -2,6 +2,7 @@
 title: Birth Outcomes
 date: 2021-05-28 18:02:58.890564
 draft: false
+notes: "Remove sex ratio per 7/13/2022 conversation with AQ team, wendy"
 seo_title: "Birth outcomes data for NYC."
 seo_description: "Explore data, visualizations, and more."
 tags: 
@@ -16,7 +17,6 @@ indicators:
   - 7
   - 8
   - 1
-  - 10
   - 9
   - 3
   - 2
