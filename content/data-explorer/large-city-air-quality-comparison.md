@@ -1,7 +1,8 @@
 ---
 title: Large City Air Quality Comparison
 date: 2021-05-28 18:02:58.756768
-draft: false
+draft: true
+notes: "Decided to remove this and other OneNYC/sustainability items"
 tags: 
 categories: ["airquality","transportation"]
 keywords: ["air quality","pollution","emissions","exhaust","pollutants","pm2.5","asthma","breathing","lungs","asthma","respiratory","illness","hospitalizations","emergency department visits"]
