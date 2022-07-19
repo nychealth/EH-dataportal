@@ -77,6 +77,9 @@ const renderLinksChart = (
           break;
   }
 
+
+  console.log('LINK LINK LINK: ', joinedDataLinksObjects, xMeasure, yMeasure)
+
   // console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>> ', selectedlinksSecondaryMeasureData, selectedlinksSecondaryIndicatorData)
 
   /* var spec = {

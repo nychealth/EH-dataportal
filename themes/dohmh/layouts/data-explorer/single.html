@@ -326,7 +326,9 @@
                         const filterSubboro = joinedAqData.filter(d => d.GeoType == 'Subboro').objects();
                         const filterBorough = joinedAqData.filter(d => d.GeoType  == 'Borough').objects();
                         const filterCitywide = joinedAqData.filter(d => d.GeoType  == 'Citywide').objects();
-                        
+                        const filterNYCKids = joinedAqData.filter(d => d.GeoType  == 'NYCKIDS').objects();
+
+                        console.log('$$$$ KIDS ', filterNYCKids)
                         // console.log('hhhhhhh ',aqData, joinedAqData )
                         // console.log('===>', filterUHF42, filterUHF34, filterCD, filterPuma, filterSubboro, filterBorough, filterCitywide)
                         // geoTable.print()
@@ -334,7 +336,7 @@
                         // joinedAqData.print()
 
 
-                        fullDataMapObjects = [...filterUHF42, ...filterUHF34, ...filterCD, ...filterPuma, ...filterSubboro, ...filterNTA ];
+                        fullDataMapObjects = [...filterUHF42, ...filterUHF34, ...filterCD, ...filterPuma, ...filterSubboro, ...filterNTA, ...filterNYCKids ];
                         // console.log('fullDataMapObjects', fullDataMapObjects)
                         fullDataTrendObjects = [...filterBorough, ...filterCitywide];
                         fullDataLinksObjects = joinedAqData.objects();
@@ -364,7 +366,7 @@
                                     .derive({ GeoID: aq.escape(d => standardizeGeoId(d.GeoID, d.GeoType))}) // convert GeoIDs to numbers and strings
                                     .select(aq.not('Lat', 'Long'))
                                 console.log("---- Geo Names 1 (post-load) ----")
-                                geoTable.print({ limit: 300});
+                                geoTable.print({ limit: 10});
                                 joinData(); // run the next function 
                             });
                     }
@@ -398,22 +400,25 @@
                                 // console.log('Percent: ', pctAqData)
                                 // console.log('Stripped: ', data)
 
+
                                 const assignGeoRank = (GeoType) => {
                                     switch (GeoType) {
                                         case 'Citywide':
                                             return 0;
                                         case 'Borough':
                                             return 1;
-                                        case 'UHF34':
+                                        case 'NYCKIDS':
                                             return 2;
-                                        case 'UHF42':
+                                        case 'UHF34':
                                             return 3;
-                                        case 'Subboro':
+                                        case 'UHF42':
                                             return 4;
-                                        case 'CD':
+                                        case 'Subboro':
                                             return 5;
-                                        case 'NTA':
+                                        case 'CD':
                                             return 6;
+                                        case 'NTA':
+                                            return 7;
                                     }
                                 }
 
@@ -523,8 +528,7 @@
                                 
                                                 
                                 
-                                
-                                
+                            
                                 let newTable;
                                 if (pctAqData.length > 0 && numAqData.length > 0) {
                                     // if (strippedAqData.length > 0) {
@@ -548,7 +552,7 @@
                                 //                 .join(num, [["GeoID", "GeoType", "Time"], ["GeoID", "GeoType", "Time"]])
                                 //                 .join(pct, [["GeoID", "GeoType", "Time"], ["GeoID", "GeoType", "Time"]])
                                 //                 .orderby(aq.desc('Time'), aq.desc('GeoRank'),  'Geography')
-                                } else if (pctAqData.length === 0 && numAqData.length === 0) {
+                                } else if (pctAqData.length === 0 && numAqData.length === 0 && sprayBombPct.length > 0 && saferMethodsPct.length > 0 && anyUseNumber.length > 0 && anyUsePct.length > 0 && anyUseTempoPct.length > 0) {
                                     // console.log('NO NUMBER OR PERCENT')
                                     newTable = ful
                                             .groupby("Time", "GeoType", "GeoID")
@@ -562,6 +566,10 @@
                                         // .join(aUTPct, [["GeoID", "GeoType", "Time", "Any use of Tempo or Chinese Chalk - %"], ["GeoID", "GeoType", "Time", "Any use of Tempo or Chinese Chalk - %"]])
                                         .orderby(aq.desc('Time'), aq.desc('GeoRank'), 'Geography')
                                         // console.log('newTable', newTable)
+                                } else {
+                                    newTable = ful
+                                        .groupby("Time", "GeoType", "GeoID")
+                                
                                 }
 
                                 console.log('==== newTable ====')
@@ -852,55 +860,55 @@
                                 const  aqJoinedPrimaryLinksData = aq.from(fullDataLinksObjects)
                                     .join(aqPrimaryMeasureTimes, ["Time", "TimeDescription"])
 
-                                    // console.log('@@@@@@@@@@@@@@@@@@@@ AQ PRIMARY DATA @@@@@@@@@@@@@@@@@@@@@@@@@ ' )
-                                    // aqJoinedPrimaryLinksData.print()
+                                // console.log('@@@@@@@@@@@@@@@@@@@@ AQ PRIMARY DATA @@@@@@@@@@@@@@@@@@@@@@@@@ ' )
+                                // aqJoinedPrimaryLinksData.print()
 
-                                    const joinedPrimaryLinksDataObject = aqJoinedPrimaryLinksData.objects();
-                                    const filteredJoinedPrimaryLinksDataObject = joinedPrimaryLinksDataObject.filter(d => 
-                                        d.start_period == mostRecentPrimaryMeasureStartTime && d.end_period == mostRecentPrimaryMeasureEndTime)
+                                const joinedPrimaryLinksDataObject = aqJoinedPrimaryLinksData.objects();
+                                const filteredJoinedPrimaryLinksDataObject = joinedPrimaryLinksDataObject.filter(d => 
+                                    d.start_period == mostRecentPrimaryMeasureStartTime && d.end_period == mostRecentPrimaryMeasureEndTime)
 
-                                    const joinedSecondaryLinksDataObject = aqJoinedSecondaryLinksData.objects();
+                                const joinedSecondaryLinksDataObject = aqJoinedSecondaryLinksData.objects();
 
-                                    let mostRecentJoinedSecondaryLinksDataObject = []
+                                let mostRecentJoinedSecondaryLinksDataObject = []
 
-                                    
+                                
 
-                                    // get the closest secondary end time 
-                                    const closestSecondaryTime = joinedSecondaryLinksDataObject.reduce((prev, curr) => {
-                                        return (Math.abs(curr.end_period - mostRecentPrimaryMeasureEndTime) < Math.abs(prev.end_period - mostRecentPrimaryMeasureEndTime) ? curr : prev);
-                                    });
+                                // get the closest secondary end time 
+                                const closestSecondaryTime = joinedSecondaryLinksDataObject.reduce((prev, curr) => {
+                                    return (Math.abs(curr.end_period - mostRecentPrimaryMeasureEndTime) < Math.abs(prev.end_period - mostRecentPrimaryMeasureEndTime) ? curr : prev);
+                                });
 
-                                    
+                                
 
-                                    const closestSecondaryData = joinedSecondaryLinksDataObject.filter(d => 
-                                        d.end_period === closestSecondaryTime.end_period)
+                                const closestSecondaryData = joinedSecondaryLinksDataObject.filter(d => 
+                                    d.end_period === closestSecondaryTime.end_period)
 
-                                    mostRecentJoinedSecondaryLinksDataObject = closestSecondaryData
+                                mostRecentJoinedSecondaryLinksDataObject = closestSecondaryData
 
-                                    // console.log('yo', joinedSecondaryLinksDataObject)
+                                console.log('yo', joinedSecondaryLinksDataObject)
 
-                                    const secondaryYears =  [...new Set(mostRecentJoinedSecondaryLinksDataObject.map(item => item.Time))];
-                                    const highest = Math.max(...secondaryYears);
+                                const secondaryYears =  [...new Set(mostRecentJoinedSecondaryLinksDataObject.map(item => item.Time))];
+                                const highest = Math.max(...secondaryYears);
 
-                                    // get lowest number
-                                    const lowest = Math.min(...secondaryYears);
+                                // get lowest number
+                                const lowest = Math.min(...secondaryYears);
 
-                                    if (secondaryYears.length > 1) {
-                                        selectedlinksSecondaryMeasureTime = `${lowest}-${highest}`;
-                                    } else {
-                                        selectedlinksSecondaryMeasureTime = `${secondaryYears[0]}`
-                                    }
-                                    
-                                    // console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SEONDARY YEARS', secondaryYears, highest, lowest)
+                                if (secondaryYears.length > 1) {
+                                    selectedlinksSecondaryMeasureTime = `${lowest}-${highest}`;
+                                } else {
+                                    selectedlinksSecondaryMeasureTime = `${secondaryYears[0]}`
+                                }
+                                
+                                // console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SEONDARY YEARS', secondaryYears, highest, lowest)
 
 
-                                    const aqMostRecentJoinedSecondaryLinksDataObject = aq.from(mostRecentJoinedSecondaryLinksDataObject)
+                                const aqMostRecentJoinedSecondaryLinksDataObject = aq.from(mostRecentJoinedSecondaryLinksDataObject)
 
-                                    const aqJoinedPrimarySecondaryData = aq.from(filteredJoinedPrimaryLinksDataObject)
-                                        .join(aqMostRecentJoinedSecondaryLinksDataObject, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
-                                    
-                                    // aqJoinedPrimarySecondaryData.print()
-                                    joinedDataLinksObjects = aqJoinedPrimarySecondaryData.objects();
+                                const aqJoinedPrimarySecondaryData = aq.from(filteredJoinedPrimaryLinksDataObject)
+                                    .join(aqMostRecentJoinedSecondaryLinksDataObject, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
+                                
+                                // aqJoinedPrimarySecondaryData.print()
+                                joinedDataLinksObjects = aqJoinedPrimarySecondaryData.objects();
 
                                 // console.log('==========================================================================')
                                 // console.log('Load Date - aqJoinedSecondaryLinksData')
@@ -1058,7 +1066,10 @@
                         const measurementType = measure[0].MeasurementType;
                         const secondaryMeasure = linksSecondaryMeasure[0].MeasurementType;
                         const secondaryIndicator = linksSecondaryIndicator[0].IndicatorLabel;
-                        const axis = measure[0].VisOptions[0].Links[0].Axis;
+                        {{/*  const axis = measure[0].VisOptions[0].Links[0].Axis;  */}}
+                        const axis = measure[0].VisOptions[0].Links.filter(d => d.MeasureID === secondaryMeasureId)[0].Axis
+
+                        console.log('AXIS: ', primaryMeasureId, secondaryMeasureId, measure[0], axis)
                         
                         
                         const about = measure[0].how_calculated;
@@ -1345,7 +1356,6 @@
                             $($.fn.dataTable.tables(true)).DataTable()
                                 .columns.adjust();
                             renderAboutSources(measureAbout, measureSources)
-                            // console.log('tab')
                             window.location.hash = 'display=summary'
                             updateChartPlotSize();
                         });
@@ -1361,9 +1371,9 @@
                                 const measure = defaultMapMeasure[0].MeasurementType;
                                 defaultMapbout = `<h6>${indicator.IndicatorName} - ${measure}</h6><p>${about}</p>`;
                                 defaultMapSources = `<h6>${indicator.IndicatorName} - ${measure}</h6><p>${sources}</p>`;
-                                renderAboutSources(defaultMapbout, defaultMapSources);
+                                renderAboutSources(defaultMapAbout, defaultMapSources);
                             } else {
-                                renderAboutSources(selectedMapbout, selectedMapSources);
+                                renderAboutSources(selectedMapAbout, selectedMapSources);
                             }
                         });
 

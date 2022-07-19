@@ -67,6 +67,7 @@ const renderMap = (
   const pumaDataResults = filterGeoTypeMeasurementType('PUMA');
   const subboroDataResults = filterGeoTypeMeasurementType('Subboro');
   const ntaDataResults = filterGeoTypeMeasurementType('NTA');
+  const nycKidsDataResults = filterGeoTypeMeasurementType('NYCKIDS');
   
   const cdData = filterGeoType('CD');
   const uhf42Data = filterGeoType('UHF42');
@@ -74,34 +75,33 @@ const renderMap = (
   const pumaData = filterGeoType('Puma');
   const subboroData = filterGeoType('Subboro');
   const ntaData = filterGeoType('NTA');
+  const nycKidsData = filterGeoType('NYCKIDS');
 
-  // console.log('NTA: ', ntaDataResults.length, pumaDataResults.length)
+  console.log('NTA: ', ntaDataResults.length, pumaDataResults.length)
 
   if (ntaDataResults.length > 0) {
-      // console.log('## NTA')
       mapData = ntaData;
       topoFile = 'NTA2.topo.json';
   } else if (cdDataResults.length > 0) {
-      // console.log('## CD')
       mapData = cdData;
       topoFile = 'CD.topo.json';
 } else if (pumaDataResults.length > 0) {
-    // console.log('## Puma')
     mapData = pumaData;
     topoFile = 'PUMA_or_Subborough.topo.json';
   } else if (subboroDataResults.length > 0) {
-      // console.log('## Subboro')
       mapData = subboroData;
       topoFile = 'PUMA_or_Subborough.topo.json';
   } else if (uhf42DataResults.length > 0) {
-      // console.log('## UHF42')
       mapData = uhf42Data;
       topoFile = 'UHF42.topo.json';
   } else if (uhf34DataResults.length > 0) {
-      // console.log('## UHF34')
       mapData = uhf34Data;
       topoFile = 'UHF34.topo.json';
-  }
+  } else if (nycKidsDataResults.length > 0) {
+    mapData = nycKidsData;
+    topoFile = 'NYCKids.json';
+}
+
 
   // console.log("mapData");
   // aq.from(mapData).print({ limit: 60 })
@@ -243,7 +243,7 @@ const renderMap = (
               "lookup": "GeoID",
               "from": {
                   "data": {
-                  "url": `https://raw.githubusercontent.com/nycehs/NYC_geography/master/${topoFile}`,
+                  "url": `https://raw.githubusercontent.com/nychealth/EHDP-data/main/geography/${topoFile}`,
                   "format": {"type": "topojson", "feature": "collection"}
                   },
                   "key": "properties.GEOCODE"
