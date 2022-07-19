@@ -1,7 +1,7 @@
 ---
 title: "2022 NYC Heat-Related Mortality Report"
 date: 2021-09-08T11:14:56-04:00
-draft: false
+draft: true
 tags: 
 categories: [climatehealth]
 keywords: ["heat","report","climate","temperature","summer","disparities","mortality"]
