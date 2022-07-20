@@ -99,7 +99,7 @@ const renderMap = (
       topoFile = 'UHF34.topo.json';
   } else if (nycKidsDataResults.length > 0) {
     mapData = nycKidsData;
-    topoFile = 'NYCKids.json';
+    topoFile = 'NYCKids.topo.json';
 }
 
 
