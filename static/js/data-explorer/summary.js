@@ -8,7 +8,9 @@ const renderTable = () => {
       selectedSummaryYears.includes(d.Time) && selectedSummaryGeography.includes(d.GeoType)
   )
   const filteredTableAqData = aq.from(filteredTableData)
-    .relocate(["GeoRank"], { after: "GeoID" })
+    // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
+    .relocate(["Time", "GeoType", "GeoID", "GeoRank"], { before: 0 }) 
+  
   // console.log('==========================================================================')
   console.log('RENDER TABLE DATA - Filtered Data: ', filteredTableAqData)
   filteredTableAqData.print()
