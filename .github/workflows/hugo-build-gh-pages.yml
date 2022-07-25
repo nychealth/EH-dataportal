@@ -8,6 +8,9 @@ on:
       - development
     types:
       - closed
+  push:
+    branches: 
+      - development
 
 jobs:
   deploy:
