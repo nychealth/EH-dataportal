@@ -1,0 +1,30 @@
+{
+  "name": "EH-dataportal",
+  "version": "1.0.0",
+  "description": "This repository contains a prototype of the Environment and Health Data Portal. You can view a staged development version [here](https://nychealth.github.io/EH-dataportal/). We are in the process of fully developing this. If you're interested in helping, you can [email us](mailto:trackingportal@health.nyc.gov) - we are always looking for people interested in user testing and co-design work.",
+  "main": "Gruntfile.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "core-js": "^3.22.4",
+    "grunt": "^1.5.3",
+    "lunr": "^2.3.9",
+    "string": "^3.3.3",
+    "url": "^0.11.0",
+    "yamljs": "^0.3.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nychealth/EH-dataportal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nnychealth/EH-dataportal/issues"
+  },
+  "homepage": "https://github.com/nychealth/EH-dataportal#readme"
+}
