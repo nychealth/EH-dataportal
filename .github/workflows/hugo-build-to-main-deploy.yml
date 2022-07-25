@@ -1,16 +1,13 @@
-name: Hugo Build to GitHub Pages
+name: Hugo Build to `main-deploy` branch
 
 # run action on a merged PR on development
 
 on:
   pull_request:
     branches: 
-      - development
+      - main
     types:
       - closed
-  push:
-    branches: 
-      - development
 
 jobs:
   deploy:
@@ -113,7 +110,7 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages
+        publish_branch: main-deploy
         publish_dir: ./docs/
         enable_jekyll: false
         
