@@ -8,28 +8,19 @@
                     <li class="breadcrumb-item"><a href="{{.Site.BaseURL}}">Home</a></li>
                     <li class="breadcrumb-item"><a href="{{.Site.BaseURL}}/data-explorer/">Data Explorer</a></li>
                     <li class="breadcrumb-item active"><a href="{{ .Page.RelPermalink }}">{{ .Title}}</a></li>
-                </ul>
+                    <li class="nav-item ml-auto">
+                        <form class="autocomplete-form form-inline">
+                            <label for="all-data" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">Search data</label>
+                                <div class="autocomplete-wrapper" width="100%">
+                                <select name="all-data" id="all-data">
+                                    <option value=""><i class="fas fa-search mr-2"></i>Search data</option>
+                                </select>
+                                </div>
+                                <button type="submit" class="btn-primary btn" style="height:40px;"><i class="fas fa-search"></i></button> 
+                        </form>
+                    </li>
+                </ul>                
             </nav>
-
-            <div class="row">
-               <div class="col-3 ml-auto my-1">
-                <form class="autocomplete-form">
-                    <div class="row no-gutters">
-                    <label for="all-data" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">Search data</label>
-                    <div class="col-9">
-                        <div class="autocomplete-wrapper" width="100%">
-                        <select name="all-data" id="all-data">
-                            <option value=""><i class="fas fa-search mr-2"></i>Search data</option>
-                        </select>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <button type="submit" class="btn-primary btn btn-block" style="height:40px;"><i class="fas fa-search"></i></button> 
-                    </div>
-                    </div>
-                </form>
-               </div>
-            </div>
 
             <div class="row mb-2">
                 <div class="col border-bottom mx-2 ml-0 pl-0 pb-2 mb-2">
@@ -335,7 +326,9 @@
                         const filterSubboro = joinedAqData.filter(d => d.GeoType == 'Subboro').objects();
                         const filterBorough = joinedAqData.filter(d => d.GeoType  == 'Borough').objects();
                         const filterCitywide = joinedAqData.filter(d => d.GeoType  == 'Citywide').objects();
-                        
+                        const filterNYCKids = joinedAqData.filter(d => d.GeoType  == 'NYCKIDS').objects();
+
+                        console.log('$$$$ KIDS ', filterNYCKids)
                         // console.log('hhhhhhh ',aqData, joinedAqData )
                         // console.log('===>', filterUHF42, filterUHF34, filterCD, filterPuma, filterSubboro, filterBorough, filterCitywide)
                         // geoTable.print()
@@ -343,7 +336,7 @@
                         // joinedAqData.print()
 
 
-                        fullDataMapObjects = [...filterUHF42, ...filterUHF34, ...filterCD, ...filterPuma, ...filterSubboro, ...filterNTA ];
+                        fullDataMapObjects = [...filterUHF42, ...filterUHF34, ...filterCD, ...filterPuma, ...filterSubboro, ...filterNTA, ...filterNYCKids ];
                         // console.log('fullDataMapObjects', fullDataMapObjects)
                         fullDataTrendObjects = [...filterBorough, ...filterCitywide];
                         fullDataLinksObjects = joinedAqData.objects();
@@ -373,7 +366,7 @@
                                     .derive({ GeoID: aq.escape(d => standardizeGeoId(d.GeoID, d.GeoType))}) // convert GeoIDs to numbers and strings
                                     .select(aq.not('Lat', 'Long'))
                                 console.log("---- Geo Names 1 (post-load) ----")
-                                geoTable.print({ limit: 300});
+                                geoTable.print({ limit: 10});
                                 joinData(); // run the next function 
                             });
                     }
@@ -407,22 +400,25 @@
                                 // console.log('Percent: ', pctAqData)
                                 // console.log('Stripped: ', data)
 
+
                                 const assignGeoRank = (GeoType) => {
                                     switch (GeoType) {
                                         case 'Citywide':
                                             return 0;
                                         case 'Borough':
                                             return 1;
-                                        case 'UHF34':
+                                        case 'NYCKIDS':
                                             return 2;
-                                        case 'UHF42':
+                                        case 'UHF34':
                                             return 3;
-                                        case 'Subboro':
+                                        case 'UHF42':
                                             return 4;
-                                        case 'CD':
+                                        case 'Subboro':
                                             return 5;
-                                        case 'NTA':
+                                        case 'CD':
                                             return 6;
+                                        case 'NTA':
+                                            return 7;
                                     }
                                 }
 
@@ -532,8 +528,7 @@
                                 
                                                 
                                 
-                                
-                                
+                            
                                 let newTable;
                                 if (pctAqData.length > 0 && numAqData.length > 0) {
                                     // if (strippedAqData.length > 0) {
@@ -557,7 +552,7 @@
                                 //                 .join(num, [["GeoID", "GeoType", "Time"], ["GeoID", "GeoType", "Time"]])
                                 //                 .join(pct, [["GeoID", "GeoType", "Time"], ["GeoID", "GeoType", "Time"]])
                                 //                 .orderby(aq.desc('Time'), aq.desc('GeoRank'),  'Geography')
-                                } else if (pctAqData.length === 0 && numAqData.length === 0) {
+                                } else if (pctAqData.length === 0 && numAqData.length === 0 && sprayBombPct.length > 0 && saferMethodsPct.length > 0 && anyUseNumber.length > 0 && anyUsePct.length > 0 && anyUseTempoPct.length > 0) {
                                     // console.log('NO NUMBER OR PERCENT')
                                     newTable = ful
                                             .groupby("Time", "GeoType", "GeoID")
@@ -571,6 +566,10 @@
                                         // .join(aUTPct, [["GeoID", "GeoType", "Time", "Any use of Tempo or Chinese Chalk - %"], ["GeoID", "GeoType", "Time", "Any use of Tempo or Chinese Chalk - %"]])
                                         .orderby(aq.desc('Time'), aq.desc('GeoRank'), 'Geography')
                                         // console.log('newTable', newTable)
+                                } else {
+                                    newTable = ful
+                                        .groupby("Time", "GeoType", "GeoID")
+                                
                                 }
 
                                 console.log('==== newTable ====')
@@ -646,98 +645,44 @@
                         fetch(`https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/data/${disparityIndicatorId}.json`)
                             .then(response => response.json())
                             .then(data => {
-                                // console.log('TREND DISPARITY DATA: ', data, defaultTrendMeasure[0].MeasureID, defaultTrendMeasure[0].AvailableTimes)
-                                const test = data.filter(d => d.MeasureID === 221)
-
+                                const povertyData = data.filter(d => d.MeasureID === 221)
                                 let primaryTimes = []
 
-                                const standardizeTime =  (str) => {
-                                    
-                                    if (str.includes('-')) {
-                                        const time = str.split('-');
-                                        return `${time[0]}-20${time[1]}`;
-                                    }
-                                    return str;
-                                }
-
                                 defaultTrendMeasure[0].AvailableTimes.map(t => primaryTimes.push(`${t.TimeDescription}`) )
-                                // console.log('TREND DISPARITY FILTER', test)
-                                const filterByTime = test.filter(d => 
-                                    primaryTimes.includes(standardizeTime(d.Time))
-                                )
 
-                                // console.log('TEST: ', test, )
-                                // console.log('DISPARITY - filteredSecondaryIndicator:  ', filteredSecondaryIndicator)
-                                // console.log('DISPARITY - filteredSecondaryMeasure: ', filteredSecondaryMeasure)
-                                // console.log('disparityMeasureTimes' , disparityMeasureTimes)
-                                // console.log('TREND FILTER BY TIME: ', primaryTimes, filterByTime)
-
-                                // geoTable.print()
-
-                          
-                                const filteredDisparityData = aq.from(filterByTime)
-                                    //.join(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
+                                const filteredDisparityData = aq.from(povertyData)
                                     .join(aqSecondaryMeasureTimes, ["Time", "TimeDescription"])
-                                    {{/*  .groupby("Time", "GeoType", "GeoID", "Name", "MeasureID", "end_period")
-                                    .pivot("MeasurementType", "Value")
-                                    .relocate(['Name'], { after: 'GeoID' })
-                                    .relocate(['GeoType'], { before: 'GeoID' })
-                                    .rename({
-                                        'Name': 'Geography',
-                                    })  */}}
-                                    {{/*  .groupby("Time")
-                                    .rollup({ 
-                                        low: d => op.quantile(d.Percent,0.33),
-                                        med: d => op.quantile(d.Percent, 0.66),
-                                        hi: d => op.quantile(d.Percent, 0.99)
+                                    .derive({
+                                        bin: aq.bin('Value', { maxbins: 3 }),
                                     })
-                                    .groupby("low", "med", "hi")
-                                    .fold(["low", "med", "hi"])
-                                    .rename({ key: 'Tertile' })
-                                    .rename({ value: 'Tertile Percent' })  */}}
-                                    {{/*  .derive({ MaxPct: d => op.max(d.Percent) })  */}}
-                                    // .derive({ MinPct: d => op.min(d.Percent) })
-                                    // aqJoinedPrimaryTrendData.groupby('TimeDescription').rollup({ MedianPct: d => op.median(d.Percent) }).groupby("MedianPct")
-
-                                {{/*  const distparityMaxPct = Math.max(...filteredDisparityData.objects().map(d => d.Percent));
-                                const dispartiyMinPCt = Math.min(...filteredDisparityData.objects().map(d => d.Percent));
-                                // console.log(filteredDisparityData)
-                                // console.log('max percent', distparityMaxPct)
-                                // console.log('min percent', dispartiyMinPCt)
-
-                                const renderTertile = (value) => {
-                                    if (value >= dispartiyMinPCt && value < 16 ) {
-                                        return 'Low'
-                                    } else if (value >= 16 && value < 28) {
-                                        return 'Medium'
-                                    } else if (value >= 16 && value <= distparityMaxPct) {
-                                        return `High`
-                                    }
+                                    .derive({
+                                        Tertile: aq.escape( d => d.bin === 0 && 'low' || d.bin === 20 && 'med' || d.bin === 40 && 'hi')
+                                    })
+                                    .groupby("Tertile")
                                     
-                                }  */}}
 
-                                // console.log('DISPARITY - filteredDisparityData ==============================')
-                                // filteredDisparityData.print({ limit: 10 })
+                                console.log('DISPARITY - filteredDisparityData ==============================')
+                                filteredDisparityData.print({ limit: 10 })
 
-                                const aqJoinedPrimaryMeasureTimes = aq.from(fullDataTrendObjects)
+                                const aqJoinedPrimaryMeasureTimes = aq.from(joinedAqData) //joinedAqData //fullDataTrendObjects
                                         .join(aqPrimaryMeasureTimes, ["Time", "TimeDescription"])
+                                        
+                                        console.log("joinded time ----------- primary")
+                                        aqJoinedPrimaryMeasureTimes.print({ limit: 10 })
 
-                                        // console.log("joinded time ----------- primary")
-                                        // aqJoinedPrimaryMeasureTimes.print()
-                                // console.log(aqJoinedPrimaryMeasureTimes)
+
                                 const aqJoinedPrimaryTrendData = aq.from(aqJoinedPrimaryMeasureTimes)
-                                        .join(filteredDisparityData, 'end_period')
-                                        .rename({'Age Adjusted Rate - Total': 'Median' })
-                                        .groupby('end_period', 'GeoType_1', 'Time_1', 'Median', 'Geography' )
-                                        .rollup({ 
-                                            low: d => op.quantile(d.Value,0.33),
-                                            med: d => op.quantile(d.Value, 0.66),
-                                            hi: d => op.quantile(d.Value, 0.99)
-                                        })
-                                        .groupby("low", "med", "hi")
-                                        .fold(["low", "med", "hi"])
-                                        .rename({ 'key': 'Tertile'})
-                                        .groupby('end_period', 'GeoType_1', 'Time_1', 'Median', 'Geography', 'Tertile' )
+                                        .join(filteredDisparityData, [["end_period", "GeoID"], ["end_period", "GeoID"]])
+                                        .select('Time_1', 'Geography', 'GeoType_1', 'Age Adjusted Rate - Total', 'Value', 'Tertile')
+                                        .filter(d => d.GeoType_1 !== 'Citywide')
+
+                           
+                                        {{/*  .select(aq.not('Time_2', 'GeoID_2', 'GeoType_2', 'start_period_2', 'TimeDescription_2' ))  */}}
+                                        // .derive({
+                                        //     low1: d => d.Value > (d.min + d.bin) && d.Value,
+                                        //     medium: d => d.Value < ((d.min + d.bin) && d.Value < (d.max - d.bin)) && d.Value
+                                        // })
+                                        // .groupby("max", "min", "Value", "bin", "low1", "medium", "Time", "Name", "bin3")
 {{/*                                          
                                         .rollup({
                                             new: d => op.median(d.Median)
@@ -758,23 +703,62 @@
                                     // console.log(aqJoinedPrimaryTrendData)
                                     // aqJoinedPrimaryTrendData.print({ limit: 200 })
 
-                                    // console.log("TEST == TEST == TEST == TEST == TEST == TEST == TEST == TEST == TEST == TEST == ")
+
+                                    // const low = aq.from(aqJoinedPrimaryTrendData)
+                                    //     .filter(d => d.Tertile === 0)
+                                    //     {{/*  .groupby('Time_1', 'GeoType_1', 'Tertile')
+                                    //     .rollup({
+                                    //         median: d => op.median(d['Age Adjusted Rate - Total'])
+                                    //     })  */}}
+// 
+                                    // const med = aq.from(aqJoinedPrimaryTrendData)
+                                    //     .filter(d => d.Tertile === 18)
+                                    //     {{/*  .groupby('Time_1', 'GeoType_1', 'Tertile')
+                                    //     .rollup({
+                                    //         median: d => op.median(d['Age Adjusted Rate - Total'])
+                                    //     })  */}}
+// 
+                                    //     const hi = aq.from(aqJoinedPrimaryTrendData)
+                                    //     .filter(d => d.Tertile === 36)
+                                    //     {{/*  .groupby('Time_1', 'GeoType_1', 'Tertile')
+                                    //     .rollup({
+                                    //         median: d => op.median(d['Age Adjusted Rate - Total'])
+                                    //     })  */}}
+// 
+                                    // console.log('low --------------')
+                                    // low.print()
+                                    // console.log('med --------------')
+                                    // med.print()
+                                    // console.log('hi --------------')
+                                    // hi.print()
+
+
+
+                                    {{/*  const tea = aq.table({ x: [1, 2, 3, 4, 4, 5, 5, 5, 6, 6, 8, 9, 10] })
+                                    .groupby({
+                                      bin_0: aq.bin('x', {maxbins: 3}),
+                                    })
+                                    .count()
+
+                                        tea.print()  */}}
+
+                                    // console.log('aqJoinedPrimaryTrendData', aqJoinedPrimaryTrendData.objects())
                                    
                                         
-                                    // aqJoinedPrimaryTrendData.print()
-                                    joinedDataTrendDisparityObjects = aqJoinedPrimaryTrendData.objects();
+                                    // aqJoinedPrimaryTrendData.print({ limit: 40 })
+                                    // joinedDataTrendDisparityObjects = aqJoinedPrimaryTrendData.objects(); 
 
 
-                                    // aq.table({ x: [1, 2, 3, 4, 6, 8, 9, 10] })
-                                    //     .sample(aq.frac(1000), { replace: true })
-                                    //     .derive({ id: d => op.row_number() % 1000 })
-                                    //     .groupby('id')
-                                    //     .rollup({ mu: d => op.mean('x') })
-                                    //     .rollup({
-                                    //         lo: op.quantile('mu', 0.025), // exclude the bottom 2.5%
-                                    //         hi: op.quantile('mu', 0.975)  // exclude the top 2.5%
-                                    //     })
-                                    //     .print()
+                                    const newDisparity = aq.from(aqJoinedPrimaryTrendData)
+                                        .groupby("Time_1", "Tertile", "GeoType_1")
+                                        .rollup({
+                                            median: d => op.median(d["Age Adjusted Rate - Total"])
+                                        })
+                                        .filter(d => d.GeoType_1 === 'Subboro')
+
+                                    joinedDataTrendDisparityObjects = newDisparity.objects()
+                                    console.log('New Disparity Data ==========================')
+                                    newDisparity.print({ limit: 60 })
                             })
                     }
 
@@ -876,55 +860,55 @@
                                 const  aqJoinedPrimaryLinksData = aq.from(fullDataLinksObjects)
                                     .join(aqPrimaryMeasureTimes, ["Time", "TimeDescription"])
 
-                                    // console.log('@@@@@@@@@@@@@@@@@@@@ AQ PRIMARY DATA @@@@@@@@@@@@@@@@@@@@@@@@@ ' )
-                                    // aqJoinedPrimaryLinksData.print()
+                                // console.log('@@@@@@@@@@@@@@@@@@@@ AQ PRIMARY DATA @@@@@@@@@@@@@@@@@@@@@@@@@ ' )
+                                // aqJoinedPrimaryLinksData.print()
 
-                                    const joinedPrimaryLinksDataObject = aqJoinedPrimaryLinksData.objects();
-                                    const filteredJoinedPrimaryLinksDataObject = joinedPrimaryLinksDataObject.filter(d => 
-                                        d.start_period == mostRecentPrimaryMeasureStartTime && d.end_period == mostRecentPrimaryMeasureEndTime)
+                                const joinedPrimaryLinksDataObject = aqJoinedPrimaryLinksData.objects();
+                                const filteredJoinedPrimaryLinksDataObject = joinedPrimaryLinksDataObject.filter(d => 
+                                    d.start_period == mostRecentPrimaryMeasureStartTime && d.end_period == mostRecentPrimaryMeasureEndTime)
 
-                                    const joinedSecondaryLinksDataObject = aqJoinedSecondaryLinksData.objects();
+                                const joinedSecondaryLinksDataObject = aqJoinedSecondaryLinksData.objects();
 
-                                    let mostRecentJoinedSecondaryLinksDataObject = []
+                                let mostRecentJoinedSecondaryLinksDataObject = []
 
-                                    
+                                
 
-                                    // get the closest secondary end time 
-                                    const closestSecondaryTime = joinedSecondaryLinksDataObject.reduce((prev, curr) => {
-                                        return (Math.abs(curr.end_period - mostRecentPrimaryMeasureEndTime) < Math.abs(prev.end_period - mostRecentPrimaryMeasureEndTime) ? curr : prev);
-                                    });
+                                // get the closest secondary end time 
+                                const closestSecondaryTime = joinedSecondaryLinksDataObject.reduce((prev, curr) => {
+                                    return (Math.abs(curr.end_period - mostRecentPrimaryMeasureEndTime) < Math.abs(prev.end_period - mostRecentPrimaryMeasureEndTime) ? curr : prev);
+                                });
 
-                                    
+                                
 
-                                    const closestSecondaryData = joinedSecondaryLinksDataObject.filter(d => 
-                                        d.end_period === closestSecondaryTime.end_period)
+                                const closestSecondaryData = joinedSecondaryLinksDataObject.filter(d => 
+                                    d.end_period === closestSecondaryTime.end_period)
 
-                                    mostRecentJoinedSecondaryLinksDataObject = closestSecondaryData
+                                mostRecentJoinedSecondaryLinksDataObject = closestSecondaryData
 
-                                    // console.log('yo', joinedSecondaryLinksDataObject)
+                                console.log('yo', joinedSecondaryLinksDataObject)
 
-                                    const secondaryYears =  [...new Set(mostRecentJoinedSecondaryLinksDataObject.map(item => item.Time))];
-                                    const highest = Math.max(...secondaryYears);
+                                const secondaryYears =  [...new Set(mostRecentJoinedSecondaryLinksDataObject.map(item => item.Time))];
+                                const highest = Math.max(...secondaryYears);
 
-                                    // get lowest number
-                                    const lowest = Math.min(...secondaryYears);
+                                // get lowest number
+                                const lowest = Math.min(...secondaryYears);
 
-                                    if (secondaryYears.length > 1) {
-                                        selectedlinksSecondaryMeasureTime = `${lowest}-${highest}`;
-                                    } else {
-                                        selectedlinksSecondaryMeasureTime = `${secondaryYears[0]}`
-                                    }
-                                    
-                                    // console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SEONDARY YEARS', secondaryYears, highest, lowest)
+                                if (secondaryYears.length > 1) {
+                                    selectedlinksSecondaryMeasureTime = `${lowest}-${highest}`;
+                                } else {
+                                    selectedlinksSecondaryMeasureTime = `${secondaryYears[0]}`
+                                }
+                                
+                                // console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SEONDARY YEARS', secondaryYears, highest, lowest)
 
 
-                                    const aqMostRecentJoinedSecondaryLinksDataObject = aq.from(mostRecentJoinedSecondaryLinksDataObject)
+                                const aqMostRecentJoinedSecondaryLinksDataObject = aq.from(mostRecentJoinedSecondaryLinksDataObject)
 
-                                    const aqJoinedPrimarySecondaryData = aq.from(filteredJoinedPrimaryLinksDataObject)
-                                        .join(aqMostRecentJoinedSecondaryLinksDataObject, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
-                                    
-                                    // aqJoinedPrimarySecondaryData.print()
-                                    joinedDataLinksObjects = aqJoinedPrimarySecondaryData.objects();
+                                const aqJoinedPrimarySecondaryData = aq.from(filteredJoinedPrimaryLinksDataObject)
+                                    .join(aqMostRecentJoinedSecondaryLinksDataObject, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
+                                
+                                // aqJoinedPrimarySecondaryData.print()
+                                joinedDataLinksObjects = aqJoinedPrimarySecondaryData.objects();
 
                                 // console.log('==========================================================================')
                                 // console.log('Load Date - aqJoinedSecondaryLinksData')
@@ -1082,7 +1066,10 @@
                         const measurementType = measure[0].MeasurementType;
                         const secondaryMeasure = linksSecondaryMeasure[0].MeasurementType;
                         const secondaryIndicator = linksSecondaryIndicator[0].IndicatorLabel;
-                        const axis = measure[0].VisOptions[0].Links[0].Axis;
+                        {{/*  const axis = measure[0].VisOptions[0].Links[0].Axis;  */}}
+                        const axis = measure[0].VisOptions[0].Links.filter(d => d.MeasureID === secondaryMeasureId)[0].Axis
+
+                        console.log('AXIS: ', primaryMeasureId, secondaryMeasureId, measure[0], axis)
                         
                         
                         const about = measure[0].how_calculated;
@@ -1369,7 +1356,6 @@
                             $($.fn.dataTable.tables(true)).DataTable()
                                 .columns.adjust();
                             renderAboutSources(measureAbout, measureSources)
-                            // console.log('tab')
                             window.location.hash = 'display=summary'
                             updateChartPlotSize();
                         });
@@ -1385,9 +1371,9 @@
                                 const measure = defaultMapMeasure[0].MeasurementType;
                                 defaultMapbout = `<h6>${indicator.IndicatorName} - ${measure}</h6><p>${about}</p>`;
                                 defaultMapSources = `<h6>${indicator.IndicatorName} - ${measure}</h6><p>${sources}</p>`;
-                                renderAboutSources(defaultMapbout, defaultMapSources);
+                                renderAboutSources(defaultMapAbout, defaultMapSources);
                             } else {
-                                renderAboutSources(selectedMapbout, selectedMapSources);
+                                renderAboutSources(selectedMapAbout, selectedMapSources);
                             }
                         });
 
@@ -1543,9 +1529,11 @@
                 font-size: 18px;
                 color: #656565;
             }
-                .topic-text p {
+                .topic-text p li {
                 font-size: 12px;
             }
+
+            
             </style>
 
             <div class="row">
