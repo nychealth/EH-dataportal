@@ -157,7 +157,7 @@ const renderMap = (
   //             "lookup": "Geography-ID",
   //             "from": {
   //                 "data": {
-  //                 "url": "https://raw.githubusercontent.com/nycehs/NYC_geography/master/UHF42.topo.json",
+  //                 "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/main/geography/UHF42.topo.json",
   //                 "format": {"type": "topojson", "feature": "collection"}
   //                 },
   //                 "key": "properties.GEOCODE"

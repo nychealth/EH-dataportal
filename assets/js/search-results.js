@@ -3,7 +3,7 @@ let lunrIndex,
 $results,
 pagesIndex;
 
-var site_root = "/ehs-data-portal-frontend-temp";
+var site_root = "/EH-dataportal";
 
 // Initialize lunrjs using our generated index file
 
@@ -113,7 +113,6 @@ function initUI() {
         
     } else {
         // redirect to the homepage if there is no search term
-        // window.location.href = '/ehs-data-portal-frontend-temp/'
         window.location.href = site_root;
     }
 }

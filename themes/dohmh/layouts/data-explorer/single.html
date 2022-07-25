@@ -351,7 +351,6 @@
                     const loadGeo = () => {
                         const geoUrl = `https://raw.githubusercontent.com/nychealth/EHDP-data/main/geography/GeoLookup_2.csv`; // col named "GeoType"
                         {{/*  const geoUrl = `https://raw.githubusercontent.com/nychealth/EHDP-data/main/geography/GeoLookup.csv`; // col named "Geotype"  */}}
-                        // const geoStatic = `/ehs-data-portal-frontend-temp/IndicatorData/GeoLookup.csv`;
 
                         aq.loadCSV(geoUrl)
                             .then(data => {

@@ -1,6 +1,6 @@
 # The NYC Environment and Health Data portal - frontend development
 
-This repository contains a prototype of the Environment and Health Data Portal. You can view a staged development version [here](https://nycehs.github.io/ehs-data-portal-frontend-temp/). We are in the process of fully developing this. If you're interested in helping, you can [email us](mailto:trackingportal@health.nyc.gov) - we are always looking for people interested in user testing and co-design work.
+This repository contains a prototype of the Environment and Health Data Portal. You can view a staged development version [here](https://nychealth.github.io/EH-dataportal/). We are in the process of fully developing this. If you're interested in helping, you can [email us](mailto:trackingportal@health.nyc.gov) - we are always looking for people interested in user testing and co-design work.
 
 ## General Development
 
@@ -20,7 +20,7 @@ You will need the following things properly installed on your computer.
 Our git patterns are to develop on branches labelled hotfix-, content-, or feature-. Keep branch work focused on discrete tasks to avoid merge conflicts later. 
 
 In your local development environment, start the server by typing `hugo serve --environment local --disableFastRender` into the terminal.
-- `hugo serve` starts the server - you can then browse the site at http://localhost:1313/ehs-data-portal-frontend-temp 
+- `hugo serve` starts the server - you can then browse the site at http://localhost:1313/EH-dataportal
 - `--environment local` specifies that it will serve the site for the local environment, using content from `/config/local/config.toml`
 - `--disableFastRender` turns off fast render mode, so more small changes are rapidly served
 
@@ -36,7 +36,7 @@ The site runs a CodeQL analysis on merges/builds.
 ### Environment-specific builds
 The /config folder includes subfolders with environment-specific configuration. Specifically, there are different configuration files for serving the site locally, serving it on Github pages, and eventually, building for production.
 
-Currently, config/local/config.toml has a variable ```devpath = "/ehs-data-portal-frontend-temp"```. This can be inserted into templates in order to fix path issues. For example, in header.html, the following uses this environment variable to load the banner image:
+Currently, config/local/config.toml has a variable ```devpath = "/EH-dataportal"```. This can be inserted into templates in order to fix path issues. For example, in header.html, the following uses this environment variable to load the banner image:
 ```<div class="site-header bg-primary" style="background-image: url({{ $.Site.Params.devpath}}/images/header_background.jpg)">``` 
 
 To run a local-environment-specific serve or build, enter ```hugo serve --environment local``` or ```hugo build --environment local```. This will merge the contents of /config/local/config.toml with /config/_default/config.toml.
@@ -44,7 +44,7 @@ To run a local-environment-specific serve or build, enter ```hugo serve --enviro
 **You may find it useful to create aliases for these functions ([in Powershell](https://www.tutorialspoint.com/how-to-create-powershell-alias-permanently), or [Bash](https://www.shell-tips.com/bash/alias/))**.
 
 ### Deployment
-The `gh-pages` branch is served on GitHub Pages, here: [Environment and Health Data Portal](https://nycehs.github.io/ehs-data-portal-frontend-temp). This branch is [built](https://github.com/peaceiris/actions-hugo) and [served](https://github.com/peaceiris/actions-gh-pages) automatically by Hugo using GitHub Actions, triggered by a merged pull request on `development`. _(Note that this requires a workflow YAML file in both [`main`](https://github.com/nycehs/ehs-data-portal-frontend-temp/blob/main/.github/workflows/hugo-build-gh-pages.yml) and [`development`](https://github.com/nycehs/ehs-data-portal-frontend-temp/blob/development/.github/workflows/hugo-build-gh-pages.yml).)_
+The `gh-pages` branch is served on GitHub Pages, here: [Environment and Health Data Portal](https://nychealth.github.io/EH-dataportal). This branch is [built](https://github.com/peaceiris/actions-hugo) and [served](https://github.com/peaceiris/actions-gh-pages) automatically by Hugo using GitHub Actions, triggered by a merged pull request on `development`. _(Note that this requires a workflow YAML file in both [`main`](https://github.com/nychealth/EH-dataportal/blob/main/.github/workflows/hugo-build-gh-pages.yml) and [`development`](https://github.com/nychealth/EH-dataportal/blob/development/.github/workflows/hugo-build-gh-pages.yml).)_
 
 The branch deploy-Neighborhood-Reports is a dead-end branch meant for deploying only the NRs to our servers.
 
@@ -154,23 +154,6 @@ There are some critical content elements that are site wide or used in multiple 
 * `/data/globals/seo_defaults.yml` - These are the Site default meta values. The SEO image should stored in the `/assets/images` folder. Image dimensions should be 2400 × 1260 for a 2x image resolution.
 
 ### Data Explorer
-Currently, the Data Explorer just includes subtopics that link to Indicator Pages on the extant Portal. 
-
-Indicators are currently stored as json within subtopic content markdown file's front matter - see [asthma.md](https://github.com/nycehs/ehs-neighborhoodprofiles/blob/main/content/data-explorer/asthma.md) or below:
-
-```
-indicators: [
-    {
-        "name" : "ED visits (adults)",
-        "URL": "http://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2380,4466a0,11,Summarize"
-    },
-
-    {
-        "name" : "ED visits (age 0-4)",
-        "URL": "http://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2048,4466a0,11,Summarize"
-    }
-]
-```
 
 For the future iteration of the Data Vis Module, the following functions will be in place:
 - Indicators will be associated with subtopics via frontmatter
@@ -293,7 +276,7 @@ The partial `head.html` has a bunch of conditionals that add references to these
 
 You can comment on issues and we'll follow up as soon as we can. In the spirit of free software, everyone is encouraged to help improve this project.  Here are some ways you can contribute.
 
-- Comment on or clarify [issues](https://github.com/nycehs/ehs-data-portal-frontend-temp/issues)
+- Comment on or clarify [issues](https://github.com/nychealth/EH-dataportal/issues)
 - Suggest new features
 - Write code (no patch is too small), clean up code, or add new features
 

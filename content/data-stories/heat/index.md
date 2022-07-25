@@ -73,5 +73,5 @@ Resources
 Research
 - [A City Health Department’s Perspective on Preventing Heat-related Deaths](https://journals.lww.com/epidem/fulltext/2018/11000/Equitable_Access_to_Air_Conditioning___A_City.1.aspx)
 - [A Case-Only Study of Vulnerability to Heat Wave-Related Mortality in New York City (2000-2011)](https://www.ncbi.nlm.nih.gov/pubmed/25782056)
-- [About the Heat Vulnerability Index](https://nycehs.github.io/IndicatorPublic/EPHTPDF/HVI_FAQ.pdf)
+- [About the Heat Vulnerability Index](https://a816-dohbesp.nyc.gov/IndicatorPublic/EPHTPDF/HVI_FAQ.pdf)
 - [Awareness, risk perception, and protective behaviors for extreme heat and climate change in New York City](https://www.mdpi.com/1660-4601/15/7/1433)
