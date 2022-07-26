@@ -79,7 +79,7 @@
                 })
                 .select(aq.not("value"))
                 .unroll("IndicatorID");
-                arqTable.print(20);
+                //arqTable.print(20);
                 
                 var subtopicIndicatorsTable = arqTable.objects();
                 
@@ -95,8 +95,8 @@
 
                 
                 <script>
-                    console.log("$si_json_output_path", {{$si_json_output_path}})
-                    console.log("$si_resource.Permalink", {{$si_resource.Permalink}})
+                    // console.log("$si_json_output_path", {{$si_json_output_path}})
+                    // console.log("$si_resource.Permalink", {{$si_resource.Permalink}})
                 </script>
                 
                 <table id="indicators" class="display fs-sm my-1" style="font-size:12px; width:100%">
@@ -151,9 +151,29 @@
                 
                 for (let i = 0; i < indicators.length; i++) {  // change the 1 to indicators.length to get back to normal
                     
+                    // get all subtopics for this indicator
+                    let subtopics = subtopicIndicatorsTable.filter(element => element.IndicatorID == indicators[i].IndicatorID);
+
+                    // console.log("indicators[i].IndicatorID", indicators[i].IndicatorID);
+                    // console.log("subtopics", subtopics);
+                    
+                    // indicators
+                    
                     let row_i = document.createElement('tr'); // create row
                     let cell_1 = document.createElement('td') // create cell
-                    cell_1.innerHTML = indicators[i].IndicatorName // fill cell with indicator name.
+                    
+                    // if there's a subtopic, link; if not, just name
+                    
+                    if (subtopics.length > 0) {
+
+                        cell_1.innerHTML = "<a href='" + {{ .Site.BaseURL }} + "data-explorer/" + subtopics[0].subtopic + "/" + "?id=" + indicators[i].IndicatorID + "'>" + indicators[i].IndicatorName + "</a>"
+
+                    } else {
+
+                        cell_1.innerHTML = indicators[i].IndicatorName // fill cell with indicator name.
+
+                    }
+                    
                     row_i.appendChild(cell_1); // add this cell to this row
                     
                     let measurements = [];
@@ -166,10 +186,6 @@
                     // subtopics
                     
                     let cell_2 = document.createElement('td')
-                    
-                    // get all subtopics for this indicator
-                    {{/*  let subtopics = subtopicIndicatorsTable.filter(element => element.value.IndicatorID.includes(indicators[i].IndicatorID));  */}}
-                    let subtopics = subtopicIndicatorsTable.filter(element => element.IndicatorID == indicators[i].IndicatorID);
                     
                     let st_li = document.createElement('ul');
                     st_li.classList.add('no-bullets')
@@ -281,7 +297,7 @@
                                         
                     // sources
                     let unique_sources = [...new Set(sources)];
-                    console.log("unique_sources", unique_sources);
+                    // console.log("unique_sources", unique_sources);
                     let usrc = document.createElement('ul')
                     usrc.classList.add('no-bullets')
                     cell_6.appendChild(usrc);
