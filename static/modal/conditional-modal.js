@@ -1,5 +1,6 @@
 var SESSION_KEY = 'dialog-session';
-var ONE_DAY_MILLI_SEC = 24 * 60 * 60 * 1000;
+// var ONE_DAY_MILLI_SEC = 24 * 60 * 60 * 1000;
+var ONE_DAY_MILLI_SEC = 30 * 1000; // 30 sec
 
 function openDialog() {
 
