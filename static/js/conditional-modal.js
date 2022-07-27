@@ -1,6 +1,5 @@
 
 $(window).on('load', function() {
-    // $('#prototypeModal').modal('show');
     openModal();
 });
 
@@ -9,9 +8,6 @@ function openModal() {
     var SESSION_KEY = 'modal-session';
     // var TEST_TIME_DIFF = 24 * 60 * 60 * 1000; // 24 hours
     var TEST_TIME_DIFF = 10 * 1000; // 10 sec
-    
-    // console.log("sessionStorage", sessionStorage);
-    
     
     if (sessionStorage) {
 
