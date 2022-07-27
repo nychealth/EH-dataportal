@@ -26,13 +26,13 @@
     <ul id="results"></ul>
   </main>
   
-  {{/*  conditional modal  */}}
+  {{/*  put conditional modal JS and CSS at the bottom of every page  */}}
   
-  <script src="/modal/conditional-modal.js"></script>
-
+  {{- partial "conditional-modal.html" -}}
+  
   {{- partial "footer.html" . -}}
   {{- partial "js_bottom.html" -}}
   {{- block "js_bot" . }}{{- end }}
-
+  
 </body>
 </html>

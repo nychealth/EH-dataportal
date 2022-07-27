@@ -24,6 +24,8 @@
 
 <!-- Font Awesome -->
 <link rel="stylesheet" href="/fontawesome/css/all.min.css">
+
+<!-- main CSS -->
 {{ $sass := resources.Get "scss/theme.scss" }}
 {{- $style := $sass | resources.ToCSS -}}
 <link rel="stylesheet" href="{{ $style.Permalink }}" />
