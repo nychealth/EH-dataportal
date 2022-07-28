@@ -55,7 +55,7 @@
 
     </div>
     <!-- #nyc-top-header -->
-    <div class="site-header bg-primary" style="background-image: url({{ $.Site.Params.devpath}}/images/header_background.jpg)">
+    <div class="site-header bg-primary" style="background-image: url({{ $.Site.Params.devpath }}/images/header_background.jpg)">
         <div class="wrap-header">
 
             <div class="container-fluid wide">
@@ -160,9 +160,9 @@
         <div class="wide"> 
 
             <nav class="nav nav-pills border-bottom" role="navigation">
-                {{ $currentPage := . }}
-                {{ range .Site.Menus.main }}
-                <div class="nav-item{{ if or ($currentPage.IsMenuCurrent `main` .) (eq $currentPage.Permalink .URL) }} active{{ end }}">
+                {{- $currentPage := . -}}
+                {{- range .Site.Menus.main -}}
+                <div class="nav-item{{ if or ($currentPage.IsMenuCurrent `main` .) (eq $currentPage.Permalink .URL) }} active{{- end -}}">
 
                     <a class="nav-link" href="{{ .URL }}" id="nav-item-{{ .Identifier }}">
                         {{ .Pre }} {{ .Name }}

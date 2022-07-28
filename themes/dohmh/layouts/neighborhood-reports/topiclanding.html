@@ -1,4 +1,4 @@
-{{ define "main" }}
+{{- define "main" -}}
 
 <article class="container" id="skip-header-target">
     <div class="row">
@@ -11,14 +11,12 @@
                 </ul>
             </nav>
         </div>
-
-
     </div>
 
     <div class="row">
         <div class="col-md-8 pl-0">
             <h2>{{ .Title }}</h2>
-            <p>{{ .Content}}</p>
+            <p>{{- .Content -}}</p>
             <p>Get a neighborhood report by searching for your neighborhood:</p>
             <div class="bg-active p-2 p-md-4 mb-4">
                 <form action="/neighborhood-reports" method="get" class="autocomplete-form">
@@ -43,45 +41,37 @@
             <h3 class="fs-rg mb-2">Neighborhood Reports</h3>
             <hr class="my-2">
                 {{ with .Site.GetPage "/neighborhood-reports/activedesign.md" }}
-                <p><a href="{{ .Permalink}}">{{ .Title }}
+                <p><a href="{{ .Permalink }}">{{ .Title }}
                 </a></p>
-                {{ end }}
+                {{- end -}}
                 {{ with .Site.GetPage "/neighborhood-reports/asthma.md" }}
-                <p><a href="{{ .Permalink}}">{{ .Title }}
+                <p><a href="{{ .Permalink }}">{{ .Title }}
                 </a></p>
-                {{ end }}
+                {{- end -}}
                 {{ with .Site.GetPage "/neighborhood-reports/climateandhealth.md" }}
-                <p><a href="{{ .Permalink}}">{{ .Title }}
+                <p><a href="{{ .Permalink }}">{{ .Title }}
                 </a></p>
-                {{ end }}
+                {{- end -}}
                 {{ with .Site.GetPage "/neighborhood-reports/housing.md" }}
-                <p><a href="{{ .Permalink}}">{{ .Title }}
+                <p><a href="{{ .Permalink }}">{{ .Title }}
                 </a></p>
-                {{ end }}
+                {{- end -}}
                 {{ with .Site.GetPage "/neighborhood-reports/outdoorair.md" }}
-                <p><a href="{{ .Permalink}}">{{ .Title }}
+                <p><a href="{{ .Permalink }}">{{ .Title }}
                 </a></p>
-                {{ end }}
+                {{- end -}}
         </div>
     </div>
 
 </article>
 
-
-
-
-
-
-
-
-  {{ $js := resources.Get "js/accessible-autocomplete.min.js" }}
-  {{ $secureJS := $js }}
+  {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
+  {{- $secureJS := $js -}}
   <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
   
-  {{ $js := resources.Get "js/accessible-autocomplete.min.js.map" }}
-  
-  {{ $js := resources.Get "js/uhflist.js" }}
-  {{ $secureJS := $js }}
+  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
+  {{- $js := resources.Get "js/uhflist.js" -}}
+  {{- $secureJS := $js -}}
   <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
 <script type="text/javascript"> 
@@ -127,4 +117,4 @@
       });
    </script>
 
-{{ end }}
+{{- end -}}

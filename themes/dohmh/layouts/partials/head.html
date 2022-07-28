@@ -5,19 +5,19 @@
 <!-- Corrects IE Compatibility Mode -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>{{ block "title" . }}
-    {{ if .Params.seo_title }}{{ .Params.seo_title }}{{ else }}{{ .Title }}{{ end }} &#x7c; {{ .Site.Title }}
-{{ end }}</title>
+<title>{{- block "title" . -}}
+    {{- if .Params.seo_title -}}{{- .Params.seo_title -}}{{- else -}}{{ .Title }}{{- end -}} &#x7c; {{ .Site.Title }}
+{{- end -}}</title>
 
 {{/*  content translations  */}}
 
-{{ if .IsTranslated }}
-	{{ range .Translations }}
+{{- if .IsTranslated -}}
+	{{- range .Translations -}}
 	<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
-	{{ end }}
-{{ end }}
+	{{- end -}}
+{{- end -}}
 
-{{ partial "seo" . }}
+{{- partial "seo" . -}}
 
 <!-- jQuery (full, compressed version) -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" 
@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="/fontawesome/css/all.min.css">
 
 <!-- main CSS -->
-{{ $sass := resources.Get "scss/theme.scss" }}
+{{- $sass := resources.Get "scss/theme.scss" -}}
 {{- $style := $sass | resources.ToCSS -}}
 <link rel="stylesheet" href="{{ $style.Permalink }}" />
 

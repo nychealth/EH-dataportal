@@ -56,34 +56,24 @@
     </div>
     <!-- #nyc-top-header -->
 
-    
-
-
-
-
     <div class="container-fluid collapse d-lg-block px-0 border-lg-top" id="nav-primary">
-
         <div class="wide">
-
             <nav class="nav nav-pills border-bottom" role="navigation">
                 {{- $currentPage := . -}}
                 {{- range .Site.Menus.main -}}
-                <div class="nav-item{{ if or ($currentPage.IsMenuCurrent `main` .) (eq $currentPage.Permalink .URL) }} active{{ end }}">
-
+                <div class="nav-item{{ if or ($currentPage.IsMenuCurrent `main` .) (eq $currentPage.Permalink .URL) }} active{{- end -}}">
                     <a class="nav-link" href="{{ .URL }}" id="nav-item-{{ .Identifier }}">
-                        {{ .Pre }} {{ .Name }}
+                        {{- .Pre -}} {{- .Name -}}
                     </a>
-
                 </div>
                 <!-- .nav-item -->
+
                 {{- end -}}
                 
             </nav>
-
         </div>
         <!-- .wide -->
 
     </div>
-
 </header>
 <!-- #global-header -->

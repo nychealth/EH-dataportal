@@ -1,4 +1,4 @@
-{{ define "main" }}
+{{- define "main" -}}
 
 <article class="container-fluid overflow-hidden" id="primary-content">
 
@@ -9,10 +9,10 @@
             <div class="col-9 mx-auto">
                 <h1>Oops!</h1><br>
                 <p>This isn't a page on this site. 
-                    {{ with .Site.GetPage "_index.md" }}
+                    {{- with .Site.GetPage "_index.md" -}}
                     Return to the <a href="{{ .Permalink }}">
                         Environment and Health Data Portal Home Page
-                    </a>.{{ end }}</p>
+                    </a>.{{- end -}}</p>
             </div>
           
         </div>
@@ -22,4 +22,4 @@
   </div>
   
 </article>
-{{ end }}
+{{- end -}}

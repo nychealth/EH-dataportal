@@ -1,35 +1,35 @@
 
-{{ $page_link := $.content.Permalink }}
-{{ $cats := $.content.Params.categories }}
-{{ $layout := .layout }}
+{{- $page_link := $.content.Permalink -}}
+{{- $cats := $.content.Params.categories -}}
+{{- $layout := .layout -}}
 
-{{ range where $.content.Site.RegularPages "Section" .section }}
-    {{ $page := . }}
-    {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
-        {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
+{{- range where $.content.Site.RegularPages "Section" .section -}}
+    {{- $page := . }}
+    {{- $has_common_cats := intersect $cats .Params.categories | len | lt 0 -}}
+        {{- if and $has_common_cats (ne $page_link $page.Permalink) -}}
 
-            {{ if eq $layout "button"}}
+            {{- if eq $layout "button" -}}
 
-            <a class="btn btn-outline-primary btn-md has-icon disperse mb-1" href="{{ .Permalink}}">
+            <a class="btn btn-outline-primary btn-md has-icon disperse mb-1" href="{{ .Permalink }}">
             <span class="fas fa-angle-right" aria-hidden="true"></span>
             <span class="title">{{ .Title }}</span>
             </a>
 
-            {{ else if eq $layout "card"}}
-            <a href="{{ .URL}}">{{ .Title }}</a>
+            {{- else if eq $layout "card" -}}
+            <a href="{{ .URL }}">{{ .Title }}</a>
             <hr class="my-1">
 
-            {{ else if eq $layout "list"}}
+            {{- else if eq $layout "list" -}}
             <div class="col-md-6 pl-0">
-                <p><a href="{{ .URL}}">{{ .Title}}</a></p>
+                <p><a href="{{ .URL }}">{{ .Title }}</a></p>
             </div>
 
-            {{ else if eq $layout "singlelist"}}
-            <a href="{{ .Permalink}}">{{ .Title }}</a>
+            {{- else if eq $layout "singlelist" -}}
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
             <hr class="my-1">
 
-            {{ end }}
+            {{- end -}}
 
-        {{ end}}
+        {{- end -}}
 
-{{ end }}
+{{- end -}}

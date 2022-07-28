@@ -1,5 +1,4 @@
-{{ define "main" }}
-
+{{- define "main" -}}
 
 <article class="container-fluid" id="skip-header-target">
 
@@ -14,19 +13,16 @@
                 </ul>
             </nav>
         </div>
-
         <div class="col-md-2 mr-auto"></div>
-
     </div>
 
     <div class="row">
         <div class="col-md-7 col-sm-12 ml-auto">
-
             <div class="row">
                 <h2><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
                     {{ .Title }}</h2>
         
-                {{ .Content}}
+                {{- .Content -}}
 
                 <p>These data provide a useful indicator of the health impacts of extreme heat. Typically, 10,000 people visit an emergency department (or ED, also called the emergency room) every day in NYC. When somebody visits the ED, they're examined, and asked to describe how they feel. These findings are recorded, and hospitals send these records to the Health Department. We search these records for diagnostic codes (when available) and words describing why patients are at the ED to track specific health conditions in near real-time. This is called <a href="#syndromicmodal" data-toggle="modal" class="badge badge-pill badge-warning">syndromic surveillance</a>, and it helps us track citywide trends.
                 </p>
@@ -34,11 +30,7 @@
                 <p>Below are data on the number of <a href="#heatmodal" data-toggle="modal" class="badge badge-pill badge-warning">heat syndrome</a> visits to emergency departments, and the daily maximum temperature. <a href="#whatmodal" data-toggle="modal" class="badge badge-pill badge-warning">What do we use these data for</a>?</p></p>
 
             </div>
-
-    
-    
         </div>
-
 
         <div class="col-md-4 mr-auto text-right">
             <div class="mt-4" style="border-radius: 5px;">
@@ -56,16 +48,12 @@
                       To learn more about heat and health, visit <a href="https://www1.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page">Extreme Heat and Health</a>. To stay safe in the heat, visit <a href="https://www1.nyc.gov/assets/em/html/beat-the-heat/beattheheat.html">Beat the Heat</a>.</p>
                  </div>
             </div>
-    
-
         </div>
-
     </div>
 
     <div class="row mt-2" >
         <div class="col-11 mx-auto pl-0">
             <h3 style="background-color:#f1f1f1; padding: 10px; border-radius: 5px;">Daily data (2022)</h3>
-
 
             <div class="row mt-2 pl-2">
               <iframe title="2022 Heat ED Visits" aria-label="Interactive line chart" id="datawrapper-chart-8gwbY" src="https://datawrapper.dwcdn.net/8gwbY/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
@@ -83,21 +71,13 @@
             <div class="row my-2 fs-sm">
               <iframe title="Heat-related ED visits: 2017 to 2021" aria-label="Scatter Plot" id="datawrapper-chart-ECKxz" src="https://datawrapper.dwcdn.net/ECKxz/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
               </script>
-            
             </div>
-            
             
             <div class="row my-4" style="background-color: #f1f1f1; padding: 10px; border-radius: 5px;">
                 <a href="https://github.com/nychealth/EHDP-data/tree/main/datafeatures/heatsyndrome">To download data and for additional documentation, please see our Github repository</a>.
                 </div>
-
-
         </div>
     </div>
-
-
-
-
 
 <script>
 
@@ -124,8 +104,6 @@
     }
 
 </script>
-
-
       <!-- Syndromic modal -->
   <div class="modal fade" id="syndromicmodal" tabindex="-1" role="dialog" aria-labelledby="syndromicmodaltitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -197,11 +175,6 @@
         </div>
       </div>
 
-
 </article>
 
-
-
-
-
-{{end}}
+{{- end -}}
