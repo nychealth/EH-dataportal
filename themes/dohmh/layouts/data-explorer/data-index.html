@@ -92,8 +92,6 @@
                 {{ $si_json_output_path := "/IndicatorData/subtopic_indicators.json" }}
                 {{ $si_resource := $subtopic_indicators_map.Get "subtopic_indicators" | jsonify | resources.FromString $si_json_output_path }}
                 
-
-                
                 <script>
                     // console.log("$si_json_output_path", {{$si_json_output_path}})
                     // console.log("$si_resource.Permalink", {{$si_resource.Permalink}})
