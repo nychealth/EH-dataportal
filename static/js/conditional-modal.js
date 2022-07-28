@@ -6,8 +6,8 @@ $(window).on('load', function() {
 function openModal() {
     
     var SESSION_KEY = 'modal-session';
-    // var TEST_TIME_DIFF = 24 * 60 * 60 * 1000; // 24 hours
-    var TEST_TIME_DIFF = 10 * 1000; // 10 sec
+    var TEST_TIME_DIFF = 1000 * 60 * 60 * 24; // ms * sec * min * hrs
+    // var TEST_TIME_DIFF = 1000 * 10; // ms * sec
     
     if (sessionStorage) {
 
