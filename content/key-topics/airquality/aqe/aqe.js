@@ -22,7 +22,7 @@
       neighborhoodName = event.target[0].value; // gives you full neighborhood name
       ntaCode = event.target[0].value.slice(0, 4); //  gives you NTA code
   
-      document.getElementById('NTA').innerHTML = 'Your neighborhood: <h3><span style="font-weight:bold;color:#15607a">' + neighborhoodName + '</span></h3>';
+      document.getElementById('NTA').innerHTML = 'Your neighborhood: <h3><span style="font-weight:bold;color:#15607a">' + DOMPurify.sanitize(neighborhoodName) + '</span></h3>';
       document.getElementById('yourneighb').style.display = "block";
 
      dataFilter();

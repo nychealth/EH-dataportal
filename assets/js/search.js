@@ -2,7 +2,7 @@ const handleSearch = (e) => {
   const search = $('form[role="search"] input').val()
   e.preventDefault();
   if (search.length > 2) {
-    window.location.href = `/EH-dataportal/search-results/index.html?search=${search}`;
+    window.location.href = `/EH-dataportal/search-results/index.html?search=${DOMPurify.sanitize(search)}`;
   }
 }
 
