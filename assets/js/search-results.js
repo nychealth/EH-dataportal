@@ -1,7 +1,9 @@
-const searchTerm = new URL(location.href).searchParams.get("search");
+const searchTerm = DOMPurify.sanitize(new URL(location.href).searchParams.get("search"));
+console.log("searchTerm", searchTerm);
+
 let lunrIndex,
-$results,
-pagesIndex;
+    $results,
+    pagesIndex;
 
 var site_root = "/EH-dataportal";
 
