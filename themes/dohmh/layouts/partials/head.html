@@ -41,12 +41,9 @@
 {{- end -}}
 
 <!-- sanitizing html strings -->
-{{- if (eq .Params.type "search-results") -}}
-    <script src="https://cdn.jsdelivr.net/npm/dompurify@2.3.10/dist/purify.min.js" 
-        integrity="sha256-keaR/uWEpEmmUnoJ6BemH9gp9Ng8u/YplhVwdmmquNY=" 
-        crossorigin="anonymous"></script>
-    <!-- -->
-{{- end -}}
+<script src="https://cdn.jsdelivr.net/npm/dompurify@2.3.10/dist/purify.min.js" 
+    integrity="sha256-keaR/uWEpEmmUnoJ6BemH9gp9Ng8u/YplhVwdmmquNY=" 
+    crossorigin="anonymous"></script>
 
 <!--Other data libraries. To call, have datatables: true in a page's frontmatter-->
 {{- if .Params.datatables -}}

@@ -311,9 +311,9 @@
   // this takes the form and on submit, sends page to a new location.
   var searchForm = document.getElementById('last-neighborhood-select') // this is last-neighborhood-select because of changes applied by the AA JS.
   document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
-  e.preventDefault(); // prevent page re-load
-  var locVal = searchForm.options[searchForm.selectedIndex].value;
-  window.location = '{{ $.Site.Params.devpath}}/neighborhood-reports/'+ locVal + "/" + reportExt;
+    e.preventDefault(); // prevent page re-load
+    var locVal = searchForm.options[searchForm.selectedIndex].value;
+    window.location = '{{ $.Site.Params.devpath}}/neighborhood-reports/'+ locVal + "/" + reportExt;
   });
 
 

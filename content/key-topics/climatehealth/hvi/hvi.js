@@ -148,7 +148,7 @@ function dataChange() {
 
 
 
-  document.querySelector("#NTA").innerHTML = '<h4>' + selectedName + '</h4>';
+  document.querySelector("#NTA").innerHTML = '<h4>' + DOMPurify.sanitize(selectedName) + '</h4>';
   //document.querySelector("#NTA2").innerHTML = selectedName;
   //document.querySelector("#NTA3").innerHTML = selectedName;
   document.querySelector("#tempVal").innerHTML = nSURFACETEMP + '° F';
