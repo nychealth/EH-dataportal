@@ -16,7 +16,7 @@ on:
     branches: 
       - main
       - development
-  pull_request:
+  pull_request_target: # analyze the base branch (aka main or development) of the closed PR
     branches: 
       - main
       - development
@@ -28,6 +28,7 @@ on:
 jobs:
   analyze:
     name: Analyze
+    if: github.event.pull_request.merged == true # only run the action if the PR was merged
     runs-on: ubuntu-latest
     permissions:
       actions: read
