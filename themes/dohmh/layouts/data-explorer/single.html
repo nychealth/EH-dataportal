@@ -1707,12 +1707,12 @@
           {{ range (where .Site.Pages "Section" "data-explorer") }} // range through data_explorer pages
             var option = document.createElement("OPTION");
             //Set Neighborhood Name in Text part.
-            option.innerHTML = {{ .Title}}
+            option.innerHTML = {{ .Title }}
             // set the option value - this adds the environment variable to give it the base URL.
             option.value = '{{ .Site.Params.devpath}}/{{ .RelPermalink }}'
             //Add the Option element to DropDownList.
             ddlData.options.add(option);
-          {{ end}}
+          {{ end }}
        };
 
        populateDropDownList(); // runs the function above.
@@ -1732,7 +1732,7 @@
     var dataSearchForm = document.getElementById('all-data-select') // this isn't all-data, but all-data-select because of changes applied by the AA JS.
     document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
         e.preventDefault(); // prevent page re-load
-        window.location.assign(dataSearchForm.options[dataSearchForm.selectedIndex].value)
+        window.location.assign(DOMPurify.sanitize(dataSearchForm.options[dataSearchForm.selectedIndex].value))
       });
 
 
