@@ -1,4 +1,4 @@
-{{ define "main" }}
+{{- define "main" -}}
 
 <article class="container" id="skip-header-target">
 
@@ -6,7 +6,6 @@
         <h1><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>Data Stories</h1>
         <p>Explainers and perspectives on important health and environment topics. View data stories about:</p>
     </div>
-
 
     <div class="row mt-4">
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -35,7 +34,6 @@
                 <a class="nav-link" id="pills-how-tab" data-toggle="pill" href="#pills-how" role="tab" aria-controls="pills-how" aria-selected="false">How we work</a>
               </li>
           </ul>
-
     </div>
 
     <div class="row">
@@ -43,110 +41,106 @@
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
 
-
                     <div class="row pb-2">
                         
-                            {{ range .Paginator.Pages }}
+                            {{- range .Paginator.Pages -}}
                             <div class="col-md-4  my-2 py-2 itemfocus">
-                                <a class="h2 fs-md" href="{{ .Permalink}}">{{ .Title }}</a>
+                                <a class="h2 fs-md" href="{{ .Permalink }}">{{ .Title }}</a>
                                 <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                                <p class="text-right fs-sm"><a href="{{ .Permalink}}">Read more...</a></p>
+                                <p class="text-right fs-sm"><a href="{{ .Permalink }}">Read more...</a></p>
                                 </div>
-                            {{ end }}
+                            {{- end -}}
                     </div>
 
                     <div class="row my-3">
                         <div class="col-md-4 mx-auto">
                             <!-- Hugo's default pagination template. -->
-                            {{ template "_internal/pagination.html" . }}
+                            {{- template "_internal/pagination.html" . -}}
                         </div>
-
                     </div>
-
-
                 </div>
 
                 <div class="tab-pane fade" id="pills-aq" role="tabpanel" aria-labelledby="pills-aq-tab">
                     <div class="row">
-                        {{ range where .RegularPages "Params.categories" "intersect" (slice "airquality") }}
+                        {{- range where .RegularPages "Params.categories" "intersect" (slice "airquality") -}}
                         <div class="col-md-4  my-2 py-2 itemfocus">
-                        <a class="h2 fs-md" href="{{ .Permalink}}">{{ .Title }}</a>
+                        <a class="h2 fs-md" href="{{ .Permalink }}">{{ .Title }}</a>
                         <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                        <p class="text-right fs-sm"><a href="{{ .Permalink}}">Read more...</a></p>
+                        <p class="text-right fs-sm"><a href="{{ .Permalink }}">Read more...</a></p>
                         </div>
-                        {{end}}
+                        {{- end -}}
                     </div>
                 </div>
 
                 <div class="tab-pane fade" id="pills-transportation" role="tabpanel" aria-labelledby="pills-transportation-tab">
                     <div class="row">
-                        {{ range where .RegularPages "Params.categories" "intersect" (slice "transportation") }}
+                        {{- range where .RegularPages "Params.categories" "intersect" (slice "transportation") -}}
                         <div class="col-md-4  my-2 py-2 itemfocus">
-                            <a class="h2 fs-md" href="{{ .Permalink}}">{{ .Title }}</a>
+                            <a class="h2 fs-md" href="{{ .Permalink }}">{{ .Title }}</a>
                             <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                            <p class="text-right fs-sm"><a href="{{ .Permalink}}">Read more...</a></p>
+                            <p class="text-right fs-sm"><a href="{{ .Permalink }}">Read more...</a></p>
                             </div>
-                        {{end}}
+                        {{- end -}}
                     </div>
                 </div>
     
                 <div class="tab-pane fade" id="pills-justice" role="tabpanel" aria-labelledby="pills-justice-tab">
                     <div class="row">
-                        {{ range where .RegularPages "Params.categories" "intersect" (slice "social") }}
+                        {{- range where .RegularPages "Params.categories" "intersect" (slice "social") -}}
                         <div class="col-md-4  my-2 py-2 itemfocus">
-                            <a class="h2 fs-md" href="{{ .Permalink}}">{{ .Title }}</a>
+                            <a class="h2 fs-md" href="{{ .Permalink }}">{{ .Title }}</a>
                             <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                            <p class="text-right fs-sm"><a href="{{ .Permalink}}">Read more...</a></p>
+                            <p class="text-right fs-sm"><a href="{{ .Permalink }}">Read more...</a></p>
                             </div>
-                        {{end}}
+                        {{- end -}}
                     </div>
                 </div>
     
                 <div class="tab-pane fade" id="pills-climate" role="tabpanel" aria-labelledby="pills-climate-tab">
                     <div class="row">
-                        {{ range where .RegularPages "Params.categories" "intersect" (slice "climatehealth") }}
+                        {{- range where .RegularPages "Params.categories" "intersect" (slice "climatehealth") -}}
                         <div class="col-md-4  my-2 py-2 itemfocus">
-                            <a class="h2 fs-md" href="{{ .Permalink}}">{{ .Title }}</a>
+                            <a class="h2 fs-md" href="{{ .Permalink }}">{{ .Title }}</a>
                             <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                            <p class="text-right fs-sm"><a href="{{ .Permalink}}">Read more...</a></p>
+                            <p class="text-right fs-sm"><a href="{{ .Permalink }}">Read more...</a></p>
                             </div>
-                        {{end}}
+                        {{- end -}}
                     </div>
                 </div>
     
                 <div class="tab-pane fade" id="pills-housing" role="tabpanel" aria-labelledby="pills-housing-tab">
                     <div class="row">
-                        {{ range where .RegularPages "Params.categories" "intersect" (slice "housing") }}
+                        {{- range where .RegularPages "Params.categories" "intersect" (slice "housing") -}}
                         <div class="col-md-4  my-2 py-2 itemfocus">
-                            <a class="h2 fs-md" href="{{ .Permalink}}">{{ .Title }}</a>
+                            <a class="h2 fs-md" href="{{ .Permalink }}">{{ .Title }}</a>
                             <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                            <p class="text-right fs-sm"><a href="{{ .Permalink}}">Read more...</a></p>
+                            <p class="text-right fs-sm"><a href="{{ .Permalink }}">Read more...</a></p>
                             </div>
-                        {{end}}
+                        {{- end -}}
                     </div>
                 </div>
     
                 <div class="tab-pane fade" id="pills-food" role="tabpanel" aria-labelledby="pills-food-tab">
                     <div class="row">
-                        {{ range where .RegularPages "Params.categories" "intersect" (slice "foodanddrink") }}
+                        {{- range where .RegularPages "Params.categories" "intersect" (slice "foodanddrink") -}}
                         <div class="col-md-4  my-2 py-2 itemfocus">
-                            <a class="h2 fs-md" href="{{ .Permalink}}">{{ .Title }}</a>
+                            <a class="h2 fs-md" href="{{ .Permalink }}">{{ .Title }}</a>
                             <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                            <p class="text-right fs-sm"><a href="{{ .Permalink}}">Read more...</a></p>
+                            <p class="text-right fs-sm"><a href="{{ .Permalink }}">Read more...</a></p>
                             </div>
-                        {{end}}
+                        {{- end -}}
                     </div>
                 </div>
     
                 <div class="tab-pane fade" id="pills-how" role="tabpanel" aria-labelledby="pills-how-tab">
                     <div class="row">
-                        {{ range where .RegularPages "Params.categories" "intersect" (slice "internal") }}
+                        {{- range where .RegularPages "Params.categories" "intersect" (slice "internal") -}}
                         <div class="col-md-4  my-2 py-2 itemfocus">
-                            <a class="h2 fs-md" href="{{ .Permalink}}">{{ .Title }}</a>
+                            <a class="h2 fs-md" href="{{ .Permalink }}">{{ .Title }}</a>
                             <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                            <p class="text-right fs-sm"><a href="{{ .Permalink}}">Read more...</a></p>
+                            <p class="text-right fs-sm"><a href="{{ .Permalink }}">Read more...</a></p>
                             </div>
-                        {{end}}
+                        {{- end -}}
                     </div>
                 </div>
             </div>
@@ -213,4 +207,4 @@
 
 </article>
 
-{{end}}
+{{- end -}}
