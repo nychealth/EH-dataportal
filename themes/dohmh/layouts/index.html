@@ -29,9 +29,9 @@
                 <div class="row mt-2">
                   
                   {{- range where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index" -}}
-                  {{- if ne .Title "Key Topics in Environmental Health"}}
+                  {{- if ne .Title "Key Topics in Environmental Health" -}}
                   <div class="col-md-6 col-sm-12">
-                    <a class="btn btn-outline-gray btn-sm has-icon disperse mt-2" href="{{.Permalink}}">
+                    <a class="btn btn-outline-gray btn-sm has-icon disperse mt-2" href="{{ .Permalink }}">
                       <span class="fas fa-angle-right"></span>
                       <span class="title">{{- .Title -}}</span>
                     </a>
@@ -39,11 +39,8 @@
                   {{- end -}}
                   {{- end -}}
                   
-                  
                 </div>
-                
               </div>
-              
             </div>
             <!-- .collapse -->
             
@@ -85,16 +82,13 @@
                     </div>
                   </div>
                 </form>
-                
                 <hr>
               </div>
-              
             </div>
             <!-- .collapse -->
             
           </div>
           <!-- .card -->
-          
           
           <div class="card bg-lightgray mb-2" style="border-left: 10px solid #00923E!important;">
             
@@ -142,7 +136,7 @@
               </p>
               <div class="fs-sm">
                 {{- range first 5 ((where .Site.RegularPages "Section" "data-stories")) -}}
-                <a href="{{- .RelPermalink -}}">{{- .Title -}}</a>
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
                 <hr class="my-1">
                 {{- end -}}
               </div>
@@ -189,7 +183,7 @@
                     </p>
                     <hr>
                     {{- with .Site.GetPage "about/about.md" -}}
-                    <a href="{{- .Permalink -}}" class="btn btn-outline-gray btn-sm mt-2" style="float:right">About
+                    <a href="{{ .Permalink }}" class="btn btn-outline-gray btn-sm mt-2" style="float:right">About
                       Us&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
                       {{- end -}}
                     </div>
@@ -242,13 +236,13 @@
                 
                 {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
                 {{- $secureJS := $js -}}
-                <script type="text/javascript" src="{{- $secureJS.Permalink -}}" integrity="{{- $secureJS.Data.Integrity -}}"></script>
+                <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
                 
                 {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
                 
                 {{- $js := resources.Get "js/uhflist.js" -}}
                 {{- $secureJS := $js -}}
-                <script type="text/javascript" src="{{- $secureJS.Permalink -}}" integrity="{{- $secureJS.Data.Integrity -}}"></script>
+                <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
                 
                 <script type="text/javascript">
                   // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx

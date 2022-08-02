@@ -1,10 +1,10 @@
-{{ define "main" }}
+{{- define "main" -}}
 
 <article class="container overflow-hidden" id="primary-content">
 
   <div class="col-md-10 mx-auto mt-4">
-    <h1><i class="fas fa-map-marked-alt" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title}}</h1>
-    <p>{{ .Content }}</p>
+    <h1><i class="fas fa-map-marked-alt" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
+    <p>{{- .Content -}}</p>
   </div>
 
   <div class="row my-4">
@@ -79,31 +79,28 @@
 
         <ul class="list-unstyled">
           <!-- Ranges through content/neighborhood-reports/NEIGHBORHOOD/*.md -->          
-          {{ range .Sections.ByTitle }}
+          {{- range .Sections.ByTitle -}}
             <li>
-                <a href="{{.Permalink}}">{{.Title}}</a>
+                <a href="{{ .Permalink }}">{{ .Title }}</a>
             </li>
-          {{ end }}
+          {{- end -}}
         </ul>
       </div>
     </div>
   </div>
 
-
-
-
 </article>
 
-{{ end }}
+{{- end -}}
 
 {{ define "js_bot" }}
 
-{{ $js := resources.Get "js/accessible-autocomplete.min.js" }}
-{{ $secureJS := $js }}
+{{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
+{{- $secureJS := $js -}}
 <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-{{ $js := resources.Get "js/uhflist.js" }}
-{{ $secureJS := $js }}
+{{- $js := resources.Get "js/uhflist.js" -}}
+{{- $secureJS := $js -}}
 <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
 <script type="text/javascript"> 
@@ -170,7 +167,6 @@ function changeDescription(x) {
   };
 
 
-
 // this populates the neighborhood dropdown list from uhflist.js
   // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
   function PopulateDropDownList() {
@@ -220,6 +216,4 @@ function changeDescription(x) {
     });
   </script>
 
-
-{{ end }}
-
+{{- end -}}

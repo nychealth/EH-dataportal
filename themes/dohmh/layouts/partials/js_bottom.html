@@ -22,5 +22,5 @@
 <!-- NYC template JS (RTL, search and language toggle, back to top)  -->
 {{- $js := resources.Get "js/main.js" -}}
 {{- $js := resources.Get "js/search.js" -}}
-{{ $secureJS := $js }}
+{{- $secureJS := $js -}}
 <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>

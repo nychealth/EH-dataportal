@@ -15,7 +15,7 @@
             </div>
         </div>
         
-        <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title}}</h1>
+        <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
         {{- .Content -}}
         
         <!-- Generate JSON object with subtopic pages and keys, and internal_ids in arrays -->
@@ -89,12 +89,12 @@
             <p class="sr-only">Also outputting a JSON version of the list to <code><a href="/IndicatorData/subtopic_indicators.json">/IndicatorData/subtopic_indicators.json</code></a> 
                 (which on build will be put into <code>/docs/IndicatorData/</code>)</strong>
                 
-                {{ $si_json_output_path := "/IndicatorData/subtopic_indicators.json" }}
-                {{ $si_resource := $subtopic_indicators_map.Get "subtopic_indicators" | jsonify | resources.FromString $si_json_output_path }}
+                {{- $si_json_output_path := "/IndicatorData/subtopic_indicators.json" -}}
+                {{- $si_resource := $subtopic_indicators_map.Get "subtopic_indicators" | jsonify | resources.FromString $si_json_output_path -}}
                 
                 <script>
-                    // console.log("$si_json_output_path", {{$si_json_output_path}})
-                    // console.log("$si_resource.Permalink", {{$si_resource.Permalink}})
+                    // console.log("$si_json_output_path", {{$si_json_output_path }})
+                    // console.log("$si_resource.Permalink", {{$si_resource.Permalink }})
                 </script>
                 
                 <table id="indicators" class="display fs-sm my-1" style="font-size:12px; width:100%">
@@ -394,7 +394,6 @@
                 geobullet_filter(active_geographies);
                 
             }
-            
             
         </script>
         

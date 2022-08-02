@@ -1,4 +1,4 @@
-{{ define "main" }}
+{{- define "main" -}}
 
 <article id="skip-header-target">
 
@@ -6,41 +6,32 @@
     <div class="col-md-10 col-sm-12 mx-auto my-4">
         <h1><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>Key Topics in Environmental
             Health</h1>
-        <p>{{ .Content }}</p>
+        <p>{{- .Content -}}</p>
     </div>
 </div>
 
 <div class="container-fluid">
     <div class="col-md-12">
         <div class="row my-4">
-            {{ range .Pages }}
+            {{- range .Pages -}}
             <div class="col-md-6">
                 <div class="card content-card mb-2 itemfocus">
                     <div class="card-content">
                         <div class="card-body">
-                            <h2 class="card-title"><a href="{{.Permalink}}" class="text-primary">{{.Title}}</a></h5>
+                            <h2 class="card-title"><a href="{{ .Permalink }}" class="text-primary">{{ .Title }}</a></h5>
                                 <p class="card-text">{{ .Content | truncate 150 }}</p>
-                                <p class="card-link"><a href="{{.Permalink}}">Get data, info, and more <i
+                                <p class="card-link"><a href="{{ .Permalink }}">Get data, info, and more <i
                                             class="fas fa-arrow-circle-right"></i></a></p>
                         </div>
                     </div>
                 </div>
 
             </div>
-            {{end}}
+            {{- end -}}
         </div>
-
-
     </div>
 </div>
 
-
-
-
-
-
-
-
 </article>
 
-{{end}}
+{{- end -}}
