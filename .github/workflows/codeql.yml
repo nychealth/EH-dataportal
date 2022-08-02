@@ -28,7 +28,7 @@ on:
 jobs:
   analyze:
     name: Analyze
-    if: github.event.pull_request.merged == true # only run the action if the PR was merged
+    if: github.event_name == 'push' || github.event.pull_request.merged == true # only run the action if it's a push or the PR was merged
     runs-on: ubuntu-latest
     permissions:
       actions: read
