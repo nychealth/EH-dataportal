@@ -90,7 +90,7 @@ function initUI() {
     
     if (searchTerm) {
         textSearchTerms.forEach(term => {
-            term.innerHTML = `'${searchTerm}'`
+            term.innerHTML = `'${DOMPurify.sanitize(searchTerm)}'`
         })
         
         // add some fuzzyness to the string matching to help with spelling mistakes.
@@ -179,7 +179,7 @@ function renderResults(results) {
     const otherResults = [];
     
     if (!results.length) {
-        $searchResultsTitle.innerHTML = `We couldn't find any results for '${searchTerm}'`;
+        $searchResultsTitle.innerHTML = `We couldn't find any results for '${DOMPurify.sanitize(searchTerm)}'`;
         return;
     }
     
@@ -195,7 +195,7 @@ function renderResults(results) {
 
         resultsCount = resultsCount += 1;
         $searchResultsTitle.innerHTML = 
-            `<span class="fas fa-search fa-md"></span> ${resultsCount} results for '${searchTerm}'`;
+            `<span class="fas fa-search fa-md"></span> ${resultsCount} results for '${DOMPurify.sanitize(searchTerm)}'`;
         
         const section = (str) => {
             if (result.href.includes(str)) {
@@ -226,7 +226,7 @@ function renderResults(results) {
     const displaySection = (count, el) => {
         if (count > 0) {
             el.querySelector('.search-results-info').innerHTML =
-            `<strong>${count}</strong> results for <strong>'${searchTerm}'</strong>`;
+            `<strong>${count}</strong> results for <strong>'${DOMPurify.sanitize(searchTerm)}'</strong>`;
             el.removeAttribute('hidden');
         }
     }
