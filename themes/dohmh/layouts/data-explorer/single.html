@@ -1,4 +1,4 @@
-{{- define "main" -}}
+{{ define "main" }}
 
 <article class="container-fluid" id="skip-header-target">
     <div class="row">
@@ -236,20 +236,20 @@
                                 let indicatorId;
                                 let header;
                                 
-                                {{- range .Params.Indicators -}}
+                                {{ range .Params.Indicators }}
                                         header = `{{ .header }}`;
                                         // console.log('Header: ', header)
                                         indicatorDropdown.innerHTML += header.length ? `<div class="dropdown-title"><strong>${header}</strong></div>`: '';
-                                        {{- range $index, $id := .IndicatorID -}}
-                                            {{- if (eq $index 0) -}}
-                                                defaultIndicatorId = {{- $id -}}
-                                            {{- end -}}
-                                            indicatorId = {{- $id -}}
+                                        {{ range $index, $id := .IndicatorID }}
+                                            {{ if (eq $index 0) }}
+                                                defaultIndicatorId = {{ $id }}
+                                            {{ end }}
+                                            indicatorId = {{ $id }}
                                             indicator = indicators.find(indicator => indicator.IndicatorID === indicatorId);
                                             indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                                             indicatorDropdown.innerHTML += `<button class="dropdown-item" onclick="loadIndicator(${indicatorId})" data-internal-id="${indicatorId}">${indicatorName}</button>`
-                                        {{- end -}}
-                                {{- end -}}
+                                        {{ end }}
+                                {{ end }}
                             }
 
 
@@ -1539,7 +1539,7 @@
                 <div class="col-md-4">
                     <div class="card fs-sm mb-2 topic-text d-none d-md-block">
                         <!-- Content truncate-->
-                        {{- .Content  -}}
+                        {{ .Content  }}
 
 
                     </div>
@@ -1696,15 +1696,15 @@
 
 </article>
 
-{{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
-{{- $secureJS := $js -}}
+{{ $js := resources.Get "js/accessible-autocomplete.min.js" }}
+{{ $secureJS := $js }}
 <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
 <script type="text/javascript"> 
     // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
     function populateDropDownList() {          
            var ddlData = document.getElementById("all-data");
-          {{- range (where .Site.Pages "Section" "data-explorer") -}} // range through data_explorer pages
+          {{ range (where .Site.Pages "Section" "data-explorer") }} // range through data_explorer pages
             var option = document.createElement("OPTION");
             //Set Neighborhood Name in Text part.
             option.innerHTML = {{ .Title }}
@@ -1712,7 +1712,7 @@
             option.value = '{{ .Site.Params.devpath }}/{{ .RelPermalink }}'
             //Add the Option element to DropDownList.
             ddlData.options.add(option);
-          {{- end -}}
+          {{ end }}
        };
 
        populateDropDownList(); // runs the function above.
@@ -1739,4 +1739,4 @@
 
    </script>
 
-{{- end -}}
+{{ end }}
