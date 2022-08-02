@@ -16,6 +16,8 @@ on:
     branches: 
       - main
       - development
+    types:
+      - closed      
   schedule:
     - cron: '27 6 * * 3'
 
