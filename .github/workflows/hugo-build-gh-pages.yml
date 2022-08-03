@@ -17,7 +17,7 @@ jobs:
     name: Build & Deploy w/ Hugo
     runs-on: ubuntu-20.04
 
-    if: github.event_name == 'push' || github.event.pull_request.merged == true # only run the action if it's a push or the PR was merged
+    # if: github.event_name == 'push' || github.event.pull_request.merged == true # only run the action if it's a push or the PR was merged
 
     # don't run two of these jobs at the same time
 
