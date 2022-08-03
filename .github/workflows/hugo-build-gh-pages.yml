@@ -23,9 +23,9 @@ jobs:
 
     # don't run two of these jobs at the same time
 
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: true
+    concurrency: # don't run two of these jobs at the same time
+      group: ${{ github.workflow }}-${{ github.ref_name }} # ref name is branch name, so only one job on a branch will run at a time
+      cancel-in-progress: true # this makes it so that only the most recent job is run
 
     # define job's steps
 
