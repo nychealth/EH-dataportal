@@ -28,25 +28,63 @@ In East Harlem, street cleanliness affects people’s lives every day. There are
 
 Community health workers have documented concerns about trash on the streets, inadequate trash service, overflowing waste bins, sidewalk blockages, and accessibility issues. 
 
-{{< figure src="trash-can-photovoice.jpg" alt="Two black plastic trash bins in front of a fence near a NYCHA building. One is closed and the other is are overflowing with garbage. There are several bags of garbage sitting in front of the trash bins and pieces of litter near the bags." >}}
-**Trash Overflow** “As a Community Health Worker, I face a lot of different situations while walking through the community, especially garbage overflow. In this photo, we see a lot of trash outside of the garbage bins near the entrance to NYCHA’s Johnson Houses. This creates barriers for people going in and out of their buildings, which I have experienced myself while making home visits. It also creates health concerns within the community and can make transportation difficult for people with disabilities. Finally, rats and mice are attracted to scenes like this and can often be seen running around looking for food, and that is scary!” *Colasa Noesis*
+{{< rawhtml>}}
+</div>
+<div class="medium my-4 py-2">
+    <div class="row">
+        <div class="col-sm-6">
+            <img class="img-responsive" src="trash-can-photovoice.jpg" alt="Two black plastic trash bins in front of a fence near a NYCHA building. One is closed and the other is are overflowing with garbage. There are several bags of garbage sitting in front of the trash bins and pieces of litter near the bags."style="width:100%">
+        </div>
+        <div class="col-sm-6">
+            <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Trash overflow</strong> “As a Community Health Worker, I face a lot of different situations while walking through the community, especially garbage overflow. In this photo, we see a lot of trash outside of the garbage bins near the entrance to NYCHA’s Johnson Houses. This creates barriers for people going in and out of their buildings, which I have experienced myself while making home visits. It also creates health concerns within the community and can make transportation difficult for people with disabilities. Finally, rats and mice are attracted to scenes like this and can often be seen running around looking for food, and that is scary!” <em>Colasa Noesis</em> </p></div>
+        </div>
+    </div>
+</div>
+<div class="narrow">
+{{< /rawhtml>}}
 
----
 <br>
 Community health workers report that excess trash threatens the quality of life for those who come face-to-face with it.  
+<br>
+{{< rawhtml>}}
+</div>
+<div class="medium my-4 py-2">
+    <div class="row">
+        <div class="col-sm-6">
+            <img class="img-responsive" src="tree-trash-photovoice.jpg" alt="Tree pit on the sidewalk. The pit is filled with water, covered in plastic bags, clothes hangers, paper bags, and other litter. Syringes are also visible in the pit." style="width:100%">
+        </div>
+        <div class="col-sm-6">
+            <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Garbage on our streets</strong> “Our daily lives have changed as a result of the COVID-19 pandemic, especially as some social problems have become more visible than ever before. This includes the accumulation of trash in our neighborhood; the garbage is taking over. Surrounding this tree are several plastic hangers, bottles, syringes and paper scraps. This is concerning because our environment influences our health, and the accumulation of all this trash may be harmful to children. It also looks nasty. The City should increase its sanitation and cleaning services, provide more public trash bins and better educate residents about how to deal with dangerous items.” <em>Colasa Noesis</em> </p></div>
+        </div>
+    </div>
+</div>
+<div class="narrow">
+{{< /rawhtml>}}
 
-{{< figure src="tree-trash-photovoice.jpg" alt="Tree pit on the sidewalk. The pit is filled with water, covered in plastic bags, clothes hangers, paper bags, and other litter. Syringes are also visible in the pit." >}}
-**Garbage on Our Streets** “Our daily lives have changed as a result of the COVID-19 pandemic, especially as some social problems have become more visible than ever before. This includes the accumulation of trash in our neighborhood; the garbage is taking over. Surrounding this tree are several plastic hangers, bottles, syringes and paper scraps. This is concerning because our environment influences our health, and the accumulation of all this trash may be harmful to children. It also looks nasty. The City should increase its sanitation and cleaning services, provide more public trash bins and better educate residents about how to deal with dangerous items.” *Colasa Noesis*
-
----
 <br>
 
 Trash on streets discourages outside play for neighborhood residents and impacts people’s mental health as they go about their everyday lives. Residents see rats scurrying around trash looking for food, which creates uneasy feelings and physical barriers to where they need to go.  
 
 No one should have to handle streets in this condition. 
 
-{{< figure src="feces-1-2-photovoice.png" alt="Two images of feces on the sidewalk." >}}
-> **Watch Your Step** “Everywhere I go, from the time I step out of the train station to my workplace, and until I get home, there is dog poop everywhere. *It is a gross and unsightly mess that requires you to watch your every step.* When it’s not dog poop, then it’s human poop. And if it’s not poop, then it’s syringes. This is overwhelmingly depressing, especially because if you go to lower Manhattan, you do not see these things. As a community, we need more spaces where the dogs can run about and do their business and where curbing can be enforced.” *Camille Clarke* 
+{{< rawhtml>}}
+</div>
+<div class="medium my-4 py-2">
+    <div class="row">
+        <div class="col-sm-6">
+            <img class="img-responsive" src="feces-1-photovoice.jpg" style="width:100%">
+        </div>
+        <div class="col-sm-6">
+                    <img class="img-responsive" src="feces-2-photovoice.jpg"style="width:100%">
+        </div>
+        <div class="col-12 mt-1">
+                    <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Watch Your Step</strong> “Everywhere I go, from the time I step out of the train station to my workplace, and until I get home, there is dog poop everywhere. *It is a gross and unsightly mess that requires you to watch your every step.* When it’s not dog poop, then it’s human poop. And if it’s not poop, then it’s syringes. This is overwhelmingly depressing, especially because if you go to lower Manhattan, you do not see these things. As a community, we need more spaces where the dogs can run about and do their business and where curbing can be enforced.” <em>Camille Clarke</em> </p></div>
+        </div>
+    </div>
+</div>
+<div class="narrow">
+{{< /rawhtml>}}
+
 
 ---
 <br>
@@ -55,20 +93,52 @@ No one should have to handle streets in this condition.
 
 A big part of adequate sanitation is street litter baskets. The Department of Sanitation (DSNY) publishes the location of its street litter baskets on [NYC Open Data](https://opendata.cityofnewyork.us/data/), which we include here on the Environment and Health Data Portal. Let’s look at these data. 
 
-In New York City, litter baskets are either wire and open at the top, or non-wired and enclosed. 
-|`{{< figure src="trash-can-wire.png" alt="Open wire basket with some trash. Next to a pole and plastic newspaper stand" >}}`|`{{< figure src="trash-can-enclosed.png" alt="Round, grey, enclosed trash baskets are lined up next to each other. These three baskets have a small circulare opening at the top and take different types of trash (mixed paper, litter, and metal/glass/plastic/cartons) A fourth basket that has a handle to open the trash basket is next to the other baskets." >}}`|
-| ----------- | ----------- |
-| **Wire litter baskets** are more likely to be damaged, have trash blow or fall out of them, and attract pests like rats and mice.| **Enclosed litter baskets** are better, protecting trash from the elements and from pests. Often, these better baskets are bought by local Business Improvement Districts (BIDs). Overall, [BIDs spend over 25% of their funding on additional sanitation services in their area](https://www1.nyc.gov/site/sbs/neighborhoods/bids.page). | 
+In New York City, litter baskets are either wire and open at the top, or non-wired and enclosed.
+
+{{< rawhtml>}}
+</div>
+<div class="medium my-4 py-2">
+    <div class="row">
+        <div class="col-sm-6">
+            <img class="img-responsive" src="trash-can-wire.png" alt="Open wire basket with some trash. Next to a pole and plastic newspaper stand "style="width:100%">
+        </div>
+        <div class="col-sm-6">
+            <img class="img-responsive" src="trash-can-enclosed.png" alt="Round, grey, enclosed trash baskets are lined up next to each other. These three baskets have a small circulare opening at the top and take different types of trash (mixed paper, litter, and metal/glass/plastic/cartons) A fourth basket that has a handle to open the trash basket is next to the other baskets." style="width:100%">
+        </div>
+        <div class="col-sm-6 mt-1">
+            <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Wire baskets</strong> are more likely to be damaged, have trash blow or fall out of them, and attract pests like rats and mice.</p></div>
+        </div>
+        <div class="col-sm-6 mt-1">
+            <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Enclosed baskets</strong> are better, protecting trash from the elements and from pests. Often, these better baskets are bought by local Business Improvement Districts (BIDs). Overall, <a href="https://www1.nyc.gov/site/sbs/neighborhoods/bids.page">BIDs spend over 25% of their funding on additional sanitation services in their areas</a>.</p></div>
+        </div>
+    </div>
+</div>
+<div class="narrow">
+{{< /rawhtml>}}
+
+<br>
 
 East Harlem has very few enclosed baskets, according to DSNY data. There are more litter baskets per square mile in the Upper East Side (UES) – and far more enclosed baskets, with a stark difference at 96th Street, the border between these two neighborhoods. 
 
 We also see this difference in data on rat inspections, with more properties north of 96th street failing inspections for rats, garbage, and harborage. Where there are fewer enclosed litter baskets, there is a dramatic increase in garbage and rat activity. 
 
-<div style="border: 1px solid gray; width: 100%; height: 350px">
-INSERT DATA AND VISUALIZATIONS HERE
+<br>
+{{< rawhtml>}}
 </div>
-
-[Explore litter basket data here](). [Explore rat inspection data here](https://a816-dohbesp.nyc.gov/IndicatorPublic/rats/). 
+<div class="medium my-4 py-2">
+    <div class="row">
+        <div class="col-sm-6">
+            <div style="border: 1px solid gray; width: 100%; height: 350px;">Insert map here</div>
+            <a href="">Explore litter basket data here</a>.
+        </div>
+        <div class="col-sm-6">
+            <div style="border: 1px solid gray; width: 100%; height: 350px;">Insert data here</div>
+            <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/rats">Explore rat inspection data here</a>.
+        </div>
+    </div>
+</div>
+<div class="narrow">
+{{< /rawhtml>}}
 
 ---
 <br>
@@ -88,9 +158,8 @@ Proper sanitation is a crucial component of public health and of safe, healthy, 
 - **Expansion of pilot projects** for things like solar compacting trash cans, curbside organics composting programs, and more
 - **Equitable funding and distribution of sanitation resources**: it’s not right for one neighborhood to host trucks and transfer stations, while not having sufficient sanitation services and funding. And, neighborhoods shouldn’t need the additional resources of a Business Improvement District in order to have adequate sanitation. 
 
-*“One of the most egregious examples of inequitable distribution of City facilities is the 	City’s historical siting of waste transfer stations (WTS), where intra-city waste haulers 	deposit their cargos for transfer to landfills and recycling facilities. Seventy-six percent 	(76%) of the total citywide permitted capacity for waste disposal is allocated to stations 	in just four community districts.” - NYC City Council’s Fair Share Report (2017)*
+<div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm">“One of the most egregious examples of inequitable distribution of City facilities is the 	City’s historical siting of waste transfer stations (WTS), where intra-city waste haulers 	deposit their cargos for transfer to landfills and recycling facilities. Seventy-six percent 	(76%) of the total citywide permitted capacity for waste disposal is allocated to stations 	in just four community districts.” - NYC City Council’s Fair Share Report (2017)</p></div>
 
----
 <br>
 
 ## What can we do to improve sanitation? 
@@ -107,6 +176,6 @@ Check the Rat Information Portal [www.nyc.gov/rats](www.nyc.gov/rats) for rat in
 
 ---
 
- *Photographs and quotes are courtesy of The Photovoice Project, a research project from the Harlem Health Advocacy Partners.* 
+ *Photographs and quotes in this piece are courtesy of The Photovoice Project, a research project from the Harlem Health Advocacy Partners.* 
 
-*Special thanks to:* Giselle Guerrero (El Barrio Bikes), Philippa Godoy (We Out and El Barrio Bikes), Tara Mardigan, (El Barrio Bikes and Harlem Community Walking), and Carey King (Uptown Grand Central and El Barrio Bikes) *for reviewing and providing feedback on this data story.* 
+*Special thanks to: Giselle Guerrero (El Barrio Bikes), Philippa Godoy (We Out and El Barrio Bikes), Tara Mardigan, (El Barrio Bikes and Harlem Community Walking), and Carey King (Uptown Grand Central and El Barrio Bikes) for reviewing and providing feedback on this data story.*
