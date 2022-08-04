@@ -5,7 +5,7 @@ draft: false
 seo_title: "How sanitation service, trash, and rats affect our lives and our health."
 seo_description: "A data story on the state of our neighborhoods."
 tags: 
-categories: ["transportation","social"]
+categories: ["transportation","social","pests"]
 keywords: ["trash","garbage","sanitation","rats","pests","justice","inequalities","inequitites"]
 image: ds-sanitation-trucks.jpg
 menu:
@@ -127,13 +127,18 @@ We also see this difference in data on rat inspections, with more properties nor
 </div>
 <div class="medium my-4 py-2">
     <div class="row">
-        <div class="col-sm-6">
-            <div style="border: 1px solid gray; width: 100%; height: 350px;">Insert map here</div>
+        <div class="col-sm-5">
+            <strong>Density of enclosed litter baskets</strong>
+            <iframe title="EH / UES locator map" aria-label="Locator maps" id="datawrapper-chart-5WJ8y" src="https://datawrapper.dwcdn.net/5WJ8y/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="350"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+</script>
             <a href="">Explore litter basket data here</a>.
         </div>
-        <div class="col-sm-6">
-            <div style="border: 1px solid gray; width: 100%; height: 350px;">Insert data here</div>
-            <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/rats">Explore rat inspection data here</a>.
+        <div class="col-sm-7">
+            <strong>Rat Indexing</strong>
+            <iframe title="East Harlem rat indexing" aria-label="Bar Chart" id="datawrapper-chart-ayRqE" src="https://datawrapper.dwcdn.net/ayRqE/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="121"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
+            <br><br><br>
+            <iframe title="Upper East Side (CD8)" aria-label="Bar Chart" id="datawrapper-chart-d7150" src="https://datawrapper.dwcdn.net/d7150/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="153"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+</script>
         </div>
     </div>
 </div>
@@ -174,8 +179,11 @@ And, the City listens to complaints made through 311. You can [report rat sighti
 
 Check the Rat Information Portal [www.nyc.gov/rats](www.nyc.gov/rats) for rat inspection data. 
 
----
+<div style="background-color:#fafafa; padding: 10px; border-radius: 5px; font-size: 12pt;">
+<p><em>Photographs and quotes in this piece are courtesy of The Photovoice Project, a research project from the <a href="https://www1.nyc.gov/site/doh/health/neighborhood-health/harlem-health-advocacy-partners.page">Harlem Health Advocacy Partners</a>.</em></p>
+<p><em>Special thanks to: Giselle Guerrero (<a href="https://elbarriobikes.wixsite.com/elbarriobikes">El Barrio Bikes</a>), Philippa Godoy (We Out and <a href="https://elbarriobikes.wixsite.com/elbarriobikes">El Barrio Bikes</a>), Tara Mardigan, (<a href="https://elbarriobikes.wixsite.com/elbarriobikes">El Barrio Bikes</a> and Harlem Community Walking), and Carey King (<a href="http://uptowngrandcentral.org/">Uptown Grand Central</a> and <a href="https://elbarriobikes.wixsite.com/elbarriobikes">El Barrio Bikes</a>) for reviewing and providing feedback on this data story.</em></p>
+<p><em>A very special thanks to Doris Chiu, 2022 HRTP Intern with the EH Data Portal team, for excellent work researching, developing, and writing this data story.</em></p>
 
- *Photographs and quotes in this piece are courtesy of The Photovoice Project, a research project from the Harlem Health Advocacy Partners.* 
+</div>
 
-*Special thanks to: Giselle Guerrero (El Barrio Bikes), Philippa Godoy (We Out and El Barrio Bikes), Tara Mardigan, (El Barrio Bikes and Harlem Community Walking), and Carey King (Uptown Grand Central and El Barrio Bikes) for reviewing and providing feedback on this data story.*
+
