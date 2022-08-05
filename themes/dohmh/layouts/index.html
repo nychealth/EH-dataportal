@@ -5,157 +5,177 @@
   <div class="row">
     <div class="col-md-10 col-sm-12 mx-auto">
       <!--start main column-->
-      <div class="row">
-        <div class="col-md-8 col-sm-12">
-          <div class="accordion-group my-4" style="padding-left:0px!important" role="tablist" id="accordion-01">
-            
-            <div class="card bg-lightgray mb-2" style="border-left: 10px solid #545454!important;">
-              
-              <a class="card-header h4 collapse collapsed" style="color:#545454" id="acc-button-0x"
-              data-toggle="collapse" href="#panel-acc-button-0x" role="tab" aria-expanded="false"
-              aria-controls="panel-acc-button-0x">
-              <span class="title" role="heading" aria-level="3"><i class="fas fa-star"></i>&nbsp;Key
-                Topics</span>
-              </a>
-              
-              <div class="collapse show" id="panel-acc-button-0x" role="tabpanel" aria-labelledby="acc-button-0x"
-              data-parent="#accordion-01">
-              
-              <div class="card-body">
-                <p class="card-text">
-                  Explore the issues in environmental health that affect our city and our
-                  lives.
-                </p>
-                <div class="row mt-2">
-                  
-                  {{- range where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index" -}}
-                  {{- if ne .Title "Key Topics in Environmental Health" -}}
-                  <div class="col-md-6 col-sm-12">
-                    <a class="btn btn-outline-gray btn-sm has-icon disperse mt-2" href="{{ .Permalink }}">
-                      <span class="fas fa-angle-right"></span>
-                      <span class="title">{{- .Title -}}</span>
-                    </a>
-                  </div>
-                  {{- end -}}
-                  {{- end -}}
-                  
+
+      <div class="row mt-4">
+        <div class="col">
+          <h2 style="color:#197BBD"><i class="fas fa-atlas mr-1" aria-hidden="true"></i>Data
+            Stories</h2>
+            <p class="home-label">Latest data stories</em></p>
+        </div>
+      </div>
+
+      <div class="row mt-2">
+        {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
+        <div class="col-md-4 mb-2">
+          <div class="card bg-lightgray cardshadow" style="border-left: 10px solid #197BBD!important;">
+              <div class="card-body" style="background-image: URL({{ .File.Dir }}/{{ .Params.image }}); height: 175px;background-size: cover; ">
                 </div>
+              <div class="card-footer">
+                <p class="card-text fs-sm">
+                  <strong style="color: #197BBD!important;">NEW:</strong> <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                  <p class="card-text fs-sm">{{ .Content | truncate 75 | plainify}} <a href="{{ .RelPermalink }}" class="float-right">Read more...</a></p> 
+                </p>
               </div>
-            </div>
-            <!-- .collapse -->
-            
+              </div>
+        </div>
+        {{- end -}}
+
+      </div>
+
+      <div class="row my-2">
+        <div class="col">
+          <a href="/data-stories/" style="float:right;color:#197BBD">Browse
+            all data stories<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="row my-4">
+        <div class="col-9 mx-auto">
+          <hr style="border-top: 3px solid #998bc0; border-radius: 5px;">
+        </div>
+      </div>
+
+      <div class="row mt-2">
+
+        <div class="col-md-6">
+          <p class="home-label">Learn</p>
+          <div class="card bg-lightgray mb-2 p-2 h-85" style="border-left: 10px solid #545454!important;">
+            <h3 style="color:#545454"><i class="fas fa-star mr-1" aria-hidden="true"></i>Key
+              Topics</h3>            
+            <div class="card-body">
+              <p class="card-text fs-sm">
+                Core issues that affect our city, our health, our lives.
+              </p>
+                {{- range first 5 (where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index") -}}
+                {{- if ne .Title "Key Topics in Environmental Health" -}}
+                  <a class="btn btn-outline-gray btn-block btn-sm has-icon disperse mt-1" href="{{ .Permalink }}">
+                    <span class="fas fa-angle-right"></span>
+                    <span class="title">{{- .Title -}}</span>
+                  </a>
+                {{- end -}}
+                {{- end -}}
+                <p class="mt-2">
+                  <a href="/key-topics/" style="float:right;color:#545454!important">All Key Topics<i class=" ml-1 fas fa-chevron-circle-right" aria-hidden="true"></i></a>
+                </p>
+
+            </div>          
           </div>
           <!-- .card -->
-          
-          <div class="card bg-lightgray mb-2" style="border-left: 10px solid #DC645C!important;">
+        </div>
+        <!-- .col -->
+
+        <div class="col-md-6">
+
+          <p class="home-label">Discover</p>
+          <div class="card bg-lightgray mb-2 p-2 h-85" style="border-left: 10px solid #DC645C!important;">
+            <h3 style="color:#DC645C"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
             
-            <a class="card-header h4 collapse collapsed" style="color:#DC645C" id="acc-button-02"
-            data-toggle="collapse" href="#panel-acc-button-02" role="tab" aria-expanded="false"
-            aria-controls="panel-acc-button-02">
-            <span class="title" role="heading" aria-level="3"><i
-              class="fas fa-map-marked-alt"></i>&nbsp;Neighborhood
-              Reports</span>
-            </a>
-            
-            <div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02"
-            data-parent="#accordion-01">
             
             <div class="card-body">
-              <p class="card-text">
-                How does the environment in your neighborhood affect health? Get the data here. 
+              <p class="card-text fs-sm">
+                Get data for your neighborhood.
               </p>
               
               <form action="/neighborhood-reports" method="get" class="autocomplete-form">
                 <div class="row no-gutters mb-2">
-                  <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-1 fs-sm">Choose a
+                  <label for="last-neighborhood" class="font-weight-bold h4 mb-1 fs-sm">Choose a
                     neighborhood:</label>
-                    <div class="col-8">
-                      <div class="autocomplete-wrapper">
+                      <div class="autocomplete-wrapper block" style="width:100%">
                         <select name="last-neighborhood" id="last-neighborhood">
                           <option value="">Select a neighborhood</option>
                         </select>
                       </div>
-                    </div>
                     
-                    <div class="col-4">
-                      <button type="submit" class="btn-primary btn btn-block">Get Report</button>
+                      <button type="submit" class="btn-primary btn">Go</button>
+                  </div>
+                  <strong class="fs-sm">Or browse by topic:</strong><br>
+                  <a href="neighborhood-reports/asthma" class="">Asthma</a> |  <a href="neighborhood-reports/activedesign">Active design</a> | <a href="neighborhood-reports/climateandhealth">Climate and health</a> | <a href="neighborhood-reports/housing">Housing and health</a> | <a href="neighborhood-reports/outdoorair">Outdoor Air and health</a>
+
+                </form>
+              </div>
+
+            <!-- .collapse -->
+            
+          </div>
+          <!-- .card -->
+
+        </div>
+
+      </div>
+      <!-- .row -->
+
+      <div class="row">
+        <div class="col">
+          <p class="home-label mt-4">Analyze</p>
+          <div class="card bg-lightgray mb-2 p-2" style="border-left: 10px solid #00923E!important;">
+            <h3 style="color:#00923E"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Explore
+              Data</h3>            
+            <div class="card-body">
+              <p class="card-text fs-sm">
+                Over 250 datasets for over 50 environmental health topics. Explore, visualize, and download data sets - so you can find the story.
+              </p>
+              <div class="row">
+                
+
+
+                <div class="col-md-4">
+                  <div class="card cardshadow">
+                    <div class="card-body">
+                      <img src="images/data-map-2.png" alt="An example of a data map.">
+                    </div>
+                    <div class="card-footer">
+                      <h5 class="card-title text-primary">Get maps...</h5>
                     </div>
                   </div>
-                </form>
-                <hr>
+                </div>
+                <div class="col-md-4">
+                  <div class="card cardshadow">
+                    <div class="card-body">
+                      <img src="images/trend-chart-2.png" alt="An example of a trend chart showing data over time.">
+                    </div>
+                    <div class="card-footer">
+                      <h5 class="card-title text-primary">...trends...</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card cardshadow">
+                    <div class="card-body">
+                      <img src="images/links-chart-2.png" alt="An example of a scatterplot, showing the relationship between two datasets.">
+                    </div>
+                    <div class="card-footer">
+                      <h5 class="card-title text-primary">...and explore links.</h5>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <!-- .collapse -->
-            
-          </div>
-          <!-- .card -->
-          
-          <div class="card bg-lightgray mb-2" style="border-left: 10px solid #00923E!important;">
-            
-            <a class="card-header h4 collapse collapsed" id="acc-button-03" data-toggle="collapse"
-            href="#panel-acc-button-03" role="tab" aria-expanded="false" aria-controls="panel-acc-button-03">
-            <span class="title" role="heading" aria-level="3"><i class="fas fa-chart-line"></i>&nbsp;Explore
-              Data</span>
-            </a>
-            
-            <div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-03"
-            data-parent="#accordion-01">
-            
-            <div class="card-body">
-              <p class="card-text">
-                Data on over 250 indicators and 50 environmental health topics.
-                Explore, visualize, and download data sets - so you can find the story.
-              </p>
-              
-              <hr>
-              <a href="/data-explorer/" class="btn btn-outline-green btn-sm my-2" style="float:right;">Browse
-                all topics&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
+
+              <p class="mt-2"><a href="/data-explorer/" style="float:right;">Browse
+                all data sets<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a></p>
               </div>
               
-            </div>
-            <!-- .collapse -->
-            
           </div>
           <!-- .card -->
-          
         </div>
-        <!-- .accordion-group -->
       </div>
-      
-      <!--RIGHT HAND CARDS-->
-      <div class="col-md-4 col-sm-12">
-        <div class="card bg-lightgray my-4" style="border-left: 10px solid #197BBD!important;">
-          
-          <div class="card-header h4" style="color:#197BBD" href="#panel-acc-button-01" role="tab">
-            <span class="title" role="heading" aria-level="3"><i class="fas fa-atlas"></i>&nbsp;Data
-              Stories</span>
-            </div>
-            <div class="card-body">
-              <p class="card-text">
-                Brief explainers and infographics on key health and environment topics.
-              </p>
-              <div class="fs-sm">
-                {{- range first 5 ((where .Site.RegularPages "Section" "data-stories")) -}}
-                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                <hr class="my-1">
-                {{- end -}}
-              </div>
-              
-              <a href="/data-stories/" class="btn btn-outline-blue btn-sm my-2" style="float:right;">Browse
-                all data stories&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
-                
-              </div>
-            </div>
-            <!-- .card -->
-            
-          </div>
+
+      <div class="row my-4">
+        <div class="col-9 mx-auto">
+          <hr style="border-top: 3px solid #998bc0; border-radius: 5px;">
         </div>
+      </div>
         
-        <div class="row mb-4">
-          <div class="col-9 mx-auto">
-            <hr style="border-top: 3px solid #998bc0; border-radius: 5px;">
-          </div>
-        </div>
+
         
         <!--BOTTOM CARDS-->
         <div class="row mb-4">
@@ -181,10 +201,9 @@
                     </h5>
                     <p class="card-text fs-sm">About the Tracking Program.
                     </p>
-                    <hr>
                     {{- with .Site.GetPage "about/about.md" -}}
                     <a href="{{ .Permalink }}" class="btn btn-outline-gray btn-sm mt-2" style="float:right">About
-                      Us&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
+                      Us<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
                       {{- end -}}
                     </div>
                   </div>
