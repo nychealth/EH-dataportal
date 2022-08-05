@@ -4,7 +4,39 @@
 
     <div class="col-md-10 mx-auto mt-4">
         <h1><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>Data Stories</h1>
-        <p>Explainers and perspectives on important health and environment topics. View data stories about:</p>
+        <p>Explainers and perspectives on important health and environment topics.</p>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col">
+            <h2>Latest data stories</h2>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+
+        {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
+        <div class="col-md-4 mb-2">
+          <div class="card cardshadow">
+              <div class="card-body" style="background-image: URL({{ .File.ContentBaseName }}/{{ .Params.image }}); height: 175px;background-size: cover; ">
+                </div>
+
+              <div class="card-footer">
+                <p class="card-text fs-sm">
+                  <strong style="color: #197BBD!important;">NEW:</strong> <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                  <p class="card-text fs-sm">{{ .Content | truncate 75 | plainify}} <a href="{{ .RelPermalink }}" class="float-right">Read more...</a></p> 
+                </p>
+              </div>
+              </div>
+        </div>
+        {{- end -}}
+
+      </div>
+
+      <div class="row mt-4">
+        <div class="col">
+            <h2>All data stories</h2>
+        </div>
     </div>
 
     <div class="row mt-4">
