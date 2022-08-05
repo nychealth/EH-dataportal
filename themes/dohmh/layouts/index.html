@@ -88,15 +88,20 @@
               
               <form action="/neighborhood-reports" method="get" class="autocomplete-form">
                 <div class="row no-gutters mb-2">
-                  <label for="last-neighborhood" class="font-weight-bold h4 mb-1 fs-sm">Choose a
-                    neighborhood:</label>
-                      <div class="autocomplete-wrapper block" style="width:100%">
-                        <select name="last-neighborhood" id="last-neighborhood">
+                  <div class="d-block" style="width:100%">
+                    <label for="last-neighborhood" class="font-weight-bold h4 mb-1 fs-sm"><p>Choose a
+                      neighborhood:</p></label>
+                  </div>
+
+                    <div class="autocomplete-wrapper" class="d-inline mr-1" style="width:80%;">
+
+                        <select name="last-neighborhood" id="last-neighborhood" >
                           <option value="">Select a neighborhood</option>
                         </select>
                       </div>
+                      <button type="submit" class="btn-primary btn d-inline">Go</button>
+
                     
-                      <button type="submit" class="btn-primary btn">Go</button>
                   </div>
                   <strong class="fs-sm">Or browse by topic:</strong><br>
                   <a href="neighborhood-reports/asthma" class="">Asthma</a> |  <a href="neighborhood-reports/activedesign">Active design</a> | <a href="neighborhood-reports/climateandhealth">Climate and health</a> | <a href="neighborhood-reports/housing">Housing and health</a> | <a href="neighborhood-reports/outdoorair">Outdoor Air and health</a>
