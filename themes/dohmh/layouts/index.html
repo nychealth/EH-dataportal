@@ -49,14 +49,14 @@
 
         <div class="col-md-6">
           <p class="home-label">Learn</p>
-          <div class="card bg-lightgray mb-2 p-2" style="border-left: 10px solid #545454!important;">
+          <div class="card bg-lightgray mb-2 p-2 h-85" style="border-left: 10px solid #545454!important;">
             <h3 style="color:#545454"><i class="fas fa-star mr-1" aria-hidden="true"></i>Key
               Topics</h3>            
             <div class="card-body">
               <p class="card-text fs-sm">
                 Core issues that affect our city, our health, our lives.
               </p>
-                {{- range where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index" -}}
+                {{- range first 5 (where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index") -}}
                 {{- if ne .Title "Key Topics in Environmental Health" -}}
                   <a class="btn btn-outline-gray btn-block btn-sm has-icon disperse mt-1" href="{{ .Permalink }}">
                     <span class="fas fa-angle-right"></span>
@@ -64,6 +64,10 @@
                   </a>
                 {{- end -}}
                 {{- end -}}
+                <p class="mt-2">
+                  <a href="/key-topics/" style="float:right;color:#545454!important">All Key Topics<i class=" ml-1 fas fa-chevron-circle-right" aria-hidden="true"></i></a>
+                </p>
+
             </div>          
           </div>
           <!-- .card -->
@@ -73,13 +77,13 @@
         <div class="col-md-6">
 
           <p class="home-label">Discover</p>
-          <div class="card bg-lightgray mb-2 p-2" style="border-left: 10px solid #DC645C!important;">
+          <div class="card bg-lightgray mb-2 p-2 h-85" style="border-left: 10px solid #DC645C!important;">
             <h3 style="color:#DC645C"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
             
             
             <div class="card-body">
               <p class="card-text fs-sm">
-                Get data for your neighborhood here. 
+                Get data for your neighborhood.
               </p>
               
               <form action="/neighborhood-reports" method="get" class="autocomplete-form">
@@ -94,6 +98,9 @@
                     
                       <button type="submit" class="btn-primary btn">Go</button>
                   </div>
+                  <strong class="fs-sm">Or browse by topic:</strong><br>
+                  <a href="neighborhood-reports/asthma" class="">Asthma</a> |  <a href="neighborhood-reports/activedesign">Active design</a> | <a href="neighborhood-reports/climateandhealth">Climate and health</a> | <a href="neighborhood-reports/housing">Housing and health</a> | <a href="neighborhood-reports/outdoorair">Outdoor Air and health</a>
+
                 </form>
               </div>
 
@@ -102,25 +109,41 @@
           </div>
           <!-- .card -->
 
+        </div>
+
+      </div>
+      <!-- .row -->
+
+      <div class="row">
+        <div class="col">
           <p class="home-label mt-4">Analyze</p>
           <div class="card bg-lightgray mb-2 p-2" style="border-left: 10px solid #00923E!important;">
             <h3 style="color:#00923E"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Explore
               Data</h3>            
             <div class="card-body">
               <p class="card-text fs-sm">
-                Explore, visualize, and download data sets - so you can find the story.
+                Over 250 datasets for over 50 environmental health topics. Get tables, maps, and charts. Explore, visualize, and download data sets - so you can find the story.
               </p>
-              <a href="/data-explorer/" style="float:right;">Browse
-                all topics&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
+              <div class="row">
+                <div class="col-md-4" style="height: 175px; border: 1px solid gray">
+                  IMAGE
+                </div>
+                <div class="col-md-4" style="height: 175px; border: 1px solid gray">
+                  IMAGE
+                </div>
+                <div class="col-md-4" style="height: 175px; border: 1px solid gray">
+                  IMAGE
+                </div>
+              </div>
+
+              <p><a href="/data-explorer/" style="float:right;">Browse
+                all data sets<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a></p>
               </div>
               
           </div>
           <!-- .card -->
-
         </div>
-
       </div>
-      <!-- .row -->
 
       <div class="row my-4">
         <div class="col-9 mx-auto">
@@ -154,10 +177,9 @@
                     </h5>
                     <p class="card-text fs-sm">About the Tracking Program.
                     </p>
-                    <hr>
                     {{- with .Site.GetPage "about/about.md" -}}
                     <a href="{{ .Permalink }}" class="btn btn-outline-gray btn-sm mt-2" style="float:right">About
-                      Us&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
+                      Us<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
                       {{- end -}}
                     </div>
                   </div>
