@@ -12,6 +12,7 @@ menu:
     main:
         identifier: '05'
 layout: single
+image: nyc-children-playing.jpg
 ---
 
 Lifelong health can be determined by your health when you are a child. Plus, children can be fragile, and can be more harmed by environmental threats. So, ways that the environment can affect health often are particularly important for child health.
