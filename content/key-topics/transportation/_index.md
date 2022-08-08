@@ -12,6 +12,7 @@ menu:
     main:
         identifier: '05'
 layout: single
+image: nyc-active-design.jpg
 ---
 
 Physical activity and healthy eating rank among the leading ways to get and stay healthy. 
