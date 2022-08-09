@@ -1,7 +1,7 @@
 ---
 title: "ZAPPA: A tool to understand air quality policies"
 date: 2022-08-03T08:33:22-04:00
-draft: false
+draft: true
 seo_title: "How ZAPPA helps policy makers center equity in neighborhood air quality policies"
 seo_description: "A data story on ZAPPA, a tool to understand air quality policies"
 tags: 
