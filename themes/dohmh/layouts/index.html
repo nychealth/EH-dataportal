@@ -8,42 +8,42 @@
 
       <div class="row mt-4">
         <div class="col">
-          <h2 style="color:#197BBD"><i class="fas fa-atlas mr-1" aria-hidden="true"></i>Data
-            Stories</h2>
-            <p class="home-label">Latest data stories</em></p>
-        </div>
-      </div>
+          <div class="card bg-lightgray cardshadow p-2" style="border-left: 10px solid #197BBD!important;">
+            <h2 style="color:#197BBD"><i class="fas fa-atlas mr-1" aria-hidden="true"></i>Data
+              Stories</h2>
+              <p class="home-label">Latest data stories</em></p>
 
-      <div class="row mt-2">
-        {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
-        <div class="col-md-4 mb-2">
-          <div class="card bg-lightgray cardshadow" style="border-left: 10px solid #197BBD!important;">
-              <div class="card-body" style="background-image: URL({{ .File.Dir }}/{{ .Params.image }}); height: 175px;background-size: cover; ">
+              <div class="row mt-2">
+                {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
+                <div class="col-md-4 mb-2">
+                  <div class="card bg-lightgray" style="border-left: 0px solid #197BBD!important;">
+                      <div class="card-body" style="background-image: URL({{ .File.Dir }}/{{ .Params.image }}); height: 175px;background-size: cover; ">
+                        </div>
+                      <div class="card-footer">
+                        <p class="card-text fs-sm">
+                          <strong style="color: #197BBD!important;">NEW:</strong> <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                          <p class="card-text fs-sm">{{ .Content | truncate 75 | plainify}} <a href="{{ .RelPermalink }}" class="float-right">Read more...</a></p> 
+                        </p>
+                      </div>
+                      </div>
                 </div>
-              <div class="card-footer">
-                <p class="card-text fs-sm">
-                  <strong style="color: #197BBD!important;">NEW:</strong> <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                  <p class="card-text fs-sm">{{ .Content | truncate 75 | plainify}} <a href="{{ .RelPermalink }}" class="float-right">Read more...</a></p> 
-                </p>
+                {{- end -}}
               </div>
+
+              <div class="row my-2">
+                <div class="col">
+                  <a href="/data-stories/" style="float:right;color:#197BBD">Browse
+                    all data stories<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+                </div>
               </div>
-        </div>
-        {{- end -}}
 
-      </div>
 
-      <div class="row my-2">
-        <div class="col">
-          <a href="/data-stories/" style="float:right;color:#197BBD">Browse
-            all data stories<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+          </div>
+
+
         </div>
       </div>
 
-      <div class="row my-4">
-        <div class="col-9 mx-auto">
-          <hr style="border-top: 3px solid #998bc0; border-radius: 5px;">
-        </div>
-      </div>
 
       <div class="row mt-2">
 
@@ -64,9 +64,15 @@
                   </a>
                 {{- end -}}
                 {{- end -}}
-                <p class="mt-2">
-                  <a href="/key-topics/" style="float:right;color:#545454!important">All Key Topics<i class=" ml-1 fas fa-chevron-circle-right" aria-hidden="true"></i></a>
-                </p>
+
+                <div class="row my-2">
+                  <div class="col">
+                    <a href="/key-topics/"  style="float:right;color:#545454!important">All Key Topics<i class=" ml-1 fas fa-chevron-circle-right" aria-hidden="true"></i></a>
+                  </div>
+                </div>
+
+                  
+
 
             </div>          
           </div>
