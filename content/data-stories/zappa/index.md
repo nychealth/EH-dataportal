@@ -124,7 +124,7 @@ For the scenarios in this data story, here’s what we used:
 - Midtown: 10001, 10016, 10017, 10018, 10019, 10022, 10036
 - South Bronx: 10451, 10452, 10454, 10455, 10456, 10474
 
-Then, Select Traffic & Emissions Types 
+**Then, Select Traffic & Emissions Types** 
 
 Next, you’ll tell ZAPPA what traffic or emissions you want to change, and how. Click through the menus for different tiers and options. This can get complicated, and may require a lot of knowledge about a proposed policy - like how much it will actually affect emissions or traffic. 
 
@@ -161,7 +161,7 @@ Select Set emissions changes. You’ll have the option of changing emissions by 
 | * If we eliminated all electric power generation within NYC, we would remove all related emissions. To represent this emissions change in ZAPPA, we would zero out the pollutants by getting the pollutant modified value to 0 under “Set Emissions Changes”. This change can be done using the percent change or specifying ton per year change.                                             |
 | ** If we created car-free zones, we would change Fleet Mix so there is no gasoline, diesel, CNG or E-85 use. Preserve each row’s percent distribution and move it into “Electric”. Moving the fleet mix distributions into “electric” in this way means there are no pollutant emissions from those other fuel sources, effectively modeling that there is no vehicle traffic on the street.  |
 
- 
+ <br>
 Set Emissions Changes 
 {{< figure src="Zappa3.png" alt="Grey window that says 'Set Emissions Changes' and 'Fuel Combustion: Electric Utility' with Pollutant, Percent Change, Base Value, Modified Value, and Change as column headers. Percent change is editable and user has input -100% on each line of pollutants. There is Set and Cancel buttons" >}}
 
