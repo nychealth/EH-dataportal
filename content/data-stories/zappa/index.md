@@ -7,7 +7,7 @@ seo_description: "A data story on ZAPPA, a tool to understand air quality polici
 tags: 
 categories: ["transportation","airquality"]
 keywords: ["air quality","traffic","transportation","covid","covid-19","coronavirus","air pollution", "lungs","breathing"]
-image: ds-aqcovid.jpeg
+image: ds-road-traffic.jpg
 menu:
     main:
         identifier: '02'
