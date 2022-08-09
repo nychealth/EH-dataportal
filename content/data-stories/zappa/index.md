@@ -1,9 +1,9 @@
 ---
-title: "ZAPPA"
+title: "ZAPPA: A tool to understand air quality policies"
 date: 2022-08-03T08:33:22-04:00
 draft: false
-seo_title: "ZAPPA."
-seo_description: "ZAPPA."
+seo_title: "How ZAPPA helps policy makers center equity in neighborhood air quality policies"
+seo_description: "A data story on ZAPPA, a tool to understand air quality policies"
 tags: 
 categories: ["transportation","airquality"]
 keywords: ["air quality","traffic","transportation","covid","covid-19","coronavirus","air pollution", "lungs","breathing"]
@@ -136,7 +136,7 @@ Next, you’ll tell ZAPPA what traffic or emissions you want to change, and how.
 | Tier 2 | All                               | All               |
 | Tier 3 | N/A                               | N/A               |
 
-{{< figure src="Zappa2.png" alt="The menu with dropdown has "All ZIP Codes" selected". The "Modify Traffic & Emissions" also open and can be edited." >}}
+{{< figure src="Zappa2.png" alt="The menu with dropdown has 'All ZIP Codes' selected. The 'Modify Traffic & Emissions' also open and can be edited." >}}
 
 
 **Next, Input emissions or traffic change**
@@ -156,24 +156,25 @@ Select Set emissions changes. You’ll have the option of changing emissions by 
 |                   |                           | 4.69 for large commercial trucks |
 |                   |                           | 1.45 for other large trucks      |
 
-| * If we eliminated all electric power generation within NYC, we would remove all related emissions. To represent this emissions change in ZAPPA, we would zero out the pollutants by getting the pollutant modified value to 0 under “Set Emissions Changes”. This change can be done using the percent change or specifying ton per year change.                                             |
+| |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| * If we eliminated all electric power generation within NYC, we would remove all related emissions. To represent this emissions change in ZAPPA, we would zero out the pollutants by getting the pollutant modified value to 0 under “Set Emissions Changes”. This change can be done using the percent change or specifying ton per year change.                                             |
 | ** If we created car-free zones, we would change Fleet Mix so there is no gasoline, diesel, CNG or E-85 use. Preserve each row’s percent distribution and move it into “Electric”. Moving the fleet mix distributions into “electric” in this way means there are no pollutant emissions from those other fuel sources, effectively modeling that there is no vehicle traffic on the street.  |
 
  
 Set Emissions Changes 
-{{< figure src="Zappa3.png" alt="Grey window that says  "Set Emissions Changes" and "Fuel Combustion: Electric Utility" with Pollutant, Percent Change, Base Value, Modified Value, and Change as column headers. Percent change is editable and user has input -100% on each line of pollutants. There is Set and Cancel buttons" >}}
+{{< figure src="Zappa3.png" alt="Grey window that says 'Set Emissions Changes' and 'Fuel Combustion: Electric Utility' with Pollutant, Percent Change, Base Value, Modified Value, and Change as column headers. Percent change is editable and user has input -100% on each line of pollutants. There is Set and Cancel buttons" >}}
 
 [can we make traffic screenshots into a toggle?] 
 Set Traffic Changes
-{{< figure src="Zappa4.png" alt="Grey window that says  "Set Traffic Changes" and "Fleet Mix" with Vehicle type, Gasoline, Diesel, CNG, E-85, and Electric as column headers. There are numbers in each cell corresponding to six vehicle types. Fleet mix total is 100.00% " >}}
+{{< figure src="Zappa4.png" alt="Grey window that says 'Set Traffic Changes' and 'Fleet Mix' with Vehicle type, Gasoline, Diesel, CNG, E-85, and Electric as column headers. There are numbers in each cell corresponding to six vehicle types. Fleet mix total is 100.00% " >}}
 
 
-{{< figure src="Zappa5.png" alt="Grey window that says  "Set Traffic Changes" and "Fleet Mix" with Vehicle type, Gasoline, Diesel, CNG, E-85, and Electric as column headers. All numbers are assigned in electric only now." >}}
+{{< figure src="Zappa5.png" alt="Grey window that says  'Set Traffic Changes' and 'Fleet Mix' with Vehicle type, Gasoline, Diesel, CNG, E-85, and Electric as column headers. All numbers are assigned in electric only now." >}}
 
 
 **Finally, review changes made to model**
-{{< figure src="Zappa6.png" alt="Grey window that says "Emissions changes" and "Hover over the emissions tier to see the full tier names". The column headers are # of ZIP Codes, # of waterways, emission tier, NH3, NO2, PM2.5, SO2, and VOC. There are buttons for: show shapes, delete, and close.." >}}
+{{< figure src="Zappa6.png" alt="Grey window that says 'Emissions changes' and 'Hover over the emissions tier to see the full tier names'. The column headers are # of ZIP Codes, # of waterways, emission tier, NH3, NO2, PM2.5, SO2, and VOC. There are buttons for: show shapes, delete, and close." >}}
 
 We can review the emissions and traffic changes made (if any) in the “Review Changes” dropdown menu. Then, name the model, save, and then click run!
 
