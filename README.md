@@ -36,8 +36,8 @@ The site runs a CodeQL analysis on merges/builds.
 ### Environment-specific builds
 The /config folder includes subfolders with environment-specific configuration. Specifically, there are different configuration files for serving the site locally, serving it on Github pages, and eventually, building for production.
 
-Currently, config/local/config.toml has a variable ```devpath = "/EH-dataportal"```. This can be inserted into templates in order to fix path issues. For example, in header.html, the following uses this environment variable to load the banner image:
-```<div class="site-header bg-primary" style="background-image: url({{ $.Site.Params.devpath}}/images/header_background.jpg)">``` 
+Currently, config/local/config.toml has a variable ```sitepath = "/EH-dataportal"```. This can be inserted into templates in order to fix path issues. For example, in header.html, the following uses this environment variable to load the banner image:
+```<div class="site-header bg-primary" style="background-image: url({{ $.Site.Params.sitepath}}/images/header_background.jpg)">``` 
 
 To run a local-environment-specific serve or build, enter ```hugo serve --environment local``` or ```hugo build --environment local```. This will merge the contents of /config/local/config.toml with /config/_default/config.toml.
 
