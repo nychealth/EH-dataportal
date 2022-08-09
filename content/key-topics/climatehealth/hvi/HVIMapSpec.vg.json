@@ -9,7 +9,7 @@
       {"name": "source_1", "url": "../../../visualizations/csv/hvi/hvi-nta.csv", "format": {"type": "csv"}},
       {
         "name": "source_0",
-        "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/main/geography/NTA2.topo.json",
+        "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/geography/NTA2.topo.json",
         "format": {"type": "topojson", "feature": "collection"},
         "transform": [{"type": "identifier", "as": "_vgsid_"}]
       },

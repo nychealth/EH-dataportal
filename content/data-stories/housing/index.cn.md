@@ -183,27 +183,27 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 function changeMap(x) {
     var spec;
     if (x==0) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/none.vl.json";
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-cn/none.vl.json";
     } else if (x==3) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/three.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-cn/three.vl.json"
     } else if (x==4) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/cockroaches.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-cn/cockroaches.vl.json"
     } else if (x==5) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/micerats.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-cn/micerats.vl.json"
     } else if (x==6) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/cracks.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-cn/cracks.vl.json"
     } else if (x==7) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/water.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-cn/water.vl.json"
     } else if (x==8) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/broken.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-cn/broken.vl.json"
     } else if (x==9) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/breakdown.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-cn/breakdown.vl.json"
     } else if (x==10) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/supplemental.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-cn/supplemental.vl.json"
     } else if (x==11) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/noac.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-cn/noac.vl.json"
     } else if (x==12) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/toilet.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-cn/toilet.vl.json"
     } else {};
 
     vegaEmbed("#housingmap",spec)
@@ -213,7 +213,7 @@ function changeMap(x) {
 
 {{< /rawhtml>}}
 
-{{< vega id="housingmap" spec="https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/three.vl.json" height="550px">}}
+{{< vega id="housingmap" spec="https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-cn/three.vl.json" height="550px">}}
 
 ### 谁承担房屋年久失修的责任？
 这些问题远不只是造成了不便或混乱。 {{< rawhtml>}}

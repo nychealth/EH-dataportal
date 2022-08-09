@@ -183,27 +183,27 @@ Explore los problemas comunes de vivienda de la ciudad de Nueva York en el sigui
 function changeMap(x) {
     var spec;
     if (x==0) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/none.vl.json";
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/none.vl.json";
     } else if (x==3) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/three.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/three.vl.json"
     } else if (x==4) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/cockroaches.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/cockroaches.vl.json"
     } else if (x==5) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/micerats.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/micerats.vl.json"
     } else if (x==6) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/cracks.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/cracks.vl.json"
     } else if (x==7) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/water.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/water.vl.json"
     } else if (x==8) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/broken.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/broken.vl.json"
     } else if (x==9) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/breakdown.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/breakdown.vl.json"
     } else if (x==10) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/supplemental.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/supplemental.vl.json"
     } else if (x==11) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/noac.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/noac.vl.json"
     } else if (x==12) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/toilet.vl.json"
+        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/toilet.vl.json"
     } else {};
 
     vegaEmbed("#housingmap",spec)
@@ -213,7 +213,7 @@ function changeMap(x) {
 
 {{< /rawhtml>}}
 
-{{< vega id="housingmap" spec="https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/three.vl.json" height="550px">}}
+{{< vega id="housingmap" spec="https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/three.vl.json" height="550px">}}
 
 ### ¿Quiénes asumen la carga del mal estado de la vivienda?
 Estos problemas van más allá de la incomodidad o el desastre. {{< rawhtml>}}

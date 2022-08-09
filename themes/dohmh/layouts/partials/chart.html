@@ -1,7 +1,7 @@
 <script>
     // Constants used for both visualizations
-  const indicatorDataPath = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/"; //change this to alter the path to the data file
-  const indicatorMapPath = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/geography/"; //change this to alter the path to the data file
+  const indicatorDataPath = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/neighborhoodreports/data/"; //change this to alter the path to the data file
+  const indicatorMapPath = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/geography/"; //change this to alter the path to the data file
   
   // Function and config used for summary data visualizations.
   var summarySpec = {

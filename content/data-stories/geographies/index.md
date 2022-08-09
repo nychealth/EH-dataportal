@@ -132,40 +132,46 @@ To protect privacy, we often bundle (or aggregate) data from a larger area, so w
 In the map below, notice how three UHF42 neighborhoods in the South Bronx are combined into one UHF34 neigborhood - and how the UHF neighborhoods have ZIP codes (or, more precisely, ZIP code tabulation areas) as their root unit.
 
 {{< rawhtml >}}
-  <input type="radio" name="uhfRadioGroup" value="42" id="42" checked> <label for="42">UHF42</label> &nbsp;&nbsp;
-  <input type="radio" name="uhfRadioGroup" value="34" id="34"/> <label for="34">UHF34</label> &nbsp;&nbsp;
-  <input type="radio" name="uhfRadioGroup" value="zip" id="zip"><label for="zip">ZIP codes</label>
+
+<input type="radio" name="uhfRadioGroup" value="42" id="42" checked> <label for="42">UHF42</label> &nbsp;&nbsp;
+<input type="radio" name="uhfRadioGroup" value="34" id="34"/> <label for="34">UHF34</label> &nbsp;&nbsp;
+<input type="radio" name="uhfRadioGroup" value="zip" id="zip"><label for="zip">ZIP codes</label>
 
 <script>
-let uhf42Spec = "map42.vl.json";
-let uhf34Spec = "map34.vl.json";
-let zipSpec = "mapZIP.vl.json";
 
-function listenButtons() {
-  buttons = document.querySelectorAll('input[type=radio][name="uhfRadioGroup"]');
-  buttons.forEach(button => button.addEventListener('change', () => {
-    if (button.value==='42') {
-        buildMap2(uhf42Spec);
-        }
-    else if (button.value==='34') {
-        buildMap2(uhf34Spec);
-        }
-    else {
-        buildMap2(zipSpec);
-        }  // for if chosenField is PUMA
-    ;
-  }));
-};
+    // function for changing map
 
-listenButtons();
+    let uhf42Spec = "map42.vl.json";
+    let uhf34Spec = "map34.vl.json";
+    let zipSpec = "mapZIP.vl.json";
 
-function buildMap2(spec) {
-    vegaEmbed("#map2",spec);
-}
+    function listenButtons() {
+        buttons = document.querySelectorAll('input[type=radio][name="uhfRadioGroup"]');
+        buttons.forEach(button => button.addEventListener('change', () => {
+            if (button.value==='42') {
+                buildMap2(uhf42Spec);
+            }
+            else if (button.value==='34') {
+                buildMap2(uhf34Spec);
+            }
+            else {
+                buildMap2(zipSpec);
+            }  // for if chosenField is PUMA
+            ;
+        }));
+    };
+
+    listenButtons();
+
+    function buildMap2(spec) {
+        vegaEmbed("#map2",spec);
+    }
 
 </script>
 
 {{< /rawhtml >}}
+
+<!-- shortcode for embedding map, which creates "#map2", which above function will change. Needs to be down here because buttons defined at the top of rawhtml need to be above the map -->
 
 {{< vega id="map2" spec="map42.vl.json" height="550px" >}}
 

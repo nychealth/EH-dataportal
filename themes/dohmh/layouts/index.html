@@ -18,7 +18,7 @@
         {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
         <div class="col-md-4 mb-2">
           <div class="card bg-lightgray cardshadow" style="border-left: 10px solid #197BBD!important;">
-              <div class="card-body" style="background-image: URL({{ .File.Dir }}/{{ .Params.image }}); height: 175px;background-size: cover; ">
+              <div class="card-body" style="background-image: URL({{ path.Clean .File.Dir }}/{{ .Params.image }}); height: 175px; background-size: cover; ">
                 </div>
               <div class="card-footer">
                 <p class="card-text fs-sm">
@@ -302,7 +302,7 @@
                   document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
                     e.preventDefault(); // prevent page re-load
                     var locVal = searchForm.options[searchForm.selectedIndex].value;
-                    window.location = '{{ $.Site.Params.devpath }}/neighborhood-reports/'+ DOMPurify.sanitize(locVal);
+                    window.location = '{{ $.Site.Params.sitepath }}/neighborhood-reports/'+ DOMPurify.sanitize(locVal);
                   });
                 </script>
                 
