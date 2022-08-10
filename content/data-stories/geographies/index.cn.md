@@ -81,46 +81,77 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office"
 每个PUMA都细分为社区制表区（NTA），每个NTA进一步细分为人口普查区。
 
 {{< rawhtml >}}
+
 <input type="radio" name="mainRadioGroup" value="CD" id="ucd" checked> <label for="ucd">社区单元</label> &nbsp;&nbsp;
 <input type="radio" name="mainRadioGroup" value="PUMA" id="upuma"/> <label for="upuma">PUMA</label> &nbsp;&nbsp;
 <input type="radio" name="mainRadioGroup" value="nta" id="unta"> <label for="unta">NTA</label>
 
+<div id = 'map1' style = "width:100%; height: 550px"></div>
+
 <script>
-let cdSpec = "mapcd.vl.json";
-let pumaSpec = "mappuma.vl.json";
-let ntaSpec = "mapnta.vl.json";
 
-// this code listens to the form with map chooser; must run after DOM loads
-window.onload =listenRadios;
+    var repo_branch = "{{< param data_repo >}}/{{< param data_branch >}}"
+    var path = "data-stories/geographies" // hard-coded for now, but could Hugo paramaterize
+    var trans = "mapspec-en"
+        
+    let cd_spec   = repo_branch + "/" + path + "/" + trans + "/" + "mapcd.vl.json";
+    let puma_spec = repo_branch + "/" + path + "/" + trans + "/" + "mappuma.vl.json";
+    let nta_spec  = repo_branch + "/" + path + "/" + trans + "/" + "mapnta.vl.json";
 
-function listenRadios() {
-  radios = document.querySelectorAll('input[type=radio][name="mainRadioGroup"]');
-  radios.forEach(radio => radio.addEventListener('change', () => {
-    if (radio.value==='CD') {
-        buildMap(cdSpec);
-        console.log('cd chosen')
-        }
-    else if (radio.value==='nta') {
-        buildMap(ntaSpec);
-        console.log('nta chosen')
-        }
-    else {
-        buildMap(pumaSpec);
-        console.log('puma chosen!')
-        }  // for if chosenField is PUMA
-    ;
-  }));
-};
+    let cd_csv   = repo_branch + "/" + path + "/" + "CD_DATA.csv"
+    let puma_csv = repo_branch + "/" + path + "/" + "PUMA_DATA.csv"
+    let nta_csv  = repo_branch + "/" + path + "/" + "NTA_DATA.csv"    
 
-function buildMap(spec) {
-    vegaEmbed("#map1",spec);
-}
+    let cd_topo   = repo_branch + "/" + "geography" + "/" + "CD.topo.json"
+    let puma_topo = repo_branch + "/" + "geography" + "/" + "PUMA_or_Subborough.topo.json"
+    let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA2.topo.json"    
+
+    // this code listens to the form with map chooser; must run after DOM loads
+    window.onload = listenRadios;
+
+    function listenRadios() {
+        
+        radios = document.querySelectorAll('input[type=radio][name="mainRadioGroup"]');
+        radios.forEach(radio => radio.addEventListener('change', () => {
+
+            if (radio.value === 'CD') {
+                buildMap("#map1", cd_spec, cd_csv, cd_topo);
+            }
+            else if (radio.value === 'nta') {
+                buildMap("#map1", nta_spec, nta_csv, nta_topo);
+            }
+            else {
+                buildMap("#map1", puma_spec, puma_csv, puma_topo);
+            };
+            
+        }));
+    };
+
+    function buildMap(div, spec, csv, topo) {
+
+        d3.json(spec).then(spec => {
+
+            spec.layer[0].data.url = topo;
+            spec.layer[1].data.url = topo;
+            
+            d3.csv(csv, d3.autoType).then(csv => {
+                
+                vegaEmbed(div, spec).then((res) => {
+
+                    resview = res.view.insert("csv", csv).run();
+                });
+            });
+        });
+    };
+
+    buildMap("#map1", cd_spec, cd_csv, cd_topo);
+
 
 </script>
 
 {{< /rawhtml >}}
 
-{{< vega id="map1" spec="mapcd.vl.json" height="550px" >}}
+<!-- {{< vega id="map1" spec=cd_spec height="550px" >}} -->
 
 #### 联合医院基金社区
 联合医院基金社区（United Hospital Fund neighborhoods，UHF）的边界基于邮编。这个地理单位是由卫生局、联合医院基金社区和其他市政机构在20世纪80年代创建的。它们设计用于健康研究，类似于纽约市的社区单元。
@@ -132,42 +163,54 @@ function buildMap(spec) {
 在下面的地图中，请注意位于South Bronx区的三个UHF42社区如何合并为一个UHF34社区，以及UHF社区如何将邮编（或更准确地说，邮编制表区域）作为其基础单位.
 
 {{< rawhtml >}}
-  <input type="radio" name="uhfRadioGroup" value="42" id="42" checked> <label for="42">UHF42</label> &nbsp;&nbsp;
-  <input type="radio" name="uhfRadioGroup" value="34" id="34"/> <label for="34">UHF34</label> &nbsp;&nbsp;
-  <input type="radio" name="uhfRadioGroup" value="zip" id="zip"> <label for="zip">邮编</label>
+
+<input type="radio" name="uhfRadioGroup" value="42" id="42" checked> <label for="42">UHF42</label> &nbsp;&nbsp;
+<input type="radio" name="uhfRadioGroup" value="34" id="34"/> <label for="34">UHF34</label> &nbsp;&nbsp;
+<input type="radio" name="uhfRadioGroup" value="zip" id="zip"> <label for="zip">邮编</label>
+
+<div id = 'map2' style = "width:100%; height: 550px"></div>
 
 <script>
-let uhf42Spec = "map42.vl.json";
-let uhf34Spec = "map34.vl.json";
-let zipSpec = "mapZIP.vl.json";
 
-function listenButtons() {
-  buttons = document.querySelectorAll('input[type=radio][name="uhfRadioGroup"]');
-  buttons.forEach(button => button.addEventListener('change', () => {
-    if (button.value==='42') {
-        buildMap2(uhf42Spec);
-        }
-    else if (button.value==='34') {
-        buildMap2(uhf34Spec);
-        }
-    else {
-        buildMap2(zipSpec);
-        }  // for if chosenField is PUMA
-    ;
-  }));
-};
+    // function for changing map
 
-listenButtons();
+    let uhf42_spec = repo_branch + "/" + path + "/" + trans + "/" + "map42.vl.json";
+    let uhf34_spec = repo_branch + "/" + path + "/" + trans + "/" + "map34.vl.json";
+    let zip_spec   = repo_branch + "/" + path + "/" + trans + "/" + "mapZIP.vl.json";
 
-function buildMap2(spec) {
-    vegaEmbed("#map2",spec);
-}
+    let uhf42_csv = repo_branch + "/" + path + "/" + "42_DATA.csv"
+    let uhf34_csv = repo_branch + "/" + path + "/" + "34_DATA.csv"
+    let zip_csv   = repo_branch + "/" + path + "/" + "FAKE_ZCTA_DATA.csv"
+
+    let uhf42_topo = repo_branch + "/" + "geography" + "/" + "UHF42.topo.json"
+    let uhf34_topo = repo_branch + "/" + "geography" + "/" + "UHF34.topo.json"
+    let zip_topo   = repo_branch + "/" + "geography" + "/" + "MODZCTA_2010_WGS1984.topo.json"    
+
+    function listenButtons() {
+
+        buttons = document.querySelectorAll('input[type=radio][name="uhfRadioGroup"]');
+        buttons.forEach(button => button.addEventListener('change', () => {
+
+            if (button.value === '42') {
+                buildMap("#map2", uhf42_spec, uhf42_csv, uhf42_topo);
+            }
+            else if (button.value === '34') {
+                buildMap("#map2", uhf34_spec, uhf34_csv, uhf34_topo);
+            }
+            else {
+                buildMap("#map2", zip_spec, zip_csv, zip_topo);
+            };
+        }));
+    };
+
+    listenButtons();
+    buildMap("#map2", uhf42_spec, uhf42_csv, uhf42_topo);
 
 </script>
 
 {{< /rawhtml >}}
 
-{{< vega id="map2" spec="map42.vl.json" height="550px" >}}
+<!-- {{< vega id="map2" spec=uhf42_spec height="550px" >}} -->
 
 
 
