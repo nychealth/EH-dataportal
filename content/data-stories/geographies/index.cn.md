@@ -107,9 +107,9 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office"
     let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA2.topo.json"    
 
     // this code listens to the form with map chooser; must run after DOM loads
-    window.onload = listenRadios;
+    window.onload = main_radio_listener;
 
-    function listenRadios() {
+    function main_radio_listener() {
         
         radios = document.querySelectorAll('input[type=radio][name="mainRadioGroup"]');
         radios.forEach(radio => radio.addEventListener('change', () => {
@@ -186,7 +186,7 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office"
     let uhf34_topo = repo_branch + "/" + "geography" + "/" + "UHF34.topo.json"
     let zip_topo   = repo_branch + "/" + "geography" + "/" + "MODZCTA_2010_WGS1984.topo.json"    
 
-    function listenButtons() {
+    function uhf_radio_listener() {
 
         buttons = document.querySelectorAll('input[type=radio][name="uhfRadioGroup"]');
         buttons.forEach(button => button.addEventListener('change', () => {
@@ -203,7 +203,7 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office"
         }));
     };
 
-    listenButtons();
+    uhf_radio_listener();
     buildMap("#map2", uhf42_spec, uhf42_csv, uhf42_topo);
 
 </script>

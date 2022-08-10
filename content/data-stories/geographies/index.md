@@ -86,6 +86,7 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
 <input type="radio" name="mainRadioGroup" value="PUMA" id="upuma"/> <label for="upuma">PUMAs</label> &nbsp;&nbsp;
 <input type="radio" name="mainRadioGroup" value="nta" id="unta"><label for="unta">NTAs</label>
 
+<!-- create map div -->
 <div id = 'map1' style = "width:100%; height: 550px"></div>
 
 <script>
@@ -107,9 +108,11 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
     let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA2.topo.json"    
 
     // this code listens to the form with map chooser; must run after DOM loads
-    window.onload = listenRadios;
+    window.onload = main_radio_listener;
 
-    function listenRadios() {
+    // listener for radio buttons
+
+    function main_radio_listener() {
         
         radios = document.querySelectorAll('input[type=radio][name="mainRadioGroup"]');
         radios.forEach(radio => radio.addEventListener('change', () => {
@@ -126,6 +129,8 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
             
         }));
     };
+
+    // function for building the map
 
     function buildMap(div, spec, csv, topo) {
 
@@ -144,8 +149,9 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
         });
     };
 
-    buildMap("#map1", cd_spec, cd_csv, cd_topo);
+    // initialize the map
 
+    buildMap("#map1", cd_spec, cd_csv, cd_topo);
 
 </script>
 
@@ -168,11 +174,10 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
 <input type="radio" name="uhfRadioGroup" value="34" id="34"/> <label for="34">UHF34</label> &nbsp;&nbsp;
 <input type="radio" name="uhfRadioGroup" value="zip" id="zip"><label for="zip">ZIP codes</label>
 
+<!-- create map div -->
 <div id = 'map2' style = "width:100%; height: 550px"></div>
 
 <script>
-
-    // function for changing map
 
     let uhf42_spec = repo_branch + "/" + path + "/" + trans + "/" + "map42.vl.json";
     let uhf34_spec = repo_branch + "/" + path + "/" + trans + "/" + "map34.vl.json";
@@ -186,7 +191,9 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
     let uhf34_topo = repo_branch + "/" + "geography" + "/" + "UHF34.topo.json"
     let zip_topo   = repo_branch + "/" + "geography" + "/" + "MODZCTA_2010_WGS1984.topo.json"    
 
-    function listenButtons() {
+    // listener for radio buttons
+
+    function uhf_radio_listener() {
 
         buttons = document.querySelectorAll('input[type=radio][name="uhfRadioGroup"]');
         buttons.forEach(button => button.addEventListener('change', () => {
@@ -203,7 +210,10 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
         }));
     };
 
-    listenButtons();
+    uhf_radio_listener();
+
+    // initialize map
+
     buildMap("#map2", uhf42_spec, uhf42_csv, uhf42_topo);
 
 </script>
