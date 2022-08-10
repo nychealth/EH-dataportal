@@ -1,7 +1,37 @@
-<div id='{{ .Get "id" }}' style="width:100%; height: {{ .Get `height` }}"></div>
-<script type="text/javascript">
-  var spec = '{{ .Get "spec" }}';
-  vegaEmbed('#{{ .Get "id" }}', spec).then(function(result) {
-    // TOOD: do something?
-  }).catch(console.error);
+<div id = '{{ .Get "id" }}' style = "width:100%; height: {{ .Get `height` }}"></div>
+<script type = "text/javascript">
+
+    
+    {{/*  defining these here, because I can't get Hugo functions to work in shortcode calls  */}}
+    var data_repo = "{{ $.Site.Params.data_repo }}";
+    var data_branch = "{{ $.Site.Params.data_branch }}";
+    var dir = "{{ path.Clean .Page.File.Dir }}";
+    var spec = '{{ .Get "spec" }}';
+
+    var istrans = "{{ .Page.IsTranslated }}"
+
+    if (istrans) {
+        var lang = "{{ .Page.Language.Lang }}"
+        dir += "/mapspec-" + lang
+    }
+
+    // console.log("id", '{{ .Get "id" }}');
+    // console.log("data_repo", data_repo);
+    // console.log("data_branch", data_branch);
+    // console.log("path", dir);
+    // console.log("istrans", istrans);
+    // console.log("lang", lang);
+    
+    console.log("interp", `${data_repo}/${data_branch}/${dir}/${spec}`);
+
+    vegaEmbed(
+        '#{{ .Get "id" }}', 
+        `${data_repo}/${data_branch}/${dir}/${spec}`
+        //data_repo + "/" + data_branch + "/" + dir + "/" + spec
+    ).then(function(result) {
+
+        // TOOD: do something?
+
+    }).catch(console.error);
+
 </script>
