@@ -179,41 +179,91 @@ Explore los problemas comunes de vivienda de la ciudad de Nueva York en el sigui
   </div>
 </div>
 
-<script>
-function changeMap(x) {
-    var spec;
-    if (x==0) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/none.vl.json";
-    } else if (x==3) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/three.vl.json"
-    } else if (x==4) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/cockroaches.vl.json"
-    } else if (x==5) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/micerats.vl.json"
-    } else if (x==6) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/cracks.vl.json"
-    } else if (x==7) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/water.vl.json"
-    } else if (x==8) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/broken.vl.json"
-    } else if (x==9) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/breakdown.vl.json"
-    } else if (x==10) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/supplemental.vl.json"
-    } else if (x==11) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/noac.vl.json"
-    } else if (x==12) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/toilet.vl.json"
-    } else {};
+<div id = 'housingmap' style = "width:100%; height: 550px"></div>
 
-    vegaEmbed("#housingmap",spec)
-}
+<script>
+
+    // basic path
+    const repo_branch = "{{< param data_repo >}}/{{< param data_branch >}}"
+    const path = "data-stories/housing" // hard-coded for now, but could Hugo paramaterize
+    const trans = "mapspec-es"
+
+    // specific path
+    const csv_path = repo_branch + "/" + path + "/" + "housing-data-story-data.csv"
+    const topo_path = repo_branch + "/geography/PUMA_or_Subborough.topo.json"
+
+    function changeMap(x) {
+
+        var spec;
+
+        if (x == 0) {
+            spec = "none.vl.json"
+
+        } else if (x == 3) {
+            spec = "three.vl.json"
+
+        } else if (x == 4) {
+            spec = "cockroaches.vl.json"
+
+        } else if (x == 5) {
+            spec = "micerats.vl.json"
+
+        } else if (x == 6) {
+            spec = "cracks.vl.json"
+
+        } else if (x == 7) {
+            spec = "water.vl.json"
+
+        } else if (x == 8) {
+            spec = "broken.vl.json"
+
+        } else if (x == 9) {
+            spec = "breakdown.vl.json"
+
+        } else if (x == 10) {
+            spec = "supplemental.vl.json"
+
+        } else if (x == 11) {
+            spec = "noac.vl.json"
+
+        } else if (x == 12) {
+            spec = "toilet.vl.json"
+
+        } else { };
+
+        var spec_path = repo_branch + "/" + path + "/" + trans + "/" + spec;
+
+        buildMap("#housingmap", spec_path, csv_path, topo_path);
+
+    }
+            
+    function buildMap(div, spec, csv, topo) {
+
+        d3.json(spec).then(spec => {
+
+            spec.layer[0].data.url = topo;
+            spec.layer[1].data.url = topo;
+            
+            d3.csv(csv, d3.autoType).then(csv => {
+                
+                vegaEmbed(div, spec).then((res) => {
+
+                    resview = res.view.insert("csv", csv).run();
+                });
+            });
+        });
+    };
+
+    // initialize the map 
+
+    buildMap("#housingmap", repo_branch + "/" + path + "/" + trans + "/" + "three.vl.json", csv_path, topo_path);
+
+
 </script>
 
 
 {{< /rawhtml>}}
 
-{{< vega id="housingmap" spec="https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/datastories/housing/mapspec-es/three.vl.json" height="550px">}}
 
 ### ¿Quiénes asumen la carga del mal estado de la vivienda?
 Estos problemas van más allá de la incomodidad o el desastre. {{< rawhtml>}}

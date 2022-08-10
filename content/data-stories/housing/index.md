@@ -285,7 +285,8 @@ Explore NYC's common housing problems in the map below.
         });
     };
 
-    // initialize map 
+    // initialize the map 
+
     buildMap("#housingmap", repo_branch + "/" + path + "/" + trans + "/" + "three.vl.json", csv_path, topo_path);
 
 
@@ -294,7 +295,6 @@ Explore NYC's common housing problems in the map below.
 
 {{< /rawhtml>}}
 
-<!-- {{< vega id="housingmap" spec="three.vl.json" height="550px">}} -->
 
 ### Who shoulders the burden of housing disrepair?
 These problems go far beyond inconvenience or mess. {{< rawhtml>}}
