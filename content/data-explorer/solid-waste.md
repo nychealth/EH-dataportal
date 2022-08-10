@@ -1,5 +1,5 @@
 ---
-title: Solid Waste
+title: Solid waste
 date: 2021-05-28 18:02:58.840943
 draft: false
 seo_title: "Solid waste data for NYC."

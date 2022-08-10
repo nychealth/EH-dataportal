@@ -1,5 +1,5 @@
 ---
-title: Sugary Drink Consumption
+title: Sugary drink consumption
 date: 2021-05-28 18:02:58.873461
 draft: false
 seo_title: "Sugary drink consumption data for NYC."

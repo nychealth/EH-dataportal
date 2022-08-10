@@ -1,5 +1,5 @@
 ---
-title: "Healthy Eating"
+title: "Healthy eating"
 date: 2021-11-17T12:01:22-05:00
 draft: true
 seo_title: "Healthy eating data for NYC."

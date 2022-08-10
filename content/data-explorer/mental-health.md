@@ -24,4 +24,3 @@ Other environmental factors include:
 - Pests and other housing conditions, which can increase residents' distress
 - Access to health care
 
-### Resources

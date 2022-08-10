@@ -1,5 +1,5 @@
 ---
-title: Active Design
+title: Active design
 date: 2021-05-28 18:02:58.738512
 draft: false
 seo_title: "Active Design data in NYC."
