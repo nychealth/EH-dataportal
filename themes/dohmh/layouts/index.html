@@ -15,8 +15,8 @@
               <div class="row mt-2">
                 {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
                 <div class="col-md-4 mb-2">
-                  <div class="card bg-lightgray" style="border-left: 0px solid white; border: 3px solid #197BBD25!important; border-radius: 5px;">
-                      <div class="card-body" style="background-image: URL({{ path.Clean .File.Dir }}/{{ .Params.image }}); height: 175px;background-size: cover; border-radius: 5px">
+                  <div class="card" style="border-bottom: 7px solid #197BBD50!important;">
+                      <div class="card-body" style="background-image: URL({{ path.Clean .File.Dir }}/{{ .Params.image }}); height: 175px;background-size: cover;">
                         </div>
                       <div class="card-footer">
                         <p class="card-text fs-sm">
