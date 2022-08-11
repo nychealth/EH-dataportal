@@ -20,9 +20,9 @@ menu:
         identifier: '03'
 ---
 
-Cancer begins when cells in a part of the body start to grow out of control. There are many kinds of cancer, but they all start because of out-of-control growth of abnormal cells. Leukemia (cancer of the blood-forming cells) is the most common form of childhood cancer. There are different kinds of childhood leukemia. The most common kinds are [acute lymphocytic leukemia (ALL)](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Leukemia) and [acute myeloid leukemia (AML)](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Leukemia). Brain and other nervous system cancers are the second most common types of childhood cancers. Of all childhood cancer, leukemias and brain and other nervous system cancers account for about 50% of cases among children less than 15 years old.
+Cancer begins when cells in a part of the body start to grow out of control. There are many kinds of cancer, but they all start because of out-of-control growth of abnormal cells. Leukemia (cancer of the blood-forming cells) is the most common form of childhood cancer. There are different kinds of childhood leukemia. The most common kinds are acute lymphocytic leukemia and acute myeloid leukemia . Brain and other nervous system cancers are the second most common types of childhood cancers. Of all childhood cancer, leukemias and brain and other nervous system cancers account for about 50% of cases among children less than 15 years old.
 
-This site contains data on total cancers, total leukemias, ALL and AML separately, and brain and other nervous system cancers in children. The data comes from the [NYS Cancer Registry](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#NYS_Cancer_Registry).
+This site contains data on total cancers, total leukemias, ALL and AML separately, and brain and other nervous system cancers in children. The data comes from the [NYS Cancer Registry](https://www.health.ny.gov/statistics/cancer/registry/).
 
 ### Childhood Cancer and the Environment
 
