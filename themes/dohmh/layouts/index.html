@@ -137,42 +137,55 @@
               <p class="card-text fs-sm">
                 Over 250 datasets for over 50 environmental health topics. Explore, visualize, and download data sets - so you can find the story.
               </p>
+
+              <hr class="my-1">
+
               <div class="row">
-                
+                <div class="col-6">
+                  <div class="row no-gutters">
+                    <div class="col-md-4 px-1">
+                      <div class="card fs-sm" style="border: 3px solid #00923E25; border-radius: 5px;">
+                        <div class="card-body">
+                          <img src="images/data-map-2.png" alt="An example of a data map.">
+                        </div>
+                        <div class="card-footer">
+                          <span class="card-title text-dark">Get maps...</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 px-1">
+                      <div class="card fs-sm" style="border: 3px solid #00923E25; border-radius: 5px;">
+                        <div class="card-body">
+                          <img src="images/trend-chart-2.png" alt="An example of a trend chart showing data over time.">
+                        </div>
+                        <div class="card-footer">
+                          <span class="card-title text-dark">...trends...</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 px-1">
+                      <div class="card fs-sm" style="border: 3px solid #00923E25; border-radius: 5px;">
+                        <div class="card-body">
+                          <img src="images/links-chart-2.png" alt="An example of a scatterplot, showing the relationship between two datasets.">
+                        </div>
+                        <div class="card-footer">
+                          <span class="card-title text-dark">...and explore links.</hspan>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  {{- partial "featured-data" . -}}
+                </div>
 
 
-                <div class="col-md-4">
-                  <div class="card" style="border: 3px solid #00923E25; border-radius: 5px;">
-                    <div class="card-body">
-                      <img src="images/data-map-2.png" alt="An example of a data map.">
-                    </div>
-                    <div class="card-footer">
-                      <h5 class="card-title text-primary">Get maps...</h5>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card" style="border: 3px solid #00923E50; border-radius: 5px;">
-                    <div class="card-body">
-                      <img src="images/trend-chart-2.png" alt="An example of a trend chart showing data over time.">
-                    </div>
-                    <div class="card-footer">
-                      <h5 class="card-title text-primary">...trends...</h5>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card" style="border: 3px solid #00923E50; border-radius: 5px;">
-                    <div class="card-body">
-                      <img src="images/links-chart-2.png" alt="An example of a scatterplot, showing the relationship between two datasets.">
-                    </div>
-                    <div class="card-footer">
-                      <h5 class="card-title text-primary">...and explore links.</h5>
-                    </div>
-                  </div>
-                </div>
               </div>
 
+
+
+              <hr class="my-1">
               <a href="/data-explorer/" class="mt-2" style="float:right;">Browse
                 all data sets<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
               </div>
