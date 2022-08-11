@@ -56,7 +56,7 @@ We expect more extreme heat events as our climate continues to warm, so the Heal
 
 Older adults are more likely to die from extreme heat because of being more likely to have chronic illnesses and economic concerns. However, Black New Yorkers die from heat at younger ages. They are often younger when they develop chronic medical conditions and are more likely to have more than one condition. Crucially, long-standing systemic health and social inequities have put Black New Yorkers at increased risk of getting sick and dying from extreme heat. Structural racism also results in higher unemployment rates, fewer job opportunities, lower pay, and greater job instability for Black New Yorkers, affecting financial stability.
 
-We identified environmental, housing, and social factors that influence who is more likely to die from heat. We used this to create [the Heat Vulnerability Index](https://a816-dohbesp.nyc.gov/IndicatorPublic/HeatHub/hvi.html) to learn how heat risk changes across neighborhoods.
+We identified environmental, housing, and social factors that influence who is more likely to die from heat. We used this to create [the Heat Vulnerability Index](/key-topics/climatehealth/hvi/) to learn how heat risk changes across neighborhoods.
 
 As we experience a changing climate, air conditioning is no longer a luxury. It is life-saving equipment. Yes, we must use it responsibly to reduce contributions to climate change and protect the power grid. But home cooling in the summer should be treated like heat in the winter: necessary to survival, particularly for those who are most at risk.
 
@@ -73,5 +73,4 @@ Resources
 Research
 - [A City Health Department’s Perspective on Preventing Heat-related Deaths](https://journals.lww.com/epidem/fulltext/2018/11000/Equitable_Access_to_Air_Conditioning___A_City.1.aspx)
 - [A Case-Only Study of Vulnerability to Heat Wave-Related Mortality in New York City (2000-2011)](https://www.ncbi.nlm.nih.gov/pubmed/25782056)
-- [About the Heat Vulnerability Index](https://a816-dohbesp.nyc.gov/IndicatorPublic/EPHTPDF/HVI_FAQ.pdf)
 - [Awareness, risk perception, and protective behaviors for extreme heat and climate change in New York City](https://www.mdpi.com/1660-4601/15/7/1433)

@@ -448,7 +448,7 @@ As the climate changes, NYC faces rising average temperatures and heat waves tha
 <div class="wide">
     <div class="mb-4" style="background-color:rgb(231, 231, 231); padding: 10px; border-radius: 5px;">
     <p><strong>More info:</strong></p>
-    <p>Learn how  other ways NYC is working to counter the risks of rising temperatures, such as <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/heat/">by ensuring equitable access to air conditioning</a>.
+    <p>Learn how  other ways NYC is working to counter the risks of rising temperatures, such as <a href="/data-stories/heat/">by ensuring equitable access to air conditioning</a>.
     </p>
     <p>You can explore the areas where we measured temperatures, and their average
         summer
@@ -473,7 +473,7 @@ As the climate changes, NYC faces rising average temperatures and heat waves tha
     <br><br><br><br>
     <div style="background-color:rgb(231, 231, 231); padding: 10px; border-radius: 5px;">
         <span style="font-weight: bold; color: #5e5e5e;">More about NYC's greening efforts</span>
-        <p>There are numerous efforts to increase tree canopy and green space overall in NYC. The City plants and cares for <a href="https://www.nycgovparks.org/trees/street-tree-planting">street trees</a> along the right-of-way; forbs, shrubs, and trees in parkland; <a href="https://www1.nyc.gov/site/dep/water/rain-gardens.page">rain gardens</a> and <a href="https://www1.nyc.gov/site/dep/water/green-infrastructure.page">other green infrastructure</a> to capture stormwater; and more. Many tree plantings have been concentrated in areas with <a href="https://www.milliontreesnyc.org/html/million_trees/neighborhoods.shtml">higher than average rates of asthma</a> and <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/HeatHub/hvi.html">heat-vulnerable neighborhoods</a>.</p>
+        <p>There are numerous efforts to increase tree canopy and green space overall in NYC. The City plants and cares for <a href="https://www.nycgovparks.org/trees/street-tree-planting">street trees</a> along the right-of-way; forbs, shrubs, and trees in parkland; <a href="https://www1.nyc.gov/site/dep/water/rain-gardens.page">rain gardens</a> and <a href="https://www1.nyc.gov/site/dep/water/green-infrastructure.page">other green infrastructure</a> to capture stormwater; and more. Many tree plantings have been concentrated in areas with <a href="https://www.milliontreesnyc.org/html/million_trees/neighborhoods.shtml">higher than average rates of asthma</a> and <a href="/key-topics/climatehealth/hvi">heat-vulnerable neighborhoods</a>.</p>
         <p>Trust for Public Land’s <a href="https://www.tpl.org/our-work/new-york-city-playgrounds">New York City Playgrounds program</a> has transformed over 200 playgrounds from using asphalt to using cooler, greener materials. There are also <a href="https://naturalareasnyc.org/map">forests in all five boroughs</a>, and the Department of Parks and Recreation and the Natural Areas Conservancy have developed the <a href="https://naturalareasnyc.org/forests">Forest Management Framework for New York City</a>, a 25-year plan that lays out the process, costs, best practices, and goals for caring for forests in the city.  </p>
         <p>You can get involved, too:</p>
         <ul>
