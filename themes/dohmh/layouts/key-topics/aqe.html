@@ -415,7 +415,14 @@
                     <script type="text/javascript" src="{{ . }}"></script>
                     {{- end -}}
                     
-                    {{- with .Params.customJS -}}
-                    <script type="text/javascript" src="{{ . }}"></script>
-                    {{- end -}}
+                    {{/*  {{- with .Params.customJS -}}  */}}
+                    {{/*  <script type="text/javascript" src="{{ . }}"></script>  */}}
+                    <script>
+                        var data_branch = "{{ site.Params.data_branch }}"
+                        console.log("data_branch [inside aqe.html]", data_branch);
+                    </script>
+                    {{/*  {{ $js := resources.GetRemote (print .Page.Permalink "aqe.js") | js.Build (dict "params" (dict "data_branch" (site.Params.data_branch))) }}  */}}
+
+                    <script type="text/javascript" src="{{ .Params.customJS }}"></script>
+                    {{/*  {{- end -}}  */}}
                     {{- end -}}
