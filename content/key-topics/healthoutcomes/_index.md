@@ -12,6 +12,7 @@ menu:
     main:
         identifier: '05'
 layout: single
+image: medgar-evers.jpg
 ---
 
 Our environment - the world around us - affects our health. Here are datasets on health outcomes that people experience that may be linked to the environment. 
