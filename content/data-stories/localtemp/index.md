@@ -360,7 +360,7 @@ See for yourself - drag the green slider back and forth to see what the temperat
 </div>
 
 <script>
-           var tempVar = 75;
+    var tempVar = 75;
     var vegVar;
     var vegClean;
     var impervVar;
