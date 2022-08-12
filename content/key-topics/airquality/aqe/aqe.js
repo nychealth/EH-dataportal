@@ -22,13 +22,15 @@ ntaForm.addEventListener('submit', function (event) {
     event.preventDefault();                      // prevent page re-load
     neighborhoodName = event.target[0].value;    // gives you full neighborhood name
     ntaCode = event.target[0].value.slice(0, 4); // gives you NTA code
+
+    // console.log("ntaCode [form]", ntaCode);
     
     document.getElementById('NTA').innerHTML = 'Your neighborhood: <h3><span style="font-weight:bold;color:#15607a">' + DOMPurify.sanitize(neighborhoodName) + '</span></h3>';
     document.getElementById('yourneighb').style.display = "block";
     
-    dataFilter();
-    
+    dataFilter(nyccasData);
     dataChange();
+    
 });
 
 // import parameters passed from js.Build with Hugo
@@ -58,28 +60,31 @@ var embed_opt = {
     actions:false
 };
 
-// LOAD MAP JSON
+// path to topo json, will be loaded by vega
 
-var nta_topojson = d3.json("https://raw.githubusercontent.com/nychealth/EHDP-data/" + data_branch + "/geography/NTA.topo.json"); 
+var nta_topojson = "https://raw.githubusercontent.com/nychealth/EHDP-data/" + data_branch + "/geography/NTA3.topo.json"; 
 
 // the d3 code below loads the data from a CSV file and dumps it into global javascript object variable.
 
 // LOAD DATA
 
-var nyccasData = 
-    d3.csv(nyccas_url, d3.autoType)
-    .then(data => {
-        data;
-        console.log("data [nyccasData]", data);
-    }); 
+d3.csv(nyccas_url, d3.autoType).then(data => {
+    nyccasData = data;
+    // console.log("nyccasData [load]", nyccasData);
+}); 
 
 // FILTER DATA BASED ON SELECTION FROM FORM
 
-function dataFilter() {
+function dataFilter(data) {
     
-    neighborhoodData = nyccasData.filter(sf => {
-        sf.NTACode === ntaCode;
+    neighborhoodData = data.filter(sf => {
+
+        return sf.NTACode === ntaCode;
+
     });
+
+    // console.log("neighborhoodData [dataFilter]", neighborhoodData);
+
 }
 
 // at this point we have: neighborhoodName (full name), ntaCode (4-digit), and neighborhooData (array of data)
@@ -88,7 +93,10 @@ function dataFilter() {
 
 function dataChange() {
     
-    console.log('hi from dataChange function');
+    // console.log("nyccasData [dataFilter]", nyccasData);
+    // console.log("neighborhoodData [dataChange]", neighborhoodData);
+
+    // console.log('hi from dataChange function');
     selectedNeighborhood = ntaCode;
     
     selectedName = neighborhoodData[0].NTAName;
@@ -102,6 +110,11 @@ function dataChange() {
     dBuildingDensity = neighborhoodData[0].tertile_buildingdensity;
     dTrafficDensity = neighborhoodData[0].tertile_trafficdensity;
     dIndustrial = neighborhoodData[0].tertile_industrial;
+
+    // console.log("dBuildingEmissions", dBuildingEmissions);
+    // console.log("dBuildingDensity", dBuildingDensity);
+    // console.log("dTrafficDensity", dTrafficDensity);
+    // console.log("dIndustrial", dIndustrial);
     
     document.querySelector("#PM").innerHTML = dPM + ' μg/m<sup>3</sup>';
     document.querySelector("#NO2").innerHTML = dNO2 + ' ppb';
@@ -114,14 +127,16 @@ function dataChange() {
         mapUpdateID(tabShown), 
         aqe_path + "/" + mapUpdateSpec(tabShown), 
         nyccasData, 
-        nta_topojson
+        nta_topojson,
+        selectedNeighborhood
     );
     // load the PM2.5 bar chart
 
     buildChart(
         "#PMbar", 
         PMBarVGSpec, 
-        nyccasData
+        nyccasData,
+        selectedNeighborhood
     );
 
     // load the NO2 bar chart
@@ -129,10 +144,11 @@ function dataChange() {
     buildChart(
         "#NO2bar", 
         NO2BarVGSpec, 
-        nyccasData
+        nyccasData,
+        selectedNeighborhood
     );
     
-    console.log('changed');
+    // console.log('changed');
     
 } 
 
@@ -142,49 +158,6 @@ function dataChange() {
 function numRound(x) {
     return Number.parseFloat(x).toFixed(1);
 } 
-
-
-// jquery commands track tab changes
-
-$(document).ready(function () {
-    
-    $(document).alert('hi from jquery');
-    
-    $(".nav-pills a").click(function () {
-        $(this).tab('show');
-    });
-    
-    $('.nav-pills a').on('shown.bs.tab', function (event) {
-        
-        tabShown = $(event.target).attr('aria-controls'); // active tab
-        
-        $(".act span").text(tabShown);
-        $(".prev span").text("did it again");
-        
-        buildMap(
-            mapUpdateID(tabShown), 
-            aqe_path + "/" + mapUpdateSpec(tabShown), 
-            nyccasData, 
-            nta_topojson
-        );
-        // load the PM2.5 bar chart
-    
-        buildChart(
-            "#PMbar", 
-            PMBarVGSpec, 
-            nyccasData
-        );
-    
-        // load the NO2 bar chart
-    
-        buildChart(
-            "#NO2bar", 
-            NO2BarVGSpec, 
-            nyccasData
-        );
-        
-    });
-}); 
 
 
 //  **** MIGHT BE SOMETHING WITH THE SPECS **** //
@@ -198,10 +171,10 @@ $(document).ready(function () {
 
 function tertileTranslate(tertileVal) {
     
-    if (tertileVal === "3") {
+    if (tertileVal == 3) {
         return '<span class="badge badge-worse btn-block">high</span>';
         
-    } else if (tertileVal === "2") {
+    } else if (tertileVal == 2) {
         return '<span class="badge badge-medium btn-block">medium</span>';
         
     } else {
@@ -215,10 +188,10 @@ function tertileTranslate(tertileVal) {
 
 function tertileTranslate2(tertileVal) {
     
-    if (tertileVal === "3") {
+    if (tertileVal == 3) {
         return '<span class="badge badge-worse">high</span>';
         
-    } else if (tertileVal === "2") {
+    } else if (tertileVal == 2) {
         return '<span class="badge badge-medium">medium</span>';
         
     } else {
@@ -275,92 +248,162 @@ function mapUpdateSpec(tabShown) {
 
 // function to build maps
 
-function buildMap(div, spec, csv, topo) {
-    
-    d3.json(spec)
-        .then(spec => {
-            
-            // get data object whose url is "topo"
-            
-            var topo_url = spec.data.filter(data => data.url === "topo")[0];
-            
-            // update url element of this data array (which updates the spec), because
-            //  top_url is a shallow copy / reference to the spec
-            
-            topo_url.url = topo;
-            
-            // csv is a promise resulting from d3.csv
 
-            csv.then(csv => {
+function buildMap(div, spec, csv, topo, nbr) {
+    
+    var new_view;
+
+    // console.log("csv 1 [buildMap]", csv);
+
+    d3.json(spec).then(spec => {
             
-                vegaEmbed(
-                    div, 
-                    spec, 
-                    {actions: false}
-                    )
-                    .then(res => {
-                        res.view
+        // console.log("csv 2 [then(spec => {", csv);
+
+        // get data object whose url is "topo"
+        
+        var topo_url = spec.data.filter(data => {return data.url === "topo"})[0];
+        
+        console.log("topo_url", topo_url);
+        
+        // update url element of this data array (which updates the spec), because
+        //  top_url is a shallow copy / reference to the spec
+        
+        topo_url.url = topo;
+        
+        vegaEmbed(div, spec, {actions: false})
+            .then(async res => {
+
+                // console.log("csv 3 [then(res => {]", csv);
+
+                new_view = 
+                    await res.view
+                        .signal("selectNTA", nbr)
                         .insert("nyccasData", csv)
-                        .signal("selectNTA", selectedNeighborhood)
+                        .logLevel(vega.Info)
                         .runAsync();
-                    })
-                    .catch(console.error);
-        });
+
+                console.log("getState", new_view.getState());
+                
+            })
+            .catch(console.error);
+
     });
 }
 
+
 // initialize the map (tabShown has a value already)
 
-console.log("nyccasData", nyccasData);
-
-buildMap(
-    mapUpdateID(tabShown), 
-    aqe_path + "/" + mapUpdateSpec(tabShown), 
-    nyccasData, 
-    nta_topojson
-);
+// buildMap(
+//     mapUpdateID(tabShown), 
+//     aqe_path + "/" + mapUpdateSpec(tabShown), 
+//     nyccasData, 
+//     nta_topojson
+// );
     
 // function to build charts
         
-function buildChart(div, spec, csv) {
+function buildChart(div, spec, csv, nbr) {
+
+    // console.log("csv 1 [buildChart]", csv);
 
     d3.json(spec).then(spec => {
-        
-        // csv is a promise resulting from d3.csv
-        
-        csv.then(csv => {
+
+        // console.log("csv 2 [then(spec => {", csv);
             
-            vegaEmbed(
-                div, 
-                spec, 
-                {actions: false}
-                )
-                .then(res => {
+        vegaEmbed(div, spec, {actions: false})
+            .then(res => {
+
+                // console.log("csv 3 [then(res => {]", csv);
+
+                var new_view = 
                     res.view
-                    .insert("nyccasData", csv)
-                    .signal("selectNTA", selectedNeighborhood)
-                    .runAsync();
-                })
-                .catch(console.error);
-            });
+                        .insert("nyccasData", csv)
+                        .signal("selectNTA", nbr)
+                        .logLevel(vega.Info)
+                        .runAsync();
+
+            })
+            .catch(console.error);
         });
     }
 
 // load the PM2.5 bar chart
 
-buildChart(
-    "#PMbar", 
-    PMBarVGSpec, 
-    nyccasData
-);
+// buildChart(
+//     "#PMbar", 
+//     PMBarVGSpec, 
+//     nyccasData
+// );
 
 // load the NO2 bar chart
 
-buildChart(
-    "#NO2bar", 
-    NO2BarVGSpec, 
-    nyccasData
-);
+// buildChart(
+//     "#NO2bar", 
+//     NO2BarVGSpec, 
+//     nyccasData
+// );
+
+
+$( window ).on( "load", function() {
+
+    console.log("load");
+
+    buildMap(mapUpdateID(tabShown), aqe_path + "/" + mapUpdateSpec(tabShown), nyccasData, nta_topojson, selectedNeighborhood);
+    // load the PM2.5 bar chart
+    
+    buildChart("#PMbar", PMBarVGSpec, nyccasData, selectedNeighborhood);
+    
+    // load the NO2 bar chart
+    
+    buildChart("#NO2bar", NO2BarVGSpec, nyccasData, selectedNeighborhood);
+
+});
+
+// jquery commands track tab changes
+
+$(document).ready(function () {
+    
+    console.log("ready");
+    $(document).alert('hi from jquery');
+    
+    $(".nav-pills a").click(function () {
+        $(this).tab('show');
+    });
+    
+    $('.nav-pills a').on('shown.bs.tab', function (event) {
+        
+        tabShown = $(event.target).attr('aria-controls'); // active tab
+        
+        $(".act span").text(tabShown);
+        $(".prev span").text("did it again");
+
+        buildMap(
+            mapUpdateID(tabShown), 
+            aqe_path + "/" + mapUpdateSpec(tabShown), 
+            nyccasData, 
+            nta_topojson,
+            selectedNeighborhood
+        );
+        // load the PM2.5 bar chart
+    
+        buildChart(
+            "#PMbar", 
+            PMBarVGSpec, 
+            nyccasData,
+            selectedNeighborhood
+        );
+    
+        // load the NO2 bar chart
+    
+        buildChart(
+            "#NO2bar", 
+            NO2BarVGSpec, 
+            nyccasData,
+            selectedNeighborhood
+        );
+        
+    });
+}); 
 
 
 // Source: https://github.com/jserz/js_piece/blob/master/DOM/ParentNode/append()/append().md
