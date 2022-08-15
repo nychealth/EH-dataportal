@@ -160,13 +160,6 @@ function numRound(x) {
 } 
 
 
-//  **** MIGHT BE SOMETHING WITH THE SPECS **** //
-//  **** MIGHT BE SOMETHING WITH THE SPECS **** //
-//  **** MIGHT BE SOMETHING WITH THE SPECS **** //
-//  **** MIGHT BE SOMETHING WITH THE SPECS **** //
-//  **** MIGHT BE SOMETHING WITH THE SPECS **** //
-
-
 // Returns block-level badges for the tabs
 
 function tertileTranslate(tertileVal) {
@@ -248,7 +241,6 @@ function mapUpdateSpec(tabShown) {
 
 // function to build maps
 
-
 function buildMap(div, spec, csv, topo, nbr) {
     
     var new_view;
@@ -291,15 +283,6 @@ function buildMap(div, spec, csv, topo, nbr) {
 }
 
 
-// initialize the map (tabShown has a value already)
-
-// buildMap(
-//     mapUpdateID(tabShown), 
-//     aqe_path + "/" + mapUpdateSpec(tabShown), 
-//     nyccasData, 
-//     nta_topojson
-// );
-    
 // function to build charts
         
 function buildChart(div, spec, csv, nbr) {
@@ -327,28 +310,16 @@ function buildChart(div, spec, csv, nbr) {
         });
     }
 
-// load the PM2.5 bar chart
-
-// buildChart(
-//     "#PMbar", 
-//     PMBarVGSpec, 
-//     nyccasData
-// );
-
-// load the NO2 bar chart
-
-// buildChart(
-//     "#NO2bar", 
-//     NO2BarVGSpec, 
-//     nyccasData
-// );
-
+// load the charts after the page loads
 
 $( window ).on( "load", function() {
 
     console.log("load");
 
+    // load the map
+    
     buildMap(mapUpdateID(tabShown), aqe_path + "/" + mapUpdateSpec(tabShown), nyccasData, nta_topojson, selectedNeighborhood);
+    
     // load the PM2.5 bar chart
     
     buildChart("#PMbar", PMBarVGSpec, nyccasData, selectedNeighborhood);
@@ -359,7 +330,7 @@ $( window ).on( "load", function() {
 
 });
 
-// jquery commands track tab changes
+// change maps when tabs change
 
 $(document).ready(function () {
     
@@ -377,6 +348,8 @@ $(document).ready(function () {
         $(".act span").text(tabShown);
         $(".prev span").text("did it again");
 
+        // load the map
+
         buildMap(
             mapUpdateID(tabShown), 
             aqe_path + "/" + mapUpdateSpec(tabShown), 
@@ -384,6 +357,7 @@ $(document).ready(function () {
             nta_topojson,
             selectedNeighborhood
         );
+
         // load the PM2.5 bar chart
     
         buildChart(
