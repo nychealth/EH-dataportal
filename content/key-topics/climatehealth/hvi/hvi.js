@@ -4,7 +4,7 @@
 
 var hvidata = {};
 var neighborhoodData = {};
-var selectedNeighborhood = ['']; //document.querySelector("#ntaField")
+var selectedNeighborhood = [''];
 var selectedName = '';
 
 // This script runs style/highlighting
@@ -36,6 +36,7 @@ ntaForm.addEventListener('submit', function (event) {
     
 });
 
+// interactive variables
 
 var nCD = "";
 var nGREENSPACE = "";
@@ -53,7 +54,6 @@ var nSURFACETEMP = "";
 
 var hvi_path   = data_repo + "/" + data_branch + "/key-topics/heatvulnerabilityindex";
 var hvi_url    = hvi_path + "/hvi-nta.csv";
-// var HVImapSpec = hvi_path + "/HVIMapSpec.vg.json";
 var HVImapSpec = "HVIMapSpec.vg.json";
 
 // path to topo json, will be loaded by vega
@@ -85,8 +85,6 @@ var embed_opt = {
 
 // the d3 code below loads the data from a CSV file and dumps it into global javascript object variable.
 
-// LOAD DATA
-
 d3.csv(hvi_url, d3.autoType).then(data => {
     hvidata = data;
     console.log("hvidata [load]", hvidata);
@@ -99,18 +97,11 @@ function dataChange() {
 
     neighborhoodData = hvidata.filter(sf => {
 
-        console.log(selectedNeighborhood);
-
         return sf.NTACode === selectedNeighborhood;
 
     });
 
-    console.log(neighborhoodData);
-
     selectedName = neighborhoodName;
-
-    console.log(neighborhoodData[0]);
-
     nCD = neighborhoodData[0].CD;
     nGREENSPACE = neighborhoodData[0].GREENSPACE;  // green  *
     nHVI_RANK = neighborhoodData[0].HVI_RANK; // hvi  **
@@ -166,8 +157,9 @@ function tertileTranslate(tertileVal) {
     } else {
         return '<span class="badge badge-better btn-block">low</span>';
         
-    };
+    }
 }
+
 
 // Returns in-line badges for text
 
@@ -182,7 +174,7 @@ function tertileTranslate2(tertileVal) {
     } else {
         return '<span class="badge badge-better">low</span>';
         
-    };
+    }
 } 
 
 
@@ -234,7 +226,7 @@ function buildMap(div, spec, csv, topo, nbr) {
 
 $( window ).on( "load", function() {
 
-    console.log("load");
+    // console.log("load");
 
     // load the map
     
