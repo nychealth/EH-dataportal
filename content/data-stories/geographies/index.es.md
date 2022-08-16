@@ -83,8 +83,8 @@ Cada PUMA se divide en áreas de tabulación de vecindarios (NTA), y cada NTA se
 
 {{< rawhtml >}}
 
-<input type="radio" name="mainRadioGroup" value="CD" id="ucd" checked> <label for="ucd">Distritos Comunitarios</label> &nbsp;&nbsp;
-<input type="radio" name="mainRadioGroup" value="PUMA" id="upuma"/> <label for="upuma">PUMA</label> &nbsp;&nbsp;
+<input type="radio" name="mainRadioGroup" value="cd" id="ucd" checked> <label for="ucd">Distritos Comunitarios</label> &nbsp;&nbsp;
+<input type="radio" name="mainRadioGroup" value="puma" id="upuma"/> <label for="upuma">PUMA</label> &nbsp;&nbsp;
 <input type="radio" name="mainRadioGroup" value="nta" id="unta"> <label for="unta">NTA</label>
 
 <!-- create map div -->
@@ -96,9 +96,9 @@ Cada PUMA se divide en áreas de tabulación de vecindarios (NTA), y cada NTA se
     var path = "data-stories/geographies" // hard-coded for now, but could Hugo paramaterize
     var trans = "mapspec-en"
     
-    let cd_spec   = repo_branch + "/" + path + "/" + trans + "/" + "mapCD.vl.json";
-    let puma_spec = repo_branch + "/" + path + "/" + trans + "/" + "mapPUMA.vl.json";
-    let nta_spec  = repo_branch + "/" + path + "/" + trans + "/" + "mapNTA.vl.json";
+    let cd_spec   = repo_branch + "/" + path + "/" + trans + "/" + "mapcd.vl.json";
+    let puma_spec = repo_branch + "/" + path + "/" + trans + "/" + "mappuma.vl.json";
+    let nta_spec  = repo_branch + "/" + path + "/" + trans + "/" + "mapnta.vl.json";
 
     let cd_csv   = repo_branch + "/" + path + "/" + "CD_DATA.csv"
     let puma_csv = repo_branch + "/" + path + "/" + "PUMA_DATA.csv"
@@ -118,7 +118,7 @@ Cada PUMA se divide en áreas de tabulación de vecindarios (NTA), y cada NTA se
         radios = document.querySelectorAll('input[type=radio][name="mainRadioGroup"]');
         radios.forEach(radio => radio.addEventListener('change', () => {
 
-            if (radio.value === 'CD') {
+            if (radio.value === 'cd') {
                 buildMap("#map1", cd_spec, cd_csv, cd_topo);
             }
             else if (radio.value === 'nta') {
@@ -145,6 +145,7 @@ Cada PUMA se divide en áreas de tabulación de vecindarios (NTA), y cada NTA se
                 vegaEmbed(div, spec).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
+                    
                 });
             });
         });
@@ -183,7 +184,7 @@ En el siguiente mapa, observe cómo **tres vecindarios de UHF42 en South Bronx**
 
     let uhf42_spec = repo_branch + "/" + path + "/" + trans + "/" + "map42.vl.json";
     let uhf34_spec = repo_branch + "/" + path + "/" + trans + "/" + "map34.vl.json";
-    let zip_spec   = repo_branch + "/" + path + "/" + trans + "/" + "mapMODZCTA.vl.json";
+    let zip_spec   = repo_branch + "/" + path + "/" + trans + "/" + "mapmodzcta.vl.json";
 
     let uhf42_csv = repo_branch + "/" + path + "/" + "42_DATA.csv"
     let uhf34_csv = repo_branch + "/" + path + "/" + "34_DATA.csv"

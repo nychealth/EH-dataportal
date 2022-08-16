@@ -21,7 +21,7 @@
 
 {{/*  get report JSON from EHDP-data as a resource  */}}
 
-{{- $reports_data := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/reports/" $.Params.data_json ".json")) | transform.Unmarshal -}}
+{{- $reports_data := (resources.GetRemote (print "https://raw.githubusercontent.com/nychealth/EHDP-data/" site.Params.data_branch "/neighborhood-reports/reports/" $.Params.data_json ".json")) | transform.Unmarshal -}}
 
 {{/* First loop of report JSON to get first level parameters */}}
 {{- range $reports_data -}}
