@@ -52,7 +52,7 @@ var nSURFACETEMP = "";
 
 // path variables
 
-var hvi_path   = data_repo + "/" + data_branch + "/key-topics/heatvulnerabilityindex";
+var hvi_path   = data_repo + "/" + data_branch + "/key-topics/heat-vulnerability-index";
 var hvi_url    = hvi_path + "/hvi-nta.csv";
 var HVImapSpec = "HVIMapSpec.vg.json";
 
