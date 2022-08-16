@@ -3,7 +3,7 @@
 // Create and initialize variables
 
 var hvidata = {};
-var neighborhoodData = {};
+var neighborhoodData;
 var selectedNeighborhood = [''];
 var selectedName = '';
 
@@ -23,13 +23,12 @@ accessibleAutocomplete.enhanceSelectElement({
 // This puts an event listener on the form, gets the neighborhood value, and dumps it into initial readout
 
 var neighborhoodName;
-var selectedNeighborhood;
 var ntaForm = document.getElementById('nta-form');
 
 ntaForm.addEventListener('submit', function (event) {
     
     event.preventDefault();                                   // prevent page re-load
-    neighborhoodName = event.target[0].value;                 // gives you full neighborhood name
+    selectedName = event.target[0].value;                 // gives you full neighborhood name
     selectedNeighborhood = event.target[0].value.slice(0, 4); // gives you NTA code
 
     dataChange();
@@ -78,7 +77,6 @@ var scLocBPop = "#bpopTertile";
 //var SCM_spec = {};
 
 var embed_opt = {
-    "renderer": "svg",
     actions: false
 };
 
@@ -96,28 +94,29 @@ d3.csv(hvi_url, d3.autoType).then(data => {
 function dataChange() {
 
     neighborhoodData = hvidata.filter(sf => {
+        
+        // geo code used in hvi.html is the character NTACode, so using that here instead of numeric GEOCODE
 
-        return sf.GEOCODE === selectedNeighborhood;
+        return sf.NTACode === selectedNeighborhood;
 
     });
 
-    selectedName = neighborhoodName;
-    nCD = neighborhoodData[0].CD;
+
+    nSURFACETEMP = neighborhoodData[0].SURFACETEMP;  // temp  *
     nGREENSPACE = neighborhoodData[0].GREENSPACE;  // green  *
     nHVI_RANK = neighborhoodData[0].HVI_RANK; // hvi  **
-    nNTACode = neighborhoodData[0].GEOCODE;
-    nNTAName = neighborhoodData[0].GEONAME; // nta1,2,3 etc
     nPCT_BLACK_POP = neighborhoodData[0].PCT_BLACK_POP;  // bpop  *
     nPCT_HOUSEHOLDS_AC = neighborhoodData[0].PCT_HOUSEHOLDS_AC; // ac  *
     nPOV_PCT = neighborhoodData[0].POV_PCT;  // pov  *
-    nSURFACETEMP = neighborhoodData[0].SURFACETEMP;  // temp  *
 
     // copy this but for our tertiles
 
-    nGREENSPACETERT = neighborhoodData[0].GREENSPACE_TERT; // GREENSPACETERTILE
     nSURFACETEMPTERT = neighborhoodData[0].SURFACETEMP_TERT;
+    nGREENSPACETERT = neighborhoodData[0].GREENSPACE_TERT; // GREENSPACETERTILE
     nPOV_PCTTERT = neighborhoodData[0].POV_TERT;
     nPCT_HOUSEHOLDS_ACTERT = neighborhoodData[0].AC_TERT;
+
+    // fill html elements
 
     document.querySelector("#NTA").innerHTML = '<h4>' + DOMPurify.sanitize(selectedName) + '</h4>';
     document.querySelector("#tempVal").innerHTML = nSURFACETEMP + '° F';
@@ -128,14 +127,18 @@ function dataChange() {
     document.querySelector("#povVal").innerHTML = nPOV_PCT + '%';
 
     // adding tertile delivery
+
     document.querySelector("#tempTert").innerHTML = nSURFACETEMPTERT;
     document.querySelector("#greenTert").innerHTML = nGREENSPACETERT;
     document.querySelector("#povTert").innerHTML = nPOV_PCTTERT;
     document.querySelector("#acTert").innerHTML = nPCT_HOUSEHOLDS_ACTERT;
 
+    // rebuild map
+
     buildMap('#mapvis', HVImapSpec, hvidata, nta_topojson, selectedNeighborhood);
 
 } 
+
 
 // rounding function lets us round all numbers the same
 

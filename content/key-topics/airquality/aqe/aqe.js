@@ -13,19 +13,17 @@ accessibleAutocomplete.enhanceSelectElement({
 
 // EVENT LISTENER ON FORM, RETRIEVE VALUE 
 
-var neighborhoodName;
-var ntaCode;
 var ntaForm = document.getElementById('nta-form');
 
 ntaForm.addEventListener('submit', function (event) {
     
     event.preventDefault();                      // prevent page re-load
-    neighborhoodName = event.target[0].value;    // gives you full neighborhood name
-    ntaCode = event.target[0].value.slice(0, 4); // gives you NTA code
+    selectedName = event.target[0].value;    // gives you full neighborhood name
+    selectedNeighborhood = event.target[0].value.slice(0, 4); // gives you NTA code
 
     // console.log("ntaCode [form]", ntaCode);
     
-    document.getElementById('NTA').innerHTML = 'Your neighborhood: <h3><span style="font-weight:bold;color:#15607a">' + DOMPurify.sanitize(neighborhoodName) + '</span></h3>';
+    document.getElementById('NTA').innerHTML = 'Your neighborhood: <h3><span style="font-weight:bold;color:#15607a">' + DOMPurify.sanitize(selectedName) + '</span></h3>';
     document.getElementById('yourneighb').style.display = "block";
     
     dataFilter(nyccasData);
@@ -43,7 +41,7 @@ ntaForm.addEventListener('submit', function (event) {
 
 var nyccasData = [];
 var neighborhoodData = [];
-var selectedNeighborhood = [''];
+var selectedNeighborhood;
 var selectedName = '';
 var dPM = 0;
 var dNO2 = 0;
@@ -79,11 +77,12 @@ function dataFilter(data) {
     
     neighborhoodData = data.filter(sf => {
 
-        return sf.GEOCODE === ntaCode;
+        // geo code used in aqe.html is the character NTACode, so using that here instead of numeric GEOCODE
+
+        return sf.NTACode === selectedNeighborhood;
 
     });
 
-    // console.log("neighborhoodData [dataFilter]", neighborhoodData);
 
 }
 
@@ -93,18 +92,10 @@ function dataFilter(data) {
 
 function dataChange() {
     
-    // console.log("nyccasData [dataFilter]", nyccasData);
-    // console.log("neighborhoodData [dataChange]", neighborhoodData);
-
-    // console.log('hi from dataChange function');
-    selectedNeighborhood = ntaCode;
-    
     selectedName = neighborhoodData[0].GEONAME;
     
-    dPM = neighborhoodData[0].Avg_annavg_PM25;
-    dPM = numRound(dPM);
-    dNO2 = neighborhoodData[0].Avg_annavg_NO2;
-    dNO2 = numRound(dNO2);
+    dPM = numRound(neighborhoodData[0].Avg_annavg_PM25);
+    dNO2 = numRound(neighborhoodData[0].Avg_annavg_NO2);
     
     dBuildingEmissions = neighborhoodData[0].tertile_buildingemissions;
     dBuildingDensity = neighborhoodData[0].tertile_buildingdensity;
