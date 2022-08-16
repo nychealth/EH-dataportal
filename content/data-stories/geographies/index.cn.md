@@ -82,8 +82,8 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office"
 
 {{< rawhtml >}}
 
-<input type="radio" name="mainRadioGroup" value="CD" id="ucd" checked> <label for="ucd">社区单元</label> &nbsp;&nbsp;
-<input type="radio" name="mainRadioGroup" value="PUMA" id="upuma"/> <label for="upuma">PUMA</label> &nbsp;&nbsp;
+<input type="radio" name="mainRadioGroup" value="cd" id="ucd" checked> <label for="ucd">社区单元</label> &nbsp;&nbsp;
+<input type="radio" name="mainRadioGroup" value="puma" id="upuma"/> <label for="upuma">PUMA</label> &nbsp;&nbsp;
 <input type="radio" name="mainRadioGroup" value="nta" id="unta"> <label for="unta">NTA</label>
 
 <div id = 'map1' style = "width:100%; height: 550px"></div>
@@ -104,7 +104,7 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office"
 
     let cd_topo   = repo_branch + "/" + "geography" + "/" + "CD.topo.json"
     let puma_topo = repo_branch + "/" + "geography" + "/" + "PUMA_or_Subborough.topo.json"
-    let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA2.topo.json"    
+    let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA.topo.json"    
 
     // this code listens to the form with map chooser; must run after DOM loads
     window.onload = main_radio_listener;
@@ -114,7 +114,7 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office"
         radios = document.querySelectorAll('input[type=radio][name="mainRadioGroup"]');
         radios.forEach(radio => radio.addEventListener('change', () => {
 
-            if (radio.value === 'CD') {
+            if (radio.value === 'cd') {
                 buildMap("#map1", cd_spec, cd_csv, cd_topo);
             }
             else if (radio.value === 'nta') {
@@ -126,6 +126,8 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office"
             
         }));
     };
+
+    // function for building the map
 
     function buildMap(div, spec, csv, topo) {
 
@@ -139,10 +141,13 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office"
                 vegaEmbed(div, spec).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
+
                 });
             });
         });
     };
+
+    // initialize the map
 
     buildMap("#map1", cd_spec, cd_csv, cd_topo);
 
@@ -151,7 +156,6 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office"
 
 {{< /rawhtml >}}
 
-<!-- {{< vega id="map1" spec=cd_spec height="550px" >}} -->
 
 #### 联合医院基金社区
 联合医院基金社区（United Hospital Fund neighborhoods，UHF）的边界基于邮编。这个地理单位是由卫生局、联合医院基金社区和其他市政机构在20世纪80年代创建的。它们设计用于健康研究，类似于纽约市的社区单元。
@@ -176,15 +180,15 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office"
 
     let uhf42_spec = repo_branch + "/" + path + "/" + trans + "/" + "map42.vl.json";
     let uhf34_spec = repo_branch + "/" + path + "/" + trans + "/" + "map34.vl.json";
-    let zip_spec   = repo_branch + "/" + path + "/" + trans + "/" + "mapZIP.vl.json";
+    let zip_spec   = repo_branch + "/" + path + "/" + trans + "/" + "mapmodzcta.vl.json";
 
     let uhf42_csv = repo_branch + "/" + path + "/" + "42_DATA.csv"
     let uhf34_csv = repo_branch + "/" + path + "/" + "34_DATA.csv"
-    let zip_csv   = repo_branch + "/" + path + "/" + "FAKE_ZCTA_DATA.csv"
+    let zip_csv   = repo_branch + "/" + path + "/" + "MODZCTA_DATA.csv"
 
     let uhf42_topo = repo_branch + "/" + "geography" + "/" + "UHF42.topo.json"
     let uhf34_topo = repo_branch + "/" + "geography" + "/" + "UHF34.topo.json"
-    let zip_topo   = repo_branch + "/" + "geography" + "/" + "MODZCTA_2010_WGS1984.topo.json"    
+    let zip_topo   = repo_branch + "/" + "geography" + "/" + "MODZCTA.topo.json"    
 
     function uhf_radio_listener() {
 
@@ -209,9 +213,6 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office"
 </script>
 
 {{< /rawhtml >}}
-
-<!-- {{< vega id="map2" spec=uhf42_spec height="550px" >}} -->
-
 
 
 ### 当边界重叠时如何选择？

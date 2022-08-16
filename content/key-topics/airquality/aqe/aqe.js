@@ -13,19 +13,17 @@ accessibleAutocomplete.enhanceSelectElement({
 
 // EVENT LISTENER ON FORM, RETRIEVE VALUE 
 
-var neighborhoodName;
-var ntaCode;
 var ntaForm = document.getElementById('nta-form');
 
 ntaForm.addEventListener('submit', function (event) {
     
     event.preventDefault();                      // prevent page re-load
-    neighborhoodName = event.target[0].value;    // gives you full neighborhood name
-    ntaCode = event.target[0].value.slice(0, 4); // gives you NTA code
+    selectedName = event.target[0].value;    // gives you full neighborhood name
+    selectedNeighborhood = event.target[0].value.slice(0, 4); // gives you NTA code
 
     // console.log("ntaCode [form]", ntaCode);
     
-    document.getElementById('NTA').innerHTML = 'Your neighborhood: <h3><span style="font-weight:bold;color:#15607a">' + DOMPurify.sanitize(neighborhoodName) + '</span></h3>';
+    document.getElementById('NTA').innerHTML = 'Your neighborhood: <h3><span style="font-weight:bold;color:#15607a">' + DOMPurify.sanitize(selectedName) + '</span></h3>';
     document.getElementById('yourneighb').style.display = "block";
     
     dataFilter(nyccasData);
@@ -37,13 +35,13 @@ ntaForm.addEventListener('submit', function (event) {
 
 // import * as params from '@params';
 
-console.log("data_branch [inside aqe.js]", data_branch);
+// console.log("data_branch [inside aqe.js]", data_branch);
 
 // Create and initialize variables
 
 var nyccasData = [];
 var neighborhoodData = [];
-var selectedNeighborhood = [''];
+var selectedNeighborhood;
 var selectedName = '';
 var dPM = 0;
 var dNO2 = 0;
@@ -52,9 +50,9 @@ var dBuildingDensity = 0;
 var dTrafficDensity = 0;
 var dIndustrial = 0;
 var tabShown = 'tab-01-a'; 
-var aqe_path = "https://raw.githubusercontent.com/nychealth/EHDP-data/" + data_branch + "/key-topics/air-quality-explorer";
-var nyccas_url = "https://raw.githubusercontent.com/nychealth/EHDP-data/" + data_branch + "/key-topics/air-quality-explorer/aqe-nta.csv";
-var PMBarVGSpec = aqe_path + "/" + "PMBarSpec.vg.json";
+var aqe_path   = data_repo + "/" + data_branch + "/key-topics/air-quality-explorer";
+var nyccas_url = data_repo + "/" + data_branch + "/key-topics/air-quality-explorer/aqe-nta.csv";
+var PMBarVGSpec  = aqe_path + "/" + "PMBarSpec.vg.json";
 var NO2BarVGSpec = aqe_path + "/" + "NO2BarSpec.vg.json";
 var embed_opt = {
     actions:false
@@ -62,7 +60,7 @@ var embed_opt = {
 
 // path to topo json, will be loaded by vega
 
-var nta_topojson = "https://raw.githubusercontent.com/nychealth/EHDP-data/" + data_branch + "/geography/NTA3.topo.json"; 
+var nta_topojson = data_repo + "/" + data_branch + "/geography/NTA.topo.json"; 
 
 // the d3 code below loads the data from a CSV file and dumps it into global javascript object variable.
 
@@ -79,11 +77,12 @@ function dataFilter(data) {
     
     neighborhoodData = data.filter(sf => {
 
-        return sf.NTACode === ntaCode;
+        // geo code used in aqe.html is the character NTACode, so using that here instead of numeric GEOCODE
+
+        return sf.NTACode === selectedNeighborhood;
 
     });
 
-    // console.log("neighborhoodData [dataFilter]", neighborhoodData);
 
 }
 
@@ -93,18 +92,10 @@ function dataFilter(data) {
 
 function dataChange() {
     
-    // console.log("nyccasData [dataFilter]", nyccasData);
-    // console.log("neighborhoodData [dataChange]", neighborhoodData);
-
-    // console.log('hi from dataChange function');
-    selectedNeighborhood = ntaCode;
+    selectedName = neighborhoodData[0].GEONAME;
     
-    selectedName = neighborhoodData[0].NTAName;
-    
-    dPM = neighborhoodData[0].Avg_annavg_PM25;
-    dPM = numRound(dPM);
-    dNO2 = neighborhoodData[0].Avg_annavg_NO2;
-    dNO2 = numRound(dNO2);
+    dPM = numRound(neighborhoodData[0].Avg_annavg_PM25);
+    dNO2 = numRound(neighborhoodData[0].Avg_annavg_NO2);
     
     dBuildingEmissions = neighborhoodData[0].tertile_buildingemissions;
     dBuildingDensity = neighborhoodData[0].tertile_buildingdensity;
@@ -243,8 +234,6 @@ function mapUpdateSpec(tabShown) {
 
 function buildMap(div, spec, csv, topo, nbr) {
     
-    var new_view;
-
     // console.log("csv 1 [buildMap]", csv);
 
     d3.json(spec).then(spec => {
@@ -267,14 +256,14 @@ function buildMap(div, spec, csv, topo, nbr) {
 
                 // console.log("csv 3 [then(res => {]", csv);
 
-                new_view = 
+                var res_view = 
                     await res.view
                         .signal("selectNTA", nbr)
                         .insert("nyccasData", csv)
                         .logLevel(vega.Info)
                         .runAsync();
 
-                console.log("getState", new_view.getState());
+                // console.log("getState", res_view.getState());
                 
             })
             .catch(console.error);
@@ -298,7 +287,7 @@ function buildChart(div, spec, csv, nbr) {
 
                 // console.log("csv 3 [then(res => {]", csv);
 
-                var new_view = 
+                var res_view = 
                     res.view
                         .insert("nyccasData", csv)
                         .signal("selectNTA", nbr)

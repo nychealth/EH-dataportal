@@ -83,8 +83,8 @@ Cada PUMA se divide en áreas de tabulación de vecindarios (NTA), y cada NTA se
 
 {{< rawhtml >}}
 
-<input type="radio" name="mainRadioGroup" value="CD" id="ucd" checked> <label for="ucd">Distritos Comunitarios</label> &nbsp;&nbsp;
-<input type="radio" name="mainRadioGroup" value="PUMA" id="upuma"/> <label for="upuma">PUMA</label> &nbsp;&nbsp;
+<input type="radio" name="mainRadioGroup" value="cd" id="ucd" checked> <label for="ucd">Distritos Comunitarios</label> &nbsp;&nbsp;
+<input type="radio" name="mainRadioGroup" value="puma" id="upuma"/> <label for="upuma">PUMA</label> &nbsp;&nbsp;
 <input type="radio" name="mainRadioGroup" value="nta" id="unta"> <label for="unta">NTA</label>
 
 <!-- create map div -->
@@ -106,7 +106,7 @@ Cada PUMA se divide en áreas de tabulación de vecindarios (NTA), y cada NTA se
 
     let cd_topo   = repo_branch + "/" + "geography" + "/" + "CD.topo.json"
     let puma_topo = repo_branch + "/" + "geography" + "/" + "PUMA_or_Subborough.topo.json"
-    let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA2.topo.json"    
+    let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA.topo.json"    
 
     // this code listens to the form with map chooser; must run after DOM loads
     window.onload = main_radio_listener;
@@ -118,7 +118,7 @@ Cada PUMA se divide en áreas de tabulación de vecindarios (NTA), y cada NTA se
         radios = document.querySelectorAll('input[type=radio][name="mainRadioGroup"]');
         radios.forEach(radio => radio.addEventListener('change', () => {
 
-            if (radio.value === 'CD') {
+            if (radio.value === 'cd') {
                 buildMap("#map1", cd_spec, cd_csv, cd_topo);
             }
             else if (radio.value === 'nta') {
@@ -145,6 +145,7 @@ Cada PUMA se divide en áreas de tabulación de vecindarios (NTA), y cada NTA se
                 vegaEmbed(div, spec).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
+
                 });
             });
         });
@@ -159,7 +160,6 @@ Cada PUMA se divide en áreas de tabulación de vecindarios (NTA), y cada NTA se
 
 {{< /rawhtml >}}
 
-<!-- {{< vega id="map1" spec=cd_spec height="550px" >}} -->
 
 #### Vecindarios del Fondo Hospitalario Unido
 Los vecindarios del Fondo Hospitalario Unido (United Hospital Fund, UHF) poseen límites basado en códigos postales. Esta geografía fue creada por el Departamento de Salud, el Fondo Hospitalario Unido y otras agencias de la ciudad en la década de 1980. Se diseñaron para realizar investigaciones sanitarias, y para que fuera similar a los Distritos Comunitarios de la ciudad de Nueva York.
@@ -183,15 +183,15 @@ En el siguiente mapa, observe cómo **tres vecindarios de UHF42 en South Bronx**
 
     let uhf42_spec = repo_branch + "/" + path + "/" + trans + "/" + "map42.vl.json";
     let uhf34_spec = repo_branch + "/" + path + "/" + trans + "/" + "map34.vl.json";
-    let zip_spec   = repo_branch + "/" + path + "/" + trans + "/" + "mapZIP.vl.json";
+    let zip_spec   = repo_branch + "/" + path + "/" + trans + "/" + "mapmodzcta.vl.json";
 
     let uhf42_csv = repo_branch + "/" + path + "/" + "42_DATA.csv"
     let uhf34_csv = repo_branch + "/" + path + "/" + "34_DATA.csv"
-    let zip_csv   = repo_branch + "/" + path + "/" + "FAKE_ZCTA_DATA.csv"
+    let zip_csv   = repo_branch + "/" + path + "/" + "MODZCTA_DATA.csv"
 
     let uhf42_topo = repo_branch + "/" + "geography" + "/" + "UHF42.topo.json"
     let uhf34_topo = repo_branch + "/" + "geography" + "/" + "UHF34.topo.json"
-    let zip_topo   = repo_branch + "/" + "geography" + "/" + "MODZCTA_2010_WGS1984.topo.json"    
+    let zip_topo   = repo_branch + "/" + "geography" + "/" + "MODZCTA.topo.json"    
 
     // listener for radio buttons
 
@@ -221,9 +221,6 @@ En el siguiente mapa, observe cómo **tres vecindarios de UHF42 en South Bronx**
 </script>
 
 {{< /rawhtml >}}
-
-<!-- {{< vega id="map2" spec=uhf42_spec height="550px" >}} -->
-
 
 
 ### ¿Cómo escoger cuando los límites se superponen?

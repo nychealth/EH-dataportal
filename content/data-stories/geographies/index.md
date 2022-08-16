@@ -82,8 +82,8 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
 
 {{< rawhtml >}}
 
-<input type="radio" name="mainRadioGroup" value="CD" id="ucd" checked> <label for="ucd">Community Districts</label> &nbsp;&nbsp;
-<input type="radio" name="mainRadioGroup" value="PUMA" id="upuma"/> <label for="upuma">PUMAs</label> &nbsp;&nbsp;
+<input type="radio" name="mainRadioGroup" value="cd" id="ucd" checked> <label for="ucd">Community Districts</label> &nbsp;&nbsp;
+<input type="radio" name="mainRadioGroup" value="puma" id="upuma"/> <label for="upuma">PUMAs</label> &nbsp;&nbsp;
 <input type="radio" name="mainRadioGroup" value="nta" id="unta"><label for="unta">NTAs</label>
 
 <!-- create map div -->
@@ -105,7 +105,7 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
 
     let cd_topo   = repo_branch + "/" + "geography" + "/" + "CD.topo.json"
     let puma_topo = repo_branch + "/" + "geography" + "/" + "PUMA_or_Subborough.topo.json"
-    let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA2.topo.json"    
+    let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA.topo.json"    
 
     // this code listens to the form with map chooser; must run after DOM loads
     window.onload = main_radio_listener;
@@ -117,7 +117,7 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
         radios = document.querySelectorAll('input[type=radio][name="mainRadioGroup"]');
         radios.forEach(radio => radio.addEventListener('change', () => {
 
-            if (radio.value === 'CD') {
+            if (radio.value === 'cd') {
                 buildMap("#map1", cd_spec, cd_csv, cd_topo);
             }
             else if (radio.value === 'nta') {
@@ -144,6 +144,7 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
                 vegaEmbed(div, spec).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
+
                 });
             });
         });
@@ -153,11 +154,11 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
 
     buildMap("#map1", cd_spec, cd_csv, cd_topo);
 
+
 </script>
 
 {{< /rawhtml >}}
 
-<!-- {{< vega id="map1" spec="mapcd.vl.json" height="550px" >}} -->
 
 #### United Hospital Fund neighborhoods
 United Hospital Fund neighborhoods (UHFs) have boundaries based on ZIP codes. This geography was created by the Health Department, the United Hospital Fund, and other city agencies in the 1980s. They were designed for health research, and to be similar to NYC’s Community Districts.
@@ -181,15 +182,15 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
 
     let uhf42_spec = repo_branch + "/" + path + "/" + trans + "/" + "map42.vl.json";
     let uhf34_spec = repo_branch + "/" + path + "/" + trans + "/" + "map34.vl.json";
-    let zip_spec   = repo_branch + "/" + path + "/" + trans + "/" + "mapZIP.vl.json";
+    let zip_spec   = repo_branch + "/" + path + "/" + trans + "/" + "mapmodzcta.vl.json";
 
     let uhf42_csv = repo_branch + "/" + path + "/" + "42_DATA.csv"
     let uhf34_csv = repo_branch + "/" + path + "/" + "34_DATA.csv"
-    let zip_csv   = repo_branch + "/" + path + "/" + "FAKE_ZCTA_DATA.csv"
+    let zip_csv   = repo_branch + "/" + path + "/" + "MODZCTA_DATA.csv"
 
     let uhf42_topo = repo_branch + "/" + "geography" + "/" + "UHF42.topo.json"
     let uhf34_topo = repo_branch + "/" + "geography" + "/" + "UHF34.topo.json"
-    let zip_topo   = repo_branch + "/" + "geography" + "/" + "MODZCTA_2010_WGS1984.topo.json"    
+    let zip_topo   = repo_branch + "/" + "geography" + "/" + "MODZCTA.topo.json"    
 
     // listener for radio buttons
 
@@ -219,11 +220,6 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
 </script>
 
 {{< /rawhtml >}}
-
-<!-- shortcode for embedding map, which creates "#map2", which above function will change. Needs to be down here because buttons defined at the top of rawhtml need to be above the map -->
-
-<!-- {{< vega id="map2" spec="map42.vl.json" height="550px" >}} -->
-
 
 
 ### How do you choose when boundaries overlap?
