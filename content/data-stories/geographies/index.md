@@ -159,7 +159,6 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
 
 {{< /rawhtml >}}
 
-<!-- {{< vega id="map1" spec="mapCD.vl.json" height="550px" >}} -->
 
 #### United Hospital Fund neighborhoods
 United Hospital Fund neighborhoods (UHFs) have boundaries based on ZIP codes. This geography was created by the Health Department, the United Hospital Fund, and other city agencies in the 1980s. They were designed for health research, and to be similar to NYC’s Community Districts.
@@ -221,11 +220,6 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
 </script>
 
 {{< /rawhtml >}}
-
-<!-- shortcode for embedding map, which creates "#map2", which above function will change. Needs to be down here because buttons defined at the top of rawhtml need to be above the map -->
-
-<!-- {{< vega id="map2" spec="map42.vl.json" height="550px" >}} -->
-
 
 
 ### How do you choose when boundaries overlap?

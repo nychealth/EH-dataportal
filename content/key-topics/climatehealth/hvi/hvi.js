@@ -182,8 +182,6 @@ function tertileTranslate2(tertileVal) {
 
 function buildMap(div, spec, csv, topo, nbr) {
     
-    var new_view;
-
     // console.log("csv 1 [buildMap]", csv);
 
     d3.json(spec).then(spec => {
@@ -206,14 +204,14 @@ function buildMap(div, spec, csv, topo, nbr) {
 
                 // console.log("csv 3 [then(res => {]", csv);
 
-                new_view = 
+                var res_view = 
                     await res.view
                         .signal("selectNTA", nbr)
                         .insert("hviData", csv)
                         .logLevel(vega.Info)
                         .runAsync();
 
-                console.log("getState", new_view.getState());
+                // console.log("getState", res_view.getState());
                 
             })
             .catch(console.error);

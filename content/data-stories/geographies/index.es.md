@@ -145,7 +145,7 @@ Cada PUMA se divide en áreas de tabulación de vecindarios (NTA), y cada NTA se
                 vegaEmbed(div, spec).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
-                    
+
                 });
             });
         });
@@ -160,7 +160,6 @@ Cada PUMA se divide en áreas de tabulación de vecindarios (NTA), y cada NTA se
 
 {{< /rawhtml >}}
 
-<!-- {{< vega id="map1" spec=cd_spec height="550px" >}} -->
 
 #### Vecindarios del Fondo Hospitalario Unido
 Los vecindarios del Fondo Hospitalario Unido (United Hospital Fund, UHF) poseen límites basado en códigos postales. Esta geografía fue creada por el Departamento de Salud, el Fondo Hospitalario Unido y otras agencias de la ciudad en la década de 1980. Se diseñaron para realizar investigaciones sanitarias, y para que fuera similar a los Distritos Comunitarios de la ciudad de Nueva York.
@@ -222,9 +221,6 @@ En el siguiente mapa, observe cómo **tres vecindarios de UHF42 en South Bronx**
 </script>
 
 {{< /rawhtml >}}
-
-<!-- {{< vega id="map2" spec=uhf42_spec height="550px" >}} -->
-
 
 
 ### ¿Cómo escoger cuando los límites se superponen?

@@ -141,7 +141,7 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office"
                 vegaEmbed(div, spec).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
-                    
+
                 });
             });
         });
@@ -156,7 +156,6 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office"
 
 {{< /rawhtml >}}
 
-<!-- {{< vega id="map1" spec=cd_spec height="550px" >}} -->
 
 #### 联合医院基金社区
 联合医院基金社区（United Hospital Fund neighborhoods，UHF）的边界基于邮编。这个地理单位是由卫生局、联合医院基金社区和其他市政机构在20世纪80年代创建的。它们设计用于健康研究，类似于纽约市的社区单元。
@@ -214,9 +213,6 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office"
 </script>
 
 {{< /rawhtml >}}
-
-<!-- {{< vega id="map2" spec=uhf42_spec height="550px" >}} -->
-
 
 
 ### 当边界重叠时如何选择？
