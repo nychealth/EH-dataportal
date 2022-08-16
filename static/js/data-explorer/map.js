@@ -81,7 +81,7 @@ const renderMap = (
 
   if (ntaDataResults.length > 0) {
       mapData = ntaData;
-      topoFile = 'NTA2.topo.json';
+      topoFile = 'NTA.topo.json';
   } else if (cdDataResults.length > 0) {
       mapData = cdData;
       topoFile = 'CD.topo.json';

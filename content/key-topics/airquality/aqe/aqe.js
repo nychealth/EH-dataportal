@@ -62,7 +62,7 @@ var embed_opt = {
 
 // path to topo json, will be loaded by vega
 
-var nta_topojson = "https://raw.githubusercontent.com/nychealth/EHDP-data/" + data_branch + "/geography/NTA3.topo.json"; 
+var nta_topojson = "https://raw.githubusercontent.com/nychealth/EHDP-data/" + data_branch + "/geography/NTA.topo.json"; 
 
 // the d3 code below loads the data from a CSV file and dumps it into global javascript object variable.
 
@@ -79,7 +79,7 @@ function dataFilter(data) {
     
     neighborhoodData = data.filter(sf => {
 
-        return sf.NTACode === ntaCode;
+        return sf.GEOCODE === ntaCode;
 
     });
 
@@ -99,7 +99,7 @@ function dataChange() {
     // console.log('hi from dataChange function');
     selectedNeighborhood = ntaCode;
     
-    selectedName = neighborhoodData[0].NTAName;
+    selectedName = neighborhoodData[0].GEONAME;
     
     dPM = neighborhoodData[0].Avg_annavg_PM25;
     dPM = numRound(dPM);

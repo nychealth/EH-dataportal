@@ -58,7 +58,7 @@ var HVImapSpec = "HVIMapSpec.vg.json";
 
 // path to topo json, will be loaded by vega
 
-var nta_topojson = data_repo + "/" + data_branch + "/geography/NTA3.topo.json"; 
+var nta_topojson = data_repo + "/" + data_branch + "/geography/NTA.topo.json"; 
 
 // copy establishing variables for tertiles
 
@@ -97,7 +97,7 @@ function dataChange() {
 
     neighborhoodData = hvidata.filter(sf => {
 
-        return sf.NTACode === selectedNeighborhood;
+        return sf.GEOCODE === selectedNeighborhood;
 
     });
 
@@ -105,8 +105,8 @@ function dataChange() {
     nCD = neighborhoodData[0].CD;
     nGREENSPACE = neighborhoodData[0].GREENSPACE;  // green  *
     nHVI_RANK = neighborhoodData[0].HVI_RANK; // hvi  **
-    nNTACode = neighborhoodData[0].NTACode;
-    nNTAName = neighborhoodData[0].NTAName; // nta1,2,3 etc
+    nNTACode = neighborhoodData[0].GEOCODE;
+    nNTAName = neighborhoodData[0].GEONAME; // nta1,2,3 etc
     nPCT_BLACK_POP = neighborhoodData[0].PCT_BLACK_POP;  // bpop  *
     nPCT_HOUSEHOLDS_AC = neighborhoodData[0].PCT_HOUSEHOLDS_AC; // ac  *
     nPOV_PCT = neighborhoodData[0].POV_PCT;  // pov  *

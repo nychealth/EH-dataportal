@@ -95,9 +95,9 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
     var path = "data-stories/geographies" // hard-coded for now, but could Hugo paramaterize
     var trans = "mapspec-en"
         
-    let cd_spec   = repo_branch + "/" + path + "/" + trans + "/" + "mapcd.vl.json";
-    let puma_spec = repo_branch + "/" + path + "/" + trans + "/" + "mappuma.vl.json";
-    let nta_spec  = repo_branch + "/" + path + "/" + trans + "/" + "mapnta.vl.json";
+    let cd_spec   = repo_branch + "/" + path + "/" + trans + "/" + "mapCD.vl.json";
+    let puma_spec = repo_branch + "/" + path + "/" + trans + "/" + "mapPUMA.vl.json";
+    let nta_spec  = repo_branch + "/" + path + "/" + trans + "/" + "mapNTA.vl.json";
 
     let cd_csv   = repo_branch + "/" + path + "/" + "CD_DATA.csv"
     let puma_csv = repo_branch + "/" + path + "/" + "PUMA_DATA.csv"
@@ -105,7 +105,7 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
 
     let cd_topo   = repo_branch + "/" + "geography" + "/" + "CD.topo.json"
     let puma_topo = repo_branch + "/" + "geography" + "/" + "PUMA_or_Subborough.topo.json"
-    let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA2.topo.json"    
+    let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA.topo.json"    
 
     // this code listens to the form with map chooser; must run after DOM loads
     window.onload = main_radio_listener;
@@ -157,7 +157,7 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
 
 {{< /rawhtml >}}
 
-<!-- {{< vega id="map1" spec="mapcd.vl.json" height="550px" >}} -->
+<!-- {{< vega id="map1" spec="mapCD.vl.json" height="550px" >}} -->
 
 #### United Hospital Fund neighborhoods
 United Hospital Fund neighborhoods (UHFs) have boundaries based on ZIP codes. This geography was created by the Health Department, the United Hospital Fund, and other city agencies in the 1980s. They were designed for health research, and to be similar to NYC’s Community Districts.
@@ -181,15 +181,15 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
 
     let uhf42_spec = repo_branch + "/" + path + "/" + trans + "/" + "map42.vl.json";
     let uhf34_spec = repo_branch + "/" + path + "/" + trans + "/" + "map34.vl.json";
-    let zip_spec   = repo_branch + "/" + path + "/" + trans + "/" + "mapZIP.vl.json";
+    let zip_spec   = repo_branch + "/" + path + "/" + trans + "/" + "mapMODZCTA.vl.json";
 
     let uhf42_csv = repo_branch + "/" + path + "/" + "42_DATA.csv"
     let uhf34_csv = repo_branch + "/" + path + "/" + "34_DATA.csv"
-    let zip_csv   = repo_branch + "/" + path + "/" + "FAKE_ZCTA_DATA.csv"
+    let zip_csv   = repo_branch + "/" + path + "/" + "MODZCTA_DATA.csv"
 
     let uhf42_topo = repo_branch + "/" + "geography" + "/" + "UHF42.topo.json"
     let uhf34_topo = repo_branch + "/" + "geography" + "/" + "UHF34.topo.json"
-    let zip_topo   = repo_branch + "/" + "geography" + "/" + "MODZCTA_2010_WGS1984.topo.json"    
+    let zip_topo   = repo_branch + "/" + "geography" + "/" + "MODZCTA.topo.json"    
 
     // listener for radio buttons
 
