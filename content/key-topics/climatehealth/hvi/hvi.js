@@ -54,7 +54,7 @@ var nSURFACETEMP = "";
 
 var hvi_path   = data_repo + "/" + data_branch + "/key-topics/heat-vulnerability-index";
 var hvi_url    = hvi_path + "/hvi-nta.csv";
-var HVImapSpec = "HVIMapSpec.vg.json";
+var HVImapSpec = hvi_path + "/HVIMapSpec.vg.json";
 
 // path to topo json, will be loaded by vega
 
