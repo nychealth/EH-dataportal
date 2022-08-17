@@ -11,6 +11,7 @@ image: ds-streets.jpg
 menu:
     main:
         identifier: '02'
+photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 
 **NB: Links to internal topics not yet inserted below.**

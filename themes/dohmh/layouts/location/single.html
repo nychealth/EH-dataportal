@@ -1,7 +1,5 @@
 {{- define "main" -}}
 
-{{/*  {{- partial "chart.html" . -}}  */}}
-
 {{/* Set scratch variables for neighborhood directory and report filename to be used in side bar */}}
 {{- $.Scratch.Set "neighborhoodDir" .Parent.File.Dir -}}
 {{- $.Scratch.Set "reportFile" .File.BaseFileName -}}
@@ -23,7 +21,7 @@
 
 {{/*  get report JSON from EHDP-data as a resource  */}}
 
-{{- $reports_data := (resources.GetRemote (print "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/reports/" $.Params.data_json ".json")) | transform.Unmarshal -}}
+{{- $reports_data := (resources.GetRemote (print site.Params.data_repo "/" site.Params.data_branch "/neighborhood-reports/reports/" $.Params.data_json ".json")) | transform.Unmarshal -}}
 
 {{/* First loop of report JSON to get first level parameters */}}
 {{- range $reports_data -}}
@@ -306,7 +304,7 @@
   document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
     e.preventDefault(); // prevent page re-load
     var locVal = searchForm.options[searchForm.selectedIndex].value;
-    window.location = '{{ $.Site.Params.devpath}}/neighborhood-reports/'+ DOMPurify.sanitize(locVal) + "/" + reportExt;
+    window.location = '{{ $.Site.Params.sitepath }}/neighborhood-reports/'+ DOMPurify.sanitize(locVal) + "/" + reportExt;
   });
 
  </script>

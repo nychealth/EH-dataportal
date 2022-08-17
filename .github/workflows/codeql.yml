@@ -12,14 +12,14 @@
 name: "CodeQL"
 
 on:
-  push:
+  # push:
+    # branches: 
+    #   - prod
+    #   - staging
+  pull_request_target: # analyze the base branch (aka prod or staging) of the closed PR
     branches: 
-      - main
-      - development
-  pull_request_target: # analyze the base branch (aka main or development) of the closed PR
-    branches: 
-      - main
-      - development
+      - prod
+      - staging
     types:
       - closed      
   schedule:

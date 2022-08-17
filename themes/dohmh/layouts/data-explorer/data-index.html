@@ -136,7 +136,7 @@
             
             
             // First, load Indicators.json
-            d3.json('https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/indicators.json').then(function (data) {
+            d3.json('{{ site.Params.data_repo }}/{{ site.Params.data_branch }}/indicators/indicators.json').then(function (data) {
                 indicators = data;
                 loopThroughIndicators() // run loops.
                 
