@@ -403,5 +403,5 @@ function changeMap(x) {
 
 #### 获取数据 
 - 有关住房维护状况的数据来自 [年住房和空置调查（Housing and Vancancy Survey）](https://www.census.gov/programs-surveys/nychvs.html)。
-- [有关儿童哮喘急诊科就诊的数据](https://a816-dohbesp.nyc.gov/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=11) 来自纽约全州计划和研究合作系统（New York State Statewide Planning and Research Cooperative System，SPARCS）去身份化的出院数据。
-- [有关依社区划分的人口种族/族裔数据](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2325,4466a0,109,Summarize) 来自美国社区调查（American Community Survey）。
+- [有关儿童哮喘急诊科就诊的数据](/data-explorer/asthma/?id=2383) 来自纽约全州计划和研究合作系统（New York State Statewide Planning and Research Cooperative System，SPARCS）去身份化的出院数据。
+- [有关依社区划分的人口种族/族裔数据](/data-explorer/social-and-economic-conditions/?id=2325) 来自美国社区调查（American Community Survey）。
