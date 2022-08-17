@@ -5,6 +5,8 @@
     <div class="col-md-10 mx-auto my-4">
         <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
         {{- .Content -}}
+
+        <!--
         <div class="row">
             <div class="col">
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -57,6 +59,9 @@
                 </div>
             </div>
         </div>
+        -->
+        
+        {{- partial "de-chooser-accordion.html" . -}}
         
         <div class="row mt-4">
             <div class="col">
