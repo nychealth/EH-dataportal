@@ -224,7 +224,7 @@
                     }
                     
 
-                    fetch('https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/indicators.json')
+                    fetch('https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/indicators/indicators.json')
                         .then(response => response.json())
                         .then(data => {
                             indicators = data;
@@ -349,8 +349,8 @@
                     }
 
                     const loadGeo = () => {
-                        const geoUrl = `https://raw.githubusercontent.com/nychealth/EHDP-data/main/geography/GeoLookup_2.csv`; // col named "GeoType"
-                        {{/*  const geoUrl = `https://raw.githubusercontent.com/nychealth/EHDP-data/main/geography/GeoLookup.csv`; // col named "Geotype"  */}}
+                        const geoUrl = `https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/geography/GeoLookup_2.csv`; // col named "GeoType"
+                        {{/*  const geoUrl = `https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/geography/GeoLookup.csv`; // col named "Geotype"  */}}
 
                         aq.loadCSV(geoUrl)
                             .then(data => {
@@ -372,7 +372,7 @@
 
                     const loadData = (indicatorId) => {
                         // Loads data as an arquero table
-                        fetch(`https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/data/${indicatorId}.json`)
+                        fetch(`https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/indicators/data/${indicatorId}.json`)
                             .then(response => response.json())
                             .then(data => {
 
@@ -641,7 +641,7 @@
                         aqSecondaryMeasureTimes.print({limit: 100})
                         console.log(aqSecondaryMeasureTimes);
 
-                        fetch(`https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/data/${disparityIndicatorId}.json`)
+                        fetch(`https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/indicators/data/${disparityIndicatorId}.json`)
                             .then(response => response.json())
                             .then(data => {
                                 const povertyData = data.filter(d => d.MeasureID === 221)
@@ -826,7 +826,7 @@
                         const filteredSecondaryIndicatorId = filteredSecondaryIndicator[0].IndicatorID;
                             const sortedPrimaryT = aq.from(sortedPrimaryMeasureTimes)
 
-                        fetch(`https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/data/${filteredSecondaryIndicatorId}.json`)
+                        fetch(`https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/indicators/data/${filteredSecondaryIndicatorId}.json`)
                             .then(response => response.json())
                             .then(data => {
                                 
@@ -1709,7 +1709,7 @@
             //Set Neighborhood Name in Text part.
             option.innerHTML = {{ .Title }}
             // set the option value - this adds the environment variable to give it the base URL.
-            option.value = '{{ .Site.Params.devpath }}/{{ .RelPermalink }}'
+            option.value = '{{ .Site.Params.sitepath }}/{{ .RelPermalink }}'
             //Add the Option element to DropDownList.
             ddlData.options.add(option);
           {{ end }}

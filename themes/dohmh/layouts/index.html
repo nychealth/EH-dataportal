@@ -328,7 +328,7 @@
                   document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
                     e.preventDefault(); // prevent page re-load
                     var locVal = searchForm.options[searchForm.selectedIndex].value;
-                    window.location = '{{ $.Site.Params.devpath }}/neighborhood-reports/'+ DOMPurify.sanitize(locVal);
+                    window.location = '{{ $.Site.Params.sitepath }}/neighborhood-reports/'+ DOMPurify.sanitize(locVal);
                   });
                 </script>
                 

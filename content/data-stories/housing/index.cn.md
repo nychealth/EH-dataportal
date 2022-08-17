@@ -97,7 +97,7 @@ vega: true
 </div>
 <div class="wide my-4">
 <div class="py-0 mb-4">
-    <iframe src="../../../maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
+    <iframe src="/maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 </div>
@@ -179,41 +179,91 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
   </div>
 </div>
 
-<script>
-function changeMap(x) {
-    var spec;
-    if (x==0) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/none.vl.json";
-    } else if (x==3) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/three.vl.json"
-    } else if (x==4) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/cockroaches.vl.json"
-    } else if (x==5) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/micerats.vl.json"
-    } else if (x==6) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/cracks.vl.json"
-    } else if (x==7) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/water.vl.json"
-    } else if (x==8) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/broken.vl.json"
-    } else if (x==9) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/breakdown.vl.json"
-    } else if (x==10) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/supplemental.vl.json"
-    } else if (x==11) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/noac.vl.json"
-    } else if (x==12) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/toilet.vl.json"
-    } else {};
+<div id = 'housingmap' style = "width:100%; height: 550px"></div>
 
-    vegaEmbed("#housingmap",spec)
-}
+<script>
+
+    // basic path
+    const repo_branch = "{{< param data_repo >}}/{{< param data_branch >}}"
+    const path = "data-stories/housing" // hard-coded for now, but could Hugo paramaterize
+    const trans = "mapspec-cn"
+
+    // specific path
+    const csv_path = repo_branch + "/" + path + "/" + "housing-data-story-data.csv"
+    const topo_path = repo_branch + "/geography/PUMA_or_Subborough.topo.json"
+
+    function changeMap(x) {
+
+        var spec;
+
+        if (x == 0) {
+            spec = "none.vl.json"
+
+        } else if (x == 3) {
+            spec = "three.vl.json"
+
+        } else if (x == 4) {
+            spec = "cockroaches.vl.json"
+
+        } else if (x == 5) {
+            spec = "micerats.vl.json"
+
+        } else if (x == 6) {
+            spec = "cracks.vl.json"
+
+        } else if (x == 7) {
+            spec = "water.vl.json"
+
+        } else if (x == 8) {
+            spec = "broken.vl.json"
+
+        } else if (x == 9) {
+            spec = "breakdown.vl.json"
+
+        } else if (x == 10) {
+            spec = "supplemental.vl.json"
+
+        } else if (x == 11) {
+            spec = "noac.vl.json"
+
+        } else if (x == 12) {
+            spec = "toilet.vl.json"
+
+        } else { };
+
+        var spec_path = repo_branch + "/" + path + "/" + trans + "/" + spec;
+
+        buildMap("#housingmap", spec_path, csv_path, topo_path);
+
+    }
+            
+    function buildMap(div, spec, csv, topo) {
+
+        d3.json(spec).then(spec => {
+
+            spec.layer[0].data.url = topo;
+            spec.layer[1].data.url = topo;
+            
+            d3.csv(csv, d3.autoType).then(csv => {
+                
+                vegaEmbed(div, spec).then((res) => {
+
+                    resview = res.view.insert("csv", csv).run();
+                });
+            });
+        });
+    };
+
+    // initialize the map 
+
+    buildMap("#housingmap", repo_branch + "/" + path + "/" + trans + "/" + "three.vl.json", csv_path, topo_path);
+
+
 </script>
 
 
 {{< /rawhtml>}}
 
-{{< vega id="housingmap" spec="https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-cn/three.vl.json" height="550px">}}
 
 ### 谁承担房屋年久失修的责任？
 这些问题远不只是造成了不便或混乱。 {{< rawhtml>}}

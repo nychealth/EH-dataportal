@@ -36,8 +36,8 @@ The site runs a CodeQL analysis on merges/builds.
 ### Environment-specific builds
 The /config folder includes subfolders with environment-specific configuration. Specifically, there are different configuration files for serving the site locally, serving it on Github pages, and eventually, building for production.
 
-Currently, config/local/config.toml has a variable ```devpath = "/EH-dataportal"```. This can be inserted into templates in order to fix path issues. For example, in header.html, the following uses this environment variable to load the banner image:
-```<div class="site-header bg-primary" style="background-image: url({{ $.Site.Params.devpath}}/images/header_background.jpg)">``` 
+Currently, config/local/config.toml has a variable ```sitepath = "/EH-dataportal"```. This can be inserted into templates in order to fix path issues. For example, in header.html, the following uses this environment variable to load the banner image:
+```<div class="site-header bg-primary" style="background-image: url({{ $.Site.Params.sitepath}}/images/header_background.jpg)">``` 
 
 To run a local-environment-specific serve or build, enter ```hugo serve --environment local``` or ```hugo build --environment local```. This will merge the contents of /config/local/config.toml with /config/_default/config.toml.
 
@@ -81,10 +81,10 @@ The data explorer includes markdown files for each subtopic. For the prototype v
 
 ### Neighborhood Reports
 To publish a new neighborhood report, you'd need:
-- JSON files for each neighborhood stored in `EHDP-data/neighborhoodreports/reports`
+- JSON files for each neighborhood stored in `EHDP-data/neighborhood-reports/reports`
 - YML stored in `/data/globals`
-- Preview chart images stored in `EHDP-data/neighborhoodreports/images`
-- Indicator data files stored in `EHDP-data/neighborhoodreports/data`
+- Preview chart images stored in `EHDP-data/neighborhood-reports/images`
+- Indicator data files stored in `EHDP-data/neighborhood-reports/data`
 
 ---
 
@@ -138,14 +138,14 @@ It is referenced via in-line CSS in themes/dohmh/layouts/data_stories/single.htm
 ## Neighborhood Reports
 Neighborhood Reports use content markdown, json data, and CSV data to generate the reports.
 
-* Report data for the site is stored in [`EHDP-data/neighborhoodreports/reports`](https://github.com/nychealth/EHDP-data/tree/main/neighborhoodreports/reports). These json exist for each neighborhood-and-report combination, and specify what indicators and summary statistics are a part of the report.
+* Report data for the site is stored in [`EHDP-data/neighborhood-reports/reports`](https://github.com/nychealth/EHDP-data/tree/main/neighborhood-reports/reports). These json exist for each neighborhood-and-report combination, and specify what indicators and summary statistics are a part of the report.
 * There is a markdown file for each report in site content that references the report metadata from its front matter.
 * There are two main templates used for reports `/themes/dohmh/layouts/location/single.html` is the main report template along with the partial that is loaded for each indicator `/themes/dohmh/partials/report_indicator.html`.
 
 Visualizations are powered by Vega-Lite with code and basic implementation approach provided by DOHMH team.
 * Visualization specifications for the summary, trend, and map are included in `/static/visualizations/spec`.
-* CSV data for visualizations is stored in [`EHDP-data/neighborhoodreports/data`](https://github.com/nychealth/EHDP-data/tree/main/neighborhoodreports/data).
-* SVG images for visualizations is stored in [`EHDP-data/neighborhoodreports/images`](https://github.com/nychealth/EHDP-data/tree/main/neighborhoodreports/images).
+* CSV data for visualizations is stored in [`EHDP-data/neighborhood-reports/data`](https://github.com/nychealth/EHDP-data/tree/main/neighborhood-reports/data).
+* SVG images for visualizations is stored in [`EHDP-data/neighborhood-reports/images`](https://github.com/nychealth/EHDP-data/tree/main/neighborhood-reports/images).
 * All html, function calls, and dynamic variables are found in the `/themes/dohmh/partials/report_indicator.html` partial.
 * Functions are initiated on modal open following methods detailed in Bootstrap 4.5 docs.
 
