@@ -1666,25 +1666,47 @@
                     </div>
 
                     <hr class="my-2">
-                    <div class="row">
-                        <div class="col-6">
-                            <h4 class="fs-rg">About the measures</h4>
-                            <p class="fs-sm indicator-measures">Insert from `How_Calculated.` Vivamus consequat id nibh et tempor. Cras augue enim, iaculis quis purus sit amet, interdum accumsan neque. In blandit varius blandit. Praesent vel leo ac urna dapibus faucibus. Donec sed luctus neque. Nulla porta finibus elit, luctus eleifend felis ornare vitae. Ut consequat laoreet libero eu venenatis.</p>
+                    <div class="row my-2">
+                        <div class="col-md-6">
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline-light text-secondary" type="button" id="downloadDD" onclick="runDataDownload()"><i class="fa fa-download mr-1"></i>Download Data
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <h4 class="fs-rg">Data sources</h4>
-                            <p class="fs-sm indicator-sources">Insert from `Sources.` Pellentesque blandit ante vel augue mattis, lacinia tincidunt velit feugiat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec nulla nisl, sollicitudin et volutpat at, finibus ac quam. Pellentesque faucibus turpis egestas tellus luctus, nec porttitor diam bibendum. Sed mauris augue, tempus id urna sit amet, hendrerit blandit libero. Cras sit amet luctus nunc, nec mattis leo. </p>
-
+                    
+                        <div class="col-md-6 ml-auto">
+                            <button class="btn float-right btn-sm btn-outline-light text-secondary" onclick="copyCitation()" id="citeButton"><i class="fas fa-copy mr-1"></i>Copy citation</button>
+                            <input type="text" id="citeText" value="" style="display:inline-block; width:100%; height: 40px; font-size: 14px;" class="my-2 sr-only">                            
                         </div>
                     </div>
                     
-                    <hr class="my-2">
-
                     <div class="row mb-4">
-                        <div class="col">
-                            <h4>Related:</h4>
-                            <p>Insert related content via partial, here.</p>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="btn-toggle">
+                                <button class="btn btn-block btn-md btn-outline-light text-secondary" data-toggle="collapse" data-target="#toggle-target" aria-expanded="false" aria-controls="toggle-target">
+                                    <span class="title"><i class="fas fa-info-circle mr-1"></i>About the Measures</span>
+                                </button>
+                            </div>
+                            
+                            <div class="collapse p-2" id="toggle-target" role="navigation">
+                                <p class="fs-sm indicator-measures">Insert from `How_Calculated.` Vivamus consequat id nibh et tempor. Cras augue enim, iaculis quis purus sit amet, interdum accumsan neque. In blandit varius blandit. Praesent vel leo ac urna dapibus faucibus. Donec sed luctus neque. Nulla porta finibus elit, luctus eleifend felis ornare vitae. Ut consequat laoreet libero eu venenatis.</p>
+                    
+                            </div>
                         </div>
+                    
+                        <div class="col-md-6 col-xs-12">
+                            <div class="btn-toggle">
+                                <button class="btn btn-block btn-md btn-outline-light text-secondary" data-toggle="collapse" data-target="#toggle-target-2" aria-expanded="false" aria-controls="toggle-target-2">
+                                    <span class="title"><i class="fas fa-database mr-1"></i>Data sources</span>
+                                </button>
+                            </div>
+                            
+                            <div class="collapse p-2" id="toggle-target-2" role="navigation">
+                                <p class="fs-sm indicator-sources">Insert from `Sources.` Pellentesque blandit ante vel augue mattis, lacinia tincidunt velit feugiat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec nulla nisl, sollicitudin et volutpat at, finibus ac quam. Pellentesque faucibus turpis egestas tellus luctus, nec porttitor diam bibendum. Sed mauris augue, tempus id urna sit amet, hendrerit blandit libero. Cras sit amet luctus nunc, nec mattis leo. </p>
+                    
+                            </div>
+                        </div>
+                    
                     </div>
 
 
@@ -1765,6 +1787,56 @@
       });
 
 
+function copyCitation(){
+    // Create Citation
+    // Create date
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = mm + '/' + dd + '/' + yyyy;
+
+    // Create citation
+    var citation = "New York City Department of Health, Environment & Health Data Portal. "  + `{{ .Title }}` + " data. " + indicatorName + '. Accessed at ' + `{{ .Permalink}}` + ' on ' + today + "."
+
+    // Add to form
+    document.getElementById('citeText').setAttribute('value',citation);
+
+    console.log('CITATION CREATED')
+
+    var citeText = document.getElementById('citeText')
+    citeText.select()
+    citeText.setSelectionRange(0,99999);
+    navigator.clipboard.writeText(citeText.value)
+    var btn = document.getElementById('citeButton')
+    btn.innerHTML = `<i class="fas fa-copy mr-1"></i>Copied!`
+    console.log('citation copied!')
+}
+
+
+
+var downloadTable;
+var dataURL; 
+var downloadTableCSV
+var csvData
+
+// download data function
+function runDataDownload() {
+console.log('Downloading data for indicator ' + indicatorId)
+dataURL = 'https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/data/' + indicatorId + '.json'
+console.log('Data are at: ' + dataURL)
+aq.loadJSON(`${dataURL}`).then(function(data) {
+    downloadTable = data;
+    downloadTableCSV = downloadTable.toCSV()
+    // Data URI
+    csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
+    var hiddenElement = document.createElement('a');  
+    hiddenElement.href = csvData;
+    hiddenElement.target = '_blank';  
+    hiddenElement.download = 'NYC EH Data Portal: ' + indicatorName + '.csv'
+    hiddenElement.click();
+})
+}
 
    </script>
 
