@@ -18,7 +18,7 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office"
 
 纽约市有数百个社区和几乎同样多的划分社区边界的方法。当您访问环境与健康数据门户网站或卫生局（Health Department）的其他数据资源时，您可能会注意到数据以多种不同的社区方案呈现。
 
-例如，深入研究哮喘数据页面，您会发现基于UHF34社区方案划分的[患有哮喘的成人](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=18,4466a0,11,Summarize)数据、基于UHF42社区方案划分的[患有哮喘的公立学校儿童](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2147,4466a0,11,Summarize)数据以及基于NTA方案划分的[哮喘急诊科就诊人数](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2383,4466a0,11,Summarize)数据。门户网站上提供的其他数据由CD、邮编、PUMA划分，有时甚至依据警察辖区划分。这些社区方案是什么，为什么我们使用这一种而不是另一种，为什么整个系统不一致？
+例如，深入研究哮喘数据页面，您会发现基于UHF34社区方案划分的患有哮喘的成人](/data-explorer/asthma/?id=18)数据、基于UHF42社区方案划分的[患有哮喘的公立学校儿童](/data-explorer/asthma/?id=2147)数据以及基于NTA方案划分的[哮喘急诊科就诊人数](/data-explorer/asthma/?id=2384)数据。门户网站上提供的其他数据由CD、邮编、PUMA划分，有时甚至依据警察辖区划分。这些社区方案是什么，为什么我们使用这一种而不是另一种，为什么整个系统不一致？
 
 卫生局数据中最常见的社区边界是社区单元（Community Districts，CD）、公共使用微数据区（Public Use Microdata Areas，PUMA）和联合医院基金社区（United Hospital Fund neighborhoods，UHF）。这三种常见的社区方案具有不同的组成模块。让我们来探索这些吧。
 
