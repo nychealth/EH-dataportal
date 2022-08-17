@@ -95,7 +95,7 @@ jobs:
     # build sit with Hugo
 
     - name: Hugo Build
-      run: hugo --environment local
+      run: hugo --environment staging
            
     # run gruntfile action
 
