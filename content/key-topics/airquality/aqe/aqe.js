@@ -21,8 +21,6 @@ ntaForm.addEventListener('submit', function (event) {
     selectedName = event.target[0].value;    // gives you full neighborhood name
     selectedNeighborhood = event.target[0].value.slice(0, 4); // gives you NTA code
 
-    // console.log("ntaCode [form]", ntaCode);
-    
     document.getElementById('NTA').innerHTML = 'Your neighborhood: <h3><span style="font-weight:bold;color:#15607a">' + DOMPurify.sanitize(selectedName) + '</span></h3>';
     document.getElementById('yourneighb').style.display = "block";
     
@@ -31,13 +29,9 @@ ntaForm.addEventListener('submit', function (event) {
     
 });
 
-// import parameters passed from js.Build with Hugo
-
-// import * as params from '@params';
-
-// console.log("data_branch [inside aqe.js]", data_branch);
-
 // Create and initialize variables
+
+// 'data_repo' and 'data_branch' are created from Hugo variables in the aqe.html template
 
 var nyccasData = [];
 var neighborhoodData = [];
@@ -50,6 +44,9 @@ var dBuildingDensity = 0;
 var dTrafficDensity = 0;
 var dIndustrial = 0;
 var tabShown = 'tab-01-a'; 
+
+// path variables
+
 var aqe_path   = data_repo + "/" + data_branch + "/key-topics/air-quality-explorer";
 var nyccas_url = data_repo + "/" + data_branch + "/key-topics/air-quality-explorer/aqe-nta.csv";
 var PMBarVGSpec  = aqe_path + "/" + "PMBarSpec.vg.json";
@@ -68,7 +65,6 @@ var nta_topojson = data_repo + "/" + data_branch + "/geography/NTA.topo.json";
 
 d3.csv(nyccas_url, d3.autoType).then(data => {
     nyccasData = data;
-    // console.log("nyccasData [load]", nyccasData);
 }); 
 
 // FILTER DATA BASED ON SELECTION FROM FORM
@@ -102,11 +98,6 @@ function dataChange() {
     dTrafficDensity = neighborhoodData[0].tertile_trafficdensity;
     dIndustrial = neighborhoodData[0].tertile_industrial;
 
-    // console.log("dBuildingEmissions", dBuildingEmissions);
-    // console.log("dBuildingDensity", dBuildingDensity);
-    // console.log("dTrafficDensity", dTrafficDensity);
-    // console.log("dIndustrial", dIndustrial);
-    
     document.querySelector("#PM").innerHTML = dPM + ' μg/m<sup>3</sup>';
     document.querySelector("#NO2").innerHTML = dNO2 + ' ppb';
     document.querySelector("#BuildingEmissions").innerHTML = 'Building emissions<br><h5>' + tertileTranslate(dBuildingEmissions) + '</h5>';
@@ -138,8 +129,6 @@ function dataChange() {
         nyccasData,
         selectedNeighborhood
     );
-    
-    // console.log('changed');
     
 } 
 
@@ -234,17 +223,11 @@ function mapUpdateSpec(tabShown) {
 
 function buildMap(div, spec, csv, topo, nbr) {
     
-    // console.log("csv 1 [buildMap]", csv);
-
     d3.json(spec).then(spec => {
             
-        // console.log("csv 2 [then(spec => {", csv);
-
         // get data object whose url is "topo"
         
         var topo_url = spec.data.filter(data => {return data.url === "topo"})[0];
-        
-        console.log("topo_url", topo_url);
         
         // update url element of this data array (which updates the spec), because
         //  top_url is a shallow copy / reference to the spec
@@ -253,8 +236,6 @@ function buildMap(div, spec, csv, topo, nbr) {
         
         vegaEmbed(div, spec, {actions: false})
             .then(async res => {
-
-                // console.log("csv 3 [then(res => {]", csv);
 
                 var res_view = 
                     await res.view
@@ -276,16 +257,10 @@ function buildMap(div, spec, csv, topo, nbr) {
         
 function buildChart(div, spec, csv, nbr) {
 
-    // console.log("csv 1 [buildChart]", csv);
-
     d3.json(spec).then(spec => {
 
-        // console.log("csv 2 [then(spec => {", csv);
-            
         vegaEmbed(div, spec, {actions: false})
             .then(res => {
-
-                // console.log("csv 3 [then(res => {]", csv);
 
                 var res_view = 
                     res.view
@@ -302,8 +277,6 @@ function buildChart(div, spec, csv, nbr) {
 // load the charts after the page loads
 
 $( window ).on( "load", function() {
-
-    console.log("load");
 
     // load the map
     
@@ -323,7 +296,6 @@ $( window ).on( "load", function() {
 
 $(document).ready(function () {
     
-    console.log("ready");
     $(document).alert('hi from jquery');
     
     $(".nav-pills a").click(function () {

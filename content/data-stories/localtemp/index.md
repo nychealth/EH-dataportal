@@ -411,7 +411,7 @@ See for yourself - drag the green slider back and forth to see what the temperat
         // assign temp based on canopy and green values
         tempVar = Number(outputData[0].temp.toFixed(2));
 
-        console.log("holding: ", slider.value, vegClean, impervVar, tempVar);
+        // console.log("holding: ", slider.value, vegClean, impervVar, tempVar);
 
 
         printValues(); // Print values to HTML

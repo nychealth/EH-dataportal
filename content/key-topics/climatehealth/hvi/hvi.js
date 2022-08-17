@@ -51,6 +51,8 @@ var nSURFACETEMP = "";
 
 // path variables
 
+// 'data_repo' and 'data_branch' are created from Hugo variables in the aqe.html template
+
 var hvi_path   = data_repo + "/" + data_branch + "/key-topics/heat-vulnerability-index";
 var hvi_url    = hvi_path + "/hvi-nta.csv";
 var HVImapSpec = hvi_path + "/HVIMapSpec.vg.json";
@@ -85,7 +87,6 @@ var embed_opt = {
 
 d3.csv(hvi_url, d3.autoType).then(data => {
     hvidata = data;
-    console.log("hvidata [load]", hvidata);
 }); 
 
 
@@ -185,17 +186,11 @@ function tertileTranslate2(tertileVal) {
 
 function buildMap(div, spec, csv, topo, nbr) {
     
-    // console.log("csv 1 [buildMap]", csv);
-
     d3.json(spec).then(spec => {
             
-        // console.log("csv 2 [then(spec => {", csv);
-
         // get data object whose url is "topo"
         
         var topo_url = spec.data.filter(data => {return data.url === "topo"})[0];
-        
-        console.log("topo_url", topo_url);
         
         // update url element of this data array (which updates the spec), because
         //  top_url is a shallow copy / reference to the spec
@@ -204,8 +199,6 @@ function buildMap(div, spec, csv, topo, nbr) {
         
         vegaEmbed(div, spec, embed_opt)
             .then(async res => {
-
-                // console.log("csv 3 [then(res => {]", csv);
 
                 var res_view = 
                     await res.view
@@ -226,8 +219,6 @@ function buildMap(div, spec, csv, topo, nbr) {
 // load the charts after the page loads
 
 $( window ).on( "load", function() {
-
-    // console.log("load");
 
     // load the map
     

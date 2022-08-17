@@ -66,7 +66,7 @@ With many New Yorkers staying home, activity in the CBD fell drastically. Explor
 </div>
 <div class="narrow">
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-block btn-outline-primary mb-4" data-toggle="modal" data-target="#exampleModalCenter">
+<button type="button" class="btn btn-block btn-outline-primary mb-4" data-toggle="modal" data-target="#ModalCenter">
     View these data in an interactive map
 </button>
 {{< /rawhtml>}}
@@ -107,7 +107,7 @@ Because congestion pricing specifically targets traffic going into the CBD, we c
 
 {{< rawhtml>}}
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
         <div class="modal-header">
@@ -134,7 +134,7 @@ Because congestion pricing specifically targets traffic going into the CBD, we c
 
 <script>
     function mapPM() {
-        console.log('map PM')
+        // console.log('map PM')
         var iframe = document.getElementById('dest')
         iframe.src = "pm25_differences_leaflet.html"
         document.getElementById('btn1').classList.remove('btn-outline-primary')
@@ -144,7 +144,7 @@ Because congestion pricing specifically targets traffic going into the CBD, we c
     }
 
     function mapNO() {
-        console.log('map NO')
+        // console.log('map NO')
         var iframe = document.getElementById('dest')
         iframe.src = "no2_differences_leaflet.html"
         document.getElementById('btn2').classList.remove('btn-outline-primary')
