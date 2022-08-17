@@ -8,15 +8,15 @@ seo_description: "A project from the NYC Department of Health."
 
 The NYC Environment & Health Data Portal shows how environments affect health, by publishing data and information that explain the connection. Public health professionals, community-based organizations, community boards, city agencies, elected officials, health workers, advocates, and everyday New Yorkers use this website to get important information that they need to do their jobs and make important, informed decisions about health.
 
-The Environment & Health Data Portal is a project by the NYC Department of Health and Mental Hygiene's Bureau of Environmental Surveillance and Policy. Our bureau works to analyze data on environmental health and translate it to Health Department and Citywide policies and practices that can protect New Yorkers, improve our environment, and maintan our health. 
+The Environment & Health Data Portal is a project by the NYC Department of Health and Mental Hygiene's Bureau of Environmental Surveillance and Policy. Our bureau works to analyze data on environmental health and translate it to Health Department and Citywide policies that protect New Yorkers, improve our environment, and maintan our health. [Check out open positions in our bureau](/about/jobs).
 
-From 2002 to 2022, we were a part of the [National Environmental Public Health Tracking Network](https://ephtracking.cdc.gov/showHome.action), an effort led by the Centers for Disease Control and Prevention to share data and analyze trends in environmental public health across the nation.
+{{< rawhtml >}}<i class="fas fa-envelope mr-1"></i>{{< /rawhtml>}} [Email us with thoughts, questions, or concerns](mailto:trackingportal@health.nyc.gov).
 
-{{< rawhtml >}}<i class="fas fa-envelope mr-1"></i>{{< /rawhtml>}}[Email us with thoughts, questions, or concerns](mailto:trackingportal@health.nyc.gov).
+{{< rawhtml >}}<i class="fas fa-question-circle mr-1"></i>{{< /rawhtml>}} [Questions about the data? Visit our Github repo for info or to file an issue](https://www.github.com/nychealth/EH-dataportal).
 
----
 
-{{< rawhtml >}}<h2 class="mt-4">Browse other Health Department data resources</h2>{{< /rawhtml>}}
+
+{{< rawhtml >}}<hr class="my-4"><h2 class="mt-4">Browse other Health Department data resources</h2>{{< /rawhtml>}}
 
 Can't find what you're looking for on our site? Try these other Health Department data resources:
 - [EpiQuery](https://a816-health.nyc.gov/hdi/epiquery/): Analyze and visualize NYC health data from surveys, disease reports and vital records by sex, race/ethnicity, age and other stratifications.
