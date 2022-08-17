@@ -32,7 +32,7 @@ menu:
 ---
 <br>
 
-Birth defects (also called congenital malformations) are conditions that happen when a baby does not develop normally during pregnancy. Structural defects may include missing limbs, malformed hearts, [spina bifida](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Spina_Bifida) and genetic conditions like [Down syndrome](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Down_Syndrome). Most birth defects happen during the first three months of pregnancy and are detected within the first year of life. Some birth defects (such as [cleft lip](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Cleft_Lip) or clubfoot) are easy to see, but others (such as heart defects or hearing loss) are found using special tests (such as x-rays, CT scans, or hearing tests). Birth defects can vary from mild to severe.
+Birth defects (also called congenital malformations) are conditions that happen when a baby does not develop normally during pregnancy. Structural defects may include missing limbs, malformed hearts, spina bifida and genetic conditions like Down Syndrome. Most birth defects happen during the first three months of pregnancy and are detected within the first year of life. Some birth defects (such as cleft lip or clubfoot) are easy to see, but others (such as heart defects or hearing loss) are found using special tests (such as x-rays, CT scans, or hearing tests). Birth defects can vary from mild to severe.
 
 This site provides data on NYC children born with one or more of 12 major birth defects. Each of the 12 birth defects is defined in the glossary on this site. The data comes from the [NYS Department of Health Congenital Malformations Registry](http://www.health.state.ny.us/diseases/congenital_malformations/cmrhome.htm).
 
@@ -62,7 +62,7 @@ Not all birth defects can be prevented, but actions that increase the chance of 
 * Take a vitamin with folic acid before and during pregnancy.
 * Quit smoking and avoid exposure to secondhand smoke.
 * Damaged lead-containing paint in homes should be safely addressed by properly trained workers, ideally prior to pregnancy.  Pregnant women and small children should stay out of the home until lead paint projects are completed.
-* Employers should provide workplaces free from unsafe chemical exposures and provide protective gear to workers when necessary. To learn more about the chemicals at work, employees can ask their employer for the [Material Safety Data Sheets](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Material_Safety_Data_Sheets) for the products used.
+* Employers should provide workplaces free from unsafe chemical exposures and provide protective gear to workers when necessary. To learn more about the chemicals at work, employees can ask their employer for the Material Safety Data Sheets for the products used.
 
 ### Key Messages
 
@@ -70,6 +70,6 @@ About one out of every 33 babies is born with a birth defect. A birth defect can
   
 Heart defects make up about one-third to one-fourth of all birth defects, affecting about one in every 100 to 200 births. Some of these heart defects can be serious, and a few are very severe.   
   
-Other common birth defects are "neural tube defects," which are defects of the spine ([spina bifida](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Spina_Bifida)) and brain ([anencephaly](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Anencephaly)). They affect about one of every 1,000 pregnancies. These defects can be serious and are often life threatening.   
+Other common birth defects are "neural tube defects," which are defects of the spine (spina bifida) and brain (anencephaly). They affect about one of every 1,000 pregnancies. These defects can be serious and are often life threatening.   
   
-Birth defects of the lip and roof of the mouth, known as "[orofacial clefts](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Orofacial_clefts)," include [cleft lip](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Cleft_Lip), [cleft palate](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Cleft_Palate), and combined cleft lip and cleft palate. These defects are also common and occur in about one in 700 to 1,000 babies.   
+Birth defects of the lip and roof of the mouth, known as "orofacial clefts," include cleft lip, cleft palate, and combined cleft lip and cleft palate. These defects are also common and occur in about one in 700 to 1,000 babies.   

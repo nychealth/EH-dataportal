@@ -44,7 +44,7 @@ The [New York City Department of Environmental Protection (DEP)](http://www.nyc.
 DBPs are divided into two families: total trihalomethanes (chloroform, bromodichloromethane, dibromochloromethane, and bromoform) and five haloacetic acids (trichloroacetic acid, dichloroacetic acid, monochloroacetic acid, dibromoacetic acid, and monobromoacetic acid).    
   
 
-| The [maximum contaminant levels (MCLs)](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#MCL) set by EPA are: |  |
+| The maximum contaminant levels (MCLs) set by EPA are: |  |
 | o Arsenic | 10 µg/L |
 | o Nitrate | 10 mg/L |
 | o DBP: Total Trihalomethanes (TTHM) | 80 µg/L |

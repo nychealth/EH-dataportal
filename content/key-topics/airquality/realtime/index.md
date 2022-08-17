@@ -16,7 +16,7 @@ arquero: true
 leaflet: true
 ---
 
-NYC's air quality is generally good [and has been improving over time](http://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/breatheeasy/index.html). But hour to hour, there's large variation in our air quality - even in neighborhoods with the cleanest air. That means that for short periods, some New Yorkers are exposed to high levels of pollutants.
+NYC's air quality is generally good and has been improving over time. But hour to hour, there's large variation in our air quality - even in neighborhoods with the cleanest air. That means that for short periods, some New Yorkers are exposed to high levels of pollutants.
 
 Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure to PM2.5 contributes to an estimated 2,300 excess deaths from lung and heart disease each year in NYC (1 out of every 20 deaths in NYC), and short-term exposure contributes to asthma incidents severe enough to require a trip to the emergency department, as well as other health threats.
 

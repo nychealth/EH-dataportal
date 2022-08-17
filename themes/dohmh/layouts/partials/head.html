@@ -140,6 +140,6 @@
 {{- end -}}
 
 <!-- Analytics placeholder -->
-{{- if eq (getenv "HUGO_ENV") "production" -}} 
+{{- if eq hugo.Environment "prod" -}} 
     <!--insert Analytics code here-->
 {{- end -}} 
