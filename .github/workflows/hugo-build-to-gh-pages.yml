@@ -8,9 +8,6 @@ on:
       - staging
     types:
       - closed
-  push:
-    branches:
-      - staging
 
 jobs:
   deploy:
