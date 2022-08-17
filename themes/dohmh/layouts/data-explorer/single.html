@@ -374,7 +374,7 @@
 
                     const loadData = (indicatorId) => {
                         // Loads data as an arquero table
-                        fetch(`https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/indicators/data/${indicatorId}.json`)
+                        fetch(data_repo + "/" + data_branch + `/indicators/data/${indicatorId}.json`)
                             .then(response => response.json())
                             .then(data => {
 
@@ -643,7 +643,7 @@
                         aqSecondaryMeasureTimes.print({limit: 100})
                         console.log(aqSecondaryMeasureTimes);
 
-                        fetch(`https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/indicators/data/${disparityIndicatorId}.json`)
+                        fetch(data_repo + "/" + data_branch + `/indicators/data/${disparityIndicatorId}.json`)
                             .then(response => response.json())
                             .then(data => {
                                 const povertyData = data.filter(d => d.MeasureID === 221)
@@ -828,7 +828,7 @@
                         const filteredSecondaryIndicatorId = filteredSecondaryIndicator[0].IndicatorID;
                             const sortedPrimaryT = aq.from(sortedPrimaryMeasureTimes)
 
-                        fetch(`https://raw.githubusercontent.com/nychealth/EHDP-data/{{ site.Params.data_branch }}/indicators/data/${filteredSecondaryIndicatorId}.json`)
+                        fetch(data_repo + "/" + data_branch + `/indicators/data/${filteredSecondaryIndicatorId}.json`)
                             .then(response => response.json())
                             .then(data => {
                                 
