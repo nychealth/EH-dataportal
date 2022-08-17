@@ -47,8 +47,6 @@ Certain things in the environment can trigger an asthma attack or make symptoms 
 * Pollen
 * Pets
 
-Download the [Asthma and Environment Neighborhood Report](http://a816-dohbesp.nyc.gov/IndicatorPublic/QuickView.aspx) on this website to see how your neighborhood compares to others. 
-
 ### Controlling Asthma
 Asthma does not have to prevent you from leading an active and healthy life. You can take charge by having **a plan to control asthma**, including these strategies for avoiding asthma triggers:
 
