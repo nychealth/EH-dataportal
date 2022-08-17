@@ -1,62 +1,78 @@
 {{- define "main" -}}
 
-<article class="container" id="skip-header-target">
+<article class="container-fluid" id="skip-header-target">
     
-    <div class="col-md-10 mx-auto my-4">
+    <div class="col-lg-10 col-md-12 mx-auto my-4">
         <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
         {{- .Content -}}
+
         <div class="row">
-            <div class="col">
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Topics A to Z</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"><i class="fas fa-search mr-2" aria-hidden="true"></i>Search topics</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col">
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                        <div class="row">
-                            {{- range .Pages -}}
-                            {{- if ne .RelPermalink "/data-explorer/all-data/" -}}
-                            <div class="col-md-4">
-                                <p><a href="{{ .Permalink }}">{{ .Title }}</a></p>
-                            </div>
-                            {{- end -}}
-                            {{- end -}}
-                        </div>
-                    </div>
-                    
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                        <div class="row">
-                            <div class="col-8 mx-auto">
-                                <form class="autocomplete-form">
-                                    <div class="row no-gutters">
-                                        <label for="all-data" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">Search data</label>
-                                        <div class="col-9">
-                                            <div class="autocomplete-wrapper" width="100%">
-                                                <select name="all-data" id="all-data">
-                                                    <option value="">Search data</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-3">
-                                            <button type="submit" class="btn-primary btn btn-block" style="height:39px;">Get data</button> 
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+            <div class="col-md-4 p-2 pl-0">
+                <p class="sm-label">Select a topic to view data:</p>
+                 {{ partial "de-chooser-accordion.html" . }}
+             </div>
+
+             <div class="col-md-8">
+                <div class="mt-4">
+                    {{ partial "featured-data.html" . }}
+
+                </div>
+
+
+                <div class="row my-2">
+                    <div class="col-12">
+                        <p><strong class="text-dark"><i class="far fa-question-circle mr-1"></i>What's inside:</strong>
+                        </p>
                     </div>
                 </div>
+
+                <div class="row mb-4">
+                    <div class="col-4 mx-0">
+                        <div class="card de-card mb-2 borderbox">
+                            <div class="card-body">
+                                <span class="card-title text-dark"><em>Get trends...</em></span>
+                              </div>
+                            <img class="card-img-top" src="/images/trend-chart.png" alt="Card image cap">
+                          </div>
+                    </div>
+
+                    <div class="col-4 mx-0">
+                        <div class="card de-card mb-2 borderbox">
+                            <div class="card-body" style="text-align: center">
+                                <span class="card-title text-prdarkimary" ><em>...maps...</em></span>
+                              </div>
+                            <img class="card-img-top" src="/images/data-map.png" alt="Card image cap">
+            
+                          </div>
+                    </div>
+
+                    <div class="col-4 mx-0">
+                        <div class="card de-card borderbox">
+                            <div class="card-body" style="text-align: right">
+                                <span class="card-title text-dark"><em>...and more!</em></span>
+                              </div>
+                            <img class="card-img-top" src="/images/links-chart.png" alt="Card image cap">
+                          </div>
+                    </div>
+
+                </div>
+
+                <div class="row my-2 border-top">
+                    <div class="col">
+                        <p class="fs-sm mt-2"><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em> 
+                            {{ with .Site.GetPage "content/data-explorer/all-data.md" }}
+                            <a href="{{ .Permalink }}">Browse an index of all our datasets</a>.
+                            {{ end }}
+                            </p>
+                    </div>
+                </div>
+
+
+
             </div>
         </div>
+
+
         
         <div class="row mt-4">
             <div class="col">
