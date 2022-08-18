@@ -1226,6 +1226,12 @@
                         indicatorShortName = indicator?.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
                         indicatorMeasurses = indicator?.Measures;
                         indicatorId = indicator?.IndicatorID;     
+
+                        // send Indicator Title to vis headers
+                        document.getElementById('summaryTitle').innerHTML = indicatorName;
+                        document.getElementById('mapTitle').innerHTML = indicatorName;
+                        document.getElementById('trendTitle').innerHTML = indicatorName;
+                        document.getElementById('linksTitle').innerHTML = indicatorName;
                         
                         // console.log('==========================================================================')
                         // console.log('Load Indicator - IndicatorId: ', indicatorId)
@@ -1628,8 +1634,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="summary-table" class="mt-4">
-                                <!-- INSERT SUMMARY TABLE HERE -->
+                            <div class="mt-4">
+                                <span id="summaryTitle" class="home-label"></span>
+                                <div id="summary-table">
+                                    <!-- INSERT SUMMARY TABLE HERE -->
+                            </div>
+
                             </div>
                         </div> 
                         <!-- MAP TAB -->
@@ -1644,6 +1654,7 @@
                                 </div>
                             </div>
                             <div class="mt-4">
+                                <span id="mapTitle" class="home-label"></span>
                                 <div id="map" width=600 height=500 style="width: 100%; min-height: 450px; margin-bottom: 50px;"></div>
                             </div>                        
                         </div>
@@ -1657,6 +1668,7 @@
                                 </div>
                             </div>
                             <div class="mt-4">
+                                <span id="trendTitle" class="home-label"></span>
                                 <!-- INSERT TREND CHART HERE -->
                                 <div id="trend" style="width: 100%"></div>
                             </div>
@@ -1671,6 +1683,7 @@
                                 </div>
                             </div>
                             <div class="mt-4" style="height: 550px; clear: both">
+                                <span id="linksTitle" class="home-label"></span>
                                 <!-- INSERT LINKS CHART HERE -->
                                 <div id="links" style="width: 100%"></div>
                             </div>
