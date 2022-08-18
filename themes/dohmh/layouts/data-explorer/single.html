@@ -30,7 +30,7 @@
             </nav>
 
             <div class="row mb-2">
-                <div class="col border-bottom mx-2 ml-0 pl-0 pb-2 mb-2">
+                <div class="col border-top mx-2 ml-0 pl-0 py-2">
                     <h2>{{ .Title }}</h2>
                 </div>
             </div>
@@ -1548,7 +1548,7 @@
                 <div class="col-md-4">
                     <span class='home-label d-none d-md-block'>About this topic</span>
 
-                    <div class="card fs-sm mb-2 topic-text d-none d-md-block">
+                    <div class="card fs-sm mb-2 topic-text d-none d-md-block cardshadow">
                         <!-- Content truncate-->
                         {{ .Content  }}
 
@@ -1557,9 +1557,14 @@
                 </div>
 
                 <div class="col-md-8">
+                    <!--This button only appears on small screens to show About-->
+                    <button class="btn btn-sm btn-outline-light text-primary btn-block d-block d-md-none mt-0 mb-2" type="button" data-toggle="modal" data-target="#aboutModal">
+                        About {{ .Title }}
+                      </button>
+
                     
                     <div class="dropdown float-right">
-                        <span class='home-label'>Change dataset</span><br>
+                        <span class='home-label d-block'>Change dataset</span>
 
                         <button class="btn btn-outline-primary float-right dropdown-toggle" type="button" id="dropdownTableYear" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-align:right!important">
                           More {{ .Title }} data
@@ -1568,12 +1573,12 @@
                             <!-- Dropdown itmes are rendered using renderIndicatorDropdown -->
                         </div>
                     </div>
-                    <span class="home-label">Dataset</span>
+                    <span class="home-label d-block">Dataset</span>
                     <h3 class="indicator-title"></h3>
 
 
-                    <div style="clear:both" class="mt-1 mb-2">
-                        <span class="home-label">Description</span>
+                    <div style="clear:both" class="my-2">
+                        <span class="home-label d-block">Description</span>
 
                         <p class="fs-sm indicator-description"><strong>Indicator description:</strong></p>
                     </div>
@@ -1730,7 +1735,7 @@
         </div>
     </div>
 
-<!-- Modal -->
+<!-- Selection Modal -->
 <div class="modal fade" id="topicModal" tabindex="-1" role="dialog" aria-labelledby="topicModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -1749,6 +1754,27 @@
       </div>
     </div>
   </div>
+
+<!--About Modal-->
+<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="aboutModalLabel">About {{ .Title }}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            {{ .Content }}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 
 
