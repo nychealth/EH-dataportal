@@ -1227,6 +1227,9 @@
                         indicatorMeasurses = indicator?.Measures;
                         indicatorId = indicator?.IndicatorID;     
 
+                        //create Citation
+                        createCitation(); // re-runs on updating Indicator
+
                         // send Indicator Title to vis headers
                         document.getElementById('summaryTitle').innerHTML = indicatorName;
                         document.getElementById('mapTitle').innerHTML = indicatorName;
@@ -1832,9 +1835,7 @@
         window.location.assign(DOMPurify.sanitize(dataSearchForm.options[dataSearchForm.selectedIndex].value))
       });
 
-
-function copyCitation(){
-    // Create Citation
+function createCitation() {
     // Create date
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -1850,6 +1851,12 @@ function copyCitation(){
 
     console.log('CITATION CREATED')
 
+    var btn = document.getElementById('citeButton')
+    btn.innerHTML = `<i class="fas fa-copy mr-1"></i>Copy citation`
+
+}
+
+function copyCitation(){
     var citeText = document.getElementById('citeText')
     citeText.select()
     citeText.setSelectionRange(0,99999);
@@ -1859,7 +1866,7 @@ function copyCitation(){
     console.log('citation copied!')
 }
 
-
+createCitation();
 
 var downloadTable;
 var dataURL; 
