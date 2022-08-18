@@ -1546,6 +1546,8 @@
 
             <div class="row">
                 <div class="col-md-4">
+                    <span class='home-label d-none d-md-block'>About this topic</span>
+
                     <div class="card fs-sm mb-2 topic-text d-none d-md-block">
                         <!-- Content truncate-->
                         {{ .Content  }}
@@ -1557,6 +1559,8 @@
                 <div class="col-md-8">
                     
                     <div class="dropdown float-right">
+                        <span class='home-label'>Change dataset</span><br>
+
                         <button class="btn btn-outline-primary float-right dropdown-toggle" type="button" id="dropdownTableYear" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-align:right!important">
                           More {{ .Title }} data
                         </button>
@@ -1564,10 +1568,13 @@
                             <!-- Dropdown itmes are rendered using renderIndicatorDropdown -->
                         </div>
                     </div>
+                    <span class="home-label">Dataset</span>
                     <h3 class="indicator-title"></h3>
 
 
-                    <div style="clear:both" class="my-3">
+                    <div style="clear:both" class="mt-1 mb-2">
+                        <span class="home-label">Description</span>
+
                         <p class="fs-sm indicator-description"><strong>Indicator description:</strong></p>
                     </div>
 
