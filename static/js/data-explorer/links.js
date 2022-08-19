@@ -10,8 +10,7 @@ const renderLinksChart = (
   const defaultLinksMeasureId = defaultLinksMeasure[0].VisOptions[0].Links[0].MeasureID;
   const linkAxisMeasureId = selectedSecondaryMeasureId ? selectedSecondaryMeasureId : defaultLinksMeasureId;
   const secondaryIndicator =  indicators.filter(indicator =>
-      indicator.Measures.some(measure => 
-          measure.MeasureID === linkAxisMeasureId)
+      indicator.Measures.some(measure => measure.MeasureID === linkAxisMeasureId)
   )
 
   const secondaryMeasure = secondaryIndicator[0].Measures.filter(m =>

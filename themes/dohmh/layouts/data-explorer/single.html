@@ -310,18 +310,6 @@
                     joinedAqData_obj = joinedAqData.objects()
                     console.log("joinedAqData_obj", joinedAqData_obj);
 
-                    // console.log("============ joinedAqData ============", joinedAqData);
-
-                    {{/*  const filterUHF42 = joinedAqData.filter(d => d.GeoType == 'UHF42').objects();
-                    const filterUHF34 = joinedAqData.filter(d => d.GeoType == 'UHF34').objects();
-                    const filterCD = joinedAqData.filter(d => d.GeoType == 'CD').objects();
-                    const filterNTA = joinedAqData.filter(d => d.GeoType == 'NTA').objects();
-                    const filterPuma = joinedAqData.filter(d => d.GeoType == 'Puma').objects();
-                    const filterSubboro = joinedAqData.filter(d => d.GeoType == 'Subboro').objects();
-                    const filterBorough = joinedAqData.filter(d => d.GeoType  == 'Borough').objects();
-                    const filterCitywide = joinedAqData.filter(d => d.GeoType  == 'Citywide').objects();
-                    const filterNYCKids = joinedAqData.filter(d => d.GeoType  == 'NYCKIDS').objects();  */}}
-
                     fullDataMapObjects = joinedAqData.impute({ Value: () => NaN }).objects()
                     fullDataTrendObjects = joinedAqData.filter(d => {
                         var match = op.match(d.GeoType, /Citywide|Borough/)
