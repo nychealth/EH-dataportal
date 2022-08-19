@@ -28,16 +28,16 @@ const renderLinksChart = (
   const linksTime = selectedData ? selectedData[0].AvailableTimes[0].TimeDescription : defaultLinksMeasure[0].AvailableTimes[0].TimeDescription;
   const linksAxisTime = selectedlinksSecondaryMeasureTime;
 
-  // console.log('RENDER Links DATA ', linksMeasures)
-  // console.log('RENDER LINKS DEFAULT MEASURE: ', defaultLinksMeasure)
-  // console.log('RENDER LINKS DEFAULT MEASURE ID: ', defaultLinksMeasureId)
-  // console.log('RENDER LINKS DEFAULT AXIS: ', defaultLinksAxis)
-  // console.log('RENDER LINKS SELECTED DATA: ', selectedData)
-  // console.log('RENDER LINKS SELECTED MEASURE: ', selectedMeasure)
-  // console.log('RENDER LINKS SELECTED SECONDARY MEASURE ID: ', selectedSecondaryMeasureId)
-  // console.log('RENDER LINKS SELECTED AXIS: ', selectedMeasureId)
-  // console.log('RENDDER LINKS DISPLAY: ', linksDisplay)
-  // console.log('indicators: ', indicators)
+  console.log('RENDER Links DATA ', linksMeasures)
+  console.log('RENDER LINKS DEFAULT MEASURE: ', defaultLinksMeasure)
+  console.log('RENDER LINKS DEFAULT MEASURE ID: ', defaultLinksMeasureId)
+  console.log('RENDER LINKS DEFAULT AXIS: ', defaultLinksAxis)
+  console.log('RENDER LINKS SELECTED DATA: ', selectedData)
+  console.log('RENDER LINKS SELECTED MEASURE: ', selectedMeasure)
+  console.log('RENDER LINKS SELECTED SECONDARY MEASURE ID: ', selectedSecondaryMeasureId)
+  console.log('RENDER LINKS SELECTED AXIS: ', selectedMeasureId)
+  console.log('RENDDER LINKS DISPLAY: ', linksDisplay)
+  console.log('indicators: ', indicators)
 
   
 
