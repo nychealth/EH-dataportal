@@ -1,8 +1,8 @@
 ---
-title: Social and economic conditions
+title: Economic conditions
 date: 2021-05-28 18:02:58.798880
-draft: true
-seo_title: "Social and economic conditions data for NYC."
+draft: false
+seo_title: "Economic conditions data for NYC."
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["social","housing"]
@@ -10,25 +10,18 @@ keywords: ["social","social justice","justice","injustice","social conditions","
 indicators:
   - header: null
     IndicatorID:
-    - 2145
+    - 103 
     - 2176
-    - 14
-    - 2334
-    - 2317
-    - 2335
-    - 2146
-    - 2073
-    - 103
-    - 2325
-    - 2336
-    - 2323
     - 2337
-    - 2389
-  - header: Housing characteristics
+    - 2132
+    - 2317
+    - 2073 
+  - header: Housing 
     IndicatorID:
-    - 2365
-    - 15
     - 17
+    - 2336
+    - 15
+    - 2365
 menu:
     main:
         identifier: '03'
@@ -43,6 +36,4 @@ People tend to be healthier when they have access to:
 * Adequate health care
 * Healthy neighborhoods and safe, strong communities
 
-But when people don’t have access to these conditions, they experience worse health outcomes. This is **health inequity** – **avoidable and unfair health outcomes.** 
-
-Discrimination based on race (and other personal characteristics) often results in disparities in access to these conditions –and thus, disparities in health outcomes.
+But when people don’t have access to these, they experience worse health outcomes. This is **health inequity** – **avoidable and unfair health outcomes.**  Discrimination based on race (and other personal characteristics) often results in disparities in access to resources that protect and maintain health – and thus, results in unfair disparities in health outcomes.
