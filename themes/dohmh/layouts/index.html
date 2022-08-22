@@ -1,6 +1,25 @@
 {{- define "main" -}}
 
 <article class="container-fluid overflow-hidden" id="primary-content">
+
+  <style>
+    .ds-accent {
+      color:#197BBD!important;
+  }
+  
+  .kt-accent {
+      color:#545454
+  }
+  
+  .nr-accent {
+      color:#DC645C;
+  }
+  
+  .de-accent {
+      color:#00923E
+  }
+  
+  </style>
   
   <div class="row">
     <div class="col-md-10 col-sm-12 mx-auto">
@@ -8,37 +27,38 @@
 
       <div class="row mt-4">
         <div class="col">
-          <div class="card bg-lightgray cardshadow p-2" style="border-left: 10px solid #197BBD!important;">
-            <h2 style="color:#197BBD"><i class="fas fa-atlas mr-1" aria-hidden="true"></i>Data
-              Stories</h2>
+          <h2 class="ds-accent"><i class="fas fa-atlas mr-1" aria-hidden="true"></i>Data
+            Stories</h2>
 
-              <div class="row mt-2">
-                {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
-                <div class="col-md-4 mb-2">
-                  <div class="card" style="border-bottom: 7px solid #197BBD50!important;">
-                      <div class="card-body" style="background-image: URL({{ path.Clean .File.Dir }}/{{ .Params.image }}); height: 175px;background-size: cover;">
-                        </div>
-                      <div class="card-footer">
-                        <p class="card-text fs-sm">
-                          <strong style="color: #197BBD!important;">NEW:</strong> <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                          <p class="card-text fs-sm">{{ .Content | truncate 75 | plainify}} <a href="{{ .RelPermalink }}" class="float-right">Read more...</a></p> 
-                        </p>
-                      </div>
-                      </div>
+          <div class="row mt-2">
+            {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
+            <div class="col-md-4 mb-2">
+              <div class="card content-card">
+                  <div class="card-content">
+                      <a href="{{ .Permalink}}">
+                          <div style="width:100%;height:200px; background-image:URL({{ path.Clean .File.Dir }}/{{ .Params.image }}); background-size:cover"></div></a>
+                      <div class="card-body">
+                      <p class="fs-md"><a href="{{ .RelPermalink }}" class="ds-accent">{{ .Title }}</a></p>
+                      <p class="fs-sm">{{ .Content | truncate 75 | plainify }}</p>
+                      <p class="fs-sm float-right mb-2"><a href="{{ .RelPermalink }}" class="ds-accent">Read more <i
+                          class="fas fa-arrow-circle-right"></i></a></p>
+                    </div>
+                  </div>
                 </div>
-                {{- end -}}
-              </div>
-
-              <div class="row my-2">
-                <div class="col">
-                  <a href="/data-stories/" style="float:right;color:#197BBD">Browse
-                    all data stories<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
-                </div>
-              </div>
-
+          </div>
+            {{- end -}}
 
           </div>
 
+          <div class="row mt-0 mb-2">
+            <div class="col">
+              <div class="borderbox float-right p-2">
+                <a href="/data-stories/" style="float:right;" class="ds-accent">Browse
+                  all data stories<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+              </div>
+
+            </div>
+          </div>
 
         </div>
       </div>
@@ -47,164 +67,131 @@
       <div class="row mt-4">
 
         <div class="col-md-6">
-          <p class="home-label">Learn</p>
-          <div class="card bg-lightgray mb-2 p-2 h-85 cardshadow" style="border-left: 10px solid #545454!important;">
-            <h3 style="color:#545454"><i class="fas fa-star mr-1" aria-hidden="true"></i>Key
-              Topics</h3>            
-            <div class="card-body">
-              <p class="card-text fs-sm">
-                Core issues that affect our city, our health, our lives.
-              </p>
-                {{- range first 5 (where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index") -}}
-                {{- if ne .Title "Key Topics in Environmental Health" -}}
-                  <a class="btn btn-outline-gray btn-block btn-sm has-icon disperse mt-1" href="{{ .Permalink }}">
-                    <span class="fas fa-angle-right"></span>
-                    <span class="title">{{- .Title -}}</span>
-                  </a>
-                {{- end -}}
-                {{- end -}}
+          <h3 class="kt-accent"><i class="fas fa-star mr-1" aria-hidden="true"></i>Key
+            Topics</h3>   
+            <p class="fs-sm">
+              Core issues that affect our city, our health, our lives.
+            </p>
+              {{- range first 5 (where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index") -}}
+              {{- if ne .Title "Key Topics in Environmental Health" -}}
+                <a class="btn btn-outline-gray btn-block btn has-icon disperse mt-1" href="{{ .Permalink }}">
+                  <span class="fas fa-angle-right"></span>
+                  <span class="title">{{- .Title -}}</span>
+                </a>
+              {{- end -}}
+              {{- end -}}
 
-                <div class="row my-2">
-                  <div class="col">
-                    <a href="/key-topics/"  style="float:right;color:#545454!important">All Key Topics<i class=" ml-1 fas fa-chevron-circle-right" aria-hidden="true"></i></a>
+              <div class="row mt-1 mb-2">
+                <div class="col">
+                  <div class="borderbox float-right p-2">
+                    <a href="/key-topics/" style="float:right;" class="kt-accent">Browse
+                      all Key Topics<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
                   </div>
+    
                 </div>
-
-                  
-
-
-            </div>          
-          </div>
-          <!-- .card -->
+              </div>
         </div>
         <!-- .col -->
 
         <div class="col-md-6">
-
-          <p class="home-label">Discover</p>
-          <div class="card bg-lightgray mb-2 p-2 h-85 cardshadow" style="border-left: 10px solid #DC645C!important;">
-            <h3 style="color:#DC645C"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
-            
-            
-            <div class="card-body">
-              <p class="card-text fs-sm">
-                Get data for your neighborhood.
-              </p>
-              
-              <form action="/neighborhood-reports" method="get" class="autocomplete-form">
-                <div class="row no-gutters mb-2">
-                  <div class="d-block" style="width:100%">
-                    <label for="last-neighborhood" class="font-weight-bold h4 mb-1 fs-sm"><p>Choose a
-                      neighborhood:</p></label>
-                  </div>
-
-                    <div class="autocomplete-wrapper" class="d-inline mr-1" style="width:80%;">
-
-                        <select name="last-neighborhood" id="last-neighborhood" >
-                          <option value="">Select a neighborhood</option>
-                        </select>
-                      </div>
-                      <button type="submit" class="btn-primary btn d-inline">Go</button>
-
-                    
-                  </div>
-                  <strong class="fs-sm">Or browse by topic:</strong><br>
-                  <a href="neighborhood-reports/asthma" class="">Asthma</a> |  <a href="neighborhood-reports/activedesign">Active design</a> | <a href="neighborhood-reports/climateandhealth">Climate and health</a> | <a href="neighborhood-reports/housing">Housing and health</a> | <a href="neighborhood-reports/outdoorair">Outdoor Air and health</a>
-
-                </form>
-                <hr>
-                <a href="/neighborhood-reports/" class="mt-2" style="float:right;color:#DC645C">All Neighborhood Reports<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+          <h3 class="nr-accent"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
+          <p class="fs-sm">
+            Get data for your neighborhood.
+          </p>
+          <form action="/neighborhood-reports" method="get" class="autocomplete-form">
+            <div class="row no-gutters mb-2">
+              <div class="d-block" style="width:100%">
+                <label for="last-neighborhood" class="font-weight-bold h4 mb-1 fs-sm"><p>Choose a
+                  neighborhood:</p></label>
               </div>
 
-            <!-- .collapse -->
-            
-          </div>
-          <!-- .card -->
+                <div class="autocomplete-wrapper" class="d-inline mr-1" style="width:80%;">
 
-        </div>
+                    <select name="last-neighborhood" id="last-neighborhood" >
+                      <option value="">Select a neighborhood</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn-primary btn d-inline">Go</button>
+
+                
+              </div>
+              <strong class="fs-sm">Or browse by topic:</strong><br>
+              <a href="neighborhood-reports/asthma" class="">Asthma</a> |  <a href="neighborhood-reports/activedesign">Active design</a> | <a href="neighborhood-reports/climateandhealth">Climate and health</a> | <a href="neighborhood-reports/housing">Housing and health</a> | <a href="neighborhood-reports/outdoorair">Outdoor Air and health</a>
+
+            </form>
+            <div class="row mt-1 mb-2">
+              <div class="col">
+                <div class="borderbox float-right p-2">
+                  <a href="/neighborhood-reports/" style="float:right;" class="nr-accent">All Neighborhood Reports<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+                </div>
+  
+              </div>
+            </div>         
+          </div>
+
+
 
       </div>
       <!-- .row -->
 
-      <div class="row">
+      <div class="row mt-4">
         <div class="col">
-          <p class="home-label mt-4">Analyze</p>
+          <h3 class="de-accent"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Explore
+            Data</h3> 
 
-          <div class="card bg-lightgray mb-2 p-2 cardshadow" style="border-left: 10px solid #00923E!important;">
-            <h3 style="color:#00923E"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Explore
-              Data</h3>            
-            <div class="card-body">
-              <p class="card-text fs-sm">
-                Over 250 datasets for over 50 environmental health topics. Explore, visualize, and download data sets - so you can find the story.
-              </p>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="borderbox p-2 mb-2" style="width:100%;">
+                <a href="/data-explorer/" class="de-accent text-align-right">All datasets<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+              </div>
 
-              <hr class="my-1">
+              {{- partial "featured-data-2" . -}}
+            </div>
 
+            <div class="col-md-8">
               <div class="row">
-                <div class="col-6">
-                  <div class="row no-gutters">
-                    <div class="col-md-4 px-1">
-                      <div class="card fs-sm" style="border-bottom: 5px solid #00923E50;">
-                        <div class="card-body">
-                          <img src="images/data-map-2.png" alt="An example of a data map.">
-                        </div>
-                        <div class="card-footer">
-                          <span class="card-title text-dark">Get maps...</span>
-                        </div>
-                      </div>
+                <div class="col-md-4 px-1">
+                  <div class="card fs-sm" style="border-bottom: 5px solid #00923E50;">
+                    <div class="card-body">
+                      <img src="images/data-map-2.png" alt="An example of a data map.">
                     </div>
-                    <div class="col-md-4 px-1">
-                      <div class="card fs-sm"  style="border-bottom: 5px solid #00923E50;">
-                        <div class="card-body">
-                          <img src="images/trend-chart-2.png" alt="An example of a trend chart showing data over time.">
-                        </div>
-                        <div class="card-footer">
-                          <span class="card-title text-dark">...trends...</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 px-1">
-                      <div class="card fs-sm"  style="border-bottom: 5px solid #00923E50;">
-                        <div class="card-body">
-                          <img src="images/links-chart-2.png" alt="An example of a scatterplot, showing the relationship between two datasets.">
-                        </div>
-                        <div class="card-footer">
-                          <span class="card-title text-dark">...and explore links.</span>
-                        </div>
-                      </div>
+                    <div class="card-footer">
+                      <span class="card-title text-dark">Get maps...</span>
                     </div>
                   </div>
                 </div>
-
-                <div class="col-6">
-                  {{- partial "featured-data" . -}}
+                <div class="col-md-4 px-1">
+                  <div class="card fs-sm"  style="border-bottom: 5px solid #00923E50;">
+                    <div class="card-body">
+                      <img src="images/trend-chart-2.png" alt="An example of a trend chart showing data over time.">
+                    </div>
+                    <div class="card-footer">
+                      <span class="card-title text-dark">...trends...</span>
+                    </div>
+                  </div>
                 </div>
-
-
+                <div class="col-md-4 px-1">
+                  <div class="card fs-sm"  style="border-bottom: 5px solid #00923E50;">
+                    <div class="card-body">
+                      <img src="images/links-chart-2.png" alt="An example of a scatterplot, showing the relationship between two datasets.">
+                    </div>
+                    <div class="card-footer">
+                      <span class="card-title text-dark">...and explore links.</span>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </div>
 
-
-
-              <hr class="my-1">
-              <a href="/data-explorer/" class="mt-2" style="float:right;">Browse
-                all data sets<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
-              </div>
-              
           </div>
-          <!-- .card -->
         </div>
       </div>
 
-      <div class="row my-4">
-        <div class="col-9 mx-auto">
-          <hr style="border-top: 3px solid #998bc0; border-radius: 5px;">
-        </div>
-      </div>
-        
 
+      
         
         <!--BOTTOM CARDS-->
-        <div class="row mb-4">
+        <div class="row my-4">
           <div class="col-md-6">
             <div class="card bg-lightgray mt-4">
               <div class="card-body">
