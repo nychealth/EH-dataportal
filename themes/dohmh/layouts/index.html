@@ -63,6 +63,23 @@
         </div>
       </div>
 
+      <div class="row mb-6">
+        <div class="col-md-6 mx-auto">
+          <div class="card bg-lightgray mt-4">
+            <div class="card-body">
+              <h5 class="card-title text-muted fs-sm"><i class="far fa-question-circle"></i>&nbsp;What's "the
+                environment?"</h5>
+                <p class="fs-sm">It's
+                  everything around us -
+                  the climate, the air and
+                  water, the buildings and streets, and the society we live in - that shapes
+                  our lives and our
+                  health. Explore your city here.</p>
+                </div>
+              </div>
+            </div>
+      </div>
+
 
       <div class="row mt-4">
 
@@ -134,7 +151,24 @@
       </div>
       <!-- .row -->
 
-      <div class="row mt-4">
+      <div class="row mb-4">
+        <div class="col-md-6 mx-auto">
+          <div class="card bg-lightgray my-4">
+            <div class="card-body">
+              <h5 class="card-title text-muted fs-sm"><i class="fas fa-info-circle"></i>&nbsp;About us
+              </h5>
+              <p class="card-text fs-sm">About the Data Portal team.
+              </p>
+              {{- with .Site.GetPage "about/about.md" -}}
+              <a href="{{ .Permalink }}" class="btn btn-outline-gray btn-sm mt-2" style="float:right">About
+                Us<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+                {{- end -}}
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div class="row my-4">
         <div class="col">
           <h3 class="de-accent"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Explore
             Data</h3> 
@@ -202,39 +236,7 @@
 
       
         
-        <!--BOTTOM CARDS-->
-        <div class="row my-4">
-          <div class="col-md-6">
-            <div class="card bg-lightgray mt-4">
-              <div class="card-body">
-                <h5 class="card-title text-muted fs-sm"><i class="far fa-question-circle"></i>&nbsp;What's "the
-                  environment?"</h5>
-                  <p class="fs-sm">It's
-                    everything around us -
-                    the climate, the air and
-                    water, the buildings and streets, and the society we live in - that shapes
-                    our lives and our
-                    health. Explore your city here.</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="col-md-6">
-                <div class="card bg-lightgray my-4">
-                  <div class="card-body">
-                    <h5 class="card-title text-muted fs-sm"><i class="fas fa-info-circle"></i>&nbsp;About us
-                    </h5>
-                    <p class="card-text fs-sm">About the Data Portal team.
-                    </p>
-                    {{- with .Site.GetPage "about/about.md" -}}
-                    <a href="{{ .Permalink }}" class="btn btn-outline-gray btn-sm mt-2" style="float:right">About
-                      Us<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
-                      {{- end -}}
-                    </div>
-                  </div>
-                </div>
-                
-              </div>
+
               
               <!-- <div class="row mb-4">
                 <div class="col-md-6 col-sm-12 mb-2">
