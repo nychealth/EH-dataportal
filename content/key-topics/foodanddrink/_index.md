@@ -1,5 +1,5 @@
 ---
-title: "Food and Drink"
+title: "Food and drink"
 date: 2021-05-05T07:58:53-04:00
 draft: false
 seo_title: "Food and Drink in NYC."

@@ -1,5 +1,5 @@
 ---
-title: "Climate and Health"
+title: "Climate and health"
 date: 2021-10-03T12:33:17-04:00
 draft: false
 seo_title: "Climate and Health in NYC."
