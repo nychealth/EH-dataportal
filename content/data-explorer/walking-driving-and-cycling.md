@@ -1,5 +1,5 @@
 ---
-title: Walking, Driving, and Cycling
+title: Walking, driving, and cycling
 date: 2021-05-28 18:02:58.809768
 draft: false
 seo_title: "Walking, driving, and cycling data for NYC."
@@ -8,17 +8,21 @@ tags:
 categories: ["transportation","airquality"]
 keywords: ["transportation","walking","driving","cycling","infrastructure","streets","roads","safety"]
 indicators:
-- header: null
+- header: Walking
+  IndicatorID: 
+  - 2133
+  - 2172
+- header: Cycling
   IndicatorID:
-  - 2113
+  - 2058
+  - 2173  
+  - 2059
+- header: Driving
+  IndicatorID:  
   - 2236
   - 2237
   - 2238
-  - 2058
-  - 2173
-  - 2059
-  - 2172
-  - 2133
+  - 2113
   - 2114
   - 2112
 menu:

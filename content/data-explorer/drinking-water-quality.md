@@ -1,5 +1,5 @@
 ---
-title: Drinking Water Quality
+title: Drinking water quality
 date: 2021-05-28 18:02:58.785993
 draft: false
 seo_title: "Drinking water quality data for NYC."
