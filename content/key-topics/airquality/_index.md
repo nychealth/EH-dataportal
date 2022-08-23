@@ -1,5 +1,5 @@
 ---
-title: "Air Quality"
+title: "Air quality"
 date: 2021-10-04T12:32:15-04:00
 draft: false
 seo_title: "Air Quality in NYC."
