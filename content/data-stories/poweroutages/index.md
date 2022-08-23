@@ -1,5 +1,5 @@
 ---
-title: "How Power Outages Affect Health"
+title: "How power outages affect health"
 date: 2022-01-10T12:34:38-04:00
 draft: false
 seo_title: "How Power Outages Affect Health."
