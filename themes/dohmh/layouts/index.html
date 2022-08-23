@@ -20,10 +20,33 @@
   }
   
   </style>
+
+
   
   <div class="row">
     <div class="col-md-10 col-sm-12 mx-auto">
       <!--start main column-->
+
+      <div class="row mt-4">
+        <div class="col-md-6 mx-auto">
+          <h1 class="text-primary">What's the environment?</h1>
+          <p class="text-muted">It's
+            everything around us: our air and water, the climate, our city's buildings and streets, and the society that we live in. It shapes our lives and our health.</p>
+
+          <p class="text-muted">We collect data from many different sources, and we put them together in different ways to show you how environments affect health.</p>
+
+          <p class="text-primary">Explore those data - and those ways - here.</p>
+
+
+        </div>
+      </div>
+
+      <div class="row my-4">
+        <div class="col-6 mx-auto">
+          <hr>
+        </div>
+      </div>
+
 
       <div class="row mt-4">
         <div class="col">
@@ -156,39 +179,21 @@
         </div>
       </div>
 
-
       <div class="row my-4">
-        <div class="col">
-          <h3 class="text-muted">Explore your city and your neighborhood - using data</h3> 
+        <div class="col-md-6 mx-auto">
+          <h3 class="text-muted">Explore your city - through data.</h3> 
+          <div class="card bg-lightgray mt-1">
+            <div class="card-body">
+                <p class="fs-sm">Get data. Learn what issues affect your health and your community. And take action to make change and build a better, healthier city.</p>
+                </div>
+              </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-9 mx-auto">
           <div class="row">
-            <div class="col-md-3">
-              <div class="card bg-lightgray">
-                <div class="card-body">
-                  <h5 class="card-title text-muted fs-sm">What's "the
-                    environment?"</h5>
-                    <p class="fs-sm">It's
-                      everything around us -
-                      the climate, the air and
-                      water, the buildings and streets, and the society we live in - that shapes
-                      our lives and our
-                      health. </p>
-                    </div>
-                  </div>
-
-                  <div class="card bg-lightgray mt-1">
-                    <div class="card-body">
-                      <h5 class="card-title text-muted fs-sm">Explore your city here</h5>
-                        <p class="fs-sm">Get data. Learn what issues affect your health and your community. And take action to make change and build a better, healthier city.</p>
-                        </div>
-                      </div>
-
-                      {{- with .Site.GetPage "about/about.md" -}}
-                      <a href="{{ .Permalink }}" class="btn btn-outline-gray btn-block btn-sm mt-2">About
-                        Us<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
-                        {{- end -}}
-            </div>
-
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="card fs-sm borderbox">
                 <div class="card-body">
                   <img src="images/data-map-2.png" alt="An example of a data map.">
@@ -198,8 +203,7 @@
                 </div>
               </div>
             </div>
-
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="card fs-sm borderbox">
                 <div class="card-body">
                   <img src="images/trend-chart-2.png" alt="An example of a trend chart showing data over time.">
@@ -209,8 +213,7 @@
                 </div>
               </div>
             </div>
-
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="card fs-sm borderbox">
                 <div class="card-body">
                   <img src="images/links-chart-2.png" alt="An example of a scatterplot, showing the relationship between two datasets.">
@@ -220,18 +223,25 @@
                 </div>
               </div>
             </div>
-
           </div>
-
-
-
-
-
         </div>
       </div>
 
+      <div class="row my-4">
+        <div class="col-md-6 mx-auto">
+          <div class="card bg-lightgray mt-1">
+            <div class="card-body">
+              <h5 class="card-title text-muted fs-sm">About us.</h5>
+                <p class="fs-sm">Learn more about the Environment & Health Data Portal, and the Health Department team behind it.</p>
+                {{- with .Site.GetPage "about/about.md" -}}
+                <a href="{{ .Permalink }}" class="btn btn-outline-gray btn-block btn-sm mt-2">About
+                  Us<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+                  {{- end -}}
+                </div>
+              </div>
+        </div>
+      </div>
 
-      
         
 
               
