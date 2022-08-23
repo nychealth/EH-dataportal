@@ -1,5 +1,5 @@
 ---
-title: Cigarette Smoke
+title: Cigarette smoke
 date: 2021-05-28 18:02:58.768736
 draft: false
 seo_title: "Cigarette smoking data for NYC."

@@ -8,18 +8,11 @@ tags:
 categories: ["housing","social","neighborhoods","climatehealth"]
 keywords: ["built environments","neighborhoods","social","housing","maintenance","maintenance deficiencies","healthy housing","evictions","crowding","home ownership"]
 indicators:
-- header: Housing characteristics
+- header: 
   IndicatorID:
   - 2365
   - 15
   - 17
-- header: Safety
-  IndicatorID:
-  - 2188
-  - 2185
-  - 2377
-- header: null
-  IndicatorID: 
   - 2336
 menu:
     main:

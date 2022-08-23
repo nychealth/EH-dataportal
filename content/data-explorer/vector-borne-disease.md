@@ -1,5 +1,5 @@
 ---
-title: Vector-borne Disease
+title: Vector-borne disease
 date: 2021-05-28 18:02:58.809035
 draft: false
 seo_title: "Vector-borne disease data for NYC."
