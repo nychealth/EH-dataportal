@@ -12,7 +12,7 @@
   }
   
   .nr-accent {
-      color:#DC645C;
+      color:#DC645C!important;
   }
   
   .de-accent {
@@ -50,12 +50,9 @@
 
           </div>
 
-          <div class="row mt-0 mb-2">
-            <div class="col">
-              <div class="borderbox float-right p-2">
-                <a href="/data-stories/" style="float:right;" class="ds-accent">Browse
-                  all data stories<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
-              </div>
+          <div class="row mt-1 mb-2">
+            <div class="col-md-4 ml-auto">
+              <a href="/data-stories/" class="ds-accent btn btn-block btn-outline-light text-primary">Browse all Data Stories<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
 
             </div>
           </div>
@@ -63,87 +60,88 @@
         </div>
       </div>
 
-      <div class="row mb-6">
-        <div class="col-md-6 mx-auto">
-          <div class="card bg-lightgray mt-4">
-            <div class="card-body">
-              <h5 class="card-title text-muted fs-sm"><i class="far fa-question-circle"></i>&nbsp;What's "the
-                environment?"</h5>
-                <p class="fs-sm">It's
-                  everything around us -
-                  the climate, the air and
-                  water, the buildings and streets, and the society we live in - that shapes
-                  our lives and our
-                  health. Explore your city here.</p>
-                </div>
-              </div>
-            </div>
+
+      <div class="row my-4">
+        <div class="col-6 mx-auto">
+          <hr>
+        </div>
       </div>
+
+
 
 
       <div class="row mt-4">
 
-        <div class="col-md-6">
+        <div class="col-md-4 col-sm-12">
           <h3 class="kt-accent"><i class="fas fa-star mr-1" aria-hidden="true"></i>Key
             Topics</h3>   
             <p class="fs-sm">
               Core issues that affect our city, our health, our lives.
             </p>
-              {{- range first 5 (where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index") -}}
-              {{- if ne .Title "Key Topics in Environmental Health" -}}
-                <a class="btn btn-outline-gray btn-block btn has-icon disperse mt-1" href="{{ .Permalink }}">
-                  <span class="fas fa-angle-right"></span>
-                  <span class="title">{{- .Title -}}</span>
-                </a>
-              {{- end -}}
-              {{- end -}}
 
-              <div class="row mt-1 mb-2">
-                <div class="col">
-                  <div class="borderbox float-right p-2">
-                    <a href="/key-topics/" style="float:right;" class="kt-accent">Browse
-                      all Key Topics<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
-                  </div>
-    
+              <a href="/key-topics/" class="btn btn-block btn-outline-light text-dark">All Key Topics<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+
+            <div class="card content-card">
+              <div class="card-content">
+                  <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                      {{- range first 5 (where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index") -}}
+                      {{- if ne .Title "Key Topics in Environmental Health" -}}
+                      <li class="list-group-item fs-sm"><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+                      {{- end -}}
+                      {{- end -}}
+                    </ul>
+
+      
+
+
+
                 </div>
               </div>
+            </div>
+
+
+
         </div>
         <!-- .col -->
 
-        <div class="col-md-6">
+        <div class="col-md-4 col-sm-12">
           <h3 class="nr-accent"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
           <p class="fs-sm">
             Get data for your neighborhood.
           </p>
-          <form action="/neighborhood-reports" method="get" class="autocomplete-form">
-            <div class="row no-gutters mb-2">
-              <div class="d-block" style="width:100%">
-                <label for="last-neighborhood" class="font-weight-bold h4 mb-1 fs-sm"><p>Choose a
-                  neighborhood:</p></label>
+          <a href="/key-topics/" class="btn btn-block btn-outline-light text-dark nr-accent">All Reports<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+
+          <div class="card content-card">
+            <div class="card-content">
+                <div class="card-body">
+                  <ul class="list-group list-group-flush fs-sm">
+                    <li class="list-group-item"><a href="neighborhood-reports/asthma" class="">Asthma</a></li>
+                    <li class="list-group-item"><a href="neighborhood-reports/activedesign">Active design</a></li>
+                    <li class="list-group-item"><a href="neighborhood-reports/climateandhealth">Climate and health</a></li>
+                    <li class="list-group-item"><a href="neighborhood-reports/housing">Housing and health</a></li>
+                    <li class="list-group-item"><a href="neighborhood-reports/outdoorair">Outdoor Air and health</a></li>
+        
+                  </ul>
               </div>
+            </div>
+          </div>        
+          </div>
 
-                <div class="autocomplete-wrapper" class="d-inline mr-1" style="width:80%;">
+          <div class="col-md-4 col-sm-12">
+            <h3 class="de-accent"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Explore
+              Data</h3> 
+              <p class="fs-sm">View maps and trends for hundreds of datasets.</p>
+              <a href="/data-explorer/" class="de-accent btn btn-block btn-outline-light text-primary">All datasets<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
 
-                    <select name="last-neighborhood" id="last-neighborhood" >
-                      <option value="">Select a neighborhood</option>
-                    </select>
+              <div class="card content-card">
+                <div class="card-content">
+                    <div class="card-body">
+                      <span class="home-label">Featured datasets:</span>
+                      {{- partial "featured-data-2" . -}}
                   </div>
-                  <button type="submit" class="btn-primary btn d-inline">Go</button>
-
-                
-              </div>
-              <strong class="fs-sm">Or browse by topic:</strong><br>
-              <a href="neighborhood-reports/asthma" class="">Asthma</a> |  <a href="neighborhood-reports/activedesign">Active design</a> | <a href="neighborhood-reports/climateandhealth">Climate and health</a> | <a href="neighborhood-reports/housing">Housing and health</a> | <a href="neighborhood-reports/outdoorair">Outdoor Air and health</a>
-
-            </form>
-            <div class="row mt-1 mb-2">
-              <div class="col">
-                <div class="borderbox float-right p-2">
-                  <a href="/neighborhood-reports/" style="float:right;" class="nr-accent">All Neighborhood Reports<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
                 </div>
-  
               </div>
-            </div>         
           </div>
 
 
@@ -151,85 +149,84 @@
       </div>
       <!-- .row -->
 
-      <div class="row mb-4">
-        <div class="col-md-6 mx-auto">
-          <div class="card bg-lightgray my-4">
-            <div class="card-body">
-              <h5 class="card-title text-muted fs-sm"><i class="fas fa-info-circle"></i>&nbsp;About us
-              </h5>
-              <p class="card-text fs-sm">About the Data Portal team.
-              </p>
-              {{- with .Site.GetPage "about/about.md" -}}
-              <a href="{{ .Permalink }}" class="btn btn-outline-gray btn-sm mt-2" style="float:right">About
-                Us<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
-                {{- end -}}
-              </div>
-            </div>
-          </div>
+
+      <div class="row my-4">
+        <div class="col-6 mx-auto">
+          <hr>
+        </div>
       </div>
+
 
       <div class="row my-4">
         <div class="col">
-          <h3 class="de-accent"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Explore
-            Data</h3> 
-
+          <h3 class="text-muted">Explore your city and your neighborhood - using data</h3> 
           <div class="row">
             <div class="col-md-3">
+              <div class="card bg-lightgray">
+                <div class="card-body">
+                  <h5 class="card-title text-muted fs-sm">What's "the
+                    environment?"</h5>
+                    <p class="fs-sm">It's
+                      everything around us -
+                      the climate, the air and
+                      water, the buildings and streets, and the society we live in - that shapes
+                      our lives and our
+                      health. </p>
+                    </div>
+                  </div>
 
-              <div class="card content-card">
-                <div class="card-content">
+                  <div class="card bg-lightgray mt-1">
                     <div class="card-body">
-                      <div class="mb-2">
-                        <a href="/data-explorer/" class="de-accent btn btn-block btn-primary text-white">All datasets<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
-
+                      <h5 class="card-title text-muted fs-sm">Explore your city here</h5>
+                        <p class="fs-sm">Get data. Learn what issues affect your health and your community. And take action to make change and build a better, healthier city.</p>
+                        </div>
                       </div>
 
-                      <span class="home-label">Featured datasets:</span>
-                      {{- partial "featured-data-2" . -}}
-
-                  </div>
-                </div>
-              </div>
-
-
+                      {{- with .Site.GetPage "about/about.md" -}}
+                      <a href="{{ .Permalink }}" class="btn btn-outline-gray btn-block btn-sm mt-2">About
+                        Us<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+                        {{- end -}}
             </div>
 
-            <div class="col-md-9">
-              <div class="row">
-                <div class="col-md-4 px-1">
-                  <div class="card fs-sm borderbox">
-                    <div class="card-body">
-                      <img src="images/data-map-2.png" alt="An example of a data map.">
-                    </div>
-                    <div class="card-footer">
-                      <span class="card-title text-dark">Get maps...</span>
-                    </div>
-                  </div>
+            <div class="col-md-3">
+              <div class="card fs-sm borderbox">
+                <div class="card-body">
+                  <img src="images/data-map-2.png" alt="An example of a data map.">
                 </div>
-                <div class="col-md-4 px-1">
-                  <div class="card fs-sm borderbox">
-                    <div class="card-body">
-                      <img src="images/trend-chart-2.png" alt="An example of a trend chart showing data over time.">
-                    </div>
-                    <div class="card-footer">
-                      <span class="card-title text-dark">...trends...</span>
-                    </div>
-                  </div>
+                <div class="card-footer">
+                  <span class="card-title text-dark">Get maps...</span>
                 </div>
-                <div class="col-md-4 px-1">
-                  <div class="card fs-sm borderbox">
-                    <div class="card-body">
-                      <img src="images/links-chart-2.png" alt="An example of a scatterplot, showing the relationship between two datasets.">
-                    </div>
-                    <div class="card-footer">
-                      <span class="card-title text-dark">...and explore links.</span>
-                    </div>
-                  </div>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="card fs-sm borderbox">
+                <div class="card-body">
+                  <img src="images/trend-chart-2.png" alt="An example of a trend chart showing data over time.">
+                </div>
+                <div class="card-footer">
+                  <span class="card-title text-dark">...trends...</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="card fs-sm borderbox">
+                <div class="card-body">
+                  <img src="images/links-chart-2.png" alt="An example of a scatterplot, showing the relationship between two datasets.">
+                </div>
+                <div class="card-footer">
+                  <span class="card-title text-dark">...and explore links.</span>
                 </div>
               </div>
             </div>
 
           </div>
+
+
+
+
+
         </div>
       </div>
 
@@ -289,48 +286,5 @@
                 {{- $js := resources.Get "js/uhflist.js" -}}
                 {{- $secureJS := $js -}}
                 <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
-                
-                <script type="text/javascript">
-                  // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
-                  function PopulateDropDownList() {
-                    //Build an array containing Neighborhood records.
-                    //UHFList.js contains a variable 'neighborhoods' with names zips and ids
-                    
-                    var ddlNeighborhoods = document.getElementById("last-neighborhood");
-                    
-                    //Add the Options to the DropDownList.
-                    for (var i = 0; i < neighborhoods.length; i++) {
-                      var option = document.createElement("OPTION");
-                      
-                      //Set Neighborhood Name in Text part.
-                      option.innerHTML = neighborhoods[i].namezip;
-                      
-                      //Set Neighborhood Id in Value part.
-                      option.value = neighborhoods[i].page_name;
-                      
-                      //Add the Option element to DropDownList.
-                      ddlNeighborhoods.options.add(option);
-                    }
-                  }
-                </script>
-                <script type="text/javascript">
-                  PopulateDropDownList();
-                  var selectEl = document.querySelector('#last-neighborhood')
-                  accessibleAutocomplete.enhanceSelectElement({
-                    autoselect: true,
-                    confirmOnBlur: true,
-                    defaultValue: "",
-                    minLength: 2,
-                    selectElement: selectEl
-                  })
-                  
-                  // this takes the form and on submit, sends page to a new location.
-                  var searchForm = document.getElementById('last-neighborhood-select') // this is last-neighborhood-select because of changes applied by the AA JS.
-                  document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
-                    e.preventDefault(); // prevent page re-load
-                    var locVal = searchForm.options[searchForm.selectedIndex].value;
-                    window.location = '{{ $.Site.Params.sitepath }}/neighborhood-reports/'+ DOMPurify.sanitize(locVal);
-                  });
-                </script>
-                
+                                
                 {{- end -}}

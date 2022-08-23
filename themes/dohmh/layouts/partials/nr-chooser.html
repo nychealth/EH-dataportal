@@ -1,0 +1,61 @@
+<form action="/neighborhood-reports" method="get" class="autocomplete-form">
+    <div class="row no-gutters mb-2">
+      <div class="d-block" style="width:100%">
+        <label for="last-neighborhood" class="font-weight-bold h4 mb-1 fs-sm"><p>Choose a
+          neighborhood:</p></label>
+      </div>
+
+        <div class="autocomplete-wrapper" class="d-inline mr-1" style="width:80%;">
+
+            <select name="last-neighborhood" id="last-neighborhood" >
+              <option value="">Select a neighborhood</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-primary btn d-inline">Go</button>
+
+        
+      </div>
+    </form>
+
+    <script type="text/javascript">
+        // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
+        function PopulateDropDownList() {
+          //Build an array containing Neighborhood records.
+          //UHFList.js contains a variable 'neighborhoods' with names zips and ids
+          
+          var ddlNeighborhoods = document.getElementById("last-neighborhood");
+          
+          //Add the Options to the DropDownList.
+          for (var i = 0; i < neighborhoods.length; i++) {
+            var option = document.createElement("OPTION");
+            
+            //Set Neighborhood Name in Text part.
+            option.innerHTML = neighborhoods[i].namezip;
+            
+            //Set Neighborhood Id in Value part.
+            option.value = neighborhoods[i].page_name;
+            
+            //Add the Option element to DropDownList.
+            ddlNeighborhoods.options.add(option);
+          }
+        }
+      </script>
+      <script type="text/javascript">
+        PopulateDropDownList();
+        var selectEl = document.querySelector('#last-neighborhood')
+        accessibleAutocomplete.enhanceSelectElement({
+          autoselect: true,
+          confirmOnBlur: true,
+          defaultValue: "",
+          minLength: 2,
+          selectElement: selectEl
+        })
+        
+        // this takes the form and on submit, sends page to a new location.
+        var searchForm = document.getElementById('last-neighborhood-select') // this is last-neighborhood-select because of changes applied by the AA JS.
+        document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
+          e.preventDefault(); // prevent page re-load
+          var locVal = searchForm.options[searchForm.selectedIndex].value;
+          window.location = '{{ $.Site.Params.sitepath }}/neighborhood-reports/'+ DOMPurify.sanitize(locVal);
+        });
+      </script>
