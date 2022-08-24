@@ -7,6 +7,9 @@ const renderTrendChart = (
   selectedDisparities,
   selectedMeasure,
 ) => {
+
+// console.log("================ trend.js / renderTrendChart ================")
+
   let trendMeasure = selectedMeasure ? selectedMeasure : defaultTrendMeasure;
   let trendMeasurementType = selectedMeasureType ? selectedMeasureType : defaultTrendMeasure[0].MeasurementType;
 //   let trendData = selectedData ? selectedData : joinedAqData.objects().filter(d => d.GeoType in ['Citywide', 'Borough'] && d.MeasurementType === trendMeasurementType);
@@ -14,14 +17,14 @@ const renderTrendChart = (
   let trendDisplay = selectedDisplay ? selectedDisplay : defaultTrendMeasure[0].DisplayType;
   let trendDisparity = selectedDisparities ? selectedDisparities : defaultTrendMeasure[0].VisOptions[0]?.Trend[0]?.Disparities
   
-  console.log('==========================================================================')
+//   console.log('==========================================================================')
 //   console.log('RENDER TREND DATA - Measure Default: ', defaultTrendMeasure)
 //   console.log('RENDER TREND DATA - Measure Selected: ', selectedMeasure)
 //   console.log('RENDER TREND DATA - Measure Filtered Default Data: ', fullDataTrendObjects)
 //   console.log('RENDER TREND DATA - Measure Filtered Selected Data: ', selectedData)
 //   console.log('RENDER TREND DATA - Measure Filtered Data: ', trendData)
 //   console.log('RENDER TREND DATA - Measure Disparity: ', trendDisparity)
-  console.log('trendData [trend.js]:', trendData)
+//   console.log('trendData [trend.js]:', trendData)
 
   const tabTrendDropDown = document.querySelector('#tab-trend  .dropdown');
   const btnShowDisparitires = document.querySelector('.btn-show-disparities');
