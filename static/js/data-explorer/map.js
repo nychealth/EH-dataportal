@@ -2,10 +2,10 @@ const renderMap = (
     selectedData,
     selectedMeasure,
     selectedDisplay,
-    selectedDate,
-    selectedAbout, 
-    selectedSources
+    selectedDate
     ) => {
+
+        console.log("** renderMap");
 
     // console.log("================ map.js / renderMap ================")
 
@@ -13,29 +13,30 @@ const renderMap = (
 
         const mapYears =  [...new Set(fullDataMapObjects.map(item => item.Time))];
 
-        // console.log(("mapYears [map.js]", mapYears);
-        // console.log(("fullDataMapObjects [map.js]", fullDataMapObjects);
+        // console.log("mapYears [map.js]", mapYears);
+        // console.log("fullDataMapObjects [map.js]", fullDataMapObjects);
 
         // if no provided selected data, then use the most recent year
         
-        const filteredfullDataMapObjects = fullDataMapObjects.filter(obj => {
-            return obj.Time === mapYears[0]
-        });
+        const filteredfullDataMapObjects = fullDataMapObjects.filter(obj => obj.Time === mapYears[0]);
 
-        // console.log(("filteredfullDataMapObjects [map.js]", filteredfullDataMapObjects);
+        // console.log("filteredfullDataMapObjects [map.js]", filteredfullDataMapObjects);
+
+        // console.log("defaultMapMeasure [map.js]", defaultMapMeasure);
 
         let mapGeoType = selectedData ? selectedData[0].GeoType : filteredfullDataMapObjects[0].GeoType;
         let mapMeasure = selectedMeasure ? selectedMeasure : defaultMapMeasure[0].MeasurementType;
 
-        // console.log(("mapGeoType [map.js]", mapGeoType);
-        // console.log(("mapMeasure [map.js]", mapMeasure);
+
+        // console.log("mapGeoType [map.js]", mapGeoType);
+        // console.log("mapMeasure [map.js]", mapMeasure);
         
         let mapDisplay = selectedDisplay ? selectedDisplay : defaultMapMeasure[0].DisplayType;
         let mapDate = selectedDate ? selectedDate : filteredfullDataMapObjects[0].Time;
         let topoFile = '';
         let testData = selectedData ? selectedData : filteredfullDataMapObjects;
 
-        // console.log(("testData [map.js]", testData);
+        // console.log("testData [map.js]", testData);
         
         // can add year to this
 
@@ -55,11 +56,11 @@ const renderMap = (
             topoFile = 'NYCKids.topo.json';
         }
 
-        // console.log(("topoFile [map.js]", topoFile);
+        // console.log("topoFile [map.js]", topoFile);
         
         let mapData = testData.filter(obj => obj.GeoType === mapGeoType && obj.MeasurementType === mapMeasure);
         
-        // console.log(("mapData [map.js]", mapData);
+        // console.log("mapData [map.js]", mapData);
         // mapData_aq = aq.from(mapData)
         // // mapData_aq.print({ limit: 20 })
         // console.log(mapData_aq [map.js]);
@@ -71,7 +72,7 @@ const renderMap = (
         // console.log('RENDER MAP DATA - topoFile ', topoFile)
         
         
-        spec3 = {
+        mapspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": `${mapDate} - ${mapMeasure} ${mapDisplay && `(${mapDisplay})`} `,
             "width": "container",
@@ -159,5 +160,5 @@ const renderMap = (
             ]
         }
         
-        vegaEmbed("#map", spec3);
+        vegaEmbed("#map", mapspec);
     }

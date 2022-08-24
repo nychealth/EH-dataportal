@@ -6,15 +6,17 @@ const renderLinksChart = (
     secondaryIndicatorName,
 ) => {
 
+    console.log("** renderLinksChart");
+
     // not working on load
     // axis indicator names not working on update
 
     // console.log("================ links.js / renderLinksChart ================")
 
-    console.log("primaryMetadata [renderLinksChart]", primaryMetadata);
-    console.log("primaryIndicatorName [renderLinksChart]", primaryIndicatorName);
-    console.log("secondaryMetadata [renderLinksChart]", secondaryMetadata);
-    console.log("secondaryIndicatorName [renderLinksChart]", secondaryIndicatorName);
+    // console.log("primaryMetadata [renderLinksChart]", primaryMetadata);
+    // console.log("primaryIndicatorName [renderLinksChart]", primaryIndicatorName);
+    // console.log("secondaryMetadata [renderLinksChart]", secondaryMetadata);
+    // console.log("secondaryIndicatorName [renderLinksChart]", secondaryIndicatorName);
 
     const primaryMeasurementType = primaryMetadata[0].MeasurementType;
     const primaryDisplay = primaryMetadata[0].DisplayType;
@@ -83,7 +85,7 @@ const renderLinksChart = (
     // console.log("yMeasure [links.js]", yMeasure);
 
     setTimeout(() => {
-        var spec2 = {
+        var linkspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "description": "Asthma 5-17 ED visit rate and poverty scatterplot",
             "width": "container",
@@ -200,7 +202,7 @@ const renderLinksChart = (
             }
         }
 
-        vegaEmbed("#links", spec2);
+        vegaEmbed("#links", linkspec);
     }, 300)
 
 
