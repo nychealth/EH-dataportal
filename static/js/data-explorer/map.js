@@ -243,7 +243,7 @@ const renderMap = (
               "lookup": "GeoID",
               "from": {
                   "data": {
-                  "url": `https://raw.githubusercontent.com/nychealth/EHDP-data/main/geography/${topoFile}`,
+                  "url": `https://raw.githubusercontent.com/nychealth/EHDP-data/prod/geography/${topoFile}`,
                   "format": {"type": "topojson", "feature": "collection"}
                   },
                   "key": "properties.GEOCODE"
