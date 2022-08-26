@@ -1,16 +1,12 @@
 const renderTable = () => {
 
-    console.log("** renderTable");
-    
-    // console.log("================ summary.js / renderTable ================")
-
     const groupColumnYear = 0
     const groupColumnGeo = 1;
     const groupId = 0
     
-    const filteredTableData = joinedAqData.objects().filter(d =>
-            selectedSummaryYears.includes(d.Time) && selectedSummaryGeography.includes(d.GeoType)
-        )
+    const filteredTableData = 
+        fullDataTableObjects
+        .filter(d => selectedSummaryYears.includes(d.Time) && selectedSummaryGeography.includes(d.GeoType))
         // console.log(("filteredTableData [summary.js]", filteredTableData);
         
         const filteredTableAqData = aq.from(filteredTableData)

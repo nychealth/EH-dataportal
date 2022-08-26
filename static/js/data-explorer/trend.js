@@ -1,18 +1,14 @@
 const renderTrendChart = (
-    trendData,
-    trendMetadata
+    data,
+    metadata
     ) => {
 
-        console.log("** renderTrendChart");
+        // extract measure metadata
 
+        let trendMeasurementType = metadata[0].MeasurementType;
+        let trendDisplay = metadata[0].DisplayType;
         
-        let trendMeasurementType = trendMetadata[0].MeasurementType;
-        let trendDisplay = trendMetadata[0].DisplayType;
-        
-        // console.log("trendData", trendData);
-        // console.log("trendMetadata", trendMetadata);
-        // console.log("trendMeasurementType", trendMeasurementType);
-        // console.log("trendDisplay", trendDisplay);
+        // define spec
         
         var trendspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -79,7 +75,7 @@ const renderTrendChart = (
             //     "url": "https://gist.githubusercontent.com/mmontesanonyc/6b0aa75affc6a60978f73e11d2f58bb3/raw/e944d335042e3da0c8e99a4df0fbebc8aac4cc15/asthmatrend.csv"
             // },
             "data": {
-                "values":  trendData,
+                "values":  data,
             },
             "width": "container",
             "height": 550,

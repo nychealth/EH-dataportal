@@ -1,53 +1,143 @@
-const renderDisparities = (
-    trendData,
-    selectedMeasureType,
-    selectedDisplay,
-    selectedDisparities,
-    selectedMeasure,
-) => {
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// function to create the dataset for the disparities chart
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    // console.log("================ trend.js / renderTrendChart ================")
+// need to filter for relevant disparities geo (current = GeoType, future += GeoEntity)
 
-    let trendMeasure = selectedMeasure ? selectedMeasure : defaultTrendMeasure;
-    let trendMeasurementType = selectedMeasureType ? selectedMeasureType : defaultTrendMeasure[0].MeasurementType;
-    // let trendData = selectedData ? selectedData : fullDataTrendObjects.filter(d => d.MeasurementType === trendMeasurementType)
-    let trendDisplay = selectedDisplay ? selectedDisplay : defaultTrendMeasure[0].DisplayType;
-    let trendDisparity = selectedDisparities ? selectedDisparities : defaultTrendMeasure[0].VisOptions[0]?.Trend[0]?.Disparities
+const loadDisparitiyData = async (disparityMetadata, disparityIndicatorId) => {
 
-    console.log("trendMeasure", trendMeasure);
-    console.log("trendMeasurementType", trendMeasurementType);
-    console.log("trendData", trendData);
-    console.log("trendDisplay", trendDisplay);
-    console.log("trendDisparity", trendDisparity);
+    // extract disparity metadata
+
+    const disparityMeasureId      = disparityMetadata[0].MeasureID
+    const aqDisparityMeasureTimes = aq.from(disparityMetadata[0].AvailableTimes)
+
+    // create primary data
+
+    const aqPrimaryData = 
+        aq.from(fullDataLinksObjects) // fullDataTrendObjects is created by the joinData function
+        .select("GeoType", "GeoID", "Time", "end_period", "Value", "DisplayValue")
+        .reify()
+    
+    
+    // get disparity data
+    
+    await fetch(data_repo + "/" + data_branch + `/indicators/data/${disparityIndicatorId}.json`)
+        .then(response => response.json())
+        .then(data => {
+
+            // create disparities data
+            
+            const aqDisparityData = aq.from(data)
+
+                // filter for disparity measure
+
+                .filter(`d => d.MeasureID === ${disparityMeasureId}`)
+
+                // join with disparity measure times
+
+                .join(aqDisparityMeasureTimes, ["Time", "TimeDescription"])
+
+                // create tertile column
+
+                .derive({
+                    bin: aq.bin('Value', { maxbins: 3 }),
+                })
+                .derive({
+                    Tertile: aq.escape( d => d.bin === 0 && 'low' || d.bin === 20 && 'med' || d.bin === 40 && 'hi')
+                })
+
+                // pare down columns
+
+                .select("GeoType", "GeoID", "Time", "end_period", "bin", "Tertile")
+                .reify()
+            
+            
+            // join with primary data
+
+            disparitiyData = 
+                aqPrimaryData
+                .join(aqDisparityData, [["GeoType", "GeoID", "end_period"], ["GeoType", "GeoID", "end_period"]])
+
+                // drop citywide and boro rows
+
+                .filter(d => d.GeoType !== 'Citywide')
+
+                // summarize by  grouping
+                .groupby("Time_1", "Tertile", "GeoType")
+                .rollup({median: d => op.median(d.Value)})
+
+                // turn into JavaScript object
+
+                .objects()
+
+        })
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// function to render the disparities chart
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// this function is called when the "Show Disparities" button is clicked. it
+//  in turn calls "loadDisparitiyData".
+
+const renderDisparities = (primaryMetadata, disparityMeasureId) => {
+
+    console.log("** renderDisparities");
+
+    // extract primary metadata
+
+    let primaryIndicatorName   = indicatorName
+    let primaryMeasurementType = primaryMetadata[0].MeasurementType;
+    let primaryDisplay         = primaryMetadata[0].DisplayType;
+    let primaryAbout           = primaryMetadata[0]?.how_calculated;
+    let primarySources         = primaryMetadata[0].Sources;
+
+    // get disparities poverty indicator metadata - "indicators" is a global object created by loadIndicator
 
     const disparityIndicator = indicators.filter(indicator =>
         indicator.Measures.some(m =>
-            m.MeasureID === 221)
+            m.MeasureID === disparityMeasureId
+        )
     );
 
-    const disparityMeasure = disparityIndicator[0].Measures.filter(
-        m => m.MeasureID === 221
+    const disparityMetadata = disparityIndicator[0].Measures.filter(
+        m => m.MeasureID === disparityMeasureId
     );
 
-    // console.log('TREND DISPARITIS - POVERTY INDICATOR', disparityIndicator )
-    // console.log('TREND DISPARITIS - POVERTY MEASURE', disparityMeasure )
+    // put metadata into fields
+
+    const disparityIndicatorId   = disparityIndicator[0].IndicatorID
     const disparityIndicatorName = disparityIndicator[0].IndicatorName
-    const disparityMeasureType = disparityMeasure[0].MeasurementType
-    const disparitySources = disparityMeasure[0].Sources
-    const disparitysAbout = disparityMeasure[0].how_calculated
-    const trendSources = selectedTrendSources ? selectedTrendSources : defaultTrendSources;
-    const trendAbout = selectedTrendAbout ? selectedTrendAbout : defaultTrendAbout;
+    const disparityMeasureType   = disparityMetadata[0].MeasurementType
+    const disparitySources       = disparityMetadata[0].Sources
+    const disparitysAbout        = disparityMetadata[0].how_calculated
 
+    // load disparities measure data
 
-    loadDisparitiyData(disparityIndicator, trendMeasure)
+    loadDisparitiyData(disparityMetadata, disparityIndicatorId)
 
-    const combinedAbout = `${trendAbout}<h6>${disparityIndicatorName} - ${disparityMeasureType}</h6><p>${disparitysAbout}</p>`;
-    const combinedSources = `${trendSources}<h6>${disparityIndicatorName} - ${disparityMeasureType}</h6><p>${disparitySources}</p>`;
+    // created combined about and sources info
+
+    const combinedAbout = 
+        `<h6>${primaryIndicatorName} - ${primaryMeasurementType}</h6>
+        <p>${primaryAbout}</p>
+        <h6>${disparityIndicatorName} - ${disparityMeasureType}</h6>
+        <p>${disparitysAbout}</p>`;
+
+    const combinedSources = 
+        `<h6>${primaryIndicatorName} - ${primaryMeasurementType}</h6>
+        <p>${primarySources}</p>
+        <h6>${disparityIndicatorName} - ${disparityMeasureType}</h6>
+        <p>${disparitySources}</p>`;
+
+    // render combined info
 
     renderAboutSources(combinedAbout, combinedSources);
+    
+    // define spec
+    
     setTimeout(() => {
-        // console.log('joined etc: ', joinedDataTrendDisparityObjects)
-
+        
         var disspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "config": {
@@ -65,7 +155,7 @@ const renderDisparities = (
                     // "titleFontSize": 12,
                     // "titlePadding": 10
                 },
-
+                
                 "axisY": {
                     // "domain": false,
                     // "domainWidth": 1,
@@ -82,10 +172,10 @@ const renderDisparities = (
                     // "titleY": -10,
                     // "titleX": 18
                 },
-
-
+                
+                
                 "view": { "stroke": "transparent" },
-
+                
                 "range": {
                     "category": [
                         "#1696d2",
@@ -96,10 +186,10 @@ const renderDisparities = (
                         "#55b748"
                     ]
                 },
-
+                
                 "line": { "color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 3 },
-
-
+                
+                
                 "point": { "filled": true },
                 "text": {
                     "color": "#1696d2",
@@ -109,11 +199,8 @@ const renderDisparities = (
                     "size": 11
                 }
             },
-            // "data": {
-            //     "url": "https://gist.githubusercontent.com/mmontesanonyc/6b0aa75affc6a60978f73e11d2f58bb3/raw/e944d335042e3da0c8e99a4df0fbebc8aac4cc15/asthmatrend.csv"
-            // },
             "data": {
-                "values": joinedDataTrendDisparityObjects,
+                "values": disparitiyData,
             },
             "width": "container",
             "height": 550,
@@ -138,7 +225,7 @@ const renderDisparities = (
                         "y": {
                             "field": "median",
                             "type": "quantitative",
-                            "title": `${trendMeasurementType} ${trendDisplay && `(${trendDisplay})`} (Median of Neighborhood)`
+                            "title": `${primaryMeasurementType} ${primaryDisplay && `(${primaryDisplay})`} (Median of Neighborhood)`
                         }
                     },
                     "layer": [
@@ -147,7 +234,7 @@ const renderDisparities = (
                                 "type": "line",
                                 "point": { "filled": false, "fill": "white" }
                             }
-
+                            
                         },
                         {
                             "transform": [
@@ -220,7 +307,9 @@ const renderDisparities = (
                 }
             ]
         }
-
+        
         vegaEmbed("#trend", disspec);
+        
     }, 300)
+
 }

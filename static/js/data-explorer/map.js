@@ -1,40 +1,28 @@
 const renderMap = (
-    selectedData,
-    selectedMeasure,
-    selectedDisplay,
-    selectedDate
+    data,
+    metadata
     ) => {
 
-        console.log("** renderMap");
+        // get unique time in data
 
-    // console.log("================ map.js / renderMap ================")
+        const mapYears =  [...new Set(data.map(item => item.Time))];
 
-        // fullDataMapObjects = joinedAqData.objects();
+        console.log("mapYears [map.js]", mapYears);
 
-        const mapYears =  [...new Set(fullDataMapObjects.map(item => item.Time))];
+        let mapGeoType            = data[0].GeoType;
+        let mapMeasurementType    = metadata[0].MeasurementType;
+        let mapGeoTypeDescription = 
+            metadata[0].AvailableGeographyTypes.filter(
+                gt => gt.GeoType === mapGeoType
+            )[0].GeoTypeDescription;
 
-        // console.log("mapYears [map.js]", mapYears);
-        // console.log("fullDataMapObjects [map.js]", fullDataMapObjects);
-
-        // if no provided selected data, then use the most recent year
-        
-        const filteredfullDataMapObjects = fullDataMapObjects.filter(obj => obj.Time === mapYears[0]);
-
-        // console.log("filteredfullDataMapObjects [map.js]", filteredfullDataMapObjects);
-
-        // console.log("defaultMapMeasure [map.js]", defaultMapMeasure);
-
-        let mapGeoType = selectedData ? selectedData[0].GeoType : filteredfullDataMapObjects[0].GeoType;
-        let mapMeasure = selectedMeasure ? selectedMeasure : defaultMapMeasure[0].MeasurementType;
-
-
+        // console.log("mapGeoTypeDescription [map.js]", mapGeoTypeDescription);
         // console.log("mapGeoType [map.js]", mapGeoType);
-        // console.log("mapMeasure [map.js]", mapMeasure);
+        // console.log("mapMeasurementType [map.js]", mapMeasurementType);
         
-        let mapDisplay = selectedDisplay ? selectedDisplay : defaultMapMeasure[0].DisplayType;
-        let mapDate = selectedDate ? selectedDate : filteredfullDataMapObjects[0].Time;
+        let mapDisplay = metadata[0].DisplayType;
+        let mapTime = mapYears[0];
         let topoFile = '';
-        let testData = selectedData ? selectedData : filteredfullDataMapObjects;
 
         // console.log("testData [map.js]", testData);
         
@@ -56,28 +44,19 @@ const renderMap = (
             topoFile = 'NYCKids.topo.json';
         }
 
-        // console.log("topoFile [map.js]", topoFile);
         
-        let mapData = testData.filter(obj => obj.GeoType === mapGeoType && obj.MeasurementType === mapMeasure);
-        
-        // console.log("mapData [map.js]", mapData);
-        // mapData_aq = aq.from(mapData)
-        // // mapData_aq.print({ limit: 20 })
-        // console.log(mapData_aq [map.js]);
-        
-        // console.log('default data: ', geoTypFilteredData)
-        
-        // console.log('TEST DATA: ', testData, 'selected: ', selectedData, 'mapMeasure: ', mapMeasure, 'defaultGeoTypFilteredData', geoTypFilteredData)
-        
-        // console.log('RENDER MAP DATA - topoFile ', topoFile)
-        
+    // define spec
         
         mapspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "title": `${mapDate} - ${mapMeasure} ${mapDisplay && `(${mapDisplay})`} `,
+            "title": {
+                "text": `${mapTime} - ${mapMeasurementType} ${mapDisplay && `(${mapDisplay})`}`,
+                "subtitle": mapGeoTypeDescription,
+                "subtitlePadding": 10
+            },
             "width": "container",
             "data": {
-                "values": mapData,
+                "values": data,
                 "format": {
                     "parse": {
                         "Value": "number"
@@ -112,7 +91,7 @@ const renderMap = (
                         "tooltip": [
                             {"field": "Geography", "title": "Geography"},
                             {
-                                // "field": mapMeasure,
+                                // "field": mapMeasurementType,
                                 "field": "Value",
                                 "type": "quantitative",
                                 "title": "Value"

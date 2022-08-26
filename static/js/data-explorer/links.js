@@ -1,36 +1,29 @@
 const renderLinksChart = (
-    joinedData,
-    primaryMetadata, // indicators.json for main indicator
+    data,
+    primaryMetadata,   // indicators.json for main indicator
     secondaryMetadata, // indciators.json for secondary indicator
     primaryIndicatorName,
     secondaryIndicatorName,
 ) => {
 
-    console.log("** renderLinksChart");
-
-    // not working on load
-    // axis indicator names not working on update
-
-    // console.log("================ links.js / renderLinksChart ================")
-
-    // console.log("primaryMetadata [renderLinksChart]", primaryMetadata);
-    // console.log("primaryIndicatorName [renderLinksChart]", primaryIndicatorName);
-    // console.log("secondaryMetadata [renderLinksChart]", secondaryMetadata);
-    // console.log("secondaryIndicatorName [renderLinksChart]", secondaryIndicatorName);
+    // get measure metadata
 
     const primaryMeasurementType = primaryMetadata[0].MeasurementType;
-    const primaryDisplay = primaryMetadata[0].DisplayType;
-    const primaryTime = primaryMetadata[0].AvailableTimes[0].TimeDescription;
+    const primaryDisplay         = primaryMetadata[0].DisplayType;
+    const primaryTime            = primaryMetadata[0].AvailableTimes[0].TimeDescription;
+    const primaryAxis            = primaryMetadata[0].VisOptions[0].Links[0].Axis;
 
-    const primaryAxis = primaryMetadata[0].VisOptions[0].Links[0].Axis;
+    const primaryGeoType = data[0].GeoType;
+    const primaryGeoTypeDescription = 
+        primaryMetadata[0].AvailableGeographyTypes.filter(
+            gt => gt.GeoType === primaryGeoType
+        )[0].GeoTypeDescription;    
 
-    // const secondaryMeasureId = secondaryMetadata[0].VisOptions[0].Links[0].MeasureID;
     const secondaryMeasurementType = secondaryMetadata[0].MeasurementType
-    const secondaryDisplay = secondaryMetadata[0].DisplayType;
-    const secondaryTime = selectedlinksSecondaryMeasureTime;
+    const secondaryDisplay         = secondaryMetadata[0].DisplayType;
+    const secondaryTime            = selectedlinksSecondaryMeasureTime;
 
-    // NEED INDICATOR IDS
-
+    // switch field assignment based on axis preference
 
     let xMeasure;
     let yMeasure;
@@ -39,7 +32,7 @@ const renderLinksChart = (
     let xTime;
     let yTime;
     let xIndicatorName;
-    let yIndicatorname;
+    let yIndicatorName;
 
     switch (primaryAxis) {
         case 'y':
@@ -68,26 +61,18 @@ const renderLinksChart = (
             break;
     }
 
-    console.log("---------------------------------------------------------------------");
-    console.log("indicatorName [links.js] ->", primaryIndicatorName);
-    console.log("secondaryIndicator name [links.js] ->", secondaryIndicatorName);
-    console.log("---------------------------------------------------------------------");
-    console.log("primaryMeasurementType [links.js] ->", primaryMeasurementType)
-    console.log("secondaryMeasurementType [links.js] ->", secondaryMeasurementType)
-    console.log("---------------------------------------------------------------------");
-    console.log("primaryTime [links.js] ->", primaryTime)
-    console.log("secondaryTime [links.js] ->", secondaryTime)
-    console.log("---------------------------------------------------------------------");
-
-    // console.log("joinedDataLinksObjects [links.js]", joinedDataLinksObjects);
-    // console.log("xMeasure [links.js]", xMeasure);
-    // console.log("yIndicatorname [links.js]", indicatorName);
-    // console.log("yMeasure [links.js]", yMeasure);
+    // define spec
 
     setTimeout(() => {
+
         var linkspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "description": "Asthma 5-17 ED visit rate and poverty scatterplot",
+            "title": {
+                "text": `${yIndicatorName} vs. ${xIndicatorName}`,
+                "subtitle": primaryGeoTypeDescription,
+                "subtitlePadding": 10
+            },            
             "width": "container",
             "height": "container",
             "config": {
@@ -144,7 +129,7 @@ const renderLinksChart = (
                 }
             },
             "data": {
-                "values": joinedData
+                "values": data
             },
             "mark": { "type": "circle", "filled": true, "size": 500, "stroke": "#727272", "strokeWidth": 2 },
             "params": [
@@ -161,7 +146,8 @@ const renderLinksChart = (
                     // "labelAngle": 0
                 },
                 "x": {
-                    "title": `${xIndicatorName && `${xIndicatorName} - `} ${xMeasure} ${xDisplay && `(${xDisplay})`} ${xTime}`,
+                    // "title": `${xIndicatorName && `${xIndicatorName} - `} ${xMeasure} ${xDisplay && `(${xDisplay})`} ${xTime}`,
+                    "title": [`${xIndicatorName && `${xIndicatorName}`}`, `- ${xMeasure} ${xDisplay && `(${xDisplay})`} ${xTime}`],
                     "field": xValue,
                     "type": "quantitative"
                 },
@@ -203,7 +189,7 @@ const renderLinksChart = (
         }
 
         vegaEmbed("#links", linkspec);
-    }, 300)
 
+    }, 300)
 
 }
