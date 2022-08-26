@@ -1,20 +1,29 @@
 const renderTable = () => {
 
+    console.log("** renderTable");
+
     const groupColumnYear = 0
     const groupColumnGeo = 1;
     const groupId = 0
     
     const filteredTableData = 
-        fullDataTableObjects
-        .filter(d => selectedSummaryYears.includes(d.Time) && selectedSummaryGeography.includes(d.GeoType))
-        // console.log(("filteredTableData [summary.js]", filteredTableData);
+            fullDataTableObjects
+            .filter(d => selectedSummaryYears.includes(d.Time) && selectedSummaryGeography.includes(d.GeoType))
+        
+        // console.log("selectedSummaryGeography [summary.js]", selectedSummaryGeography);
+        // console.log("selectedSummaryYears [summary.js]", selectedSummaryYears);
+        // console.log("fullDataTableObjects [summary.js]", fullDataTableObjects);
+        console.log("filteredTableData [summary.js]", filteredTableData);
         
         const filteredTableAqData = aq.from(filteredTableData)
-        .impute({ Value: () => "**" })
-        .groupby("Time", "GeoType", "GeoID", "GeoRank", "Geography")
-        .pivot("MeasurementType", "Value")
-        // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
-        .relocate(["Time", "GeoType", "GeoID", "GeoRank"], { before: 0 }) 
+            .impute({ Value: () => "**" })
+            .groupby("Time", "GeoType", "GeoID", "GeoRank", "Geography")
+            .pivot("MeasurementType", "Value")
+            // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
+            .relocate(["Time", "GeoType", "GeoID", "GeoRank"], { before: 0 }) 
+
+        console.log("filteredTableAqData [renderTable]");
+        filteredTableAqData.print()
         
         // console.log('==========================================================================')
         // console.log('RENDER TABLE DATA - Filtered Data: ', filteredTableAqData)

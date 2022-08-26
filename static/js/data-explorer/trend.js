@@ -152,27 +152,33 @@ const renderTrendChart = (
                             },
                             {
                                 "field": "New York City",
-                                "type": "quantitative"
+                                "type": "quantitative",
+                                "format": ",.1~f"
                             },
                             {
                                 "field": "Bronx",
-                                "type": "quantitative"
+                                "type": "quantitative",
+                                "format": ",.1~f"
                             },
                             {
                                 "field": "Brooklyn",
-                                "type": "quantitative"
+                                "type": "quantitative",
+                                "format": ",.1~f"
                             },
                             {
                                 "field": "Manhattan",
-                                "type": "quantitative"
+                                "type": "quantitative",
+                                "format": ",.1~f"
                             },
                             {
                                 "field": "Queens",
-                                "type": "quantitative"
+                                "type": "quantitative",
+                                "format": ",.1~f"
                             },
                             {
                                 "field": "Staten Island",
-                                "type": "quantitative"
+                                "type": "quantitative",
+                                "format": ",.1~f"
                             }
                         ]
                     },

@@ -6,6 +6,10 @@ const renderLinksChart = (
     secondaryIndicatorName,
 ) => {
 
+    console.log("** renderLinksChart");
+
+    console.log("data [renderLinksChart]", data);
+
     // get measure metadata
 
     const primaryMeasurementType = primaryMetadata[0].MeasurementType;
@@ -163,14 +167,16 @@ const renderLinksChart = (
                         "type": "nominal"
                     },
                     {
-                        "title": yMeasure,
+                        "title": `${yIndicatorName} - ${yMeasure}`,
                         "field": yValue,
-                        "type": "quantitative"
+                        "type": "quantitative",
+                        "format": ",.1~f"
                     },
                     {
-                        "title": xMeasure,
+                        "title": `${xIndicatorName} - ${xMeasure}`,
                         "field": xValue,
-                        "type": "quantitative"
+                        "type": "quantitative",
+                        "format": ",.1~f"
                     }
                 ],
                 "color": {

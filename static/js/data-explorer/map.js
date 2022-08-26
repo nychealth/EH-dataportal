@@ -28,6 +28,8 @@ const renderMap = (
         
         // can add year to this
 
+        console.log("mapGeoType [renderMap]", mapGeoType);
+
         if (mapGeoType === "NTA") {
             topoFile = 'NTA.topo.json';
         } else if (mapGeoType === "CD") {
@@ -89,12 +91,13 @@ const renderMap = (
                             "value": 0.5
                         },
                         "tooltip": [
-                            {"field": "Geography", "title": "Geography"},
+                            {"field": "Geography", "title": "Neighborhood"},
                             {
                                 // "field": mapMeasurementType,
                                 "field": "Value",
                                 "type": "quantitative",
-                                "title": "Value"
+                                "title": mapMeasurementType,
+                                "format": ",.1~f"
                             },
                         ],
                     },
@@ -119,8 +122,16 @@ const renderMap = (
                     "encoding": {
                         "y": {"field": "Value", "type": "quantitative", "title": null},
                         "tooltip": [
-                            {"field": "Geography", "title": "GeoID"},
-                            {"field": "Value", "type": "quantitative", "title": "Value"},
+                            {
+                                "field": "Geography", 
+                                "title": "Neighborhood"
+                            },
+                            {
+                                "field": "Value", 
+                                "type": "quantitative", 
+                                "title": mapMeasurementType,
+                                "format": ",.1~f"
+                            },
                         ],
                         "x": {"field": "GeoID", "sort": "y", "axis": null},
                         "color": {
