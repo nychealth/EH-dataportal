@@ -93,7 +93,6 @@ const renderMap = (
                         "tooltip": [
                             {"field": "Geography", "title": "Neighborhood"},
                             {
-                                // "field": mapMeasurementType,
                                 "field": "Value",
                                 "type": "quantitative",
                                 "title": mapMeasurementType,

@@ -71,9 +71,6 @@ const renderTrendChart = (
                     "size": 11
                 }
             },
-            // "data": {
-            //     "url": "https://gist.githubusercontent.com/mmontesanonyc/6b0aa75affc6a60978f73e11d2f58bb3/raw/e944d335042e3da0c8e99a4df0fbebc8aac4cc15/asthmatrend.csv"
-            // },
             "data": {
                 "values":  data,
             },

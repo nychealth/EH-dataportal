@@ -10,9 +10,6 @@ const renderTable = () => {
             fullDataTableObjects
             .filter(d => selectedSummaryYears.includes(d.Time) && selectedSummaryGeography.includes(d.GeoType))
         
-        // console.log("selectedSummaryGeography [summary.js]", selectedSummaryGeography);
-        // console.log("selectedSummaryYears [summary.js]", selectedSummaryYears);
-        // console.log("fullDataTableObjects [summary.js]", fullDataTableObjects);
         console.log("filteredTableData [summary.js]", filteredTableData);
         
         const filteredTableAqData = aq.from(filteredTableData)
@@ -25,9 +22,6 @@ const renderTable = () => {
         console.log("filteredTableAqData [renderTable]");
         filteredTableAqData.print()
         
-        // console.log('==========================================================================')
-        // console.log('RENDER TABLE DATA - Filtered Data: ', filteredTableAqData)
-        // filteredTableAqData.print()
         
         // call function to show table
         document.getElementById('summary-table').innerHTML = filteredTableAqData.toHTML(); // print dataTable to HTML

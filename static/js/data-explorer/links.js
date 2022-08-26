@@ -150,7 +150,6 @@ const renderLinksChart = (
                     // "labelAngle": 0
                 },
                 "x": {
-                    // "title": `${xIndicatorName && `${xIndicatorName} - `} ${xMeasure} ${xDisplay && `(${xDisplay})`} ${xTime}`,
                     "title": [`${xIndicatorName && `${xIndicatorName}`}`, `- ${xMeasure} ${xDisplay && `(${xDisplay})`} ${xTime}`],
                     "field": xValue,
                     "type": "quantitative"
