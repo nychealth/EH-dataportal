@@ -1,5 +1,20 @@
 {{ define "main" }}
 
+<style>
+    /* These styles overwrite default Vega-Lite tooltip styles */
+    .vg-tooltip {
+        max-width: 450px;
+    }
+
+    .key {font-size: 11px!important;}
+
+    .value {font-size: 11px!important;}
+
+    .vg-tooltip td {
+        width: 50%;
+    }
+</style>
+
 <article class="container-fluid" id="skip-header-target">
     <div class="row">
         <div class="col-md-11 mx-auto mt-4 mx-1">
