@@ -73,7 +73,7 @@ const renderMap = (
             "projection": {"type": "mercator"},
             "vconcat": [
                 {
-                    "height": 550,
+                    "height": 500,
                     "width": "container",
                     "mark": {"type": "geoshape", "stroke": "#000000", "invalid": null},
                     "encoding": {
