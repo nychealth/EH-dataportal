@@ -164,153 +164,167 @@
                         About {{ .Title }}
                     </button>
 
-                    <div class="border-bottom p-1">
-                        <div class="dropdown">
-                            <span class='home-label d-block'>Change dataset</span>
-    
-                            <button class="btn btn-outline-primary btn-block dropdown-toggle" type="button"
-                                    id="dropdownIndicator" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                More {{ .Title }} data
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownIndicator"
-                                 id="indicator-dropdown">
-                                <!-- Dropdown itmes are rendered using renderIndicatorDropdown -->
-                            </div>
-                        </div>
-    
-    
-                        <div style="clear:both" class="my-2">
-                            <span class="home-label d-block">About <span id="indicatorTitle">Indicator</span></span>
-    
-                            <p class="fs-sm indicator-description"></p>
-                        </div>
-
-                    </div>
-
-                    <div class="mt-2">
-                        <div class="nav nav-pills bg-white device-xs" role="tablist">
-
-                            <a class="nav-item nav-link flex-fill" id="tab-btn-table" href="#tab-table" data-toggle="pill"
-                               aria-controls="tab-table" aria-selected="false" role="tab">
-                                <i class="fas fa-list fa-fw"></i>
-                                <div class="d-none  d-lg-inline-block py-1">Summary</div>
-                            </a>
-    
-                            <a class="nav-item nav-link flex-fill" id="tab-btn-map" href="#tab-map" data-toggle="pill"
-                               aria-controls="tab-map" aria-selected="false" role="tab">
-                                <i class="fas fa-map-marker-alt fa-fw"></i>
-                                <div class="d-none d-lg-inline-block py-1">Map</div>
-                            </a>
-    
-                            <a class="nav-item nav-link flex-fill" id="tab-btn-trend" href="#tab-trend" data-toggle="pill"
-                               aria-controls="tab-trend" aria-selected="false" role="tab">
-                                <i class="fas fa-chart-line fa-fw"></i>
-                                <div class="d-none  d-lg-inline-block py-1">Trend</div>
-                            </a>
-    
-    
-                            <a class="nav-item nav-link flex-fill" id="tab-btn-links" href="#tab-links" data-toggle="pill"
-                               aria-controls="tab-links" aria-selected="false" aria-disabled="true" role="tab">
-                                <i class="fas fa-link fa-fw"></i>
-                                <div class="d-none  d-lg-inline-block py-1">Links</div>
-                            </a>
-    
-                        </div>
-    
-                        <div class="tab-content bg-white mb-4" id="tabs-01-content">
-                            <!-- TABLE TAB -->
-                            <div class="tab-pane fade show active py-2" id="tab-table" aria-labelledby="tab-btn-table"
-                                 role="tabpanel">
-                                <div class="float right mr-1">
-                                    <div class="dropdown">
-                                        <button class="btn btn-sm float-right btn-outline-success dropdown-toggle"
-                                                type="button" id="dropdownTableYear" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">Select year
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownTableYear">
-                                            <!-- INSERT MENU ITEMS HERE -->
-                                        </div>
-                                    </div>
-    
-                                    <div class="dropdown">
-                                        <button class="btn btn-sm mr-1 float-right btn-outline-success dropdown-toggle"
-                                                type="button" id="dropdownTableGeo" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">Select
-                                            geography
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownTableGeo">
-                                            <!-- INSERT MENU ITEMS HERE -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-4">
-                                    <span id="summaryTitle" class="home-label"></span>
-                                    <div id="summary-table">
-                                        <!-- INSERT SUMMARY TABLE HERE -->
-                                    </div>
-    
-                                </div>
-                            </div>
-                            <!-- MAP TAB -->
-                            <div class="tab-pane fade py-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
-                                <div class="float right mr-1">
-                                    <div class="dropdown">
-                                        <button class="btn btn-sm mr-1 float-right btn-outline-success dropdown-toggle"
-                                                type="button" id="dropdownMapMeasures" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">Select
-                                            measure
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMapMeasures">
-                                            <!-- INSERT MENU ITEMS HERE -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-4">
-                                    <span id="mapTitle" class="home-label"></span>
-                                    <div id="map" width=600 height=500
-                                         style="width: 100%; min-height: 450px; margin-bottom: 50px;"></div>
-                                </div>
-                            </div>
-                            <!-- TREND TAB -->
-                            <div class="tab-pane fade py-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
-                                <div class="dropdown float-right mr-1">
-                                    <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button"
-                                            id="dropdownTrendMeasures" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">Choose measure</button>
-                                        <!-- disparities button - display style changed to show or hide -->
-                                        <button class="btn btn-sm mr-1 float-right btn-outline-success btn-show-disparities"
-                                                style="display:inline">Show Dispartites</button>
-                                    
-                                    <div class="dropdown-menu" aria-labelledby="dropdownTrendMeasures">
-                                        <!-- INSERT MENU ITEMS HERE -->
-                                    </div>
-                                </div>
-                                <div class="mt-4">
-                                    <span id="trendTitle" class="home-label"></span>
-                                    <!-- INSERT TREND CHART HERE -->
-                                    <div id="trend" style="width: 100%; height: 550px"></div>
-                                </div>
-                            </div>
-                            <!-- LINKS TAB -->
-                            <div class="tab-pane fade py-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
-                                <div class="dropdown float-right">
-                                    <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button"
-                                            id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">Select data to
-                                        link
+                    <div class="card content-card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="dropdown">
+                                    <span class='home-label d-block'>Change dataset</span>
+            
+                                    <button class="btn btn-outline-primary btn-block dropdown-toggle" type="button"
+                                            id="dropdownIndicator" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        More {{ .Title }} data
                                     </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownLinksMeasures">
-                                        <!-- INSERT MENU ITEMS HERE -->
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownIndicator"
+                                         id="indicator-dropdown">
+                                        <!-- Dropdown itmes are rendered using renderIndicatorDropdown -->
                                     </div>
                                 </div>
-                                <div class="mt-4" style="height: 550px; clear: both">
-                                    <span id="linksTitle" class="home-label"></span>
-                                    <!-- INSERT LINKS CHART HERE -->
-                                    <div id="links" style="width: 100%"></div>
+            
+            
+                                <div style="clear:both" class="my-2">
+                                    <span class="home-label d-block">About <span id="indicatorTitle">Indicator</span></span>
+            
+                                    <p class="fs-sm indicator-description"></p>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="card content-card mt-1">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="mt-2">
+                                    <div class="nav nav-pills bg-white device-xs" role="tablist">
+            
+                                        <a class="nav-item nav-link flex-fill" id="tab-btn-table" href="#tab-table" data-toggle="pill"
+                                           aria-controls="tab-table" aria-selected="false" role="tab">
+                                            <i class="fas fa-list fa-fw"></i>
+                                            <div class="d-none  d-lg-inline-block py-1">Summary</div>
+                                        </a>
+                
+                                        <a class="nav-item nav-link flex-fill" id="tab-btn-map" href="#tab-map" data-toggle="pill"
+                                           aria-controls="tab-map" aria-selected="false" role="tab">
+                                            <i class="fas fa-map-marker-alt fa-fw"></i>
+                                            <div class="d-none d-lg-inline-block py-1">Map</div>
+                                        </a>
+                
+                                        <a class="nav-item nav-link flex-fill" id="tab-btn-trend" href="#tab-trend" data-toggle="pill"
+                                           aria-controls="tab-trend" aria-selected="false" role="tab">
+                                            <i class="fas fa-chart-line fa-fw"></i>
+                                            <div class="d-none  d-lg-inline-block py-1">Trend</div>
+                                        </a>
+                
+                
+                                        <a class="nav-item nav-link flex-fill" id="tab-btn-links" href="#tab-links" data-toggle="pill"
+                                           aria-controls="tab-links" aria-selected="false" aria-disabled="true" role="tab">
+                                            <i class="fas fa-link fa-fw"></i>
+                                            <div class="d-none  d-lg-inline-block py-1">Links</div>
+                                        </a>
+                
+                                    </div>
+                
+                                    <div class="tab-content bg-white mb-4" id="tabs-01-content">
+                                        <!-- TABLE TAB -->
+                                        <div class="tab-pane fade show active py-2" id="tab-table" aria-labelledby="tab-btn-table"
+                                             role="tabpanel">
+                                            <div class="float right mr-1">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-sm float-right btn-outline-success dropdown-toggle"
+                                                            type="button" id="dropdownTableYear" data-toggle="dropdown"
+                                                            aria-haspopup="true" aria-expanded="false">Select year
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownTableYear">
+                                                        <!-- INSERT MENU ITEMS HERE -->
+                                                    </div>
+                                                </div>
+                
+                                                <div class="dropdown">
+                                                    <button class="btn btn-sm mr-1 float-right btn-outline-success dropdown-toggle"
+                                                            type="button" id="dropdownTableGeo" data-toggle="dropdown"
+                                                            aria-haspopup="true" aria-expanded="false">Select
+                                                        geography
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownTableGeo">
+                                                        <!-- INSERT MENU ITEMS HERE -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mt-4">
+                                                <span id="summaryTitle" class="home-label"></span>
+                                                <div id="summary-table">
+                                                    <!-- INSERT SUMMARY TABLE HERE -->
+                                                </div>
+                
+                                            </div>
+                                        </div>
+                                        <!-- MAP TAB -->
+                                        <div class="tab-pane fade py-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
+                                            <div class="float right mr-1">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-sm mr-1 float-right btn-outline-success dropdown-toggle"
+                                                            type="button" id="dropdownMapMeasures" data-toggle="dropdown"
+                                                            aria-haspopup="true" aria-expanded="false">Select
+                                                        measure
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMapMeasures">
+                                                        <!-- INSERT MENU ITEMS HERE -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mt-4">
+                                                <span id="mapTitle" class="home-label"></span>
+                                                <div id="map" width=600 height=500
+                                                     style="width: 100%; min-height: 450px; margin-bottom: 50px;"></div>
+                                            </div>
+                                        </div>
+                                        <!-- TREND TAB -->
+                                        <div class="tab-pane fade py-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
+                                            <div class="dropdown float-right mr-1">
+                                                <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button"
+                                                        id="dropdownTrendMeasures" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">Choose measure</button>
+                                                    <!-- disparities button - display style changed to show or hide -->
+                                                    <button class="btn btn-sm mr-1 float-right btn-outline-success btn-show-disparities"
+                                                            style="display:inline">Show Dispartites</button>
+                                                
+                                                <div class="dropdown-menu" aria-labelledby="dropdownTrendMeasures">
+                                                    <!-- INSERT MENU ITEMS HERE -->
+                                                </div>
+                                            </div>
+                                            <div class="mt-4">
+                                                <span id="trendTitle" class="home-label"></span>
+                                                <!-- INSERT TREND CHART HERE -->
+                                                <div id="trend" style="width: 100%; height: 550px"></div>
+                                            </div>
+                                        </div>
+                                        <!-- LINKS TAB -->
+                                        <div class="tab-pane fade py-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
+                                            <div class="dropdown float-right">
+                                                <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button"
+                                                        id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">Select data to
+                                                    link
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownLinksMeasures">
+                                                    <!-- INSERT MENU ITEMS HERE -->
+                                                </div>
+                                            </div>
+                                            <div class="mt-4" style="height: 550px; clear: both">
+                                                <span id="linksTitle" class="home-label"></span>
+                                                <!-- INSERT LINKS CHART HERE -->
+                                                <div id="links" style="width: 100%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
 
 
 
