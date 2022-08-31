@@ -41,10 +41,10 @@ const renderTrendChart = (
                     // "ticks": false,
                     // "titleFontSize": 12,
                     // "titlePadding": 10,
-                    // "titleFont": "Lato",
-                    // "titleAngle": 0,
-                    // "titleY": -10,
-                    // "titleX": 18
+                    "titleFont": "Lato",
+                    "titleAngle": 0,
+                    "titleY": -10,
+                    "titleX": 18
                 },
                 
                 

@@ -83,15 +83,15 @@ const renderLinksChart = (
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "description": "Asthma 5-17 ED visit rate and poverty scatterplot",
             "title": {
-                "text": `${yIndicatorName} vs. ${xIndicatorName}`,
-                "subtitle": primaryGeoTypeDescription,
+                "text": `${yIndicatorName}`,
+                // "subtitle": `${yIndicatorName}`,
                 "subtitlePadding": 10
             },            
             "width": "container",
             "height": "container",
             "config": {
                 "background": "#FFFFFF",
-                "title": { "anchor": "start", "fontSize": 18, "font": "Calibri" },
+                "title": { "anchor": "start", "fontSize": 12, "font": "Calibri" },
                 "axisX": {
                     // "domain": true,
                     // "domainColor": "#000000",
@@ -99,6 +99,7 @@ const renderLinksChart = (
                     // "grid": false,
                     "labelFontSize": 11,
                     "titleFontSize": 12,
+                    "titleFont": "Calibri"
                     // "labelAngle": 0,
                     // "tickColor": "#000000",
                     // "tickSize": 5,
@@ -111,7 +112,7 @@ const renderLinksChart = (
                     // "gridColor": "#DEDDDD",
                     // "gridWidth": 1,
                     "labelFontSize": 11,
-                    "titleFontSize": 12,
+                    "titleFontSize": 0,
                     // "labelPadding": 8,
                     "labelAngle": 0,
                     // "ticks": false,
