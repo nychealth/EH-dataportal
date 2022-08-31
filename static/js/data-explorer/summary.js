@@ -10,7 +10,7 @@ const renderTable = () => {
             fullDataTableObjects
             .filter(d => selectedSummaryYears.includes(d.Time) && selectedSummaryGeography.includes(d.GeoType))
 
-        // console.log("filteredTableData [renderTable]", filteredTableData);
+        console.log("filteredTableData [renderTable]", filteredTableData);
 
         const measureAlignMap = new Map();
         // const measureImputeMap = new Map();
@@ -48,7 +48,7 @@ const renderTable = () => {
             filteredTableAqData.toHTML({
                 limit: Infinity,
                 align: measureAlignObj, 
-                null: () => "-"
+                null: () => "-" // use this to replace undefined
             });
 
         document.querySelector('#summary-table table').id = "tableID"

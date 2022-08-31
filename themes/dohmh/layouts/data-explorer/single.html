@@ -521,16 +521,11 @@
         let aqData;
         let joinedAqData;
         
-        // let hasCIData = false;
-        // let hasNumberData = false;
-        // let hasPercentData = false;
-        
         let fullDataTableObjects;
         let fullDataMapObjects;
         let fullDataTrendObjects;
         let fullDataLinksObjects;
         let joinedDataLinksObjects;
-        // let joinedDataTrendDisparityObjects;
         let disparitiyData; // used by disparities.js
         
         let indicator;
@@ -563,9 +558,6 @@
         let selectedTrendSources;
         let selectedLinksAbout;
         let selectedLinksSources;
-        // let selectedLinkMeasureData = [];
-        // let selectedlinksSecondaryIndicatorData = [];
-        // let selectedlinksSecondaryMeasureData = [];
         let selectedlinksSecondaryMeasureTime;
 
         let primaryMeasureMetadata;
@@ -579,13 +571,15 @@
         let trendMeasures = [];
         let linksMeasures = [];
         
-        // let primaryMeasure;
-        // let secondaryMeasure;
-        
         let tabTable;
         let tabMap;
         let tabTrend;
         let tabLinks;
+        
+        let showTable;
+        let showMap;
+        let showTrend;
+        let showLinks;
         
         // store hash, so display knows where it just was
         let currentHash;
@@ -608,6 +602,10 @@
             }, 200)
             
         }
+        
+        // hash change event, for firing on hash switch in renderMeasures
+
+        let hashchange = new Event('hashchange');
         
         window.onpopstate = function (event) {
             if (event.state != null){
@@ -633,35 +631,39 @@
                 case 'tab-table':
                     // console.log("< hashchange > summary");
                     $('#tab-btn-table').tab('show');
+                    showTable();
                     break;
 
                 case 'display=map':
                 case 'tab-map':
                     // console.log("< hashchange > map");
                     $('#tab-btn-map').tab('show');
+                    showMap();
                     break;
 
                 case 'display=trend':
                 case 'tab-trend':
                     // console.log("< hashchange > trend");
                     $('#tab-btn-trend').tab('show');
+                    showTrend();
                     break;
 
                 case 'display=links':
                 case 'tab-links':
                     // console.log("< hashchange > links");
                     $('#tab-btn-links').tab('show');
+                    showLinks();
                     break;
 
                 default:
                     // console.log("< hashchange > default");
                     // window.location.hash = 'display=summary';
                     $('#tab-btn-table').tab('show');
+                    showTable();
                     break;
             }
 
             currentHash = hash;
-            // console.log("< hashchange > currentHash 2: ", currentHash);
 
         });
 
@@ -922,7 +924,7 @@
             
             // bind rows of Arquero tables in arrays
 
-            let aqMeasureIdTimes = availableTimes.reduce((a, b) => a.concat(b))
+            let aqMeasureIdTimes     = availableTimes.reduce((a, b) => a.concat(b))
             let aqMeasurementDisplay = measurementDisplay.reduce((a, b) => a.concat(b))
             
             // console.log("aqMeasurementDisplay");
@@ -961,7 +963,7 @@
                     MeasurementDisplay: d => op.trim(op.join([d.MeasurementType, d.DisplayType], " ")),
                     DisplayCI: d => op.trim(op.join([d.DisplayValue, d.CI], " "))
                 })
-                .derive({ DisplayCI: d => op.replace(d.DisplayCI, /^$/, "-") })
+                .derive({ DisplayCI: d => op.replace(d.DisplayCI, /^$/, "-") }) // replace missing with "-"
                 .select(aq.not("start_period", "end_period"))
                 .objects()
 
@@ -970,23 +972,20 @@
             // data for map
             
             fullDataMapObjects = joinedAqData
-                // remove Citywide and Boro
-                .filter(d => !op.match(d.GeoType, /Citywide|Borough/))
+                .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
                 .impute({ Value: () => NaN })
                 .objects()
 
             // map for trend chart
 
             fullDataTrendObjects = joinedAqData
-                // keep only Citywide and Boro
-                .filter(d => op.match(d.GeoType, /Citywide|Borough/))
+                .filter(d => op.match(d.GeoType, /Citywide|Borough/)) // keep only Citywide and Boro
                 .objects()
 
             // data for links & disparities chart
 
             fullDataLinksObjects = joinedAqData
-                // remove Citywide and Boro
-                .filter(d => !op.match(d.GeoType, /Citywide|Borough/))
+                .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
                 .objects()
             
             // call the measure rendering etc. function
@@ -1147,6 +1146,7 @@
                 })
         }
         
+
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         // handler functions for summary table
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -1228,6 +1228,7 @@
             });
         }
         
+
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         // measure info functions
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -1252,6 +1253,7 @@
             dataSources.innerHTML = sources;
         }
         
+
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         // tab update functions
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -1789,6 +1791,7 @@
                     });
                 }
             
+
                 // ----- handle trend measures ----- //
 
                 if (trend === 1) {
@@ -1859,14 +1862,14 @@
 
             
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-            // add listeners to tabs
+            // functions to show to tabs
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
             // ===== table ===== //
             
             // define function
 
-            const showTable = (e) => {
+            showTable = (e) => {
 
                 // console.log("** showTable");
 
@@ -1874,7 +1877,7 @@
 
                 // set hash to summary
 
-                window.location.hash = 'display=summary';
+                window.location.hash = '#display=summary';
                 currentHash = 'display=summary'
 
                 // reset aria attributes
@@ -1896,26 +1899,20 @@
                 // console.log("renderTable [#tab-btn-table]");
                 renderTable();
 
-                $($.fn.dataTable.tables(true))
+                updateChartPlotSize();
+
+                $($.fn.dataTable.tables(false))
                     .DataTable()
                     .columns.adjust().draw();
 
-                updateChartPlotSize();
-
             };
             
-            // add listener
-
-            $('#tab-btn-table').on('click', e => {
-                showTable(e);
-                $('#tab-btn-table').tab('show');
-            })
 
             // ===== map ===== //
 
             // define function
 
-            const showMap = (e) => {
+            showMap = (e) => {
 
                 // console.log("** showMap");
 
@@ -1923,7 +1920,7 @@
 
                 // set hash to map
                 
-                window.location.hash = 'display=map'
+                window.location.hash = '#display=map'
                 currentHash = 'display=map'
 
                 // reset aria attributes
@@ -2021,28 +2018,21 @@
                 }
 
             };
-            
-            // add listener
 
-            $('#tab-btn-map').on('click', e => {
-                // console.log("click");
-                showMap(e);
-                $('#tab-btn-map').tab('show');
-            })
 
             // ===== trend ===== //
 
             // define function
 
-            const showTrend = (e) => {
+            showTrend = (e) => {
             
-                // console.log("** showTrend");
+                console.log("** showTrend");
 
                 // ----- handle tab selection ----- //
 
                 // set hash to trend
                 
-                window.location.hash = 'display=trend'
+                window.location.hash = '#display=trend'
                 currentHash = 'display=trend'
 
                 // reset aria attributes
@@ -2150,19 +2140,12 @@
 
             };
             
-            // add listener
-            
-            $('#tab-btn-trend').on('click', e => {
-                showTrend(e);
-                $('#tab-btn-trend').tab('show');
-            })
-            
             
             // ===== links ===== //
             
             // define function
             
-            const showLinks = (e) => {
+            showLinks = (e) => {
                 
                 // console.log("** showLinks");
 
@@ -2170,7 +2153,7 @@
 
                 // set hash to links
                 
-                window.location.hash = 'display=links'
+                window.location.hash = '#display=links'
                 currentHash = 'display=links'
                 // console.log("currentHash [showLinks]", currentHash);
 
@@ -2181,12 +2164,6 @@
                 tabTrend.setAttribute('aria-selected', false);
                 tabLinks.setAttribute('aria-selected', true);
                 
-                // what's this doing?
-{{/*  
-                $($.fn.dataTable.tables(true))
-                    .DataTable()
-                    .columns.adjust();  */}}
-
 
                 // ----- allow chart to persist when changing tabs ----- //
 
@@ -2297,74 +2274,6 @@
                 
             };
 
-            // add listener
-
-            $('#tab-btn-links').on('click', e => {
-                // console.log("e", e);
-                showLinks(e);
-                // $('#tab-btn-links').tab('show');
-                $(e.currentTarget).tab('show');
-            })
-
-
-            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-            // set tab based on hash
-            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-            let hash = window.location.hash.replace('#', "")
-
-            // console.log("~ switch ~ hash: ", hash);
-            // console.log("~ switch ~ currentHash 1: ", currentHash);
-
-            // console.log("~ switch ~ hash: ", hash);
-            
-            switch (hash) {
-
-                // using fallthrough
-
-                case 'display=summary':
-                case 'tab-table':
-
-                    // if user is on summary tab when renderMeasures is called (i.e. indicator changes), 
-                    //  re-render the table
-                    
-                    showTable();
-                    $('#tab-btn-table').tab('show');
-                    {{/*  $('#tab-btn-table').tab();  */}}
-                    // console.log("~ switch ~ summary");
-                    break;
-
-                case 'display=map':
-                case 'tab-map':
-                    // console.log("~ switch ~ map");
-                    showMap();
-                    $('#tab-btn-map').tab('show');
-                    break;
-
-                case 'display=trend':
-                case 'tab-trend':
-                    // console.log("~ switch ~ trend");
-                    showTrend();
-                    $('#tab-btn-trend').tab('show');
-                    break;
-
-                case 'display=links':
-                case 'tab-links':
-                    // console.log("~ switch ~ links");
-                    showLinks();
-                    $('#tab-btn-links').tab('show');
-                    break;
-                    
-                default:
-                    // console.log("~ switch ~ default");
-                    showTable();
-                    window.location.hash = 'display=summary';
-                    $('#tab-btn-table').tab('show');
-            }
-
-            // currentHash = hash;
-            // console.log("~ switch ~ currentHash 2: ", currentHash);
-            
 
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
             // disable tabs and switch to summary if there are no measures
@@ -2404,6 +2313,7 @@
                     // console.log("switch to table");
                     
                     $('#tab-btn-table').tab('show');
+                    showTable();
                     
                 }
 
@@ -2414,17 +2324,25 @@
                 enableTab(tabMap);
             }
 
-            if (trendMeasures.length === 0) {
+
+            const onlyOneTime = trendMeasures.every(m => m.AvailableTimes.length <= 1)
+            console.log("onlyOneTime", onlyOneTime);
+
+            if (trendMeasures.length === 0 || onlyOneTime) {
                 
                 // console.log("disable trend");
                 // console.log("trend hash", window.location.hash);
-                // console.log("> trend switch", tabTrendSelected && window.location.hash === '#display=trend');
 
                 if (tabTrendSelected && window.location.hash === '#display=trend') {
                     
                     // console.log("switch to table");
                     
                     $('#tab-btn-table').tab('show');
+                    showTable();
+
+                    $($.fn.dataTable.tables(true))
+                        .DataTable()
+                        .columns.adjust().draw();
                     
                 }
                 
@@ -2433,7 +2351,6 @@
             } else {
                 
                 enableTab(tabTrend);
-                // renderTrendChart();
             }
 
             if (linksMeasures.length === 0) {
@@ -2447,6 +2364,7 @@
                     // console.log("switch to table");
 
                     $('#tab-btn-table').tab('show');
+                    showTable();
                     
                 }
 
@@ -2455,6 +2373,56 @@
             } else {
                 
                 enableTab(tabLinks);
+            }
+
+
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+            // set tab based on hash
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+            let hash = window.location.hash.replace('#', "")
+
+            switch (hash) {
+
+                // using fallthrough
+
+                case 'display=summary':
+                case 'tab-table':
+                    // console.log("~ switch ~ summary");
+                    // showTable();
+                    $('#tab-btn-table').tab('show');
+                    window.dispatchEvent(hashchange);
+                    break;
+
+                case 'display=map':
+                case 'tab-map':
+                    // console.log("~ switch ~ map");
+                    // showMap();
+                    $('#tab-btn-map').tab('show');
+                    window.dispatchEvent(hashchange);
+                    break;
+
+                case 'display=trend':
+                case 'tab-trend':
+                    // console.log("~ switch ~ trend");
+                    // showTrend();
+                    $('#tab-btn-trend').tab('show');
+                    window.dispatchEvent(hashchange);
+                    break;
+
+                case 'display=links':
+                case 'tab-links':
+                    // console.log("~ switch ~ links");
+                    // showLinks();
+                    $('#tab-btn-links').tab('show');
+                    window.dispatchEvent(hashchange);
+                    break;
+                    
+                default:
+                    // console.log("~ switch ~ default");
+                    // showTable();
+                    window.location.hash = 'display=summary';
+                    $('#tab-btn-table').tab('show');
             }
             
 
@@ -2522,6 +2490,46 @@
 
         }
 
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // add listeners to tabs
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // ===== table ===== /
+
+    $('#tab-btn-table').on('click', e => {
+        console.log("e", e);
+        $(e.currentTarget).tab('show');
+        window.location.hash = 'display=summary'
+        {{/*  showTable(e);  */}}
+    })
+
+    // ===== map ===== /
+
+    $('#tab-btn-map').on('click', e => {
+        console.log("e", e);
+        $(e.currentTarget).tab('show');
+        window.location.hash = 'display=map'
+        {{/*  showMap(e);  */}}
+    })   
+    
+    // ===== trend ===== /
+    
+    $('#tab-btn-trend').on('click', e => {
+        console.log("e", e);
+        $(e.currentTarget).tab('show');
+        window.location.hash = 'display=trend'
+        {{/*  showTrend(e);  */}}
+    })  
+    
+    // ===== links ===== /
+
+    $('#tab-btn-links').on('click', e => {
+        console.log("e", e);
+        $(e.currentTarget).tab('show');
+        window.location.hash = 'display=links'
+        {{/*  showLinks(e);  */}}
+    })   
 
     </script>
 

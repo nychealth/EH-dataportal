@@ -70,12 +70,26 @@ const renderMap = (
             "params": [
                 {"name": "highlight", "select": {"type": "point", "on": "mouseover"}}
             ],
+            "config": {"concat": {"spacing": 20}},
             "projection": {"type": "mercator"},
+            "transform": [
+                {
+                    "lookup": "GeoID",
+                    "from": {
+                        "data": {
+                            "url": data_repo + "/" + data_branch + `/geography/${topoFile}`,
+                            "format": {"type": "topojson", "feature": "collection"}
+                        },
+                        "key": "properties.GEOCODE"
+                    },
+                    "as": "geo"
+                }
+            ],
             "vconcat": [
                 {
                     "height": 500,
                     "width": "container",
-                    "mark": {"type": "geoshape", "stroke": "#000000", "invalid": null},
+                    "mark": {"type": "geoshape", "stroke": "#161616", "invalid": null},
                     "encoding": {
                         "shape": {"field": "geo", "type": "geojson"},
                         "color": {
@@ -88,9 +102,17 @@ const renderMap = (
                             },
                             "value": "lightgray"
                         },
+                        "stroke": {
+                            "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
+                            "value": "#161616"
+                        },
                         "strokeWidth": {
-                            "condition": [{"param": "highlight", "empty": false, "value": 2}],
+                            "condition": [{"param": "highlight", "empty": false, "value": 1.25}],
                             "value": 0.5
+                        },
+                        "order": {
+                            "condition": [{"param": "highlight", "empty": false, "value": 1}],
+                            "value": 0
                         },
                         "tooltip": [
                             {"field": "Geography", "title": "Neighborhood"},
@@ -102,24 +124,11 @@ const renderMap = (
                             },
                         ],
                     },
-                    "transform": [
-                        {
-                            "lookup": "GeoID",
-                            "from": {
-                                "data": {
-                                    "url": data_repo + "/" + data_branch + `/geography/${topoFile}`,
-                                    "format": {"type": "topojson", "feature": "collection"}
-                                },
-                                "key": "properties.GEOCODE"
-                            },
-                            "as": "geo"
-                        }
-                    ]
                 },
                 {
                     "height": 150,
                     "width": "container",
-                    "mark": {"type": "bar", "tooltip": true, "stroke": "#000000"},
+                    "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
                     "encoding": {
                         "y": {"field": "Value", "type": "quantitative", "title": null},
                         "tooltip": [
@@ -142,9 +151,13 @@ const renderMap = (
                             "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}},
                             "legend": null
                         },
+                        "stroke": {
+                            "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
+                            "value": "white"
+                        },
                         "strokeWidth": {
-                            "condition": [{"param": "highlight", "empty": false, "value": 2}],
-                            "value": 0.5
+                            "condition": [{"param": "highlight", "empty": false, "value": 3}],
+                            "value": 0
                         }
                     }
                 }

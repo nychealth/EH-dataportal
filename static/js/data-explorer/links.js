@@ -91,7 +91,7 @@ const renderLinksChart = (
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "description": "Asthma 5-17 ED visit rate and poverty scatterplot",
             "title": {
-                "text": `${yIndicatorName}`,
+                "text": `${yIndicatorName}, ${yTime}`,
                 // "subtitle": `${yIndicatorName}`,
                 "subtitlePadding": 10
             },            
@@ -99,14 +99,19 @@ const renderLinksChart = (
             "height": 500,
             "config": {
                 "background": "#FFFFFF",
-                "title": { "anchor": "start", "fontSize": 12, "font": "sans-serif" },
+                "title": { 
+                    "anchor": "start", 
+                    "fontSize": 14, 
+                    "font": "sans-serif",
+                    "baseline": "top"
+                },
                 "axisX": {
                     // "domain": true,
                     // "domainColor": "#000000",
                     // "domainWidth": 1,
                     // "grid": false,
                     "labelFontSize": 11,
-                    "titleFontSize": 12,
+                    "titleFontSize": 13,
                     "titleFont": "sans-serif"
                     // "labelAngle": 0,
                     // "tickColor": "#000000",
@@ -120,7 +125,7 @@ const renderLinksChart = (
                     // "gridColor": "#DEDDDD",
                     // "gridWidth": 1,
                     "labelFontSize": 11,
-                    "titleFontSize": 0,
+                    "titleFontSize": 0, // to turn off axis title
                     // "labelPadding": 8,
                     "labelAngle": 0,
                     // "ticks": false,
@@ -155,7 +160,7 @@ const renderLinksChart = (
             "data": {
                 "values": data
             },
-            "mark": { "type": "circle", "filled": true, "size": 250, "stroke": "#7C7C7C", "strokeWidth": 2 },
+            "mark": { "type": "circle", "filled": true, "size": 200, "stroke": "#7C7C7C", "strokeWidth": 2 },
             "params": [
                 {
                     "name": "borough",
