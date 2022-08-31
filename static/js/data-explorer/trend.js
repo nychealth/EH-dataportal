@@ -3,6 +3,8 @@ const renderTrendChart = (
     metadata
     ) => {
 
+        console.log("** renderTrendChart");
+
         // extract measure metadata
 
         let trendMeasurementType = metadata[0].MeasurementType;
