@@ -1,5 +1,5 @@
 ---
-title: "The Urban Heat Island Effect in New York City"
+title: "The urban heat island effect in NYC"
 date: 2021-08-20T12:52:43-04:00
 draft: false
 seo_title: "The Urban Heat Island Effect in New York City."

@@ -8,17 +8,19 @@ tags:
 categories: ["housing","childhealth","social","neighborhoods"]
 keywords: ["lead","poisoning","housing","children","child","testing","blood"]
 indicators:
-- header: null
+- header: Children
   IndicatorID:
   - 2189
   - 2184
   - 2216
   - 2176
-  - 16
+- header: Adults
+  IndicatorID:
   - 2209
-- header: Maintenance
+- header: Housing
   IndicatorID: 
   - 41
+  - 16
 menu:
     main:
         identifier: '03'

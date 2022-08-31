@@ -1,5 +1,5 @@
 ---
-title: Health Care
+title: Health care
 date: 2021-05-28 18:02:58.908603
 draft: false
 seo_title: "Health care data for NYC."
