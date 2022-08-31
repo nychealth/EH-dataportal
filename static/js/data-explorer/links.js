@@ -1,6 +1,6 @@
 const renderLinksChart = (
     data,
-    primaryMetadata,   // indicators.json for main indicator
+    primaryMetadata,   // indicators.json for primary indicator
     secondaryMetadata, // indciators.json for secondary indicator
     primaryIndicatorName,
     secondaryIndicatorName,
@@ -11,27 +11,35 @@ const renderLinksChart = (
     // get measure metadata
 
     const primaryMeasurementType = primaryMetadata[0].MeasurementType;
+    const primaryMeasureName     = primaryMetadata[0].MeasureName;
     const primaryDisplay         = primaryMetadata[0].DisplayType;
     const primaryTime            = primaryMetadata[0].AvailableTimes[0].TimeDescription;
-    const primaryAxis            = primaryMetadata[0].VisOptions[0].Links[0].Axis;
 
-    const primaryGeoType = data[0].GeoType;
+    const primaryGeoType = data[0].GeoType; // from the actual data we're charting
+
     const primaryGeoTypeDescription = 
         primaryMetadata[0].AvailableGeographyTypes.filter(
             gt => gt.GeoType === primaryGeoType
         )[0].GeoTypeDescription;    
 
     const secondaryMeasurementType = secondaryMetadata[0].MeasurementType
+    const secondaryMeasureName     = secondaryMetadata[0].MeasureName
+    const secondaryMeasureId       = secondaryMetadata[0].MeasureID
     const secondaryDisplay         = secondaryMetadata[0].DisplayType;
     const secondaryTime            = selectedlinksSecondaryMeasureTime;
 
-    // get measureNames from data
-    
-    const measureName_1 = [...new Set(data.map(d => d.MeasureName_1))][0];
-    const measureName_2 = [...new Set(data.map(d => d.MeasureName_2))][0];
+    const SecondaryAxis = 
+        primaryMetadata[0].VisOptions[0].Links.filter(
+            l => l.MeasureID === secondaryMeasureId
+        )[0].SecondaryAxis;
+
+    // console.log("secondaryMetadata", secondaryMetadata);
+    // console.log("primaryMetadata", primaryMetadata);
+    console.log("SecondaryAxis", SecondaryAxis);
+    console.log("secondaryMeasureId", secondaryMeasureId);
 
 
-    // switch field assignment based on axis preference
+    // switch field assignment based on SecondaryAxis preference
 
     let xMeasure;
     let yMeasure;
@@ -44,34 +52,34 @@ const renderLinksChart = (
     let xIndicatorName;
     let yIndicatorName;
 
-    switch (primaryAxis) {
-        case 'y':
-            yMeasure = secondaryMeasurementType;
-            xMeasure = primaryMeasurementType;
-            yMeasureName = measureName_2;
-            xMeasureName = measureName_1;
-            yValue = "Value_2";
-            xValue = "Value_1";
-            yDisplay = secondaryDisplay ? secondaryDisplay : '';
-            xDisplay = primaryDisplay ? primaryDisplay : '';
-            yTime = secondaryTime;
-            xTime = primaryTime;
-            yIndicatorName = secondaryIndicatorName;
-            xIndicatorName = primaryIndicatorName;
-            break;
+    switch (SecondaryAxis) {
         case 'x':
-            yMeasure = primaryMeasurementType;
             xMeasure = secondaryMeasurementType;
-            yMeasureName = measureName_1;
-            xMeasureName = measureName_2;
-            yValue = "Value_1";
+            yMeasure = primaryMeasurementType;
+            xMeasureName = secondaryMeasureName;
+            yMeasureName = primaryMeasureName;
             xValue = "Value_2";
-            yDisplay = primaryDisplay ? primaryDisplay : '';
+            yValue = "Value_1";
             xDisplay = secondaryDisplay ? secondaryDisplay : '';
-            yTime = primaryTime;
+            yDisplay = primaryDisplay ? primaryDisplay : '';
             xTime = secondaryTime;
-            yIndicatorName = primaryIndicatorName;
+            yTime = primaryTime;
             xIndicatorName = secondaryIndicatorName;
+            yIndicatorName = primaryIndicatorName;
+            break;
+        case 'y':
+            xMeasure = primaryMeasurementType;
+            yMeasure = secondaryMeasurementType;
+            xMeasureName = primaryMeasureName;
+            yMeasureName = secondaryMeasureName;
+            xValue = "Value_1";
+            yValue = "Value_2";
+            xDisplay = primaryDisplay ? primaryDisplay : '';
+            yDisplay = secondaryDisplay ? secondaryDisplay : '';
+            xTime = primaryTime;
+            yTime = secondaryTime;
+            xIndicatorName = primaryIndicatorName;
+            yIndicatorName = secondaryIndicatorName;
             break;
     }
 
@@ -79,7 +87,7 @@ const renderLinksChart = (
 
     setTimeout(() => {
 
-        var linkspec = {
+        let linkspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "description": "Asthma 5-17 ED visit rate and poverty scatterplot",
             "title": {

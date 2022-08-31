@@ -138,7 +138,7 @@ const renderDisparities = (primaryMetadata, disparityMeasureId) => {
     
     setTimeout(() => {
         
-        var disspec = {
+        let disspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "config": {
                 "background": "#FFFFFF",

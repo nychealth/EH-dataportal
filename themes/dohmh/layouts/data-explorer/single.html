@@ -576,10 +576,10 @@
         // modifying the measure dropdown innerHTML removes the event listeners from the dropdown list. So, i added it to the HTML, and we can remove it when we call renderTrendChart, if necessary
 
         // get trend dropdown element; disparities button will be removed or appended
-        var tabTrendDropDown = document.querySelector('#tab-trend .dropdown');
+        let tabTrendDropDown = document.querySelector('#tab-trend .dropdown');
         
         // get disparities button dom element, so it can be removed and appended as needed
-        var btnShowDisparities = document.querySelector('.btn-show-disparities');
+        let btnShowDisparities = document.querySelector('.btn-show-disparities');
 
         // console.log("btnShowDisparities", btnShowDisparities);
         
@@ -877,7 +877,7 @@
 
             // create table column header with display type
 
-            let measurementTypeDisplay = [];
+            let measurementDisplay = [];
 
 
             indicatorMeasures.map(
@@ -890,15 +890,15 @@
                     
                     availableTimes.push(aqAvailableTimes);
 
-                    let aqMeasurementTypeDisplay = 
+                    let aqMeasurementDisplay = 
                         aq.table(
                         {
                             MeasureID: [measure.MeasureID], 
-                            // MeasurementType: [measure.MeasurementType], 
+                            MeasurementType: [measure.MeasurementType], 
                             DisplayType: [measure.DisplayType]
                         })
                     
-                    measurementTypeDisplay.push(aqMeasurementTypeDisplay);
+                    measurementDisplay.push(aqMeasurementDisplay);
 
                 }
             )
@@ -906,10 +906,10 @@
             // bind rows of Arquero tables in arrays
 
             let aqMeasureIdTimes = availableTimes.reduce((a, b) => a.concat(b))
-            let aqMeasurementTypeDisplay = measurementTypeDisplay.reduce((a, b) => a.concat(b))
+            let aqMeasurementDisplay = measurementDisplay.reduce((a, b) => a.concat(b))
             
-            // console.log("aqMeasurementTypeDisplay");
-            // aqMeasurementTypeDisplay.print()
+            // console.log("aqMeasurementDisplay");
+            // aqMeasurementDisplay.print()
 
             // console.log("aqMeasureIdTimes [joinData]");
             // aqMeasureIdTimes.print()
@@ -926,8 +926,6 @@
                     "GeoRank", 
                     "Geography", 
                     "MeasureID",
-                    "MeasureName",
-                    "MeasurementType",
                     "Time", 
                     "Value", 
                     "DisplayValue", 
@@ -941,9 +939,9 @@
             // data for summary table
 
             fullDataTableObjects = joinedAqData
-                .join_left(aqMeasurementTypeDisplay, "MeasureID")
+                .join_left(aqMeasurementDisplay, "MeasureID")
                 .derive({ 
-                    MeasurementTypeDisplay: d => op.trim(op.join([d.MeasurementType, d.DisplayType], " ")),
+                    MeasurementDisplay: d => op.trim(op.join([d.MeasurementType, d.DisplayType], " ")),
                     DisplayCI: d => op.trim(op.join([d.DisplayValue, d.CI], " "))
                 })
                 .derive({ DisplayCI: d => op.replace(d.DisplayCI, /^$/, "-") })
@@ -993,8 +991,9 @@
 
             // filter trend data to keep primary measure
             
-            const primaryMeasureTimesDataObjects = 
-                fullDataLinksObjects.filter(d => d.MeasureID === primaryMeasureId);
+            const primaryMeasureTimesDataObjects = fullDataLinksObjects.filter(
+                d => d.MeasureID === primaryMeasureId
+            );
             
             // get metadata for the selected primary measure, assign to global variable
             // indicatorMeasures created in loadIndicator
@@ -1023,17 +1022,18 @@
             
             // get metadata for the selected secondary measure, assign to global variable
             
-            secondaryMeasureMetadata = secondaryIndicator[0].Measures.filter(
+            secondaryMeasureMetadata = 
+                secondaryIndicator[0].Measures.filter(
                 measure => measure.MeasureID === secondaryMeasureId
             )
             
             // get most recent time period for primary measure
             
-            const primaryMeasureTimes = primaryMeasureMetadata[0].AvailableTimes;
-            const sortedPrimaryMeasureTimes = primaryMeasureTimes.sort((a, b) => b.end_period - a.end_period)
-            const mostRecentPrimaryMeasureTime = sortedPrimaryMeasureTimes[0].TimeDescription;
+            const primaryMeasureTimes               = primaryMeasureMetadata[0].AvailableTimes;
+            const sortedPrimaryMeasureTimes         = primaryMeasureTimes.sort((a, b) => b.end_period - a.end_period)
+            const mostRecentPrimaryMeasureTime      = sortedPrimaryMeasureTimes[0].TimeDescription;
             const mostRecentPrimaryMeasureStartTime = sortedPrimaryMeasureTimes[0].start_period;
-            const mostRecentPrimaryMeasureEndTime = sortedPrimaryMeasureTimes[0].end_period;
+            const mostRecentPrimaryMeasureEndTime   = sortedPrimaryMeasureTimes[0].end_period;
             
             // convert to Arquero data frame
 
@@ -1041,11 +1041,11 @@
             
             // get most recent time period for secondary measure
             
-            const secondaryMeasureTimes = secondaryMeasureMetadata[0].AvailableTimes;
-            const sortedSecondaryMeasureTimes = secondaryMeasureTimes.sort((a, b) => b.end_period - a.end_period)
-            const mostRecentSecondaryMeasureTime = sortedSecondaryMeasureTimes[0].TimeDescription;
+            const secondaryMeasureTimes               = secondaryMeasureMetadata[0].AvailableTimes;
+            const sortedSecondaryMeasureTimes         = secondaryMeasureTimes.sort((a, b) => b.end_period - a.end_period)
+            const mostRecentSecondaryMeasureTime      = sortedSecondaryMeasureTimes[0].TimeDescription;
             const mostRecentSecondaryMeasureStartTime = sortedSecondaryMeasureTimes[0].start_period;
-            const mostRecentSecondaryMeasureEndTime = sortedSecondaryMeasureTimes[0].end_period;
+            const mostRecentSecondaryMeasureEndTime   = sortedSecondaryMeasureTimes[0].end_period;
             
             // convert to Arquero data frame
 
@@ -1053,11 +1053,9 @@
             
             // filter main trend data to be within most recent period
             
-            const filteredPrimaryMeasureTimesDataObjects = 
-                primaryMeasureTimesDataObjects
-                    .filter(
-                        d => d.start_period == mostRecentPrimaryMeasureStartTime && 
-                            d.end_period == mostRecentPrimaryMeasureEndTime
+            const filteredPrimaryMeasureTimesDataObjects = primaryMeasureTimesDataObjects.filter(
+                    d => d.start_period == mostRecentPrimaryMeasureStartTime && 
+                        d.end_period == mostRecentPrimaryMeasureEndTime
                 )
             
             
@@ -1066,9 +1064,7 @@
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
             
             await fetch(data_repo + "/" + data_branch + `/indicators/data/${secondaryIndicatorId}.json`)
-                .then(response => {
-                    return response.json()
-                })
+                .then(response => response.json())
                 .then(async data => {
 
                     // get secondary measure data
@@ -1077,14 +1073,18 @@
                     
                     // join with geotable and times
                     
-                    const aqFilteredSecondaryMeasureTimesData = 
-                        aq.from(filteredSecondaryMeasureData)
-                        .join(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
-                        .join(aqSortedSecondaryMeasureTimes, ["Time", "TimeDescription"])
+                    const aqFilteredSecondaryMeasureTimesData = aq.from(filteredSecondaryMeasureData)
+                        .join(
+                            geoTable, 
+                            [["GeoID", "GeoType"], ["GeoID", "GeoType"]]
+                        )
+                        .join(
+                            aqSortedSecondaryMeasureTimes, 
+                            ["Time", "TimeDescription"]
+                        )
                         .rename({'Name': 'Geography'})
                     
-                    const aqFilteredSecondaryMeasureTimesDataObjects = 
-                        aqFilteredSecondaryMeasureTimesData.objects();
+                    const aqFilteredSecondaryMeasureTimesDataObjects = aqFilteredSecondaryMeasureTimesData.objects();
                     
                     // get the closest secondary end time 
                     
@@ -1092,8 +1092,7 @@
                         return (Math.abs(curr.end_period - mostRecentPrimaryMeasureEndTime) < Math.abs(prev.end_period - mostRecentPrimaryMeasureEndTime) ? curr : prev);
                     });
                     
-                    const closestSecondaryData = 
-                        aqFilteredSecondaryMeasureTimesDataObjects.filter(
+                    const closestSecondaryData = aqFilteredSecondaryMeasureTimesDataObjects.filter(
                             d => d.end_period === closestSecondaryTime.end_period
                     )
                     
@@ -2295,7 +2294,7 @@
             // set tab based on hash
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-            var hash = window.location.hash.replace('#', "")
+            let hash = window.location.hash.replace('#', "")
 
             // console.log("~ switch ~ hash: ", hash);
             // console.log("~ switch ~ currentHash 1: ", currentHash);
@@ -2521,41 +2520,41 @@
     
     function createCitation() {
         // Create date
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
+        let today = new Date();
+        let dd = String(today.getDate()).padStart(2, '0');
+        let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        let yyyy = today.getFullYear();
         today = mm + '/' + dd + '/' + yyyy;
         
         // Create citation
-        var citation = "New York City Department of Health, Environment & Health Data Portal. "  + `{{ .Title }}` + " data. " + indicatorName + '. Accessed at ' + `{{ .Permalink}}` + ' on ' + today + "."
+        let citation = "New York City Department of Health, Environment & Health Data Portal. "  + `{{ .Title }}` + " data. " + indicatorName + '. Accessed at ' + `{{ .Permalink}}` + ' on ' + today + "."
         
         // Add to form
         document.getElementById('citeText').setAttribute('value',citation);
         
         // console.log('CITATION CREATED')
         
-        var btn = document.getElementById('citeButton')
+        let btn = document.getElementById('citeButton')
         btn.innerHTML = `<i class="fas fa-copy mr-1"></i>Copy citation`
         
     }
     
     function copyCitation(){
-        var citeText = document.getElementById('citeText')
+        let citeText = document.getElementById('citeText')
         citeText.select()
         citeText.setSelectionRange(0,99999);
         navigator.clipboard.writeText(citeText.value)
-        var btn = document.getElementById('citeButton')
+        let btn = document.getElementById('citeButton')
         btn.innerHTML = `<i class="fas fa-copy mr-1"></i>Copied!`
         // console.log('citation copied!')
     }
     
     createCitation();
     
-    var downloadTable;
-    var dataURL; 
-    var downloadTableCSV
-    var csvData
+    let downloadTable;
+    let dataURL; 
+    let downloadTableCSV
+    let csvData
     
     // download data function
     function runDataDownload() {
@@ -2567,7 +2566,7 @@
             downloadTableCSV = downloadTable.toCSV()
             // Data URI
             csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
-            var hiddenElement = document.createElement('a');  
+            let hiddenElement = document.createElement('a');  
             hiddenElement.href = csvData;
             hiddenElement.target = '_blank';  
             hiddenElement.download = 'NYC EH Data Portal: ' + indicatorName + '.csv'

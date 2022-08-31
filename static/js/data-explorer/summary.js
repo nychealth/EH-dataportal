@@ -14,7 +14,7 @@ const renderTable = () => {
 
         const measureAlignMap = new Map();
         // const measureImputeMap = new Map();
-        const measures = [...new Set(filteredTableData.map(d => d.MeasurementTypeDisplay))];
+        const measures = [...new Set(filteredTableData.map(d => d.MeasurementDisplay))];
 
         measures.forEach((m) => {
 
@@ -31,7 +31,7 @@ const renderTable = () => {
         
         const filteredTableAqData = aq.from(filteredTableData)
             .groupby("Time", "GeoType", "GeoID", "GeoRank", "Geography")
-            .pivot("MeasurementTypeDisplay", "DisplayCI")
+            .pivot("MeasurementDisplay", "DisplayCI")
 
             // need to put this down here because the data might be missing one of the measures, which will be undefined after the pivot
             // .impute(measureImputeObj) 
@@ -85,8 +85,8 @@ const renderTable = () => {
                 const totaleColumnsCount = api.columns().count()
                 const visibleColumnsCount =  totaleColumnsCount - 4;
                 
-                var last = null;
-                var lastYr = null;
+                let last = null;
+                let lastYr = null;
 
                 const createGroupRow = (groupColumn, lvl) => {
 

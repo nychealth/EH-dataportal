@@ -12,7 +12,7 @@ const renderTrendChart = (
         
         // define spec
         
-        var trendspec = {
+        let trendspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "config": {
                 "background": "#FFFFFF",
