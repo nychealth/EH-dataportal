@@ -16,7 +16,7 @@ const renderTrendChart = (
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "config": {
                 "background": "#FFFFFF",
-                // "title": {"anchor": "start", "fontSize": 18, "font": "Calibri"},
+                // "title": {"anchor": "start", "fontSize": 18, "font": "sans-serif"},
                 "axisX": {
                     // "domain": true,
                     // "domainColor": "#000000",
@@ -41,10 +41,14 @@ const renderTrendChart = (
                     // "ticks": false,
                     // "titleFontSize": 12,
                     // "titlePadding": 10,
-                    "titleFont": "Lato",
+                    "titleFont": "sans-serif",
                     "titleAngle": 0,
                     "titleY": -10,
-                    "titleX": 18
+                    "titleX": 100
+                },
+                "legend": {
+                    "labelFontSize": 14,
+                    "symbolSize": 140
                 },
                 
                 
@@ -53,9 +57,9 @@ const renderTrendChart = (
                 "range": {
                     "category": [
                         "#1696d2",
-                        "#000000",
                         "#fdbf11",
                         "#ec008b",
+                        "#000000",
                         "#d2d2d2",
                         "#55b748"
                     ]
@@ -77,7 +81,7 @@ const renderTrendChart = (
                 "values":  data,
             },
             "width": "container",
-            "height": 550,
+            "height": 500,
             "encoding": {
                 "x": {
                     "field": "Time",

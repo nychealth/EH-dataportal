@@ -96,10 +96,10 @@ const renderLinksChart = (
                 "subtitlePadding": 10
             },            
             "width": "container",
-            "height": "container",
+            "height": 500,
             "config": {
                 "background": "#FFFFFF",
-                "title": { "anchor": "start", "fontSize": 12, "font": "Calibri" },
+                "title": { "anchor": "start", "fontSize": 12, "font": "sans-serif" },
                 "axisX": {
                     // "domain": true,
                     // "domainColor": "#000000",
@@ -107,7 +107,7 @@ const renderLinksChart = (
                     // "grid": false,
                     "labelFontSize": 11,
                     "titleFontSize": 12,
-                    "titleFont": "Calibri"
+                    "titleFont": "sans-serif"
                     // "labelAngle": 0,
                     // "tickColor": "#000000",
                     // "tickSize": 5,
@@ -124,24 +124,24 @@ const renderLinksChart = (
                     // "labelPadding": 8,
                     "labelAngle": 0,
                     // "ticks": false,
-                    "titlePadding": 10
-                    // "titleFont": "Calibri",
+                    "titlePadding": 10,
+                    "titleFont": "sans-serif",
                     // "titleAngle": -90
                     // "titleY": 0,
                     // "titleX": 0
                 },
-                // "legend": {
-                //     "labelFontSize": 14,
-                //     "symbolSize": 140
-                // },
+                "legend": {
+                     "labelFontSize": 14,
+                     "symbolSize": 140
+                 },
                 "view": { "stroke": "transparent" },
                 "range": {
                     "category": [
                         "#1696d2",
                         "#fdbf11",
-                        "#55b748",
                         "#ec008b",
-                        "#d2d2d2"
+                        "#d2d2d2",
+                        "#55b748"
                     ]
                 },
                 "text": {
