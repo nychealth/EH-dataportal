@@ -10,7 +10,7 @@ const renderTable = () => {
             fullDataTableObjects
             .filter(d => selectedSummaryYears.includes(d.Time) && selectedSummaryGeography.includes(d.GeoType))
 
-        console.log("filteredTableData [renderTable]", filteredTableData);
+        // console.log("filteredTableData [renderTable]", filteredTableData);
 
         const measureAlignMap = new Map();
         // const measureImputeMap = new Map();
@@ -26,7 +26,7 @@ const renderTable = () => {
         const measureAlignObj = Object.fromEntries(measureAlignMap);
         // const measureImputeObj = Object.fromEntries(measureImputeMap);
 
-        console.log("measureAlignObj", measureAlignObj);
+        // console.log("measureAlignObj", measureAlignObj);
         // console.log("measureImputeObj", measureImputeObj);
         
         const filteredTableAqData = aq.from(filteredTableData)
