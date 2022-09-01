@@ -13,7 +13,8 @@ const renderLinksChart = (
     const primaryMeasurementType = primaryMetadata[0].MeasurementType;
     const primaryMeasureName     = primaryMetadata[0].MeasureName;
     const primaryDisplay         = primaryMetadata[0].DisplayType;
-    const primaryTime            = primaryMetadata[0].AvailableTimes[0].TimeDescription;
+    // const primaryTime            = primaryMetadata[0].AvailableTimes[0].TimeDescription;
+    const primaryTime            = data[0].Time_1;
 
     const primaryGeoType = data[0].GeoType; // from the actual data we're charting
 
@@ -26,7 +27,8 @@ const renderLinksChart = (
     const secondaryMeasureName     = secondaryMetadata[0].MeasureName
     const secondaryMeasureId       = secondaryMetadata[0].MeasureID
     const secondaryDisplay         = secondaryMetadata[0].DisplayType;
-    const secondaryTime            = selectedlinksSecondaryMeasureTime;
+    // const secondaryTime            = selectedlinksSecondaryMeasureTime;
+    const secondaryTime            = data[0].Time_2;
 
     const SecondaryAxis = 
         primaryMetadata[0].VisOptions[0].Links.filter(
@@ -35,8 +37,8 @@ const renderLinksChart = (
 
     // console.log("secondaryMetadata", secondaryMetadata);
     // console.log("primaryMetadata", primaryMetadata);
-    console.log("SecondaryAxis", SecondaryAxis);
-    console.log("secondaryMeasureId", secondaryMeasureId);
+    // console.log("SecondaryAxis", SecondaryAxis);
+    // console.log("secondaryMeasureId", secondaryMeasureId);
 
 
     // switch field assignment based on SecondaryAxis preference
