@@ -60,10 +60,12 @@ const renderTable = () => {
 
         $('#tableID').DataTable({
             scrollY: 500,
+            scrollX: true,
             scrollCollapse: true,
             searching: false,
             paging: false,
             bInfo: false,
+            fixedHeader: true,
             orderFixed: [ 3, 'asc' ], // GeoRank
             columnDefs: [
                 { targets: [0, 1, 2, 3], visible: false}
