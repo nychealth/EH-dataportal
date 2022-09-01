@@ -763,8 +763,8 @@
             indicatorId = indicatorId ? indicatorId : firstIndicatorId;
             
             indicator = indicators.find(indicator => indicator.IndicatorID == indicatorId);
-            indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-            indicatorDesc = indicator?.IndicatorDescription ? indicator.IndicatorDescription : `N/A`;
+            indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : '';
+            indicatorDesc = indicator?.IndicatorDescription ? indicator.IndicatorDescription : '';
             indicatorShortName = indicator?.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
             indicatorMeasures = indicator?.Measures;
 
