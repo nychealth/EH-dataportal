@@ -160,81 +160,107 @@ const renderLinksChart = (
             "data": {
                 "values": data
             },
-            "mark": { "type": "circle", "filled": true, "size": 200, "stroke": "#7C7C7C", "strokeWidth": 2 },
-            "params": [
+            "layer":[
                 {
-                    "name": "borough",
-                    "select": { "type": "point", "fields": ["Borough"], "on": "click" },
-                    "bind": "legend"
-                },
-                {
-                    "name": "hover",
-                    "value": "#7C7C7C",
-                    "select": { "type": "point", "on": "mouseover" }
-                }
-            ],
-            "encoding": {
-                "y": {
-                    "title": [`${yIndicatorName && `${yIndicatorName}`}`, `- ${yMeasure} ${yDisplay && `(${yDisplay})`} ${yTime}`],
-                    "field": yValue,
-                    "type": "quantitative"
-                },
-                "x": {
-                    "title": [`${xIndicatorName && `${xIndicatorName}`}`, `- ${xMeasure} ${xDisplay && `(${xDisplay})`} ${xTime}`],
-                    "field": xValue,
-                    "type": "quantitative"
-                },
-                "tooltip": [
-                    {
-                        "title": "Borough",
-                        "field": "Borough",
-                        "type": "nominal"
-                    },
-                    {
-                        "title": "Neighborhood",
-                        "field": "Geography_1",
-                        "type": "nominal"
-                    },
-                    {
-                        "title": "Time",
-                        "field": "Time_2",
-                        "type": "nominal"
-                    },
-                    {
-                        "title": yMeasureName,
-                        "field": yValue,
-                        "type": "quantitative",
-                        "format": ",.1~f"
-                    },
-                    {
-                        "title": xMeasureName,
-                        "field": xValue,
-                        "type": "quantitative",
-                        "format": ",.1~f"
+                    "mark": { "type": "circle", "filled": true, "size": 200, "stroke": "#7C7C7C", "strokeWidth": 2 },
+                    "params": [
+                        {
+                            "name": "borough",
+                            "select": { "type": "point", "fields": ["Borough"], "on": "click" },
+                            "bind": "legend"
+                        },
+                        {
+                            "name": "hover",
+                            "value": "#7C7C7C",
+                            "select": { "type": "point", "on": "mouseover" }
+                        }
+                    ],
+                    "encoding": {
+                        "y": {
+                            "title": [`${yIndicatorName && `${yIndicatorName}`}`, `- ${yMeasure} ${yDisplay && `(${yDisplay})`} ${yTime}`],
+                            "field": yValue,
+                            "type": "quantitative"
+                        },
+                        "x": {
+                            "title": [`${xIndicatorName && `${xIndicatorName}`}`, `- ${xMeasure} ${xDisplay && `(${xDisplay})`} ${xTime}`],
+                            "field": xValue,
+                            "type": "quantitative"
+                        },
+                        "tooltip": [
+                            {
+                                "title": "Borough",
+                                "field": "Borough",
+                                "type": "nominal"
+                            },
+                            {
+                                "title": "Neighborhood",
+                                "field": "Geography_1",
+                                "type": "nominal"
+                            },
+                            {
+                                "title": "Time",
+                                "field": "Time_2",
+                                "type": "nominal"
+                            },
+                            {
+                                "title": yMeasureName,
+                                "field": yValue,
+                                "type": "quantitative",
+                                "format": ",.1~f"
+                            },
+                            {
+                                "title": xMeasureName,
+                                "field": xValue,
+                                "type": "quantitative",
+                                "format": ",.1~f"
+                            }
+                        ],
+                        "color": {
+                            "title": "Borough",
+                            "field": "Borough",
+                            "type": "nominal"
+                        },
+                        "opacity": {
+                            "condition": {
+                                "param": "borough",
+                                "empty": true,
+                                "value": 1
+                            },
+                            "value": 0.2
+                        },
+                        "stroke": {
+                            "condition": {
+                                "param": "hover",
+                                "empty": false,
+                                "value": "#252525"
+                            },
+                            "value": "#7C7C7C"
+                        }
                     }
-                ],
-                "color": {
-                    "title": "Borough",
-                    "field": "Borough",
-                    "type": "nominal"
                 },
-                "opacity": {
-                    "condition": {
-                        "param": "borough",
-                        "empty": true,
-                        "value": 1
+                {"mark": {
+                    "type": "line",
+                    "color": "darkgray"
+                  },
+                  "transform": [
+                    {
+                      "regression": yValue,
+                      "on": xValue
+                    }
+                  ],
+                  "encoding": {
+                    "x": {
+                      "field": xValue,
+                      "type": "quantitative"
                     },
-                    "value": 0.2
-                },
-                "stroke": {
-                    "condition": {
-                        "param": "hover",
-                        "empty": false,
-                        "value": "#252525"
-                    },
-                    "value": "#7C7C7C"
+                    "y": {
+                      "field": yValue,
+                      "type": "quantitative"
+                    }
+                  }
                 }
-            }
+            ]
+
         }
 
         vegaEmbed("#links", linkspec);
