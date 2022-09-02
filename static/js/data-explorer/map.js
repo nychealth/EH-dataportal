@@ -58,7 +58,8 @@ const renderMap = (
                 "subtitle": mapGeoTypeDescription,
                 "subtitlePadding": 10
             },
-            "width": "container",
+            // "width": "container",
+            // "background": "#f9f9f9",
             "data": {
                 "values": data,
                 "format": {
@@ -67,68 +68,95 @@ const renderMap = (
                     }
                 }
             },
-            "params": [
-                {"name": "highlight", "select": {"type": "point", "on": "mouseover"}}
-            ],
             "config": {"concat": {"spacing": 20}},
             "projection": {"type": "mercator"},
-            "transform": [
-                {
-                    "lookup": "GeoID",
-                    "from": {
-                        "data": {
-                            "url": data_repo + "/" + data_branch + `/geography/${topoFile}`,
-                            "format": {"type": "topojson", "feature": "collection"}
-                        },
-                        "key": "properties.GEOCODE"
-                    },
-                    "as": "geo"
-                }
-            ],
             "vconcat": [
                 {
-                    "height": 500,
-                    "width": "container",
-                    "mark": {"type": "geoshape", "stroke": "#161616", "invalid": null},
-                    "encoding": {
-                        "shape": {"field": "geo", "type": "geojson"},
-                        "color": {
-                            "condition": {
-                                "test": "isValid(datum.Value)",
-                                "bin": false,
-                                "field": "Value",
-                                "type": "quantitative",
-                                "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}}
+                    // "view": {"align": "none", "center": true},
+                    "layer": [
+                        {
+                            "height": 500,
+                            "width": "container",
+                            "data": {
+                                // "url": data_repo + "/" + data_branch + `/geography/borough.topo.json`,
+                                "url": `${data_repo}/${data_branch}/geography/borough.topo.json`,
+                                "format": {
+                                    "type": "topojson",
+                                    "feature": "collection"
+                                }
                             },
-                            "value": "lightgray"
+                            "mark": {
+                                "type": "geoshape",
+                                "stroke": "#fafafa",
+                                "fill": "#C5C5C5",
+                                "strokeWidth": 0.5
+                            }
                         },
-                        "stroke": {
-                            "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
-                            "value": "#161616"
-                        },
-                        "strokeWidth": {
-                            "condition": [{"param": "highlight", "empty": false, "value": 1.25}],
-                            "value": 0.5
-                        },
-                        "order": {
-                            "condition": [{"param": "highlight", "empty": false, "value": 1}],
-                            "value": 0
-                        },
-                        "tooltip": [
-                            {"field": "Geography", "title": "Neighborhood"},
-                            {
-                                "field": "Value",
-                                "type": "quantitative",
-                                "title": mapMeasurementType,
-                                "format": ",.1~f"
+                        {
+                            "height": 500,
+                            "width": "container",
+                            "mark": {"type": "geoshape", "invalid": null},
+                            "params": [
+                                {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
+                            ],
+                            "transform": [
+                                {
+                                    "lookup": "GeoID",
+                                    "from": {
+                                        "data": {
+                                            "url": `${data_repo}/${data_branch}/geography/${topoFile}`,
+                                            "format": {"type": "topojson", "feature": "collection"}
+                                        },
+                                        "key": "properties.GEOCODE"
+                                    },
+                                    "as": "geo"
+                                }
+                            ],                        
+                            "encoding": {
+                                "shape": {"field": "geo", "type": "geojson"},
+                                "color": {
+                                    "condition": {
+                                        "test": "isValid(datum.Value)",
+                                        "bin": false,
+                                        "field": "Value",
+                                        "type": "quantitative",
+                                        "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}}
+                                    },
+                                    "value": "#808080"
+                                },
+                                "stroke": {
+                                    "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
+                                    // "value": "#161616"
+                                    "value": "#dadada"
+                                },
+                                "strokeWidth": {
+                                    "condition": [{"param": "highlight", "empty": false, "value": 1.25}],
+                                    "value": 0.5
+                                },
+                                "order": {
+                                    "condition": [{"param": "highlight", "empty": false, "value": 1}],
+                                    "value": 0
+                                },
+                                "tooltip": [
+                                    {"field": "Geography", "title": "Neighborhood"},
+                                    {
+                                        "field": "Value",
+                                        "type": "quantitative",
+                                        "title": mapMeasurementType,
+                                        "format": ",.1~f"
+                                    },
+                                ],
                             },
-                        ],
-                    },
+                        }
+                    ]
                 },
                 {
                     "height": 150,
                     "width": "container",
                     "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+                    "params": [
+                        {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
+                    ],
                     "encoding": {
                         "y": {"field": "Value", "type": "quantitative", "title": null},
                         "tooltip": [
