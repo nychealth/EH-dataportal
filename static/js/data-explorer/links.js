@@ -94,19 +94,20 @@ const renderLinksChart = (
             "description": "Asthma 5-17 ED visit rate and poverty scatterplot",
             "title": {
                 "text": `${yIndicatorName}, ${yTime}`,
+                "anchor": "start", 
+                "fontSize": 14, 
+                "font": "sans-serif",
+                "baseline": "top",
+                "dy": -10
                 // "subtitle": `${yIndicatorName}`,
-                "subtitlePadding": 10
+                // "subtitlePadding": 10
             },            
             "width": "container",
             "height": 500,
             "config": {
                 "background": "#FFFFFF",
-                "title": { 
-                    "anchor": "start", 
-                    "fontSize": 14, 
-                    "font": "sans-serif",
-                    "baseline": "top"
-                },
+                // "title": { 
+                // },
                 "axisX": {
                     // "domain": true,
                     // "domainColor": "#000000",
@@ -114,11 +115,11 @@ const renderLinksChart = (
                     // "grid": false,
                     "labelFontSize": 11,
                     "titleFontSize": 13,
-                    "titleFont": "sans-serif"
+                    "titleFont": "sans-serif",
                     // "labelAngle": 0,
                     // "tickColor": "#000000",
                     // "tickSize": 5,
-                    // "titlePadding": 10
+                    "titlePadding": 10
                 },
                 "axisY": {
                     // "domain": false,
@@ -147,7 +148,7 @@ const renderLinksChart = (
                         "#1696d2",
                         "#fdbf11",
                         "#ec008b",
-                        "#d2d2d2",
+                        "#a8a8a8",
                         "#55b748"
                     ]
                 },
@@ -164,7 +165,13 @@ const renderLinksChart = (
             },
             "layer":[
                 {
-                    "mark": { "type": "circle", "filled": true, "size": 200, "stroke": "#7C7C7C", "strokeWidth": 2 },
+                    "mark": { 
+                        "type": "circle", 
+                        "filled": true, 
+                        "size": 200, 
+                        "stroke": "#7C7C7C", 
+                        "strokeWidth": 2
+                    },
                     "params": [
                         {
                             "name": "borough",
@@ -234,9 +241,9 @@ const renderLinksChart = (
                             "condition": {
                                 "param": "hover",
                                 "empty": false,
-                                "value": "#252525"
+                                "value": "#7C7C7C"
                             },
-                            "value": "#7C7C7C"
+                            "value": null
                         }
                     }
                 },

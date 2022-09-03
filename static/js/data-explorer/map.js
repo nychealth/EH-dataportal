@@ -153,12 +153,26 @@ const renderMap = (
                 {
                     "height": 150,
                     "width": "container",
+                    "config": {
+                        "axisY": {
+                            "labelAngle": 0,
+                            "labelFontSize": 13,
+                        }
+                    },
                     "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
                     "params": [
                         {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
                     ],
                     "encoding": {
-                        "y": {"field": "Value", "type": "quantitative", "title": null},
+                        "y": {
+                            "field": "Value", 
+                            "type": "quantitative", 
+                            "title": null,
+                            "axis": {
+                                "labelAngle": 0,
+                                "labelFontSize": 11,
+                            }
+                        },
                         "tooltip": [
                             {
                                 "field": "Geography", 
