@@ -17,8 +17,6 @@ function initLunr() {
 
     request.open('GET', site_root + "/js/lunr/PagesIndex.json", true);
 
-    console.log("request [initLunr]", request);
-    
     request.onload = function () {
 
         if (request.status >= 200 && request.status < 400) {
