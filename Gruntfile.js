@@ -6,24 +6,40 @@ var YAML = require('yamljs');
 var S = require("string");
 const { pathToFileURL } = require('url');
 
-// these are hard-coded for now, but GHA vars would allow us to change them dynamically
+// check to see if this is running on GHA
 
-var content_dir = process.env.GITHUB_WORKSPACE + "/content";
-var build_dir   = process.env.GITHUB_WORKSPACE + "/docs";
-
-// console.log("content_dir", content_dir);
-// console.log("build_dir", build_dir);
-
-// site_root variable, constructed from repo name and github organization
-
-var repo_name  = process.env.GITHUB_REPOSITORY;         // nychealth/EH-dataportal"
-var repo_owner = process.env.GITHUB_REPOSITORY_OWNER;   // nychealth
-var site_root  = S(repo_name).chompLeft(repo_owner).s;  // EH-dataportal
-
-// console.log("repo_name", repo_name);
-// console.log("repo_owner", repo_owner);
-// console.log("site_root", site_root);
-
+if (typeof process.env.GITHUB_WORKSPACE != "undefined") {
+    
+    // these are hard-coded for now, but GHA vars would allow us to change them dynamically
+    
+    var content_dir = process.env.GITHUB_WORKSPACE + "/content";
+    var build_dir   = process.env.GITHUB_WORKSPACE + "/docs";
+    
+    // console.log("content_dir", content_dir);
+    // console.log("build_dir", build_dir);
+    
+    // site_root variable, constructed from repo name and github organization
+    
+    var repo_name  = process.env.GITHUB_REPOSITORY;         // nychealth/EH-dataportal
+    var repo_owner = process.env.GITHUB_REPOSITORY_OWNER;   // nychealth
+    var site_root  = S(repo_name).chompLeft(repo_owner).s;  // EH-dataportal
+    
+    // console.log("repo_name", repo_name);
+    // console.log("repo_owner", repo_owner);
+    
+} else {
+    
+    var content_dir = "content";
+    var build_dir   = "docs";
+    
+    // console.log("content_dir", content_dir);
+    // console.log("build_dir", build_dir);
+    
+    // site_root variable, constructed from repo name and github organization
+    
+    var site_root  = ""; 
+    
+}
 
 module.exports = function(grunt) {
     
@@ -88,6 +104,12 @@ module.exports = function(grunt) {
                     // console.log("filename [MD recurse]:", filename);
                     
                     pageObj = processFile(abspath, rootdir, subdir, filename);
+
+                    if (pageObj === "draft") {
+                        grunt.log.writeln([">>> draft", abspath]);
+                        return;
+                    }
+
                     pagesIndex.push(pageObj);
 
                     // put the pageObj data into the index, labeled with pageObj.href
@@ -189,6 +211,13 @@ module.exports = function(grunt) {
             } catch (e) {
                 console.log(e.message);
             }
+
+            // if this is draft content, stop processing
+
+            if (frontMatter.draft == true) {
+                grunt.log.writeln([">>> draft", abspath]);
+                return "draft";
+            }
             
             
             // replace all file extensions, i.e. everything after a period
@@ -226,7 +255,7 @@ module.exports = function(grunt) {
             // console.log("href [MD]:", href);
             
 
-            // Build Lunr index for this page
+            // Build Lunr index for this page (keeping "-" in content)
 
             pageIndex = {
                 title: frontMatter.title,
@@ -243,7 +272,7 @@ module.exports = function(grunt) {
                 seo_description: frontMatter.seo_description,
                 seo_image: frontMatter.seo_image,
                 href: href.toLowerCase(),
-                content: S(content[2]).trim().stripTags().stripPunctuation().s
+                content: S(content[2]).stripTags().replace(/[^\w\s-]|_/g, "").replace(/\s-\s/g, " ").replace(/\s+/g, " ").trim().s
             };
             
             return pageIndex;
