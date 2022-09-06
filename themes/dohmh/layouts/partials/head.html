@@ -5,8 +5,8 @@
 <!-- Corrects IE Compatibility Mode -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>{{- block "title" . -}}
-    {{- if .Params.seo_title -}}{{- .Params.seo_title -}}{{- else -}}{{ .Title }}{{- end -}} &#x7c; {{ .Site.Title }}
+<title>{{ block "title" . }}
+    {{- if .Params.seo_title -}}{{ .Params.seo_title }}{{- else -}}{{ .Title }}{{ end }} &#x7c; {{ .Site.Title }}
 {{- end -}}</title>
 
 {{/*  content translations  */}}
