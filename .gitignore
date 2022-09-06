@@ -16,7 +16,7 @@ content/Simplified Chinese/
 content/Spanish/
 
 # don't track build folder
-docs
+# docs
 
 .Rproj.user
 QA/Persist indicator selections.PNG
