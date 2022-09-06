@@ -79,6 +79,7 @@ function initLunr() {
         } else {
             var err = request.status + ", " + request.statusText;
             console.error("Error getting Hugo index flie:", err);
+            console.log("Request object:", request);
         }
     };
     
