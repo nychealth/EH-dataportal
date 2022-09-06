@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ED visit on Environment &amp; Health Data Portal</title>
+    <link>https://nychealth.github.io/EH-dataportal/keywords/ed-visit/</link>
+    <description>Recent content in ED visit on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 30 Aug 2021 11:51:01 -0400</lastBuildDate><atom:link href="https://nychealth.github.io/EH-dataportal/keywords/ed-visit/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Real-time heat-related illness</title>
+      <link>https://nychealth.github.io/EH-dataportal/key-topics/climatehealth/syndromic/</link>
+      <pubDate>Mon, 30 Aug 2021 11:51:01 -0400</pubDate>
+      
+      <guid>https://nychealth.github.io/EH-dataportal/key-topics/climatehealth/syndromic/</guid>
+      <description>Extreme heat is dangerous. It can cause illness, make chronic conditions worse, and even kill. Heat-related illnesses happen when the body cannot cool down enough, and include heat exhaustion, muscle cramps, fainting and heat stroke, the most serious form of heat-related illness. Heat can exacerbate chronic conditions, such as cardiovascular diseases or kidney conditions, that may not be recognized or labeled as heat-related.
+The weather forecast is the best way to predict heat-related health outcomes.</description>
+    </item>
+    
+  </channel>
+</rss>
