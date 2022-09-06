@@ -265,7 +265,7 @@ module.exports = function(grunt) {
                 seo_title: frontMatter.seo_title,
                 seo_description: frontMatter.seo_description,
                 seo_image: frontMatter.seo_image,
-                href: site_root + "/" + S(href).dasherize().s.toLowerCase(),
+                href: site_root + "/" + S(href).trim().s.toLowerCase(),
                 content: S(content[2]).stripTags().replace(/[^\w\s-]|_/g, "").replace(/\s-\s/g, " ").replace(/\s+/g, " ").trim().s
             };
             
