@@ -20,9 +20,10 @@ if (typeof process.env.GITHUB_WORKSPACE != "undefined") {
     
     // site_root variable, constructed from repo name and github organization
     
-    var repo_name  = process.env.GITHUB_REPOSITORY;         // nychealth/EH-dataportal
-    var repo_owner = process.env.GITHUB_REPOSITORY_OWNER;   // nychealth
-    var site_root  = S(repo_name).chompLeft(repo_owner).s;  // EH-dataportal
+    // var repo_name  = process.env.GITHUB_REPOSITORY;         // nychealth/EH-dataportal
+    // var repo_owner = process.env.GITHUB_REPOSITORY_OWNER;   // nychealth
+    // var site_root  = S(repo_name).chompLeft(repo_owner).s;  // EH-dataportal
+    var site_root  = "EH-dataportal";  // EH-dataportal
     
     // console.log("repo_name", repo_name);
     // console.log("repo_owner", repo_owner);
