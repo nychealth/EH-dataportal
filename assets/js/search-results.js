@@ -11,6 +11,8 @@ var site_root = "/EH-dataportal";
 
 function initLunr() {
 
+    console.log("this [initLunr]", this);
+
     var request = new XMLHttpRequest();
 
     // download grunt-generated index data

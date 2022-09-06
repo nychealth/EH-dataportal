@@ -2,39 +2,35 @@
 // this sits at the top level of the local dir, so "content" and "docs" are folders at the top level
 // in GHA it sits in GITHUB_WORKSPACE
 
-var YAML = require('yamljs');
-var S = require("string");
+const YAML = require('yamljs');
+const S = require("string");
 const { pathToFileURL } = require('url');
+// const path = require("path");
+
 
 // check to see if this is running on GHA
 
 if (typeof process.env.GITHUB_WORKSPACE != "undefined") {
+
+    // if it is, use GHA env vars
     
     // these are hard-coded for now, but GHA vars would allow us to change them dynamically
     
     var content_dir = process.env.GITHUB_WORKSPACE + "/content";
     var build_dir   = process.env.GITHUB_WORKSPACE + "/docs";
     
-    // console.log("content_dir", content_dir);
-    // console.log("build_dir", build_dir);
-    
     // site_root variable, constructed from repo name and github organization
     
-    // var repo_name  = process.env.GITHUB_REPOSITORY;         // nychealth/EH-dataportal
-    // var repo_owner = process.env.GITHUB_REPOSITORY_OWNER;   // nychealth
-    // var site_root  = S(repo_name).chompLeft(repo_owner).s;  // EH-dataportal
-    var site_root  = "EH-dataportal";  // EH-dataportal
-    
-    // console.log("repo_name", repo_name);
-    // console.log("repo_owner", repo_owner);
+    var repo_name  = process.env.GITHUB_REPOSITORY;         // nychealth/EH-dataportal
+    var repo_owner = process.env.GITHUB_REPOSITORY_OWNER;   // nychealth
+    var site_root  = S(repo_name).chompLeft(repo_owner).s;  // EH-dataportal
     
 } else {
+
+    // if not, set vars relative to local dir
     
     var content_dir = "content";
     var build_dir   = "docs";
-    
-    // console.log("content_dir", content_dir);
-    // console.log("build_dir", build_dir);
     
     // site_root variable, constructed from repo name and github organization
     
@@ -74,7 +70,7 @@ module.exports = function(grunt) {
                 // subdir
                 
                 // The filename of the current file, without any directory parts.
-                // filename                
+                // filename
                 
                 if (S(filename).endsWith(".html")) {
                     
@@ -99,15 +95,10 @@ module.exports = function(grunt) {
                 
                 if (S(filename).endsWith(".md")) {
                     
-                    // console.log("abspath [MD recurse]:", abspath);
-                    // console.log("rootdir [MD recurse]:", rootdir);
-                    // console.log("subdir [MD recurse]:", subdir);
-                    // console.log("filename [MD recurse]:", filename);
-                    
                     pageObj = processFile(abspath, rootdir, subdir, filename);
 
                     if (pageObj === "draft") {
-                        grunt.log.writeln([">>> draft", abspath]);
+                        // grunt.log.writeln([">>> draft", abspath]);
                         return;
                     }
 
@@ -180,14 +171,16 @@ module.exports = function(grunt) {
 
             var pageName = S(filename).replace(/\..*/, "").s;
             
-            href = site_root + "/" + subdir + "/" + pageName;
+            href = subdir + "/" + pageName;
 
             // console.log("href [HTML]:", href);
+
+            grunt.log.writeln("href [HTML]", S(href).dasherize().s.toLowerCase());
             
             return {
                 title: pageName,
-                href: href,
-                content: S(content).trim().stripTags().stripPunctuation().s
+                href: site_root + "/" + S(href).dasherize().s.toLowerCase(),
+                content: S(content[2]).stripTags().replace(/[^\w\s-]|_/g, "").replace(/\s-\s/g, " ").replace(/\s+/g, " ").trim().s
             };
         };
         
@@ -216,7 +209,7 @@ module.exports = function(grunt) {
             // if this is draft content, stop processing
 
             if (frontMatter.draft == true) {
-                grunt.log.writeln([">>> draft", abspath]);
+                // grunt.log.writeln([">>> draft", abspath]);
                 return "draft";
             }
             
@@ -231,29 +224,29 @@ module.exports = function(grunt) {
                 
                 if (filename.search(/\.cn/) >= 0) {
                     
-                    href = site_root + "/cn/" + subdir;
+                    href = "cn/" + subdir;
                     
                     // console.log("href [cn]", href);
                     
                 } else if (filename.search(/\.es/) >= 0) {
                     
-                    href = site_root + "/es/" + subdir;
+                    href = "es/" + subdir;
                     
                     // console.log("href [es]", href);
                     
                 } else {
                     
-                    href = site_root + "/" + subdir;
+                    href = subdir;
                     
                 }
                 
             } else {
                 
-                href = site_root + "/" + subdir + "/" + pageName;
+                href = subdir + "/" + pageName;
                 
             }
             
-            // console.log("href [MD]:", href);
+            // grunt.log.writeln("href [MD]:", href);
             
 
             // Build Lunr index for this page (keeping "-" in content)
@@ -272,7 +265,7 @@ module.exports = function(grunt) {
                 seo_title: frontMatter.seo_title,
                 seo_description: frontMatter.seo_description,
                 seo_image: frontMatter.seo_image,
-                href: href.toLowerCase(),
+                href: site_root + "/" + S(href).dasherize().s.toLowerCase(),
                 content: S(content[2]).stripTags().replace(/[^\w\s-]|_/g, "").replace(/\s-\s/g, " ").replace(/\s+/g, " ").trim().s
             };
             
