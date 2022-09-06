@@ -11,13 +11,13 @@ var site_root = "/EH-dataportal";
 
 function initLunr() {
 
-    console.log("this [initLunr]", this);
-
     var request = new XMLHttpRequest();
 
     // download grunt-generated index data
 
     request.open('GET', site_root + "/js/lunr/PagesIndex.json", true);
+
+    console.log("request [initLunr]", request);
     
     request.onload = function () {
 
@@ -77,7 +77,7 @@ function initLunr() {
             initUI();
 
         } else {
-            var err = textStatus + ", " + error;
+            var err = request.status + ", " + request.statusText;
             console.error("Error getting Hugo index flie:", err);
         }
     };
