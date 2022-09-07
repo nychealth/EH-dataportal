@@ -2,32 +2,47 @@
 // this sits at the top level of the local dir, so "content" and "docs" are folders at the top level
 // in GHA it sits in GITHUB_WORKSPACE
 
-var YAML = require('yamljs');
-var S = require("string");
+const YAML = require('yamljs');
+const S = require("string");
 const { pathToFileURL } = require('url');
+// const path = require("path");
 
-// these are hard-coded for now, but GHA vars would allow us to change them dynamically
 
-var content_dir = process.env.GITHUB_WORKSPACE + "/content";
-var build_dir   = process.env.GITHUB_WORKSPACE + "/docs";
+// check to see if this is running on GHA
 
-// console.log("content_dir", content_dir);
-// console.log("build_dir", build_dir);
+if (typeof process.env.GITHUB_WORKSPACE != "undefined") {
 
-// site_root variable, constructed from repo name and github organization
+    // if it is, use GHA env vars
+    
+    // these are hard-coded for now, but GHA vars would allow us to change them dynamically
+    
+    var content_dir = process.env.GITHUB_WORKSPACE + "/content";
+    var build_dir   = process.env.GITHUB_WORKSPACE + "/docs";
+    
+    // site_root variable, constructed from repo name and github organization
+    
+    var repo_name  = process.env.GITHUB_REPOSITORY;         // nychealth/EH-dataportal
+    var repo_owner = process.env.GITHUB_REPOSITORY_OWNER;   // nychealth
+    var site_root  = S(repo_name).chompLeft(repo_owner).s;  // EH-dataportal
+    
+} else {
 
-var repo_name  = process.env.GITHUB_REPOSITORY;         // nychealth/EH-dataportal"
-var repo_owner = process.env.GITHUB_REPOSITORY_OWNER;   // nychealth
-var site_root  = S(repo_name).chompLeft(repo_owner).s;  // EH-dataportal
-
-// console.log("repo_name", repo_name);
-// console.log("repo_owner", repo_owner);
-// console.log("site_root", site_root);
-
+    // if not, set vars relative to local dir
+    
+    var content_dir = "content";
+    var build_dir   = "docs";
+    
+    // site_root variable, constructed from repo name and github organization
+    
+    var site_root  = ""; 
+    
+}
 
 module.exports = function(grunt) {
     
     grunt.registerTask("lunr-index", function() {
+
+        // grunt.log.writeln("path.resolve()", path.resolve());
         
         // top-level indexing function //
         
@@ -57,14 +72,9 @@ module.exports = function(grunt) {
                 // subdir
                 
                 // The filename of the current file, without any directory parts.
-                // filename                
+                // filename
                 
                 if (S(filename).endsWith(".html")) {
-                    
-                    // console.log("abspath [HTML recurse]:", abspath);
-                    // console.log("rootdir [HTML recurse]:", rootdir);
-                    // console.log("subdir [HTML recurse]:", subdir);
-                    // console.log("filename [HTML recurse]:", filename);
                     
                     pageObj = processFile(abspath, rootdir, subdir, filename);
 
@@ -82,12 +92,13 @@ module.exports = function(grunt) {
                 
                 if (S(filename).endsWith(".md")) {
                     
-                    // console.log("abspath [MD recurse]:", abspath);
-                    // console.log("rootdir [MD recurse]:", rootdir);
-                    // console.log("subdir [MD recurse]:", subdir);
-                    // console.log("filename [MD recurse]:", filename);
-                    
                     pageObj = processFile(abspath, rootdir, subdir, filename);
+
+                    if (pageObj === "draft") {
+                        // grunt.log.writeln([">>> draft", abspath]);
+                        return;
+                    }
+
                     pagesIndex.push(pageObj);
 
                     // put the pageObj data into the index, labeled with pageObj.href
@@ -157,14 +168,14 @@ module.exports = function(grunt) {
 
             var pageName = S(filename).replace(/\..*/, "").s;
             
-            href = site_root + "/" + subdir + "/" + pageName;
+            href = subdir + "/" + pageName;
 
             // console.log("href [HTML]:", href);
-            
+
             return {
                 title: pageName,
-                href: href,
-                content: S(content).trim().stripTags().stripPunctuation().s
+                href: site_root + "/" + S(href).dasherize().s.toLowerCase(),
+                content: S(content[2]).stripTags().replace(/[^\w\s-]|_/g, "").replace(/\s-\s/g, " ").replace(/\s+/g, " ").trim().s
             };
         };
         
@@ -189,6 +200,13 @@ module.exports = function(grunt) {
             } catch (e) {
                 console.log(e.message);
             }
+
+            // if this is draft content, stop processing
+
+            if (frontMatter.draft == true) {
+                // grunt.log.writeln([">>> draft", abspath]);
+                return "draft";
+            }
             
             
             // replace all file extensions, i.e. everything after a period
@@ -201,32 +219,28 @@ module.exports = function(grunt) {
                 
                 if (filename.search(/\.cn/) >= 0) {
                     
-                    href = site_root + "/cn/" + subdir;
-                    
-                    // console.log("href [cn]", href);
+                    href = "cn/" + subdir;
                     
                 } else if (filename.search(/\.es/) >= 0) {
                     
-                    href = site_root + "/es/" + subdir;
-                    
-                    // console.log("href [es]", href);
+                    href = "es/" + subdir;
                     
                 } else {
                     
-                    href = site_root + "/" + subdir;
+                    href = subdir;
                     
                 }
                 
             } else {
                 
-                href = site_root + "/" + subdir + "/" + pageName;
+                href = subdir + "/" + pageName;
                 
             }
             
-            // console.log("href [MD]:", href);
+            // grunt.log.writeln("href [MD]:", href);
             
 
-            // Build Lunr index for this page
+            // Build Lunr index for this page (keeping "-" in content)
 
             pageIndex = {
                 title: frontMatter.title,
@@ -242,8 +256,8 @@ module.exports = function(grunt) {
                 seo_title: frontMatter.seo_title,
                 seo_description: frontMatter.seo_description,
                 seo_image: frontMatter.seo_image,
-                href: href.toLowerCase(),
-                content: S(content[2]).trim().stripTags().stripPunctuation().s
+                href: site_root + "/" + S(href).trim().s.toLowerCase(),
+                content: S(content[2]).stripTags().replace(/[^\w\s-]|_/g, "").replace(/\s-\s/g, " ").replace(/\s+/g, " ").trim().s
             };
             
             return pageIndex;
