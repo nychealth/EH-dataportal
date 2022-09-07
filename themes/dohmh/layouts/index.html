@@ -176,13 +176,23 @@
       </div>
 
       <div class="row my-4">
-        <div class="col-md-6 mx-auto">
+        <div class="col-md-6">
           <h3 class="text-muted">Explore your city - through data.</h3> 
           <div class="card bg-lightgray mt-1">
             <div class="card-body">
                 <p class="fs-sm">Get data. Learn what issues affect your health and your community. And take action to make change and build a better, healthier city.</p>
                 </div>
               </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card bg-lightgray mt-1">
+            <div class="card-body">
+              <h5 class="card-title text-muted fs-sm">Get updates and announcements</h5>
+              {{- partial "signup" . -}}
+    
+            </div>
+          </div>
         </div>
       </div>
 
@@ -230,10 +240,10 @@
       </div>
 
       <div class="row my-4">
-        <div class="col-md-5 ml-auto">
+        <div class="col-md-4 ">
           <div class="card bg-lightgray mt-1">
             <div class="card-body">
-              <h5 class="card-title text-muted fs-sm">About us.</h5>
+              <h5 class="card-title text-muted fs-sm">About us</h5>
                 <p class="fs-sm">Learn more about the Environment & Health Data Portal, and the Health Department team behind it.</p>
                 {{- with .Site.GetPage "about/about.md" -}}
                 <a href="{{ .Permalink }}" class="btn btn-outline-gray btn-block btn-sm mt-2">About
@@ -243,13 +253,26 @@
               </div>
         </div>
 
-        <div class="col-md-5 mr-auto">
+        <div class="col-md-4 ">
           <div class="card bg-lightgray mt-1">
             <div class="card-body">
-              <h5 class="card-title text-muted fs-sm">Get updates and announcements</h5>
-              {{- partial "signup" . -}}
+              <h5 class="card-title text-muted fs-sm">Visit our Github repo</h5>
+                <p class="fs-sm">Know code? Want raw data? Found a bug? Visit our Github repo, file an issue, and download raw data.</p>
+                <a href="https://www.github.com/nychealth/EH-dataportal" class="btn btn-outline-gray btn-block btn-sm mt-2">Github<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
 
-            </div>
+                </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 ">
+          <div class="card bg-lightgray mt-1">
+            <div class="card-body">
+              <h5 class="card-title text-muted fs-sm">Join our team</h5>
+                <p class="fs-sm">Passionate about health, environmental justice, and technology? Check out open positions in our bureau.</p>
+                {{- with .Site.GetPage "about/jobs.md" -}}
+                <a href="{{ .Permalink }}" class="btn btn-outline-gray btn-block btn-sm mt-2">Jobs<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+                  {{- end -}}
+                </div>
           </div>
         </div>
       </div>
