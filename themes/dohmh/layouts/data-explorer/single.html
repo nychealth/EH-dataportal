@@ -2647,7 +2647,7 @@
 
     // export raw dataset
 
-    function runDataDownload() {
+    $("#rawData").on("click", (e) => {
 
         let dataURL = data_repo + "/" + data_branch + '/indicators/data/' + indicatorId + '.json'
 
@@ -2659,9 +2659,7 @@
             let downloadTableCSV = downloadTable.toCSV();
 
             // Data URI
-
             let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
-
             let hiddenElement = document.createElement('a');
 
             hiddenElement.href = csvData;
@@ -2669,8 +2667,10 @@
             hiddenElement.download = 'NYC EH Data Portal - ' + indicatorName + " (raw)" + '.csv';
             hiddenElement.click();
 
+            e.stopPropagation();
+
         })
-    }
+    });
     
     
 </script>
