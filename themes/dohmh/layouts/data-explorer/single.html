@@ -343,8 +343,9 @@
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" 
                                      aria-labelledby="downloadDD">
-                                <a class="dropdown-item buttons-csv" id="thisView">This View</a>
-                                <a class="dropdown-item buttons-csv" id="allData">All Data for this Indicator</a>
+                                <a class="dropdown-item buttons-csv" id="thisView">Current table view</a>
+                                <a class="dropdown-item buttons-csv" id="allData">Full table for this indicator</a>
+                                <a class="dropdown-item buttons-csv" id="rawData">Raw data for this indicator</a>
                                 </div>
                             </div>
                         </div>
@@ -737,6 +738,7 @@
                 const renderIndicatorDropdown = () => {
                     const indicatorDropdown = document.getElementById("indicator-dropdown");
                     let this_indicatorId;
+                    let this_indicatorName;
                     let header;
                     
                     {{ range .Params.Indicators }}
@@ -748,8 +750,8 @@
                             {{ end }}
                             this_indicatorId = {{ $id }}
                             indicator = indicators.find(indicator => indicator.IndicatorID === this_indicatorId);
-                            indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                            indicatorDropdown.innerHTML += `<button class="dropdown-item" onclick="loadIndicator(${this_indicatorId})" data-indicator-id="${this_indicatorId}">${indicatorName}</button>`
+                            this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                            indicatorDropdown.innerHTML += `<button class="dropdown-item" onclick="loadIndicator(${this_indicatorId})" data-indicator-id="${this_indicatorId}">${this_indicatorName}</button>`
                         {{ end }}
                     {{ end }}
                 }
@@ -2606,17 +2608,18 @@
     
     createCitation();
     
+    // export current table view
 
     $("#thisView").on("click", (e) => {
 
         let summaryTable = $('#tableID').DataTable();
-        console.log("summaryTable [thisView]", summaryTable.data().length);
-
         summaryTable.button("thisView:name").trigger();
 
         e.stopPropagation();
 
     });
+    
+    // export full table data (i.e., original view)
 
     $("#allData").on("click", (e) => {
 
@@ -2627,19 +2630,47 @@
             .pivot("MeasurementDisplay", "DisplayCI")
             .relocate(["Time", "GeoType", "GeoID", "GeoRank"], { before: 0 }) 
 
-        downloadTableCSV = allData.toCSV()
+        let downloadTableCSV = allData.toCSV();
 
         // Data URI
-        csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
-        let hiddenElement = document.createElement('a');  
+        let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
+        let hiddenElement = document.createElement('a');
+        
         hiddenElement.href = csvData;
-        hiddenElement.target = '_blank';  
-        hiddenElement.download = 'NYC EH Data Portal - ' + indicatorName + '.csv'
+        hiddenElement.target = '_blank';
+        hiddenElement.download = 'NYC EH Data Portal - ' + indicatorName + " (full)" + '.csv';
         hiddenElement.click();
 
         e.stopPropagation();
 
     });
+
+    // export raw dataset
+
+    function runDataDownload() {
+
+        let dataURL = data_repo + "/" + data_branch + '/indicators/data/' + indicatorId + '.json'
+
+        // console.log('Data are at: ' + dataURL)
+
+        aq.loadJSON(`${dataURL}`).then(function(data) {
+
+            let downloadTable = data;
+            let downloadTableCSV = downloadTable.toCSV();
+
+            // Data URI
+
+            let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
+
+            let hiddenElement = document.createElement('a');
+
+            hiddenElement.href = csvData;
+            hiddenElement.target = '_blank';
+            hiddenElement.download = 'NYC EH Data Portal - ' + indicatorName + " (raw)" + '.csv';
+            hiddenElement.click();
+
+        })
+    }
     
     
 </script>

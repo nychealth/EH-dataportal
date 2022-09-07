@@ -71,7 +71,8 @@ const renderTable = () => {
             buttons: [
                 {
                     extend: 'csvHtml5',
-                    name: "thisView"
+                    name: "thisView",
+                    filename: 'NYC EH Data Portal - ' + indicatorName + " (filtered)"
                 }
             ],
             bInfo: false,
