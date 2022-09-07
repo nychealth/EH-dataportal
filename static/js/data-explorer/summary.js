@@ -28,7 +28,7 @@ const renderTable = () => {
 
         // console.log("measureAlignObj", measureAlignObj);
         // console.log("measureImputeObj", measureImputeObj);
-        
+
         const filteredTableAqData = aq.from(filteredTableData)
             .groupby("Time", "GeoType", "GeoID", "GeoRank", "Geography")
             .pivot("MeasurementDisplay", "DisplayCI")
@@ -67,6 +67,13 @@ const renderTable = () => {
             scrollCollapse: true,
             searching: false,
             paging: false,
+            select: true,
+            buttons: [
+                {
+                    extend: 'csvHtml5',
+                    name: "thisView"
+                }
+            ],
             bInfo: false,
             fixedHeader: true,
             orderFixed: [ 3, 'asc' ], // GeoRank
@@ -117,4 +124,6 @@ const renderTable = () => {
                     handleToggle();
                 }
             })
+
         }
+

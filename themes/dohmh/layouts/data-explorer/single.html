@@ -333,10 +333,19 @@
                     <div class="row my-2">
                         <div class="col-md-4">
                             <div class="dropdown">
-                                <button class="btn btn-sm btn-outline-light text-secondary" type="button"
-                                        id="downloadDD" onclick="runDataDownload()"><i
-                                       class="fa fa-download mr-1"></i>Download Data
+                                <button class="btn btn-sm btn-outline-light text-secondary dropdown-toggle" 
+                                        type="button"
+                                        id="downloadDD" 
+                                        data-toggle="dropdown" 
+                                        aria-haspopup="true" 
+                                        aria-expanded="false"
+                                    ><i class="fa fa-download mr-1"></i>Download Data
                                 </button>
+                                <div class="dropdown-menu dropdown-menu-right" 
+                                     aria-labelledby="downloadDD">
+                                <a class="dropdown-item buttons-csv" id="thisView">This View</a>
+                                <a class="dropdown-item buttons-csv" id="allData">All Data for this Indicator</a>
+                                </div>
                             </div>
                         </div>
 
@@ -579,7 +588,7 @@
         let showMap;
         let showTrend;
         let showLinks;
-        
+
         // store hash, so display knows where it just was
         let currentHash;
 
@@ -1155,8 +1164,8 @@
                             [["GeoID", "GeoType"], ["GeoID", "GeoType"]]
                         )
                     
-                    console.log("aqJoinedPrimarySecondaryData");
-                    aqJoinedPrimarySecondaryData.print()
+                    {{/*  console.log("aqJoinedPrimarySecondaryData");  */}}
+                    {{/*  aqJoinedPrimarySecondaryData.print()  */}}
                     
                     // set the value of joinedDataLinksObjects, and make sure to wait for it
                     
@@ -2597,38 +2606,41 @@
     
     createCitation();
     
-    let downloadTable;
-    let dataURL; 
-    let downloadTableCSV
-    let csvData
+
+    $("#thisView").on("click", (e) => {
+
+        let summaryTable = $('#tableID').DataTable();
+        console.log("summaryTable [thisView]", summaryTable.data().length);
+
+        summaryTable.button("thisView:name").trigger();
+
+        e.stopPropagation();
+
+    });
+
+    $("#allData").on("click", (e) => {
+
+        // pivot the full dataset
+
+        let allData = aq.from(fullDataTableObjects)
+            .groupby("Time", "GeoType", "GeoID", "GeoRank", "Geography")
+            .pivot("MeasurementDisplay", "DisplayCI")
+            .relocate(["Time", "GeoType", "GeoID", "GeoRank"], { before: 0 }) 
+
+        downloadTableCSV = allData.toCSV()
+
+        // Data URI
+        csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
+        let hiddenElement = document.createElement('a');  
+        hiddenElement.href = csvData;
+        hiddenElement.target = '_blank';  
+        hiddenElement.download = 'NYC EH Data Portal - ' + indicatorName + '.csv'
+        hiddenElement.click();
+
+        e.stopPropagation();
+
+    });
     
-    // download data function
-    function runDataDownload() {
-
-        console.log('Downloading data for indicator ' + indicatorId)
-
-        dataURL = data_repo + "/" + data_branch + '/indicators/data/' + indicatorId + '.json'
-
-        console.log('Data are at: ' + dataURL)
-
-        aq.loadJSON(`${dataURL}`).then(function(data) {
-
-            downloadTable = data;
-            downloadTableCSV = downloadTable.toCSV()
-
-            // Data URI
-
-            csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
-
-            let hiddenElement = document.createElement('a');  
-
-            hiddenElement.href = csvData;
-            hiddenElement.target = '_blank';  
-            hiddenElement.download = 'NYC EH Data Portal - ' + indicatorName + '.csv'
-            hiddenElement.click();
-
-        })
-    }
     
 </script>
 
