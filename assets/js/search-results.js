@@ -5,7 +5,7 @@ let lunrIndex,
     $results,
     pagesIndex;
 
-var site_root = "/EH-dataportal";
+var site_root = baseURL; // baseURL declared in single.html
 
 // Initialize lunrjs using our generated index file
 

@@ -41,6 +41,8 @@ if (typeof process.env.GITHUB_WORKSPACE != "undefined") {
 module.exports = function(grunt) {
     
     grunt.registerTask("lunr-index", function() {
+
+        // grunt.log.writeln("path.resolve()", path.resolve());
         
         // top-level indexing function //
         
@@ -73,11 +75,6 @@ module.exports = function(grunt) {
                 // filename
                 
                 if (S(filename).endsWith(".html")) {
-                    
-                    // console.log("abspath [HTML recurse]:", abspath);
-                    // console.log("rootdir [HTML recurse]:", rootdir);
-                    // console.log("subdir [HTML recurse]:", subdir);
-                    // console.log("filename [HTML recurse]:", filename);
                     
                     pageObj = processFile(abspath, rootdir, subdir, filename);
 
@@ -175,8 +172,6 @@ module.exports = function(grunt) {
 
             // console.log("href [HTML]:", href);
 
-            grunt.log.writeln("href [HTML]", S(href).dasherize().s.toLowerCase());
-            
             return {
                 title: pageName,
                 href: site_root + "/" + S(href).dasherize().s.toLowerCase(),
@@ -226,13 +221,9 @@ module.exports = function(grunt) {
                     
                     href = "cn/" + subdir;
                     
-                    // console.log("href [cn]", href);
-                    
                 } else if (filename.search(/\.es/) >= 0) {
                     
                     href = "es/" + subdir;
-                    
-                    // console.log("href [es]", href);
                     
                 } else {
                     
