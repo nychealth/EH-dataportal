@@ -1186,23 +1186,12 @@
         const handleYearFilter = (el) => {
             el.addEventListener('change', (e) => {
                 if (e.target.checked) {
-                    // console.log('checked')
                     selectedSummaryYears = [e.target.value]
                 }
                 renderTable()
             })
         }
         
-        const handleGeoFilter = (el) => {
-            el.addEventListener('change', (e) => {
-                if (e.target.checked) {
-                    selectedSummaryGeography.push(e.target.value)
-                } else {
-                    selectedSummaryGeography = selectedSummaryGeography.filter(item => item !== e.target.value);
-                }
-                renderTable()
-            })
-        }
         
         const handleToggle = () => { 
             
@@ -1772,18 +1761,8 @@
                 
             });
             
-            // create geo dropdown for table
 
-            const tableGeoTypes = [...new Set(fullDataTableObjects.map(item => item.GeoType))];
-
-            tableGeoTypes.forEach((geoType, index) => {
-                
-                selectedSummaryGeography.push(geoType);
-                dropdownTableGeo.innerHTML += `<label class="dropdown-item checkbox-geo"><input type="checkbox" value="${geoType}" checked /> ${geoType}</label>`;
-                
-            });
             
-
             // ----- handle measures for this indicator ----- //
             
             const mapYears = [...new Set(fullDataMapObjects.map(item => item.Time))];
@@ -2490,13 +2469,9 @@
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
             
             const checkboxYear = document.querySelectorAll('.checkbox-year');
-            const checkboxGeo = document.querySelectorAll('.checkbox-geo');
             
             checkboxYear.forEach(checkbox => {
                 handleYearFilter(checkbox);
-            })
-            checkboxGeo.forEach(checkbox => {
-                handleGeoFilter(checkbox);
             })
             
             
