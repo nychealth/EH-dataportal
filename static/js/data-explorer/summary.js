@@ -63,7 +63,11 @@ const renderTable = () => {
             // console.log("measureAlignObj", measureAlignObj);
             // console.log("measureImputeObj", measureImputeObj);
 
-            const filteredTableAqData = aq.from(filteredTableData)
+            // filter measurement types with number to relocate them them if they exist
+            const dataHasNumber          = filteredTableData.filter(d => d.MeasurementType === 'Number').length > 0;
+            const dataHasNumberHousholds = filteredTableData.filter(d => d.MeasurementType === 'Number of Households').length > 0;
+
+            let filteredTableAqData = aq.from(filteredTableData)
                 .groupby("Time", "GeoType", "GeoID", "GeoRank", "Geography")
                 .pivot("MeasurementDisplay", "DisplayCI")
 
@@ -71,10 +75,37 @@ const renderTable = () => {
                 // .impute(measureImputeObj) 
 
                 // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
-                .relocate(["Time", "GeoType", "GeoID", "GeoRank"], { before: 0 }) 
+                .relocate(["Time", "GeoType", "GeoID", "GeoRank"], { before: 0 })
+            if (dataHasNumber) {
+                // relocate number if it is the measurement type
+                filteredTableAqData = aq.from(filteredTableData)
+                .groupby("Time", "GeoType", "GeoID", "GeoRank", "Geography")
+                .pivot("MeasurementDisplay", "DisplayCI")
+
+                // need to put this down here because the data might be missing one of the measures, which will be undefined after the pivot
+                // .impute(measureImputeObj) 
+
+                // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
+                .relocate(["Time", "GeoType", "GeoID", "GeoRank"], { before: 0 })
+                // move number after geography
+                .relocate(["Number"], { after: "Geography" })
+            } else if (dataHasNumberHousholds) {
+                // relocate number of households if it is the measurement type
+                filteredTableAqData = aq.from(filteredTableData)
+                .groupby("Time", "GeoType", "GeoID", "GeoRank", "Geography")
+                .pivot("MeasurementDisplay", "DisplayCI")
+
+                // need to put this down here because the data might be missing one of the measures, which will be undefined after the pivot
+                // .impute(measureImputeObj) 
+
+                // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
+                .relocate(["Time", "GeoType", "GeoID", "GeoRank"], { before: 0 })
+                // move number of households after geography
+                .relocate(["Number of Households"], { after: "Geography" })
+            }
 
             // console.log("filteredTableAqData [renderTable]");
-            // filteredTableAqData.print({limit: 400})
+            // filteredTableAqData.print({limit: 2})
             
             // export Arquero table to HTML
             
