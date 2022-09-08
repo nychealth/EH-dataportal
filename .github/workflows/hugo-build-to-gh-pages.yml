@@ -94,7 +94,7 @@ jobs:
       # build site with Hugo
 
       - name: Hugo Build
-        run: hugo --environment staging
+        run: hugo --environment staging --ignoreCache
 
       # run gruntfile action
 
