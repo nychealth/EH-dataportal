@@ -2126,11 +2126,25 @@
 
                     const measureId = defaultTrendMetadata[0].MeasureID;
                     filteredTrendData = fullDataTrendObjects.filter(m => m.MeasureID === measureId);
-                
 
                     // ----- render the chart ----- //
+                    // chart only the annual average for the following measureIds:
+                    // 365 - PM2.5 (Fine particles), Mean
+                    // 370 - Black carbon, Mean
+                    // 391 - Nitric oxide, Mean
+                    // 375 - Nitrogen dioxide, Mean
+                    const measureIdsAnnualAvg = [365, 370, 375, 391];
+                                         
+                    if (measureIdsAnnualAvg.includes(measureId)) {
+                        
+                        const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.Time.includes('Annual Average'));
+                        renderTrendChart(filteredTrendDataAnnualAvg, defaultTrendMetadata);
 
-                    renderTrendChart(filteredTrendData, defaultTrendMetadata);
+                    } else {
+
+                        renderTrendChart(filteredTrendData, defaultTrendMetadata);
+
+                    }
 
                     updateChartPlotSize();
 
