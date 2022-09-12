@@ -144,6 +144,29 @@
                     background-color: #841972; 
                 }
 
+                /* topic selection modal */
+
+                .modal-backdrop.show {
+                    opacity: 0.75; 
+                }
+
+                .modal-title {
+                    margin-bottom: 0;
+                    margin-top: 0;
+                    line-height: 1; 
+                }
+
+                .modal-header .close {
+                    padding: 0.5rem 0.5rem;
+                    margin: -1rem -1rem -1rem auto; 
+                }
+                
+                .modal-body {
+                    position: relative;
+                    flex: 1 1 auto;
+                    {{/*  padding: 0.5rem 0.5rem 0.5rem 0.5rem;   */}}
+                }
+
             </style>
 
             <div class="row">
@@ -426,20 +449,21 @@
     <!-- Selection Modal -->
     <div class="modal fade" id="topicModal" tabindex="-1" role="dialog" aria-labelledby="topicModalLabel"
          aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content mb-2 border-dark">
                 <div class="modal-header">
                     <h5 class="modal-title" id="topicModalLabel">Change topic</h5>
+                    {{/*  <div class="modal-title" id="topicModalLabel">Change topic</div>  */}}
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body px-0">
+                <div class="modal-body p-1 ">
                     {{ partial "de-chooser-accordion.html" . }}
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+                {{/*  <div class="modal-footer">  */}}
+                    {{/*  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>  */}}
+                {{/*  </div>  */}}
             </div>
         </div>
     </div>
