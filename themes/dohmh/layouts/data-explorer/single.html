@@ -151,7 +151,7 @@
                     background-color: #424242
                 }
 
-                .modal-title {
+                .de-modal-title {
                     margin-bottom: 0;
                     margin-top: 0;
                     line-height: 1; 
@@ -160,12 +160,6 @@
                 .modal-header .close {
                     padding: 0.5rem 0.5rem;
                     margin: -1rem -1rem -1rem auto; 
-                }
-                
-                .modal-body {
-                    position: relative;
-                    flex: 1 1 auto;
-                    {{/*  padding: 0.5rem 0.5rem 0.5rem 0.5rem;   */}}
                 }
 
             </style>
@@ -453,7 +447,7 @@
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content mb-2 border-light shadow">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="topicModalLabel">Change topic</h5>
+                    <h5 class="de-modal-title" id="topicModalLabel">Change topic</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -835,11 +829,6 @@
             indicatorDesc = indicator?.IndicatorDescription ? indicator.IndicatorDescription : '';
             indicatorShortName = indicator?.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
             indicatorMeasures = indicator?.Measures;
-
-            console.log("indicator", indicator);
-            console.log("indicatorName", indicatorName);
-            console.log("indicatorDesc", indicatorDesc);
-            console.log("indicatorShortName", indicatorShortName);
 
             //create Citation
 
