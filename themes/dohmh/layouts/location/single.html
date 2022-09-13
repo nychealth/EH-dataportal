@@ -30,6 +30,7 @@
 <script>
   var NeighborhoodName = "{{ .geo_entity_name }}"; //setting for use in visualizations
   var report_name = "{{ $.Params.title }}"
+  var data_download_loc = "{{ .data_download_loc }}"
 </script>
 
 <section class="container-fluid pl-lg-6" id="skip-header-target">
@@ -68,7 +69,7 @@
             </form> 
             <hr class="mt-4 mb-1">
 
-            <button onclick="getData()" class="btn btn-md btn-block btn-report" target="_blank">Download Report Data <span class="sr-only">(opens in a new tab)</span></button>          
+            <button onclick="getData()" class="btn btn-sm btn-block btn-report" target="_blank"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>          
         </div>
         <!-- .sticky-top -->
 
@@ -77,31 +78,34 @@
 
     <script>
       // set data download location
-      var downloadLoc = {{ site.Params.data_repo }} + "/" + {{ site.Params.data_branch }} + "/neighborhood-reports/data/" + {{ .data_download_loc }}
+      var downloadLoc = {{ site.Params.data_repo }} + "/" + {{ site.Params.data_branch }} + "/neighborhood-reports/data/" + data_download_loc
       var reportData;
+      var download
   
       // ingest data for download
       function getData() {
         d3.csv(downloadLoc).then(data => {
           reportData = data;
           reportData.filter(x => x.neighborhood = '{{ .geo_entity_name }}') // filter Report Data for selected neighborhood
-          console.table(reportData)
+          // console.table(reportData)
           downloadData()
         });
       };
 
       // create an element, create the CSV, and download it
       function downloadData() {
-        let data = aq.from(reportData);
-        let downloadTableCSV = data.toCSV();
-        // Data URI
-        let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
-        let hiddenElement = document.createElement('a');
-        hiddenElement.href = csvData;
-        hiddenElement.target = '_blank';
-        hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + {{ .geo_entity_name }} + '.csv';
-        hiddenElement.click();
-      };
+        let data = aq.from(reportData); // create arquero object
+        download = data.select(aq.not('report_id','indicator_id','data_field_name','start_date','end_date',)) // drop unnecessary columns
+
+          let downloadTableCSV = download.toCSV(); // format as CSV
+          // Data URI
+          let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
+          let hiddenElement = document.createElement('a');
+          hiddenElement.href = csvData;
+          hiddenElement.target = '_blank';
+          hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - " + {{ .geo_entity_name }} + '.csv';
+          hiddenElement.click();
+        };
   
     </script>
 

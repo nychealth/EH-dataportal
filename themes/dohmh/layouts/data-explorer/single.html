@@ -76,7 +76,7 @@
             </div>
 
             <style>
-                /*This CSS controls read more/show less toggle.*/
+                /* This CSS controls read more/show less toggle. */
                 [aria-expanded="false"]>.expanded,
                 [aria-expanded="true"]>.collapsed {
                     display: none;
@@ -119,14 +119,11 @@
                     z-index: 2000;
                 }
 
-
-
                 div[aria-labelledby="dropdownMapMeasures"].show {
                     display: flex !important;
                 }
-            </style>
 
-            <style>
+                /* info text boxes */
                 .topic-text {
                     font-size: 12px!important;
                 }
@@ -139,6 +136,32 @@
                 .topic-text p li {
                     font-size: 12px;
                 }
+                
+                /* dropdown list items */
+                .dropdown-item.active, .dropdown-item:active {
+                    color: #ffffff;
+                    text-decoration: none;
+                    background-color: #841972; 
+                }
+
+                /* topic selection modal */
+
+                .modal-backdrop.show {
+                    opacity: 0.70; 
+                    background-color: #424242
+                }
+
+                .de-modal-title {
+                    margin-bottom: 0;
+                    margin-top: 0;
+                    line-height: 1; 
+                }
+
+                .modal-header .close {
+                    padding: 0.5rem 0.5rem;
+                    margin: -1rem -1rem -1rem auto; 
+                }
+
             </style>
 
             <div class="row">
@@ -170,7 +193,7 @@
                                 <div class="dropdown">
                                     <span class='home-label d-block'>Change dataset</span>
             
-                                    <button class="btn btn-outline-primary btn-block dropdown-toggle" type="button"
+                                    <button class="btn btn-outline-primary btn-lg btn-block text-wrap dropdown-toggle" type="button"
                                             id="dropdownIndicator" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         More {{ .Title }} data
                                     </button>
@@ -244,8 +267,7 @@
                                                 <div class="dropdown">
                                                     <button class="btn btn-sm mr-1 float-right btn-outline-success dropdown-toggle"
                                                             type="button" id="dropdownTableGeo" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">Select
-                                                        geography
+                                                            aria-haspopup="true" aria-expanded="false">Select geography
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownTableGeo">
                                                         <!-- INSERT MENU ITEMS HERE -->
@@ -323,12 +345,7 @@
                         </div>
                     </div>
 
-
-
-
-
                     <hr class="my-2">
-
 
                     <div class="row my-2">
                         <div class="col-md-4">
@@ -349,8 +366,6 @@
                                 </div>
                             </div>
                         </div>
-
-
 
                         <div class="col-md-4 ml-auto">
                             <button class="btn float-right btn-sm btn-outline-light text-secondary"
@@ -425,32 +440,25 @@
         </div>
     </div>
 
-    {{/*  </div>
-    </div>
+    <!-- Topic Selection Modal -->
 
-    </div>
-    </div>  */}}
-
-    <!-- Selection Modal -->
     <div class="modal fade" id="topicModal" tabindex="-1" role="dialog" aria-labelledby="topicModalLabel"
          aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content mb-2 border-light shadow">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="topicModalLabel">Change topic</h5>
+                    <h5 class="de-modal-title" id="topicModalLabel">Change topic</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body px-0">
+                <div class="modal-body p-0 ">
                     {{ partial "de-chooser-accordion.html" . }}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
+
 
     <!--About Modal-->
     <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel"
@@ -736,24 +744,31 @@
                 const paramId = url.searchParams.get('id') !== null ? parseInt(url.searchParams.get('id')) : false;
                 
                 const renderIndicatorDropdown = () => {
+
                     const indicatorDropdown = document.getElementById("indicator-dropdown");
                     let this_indicatorId;
                     let this_indicatorName;
                     let header;
                     
                     {{ range .Params.Indicators }}
+
                         header = `{{ .header }}`;
                         indicatorDropdown.innerHTML += header.length ? `<div class="dropdown-title"><strong>${header}</strong></div>`: '';
+
                         {{ range $index, $id := .IndicatorID }}
+
                             {{ if (eq $index 0) }}
                                 defaultIndicatorId = {{ $id }}
                             {{ end }}
+
                             this_indicatorId = {{ $id }}
                             indicator = indicators.find(indicator => indicator.IndicatorID === this_indicatorId);
                             this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                            indicatorDropdown.innerHTML += `<button class="dropdown-item" onclick="loadIndicator(${this_indicatorId})" data-indicator-id="${this_indicatorId}">${this_indicatorName}</button>`
+                            indicatorDropdown.innerHTML += `<button class="indicator-dropdown-item dropdown-item" onclick="loadIndicator(${this_indicatorId})" data-indicator-id="${this_indicatorId}">${this_indicatorName}</button>`
+                            
                         {{ end }}
                     {{ end }}
+
                 }
                 
                 renderIndicatorDropdown()
@@ -790,12 +805,24 @@
             // console.log("** loadIndicator");
 
             // if indicatorId isn't given, use the first indicator from the dropdown list 
-            //  (which is populated by Hugo reading the content frontmatter). This comes in as
-            //  a string, so "find" uses '==' instead of '==='
+            //  (which is populated by Hugo reading the content frontmatter). 
 
             const firstIndicatorId = document.querySelectorAll('#indicator-dropdown button')[0].getAttribute('data-indicator-id');
 
             indicatorId = this_indicatorId ? this_indicatorId : firstIndicatorId;
+
+            // remove active class from every list element
+            $(".indicator-dropdown-item").removeClass("active");
+            $(".indicator-dropdown-item").attr('aria-selected', false);
+
+            // get the list element for this indicator
+            const thisIndicatorEl = document.querySelector(`button[data-indicator-id='${indicatorId}']`)
+            
+            // set this element as active & selected
+            $(thisIndicatorEl).addClass("active");
+            $(thisIndicatorEl).attr('aria-selected', true);
+
+            // indicatorId comes in as  a string, so "find" uses '==' instead of '==='
 
             indicator = indicators.find(indicator => indicator.IndicatorID == indicatorId);
             indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : '';
@@ -808,7 +835,6 @@
             createCitation(); // re-runs on updating Indicator
             
             // send Indicator Title to vis headers
-
 
             document.getElementById('summaryTitle').innerHTML = indicatorName;
             document.getElementById('mapTitle').innerHTML     = indicatorName;
@@ -833,11 +859,11 @@
 
             // call data loading function
 
-            loadData(indicatorId)
-
             const indicatorTitle = document.getElementById('dropdownIndicator')
 
             indicatorTitle.innerHTML = indicatorName
+
+            loadData(indicatorId)
         }
 
         // ----------------------------------------------------------------------- //
@@ -2000,6 +2026,7 @@
                         
                     // render measure info boxes
 
+                    renderTitleDescription(indicatorShortName, indicatorDesc);
                     renderAboutSources(defaultMapAbout, defaultMapSources);
 
 
@@ -2107,6 +2134,7 @@
                         `<h6>${indicatorName} - ${measure}</h6>
                         <p>${sources}</p>`;
 
+                    renderTitleDescription(indicatorShortName, indicatorDesc);
                     renderAboutSources(defaultTrendAbout, defaultTrendSources);
 
 
@@ -2266,6 +2294,7 @@
                     // let maxGeoRank = Math.max(joinedDataLinksObjects[0].GeoRank);
                     // filteredLinksData = joinedDataLinksObjects.filter(obj => obj.GeoRank === maxGeoRank)
 
+                    renderTitleDescription(indicatorShortName, indicatorDesc);
                     renderAboutSources(defaultLinksAbout, defaultLinksSources);
 
 
