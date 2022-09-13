@@ -144,6 +144,24 @@
                     background-color: #841972; 
                 }
 
+                /* topic selection modal */
+
+                .modal-backdrop.show {
+                    opacity: 0.70; 
+                    background-color: #424242
+                }
+
+                .de-modal-title {
+                    margin-bottom: 0;
+                    margin-top: 0;
+                    line-height: 1; 
+                }
+
+                .modal-header .close {
+                    padding: 0.5rem 0.5rem;
+                    margin: -1rem -1rem -1rem auto; 
+                }
+
             </style>
 
             <div class="row">
@@ -249,8 +267,7 @@
                                                 <div class="dropdown">
                                                     <button class="btn btn-sm mr-1 float-right btn-outline-success dropdown-toggle"
                                                             type="button" id="dropdownTableGeo" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">Select
-                                                        geography
+                                                            aria-haspopup="true" aria-expanded="false">Select geography
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownTableGeo">
                                                         <!-- INSERT MENU ITEMS HERE -->
@@ -423,26 +440,25 @@
         </div>
     </div>
 
-    <!-- Selection Modal -->
+    <!-- Topic Selection Modal -->
+
     <div class="modal fade" id="topicModal" tabindex="-1" role="dialog" aria-labelledby="topicModalLabel"
          aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content mb-2 border-light shadow">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="topicModalLabel">Change topic</h5>
+                    <h5 class="de-modal-title" id="topicModalLabel">Change topic</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body px-0">
+                <div class="modal-body p-0 ">
                     {{ partial "de-chooser-accordion.html" . }}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
+
 
     <!--About Modal-->
     <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel"
@@ -813,11 +829,6 @@
             indicatorDesc = indicator?.IndicatorDescription ? indicator.IndicatorDescription : '';
             indicatorShortName = indicator?.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
             indicatorMeasures = indicator?.Measures;
-
-            console.log("indicator", indicator);
-            console.log("indicatorName", indicatorName);
-            console.log("indicatorDesc", indicatorDesc);
-            console.log("indicatorShortName", indicatorShortName);
 
             //create Citation
 
