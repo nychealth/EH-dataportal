@@ -124,6 +124,7 @@
                 }
 
                 /* info text boxes */
+
                 .topic-text {
                     font-size: 12px!important;
                 }
@@ -136,12 +137,30 @@
                 .topic-text p li {
                     font-size: 12px;
                 }
+
+                /* indicator selection button */
+
+                button.text-info, button.text-info {
+                    color: #841972 !important; 
+                }
+                button.text-info:hover, button.text-info:focus {
+                    color: #ffffff !important; 
+                }
                 
-                /* dropdown list items */
-                .dropdown-item.active, .dropdown-item:active {
+                /* dropdown list items - active styles based on if they're related to a primary or secondary button style */
+
+                .btn-outline-primary ~ .dropdown-menu .dropdown-item.active, 
+                .btn-outline-primary ~ .dropdown-menu .dropdown-item:active {
                     color: #ffffff;
                     text-decoration: none;
                     background-color: #841972; 
+                }
+
+                .btn-outline-secondary ~ .dropdown-menu .dropdown-item.active, 
+                .btn-outline-secondary ~ .dropdown-menu .dropdown-item:active {
+                    color: #ffffff;
+                    text-decoration: none;
+                    background-color: #181A7B; 
                 }
 
                 /* topic selection modal */
@@ -187,20 +206,26 @@
                         About {{ .Title }}
                     </button>
 
+                    
+                    <!-- indicator dropdown -->
+
                     <div class="card content-card topic-text">
                         <div class="card-content">
                             <div class="card-body">
                                 <div class="dropdown">
+
                                     <span class='home-label d-block'>Change dataset</span>
             
-                                    <button class="btn btn-outline-primary btn-lg btn-block text-wrap dropdown-toggle" type="button"
+                                    <button class="btn btn-outline-primary btn-lg btn-block text-wrap text-info dropdown-toggle" type="button"
                                             id="dropdownIndicator" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         More {{ .Title }} data
                                     </button>
+
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownIndicator"
                                          id="indicator-dropdown">
                                         <!-- Dropdown itmes are rendered using renderIndicatorDropdown -->
                                     </div>
+
                                 </div>
             
             
@@ -255,7 +280,7 @@
                                              role="tabpanel">
                                             <div class="float right mr-1">
                                                 <div class="dropdown">
-                                                    <button class="btn btn-sm float-right btn-outline-success dropdown-toggle"
+                                                    <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle"
                                                             type="button" id="dropdownTableYear" data-toggle="dropdown"
                                                             aria-haspopup="true" aria-expanded="false">Select year
                                                     </button>
@@ -265,7 +290,7 @@
                                                 </div>
                 
                                                 <div class="dropdown">
-                                                    <button class="btn btn-sm mr-1 float-right btn-outline-success dropdown-toggle"
+                                                    <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle"
                                                             type="button" id="dropdownTableGeo" data-toggle="dropdown"
                                                             aria-haspopup="true" aria-expanded="false">Select geography
                                                     </button>
@@ -286,7 +311,7 @@
                                         <div class="tab-pane fade py-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
                                             <div class="float right mr-1">
                                                 <div class="dropdown">
-                                                    <button class="btn btn-sm mr-1 float-right btn-outline-success dropdown-toggle"
+                                                    <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle"
                                                             type="button" id="dropdownMapMeasures" data-toggle="dropdown"
                                                             aria-haspopup="true" aria-expanded="false">Select
                                                         measure
@@ -305,11 +330,11 @@
                                         <!-- TREND TAB -->
                                         <div class="tab-pane fade py-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
                                             <div class="dropdown float-right mr-1">
-                                                <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button"
+                                                <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
                                                         id="dropdownTrendMeasures" data-toggle="dropdown" aria-haspopup="true"
                                                         aria-expanded="false">Choose measure</button>
                                                     <!-- disparities button - display style changed to show or hide -->
-                                                    <button class="btn btn-sm mr-1 float-right btn-outline-success btn-show-disparities"
+                                                    <button class="btn btn-sm mr-1 float-right btn-outline-secondary btn-show-disparities"
                                                             style="display:inline">Show Dispartites</button>
                                                 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownTrendMeasures">
@@ -325,7 +350,7 @@
                                         <!-- LINKS TAB -->
                                         <div class="tab-pane fade py-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
                                             <div class="dropdown float-right">
-                                                <button class="btn btn-sm float-right btn-outline-success dropdown-toggle" type="button"
+                                                <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
                                                         id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true"
                                                         aria-expanded="false">Select data to link
                                                 </button>
@@ -746,29 +771,24 @@
                 const renderIndicatorDropdown = () => {
 
                     const indicatorDropdown = document.getElementById("indicator-dropdown");
-                    let this_indicatorId;
                     let this_indicatorName;
                     let header;
                     
-                    {{ range .Params.Indicators }}
+                    {{- range .Params.Indicators }}
 
                         header = `{{ .header }}`;
                         indicatorDropdown.innerHTML += header.length ? `<div class="dropdown-title"><strong>${header}</strong></div>`: '';
 
-                        {{ range $index, $id := .IndicatorID }}
+                        {{ range $index, $id := .IndicatorID -}}
 
-                            {{ if (eq $index 0) }}
-                                defaultIndicatorId = {{ $id }}
-                            {{ end }}
+                            {{ if (eq $index 0) -}} defaultIndicatorId = {{ $id -}} {{ end }}
 
-                            this_indicatorId = {{ $id }}
-                            indicator = indicators.find(indicator => indicator.IndicatorID === this_indicatorId);
+                            indicator = indicators.find(indicator => indicator.IndicatorID === {{ $id }});
                             this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                            indicatorDropdown.innerHTML += `<button class="indicator-dropdown-item dropdown-item" onclick="loadIndicator(${this_indicatorId})" data-indicator-id="${this_indicatorId}">${this_indicatorName}</button>`
+                            indicatorDropdown.innerHTML += `<button class="indicator-dropdown-item dropdown-item" onclick="loadIndicator({{ $id }})" data-indicator-id={{ $id }}>${this_indicatorName}</button>`
                             
-                        {{ end }}
-                    {{ end }}
-
+                        {{- end -}}
+                    {{- end -}}
                 }
                 
                 renderIndicatorDropdown()
@@ -845,7 +865,7 @@
 
             selectedMapMeasure = false;
             selectedTrendMeasure = false;
-            selectedLinksMeasure = false;            
+            selectedLinksMeasure = false;
             
             // console.log("window.location.hash 2 [loadIndicator]", window.location.hash);
 
@@ -1234,6 +1254,7 @@
             
             $('body').off('click', '#summary-table tr.group td');
             $('body').on('click', '#summary-table tr.group td', (e) => {
+
                 const td = $(e.target);
                 const tr = td.parent();
                 const group = td.data('group');
@@ -1260,6 +1281,7 @@
                 }
                 
                 const handleSubGroupToggle = () => {
+
                     const subDataGroup = tr.next(`tr`).data(`group`);
                     const parentDataGroup = subDataGroup.split('-')[0];
                     const subGroupRow = $(`tr[data-group="${subDataGroup}"]`);
@@ -1330,6 +1352,16 @@
 
             const time = e.target.dataset.time;
 
+            // persistent selection
+
+            // remove active class from every list element
+            $('.mapbutton').removeClass("active");
+            $('.mapbutton').attr('aria-selected', false);
+
+            // set this element as active & selected
+            $(e.target).addClass("active");
+            $(e.target).attr('aria-selected', true);
+
 
             // ----- get metatadata for selected measure ----- //
 
@@ -1395,6 +1427,15 @@
 
             const measureId = parseInt(e.target.dataset.measureId);
 
+            // persistent selection
+
+            // remove active class from every list element
+            $('.trendbutton').removeClass("active");
+            $('.trendbutton').attr('aria-selected', false);
+
+            // set this element as active & selected
+            $(e.target).addClass("active");
+            $(e.target).attr('aria-selected', true);
 
             // ----- get metatadata for selected measure ----- //
             
@@ -1479,6 +1520,16 @@
         const updateLinksData = async (e) => {
 
             // ---- handle selection ----- //
+
+            // persistent selection
+
+            // remove active class from every list element
+            $('.linksbutton').removeClass("active");
+            $('.linksbutton').attr('aria-selected', false);
+
+            // set this element as active & selected
+            $(e.target).addClass("active");
+            $(e.target).attr('aria-selected', true);
 
             // get meaasureIds of selected dropdown element
             
@@ -1988,10 +2039,6 @@
                 tabTrend.setAttribute('aria-selected', false);
                 tabLinks.setAttribute('aria-selected', false);
 
-                {{/*  $($.fn.dataTable.tables(true))
-                    .DataTable()
-                    .columns.adjust();  */}}
-                
 
                 // ----- allow map to persist when changing tabs ----- //
 
@@ -2005,7 +2052,7 @@
 
                     // get default measure id
                 
-                    const defaultMeasureId = defaultMapMetadata[0].MeasureID;
+                    const defaultMapMeasureId = defaultMapMetadata[0].MeasureID;
 
                     // extract metadata for info boxes
 
@@ -2035,7 +2082,7 @@
                     // filter map data using default measure
 
                     let mapMeasureData = fullDataMapObjects.filter(
-                            obj => obj.MeasureID === defaultMeasureId
+                            obj => obj.MeasureID === defaultMapMeasureId
                         );
 
                     // get the latest end_period
@@ -2045,6 +2092,8 @@
                     let mapTimeData = mapMeasureData.filter(
                             obj => obj.end_period === latest_end_period
                         );
+                    
+                    let latest_time = mapTimeData[0].Time
 
                     // get the highest GeoRank for this measure and end_period
                     
@@ -2060,6 +2109,20 @@
                     renderMap(filteredMapData, defaultMapMetadata);
 
                     updateChartPlotSize();
+
+                    // ----- persistent selection ----- //
+
+                    // remove active class from every list element
+                    $('.mapbutton').removeClass("active");
+                    $('.mapbutton').attr('aria-selected', false);
+
+                    // set this element as active & selected
+
+                    let mapMeasureEl = document.querySelector(`.mapbutton[data-measure-id='${defaultMapMeasureId}'][data-time='${latest_time}']`)
+
+                    $(mapMeasureEl).addClass("active");
+                    $(mapMeasureEl).attr('aria-selected', true);
+
 
                 } else {
 
@@ -2101,12 +2164,6 @@
                 tabTrend.setAttribute('aria-selected', true);
                 tabLinks.setAttribute('aria-selected', false);
 
-                // what's this doing?
-
-                {{/*  $($.fn.dataTable.tables(true))
-                    .DataTable()
-                    .columns.adjust();  */}}
-                
 
                 // ----- allow chart to persist when changing tabs ----- //
 
@@ -2173,8 +2230,8 @@
 
                     // ----- create dataset ----- //
 
-                    const measureId = defaultTrendMetadata[0].MeasureID;
-                    filteredTrendData = fullDataTrendObjects.filter(m => m.MeasureID === measureId);
+                    const defaultTrendMeasureId = defaultTrendMetadata[0].MeasureID;
+                    filteredTrendData = fullDataTrendObjects.filter(m => m.MeasureID === defaultTrendMeasureId);
                 
 
                     // ----- render the chart ----- //
@@ -2182,6 +2239,21 @@
                     renderTrendChart(filteredTrendData, defaultTrendMetadata);
 
                     updateChartPlotSize();
+
+
+                    // ----- persistent selection ----- //
+
+                    // remove active class from every list element
+                    $('.trendbutton').removeClass("active");
+                    $('.trendbutton').attr('aria-selected', false);
+
+                    // set this element as active & selected
+
+                    let trendMeasureEl = document.querySelector(`.trendbutton[data-measure-id='${defaultTrendMeasureId}']`)
+
+                    $(trendMeasureEl).addClass("active");
+                    $(trendMeasureEl).attr('aria-selected', true);
+
 
                 } else {
 
@@ -2311,6 +2383,21 @@
                     );
 
                     updateChartPlotSize();
+
+
+                    // ----- persistent selection ----- //
+
+                    // remove active class from every list element
+                    $('.linksbutton').removeClass("active");
+                    $('.linksbutton').attr('aria-selected', false);
+
+                    // set this element as active & selected
+                    
+                    let linksMeasureEl = document.querySelector(`.linksbutton[data-secondary-measure-id='${secondaryMeasureId}']`)
+
+                    $(linksMeasureEl).addClass("active");
+                    $(linksMeasureEl).attr('aria-selected', true);
+
 
                 } else {
 
