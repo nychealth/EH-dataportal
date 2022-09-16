@@ -5,7 +5,7 @@ let lunrIndex,
     $results,
     pagesIndex;
 
-var site_root = "/EH-dataportal";
+var site_root = baseURL; // baseURL declared in single.html
 
 // Initialize lunrjs using our generated index file
 
@@ -16,7 +16,7 @@ function initLunr() {
     // download grunt-generated index data
 
     request.open('GET', site_root + "/js/lunr/PagesIndex.json", true);
-    
+
     request.onload = function () {
 
         if (request.status >= 200 && request.status < 400) {
@@ -75,8 +75,9 @@ function initLunr() {
             initUI();
 
         } else {
-            var err = textStatus + ", " + error;
+            var err = request.status + ", " + request.statusText;
             console.error("Error getting Hugo index flie:", err);
+            console.log("Request object:", request);
         }
     };
     

@@ -1,5 +1,5 @@
 ---
-title: Physical Activity
+title: Physical activity
 date: 2021-05-28 18:02:58.740215
 draft: false
 seo_title: "Physical activity data for NYC."

@@ -1,301 +1,210 @@
 const renderMap = (
-  selectedData,
-  selectedMeasure,
-  selectedDisplay,
-  selectedDate,
-  selectedAbout, 
-  selectedSources
-) => {
-  const mapYears =  [...new Set(fullDataMapObjects.map(item => item.Time))];
-  const filteredfullDataMapObjects = fullDataMapObjects.filter(obj => 
-      obj.Time === mapYears[0]
-  );
-  let mapGeoType = selectedData ? selectedData[0].GeoType : filteredfullDataMapObjects[0].GeoType;
-  let mapMeasure = selectedMeasure ? selectedMeasure : defaultMapMeasure[0].MeasurementType;
- 
-  let mapDisplay = selectedDisplay ? selectedDisplay : defaultMapMeasure[0].DisplayType;
-  let mapDate = selectedDate ? selectedDate : filteredfullDataMapObjects[0].Time;
-  let topoFile = '';
+    data,
+    metadata
+    ) => {
 
-  let testData = selectedData ? selectedData :filteredfullDataMapObjects;
+        console.log("** renderMap");
 
-  // console.log('==========================================================================')
-  // console.log('MAP DATA: ',filteredfullDataMapObjects[0].GeoType,  mapData)
-  // console.log('RENDER MAP DATA - GeoType ', mapGeoType)
-  // console.log('RENDER MAP DATA - Measure Default: ', defaultMapMeasure)
-  // console.log('RENDER MAP DATA - Measure Selected: ', selectedMeasure)
-  // console.log('RENDER MAP DATA - Measure Filtered Default Data: ', filteredfullDataMapObjects)
-  // console.log('RENDER MAP DATA - Measure Filtered Selcted Data: ', selectedData)
+        // get unique time in data
 
+        const mapYears =  [...new Set(data.map(item => item.Time))];
 
-  
-  const filterGeoTypeMeasurementType = (geoType) => {
-      //chnging geotype to geoType renders subborro but no names match
-      const data = testData.filter(obj => obj.Geotype === geoType && obj[mapMeasure])
-      const data2 = testData.filter(obj => obj.GeoType === geoType && obj[mapMeasure]) 
-      // console.log('test data 1: ', geoType, data.length, data2.length )
-      if (data.length > data2.length) {
-        return data
-      } else if (data.length < data2.length) {
-        return data2
-      } else {
-        return data
-      }
-      
-  }
-  const filterGeoType = (geoType) => {
-      //chnging geotype to geoType renders subborro but no names match
-      const data = testData.filter(obj => obj.Geotype === geoType)
-      const data2 = testData.filter(obj => obj.GeoType === geoType)
-      // console.log('test data 2: ', geoType, data.length, data2.length )
-      if (data.length > data2.length) {
-        return data
-      } else if (data.length < data2.length) {
-        return data2
-      } else {
-        return data
-      }
+        console.log("mapYears [map.js]", mapYears);
 
-      
-  }
+        let mapGeoType            = data[0].GeoType;
+        let mapMeasurementType    = metadata[0].MeasurementType;
+        let mapGeoTypeDescription = 
+            metadata[0].AvailableGeographyTypes.filter(
+                gt => gt.GeoType === mapGeoType
+            )[0].GeoTypeDescription;
 
-  let mapData = null;
+        // console.log("mapGeoTypeDescription [map.js]", mapGeoTypeDescription);
+        // console.log("mapGeoType [map.js]", mapGeoType);
+        // console.log("mapMeasurementType [map.js]", mapMeasurementType);
+        
+        let mapDisplay = metadata[0].DisplayType;
+        let mapTime = mapYears[0];
+        let topoFile = '';
 
-  const cdDataResults = filterGeoTypeMeasurementType('CD');
-  const uhf42DataResults = filterGeoTypeMeasurementType('UHF42');
-  const uhf34DataResults = filterGeoTypeMeasurementType('UHF34');
-  const pumaDataResults = filterGeoTypeMeasurementType('PUMA');
-  const subboroDataResults = filterGeoTypeMeasurementType('Subboro');
-  const ntaDataResults = filterGeoTypeMeasurementType('NTA');
-  const nycKidsDataResults = filterGeoTypeMeasurementType('NYCKIDS');
-  
-  const cdData = filterGeoType('CD');
-  const uhf42Data = filterGeoType('UHF42');
-  const uhf34Data = filterGeoType('UHF34');
-  const pumaData = filterGeoType('Puma');
-  const subboroData = filterGeoType('Subboro');
-  const ntaData = filterGeoType('NTA');
-  const nycKidsData = filterGeoType('NYCKIDS');
+        // console.log("testData [map.js]", testData);
+        
+        // can add year to this
 
-  console.log('NTA: ', ntaDataResults.length, pumaDataResults.length)
+        console.log("mapGeoType [renderMap]", mapGeoType);
 
-  if (ntaDataResults.length > 0) {
-      mapData = ntaData;
-      topoFile = 'NTA.topo.json';
-  } else if (cdDataResults.length > 0) {
-      mapData = cdData;
-      topoFile = 'CD.topo.json';
-} else if (pumaDataResults.length > 0) {
-    mapData = pumaData;
-    topoFile = 'PUMA_or_Subborough.topo.json';
-  } else if (subboroDataResults.length > 0) {
-      mapData = subboroData;
-      topoFile = 'PUMA_or_Subborough.topo.json';
-  } else if (uhf42DataResults.length > 0) {
-      mapData = uhf42Data;
-      topoFile = 'UHF42.topo.json';
-  } else if (uhf34DataResults.length > 0) {
-      mapData = uhf34Data;
-      topoFile = 'UHF34.topo.json';
-  } else if (nycKidsDataResults.length > 0) {
-    mapData = nycKidsData;
-    topoFile = 'NYCKids.topo.json';
-}
+        if (mapGeoType === "NTA") {
+            topoFile = 'NTA.topo.json';
+        } else if (mapGeoType === "CD") {
+            topoFile = 'CD.topo.json';
+        } else if (mapGeoType === "PUMA") {
+            topoFile = 'PUMA_or_Subborough.topo.json';
+        } else if (mapGeoType === "Subboro") {
+            topoFile = 'PUMA_or_Subborough.topo.json';
+        } else if (mapGeoType === "UHF42") {
+            topoFile = 'UHF42.topo.json';
+        } else if (mapGeoType === "UHF34") {
+            topoFile = 'UHF34.topo.json';
+        } else if (mapGeoType === "NYCKIDS") {
+            topoFile = 'NYCKids.topo.json';
+        }
 
-
-  // console.log("mapData");
-  // aq.from(mapData).print({ limit: 60 })
-
-  // console.log('default data: ', geoTypFilteredData)
-
-  // console.log('TEST DATA: ', testData, 'selected: ', selectedData, 'mapMeasure: ', mapMeasure, 'defaultGeoTypFilteredData', geoTypFilteredData)
-
-  // console.log('RENDER MAP DATA - topoFile ', topoFile)
-
-  
-
-  // let spec2 = {
-  //     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  //     "title": "This is my good schema!",
-  //     "width": 700,
-  //     "data": {
-  //         "url": "https://gist.githubusercontent.com/mmontesanonyc/28953366ac41a0ecf24470a3cefb6cea/raw/4b2869cc9fe93a4ae4e33b2acc0aad5570c498a0/2380-reduced.csv"
-  //     },
-  //     "params": [
-  //         {"name": "highlight", "select": {"type": "point", "on": "mouseover"}}
-  //     ],
-  //     "projection": {"type": "mercator"},
-  //     "vconcat": [
-  //         {
-  //         "height": 550,
-  //         "width": 900,
-  //         "mark": {"type": "geoshape", "stroke": "#000000"},
-  //         "encoding": {
-  //             "shape": {"field": "geo", "type": "geojson"},
-  //             "color": {
-  //             "bin": false,
-  //             "field": "Value",
-  //             "type": "quantitative",
-  //             "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}}
-  //             },
-  //             "strokeWidth": {
-  //             "condition": [{"param": "highlight", "empty": false, "value": 2}],
-  //             "value": 0.5
-  //             },
-  //             "tooltip": [
-  //                 {"field": "GeoID", "title": "GeoID"},
-  //                 {
-  //                     "field": "Value",
-  //                     "type": "quantitative",
-  //                     "title": "Value"
-  //                 },
-  //                 {"field":"MeasureID","title":"Measure"}
-  //             ],
-  //         },
-  //         "transform": [
-  //             {
-  //             "lookup": "Geography-ID",
-  //             "from": {
-  //                 "data": {
-  //                 "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/main/geography/UHF42.topo.json",
-  //                 "format": {"type": "topojson", "feature": "collection"}
-  //                 },
-  //                 "key": "properties.GEOCODE"
-  //             },
-  //             "as": "geo"
-  //             }
-  //         ]
-  //         },
-  //         {
-  //         "height": 150,
-  //         "width": "container",
-  //         "mark": {"type": "bar", "tooltip": true, "stroke": "#000000"},
-  //         "encoding": {
-  //             "y": {"field": "Value", "type": "quantitative", "title": null},
-  //             "tooltip": [
-  //             {"field": "Geography-ID", "title": "GeoID"},
-  //             {"field": "Value", "type": "quantitative", "title": "Value"},
-  //             {"field": "MeasureID", "title": "Measure"}
-  //             ],
-  //             "x": {"field": "Geography-ID", "sort": true, "axis": null},
-  //             "color": {
-  //             "bin": false,
-  //             "field": "Value",
-  //             "type": "quantitative",
-  //             "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}}
-  //             },
-  //             "strokeWidth": {
-  //             "condition": [{"param": "highlight", "empty": false, "value": 2}],
-  //             "value": 0.5
-  //             }
-  //         }
-  //         }
-  //     ]
-  // }
-
-  spec3 = {
-      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-      "title": `${mapDate} - ${mapMeasure} ${mapDisplay && `(${mapDisplay})`} `,
-      "width": "container",
-      "data": {
-          "values": mapData,
-          "format": {
-              "parse": {
-                  "Value": "number"
-              }
-          }
-      },
-    //   "config": {
-    //       "mark": {"invalid": null}
-    //   },
-      "params": [
-          {"name": "highlight", "select": {"type": "point", "on": "mouseover"}}
-      ],
-      "projection": {"type": "mercator"},
-      "vconcat": [
-          {
-          "height": 550,
-          "width": "container",
-          "mark": {"type": "geoshape", "stroke": "#000000", "invalid": null},
-          "encoding": {
-              "shape": {"field": "geo", "type": "geojson"},
-              "color": {
-              "bin": false,
-              "field": mapMeasure,
-              "type": "quantitative",
-              "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}}
-              },
-              "strokeWidth": {
-              "condition": [{"param": "highlight", "empty": false, "value": 2}],
-              "value": 0.5
-              },
-              "tooltip": [
-                  {"field": "Geography", "title": "Geography"},
-                  {
-                      "field": mapMeasure,
-                      "type": "quantitative",
-                      "title": "Value"
-                  },
-              ],
-          },
-          "transform": [
-              {
-              "lookup": "GeoID",
-              "from": {
-                  "data": {
-                  "url": `https://raw.githubusercontent.com/nychealth/EHDP-data/main/geography/${topoFile}`,
-                  "format": {"type": "topojson", "feature": "collection"}
-                  },
-                  "key": "properties.GEOCODE"
-              },
-              "as": "geo"
-              }
-          ]
-          },
-          // {
-          //     "mark": {
-          //         "type": "bar", 
-          //         "tooltip": true, 
-          //         "stroke": "#000000"},
-          //         "orient": "x",
-          //     "encoding": {
-          //         "color": {
-          //             "field": "valiues",
-          //             "type": "quantitative",
-          //             "legend": {
-          //                 "direction": "horizontal",
-          //                 "orient": "bottom",
-          //             }
-          //         }
-          //     }
-          // },
-          {
-          "height": 150,
-          "width": "container",
-          "mark": {"type": "bar", "tooltip": true, "stroke": "#000000"},
-          "encoding": {
-              "y": {"field": mapMeasure, "type": "quantitative", "title": null},
-              "tooltip": [
-                  {"field": "Geography", "title": "GeoID"},
-                  {"field": mapMeasure, "type": "quantitative", "title": "Value"},
-                  // {"field": "MeasureID", "title": "Measure"}
-              ],
-              "x": {"field": "GeoID", "sort": "y", "axis": null},
-                  "color": {
-                  "bin": false,
-                  "field": mapMeasure,
-                  "type": "quantitative",
-                  "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}},
-                  "legend": null
-              },
-              "strokeWidth": {
-                  "condition": [{"param": "highlight", "empty": false, "value": 2}],
-              "value": 0.5
-              }
-          }
-          }
-      ]
-  }
-
-  vegaEmbed("#map", spec3);
-}
+        
+    // define spec
+        
+        mapspec = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "title": {
+                "text": `${mapTime} - ${mapMeasurementType} ${mapDisplay && `(${mapDisplay})`}`,
+                "subtitle": mapGeoTypeDescription,
+                "subtitlePadding": 10
+            },
+            // "width": "container",
+            // "background": "#f9f9f9",
+            "data": {
+                "values": data,
+                "format": {
+                    "parse": {
+                        "Value": "number"
+                    }
+                }
+            },
+            "config": {"concat": {"spacing": 20}},
+            "projection": {"type": "mercator"},
+            "vconcat": [
+                {
+                    // "view": {"align": "none", "center": true},
+                    "layer": [
+                        {
+                            "height": 500,
+                            "width": "container",
+                            "data": {
+                                // "url": data_repo + "/" + data_branch + `/geography/borough.topo.json`,
+                                "url": `${data_repo}/${data_branch}/geography/borough.topo.json`,
+                                "format": {
+                                    "type": "topojson",
+                                    "feature": "collection"
+                                }
+                            },
+                            "mark": {
+                                "type": "geoshape",
+                                "stroke": "#fafafa",
+                                "fill": "#C5C5C5",
+                                "strokeWidth": 0.5
+                            }
+                        },
+                        {
+                            "height": 500,
+                            "width": "container",
+                            "mark": {"type": "geoshape", "invalid": null},
+                            "params": [
+                                {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
+                            ],
+                            "transform": [
+                                {
+                                    "lookup": "GeoID",
+                                    "from": {
+                                        "data": {
+                                            "url": `${data_repo}/${data_branch}/geography/${topoFile}`,
+                                            "format": {"type": "topojson", "feature": "collection"}
+                                        },
+                                        "key": "properties.GEOCODE"
+                                    },
+                                    "as": "geo"
+                                }
+                            ],                        
+                            "encoding": {
+                                "shape": {"field": "geo", "type": "geojson"},
+                                "color": {
+                                    "condition": {
+                                        "test": "isValid(datum.Value)",
+                                        "bin": false,
+                                        "field": "Value",
+                                        "type": "quantitative",
+                                        "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}}
+                                    },
+                                    "value": "#808080"
+                                },
+                                "stroke": {
+                                    "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
+                                    // "value": "#161616"
+                                    "value": "#dadada"
+                                },
+                                "strokeWidth": {
+                                    "condition": [{"param": "highlight", "empty": false, "value": 1.25}],
+                                    "value": 0.5
+                                },
+                                "order": {
+                                    "condition": [{"param": "highlight", "empty": false, "value": 1}],
+                                    "value": 0
+                                },
+                                "tooltip": [
+                                    {"field": "Geography", "title": "Neighborhood"},
+                                    {
+                                        "field": "Value",
+                                        "type": "quantitative",
+                                        "title": mapMeasurementType,
+                                        "format": ",.1~f"
+                                    },
+                                ],
+                            },
+                        }
+                    ]
+                },
+                {
+                    "height": 150,
+                    "width": "container",
+                    "config": {
+                        "axisY": {
+                            "labelAngle": 0,
+                            "labelFontSize": 13,
+                        }
+                    },
+                    "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+                    "params": [
+                        {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
+                    ],
+                    "encoding": {
+                        "y": {
+                            "field": "Value", 
+                            "type": "quantitative", 
+                            "title": null,
+                            "axis": {
+                                "labelAngle": 0,
+                                "labelFontSize": 11,
+                            }
+                        },
+                        "tooltip": [
+                            {
+                                "field": "Geography", 
+                                "title": "Neighborhood"
+                            },
+                            {
+                                "field": "Value", 
+                                "type": "quantitative", 
+                                "title": mapMeasurementType,
+                                "format": ",.1~f"
+                            },
+                        ],
+                        "x": {"field": "GeoID", "sort": "y", "axis": null},
+                        "color": {
+                            "bin": false,
+                            "field": "Value",
+                            "type": "quantitative",
+                            "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}},
+                            "legend": null
+                        },
+                        "stroke": {
+                            "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
+                            "value": "white"
+                        },
+                        "strokeWidth": {
+                            "condition": [{"param": "highlight", "empty": false, "value": 3}],
+                            "value": 0
+                        }
+                    }
+                }
+            ]
+        }
+        
+        vegaEmbed("#map", mapspec);
+    }

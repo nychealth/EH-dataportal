@@ -1,5 +1,5 @@
 ---
-title: Health Impacts of Air Pollution
+title: Health impacts of air pollution
 date: 2021-05-28 18:02:58.777148
 draft: false
 seo_title: "Health impacts of air pollution: data for NYC."

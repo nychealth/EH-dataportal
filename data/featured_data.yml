@@ -8,7 +8,7 @@ featured:
   link: "/data-explorer/housing-stability/?id=2365"
 - copy: "Poverty"
   indid: 103
-  link: "/data-explorer/social-and-economic-conditions/?id=103"
+  link: "/data-explorer/economic-conditions/?id=103"
 - copy: "Child asthma"
   indid: 2383
   link: "/data-explorer/asthma/?id=2383"

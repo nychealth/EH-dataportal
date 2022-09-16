@@ -278,6 +278,8 @@ function buildChart(div, spec, csv, nbr) {
 
 $( window ).on( "load", function() {
 
+    console.log("load");
+
     // load the map
     
     buildMap(mapUpdateID(tabShown), aqe_path + "/" + mapUpdateSpec(tabShown), nyccasData, nta_topojson, selectedNeighborhood);
@@ -303,6 +305,8 @@ $(document).ready(function () {
     });
     
     $('.nav-pills a').on('shown.bs.tab', function (event) {
+
+        console.log(".nav-pills a");
         
         tabShown = $(event.target).attr('aria-controls'); // active tab
         

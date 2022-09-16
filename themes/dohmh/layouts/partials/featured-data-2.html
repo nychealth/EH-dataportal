@@ -1,0 +1,8 @@
+<ul class="list-group list-group-flush">
+{{ range .Site.Data.featured_data.featured}}
+    <li class="list-group-item fs-sm"><a href="{{ .link }}">{{ .copy }}</a></li>
+    {{ end }}
+
+</ul>
+
+

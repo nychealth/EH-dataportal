@@ -1,0 +1,401 @@
+<style>
+    .accordion-group .card {
+        background-color: #f2f2f2;
+        margin: 0px;
+    }
+
+</style>
+
+
+
+
+<div class="row no-gutters">
+    <div class="col-12">
+
+        <div class="accordion-group narrow fs-sm" role="tablist" id="accordion-01">
+
+            <div class="card">
+
+               <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                    id="acc-button-01" data-toggle="collapse"
+                    href="#panel-acc-button-01" role="tab"
+                    aria-expanded="false"
+                    aria-controls="panel-acc-button-01">
+                    <span class="title" role="heading"
+                        aria-level="3">Air Quality</span>
+                </a></strong> 
+
+                <div class="collapse" id="panel-acc-button-01"
+                    role="tabpanel" aria-labelledby="acc-button-01"
+                    data-parent="#accordion-01">
+
+                    <div class="card-body bg-white">
+                        <ul>
+                            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "airquality") }}
+                                <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                                </li>
+                            {{end}}
+                            </ul>
+                    </div>
+
+                </div>
+                <!-- .collapse -->
+
+            </div>
+            <!-- .AQ card -->
+
+            <div class="card">
+
+                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                    id="acc-button-02" data-toggle="collapse"
+                    href="#panel-acc-button-02" role="tab"
+                    aria-expanded="false"
+                    aria-controls="panel-acc-button-02">
+                    <span class="title" role="heading"
+                        aria-level="3">Climate</span>
+                </a></strong>
+
+                <div class="collapse" id="panel-acc-button-02"
+                    role="tabpanel" aria-labelledby="acc-button-02"
+                    data-parent="#accordion-01">
+
+                    <div class="card-body bg-white">
+                        <ul>
+                            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "climatehealth") }}
+                                <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                                </li>
+                            {{end}}
+                            </ul>
+                    </div>
+
+                </div>
+                <!-- .collapse -->
+
+            </div>
+            <!-- .Climate card -->
+
+            <div class="card">
+
+               <strong> <a class="btn btn-outline-light btn-block collapse collapsed"
+                    id="acc-button-03" data-toggle="collapse"
+                    href="#panel-acc-button-03" role="tab"
+                    aria-expanded="false"
+                    aria-controls="panel-acc-button-03">
+                    <span class="title" role="heading"
+                        aria-level="3">Housing</span>
+                </a></strong>
+
+                <div class="collapse" id="panel-acc-button-03"
+                    role="tabpanel" aria-labelledby="acc-button-03"
+                    data-parent="#accordion-01">
+
+                    <div class="card-body bg-white">
+                        <ul>
+                            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "housing") }}
+                                <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                                </li>
+                            {{end}}
+                            </ul>
+                    </div>
+
+                </div>
+                <!-- .collapse -->
+
+            </div>
+            <!-- .Housing card -->
+
+            <div class="card">
+
+                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                    id="acc-button-04" data-toggle="collapse"
+                    href="#panel-acc-button-04" role="tab"
+                    aria-expanded="false"
+                    aria-controls="panel-acc-button-04">
+                    <span class="title" role="heading"
+                        aria-level="3">Health equity</span>
+                </a></strong>
+
+                <div class="collapse" id="panel-acc-button-04"
+                    role="tabpanel" aria-labelledby="acc-button-04"
+                    data-parent="#accordion-01">
+
+                    <div class="card-body bg-white">
+                        <ul>
+                            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "social") }}
+                                <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                                </li>
+                            {{end}}
+                            </ul>
+                    </div>
+
+                </div>
+                <!-- .collapse -->
+
+            </div>
+            <!-- .HE card -->
+
+            <div class="card">
+
+                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                    id="acc-button-05" data-toggle="collapse"
+                    href="#panel-acc-button-05" role="tab"
+                    aria-expanded="false"
+                    aria-controls="panel-acc-button-05">
+                    <span class="title" role="heading"
+                        aria-level="3">Active design / Transportation</span>
+                </a></strong>
+
+                <div class="collapse" id="panel-acc-button-05"
+                    role="tabpanel" aria-labelledby="acc-button-05"
+                    data-parent="#accordion-01">
+
+                    <div class="card-body bg-white">
+                        <ul>
+                            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation") }}
+                                <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                                </li>
+                            {{end}}
+                            </ul>
+                    </div>
+
+                </div>
+                <!-- .collapse -->
+
+            </div>
+            <!-- .AD card -->
+
+            <div class="card">
+
+                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                    id="acc-button-06" data-toggle="collapse"
+                    href="#panel-acc-button-06" role="tab"
+                    aria-expanded="false"
+                    aria-controls="panel-acc-button-06">
+                    <span class="title" role="heading"
+                        aria-level="3">Health outcomes</span>
+                </a></strong>
+
+                <div class="collapse" id="panel-acc-button-06"
+                    role="tabpanel" aria-labelledby="acc-button-06"
+                    data-parent="#accordion-01">
+
+                    <div class="card-body bg-white">
+                        <ul>
+                            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "healthoutcomes") }}
+                                <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                                </li>
+                            {{end}}
+                            </ul>
+                    </div>
+
+                </div>
+                <!-- .collapse -->
+
+            </div>
+            <!-- .Outcomes card -->
+
+            <div class="card">
+
+                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                    id="acc-button-07" data-toggle="collapse"
+                    href="#panel-acc-button-07" role="tab"
+                    aria-expanded="false"
+                    aria-controls="panel-acc-button-07">
+                    <span class="title" role="heading"
+                        aria-level="3">Child health</span>
+                </a></strong>
+
+                <div class="collapse" id="panel-acc-button-07"
+                    role="tabpanel" aria-labelledby="acc-button-07"
+                    data-parent="#accordion-01">
+
+                    <div class="card-body bg-white">
+                        <ul>
+                            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "childhealth") }}
+                                <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                                </li>
+                            {{end}}
+                            </ul>
+                    </div>
+
+                </div>
+                <!-- .collapse -->
+
+            </div>
+            <!-- .child health card -->
+
+            <div class="card">
+
+                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                    id="acc-button-08" data-toggle="collapse"
+                    href="#panel-acc-button-08" role="tab"
+                    aria-expanded="false"
+                    aria-controls="panel-acc-button-08">
+                    <span class="title" role="heading"
+                        aria-level="3">Pests and pesticides</span>
+                </a></strong>
+
+                <div class="collapse" id="panel-acc-button-08"
+                    role="tabpanel" aria-labelledby="acc-button-08"
+                    data-parent="#accordion-01">
+
+                    <div class="card-body bg-white">
+                        <ul>
+                            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "pests") }}
+                                <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                                </li>
+                            {{end}}
+                            </ul>
+                    </div>
+
+                </div>
+                <!-- .collapse -->
+
+            </div>
+            <!-- .Pests card -->
+
+            <div class="card">
+
+                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                    id="acc-button-09" data-toggle="collapse"
+                    href="#panel-acc-button-09" role="tab"
+                    aria-expanded="false"
+                    aria-controls="panel-acc-button-09">
+                    <span class="title" role="heading"
+                        aria-level="3">Food and drink</span>
+                </a></strong>
+
+                <div class="collapse" id="panel-acc-button-09"
+                    role="tabpanel" aria-labelledby="acc-button-09"
+                    data-parent="#accordion-01">
+
+                    <div class="card-body bg-white">
+                        <ul>
+                            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "foodanddrink") }}
+                                <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                                </li>
+                            {{end}}
+                            </ul>
+                    </div>
+
+                </div>
+                <!-- .collapse -->
+
+            </div>
+            <!-- .food card -->
+
+            {{/*  <hr class="my-1" style="height:2px;">  */}}
+            <hr class="my-1">
+            {{/*  <div class="border-top border-success my-1"></div>  */}}
+            {{/*  <div class="my-2"></div>  */}}
+
+            <div class="card">
+
+                <strong><a class="btn btn-outline-light btn-block collapse collapsed"
+                    id="acc-button-10" data-toggle="collapse"
+                    href="#panel-acc-button-10" role="tab"
+                    aria-expanded="false"
+                    aria-controls="panel-acc-button-10">
+                    <span class="title" role="heading"
+                        aria-level="3">All topics</span>
+                </a></strong>
+
+                <div class="collapse" id="panel-acc-button-10"
+                    role="tabpanel" aria-labelledby="acc-button-10"
+                    data-parent="#accordion-01">
+
+                    <div class="card-body bg-white">
+                        <ul>
+                            {{ range ( where .Site.RegularPages "Section" "data-explorer") }}
+                                <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                                </li>
+                            {{end}}
+                            </ul>
+                    </div>
+
+                </div>
+                <!-- .collapse -->
+
+            </div>
+            <!-- .all card -->
+
+        </div>
+        <!-- .accordion-group -->
+    </div>
+</div>
+
+
+<!-- Generate JSON object with subtopic pages and keys, and internal_ids in arrays -->
+        
+{{- $subtopic_indicators_dict := newScratch -}}
+{{- $subtopic_indicators_map := newScratch -}}
+
+{{/*  iterate over all pages on the site  */}}
+
+{{- range .Site.Pages -}}
+    
+    {{/*  create a new "slice" (i.e., an array)  */}}
+    
+    {{- $indicators := slice -}}
+    {{- $subtopic_name := slice -}}
+    
+    {{/*  only process if it's a data explorer page */}}
+    
+    {{- if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (ne (path.Base .RelPermalink) "all-data")) -}}
+        
+        {{/*  turn params into strings  */}}
+        
+        {{- $subtopic := .RelPermalink | path.Base | string -}}
+
+        {{/*  subtopic names  */}}
+        
+        {{- $subtopic_title := .Title -}}
+
+        {{/*  get internal_ids  */}}
+        
+        {{- range .Params.indicators -}}
+            
+            {{/*  create an array of internal_ids  */}}
+            
+            {{- $indicators = $indicators | append .IndicatorID -}}
+        
+        {{- end -}}
+        
+        {{/*  create a map with subtopic as key and array of internal_ids as value */}}
+        
+        {{- $subtopic_indicators_dict := dict "subtopic_name" $subtopic_title "IndicatorID" $indicators -}}
+        {{- $subtopic_indicators_map.SetInMap "subtopic_indicators" $subtopic ($subtopic_indicators_dict) -}}
+
+    {{- end -}}
+    
+{{- end -}}
+
+
+
+<script>
+    var subtopic_indicators = {{ $subtopic_indicators_map.Get "subtopic_indicators" }};
+    // console.log(subtopic_indicators)
+
+    var destination = document.getElementById('indicatorNames')    
+
+    function changeKT(x) {
+        console.log(x)
+        const all = document.querySelectorAll('.dumps')
+        all.forEach((dump) => {
+            dump.classList.remove('show')
+            dump.classList.add('hide')
+        });
+        const chosen = 'output'+x
+        console.log('chosen: ' + chosen)
+        document.getElementById(chosen).classList.remove('hide')
+
+        const KTs = document.querySelectorAll('.kt')
+        KTs.forEach((kt) => {
+            kt.classList.remove('active')
+        });
+
+        const link = 'kt'+x
+        document.getElementById(link).classList.add('active')
+    }
+
+</script>

@@ -1,0 +1,263 @@
+<div class="row d-flex align-items-start" id="topics">
+    <div class="col-md-6">
+        <!--List our key topics. On hover, it changes the second list-->
+        <span class="sm-label sr-only">Key topics:</span>
+        <div class="list-group">
+
+            <span class="sm-label mt-1 pl-1">Filter by:</span>
+
+            {{ $.Scratch.Set "counter" 0 }}
+            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "airquality") }}
+                {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+            {{ end }}
+            <a href="#chooser" id="kt1" onclick="changeKT(1)" class="kt list-group-item list-group-item-action" aria-current="true">Air quality  <span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
+           
+            {{ $.Scratch.Set "counter" 0 }}
+            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "climatehealth") }}
+                {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+            {{ end }}
+            <a href="#chooser" id="kt2" onclick="changeKT(2)"  class="kt list-group-item list-group-item-action">Climate and health<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
+
+
+            {{ $.Scratch.Set "counter" 0 }}
+            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "housing") }}
+                {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+            {{ end }}
+            <a href="#chooser" id="kt3" onclick="changeKT(3)"  class="kt list-group-item list-group-item-action">Housing<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
+
+            {{ $.Scratch.Set "counter" 0 }}
+            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "social") }}
+                {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+            {{ end }}
+            <a href="#chooser" id="kt4" onclick="changeKT(4)"  class="kt list-group-item list-group-item-action">Inequality and health inequities <span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
+          
+          
+            {{ $.Scratch.Set "counter" 0 }}
+            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation") }}
+                {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+            {{ end }}
+            <a href="#chooser" id="kt5" onclick="changeKT(5)"  class="kt list-group-item list-group-item-action" aria-current="true">Active design and transportation<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
+
+            {{ $.Scratch.Set "counter" 0 }}
+            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "healthoutcomes") }}
+                {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+            {{ end }}
+            <a href="#chooser" id="kt6" onclick="changeKT(6)"  class="kt list-group-item list-group-item-action">Environmental health outcomes<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
+
+            {{ $.Scratch.Set "counter" 0 }}
+            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "childhealth") }}
+                {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+            {{ end }}
+            <a href="#chooser" id="kt7" onclick="changeKT(7)"  class="kt list-group-item list-group-item-action">Child health<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
+
+            {{ $.Scratch.Set "counter" 0 }}
+            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "pests") }}
+                {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+            {{ end }}
+            <a href="#chooser" id="kt8" onclick="changeKT(8)"  class="kt list-group-item list-group-item-action">Pests and pesticides<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
+
+            {{ $.Scratch.Set "counter" 0 }}
+            {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "foodanddrink") }}
+                {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+            {{ end }}
+            <a href="#chooser" id="kt9" onclick="changeKT(9)"  class="kt list-group-item list-group-item-action">Food and drink<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
+
+            {{ $.Scratch.Set "counter" 0 }}
+            {{ range  ( where .Site.RegularPages "Section" "data-explorer") }}
+                {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+            {{ end }}
+            <hr>
+            <a href="#chooser" id="kt10" onclick="changeKT(10)"  class="kt list-group-item list-group-item-action active">All topics<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
+
+          </div>
+
+    </div>
+
+
+
+
+    <div class="col-md-6" >
+        <!-- hover-able list that changes on keytopic selection -->
+        <span class="sm-label">Topics:</span>
+        <div style="height: 458px; overflow:scroll; overflow-y:scroll;">
+
+        <div id="output10" class="dumps how">
+            <ul>
+                {{ range ( where .Site.RegularPages "Section" "data-explorer") }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+
+        <div id="output1" class="dumps hide">
+            <ul>
+                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "airquality") }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+        <div id="output2" class="dumps hide">
+            <ul>
+                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "climatehealth") }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+        <div id="output3" class="dumps hide">
+            <ul>
+                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "housing") }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+        <div id="output4" class="dumps hide">
+            <ul>
+                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "social") }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+        <div id="output5" class="dumps hide">
+            <ul>
+                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation") }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+        <div id="output6" class="dumps hide">
+            <ul>
+                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "healthoutcomes") }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+        <div id="output7" class="dumps hide">
+            <ul>
+                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "childhealth") }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+        <div id="output8" class="dumps hide">
+            <ul>
+                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "pests") }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+        <div id="output9" class="dumps hide">
+            <ul>
+                {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "foodanddrink") }}
+                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    </li>
+                {{end}}
+                </ul>
+        </div>
+
+        </div>
+
+
+
+    </div>
+
+    <div class="col-md-4 hide">
+        <div id="indicatorNames" class="hide">
+            Indicator names preview goes here
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Generate JSON object with subtopic pages and keys, and internal_ids in arrays -->
+        
+{{- $subtopic_indicators_dict := newScratch -}}
+{{- $subtopic_indicators_map := newScratch -}}
+
+{{/*  iterate over all pages on the site  */}}
+
+{{- range .Site.Pages -}}
+    
+    {{/*  create a new "slice" (i.e., an array)  */}}
+    
+    {{- $indicators := slice -}}
+    {{- $subtopic_name := slice -}}
+    
+    {{/*  only process if it's a data explorer page */}}
+    
+    {{- if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (ne (path.Base .RelPermalink) "all-data")) -}}
+        
+        {{/*  turn params into strings  */}}
+        
+        {{- $subtopic := .RelPermalink | path.Base | string -}}
+
+        {{/*  subtopic names  */}}
+        
+        {{- $subtopic_title := .Title -}}
+
+        {{/*  get internal_ids  */}}
+        
+        {{- range .Params.indicators -}}
+            
+            {{/*  create an array of internal_ids  */}}
+            
+            {{- $indicators = $indicators | append .IndicatorID -}}
+        
+        {{- end -}}
+        
+        {{/*  create a map with subtopic as key and array of internal_ids as value */}}
+        
+        {{- $subtopic_indicators_dict := dict "subtopic_name" $subtopic_title "IndicatorID" $indicators -}}
+        {{- $subtopic_indicators_map.SetInMap "subtopic_indicators" $subtopic ($subtopic_indicators_dict) -}}
+
+    {{- end -}}
+    
+{{- end -}}
+
+
+
+<script>
+    var subtopic_indicators = {{ $subtopic_indicators_map.Get "subtopic_indicators" }};
+    // console.log(subtopic_indicators)
+
+    var destination = document.getElementById('indicatorNames')    
+
+    function changeKT(x) {
+        console.log(x)
+        const all = document.querySelectorAll('.dumps')
+        all.forEach((dump) => {
+            dump.classList.remove('show')
+            dump.classList.add('hide')
+        });
+        const chosen = 'output'+x
+        console.log('chosen: ' + chosen)
+        document.getElementById(chosen).classList.remove('hide')
+
+        const KTs = document.querySelectorAll('.kt')
+        KTs.forEach((kt) => {
+            kt.classList.remove('active')
+        });
+
+        const link = 'kt'+x
+        document.getElementById(link).classList.add('active')
+    }
+
+</script>
