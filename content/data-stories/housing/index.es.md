@@ -2,7 +2,7 @@
 title: "Salud, vivienda e historia"
 date: 2021-01-06T08:07:31-04:00
 draft: false
-seo_title: "Salud, vivienda e historia."
+seo_title: "Salud, vivienda e historia"
 seo_description: "Para la salud, el lugar importa."
 tags:
 categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]

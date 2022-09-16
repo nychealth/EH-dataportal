@@ -2,7 +2,7 @@
 title: Neighborhood Air Quality
 date: 2021-05-28 18:02:58.795124
 draft: true
-seo_title: "Neighborhood air quality data for NYC."
+seo_title: "Neighborhood air quality data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["airquality","neighborhoods"]
