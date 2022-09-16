@@ -14,6 +14,13 @@ ignoreFiles = ['Simplified.Chinese', 'Spanish']
   sitepath = "/EH-dataportal"
   data_repo = "https://raw.githubusercontent.com/nychealth/EHDP-data"
 
+[imaging]
+  anchor = 'Smart'
+  bgColor = '#ffffff'
+  hint = 'photo'
+  quality = 95
+  resampleFilter = 'Lanczos'
+
 [markup.goldmark.renderer]
   unsafe = true # Allow HTML in md files
 

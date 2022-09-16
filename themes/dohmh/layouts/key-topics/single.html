@@ -1,10 +1,13 @@
 {{- define "main" -}}
 
+{{ $src := .Resources.GetMatch .Params.image }}
+{{ $image := $src.Resize "x350"}}
+
 <style>
     .kt-bg-image {
-        background-image: url("{{ .Params.image }}");
-        height: 350px;
+        background-image: url("{{ $image.Permalink }}");
         background-size: cover; 
+        height: 350px;
     }
 </style>
 
