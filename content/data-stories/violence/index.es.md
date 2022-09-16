@@ -2,7 +2,7 @@
 title: "Por qué la violencia es un problema de salud pública "
 date: 2021-02-08T08:07:31-04:00
 draft: false
-seo_title: "Por qué la violencia es un problema de salud pública."
+seo_title: "Por qué la violencia es un problema de salud pública"
 seo_description: "Uso de la salud pública para prevenir la violencia."
 categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
 keywords: ["violence","assaults","injustice","poverty","social determinants","redlining","disinvestment","racism","neighborhoods"]

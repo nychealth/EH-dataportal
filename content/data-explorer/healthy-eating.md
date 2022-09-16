@@ -2,7 +2,7 @@
 title: "Healthy eating"
 date: 2021-11-17T12:01:22-05:00
 draft: false
-seo_title: "Healthy eating data for NYC."
+seo_title: "Healthy eating data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["neighborhoods","foodanddrink"]

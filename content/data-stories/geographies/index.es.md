@@ -2,7 +2,7 @@
 title: "Los límites del vecindario en los datos del Departamento de Salud"
 date: 2020-08-01T08:33:22-04:00
 draft: false
-seo_title: "Los límites del vecindario en los datos del Departamento de Salud."
+seo_title: "Los límites del vecindario en los datos del Departamento de Salud"
 seo_description: "Diagramar los datos sanitarios en los vecindarios de la ciudad de Nueva York."
 tags: 
 categories: ["internal","neighborhoods"]

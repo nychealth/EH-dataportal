@@ -2,7 +2,7 @@
 title: Birth defects
 date: 2021-05-28 18:02:58.732973
 draft: false
-seo_title: "Birth defects data for NYC."
+seo_title: "Birth defects data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["childhealth","healthoutcomes"]

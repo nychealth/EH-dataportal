@@ -2,7 +2,7 @@
 title: "Displacement Risk"
 date: 2021-10-02T07:56:00-04:00
 draft: false
-seo_title: "Explore data on displacement risk in NYC."
+seo_title: "Explore data on displacement risk in NYC"
 seo_description: "Data on housing, gentrification, and displacement."
 tags: 
 categories: [housing, social]

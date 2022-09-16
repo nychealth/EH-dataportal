@@ -2,7 +2,7 @@
 title: Mental health
 date: 2021-05-28 18:02:58.738512
 draft: true
-seo_title: "Mental health data in NYC."
+seo_title: "Mental health data in NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["social","transportation","healthoutcomes"]
