@@ -2,7 +2,7 @@
 title: "A brief history of redlining"
 date: 2021-01-06T08:07:31-04:00
 draft: false
-seo_title: "A brief history of redlining."
+seo_title: "A brief history of redlining"
 seo_description: "A data story on how redlining affected NYC."
 tags:
 categories: ["housing","social","childhealth","neighborhoods"]

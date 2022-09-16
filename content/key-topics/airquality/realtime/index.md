@@ -2,7 +2,7 @@
 title: "Real-Time Air Quality"
 date: 2022-03-22T19:30:55-04:00
 draft: false
-seo_title: "Real-Time Air Quality in NYC."
+seo_title: "Real-Time Air Quality in NYC"
 seo_description: "Hour to hour, there's large variation in our air quality - even in neighborhoods with the cleanest air."
 tags: 
 categories: [airquality]

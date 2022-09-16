@@ -2,7 +2,7 @@
 title: "Por qué el asma es un problema de justicia social"
 date: 2019-10-24T08:18:56-04:00
 draft: false
-seo_title: "Por qué el asma es un problema de justicia social."
+seo_title: "Por qué el asma es un problema de justicia social"
 seo_description: "A data story on asthma and justice in NYC."
 tags:
 categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
