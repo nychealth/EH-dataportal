@@ -2,7 +2,7 @@
 title: "About the EH Data Portal"
 date: 2021-11-24T13:30:21-05:00
 draft: false
-seo_title: "About the NYC Environment and Health Data Portal"
+seo_title: "About"
 seo_description: "A project from the NYC Department of Health."
 ---
 
