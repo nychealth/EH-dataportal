@@ -55,8 +55,16 @@
             <div class="col-md-4 mb-2">
               <div class="card content-card">
                   <div class="card-content">
-                      <a href="{{ .Permalink}}">
-                          <div style="width:100%;height:200px; background-image:URL({{ path.Clean .File.Dir }}/{{ .Params.image }}); background-size:cover"></div></a>
+                          <script>
+                            console.log('{{ (print .Permalink .Params.image) }}');
+                          </script>
+                      <a href="{{ .Permalink }}">
+                        
+                          {{/*  {{ $src := .Resources.GetMatch (print .Permalink .Params.image) }}  */}}
+                          {{ $src := .Resources.GetMatch .Params.image }}
+                          {{ $image := $src.Resize "740x"}}
+                          <div style="width:100%; height:250px; background-image: URL({{ $image.Permalink }}); background-size: cover"></div></a>
+
                       <div class="card-body">
                       <p class="fs-md"><a href="{{ .RelPermalink }}" class="ds-accent">{{ .Title }}</a></p>
                       <p class="fs-sm">{{ .Content | truncate 75 | plainify }}</p>
@@ -202,7 +210,7 @@
             <div class="col-sm-4">
               <div class="card fs-sm borderbox">
                 <div class="card-body">
-                  <img src="images/data-map-2.png" alt="An example of a data map.">
+                  <img src="images/data-map-3.png" alt="An example of a data map.">
                 </div>
                 <div class="card-footer">
                   <span class="card-title text-muted"><strong>Maps</strong> show us what neighborhoods have the most or the least of something.</span>
@@ -212,7 +220,7 @@
             <div class="col-sm-4">
               <div class="card fs-sm borderbox">
                 <div class="card-body">
-                  <img src="images/trend-chart-2.png" alt="An example of a trend chart showing data over time.">
+                  <img src="images/trend-chart-3.png" alt="An example of a trend chart showing data over time.">
                 </div>
                 <div class="card-footer">
                   <span class="card-title text-muted"><strong>Trends</strong> show us how something has changed over time - if it's going up, going down, or staying stable.</span>
@@ -222,7 +230,7 @@
             <div class="col-sm-4">
               <div class="card fs-sm borderbox">
                 <div class="card-body">
-                  <img src="images/links-chart-2.png" alt="An example of a scatterplot, showing the relationship between two datasets.">
+                  <img src="images/links-chart-3.png" alt="An example of a scatterplot, showing the relationship between two datasets.">
                 </div>
                 <div class="card-footer">
                   <span class="card-title text-muted">And <strong>links</strong> show us how an <strong>environmental factor</strong> might be related to a <strong>health outcome</strong>.</span>

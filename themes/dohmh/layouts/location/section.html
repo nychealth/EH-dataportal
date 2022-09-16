@@ -9,13 +9,14 @@
         
           <div class="card content-card mb-4 col-sm-6 col-md-4">
             <div class="card-content">
-              {{- if .Params.seo_image -}}
               
+              {{- if .Params.seo_image -}}
               {{- $src := resources.Get .Params.seo_image -}}
               {{- $image := $src.Fill "740x400" -}}
               
               <a href="{{ .Permalink }}"><img src="{{ $image.RelPermalink }}" class="card-img-top" alt="City photograph for the {{ lower .Title }} report"></a>
               {{- end -}}
+              
               <div class="card-body">
                 <h2 class="card-title"><a href="{{ .Permalink }}" class="text-primary">{{ .Title }}</a></h5>
                 <p class="card-text">{{ .Summary }}</p>

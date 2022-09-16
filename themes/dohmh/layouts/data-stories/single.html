@@ -1,13 +1,17 @@
 {{- define "main" -}}
 
 <div class="container-fluid px-0">
-        <div id="datastoryheader" {{- with .Params.image -}} style="background-image: URL({{ . }})"{{- end -}}>
-            <div class="medium my-auto">
-                <h1 class="titleheader py-2 px-4">
-                    {{ .Title }}
-                </h1>
-            </div>
+
+    {{ $src := .Resources.GetMatch .Params.image }}
+    {{ $image := $src.Resize "1920x"}}
+    <div id="datastoryheader" style="background-image: URL({{ $image.Permalink }}); background-position: 50% 25%">
+
+        <div class="medium my-auto">
+            <h1 class="titleheader py-2 px-4">
+                {{ .Title }}
+            </h1>
         </div>
+    </div>
 </div>
 
 <article class="container-fluid" id="skip-header-target">
