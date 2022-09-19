@@ -2,7 +2,7 @@
 <!--This partial used with gratitude from: https://codingnconcepts.com/hugo/social-icons-hugo/ -->
 
   {{- $title := .Title -}}
-  {{- $url := printf "%s" .Permalink -}}
+  {{- $url := printf "%s" .RelPermalink -}}
   {{- $body := print $title ", by " .Site.Title "\n" .Params.description "\n\n" $url "\n" -}}
 
   <section class="social-share">
@@ -10,7 +10,7 @@
     <ul class="share-icons">
       <!-- Twitter -->
       <li>
-        <a href="https://twitter.com/intent/tweet?&amp;url={{ .Permalink }}&amp;text={{ .Title }}" target="_blank" rel="noopener" aria-label="Share on Twitter" class="share-btn twitter">
+        <a href="https://twitter.com/intent/tweet?&amp;url={{ .RelPermalink }}&amp;text={{ .Title }}" target="_blank" rel="noopener" aria-label="Share on Twitter" class="share-btn twitter">
           <i class="fab fa-twitter-square fs-xl"></i>
           <p>Twitter</p>
           </a>

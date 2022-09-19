@@ -4,7 +4,7 @@
 
     {{ $src := .Resources.GetMatch .Params.image }}
     {{ $image := $src.Resize "1920x"}}
-    <div id="datastoryheader" style="background-image: URL({{ $image.Permalink }}); background-position: 50% 25%">
+    <div id="datastoryheader" style="background-image: URL({{ $image.RelPermalink }}); background-position: 50% 25%">
 
         <div class="medium my-auto">
             <h1 class="titleheader py-2 px-4">
@@ -25,7 +25,7 @@
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 {{- range .Translations -}}
-                <li><a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>  
+                <li><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>  
                 {{- end -}}
             </ul>
         </div>
@@ -80,7 +80,7 @@
         <div class="col-lg-4 fs-sm">
             <h4 class="fs-md"><i class="fas fa-star text-muted mr-1" aria-hidden="true"></i>Key Topics</h4>
             <!--sets variables-->
-            {{- $page_link := .Permalink -}}
+            {{- $page_link := .RelPermalink -}}
             {{- $cats := .Params.categories -}}
 
             {{- range where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index" -}}
@@ -91,8 +91,8 @@
             {{- $has_common_cats := intersect $cats .Params.categories | len | lt 0 -}}
 
             <!--Show commonalities, except for page we're on -->
-            {{- if and $has_common_cats (ne $page_link $page.Permalink) -}}
-            <a href="{{ $page.Permalink }}">{{ $page.Title }}</a>
+            {{- if and $has_common_cats (ne $page_link $page.RelPermalink) -}}
+            <a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
             <hr class="my-1">
             {{- end -}} 
             {{- end -}}

@@ -22,4 +22,4 @@
 {{- $js := resources.Get "js/main.js" -}}
 {{- $js := resources.Get "js/search.js" -}}
 {{- $secureJS := $js -}}
-<script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
