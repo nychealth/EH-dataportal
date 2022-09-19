@@ -55,7 +55,7 @@
 {{- end -}}
 
 {{- define "js_bot" -}}
-  {{- $js := resources.Get "/js/search-results.js" -}}
+  {{- $js := resources.Get "js/search-results.js" -}}
   {{- $secureJS := $js -}}
   <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 {{- end -}}
