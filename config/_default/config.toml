@@ -21,7 +21,7 @@ ignoreFiles = ['Simplified.Chinese', 'Spanish']
   bgColor = '#ffffff'
   hint = 'photo'
   quality = 95
-  resampleFilter = 'Lanczos'
+  resampleFilter = 'MitchellNetravali'
 
 [markup.goldmark.renderer]
   unsafe = true # Allow HTML in md files
