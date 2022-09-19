@@ -2,7 +2,7 @@
 # baseURL = "/EH-dataportal"
 baseURL = ""
 canonifyURLs = false
-relativeURLs = false
+relativeURLs = true
 languageCode = "en-us"
 title = "Environment & Health Data Portal"
 enableRobotsTXT = true
