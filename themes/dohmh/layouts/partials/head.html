@@ -145,6 +145,12 @@
 
 {{- end -}}
 
+<script>
+    let sitepath = "{{ $.Site.Params.sitepath }}";
+    let baseURL = "{{ $.Site.Params.baseURL }}";
+    let data_repo = "{{ $.Site.Params.data_repo }}";
+</script>
+
 <!-- Analytics placeholder -->
 {{- if eq hugo.Environment "prod" -}} 
     <!--insert Analytics code here-->

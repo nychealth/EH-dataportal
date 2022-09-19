@@ -1,6 +1,8 @@
-baseURL = "https://nychealth.github.io/EH-dataportal/"
-canonifyURLs = true
-relativeURLs = true
+# baseURL = "https://nychealth.github.io/EH-dataportal/"
+# baseURL = "/EH-dataportal"
+baseURL = ""
+canonifyURLs = false
+relativeURLs = false
 languageCode = "en-us"
 title = "Environment & Health Data Portal"
 enableRobotsTXT = true
