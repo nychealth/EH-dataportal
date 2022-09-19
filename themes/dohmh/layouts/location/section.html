@@ -14,13 +14,13 @@
               {{- $src := resources.Get .Params.seo_image -}}
               {{- $image := $src.Fill "740x400" -}}
               
-              <a href="{{ .Permalink }}"><img src="{{ $image.RelPermalink }}" class="card-img-top" alt="City photograph for the {{ lower .Title }} report"></a>
+              <a href="{{ .RelPermalink }}"><img src="{{ $image.RelPermalink }}" class="card-img-top" alt="City photograph for the {{ lower .Title }} report"></a>
               {{- end -}}
               
               <div class="card-body">
-                <h2 class="card-title"><a href="{{ .Permalink }}" class="text-primary">{{ .Title }}</a></h5>
+                <h2 class="card-title"><a href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h5>
                 <p class="card-text">{{ .Summary }}</p>
-                <p class="card-link"><a href="{{ .Permalink }}">See Report ></a></p>
+                <p class="card-link"><a href="{{ .RelPermalink }}">See Report ></a></p>
               </div>
             </div>
           </div>

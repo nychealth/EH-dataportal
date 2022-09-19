@@ -10,7 +10,7 @@
                 <h1>Oops!</h1><br>
                 <p>This isn't a page on this site. 
                     {{- with .Site.GetPage "_index.md" -}}
-                    Return to the <a href="{{ .Permalink }}">
+                    Return to the <a href="{{ .RelPermalink }}">
                         Environment and Health Data Portal Home Page
                     </a>.{{- end -}}</p>
             </div>

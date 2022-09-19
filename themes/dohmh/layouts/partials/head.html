@@ -13,7 +13,7 @@
 
 {{- if .IsTranslated -}}
 	{{- range .Translations -}}
-	<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
+	<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .RelPermalink }}" title="{{ .Language.LanguageName }}">
 	{{- end -}}
 {{- end -}}
 
@@ -36,7 +36,7 @@
 <!-- main CSS -->
 {{- $sass := resources.Get "scss/theme.scss" -}}
 {{- $style := $sass | resources.ToCSS -}}
-<link rel="stylesheet" href="{{ $style.Permalink }}" />
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" />
 
 <!-- Vega. To call, have vega: true in a page's frontmatter -->
 {{- if .Params.vega -}}
@@ -108,7 +108,7 @@
     <!-- Leaflet.colorIcon -->
     <!-- https://github.com/shevekk/Leaflet.ColorIcon -->
     {{ $colorIcon := resources.Get "js/L.colorIcon.js" }} <!-- need to use Hugo Pipes to get file from assets dir -->
-    <script src="{{ $colorIcon.Permalink }}"></script>
+    <script src="{{ $colorIcon.RelPermalink }}"></script>
     
 
 {{- end -}}

@@ -22,16 +22,16 @@
     {{- range .Pages -}}
     <div class="card content-card mb-4 col-sm-6 col-md-4">
         <div class="card-content">
-            <a href="{{ .Permalink}}">
+            <a href="{{ .RelPermalink}}">
 
                 {{ $src := .Resources.GetMatch .Params.image }}
                 {{ $image := $src.Resize "740x"}}
-                <div style="width:100%; height:250px; background-image: url({{ $image.Permalink }}); background-size:cover"></div></a>
+                <div style="width:100%; height:250px; background-image: url({{ $image.RelPermalink }}); background-size:cover"></div></a>
 
             <div class="card-body">
-            <h2 class="card-title"><a href="{{ .Permalink }}" class="text-primary">{{ .Title }}</a></h5>
+            <h2 class="card-title"><a href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h5>
             <p class="fs-sm">{{ .Content | truncate 150 }}</p>
-            <p class="fs-sm text-primary float-right mb-2"><a href="{{ .Permalink }}">Get data, info, and more <i
+            <p class="fs-sm text-primary float-right mb-2"><a href="{{ .RelPermalink }}">Get data, info, and more <i
                 class="fas fa-arrow-circle-right"></i></a></p>
           </div>
         </div>

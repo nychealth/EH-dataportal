@@ -32,7 +32,6 @@
 
           <p class="text-muted">We collect data from many different sources, and we put them together in different ways to show <strong class="text-primary">how environments affect health</strong>. Explore how here.</p>
 
-
         </div>
       </div>
 
@@ -41,7 +40,6 @@
           <hr>
         </div>
       </div>
-
 
       <div class="row mt-4">
         <div class="col">
@@ -53,12 +51,12 @@
             <div class="col-md-4 mb-2">
               <div class="card content-card">
                   <div class="card-content">
-                      <a href="{{ .Permalink }}">
+                      <a href="{{ .RelPermalink }}">
                         
-                          {{/*  {{ $src := .Resources.GetMatch (print .Permalink .Params.image) }}  */}}
+                          {{/*  {{ $src := .Resources.GetMatch (print .RelPermalink .Params.image) }}  */}}
                           {{ $src := .Resources.GetMatch .Params.image }}
                           {{ $image := $src.Resize "740x"}}
-                          <div style="width:100%; height:250px; background-image: URL({{ $image.Permalink }}); background-size: cover"></div></a>
+                          <div style="width:100%; height:250px; background-image: URL({{ $image.RelPermalink }}); background-size: cover"></div></a>
 
                       <div class="card-body">
                       <p class="fs-md"><a href="{{ .RelPermalink }}" class="ds-accent">{{ .Title }}</a></p>
@@ -83,15 +81,11 @@
         </div>
       </div>
 
-
       <div class="row my-4">
         <div class="col-6 mx-auto">
           <hr>
         </div>
       </div>
-
-
-
 
       <div class="row mt-4">
 
@@ -110,20 +104,14 @@
                     <ul class="list-group list-group-flush">
                       {{- range first 5 (where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index") -}}
                       {{- if ne .Title "Key Topics in Environmental Health" -}}
-                      <li class="list-group-item fs-sm"><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+                      <li class="list-group-item fs-sm"><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
                       {{- end -}}
                       {{- end -}}
                     </ul>
 
-      
-
-
-
                 </div>
               </div>
             </div>
-
-
 
         </div>
         <!-- .col -->
@@ -166,11 +154,8 @@
               </div>
           </div>
 
-
-
       </div>
       <!-- .row -->
-
 
       <div class="row my-4">
         <div class="col-6 mx-auto">
@@ -249,7 +234,7 @@
               <h5 class="card-title text-muted fs-sm">About us</h5>
                 <p class="fs-sm">Learn more about the Environment & Health Data Portal, and the Health Department team behind it.</p>
                 {{- with .Site.GetPage "about/about.md" -}}
-                <a href="{{ .Permalink }}" class="btn btn-outline-gray btn-block btn-sm mt-2">About
+                <a href="{{ .RelPermalink }}" class="btn btn-outline-gray btn-block btn-sm mt-2">About
                   Us<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
                   {{- end -}}
                 </div>
@@ -273,17 +258,12 @@
               <h5 class="card-title text-muted fs-sm">Join our team</h5>
                 <p class="fs-sm">Passionate about health, environmental justice, and technology? Check out open positions in our bureau.</p>
                 {{- with .Site.GetPage "about/jobs.md" -}}
-                <a href="{{ .Permalink }}" class="btn btn-outline-gray btn-block btn-sm mt-2">Jobs<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+                <a href="{{ .RelPermalink }}" class="btn btn-outline-gray btn-block btn-sm mt-2">Jobs<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
                   {{- end -}}
                 </div>
           </div>
         </div>
       </div>
-
-
-
-        
-
               
               <!-- <div class="row mb-4">
                 <div class="col-md-6 col-sm-12 mb-2">
@@ -329,12 +309,12 @@
                 
                 {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
                 {{- $secureJS := $js -}}
-                <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+                <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
                 
                 {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
                 
                 {{- $js := resources.Get "js/uhflist.js" -}}
                 {{- $secureJS := $js -}}
-                <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+                <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
                                 
                 {{- end -}}

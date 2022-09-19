@@ -2687,7 +2687,7 @@
 
 {{ $js := resources.Get "js/accessible-autocomplete.min.js" }}
 {{ $secureJS := $js }}
-<script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
 <script type="text/javascript"> 
     
@@ -2700,7 +2700,7 @@
         today = mm + '/' + dd + '/' + yyyy;
         
         // Create citation
-        let citation = "New York City Department of Health, Environment & Health Data Portal. "  + `{{ .Title }}` + " data. " + indicatorName + '. Accessed at ' + `{{ .Permalink}}` + ' on ' + today + "."
+        let citation = "New York City Department of Health, Environment & Health Data Portal. "  + `{{ .Title }}` + " data. " + indicatorName + '. Accessed at ' + `{{ .RelPermalink}}` + ' on ' + today + "."
         
         // Add to form
         document.getElementById('citeText').setAttribute('value',citation);

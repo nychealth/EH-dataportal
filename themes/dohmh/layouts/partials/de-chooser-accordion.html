@@ -32,7 +32,7 @@
                     <div class="card-body bg-white">
                         <ul>
                             {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "airquality") }}
-                                <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{end}}
                             </ul>
@@ -62,7 +62,7 @@
                     <div class="card-body bg-white">
                         <ul>
                             {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "climatehealth") }}
-                                <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{end}}
                             </ul>
@@ -92,7 +92,7 @@
                     <div class="card-body bg-white">
                         <ul>
                             {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "housing") }}
-                                <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{end}}
                             </ul>
@@ -122,7 +122,7 @@
                     <div class="card-body bg-white">
                         <ul>
                             {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "social") }}
-                                <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{end}}
                             </ul>
@@ -152,7 +152,7 @@
                     <div class="card-body bg-white">
                         <ul>
                             {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation") }}
-                                <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{end}}
                             </ul>
@@ -182,7 +182,7 @@
                     <div class="card-body bg-white">
                         <ul>
                             {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "healthoutcomes") }}
-                                <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{end}}
                             </ul>
@@ -212,7 +212,7 @@
                     <div class="card-body bg-white">
                         <ul>
                             {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "childhealth") }}
-                                <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{end}}
                             </ul>
@@ -242,7 +242,7 @@
                     <div class="card-body bg-white">
                         <ul>
                             {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "pests") }}
-                                <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{end}}
                             </ul>
@@ -272,7 +272,7 @@
                     <div class="card-body bg-white">
                         <ul>
                             {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "foodanddrink") }}
-                                <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{end}}
                             </ul>
@@ -307,7 +307,7 @@
                     <div class="card-body bg-white">
                         <ul>
                             {{ range ( where .Site.RegularPages "Section" "data-explorer") }}
-                                <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{end}}
                             </ul>

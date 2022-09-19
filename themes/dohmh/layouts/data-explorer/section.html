@@ -67,7 +67,7 @@
                     <div class="col">
                         <p class="fs-sm mt-2"><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em> 
                             {{ with .Site.GetPage "content/data-explorer/all-data.md" }}
-                            <a href="{{ .Permalink }}">Browse an index of all our datasets</a>.
+                            <a href="{{ .RelPermalink }}">Browse an index of all our datasets</a>.
                             {{ end }}
                             </p>
                     </div>
@@ -84,7 +84,7 @@
 
 {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
 {{- $secureJS := $js -}}
-<script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
 {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
 
@@ -97,7 +97,7 @@
         //Set Neighborhood Name in Text part.
         option.innerHTML = {{ .Title }}
         // set the option value - this adds the environment variable to give it the base URL.
-        option.value = '{{ .Permalink }}'
+        option.value = '{{ .RelPermalink }}'
         //Add the Option element to DropDownList.
         ddlData.options.add(option);
         {{- end -}}
