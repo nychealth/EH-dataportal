@@ -145,6 +145,18 @@
 
 {{- end -}}
 
+<script>
+    let sitepath = "{{ $.Site.Params.sitepath }}";
+    let baseURL = "{{ $.Site.Params.baseURL }}";
+    let data_branch = "{{ site.Params.data_branch }}";
+    let data_repo = "{{ $.Site.Params.data_repo }}";
+
+    console.log("sitepath", sitepath);
+    console.log("baseURL", baseURL);
+    console.log("data_branch", data_branch);
+    console.log("data_repo", data_repo);
+</script>
+
 <!-- Analytics placeholder -->
 {{- if eq hugo.Environment "prod" -}} 
     <!--insert Analytics code here-->

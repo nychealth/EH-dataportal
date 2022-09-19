@@ -5,8 +5,6 @@ let lunrIndex,
     $results,
     pagesIndex;
 
-var site_root = baseURL; // baseURL declared in single.html
-
 // Initialize lunrjs using our generated index file
 
 function initLunr() {
@@ -15,7 +13,8 @@ function initLunr() {
 
     // download grunt-generated index data
 
-    request.open('GET', site_root + "/js/lunr/PagesIndex.json", true);
+    // request.open('GET', baseURL + "/js/lunr/PagesIndex.json", true); // baseURL declared in head.html
+    request.open('GET', "/js/lunr/PagesIndex.json", true); // baseURL declared in head.html
 
     request.onload = function () {
 
@@ -77,7 +76,7 @@ function initLunr() {
         } else {
             var err = request.status + ", " + request.statusText;
             console.error("Error getting Hugo index flie:", err);
-            console.log("Request object:", request);
+            // console.log("Request object:", request);
         }
     };
     
@@ -116,7 +115,8 @@ function initUI() {
         
     } else {
         // redirect to the homepage if there is no search term
-        window.location.href = site_root;
+        // window.location.href = site_root;
+        window.location.href = baseURL;
     }
 }
 

@@ -3,7 +3,7 @@ const handleSearch = (e) => {
   e.preventDefault();
   if (search.length > 2) {
     // baseURL declared in single.html
-    window.location.href = `${baseURL}/search-results/index.html?search=${DOMPurify.sanitize(search)}`;
+    window.location.href = `/search-results/index.html?search=${DOMPurify.sanitize(search)}`;
   }
 }
 
