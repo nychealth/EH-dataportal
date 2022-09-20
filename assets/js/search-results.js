@@ -27,6 +27,9 @@ function initLunr() {
             // Also provide their boost level for the ranking
 
             lunrIndex = lunr(function () {
+
+                console.log("this [lunr]", this);
+
                 this.field("title", {
                     boost: 10
                 });
@@ -137,10 +140,12 @@ function search(query) {
     // Our result:
     //  {title:"Page1", href:"/section/page1", ...}
     return lunrIndex.search(query).map(function (result) {
+
+            console.log("result [lunrIndex]", result);
+
         return pagesIndex.filter(function (page) {
 
             // console.log("page.ref [pagesIndex]", page.href);
-            // console.log("result.ref [lunrIndex]", result.ref);
 
             return page.href === result.ref;
 

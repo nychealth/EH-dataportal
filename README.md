@@ -114,7 +114,7 @@ For example, the rawhtml shortcode allows you to insert raw HTML into a content 
 ```
 << rawhtml >>
     ... Insert raw HTML here.
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 ```
 
 Other shortcodes, like our Vega-lite and Datawrapper shortcodes, can have arguments passed into them. See below for specific documentation.

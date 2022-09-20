@@ -59,15 +59,15 @@ This was **redlining** - drawing boundaries around neighborhoods based on reside
 
 The map below shows the extent of redlining in New York City.
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 <div class="py-0">
     <iframe src="/maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 ### Redlining drove residential segregation
-As a result of redlining, people of color were denied access to “desirable” neighborhoods by racist real estate practices - and denied loans to buy homes in neighborhoods labeled "declining" or "hazardous." Real estate agents also used exploitative tactics like {{< rawhtml>}}<a href="#bbcollapse" data-toggle="collapse"
+As a result of redlining, people of color were denied access to “desirable” neighborhoods by racist real estate practices - and denied loans to buy homes in neighborhoods labeled "declining" or "hazardous." Real estate agents also used exploitative tactics like {{< rawhtml >}}<a href="#bbcollapse" data-toggle="collapse"
         class="badge badge-pill badge-warning">blockbusting</a>, <a
         href="#contractcollapse" data-toggle="collapse"
         class="badge badge-pill badge-warning">contract selling</a>, and <a
@@ -103,13 +103,13 @@ As a result of redlining, people of color were denied access to “desirable” 
     <p>Racially-restrictive covenants were a way to enforce residential segregation, to
         ensure that people of color were kept out of white neighborhoods. </p>
 </div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 Owning a home is a powerful way to achieve financial stability. These policies concentrated people of color in neighborhoods deprived of investment and prevented them from accessing loans and buying property - while while white residents were provided more resources and opportunities.
 
 Enormous areas of New York City were redlined. Explore the extent of HOLC's redlining in NYC's five boroughs:
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 <ul class="nav nav-tabs fs-sm" id="myTab" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" id="manhattan-tab" data-toggle="tab"
@@ -220,16 +220,16 @@ Enormous areas of New York City were redlined. Explore the extent of HOLC's redl
             type="text/javascript">!function () { "use strict"; window.addEventListener("message", function (a) { if (void 0 !== a.data["datawrapper-height"]) for (var e in a.data["datawrapper-height"]) { var t = document.getElementById("datawrapper-chart-" + e) || document.querySelector("iframe[src*='" + e + "']"); t && (t.style.height = a.data["datawrapper-height"][e] + "px") } }) }();</script>
     </div>
 </div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 
 ### Redlining's effects continue today
 In New York City, many once-thriving neighborhoods experienced severe disinvestment as a result of redlining, which caused inequality that continued from one generation to the next. Neighborhoods that were redlined in the 1930s have higher rates of poverty even today – nearly 90 years after the maps were created. According to the [National Community Reinvestment Coalition](https://ncrc.org/holc/), 3 out of every 4 neighborhoods in the USA that were redlined in the 1930s are still low-to-moderate income today - and 2 out of every 3 are predominantly populated by people of color.
 
-Redlining is a prime example of {{< rawhtml>}}  <a href="#disinvestmentCollapseTwo" data-toggle="collapse"
-class="badge badge-pill badge-warning">neighborhood disinvestment</a>{{< /rawhtml>}}: denying or withholding public and private funding, city services, or other resources that neighborhoods - and their residents - need to thrive. When these resources are withheld, it creates ["environments that make [people] sick"](https://www.who.int/hdp/poverty/en/).
+Redlining is a prime example of {{< rawhtml >}}  <a href="#disinvestmentCollapseTwo" data-toggle="collapse"
+class="badge badge-pill badge-warning">neighborhood disinvestment</a>{{< /rawhtml >}}: denying or withholding public and private funding, city services, or other resources that neighborhoods - and their residents - need to thrive. When these resources are withheld, it creates ["environments that make [people] sick"](https://www.who.int/hdp/poverty/en/).
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 <div class="collapse py-2 px-2 mx-2 fs-sm" id="disinvestmentCollapseTwo"
     style="margin-top: 0px!important; background-color: #f9f9f9;">
     <p><strong>Disinvestment</strong> can be:
@@ -245,7 +245,7 @@ class="badge badge-pill badge-warning">neighborhood disinvestment</a>{{< /rawhtm
     </ul>
     </p>
 </div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 Policies like redlining show us that poverty isn't a bit of bad luck, inability to find a good job, or not working hard enough. Poverty is deeper and more powerful: generations of deprivation and disinvestment withholding resources, opportunity, wealth, and health from people and neighborhoods - often, driven by racism.
 
 Though redlining was banned in 1968, other forms of housing discrimination persist. But redlining was special: because of how it worsened poverty and segregation in cities across the United States, leaving a legacy of income and racial disparities in health outcomes.
