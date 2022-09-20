@@ -2,8 +2,8 @@ const handleSearch = (e) => {
   const search = $('form[role="search"] input').val()
   e.preventDefault();
   if (search.length > 2) {
-    // baseURL declared in single.html
-    window.location.href = `${baseURL}/search-results/index.html?search=${DOMPurify.sanitize(search)}`;
+    // sitepath declared in single.html
+    window.location.href = `${sitepath}/search-results/index.html?search=${DOMPurify.sanitize(search)}`;
   }
 }
 
