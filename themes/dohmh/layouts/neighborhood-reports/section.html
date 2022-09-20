@@ -1,9 +1,18 @@
 {{- define "main" -}}
 
 <article class="container overflow-hidden" id="primary-content">
+  
+  <style>
+    .selectedOption {
+      font-weight: bold;
+    }
+    .nr-accent {
+      color:#DC645C!important;
+    }
+  </style>
 
   <div class="col-md-10 mx-auto mt-4">
-    <h1><i class="fas fa-map-marked-alt" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
+    <h1 class="nr-accent"><i class="fas fa-map-marked-alt" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
     <p>{{- .Content -}}</p>
   </div>
 
@@ -19,12 +28,6 @@
 
       </select>
     <br>
-
-    <style>
-      .selectedOption {
-      font-weight: bold;
-    }
-    </style>
 
       <div id="Asthma" class="tab-container"> <h4>Asthma and the environment</h4>
           <p>Asthma is a leading cause of hospitalizations for children. It can be made worse by housing and neighborhood characteristics. There are powerful inequities that drive racial disparities in asthma in NYC.</p></div>

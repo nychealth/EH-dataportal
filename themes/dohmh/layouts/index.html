@@ -8,15 +8,15 @@
   }
   
   .kt-accent {
-      color:#545454
+      color:#800080!important
   }
   
   .nr-accent {
-      color:#DC645C!important;
+      color:#D75047!important;
   }
   
   .de-accent {
-      color:#00923E
+      color:#00923E!important
   }
   
   </style>
@@ -43,8 +43,7 @@
 
       <div class="row mt-4">
         <div class="col">
-          <h2 class="ds-accent"><i class="fas fa-atlas mr-1" aria-hidden="true"></i>Data
-            Stories</h2>
+          <h2 class="ds-accent"><i class="fas fa-atlas mr-1" aria-hidden="true"></i>Data Stories</h2>
 
           <div class="row mt-2">
             {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
@@ -96,7 +95,7 @@
               Core issues that affect our city, our health, our lives.
             </p>
 
-              <a href="{{ .Site.BaseURL }}/key-topics/" class="btn btn-block btn-outline-light text-dark">All Key Topics<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+              <a href="{{ .Site.BaseURL }}/key-topics/" class="kt-accent btn btn-block btn-outline-light text-dark ">All Key Topics<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
 
             <div class="card content-card mb-4">
               <div class="card-content">
