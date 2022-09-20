@@ -289,12 +289,16 @@
 {{- end -}}
 
 {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
-{{- $secureJS := $js -}}
-<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+{{- $secureJS := $js | resources.Fingerprint "sha512" -}}
+<script type="text/javascript" 
+  src="{{ $secureJS.RelPermalink }}" 
+  integrity="{{ $secureJS.Data.Integrity }}"></script>
 
 {{- $js := resources.Get "js/uhflist.js" -}}
-{{- $secureJS := $js -}}
-<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+{{- $secureJS := $js | resources.Fingerprint "sha512" -}}
+<script type="text/javascript" 
+  src="{{ $secureJS.RelPermalink }}" 
+  integrity="{{ $secureJS.Data.Integrity }}"></script>
 
 <script type="text/javascript"> 
   // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx

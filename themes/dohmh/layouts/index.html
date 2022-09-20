@@ -1,4 +1,4 @@
-{{- define "main" -}}
+{{ define "main" }}
 
 <article class="container-fluid overflow-hidden" id="primary-content">
 
@@ -305,16 +305,24 @@
                 </article>
                 {{- end -}}
                 
-                {{- define "js_bot" -}}
-                
-                {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
-                {{- $secureJS := $js -}}
-                <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
-                
-                {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
-                
-                {{- $js := resources.Get "js/uhflist.js" -}}
-                {{- $secureJS := $js -}}
-                <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
-                                
-                {{- end -}}
+{{ define "js_bot" }}
+
+{{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
+{{ $secureJS := $js | resources.Fingerprint "sha512" }}
+<script type="text/javascript" 
+  src="{{ $secureJS.RelPermalink }}" 
+  integrity="{{ $secureJS.Data.Integrity }}"></script>
+
+{{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
+{{ $secureJS := $js | resources.Fingerprint "sha512" }}
+<script type="text/javascript" 
+  src="{{ $secureJS.RelPermalink }}" 
+  integrity="{{ $secureJS.Data.Integrity }}"></script>
+
+{{- $js := resources.Get "js/uhflist.js" -}}
+{{ $secureJS := $js | resources.Fingerprint "sha512" }}
+<script type="text/javascript" 
+  src="{{ $secureJS.RelPermalink }}" 
+  integrity="{{ $secureJS.Data.Integrity }}"></script>
+
+{{- end -}}
