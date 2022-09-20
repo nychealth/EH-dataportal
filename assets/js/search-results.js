@@ -13,8 +13,7 @@ function initLunr() {
 
     // download grunt-generated index data
 
-    request.open('GET', `${baseURL}/js/lunr/PagesIndex.json`, true); // baseURL declared in head.html
-    // request.open('GET', "/js/lunr/PagesIndex.json", true); // baseURL declared in head.html
+    request.open('GET', `${sitepath}/js/lunr/PagesIndex.json`, true); // sitepath declared in head.html
 
     request.onload = function () {
 
@@ -227,7 +226,7 @@ function renderResults(results) {
     const displaySection = (count, el) => {
         if (count > 0) {
             el.querySelector('.search-results-info').innerHTML =
-            `<strong>${count}</strong> results for <strong>'${DOMPurify.sanitize(searchTerm)}'</strong>`;
+                `<strong>${count}</strong> results for <strong>'${DOMPurify.sanitize(searchTerm)}'</strong>`;
             el.removeAttribute('hidden');
         }
     }
