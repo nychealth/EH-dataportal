@@ -115,7 +115,8 @@ function initUI() {
     } else {
         // redirect to the homepage if there is no search term
         // window.location.href = site_root;
-        window.location.href = baseURL;
+        // window.location.href = baseURL;
+        window.location.href = sitepath;
     }
 }
 
@@ -187,7 +188,7 @@ function renderResults(results) {
         
         var li = document.createElement('li');
         var ahref = document.createElement('a');
-        ahref.href = result.href;
+        ahref.href = sitepath + result.href;
         ahref.text = result.title;
 
         li.append(ahref);
