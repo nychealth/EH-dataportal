@@ -27,6 +27,9 @@ function initLunr() {
             // Also provide their boost level for the ranking
 
             lunrIndex = lunr(function () {
+
+                console.log("this [lunr]", this);
+
                 this.field("title", {
                     boost: 10
                 });
@@ -115,7 +118,8 @@ function initUI() {
     } else {
         // redirect to the homepage if there is no search term
         // window.location.href = site_root;
-        window.location.href = baseURL;
+        // window.location.href = baseURL;
+        window.location.href = sitepath;
     }
 }
 
@@ -136,10 +140,12 @@ function search(query) {
     // Our result:
     //  {title:"Page1", href:"/section/page1", ...}
     return lunrIndex.search(query).map(function (result) {
+
+            console.log("result [lunrIndex]", result);
+
         return pagesIndex.filter(function (page) {
 
             // console.log("page.ref [pagesIndex]", page.href);
-            // console.log("result.ref [lunrIndex]", result.ref);
 
             return page.href === result.ref;
 
@@ -187,7 +193,7 @@ function renderResults(results) {
         
         var li = document.createElement('li');
         var ahref = document.createElement('a');
-        ahref.href = result.href;
+        ahref.href = sitepath + result.href;
         ahref.text = result.title;
 
         li.append(ahref);

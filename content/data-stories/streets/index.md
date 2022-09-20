@@ -15,7 +15,7 @@ menu:
 photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 
-{{< rawhtml>}}
+{{< rawhtml >}}
  <div class="col-xl-2">
                     </div>
                     <!-- .col -->
@@ -368,4 +368,4 @@ photocredit: "Michael Appleton/Mayoral Photography Office"
                     </div>
                     <!-- .col -->
 
-{{< /rawhtml>}}
+{{< /rawhtml >}}

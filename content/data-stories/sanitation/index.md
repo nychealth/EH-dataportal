@@ -28,7 +28,7 @@ In East Harlem, street cleanliness affects people’s lives every day. There are
 
 Community health workers have documented concerns about trash on the streets, inadequate trash service, overflowing waste bins, sidewalk blockages, and accessibility issues. 
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 </div>
 <div class="medium my-4 py-2">
     <div class="row">
@@ -41,12 +41,12 @@ Community health workers have documented concerns about trash on the streets, in
     </div>
 </div>
 <div class="narrow">
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 <br>
 Community health workers report that excess trash threatens the quality of life for those who come face-to-face with it.  
 <br>
-{{< rawhtml>}}
+{{< rawhtml >}}
 </div>
 <div class="medium my-4 py-2">
     <div class="row">
@@ -59,7 +59,7 @@ Community health workers report that excess trash threatens the quality of life 
     </div>
 </div>
 <div class="narrow">
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 <br>
 
@@ -67,7 +67,7 @@ Trash on streets discourages outside play for neighborhood residents and impacts
 
 No one should have to handle streets in this condition. 
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 </div>
 <div class="medium my-4 py-2">
     <div class="row">
@@ -83,7 +83,7 @@ No one should have to handle streets in this condition.
     </div>
 </div>
 <div class="narrow">
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 
 ---
@@ -95,7 +95,7 @@ A big part of adequate sanitation is street litter baskets. The Department of Sa
 
 In New York City, litter baskets are either wire and open at the top, or non-wired and enclosed.
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 </div>
 <div class="medium my-4 py-2">
     <div class="row">
@@ -114,7 +114,7 @@ In New York City, litter baskets are either wire and open at the top, or non-wir
     </div>
 </div>
 <div class="narrow">
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 <br>
 
@@ -123,7 +123,7 @@ East Harlem has very few enclosed baskets, according to DSNY data. There are mor
 We also see this difference in data on rat inspections, with more properties north of 96th street failing inspections for rats, garbage, and harborage. Where there are fewer enclosed litter baskets, there is a dramatic increase in garbage and rat activity. 
 
 <br>
-{{< rawhtml>}}
+{{< rawhtml >}}
 </div>
 <div class="medium my-4 py-2">
     <div class="row">
@@ -143,7 +143,7 @@ We also see this difference in data on rat inspections, with more properties nor
     </div>
 </div>
 <div class="narrow">
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 ---
 <br>
