@@ -764,6 +764,7 @@
                 if (paramId) {
                     await loadIndicator(paramId)
                 } else {
+                    console.log('no param', url.searchParams.get('id'));
                     await loadIndicator()
                 }
                 
@@ -785,7 +786,11 @@
         const loadIndicator = (this_indicatorId, bypassUrlChange) => {
 
             // console.log("window.location.hash 1 [loadIndicator]", window.location.hash);
+
+
             currentHash = window.location.hash;
+
+            console.log('this_indicatorId', this_indicatorId, bypassUrlChange)
 
             // console.log("** loadIndicator");
 
