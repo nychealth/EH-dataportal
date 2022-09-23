@@ -31,12 +31,117 @@
         padding-left: 10px;
         width: max-content;
     }
-
+    
     /* Set font-size for table headers */
     #summary-table table thead tr th {
         font-size: 13px!important;
     }
-
+    
+    /* This CSS controls read more/show less toggle. */
+    [aria-expanded="false"]>.expanded,
+    [aria-expanded="true"]>.collapsed {
+        display: none;
+    }
+    
+    #truncate {
+        display: block;
+    }
+    
+    #full {
+        display: none;
+    }
+    
+    #expand-collapse {
+        cursor: pointer;
+    }
+    
+    .show {
+        display: block !important;
+    }
+    
+    .hide {
+        display: none !important;
+    }
+    
+    /* .tab-content > .tab-pane {
+        display: block !important;
+        opacity: 1 !important;
+    } */
+    
+    .dropdown-title {
+        padding: 0.25rem 1.5rem;
+    }
+    
+    .indicator-measures h6 {
+        margin-top: 0.5em;
+    }
+    
+    .dropdown-menu {
+        z-index: 2000;
+    }
+    
+    div[aria-labelledby="dropdownMapMeasures"].show {
+        display: flex !important;
+    }
+    
+    /* info text boxes */
+    
+    .topic-text {
+        font-size: 12px!important;
+    }
+    
+    .topic-text h3 {
+        font-size: 16px;
+        color: #656565;
+    }
+    
+    .topic-text p li {
+        font-size: 12px;
+    }
+    
+    /* indicator selection button */
+    
+    button.text-info, button.text-info {
+        color: #841972 !important; 
+    }
+    button.text-info:hover, button.text-info:focus {
+        color: #ffffff !important; 
+    }
+    
+    /* dropdown list items - active styles based on if they're related to a primary or secondary button style */
+    
+    .btn-outline-primary ~ .dropdown-menu .dropdown-item.active, 
+    .btn-outline-primary ~ .dropdown-menu .dropdown-item:active {
+        color: #ffffff;
+        text-decoration: none;
+        background-color: #841972; 
+    }
+    
+    .btn-outline-secondary ~ .dropdown-menu .dropdown-item.active, 
+    .btn-outline-secondary ~ .dropdown-menu .dropdown-item:active {
+        color: #ffffff;
+        text-decoration: none;
+        background-color: #181A7B; 
+    }
+    
+    /* topic selection modal */
+    
+    .modal-backdrop.show {
+        opacity: 0.70; 
+        background-color: #424242
+    }
+    
+    .de-modal-title {
+        margin-bottom: 0;
+        margin-top: 0;
+        line-height: 1; 
+    }
+    
+    .modal-header .close {
+        padding: 0.5rem 0.5rem;
+        margin: -1rem -1rem -1rem auto; 
+    }
+    
 </style>
 
 <article class="container-fluid" id="skip-header-target">
@@ -74,114 +179,6 @@
                     <h2>{{ .Title }}</h2>
                 </div>
             </div>
-
-            <style>
-                /* This CSS controls read more/show less toggle. */
-                [aria-expanded="false"]>.expanded,
-                [aria-expanded="true"]>.collapsed {
-                    display: none;
-                }
-
-                #truncate {
-                    display: block;
-                }
-
-                #full {
-                    display: none;
-                }
-
-                #expand-collapse {
-                    cursor: pointer;
-                }
-
-                .show {
-                    display: block !important;
-                }
-
-                .hide {
-                    display: none !important;
-                }
-
-                /* .tab-content > .tab-pane {
-                    display: block !important;
-                    opacity: 1 !important;
-                } */
-
-                .dropdown-title {
-                    padding: 0.25rem 1.5rem;
-                }
-
-                .indicator-measures h6 {
-                    margin-top: 0.5em;
-                }
-
-                .dropdown-menu {
-                    z-index: 2000;
-                }
-
-                div[aria-labelledby="dropdownMapMeasures"].show {
-                    display: flex !important;
-                }
-
-                /* info text boxes */
-
-                .topic-text {
-                    font-size: 12px!important;
-                }
-
-                .topic-text h3 {
-                    font-size: 16px;
-                    color: #656565;
-                }
-
-                .topic-text p li {
-                    font-size: 12px;
-                }
-
-                /* indicator selection button */
-
-                button.text-info, button.text-info {
-                    color: #841972 !important; 
-                }
-                button.text-info:hover, button.text-info:focus {
-                    color: #ffffff !important; 
-                }
-                
-                /* dropdown list items - active styles based on if they're related to a primary or secondary button style */
-
-                .btn-outline-primary ~ .dropdown-menu .dropdown-item.active, 
-                .btn-outline-primary ~ .dropdown-menu .dropdown-item:active {
-                    color: #ffffff;
-                    text-decoration: none;
-                    background-color: #841972; 
-                }
-
-                .btn-outline-secondary ~ .dropdown-menu .dropdown-item.active, 
-                .btn-outline-secondary ~ .dropdown-menu .dropdown-item:active {
-                    color: #ffffff;
-                    text-decoration: none;
-                    background-color: #181A7B; 
-                }
-
-                /* topic selection modal */
-
-                .modal-backdrop.show {
-                    opacity: 0.70; 
-                    background-color: #424242
-                }
-
-                .de-modal-title {
-                    margin-bottom: 0;
-                    margin-top: 0;
-                    line-height: 1; 
-                }
-
-                .modal-header .close {
-                    padding: 0.5rem 0.5rem;
-                    margin: -1rem -1rem -1rem auto; 
-                }
-
-            </style>
 
             <div class="row">
                 <div class="col-md-4">
