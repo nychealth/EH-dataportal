@@ -84,7 +84,7 @@
         <div id="output10" class="dumps how">
             <ul>
                 {{ range ( where .Site.RegularPages "Section" "data-explorer") }}
-                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
                 </ul>
@@ -94,7 +94,7 @@
         <div id="output1" class="dumps hide">
             <ul>
                 {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "airquality") }}
-                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
                 </ul>
@@ -103,7 +103,7 @@
         <div id="output2" class="dumps hide">
             <ul>
                 {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "climatehealth") }}
-                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
                 </ul>
@@ -112,7 +112,7 @@
         <div id="output3" class="dumps hide">
             <ul>
                 {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "housing") }}
-                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
                 </ul>
@@ -121,7 +121,7 @@
         <div id="output4" class="dumps hide">
             <ul>
                 {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "social") }}
-                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
                 </ul>
@@ -130,7 +130,7 @@
         <div id="output5" class="dumps hide">
             <ul>
                 {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation") }}
-                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
                 </ul>
@@ -139,7 +139,7 @@
         <div id="output6" class="dumps hide">
             <ul>
                 {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "healthoutcomes") }}
-                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
                 </ul>
@@ -148,7 +148,7 @@
         <div id="output7" class="dumps hide">
             <ul>
                 {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "childhealth") }}
-                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
                 </ul>
@@ -157,7 +157,7 @@
         <div id="output8" class="dumps hide">
             <ul>
                 {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "pests") }}
-                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
                 </ul>
@@ -166,7 +166,7 @@
         <div id="output9" class="dumps hide">
             <ul>
                 {{ range where ( where .Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "foodanddrink") }}
-                    <li><a href="{{ .Permalink}}">{{ .Title }}</a>
+                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}
                 </ul>

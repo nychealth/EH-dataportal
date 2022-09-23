@@ -1,16 +1,16 @@
 
-{{- $page_link := $.content.Permalink -}}
+{{- $page_link := $.content.RelPermalink -}}
 {{- $cats := $.content.Params.categories -}}
 {{- $layout := .layout -}}
 
 {{- range where $.content.Site.RegularPages "Section" .section -}}
     {{- $page := . }}
     {{- $has_common_cats := intersect $cats .Params.categories | len | lt 0 -}}
-        {{- if and $has_common_cats (ne $page_link $page.Permalink) -}}
+        {{- if and $has_common_cats (ne $page_link $page.RelPermalink) -}}
 
             {{- if eq $layout "button" -}}
 
-            <a class="btn btn-outline-primary btn-md has-icon disperse mb-1" href="{{ .Permalink }}">
+            <a class="btn btn-outline-primary btn-md has-icon disperse mb-1" href="{{ .RelPermalink }}">
             <span class="fas fa-angle-right" aria-hidden="true"></span>
             <span class="title">{{ .Title }}</span>
             </a>
@@ -25,7 +25,7 @@
             </div>
 
             {{- else if eq $layout "singlelist" -}}
-            <a href="{{ .Permalink }}">{{ .Title }}</a>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
             <hr class="my-1">
 
             {{- end -}}

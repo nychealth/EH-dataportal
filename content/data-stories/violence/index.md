@@ -32,10 +32,10 @@ or is somebody you know affected by violence? Help is available and you don't ha
 ## Background on violence in New York City
 
 ### NYC's homicide rate has declined...
-There is a lot less violence than there used to be in NYC. {{< rawhtml>}}<a href="#covidcollapse" data-toggle="collapse" class="badge badge-outline badge-pill badge-danger">Note on the COVID-19 pandemic</a></p>
+There is a lot less violence than there used to be in NYC. {{< rawhtml >}}<a href="#covidcollapse" data-toggle="collapse" class="badge badge-outline badge-pill badge-danger">Note on the COVID-19 pandemic</a></p>
 <div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="covidcollapse">
     <p>Data for 2020 is not included here, but since the start of the COVID-19 pandemic, NYC has seen an increase in assaults, shooting incidents, and non-fatal assault emergency room visits and hospitalizations.</p>
-    <p>Similar patterns have been observed nationally as the country experiences unprecedented unemployment, housing and food insecurity, political unrest and uncertainty about the future. The social, economic and environmental factors that can influence violence rates have been amplified during this historic crisis.</p> </div>{{< /rawhtml>}}
+    <p>Similar patterns have been observed nationally as the country experiences unprecedented unemployment, housing and food insecurity, political unrest and uncertainty about the future. The social, economic and environmental factors that can influence violence rates have been amplified during this historic crisis.</p> </div>{{< /rawhtml >}}
 
 To look at violence, people often look at homicide rates. In recent years, NYC’s rate of homicides - the most extreme episodes of violence - has been under 5 per 100,000 people, down from a high of over 25 per 100,000 people from 1986-1990.
 
@@ -60,7 +60,7 @@ To prevent violence among those most affected by it, we need to explore what fac
 ### Violence is rooted in historical disinvestment and racism
 Evidence shows that violence results from social structures that limit access to basic needs - structures that are fueled by racism, residential segregation, and neighborhood disinvestment. Where these structures persist, people are exposed to violence. For example, low-income neighborhoods of color are known to be hit the hardest.
 
-This map shows the parts of NYC that were {{< rawhtml>}}<a href="#redliningCollapse" data-toggle="collapse" class="badge badge-pill badge-warning">redlined</a> 90 years ago as part of racist housing policy that set off decades of disinvestment and intergenerational poverty.</p>
+This map shows the parts of NYC that were {{< rawhtml >}}<a href="#redliningCollapse" data-toggle="collapse" class="badge badge-pill badge-warning">redlined</a> 90 years ago as part of racist housing policy that set off decades of disinvestment and intergenerational poverty.</p>
     <div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="redliningCollapse">
     <p><span style="font-weight: bold; color:#7e0000">Redlining</span> was a federal policy that
     started in the 1930s. A government agency drew maps of hundreds of cities throughout the
@@ -76,28 +76,28 @@ This map shows the parts of NYC that were {{< rawhtml>}}<a href="#redliningColla
     low-to-moderate income today - and 2 out of every 3 are predominantly populated by
     people of color.</p>
     </div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 A map of recent shootings lines up with the heavily <span style="font-weight: bold; color: #7e0000">redlined</span> areas of the Bronx, Harlem, and northern and eastern Brooklyn - showing clearly how today's violence is closely related to the ways that racist policies are embedded in our society.
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 <div class="my-3">
 <iframe src="HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
-Decades of government and societal {{< rawhtml>}}<a href="#disinvestmentCollapse" data-toggle="collapse" class="badge badge-pill badge-warning">disinvestment</a> from practices like redlining means limited opportunity and resources, and results in higher rates of poverty in some neighborhoods.</p>
+Decades of government and societal {{< rawhtml >}}<a href="#disinvestmentCollapse" data-toggle="collapse" class="badge badge-pill badge-warning">disinvestment</a> from practices like redlining means limited opportunity and resources, and results in higher rates of poverty in some neighborhoods.</p>
 <div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="disinvestmentCollapse">
     <strong>Disinvestment</strong> is when either government agencies or private companies deliberately withhold or withdraw resources and opportunity from a neighborhood or community. </p>
     <p>The history of disinvesment is tied to racist practices and policies - like denyng people of color loans to buy homes. Disinvestment is also planned shrinkage, a steady decline of public funding for public housing, services, education - especially in cities, and especially in neighborhoods populated mostly by people of color.</p>
-    </div>{{< /rawhtml>}}
+    </div>{{< /rawhtml >}}
 
 As a result of this disinvestment, we see a clear relationship between poverty and violence. As a neighborhood's poverty level increases, so do assaults.
 
 {{< datawrapper title="Poverty and assaults in NYC" src="DlEvR/2/" height="533" >}}
 
 ### Disinvestment creates environments that threaten health
-{{< rawhtml>}}
+{{< rawhtml >}}
     <p><a href="#disinvestmentCollapseTwo" data-toggle="collapse" class="badge badge-pill badge-warning">Disinvestment takes many forms</a>. It promotes segregation, limits people’s access to basic resources, and creates environments that threaten people’s health. </p>
     <div class="collapse py-2 px-2 mx-2 mb-2 drawerbg" id="disinvestmentCollapseTwo">
     <p>Disinvestment can be:
@@ -110,11 +110,11 @@ As a result of this disinvestment, we see a clear relationship between poverty a
         </ul>
     </p>
     </div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 In terms of public health, we say that disinvestment produces environmental factors that make certain health outcomes more likely.
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 <div class="d-sm-none d-md-block">
     <div class="row py-2">
         <div class="col-4 ml-auto"><button type="button" class="btn btn-light btn-med btn-block"
@@ -125,7 +125,7 @@ In terms of public health, we say that disinvestment produces environmental fact
                 disabled>Health outcomes</button></div>
     </div>
 </div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 Due to a history of disinvestment, New York City neighborhoods experience very different environmental factors that predict violence and other health outcomes.
 
@@ -133,7 +133,7 @@ By “environmental,” we mean the entire physical, social, and economic contex
 
 Whether or not a neighborhood experiences more violence can be explained by looking at whether its environment has protective factors, which help prevent violence before it starts, or risk factors, which make violence a more likely outcome.
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 <div class="row d-sm-none d-md-block">
     <div class="col mx-auto">
         <div class="medium">
@@ -175,7 +175,7 @@ Whether or not a neighborhood experiences more violence can be explained by look
 </div>
 <!--end row-->
 
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 ## What does this mean for NYC's neighborhoods?
 NYC's neighborhoods experience these protective and risk factors very differently. Some neighborhoods have a lot less of the protective factors – and a lot more of the risk factors.
@@ -204,7 +204,7 @@ Below, we can see that <span style="color: #b820bb; font-weight: bold;">Belmont/
 
 Below, each vertical line represents the neighborhood rankings for the risk factors of total poverty, child poverty, child homelessness, high school incompletion, disconnected youth, unemployment, evictions, foreclosures – and the violent outcome of assault hospitalizations, shootings, and homicides. Each line connects one neighborhood through its ranks – the flatter the line, the more consistent the ranks.
 
-These risk factors describe a network of threatening {{< rawhtml>}}<a href="#envcollapse" data-toggle="collapse" class="badge badge-pill badge-warning">environmental factors</a>
+These risk factors describe a network of threatening {{< rawhtml >}}<a href="#envcollapse" data-toggle="collapse" class="badge badge-pill badge-warning">environmental factors</a>
 in communities that have experienced disinvestment, place residents in poverty and expose them to risks throughout their lives – culminating in higher rates of <a href="#violcollapse" data-toggle="collapse" class="badge badge-pill badge-warning">violence</a>.</p>
 <div class="collapse drawerbg my-2 pt-2 pb-2 mx-2" id="envcollapse">
 Environmental factors in the chart below:
@@ -230,7 +230,7 @@ data</button>
         data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;About the
         data</button>
 </div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 <span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span> ranks highly for these risk factors that make violence more likely. By comparison, <span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span> ranks low for these factors.
 
@@ -275,7 +275,7 @@ line for New York City residents, or <a href="https://www1.nyc.gov/site/ocdv/get
 
 
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 <!-- Data Modal -->
 <div class="modal fade" id="dataModal" tabindex="-1" role="dialog" aria-labelledby="dataModalTitle"
     aria-hidden="true">
@@ -336,4 +336,4 @@ line for New York City residents, or <a href="https://www1.nyc.gov/site/ocdv/get
         </div>
     </div>
 </div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}

@@ -5,8 +5,6 @@ let lunrIndex,
     $results,
     pagesIndex;
 
-var site_root = baseURL; // baseURL declared in single.html
-
 // Initialize lunrjs using our generated index file
 
 function initLunr() {
@@ -15,7 +13,7 @@ function initLunr() {
 
     // download grunt-generated index data
 
-    request.open('GET', site_root + "/js/lunr/PagesIndex.json", true);
+    request.open('GET', `${sitepath}/js/lunr/PagesIndex.json`, true); // sitepath declared in head.html
 
     request.onload = function () {
 
@@ -29,6 +27,9 @@ function initLunr() {
             // Also provide their boost level for the ranking
 
             lunrIndex = lunr(function () {
+
+                console.log("this [lunr]", this);
+
                 this.field("title", {
                     boost: 10
                 });
@@ -77,7 +78,7 @@ function initLunr() {
         } else {
             var err = request.status + ", " + request.statusText;
             console.error("Error getting Hugo index flie:", err);
-            console.log("Request object:", request);
+            // console.log("Request object:", request);
         }
     };
     
@@ -116,7 +117,9 @@ function initUI() {
         
     } else {
         // redirect to the homepage if there is no search term
-        window.location.href = site_root;
+        // window.location.href = site_root;
+        // window.location.href = baseURL;
+        window.location.href = sitepath;
     }
 }
 
@@ -137,10 +140,12 @@ function search(query) {
     // Our result:
     //  {title:"Page1", href:"/section/page1", ...}
     return lunrIndex.search(query).map(function (result) {
+
+            console.log("result [lunrIndex]", result);
+
         return pagesIndex.filter(function (page) {
 
             // console.log("page.ref [pagesIndex]", page.href);
-            // console.log("result.ref [lunrIndex]", result.ref);
 
             return page.href === result.ref;
 
@@ -188,7 +193,7 @@ function renderResults(results) {
         
         var li = document.createElement('li');
         var ahref = document.createElement('a');
-        ahref.href = result.href;
+        ahref.href = sitepath + result.href;
         ahref.text = result.title;
 
         li.append(ahref);
@@ -227,7 +232,7 @@ function renderResults(results) {
     const displaySection = (count, el) => {
         if (count > 0) {
             el.querySelector('.search-results-info').innerHTML =
-            `<strong>${count}</strong> results for <strong>'${DOMPurify.sanitize(searchTerm)}'</strong>`;
+                `<strong>${count}</strong> results for <strong>'${DOMPurify.sanitize(searchTerm)}'</strong>`;
             el.removeAttribute('hidden');
         }
     }

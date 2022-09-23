@@ -171,11 +171,22 @@ module.exports = function(grunt) {
             href = subdir + "/" + pageName;
 
             // console.log("href [HTML]:", href);
+            // grunt.log.writeln([">>> ", href, " - content: ", S(content[2]).s]);
+
+            let contentParsed = S(content[2])
+                .stripTags()
+                .replace(/(<!--)(.|[\r\n])*?(-->)/gm, "")
+                // .replace(/(\{\{<.*rawhtml.*>\}\})(.|[\r\n])*?(\{\{<.*\/rawhtml.*>\}\})/gm, "")
+                .replace(/[!\"#\＄%&\'\(\)\*\+,-\./:;<=>\?@\[\\\]\^`{\|}~]/g, "")
+                .replace(/\s-\s/g, " ")
+                .replace(/\s+/g, " ")
+                .trim()
+                .s
 
             return {
                 title: pageName,
                 href: site_root + "/" + S(href).dasherize().s.toLowerCase(),
-                content: S(content[2]).stripTags().replace(/[^\w\s-]|_/g, "").replace(/\s-\s/g, " ").replace(/\s+/g, " ").trim().s
+                content: contentParsed
             };
         };
         
@@ -236,9 +247,20 @@ module.exports = function(grunt) {
                 href = subdir + "/" + pageName;
                 
             }
+
+            let contentParsed = S(content[2])
+                .replace(/<!--(.|[\r\n])*?-->/gm, "")
+                .replace(/{{<.*rawhtml.*>}}(.|[\r\n])*?{{<.*\/rawhtml.*>}}/gm, "@")
+                .stripTags()
+                .replace(/[!\"#\＄%&\'\(\)\*\+,-\./:;<=>\?@\[\\\]\^`{\|}~]/g, "")
+                .replace(/\s-\s/g, " ")
+                .replace(/\s+/g, " ")
+                .trim()
+                .s
             
             // grunt.log.writeln("href [MD]:", href);
-            
+            // if (href.startsWith("cn")) grunt.log.writeln("\n\n", href, "\n\n", contentParsed)
+
 
             // Build Lunr index for this page (keeping "-" in content)
 
@@ -257,7 +279,7 @@ module.exports = function(grunt) {
                 seo_description: frontMatter.seo_description,
                 seo_image: frontMatter.seo_image,
                 href: site_root + "/" + S(href).trim().s.toLowerCase(),
-                content: S(content[2]).stripTags().replace(/[^\w\s-]|_/g, "").replace(/\s-\s/g, " ").replace(/\s+/g, " ").trim().s
+                content: contentParsed
             };
             
             return pageIndex;

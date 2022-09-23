@@ -15,7 +15,7 @@ menu:
 photocredit: "Mayoral Photography Office"
 ---
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 <div class="col-xl-3 border-right">
     <div class="sticky-top narrow collapse d-xl-block" id="sidebar-nav">
         <nav class="mx-xl-n2 pt-4 py-xl-0" role="navigation" id="myScrollspy">
@@ -241,4 +241,4 @@ photocredit: "Mayoral Photography Office"
 
 
 
-{{< /rawhtml>}}
+{{< /rawhtml >}}
