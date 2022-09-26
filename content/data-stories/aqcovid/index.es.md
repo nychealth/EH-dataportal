@@ -2,7 +2,7 @@
 title: "La calidad el aire durante la COVID-19"
 date: 2020-04-22T08:33:22-04:00
 draft: false
-seo_title: "La calidad el aire durante la COVID-19"
+seo_title: "La calidad el aire durante la COVID-19."
 seo_description: "¿Qué sucede cuando la ciudad de Nueva York se queda en casa?"
 tags: 
 categories: ["transportation","airquality"]

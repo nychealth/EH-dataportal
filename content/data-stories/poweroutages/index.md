@@ -2,7 +2,7 @@
 title: "How power outages affect health"
 date: 2022-01-10T12:34:38-04:00
 draft: false
-seo_title: "How Power Outages Affect Health"
+seo_title: "How Power Outages Affect Health."
 seo_description: "As we experience a changing climate, a reliable supply of electricity is crucial."
 tags: 
 categories: ["social", "healthoutcomes", "climatehealth"]

@@ -2,7 +2,7 @@
 title: "Air quality snapshots: special findings from 10 years of NYCCAS"
 date: 2020-04-21T13:37:45-04:00
 draft: false
-seo_title: "Air quality snapshots"
+seo_title: "Air quality snapshots."
 seo_description: "Special findings from 10 years of NYCCAS."
 layout: flexible
 image: ds-AQsnapshots.jpg
@@ -15,7 +15,7 @@ menu:
 photocredit: "Mayoral Photography Office"
 ---
 
-{{< rawhtml >}}
+{{< rawhtml>}}
 <div class="col-xl-3 border-right">
     <div class="sticky-top narrow collapse d-xl-block" id="sidebar-nav">
         <nav class="mx-xl-n2 pt-4 py-xl-0" role="navigation" id="myScrollspy">
@@ -241,4 +241,4 @@ photocredit: "Mayoral Photography Office"
 
 
 
-{{< /rawhtml >}}
+{{< /rawhtml>}}

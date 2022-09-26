@@ -59,12 +59,12 @@ image: ds-redlining.jpeg
 
 下面的地图显示了纽约市的红线圈定范围。 
 
-{{< rawhtml >}}
+{{< rawhtml>}}
 <div class="py-0">
     <iframe src="/maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
-{{< /rawhtml >}}
+{{< /rawhtml>}}
 
 ### 红线圈定导致了住宅隔离 
 由于红线圈定，有色人种被种族主义的房地产行为剥夺了进入“理想”社区的机会，也无法获取贷款在标记为“没落中”或“危险”的社区购买房屋。房地产经纪人还利用诱骗房产主贱卖房地产、合同操纵和种族限制契约等剥削性策略来加深和加强社区隔离。 
@@ -76,8 +76,7 @@ image: ds-redlining.jpeg
 
 纽约市的大片地区被划为红线圈定区。研究HOLC在纽约市五个行政区的红线圈定范围： 
 
-{{< rawhtml >}}
-
+{{< rawhtml>}}
 <ul class="nav nav-tabs fs-sm" id="myTab" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" id="manhattan-tab" data-toggle="tab"
@@ -111,44 +110,43 @@ image: ds-redlining.jpeg
         <br>
         <iframe title="Manhattan - Cn" aria-label="Stacked Bars" id="datawrapper-chart-PkSCB" src="https://datawrapper.dwcdn.net/PkSCB/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="349"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
         <br><br>
-        <p>Manhattan的大部分地区都被划为红线圈定区。然而，最近几十年的再投资导致了房地产价值的上升和一些曾经的居民流离失所。曾经被红线圈定的社区现在拥有一些该市最昂贵的房地产。</p>
+        <p>Manhattan的大部分地区都被划为红线圈定区。然而，最近几十年的再投资导致了房地产价值的上升和一些曾经的居民流离失所。曾经被红线圈定的社区现在拥有一些该市最昂贵的房地产。 [FLAG - OTHER TEXT BEHIND BUTTONS]</p>
     </div>
     <div class="tab-pane fade" id="bronx" role="tabpanel" aria-labelledby="bronx-tab">
         <br>
         <iframe title="Bx - Cn" aria-label="Stacked Bars" id="datawrapper-chart-g5K1u" src="https://datawrapper.dwcdn.net/g5K1u/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="349"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
         <br><br>
-        <!-- <p>As with Manhattan, huge swaths of residential neighborhoods in the Bronx were
+        <p>As with Manhattan, huge swaths of residential neighborhoods in the Bronx were
             declared "declining" or "hazardous" in HOLC's redlining map. Unlike
             Manhattan, though, the Bronx has not seen the same level of reinvestment and
-            redevelopment,and poverty rates remain high. </p> -->
+            redevelopment,and poverty rates remain high. </p>
     </div>
     <div class="tab-pane fade" id="brooklyn" role="tabpanel"
         aria-labelledby="brooklyn-tab">
         <br>
         <iframe title="Bklyn - Cn" aria-label="Stacked Bars" id="datawrapper-chart-MmeuP" src="https://datawrapper.dwcdn.net/MmeuP/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="493"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
         <br><br>
-        <!-- <p>Brooklyn also saw extensive redlining that lead to deep disinvestment and
-            generations of poverty.</p> -->
+        <p>Brooklyn also saw extensive redlining that lead to deep disinvestment and
+            generations of poverty.</p>
     </div>
     <div class="tab-pane fade" id="queens" role="tabpanel" aria-labelledby="queens-tab">
         <br>
         <iframe title="Qns - Cn" aria-label="Stacked Bars" id="datawrapper-chart-kHuYf" src="https://datawrapper.dwcdn.net/kHuYf/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="397"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
         <br><br>
-        <!-- <p>Queens saw significantly less redlining than other boroughs.</p> -->
+        <p>Queens saw significantly less redlining than other boroughs.</p>
     </div>
     <div class="tab-pane fade" id="staten" role="tabpanel" aria-labelledby="staten-tab">
         <br>
         <iframe title="Si - Cn" aria-label="Stacked Bars" id="datawrapper-chart-D2K07" src="https://datawrapper.dwcdn.net/D2K07/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="133"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
         <br><br>
-        <!-- <p>Like Queens, Staten Island saw much less redlining than other boroughs.</p> -->
+        <p>Like Queens, Staten Island saw much less redlining than other boroughs.</p>
     </div>
     <div class="tab-pane fade" id="citywidemap" role="tabpanel"
         aria-labelledby="map-tab">
         <iframe title="Map - Cn" aria-label="Map" id="datawrapper-chart-k9Imm" src="https://datawrapper.dwcdn.net/k9Imm/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="661"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
     </div>
 </div>
-
-{{< /rawhtml >}}
+{{< /rawhtml>}}
 
 
 ### 红线圈定的影响今天仍在继续 

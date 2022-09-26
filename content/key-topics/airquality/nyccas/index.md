@@ -2,7 +2,7 @@
 title: "The New York City Community Air Survey"
 date: 2022-04-20T11:14:56-04:00
 draft: false
-seo_title: "NYC Community Air Survey Annual Report"
+seo_title: "NYC Community Air Survey Annual Report."
 seo_description: "Data, findings, and more."
 tags: 
 categories: [airquality]

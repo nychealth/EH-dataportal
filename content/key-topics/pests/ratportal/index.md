@@ -2,7 +2,7 @@
 title: "NYC Rat Information Portal"
 date: 2021-09-08T11:14:56-04:00
 draft: true
-seo_title: "Data on rat inspections"
+seo_title: "Data on rat inspections."
 seo_description: "Data, findings, and more."
 tags: 
 categories: [pests]

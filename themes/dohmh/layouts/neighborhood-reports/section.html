@@ -1,15 +1,9 @@
 {{- define "main" -}}
 
 <article class="container overflow-hidden" id="primary-content">
-  
-  <style>
-    .selectedOption {
-      font-weight: bold;
-    }
-  </style>
 
   <div class="col-md-10 mx-auto mt-4">
-    <h1 class="nr-accent"><i class="fas fa-map-marked-alt" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
+    <h1><i class="fas fa-map-marked-alt" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
     <p>{{- .Content -}}</p>
   </div>
 
@@ -25,6 +19,12 @@
 
       </select>
     <br>
+
+    <style>
+      .selectedOption {
+      font-weight: bold;
+    }
+    </style>
 
       <div id="Asthma" class="tab-container"> <h4>Asthma and the environment</h4>
           <p>Asthma is a leading cause of hospitalizations for children. It can be made worse by housing and neighborhood characteristics. There are powerful inequities that drive racial disparities in asthma in NYC.</p></div>
@@ -81,7 +81,7 @@
           <!-- Ranges through content/neighborhood-reports/NEIGHBORHOOD/*.md -->          
           {{- range .Sections.ByTitle -}}
             <li>
-                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                <a href="{{ .Permalink }}">{{ .Title }}</a>
             </li>
           {{- end -}}
         </ul>
@@ -96,16 +96,12 @@
 {{ define "js_bot" }}
 
 {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
-{{- $secureJS := $js | resources.Fingerprint "sha512" -}}
-<script type="text/javascript" 
-  src="{{ $secureJS.RelPermalink }}" 
-  integrity="{{ $secureJS.Data.Integrity }}"></script>
+{{- $secureJS := $js -}}
+<script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
 {{- $js := resources.Get "js/uhflist.js" -}}
-{{- $secureJS := $js | resources.Fingerprint "sha512" -}}
-<script type="text/javascript" 
-  src="{{ $secureJS.RelPermalink }}" 
-  integrity="{{ $secureJS.Data.Integrity }}"></script>
+{{- $secureJS := $js -}}
+<script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
 <script type="text/javascript"> 
 // this script controls the topic menu
@@ -213,7 +209,7 @@ function changeDescription(x) {
     var locVal = searchForm.options[searchForm.selectedIndex].value
 
     if (locVal) {
-      window.location = sitepath + '/neighborhood-reports/'+ DOMPurify.sanitize(locVal) + reportURL
+      window.location = '{{ $.Site.Params.sitepath}}/neighborhood-reports/'+ DOMPurify.sanitize(locVal) + reportURL
     } else {
       document.getElementById('warning').style.display = "block" // this is our error handling
     }

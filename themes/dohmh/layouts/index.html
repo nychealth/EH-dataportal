@@ -1,7 +1,28 @@
-{{ define "main" }}
+{{- define "main" -}}
 
 <article class="container-fluid overflow-hidden" id="primary-content">
 
+  <style>
+    .ds-accent {
+      color:#197BBD!important;
+  }
+  
+  .kt-accent {
+      color:#545454
+  }
+  
+  .nr-accent {
+      color:#DC645C!important;
+  }
+  
+  .de-accent {
+      color:#00923E
+  }
+  
+  </style>
+
+
+  
   <div class="row">
     <div class="col-md-10 col-sm-12 mx-auto">
       <!--start main column-->
@@ -13,6 +34,7 @@
 
           <p class="text-muted">We collect data from many different sources, and we put them together in different ways to show <strong class="text-primary">how environments affect health</strong>. Explore how here.</p>
 
+
         </div>
       </div>
 
@@ -22,22 +44,19 @@
         </div>
       </div>
 
+
       <div class="row mt-4">
         <div class="col">
-          <h2 class="ds-accent"><i class="fas fa-atlas mr-1" aria-hidden="true"></i>Data Stories</h2>
+          <h2 class="ds-accent"><i class="fas fa-atlas mr-1" aria-hidden="true"></i>Data
+            Stories</h2>
 
           <div class="row mt-2">
             {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
             <div class="col-md-4 mb-2">
               <div class="card content-card">
                   <div class="card-content">
-                      <a href="{{ .RelPermalink }}">
-                        
-                          {{/*  {{ $src := .Resources.GetMatch (print .RelPermalink .Params.image) }}  */}}
-                          {{ $src := .Resources.GetMatch .Params.image }}
-                          {{ $image := $src.Resize "740x"}}
-                          <div style="width:100%; height:250px; background-image: URL({{ $image.Permalink }}); background-size: cover"></div></a>
-
+                      <a href="{{ .Permalink}}">
+                          <div style="width:100%;height:200px; background-image:URL({{ path.Clean .File.Dir }}/{{ .Params.image }}); background-size:cover"></div></a>
                       <div class="card-body">
                       <p class="fs-md"><a href="{{ .RelPermalink }}" class="ds-accent">{{ .Title }}</a></p>
                       <p class="fs-sm">{{ .Content | truncate 75 | plainify }}</p>
@@ -53,7 +72,7 @@
 
           <div class="row mt-1 mb-2">
             <div class="col-md-4 ml-auto">
-              <a href="{{ .Site.BaseURL }}/data-stories/" class="ds-accent btn btn-block btn-outline-light text-primary">Browse all Data Stories<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+              <a href="/data-stories/" class="ds-accent btn btn-block btn-outline-light text-primary">Browse all Data Stories<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
 
             </div>
           </div>
@@ -61,11 +80,15 @@
         </div>
       </div>
 
+
       <div class="row my-4">
         <div class="col-6 mx-auto">
           <hr>
         </div>
       </div>
+
+
+
 
       <div class="row mt-4">
 
@@ -76,7 +99,7 @@
               Core issues that affect our city, our health, our lives.
             </p>
 
-              <a href="{{ .Site.BaseURL }}/key-topics/" class="kt-accent btn btn-block btn-outline-light text-dark ">All Key Topics<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+              <a href="/key-topics/" class="btn btn-block btn-outline-light text-dark">All Key Topics<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
 
             <div class="card content-card mb-4">
               <div class="card-content">
@@ -84,14 +107,20 @@
                     <ul class="list-group list-group-flush">
                       {{- range first 5 (where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index") -}}
                       {{- if ne .Title "Key Topics in Environmental Health" -}}
-                      <li class="list-group-item fs-sm"><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+                      <li class="list-group-item fs-sm"><a href="{{ .Permalink }}">{{ .Title }}</a></li>
                       {{- end -}}
                       {{- end -}}
                     </ul>
 
+      
+
+
+
                 </div>
               </div>
             </div>
+
+
 
         </div>
         <!-- .col -->
@@ -101,17 +130,17 @@
           <p class="fs-sm">
             Get data for your neighborhood on select topics:
           </p>
-          <a href="{{ .Site.BaseURL }}/neighborhood-reports/" class="btn btn-block btn-outline-light text-dark nr-accent">All Reports<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+          <a href="/neighborhood-reports/" class="btn btn-block btn-outline-light text-dark nr-accent">All Reports<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
 
           <div class="card content-card mb-4">
             <div class="card-content">
                 <div class="card-body">
                   <ul class="list-group list-group-flush fs-sm">
-                    <li class="list-group-item"><a href="{{ .Site.BaseURL }}/neighborhood-reports/asthma" class="">Asthma</a></li>
-                    <li class="list-group-item"><a href="{{ .Site.BaseURL }}/neighborhood-reports/activedesign">Active design</a></li>
-                    <li class="list-group-item"><a href="{{ .Site.BaseURL }}/neighborhood-reports/climateandhealth">Climate and health</a></li>
-                    <li class="list-group-item"><a href="{{ .Site.BaseURL }}/neighborhood-reports/housing">Housing and health</a></li>
-                    <li class="list-group-item"><a href="{{ .Site.BaseURL }}/neighborhood-reports/outdoorair">Outdoor Air and health</a></li>
+                    <li class="list-group-item"><a href="neighborhood-reports/asthma" class="">Asthma</a></li>
+                    <li class="list-group-item"><a href="neighborhood-reports/activedesign">Active design</a></li>
+                    <li class="list-group-item"><a href="neighborhood-reports/climateandhealth">Climate and health</a></li>
+                    <li class="list-group-item"><a href="neighborhood-reports/housing">Housing and health</a></li>
+                    <li class="list-group-item"><a href="neighborhood-reports/outdoorair">Outdoor Air and health</a></li>
         
                   </ul>
               </div>
@@ -122,7 +151,7 @@
           <div class="col-md-4 col-sm-12">
             <h3 class="de-accent"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Data Explorer</h3> 
               <p class="fs-sm">View maps and trends for hundreds of datasets.</p>
-              <a href="{{ .Site.BaseURL }}/data-explorer/" class="de-accent btn btn-block btn-outline-light text-primary">All datasets<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+              <a href="/data-explorer/" class="de-accent btn btn-block btn-outline-light text-primary">All datasets<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
 
               <div class="card content-card mb-4">
                 <div class="card-content">
@@ -134,8 +163,11 @@
               </div>
           </div>
 
+
+
       </div>
       <!-- .row -->
+
 
       <div class="row my-4">
         <div class="col-6 mx-auto">
@@ -170,7 +202,7 @@
             <div class="col-sm-4">
               <div class="card fs-sm borderbox">
                 <div class="card-body">
-                  <img src="{{ .Site.BaseURL }}/images/data-map-3.png" alt="An example of a data map.">
+                  <img src="images/data-map-2.png" alt="An example of a data map.">
                 </div>
                 <div class="card-footer">
                   <span class="card-title text-muted"><strong>Maps</strong> show us what neighborhoods have the most or the least of something.</span>
@@ -180,7 +212,7 @@
             <div class="col-sm-4">
               <div class="card fs-sm borderbox">
                 <div class="card-body">
-                  <img src="{{ .Site.BaseURL }}/images/trend-chart-3.png" alt="An example of a trend chart showing data over time.">
+                  <img src="images/trend-chart-2.png" alt="An example of a trend chart showing data over time.">
                 </div>
                 <div class="card-footer">
                   <span class="card-title text-muted"><strong>Trends</strong> show us how something has changed over time - if it's going up, going down, or staying stable.</span>
@@ -190,7 +222,7 @@
             <div class="col-sm-4">
               <div class="card fs-sm borderbox">
                 <div class="card-body">
-                  <img src="{{ .Site.BaseURL }}/images/links-chart-3.png" alt="An example of a scatterplot, showing the relationship between two datasets.">
+                  <img src="images/links-chart-2.png" alt="An example of a scatterplot, showing the relationship between two datasets.">
                 </div>
                 <div class="card-footer">
                   <span class="card-title text-muted">And <strong>links</strong> show us how an <strong>environmental factor</strong> might be related to a <strong>health outcome</strong>.</span>
@@ -214,7 +246,7 @@
               <h5 class="card-title text-muted fs-sm">About us</h5>
                 <p class="fs-sm">Learn more about the Environment & Health Data Portal, and the Health Department team behind it.</p>
                 {{- with .Site.GetPage "about/about.md" -}}
-                <a href="{{ .RelPermalink }}" class="btn btn-outline-gray btn-block btn-sm mt-2">About
+                <a href="{{ .Permalink }}" class="btn btn-outline-gray btn-block btn-sm mt-2">About
                   Us<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
                   {{- end -}}
                 </div>
@@ -238,12 +270,17 @@
               <h5 class="card-title text-muted fs-sm">Join our team</h5>
                 <p class="fs-sm">Passionate about health, environmental justice, and technology? Check out open positions in our bureau.</p>
                 {{- with .Site.GetPage "about/jobs.md" -}}
-                <a href="{{ .RelPermalink }}" class="btn btn-outline-gray btn-block btn-sm mt-2">Jobs<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+                <a href="{{ .Permalink }}" class="btn btn-outline-gray btn-block btn-sm mt-2">Jobs<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
                   {{- end -}}
                 </div>
           </div>
         </div>
       </div>
+
+
+
+        
+
               
               <!-- <div class="row mb-4">
                 <div class="col-md-6 col-sm-12 mb-2">
@@ -285,24 +322,16 @@
                 </article>
                 {{- end -}}
                 
-{{ define "js_bot" }}
-
-{{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
-{{ $secureJS := $js | resources.Fingerprint "sha512" }}
-<script type="text/javascript" 
-  src="{{ $secureJS.RelPermalink }}" 
-  integrity="{{ $secureJS.Data.Integrity }}"></script>
-
-{{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
-{{ $secureJS := $js | resources.Fingerprint "sha512" }}
-<script type="text/javascript" 
-  src="{{ $secureJS.RelPermalink }}" 
-  integrity="{{ $secureJS.Data.Integrity }}"></script>
-
-{{- $js := resources.Get "js/uhflist.js" -}}
-{{ $secureJS := $js | resources.Fingerprint "sha512" }}
-<script type="text/javascript" 
-  src="{{ $secureJS.RelPermalink }}" 
-  integrity="{{ $secureJS.Data.Integrity }}"></script>
-
-{{- end -}}
+                {{- define "js_bot" -}}
+                
+                {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
+                {{- $secureJS := $js -}}
+                <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+                
+                {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
+                
+                {{- $js := resources.Get "js/uhflist.js" -}}
+                {{- $secureJS := $js -}}
+                <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+                                
+                {{- end -}}

@@ -3,7 +3,7 @@ title: Chronic Obstructive Pulmonary Disease
 date: 2021-05-28 18:02:58.755844
 draft: true
 notes: "Decided to remove this 7/13/2022 with AQ team"
-seo_title: "Chronic obstructive pulmonary disease data for NYC"
+seo_title: "Chronic obstructive pulmonary disease data for NYC."
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["airquality","healthoutcomes","climatehealth"]

@@ -2,7 +2,7 @@
 title: "We're Hiring"
 date: 2021-11-24T13:30:21-05:00
 draft: false
-seo_title: "Our bureau is hiring"
+seo_title: "Our bureau is hiring."
 seo_description: "Join our team."
 ---
 

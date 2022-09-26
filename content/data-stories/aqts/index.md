@@ -2,7 +2,7 @@
 title: "Air quality in car-free areas"
 date: 2019-11-25T13:24:52-04:00
 draft: false
-seo_title: "Air quality in car-free areas"
+seo_title: "Air quality in car-free areas."
 seo_description: "Measuring what happens to our air when we change our streets."
 tags: 
 categories: ["transportation","airquality"]

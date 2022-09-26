@@ -2,7 +2,7 @@
 title: "What hot weather means for food safety"
 date: 2019-10-24T08:18:56-04:00
 draft: false
-seo_title: "Hot weather and food safety"
+seo_title: "Hot weather and food safety."
 seo_description: "A data story on weather and foodborne illness."
 tags:
 categories: ["foodanddrink","climatehealth"]

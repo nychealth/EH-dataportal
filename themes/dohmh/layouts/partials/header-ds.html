@@ -39,7 +39,7 @@
                         </li>
                         <li>
                             <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
-                                <img class="d-block" src="{{ site.BaseURL }}/images/nyc-bubble-logo.svg" width="45" alt="NYC Logo">
+                                <img class="d-block" src="/images/nyc-bubble-logo.svg" width="45" alt="NYC Logo">
                             </a>
                         </li>
                     </ul>
@@ -61,7 +61,7 @@
             <nav class="nav nav-pills border-bottom" role="navigation">
                 {{- $currentPage := . -}}
                 {{- range .Site.Menus.main -}}
-                <div class="nav-item{{ if or ($currentPage.IsMenuCurrent `main` .) (eq $currentPage.RelPermalink .URL) }} active{{- end -}}">
+                <div class="nav-item{{ if or ($currentPage.IsMenuCurrent `main` .) (eq $currentPage.Permalink .URL) }} active{{- end -}}">
                     <a class="nav-link" href="{{ .URL }}" id="nav-item-{{ .Identifier }}">
                         {{ .Pre }} {{ .Name }}
                     </a>

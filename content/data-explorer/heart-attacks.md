@@ -3,7 +3,7 @@ title: Heart Attacks
 date: 2021-05-28 18:02:58.879198
 draft: true
 notes: "Decided to remove this 7/13/2022 with AQ team"
-seo_title: "Heart attacks data for NYC"
+seo_title: "Heart attacks data for NYC."
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["healthoutcomes"]

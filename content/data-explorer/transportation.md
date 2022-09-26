@@ -2,7 +2,7 @@
 title: Transportation
 date: 2021-05-28 18:02:58.725915
 draft: true
-seo_title: "Transportation data for NYC"
+seo_title: "Transportation data for NYC."
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["transportation","neighborhoods"]

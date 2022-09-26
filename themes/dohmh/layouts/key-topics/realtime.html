@@ -216,7 +216,7 @@
 <!-- color name to hex converter -->
 <!-- from https://gist.github.com/njvack/02ad8efcb0d552b0230d -->
 {{- $color_convert := resources.Get "js/color-convert.js" -}}
-<script src="{{ $color_convert.RelPermalink }}"></script>
+<script src="{{ $color_convert.Permalink }}"></script>
 
 <!--bring in realtime JS -->
 <script type="text/javascript" src="js/realtime.js"></script>

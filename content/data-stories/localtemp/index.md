@@ -2,7 +2,7 @@
 title: "The urban heat island effect in NYC"
 date: 2021-08-20T12:52:43-04:00
 draft: false
-seo_title: "The Urban Heat Island Effect in New York City"
+seo_title: "The Urban Heat Island Effect in New York City."
 seo_description: "A data story on block-by-block heat differences."
 tags:
 categories: ["climatehealth","neighborhoods"]
@@ -18,7 +18,7 @@ In New York City and across the country, more people die from extreme heat than 
 
 At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weather Station was 89° Fahrenheit (F). At the same time, the air temperature on a block in East Harlem (below left) was nearly 5° hotter than at the Weather Station, and the temperature on a block in Bed-Stuy (below right) was 3.5° hotter.
 
-{{< rawhtml >}}
+{{< rawhtml>}}
 </div>
 
 <div class="wide my-4">
@@ -47,17 +47,17 @@ At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weathe
     </div>
 </div>
 <div class="narrow my-4">
-{{< /rawhtml >}}
+{{< /rawhtml>}}
 
-This is an example of the Urban Heat Island Effect: when some areas in a city are {{< rawhtml >}}<a href="#collapseOne" data-toggle="collapse" class="badge badge-pill badge-warning">hotter than others</a>{{< /rawhtml >}}. Temperatures can even vary from block to block.
+This is an example of the Urban Heat Island Effect: when some areas in a city are {{< rawhtml>}}<a href="#collapseOne" data-toggle="collapse" class="badge badge-pill badge-warning">hotter than others</a>{{< /rawhtml>}}. Temperatures can even vary from block to block.
 
-{{< rawhtml >}}
+{{< rawhtml>}}
 <div class="collapse py-2 px-2 mx-2 fs-sm" id="collapseOne"
 style="margin-top: 0px!important; background-color: #f9f9f9;">
 <p>LaGuardia Airport is an open space without many structures surrounding it. It doesn't trap heat the way other places in the city do, so we often use it as a reference temperature. It is almost always cooler than other parts of NYC, where building boilers and vehicle engines generate heat, manufactured surfaces like roofs and roads absorb heat, and there’s less vegetation to cool things down. 
 </p>
 </div>
-{{< /rawhtml >}}
+{{< /rawhtml>}}
 
 What cools your block?
 Anyone who has looked for a shady spot under a tree on a hot sunny day knows that trees help to cool off a street.
@@ -70,7 +70,7 @@ We reviewed land-use data and satellite imagery to build a profile of each block
 
 We found that the average temperature at the Edenwald spot was more than 2° cooler than the Brownsville spot.
 
-{{< rawhtml >}}
+{{< rawhtml>}}
 </div>
 <div class="wide my-2 fs-sm">
 <div class="row">
@@ -167,11 +167,11 @@ We found that the average temperature at the Edenwald spot was more than 2° coo
 </div>
 </div>
 <div class="narrow my-2">
-{{< /rawhtml >}}
+{{< /rawhtml>}}
 
 These are the factors we explored that affect hyperlocal temperature:
 
-{{< rawhtml >}}
+{{< rawhtml>}}
 </div>
 <div class="wide my-4 fs-sm">
     <div class="accordion-group my-3" role="tablist" id="accordion-01">
@@ -304,7 +304,7 @@ These are the factors we explored that affect hyperlocal temperature:
     </div>
 </div>
 <div class="narrow my-2">
-{{< /rawhtml >}}
+{{< /rawhtml>}}
 
 What factors matter the most?
 We built a statistical model that predicts the average summer temperature on a hypothetical city block, based on the neighborhood factors we studied in the hyperlocal temperature study? We modeled the average temperature from 6 to 9PM, when the Urban Heat Island Effect is the greatest (the sun sets, but the city retains heat).
@@ -313,7 +313,7 @@ Our model looked at how much each factor affected temperature, and it showed tha
 
 See for yourself - drag the green slider back and forth to see what the temperature would be on a hypothetical block if there were more vegetation or more impervious surfaces like roadways, which absorb sunlight and retain heat.
 
-{{< rawhtml >}}
+{{< rawhtml>}}
 </div>
 
 <!--FIRST SLIDER-->
@@ -435,7 +435,7 @@ See for yourself - drag the green slider back and forth to see what the temperat
 </script>
 
 <div class="narrow my-2">
-{{< /rawhtml >}}
+{{< /rawhtml>}}
 
 A block covered in trees, grass, and shrubs might have an average summertime evening temperature of 77°, but one completely covered in impervious surfaces would be 79°. More vegetation means lower temperatures.
 
@@ -443,7 +443,7 @@ Cooling a block by 2° may not sound like much, but small differences in tempera
 
 As the climate changes, NYC faces rising average temperatures and heat waves that place New Yorkers at risk. Already more than 100 New Yorkers die each year due to extreme heat. Even modest cooling can save lives, and cooling neighborhoods with trees and other vegetation is a critical step we can take to protect people from hot weather. Even modest cooling can save lives.
 
-{{< rawhtml >}}
+{{< rawhtml>}}
 </div>
 <div class="wide">
     <div class="mb-4" style="background-color:rgb(231, 231, 231); padding: 10px; border-radius: 5px;">
@@ -502,6 +502,6 @@ As the climate changes, NYC faces rising average temperatures and heat waves tha
         });
     } //this function creates the map
 </script>
-{{< /rawhtml >}}
+{{< /rawhtml>}}
 
 

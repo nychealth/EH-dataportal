@@ -2,7 +2,7 @@
 title: "An update on air quality during COVID-19"
 date: 2022-04-20T08:33:22-04:00
 draft: false
-seo_title: "How COVID-19 affected air quality"
+seo_title: "How COVID-19 affected air quality."
 seo_description: "How the shutdown affected air in NYC."
 tags: 
 categories: ["transportation","airquality","foodanddrink"]
@@ -27,7 +27,7 @@ As a result, outdoor air quality improved: we recorded large decreases in concen
 
 But the improvements in pollution from winter to spring were much greater in 2020 than they had been in 2019. Reductions in activity during NY Pause resulted in a **29% decline in NO2** and a **25% decline in PM2.5**.
 
-{{< rawhtml >}}
+{{< rawhtml>}}
 </div>
 <div class="medium my-4 py-2">
     <H3 class="fs-lg">Both NO2 and PM2.5 fell during NY Pause - more than in 2019. </H3>
@@ -45,12 +45,12 @@ But the improvements in pollution from winter to spring were much greater in 202
     </div>
 </div>
 <div class="narrow">
-{{< /rawhtml >}}
+{{< /rawhtml>}}
 
 ### The biggest air quality changes were in Manhattan's central business district.
 With many New Yorkers staying home, activity in the CBD fell drastically. Explore the changes in the maps below.
 
-{{< rawhtml >}}
+{{< rawhtml>}}
 <div style="background-color:blanchedalmond; margin: 10px 50px; padding: 10px; border-radius: 5px"><p class="fs-sm">Our land-use regression models incorporate data from nearly 100 air quality monitoring sites. <a href="https://nyccas.cityofnewyork.us/nyccas2021v9/report/2">For more information, visit NYCCAS</a>. </p></div>
 
 </div>
@@ -69,7 +69,7 @@ With many New Yorkers staying home, activity in the CBD fell drastically. Explor
 <button type="button" class="btn btn-block btn-outline-primary mb-4" data-toggle="modal" data-target="#ModalCenter">
     View these data in an interactive map
 </button>
-{{< /rawhtml >}}
+{{< /rawhtml>}}
 
 ### Comparing Midtown Manhattan to an “urban background” location
 Since PM2.5 levels normally vary by season, we used the difference in PM2.5 between a site in midtown Manhattan and an “urban background” site in Queens to see if there were any unusual changes during NY Pause. This Queens site usually has lower levels of air pollutants than Midtown, but during NY Pause, the difference fell to nearly nothing. Pollution in Midtown matched the Queens site.
@@ -105,7 +105,7 @@ Congestion pricing is a proposed tolling system that would charge drivers for en
 Because congestion pricing specifically targets traffic going into the CBD, we can expect effects on air pollution to be more narrowly focused around that area. And congestion pricing will probably have more of an effect on NO2 (which mostly comes from traffic) than on PM2.5 (which comes from many sources including buildings and commercial cooking).
 
 
-{{< rawhtml >}}
+{{< rawhtml>}}
 <!-- Modal -->
 <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -153,4 +153,4 @@ Because congestion pricing specifically targets traffic going into the CBD, we c
         document.getElementById('btn1').classList.remove('btn-primary')
     }
 </script>
-{{< /rawhtml >}}
+{{< /rawhtml>}}

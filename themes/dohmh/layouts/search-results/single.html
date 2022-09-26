@@ -1,4 +1,8 @@
 {{- define "main" -}}
+<script>
+    let baseURL = {{ .Site.BaseURL }};
+</script>
+
   <article class="container-fluid overflow-hidden" id="primary-content">
     <div class="col-md-10 mx-auto my-4">
       <h1 class="search-results-title mb-4"></h1>
@@ -36,7 +40,7 @@
       <hr class="my-2">
       <p><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em> 
 
-        <a href='{{ ref . "/content/data-explorer/all-data.md" }}'>Browse an index of all our datasets</a>
+        <a href='{{ ref . "content/data-explorer/all-data.md" }}'>Browse an index of all our datasets</a>
         
       <p>Or, try these other Health Department resources:
       <ul>
@@ -56,8 +60,6 @@
 
 {{- define "js_bot" -}}
   {{- $js := resources.Get "js/search-results.js" -}}
-  {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
-  <script type="text/javascript" 
-    src="{{ $secureJS.RelPermalink }}" 
-    integrity="{{ $secureJS.Data.Integrity }}"></script>
+  {{- $secureJS := $js -}}
+  <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 {{- end -}}

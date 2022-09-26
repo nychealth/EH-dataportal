@@ -1,13 +1,10 @@
 {{- define "main" -}}
 
-{{ $src := .Resources.GetMatch .Params.image }}
-{{ $image := $src.Resize "x350"}}
-
 <style>
     .kt-bg-image {
-        background-image: url("{{ $image.Permalink }}");
-        background-size: cover; 
+        background-image: url("{{ .Params.image }}");
         height: 350px;
+        background-size: cover; 
     }
 </style>
 
@@ -105,9 +102,9 @@
                     {{- range where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
                     <div class="col-md-4">
                         <div class=" my-2 p-2 borderbox itemfocus">
-                            <a class="h2 fs-md" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                            <a class="h2 fs-md" href="{{ .Permalink }}">{{ .Title }}</a>
                             <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                            <p class="text-right fs-sm"><a href="{{ .RelPermalink }}">Read more...</a></p>
+                            <p class="text-right fs-sm"><a href="{{ .Permalink }}">Read more...</a></p>
                             </div>
                     </div>
 

@@ -2,7 +2,7 @@
 title: Housing safety
 date: 2021-05-28 18:02:58.817845
 draft: false
-seo_title: "Housing data for NYC"
+seo_title: "Housing data for NYC."
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["housing","social","neighborhoods","climatehealth"]
