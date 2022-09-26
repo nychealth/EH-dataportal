@@ -2274,13 +2274,16 @@
                     const measureIdsAnnualAvg = [365, 370, 375, 391];
                                          
                     if (measureIdsAnnualAvg.includes(defaultTrendMeasureId)) {
-                        
+
                         const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.Time.includes('Annual Average'));
+
                         renderTrendChart(filteredTrendDataAnnualAvg, defaultTrendMetadata);
+                        updateChartPlotSize();
 
                     } else {
 
                         renderTrendChart(filteredTrendData, defaultTrendMetadata);
+                        updateChartPlotSize();
 
                     }
 
