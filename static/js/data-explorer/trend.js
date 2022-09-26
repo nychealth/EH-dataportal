@@ -24,6 +24,7 @@ const renderTrendChart = (
                     // "grid": false,
                     // "labelFontSize": 12,
                     "labelAngle": 0,
+                    "labelOverlap": "parity",
                     "labelFontSize": 11,
                     "titleFontSize": 13,
                     "titleFont": "sans-serif",
