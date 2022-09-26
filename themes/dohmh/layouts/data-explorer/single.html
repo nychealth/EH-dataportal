@@ -141,6 +141,12 @@
         padding: 0.5rem 0.5rem;
         margin: -1rem -1rem -1rem auto; 
     }
+
+    /* disabled checkbox */
+
+    .checkbox-geo.disabled > input {
+        accent-color: #656565;
+    }
     
 </style>
 
@@ -1237,13 +1243,23 @@
         }
         
         const handleGeoFilter = (el) => {
+
             el.addEventListener('change', (e) => {
+
                 if (e.target.checked) {
                     selectedSummaryGeography.push(e.target.value)
                 } else {
                     selectedSummaryGeography = selectedSummaryGeography.filter(item => item !== e.target.value);
                 }
-                renderTable()
+                
+                // only render table if a geography is checked
+
+                if (selectedSummaryGeography.length > 0) {
+                    renderTable()
+
+                } else {
+                    document.querySelector("#tableID").innerHTML = '';
+                }
             })
         }
         
