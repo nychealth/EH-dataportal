@@ -1050,6 +1050,8 @@
             fullDataLinksObjects = joinedAqData
                 .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
                 .objects()
+
+            console.log("fullDataLinksObjects", fullDataLinksObjects);
             
             // call the measure rendering etc. function
 

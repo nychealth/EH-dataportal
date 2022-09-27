@@ -9,7 +9,7 @@ const renderMap = (
 
         const mapYears =  [...new Set(data.map(item => item.Time))];
 
-        console.log("mapYears [map.js]", mapYears);
+        // console.log("mapYears [map.js]", mapYears);
 
         let mapGeoType            = data[0].GeoType;
         let mapMeasurementType    = metadata[0].MeasurementType;

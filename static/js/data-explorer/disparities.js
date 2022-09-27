@@ -15,9 +15,16 @@ const loadDisparitiyData = async (disparityMetadata, disparityIndicatorId) => {
 
     const aqPrimaryData = 
         aq.from(fullDataLinksObjects) // fullDataTrendObjects is created by the joinData function
-        .select("GeoType", "GeoID", "Time", "end_period", "Value", "DisplayValue")
+        .select("GeoType", "GeoRank", "GeoID", "Time", "end_period", "Value", "DisplayValue")
         .reify()
-    
+
+    // aqPrimaryData.print()
+
+    let maxGeoRank = Math.max(aqPrimaryData.objects()[0].GeoRank);
+    console.log("maxGeoRank", maxGeoRank);
+    let filteredPrimaryData = aqPrimaryData.filter(`obj => obj.GeoRank == ${maxGeoRank}`)
+
+    // filteredPrimaryData.print({limit: Infinity})
     
     // get disparity data
     
@@ -52,15 +59,15 @@ const loadDisparitiyData = async (disparityMetadata, disparityIndicatorId) => {
                 .reify()
             
             
-            // join with primary data
+            // (inner) join with primary data
 
             disparitiyData = 
-                aqPrimaryData
+                filteredPrimaryData
                 .join(aqDisparityData, [["GeoType", "GeoID", "end_period"], ["GeoType", "GeoID", "end_period"]])
 
                 // drop citywide and boro rows
 
-                .filter(d => d.GeoType !== 'Citywide')
+                // .filter(d => d.GeoType !== 'Citywide')
 
                 // summarize by  grouping
                 .groupby("Time_1", "Tertile", "GeoType")
@@ -69,6 +76,8 @@ const loadDisparitiyData = async (disparityMetadata, disparityIndicatorId) => {
                 // turn into JavaScript object
 
                 .objects()
+            
+            console.log("disparitiyData", disparitiyData);
 
         })
 }
@@ -277,15 +286,18 @@ const renderDisparities = (primaryMetadata, disparityMeasureId) => {
                             },
                             {
                                 "field": "hi",
-                                "type": "nominal"
+                                "type": "quantitative",
+                                "format": ",.1f"
                             },
                             {
                                 "field": "med",
-                                "type": "nominal"
+                                "type": "quantitative",
+                                "format": ",.1f"
                             },
                             {
                                 "field": "low",
-                                "type": "nominal"
+                                "type": "quantitative",
+                                "format": ",.1f"
                             },
                         ]
                     },
@@ -295,8 +307,7 @@ const renderDisparities = (primaryMetadata, disparityMeasureId) => {
                             "select": {
                                 "type": "point",
                                 "fields": [
-                                    "Time_1",
-                                    "Tertile"
+                                    "Time_1"
                                 ],
                                 "nearest": true,
                                 "on": "mouseover",
