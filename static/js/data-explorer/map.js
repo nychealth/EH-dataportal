@@ -9,7 +9,7 @@ const renderMap = (
 
         const mapYears =  [...new Set(data.map(item => item.Time))];
 
-        console.log("mapYears [map.js]", mapYears);
+        // console.log("mapYears [map.js]", mapYears);
 
         let mapGeoType            = data[0].GeoType;
         let mapMeasurementType    = metadata[0].MeasurementType;
@@ -18,9 +18,6 @@ const renderMap = (
                 gt => gt.GeoType === mapGeoType
             )[0].GeoTypeDescription;
 
-        // console.log("mapGeoTypeDescription [map.js]", mapGeoTypeDescription);
-        // console.log("mapGeoType [map.js]", mapGeoType);
-        // console.log("mapMeasurementType [map.js]", mapMeasurementType);
         
         let mapDisplay = metadata[0].DisplayType;
         let mapTime = mapYears[0];
@@ -58,8 +55,6 @@ const renderMap = (
                 "subtitle": mapGeoTypeDescription,
                 "subtitlePadding": 10
             },
-            // "width": "container",
-            // "background": "#f9f9f9",
             "data": {
                 "values": data,
                 "format": {
@@ -72,13 +67,11 @@ const renderMap = (
             "projection": {"type": "mercator"},
             "vconcat": [
                 {
-                    // "view": {"align": "none", "center": true},
                     "layer": [
                         {
                             "height": 500,
                             "width": "container",
                             "data": {
-                                // "url": data_repo + "/" + data_branch + `/geography/borough.topo.json`,
                                 "url": `${data_repo}/${data_branch}/geography/borough.topo.json`,
                                 "format": {
                                     "type": "topojson",
@@ -111,7 +104,7 @@ const renderMap = (
                                     },
                                     "as": "geo"
                                 }
-                            ],                        
+                            ],
                             "encoding": {
                                 "shape": {"field": "geo", "type": "geojson"},
                                 "color": {

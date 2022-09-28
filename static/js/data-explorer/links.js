@@ -8,12 +8,17 @@ const renderLinksChart = (
 
     console.log("** renderLinksChart");
 
+    // arquero table for extracting arrays easily
+
+    let aqData = aq.from(data);
+    let Value_1 = aqData.array("Value_1");
+    let Value_2 = aqData.array("Value_2");
+
     // get measure metadata
 
     const primaryMeasurementType = primaryMetadata[0].MeasurementType;
     const primaryMeasureName     = primaryMetadata[0].MeasureName;
     const primaryDisplay         = primaryMetadata[0].DisplayType;
-    // const primaryTime            = primaryMetadata[0].AvailableTimes[0].TimeDescription;
     const primaryTime            = data[0].Time_1;
 
     const primaryGeoType = data[0].GeoType; // from the actual data we're charting
@@ -27,18 +32,12 @@ const renderLinksChart = (
     const secondaryMeasureName     = secondaryMetadata[0].MeasureName
     const secondaryMeasureId       = secondaryMetadata[0].MeasureID
     const secondaryDisplay         = secondaryMetadata[0].DisplayType;
-    // const secondaryTime            = selectedlinksSecondaryMeasureTime;
     const secondaryTime            = data[0].Time_2;
 
     const SecondaryAxis = 
         primaryMetadata[0].VisOptions[0].Links.filter(
             l => l.MeasureID === secondaryMeasureId
         )[0].SecondaryAxis;
-
-    // console.log("secondaryMetadata", secondaryMetadata);
-    // console.log("primaryMetadata", primaryMetadata);
-    // console.log("SecondaryAxis", SecondaryAxis);
-    // console.log("secondaryMeasureId", secondaryMeasureId);
 
 
     // switch field assignment based on SecondaryAxis preference
@@ -53,6 +52,7 @@ const renderLinksChart = (
     let yTime;
     let xIndicatorName;
     let yIndicatorName;
+    let xMin;
 
     switch (SecondaryAxis) {
         case 'x':
@@ -62,6 +62,7 @@ const renderLinksChart = (
             yMeasureName = primaryMeasureName;
             xValue = "Value_2";
             yValue = "Value_1";
+            xMin = Math.min.apply(null, Value_2); // get min value for adjusting axis
             xDisplay = secondaryDisplay ? secondaryDisplay : '';
             yDisplay = primaryDisplay ? primaryDisplay : '';
             xTime = secondaryTime;
@@ -76,6 +77,7 @@ const renderLinksChart = (
             yMeasureName = secondaryMeasureName;
             xValue = "Value_1";
             yValue = "Value_2";
+            xMin = Math.min.apply(null, Value_1); // get min value for adjusting axis
             xDisplay = primaryDisplay ? primaryDisplay : '';
             yDisplay = secondaryDisplay ? secondaryDisplay : '';
             xTime = primaryTime;
@@ -93,51 +95,32 @@ const renderLinksChart = (
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "description": "Asthma 5-17 ED visit rate and poverty scatterplot",
             "title": {
-                // "text": `${yIndicatorName}, ${yTime}`,
-                "text": [`${yIndicatorName && `${yIndicatorName}`}`, `- ${yMeasure} ${yDisplay && `(${yDisplay})`}, ${yTime}`],
+                "text": [`${yIndicatorName && `${yIndicatorName}`} -`, ` ${yMeasure && `${yMeasure}`} ${yDisplay && `(${yDisplay})`}, ${yTime}`],
+                "align": "left", 
                 "anchor": "start", 
                 "fontSize": 14, 
                 "font": "sans-serif",
                 "baseline": "top",
-                "dy": -10
-                // "subtitle": `${yIndicatorName}`,
-                // "subtitlePadding": 10
+                "dy": -10,
+                "limit": 1000
             },            
             "width": "container",
             "height": 500,
             "config": {
                 "background": "#FFFFFF",
-                // "title": { 
-                // },
                 "axisX": {
-                    // "domain": true,
-                    // "domainColor": "#000000",
-                    // "domainWidth": 1,
-                    // "grid": false,
                     "labelFontSize": 11,
                     "titleFontSize": 13,
                     "titleFont": "sans-serif",
-                    // "labelAngle": 0,
-                    // "tickColor": "#000000",
-                    // "tickSize": 5,
                     "titlePadding": 10
+                    
                 },
                 "axisY": {
-                    // "domain": false,
-                    // "domainWidth": 1,
-                    // "grid": true,
-                    // "gridColor": "#DEDDDD",
-                    // "gridWidth": 1,
                     "labelFontSize": 11,
                     "titleFontSize": 0, // to turn off axis title
-                    // "labelPadding": 8,
                     "labelAngle": 0,
-                    // "ticks": false,
                     "titlePadding": 10,
                     "titleFont": "sans-serif",
-                    // "titleAngle": -90
-                    // "titleY": 0,
-                    // "titleX": 0
                 },
                 "legend": {
                      "labelFontSize": 14,
@@ -187,14 +170,14 @@ const renderLinksChart = (
                     ],
                     "encoding": {
                         "y": {
-                            // "title": [`${yIndicatorName && `${yIndicatorName}`}`, `- ${yMeasure} ${yDisplay && `(${yDisplay})`}, ${yTime}`],
                             "field": yValue,
                             "type": "quantitative"
                         },
                         "x": {
                             "title": [`${xIndicatorName && `${xIndicatorName}`}`, `- ${xMeasure} ${xDisplay && `(${xDisplay})`}, ${xTime}`],
                             "field": xValue,
-                            "type": "quantitative"
+                            "type": "quantitative",
+                            "scale": {"domainMin": xMin, "nice": true}
                         },
                         "tooltip": [
                             {

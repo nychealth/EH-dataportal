@@ -1,9 +1,15 @@
 const renderTrendChart = (
     data,
     metadata
-    ) => {
+) => {
 
         console.log("** renderTrendChart");
+
+        // arquero table for extracting arrays easily
+
+        let aqData = aq.from(data);
+        let Value = aqData.array("Value");
+        let valueMin = Math.min.apply(null, Value);
 
         // extract measure metadata
 
@@ -16,42 +22,18 @@ const renderTrendChart = (
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "config": {
                 "background": "#FFFFFF",
-                // "title": {"anchor": "start", "fontSize": 18, "font": "sans-serif"},
                 "axisX": {
-                    // "domain": true,
-                    // "domainColor": "#000000",
-                    // "domainWidth": 1,
-                    // "grid": false,
-                    // "labelFontSize": 12,
                     "labelAngle": 0,
+                    "labelOverlap": "parity",
                     "labelFontSize": 11,
                     "titleFontSize": 13,
                     "titleFont": "sans-serif",
-                    // "tickColor": "#000000",
-                    // "tickSize": 5,
                     "titlePadding": 10
-                    // "tickColor": "#000000",
-                    // "tickSize": 5,
-                    // "titleFontSize": 12,
-                    // "titlePadding": 10
                 },
                 
                 "axisY": {
-                    // "domain": false,
-                    // "domainWidth": 1,
-                    // "grid": true,
-                    // "gridColor": "#DEDDDD",
-                    // "gridWidth": 1,
                     "labelAngle": 0,
                     "labelFontSize": 11,
-                    // "ticks": false,
-                    // "titleFontSize": 13,
-                    // "titlePadding": -20,
-                    // "titleFont": "sans-serif",
-                    // "titleAngle": 0,
-                    // "titleY": -10,
-                    // "titleX": 100,
-                    // "titleLineHeight": 50
                 },
                 "legend": {
                     "labelFontSize": 14,
@@ -77,7 +59,6 @@ const renderTrendChart = (
                 "text": {
                     "color": "#1696d2",
                     "fontSize": 11,
-                    // "align": "left",
                     "fontWeight": 400,
                     "size": 11
                 }
@@ -94,13 +75,12 @@ const renderTrendChart = (
                 "baseline": "top",
                 "text": `${trendMeasurementType} ${trendDisplay && `(${trendDisplay})`}`,
                 "dy": -10
-                // "align": "left",
-            },            
+            },
             "encoding": {
                 "x": {
                     "field": "Time",
                     "type": "nominal",
-                    "title": "Year"
+                    "title": null
                 }
             },
             "layer": [
@@ -117,8 +97,8 @@ const renderTrendChart = (
                         "y": {
                             "field": "Value",
                             "type": "quantitative",
-                            "title": null
-                            // "title": `${trendMeasurementType} ${trendDisplay && `(${trendDisplay})`}`
+                            "title": null,
+                            "scale": {"domainMin": valueMin, "nice": true}
                         }
                     },
                     "layer": [
