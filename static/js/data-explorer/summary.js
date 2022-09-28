@@ -65,7 +65,7 @@ const renderTable = () => {
             return;
         }
         
-        console.log("filteredTableData", filteredTableData);
+        // console.log("filteredTableData", filteredTableData);
 
         if (filteredTableData.length === 0) {
 
