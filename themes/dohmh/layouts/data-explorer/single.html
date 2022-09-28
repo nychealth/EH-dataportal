@@ -336,9 +336,9 @@
                                                 <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
                                                         id="dropdownTrendMeasures" data-toggle="dropdown" aria-haspopup="true"
                                                         aria-expanded="false">Choose measure</button>
-                                                    <!-- disparities button - display style changed to show or hide -->
-                                                    <button class="btn btn-sm mr-1 float-right btn-outline-secondary btn-show-disparities"
-                                                            style="display:inline">Show Dispartites</button>
+                                                <!-- disparities button - display style changed to show or hide -->
+                                                <button class="btn btn-sm mr-1 float-right btn-outline-secondary btn-show-disparities"
+                                                        style="display:inline">Show Dispartites</button>
                                                 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownTrendMeasures">
                                                     <!-- INSERT MENU ITEMS HERE -->
@@ -1050,7 +1050,7 @@
             fullDataLinksObjects = joinedAqData
                 .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
                 .objects()
-            
+
             // call the measure rendering etc. function
 
             renderMeasures();
@@ -1491,11 +1491,16 @@
 
                 btnShowDisparities.style.display = "none";
 
-                // remove click listener to button that calls renderDisparities
-
-                btnShowDisparities.removeEventListener("click", () => renderDisparities(measureMetadata, 221));
+                // remove click listeners to button that calls renderDisparities
                 
+                $(btnShowDisparities).off()
+
             } else if (disparities == 1) {
+
+                // remove event listener added when/if button was clicked
+
+                btnShowDisparities.innerText = "Show Disparities";
+                $(btnShowDisparities).off()
                 
                 // if disparities is enabled, show the button
 
@@ -1503,7 +1508,7 @@
 
                 // add click listener to button that calls renderDisparities
 
-                btnShowDisparities.addEventListener("click", () => renderDisparities(measureMetadata, 221));
+                $(btnShowDisparities).on("click", () => renderDisparities(measureMetadata, 221));
                 
             }
 
@@ -2241,19 +2246,24 @@
 
                         btnShowDisparities.style.display = "none";
 
-                        // remove click listener to button that calls renderDisparities
+                        // remove click listeners to button that calls renderDisparities
 
-                        btnShowDisparities.removeEventListener("click", () => renderDisparities(defaultTrendMetadata, 221));
+                        $(btnShowDisparities).off()
                         
                     } else if (disparities == 1) {
-                        
+
+                        // remove event listener added when/if button was clicked
+
+                        btnShowDisparities.innerText = "Show Disparities";
+                        $(btnShowDisparities).off()
+
                         // if disparities is enabled, show the button
 
                         btnShowDisparities.style.display = "inline";
 
                         // add click listener to button that calls renderDisparities
 
-                        btnShowDisparities.addEventListener("click", () => renderDisparities(defaultTrendMetadata, 221));
+                        $(btnShowDisparities).on("click", () => renderDisparities(defaultTrendMetadata, 221))
                         
                     }
 
