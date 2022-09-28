@@ -193,7 +193,7 @@ function renderResults(results) {
         
         var li = document.createElement('li');
         var ahref = document.createElement('a');
-        ahref.href = sitepath + result.href;
+        ahref.href = result.href;
         ahref.text = result.title;
 
         li.append(ahref);
