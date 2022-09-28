@@ -28,7 +28,7 @@ const loadDisparitiyData = async (disparityMetadata, disparityIndicatorId) => {
     
     // get disparity data
     
-    await fetch(data_repo + "/" + data_branch + `/indicators/data/${disparityIndicatorId}.json`)
+    await fetch(`${data_repo}/${data_branch}/indicators/data/${disparityIndicatorId}.json`)
         .then(response => response.json())
         .then(data => {
 
@@ -65,10 +65,6 @@ const loadDisparitiyData = async (disparityMetadata, disparityIndicatorId) => {
                 filteredPrimaryData
                 .join(aqDisparityData, [["GeoType", "GeoID", "end_period"], ["GeoType", "GeoID", "end_period"]])
 
-                // drop citywide and boro rows
-
-                // .filter(d => d.GeoType !== 'Citywide')
-
                 // summarize by  grouping
                 .groupby("Time_1", "Tertile", "GeoType")
                 .rollup({median: d => op.median(d.Value)})
@@ -77,7 +73,7 @@ const loadDisparitiyData = async (disparityMetadata, disparityIndicatorId) => {
 
                 .objects()
             
-            console.log("disparitiyData", disparitiyData);
+            // console.log("disparitiyData", disparitiyData);
 
         })
 }
@@ -89,9 +85,19 @@ const loadDisparitiyData = async (disparityMetadata, disparityIndicatorId) => {
 // this function is called when the "Show Disparities" button is clicked. it
 //  in turn calls "loadDisparitiyData".
 
-const renderDisparities = (primaryMetadata, disparityMeasureId) => {
+const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
 
     console.log("** renderDisparities");
+    
+    // remove disparities event listeners
+    $(btnShowDisparities).off()
+
+    // add trend event listener
+    $(btnShowDisparities).on("click", e => showTrend(e));
+
+    // switch button text
+    btnShowDisparities.innerText = "Show Trend";
+
 
     // extract primary metadata
 
@@ -115,28 +121,34 @@ const renderDisparities = (primaryMetadata, disparityMeasureId) => {
 
     // put metadata into fields
 
-    const disparityIndicatorId   = disparityIndicator[0].IndicatorID
-    const disparityIndicatorName = disparityIndicator[0].IndicatorName
-    const disparityMeasureType   = disparityMetadata[0].MeasurementType
-    const disparitySources       = disparityMetadata[0].Sources
-    const disparitysAbout        = disparityMetadata[0].how_calculated
+    const disparityIndicatorId     = disparityIndicator[0].IndicatorID
+    const disparityIndicatorName   = disparityIndicator[0].IndicatorName
+    const disparityMeasurementType = disparityMetadata[0].MeasurementType
+    const disparitySources         = disparityMetadata[0].Sources
+    const disparitysAbout          = disparityMetadata[0].how_calculated
 
-    // load disparities measure data
+    // load disparities measure data (creates `disparitiyData`)
 
-    loadDisparitiyData(disparityMetadata, disparityIndicatorId)
+    await loadDisparitiyData(disparityMetadata, disparityIndicatorId)
+    
+    // get min value for adjusting axis
+    
+    let aqData = aq.from(disparitiyData);
+    let median = aqData.array("median");
+    let medianMin = Math.min.apply(null, median);
 
     // created combined about and sources info
 
     const combinedAbout = 
         `<h6>${primaryIndicatorName} - ${primaryMeasurementType}</h6>
         <p>${primaryAbout}</p>
-        <h6>${disparityIndicatorName} - ${disparityMeasureType}</h6>
+        <h6>${disparityIndicatorName} - ${disparityMeasurementType}</h6>
         <p>${disparitysAbout}</p>`;
 
     const combinedSources = 
         `<h6>${primaryIndicatorName} - ${primaryMeasurementType}</h6>
         <p>${primarySources}</p>
-        <h6>${disparityIndicatorName} - ${disparityMeasureType}</h6>
+        <h6>${disparityIndicatorName} - ${disparityMeasurementType}</h6>
         <p>${disparitySources}</p>`;
 
     // render combined info
@@ -151,48 +163,34 @@ const renderDisparities = (primaryMetadata, disparityMeasureId) => {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "config": {
                 "background": "#FFFFFF",
-                // "title": {"anchor": "start", "fontSize": 18, "font": "Calibri"},
                 "axisX": {
-                    // "domain": true,
-                    // "domainColor": "#000000",
-                    // "domainWidth": 1,
-                    // "grid": false,
-                    // "labelFontSize": 12,
                     "labelAngle": 0,
-                    // "tickColor": "#000000",
-                    // "tickSize": 5,
-                    // "titleFontSize": 12,
-                    // "titlePadding": 10
+                    "labelOverlap": "parity",
+                    "labelFontSize": 11,
+                    "titleFontSize": 13,
+                    "titleFont": "sans-serif"
                 },
                 
                 "axisY": {
-                    // "domain": false,
-                    // "domainWidth": 1,
-                    // "grid": true,
-                    // "gridColor": "#DEDDDD",
-                    // "gridWidth": 1,
-                    // "labelFontSize": 12,
-                    // "labelPadding": 8,
-                    // "ticks": false,
-                    // "titleFontSize": 12,
-                    // "titlePadding": 10,
-                    // "titleFont": "Lato",
-                    // "titleAngle": 0,
-                    // "titleY": -10,
-                    // "titleX": 18
+                    "labelAngle": 0,
+                    "labelFontSize": 11,
+                    "titleFontSize": 13
                 },
-                
+                "legend": {
+                    "labelFontSize": 14,
+                    "titleFontSize": 14,
+                    "symbolSize": 140,
+                    "titlePadding": 10
+                },
+                "lineBreak": "\n",
                 
                 "view": { "stroke": "transparent" },
                 
                 "range": {
                     "category": [
-                        "#1696d2",
-                        "#000000",
-                        "#fdbf11",
-                        "#ec008b",
-                        "#d2d2d2",
-                        "#55b748"
+                        "#FFC425",
+                        "#21918c",
+                        "#440154"
                     ]
                 },
                 
@@ -203,7 +201,6 @@ const renderDisparities = (primaryMetadata, disparityMeasureId) => {
                 "text": {
                     "color": "#1696d2",
                     "fontSize": 11,
-                    "align": "center",
                     "fontWeight": 400,
                     "size": 11
                 }
@@ -212,12 +209,20 @@ const renderDisparities = (primaryMetadata, disparityMeasureId) => {
                 "values": disparitiyData,
             },
             "width": "container",
-            "height": 550,
+            "height": 500,
+            "title": { 
+                "anchor": "start", 
+                "fontSize": 13, 
+                "font": "sans-serif",
+                "baseline": "top",
+                "text": `${primaryMeasurementType} ${primaryDisplay && `(${primaryDisplay})`}`,
+                "dy": -10
+            },
             "encoding": {
                 "x": {
                     "field": "Time_1",
                     "type": "nominal",
-                    "title": `${disparityIndicatorName} - ${disparityMeasureType}`
+                    "title": null
                 }
             },
             "layer": [
@@ -228,13 +233,16 @@ const renderDisparities = (primaryMetadata, disparityMeasureId) => {
                             "type": "nominal",
                             "legend": {
                                 "orient": "right",
-                                "title": null
+                                // "title": `${disparityIndicatorName}, ${disparityMeasurementType}`
+                                "title": "Neighborhood \n poverty level",
+                                "values": ["hi", "med", "low"]
                             }
                         },
                         "y": {
                             "field": "median",
                             "type": "quantitative",
-                            "title": `${primaryMeasurementType} ${primaryDisplay && `(${primaryDisplay})`} (Median of Neighborhood)`
+                            "title": null,
+                            "scale": {"domainMin": medianMin, "nice": true}
                         }
                     },
                     "layer": [
@@ -280,7 +288,7 @@ const renderDisparities = (primaryMetadata, disparityMeasureId) => {
                         },
                         "tooltip": [
                             {
-                                "title": "Year",
+                                "title": "Time",
                                 "field": "Time_1",
                                 "type": "nominal"
                             },
