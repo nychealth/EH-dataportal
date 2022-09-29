@@ -886,7 +886,7 @@
             
             url.searchParams.set('id', parseFloat(indicatorId));
 
-            if (!dont_add_to_history && window.history.state.id != indicatorId) {
+            if (!dont_add_to_history && (window.history.state === null || window.history.state.id != indicatorId)) {
 
                 console.log("++++ add to history");
                 
