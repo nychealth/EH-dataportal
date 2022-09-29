@@ -152,12 +152,13 @@
 
 <article class="container-fluid" id="skip-header-target">
     <div class="row">
-        <div class="col-md-11 mx-auto mt-4 mx-1">
+        <div class="col-12 mt-4">
             <nav aria-label="breadcrumb" class="mb-2">
                 <ul class="breadcrumb mr-auto">
                     <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}">Home</a></li>
                     <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}/data-explorer/">Data Explorer</a></li>
-                    <li class="breadcrumb-item active"><a href="{{ .Page.RelPermalink }}">{{ .Title }}</a></li>
+
+                    <li class="breadcrumb-item active"><strong><a href="{{ .Page.RelPermalink }}">{{ .Title }}</a></strong></li>
                     <li class="nav-item ml-auto">
                         <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                 data-target="#topicModal">
@@ -179,294 +180,264 @@
                     </li>
                 </ul>
             </nav>
-
-            <div class="row mb-1">
-                <div class="col mx-2 ml-0 pl-0 py-2">
-                    <h2>{{ .Title }}</h2>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4">
-
-                    <div class="card content-card mb-2">
-                        <div class="card-content">
-                            <div class="card-body topic-text">
-                                <span class='home-label d-none d-md-block border-bottom mb-1'>About this topic</span>
-                                 {{ .Content  }}
-                            </div>
-
-                        </div>
-
-
-                    </div>
-                </div>
-
-                <div class="col-md-8">
-                    <!--This button only appears on small screens to show About-->
-                    <button class="btn btn-sm btn-outline-light text-primary btn-block d-block d-md-none mt-0 mb-2"
-                            type="button" data-toggle="modal" data-target="#aboutModal">
-                        About {{ .Title }}
-                    </button>
-
-                    
-                    <!-- indicator dropdown -->
-
-                    <div class="card content-card topic-text">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="dropdown">
-
-                                    <span class='home-label d-block'>Change dataset</span>
-            
-                                    <button class="btn btn-outline-primary btn-lg btn-block text-wrap text-info dropdown-toggle" type="button"
-                                            id="dropdownIndicator" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        More {{ .Title }} data
-                                    </button>
-
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownIndicator"
-                                         id="indicator-dropdown">
-                                        <!-- Dropdown itmes are rendered using renderIndicatorDropdown -->
-                                    </div>
-
-                                </div>
-            
-            
-                                <div style="clear:both" class="my-2">
-                                    <span class="home-label d-block">About <span id="indicatorTitle">Indicator</span></span>
-            
-                                    <p class="fs-sm indicator-description"></p>
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-
-                    <div class="card content-card mt-1">
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="mt-2">
-                                    <div class="nav nav-pills bg-white device-xs" role="tablist">
-            
-                                        <a class="nav-item nav-link flex-fill" id="tab-btn-table" href="#tab-table" data-toggle="pill"
-                                           aria-controls="tab-table" aria-selected="false" role="tab" style="text-decoration:none">
-                                            <i class="fas fa-list fa-fw"></i>
-                                            <div class="d-none d-lg-inline-block py-1">Summary</div>
-                                        </a>
-                
-                                        <a class="nav-item nav-link flex-fill" id="tab-btn-map" href="#tab-map" data-toggle="pill"
-                                           aria-controls="tab-map" aria-selected="false" role="tab" style="text-decoration:none">
-                                            <i class="fas fa-map-marker-alt fa-fw"></i>
-                                            <div class="d-none d-lg-inline-block py-1">Map</div>
-                                        </a>
-                
-                                        <a class="nav-item nav-link flex-fill" id="tab-btn-trend" href="#tab-trend" data-toggle="pill"
-                                           aria-controls="tab-trend" aria-selected="false" role="tab" style="text-decoration:none">
-                                            <i class="fas fa-chart-line fa-fw"></i>
-                                            <div class="d-none d-lg-inline-block py-1">Trend</div>
-                                        </a>
-                
-                
-                                        <a class="nav-item nav-link flex-fill" id="tab-btn-links" href="#tab-links" data-toggle="pill"
-                                           aria-controls="tab-links" aria-selected="false" aria-disabled="true" role="tab" style="text-decoration:none">
-                                            <i class="fas fa-link fa-fw"></i>
-                                            <div class="d-none d-lg-inline-block py-1">Links</div>
-                                        </a>
-                
-                                    </div>
-                
-                                    <div class="tab-content bg-white mb-4" id="tabs-01-content">
-                                        <!-- TABLE TAB -->
-                                        <div class="tab-pane fade show active py-2" id="tab-table" aria-labelledby="tab-btn-table"
-                                             role="tabpanel">
-                                            <div class="float right mr-1">
-                                                <div class="dropdown">
-                                                    <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle"
-                                                            type="button" id="dropdownTableYear" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">Select year
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownTableYear">
-                                                        <!-- INSERT MENU ITEMS HERE -->
-                                                    </div>
-                                                </div>
-                
-                                                <div class="dropdown">
-                                                    <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle"
-                                                            type="button" id="dropdownTableGeo" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">Select geography
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownTableGeo">
-                                                        <!-- INSERT MENU ITEMS HERE -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mt-4">
-                                                <span id="summaryTitle" class="home-label"></span>
-                                                <div id="summary-table">
-                                                    <!-- INSERT SUMMARY TABLE HERE -->
-                                                </div>
-                
-                                            </div>
-                                        </div>
-                                        <!-- MAP TAB -->
-                                        <div class="tab-pane fade py-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
-                                            <div class="float right mr-1">
-                                                <div class="dropdown">
-                                                    <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle"
-                                                            type="button" id="dropdownMapMeasures" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">Select
-                                                        measure
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMapMeasures">
-                                                        <!-- INSERT MENU ITEMS HERE -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mt-4">
-                                                <span id="mapTitle" class="home-label"></span>
-                                                <div id="map" width=600 height=500
-                                                     style="width: 100%; min-height: 450px; margin-bottom: 50px;"></div>
-                                            </div>
-                                        </div>
-                                        <!-- TREND TAB -->
-                                        <div class="tab-pane fade py-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
-                                            <div class="dropdown float-right mr-1">
-                                                <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
-                                                        id="dropdownTrendMeasures" data-toggle="dropdown" aria-haspopup="true"
-                                                        aria-expanded="false">Choose measure</button>
-                                                <!-- disparities button - display style changed to show or hide -->
-                                                <button class="btn btn-sm mr-1 float-right btn-outline-secondary btn-show-disparities"
-                                                        style="display:inline">Show Dispartites</button>
-                                                
-                                                <div class="dropdown-menu" aria-labelledby="dropdownTrendMeasures">
-                                                    <!-- INSERT MENU ITEMS HERE -->
-                                                </div>
-                                            </div>
-                                            <div class="mt-4">
-                                                <span id="trendTitle" class="home-label"></span>
-                                                <!-- INSERT TREND CHART HERE -->
-                                                <div id="trend" style="width: 100%; height: 550px"></div>
-                                            </div>
-                                        </div>
-                                        <!-- LINKS TAB -->
-                                        <div class="tab-pane fade py-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
-                                            <div class="dropdown float-right">
-                                                <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
-                                                        id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true"
-                                                        aria-expanded="false">Select data to link
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownLinksMeasures">
-                                                    <!-- INSERT MENU ITEMS HERE -->
-                                                </div>
-                                            </div>
-                                            <div class="mt-4" style="height: 550px; clear: both">
-                                                <span id="linksTitle" class="home-label"></span>
-                                                <!-- INSERT LINKS CHART HERE -->
-                                                <div id="links" style="width: 100%"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr class="my-2">
-
-                    <div class="row my-2">
-                        <div class="col-md-4">
-                            <div class="dropdown">
-                                <button class="btn btn-sm btn-outline-light text-secondary dropdown-toggle" 
-                                        type="button"
-                                        id="downloadDD" 
-                                        data-toggle="dropdown" 
-                                        aria-haspopup="true" 
-                                        aria-expanded="false"
-                                    ><i class="fa fa-download mr-1"></i>Download Data
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" 
-                                     aria-labelledby="downloadDD">
-                                <a class="dropdown-item buttons-csv btn-outline-info" id="thisView">Current table view</a>
-                                <a class="dropdown-item buttons-csv btn-outline-info" id="allData">Full table for this indicator</a>
-                                <a class="dropdown-item buttons-csv btn-outline-info" id="rawData">Raw data for this indicator</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 ml-auto">
-                            <button class="btn float-right btn-sm btn-outline-light text-secondary"
-                                    onclick="copyCitation()" id="citeButton"><i class="fas fa-copy mr-1"></i>Copy
-                                citation</button>
-                            <input type="text" id="citeText" value=""
-                                   style="display:inline-block; width:100%; height: 40px; font-size: 14px;"
-                                   class="my-2 sr-only">
-                        </div>
-                    </div>
-
-                    <div class="row mb-4">
-                        <div class="col-md-6 col-xs-12">
-                            <div class="btn-toggle">
-                                <button class="btn btn-block btn-md btn-outline-light text-secondary"
-                                        data-toggle="collapse" data-target="#toggle-target" aria-expanded="false"
-                                        aria-controls="toggle-target">
-                                    <span class="title"><i class="fas fa-info-circle mr-1"></i>About the Measures</span>
-                                </button>
-                            </div>
-
-                            <div class="collapse p-2" id="toggle-target" role="navigation">
-                                <p class="fs-sm indicator-measures">Insert from `How_Calculated.` Vivamus consequat id
-                                    nibh et tempor. Cras
-                                    augue enim, iaculis quis purus sit amet, interdum accumsan neque. In blandit varius
-                                    blandit. Praesent
-                                    vel leo ac urna dapibus faucibus. Donec sed luctus neque. Nulla porta finibus elit,
-                                    luctus eleifend
-                                    felis ornare vitae. Ut consequat laoreet libero eu venenatis.</p>
-
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xs-12">
-                            <div class="btn-toggle">
-                                <button class="btn btn-block btn-md btn-outline-light text-secondary"
-                                        data-toggle="collapse" data-target="#toggle-target-2" aria-expanded="false"
-                                        aria-controls="toggle-target-2">
-                                    <span class="title"><i class="fas fa-database mr-1"></i>Data sources</span>
-                                </button>
-                            </div>
-
-                            <div class="collapse p-2" id="toggle-target-2" role="navigation">
-                                <p class="fs-sm indicator-sources">Insert from `Sources.` Pellentesque blandit ante vel
-                                    augue mattis, lacinia
-                                    tincidunt velit feugiat. Class aptent taciti sociosqu ad litora torquent per conubia
-                                    nostra, per inceptos
-                                    himenaeos. Donec nulla nisl, sollicitudin et volutpat at, finibus ac quam.
-                                    Pellentesque faucibus turpis
-                                    egestas tellus luctus, nec porttitor diam bibendum. Sed mauris augue, tempus id urna
-                                    sit amet, hendrerit
-                                    blandit libero. Cras sit amet luctus nunc, nec mattis leo. </p>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!--Notes placekeeper - can be injected following table scan-->
-                    <div class="row mb-4">
-                        <div class="col">
-                                <p style="font-size:10px">
-                                    <em>* Estimate is based on small numbers so should be interpreted with caution.<br>
-                                        ** Estimate is suppressed due to insufficient data.</em>
-                                    </p>
-    
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
         </div>
     </div>
+
+    <div class="row no-gutters px-0">
+        <div class="col-lg-4 col-md-12 px-0">
+                <button class="btn btn-sm btn-outline-light text-primary btn-block d-lg-none mt-0 mb-2" type="button" data-toggle="modal" data-target="#aboutModal">About {{ .Title }}</button>
+
+
+            <span class='home-label d-none d-md-block border-bottom mb-1'>{{ .Title }} datasets:</span>
+
+            <div id="indicatorButtons" class="mb-2">
+                <!--Rendered via renderIndicatorButtons function -->
+            </div>
+
+            <div class="d-none d-lg-block">
+                <span class='home-label d-none d-md-block border-bottom mb-1'>About {{ .Title }}</span>
+                <div class="card content-card mb-2">
+                    <div class="card-content">
+                        <div class="card-body topic-text">
+                             {{ .Content  }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+        <div class="col-lg-8 col-md-12 px-2">
+                <div class="dropdown sr-only">
+                    <span class='home-label d-block'>Change dataset</span>
+                    <button class="btn btn-outline-primary btn-lg btn-block text-wrap text-info dropdown-toggle" type="button"
+                            id="dropdownIndicator" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        More {{ .Title }} data
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownIndicator"
+                         id="indicator-dropdown">
+                        <!-- Dropdown itmes are rendered using renderIndicatorDropdown -->
+                    </div>
+                </div>
+
+                            <div class="mt-2">
+                                <div class="nav nav-pills bg-white device-xs" role="tablist">
+        
+                                    <a class="nav-item nav-link flex-fill" id="tab-btn-table" href="#tab-table" data-toggle="pill"
+                                       aria-controls="tab-table" aria-selected="false" role="tab" style="text-decoration:none">
+                                        <i class="fas fa-list fa-fw"></i>
+                                        <div class="d-none d-lg-inline-block py-1">Summary</div>
+                                    </a>
+            
+                                    <a class="nav-item nav-link flex-fill" id="tab-btn-map" href="#tab-map" data-toggle="pill"
+                                       aria-controls="tab-map" aria-selected="false" role="tab" style="text-decoration:none">
+                                        <i class="fas fa-map-marker-alt fa-fw"></i>
+                                        <div class="d-none d-lg-inline-block py-1">Map</div>
+                                    </a>
+            
+                                    <a class="nav-item nav-link flex-fill" id="tab-btn-trend" href="#tab-trend" data-toggle="pill"
+                                       aria-controls="tab-trend" aria-selected="false" role="tab" style="text-decoration:none">
+                                        <i class="fas fa-chart-line fa-fw"></i>
+                                        <div class="d-none d-lg-inline-block py-1">Trend</div>
+                                    </a>
+            
+            
+                                    <a class="nav-item nav-link flex-fill" id="tab-btn-links" href="#tab-links" data-toggle="pill"
+                                       aria-controls="tab-links" aria-selected="false" aria-disabled="true" role="tab" style="text-decoration:none">
+                                        <i class="fas fa-link fa-fw"></i>
+                                        <div class="d-none d-lg-inline-block py-1">Links</div>
+                                    </a>
+            
+                                </div>
+
+                                <div style="clear:both">
+                                    <span class="home-label d-block border-bottom my-1"><span id="indicatorTitle">Indicator</span></span>
+                
+                                    <p class="fs-sm indicator-description"></p>
+                                </div>
+            
+                                <div class="tab-content bg-white mb-4" id="tabs-01-content">
+                                    <!-- TABLE TAB -->
+                                    <div class="tab-pane fade show active py-2" id="tab-table" aria-labelledby="tab-btn-table"
+                                         role="tabpanel">
+                                        <div class="float right mr-1">
+                                            <div class="dropdown">
+                                                <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle"
+                                                        type="button" id="dropdownTableYear" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">Select year
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownTableYear">
+                                                    <!-- INSERT MENU ITEMS HERE -->
+                                                </div>
+                                            </div>
+            
+                                            <div class="dropdown">
+                                                <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle"
+                                                        type="button" id="dropdownTableGeo" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">Select geography
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownTableGeo">
+                                                    <!-- INSERT MENU ITEMS HERE -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4">
+                                            <span id="summaryTitle" class="home-label sr-only"></span>
+                                            <div id="summary-table">
+                                                <!-- INSERT SUMMARY TABLE HERE -->
+                                            </div>
+            
+                                        </div>
+                                    </div>
+                                    <!-- MAP TAB -->
+                                    <div class="tab-pane fade py-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
+                                        <div class="float right mr-1">
+                                            <div class="dropdown">
+                                                <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle"
+                                                        type="button" id="dropdownMapMeasures" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">Select
+                                                    measure
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMapMeasures">
+                                                    <!-- INSERT MENU ITEMS HERE -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4">
+                                            <span id="mapTitle" class="home-label sr-only"></span>
+                                            <div id="map" width=600 height=500
+                                                 style="width: 100%; min-height: 450px; margin-bottom: 50px;"></div>
+                                        </div>
+                                    </div>
+                                    <!-- TREND TAB -->
+                                    <div class="tab-pane fade py-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
+                                        <div class="dropdown float-right mr-1">
+                                            <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
+                                                    id="dropdownTrendMeasures" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">Choose measure</button>
+                                            <!-- disparities button - display style changed to show or hide -->
+                                            <button class="btn btn-sm mr-1 float-right btn-outline-secondary btn-show-disparities"
+                                                    style="display:inline">Show Dispartites</button>
+                                            
+                                            <div class="dropdown-menu" aria-labelledby="dropdownTrendMeasures">
+                                                <!-- INSERT MENU ITEMS HERE -->
+                                            </div>
+                                        </div>
+                                        <div class="mt-4">
+                                            <span id="trendTitle" class="home-label sr-only"></span>
+                                            <!-- INSERT TREND CHART HERE -->
+                                            <div id="trend" style="width: 100%; height: 550px"></div>
+                                        </div>
+                                    </div>
+                                    <!-- LINKS TAB -->
+                                    <div class="tab-pane fade py-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
+                                        <div class="dropdown float-right">
+                                            <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
+                                                    id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">Select data to link
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownLinksMeasures">
+                                                <!-- INSERT MENU ITEMS HERE -->
+                                            </div>
+                                        </div>
+                                        <div class="mt-4" style="height: 550px; clear: both">
+                                            <span id="linksTitle" class="home-label sr-only"></span>
+                                            <!-- INSERT LINKS CHART HERE -->
+                                            <div id="links" style="width: 100%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                <hr class="my-2">
+
+                <div class="row my-2">
+                    <div class="col-md-4">
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-outline-light text-secondary dropdown-toggle" 
+                                    type="button"
+                                    id="downloadDD" 
+                                    data-toggle="dropdown" 
+                                    aria-haspopup="true" 
+                                    aria-expanded="false"
+                                ><i class="fa fa-download mr-1"></i>Download Data
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" 
+                                 aria-labelledby="downloadDD">
+                            <a class="dropdown-item buttons-csv btn-outline-info" id="thisView">Current table view</a>
+                            <a class="dropdown-item buttons-csv btn-outline-info" id="allData">Full table for this indicator</a>
+                            <a class="dropdown-item buttons-csv btn-outline-info" id="rawData">Raw data for this indicator</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 ml-auto">
+                        <button class="btn float-right btn-sm btn-outline-light text-secondary"
+                                onclick="copyCitation()" id="citeButton"><i class="fas fa-copy mr-1"></i>Copy
+                            citation</button>
+                        <input type="text" id="citeText" value=""
+                               style="display:inline-block; width:100%; height: 40px; font-size: 14px;"
+                               class="my-2 sr-only">
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6 col-xs-12">
+                        <div class="btn-toggle">
+                            <button class="btn btn-block btn-md btn-outline-light text-secondary"
+                                    data-toggle="collapse" data-target="#toggle-target" aria-expanded="false"
+                                    aria-controls="toggle-target">
+                                <span class="title"><i class="fas fa-info-circle mr-1"></i>About the Measures</span>
+                            </button>
+                        </div>
+
+                        <div class="collapse p-2" id="toggle-target" role="navigation">
+                            <p class="fs-sm indicator-measures">Insert from `How_Calculated.` Vivamus consequat id
+                                nibh et tempor. Cras
+                                augue enim, iaculis quis purus sit amet, interdum accumsan neque. In blandit varius
+                                blandit. Praesent
+                                vel leo ac urna dapibus faucibus. Donec sed luctus neque. Nulla porta finibus elit,
+                                luctus eleifend
+                                felis ornare vitae. Ut consequat laoreet libero eu venenatis.</p>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        <div class="btn-toggle">
+                            <button class="btn btn-block btn-md btn-outline-light text-secondary"
+                                    data-toggle="collapse" data-target="#toggle-target-2" aria-expanded="false"
+                                    aria-controls="toggle-target-2">
+                                <span class="title"><i class="fas fa-database mr-1"></i>Data sources</span>
+                            </button>
+                        </div>
+
+                        <div class="collapse p-2" id="toggle-target-2" role="navigation">
+                            <p class="fs-sm indicator-sources">Insert from `Sources.` Pellentesque blandit ante vel
+                                augue mattis, lacinia
+                                tincidunt velit feugiat. Class aptent taciti sociosqu ad litora torquent per conubia
+                                nostra, per inceptos
+                                himenaeos. Donec nulla nisl, sollicitudin et volutpat at, finibus ac quam.
+                                Pellentesque faucibus turpis
+                                egestas tellus luctus, nec porttitor diam bibendum. Sed mauris augue, tempus id urna
+                                sit amet, hendrerit
+                                blandit libero. Cras sit amet luctus nunc, nec mattis leo. </p>
+
+                        </div>
+                    </div>
+
+                </div>
+
+        </div>
+
+
+    </div>
+
+
+
 
     <!-- Topic Selection Modal -->
 
@@ -793,6 +764,31 @@
                 }
                 
                 renderIndicatorDropdown()
+
+                const renderIndicatorButtons = () => {
+
+                    const indicatorButtons = document.getElementById("indicatorButtons");
+                    let this_indicatorName;
+                    let header;
+                    
+                    {{- range .Params.Indicators }}
+
+                        header = `{{ .header }}`;
+                        indicatorButtons.innerHTML += header.length ? `<div class="dropdown-title"><strong>${header}</strong></div>`: '';
+
+                        {{ range $index, $id := .IndicatorID -}}
+
+                            {{ if (eq $index 0) -}} defaultIndicatorId = {{ $id -}} {{ end }}
+
+                            indicator = indicators.find(indicator => indicator.IndicatorID === {{ $id }});
+                            this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                            indicatorButtons.innerHTML += `<button class="btn btn-sm btn-block btn-outline-light text-dark my-0 indicator-dropdown-item text-left" onclick="loadIndicator({{ $id }})" data-indicator-id={{ $id }}>${this_indicatorName}</button>`
+                                                        
+                        {{- end -}}
+                    {{- end -}}
+                }
+                
+                renderIndicatorButtons()
 
                 // calling loadIndicator calls loadData, etc, and eventually renderMeasures. Because all 
                 //  of this depends on the global "indicator" object, we call loadIndicator here
