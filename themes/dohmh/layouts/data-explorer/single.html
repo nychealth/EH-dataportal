@@ -650,9 +650,15 @@
         // call loadindicator when traversing through the history
         
         window.onpopstate = function (event) {
-            
+        
+            console.log("** pop **");
+            console.log("state: ", window.history.state);
+            console.log("event: ", event);
+
             const new_url = new URL(window.location);
-            let new_indicatorId = new_url.searchParams.get('id')
+            let new_indicatorId = parseFloat(new_url.searchParams.get('id'));
+
+            console.log("new_indicatorId [pop]", new_indicatorId);
             
             if (new_indicatorId != indicatorId) {
                 
@@ -664,7 +670,7 @@
         window.addEventListener("hashchange", () => {
 
             const hash = window.location.hash.replace('#', "");
-            // console.log("< hashchange > hash: ", hash);
+            console.log("< hashchange > hash: ", hash);
             
             switch (hash) {
 
@@ -672,7 +678,7 @@
 
                 case 'display=summary':
                 case 'tab-table':
-                    {{/*  console.log("< hashchange > summary");  */}}
+                    console.log("< hashchange > summary");
                     currentHash = 'display=summary';
                     $('#tab-btn-table').tab('show');
                     showTable();
@@ -680,7 +686,7 @@
 
                 case 'display=map':
                 case 'tab-map':
-                    {{/*  console.log("< hashchange > map");  */}}
+                    console.log("< hashchange > map");
                     currentHash = 'display=map';
                     $('#tab-btn-map').tab('show');
                     showMap();
@@ -688,7 +694,7 @@
 
                 case 'display=trend':
                 case 'tab-trend':
-                    {{/*  console.log("< hashchange > trend");  */}}
+                    console.log("< hashchange > trend");
                     currentHash = 'display=trend';
                     $('#tab-btn-trend').tab('show');
                     showTrend();
@@ -696,15 +702,15 @@
 
                 case 'display=links':
                 case 'tab-links':
-                    {{/*  console.log("< hashchange > links");  */}}
+                    console.log("< hashchange > links");
                     currentHash = 'display=links';
                     $('#tab-btn-links').tab('show');
                     showLinks();
                     break;
 
                 default:
+                    console.log("< hashchange > default");
                     currentHash = 'display=summary';
-                    {{/*  console.log("< hashchange > default");  */}}
                     {{/*  window.location.hash = 'display=summary';  */}}
                     {{/*  $('#tab-btn-table').tab('show');  */}}
                     {{/*  showTable();  */}}
@@ -822,16 +828,18 @@
 
             {{/*  currentHash = window.location.hash;  */}}
 
-            console.log("currentHash [loadIndicator]", currentHash);
+            {{/*  console.log("currentHash [loadIndicator]", currentHash);  */}}
 
             console.log("** loadIndicator");
+
+            console.log("this_indicatorId", this_indicatorId);
 
             // if indicatorId isn't given, use the first indicator from the dropdown list 
             //  (which is populated by Hugo reading the content frontmatter). 
 
             const firstIndicatorId = document.querySelectorAll('#indicator-dropdown button')[0].getAttribute('data-indicator-id');
 
-            indicatorId = this_indicatorId ? this_indicatorId : firstIndicatorId;
+            indicatorId = this_indicatorId ? parseFloat(this_indicatorId) : parseFloat(firstIndicatorId);
 
             // remove active class from every list element
             $(".indicator-dropdown-item").removeClass("active");
@@ -861,7 +869,6 @@
             document.getElementById('summaryTitle').innerHTML = indicatorName;
             document.getElementById('mapTitle').innerHTML     = indicatorName;
             document.getElementById('trendTitle').innerHTML   = indicatorName;
-            // document.getElementById('linksTitle').innerHTML   = indicatorName; // Handled by VL spec
 
             // reset selected measure flags
 
@@ -873,26 +880,49 @@
             // if dont_add_to_history is false, or not set, push the state
             // this prevents loadIndicator from setting new history entries when it's called 
             //  on a popstate event, i.e. when the user is traversing the history stack
+
+            // dont_add_to_history catches the pop state case, state.id != indicatorId catches the location change case
+            // we don't want to add to the history stack if we've landed on this page by way of the history stack 
             
-            if (!dont_add_to_history) {
+            url.searchParams.set('id', parseFloat(indicatorId));
+
+            if (!dont_add_to_history && window.history.state.id != indicatorId) {
+
+                console.log("++++ add to history");
                 
-                url.searchParams.set('id', indicatorId);
+                console.log("indicatorId [1]:", url.searchParams.get('id'))
 
                 if (!url.hash) {
-                    
+
+                    console.log("- no hash");
+                    console.log("state [pre]: ", window.history.state);
+                    console.log("indicatorId [2]:", url.searchParams.get('id'))
+
                     // if loadIndicator is being called without a hash (like when a topic page is loaded), then show the first ID and summary
 
                     url.hash = "display=summary";
                     window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);
 
+                    console.log("state [post]: ", window.history.state);
+
                 } else {
 
-                    let href = `${url.origin}${url.pathname}?id=${indicatorId}#${currentHash}`
+                    console.log("# hash");
+                    console.log("state [pre]: ", window.history.state);
+                    console.log("indicatorId [3]:", url.searchParams.get('id'))
 
                     url.hash = currentHash;
                     window.history.pushState({ id: indicatorId, hash: url.hash }, '', url);
 
+                    console.log("state [post]: ", window.history.state);
+
                 }
+
+            } else {
+
+                console.log("---- don't add to history");
+                console.log("state: ", window.history.state);
+                console.log("indicatorId [4]:", url.searchParams.get('id'))
 
             }
 
@@ -1987,11 +2017,16 @@
 
             showTable = (e) => {
 
+                console.log("showTable");
+
                 // ----- handle tab selection ----- //
 
                 // set hash to summary
 
-                window.location.hash = '#display=summary';
+                if (window.location.hash !== '#display=summary' && window.location.hash !== 'display=summary') {
+                    window.location.hash = 'display=summary';
+                }
+
                 currentHash = 'display=summary'
 
                 // reset aria attributes
@@ -2031,7 +2066,7 @@
 
                 // set hash to map
                 
-                window.location.hash = '#display=map'
+                window.location.hash = 'display=map'
                 currentHash = 'display=map'
 
                 // reset aria attributes
@@ -2154,7 +2189,7 @@
 
                 // set hash to trend
                 
-                window.location.hash = '#display=trend'
+                window.location.hash = 'display=trend'
                 currentHash = 'display=trend'
 
                 // reset aria attributes
@@ -2318,7 +2353,7 @@
 
                 // set hash to links
                 
-                window.location.hash = '#display=links'
+                window.location.hash = 'display=links'
                 currentHash = 'display=links'
                 // console.log("currentHash [showLinks]", currentHash);
 
@@ -2484,9 +2519,13 @@
             if (mapMeasures.length === 0) {
                 
                 if (tabMapSelected && window.location.hash === '#display=map') {
-                    
-                    $('#tab-btn-table').tab('show');
-                    showTable();
+
+                    console.log("xxx NO MAP!");
+
+                    // replace history stack entry
+
+                    url.hash = "display=summary";
+                    window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);
                     
                 }
 
@@ -2504,13 +2543,13 @@
                 
                 if (tabTrendSelected && window.location.hash === '#display=trend') {
                     
-                    $('#tab-btn-table').tab('show');
-                    showTable();
+                    console.log("xxx NO TREND!");
 
-                    $($.fn.dataTable.tables(true))
-                        .DataTable()
-                        .columns.adjust().draw();
-                    
+                    // replace history stack entry
+
+                    url.hash = "display=summary";
+                    window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);
+
                 }
                 
                 disableTab(tabTrend);
@@ -2520,13 +2559,18 @@
                 enableTab(tabTrend);
             }
 
+
             if (linksMeasures.length === 0) {
                 
                 if (tabLinksSelected && window.location.hash === '#display=links') {
                     
-                    $('#tab-btn-table').tab('show');
-                    showTable();
+                    console.log("xxx NO LINKS!");
+
+                    // replace history stack entry
                     
+                    url.hash = "display=summary";
+                    window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);
+
                 }
 
                 disableTab(tabLinks);
