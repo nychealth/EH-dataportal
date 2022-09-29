@@ -2,7 +2,7 @@
 title: "Your Neighborhood's Air Quality"
 date: 2021-08-24T12:04:44-04:00
 draft: false
-seo_title: "Your Neighborhood's Air Quality."
+seo_title: "Your Neighborhood's Air Quality"
 seo_description: "Get data for your neighborhood here."
 tags: 
 categories: [airquality]

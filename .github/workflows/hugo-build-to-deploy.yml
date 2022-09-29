@@ -94,7 +94,7 @@ jobs:
       # build site with Hugo
 
       - name: Hugo Build
-        run: hugo --environment prod
+        run: hugo --environment prod --cleanDestinationDir
 
       # run gruntfile action
 

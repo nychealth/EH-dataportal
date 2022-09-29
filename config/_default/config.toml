@@ -1,6 +1,6 @@
-baseURL = "https://nychealth.github.io/EH-dataportal/"
+baseURL = "https://nychealth.github.io/EH-dataportal"
 canonifyURLs = true
-relativeURLs = true
+relativeURLs = false
 languageCode = "en-us"
 title = "Environment & Health Data Portal"
 enableRobotsTXT = true
@@ -12,6 +12,14 @@ ignoreFiles = ['Simplified.Chinese', 'Spanish']
 
 [params]
   data_repo = "https://raw.githubusercontent.com/nychealth/EHDP-data"
+  sitepath = "/EH-dataportal"
+
+[imaging]
+  anchor = 'Smart'
+  bgColor = '#ffffff'
+  hint = 'photo'
+  quality = 95
+  resampleFilter = 'MitchellNetravali'
 
 [markup.goldmark.renderer]
   unsafe = true # Allow HTML in md files

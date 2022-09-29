@@ -1,9 +1,9 @@
 {{- define "main" -}}
 
 <article class="container-fluid" id="skip-header-target">
-    
+
     <div class="col-lg-10 col-md-12 mx-auto my-4">
-        <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
+        <h1 class="de-accent"><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
         {{- .Content -}}
 
         <div class="row">
@@ -32,7 +32,7 @@
                             <div class="card-body">
                                 <span class="card-title text-dark"><em>Get trends...</em></span>
                               </div>
-                            <img class="card-img-top" src="/images/trend-chart-2.png" alt="Card image cap">
+                            <img class="card-img-top" src="{{ .Site.BaseURL }}/images/trend-chart-3.png" alt="Card image cap">
                           </div>
                     </div>
 
@@ -41,7 +41,7 @@
                             <div class="card-body" style="text-align: center">
                                 <span class="card-title text-prdarkimary" ><em>...maps...</em></span>
                               </div>
-                            <img class="card-img-top" src="/images/data-map-2.png" alt="Card image cap">
+                            <img class="card-img-top" src="{{ .Site.BaseURL }}/images/data-map-3.png" alt="Card image cap">
             
                           </div>
                     </div>
@@ -51,7 +51,7 @@
                             <div class="card-body" style="text-align: right">
                                 <span class="card-title text-dark"><em>...and more!</em></span>
                               </div>
-                            <img class="card-img-top" src="/images/links-chart-2.png" alt="Card image cap">
+                            <img class="card-img-top" src="{{ .Site.BaseURL }}/images/links-chart-3.png" alt="Card image cap">
                           </div>
                     </div>
 
@@ -59,10 +59,8 @@
 
                 <div class="row my-2 border-top">
                     <div class="col">
-                        <p class="fs-sm mt-2"><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em> 
-                            {{ with .Site.GetPage "content/data-explorer/all-data.md" }}
-                            <a href="{{ .Permalink }}">Browse an index of all our datasets</a>.
-                            {{ end }}
+                        <p class="fs-sm mt-2"><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em>
+                            <a href='{{ ref . "/content/data-explorer/all-data.md" }}'>Browse an index of all our datasets</a>
                             </p>
                     </div>
                 </div>
@@ -77,8 +75,10 @@
 </article>
 
 {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
-{{- $secureJS := $js -}}
-<script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+{{- $secureJS := $js | resources.Fingerprint "sha512" -}}
+<script type="text/javascript" 
+    src="{{ $secureJS.RelPermalink }}" 
+    integrity="{{ $secureJS.Data.Integrity }}"></script>
 
 {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
 
@@ -91,7 +91,7 @@
         //Set Neighborhood Name in Text part.
         option.innerHTML = {{ .Title }}
         // set the option value - this adds the environment variable to give it the base URL.
-        option.value = '{{ .Permalink }}'
+        option.value = '{{ .RelPermalink }}'
         //Add the Option element to DropDownList.
         ddlData && ddlData.options.add(option);
         {{- end -}}

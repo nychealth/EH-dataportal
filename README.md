@@ -114,7 +114,7 @@ For example, the rawhtml shortcode allows you to insert raw HTML into a content 
 ```
 << rawhtml >>
     ... Insert raw HTML here.
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 ```
 
 Other shortcodes, like our Vega-lite and Datawrapper shortcodes, can have arguments passed into them. See below for specific documentation.
@@ -229,7 +229,7 @@ This is more complex code that looks for the intersection of two areas' categori
 
 ```
     <!--Establishes two variables-->
-    {{ $page_link := .Permalink }}
+    {{ $page_link := .RelPermalink }}
     {{ $cats := .Params.categories }}
     <!--Ranges through the section we want to ingest into this page-->
     {{ range where .Site.RegularPages "Section" "data-explorer" }}
@@ -238,7 +238,7 @@ This is more complex code that looks for the intersection of two areas' categori
     <!--Defines a variable as the intersection of the ranged pages .Params.categories, and this page's-->
     {{ $has_common_cats := intersect $cats .Params.categories | len | lt 0 }}
     <!--Excludes this page-->
-    {{ if and $has_common_cats (ne $page_link $page.Permalink) }}
+    {{ if and $has_common_cats (ne $page_link $page.RelPermalink) }}
     <li><a href="{{ .URL}}">{{ .Title }}</a></li>
     {{ end }} 
     {{ end }}

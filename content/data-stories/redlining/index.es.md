@@ -2,7 +2,7 @@
 title: "Una breve historia del redlining "
 date: 2021-01-06T08:07:31-04:00
 draft: false
-seo_title: "Una breve historia del redlining."
+seo_title: "Una breve historia del redlining"
 seo_description: "La política financiera de 90 años que daña nuestra salud ."
 tags:
 categories: ["housing","social","childhealth","neighborhoods"]
@@ -59,15 +59,15 @@ Esto era el **redlining**: el establecimiento de límites alrededor de los vecin
 
 El mapa a continuación muestra el alcance del redlining en la ciudad de Nueva York. 
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 <div class="py-0">
     <iframe src="/maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 ### El redlining impulsó la segregación residencial 
-Como resultado del redlining, a las personas negras se les negaba el acceso a los vecindarios “atractivos” con prácticas inmobiliarias racistas, y se les negaban préstamos para comprar viviendas en vecindarios catalogados como “en declive” o “peligrosos”. Los agentes inmobiliarios también usaban tácticas explotadoras, como {{< rawhtml>}}<a href="#bbcollapse" data-toggle="collapse"
+Como resultado del redlining, a las personas negras se les negaba el acceso a los vecindarios “atractivos” con prácticas inmobiliarias racistas, y se les negaban préstamos para comprar viviendas en vecindarios catalogados como “en declive” o “peligrosos”. Los agentes inmobiliarios también usaban tácticas explotadoras, como {{< rawhtml >}}<a href="#bbcollapse" data-toggle="collapse"
         class="badge badge-pill badge-warning">el acoso inmobiliario</a>, <a
         href="#contractcollapse" data-toggle="collapse"
         class="badge badge-pill badge-warning">la venta de contratos </a>, y <a
@@ -91,13 +91,13 @@ Como resultado del redlining, a las personas negras se les negaba el acceso a lo
     </p>
     <p>Los convenios racialmente restrictivos eran una manera de imponer la segregación residencial, para garantizar que las personas negras permanecieran fuera de los vecindarios blancos.  </p>
 </div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 Ser propietario de una vivienda es una forma poderosa de alcanzar estabilidad financiera. Estas políticas concentraban a las personas negras en vecindarios privados de inversiones y no les permitían acceder a préstamos ni comprar una vivienda, mientras que los residentes blancos recibían más recursos y oportunidades. 
 
 Se discriminaron grandes áreas de la ciudad de Nueva York. Explore el alcance del redlining de la HOLC en los cinco distritos de la ciudad de Nueva York: 
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 <ul class="nav nav-tabs fs-sm" id="myTab" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" id="manhattan-tab" data-toggle="tab"
@@ -137,47 +137,47 @@ Se discriminaron grandes áreas de la ciudad de Nueva York. Explore el alcance d
         <br>
         <iframe title="Bx - Spanish" aria-label="Stacked Bars" id="datawrapper-chart-P5YVE" src="https://datawrapper.dwcdn.net/P5YVE/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="381"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
         <br><br>
-        <p>As with Manhattan, huge swaths of residential neighborhoods in the Bronx were
+        <!-- <p>As with Manhattan, huge swaths of residential neighborhoods in the Bronx were
             declared "declining" or "hazardous" in HOLC's redlining map. Unlike
             Manhattan, though, the Bronx has not seen the same level of reinvestment and
-            redevelopment,and poverty rates remain high. </p>
+            redevelopment,and poverty rates remain high. </p> -->
     </div>
     <div class="tab-pane fade" id="brooklyn" role="tabpanel"
         aria-labelledby="brooklyn-tab">
         <br>
         <iframe title="Bklyn - Sp" aria-label="Stacked Bars" id="datawrapper-chart-YRGLD" src="https://datawrapper.dwcdn.net/YRGLD/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="493"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
         <br><br>
-        <p>Brooklyn also saw extensive redlining that lead to deep disinvestment and
-            generations of poverty.</p>
+        <!-- <p>Brooklyn also saw extensive redlining that lead to deep disinvestment and
+            generations of poverty.</p> -->
     </div>
     <div class="tab-pane fade" id="queens" role="tabpanel" aria-labelledby="queens-tab">
         <br>
         <iframe title="Qns - Sp" aria-label="Stacked Bars" id="datawrapper-chart-bq8UR" src="https://datawrapper.dwcdn.net/bq8UR/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="397"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
         </script>
         <br><br>
-        <p>Queens saw significantly less redlining than other boroughs.</p>
+        <!-- <p>Queens saw significantly less redlining than other boroughs.</p> -->
     </div>
     <div class="tab-pane fade" id="staten" role="tabpanel" aria-labelledby="staten-tab">
         <br>
         <iframe title="Si - Sp" aria-label="Stacked Bars" id="datawrapper-chart-f2OOZ" src="https://datawrapper.dwcdn.net/f2OOZ/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="133"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
         <br><br>
-        <p>Like Queens, Staten Island saw much less redlining than other boroughs.</p>
+        <!-- <p>Like Queens, Staten Island saw much less redlining than other boroughs.</p> -->
     </div>
     <div class="tab-pane fade" id="citywidemap" role="tabpanel"
         aria-labelledby="map-tab">
         <iframe title="Map - Sp." aria-label="Map" id="datawrapper-chart-NBnYv" src="https://datawrapper.dwcdn.net/NBnYv/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="661"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
     </div>
 </div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 
 ### Los efectos del redlining continúan en la actualidad 
 En la ciudad de Nueva York, muchos vecindarios que alguna vez fueron prósperos sufrieron una grave falta de inversión como resultado del redlining, lo que provocó desigualdades que continuaron de una generación a otra. Los vecindarios discriminados en la década de 1930 tienen índices de pobreza más altos incluso en la actualidad, casi 90 años después de la creación de los mapas. Según [la Coalición Nacional de Reinversión Comunitaria](https://ncrc.org/holc/), 3 de cada 4 vecindarios en los EE. UU. que fueron discriminados en la década de 1930 aún son de ingresos bajos a moderados en la actualidad, y 2 de cada 3 poseen una población mayoritariamente negra. 
 
-El redlining es el principal ejemplo de {{< rawhtml>}}  <a href="#disinvestmentCollapseTwo" data-toggle="collapse"
-class="badge badge-pill badge-warning">la falta de inversión en los vecindarios</a>{{< /rawhtml>}}: : negar o retener fondos públicos y privados, servicios de la ciudad y otros recursos que los vecindarios y sus residentes necesitan para progresar. Cuando se retienen estos recursos, se crean [“entornos que enferman [a las personas]”]((https://www.who.int/hdp/poverty/en/)). 
+El redlining es el principal ejemplo de {{< rawhtml >}}  <a href="#disinvestmentCollapseTwo" data-toggle="collapse"
+class="badge badge-pill badge-warning">la falta de inversión en los vecindarios</a>{{< /rawhtml >}}: : negar o retener fondos públicos y privados, servicios de la ciudad y otros recursos que los vecindarios y sus residentes necesitan para progresar. Cuando se retienen estos recursos, se crean [“entornos que enferman [a las personas]”]((https://www.who.int/hdp/poverty/en/)). 
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 <div class="collapse py-2 px-2 mx-2 fs-sm" id="disinvestmentCollapseTwo"
     style="margin-top: 0px!important; background-color: #f9f9f9;">
     <p><strong>La falta de inversión </strong> puede darse mediante lo siguiente:
@@ -191,7 +191,7 @@ class="badge badge-pill badge-warning">la falta de inversión en los vecindarios
     </ul>
     </p>
 </div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 Las políticas como el redlining nos demuestran que la pobreza no se trata solo de la mala suerte, la incapacidad para encontrar un buen empleo o el hecho de no trabajar lo suficiente. La pobreza es más profunda y más poderosa: generaciones de carencias y falta de inversión que niegan recursos, oportunidades, riqueza y salud a las personas y los vecindarios, a menudo, impulsados por el racismo. 
 
 Si bien el redlining se prohibió en 1968, persisten otras formas de discriminación edilicia. Sin embargo, el redlining fue especial, por el modo en el que empeoró la pobreza y la segregación en las ciudades de todos los EE. UU., dejando un legado de disparidades económicas y raciales en las consecuencias para la salud. 

@@ -4,7 +4,8 @@ const renderTable = () => {
         
         const groupColumnYear = 0
         const groupColumnGeo = 1;
-        const groupId = 0
+        const groupId = 0;
+        let filteredTableData;
 
 
         const contentSummary = document.querySelector('#tab-table');

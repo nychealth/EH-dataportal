@@ -41,23 +41,23 @@
             <h3 class="fs-rg mb-2">Neighborhood Reports</h3>
             <hr class="my-2">
                 {{ with .Site.GetPage "/neighborhood-reports/activedesign.md" }}
-                <p><a href="{{ .Permalink }}">{{ .Title }}
+                <p><a href="{{ .RelPermalink }}">{{ .Title }}
                 </a></p>
                 {{- end -}}
                 {{ with .Site.GetPage "/neighborhood-reports/asthma.md" }}
-                <p><a href="{{ .Permalink }}">{{ .Title }}
+                <p><a href="{{ .RelPermalink }}">{{ .Title }}
                 </a></p>
                 {{- end -}}
                 {{ with .Site.GetPage "/neighborhood-reports/climateandhealth.md" }}
-                <p><a href="{{ .Permalink }}">{{ .Title }}
+                <p><a href="{{ .RelPermalink }}">{{ .Title }}
                 </a></p>
                 {{- end -}}
                 {{ with .Site.GetPage "/neighborhood-reports/housing.md" }}
-                <p><a href="{{ .Permalink }}">{{ .Title }}
+                <p><a href="{{ .RelPermalink }}">{{ .Title }}
                 </a></p>
                 {{- end -}}
                 {{ with .Site.GetPage "/neighborhood-reports/outdoorair.md" }}
-                <p><a href="{{ .Permalink }}">{{ .Title }}
+                <p><a href="{{ .RelPermalink }}">{{ .Title }}
                 </a></p>
                 {{- end -}}
         </div>
@@ -66,13 +66,17 @@
 </article>
 
   {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
-  {{- $secureJS := $js -}}
-  <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+  {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
+  <script type="text/javascript" 
+    src="{{ $secureJS.RelPermalink }}" 
+    integrity="{{ $secureJS.Data.Integrity }}"></script>
   
   {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
   {{- $js := resources.Get "js/uhflist.js" -}}
-  {{- $secureJS := $js -}}
-  <script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+  {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
+  <script type="text/javascript" 
+    src="{{ $secureJS.RelPermalink }}" 
+    integrity="{{ $secureJS.Data.Integrity }}"></script>
 
 <script type="text/javascript"> 
     // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
@@ -113,7 +117,7 @@
     document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
         e.preventDefault(); // prevent page re-load
         var locVal = searchForm.options[searchForm.selectedIndex].value
-        window.location = '{{ $.Site.Params.sitepath}}/neighborhood-reports/'+ DOMPurify.sanitize(locVal) + "/" + {{ .Params.urlExtension }}
+        window.location = sitepath + '/neighborhood-reports/'+ DOMPurify.sanitize(locVal) + "/" + {{ .Params.urlExtension }}
       });
    </script>
 

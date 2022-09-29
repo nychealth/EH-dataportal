@@ -19,10 +19,8 @@ content/Spanish/
 docs
 
 .Rproj.user
-QA/Persist indicator selections.PNG
-QA/Persist measure selections.PNG
-QA/~WRL0005.tmp
-QA/~$ notes.docx
+
+QA/
 
 # Other DE version for reference
 static/js/data-explorer/links0.js
@@ -33,3 +31,7 @@ QA/DE QC checklist - 8.2.2022.docx
 themes/dohmh/layouts/data-explorer/mutation_observer.js
 QA/~$ QC checklist - 8.2.2022.docx
 static/js/data-explorer/trend_2.js
+staging site, staging data notes.txt
+
+static/js/lunr/
+assets/js/lunr/

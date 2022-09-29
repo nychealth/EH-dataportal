@@ -2,7 +2,7 @@
 title: NYC Agency Pesticide Use
 date: 2021-05-28 18:02:58.870213
 draft: true
-seo_title: "NYC pesticide use data for NYC."
+seo_title: "NYC pesticide use data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["pests"]
