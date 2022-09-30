@@ -148,7 +148,28 @@
         accent-color: #656565;
     }
     
-</style>
+    /* SCROLLBAR */
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 3px;
+    }
+    
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #ffffff; 
+    }
+     
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: rgb(196, 196, 196); 
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgb(175, 175, 175); 
+    }
+    </style>
 
 <article class="container-fluid" id="skip-header-target">
     <div class="row">
@@ -184,14 +205,14 @@
     </div>
 
     <div class="row no-gutters px-0">
-        <div class="col-lg-4 col-md-12 px-0  h-100">
+        <div class="col-lg-4 col-md-12 pr-1  h-100">
             <!-- About button only on mobile-->
             <button class="btn btn-sm btn-outline-light text-primary btn-block d-lg-none mt-0 mb-2" type="button" data-toggle="modal" data-target="#aboutModal">About {{ .Title }}</button>
 
             <!-- Indicator buttons-->
-            <div  style="height: 400px; overflow:scroll;" >
-                <span class='home-label d-none d-md-block border-bottom mb-1 font-weight-bold'>{{ .Title }} datasets:</span>
+            <span class='home-label d-none d-md-block border-bottom mb-1 font-weight-bold'>{{ .Title }} datasets:</span>
 
+            <div  style="border-left: 8px solid #00923E50; max-height: 450px; overflow-y:scroll; overflow-x:hidden;" >
                 <div id="indicatorButtons" class="mb-2">
                     <!--Rendered via renderIndicatorButtons function -->
                 </div>
@@ -200,9 +221,9 @@
 
             <div class="d-none d-lg-block">
                 <span class='home-label d-none d-md-block border-bottom mt-3 mb-1 font-weight-bold'>About {{ .Title }}</span>
-                <div class="card content-card mb-2">
+                <div class="card mb-2" style="border-left: 8px solid #00923E50;">
                     <div class="card-content">
-                        <div class="card-body topic-text"  style="height: 400px; overflow:scroll;" >
+                        <div class="card-body topic-text"  style="max-height: 500px; overflow-y:scroll;  overflow-x:hidden;" >
                              {{ .Content  }}
                         </div>
                     </div>
@@ -227,7 +248,14 @@
                     </div>
                 </div>
 
-                            <div class="mt-2">
+                <div style="clear:both; border-left: 8px solid #00923E50;" class="px-1">
+                    <span class="d-block border-bottom mt-2 font-weight-bold"><span id="indicatorTitle">Indicator</span></span>
+
+                    <p class="fs-sm indicator-description"></p>
+                    <hr>
+                </div>
+
+                            <div class="mt-4 px-1" style="border-left: 8px solid #00923E50;">
                                 <div class="nav nav-pills bg-white device-xs" role="tablist">
         
                                     <a class="nav-item nav-link flex-fill" id="tab-btn-table" href="#tab-table" data-toggle="pill"
@@ -257,12 +285,7 @@
             
                                 </div>
 
-                                <div style="clear:both; border-left: 8px solid #00923E50;" class="px-1">
-                                    <span class="d-block border-bottom mt-2 font-weight-bold"><span id="indicatorTitle">Indicator</span></span>
-                
-                                    <p class="fs-sm indicator-description"></p>
-                                    <hr>
-                                </div>
+
             
                                 <div class="tab-content bg-white mb-4" id="tabs-01-content">
                                     <!-- TABLE TAB -->
