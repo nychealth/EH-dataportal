@@ -625,6 +625,7 @@
 
         // store hash, so display knows where it just was
         let currentHash;
+        let state;
 
         // modifying the measure dropdown innerHTML removes the event listeners from the dropdown list. So, i added it to the HTML, and we can remove it when we call renderTrendChart, if necessary
 
@@ -716,6 +717,10 @@
                     {{/*  showTable();  */}}
                     break;
             }
+
+            state = window.history.state;
+
+            console.log(">> state [hashchange]", state);
 
         });
 
@@ -886,7 +891,7 @@
             
             url.searchParams.set('id', parseFloat(indicatorId));
 
-            if (!dont_add_to_history && (window.history.state === null || window.history.state.id != indicatorId)) {
+            if (!dont_add_to_history && (window.history.state === null || state === null || window.history.state.id != indicatorId)) {
 
                 console.log("++++ add to history");
                 
