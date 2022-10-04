@@ -13,6 +13,12 @@
 
           <p class="text-muted">We collect data from many different sources, and we put them together in different ways to show <strong class="text-primary">how environments affect health</strong>. Explore how here.</p>
 
+          {{ if eq site.Params.data_branch "staging"}}
+          <span style="background-color:#f2e5e5; border-left: 3px solid #800000; padding: 5px;">
+           <strong><i class="fas fa-flag mr-1"></i>Note:</strong> This prototype site is displaying staging data.
+          </span>
+          {{ end }}
+
         </div>
       </div>
 
