@@ -20,6 +20,10 @@ In this file:
 
 // Font size variables are set in /scss/_a-global-variables.scss
 
+.fs-xs {
+    font-size: $fs-xs;
+}
+
 .fs-sm {
     font-size: $fs-sm;
 }
