@@ -1,3 +1,4 @@
+baseURL = "https://nychealth.github.io/EH-dataportal"
 [params]
     # sitepath = "/EH-dataportal"
-    data_branch = "staging"
+    data_branch = "prod"
