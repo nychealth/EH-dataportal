@@ -38,18 +38,18 @@ Two key uses of environment-specific uses are:
 - The variable `data_repo` which sets the site to read data from the staging or production branches of [EHDP-data](https://www.github.com/nychealth/EHDP-data).
 
 ### Deployment
+
 The `gh-pages` branch is served on GitHub Pages, here: [Environment and Health Data Portal](https://nychealth.github.io/EH-dataportal). This branch is [built](https://github.com/peaceiris/actions-hugo) and [served](https://github.com/peaceiris/actions-gh-pages) automatically by Hugo using GitHub Actions, triggered by a merged pull request on `development`. _(Note that this requires a workflow YAML file in both [`main`](https://github.com/nychealth/EH-dataportal/blob/main/.github/workflows/hugo-build-gh-pages.yml) and [`development`](https://github.com/nychealth/EH-dataportal/blob/development/.github/workflows/hugo-build-gh-pages.yml).)_
 
 To deploy to a new environment, update the baseURL in `config.toml`. Update the path, if necessary, in the environment-specific `config.toml` file. And, you may need to update paths in other files, like `search-results.js`.
 
 A run-down of main branches, actions, and purposes are:
 
-| Branch name | Actions on merge:      | Front-end code | Data branch | Use                                |
-|-------------|------------------------|----------------|-------------|------------------------------------|
-| Development | Builds to gp-pages     | Development    | Production  | General development                |
-| Staging     | n/a                    | Like prod      | Productin   | Pre-production testing             |
-| Prod        | Builds to data_staging | Production     | Staging     | Demoing data (build/deploy to 201) |
-| Prod        | Builds to prod-deploy  | Production     | Production  | Deployment to live server          |
+| Branch name:  | Action on merge:         | `EHDP-data` branch:  | Used for:                          |
+|---------------|--------------------------|----------------------|------------------------------------|
+| `development` | Builds to `gh-pages`     | `production`         | General development                |
+| `production`  | Builds to `data-staging` | `staging`            | Demoing data (build/deploy to 201) |
+| `production`  | Builds to `prod-deploy ` | `production`         | Deployment to live server          |
 
 ### Data repository
 
