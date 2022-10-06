@@ -583,7 +583,7 @@
     {{- $trend := resources.Get "js/data-explorer/trend.js" -}}
     {{- $links := resources.Get "js/data-explorer/links.js" -}}
     {{- $disparities := resources.Get "js/data-explorer/disparities.js" -}}
-    {{- $app := resources.Get "js/data-explorer/app.js" | js.Build (dict "params" (dict "hugoIndicators" .Title )) -}}
+    {{- $app := resources.Get "js/data-explorer/app.js" -}}
     
     {{ $dataExplorerJS := slice $global $data $renderMeasures $summary $map $trend $links $disparities $app | resources.Concat "js/bundle.js" }}
     <script type="text/javascript" 

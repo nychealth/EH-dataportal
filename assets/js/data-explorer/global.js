@@ -1,3 +1,5 @@
+// import { all, desc, op, table } from '../../../node_modules/arquero/dist/arquero.min.js';
+
 let indicators = []; // indicator data
 let defaultIndicatorId;
 let selectedSummaryYears = [];

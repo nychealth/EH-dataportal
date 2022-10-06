@@ -102,30 +102,30 @@ function reveal() {
 {{/*  fetch and load indicators metadata into global object              */}}
 {{/* =================================================================== */}}
 
-fetch(data_repo + "/" + data_branch + '/indicators/indicators.json')
-    .then(response => response.json())
-    .then(async data => {
+// fetch(data_repo + "/" + data_branch + '/indicators/indicators.json')
+//     .then(response => response.json())
+//     .then(async data => {
 
-        // console.log("** fetch indicators.json");
+//         // console.log("** fetch indicators.json");
 
-        indicators = data;
+//         indicators = data;
 
-        const paramId = url.searchParams.get('id') !== null ? parseInt(url.searchParams.get('id')) : false;
+//         const paramId = url.searchParams.get('id') !== null ? parseInt(url.searchParams.get('id')) : false;
         
-        renderIndicatorDropdown()
+//         renderIndicatorDropdown()
 
-        // calling loadIndicator calls loadData, etc, and eventually renderMeasures. Because all 
-        //  of this depends on the global "indicator" object, we call loadIndicator here
+//         // calling loadIndicator calls loadData, etc, and eventually renderMeasures. Because all 
+//         //  of this depends on the global "indicator" object, we call loadIndicator here
         
-        if (paramId) {
-            await loadIndicator(paramId)
-        } else {
-            console.log('no param', url.searchParams.get('id'));
-            await loadIndicator()
-        }
+//         if (paramId) {
+//             await loadIndicator(paramId)
+//         } else {
+//             console.log('no param', url.searchParams.get('id'));
+//             await loadIndicator()
+//         }
         
-    })
-    .catch(error => console.log(error));
+//     })
+//     .catch(error => console.log(error));
     
     
     
