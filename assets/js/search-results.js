@@ -13,7 +13,7 @@ function initLunr() {
 
     // download grunt-generated index data
 
-    request.open('GET', `${sitepath}/js/lunr/PagesIndex.json`, true); // sitepath declared in head.html
+    request.open('GET', `${baseURL}/js/lunr/PagesIndex.json`, true); // baseURL declared in head.html
 
     request.onload = function () {
 
@@ -119,7 +119,7 @@ function initUI() {
         // redirect to the homepage if there is no search term
         // window.location.href = site_root;
         // window.location.href = baseURL;
-        window.location.href = sitepath;
+        window.location.href = baseURL;
     }
 }
 
