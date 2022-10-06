@@ -4,12 +4,6 @@ This repository contains a prototype of the Environment and Health Data Portal. 
 
 ## General Development
 
-### Data repository
-
-Most of the data used by the site is stored in the separate [EHDP-data](https://github.com/nychealth/EHDP-data) repository. This setup allows us to update the site's data without needing to re-build the entire site. Look there for descriptions of the data files, and for the code used to generate the them.
-
-Note that any file required to *build* the site should remain with the source code, but anything required only for display can and should be stored in the remote data repo, EHDP-data. 
-
 ### Getting started
 You will need the following things properly installed on your computer.
 
@@ -56,6 +50,12 @@ A run-down of main branches, actions, and purposes are:
 | Staging     | n/a                    | Like prod      | Productin   | Pre-production testing             |
 | Prod        | Builds to data_staging | Production     | Staging     | Demoing data (build/deploy to 201) |
 | Prod        | Builds to prod-deploy  | Production     | Production  | Deployment to live server          |
+
+### Data repository
+
+Most of the data used by the site is stored in the separate [EHDP-data](https://github.com/nychealth/EHDP-data) repository. This setup allows us to update the site's data without needing to re-build the entire site. Look there for descriptions of the data files, and for the code used to generate the them. 
+
+Note that any file required to *build* the site should remain with the source code, but anything required only for display can and should be stored in the remote data repo, EHDP-data. 
 
 ---
 ## How-to: Creating new content
