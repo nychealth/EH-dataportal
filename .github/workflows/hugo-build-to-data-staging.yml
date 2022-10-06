@@ -1,6 +1,6 @@
 name: Hugo Build to `data-staging` branch
 
-# run action on a merged PR on "prod"
+# run action on a merged PR on "production"
 
 on:
   pull_request:

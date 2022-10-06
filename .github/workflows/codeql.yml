@@ -12,11 +12,7 @@
 name: "CodeQL"
 
 on:
-  # push:
-    # branches: 
-    #   - prod
-    #   - staging
-  pull_request_target: # analyze the base branch (aka prod or staging) of the closed PR
+  pull_request_target: # analyze the base branch (aka production or development) of the closed PR
     branches: 
       - production
       - development
