@@ -1,3 +1,75 @@
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// handler functions for summary table
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+const handleYearFilter = (el) => {
+    el.addEventListener('change', (e) => {
+        if (e.target.checked) {
+            selectedSummaryYears = [e.target.value]
+        }
+        renderTable()
+    })
+}
+
+
+const handleToggle = () => { 
+    
+    $('body').off('click', '#summary-table tr.group td');
+    $('body').on('click', '#summary-table tr.group td', (e) => {
+
+        const td = $(e.target);
+        const tr = td.parent();
+        const group = td.data('group');
+        const groupLevel = td.data('group-level');
+        
+        const handleGroupToggle = () => {
+            
+            const subGroupToggle = $(`td[data-year="${group}"][data-group-level="1"]`);
+            const subGroupRow = $(`tr[data-year="${group}"]`);
+            
+            if (subGroupToggle.css('display') === 'none') {
+                subGroupToggle.removeClass('hidden');
+                subGroupRow.removeClass('hidden');
+                td.removeClass('hidden');
+                subGroupToggle.show();
+                subGroupRow.show();
+            } else {
+                subGroupToggle.addClass('hidden');
+                subGroupRow.addClass('hidden');
+                td.addClass('hidden');
+                subGroupToggle.hide();
+                subGroupRow.hide();
+            }
+        }
+        
+        const handleSubGroupToggle = () => {
+
+            const subDataGroup = tr.next(`tr`).data(`group`);
+            const parentDataGroup = subDataGroup.split('-')[0];
+            const subGroupRow = $(`tr[data-group="${subDataGroup}"]`);
+            const parentGroupToggle = $(`td[data-group="${parentDataGroup}"]`);
+            
+            if (subGroupRow.css('display') == 'none')  {
+                subGroupRow.show();
+                td.removeClass('hidden');
+                subGroupRow.removeClass('hidden');
+                parentGroupToggle.removeClass('hidden');
+            } else {
+                subGroupRow.hide();
+                td.addClass('hidden');
+                subGroupRow.addClass('hidden');
+            }
+        }
+        
+        if (groupLevel === 0) {
+            handleGroupToggle();
+        } else {
+            handleSubGroupToggle();
+        }
+        
+    });
+}
+
 const renderTable = () => {
 
         console.log("** renderTable");
