@@ -34,21 +34,28 @@ Branches that pass testing and are ready for primetime can then be merged into m
 The site runs a CodeQL analysis on merges/builds. 
 
 ### Environment-specific builds
-The /config folder includes subfolders with environment-specific configuration. Specifically, there are different configuration files for serving the site locally, serving it on Github pages, and eventually, building for production.
+The /config folder includes subfolders with environment-specific configuration. Specifically, there are different configuration files for serving the site locally, serving it on Github pages, and building for production.
 
-Currently, config/local/config.toml has a variable ```sitepath = "/EH-dataportal"```. This can be inserted into templates in order to fix path issues. For example, in header.html, the following uses this environment variable to load the banner image:
+To run a local-environment-specific serve or build, enter ```hugo serve --environment local``` or ```hugo build --environment local```. This will merge the contents of `/config/local/config.toml` with `/config/_default/config.toml`. **You may find it useful to create aliases for these functions ([in Powershell](https://www.tutorialspoint.com/how-to-create-powershell-alias-permanently), or [Bash](https://www.shell-tips.com/bash/alias/))**.
+
+Two key uses of environment-specific uses are:
+- The  variable ```sitepath = "/EH-dataportal"```. This is inserted into templates in order to fix path issues. For example, in header.html, the following uses this environment variable to load the banner image:
 ```<div class="site-header bg-primary" style="background-image: url({{ $.Site.Params.sitepath}}/images/header_background.jpg)">``` 
-
-To run a local-environment-specific serve or build, enter ```hugo serve --environment local``` or ```hugo build --environment local```. This will merge the contents of /config/local/config.toml with /config/_default/config.toml.
-
-**You may find it useful to create aliases for these functions ([in Powershell](https://www.tutorialspoint.com/how-to-create-powershell-alias-permanently), or [Bash](https://www.shell-tips.com/bash/alias/))**.
+- The variable `data_repo` which sets the site to read data from the staging or production branches of [EHDP-data](https://www.github.com/nychealth/EHDP-data).
 
 ### Deployment
 The `gh-pages` branch is served on GitHub Pages, here: [Environment and Health Data Portal](https://nychealth.github.io/EH-dataportal). This branch is [built](https://github.com/peaceiris/actions-hugo) and [served](https://github.com/peaceiris/actions-gh-pages) automatically by Hugo using GitHub Actions, triggered by a merged pull request on `development`. _(Note that this requires a workflow YAML file in both [`main`](https://github.com/nychealth/EH-dataportal/blob/main/.github/workflows/hugo-build-gh-pages.yml) and [`development`](https://github.com/nychealth/EH-dataportal/blob/development/.github/workflows/hugo-build-gh-pages.yml).)_
 
-The branch deploy-Neighborhood-Reports is a dead-end branch meant for deploying only the NRs to our servers.
-
 To deploy to a new environment, update the baseURL in `config.toml`. Update the path, if necessary, in the environment-specific `config.toml` file. And, you may need to update paths in other files, like `search-results.js`.
+
+A run-down of main branches, actions, and purposes are:
+
+| Branch name | Actions on merge:      | Front-end code | Data branch | Use                                |
+|-------------|------------------------|----------------|-------------|------------------------------------|
+| Development | Builds to gp-pages     | Development    | Production  | General development                |
+| Staging     | n/a                    | Like prod      | Productin   | Pre-production testing             |
+| Prod        | Builds to data_staging | Production     | Staging     | Demoing data (build/deploy to 201) |
+| Prod        | Builds to prod-deploy  | Production     | Production  | Deployment to live server          |
 
 ---
 ## How-to: Creating new content
