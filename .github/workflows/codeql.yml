@@ -18,10 +18,10 @@ on:
     #   - staging
   pull_request_target: # analyze the base branch (aka prod or staging) of the closed PR
     branches: 
-      - prod
-      - staging
+      - production
+      - development
     types:
-      - closed      
+      - closed
   schedule:
     - cron: '27 6 * * 3'
 

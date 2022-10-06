@@ -5,7 +5,7 @@ name: Hugo Build to `deploy` branch
 on:
   pull_request:
     branches:
-      - prod
+      - production
     types:
       - closed
 
@@ -112,10 +112,10 @@ jobs:
 
       # publish to "deploy" branch
 
-      - name: Publish to "deploy"
+      - name: Publish to "prod-deploy"
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: deploy
+          publish_branch: prod-deploy
           publish_dir: ./docs/
           enable_jekyll: false

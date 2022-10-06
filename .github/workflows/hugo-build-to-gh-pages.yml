@@ -1,11 +1,11 @@
 name: Hugo Build to GitHub Pages
 
-# run action on a merged PR on "staging"
+# run action on a merged PR on "development"
 
 on:
   pull_request:
     branches:
-      - staging
+      - development
     types:
       - closed
 
@@ -94,7 +94,7 @@ jobs:
       # build site with Hugo
 
       - name: Hugo Build
-        run: hugo --environment staging --cleanDestinationDir --debug
+        run: hugo --environment development --cleanDestinationDir --debug
 
       # run gruntfile action
 
