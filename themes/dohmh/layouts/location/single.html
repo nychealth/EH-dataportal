@@ -28,7 +28,7 @@
 {{- range $reports_data -}}
 
 <script>
-  var NeighborhoodName = "{{ .geo_entity_name }}"; //setting for use in visualizations
+  var NeighborhoodName = "{{ .geo_entity_name }}"; // setting for use in visualizations
   var report_name = "{{ $.Params.title }}"
   var data_download_loc = "{{ .data_download_loc }}"
 </script>
@@ -344,7 +344,7 @@
   document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
     e.preventDefault(); // prevent page re-load
     var locVal = searchForm.options[searchForm.selectedIndex].value;
-    window.location = sitepath + '/neighborhood-reports/'+ DOMPurify.sanitize(locVal) + "/" + reportExt;
+    window.location = baseURL + '/neighborhood-reports/'+ DOMPurify.sanitize(locVal) + "/" + reportExt;
   });
 
  </script>
