@@ -204,7 +204,7 @@
     </div>
 
     <div class="row no-gutters px-0">
-        <div class="col-lg-4 col-md-12 pr-1  h-100">
+        <div class="col-lg-4 col-md-12 pr-1">
             <!-- About button only on mobile-->
             <button class="btn btn-sm btn-outline-light text-primary btn-block d-lg-none mt-0 mb-2" type="button" data-toggle="modal" data-target="#aboutModal">About {{ .Title }}</button>
 
@@ -246,11 +246,23 @@
             </div>
 
 
+            <div class="d-none d-lg-block">
+                <hr>
+                {{- partial "keywords" . -}}
+            </div>
 
 
         </div>
 
-        <div class="col-lg-7 mx-auto col-md-12 h-100">
+        <div class="col-lg-7 mx-auto col-md-12">
+
+            <!-- Indicator descrition -->
+            <div style="clear:both; border-left: 8px solid #00923E50;" class="px-1">
+                <span class="d-block mt-2 font-weight-bold"><span id="indicatorTitle">Indicator title</span></span>
+
+                <p class="fs-sm indicator-description">Pellentesque facilisis dictum velit, sit amet ultricies lacus convallis nec. Phasellus odio urna, vehicula at commodo ac, euismod eget mauris. In sagittis nisl vel nunc cursus porttitor. </p>
+            </div>
+
             <!-- Visualization container -->
             <div class="mt-2">
                 <!-- Nav buttons -->
@@ -283,12 +295,6 @@
 
                 </div>
 
-                <!-- Indicator descrition -->
-                <div style="clear:both; border-left: 8px solid #00923E50;" class="px-1">
-                    <span class="d-block mt-2 font-weight-bold"><span id="indicatorTitle">Indicator title</span></span>
-
-                    <p class="fs-sm indicator-description">Pellentesque facilisis dictum velit, sit amet ultricies lacus convallis nec. Phasellus odio urna, vehicula at commodo ac, euismod eget mauris. In sagittis nisl vel nunc cursus porttitor. </p>
-                </div>
             
                 <!-- visualization elements -->
                 <div class="tab-content bg-white mb-2" id="tabs-01-content">
@@ -318,6 +324,7 @@
                             </div>
                         </div>
 
+                            <span class="home-label">Indicator title</span>
                             <div id="summary-table" class="vis-bucket">
                                 <!-- INSERT SUMMARY TABLE HERE -->
                             </div>
@@ -337,6 +344,7 @@
                                 </div>
                             </div>
                         </div>
+                            <span class="home-label">Indicator title</span>
                             <div id="map" class="vis-bucket"></div>
                     </div>
 
@@ -355,6 +363,7 @@
                             </div>
                         </div>
                             <!-- INSERT TREND CHART HERE -->
+                            <span class="home-label">Indicator title</span>
                             <div id="trend" class="vis-bucket"></div>
                     </div>
 
@@ -370,6 +379,7 @@
                             </div>
                         </div>
                             <!-- INSERT LINKS CHART HERE -->
+                            <span class="home-label">Indicator title</span>
                             <div id="links" class="vis-bucket"></div>
                     </div>
                 </div>
@@ -420,7 +430,7 @@
                             </button>
                         </div>
 
-                        <div class="collapse p-2" id="toggle-target" role="navigation">
+                        <div class="collapse p-2 border" id="toggle-target" role="navigation">
                             <p class="fs-sm indicator-measures">Insert from `How_Calculated.` Vivamus consequat id
                                 nibh et tempor. Cras
                                 augue enim, iaculis quis purus sit amet, interdum accumsan neque. In blandit varius
@@ -440,7 +450,7 @@
                             </button>
                         </div>
 
-                        <div class="collapse p-2" id="toggle-target-2" role="navigation">
+                        <div class="collapse p-2 border" id="toggle-target-2" role="navigation">
                             <p class="fs-sm indicator-sources">Insert from `Sources.` Pellentesque blandit ante vel
                                 augue mattis, lacinia
                                 tincidunt velit feugiat. Class aptent taciti sociosqu ad litora torquent per conubia

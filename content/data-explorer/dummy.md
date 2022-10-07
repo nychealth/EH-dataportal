@@ -5,10 +5,10 @@ draft: false
 seo_title: "This is a dummy topic"
 seo_description: "Explore data, visualizations, and more."
 tags: 
-categories: ["transportation"]
+categories: ["transportation","climatehealth"]
+keywords: ["smoking","cigarettes","cancer","secondhand","smoke","work","home", "children","transportation","climatehealth","keyword","morekeywords"]
 keyTopic: transportation
 layout: single-dummy
-keywords: 
 indicators:
 - header: null
   IndicatorID:
