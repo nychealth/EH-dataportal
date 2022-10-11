@@ -1,6 +1,6 @@
 <div class="keywords">
 {{- if .Params.keywords -}}<strong>Keywords:</strong> <br>
-    {{- range .Params.keywords -}}<a href="{{ "/keywords/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> | 
+    {{- range .Params.keywords -}}<a href="{{ "/keywords/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> |&#32;
     {{- end -}}
 {{- end -}}
 </div>
