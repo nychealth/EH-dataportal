@@ -107,7 +107,21 @@ To publish a new neighborhood report, you'd need:
 ---
 ## Special functions
 
-MORE HERE
+### Templates and partials
+Templates are stored in `themes/dohmh/layouts`, in the folder for their corresponding content area. A template includes:
+- The base template, in `layouts/_default/baseof.html`, and components referenced in that file (like `header.html`, `footer.html`, etc)
+- The page template itself (e.g., `layouts/data-stories/single.html`)
+- Partials: re-usable template blocks are are stored in `/partials`. These can be called from any other templates.
+
+### Shortcodes
+Shortcodes can be called from content files (markdown). Essentially, the shortcode is called and arguments are passed into it and inserted into the corresponding HTML code in `layouts/shortcodes`. There are shortcodes for a few different visualization embeds for Data Stories, and more can be written as needed.
+
+### Data/Globals
+Data accessible throughout the site can be stored in the `data` folder. This can be referenced by site templates. For example, `featured_data.yml` is referenced by `partials/featured-data.html` and displayed on the Home Page and the Data Explorer landing page. You can update "featured datasets" by updating this file.
+
+Other content in `data` are SEO variables and Neighborhood Reports core content.
+
+
 ---
 
 ## Contact us
