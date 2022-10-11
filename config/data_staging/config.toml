@@ -1,3 +1,4 @@
+baseURL = "http://gcappbesp307/IndicatorPublic/beta"
 [params]
     # sitepath = "/EH-dataportal"
     data_branch = "staging"

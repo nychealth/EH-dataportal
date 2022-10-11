@@ -1,11 +1,11 @@
-name: Hugo Build to `deploy` branch
+name: Hugo Build to `prod-deploy` branch
 
-# run action on a merged PR on "prod"
+# run action on a merged PR on "production"
 
 on:
   pull_request:
     branches:
-      - prod
+      - production
     types:
       - closed
 
@@ -94,7 +94,7 @@ jobs:
       # build site with Hugo
 
       - name: Hugo Build
-        run: hugo --environment prod --cleanDestinationDir
+        run: hugo --environment production --cleanDestinationDir
 
       # run gruntfile action
 
@@ -112,10 +112,10 @@ jobs:
 
       # publish to "deploy" branch
 
-      - name: Publish to "deploy"
+      - name: Publish to "prod-deploy"
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: deploy
+          publish_branch: prod-deploy
           publish_dir: ./docs/
           enable_jekyll: false
