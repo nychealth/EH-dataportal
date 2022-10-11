@@ -5,22 +5,36 @@ draft: true
 seo_title: "Mental health data in NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
-categories: ["social","transportation","healthoutcomes"]
-keywords: ["mental health","mental illness","health care","health care access","health"]
+categories: ["social","transportation","healthoutcomes","housing","climatehealth"]
+keywords: ["mental health","mental illness","health care","health care access","health","depression","hospitalization","suicide","self-harm","violence"]
 indicators: 
 menu:
     main:
         identifier: '03'
 ---
 
-Mental health is an important part of overall health. Mental illnesseses are mental and behavioral patterns that cause distress and functional problems.
+Mental health is a person’s emotional, psychological, and social wellbeing. It is an important part of overall health.
 
-The causes of mental illnesses are complex and varied. They include individual characteristics, like a person's biochemistry, but also thinkgs like access to resources for wellbeing, access to health care, and other social and environmental components.
+Mental illness can include depression, serious psychological distress, hospitalization for psychiatric reasons, and even suicide.
 
-Even things like the presence of green space in a city can effect people's mental wellbeing. [Studies have shown that increasing a neighborhood's green space can improve residents' self-reported mental health](https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2688343).
+Many factors can contribute to mental illness. Poor mental health is associated with a variety of risk factors. These include chronic disease, poverty, and poor environmental conditions. Many adults with mental illness do not receive the treatment they need.
 
-Other environmental factors include:
-- Noise, which can affect sleep
-- Pests and other housing conditions, which can increase residents' distress
-- Access to health care
+### Mental health and the environment
+A person’s environment affects their mental health.
 
+**Neighborhood factors** like green space, noise, and infrastructure can affect mental health. People who say their neighborhood gives them more opportunities to be physically active are less likely to report poor mental health.
+
+People exposed to **poor housing quality** (like housing maintenance issues and pests) are more likely to report poor mental health.
+
+Living in **high poverty** neighborhoods is associated with depression, serious psychological distress, and psychiatric hospitalization.
+
+**Experiencing violence** is also a risk factor: depression is higher among those who report that their neighborhood is not very safe, and those who have ever been hurt by an intimate partner.
+
+Even climate change is a risk: extreme heat is associated with mood disorders and anxiety, and disasters such as floods and hurricanes result in trauma, posttraumatic stress disorder, and poorer mental health.
+
+### How to get help
+If you’re struggling, connect with trained counselors at NYC Well. It’s free and confidential. Staff are available 24 hours a day, seven days a week, and can provide counseling and referrals to care in over 200 languages.
+- For support, call 888-NYC-WELL (888-692-9355), text “WELL” to 65173 or [chat online at nyc.gov/nycwell](https://www.nyc.gov/nycwell).
+- If you or someone you know is at immediate risk of hurting themselves, or in immediate danger call 911.
+
+You can [visit nyc.gov/nycwell and click on the App Library](https://www.nyc.gov/nycwell) to find apps and online tools to help you manage your health and emotional well-being from home. Or, [get more information on coping through COVID-19](https://www1.nyc.gov/site/acs/about/covidhelp.page).
