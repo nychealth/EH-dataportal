@@ -87,6 +87,12 @@ const renderLinksChart = (
             break;
     }
 
+    // get dimensions
+    var legendOrientation;
+    var columns = 1;
+    window.innerWidth < 576 ? legendOrientation = "top" : "right"
+    window.innerWidth < 576 ? columns = 3 : 1;
+
     // define spec
 
     setTimeout(() => {
@@ -112,8 +118,8 @@ const renderLinksChart = (
                     "labelFontSize": 11,
                     "titleFontSize": 13,
                     "titleFont": "sans-serif",
-                    "titlePadding": 10
-                    
+                    "titlePadding": 10,
+                    "titleFontWeight": "normal"
                 },
                 "axisY": {
                     "labelFontSize": 11,
@@ -123,8 +129,11 @@ const renderLinksChart = (
                     "titleFont": "sans-serif",
                 },
                 "legend": {
+                    "columns": columns,
                      "labelFontSize": 14,
-                     "symbolSize": 140
+                     "symbolSize": 140,
+                     "orient": legendOrientation,
+                     "title": null
                  },
                 "view": { "stroke": "transparent" },
                 "range": {
@@ -136,6 +145,9 @@ const renderLinksChart = (
                         "#55b748"
                     ]
                 },
+                "title": {
+                    "fontWeight": "normal"
+                  },
                 "text": {
                     "color": "#1696d2",
                     "fontSize": 11,

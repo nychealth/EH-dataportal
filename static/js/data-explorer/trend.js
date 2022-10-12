@@ -15,6 +15,12 @@ const renderTrendChart = (
 
         let trendMeasurementType = metadata[0].MeasurementType;
         let trendDisplay = metadata[0].DisplayType;
+
+        // get dimensions
+        var legendOrientation;
+        var columns = 1;
+        window.innerWidth < 576 ? legendOrientation = "top" : "right"
+        window.innerWidth < 576 ? columns = 3 : 1;
         
         // define spec
         
@@ -36,9 +42,13 @@ const renderTrendChart = (
                     "labelFontSize": 11,
                 },
                 "legend": {
+                    "columns": columns,
                     "labelFontSize": 14,
                     "symbolSize": 140
                 },
+                "title": {
+                    "fontWeight": "normal"
+                  },
                 
                 "view": {"stroke": "transparent"},
                 
@@ -90,7 +100,7 @@ const renderTrendChart = (
                             "field": "Geography",
                             "type": "nominal",
                             "legend": {
-                                "orient": "right",
+                                "orient": legendOrientation,
                                 "title": null
                             }
                         },

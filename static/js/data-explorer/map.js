@@ -51,7 +51,7 @@ const renderMap = (
         mapspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": {
-                "text": `${mapMeasurementType} (${mapTime}) by ${mapGeoTypeDescription}`,
+                "text": `By ${mapGeoTypeDescription} | (${mapTime})`,
                 "subtitlePadding": 10
             },
             "data": {
@@ -62,13 +62,20 @@ const renderMap = (
                     }
                 }
             },
-            "config": {"concat": {"spacing": 20}},
+            "config": {
+                "concat": {"spacing": 20}, 
+                "view": {"stroke": "transparent"},
+                "axisY": {"domain": false,"ticks": false},
+                "title": {
+                    "fontWeight": "normal"
+                  }
+            },
             "projection": {"type": "mercator"},
             "vconcat": [
                 {
                     "layer": [
                         {
-                            "height": 500,
+                            "height": 450,
                             "width": "container",
                             "data": {
                                 "url": `${data_repo}/${data_branch}/geography/borough.topo.json`,
@@ -183,7 +190,7 @@ const renderMap = (
                             "field": "Value",
                             "type": "quantitative",
                             "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}},
-                            "legend": {"direction": "horizontal","orient": "top-left","title": `${mapDisplay}`}
+                            "legend": {"direction": "horizontal","orient": "top-left","title": `${mapMeasurementType}`}
                         },
                         "stroke": {
                             "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
