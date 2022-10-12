@@ -101,10 +101,11 @@ const renderLinksChart = (
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "description": "Asthma 5-17 ED visit rate and poverty scatterplot",
             "title": {
-                "text": [`${yIndicatorName && `${yIndicatorName}`} -`, ` ${yMeasure && `${yMeasure}`} ${yDisplay && `${yDisplay}`}, (${yTime})`],
+                "text": [`${yIndicatorName && `${yIndicatorName}`}: ${yMeasure && `${yMeasure}`} ${yDisplay && `${yDisplay}`} (${yTime})`],
                 "align": "left", 
                 "anchor": "start", 
-                "fontSize": 14, 
+                "fontSize": 12, 
+                "fontWeight": "normal",
                 "font": "sans-serif",
                 "baseline": "top",
                 "dy": -10,
@@ -116,7 +117,7 @@ const renderLinksChart = (
                 "background": "#FFFFFF",
                 "axisX": {
                     "labelFontSize": 11,
-                    "titleFontSize": 13,
+                    "titleFontSize": 12,
                     "titleFont": "sans-serif",
                     "titlePadding": 10,
                     "titleFontWeight": "normal"
@@ -145,9 +146,6 @@ const renderLinksChart = (
                         "#55b748"
                     ]
                 },
-                "title": {
-                    "fontWeight": "normal"
-                  },
                 "text": {
                     "color": "#1696d2",
                     "fontSize": 11,
@@ -186,7 +184,7 @@ const renderLinksChart = (
                             "type": "quantitative"
                         },
                         "x": {
-                            "title": [`${xIndicatorName && `${xIndicatorName}`}`, `- ${xMeasure} ${xDisplay && `(${xDisplay})`}, ${xTime}`],
+                            "title": [`${xIndicatorName && `${xIndicatorName}`}: ${xMeasure} ${xDisplay && `(${xDisplay})`} (${xTime})`],
                             "field": xValue,
                             "type": "quantitative",
                             "scale": {"domainMin": xMin, "nice": true}

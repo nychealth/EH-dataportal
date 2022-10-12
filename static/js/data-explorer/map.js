@@ -51,7 +51,7 @@ const renderMap = (
         mapspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": {
-                "text": `By ${mapGeoTypeDescription} | (${mapTime})`,
+                "text": `By ${mapGeoTypeDescription}, ${mapTime}`,
                 "subtitlePadding": 10
             },
             "data": {
@@ -68,14 +68,18 @@ const renderMap = (
                 "axisY": {"domain": false,"ticks": false},
                 "title": {
                     "fontWeight": "normal"
-                  }
+                  },
+                "legend": {
+                    "offset": -25,
+                    "titleFontWeight": "normal",
+                }
             },
             "projection": {"type": "mercator"},
             "vconcat": [
                 {
                     "layer": [
                         {
-                            "height": 450,
+                            "height": 500,
                             "width": "container",
                             "data": {
                                 "url": `${data_repo}/${data_branch}/geography/borough.topo.json`,
