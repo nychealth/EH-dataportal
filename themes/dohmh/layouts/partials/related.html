@@ -3,7 +3,7 @@
 {{- $cats := $.content.Params.categories -}}
 {{- $layout := .layout -}}
 
-{{- range where $.content.Site.RegularPages "Section" .section -}}
+{{- range (where $.content.Site.RegularPages "Section" .section) -}}
     {{- $page := . }}
     {{- $has_common_cats := intersect $cats .Params.categories | len | lt 0 -}}
         {{- if and $has_common_cats (ne $page_link $page.RelPermalink) -}}
