@@ -56,61 +56,39 @@
             </footer>
             <!-- #article-footer -->
 
+            <!-- Related content --> 
+            {{- partial "related-footer" . -}}
+
         </div>
-        <!-- .col -->
+        <!-- .col (main) -->
 
         <!--right-hand column for extra resources and links-->
         <div class="col-xl-2 border-xl-left">
 
             <div class="py-3 mt-3 mt-xl-0 sticky-top" style="z-index: 0">
+                {{- partial "socialshare.html" . -}}
+
+                <hr class="my-2">
+
+                {{- partial "keywords" . -}}
+
+                <hr class="my-2">
+
                 <div class="fs-sm">
                     {{- if .Params.photocredit -}}
-                        <i class="fas fa-images mr-1"></i><strong>Banner image:</strong><br>
+                        <i class="fas fa-images mr-1"></i><strong class="keywords">Banner image:</strong><br>
                         {{- .Params.photocredit -}}
                         <hr class="my-2">
                     {{- end -}}
 
-                    <strong>Published on:</strong><br>
+                    <strong class="keywords">Published on:</strong><br>
                     {{- .Date.Format "January 2, 2006" -}}
                 </div>
 
-                {{- partial "socialshare.html" . -}}
 
-                <h3 class="text-muted fs-sm mt-4 border-bottom">Related:</h3>
-                <div class="fs-sm">
-                    <h4 class="mt-2 fs-md"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
-                    {{- partial "related" (dict "section" "data-stories" "layout" "singlelist" "content" . ) -}}
-                </div>
 
-                <div class="mt-4 fs-sm">
-                    <h4 class="fs-md"><i class="fas fa-star text-muted mr-1" aria-hidden="true"></i>Key Topics</h4>
-                        <!--sets variables-->
-                        {{- $page_link := .RelPermalink -}}
-                        {{- $cats := .Params.categories -}}
 
-                        {{- range where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index" -}}
-                        <!--$page equals values we find when ranging through-->
-                        {{- $page := . -}}
 
-                        <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
-                        {{- $has_common_cats := intersect $cats .Params.categories | len | lt 0 -}}
-
-                        <!--Show commonalities, except for page we're on -->
-                        {{- if and $has_common_cats (ne $page_link $page.RelPermalink) -}}
-                        <a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
-                        <hr class="my-1">
-                        {{- end -}} 
-                        {{- end -}}
-                </div>
-
-                <div class="mt-4 fs-sm">
-                    <h4 class="fs-md"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
-                    {{- partial "related" (dict "section" "neighborhood-reports" "layout" "singlelist" "content" . ) -}}
-                </div>
-
-                <div class="mt-4">
-                    {{- partial "keywords" . -}}
-                </div>
             </div>
             <!-- .my-3 -->
 
