@@ -177,7 +177,7 @@
     
     .overflow-fade-about {
         -webkit-mask-image: linear-gradient(180deg, #000 80%, transparent);
-        max-height: 45vmin; overflow-y:scroll; overflow-x:hidden;
+        max-height: 55vmin; overflow-y:scroll; overflow-x:hidden;
       }
 
       .vis-bucket {
@@ -223,18 +223,11 @@
                 <span class='home-label d-none d-md-block border-bottom mt-3 mb-1 font-weight-bold'>About {{ .Title }}</span>
                 <div class="card mb-2">
                     <div class="card-content">
-                        <div class="card-body overflow-fade-about topic-text">
+                        <div class="card-body overflow-fade-about topic-text pb-4">
                                 {{ .Content  }}
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <hr class="mt-2">
-            <!-- Keywords - only on desktop -->
-            <div class="d-none d-lg-block">
-                {{- partial "keywords" . -}}
-
             </div>
         </div>
 
@@ -458,15 +451,26 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="row mb-4">
-                    <div class="col px-2">
-                            {{- partial "related-footer" . -}}
-                    </div>
-                </div>
-
         </div>
 
+
+    </div>
+
+    <div class="row no-gutters px-0">
+        <div class="col-lg-4 col-md-12 pr-1">
+            <!-- Keywords - only on desktop -->
+            <div class="d-none d-lg-block p-2 borderbox mt-2">
+                {{- partial "keywords" . -}}
+
+            </div>
+        </div>
+
+        <div class="col-lg-7 mx-auto col-md-12 borderbox mt-2 mb-4">
+            <div class="px-2">
+                {{- partial "related-footer" . -}}
+
+            </div>
+        </div>
 
     </div>
 
