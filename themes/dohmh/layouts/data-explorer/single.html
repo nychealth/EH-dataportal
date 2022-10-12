@@ -240,8 +240,8 @@
 
         <div class="col-lg-7 mx-auto col-md-12">
 
-                <!-- FED BY JS - REVISE -->
-                <div class="dropdown sr-only">
+                <!--OLD MENU, but used by firstIndicatorId. Old menu dropdown hidden from screen by sr-only and aria-hidden=true -->
+                <div class="dropdown sr-only" aria-hidden="true">
                     <span class='home-label d-block'>Change dataset</span>
                     <button class="btn btn-outline-primary btn-lg btn-block text-wrap text-info dropdown-toggle" type="button"
                             id="dropdownIndicator" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -251,8 +251,6 @@
                          id="indicator-dropdown">
                         <!-- Dropdown itmes are rendered using renderIndicatorDropdown -->
                     </div>
-
-                    {{- partial "keywords" . -}}
                 </div>
 
                 <!-- Indicator title and description --> 
