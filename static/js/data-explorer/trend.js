@@ -67,7 +67,7 @@ const renderTrendChart = (
                 "values":  data,
             },
             "width": "container",
-            "height": 500,
+            "height": "container",
             "title": { 
                 "anchor": "start", 
                 "fontSize": 13, 

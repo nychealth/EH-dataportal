@@ -95,7 +95,7 @@ const renderLinksChart = (
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "description": "Asthma 5-17 ED visit rate and poverty scatterplot",
             "title": {
-                "text": [`${yIndicatorName && `${yIndicatorName}`} -`, ` ${yMeasure && `${yMeasure}`} ${yDisplay && `(${yDisplay})`}, ${yTime}`],
+                "text": [`${yIndicatorName && `${yIndicatorName}`} -`, ` ${yMeasure && `${yMeasure}`} ${yDisplay && `${yDisplay}`}, (${yTime})`],
                 "align": "left", 
                 "anchor": "start", 
                 "fontSize": 14, 
@@ -105,7 +105,7 @@ const renderLinksChart = (
                 "limit": 1000
             },            
             "width": "container",
-            "height": 500,
+            "height": "container",
             "config": {
                 "background": "#FFFFFF",
                 "axisX": {

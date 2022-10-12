@@ -169,6 +169,23 @@
     ::-webkit-scrollbar-thumb:hover {
       background: rgb(175, 175, 175); 
     }
+
+    .overflow-fade-ind {
+        -webkit-mask-image: linear-gradient(180deg, #000 80%, transparent);
+        max-height: 35vmin; overflow-y:scroll; overflow-x:hidden;
+      }
+    
+    .overflow-fade-about {
+        -webkit-mask-image: linear-gradient(180deg, #000 80%, transparent);
+        max-height: 45vmin; overflow-y:scroll; overflow-x:hidden;
+      }
+
+      .vis-bucket {
+        clear:both;
+        width:100%; 
+        max-height: 65vmin; 
+        border: 1px solid red;
+    }
     </style>
 
 <article class="container-fluid" id="skip-header-target">
@@ -180,24 +197,11 @@
                     <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}/data-explorer/">Data Explorer</a></li>
 
                     <li class="breadcrumb-item active"><strong><a href="{{ .Page.RelPermalink }}">{{ .Title }}</a></strong></li>
-                    <li class="nav-item ml-auto">
+                    <li class="nav-item ml-auto d-none d-lg-block">
                         <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal"
                                 data-target="#topicModal">
                             Change topic
                         </button>
-
-                        <!--
-                            <form class="autocomplete-form form-inline">
-                                <label for="all-data" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">Search data</label>
-                                <div class="autocomplete-wrapper" width="100%">
-                                    <select name="all-data" id="all-data">
-                                        <option value=""><i class="fas fa-search mr-2"></i>Search data</option>
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn-primary btn" style="height:40px;"><i class="fas fa-search"></i></button> 
-                            </form>
-                        -->
-
                     </li>
                 </ul>
             </nav>
@@ -205,37 +209,39 @@
     </div>
 
     <div class="row no-gutters px-0">
-        <div class="col-lg-4 col-md-12 pr-1  h-100">
+        <div class="col-lg-4 col-md-12 pr-1">
             <!-- About button only on mobile-->
             <button class="btn btn-sm btn-outline-light text-primary btn-block d-lg-none mt-0 mb-2" type="button" data-toggle="modal" data-target="#aboutModal">About {{ .Title }}</button>
 
             <!-- Indicator buttons-->
             <span class='home-label d-none d-md-block border-bottom mb-1 font-weight-bold'>{{ .Title }} datasets:</span>
-
-            <div  style="border-left: 8px solid #00923E50; max-height: 450px; overflow-y:scroll; overflow-x:hidden;" >
-                <div id="indicatorButtons" class="mb-2">
+            <div id="indicatorButtons" class="mb-2 pb-2 overflow-fade-ind">
                     <!--Rendered via renderIndicatorButtons function -->
-                </div>
             </div>
 
-
+            <!-- About text (hidden on mobile)-->
             <div class="d-none d-lg-block">
                 <span class='home-label d-none d-md-block border-bottom mt-3 mb-1 font-weight-bold'>About {{ .Title }}</span>
-                <div class="card mb-2" style="border-left: 8px solid #00923E50;">
+                <div class="card mb-2">
                     <div class="card-content">
-                        <div class="card-body topic-text"  style="max-height: 500px; overflow-y:scroll;  overflow-x:hidden;" >
-                             {{ .Content  }}
+                        <div class="card-body overflow-fade-about topic-text">
+                                {{ .Content  }}
                         </div>
                     </div>
                 </div>
             </div>
 
+            <hr class="mt-2">
+            <!-- Keywords - only on desktop -->
+            <div class="d-none d-lg-block">
+                {{- partial "keywords" . -}}
 
-
-
+            </div>
         </div>
 
-        <div class="col-lg-8 col-md-12 px-2 h-100">
+        <div class="col-lg-7 mx-auto col-md-12">
+
+                <!-- FED BY JS - REVISE -->
                 <div class="dropdown sr-only">
                     <span class='home-label d-block'>Change dataset</span>
                     <button class="btn btn-outline-primary btn-lg btn-block text-wrap text-info dropdown-toggle" type="button"
@@ -248,143 +254,138 @@
                     </div>
                 </div>
 
+                <!-- Indicator title and description --> 
                 <div style="clear:both; border-left: 8px solid #00923E50;" class="px-1">
                     <span class="d-block border-bottom mt-2 font-weight-bold"><span id="indicatorTitle">Indicator</span></span>
 
                     <p class="fs-sm indicator-description"></p>
-                    <hr>
                 </div>
 
-                            <div class="mt-4 px-1" style="border-left: 8px solid #00923E50;">
-                                <div class="nav nav-pills bg-white device-xs" role="tablist">
-        
-                                    <a class="nav-item nav-link flex-fill" id="tab-btn-table" href="#tab-table" data-toggle="pill"
-                                       aria-controls="tab-table" aria-selected="false" role="tab" style="text-decoration:none">
-                                        <i class="fas fa-list fa-fw"></i>
-                                        <div class="d-none d-lg-inline-block py-1">Summary</div>
-                                    </a>
-            
-                                    <a class="nav-item nav-link flex-fill" id="tab-btn-map" href="#tab-map" data-toggle="pill"
-                                       aria-controls="tab-map" aria-selected="false" role="tab" style="text-decoration:none">
-                                        <i class="fas fa-map-marker-alt fa-fw"></i>
-                                        <div class="d-none d-lg-inline-block py-1">Map</div>
-                                    </a>
-            
-                                    <a class="nav-item nav-link flex-fill" id="tab-btn-trend" href="#tab-trend" data-toggle="pill"
-                                       aria-controls="tab-trend" aria-selected="false" role="tab" style="text-decoration:none">
-                                        <i class="fas fa-chart-line fa-fw"></i>
-                                        <div class="d-none d-lg-inline-block py-1">Trend</div>
-                                    </a>
-            
-            
-                                    <a class="nav-item nav-link flex-fill" id="tab-btn-links" href="#tab-links" data-toggle="pill"
-                                       aria-controls="tab-links" aria-selected="false" aria-disabled="true" role="tab" style="text-decoration:none">
-                                        <i class="fas fa-link fa-fw"></i>
-                                        <div class="d-none d-lg-inline-block py-1">Links</div>
-                                    </a>
-            
+                <!-- view selection buttons -->
+                <div class="mt-3">
+                    <!-- Nav buttons -->
+                    <div class="nav nav-pills bg-white device-xs" role="tablist">
+
+                        <a class="nav-item nav-link flex-fill" id="tab-btn-table" href="#tab-table" data-toggle="pill"
+                            aria-controls="tab-table" aria-selected="false" role="tab" style="text-decoration:none">
+                            <i class="fas fa-list fa-fw"></i>
+                            <div class="d-none d-lg-inline-block">Summary</div>
+                        </a>
+
+                        <a class="nav-item nav-link flex-fill" id="tab-btn-map" href="#tab-map" data-toggle="pill"
+                            aria-controls="tab-map" aria-selected="false" role="tab" style="text-decoration:none">
+                            <i class="fas fa-map-marker-alt fa-fw"></i>
+                            <div class="d-none d-lg-inline-block">Map</div>
+                        </a>
+
+                        <a class="nav-item nav-link flex-fill" id="tab-btn-trend" href="#tab-trend" data-toggle="pill"
+                            aria-controls="tab-trend" aria-selected="false" role="tab" style="text-decoration:none">
+                            <i class="fas fa-chart-line fa-fw"></i>
+                            <div class="d-none d-lg-inline-block">Trend</div>
+                        </a>
+
+
+                        <a class="nav-item nav-link flex-fill" id="tab-btn-links" href="#tab-links" data-toggle="pill"
+                            aria-controls="tab-links" aria-selected="false" aria-disabled="true" role="tab" style="text-decoration:none">
+                            <i class="fas fa-link fa-fw"></i>
+                            <div class="d-none d-lg-inline-block">Links</div>
+                        </a>
+
+                    </div>
+
+
+                    <!-- visualization elements -->
+                    <div class="tab-content bg-white mb-4" id="tabs-01-content">
+                        <!-- TABLE TAB -->
+                        <div class="tab-pane fade show active py-2" id="tab-table" aria-labelledby="tab-btn-table"
+                                role="tabpanel">
+                                <div class="dropdown">
+                                    <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle"
+                                            type="button" id="dropdownTableYear" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">Year
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownTableYear">
+                                        <!-- INSERT MENU ITEMS HERE -->
+                                    </div>
                                 </div>
 
+                                <div class="dropdown">
+                                    <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle"
+                                            type="button" id="dropdownTableGeo" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">Geography
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownTableGeo">
+                                        <!-- INSERT MENU ITEMS HERE -->
+                                    </div>
+                                </div>
 
-            
-                                <div class="tab-content bg-white mb-4" id="tabs-01-content">
-                                    <!-- TABLE TAB -->
-                                    <div class="tab-pane fade show active py-2" id="tab-table" aria-labelledby="tab-btn-table"
-                                         role="tabpanel">
-                                        <div class="float right mr-1">
-                                            <div class="dropdown">
-                                                <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle"
-                                                        type="button" id="dropdownTableYear" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">Select year
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownTableYear">
-                                                    <!-- INSERT MENU ITEMS HERE -->
-                                                </div>
-                                            </div>
-            
-                                            <div class="dropdown">
-                                                <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle"
-                                                        type="button" id="dropdownTableGeo" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">Select geography
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownTableGeo">
-                                                    <!-- INSERT MENU ITEMS HERE -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mt-4">
-                                            <span id="summaryTitle" class="home-label sr-only"></span>
-                                            <div id="summary-table">
-                                                <!-- INSERT SUMMARY TABLE HERE -->
-                                            </div>
-            
-                                        </div>
+                                <span id="summaryTitle" class="home-label"></span>
+                                <div id="summary-table" class="vis-bucket">
+                                    <!-- INSERT SUMMARY TABLE HERE -->
+                                </div>
+                        </div>
+
+                        <!-- MAP TAB -->
+                        <div class="tab-pane fade py-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
+                                <div class="dropdown">
+                                    <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle"
+                                            type="button" id="dropdownMapMeasures" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                        Measure
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMapMeasures">
+                                        <!-- INSERT MENU ITEMS HERE -->
                                     </div>
-                                    <!-- MAP TAB -->
-                                    <div class="tab-pane fade py-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
-                                        <div class="float right mr-1">
-                                            <div class="dropdown">
-                                                <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle"
-                                                        type="button" id="dropdownMapMeasures" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">Select
-                                                    measure
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMapMeasures">
-                                                    <!-- INSERT MENU ITEMS HERE -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mt-4">
-                                            <span id="mapTitle" class="home-label sr-only"></span>
-                                            <div id="map" width=600 height=500
-                                                 style="width: 100%; min-height: 450px; margin-bottom: 50px;"></div>
-                                        </div>
-                                    </div>
-                                    <!-- TREND TAB -->
-                                    <div class="tab-pane fade py-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
-                                        <div class="dropdown float-right mr-1">
-                                            <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
-                                                    id="dropdownTrendMeasures" data-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">Choose measure</button>
-                                            <!-- disparities button - display style changed to show or hide -->
-                                            <button class="btn btn-sm mr-1 float-right btn-outline-secondary btn-show-disparities"
-                                                    style="display:inline">Show Dispartites</button>
-                                            
-                                            <div class="dropdown-menu" aria-labelledby="dropdownTrendMeasures">
-                                                <!-- INSERT MENU ITEMS HERE -->
-                                            </div>
-                                        </div>
-                                        <div class="mt-4">
-                                            <span id="trendTitle" class="home-label sr-only"></span>
-                                            <!-- INSERT TREND CHART HERE -->
-                                            <div id="trend" style="width: 100%; height: 550px"></div>
-                                        </div>
-                                    </div>
-                                    <!-- LINKS TAB -->
-                                    <div class="tab-pane fade py-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
-                                        <div class="dropdown float-right">
-                                            <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
-                                                    id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">Select data to link
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownLinksMeasures">
-                                                <!-- INSERT MENU ITEMS HERE -->
-                                            </div>
-                                        </div>
-                                        <div class="mt-4" style="height: 550px; clear: both">
-                                            <span id="linksTitle" class="home-label sr-only"></span>
-                                            <!-- INSERT LINKS CHART HERE -->
-                                            <div id="links" style="width: 100%"></div>
-                                        </div>
-                                    </div>
+                                </div>
+
+                                <span id="mapTitle" class="home-label"></span>
+                                <div id="map" class="vis-bucket"></div>
+                        </div>
+                        
+                        <!-- TREND TAB -->
+                        <div class="tab-pane fade py-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
+                            <div class="dropdown float-right">
+                                <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
+                                        id="dropdownTrendMeasures" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">Measure</button>
+                                <!-- disparities button - display style changed to show or hide -->
+                                <button class="btn btn-sm mr-1 float-right btn-outline-secondary btn-show-disparities"
+                                        style="display:inline">Dispartites</button>
+                                
+                                <div class="dropdown-menu" aria-labelledby="dropdownTrendMeasures">
+                                    <!-- INSERT MENU ITEMS HERE -->
                                 </div>
                             </div>
+                                <span id="trendTitle" class="home-label"></span>
+                                <!-- INSERT TREND CHART HERE -->
+                                <div id="trend" class="vis-bucket"></div>
+                        </div>
+
+                        <!-- LINKS TAB -->
+                        <div class="tab-pane fade py-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
+                            <div class="dropdown float-right">
+                                <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
+                                        id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">Select link
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownLinksMeasures">
+                                    <!-- INSERT MENU ITEMS HERE -->
+                                </div>
+                            </div>
+                                <span id="linksTitle" class="home-label"></span>
+                                <!-- INSERT LINKS CHART HERE -->
+                                <div id="links" class="vis-bucket"></div>
+                        </div>
+                    </div>
+                </div>
 
 
-                <hr class="my-2">
+                <hr>
+
+                <!--Vis footer-->
 
                 <div class="row my-2">
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-sm-12">
                         <div class="dropdown">
                             <button class="btn btn-sm btn-outline-light text-secondary dropdown-toggle" 
                                     type="button"
@@ -403,7 +404,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 ml-auto">
+                    <div class="col-md-4 ml-auto col-sm-12">
                         <button class="btn float-right btn-sm btn-outline-light text-secondary"
                                 onclick="copyCitation()" id="citeButton"><i class="fas fa-copy mr-1"></i>Copy
                             citation</button>
@@ -412,7 +413,8 @@
                                class="my-2 sr-only">
                     </div>
                 </div>
-
+                
+                <!-- About and sources -->
                 <div class="row mb-4">
                     <div class="col-md-6 col-xs-12">
                         <div class="btn-toggle">
