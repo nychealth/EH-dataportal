@@ -184,7 +184,6 @@
         clear:both;
         width:100%; 
         max-height: 65vmin; 
-        border: 1px solid red;
     }
     </style>
 
@@ -258,9 +257,9 @@
 
                 <!-- Indicator title and description --> 
                 <div style="clear:both; border-left: 8px solid #00923E50;" class="px-1">
-                    <span class="d-block border-bottom mt-2 font-weight-bold"><span id="indicatorTitle">Indicator</span></span>
+                    <span class="d-block border-bottom mt-2 font-weight-bold"><span id="indicatorTitle">Loading data...</span></span>
 
-                    <p class="fs-sm indicator-description"></p>
+                    <p class="fs-sm indicator-description">Just a moment...</p>
                 </div>
 
                 <!-- view selection buttons -->
@@ -370,7 +369,7 @@
                                         id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">Select link
                                 </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownLinksMeasures">
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownLinksMeasures">
                                     <!-- INSERT MENU ITEMS HERE -->
                                 </div>
                             </div>
@@ -389,7 +388,7 @@
                 <div class="row my-2">
                     <div class="col-md-4 col-sm-12">
                         <div class="dropdown">
-                            <button class="btn btn-sm btn-outline-light text-secondary dropdown-toggle" 
+                            <button class="btn btn-sm btn-block btn-outline-light text-secondary dropdown-toggle mb-1" 
                                     type="button"
                                     id="downloadDD" 
                                     data-toggle="dropdown" 
@@ -407,7 +406,7 @@
                     </div>
 
                     <div class="col-md-4 ml-auto col-sm-12">
-                        <button class="btn float-right btn-sm btn-outline-light text-secondary"
+                        <button class="btn float-right btn-sm btn-block btn-outline-light text-secondary mb-1"
                                 onclick="copyCitation()" id="citeButton"><i class="fas fa-copy mr-1"></i>Copy
                             citation</button>
                         <input type="text" id="citeText" value=""
@@ -417,7 +416,7 @@
                 </div>
                 
                 <!-- About and sources -->
-                <div class="row mb-4">
+                <div class="row mb-2">
                     <div class="col-md-6 col-xs-12">
                         <div class="btn-toggle">
                             <button class="btn btn-block btn-md btn-outline-light text-secondary mb-1"
@@ -460,9 +459,12 @@
 
                         </div>
                     </div>
-                
-                {{- partial "related-footer" . -}}
+                </div>
 
+                <div class="row mb-4">
+                    <div class="col px-2">
+                            {{- partial "related-footer" . -}}
+                    </div>
                 </div>
 
         </div>
