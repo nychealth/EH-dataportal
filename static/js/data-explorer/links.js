@@ -88,10 +88,10 @@ const renderLinksChart = (
     }
 
     // get dimensions
-    var legendOrientation;
+    var legendOrientation = "right";
     var columns = 1;
-    window.innerWidth < 576 ? legendOrientation = "top" : "right"
-    window.innerWidth < 576 ? columns = 3 : 1;
+    // window.innerWidth < 576 ? legendOrientation = "top" : "right"
+    // window.innerWidth < 576 ? columns = 3 : 1;
 
     // define spec
 
