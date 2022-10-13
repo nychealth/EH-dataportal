@@ -511,43 +511,51 @@
 
 </article>
 
-    <!-- Arquero -->
-    <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
-
-    <!--DataTables CSS-->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
-
-    
-
 {{ end }}
 
 {{- define "js_bot" -}}
+    <!-- JS Dependencies -->
+    <!-- Arquero -->
+    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" -}}
+    <script type="text/javascript" 
+        src="{{ $arquero.RelPermalink }}" 
+        integrity="{{ $arquero.Data.Integrity }}"></script>
 
-    <!--DataTables JS-->
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" 
-        integrity="sha512-oaT4uVdyleJGVHZqklOx2Bb8WhOTBW3iCXRtgk3+YutYmFx0jSs97UR3/+r1vh1Isyb3GOGjFonLbS6LFiiEVA==" 
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js" 
-        integrity="sha512-guWTt6syHB4T9gdPdw8W1iQUGqqricRt5VRjnjgMPpOhUhwOsxmXpk2SImqfcPgsiroK00z/loICebflVeJvqg==" 
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js" 
-        integrity="sha512-vv3EN6dNaQeEWDcxrKPFYSFba/kgm//IUnvLPMPadaUf5+ylZyx4cKxuc4HdBf0PPAlM7560DV63ZcolRJFPqA==" 
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
-    <script src="https://cdn.datatables.net/rowgroup/1.1.4/js/dataTables.rowGroup.min.js"></script>
+     <!-- DataTables -->
+    {{- $dataTables := resources.Get "node_modules/datatables.net/js/jquery.dataTables.min.js" -}}
+    {{- $dataTablesButtons := resources.Get "node_modules/datatables.net-buttons/js/dataTables.buttons.min.js" -}}
+    {{- $dataTablesButtonsHtml5 := resources.Get "node_modules/datatables.net-buttons/js/buttons.html5.min.js" -}}
+    {{- $dataTablesButtonsPrint := resources.Get "node_modules/datatables.net-buttons/js/buttons.print.min.js" -}}
+    {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" -}}
+    {{- $jszip := resources.Get "node_modules/jszip/dist/jszip.min.js" -}}
+    {{- $pdfmake := resources.Get "node_modules/pdfmake/build/pdfmake.min.js" -}}
+    {{- $pdfmakeVfsFonts := resources.Get "node_modules/pdfmake/build/vfs_fonts.js" -}}
+    
+    {{ $dataTablesBundelJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup $jszip $pdfmake $pdfmakeVfsFonts | resources.Concat "js/dataTableBundle.js" }}
+    <script type="text/javascript" 
+        src="{{ $dataTablesBundelJS.RelPermalink }}" 
+        integrity="{{ $dataTablesBundelJS.Data.Integrity }}"></script>
 
-    <!-- Vega-Lite -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <!-- VegaLite -->
+    {{- $vega := resources.Get "node_modules/vega/build/vega.min.js" -}}
+    {{- $vegaLite := resources.Get "node_modules/vega-lite/build/vega-lite.min.js" -}}
+    {{- $vegaEmbed := resources.Get "node_modules/vega-embed/build/vega-embed.min.js" -}}
 
-    <!--D3-->
-    <script src="https://d3js.org/d3.v5.min.js"></script>
+    {{ $vegaBundelJS := slice $vega $vegaLite $vegaEmbed | resources.Concat "js/vegaBundle.js" }}
+    <script type="text/javascript" 
+        src="{{ $vegaBundelJS.RelPermalink }}" 
+        integrity="{{ $vegaBundelJS.Data.Integrity }}"></script>
 
+    <!-- D3 -->
+    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" -}}
+
+    <script type="text/javascript" 
+        src="{{ $d3.RelPermalink }}" 
+        integrity="{{ $d3.Data.Integrity }}"></script>
+
+
+    <!-- Data Explorer JS -->
+    <!-- renderIndicatorDropdown needs to be here becasue of the hugo's markup -->
     <script>
         const renderIndicatorDropdown = () => {
 
@@ -573,7 +581,7 @@
         }
     </script>
 
-    <!-- Data Explorer -->
+
     <!-- JS must be in this order -->
     {{- $global := resources.Get "js/data-explorer/global.js" -}}
     {{- $data := resources.Get "js/data-explorer/data.js" -}}
