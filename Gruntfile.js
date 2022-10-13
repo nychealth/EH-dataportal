@@ -21,9 +21,9 @@ if (typeof process.env.GITHUB_WORKSPACE != "undefined") {
     
     // site_root variable, constructed from repo name and github organization
     
-    var repo_name  = process.env.GITHUB_REPOSITORY;         // nychealth/EH-dataportal
-    var repo_owner = process.env.GITHUB_REPOSITORY_OWNER;   // nychealth
-    var site_root  = S(repo_name).chompLeft(repo_owner).s + "/";  // EH-dataportal
+    // var repo_name  = process.env.GITHUB_REPOSITORY;         // nychealth/EH-dataportal
+    // var repo_owner = process.env.GITHUB_REPOSITORY_OWNER;   // nychealth
+    // var site_root  = S(repo_name).chompLeft(repo_owner).s + "/";  // EH-dataportal
     
 } else {
 
@@ -34,7 +34,7 @@ if (typeof process.env.GITHUB_WORKSPACE != "undefined") {
     
     // site_root variable, constructed from repo name and github organization
     
-    var site_root  = ""; 
+    // var site_root  = ""; 
     
 }
 
@@ -185,7 +185,8 @@ module.exports = function(grunt) {
 
             return {
                 title: pageName,
-                href: site_root + S(href).dasherize().s.toLowerCase(),
+                // href: site_root + S(href).dasherize().s.toLowerCase(),
+                href: S(href).dasherize().s.toLowerCase(),
                 content: contentParsed
             };
         };
@@ -278,7 +279,8 @@ module.exports = function(grunt) {
                 seo_title: frontMatter.seo_title,
                 seo_description: frontMatter.seo_description,
                 seo_image: frontMatter.seo_image,
-                href: site_root + S(href).trim().s.toLowerCase(),
+                // href: site_root + S(href).trim().s.toLowerCase(),
+                href: S(href).trim().s.toLowerCase(),
                 content: contentParsed
             };
             
