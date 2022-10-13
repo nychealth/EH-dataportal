@@ -9,7 +9,7 @@ const renderTrendChart = (
 
         let aqData = aq.from(data);
         let Value = aqData.array("Value");
-        let valueMin = Math.min.apply(null, Value); // use valueMin in y.scale.domainMin if you want to scale y-axis to data.
+        let valueMin = Math.min.apply(null, Value);
 
         // extract measure metadata
 
@@ -17,10 +17,11 @@ const renderTrendChart = (
         let trendDisplay = metadata[0].DisplayType;
 
         // get dimensions
-        var legendOrientation = "bottom";
         var columns = 6;
-        // window.innerWidth < 576 ? legendOrientation = "bottom" : "right"
+        var height = 500
         window.innerWidth < 576 ? columns = 3 : columns = 6;
+        window.innerWidth < 576 ? height = 350 : columns = 500;
+
         
         // define spec
         
@@ -49,9 +50,7 @@ const renderTrendChart = (
                 "title": {
                     "fontWeight": "normal"
                   },
-                
                 "view": {"stroke": "transparent"},
-                
                 "range": {
                     "category": [
                         "#1696d2",
@@ -77,7 +76,7 @@ const renderTrendChart = (
                 "values":  data,
             },
             "width": "container",
-            "height": "container",
+            "height": height,
             "title": { 
                 "anchor": "start", 
                 "fontSize": 13, 
@@ -100,7 +99,7 @@ const renderTrendChart = (
                             "field": "Geography",
                             "type": "nominal",
                             "legend": {
-                                "orient": legendOrientation,
+                                "orient": "bottom",
                                 "title": null
                             }
                         },
@@ -108,7 +107,7 @@ const renderTrendChart = (
                             "field": "Value",
                             "type": "quantitative",
                             "title": null,
-                            "scale": {"domainMin": 0, "nice": true}
+                            "scale": {"domainMin": valueMin, "nice": true}
                         }
                     },
                     "layer": [
