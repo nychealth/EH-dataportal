@@ -1,7 +1,7 @@
 ---
 title: Dummy Topic
 date: 2021-05-28 18:02:58.738512
-draft: false
+draft: true
 seo_title: "This is a dummy topic"
 seo_description: "Explore data, visualizations, and more."
 tags: 
