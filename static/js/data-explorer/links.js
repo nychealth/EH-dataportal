@@ -88,10 +88,11 @@ const renderLinksChart = (
     }
 
     // get dimensions
-    var legendOrientation = "right"
-    var columns = 1;
-    window.innerWidth < 576 ? legendOrientation = "top" : "right"
-    window.innerWidth < 576 ? columns = 3 : 1;
+    var legendOrientation = "bottom"
+    var columns = 6;
+    var bubbleSize = 200;
+    window.innerWidth < 576 ? bubbleSize = 100: bubbleSize = 200
+    window.innerWidth < 576 ? columns = 3 : columns = 6;
 
     // define spec
 
@@ -162,7 +163,7 @@ const renderLinksChart = (
                     "mark": { 
                         "type": "circle", 
                         "filled": true, 
-                        "size": 200, 
+                        "size": bubbleSize, // update based on Screen Size.
                         "stroke": "#7C7C7C", 
                         "strokeWidth": 2
                     },

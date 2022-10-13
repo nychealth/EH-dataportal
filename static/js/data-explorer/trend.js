@@ -9,7 +9,7 @@ const renderTrendChart = (
 
         let aqData = aq.from(data);
         let Value = aqData.array("Value");
-        let valueMin = Math.min.apply(null, Value);
+        let valueMin = Math.min.apply(null, Value); // use valueMin in y.scale.domainMin if you want to scale y-axis to data.
 
         // extract measure metadata
 
@@ -17,10 +17,10 @@ const renderTrendChart = (
         let trendDisplay = metadata[0].DisplayType;
 
         // get dimensions
-        var legendOrientation;
-        var columns = 1;
-        window.innerWidth < 576 ? legendOrientation = "top" : "right"
-        window.innerWidth < 576 ? columns = 3 : 1;
+        var legendOrientation = "bottom";
+        var columns = 6;
+        // window.innerWidth < 576 ? legendOrientation = "bottom" : "right"
+        window.innerWidth < 576 ? columns = 3 : columns = 6;
         
         // define spec
         
@@ -108,7 +108,7 @@ const renderTrendChart = (
                             "field": "Value",
                             "type": "quantitative",
                             "title": null,
-                            "scale": {"domainMin": valueMin, "nice": true}
+                            "scale": {"domainMin": 0, "nice": true}
                         }
                     },
                     "layer": [
