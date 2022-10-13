@@ -91,8 +91,11 @@ const renderLinksChart = (
     var legendOrientation = "bottom"
     var columns = 6;
     var bubbleSize = 200;
+    var height;
     window.innerWidth < 576 ? bubbleSize = 100: bubbleSize = 200
     window.innerWidth < 576 ? columns = 3 : columns = 6;
+    window.innerWidth < 576 ? height = 350 : height = 500;
+
 
     // define spec
 
@@ -102,7 +105,7 @@ const renderLinksChart = (
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "description": "Asthma 5-17 ED visit rate and poverty scatterplot",
             "title": {
-                "text": [`${yIndicatorName && `${yIndicatorName}`}: ${yMeasure && `${yMeasure}`} ${yDisplay && `${yDisplay}`} (${yTime})`],
+                "text": [`${yIndicatorName && `${yIndicatorName}`}`, `${yMeasure && `${yMeasure}`} ${yDisplay && `${yDisplay}`} (${yTime})`],
                 "align": "left", 
                 "anchor": "start", 
                 "fontSize": 12, 
@@ -113,7 +116,7 @@ const renderLinksChart = (
                 "limit": 1000
             },            
             "width": "container",
-            "height": "container",
+            "height": height,
             "config": {
                 "background": "#FFFFFF",
                 "axisX": {
@@ -185,7 +188,7 @@ const renderLinksChart = (
                             "type": "quantitative"
                         },
                         "x": {
-                            "title": [`${xIndicatorName && `${xIndicatorName}`}: ${xMeasure} ${xDisplay && `(${xDisplay})`} (${xTime})`],
+                            "title": [`${xIndicatorName && `${xIndicatorName}`}`, `${xMeasure} ${xDisplay && `(${xDisplay})`} (${xTime})`],
                             "field": xValue,
                             "type": "quantitative",
                             "scale": {"domainMin": xMin, "nice": true}
