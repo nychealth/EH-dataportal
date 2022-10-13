@@ -107,7 +107,7 @@ const renderTrendChart = (
                             "field": "Value",
                             "type": "quantitative",
                             "title": null,
-                            "scale": {"domainMin": valueMin, "nice": true}
+                            "scale": {"domainMin": 0, "nice": true} // change domainMin to valueMin to scale with data
                         }
                     },
                     "layer": [
