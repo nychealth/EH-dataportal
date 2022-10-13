@@ -23,7 +23,7 @@ if (typeof process.env.GITHUB_WORKSPACE != "undefined") {
     
     var repo_name  = process.env.GITHUB_REPOSITORY;         // nychealth/EH-dataportal
     var repo_owner = process.env.GITHUB_REPOSITORY_OWNER;   // nychealth
-    var site_root  = S(repo_name).chompLeft(repo_owner).s;  // EH-dataportal
+    var site_root  = S(repo_name).chompLeft(repo_owner).s + "/";  // EH-dataportal
     
 } else {
 
@@ -185,7 +185,7 @@ module.exports = function(grunt) {
 
             return {
                 title: pageName,
-                href: site_root + "/" + S(href).dasherize().s.toLowerCase(),
+                href: site_root + S(href).dasherize().s.toLowerCase(),
                 content: contentParsed
             };
         };
@@ -278,7 +278,7 @@ module.exports = function(grunt) {
                 seo_title: frontMatter.seo_title,
                 seo_description: frontMatter.seo_description,
                 seo_image: frontMatter.seo_image,
-                href: site_root + "/" + S(href).trim().s.toLowerCase(),
+                href: site_root + S(href).trim().s.toLowerCase(),
                 content: contentParsed
             };
             
