@@ -212,11 +212,14 @@
             <!-- About button only on mobile-->
             <button class="btn btn-sm btn-outline-light text-primary btn-block d-lg-none mt-0 mb-2" type="button" data-toggle="modal" data-target="#aboutModal">About {{ .Title }}</button>
 
-            <!-- Indicator buttons-->
+            <div class="d-none d-lg-block">
+            <!-- Indicator buttons (hidden on mobile)-->
             <span class='home-label d-none d-md-block border-bottom mb-1 font-weight-bold'>{{ .Title }} datasets:</span>
             <div id="indicatorButtons" class="mb-2 pb-4 overflow-fade-ind">
                     <!--Rendered via renderIndicatorButtons function -->
             </div>
+            </div>
+
 
             <!-- About text (hidden on mobile)-->
             <div class="d-none d-lg-block">
@@ -233,9 +236,9 @@
 
         <div class="col-lg-7 mx-auto col-md-12">
 
-                <!--OLD MENU, but used by firstIndicatorId. Old menu dropdown hidden from screen by sr-only and aria-hidden=true -->
-                <div class="dropdown sr-only" aria-hidden="true">
-                    <span class='home-label d-block'>Change dataset</span>
+                <!-- Indicator selection (mobile) -->
+                <div class="dropdown d-lg-none">
+                    <span class='home-label'>Change dataset</span>
                     <button class="btn btn-outline-primary btn-lg btn-block text-wrap text-info dropdown-toggle" type="button"
                             id="dropdownIndicator" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         More {{ .Title }} data
