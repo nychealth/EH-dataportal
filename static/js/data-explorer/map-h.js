@@ -45,13 +45,15 @@ const renderMap = (
             topoFile = 'NYCKids.topo.json';
         }
 
+    // get dimensions
+    console.log(document.getElementById('map').offsetWidth)
         
     // define spec
         
         mapspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": {
-                "text": `By ${mapGeoTypeDescription}, ${mapTime}`,
+                "text": `${mapMeasurementType}, by ${mapGeoTypeDescription}, ${mapTime}`,
                 "subtitlePadding": 10
             },
             "data": {
@@ -66,6 +68,7 @@ const renderMap = (
                 "concat": {"spacing": 20}, 
                 "view": {"stroke": "transparent"},
                 "axisY": {"domain": false,"ticks": false},
+                "axisX": {"domain": false,"ticks": false},
                 "title": {
                     "fontWeight": "normal"
                   },
@@ -75,12 +78,65 @@ const renderMap = (
                 }
             },
             "projection": {"type": "mercator"},
-            "vconcat": [
+            "hconcat": [
+                {
+                    "height": 500,
+                    "width": 150,
+                    "config": {
+                        "axisY": {
+                            "labelAngle": 0,
+                            "labelFontSize": 13,
+                        }
+                    },
+                    "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+                    "params": [
+                        {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
+                    ],
+                    "encoding": {
+                        "x": {
+                            "field": "Value", 
+                            "type": "quantitative", 
+                            "title": null,
+                            "axis": {
+                                "labelAngle": 0,
+                                "labelFontSize": 11,
+                            }
+                        },
+                        "tooltip": [
+                            {
+                                "field": "Geography", 
+                                "title": "Neighborhood"
+                            },
+                            {
+                                "field": "Value", 
+                                "type": "quantitative", 
+                                "title": mapMeasurementType,
+                                "format": ",.1~f"
+                            },
+                        ],
+                        "y": {"field": "GeoID", "sort": "-x", "axis": null},
+                        "color": {
+                            "bin": false,
+                            "field": "Value",
+                            "type": "quantitative",
+                            "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}},
+                            "legend": false
+                        },
+                        "stroke": {
+                            "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
+                            "value": "white"
+                        },
+                        "strokeWidth": {
+                            "condition": [{"param": "highlight", "empty": false, "value": 3}],
+                            "value": 0
+                        }
+                    }
+                },
                 {
                     "layer": [
                         {
                             "height": 500,
-                            "width": "container",
+                            "width": 500,
                             "data": {
                                 "url": `${data_repo}/${data_branch}/geography/borough.topo.json`,
                                 "format": {
@@ -97,7 +153,7 @@ const renderMap = (
                         },
                         {
                             "height": 500,
-                            "width": "container",
+                            "width": 500,
                             "mark": {"type": "geoshape", "invalid": null},
                             "params": [
                                 {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
@@ -152,62 +208,15 @@ const renderMap = (
                             },
                         }
                     ]
-                },
-                {
-                    "height": 150,
-                    "width": "container",
-                    "config": {
-                        "axisY": {
-                            "labelAngle": 0,
-                            "labelFontSize": 13,
-                        }
-                    },
-                    "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
-                    "params": [
-                        {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
-                    ],
-                    "encoding": {
-                        "y": {
-                            "field": "Value", 
-                            "type": "quantitative", 
-                            "title": null,
-                            "axis": {
-                                "labelAngle": 0,
-                                "labelFontSize": 11,
-                            }
-                        },
-                        "tooltip": [
-                            {
-                                "field": "Geography", 
-                                "title": "Neighborhood"
-                            },
-                            {
-                                "field": "Value", 
-                                "type": "quantitative", 
-                                "title": mapMeasurementType,
-                                "format": ",.1~f"
-                            },
-                        ],
-                        "x": {"field": "GeoID", "sort": "y", "axis": null},
-                        "color": {
-                            "bin": false,
-                            "field": "Value",
-                            "type": "quantitative",
-                            "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}},
-                            "legend": {"direction": "horizontal","orient": "top-left","title": `${mapMeasurementType}`}
-                        },
-                        "stroke": {
-                            "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
-                            "value": "white"
-                        },
-                        "strokeWidth": {
-                            "condition": [{"param": "highlight", "empty": false, "value": 3}],
-                            "value": 0
-                        }
-                    }
                 }
+
             ]
         }
         
         vegaEmbed("#map", mapspec);
+
+    // get dimensions
+    console.log('map width = ' + document.getElementById('map').offsetWidth)
+
+
     }

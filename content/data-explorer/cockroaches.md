@@ -18,11 +18,9 @@ menu:
         identifier: '03'
 ---
 
-Cockroaches, or just "roaches", are a common urban pest. Though there are more than a thousand species of roaches, just a few are found in NYC homes.  The most common are American Cockroaches, typically found in moist basements and lower floors, and German Cockroaches, found anywhere inside homes.
+Cockroaches are a common urban pest. Though there are more than a thousand species of roaches, just a few are found in NYC homes.  The most common are American Cockroaches, typically found in moist basements and lower floors, and German Cockroaches, found anywhere inside homes.
 
 Cockroaches like warm, dark places such as toasters, clocks, microwave ovens, walls, and cabinets.  They need regular access to food and water to live and breed.
-
-This site provides survey data on the prevalence of cockroaches in NYC homes.  
 
 ### Cockroaches and Health
 

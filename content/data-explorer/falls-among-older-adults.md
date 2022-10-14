@@ -10,11 +10,15 @@ keywords: ["older adults","falls","hospitalizations","emergency department visit
 indicators:
 - header: null
   IndicatorID:
-  - 2135
-  - 2136
-  - 2408
-  - 2409
   - 2403
+- header: Emergency Department Visits
+  IndicatorID:
+  - 2135
+  - 2408
+- header: Hospitalizations
+  IndicatorID:
+  - 2136
+  - 2409
 - header: Safety
   IndicatorID: 
   - 2188

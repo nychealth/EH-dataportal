@@ -10,11 +10,11 @@ keywords: ["cancer","cancers","children","environmental health"]
 indicators:
 - header: null
   IndicatorID:
+  - 2039
   - 2037
   - 2035
   - 2033
   - 2031
-  - 2039
 menu:
     main:
         identifier: '03'
