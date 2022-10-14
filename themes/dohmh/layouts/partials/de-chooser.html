@@ -63,7 +63,7 @@
             <a href="#chooser" id="kt9" onclick="changeKT(9)"  class="kt list-group-item list-group-item-action">Food and drink<span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span><span class="float-right sm-label mr-1">Topics:</span></a>
 
             {{ $.Scratch.Set "counter" 0 }}
-            {{ range  ( where .Site.RegularPages "Section" "data-explorer") }}
+            {{ range  ( where .Site.RegularPages.ByTitle "Section" "data-explorer") }}
                 {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
             {{ end }}
             <hr>
@@ -83,7 +83,7 @@
 
         <div id="output10" class="dumps how">
             <ul>
-                {{ range ( where .Site.RegularPages "Section" "data-explorer") }}
+                {{ range ( where .Site.RegularPages.ByTitle "Section" "data-explorer") }}
                     <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                     </li>
                 {{end}}

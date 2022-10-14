@@ -306,7 +306,8 @@
 
                     <div class="card-body bg-white">
                         <ul>
-                            {{ range ( where .Site.RegularPages "Section" "data-explorer") }}
+                            {{ range ( where .Site.RegularPages.ByTitle "Section" "data-explorer") }}
+                                
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{end}}
