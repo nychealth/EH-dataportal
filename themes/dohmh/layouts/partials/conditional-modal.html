@@ -15,7 +15,7 @@
                 </p>
                 <br />
                 <p>
-                    Prefer to use the old site? <a href="">Click here.</a>
+                    Prefer to use the old site? <a id="unencoded_url">Click here.</a>
                 </p>
             </div>
             <hr>
@@ -23,6 +23,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    
+    fetch("unencoded_url.asp")
+    .then(response => response.text())
+    .then(data => document.querySelector("#unencoded_url").href = data);
+    
+</script>
 
 
 {{/*  evaluate script after modal definition  */}}
