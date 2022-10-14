@@ -135,9 +135,9 @@ const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasur
 }
 
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 // tab default measure functions
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 
 // ===== map ===== //
 
@@ -313,9 +313,9 @@ const setDefaultLinksMeasure = async (visArray) => {
 }
 
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 // tab update functions
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 
 // ===== map ===== //
 
@@ -630,14 +630,55 @@ const updateLinksData = async (e) => {
 
 }
 
+// ----------------------------------------------------------------------- //
+// table filtering functions
+// ----------------------------------------------------------------------- //
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// need to be defined before `renderMeasures`, where they're added as listener callbacks
+
+// ===== year ===== //
+
+const handleYearFilter = (el) => {
+    el.addEventListener('change', (e) => {
+        if (e.target.checked) {
+            selectedSummaryYears = [e.target.value]
+        }
+        // renderTable()
+        showTable()
+    })
+}
+
+// ===== geo ===== //
+
+const handleGeoFilter = (el) => {
+
+    el.addEventListener('change', (e) => {
+
+        if (e.target.checked) {
+            selectedSummaryGeography.push(e.target.value)
+        } else {
+            selectedSummaryGeography = selectedSummaryGeography.filter(item => item !== e.target.value);
+        }
+        
+        // only render table if a geography is checked
+
+        if (selectedSummaryGeography.length > 0) {
+            // renderTable()
+            showTable()
+
+        } else {
+            document.querySelector("#tableID").innerHTML = '';
+        }
+    })
+}
+
+// ----------------------------------------------------------------------- //
 // finally, render the measures
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 
 const renderMeasures = async () => {
 
-    // console.log("** renderMeasures");
+    console.log("** renderMeasures");
     
     linksMeasures.length = 0
     
@@ -697,6 +738,23 @@ const renderMeasures = async () => {
         dropdownTableGeo.innerHTML += `<label class="dropdown-item checkbox-geo"><input type="checkbox" value="${geoType}" checked /> ${geoType}</label>`;
         
     });
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // add event handler functions to summary tab checkboxes
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    const checkboxYear = document.querySelectorAll('.checkbox-year');
+    const checkboxGeo = document.querySelectorAll('.checkbox-geo');
+
+    // console.log("checkboxYear:", checkboxYear);
+    // console.log("checkboxGeo:", checkboxGeo);
+
+    checkboxYear.forEach(checkbox => {
+        handleYearFilter(checkbox);
+    })
+    checkboxGeo.forEach(checkbox => {
+        handleGeoFilter(checkbox);
+    })
     
 
     // ----- handle measures for this indicator ----- //
@@ -852,24 +910,6 @@ const renderMeasures = async () => {
         $($.fn.dataTable.tables(false))
             .DataTable()
             .columns.adjust().draw();
-
-
-        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-        // add event handler functions to summary tab checkboxes
-        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-        const checkboxYear = document.querySelectorAll('.checkbox-year');
-        const checkboxGeo = document.querySelectorAll('.checkbox-geo');
-
-        // console.log("checkboxYear:", checkboxYear);
-        // console.log("checkboxGeo:", checkboxGeo);
-
-        checkboxYear.forEach(checkbox => {
-            handleYearFilter(checkbox);
-        })
-        checkboxGeo.forEach(checkbox => {
-            handleGeoFilter(checkbox);
-        })
 
     };
     

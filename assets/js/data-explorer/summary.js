@@ -199,15 +199,6 @@ const renderTable = () => {
 // handler functions for summary table
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-const handleYearFilter = (el) => {
-    el.addEventListener('change', (e) => {
-        if (e.target.checked) {
-            selectedSummaryYears = [e.target.value]
-        }
-        renderTable()
-    })
-}
-
 const handleToggle = () => { 
     
     $('body').off('click', '#summary-table tr.group td');
@@ -265,30 +256,3 @@ const handleToggle = () => {
         
     });
 }
-
-
-const handleGeoFilter = (el) => {
-
-    el.addEventListener('change', (e) => {
-
-        if (e.target.checked) {
-            selectedSummaryGeography.push(e.target.value)
-        } else {
-            selectedSummaryGeography = selectedSummaryGeography.filter(item => item !== e.target.value);
-        }
-        
-        // only render table if a geography is checked
-
-        if (selectedSummaryGeography.length > 0) {
-            renderTable()
-
-        } else {
-            document.querySelector("#tableID").innerHTML = '';
-        }
-    })
-}
-
-// render table
-
-// renderFilteredTable();
-
