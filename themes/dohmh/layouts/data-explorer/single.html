@@ -561,60 +561,56 @@
 
     <!-- Data Explorer JS -->
     <!-- renderIndicatorDropdown needs to be here becasue of the hugo's markup -->
+
     <script>
+
         const renderIndicatorDropdown = () => {
 
+            {{/* =================================================================== */}}
+            {{/*  fetch and load indicators metadata into global object              */}}
+            {{/* =================================================================== */}}
 
-        {{/* =================================================================== */}}
-        {{/*  fetch and load indicators metadata into global object              */}}
-        {{/* =================================================================== */}}
+            fetch(data_repo + "/" + data_branch + '/indicators/indicators.json')
+                .then(response => response.json())
+                .then(async data => {
 
-        fetch(data_repo + "/" + data_branch + '/indicators/indicators.json')
-            .then(response => response.json())
-            .then(async data => {
+                    indicators = data;
 
-                indicators = data;
-
-                const paramId = url.searchParams.get('id') !== null ? parseInt(url.searchParams.get('id')) : false;
-                
-                const renderIndicatorDropdown = () => {
-
-                    const indicatorDropdown = document.getElementById("indicator-dropdown");
-                    let this_indicatorName;
-                    let header;
+                    const paramId = url.searchParams.get('id') !== null ? parseInt(url.searchParams.get('id')) : false;
                     
-                    {{- range .Params.Indicators }}
+                    const renderIndicatorDropdown = () => {
 
-                        header = `{{ .header }}`;
-                        indicatorDropdown.innerHTML += header.length ? `<div class="dropdown-title"><strong>${header}</strong></div>`: '';
+                        const indicatorDropdown = document.getElementById("indicator-dropdown");
+                        let this_indicatorName;
+                        let header;
+                        
+                        {{- range .Params.Indicators }}
 
-                        {{ range $index, $id := .IndicatorID -}}
+                            header = `{{ .header }}`;
+                            indicatorDropdown.innerHTML += header.length ? `<div class="dropdown-title"><strong>${header}</strong></div>`: '';
 
-                            {{ if (eq $index 0) -}} defaultIndicatorId = {{ $id -}} {{ end }}
+                            {{ range $index, $id := .IndicatorID -}}
 
-                            indicator = indicators.find(indicator => indicator.IndicatorID === {{ $id }});
-                            this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                            indicatorDropdown.innerHTML += `<button class="indicator-dropdown-item dropdown-item" onclick="loadIndicator({{ $id }})" data-indicator-id={{ $id }}>${this_indicatorName}</button>`
-                            
+                                {{ if (eq $index 0) -}} defaultIndicatorId = {{ $id -}} {{ end }}
+
+                                indicator = indicators.find(indicator => indicator.IndicatorID === {{ $id }});
+                                this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                                indicatorDropdown.innerHTML += `<button class="indicator-dropdown-item dropdown-item" onclick="loadIndicator({{ $id }})" data-indicator-id={{ $id }}>${this_indicatorName}</button>`
+                                
+                            {{- end -}}
                         {{- end -}}
-                    {{- end -}}
+
+                    }
                 }
-                
-                renderIndicatorDropdown()
-
-                    {{ if (eq $index 0) -}} defaultIndicatorId = {{ $id -}} {{ end }}
-
-                    indicator = indicators.find(indicator => indicator.IndicatorID === {{ $id }});
-                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += '<button class="indicator-dropdown-item dropdown-item" onclick="loadIndicator({{ $id }})" data-indicator-id={{ $id }}>' + this_indicatorName + '</button>';
-                    
-                {{- end -}}
-            {{- end -}}
         }
+        
+        renderIndicatorDropdown()
+            
     </script>
 
 
-    <!-- JS must be in this order -->
+    {{/*  JS must be in this order  */}}
+
     {{- $global := resources.Get "js/data-explorer/global.js" -}}
     {{- $data := resources.Get "js/data-explorer/data.js" -}}
     {{- $renderMeasures := resources.Get "js/data-explorer/renderMeasures.js" -}}
@@ -626,6 +622,7 @@
     {{- $app := resources.Get "js/data-explorer/app.js" -}}
     
     {{ $dataExplorerJS := slice $global $data $renderMeasures $summary $map $trend $links $disparities $app | resources.Concat "js/bundle.js" }}
+    
     <script type="text/javascript" 
         src="{{ $dataExplorerJS.RelPermalink }}" 
         integrity="{{ $dataExplorerJS.Data.Integrity }}"></script>
