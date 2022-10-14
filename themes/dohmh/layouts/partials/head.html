@@ -53,6 +53,12 @@
 {{/*  <link rel="icon" href="/7618350_heatmap_business_analytics_statistics_icon.ico">  */}}
 <link rel="icon" href="{{ site.BaseURL }}/7618350_heatmap_business_analytics_statistics_icon-gpr.ico">
 
+ <!--DataTables CSS-->
+{{ $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" | fingerprint }}
+{{ $dataTableButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" | fingerprint }}
+{{ $dataTablesBundleCSS := slice $dataTablesCSS $dataTableButtonsCSS | resources.Concat "dataTablesBundle.css" | fingerprint }}
+<link rel="stylesheet" href="{{ $dataTablesBundleCSS.Permalink }}" />
+
 <!-- Font Awesome -->
 <link rel="stylesheet" href="{{ site.BaseURL }}/fontawesome/css/all.min.css">
 
@@ -76,6 +82,9 @@
 
 <!--Other data libraries. To call, have datatables: true in a page's frontmatter-->
 {{- if .Params.datatables -}}
+
+
+    
     <!--D3-->
     <script src="https://d3js.org/d3.v5.min.js"></script>
 

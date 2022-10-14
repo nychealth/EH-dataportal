@@ -93,7 +93,7 @@
         // set the option value - this adds the environment variable to give it the base URL.
         option.value = '{{ .RelPermalink }}'
         //Add the Option element to DropDownList.
-        ddlData.options.add(option);
+        ddlData && ddlData.options.add(option);
         {{- end -}}
     };
     
