@@ -519,14 +519,14 @@
 {{ end }}
 
 {{- define "js_bot" -}}
-    <!-- JS Dependencies -->
-    <!-- Arquero -->
+    {{/*  JS Dependencies  */}}
+    {{/*  Arquero  */}}
     {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" -}}
     <script type="text/javascript" 
         src="{{ $arquero.RelPermalink }}" 
         integrity="{{ $arquero.Data.Integrity }}"></script>
 
-     <!-- DataTables -->
+     {{/*  DataTables  */}}
     {{- $dataTables := resources.Get "node_modules/datatables.net/js/jquery.dataTables.min.js" -}}
     {{- $dataTablesButtons := resources.Get "node_modules/datatables.net-buttons/js/dataTables.buttons.min.js" -}}
     {{- $dataTablesButtonsHtml5 := resources.Get "node_modules/datatables.net-buttons/js/buttons.html5.min.js" -}}
@@ -541,7 +541,7 @@
         src="{{ $dataTablesBundelJS.RelPermalink }}" 
         integrity="{{ $dataTablesBundelJS.Data.Integrity }}"></script>
 
-    <!-- VegaLite -->
+    {{/*  VegaLite  */}}
     {{- $vega := resources.Get "node_modules/vega/build/vega.min.js" -}}
     {{- $vegaLite := resources.Get "node_modules/vega-lite/build/vega-lite.min.js" -}}
     {{- $vegaEmbed := resources.Get "node_modules/vega-embed/build/vega-embed.min.js" -}}
@@ -551,7 +551,7 @@
         src="{{ $vegaBundelJS.RelPermalink }}" 
         integrity="{{ $vegaBundelJS.Data.Integrity }}"></script>
 
-    <!-- D3 -->
+    {{/*  D3  */}}
     {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" -}}
 
     <script type="text/javascript" 
@@ -559,52 +559,40 @@
         integrity="{{ $d3.Data.Integrity }}"></script>
 
 
-    <!-- Data Explorer JS -->
-    <!-- renderIndicatorDropdown needs to be here becasue of the hugo's markup -->
+    {{/*  Data Explorer JS  */}}
+    {{/*  renderIndicatorDropdown needs to be here becasue of the hugo's markup  */}}
 
     <script>
 
+        {{/* =================================================================== */}}
+        {{/*  fetch and load indicators metadata into global object              */}}
+        {{/* =================================================================== */}}
+
+                
         const renderIndicatorDropdown = () => {
 
-            {{/* =================================================================== */}}
-            {{/*  fetch and load indicators metadata into global object              */}}
-            {{/* =================================================================== */}}
+            const indicatorDropdown = document.getElementById("indicator-dropdown");
+            let this_indicatorName;
+            let header;
+            
+            {{ range .Params.Indicators }}
 
-            fetch(data_repo + "/" + data_branch + '/indicators/indicators.json')
-                .then(response => response.json())
-                .then(async data => {
+                header = '{{ .header }}';
+                indicatorDropdown.innerHTML += header.length ? `<div class="dropdown-title"><strong>${header}</strong></div>` : '';
 
-                    indicators = data;
+                {{ range $index, $id := .IndicatorID }}
 
-                    const paramId = url.searchParams.get('id') !== null ? parseInt(url.searchParams.get('id')) : false;
+                    {{ if (eq $index 0) }} defaultIndicatorId = {{ $id }} {{ end }}
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID === {{ $id }});
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator({{ $id }})' data-indicator-id={{ $id }}>" + this_indicatorName + "</button>";
                     
-                    const renderIndicatorDropdown = () => {
+                {{- end -}}
 
-                        const indicatorDropdown = document.getElementById("indicator-dropdown");
-                        let this_indicatorName;
-                        let header;
-                        
-                        {{- range .Params.Indicators }}
+            {{- end -}}
 
-                            header = `{{ .header }}`;
-                            indicatorDropdown.innerHTML += header.length ? `<div class="dropdown-title"><strong>${header}</strong></div>`: '';
-
-                            {{ range $index, $id := .IndicatorID -}}
-
-                                {{ if (eq $index 0) -}} defaultIndicatorId = {{ $id -}} {{ end }}
-
-                                indicator = indicators.find(indicator => indicator.IndicatorID === {{ $id }});
-                                this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                                indicatorDropdown.innerHTML += `<button class="indicator-dropdown-item dropdown-item" onclick="loadIndicator({{ $id }})" data-indicator-id={{ $id }}>${this_indicatorName}</button>`
-                                
-                            {{- end -}}
-                        {{- end -}}
-
-                    }
-                }
         }
-        
-        renderIndicatorDropdown()
             
     </script>
 
@@ -622,7 +610,7 @@
     {{- $app := resources.Get "js/data-explorer/app.js" -}}
     
     {{ $dataExplorerJS := slice $global $data $renderMeasures $summary $map $trend $links $disparities $app | resources.Concat "js/bundle.js" }}
-    
+
     <script type="text/javascript" 
         src="{{ $dataExplorerJS.RelPermalink }}" 
         integrity="{{ $dataExplorerJS.Data.Integrity }}"></script>

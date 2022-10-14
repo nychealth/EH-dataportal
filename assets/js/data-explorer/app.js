@@ -5,14 +5,14 @@
 
 window.onpopstate = function (event) {
 
-    console.log("** pop **");
-    console.log("state: ", window.history.state);
-    console.log("event: ", event);
+    // console.log("** pop **");
+    // console.log("state: ", window.history.state);
+    // console.log("event: ", event);
 
     const new_url = new URL(window.location);
     let new_indicatorId = parseFloat(new_url.searchParams.get('id'));
 
-    console.log("new_indicatorId [pop]", new_indicatorId);
+    // console.log("new_indicatorId [pop]", new_indicatorId);
     
     if (new_indicatorId != indicatorId) {
         
@@ -24,7 +24,7 @@ window.onpopstate = function (event) {
 window.addEventListener("hashchange", () => {
 
     const hash = window.location.hash.replace('#', "");
-    console.log("< hashchange > hash: ", hash);
+    // console.log("< hashchange > hash: ", hash);
     
     switch (hash) {
 
@@ -32,7 +32,7 @@ window.addEventListener("hashchange", () => {
 
         case 'display=summary':
         case 'tab-table':
-            console.log("< hashchange > summary");
+            // console.log("< hashchange > summary");
             currentHash = 'display=summary';
             $('#tab-btn-table').tab('show');
             showTable();
@@ -40,7 +40,7 @@ window.addEventListener("hashchange", () => {
 
         case 'display=map':
         case 'tab-map':
-            console.log("< hashchange > map");
+            // console.log("< hashchange > map");
             currentHash = 'display=map';
             $('#tab-btn-map').tab('show');
             showMap();
@@ -48,7 +48,7 @@ window.addEventListener("hashchange", () => {
 
         case 'display=trend':
         case 'tab-trend':
-            console.log("< hashchange > trend");
+            // console.log("< hashchange > trend");
             currentHash = 'display=trend';
             $('#tab-btn-trend').tab('show');
             showTrend();
@@ -56,14 +56,14 @@ window.addEventListener("hashchange", () => {
 
         case 'display=links':
         case 'tab-links':
-            console.log("< hashchange > links");
+            // console.log("< hashchange > links");
             currentHash = 'display=links';
             $('#tab-btn-links').tab('show');
             showLinks();
             break;
 
         default:
-            console.log("< hashchange > default");
+            // console.log("< hashchange > default");
             currentHash = 'display=summary';
             {{/*  window.location.hash = 'display=summary';  */}}
             {{/*  $('#tab-btn-table').tab('show');  */}}
@@ -73,7 +73,7 @@ window.addEventListener("hashchange", () => {
 
     state = window.history.state;
 
-    console.log(">> state [hashchange]", state);
+    // console.log(">> state [hashchange]", state);
 
 });
 

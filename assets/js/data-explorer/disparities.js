@@ -21,7 +21,7 @@ const loadDisparitiyData = async (disparityMetadata, disparityIndicatorId) => {
     // aqPrimaryData.print()
 
     let maxGeoRank = Math.max(aqPrimaryData.objects()[0].GeoRank);
-    console.log("maxGeoRank", maxGeoRank);
+    // console.log("maxGeoRank", maxGeoRank);
     let filteredPrimaryData = aqPrimaryData.filter(`obj => obj.GeoRank == ${maxGeoRank}`)
 
     // filteredPrimaryData.print({limit: Infinity})

@@ -853,6 +853,24 @@ const renderMeasures = async () => {
             .DataTable()
             .columns.adjust().draw();
 
+
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+        // add event handler functions to summary tab checkboxes
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+        const checkboxYear = document.querySelectorAll('.checkbox-year');
+        const checkboxGeo = document.querySelectorAll('.checkbox-geo');
+
+        // console.log("checkboxYear:", checkboxYear);
+        // console.log("checkboxGeo:", checkboxGeo);
+
+        checkboxYear.forEach(checkbox => {
+            handleYearFilter(checkbox);
+        })
+        checkboxGeo.forEach(checkbox => {
+            handleGeoFilter(checkbox);
+        })
+
     };
     
 
@@ -1320,7 +1338,7 @@ const renderMeasures = async () => {
         
         if (tabMapSelected && window.location.hash === '#display=map') {
 
-            console.log("xxx NO MAP!");
+            // console.log("xxx NO MAP!");
 
             // replace history stack entry
 
@@ -1343,7 +1361,7 @@ const renderMeasures = async () => {
         
         if (tabTrendSelected && window.location.hash === '#display=trend') {
             
-            console.log("xxx NO TREND!");
+            // console.log("xxx NO TREND!");
 
             // replace history stack entry
 
@@ -1364,7 +1382,7 @@ const renderMeasures = async () => {
         
         if (tabLinksSelected && window.location.hash === '#display=links') {
             
-            console.log("xxx NO LINKS!");
+            // console.log("xxx NO LINKS!");
 
             // replace history stack entry
             
@@ -1399,27 +1417,27 @@ const renderMeasures = async () => {
 
         case 'display=map':
         case 'tab-map':
-            {{/*  console.log("< switch > map");  */}}
+            // console.log("< switch > map");
             $('#tab-btn-map').tab('show');
             window.dispatchEvent(hashchange);
             break;
 
         case 'display=trend':
         case 'tab-trend':
-            {{/*  console.log("< switch > trend");  */}}
+            // console.log("< switch > trend");
             $('#tab-btn-trend').tab('show');
             window.dispatchEvent(hashchange);
             break;
 
         case 'display=links':
         case 'tab-links':
-            {{/*  console.log("< switch > links");  */}}
+            // console.log("< switch > links");
             $('#tab-btn-links').tab('show');
             window.dispatchEvent(hashchange);
             break;
             
         default:
-            {{/*  console.log("< switch > default");  */}}
+            // console.log("< switch > default");
             window.dispatchEvent(hashchange);
             $('#tab-btn-table').tab('show');
     }

@@ -27,7 +27,7 @@ const renderMap = (
         
         // can add year to this
 
-        console.log("mapGeoType [renderMap]", mapGeoType);
+        // console.log("mapGeoType [renderMap]", mapGeoType);
 
         if (mapGeoType === "NTA") {
             topoFile = 'NTA.topo.json';

@@ -210,7 +210,7 @@ module.exports = function(grunt) {
             try {
                 frontMatter = YAML.parse(content[1].trim());
             } catch (e) {
-                console.log(e.message);
+                grunt.log.writeln(e.message);
             }
 
             // if this is draft content, stop processing

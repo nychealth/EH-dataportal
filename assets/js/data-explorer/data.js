@@ -20,7 +20,7 @@ fetch(data_repo + "/" + data_branch + '/indicators/indicators.json')
         if (paramId) {
             await loadIndicator(paramId)
         } else {
-            console.log('no param', url.searchParams.get('id'));
+            // console.log('no param', url.searchParams.get('id'));
             await loadIndicator()
         }
         
@@ -44,10 +44,10 @@ const loadIndicator = (this_indicatorId, dont_add_to_history) => {
     console.log("** loadIndicator");
 
     currentHash = window.location.hash;
-    console.log("currentHash [loadIndicator]", currentHash);
+    // console.log("currentHash [loadIndicator]", currentHash);
 
-    console.log("this_indicatorId", this_indicatorId);
-    console.log("window.history.state", window.history.state);
+    // console.log("this_indicatorId", this_indicatorId);
+    // console.log("window.history.state", window.history.state);
 
     // if indicatorId isn't given, use the first indicator from the dropdown list 
     //  (which is populated by Hugo reading the content frontmatter). 
@@ -103,41 +103,41 @@ const loadIndicator = (this_indicatorId, dont_add_to_history) => {
 
     if (!dont_add_to_history && (window.history.state === null || state === null || window.history.state.id != indicatorId)) {
 
-        console.log("++++ add to history");
+        // console.log("++++ add to history");
         
-        console.log("indicatorId [1]:", url.searchParams.get('id'))
+        // console.log("indicatorId [1]:", url.searchParams.get('id'))
 
         if (!url.hash) {
 
-            console.log("- no hash");
-            console.log("state [pre]: ", window.history.state);
-            console.log("indicatorId [2]:", url.searchParams.get('id'))
+            // console.log("- no hash");
+            // console.log("state [pre]: ", window.history.state);
+            // console.log("indicatorId [2]:", url.searchParams.get('id'))
 
             // if loadIndicator is being called without a hash (like when a topic page is loaded), then show the first ID and summary
 
             url.hash = "display=summary";
             window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);
 
-            console.log("state [post]: ", window.history.state);
+            // console.log("state [post]: ", window.history.state);
 
         } else {
 
-            console.log("# hash");
-            console.log("state [pre]: ", window.history.state);
-            console.log("indicatorId [3]:", url.searchParams.get('id'))
+            // console.log("# hash");
+            // console.log("state [pre]: ", window.history.state);
+            // console.log("indicatorId [3]:", url.searchParams.get('id'))
 
             url.hash = currentHash;
             window.history.pushState({ id: indicatorId, hash: url.hash }, '', url);
 
-            console.log("state [post]: ", window.history.state);
+            // console.log("state [post]: ", window.history.state);
 
         }
 
     } else {
 
-        console.log("---- don't add to history");
-        console.log("state: ", window.history.state);
-        console.log("indicatorId [4]:", url.searchParams.get('id'))
+        // console.log("---- don't add to history");
+        // console.log("state: ", window.history.state);
+        // console.log("indicatorId [4]:", url.searchParams.get('id'))
 
     }
 

@@ -2,8 +2,8 @@
 
 // clicking on the indicator dropdown calls loadIndicator with that IndicatorID
 
-let indicators = []; // indicator data
-let defaultIndicatorId;
+// let indicators = []; // indicator data
+// let defaultIndicatorId;
 let selectedSummaryYears = [];
 let selectedSummaryGeography = [];
 let aboutMeasures;

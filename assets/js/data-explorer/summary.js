@@ -208,27 +208,6 @@ const handleYearFilter = (el) => {
     })
 }
 
-const handleGeoFilter = (el) => {
-
-    el.addEventListener('change', (e) => {
-
-        if (e.target.checked) {
-            selectedSummaryGeography.push(e.target.value)
-        } else {
-            selectedSummaryGeography = selectedSummaryGeography.filter(item => item !== e.target.value);
-        }
-        
-        // only render table if a geography is checked
-
-        if (selectedSummaryGeography.length > 0) {
-            renderTable()
-
-        } else {
-            document.querySelector("#tableID").innerHTML = '';
-        }
-    })
-}
-
 const handleToggle = () => { 
     
     $('body').off('click', '#summary-table tr.group td');
@@ -288,22 +267,28 @@ const handleToggle = () => {
 }
 
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-// add event handler functions to summary tab checkboxes
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+const handleGeoFilter = (el) => {
 
-const checkboxYear = document.querySelectorAll('.checkbox-year');
-const checkboxGeo = document.querySelectorAll('.checkbox-geo');
+    el.addEventListener('change', (e) => {
 
-checkboxYear.forEach(checkbox => {
-    handleYearFilter(checkbox);
-})
-checkboxGeo.forEach(checkbox => {
-    handleGeoFilter(checkbox);
-})
+        if (e.target.checked) {
+            selectedSummaryGeography.push(e.target.value)
+        } else {
+            selectedSummaryGeography = selectedSummaryGeography.filter(item => item !== e.target.value);
+        }
+        
+        // only render table if a geography is checked
 
+        if (selectedSummaryGeography.length > 0) {
+            renderTable()
+
+        } else {
+            document.querySelector("#tableID").innerHTML = '';
+        }
+    })
+}
 
 // render table
 
-renderFilteredTable();
+// renderFilteredTable();
 
