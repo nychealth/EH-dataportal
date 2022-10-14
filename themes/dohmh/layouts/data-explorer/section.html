@@ -10,6 +10,10 @@
             <div class="col-md-4 p-2 pl-0">
                 <p class="sm-label">Select a topic to view data:</p>
                  {{ partial "de-chooser-accordion.html" . }}
+                 <hr class="my-2">
+                 <p class="fs-sm mt-2"><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em>
+                    <a href='{{ ref . "/content/data-explorer/all-data.md" }}'>Browse an index of all our datasets</a>.
+                    </p>
              </div>
 
              <div class="col-md-8">
@@ -56,17 +60,6 @@
                     </div>
 
                 </div>
-
-                <div class="row my-2 border-top">
-                    <div class="col">
-                        <p class="fs-sm mt-2"><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em>
-                            <a href='{{ ref . "/content/data-explorer/all-data.md" }}'>Browse an index of all our datasets</a>
-                            </p>
-                    </div>
-                </div>
-
-
-
             </div>
         </div>
 
