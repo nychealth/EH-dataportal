@@ -63,13 +63,13 @@
                   </div>
                 </div>
                 <div class="col-3">
-                  <button type="submit" class="btn-primary btn btn-block fs-sm">Go</button> 
+                  <button type="submit" class="btn-primary btn btn-block fs-sm">Go</button>
                 </div>
               </div>
-            </form> 
+            </form>
             <hr class="mt-4 mb-1">
 
-            <button onclick="getData()" class="btn btn-sm btn-block btn-report" target="_blank"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>          
+            <button onclick="getData()" class="btn btn-sm btn-block btn-report" target="_blank"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>
         </div>
         <!-- .sticky-top -->
 
@@ -81,7 +81,7 @@
       var downloadLoc = {{ site.Params.data_repo }} + "/" + {{ site.Params.data_branch }} + "/neighborhood-reports/data/" + data_download_loc
       var reportData;
       var download
-  
+
       // ingest data for download
       function getData() {
         d3.csv(downloadLoc).then(data => {
@@ -105,8 +105,14 @@
           hiddenElement.target = '_blank';
           hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - " + {{ .geo_entity_name }} + '.csv';
           hiddenElement.click();
+
+          gtag('event', 'file_download', {
+            'file_name': hiddenElement.download,
+            'file_extension': '.csv',
+            'link_text': 'Download Report Data'
+          });
         };
-  
+
     </script>
 
     <div class="col-12 col-lg-9 overflow-hidden" id="primary-content">
@@ -116,18 +122,18 @@
             <span class="sub-title">{{ $.Params.neighborhood }}</span>
           </h1>
           <p class="report-description">{{ .report_description }}</p>
-          
+
           <p><strong style="color:#00923E">{{ .geo_entity_name }}</strong> includes ZIP Codes: <span class="home-label">{{ .zip_code }}</span>.</p>
-          
+
           <hr class="mt-4">
-          
+
           <div>
-          
+
             {{- range $index, $content := .report_content -}}
             {{- $count :=add $index 1 -}}
             {{- $.Scratch.Set "location" .geo_entity_name -}}
             {{- $.Scratch.Set "borough" .borough_name -}}
-            
+
             <div class="report-topic">
 
               <div class="topic-header">
@@ -136,20 +142,20 @@
                   {{- .report_topic_description -}}
                 </p>
               </div>
-              
+
               <div class="container-fluid px-0 mb-4">
                 <div class="row indicator-headings mb-2">
                   <div class="col-6 col-md-5 pl-3">
                     Topic
                   </div>
                   <div class="col-6 col-md-4">
-                    
+
                     <div class="position-relative">
                       Comparison<br>
                       <span class="meta"> to NYC average</span></a>
                       <a href="#" data-toggle="modal" data-target="#modal-rank" class="info-modal"><i class="fas fa-question-circle fs-rg"></i></a>
                     </div>
-                    
+
                   </div>
                   <div class="d-none d-md-inline col-md-3">
                     Rank<br>
@@ -216,7 +222,7 @@
         </div>
       </div>
       <!-- .col for you -->
-      
+
       <div class="col-lg">
         <div class="card bg-white text-black">
           <div class="card-header">More NYC neighborhood data</div>
@@ -290,24 +296,24 @@
 
 {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
 {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
-<script type="text/javascript" 
-  src="{{ $secureJS.RelPermalink }}" 
+<script type="text/javascript"
+  src="{{ $secureJS.RelPermalink }}"
   integrity="{{ $secureJS.Data.Integrity }}"></script>
 
 {{- $js := resources.Get "js/uhflist.js" -}}
 {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
-<script type="text/javascript" 
-  src="{{ $secureJS.RelPermalink }}" 
+<script type="text/javascript"
+  src="{{ $secureJS.RelPermalink }}"
   integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-<script type="text/javascript"> 
+<script type="text/javascript">
   // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
   function PopulateDropDownList() {
         //Build an array containing Neighborhood records.
         //UHFList.js contains a variable 'neighborhoods' with names zips and ids
-        
+
          var ddlNeighborhoods = document.getElementById("last-neighborhood");
-        
+
          //Add the Options to the DropDownList.
          for (var i = 0; i < neighborhoods.length; i++) {
              var option = document.createElement("OPTION");
