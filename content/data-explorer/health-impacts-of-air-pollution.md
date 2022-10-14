@@ -8,15 +8,19 @@ tags:
 categories: ["airquality","transportation","healthoutcomes","social"]
 keywords: ["air quality","pollution","emissions","exhaust","pollutants","pm2.5","asthma","breathing","lungs","asthma","respiratory","illness","hospitalizations","emergency department visits"]
 indicators:
-- header: null
+- header: Emergency Department Visits
   IndicatorID:
   - 2122
-  - 2124
-  - 2121
   - 2117
+- header: Hospitalizations
+  IndicatorID:
+  - 2124
   - 2120
-  - 2108
   - 2119
+- header: Deaths
+  IndicatorID:
+  - 2121
+  - 2108
 menu:
     main:
         identifier: '03'

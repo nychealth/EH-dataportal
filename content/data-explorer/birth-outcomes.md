@@ -9,17 +9,23 @@ tags:
 categories: ["childhealth","healthoutcomes"]
 keywords: ["children","birth","birth defects","babies","pregnancy"]
 indicators:
-- header: null
+- header: Preterm birth
+  IndicatorID:
+  - 1
+  - 2
+- header: Low birthweight
+  IndicatorID:
+  - 4
+  - 3
+- header: Death
   IndicatorID:
   - 5
-  - 4
   - 6
   - 7
   - 8
-  - 1
+- header: Other
+  IndicatorID:
   - 9
-  - 3
-  - 2
 menu:
     main:
         identifier: '03'
