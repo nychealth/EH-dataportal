@@ -467,18 +467,6 @@
 
     </div>
 
-    <div class="row no-gutters px-0 my-2">
-        <div class="col">
-            <div class="px-2 borderbox">
-                {{- partial "related-footer" . -}}
-            </div>
-        </div>
-
-    </div>
-
-
-
-
     <!-- Topic Selection Modal -->
 
     <div class="modal fade" id="topicModal" tabindex="-1" role="dialog" aria-labelledby="topicModalLabel"
@@ -2770,6 +2758,11 @@
 
 
 </article>
+
+
+<!-- RELATED FOOTER -->
+{{- partial "related-footer-2" . -}}
+
 
 {{ $js := resources.Get "js/accessible-autocomplete.min.js" }}
 {{ $secureJS := $js | resources.Fingerprint "sha512" }}

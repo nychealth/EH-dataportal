@@ -40,31 +40,28 @@
 <!-- #primary-content -->
 
     <div class="row my-3">
-        <div class="col-md-3">
-            <div class="fs-sm px-2">
+        <div class="col-md-3 ml-auto fs-sm px-2">
                 {{- partial "socialshare.html" . -}}
-
-                <hr class="my-2">
-
-                {{- if .Params.photocredit -}}
-                    <i class="fas fa-images mr-1"></i><strong>Banner image:</strong><br>
-                    {{- .Params.photocredit -}}
-                    <hr class="my-2">
-                {{- end -}}
-
-                <strong>Published on:</strong><br>
-                {{- .Date.Format "January 2, 2006" -}}
-            </div>
-
         </div>
 
-        <div class="col-md-9 border-left">
-            {{- partial "related-footer" . -}}
-
+        <div class="col-md-3 ml-auto fs-sm px-2">
+            {{- if .Params.photocredit -}}
+            <i class="fas fa-images mr-1"></i><strong>Banner image:</strong><br>
+            {{- .Params.photocredit -}}
+        {{- end -}}
         </div>
+
+        <div class="col-md-3 ml-auto fs-sm px-2">
+            <strong>Published on:</strong><br>
+            {{- .Date.Format "January 2, 2006" -}}
+        </div>
+
     </div>
 
 
 <!-- related -->
+
+{{- partial "related-footer-2" . -}}
+
 
 {{- end -}}
