@@ -1,15 +1,8 @@
+<p><strong class="text-primary">Featured datasets:</strong></p>
 <div class="row">
-    <div class="col-12">
-        <p><strong class="text-primary">Featured datasets:</strong>
-        </p>
-    </div>
-
-</div>
-
-<div class="row no-gutters">
     {{ range .Site.Data.featured_data.featured}}
     <div class="col-md-4 col-sm-6 col-xs-12">
-        <div class="card de-card borderbox fs-sm m-1">
+        <div class="card de-card borderbox fs-sm mt-1">
             <div class="card-body">
                 <span class="card-title text-primary"><a href="{{ .link }}">{{ .copy }}</a></span>
               </div>
