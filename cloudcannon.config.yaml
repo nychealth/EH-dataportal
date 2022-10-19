@@ -1,6 +1,5 @@
 %YAML 1.1
 ---
-# TODOS
 collections_config_override: true
 timezone: America/New_York
 paths:
@@ -79,7 +78,7 @@ collection_groups:
       - data-stories
       - data-explorer
       - key-topics
-      - pages
+      - about
 
 
 #####################
