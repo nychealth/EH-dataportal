@@ -1,6 +1,12 @@
 # The NYC Environment and Health Data portal - frontend development
 
-This repository contains a prototype of the Environment and Health Data Portal. You can view a staged development version [here](https://nychealth.github.io/EH-dataportal/). We are in the process of fully developing this. If you're interested in helping, you can [email us](mailto:trackingportal@health.nyc.gov) - we are always looking for people interested in user testing and co-design work.
+This repository contains a prototype of the Environment and Health Data Portal. You can view a staged development version [here](https://nychealth.github.io/EH-dataportal/) and the live production version [here](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/). 
+
+Ths site is an ongoing work in process. We are always interested in people willing to do user testing and co-design work, so if you're interested in helping develop the site, you can:
+- [email us](mailto:trackingportal@health.nyc.gov)
+- [File an issue](https://github.com/nychealth/EH-dataportal/issues) or [open a pull request](https://github.com/nychealth/EH-dataportal/pulls).
+
+This repository contains the website's source code. [To get the raw data that the site displays, visit our data repo](https://www.github.com/nychealth/EHDP-data).
 
 ## General Development
 
@@ -8,10 +14,11 @@ This repository contains a prototype of the Environment and Health Data Portal. 
 You will need the following things properly installed on your computer.
 
 - [Git](https://git-scm.com/)
+- [npm](https://www.npmjs.com/)
 - [Hugo](https://gohugo.io/) 
 - [Grunt](https://gruntjs.com/)
 
-This repository contains source code. To browse a local version of the site, in your local development environment, start the server by typing `hugo serve --environment development --disableFastRender` into the terminal.
+To browse a local version of the site, in your local development environment, start the server by typing `hugo serve --environment development --disableFastRender` into the terminal.
 - `hugo serve` starts the server - you can then browse the site at http://localhost:1313/EH-dataportal
 - `--environment development` specifies that it will serve the site for the development environment, using content from `/config/development/config.toml`
 - `--disableFastRender` turns off fast render mode, so more small changes are rapidly served.
