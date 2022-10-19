@@ -11,17 +11,38 @@ We're hiring! See below for open positions in our bureau.
 ---
 <br>
 
-**Community Research Program Coordinator**
+**Executive Director of Environmental Health Policy**
 
-The Bureau of Environmental Surveillance and Policy (BESP) is seeking a Community Research Program Coordinator to provide support for its Air Quality Program.
-- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 440955.
+We are looking for an experienced- high-level professional well-versed in applying research to policy and program, who will oversee our growing work in climate health and health equity in planning.
+- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search - it will be posted soon.
+
+---
+<br>
+
+**Senior Planning and Policy Analyst**
+We're looking for an urban planning or environmental policy expert who works at the intersection of environment and health equity.
+- Visit  [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 528335.
+
+---
+<br>
+
+**Director of Climate Health Programs**
+We're looking for a leader experienced in applying research to program design and implementation to manage our team overseeing Be A Buddy and other community resiliency programs.
+- Visit  [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 552896.
+
+---
+<br>
+
+**Social Resiliency Senior Manager**
+We're looking for a program manager, with experience in community and faith organization, to oversee a suite of programs aimed at bolstering social connections as a pathway for community-level climate resiliency.
+- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search - it will be posted soon.
 
 ---
 <br>
 
 **Environmental Operations Data Scientist**
 
-The Bureau of Environmental Surveillance and Policy is recruiting for one (1) City Research Scientist (Level I) to provide critical support for analysis and reporting for food service establishment inspection activities.
+The Bureau of Environmental Surveillance and Policy is recruiting for a City Research Scientist to provide critical support for analysis and reporting for food service establishment inspection activities.
 - Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 544194.
 
 ---
@@ -29,7 +50,7 @@ The Bureau of Environmental Surveillance and Policy is recruiting for one (1) Ci
 
 **Environmental Operations Data Scientist**
 
-The Bureau of Environmental Surveillance and Policy is recruiting for one (1) City Research Scientist (Level I) to provide critical support for analysis and reporting for food service establishment inspection activities.
+The Bureau of Environmental Surveillance and Policy is recruiting for a City Research Scientist to provide critical support for analysis and reporting for food service establishment inspection activities.
 - Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 544204.
 
 ---

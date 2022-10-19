@@ -25,7 +25,7 @@ menu:
         identifier: '03'
 ---
 
-Physical activity and healthy eating rank among the leading ways to get and stay healthy. 
+Physical activity and healthy eating are among the leading ways to get and stay healthy. 
 
 Active design is an applied, evidence-informed approach to improve physical, mental and social health outcomes through the design of the built environment. 
 

@@ -15,6 +15,13 @@ const renderTrendChart = (
 
         let trendMeasurementType = metadata[0].MeasurementType;
         let trendDisplay = metadata[0].DisplayType;
+
+        // get dimensions
+        var columns = 6;
+        var height = 500
+        window.innerWidth < 576 ? columns = 3 : columns = 6;
+        window.innerWidth < 576 ? height = 350 : columns = 500;
+
         
         // define spec
         
@@ -36,12 +43,14 @@ const renderTrendChart = (
                     "labelFontSize": 11,
                 },
                 "legend": {
+                    "columns": columns,
                     "labelFontSize": 14,
                     "symbolSize": 140
                 },
-                
+                "title": {
+                    "fontWeight": "normal"
+                  },
                 "view": {"stroke": "transparent"},
-                
                 "range": {
                     "category": [
                         "#1696d2",
@@ -67,7 +76,7 @@ const renderTrendChart = (
                 "values":  data,
             },
             "width": "container",
-            "height": 500,
+            "height": height,
             "title": { 
                 "anchor": "start", 
                 "fontSize": 13, 
@@ -90,7 +99,7 @@ const renderTrendChart = (
                             "field": "Geography",
                             "type": "nominal",
                             "legend": {
-                                "orient": "right",
+                                "orient": "bottom",
                                 "title": null
                             }
                         },
@@ -98,7 +107,7 @@ const renderTrendChart = (
                             "field": "Value",
                             "type": "quantitative",
                             "title": null,
-                            "scale": {"domainMin": valueMin, "nice": true}
+                            "scale": {"domainMin": 0, "nice": true} // change domainMin to valueMin to scale with data
                         }
                     },
                     "layer": [

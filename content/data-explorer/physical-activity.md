@@ -11,10 +11,10 @@ indicators:
 - header: null
   IndicatorID:
   - 2060
-  - 2058
   - 2173
-  - 2059
   - 2172
+  - 2058
+  - 2059
 menu:
     main:
         identifier: '03'
