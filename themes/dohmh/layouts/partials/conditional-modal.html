@@ -34,9 +34,9 @@
     console.log("want_old_site", want_old_site);
     
     const unencoded_url = document.cookie
-    .split(';.?')
-    .find((row) => row.startsWith('unencoded_url='))
-    ?.split('=')[1];
+        .split(';.?')
+        .find((row) => row.startsWith('unencoded_url='))
+        ?.split('=')[1];
     
     console.log("unencoded_url", unencoded_url);
 
