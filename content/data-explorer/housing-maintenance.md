@@ -8,7 +8,7 @@ tags:
 categories: ["housing","social","neighborhoods"]
 keywords: ["built environments","neighborhoods","social","housing","maintenance","maintenance deficiencies","healthy housing"]
 indicators:
-- header: Maintenance
+- header: null
   IndicatorID:
   - 2396
   - 2395

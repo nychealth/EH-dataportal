@@ -22,9 +22,11 @@ indicators:
   - 2236
   - 2237
   - 2238
+- header: Traffic
+  IndicatorID: 
+  - 2112
   - 2113
   - 2114
-  - 2112
 menu:
     main:
         identifier: '03'

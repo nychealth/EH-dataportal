@@ -10,8 +10,8 @@ keywords: ["food","drink","nutrition","food environment","food desert","sugary d
 indicators:
 - header: null
   IndicatorID:
-  - 2097
   - 2389
+  - 2097
   - 2098
 menu:
     main:

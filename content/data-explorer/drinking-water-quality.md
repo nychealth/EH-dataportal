@@ -10,10 +10,10 @@ keywords: ["food","drink","water","housing"]
 indicators:
 - header: null
   IndicatorID:
-  - 2207
   - 2044
-  - 2043
   - 2041
+  - 2207
+  - 2043
 menu:
     main:
         identifier: '03'

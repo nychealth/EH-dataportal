@@ -13,6 +13,8 @@ indicators:
   - 2338
   - 2020
   - 2017
+- header: Smoking
+  IndicatorID:
   - 2019
   - 2021
 - header: Asthma triggers

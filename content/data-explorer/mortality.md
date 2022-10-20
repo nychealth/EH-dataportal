@@ -10,10 +10,11 @@ keywords: ["mortality","death","dying","health"]
 indicators:
 - header: null
   IndicatorID:
+  - 2322
   - 5
   - 6
   - 8
-  - 2322
+
 menu:
     main:
         identifier: '03'
