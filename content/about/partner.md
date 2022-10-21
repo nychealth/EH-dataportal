@@ -41,7 +41,7 @@ Sometimes, our default Data Explorer visualizations aren't suited to explaining 
 
 While "dashboards" often let people explore and hypothesize, we aim to keep these custom interactives *explanatory*: focused and message-oriented. 
 
-If you're interested in something like this. 
+If you're interested in something like this, reach out and we can see what we can do together. 
 
 ### Publishing annual reports
 [PDFs are "unfit for human consumption"](https://www.nngroup.com/articles/pdf-unfit-for-human-consumption/). If your program produces an annual report or a data report, consider publishing it as a webpage instead of as a PDF. This can be:
@@ -49,7 +49,7 @@ If you're interested in something like this.
 - More engaging and easier to read
 - Easier to update each year
 
-For examples, see [the NYCCAS Annual Report](/key-topics/airquality/nyccas) or the [Heat Mortality Report](/key-topics/climatehealth/heat-report).
+For examples, see [the NYCCAS Annual Report](/key-topics/airquality/nyccas) or the [Heat Mortality Report](/key-topics/climatehealth/heat-report), which we are in the process of converting to full, Portal-based webb products.
 
 ---
 <br>
