@@ -1,3 +1,10 @@
+<style>
+    .modal-backdrop.show {
+        opacity: 0.70;
+        background-color: #424242
+    }
+</style>
+
 {{- if eq hugo.Environment "production" -}} 
 
 <div class="modal" tabindex="-1" role="dialog" id="prototypeModal">
@@ -33,7 +40,7 @@
 
     // get original page URL before redirect
 
-    const original_url = document.cookie
+    let original_url = document.cookie
         .split(';')
         .find((row) => row.startsWith('original_url='))
         ?.replace("original_url=", "");
@@ -123,7 +130,7 @@
 
     // get original page URL before redirect
 
-    const original_url = document.cookie
+    let original_url = document.cookie
         .split(';')
         .find((row) => row.startsWith('original_url='))
         ?.replace("original_url=", "");
