@@ -217,7 +217,8 @@ function changeDescription(x) {
     var locVal = searchForm.options[searchForm.selectedIndex].value
 
     if (locVal) {
-      window.location = baseURL + 'neighborhood-reports/'+ DOMPurify.sanitize(locVal) + reportURL
+      //window.location = baseURL + 'neighborhood-reports/'+ DOMPurify.sanitize(locVal) + reportURL
+      window.location = '{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(locVal) + reportURL
     } else {
       document.getElementById('warning').style.display = "block" // this is our error handling
     }
