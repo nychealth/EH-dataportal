@@ -33,34 +33,35 @@ function openModal() {
                 
                 $('#prototypeModal').modal('show');
                 
-                
-            } else {
-                
-                // if there's no SESSION_KEY timestamp value, show the modal
-                
-                $('#prototypeModal').modal('show');
-                
             }
-            
+
         } else {
             
-            // if no 'localStorage' available, show the modal
+            // if there's no SESSION_KEY timestamp value, show the modal
             
             $('#prototypeModal').modal('show');
             
         }
         
-        // update SESSION_KEY timestamp value on close/hide
+    } else {
         
-        $('#prototypeModal').on('hide.bs.modal', function (e) {
-            
-            var date_now = Date.now();
-            
-            if (localStorage) {
-                localStorage.setItem(SESSION_KEY, date_now);
-            }
-            
-        });
+        // if no 'localStorage' available, show the modal
+        
+        $('#prototypeModal').modal('show');
         
     }
+    
+    // update SESSION_KEY timestamp value on close/hide
+    
+    $('#prototypeModal').on('hide.bs.modal', function (e) {
+        
+        var date_now = Date.now();
+        
+        if (localStorage) {
+            localStorage.setItem(SESSION_KEY, date_now);
+        }
+        
+    });
+    
+}
 };
