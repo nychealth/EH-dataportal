@@ -49,7 +49,8 @@ If you're interested in something like this, reach out and we can see what we ca
 - More engaging and easier to read
 - Easier to update each year
 
-For examples, see [the NYCCAS Annual Report](/key-topics/airquality/nyccas) or the [Heat Mortality Report](/key-topics/climatehealth/heat-report), which we are in the process of converting to full, Portal-based webb products.
+For examples, see [the NYCCAS Annual Report](/key-topics/airquality/nyccas) or the [Heat Mortality Report](/key-topics/climatehealth/heat-report), which we are in the process of converting to full, Portal-based Web products.
+
 
 ---
 <br>
