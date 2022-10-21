@@ -63,5 +63,4 @@ function openModal() {
         
     });
     
-}
 };
