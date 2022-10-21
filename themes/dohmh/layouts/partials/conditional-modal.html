@@ -37,7 +37,9 @@
         .split(';')
         .find((row) => row.startsWith('original_url='))
         ?.replace("original_url=", "");
-    
+
+    original_url = original_url ? original_url : "/IndicatorPublic/";
+
     console.log("original_url", original_url);
     
     // redirect to originally clicked URL
@@ -125,6 +127,8 @@
         .split(';')
         .find((row) => row.startsWith('original_url='))
         ?.replace("original_url=", "");
+
+    original_url = original_url ? original_url : "/IndicatorPublic/";
     
     console.log("original_url", original_url);
     
