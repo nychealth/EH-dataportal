@@ -354,7 +354,8 @@
         e.preventDefault(); // prevent page re-load
         var locVal = searchForm.options[searchForm.selectedIndex].value;
         console.log("locVal", locVal);
-        window.location = baseURL + 'neighborhood-reports/'+ DOMPurify.sanitize(locVal) + "/" + report;
+        // window.location = baseURL + 'neighborhood-reports/'+ DOMPurify.sanitize(locVal) + "/" + report;
+        window.location = '{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(locVal) + "/" + report;
     });
     
 </script>
