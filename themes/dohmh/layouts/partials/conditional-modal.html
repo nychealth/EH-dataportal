@@ -14,9 +14,7 @@
                     <a href='https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform'>Click here to sign up</a>.
                 </p>
                 <br />
-                <p>
-                    Prefer to use the old site? <a id="want_old_site" class="close-dialog" data-dismiss="modal" onclick="setCookie()">Click here.</a>
-                </p>
+                <p>Prefer to use the old site? <a id="want_old_site" class="close-dialog" data-dismiss="modal" onclick="setCookie()">Click here.</a></p>
             </div>
             <hr>
             <button type="button" class="btn btn-outline-primary close-dialog" data-dismiss="modal">Close</button>
@@ -35,19 +33,16 @@
 
     // get original page URL before redirect
 
-    console.log("document.cookie", document.cookie.split(';'));
-
     const original_url = document.cookie
         .split(';')
         .find((row) => row.startsWith('original_url='))
-        //?.split('=')[1];
         ?.replace("original_url=", "");
     
     console.log("original_url", original_url);
     
     // redirect to originally clicked URL
-    document.querySelector("#want_old_site").href = original_url;
 
+    document.querySelector("#want_old_site").href = original_url;
 
 </script>
 
@@ -107,9 +102,7 @@
                     <a href='https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform'>Click here to sign up</a>.
                 </p>
                 <br />
-                <p>
-                    Prefer to use the old site? <a id="want_old_site" class="close-dialog" data-dismiss="modal" onclick="setCookie()">Click here.</a>
-                </p>
+                <p>Prefer to use the old site? <a id="want_old_site" class="close-dialog" data-dismiss="modal" onclick="setCookie()">Click here.</a></p>
             </div>
             <hr>
             <button type="button" class="btn btn-outline-primary close-dialog" data-dismiss="modal">Close</button>
@@ -128,8 +121,6 @@
 
     // get original page URL before redirect
 
-    console.log("document.cookie", document.cookie.split(';'));
-
     const original_url = document.cookie
         .split(';')
         .find((row) => row.startsWith('original_url='))
@@ -138,8 +129,8 @@
     console.log("original_url", original_url);
     
     // redirect to originally clicked URL
-    document.querySelector("#want_old_site").href = original_url;
 
+    document.querySelector("#want_old_site").href = original_url;
     
 </script>
 
