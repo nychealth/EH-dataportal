@@ -154,66 +154,71 @@ function changeDescription(x) {
 
 // this checks the hash and changes the description accordingly
   if (window.location.hash=="#Asthmareport") {
-  changeDescription("Asthma");
-  reportURL = '/asthma_and_the_environment/'
+    changeDescription("Asthma");
+    reportURL = '/asthma_and_the_environment/'
   } else if (window.location.hash=="#Climatereport") {
-  changeDescription("Climate");
-  reportURL = '/climate_and_health/'
+    changeDescription("Climate");
+    reportURL = '/climate_and_health/'
   } else if (window.location.hash=="#Housingreport") {
-  changeDescription("Housing");
-  reportURL = '/housing_and_health/'
+    changeDescription("Housing");
+    reportURL = '/housing_and_health/'
   }  else if (window.location.hash=="#Outdoorreport") {
-  changeDescription("Outdoor");
-  reportURL = '/outdoor_air_and_health/'
+    changeDescription("Outdoor");
+    reportURL = '/outdoor_air_and_health/'
   }  else if (window.location.hash=="#Activereport") {
-  changeDescription("Active");
-  reportURL = '/active_design_physical_activity_and_health/'
+    changeDescription("Active");
+    reportURL = '/active_design_physical_activity_and_health/'
   };
 
 
-// this populates the neighborhood dropdown list from uhflist.js
+  // this populates the neighborhood dropdown list from uhflist.js
   // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
   function PopulateDropDownList() {
-        //Build an array containing Neighborhood records.
-        //UHFList.js contains a variable 'neighborhoods' with names zips and ids
+        // Build an array containing Neighborhood records.
+        // UHFList.js contains a variable 'neighborhoods' with names zips and ids
          var ddlNeighborhoods = document.getElementById("last-neighborhood");
         
-         //Add the Options to the DropDownList.
+         // Add the Options to the DropDownList.
          for (var i = 0; i < neighborhoods.length; i++) {
+
              var option = document.createElement("OPTION");
 
-             //Set Neighborhood Name in Text part.
+             // Set Neighborhood Name in Text part.
              option.innerHTML = neighborhoods[i].namezip;
 
-             //Set Neighborhood Id in Value part.
+             // Set Neighborhood Id in Value part.
              option.value = neighborhoods[i].page_name;
 
-             //Add the Option element to DropDownList.
+             // Add the Option element to DropDownList.
              ddlNeighborhoods.options.add(option);
          }
      }
 
-  //runs the list population
+   // runs the list population
    PopulateDropDownList();
 
-   //controls accessible autocomplete dynamic styling
+   // controls accessible autocomplete dynamic styling
    var selectEl = document.querySelector('#last-neighborhood')
    accessibleAutocomplete.enhanceSelectElement({
-     autoselect: true,
-     confirmOnBlur: true,
-     defaultValue: "",
-     minLength: 2,
-     selectElement: selectEl
-   });
+    autoselect: true,
+    confirmOnBlur: true,
+    defaultValue: "",
+    minLength: 2,
+    selectElement: selectEl
+  });
 
     // this takes the form and on submit, sends page to a new location.
     var searchForm = document.getElementById('last-neighborhood-select') // this is last-neighborhood-select because of changes applied by the AA JS.
+
     document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
+
     e.preventDefault(); // prevent page re-load
+
     var locVal = searchForm.options[searchForm.selectedIndex].value
 
     if (locVal) {
-      window.location = baseURL + '/neighborhood-reports/'+ DOMPurify.sanitize(locVal) + reportURL
+      //window.location = baseURL + 'neighborhood-reports/'+ DOMPurify.sanitize(locVal) + reportURL
+      window.location = '{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(locVal) + reportURL
     } else {
       document.getElementById('warning').style.display = "block" // this is our error handling
     }
