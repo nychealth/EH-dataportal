@@ -33,9 +33,11 @@
 
           <div class="col-lg-5 col-sm-12">
               <h4>&nbsp;</h4>
-              <button class="btn btn-primary btn-lg" id="outputButton">2. Get Council District</button>  
+              <button class="btn btn-outline-primary btn-lg" id="outputButton">2. Get info:</button>  
               <br> <br>
-              <span id="NTA" class="h4"></span> 
+              <p>City Council District: <span id="CCD" class="h4"></span> </p>
+              <p>Community District: <span id="CD" class="h4"></span></p>
+
 
 
           </div>
@@ -74,7 +76,8 @@
 
   // 
   function dataChange() {
-    document.getElementById('NTA').innerHTML = map.location.data.nta;
+    document.getElementById('CCD').innerHTML = map.location.data.cityCouncilDistrict;
+    document.getElementById('CD').innerHTML = map.location.data.communityDistrict;
     console.log('Map geolocator produces the following data from map.location.data')
     console.table(map.location.data)
   }
