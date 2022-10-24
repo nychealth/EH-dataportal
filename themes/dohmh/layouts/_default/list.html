@@ -12,11 +12,11 @@
         - DS landing page & all others to have header.html
     -->
 
-    {{- if or (ne .Section "data-stories") ( eq .Permalink "/data-stories/") -}}
+    {{- if or (ne .Section "data-stories") ( eq .RelPermalink "/data-stories/") -}}
       {{- partial "header.html" . -}}
     {{- end -}}
 
-    {{- if and (eq .Section "data-stories") ( ne .Permalink "/data-stories/") -}}
+    {{- if and (eq .Section "data-stories") ( ne .RelPermalink "/data-stories/") -}}
       {{- partial "header-ds.html" . -}}
     {{- end -}}
 
@@ -34,7 +34,7 @@
                     <div class="card-content">
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="{{ .Permalink }}" class="text-primary fs-rg mb-1">{{ .Title }}</a></h4>
+                                <a href="{{ .RelPermalink }}" class="text-primary fs-rg mb-1">{{ .Title }}</a></h4>
                                 <p class="card-text mt-0">{{ htmlUnescape .Content | plainify | truncate 150 }}</p>
                         </div>
                     </div>

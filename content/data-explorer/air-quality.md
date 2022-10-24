@@ -1,8 +1,8 @@
 ---
-title: Air Quality
+title: Air quality
 date: 2021-05-28 18:02:58.755365
 draft: false
-seo_title: "Air quality data for NYC."
+seo_title: "Air quality data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["airquality","childhealth","transportation","neighborhoods"]
@@ -30,7 +30,7 @@ menu:
 
 Air quality is a **measure of the condition of the air around us**. The less air pollution there is, the better the air quality.
 
-Like many cities, New York City's air contains particles, liquid droplets, gases, and other contaminants that could impact health. Two pollutants, **[particulate matter](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Particulate_Matter"%20target="_blank" "Particulate matter") and**[**ground-level ozone**](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx "Glossary"), are of particular health concern.
+Like many cities, New York City's air contains particles, liquid droplets, gases, and other contaminants that could impact health. Two pollutants, particulate matter and ground-level ozone, are of particular health concern.
 
 Although New York City's air does not currently meet federal air quality standards, **it has improved significantly over the past two decades**.
 
@@ -60,8 +60,6 @@ Air pollution may affect anyone. **Certain groups may be more vulnerable** to 
 ### About Neighborhood Air Quality
 
 **Air quality can vary** **from neighborhood to neighborhood**. That is why the New York City Community Air Survey (NYCCAS) keeps track of street-level air pollution from about 100 locations throughout New York City every season. NYCCAS is part of [OneNYC](http://www1.nyc.gov/html/onenyc/index.html "OneNYC"), New York City's long-term plan for sustainability.
-
-The pollutants we measure are: [fine particulate matter](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx?#Fine_particulate_matter) (PM2.5), [ground-level ozone (O3, summer)](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Ground_level_ozone%20), [nitrogen oxides (NOx)](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Nitrogen_oxides), black carbon from diesel exhaust, [sulfur dioxide (SO2, winter)](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Sulfur_dioxide) and [nickel (Ni, winter)](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Nickel).
 
 In NYC, health impacts from fine particulate matter, black carbon, and sulfur dioxide are higher in high-poverty neighborhoods.
 

@@ -8,7 +8,7 @@
                 <nav aria-label="breadcrumb" class="my-3">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="/data-explorer/">Data Explorer</a></li>
+                        <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}/data-explorer/">Data Explorer</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                     </ul>
                 </nav>
@@ -85,7 +85,7 @@
                 
             </script>
             
-            <p class="sr-only">Also outputting a JSON version of the list to <code><a href="/IndicatorData/subtopic_indicators.json">/IndicatorData/subtopic_indicators.json</code></a> 
+            <p class="sr-only">Also outputting a JSON version of the list to <code><a href="{{ .Site.BaseURL }}/IndicatorData/subtopic_indicators.json">/IndicatorData/subtopic_indicators.json</code></a> 
                 (which on build will be put into <code>/docs/IndicatorData/</code>)</strong>
                 
                 {{- $si_json_output_path := "/IndicatorData/subtopic_indicators.json" -}}
@@ -93,7 +93,7 @@
                 
                 <script>
                     // console.log("$si_json_output_path", {{$si_json_output_path }})
-                    // console.log("$si_resource.Permalink", {{$si_resource.Permalink }})
+                    // console.log("$si_resource.RelPermalink", {{$si_resource.RelPermalink }})
                 </script>
                 
                 <table id="indicators" class="display fs-sm my-1" style="font-size:12px; width:100%">
@@ -136,7 +136,7 @@
             
             
             // First, load Indicators.json
-            d3.json('https://raw.githubusercontent.com/nychealth/EHDP-data/main/indicators/indicators.json').then(function (data) {
+            d3.json('{{ site.Params.data_repo }}/{{ site.Params.data_branch }}/indicators/indicators.json').then(function (data) {
                 indicators = data;
                 loopThroughIndicators() // run loops.
                 
@@ -192,7 +192,7 @@
                     for (st = 0; st < subtopics.length; st++) {
 
                         let li = document.createElement('li');
-                        li.innerHTML = "<a href='" + {{ .Site.BaseURL }} + "data-explorer/" + subtopics[st].subtopic + "/'>" + subtopics[st].subtopic_name + "</a>"
+                        li.innerHTML = "<a href='" + {{ .Site.BaseURL }} + "/data-explorer/" + subtopics[st].subtopic + "/'>" + subtopics[st].subtopic_name + "</a>"
                         // can eventually add an anchor or other deep-linking method
         
                         st_li.appendChild(li)

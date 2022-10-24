@@ -2,7 +2,7 @@
 title: Citywide Air Quality
 date: 2021-05-28 18:02:58.760440
 draft: true
-seo_title: "Citywide air quality data for NYC."
+seo_title: "Citywide air quality data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["airquality","transportation"]
@@ -20,7 +20,7 @@ menu:
 
 Air quality is a **measure of the condition of the air around us**. The less air pollution there is, the better the air quality.
 
-Like many cities, New York City's air contains particles, liquid droplets, gases, and other contaminants that could impact health. Two pollutants, **[particulate matter](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Particulate_Matter"%20target="_blank" "Particulate matter") and** [**ground-level ozone**](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx "Glossary"), are of particular health concern.
+Like many cities, New York City's air contains particles, liquid droplets, gases, and other contaminants that could impact health. Two pollutants, fine particles and ozone, are of particular health concern.
 
 Although New York City's air does not current meet federal air quality standards, **it has improved significantly over the past two decades**.
 

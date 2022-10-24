@@ -12,16 +12,12 @@
 name: "CodeQL"
 
 on:
-  push:
+  pull_request_target: # analyze the base branch (aka production or development) of the closed PR
     branches: 
-      - main
-      - development
-  pull_request_target: # analyze the base branch (aka main or development) of the closed PR
-    branches: 
-      - main
+      - production
       - development
     types:
-      - closed      
+      - closed
   schedule:
     - cron: '27 6 * * 3'
 

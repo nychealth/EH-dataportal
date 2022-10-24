@@ -1,0 +1,273 @@
+    <!-- URL rewrite -->
+    
+    <rewrite>
+      
+        <rewriteMaps>
+          
+          <!-- old portal subtopic to new portal topic -->
+          
+          <rewriteMap name="Subtopic-To-DE-Topic">
+            
+            <add key="104" value="active-design" />
+            <add key="122" value="air-quality" />
+            <add key="95" value="alcohol-use" />
+            <add key="97" value="alcohol-use" />
+            <add key="11" value="asthma" />
+            <add key="92" value="bed-bugs" />
+            <add key="16" value="birth-defects" />
+            <add key="12" value="birth-outcomes" />
+            <add key="39" value="cancer" />
+            <add key="93" value="cancers-in-children" />
+            <add key="51" value="carbon-monoxide-incidents" />
+            <add key="15" value="carbon-monoxide-incidents" />
+            <add key="3" value="cigarette-smoke" />
+            <add key="1" value="air-quality" />
+            <add key="107" value="climate" />
+            <add key="8" value="cockroaches" />
+            <add key="52" value="drinking-water-quality" />
+            <add key="108" value="falls-among-older-adults" />
+            <add key="121" value="health-care" />
+            <add key="103" value="health-impacts-of-air-pollution" />
+            <add key="127" value="healthy-eating" />
+            <add key="36" value="housing-maintenance" />
+            <add key="7" value="mice-and-rats" />
+            <add key="126" value="mortality" />
+            <add key="91" value="air-quality" />
+            <add key="113" value="overweight" />
+            <add key="9" value="pesticides" />
+            <add key="96" value="physical-activity" />
+            <add key="106" value="social-conditions" />
+            <add key="98" value="restaurant-food-safety" />
+            <add key="109" value="social-conditions" />
+            <add key="101" value="transportation-related-injuries" />
+            <add key="116" value="vector-borne-disease" />
+            <add key="125" value="violence" />
+            <add key="119" value="walking,-driving,-and-cycling" />
+            <add key="100" value="weather-related-illness" />
+            <add key="115" value="worker-health" />
+            
+            <!-- redirected to related topic above -->
+            
+            <!-- <add key="95" value="alcohol-access" /> -->
+            <!-- <add key="15" value="carbon-monoxide-poisoning" /> -->
+            <!-- <add key="1" value="citywide-air-quality" /> -->
+            <!-- <add key="91" value="neighborhood-air-quality" /> -->
+            <!-- <add key="106" value="population-characteristics" /> -->
+            
+            <!-- draft topic pages - no redirect for now -->
+            
+            <!-- <add key="14" value="childhood-lead-exposure" /> -->
+            <!-- <add key="123" value="chronic-obstructive-pulmonary-disease" /> -->
+            <!-- <add key="94" value="solid-waste" /> -->
+            <!-- <add key="102" value="sugary-drink-consumption" /> -->
+            <!-- <add key="114" value="traffic" /> -->
+            <!-- <add key="117" value="vulnerability" /> -->
+            <!-- <add key="88" value="brownfields" /> -->
+            <!-- <add key="13" value="heart-attacks" /> -->
+            <!-- <add key="74" value="large-city-air-quality-comparison" /> -->
+            <!-- <add key="4" value="lead-hazards" /> -->
+            
+          </rewriteMap>
+          
+          <!-- old portal data explorer tab to new -->
+          
+          <rewriteMap name="DE-Tab">
+            
+            <add key="Summarize" value="summary" />
+            <add key="Map" value="map" />
+            <add key="ChartOverTime" value="trend" />
+            <add key="LinkData" value="links" />
+            
+          </rewriteMap>
+          
+        </rewriteMaps>
+        
+        
+        <rules>
+          
+          
+          <!-- <rule name="set-url-cookie" stopProcessing="true">
+            
+            <match url="(.+)" />
+            
+            <serverVariables>
+              
+              <set name="HTTP_COOKIE" value="original_url={UNENCODED_URL}" />
+              
+            </serverVariables>
+            
+          </rule> -->
+          
+          
+          <!-- if the user has requested the old site, give them that -->
+          
+          <rule name="no-redirect" stopProcessing="true">
+            
+            <match url=".*" />
+  
+            <conditions trackAllCaptures="true">
+              
+              <add input="{HTTP_COOKIE}" pattern="want_old_site=true" />
+              
+            </conditions>
+  
+            <action type="None" />
+            
+          </rule>
+          
+          <!-- ## home page ## -->
+          
+          <rule name="Home" stopProcessing="true">
+            
+            <match url="^/?$" />
+  
+            <conditions trackAllCaptures="true">
+              
+              <add input="{HTTP_COOKIE}" pattern="want_old_site=true" negate="true" />
+              
+            </conditions>
+  
+            <action type="Redirect" url="beta/" appendQueryString="false" redirectType="Temporary" />
+            
+          </rule>
+    
+          
+          <!-- ## hub pages ## -->
+          
+          <!-- Heat Hub -->
+          
+          <rule name="heat-hub-index" stopProcessing="true">
+            
+            <match url="HeatHub/index.html" />
+            <action type="Redirect" url="beta/key-topics/climatehealth/" redirectType="Temporary" />
+            
+          </rule>
+          
+          <rule name="heat-hub-sub" stopProcessing="true">
+            
+            <match url="HeatHub/(hvi|syndromic)\.(html)" />
+            <action type="Redirect" url="beta/key-topics/climatehealth/{R:1}/" redirectType="Temporary" />
+            
+          </rule>
+          
+          <!-- Air Quality Hub -->
+          
+          <rule name="aq-hub-index" stopProcessing="true">
+            
+            <match url="AQHub/index.html" />
+            <action type="Redirect" url="beta/key-topics/airquality/" redirectType="Temporary" />
+            
+          </rule>
+          
+          <rule name="aq-hub-aqe" stopProcessing="true">
+            
+            <match url="AQHub/explorer.html" />
+            <action type="Redirect" url="beta/key-topics/airquality/aqe/" redirectType="Temporary" />
+            
+          </rule>
+          
+          <rule name="aq-hub-realtime" stopProcessing="true">
+            
+            <match url="AQHub/realtime.html" />
+            <action type="Redirect" url="beta/key-topics/airquality/realtime/" redirectType="Temporary" />
+            
+          </rule>
+          
+          
+          <!-- ## data stories ## -->
+          
+          <rule name="data-stories" stopProcessing="true">
+            
+            <match url="Closerlook/([a-zA-Z]+)" />
+            <action type="Redirect" url="beta/data-stories/{R:1}/" redirectType="Temporary" />
+            
+          </rule>
+          
+          
+          <!-- ## data explorer topics, using rewrite map ## -->
+          
+          <rule name="data-explorer-topics" stopProcessing="true">
+            
+            <match url="Subtopic.aspx" />
+            <conditions>
+              <add input="{QUERY_STRING}" pattern="subtopic_id=([0-9]+)" />
+              <add input="{Subtopic-To-DE-Topic:{C:1}}" pattern="(.+)" />
+              
+            </conditions>
+            <action type="Redirect" url="beta/data-explorer/{C:1}/" appendQueryString="False" redirectType="Temporary" />
+            
+          </rule>
+          
+        
+          <!-- ## Top-tier pages ## -->
+          
+          <!-- data explorer landing page -->
+          
+          <rule name="data-explorer" stopProcessing="true">
+            
+            <match url="^Subtopic.aspx$" />
+            <action type="Redirect" url="beta/data-explorer/" appendQueryString="false" redirectType="Temporary" />
+            
+          </rule>
+          
+          <!-- data story landing page -->
+          
+          <rule name="data-story-landing" stopProcessing="true">
+            
+            <match url="^Infographic.aspx$" />
+            <action type="Redirect" url="beta/data-stories/" appendQueryString="false" redirectType="Temporary" />
+            
+          </rule>
+          
+          <!-- full neighborhood reports path -->
+          
+          <rule name="neighborhood-reports" stopProcessing="true">
+            
+            <match url="^neighborhood_reports/(.*)" />
+            <action type="Redirect" url="beta/neighborhood-reports/{R:1}" appendQueryString="false" redirectType="Temporary" />
+            
+          </rule>
+          
+          
+          <!-- ## data explorer tabs, using rewrite map ## -->
+          
+          <rule name="data-explorer-tabs" stopProcessing="true">
+            
+            <match url="VisualizationData.aspx" />
+            <conditions trackAllCaptures="true">
+              
+              <!--pattern => C:1 = internal_id/IndicatorID, C:2 = subtopic_id, C:3 = tab name -->
+              <add input="{QUERY_STRING}" pattern="id=([0-9]+),\w*,(\d*),([a-zA-Z]+)" /> 
+              <add input="{Subtopic-To-DE-Topic:{C:2}}" pattern="(.+)" /> <!-- pattern => C:4 = topic name -->
+              <add input="{DE-Tab:{C:3}}" pattern="(.+)" /> <!-- pattern => C:5 = new tab name -->
+              
+            </conditions>
+            <action type="Redirect" url="beta/data-explorer/{C:4}/?id={C:1}#display={C:5}" appendQueryString="False" redirectType="Temporary" />
+            
+          </rule>
+          
+        </rules>
+        
+  
+        <outboundRules>
+          
+          <!-- set cookie with original URL -->
+          
+          <rule name="set-url-cookie">
+  
+            <match serverVariable="RESPONSE_Set_Cookie" pattern=".*" />
+  
+              <conditions>
+                <add input="{UNENCODED_URL}" pattern="/beta" negate="true" />
+                <add input="{HTTP_COOKIE}" pattern="want_old_site=true" negate="true" />
+  
+              </conditions>
+  
+            <action type="Rewrite" value="original_url={UNENCODED_URL}; {R:0}" />
+  
+          </rule> 
+  
+          
+        </outboundRules>
+        
+      </rewrite>

@@ -43,7 +43,7 @@
                 <strong>About the Data</strong>
                 <p>Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>).</p>
     
-                <p>Data come from the NYCCAS near-real-time monitor network. External factors can sometimes affect monitor functioning; these data are preliminary and subject to change. <a href="https://github.com/nychealth/realtime-air-quality" target="_blank">Download these data on Github</a>.</p>
+                <p>Data come from the NYCCAS near-real-time monitor network. External factors can sometimes affect monitor functioning; these data are preliminary and subject to change. <a href="{{ site.Params.data_repo }}/{{ site.Params.data_branch }}/key-topics/real-time-air-quality" target="_blank">Download these data on Github</a>.</p>
             </div>
              </div>
     </div>
@@ -216,7 +216,7 @@
 <!-- color name to hex converter -->
 <!-- from https://gist.github.com/njvack/02ad8efcb0d552b0230d -->
 {{- $color_convert := resources.Get "js/color-convert.js" -}}
-<script src="{{ $color_convert.Permalink }}"></script>
+<script src="{{ $color_convert.RelPermalink }}"></script>
 
 <!--bring in realtime JS -->
 <script type="text/javascript" src="js/realtime.js"></script>

@@ -1,8 +1,8 @@
 ---
-title: "Healthy Eating"
+title: "Healthy eating"
 date: 2021-11-17T12:01:22-05:00
-draft: true
-seo_title: "Healthy eating data for NYC."
+draft: false
+seo_title: "Healthy eating data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["neighborhoods","foodanddrink"]
@@ -10,8 +10,8 @@ keywords: ["food","drink","nutrition","food environment","food desert","sugary d
 indicators:
 - header: null
   IndicatorID:
-  - 2097
   - 2389
+  - 2097
   - 2098
 menu:
     main:

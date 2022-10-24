@@ -1,8 +1,8 @@
 ---
-title: "Active Design, Public Space, and Transportation"
+title: "Active design, public space, and transportation"
 date: 2021-09-30T07:58:01-04:00
 draft: false
-seo_title: "Transportation and Active Design in NYC."
+seo_title: "Transportation and Active Design in NYC"
 seo_description: "Data, data stories, interactives, and more."
 tags: 
 categories: [transportation]
@@ -12,6 +12,7 @@ menu:
     main:
         identifier: '05'
 layout: single
+image: nyc-active-design.jpg
 ---
 
 Physical activity and healthy eating rank among the leading ways to get and stay healthy. 

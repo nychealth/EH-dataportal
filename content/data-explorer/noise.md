@@ -1,8 +1,8 @@
 ---
 title: Noise
 date: 2021-05-28 18:02:58.747003
-draft: false
-seo_title: "Noise data for NYC."
+draft: true
+seo_title: "Noise data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["transportation","neighborhoods"]

@@ -2,7 +2,7 @@
 title: "Salud, vivienda e historia"
 date: 2021-01-06T08:07:31-04:00
 draft: false
-seo_title: "Salud, vivienda e historia."
+seo_title: "Salud, vivienda e historia"
 seo_description: "Para la salud, el lugar importa."
 tags:
 categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
@@ -18,7 +18,7 @@ vega: true
 ### Para la salud, el lugar importa
 ¿Qué determina si usted está saludable o no? Puede pensar en lo que come, si hace ejercicio, si fuma y los antecedentes médicos de su familia.
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 <p>Pero es posible que no piense en <a href="#healthcollapse" data-toggle="collapse"
         class="badge badge-pill badge-success">como su hogar affecta su salud</a>, ni en los factores que influyen en el lugar donde vive.
 </p>
@@ -35,7 +35,7 @@ vega: true
     </ul>
     <p>En otras palabras, una vivienda saludable está bien mantenida.</p>
 </div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 ### Sin embargo, algunos edificios no son saludables para vivir.
 Los edificios con problemas de mantenimiento y en mal estado pueden dañar la salud. En la ciudad de Nueva York, los vecindarios de bajos ingresos tienen un mayor porcentaje de edificios en mal estado, y las poblaciones negras y latinas tienen menos acceso a viviendas saludables.
@@ -54,7 +54,7 @@ En 1661, cuando las personas negras le solicitaron a la colonia tierras en el á
 A lo largo de la historia, muchas prácticas diferentes han moldeado los patrones raciales y residenciales en la ciudad de Nueva York. En el siglo XX, una práctica denominada “redlining” convirtió al racismo en una política federal, con repercusiones duraderas para nuestra situación de vivienda y la salud.
 
 ### La política federal impulsó la segregación residencial.
-{{< rawhtml>}}
+{{< rawhtml >}}
 <p>En la década de 1930, <a href="#holccollapse" data-toggle="collapse"
         class="badge badge-pill badge-success">el gobierno federal</a> desarrolló mapas codificados por colores para dirigir los préstamos a posibles compradores de viviendas en los EE. UU.
 
@@ -64,11 +64,11 @@ A lo largo de la historia, muchas prácticas diferentes han moldeado los patrone
     </p>
     <p>Sin embargo, para determinar qué préstamos podían garantizar con seguridad, la HOLC envió a personas a tasar vecindarios en las ciudades de los EE. UU., y creó los mapas discriminatorios de redlining que guiarían la industria inmobiliaria durante décadas. </p>
 </div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 En estos mapas codificados por colores, los vecindarios se dividían en 4 categorías:
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 <ul style="list-style:none;">
     <li><strong><span style="color:#4FCF23"><i
                     class="fas fa-square-full"></i></span> Mejores</strong></li>
@@ -80,28 +80,28 @@ En estos mapas codificados por colores, los vecindarios se dividían en 4 catego
     <li><strong><span style="color:#DF0E0E"><i
                     class="fas fa-square-full"></i></span> Peligrosos</strong></li>
 </ul>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 Claramente esta clasificación se originaba en el racismo, ya que las descripciones de los vecindarios incluían declaraciones como la siguiente:
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 <div class="dsquote my-2 py-2"><em>“Influencias perjudiciales: infiltración de negros. Razas mixtas.”</em></div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 El gobierno les negaba los préstamos a las personas negras y latinas que intentaban comprar viviendas en los vecindarios discriminados por el redlining. En su lugar, estos recursos se destinaron a comunidades suburbanas nuevas compuestas solo por personas blancas.
 
 El mapa a continuación muestra cómo se categorizaban los vecindarios de la ciudad de Nueva York.
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 </div>
 <div class="wide my-4">
 <div class="py-0 mb-4">
-    <iframe src="../../../maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
+    <iframe src="/maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 </div>
 <div class="wide my-2 px-5">
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 ### Esto era el redlining.
 Este proceso se conoció como “redlining”: denegar de forma sistemática recursos públicos y privados según el lugar de residencia de las personas, con la comunidad negra como objetivo.
@@ -111,7 +111,7 @@ El redlining ayudó a impulsar la segregación urbana en el siglo XX, ya que los
 Debido al hecho de que ser propietario de una vivienda es una forma importante de acumular riqueza, el redlining también impulsó la desigualdad económica, ya que se les negaban a las personas negras las mismas oportunidades de propiedad que tenían los blancos.
 
 ### Otras prácticas discriminatorias mantienen la segregación.
-{{< rawhtml>}}
+{{< rawhtml >}}
 <p>Otras prácticas inmobiliarias, como el
     <a href="#bbcollapse" data-toggle="collapse"
         class="badge badge-pill badge-success">acoso immobilario</a>&nbsp;<a
@@ -135,15 +135,15 @@ han mantenido la segregación.
     <p>Un <strong>convenio racialmente restrictivo</strong> es una cláusula en el título de la propiedad que evita que el propietario les venda la vivienda a personas negras.</p>
     <p>Los convenios racialmente restrictivos eran una manera de imponer la segregación residencial, para garantizar que las personas negras permanecieran fuera de los vecindarios blancos. </p>
 </div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 En la actualidad, los defensores inmobiliarios señalan que algunos arrendadores continúan con las prácticas discriminatorias, y describen el comportamiento de un propietario de esta forma:
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 <div class="dsquote my-2 py-2"><em>“Este arrendador tiene el patrón de comprar edificios antiguos y desgastados en vecindarios negros de clase trabajadora; deja que los apartamentos de los inquilinos a largo plazo se deterioren y los hace esperar meses para hacer reparaciones de baja calidad. Muchos inquilinos también dicen que el arrendador tiene un trato preferencial con los inquilinos nuevos”. </em> </div>
 <div class="text-right mb-3">-tomado de <a
 href="https://www.worstevictorsnyc.org/evictors-list/">Coalición de Derecho a un Consejo de la Ciudad de Nueva York: Lista de los peores desalojadores</a></div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 Estas prácticas perpetúan un legado de racismo edilicio, mantienen la segregación residencial y, con el tiempo, resultan en **falta de inversión**, que se da cuando los vecindarios se ven privados de los recursos que sus residentes necesitan para estar saludables y tener oportunidades.
 
@@ -155,7 +155,7 @@ Es menos probable que los arrendadores en estos vecindarios mantengan adecuadame
 Explore los problemas comunes de vivienda de la ciudad de Nueva York en el siguiente mapa.
 
 **Porcentaje de hogares con problemas sanitarios de vivienda**
-{{< rawhtml>}}
+{{< rawhtml >}}
 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 
   <div class="btn-group" role="group">
@@ -179,44 +179,94 @@ Explore los problemas comunes de vivienda de la ciudad de Nueva York en el sigui
   </div>
 </div>
 
-<script>
-function changeMap(x) {
-    var spec;
-    if (x==0) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/none.vl.json";
-    } else if (x==3) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/three.vl.json"
-    } else if (x==4) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/cockroaches.vl.json"
-    } else if (x==5) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/micerats.vl.json"
-    } else if (x==6) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/cracks.vl.json"
-    } else if (x==7) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/water.vl.json"
-    } else if (x==8) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/broken.vl.json"
-    } else if (x==9) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/breakdown.vl.json"
-    } else if (x==10) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/supplemental.vl.json"
-    } else if (x==11) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/noac.vl.json"
-    } else if (x==12) {
-        spec = "https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/toilet.vl.json"
-    } else {};
+<div id = 'housingmap' style = "width:100%; height: 550px"></div>
 
-    vegaEmbed("#housingmap",spec)
-}
+<script>
+
+    // basic path
+    const repo_branch = "{{< param data_repo >}}/{{< param data_branch >}}"
+    const path = "data-stories/housing" // hard-coded for now, but could Hugo paramaterize
+    const trans = "mapspec-es"
+
+    // specific path
+    const csv_path = repo_branch + "/" + path + "/" + "housing-data-story-data.csv"
+    const topo_path = repo_branch + "/geography/PUMA_or_Subborough.topo.json"
+
+    function changeMap(x) {
+
+        var spec;
+
+        if (x == 0) {
+            spec = "none.vl.json"
+
+        } else if (x == 3) {
+            spec = "three.vl.json"
+
+        } else if (x == 4) {
+            spec = "cockroaches.vl.json"
+
+        } else if (x == 5) {
+            spec = "micerats.vl.json"
+
+        } else if (x == 6) {
+            spec = "cracks.vl.json"
+
+        } else if (x == 7) {
+            spec = "water.vl.json"
+
+        } else if (x == 8) {
+            spec = "broken.vl.json"
+
+        } else if (x == 9) {
+            spec = "breakdown.vl.json"
+
+        } else if (x == 10) {
+            spec = "supplemental.vl.json"
+
+        } else if (x == 11) {
+            spec = "noac.vl.json"
+
+        } else if (x == 12) {
+            spec = "toilet.vl.json"
+
+        } else { };
+
+        var spec_path = repo_branch + "/" + path + "/" + trans + "/" + spec;
+
+        buildMap("#housingmap", spec_path, csv_path, topo_path);
+
+    }
+            
+    function buildMap(div, spec, csv, topo) {
+
+        d3.json(spec).then(spec => {
+
+            spec.layer[0].data.url = topo;
+            spec.layer[1].data.url = topo;
+            
+            d3.csv(csv, d3.autoType).then(csv => {
+                
+                vegaEmbed(div, spec).then((res) => {
+
+                    resview = res.view.insert("csv", csv).run();
+                });
+            });
+        });
+    };
+
+    // initialize the map 
+
+    buildMap("#housingmap", repo_branch + "/" + path + "/" + trans + "/" + "three.vl.json", csv_path, topo_path);
+
+
 </script>
 
 
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
-{{< vega id="housingmap" spec="https://raw.githubusercontent.com/nychealth/EHDP-data/main/datastories/housing/mapspec-es/three.vl.json" height="550px">}}
 
 ### ¿Quiénes asumen la carga del mal estado de la vivienda?
-Estos problemas van más allá de la incomodidad o el desastre. {{< rawhtml>}}
+Estos problemas van más allá de la incomodidad o el desastre. {{< rawhtml >}}
 <a href="#disrepaircollapse"
         data-toggle="collapse" class="badge badge-pill badge-success">El mal estado de una vivienda puede dañar la salud.</a></p>
 
@@ -234,7 +284,7 @@ Estos problemas van más allá de la incomodidad o el desastre. {{< rawhtml>}}
         </li>
     </ul>
 </div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 Como resultado de la segregación y la falta de inversión provocadas por el redlining, **las poblaciones negras y latinas tienen menos acceso a viviendas saludables**. Es más probable que vivan en edificios que tienen problemas de mantenimiento amenazantes para la salud.
 
@@ -245,7 +295,7 @@ Las personas negras y latinas tienen menos acceso a viviendas saludables, pero e
 
 Las personas negras y latinas con ingresos más altos también son más propensas a vivir en edificios con problemas graves de mantenimiento, lo que sugiere que el racismo está detrás de estas disparidades.
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 </div>
 <div class="wide my-4">
 <div class="text-center mb-3">
@@ -314,7 +364,7 @@ Las personas negras y latinas con ingresos más altos también son más propensa
     }
 </script>
 <hr>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 Estos problemas sanitarios de vivienda no se pueden arreglar con un poco de organización; son consecuencia de la negligencia crónica del mantenimiento por parte de la administración de los edificios y los arrendadores, y el mal estado de las viviendas después de años de falta de inversión.
 
@@ -325,7 +375,7 @@ La falta de inversión en los vecindarios negros hace que las viviendas estén e
 
 Como resultado, las tasas más altas de visitas por asma a la sala de emergencias de niños de entre 5 y 14 años se dan en vecindarios en los que residen principalmente personas negras.
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 </div>
 <div class="wide my-4">
 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -353,7 +403,7 @@ Como resultado, las tasas más altas de visitas por asma a la sala de emergencia
 </div>
 </div>
 <div class="wide my-2 px-5">
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 ### Un hogar saludable debe ser un derecho.
 Una vivienda en buen estado es fundamental. Brinda protección del clima. Es un lugar para estar a salvo. Es un lugar en el que su familia puede crecer y prosperar.
@@ -362,29 +412,29 @@ Sin embargo, una vivienda insalubre y mal mantenida no puede ofrecer un lugar se
 
 ***Entonces, ¿cómo podemos crear una ciudad en la que la raza (y el racismo) no determinen si tendrá la oportunidad de mantenerse saludable?***
 
-{{< rawhtml>}}
+{{< rawhtml >}}
 <div class="greyblock">
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 {{< figure src="h1.jpeg" Alt="Workers work on a building.">}}
 Los responsables políticos y los defensores comunitarios pueden apoyar iniciativas de justicia racial:
 - Invertir en vecindarios dañados por una historia de racismo estructural. Promover la igualdad económica y educativa, y apoyar las [iniciativas de Where We Live.](https://wherewelive.cityofnewyork.us/).
 - Apoyar las iniciativas del Departamento de Preservación y Desarrollo de Vivienda (Department of Housing Preservation and Development, DHPD) que buscan rehabilitar las viviendas más antiguas.
-{{< rawhtml>}}
+{{< rawhtml >}}
 </div>
 
 <div class="greyblock">
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 {{< figure src="h2.jpeg" Alt="A New York City residential street.">}}
 
 Los inquilinos y propietarios pueden acceder a sistemas que están disponibles para ayudarles:
 - Informar los problemas de mantenimiento a la administración de su edificio. Si el administrador del edificio no resuelve el problema, llamar al 311 para [presentar una queja sobre mantenimiento contra el arrendador](https://www1.nyc.gov/nyc-resources/service/1950/residential-maintenance-complaint).
 - Obtenga ayuda si la necesita: si le diagnosticaron asma y vive en un edificio con ratones o cucarachas, es posible que sea elegible para una evaluación edilicia gratuita del [Programa Vecindarios Saludables](https://www1.nyc.gov/site/doh/health/health-topics/healthy-neighborhoods-asthma-triggers.page) del Departamento de Salud (Health Department).
 - Actúe para tener una vivienda digna con [Where We Live](https://wherewelive.cityofnewyork.us/).
-{{< rawhtml>}}
+{{< rawhtml >}}
 </div>
 
 <div class="greyblock">
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 
 {{< figure src="h3.jpeg" Alt="A New York City apartment building.">}}
@@ -392,14 +442,14 @@ Los propietarios y los arrendadores de edificios deben mantener los apartamentos
 - Resolver de forma oportuna los problemas que los inquilinos informen.
 - Eliminar las plagas y el moho, sellar las grietas, reparar las goteras y mejorar el manejo de la basura.
 - Contratar a un buen profesional de control de plagas que use control integrado de plagas (integrated pest management, IPM). Para obtener información sobre cómo controlar las plagas de forma segura, consulte el [conjunto de herramientas](https://www1.nyc.gov/assets/doh/downloads/pdf/pesticide/ipm-toolkit.pdf) de IPM del Departamento de Salud.
-{{< rawhtml>}}
+{{< rawhtml >}}
 </div>
-{{< /rawhtml>}}
+{{< /rawhtml >}}
 
 #### Obtenga los datos 
 - Los datos sobre las condiciones de mantenimiento de viviendas provienen de la [Encuesta de Viviendas y Vacantes (Housing and Vancancy Survey) de 2017.](https://www.census.gov/programs-surveys/nychvs.html).
-- [La información sobre las visitas a la sala de emergencias por asma infantil ](https://a816-dohbesp.nyc.gov/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=11) provienen de los Datos anonimizados de alta hospitalaria del Sistema Cooperativo de Investigación y Planificación Estatal (Statewide Planning and Research Cooperative System, SPARCS).
-- [Los datos sobre la raza/etnia de las personas por vecindario](https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2325,4466a0,109,Summarize) provienen de la Encuesta Comunitaria Estadounidense (American Community Survey).
+- [La información sobre las visitas a la sala de emergencias por asma infantil ](/data-explorer/asthma/?id=2383) provienen de los Datos anonimizados de alta hospitalaria del Sistema Cooperativo de Investigación y Planificación Estatal (Statewide Planning and Research Cooperative System, SPARCS).
+- [Los datos sobre la raza/etnia de las personas por vecindario](/data-explorer/social-conditions/?id=2325) provienen de la Encuesta Comunitaria Estadounidense (American Community Survey).
 
 
 

@@ -1,7 +1,7 @@
 {{- define "main" -}}
 
 <article class="container-fluid" id="skip-header-target">
-    
+
     <div class="row">
         <div class="col-md-11 mx-auto mt-4 pl-0">
             <nav aria-label="breadcrumb" class="mb-4">
@@ -15,10 +15,10 @@
         </div>
         <div class="col-md-2 mr-auto"></div>
     </div>
-    
+
     <div class="row">
         <div class="col-md-8 col-sm-12 ml-auto">
-            
+
             <div class="row">
                 <h2><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
                     {{ .Title }}</h2>
@@ -168,8 +168,7 @@
                             <option value="QN06">QN06: Jamaica Estates-Holliswood</option>
                             <option value="QN07">QN07: Hollis</option>
                             <option value="QN08">QN08: St. Albans</option>
-                            <option value="QN10">QN10: Breezy Point-Belle Harbor-Rockaway Park-Broad Channel
-                            </option>
+                            <option value="QN10">QN10: Breezy Point-Belle Harbor-Rockaway Park-Broad Channel</option>
                             <option value="QN12">QN12: Hammels-Arverne-Edgemere</option>
                             <option value="QN15">QN15: Far Rockaway-Bayswater</option>
                             <option value="QN17">QN17: Forest Hills</option>
@@ -228,8 +227,7 @@
                             <option value="SI12">SI12: Mariner's Harbor-Arlington-Port Ivory-Graniteville</option>
                             <option value="SI14">SI14: Grasmere-Arrochar-Ft. Wadsworth</option>
                             <option value="SI22">SI22: West New Brighton-New Brighton-St. George</option>
-                            <option value="SI24">SI24: Todt Hill-Emerson Hill-Heartland Village-Lighthouse Hill
-                            </option>
+                            <option value="SI24">SI24: Todt Hill-Emerson Hill-Heartland Village-Lighthouse Hill</option>
                             <option value="SI25">SI25: Oakwood-Oakwood Beach</option>
                             <option value="SI28">SI28: Port Richmond</option>
                             <option value="SI32">SI32: Rossville-Woodrow</option>
@@ -249,7 +247,7 @@
                 
                 <div class="fs-md mt-3 pb-1"><strong>Your neighborhood:</strong></div>
                 <span id="NTA" class="badge badge-primary mb-0">No neighborhood selected. Enter an address above</span> 
-                <p class="fs-sm"><em>This is a Neighborhood Tabulation Area. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/geographies/index.html">Read about NTAs</a>.</em></p>
+                <p class="fs-sm"><em>This is a Neighborhood Tabulation Area. <a href="/data-stories/geographies/">Read about NTAs</a>.</em></p>
                 
                 <div class="fs-md pb-1"><strong>Heat vulnerability:</strong></div>
                 <span id="hviVal" class="badge badge-primary h4 mb-0">No neighborhood selected. Enter an address above</span>
@@ -298,7 +296,7 @@
                 
                 <div class="row no-gutters py-1 mr-2">
                     <div class="col-12 mb-3">
-                        <p><i class="far fa-question-circle"></i>&nbsp;<a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2141,719b87,107,Summarize">Daytime summer surface temperature</a> is different from air temperature, and varies more by neighborhood: some neighborhoods are hotter than others. A higher surface temperature is associated with a higher risk of death from heat waves. <span class="badge badge-light">Citywide average: 98.6° F</span>
+                        <p><i class="far fa-question-circle"></i>&nbsp;<a href="/data-explorer/climate/?id=2141">Daytime summer surface temperature</a> is different from air temperature, and varies more by neighborhood: some neighborhoods are hotter than others. A higher surface temperature is associated with a higher risk of death from heat waves. <span class="badge badge-light">Citywide average: 98.6° F</span>
                         </p>
                     </div>
                 </div>
@@ -321,7 +319,7 @@
                 
                 <div class="row no-gutters py-1 mr-2">
                     <div class="col mb-3">
-                        <p><i class="far fa-question-circle"></i>&nbsp;Green space is <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2157,719b87,104,Summarize">tree</a>, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2143,719b87,107,Summarize">grass, or shrub cover</a>. Green space helps cool a neighborhood. Less green space in a neighborhood is associated with a greater risk of death during heat waves.  <span class="badge badge-light">Citywide average: 38%</span>
+                        <p><i class="far fa-question-circle"></i>&nbsp;Green space is <a href="/data-explorer/active-design/?id=2157">tree</a>, <a href="/data-explorer/active-design/?id=2143">grass, or shrub cover</a>. Green space helps cool a neighborhood. Less green space in a neighborhood is associated with a greater risk of death during heat waves.  <span class="badge badge-light">Citywide average: 38%</span>
                         </p>
                     </div>
                 </div>
@@ -346,7 +344,7 @@
                 
                 <div class="row no-gutters py-1 mr-2">
                     <div class="col mb-3">
-                        <p><i class="far fa-question-circle"></i>&nbsp;Air conditioning is as necessary during extreme heat as heating is in winter. A neighborhood with a high percentage of <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2185,719b87,107,Summarize">households with air conditioners</a> means that more of its residents can be protected from extreme heat. <span class="badge badge-light">Citywide average: 91%</span></p>
+                        <p><i class="far fa-question-circle"></i>&nbsp;Air conditioning is as necessary during extreme heat as heating is in winter. A neighborhood with a high percentage of <a href="/data-explorer/climate/?id=2104">households with air conditioners</a> means that more of its residents can be protected from extreme heat. <span class="badge badge-light">Citywide average: 91%</span></p>
                     </div>
                 </div>
                 <!--END SECTION-->
@@ -368,7 +366,7 @@
                 
                 <div class="row no-gutters py-1 mr-2">
                     <div class="col mb-3">
-                        <p><i class="far fa-question-circle"></i>&nbsp;<a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=103,4466a0,109,Summarize">Poverty</a> is a social factor that places people at risk of death during heat waves for many reasons.  One reason is that people living in poverty may be less likely to afford owning or using an air conditioner during heat waves. <span class="badge badge-light">Citywide average: 19.6%</span>
+                        <p><i class="far fa-question-circle"></i>&nbsp;<a href="/data-explorer/economic-conditions/?id=103">Poverty</a> is a social factor that places people at risk of death during heat waves for many reasons.  One reason is that people living in poverty may be less likely to afford owning or using an air conditioner during heat waves. <span class="badge badge-light">Citywide average: 19.6%</span>
                         </p>
                     </div>
                 </div>
@@ -419,7 +417,7 @@
                 </div>
                 <div class="col-lg-6 px-0">
                     <div style="height: 225px;" id="PMbar"></div>
-                    <div class="text-right fs-sm"> <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=2410,4466a0,100,Summarize">See full data</a></div>
+                    <div class="text-right fs-sm"> <a href="/data-explorer/weather-related-illness/?id=2410">See full data</a></div>
                 </div>
             </div>
             
@@ -455,13 +453,14 @@
         
     </article>
     
-    <!--This code uses the JS file specified in the page's frontmatter-->
-    {{- with .Params.accessibleAutocomplete -}}
-    <script type="text/javascript" src="{{ . }}"></script>
-    {{- end -}}
-    
-    {{- with .Params.customJS -}}
-    <script type="text/javascript" src="{{ . }}"></script>
-    {{- end -}}
-    
-    {{- end -}}
+<!--This code uses the JS file specified in the page's frontmatter-->
+<script type="text/javascript" src="{{ .Params.accessibleAutocomplete }}"></script>
+
+<script>
+    var data_repo = "{{ site.Params.data_repo }}"
+    var data_branch = "{{ site.Params.data_branch }}"
+</script>
+
+<script type="text/javascript" src="{{ .Params.customJS }}"></script>
+
+{{- end -}}

@@ -1,8 +1,8 @@
 ---
-title: Worker Health
+title: Worker health
 date: 2021-05-28 18:02:58.823781
 draft: false
-seo_title: "Worker health data for NYC."
+seo_title: "Worker health data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["social","healthoutcomes"]

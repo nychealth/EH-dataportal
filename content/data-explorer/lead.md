@@ -2,23 +2,25 @@
 title: Lead poisoning
 date: 2021-05-28 18:02:58.848903
 draft: false
-seo_title: "Lead exposure and poisoning in NYC."
+seo_title: "Lead exposure and poisoning in NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["housing","childhealth","social","neighborhoods"]
 keywords: ["lead","poisoning","housing","children","child","testing","blood"]
 indicators:
-- header: null
+- header: Children
   IndicatorID:
   - 2189
   - 2184
   - 2216
   - 2176
-  - 16
+- header: Adults
+  IndicatorID:
   - 2209
-- header: Maintenance
+- header: Housing
   IndicatorID: 
   - 41
+  - 16
 menu:
     main:
         identifier: '03'

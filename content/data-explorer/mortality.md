@@ -2,7 +2,7 @@
 title: Mortality
 date: 2021-05-28 18:02:58.737586
 draft: false
-seo_title: "Mortality data for NYC."
+seo_title: "Mortality data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["healthoutcomes","social"]
@@ -10,10 +10,11 @@ keywords: ["mortality","death","dying","health"]
 indicators:
 - header: null
   IndicatorID:
+  - 2322
   - 5
   - 6
   - 8
-  - 2322
+
 menu:
     main:
         identifier: '03'

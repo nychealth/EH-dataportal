@@ -2,25 +2,17 @@
 title: Housing safety
 date: 2021-05-28 18:02:58.817845
 draft: false
-seo_title: "Housing data for NYC."
+seo_title: "Housing data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["housing","social","neighborhoods","climatehealth"]
 keywords: ["built environments","neighborhoods","social","housing","maintenance","maintenance deficiencies","healthy housing","evictions","crowding","home ownership"]
 indicators:
-- header: Housing characteristics
-  IndicatorID:
-  - 2365
-  - 15
-  - 17
-- header: Safety
+- header: null
   IndicatorID:
   - 2188
   - 2185
   - 2377
-- header: null
-  IndicatorID: 
-  - 2336
 menu:
     main:
         identifier: '03'

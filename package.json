@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "dependencies": {
-    "core-js": "^3.24.1",
+    "core-js": "^3.26.0",
     "grunt": "^1.5.3",
     "grunt-cli": "^1.4.3",
     "lunr": "^2.3.9",

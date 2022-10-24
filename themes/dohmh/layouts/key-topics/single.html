@@ -1,83 +1,132 @@
 {{- define "main" -}}
 
-<article class="container-fluid" id="skip-header-target">
+{{ $src := .Resources.GetMatch .Params.image }}
+{{ $image := $src.Resize "x350"}}
 
-    <div class="row">
-        <div class="col-md-11 mx-auto mt-4">
-            <nav aria-label="breadcrumb" class="mb-4">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
-                </ul>
-            </nav>
+<style>
+    .kt-bg-image {
+        background-image: url("{{ $image.Permalink }}");
+        background-size: cover; 
+        height: 350px;
+    }
+</style>
+
+<article id="skip-header-target">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10 col-sm-12 mx-auto mt-4 mb-2">
+                <nav aria-label="breadcrumb" class="">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                    </ul>
+                </nav>
+            </div>
         </div>
 
-        <div class="col-md-2 mr-auto"></div>
-
-    </div>
-
-    <div class="row">
-        <div class="col-md-8 col-sm-12 ml-auto pl-3">
-
-            <div class="row">
+        <div class="row">
+            <div class="col-lg-10 col-md-12 mx-auto">
                 <h1 class="greenfill"><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
                     {{ .Title }}</h1>
-        
+            </div>
+        </div>
+
+        <div class="row mt-1">
+            <div class="col-md-12 col-lg-6 ml-auto">
+
                 {{- .Content -}}
             </div>
 
-            <div class="row sr-only">
-                <h2>Get data for {{ .Title }}</h2>
+            <div class="col-md-12 col-lg-4 mr-auto">
+                <div class="kt-bg-image pl-1 mb-2 cardshadow"></div>
             </div>
 
-            <div class="row my-4 fs-sm">
-                <div class="col-md-6 pl-0">
-                    <h3 class="greenfill fs-lg"><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Data Sets</h3>
+        </div>
 
-                    {{- partial "related" (dict "section" "data-explorer" "layout" "singlelist" "content" . ) -}}
-                </div>
 
-                    {{- if where ( where .Site.RegularPages "Section" "key-topics") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
-                        <div class="col-md-6 pl-0">
-                        <h3 class="greenfill fs-lg"><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Data Features</h3>
-                        {{- partial "related" (dict "section" "key-topics" "layout" "button" "content" . ) -}}     
+        <div class="row mt-4">
+            <div class="col-lg-10 col-md-12 mx-auto">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+
+                        <h3 class="greenfill fs-lg"><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Data Sets</h3>
+                        <span class="home-label">Use our Data Explorer to get table, maps, and trends </span>
+                        <div class="card content-card mt-2 mb-4">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    {{- partial "related" (dict "section" "data-explorer" "layout" "singlelist" "content" . ) -}}
+
+                              </div>
+                            </div>
+                          </div>   
+
+
+        
                     </div>
+        
+                    <div class="col-md-6 col-sm-12">
+                        {{- if where ( where .Site.RegularPages "Section" "key-topics") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
+                        <h3 class="greenfill fs-lg"><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Data Features</h3>
+                        <span class="home-label">Reports and interactives</span>
+
+                        <div class="card content-card mt-2 mb-4">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    {{- partial "related" (dict "section" "key-topics" "layout" "button" "content" . ) -}}     
+                              </div>
+                            </div>
+                          </div>
                     {{- end -}}
 
+                    {{- if where ( where .Site.RegularPages "Section" "neighborhood-reports") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
+                    <h3 class="greenfill fs-lg"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
+                    <span class="home-label ">Get data for your neighborhood on:</span>
+
+                    <div class="card content-card mt-2 mb-4">
+                        <div class="card-content">
+                            <div class="card-body">
+                                {{- partial "related" (dict "section" "neighborhood-reports" "layout" "button" "content" . ) -}}
+                            </div>
+                        </div>
+                      </div>
+                {{- end -}}
+
+
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    {{- if where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
+                    <div class="col-12">
+                        <h3 class="fs-lg mt-3 text-primary border-bottom"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Related Data Stories</h3>
+                    </div>
+
+                    {{- range where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
+                    <div class="col-md-4">
+                        <div class=" my-2 p-2 borderbox itemfocus">
+                            <a class="h2 fs-md" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                            <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
+                            <p class="text-right fs-sm"><a href="{{ .RelPermalink }}">Read more...</a></p>
+                            </div>
+                    </div>
+
+                    {{- end -}}
+                    {{- end -}}
+
+
+
+                </div>
             </div>
-            <div class="row my-4">
-                <!-- blank! -->
-            </div>
+
         </div>
 
-        <div class="col-md-3 pl-4 mr-auto text-right fs-sm">
-            <h3 class="fs-lg mt-3 text-primary border-bottom">Related Content</h3>
-            {{- if where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
-                <h4 class="fs-md mt-3"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories</h3>
-                {{- partial "related" (dict "section" "data-stories" "layout" "singlelist" "content" . ) -}}
-            {{- end -}}
 
-            {{- if where ( where .Site.RegularPages "Section" "neighborhood-reports") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
-                <h3 class="fs-md mt-4"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
-                {{- partial "related" (dict "section" "neighborhood-reports" "layout" "button" "content" . ) -}}
-            {{- end -}}
 
-                {{/*  <h4 class="text-muted fs-rg mt-4"><i class="fas fa-star mr-1" aria-hidden="true"></i>Other Key Topics</h4>
-    
-                    {{- range where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index" -}}
-                        {{- if ne .Title "Key Topics in Environmental Health"}}
-                            <a class="btn btn-outline-gray btn-sm has-icon disperse" style="text-align: left!important" href="{{ .Permalink }}">
-                                <span class="fas fa-angle-right"></span>
-                                <span class="title">{{ .Title }}</span>
-                              </a>
-
-                        {{- end -}}
-                    {{- end -}}  */}}
-                <br><br>
-        </div>
     </div>
 
 </article>
+
+
 
 {{- end -}}

@@ -1,610 +1,212 @@
-let renderDisparities;
-
 const renderTrendChart = (
-  selectedData,
-  selectedMeasureType,
-  selectedDisplay,
-  selectedDisparities,
-  selectedMeasure,
+    data,
+    metadata
 ) => {
-  let trendMeasure = selectedMeasure ? selectedMeasure : defaultTrendMeasure;
-  let trendMeasurementType = selectedMeasureType ? selectedMeasureType : defaultTrendMeasure[0].MeasurementType;
-  let trendData = selectedData ?  selectedData : fullDataTrendObjects;
-  let trendDisplay = selectedDisplay ? selectedDisplay : defaultTrendMeasure[0].DisplayType;
-  let trendDisparity = selectedDisparities ? selectedDisparities : defaultTrendMeasure[0].VisOptions[0]?.Trend[0]?.Disparities
-  
-  // console.log('==========================================================================')
-  // console.log('RENDER TREND DATA - Measure Default: ', defaultTrendMeasure)
-  // console.log('RENDER TREND DATA - Measure Selected: ', selectedMeasure)
-  // console.log('RENDER TREND DATA - Measure Filtered Default Data: ', fullDataTrendObjects)
-  // console.log('RENDER TREND DATA - Measure Filtered Selcted Data: ', selectedData)
-  // console.log('RENDER TREND DATA - Measure Disparity: ', trendDisparity)
-  const tabTrendDropDown = document.querySelector('#tab-trend  .dropdown');
-  const btnShowDisparitires = document.querySelector('.btn-show-disparities');
 
-  if (trendDisparity == 1 && !btnShowDisparitires) {
-      tabTrendDropDown.innerHTML += `<button class="btn btn-sm mr-1 float-right btn-outline-success btn-show-disparities" onclick="renderDisparities()">Show Dispartites</button> `;
-  }   else if (btnShowDisparitires) {
-      tabTrendDropDown.removeChild(btnShowDisparitires)
-  }
+        console.log("** renderTrendChart");
 
-  var spec = {
-      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-      "config": {
-      "background": "#FFFFFF",
-      "title": {"anchor": "start", "fontSize": 18, "font": "Calibri"},
-      "axisX": {
-      "domain": true,
-      "domainColor": "#000000",
-      "domainWidth": 1,
-      "grid": false,
-      "labelFontSize": 12,
-      "labelAngle": 0,
-      "tickColor": "#000000",
-      "tickSize": 5,
-      "titleFontSize": 12,
-      "titlePadding": 10
-      },
-      
-      "axisY": {
-      "domain": false,
-      "domainWidth": 1,
-      "grid": true,
-      "gridColor": "#DEDDDD",
-      "gridWidth": 1,
-      "labelFontSize": 12,
-      "labelPadding": 8,
-      "ticks": false,
-      "titleFontSize": 12,
-      "titlePadding": 10,
-      "titleFont": "Lato",
-      "titleAngle": 0,
-      "titleY": -10,
-      "titleX": 18
-      },
+        // arquero table for extracting arrays easily
 
+        let aqData = aq.from(data);
+        let Value = aqData.array("Value");
+        let valueMin = Math.min.apply(null, Value);
 
-      "view": {"stroke": "transparent"},
+        // extract measure metadata
 
-      "range": {
-      "category": [
-          "#1696d2",
-          "#000000",
-          "#fdbf11",
-          "#ec008b",
-          "#d2d2d2",
-          "#55b748"
-      ]
-      },
+        let trendMeasurementType = metadata[0].MeasurementType;
+        let trendDisplay = metadata[0].DisplayType;
 
-      "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 3},
+        // get dimensions
+        var columns = 6;
+        var height = 500
+        window.innerWidth < 576 ? columns = 3 : columns = 6;
+        window.innerWidth < 576 ? height = 350 : columns = 500;
 
-
-      "point": {"filled": true},
-      "text": {
-      "color": "#1696d2",
-      "fontSize": 11,
-      "align": "center",
-      "fontWeight": 400,
-      "size": 11
-      }
-  },
-      // "data": {
-      //     "url": "https://gist.githubusercontent.com/mmontesanonyc/6b0aa75affc6a60978f73e11d2f58bb3/raw/e944d335042e3da0c8e99a4df0fbebc8aac4cc15/asthmatrend.csv"
-      // },
-      "data": {
-          "values": joinedDataTrendDisparityObjects
-      },
-      "width": "container",
-      "height": 550,
-      "encoding": {
-      "x": {
-          "field": "Year",
-          "type": "temporal",
-          "title": ""
-      }
-      },
-      "layer": [
-      {
-          "encoding": {
-          "color": {
-              "field": "GeoName",
-              "type": "nominal",
-              "legend": {
-              "orient": "right",
-              "title": null
-              }
-          },
-          // "y": {
-          //     "field": "Value",
-          //     "type": "quantitative",
-          //     "title": ""
-          // }
-          "y": {
-              "field": trendMeasurementType,
-              "type": "quantitative",
-              "title": `${trendMeasurementType} ${trendDisplay && `(${trendDisplay})`} `
-          }
-          },
-          "layer": [
-          {
-              "mark": {
-              "type": "line",
-              "point": {"filled": false, "fill": "white"}
-              }
-
-          },
-          {
-              "transform": [
-              {
-                  "filter": {
-                  "param": "hover",
-                  "empty": false
-                  }
-              }
-              ],
-              "mark": "point"
-          }
-          ]
-      },
-      {
-          "transform": [
-          // {
-          //     "pivot": "GeoName",
-          //     "value": "Value",
-          //     "groupby": [
-          //     "Year"
-          //     ]
-          // }
-          {
-              "pivot": "Geography",
-              "value": trendMeasurementType,
-              "groupby": [
-              "Time"
-              ]
-          }
-          ],
-          "mark": "rule",
-          "encoding": {
-          "opacity": {
-              "condition": {
-              "value": 0.3,
-              "param": "hover",
-              "empty": false
-              },
-              "value": 0
-          },
-          "tooltip": [
-              {
-              "field": "Citywide",
-              "type": "quantitative"
-              },
-              {
-              "field": "The Bronx",
-              "type": "quantitative"
-              },
-              {
-              "field": "Brooklyn",
-              "type": "quantitative"
-              },
-              {
-              "field": "Manhattan",
-              "type": "quantitative"
-              },
-              {
-              "field": "Queens",
-              "type": "quantitative"
-              }
-          ]
-          },
-          "params": [
-          {
-              "name": "hover",
-              "select": {
-              "type": "point",
-              "fields": [
-                  "Year"
-              ],
-              "nearest": true,
-              "on": "mouseover",
-              "clear": "mouseout"
-              }
-          }
-          ]
-      }
-      ]
-  }
-  
-
-  var spec2 = {
-      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-      "config": {
-      "background": "#FFFFFF",
-      // "title": {"anchor": "start", "fontSize": 18, "font": "Calibri"},
-      "axisX": {
-      // "domain": true,
-      // "domainColor": "#000000",
-      // "domainWidth": 1,
-      // "grid": false,
-      // "labelFontSize": 12,
-      "labelAngle": 0,
-      // "tickColor": "#000000",
-      // "tickSize": 5,
-      // "titleFontSize": 12,
-      // "titlePadding": 10
-      },
-      
-      "axisY": {
-      // "domain": false,
-      // "domainWidth": 1,
-      // "grid": true,
-      // "gridColor": "#DEDDDD",
-      // "gridWidth": 1,
-      // "labelFontSize": 12,
-      // "labelPadding": 8,
-      // "ticks": false,
-      // "titleFontSize": 12,
-      // "titlePadding": 10,
-      // "titleFont": "Lato",
-      // "titleAngle": 0,
-      // "titleY": -10,
-      // "titleX": 18
-      },
-
-
-      "view": {"stroke": "transparent"},
-
-      "range": {
-      "category": [
-          "#1696d2",
-          "#000000",
-          "#fdbf11",
-          "#ec008b",
-          "#d2d2d2",
-          "#55b748"
-      ]
-      },
-
-      "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 3},
-
-
-      "point": {"filled": true},
-      "text": {
-      "color": "#1696d2",
-      "fontSize": 11,
-      "align": "center",
-      "fontWeight": 400,
-      "size": 11
-      }
-  },
-      // "data": {
-      //     "url": "https://gist.githubusercontent.com/mmontesanonyc/6b0aa75affc6a60978f73e11d2f58bb3/raw/e944d335042e3da0c8e99a4df0fbebc8aac4cc15/asthmatrend.csv"
-      // },
-      "data": {
-          "values":  trendData,
-      },
-      "width": "container",
-      "height": 550,
-      "encoding": {
-      "x": {
-          "field": "Time",
-          "type": "nominal",
-          "title": "Year"
-      }
-      },
-      "layer": [
-      {
-          "encoding": {
-          "color": {
-              "field": "Geography",
-              "type": "nominal",
-              "legend": {
-              "orient": "right",
-              "title": null
-              }
-          },
-          "y": {
-              "field": trendMeasurementType,
-              "type": "quantitative",
-              "title": `${trendMeasurementType} ${trendDisplay && `(${trendDisplay})`} `
-          }
-          },
-          "layer": [
-          {
-              "mark": {
-              "type": "line",
-              "point": {"filled": false, "fill": "white"}
-              }
-
-          },
-          {
-              "transform": [
-              {
-                  "filter": {
-                  "param": "hover",
-                  "empty": false
-                  }
-              }
-              ],
-              "mark": "point"
-          }
-          ]
-      },
-      {
-          "transform": [
-          {
-              "pivot": "Geography",
-              "value": trendMeasurementType,
-              "groupby": [
-              "Time"
-              ]
-          }
-          ],
-          "mark": "rule",
-          "encoding": {
-              "opacity": {
-                      "condition": {
-                      "value": 0.3,
-                      "param": "hover",
-                      "empty": false
+        
+        // define spec
+        
+        let trendspec = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "config": {
+                "background": "#FFFFFF",
+                "axisX": {
+                    "labelAngle": 0,
+                    "labelOverlap": "parity",
+                    "labelFontSize": 11,
+                    "titleFontSize": 13,
+                    "titleFont": "sans-serif",
+                    "titlePadding": 10
+                },
+                
+                "axisY": {
+                    "labelAngle": 0,
+                    "labelFontSize": 11,
+                },
+                "legend": {
+                    "columns": columns,
+                    "labelFontSize": 14,
+                    "symbolSize": 140
+                },
+                "title": {
+                    "fontWeight": "normal"
                   },
-                  "value": 0
-              },
-              "tooltip": [
-                  {
-                      "title": "Year",
-                      "field": "Time",
-                      "type": "nominal"
-                  },
-                  {
-                  "field": "New York City",
-                  "type": "quantitative"
-                  },
-                  {
-                  "field": "Bronx",
-                  "type": "quantitative"
-                  },
-                  {
-                  "field": "Brooklyn",
-                  "type": "quantitative"
-                  },
-                  {
-                  "field": "Manhattan",
-                  "type": "quantitative"
-                  },
-                  {
-                  "field": "Queens",
-                  "type": "quantitative"
-                  },
-                  {
-                  "field": "Staten Island",
-                  "type": "quantitative"
-                  }
-              ]
-          },
-          "params": [
-          {
-              "name": "hover",
-              "select": {
-              "type": "point",
-              "fields": [
-                  "Time"
-              ],
-              "nearest": true,
-              "on": "mouseover",
-              "clear": "mouseout"
-              }
-          }
-          ]
-      }
-      ]
-  }
-  
-  vegaEmbed("#trend", spec2);
-
-  renderDisparities = () => {
-      const disparityIndicator = indicators.filter(indicator =>
-          indicator.Measures.some(m => 
-              m.MeasureID === 221)
-      );
-
-      const disparityMeasure = disparityIndicator[0].Measures.filter(
-          m => m.MeasureID === 221
-      );
-
-      // console.log('TREND DISPARITIS - POVERTY INDICATOR', disparityIndicator )
-      // console.log('TREND DISPARITIS - POVERTY MEASURE', disparityMeasure )
-      const disparityIndicatorName = disparityIndicator[0].IndicatorName
-      const disparityMeasureType = disparityMeasure[0].MeasurementType
-      const disparitySources = disparityMeasure[0].Sources
-      const disparitysAbout = disparityMeasure[0].how_calculated
-      const trendSources = selectedTrendSources ? selectedTrendSources : defaultTrendSources;
-      const trendAbout = selectedTrendAbout ? selectedTrendAbout : defaultTrendAbout;
-
-
-      loadDisparitiyData(disparityIndicator, trendMeasure)
-
-      const combinedAbout = `${trendAbout}<h6>${disparityIndicatorName} - ${disparityMeasureType}</h6><p>${disparitysAbout}</p>`;
-      const combinedSources = `${trendSources}<h6>${disparityIndicatorName} - ${disparityMeasureType}</h6><p>${disparitySources}</p>`;
-      
-      renderAboutSources(combinedAbout, combinedSources);
-      setTimeout(() => {
-          // console.log('joined etc: ', joinedDataTrendDisparityObjects)
-
-      var spec3 = {
-          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-          "config": {
-          "background": "#FFFFFF",
-          // "title": {"anchor": "start", "fontSize": 18, "font": "Calibri"},
-          "axisX": {
-          // "domain": true,
-          // "domainColor": "#000000",
-          // "domainWidth": 1,
-          // "grid": false,
-          // "labelFontSize": 12,
-          "labelAngle": 0,
-          // "tickColor": "#000000",
-          // "tickSize": 5,
-          // "titleFontSize": 12,
-          // "titlePadding": 10
-          },
-          
-          "axisY": {
-          // "domain": false,
-          // "domainWidth": 1,
-          // "grid": true,
-          // "gridColor": "#DEDDDD",
-          // "gridWidth": 1,
-          // "labelFontSize": 12,
-          // "labelPadding": 8,
-          // "ticks": false,
-          // "titleFontSize": 12,
-          // "titlePadding": 10,
-          // "titleFont": "Lato",
-          // "titleAngle": 0,
-          // "titleY": -10,
-          // "titleX": 18
-          },
-
-
-          "view": {"stroke": "transparent"},
-
-          "range": {
-          "category": [
-              "#1696d2",
-              "#000000",
-              "#fdbf11",
-              "#ec008b",
-              "#d2d2d2",
-              "#55b748"
-          ]
-          },
-
-          "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 3},
-
-
-          "point": {"filled": true},
-          "text": {
-          "color": "#1696d2",
-          "fontSize": 11,
-          "align": "center",
-          "fontWeight": 400,
-          "size": 11
-          }
-      },
-          // "data": {
-          //     "url": "https://gist.githubusercontent.com/mmontesanonyc/6b0aa75affc6a60978f73e11d2f58bb3/raw/e944d335042e3da0c8e99a4df0fbebc8aac4cc15/asthmatrend.csv"
-          // },
-          "data": {
-              "values": joinedDataTrendDisparityObjects,
-          },
-          "width": "container",
-          "height": 550,
-          "encoding": {
-          "x": {
-              "field": "Time_1",
-              "type": "nominal",
-              "title": `${disparityIndicatorName} - ${disparityMeasureType}`
-          }
-          },
-          "layer": [
-          {
-              "encoding": {
-              "color": {
-                  "field": "Tertile",
-                  "type": "nominal",
-                  "legend": {
-                  "orient": "right",
-                  "title": null
-                  }
-              },
-              "y": {
-                  "field": "median",
-                  "type": "quantitative",
-                  "title": `${trendMeasurementType} ${trendDisplay && `(${trendDisplay})`} (Median of Neighborhood)`
-              }
-              },
-              "layer": [
-              {
-                  "mark": {
-                  "type": "line",
-                  "point": {"filled": false, "fill": "white"}
-                  }
-
-              },
-              {
-                  "transform": [
-                  {
-                      "filter": {
-                      "param": "hover",
-                      "empty": false
-                      }
-                  }
-                  ],
-                  "mark": "point"
-              }
-              ]
-          },
-          {
-              "transform": [
-              {
-                  "pivot": "Tertile",
-                  "value": "median",
-                  "groupby": [
-                      "Time_1"
-                      ]
-                  }
-              ],
-              "mark": "rule",
-              "encoding": {
-                  "opacity": {
-                          "condition": {
-                          "value": 0.3,
-                          "param": "hover",
-                          "empty": false
-                      },
-                      "value": 0
-                  },
-                  "tooltip": [
-                      {
-                          "title": "Year",
-                          "field": "Time_1",
-                          "type": "nominal"
-                      },
-                      {
-                          "field": "hi",
-                          "type": "nominal"
-                      },
-                      {
-                          "field": "med",
-                          "type": "nominal"
-                      },
-                      {
-                          "field": "low",
-                          "type": "nominal"
-                      },
-                  ]
-              },
-              "params": [
-                  {
-                      "name": "hover",
-                      "select": {
-                          "type": "point",
-                          "fields": [
-                              "Time_1",
-                              "Tertile"
-                          ],
-                          "nearest": true,
-                          "on": "mouseover",
-                          "clear": "mouseout"
-                      }
-                  }
-              ]
-          }
-          ]
-      }
-
-          vegaEmbed("#trend", spec3);
-      }, 300)
-  }
-}
+                "view": {"stroke": "transparent"},
+                "range": {
+                    "category": [
+                        "#1696d2",
+                        "#fdbf11",
+                        "#ec008b",
+                        "#000000",
+                        "#a8a8a8",
+                        "#55b748"
+                    ]
+                },
+                
+                "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 3},
+                
+                "point": {"filled": true},
+                "text": {
+                    "color": "#1696d2",
+                    "fontSize": 11,
+                    "fontWeight": 400,
+                    "size": 11
+                }
+            },
+            "data": {
+                "values":  data,
+            },
+            "width": "container",
+            "height": height,
+            "title": { 
+                "anchor": "start", 
+                "fontSize": 13, 
+                "font": "sans-serif",
+                "baseline": "top",
+                "text": `${trendMeasurementType} ${trendDisplay && `(${trendDisplay})`}`,
+                "dy": -10
+            },
+            "encoding": {
+                "x": {
+                    "field": "Time",
+                    "type": "nominal",
+                    "title": null
+                }
+            },
+            "layer": [
+                {
+                    "encoding": {
+                        "color": {
+                            "field": "Geography",
+                            "type": "nominal",
+                            "legend": {
+                                "orient": "bottom",
+                                "title": null
+                            }
+                        },
+                        "y": {
+                            "field": "Value",
+                            "type": "quantitative",
+                            "title": null,
+                            "scale": {"domainMin": 0, "nice": true} // change domainMin to valueMin to scale with data
+                        }
+                    },
+                    "layer": [
+                        {
+                            "mark": {
+                                "type": "line",
+                                "point": {"filled": false, "fill": "white"}
+                            }
+                            
+                        },
+                        {
+                            "transform": [
+                                {
+                                    "filter": {
+                                        "param": "hover",
+                                        "empty": false
+                                    }
+                                }
+                            ],
+                            "mark": "point"
+                        }
+                    ]
+                },
+                {
+                    "transform": [
+                        {
+                            "pivot": "Geography",
+                            "value": "Value",
+                            "groupby": [
+                                "Time"
+                            ]
+                        }
+                    ],
+                    "mark": "rule",
+                    "encoding": {
+                        "opacity": {
+                            "condition": {
+                                "value": 0.3,
+                                "param": "hover",
+                                "empty": false
+                            },
+                            "value": 0
+                        },
+                        "tooltip": [
+                            {
+                                "title": "Year",
+                                "field": "Time",
+                                "type": "nominal"
+                            },
+                            {
+                                "field": "New York City",
+                                "type": "quantitative",
+                                "format": ",.1~f"
+                            },
+                            {
+                                "field": "Bronx",
+                                "type": "quantitative",
+                                "format": ",.1~f"
+                            },
+                            {
+                                "field": "Brooklyn",
+                                "type": "quantitative",
+                                "format": ",.1~f"
+                            },
+                            {
+                                "field": "Manhattan",
+                                "type": "quantitative",
+                                "format": ",.1~f"
+                            },
+                            {
+                                "field": "Queens",
+                                "type": "quantitative",
+                                "format": ",.1~f"
+                            },
+                            {
+                                "field": "Staten Island",
+                                "type": "quantitative",
+                                "format": ",.1~f"
+                            }
+                        ]
+                    },
+                    "params": [
+                        {
+                            "name": "hover",
+                            "select": {
+                                "type": "point",
+                                "fields": [
+                                    "Time"
+                                ],
+                                "nearest": true,
+                                "on": "mouseover",
+                                "clear": "mouseout"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+        
+        vegaEmbed("#trend", trendspec);
+        
+    }

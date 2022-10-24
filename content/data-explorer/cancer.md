@@ -2,10 +2,10 @@
 title: Cancer
 date: 2021-05-28 18:02:58.804723
 draft: false
-seo_title: "Cancer data for NYC."
+seo_title: "Cancer data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
-categories: ["housing","childhealth","healthoutcomes"]
+categories: ["housing","healthoutcomes"]
 keywords: ["cancer","cancers","children","environmental health"]
 indicators:
 - header: null

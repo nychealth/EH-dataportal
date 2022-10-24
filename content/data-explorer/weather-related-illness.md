@@ -1,8 +1,8 @@
 ---
-title: Weather-Related Illness
+title: Weather-related illness
 date: 2021-05-28 18:02:58.866835
 draft: false
-seo_title: "Weather-related illness data for NYC."
+seo_title: "Weather-related illness data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["social","climatehealth","healthoutcomes"]

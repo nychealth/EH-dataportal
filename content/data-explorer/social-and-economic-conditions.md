@@ -1,8 +1,8 @@
 ---
-title: Social and Economic Conditions
+title: Social and economic conditions
 date: 2021-05-28 18:02:58.798880
-draft: false
-seo_title: "Social and economic conditions data for NYC."
+draft: true
+seo_title: "Social and economic conditions data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["social","housing"]

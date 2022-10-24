@@ -1,8 +1,8 @@
 ---
-title: Falls Among Older Adults
+title: Falls among older adults
 date: 2021-05-28 18:02:58.721805
 draft: false
-seo_title: "Falls among older adulst: data for NYC."
+seo_title: "Falls among older adulst: data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["housing","healthoutcomes"]
@@ -10,11 +10,15 @@ keywords: ["older adults","falls","hospitalizations","emergency department visit
 indicators:
 - header: null
   IndicatorID:
-  - 2135
-  - 2136
-  - 2408
-  - 2409
   - 2403
+- header: Emergency Department Visits
+  IndicatorID:
+  - 2135
+  - 2408
+- header: Hospitalizations
+  IndicatorID:
+  - 2136
+  - 2409
 - header: Safety
   IndicatorID: 
   - 2188

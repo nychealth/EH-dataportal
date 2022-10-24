@@ -1,8 +1,8 @@
 ---
-title: Alcohol Access and Use
+title: Alcohol access and use
 date: 2021-05-28 18:02:58.812716
 draft: false
-seo_title: "Alcohol access and use data for NYC."
+seo_title: "Alcohol access and use data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["foodanddrink"]

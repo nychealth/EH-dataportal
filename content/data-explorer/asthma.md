@@ -2,7 +2,7 @@
 title: Asthma
 date: 2021-05-28 18:02:58.749912
 draft: false
-seo_title: "Asthma data for NYC."
+seo_title: "Asthma data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["airquality","childhealth","housing","transportation","climatehealth","healthoutcomes","social","pests"]
@@ -46,8 +46,6 @@ Certain things in the environment can trigger an asthma attack or make symptoms 
 * Dust mites, cockroaches and mold
 * Pollen
 * Pets
-
-Download the [Asthma and Environment Neighborhood Report](http://a816-dohbesp.nyc.gov/IndicatorPublic/QuickView.aspx) on this website to see how your neighborhood compares to others. 
 
 ### Controlling Asthma
 Asthma does not have to prevent you from leading an active and healthy life. You can take charge by having **a plan to control asthma**, including these strategies for avoiding asthma triggers:

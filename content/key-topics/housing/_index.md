@@ -2,7 +2,7 @@
 title: "Housing"
 date: 2021-10-02T07:56:00-04:00
 draft: false
-seo_title: "Housing in NYC."
+seo_title: "Housing in NYC"
 seo_description: "Data, data stories, interactives, and more."
 tags: 
 categories: [housing]
@@ -12,6 +12,7 @@ menu:
     main:
         identifier: '05'
 layout: single
+image: nyc-housing.jpg
 ---
 Most people spend most of their time at home - so the household environment can significantly affect health. Disrepair that stems from longterm maintenance neglect can lead to serious health problems, including: lead poisoning from lead paint; asthma and other respiratory issues triggered by pests; and carbon monoxide poisoning.
 

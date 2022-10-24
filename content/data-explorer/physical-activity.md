@@ -1,8 +1,8 @@
 ---
-title: Physical Activity
+title: Physical activity
 date: 2021-05-28 18:02:58.740215
 draft: false
-seo_title: "Physical activity data for NYC."
+seo_title: "Physical activity data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["transportation"]
@@ -11,10 +11,10 @@ indicators:
 - header: null
   IndicatorID:
   - 2060
-  - 2058
   - 2173
-  - 2059
   - 2172
+  - 2058
+  - 2059
 menu:
     main:
         identifier: '03'

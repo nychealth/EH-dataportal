@@ -2,7 +2,7 @@
 title: "Breathe easy: NYC's air quality is improving"
 date: 2019-10-24T08:18:56-04:00
 draft: false
-seo_title: "Breathe easy: NYC's air quality is improving."
+seo_title: "Breathe easy: NYC's air quality is improving"
 seo_description: "A data story on our changing air over time."
 tags:
 categories: ["airquality"]

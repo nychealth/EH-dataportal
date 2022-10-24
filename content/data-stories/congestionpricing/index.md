@@ -2,7 +2,7 @@
 title: "How congestion pricing can improve health"
 date: 2022-07-13T13:11:44-04:00
 draft: true
-seo_title: "Congestion pricing, transit, climate change, and public health."
+seo_title: "Congestion pricing, transit, climate change, and public health"
 seo_description: "A data story on what we stand to gain from congestion pricing."
 tags: 
 categories: ["transportation","climatehealth","airquality"]
@@ -11,6 +11,7 @@ image: ds-streets.jpg
 menu:
     main:
         identifier: '02'
+photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 
 **NB: Links to internal topics not yet inserted below.**

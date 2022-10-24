@@ -1,8 +1,8 @@
 ---
-title: "Food and Drink"
+title: "Food and drink"
 date: 2021-05-05T07:58:53-04:00
 draft: false
-seo_title: "Food and Drink in NYC."
+seo_title: "Food and Drink in NYC"
 seo_description: "Data, data stories, interactives, and more."
 tags: 
 categories: [foodanddrink]
@@ -12,6 +12,7 @@ menu:
     main:
         identifier: '05'
 layout: single
+image: nyc-food-and-drink.jpg
 ---
 
 We all make choices around food and drink, but sometimes, those choices are made for us by our food environments.

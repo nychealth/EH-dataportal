@@ -606,7 +606,6 @@ h2.report-info {
 }
 
 
-
 // Report Indicator Styles
 
 #vg-tooltip-element {
@@ -621,7 +620,7 @@ span.th-sub {
 
 .related-reading {
     padding: 100px 0;
-    background-image: url("/EH-dataportal/images/report_bottom_background.jpg");
+    background-image: url("/IndicatorPublic/beta/images/report_bottom_background.jpg"), url("/EH-dataportal/images/report_bottom_background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     border-top: 4px solid $primary;
@@ -649,4 +648,23 @@ span.th-sub {
     .card-body {
         font-weight: 500;
     }
+}
+
+
+// Section styles
+
+.ds-accent {
+    color:#197BBD!important;
+}
+
+.kt-accent {
+    color:#800080!important
+}
+
+.nr-accent {
+    color:#D75047!important;
+}
+
+.de-accent {
+    color:#00923E!important
 }

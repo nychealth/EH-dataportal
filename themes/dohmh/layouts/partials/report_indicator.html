@@ -4,14 +4,14 @@
             <span class="indicator-short-name">{{ .ind.indicator_short_name }}</span>
         </div>
         <div class="col-6 col-md-4 topic-list">
-            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/{{ .ind.summary_bar_svg }}" alt="Visualization showing neighborhood rank of {{ .ind.indicator_neighborhood_rank }} out of 42." width="100%" class="viz d-md-none mb-1">
+            <img src="{{ site.Params.data_repo }}/{{ site.Params.data_branch }}/neighborhood-reports/images/{{ .ind.summary_bar_svg }}" alt="Visualization showing neighborhood rank of {{ .ind.indicator_neighborhood_rank }} out of 42." width="100%" class="viz d-md-none mb-1">
             {{- if eq (string .ind.data_value_rank) "1" -}}<span class="worse">Worse</span>
             {{- else if eq (string .ind.data_value_rank) "2" -}}<span class="middle">Middle</span>
             {{- else -}}<span class="better">Better</span>
             {{- end -}}
         </div>
         <div class="d-none d-md-inline col-md-3">
-            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/images/{{ .ind.summary_bar_svg }}" alt="Visualization showing neighborhood rank of {{ .ind.indicator_neighborhood_rank }} out of 42." class="viz">
+            <img src="{{ site.Params.data_repo }}/{{ site.Params.data_branch }}/neighborhood-reports/images/{{ .ind.summary_bar_svg }}" alt="Visualization showing neighborhood rank of {{ .ind.indicator_neighborhood_rank }} out of 42." class="viz">
         </div>
     </div>
 </button>
@@ -81,7 +81,7 @@
 <!-- .modal -->
 
 <script type="text/javascript">
-    
+
     $( "#modal-{{ .ind.indicator_data_name }}-{{ .count }}" ).on('shown.bs.modal', function() {
         
         var opt = {"renderer": "svg"};
@@ -92,12 +92,12 @@
 
             // this is loaded when an indicator is clicked, but it will be cached
             
-            "https://raw.githubusercontent.com/nychealth/EHDP-data/main/neighborhoodreports/data/" + report_name + "_data.csv"
+            "{{ site.Params.data_repo }}/{{ site.Params.data_branch }}/neighborhood-reports/data/" + data_download_loc
         
         ).then(data => {
             
             arqTable = data;
-            
+
 
             // ---- summary ---- //
 
@@ -112,13 +112,13 @@
                 .orderby("neighborhood", aq.desc("end_date"))
                 .slice(0,1) // most recent row in neighborhood group
                 .ungroup()
+                .derive({data_value: d => op.parse_float(d.data_value)})
                 .orderby("data_value") // sort for ordered bar chart
                 .select(aq.not("end_date"))
                 .objects()
                 
-            console.log("summaryData", summaryData);
             
-            d3.json("{{ site.BaseURL }}visualizations/spec/summarySpec.json").then(data => {
+            d3.json("{{ site.Params.data_repo }}/{{ site.Params.data_branch }}/neighborhood-reports/spec/summarySpec.json").then(data => {
                 
                 summarySpec = data;
 
@@ -146,27 +146,26 @@
             // uses summary data, but named dataset is in spec's '"transform" object
 
             var mapData = summaryData;
-            
-            d3.json("{{ site.BaseURL }}visualizations/spec/mapSpec.json").then(data => {
+
+            d3.json("{{ site.Params.data_repo }}/{{ site.Params.data_branch }}/neighborhood-reports/spec/mapSpec.json").then(data => {
                 
                 mapSpec = data;
-                
+
                 // highlight current neighborhood
 
-                mapSpec.layer[1].encoding.stroke.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
-                
+                mapSpec.layer[2].encoding.stroke.condition.test = "datum.neighborhood == '" + NeighborhoodName + "'";
                 
             }).then(() => {
                 
                 vegaEmbed(
                     "#map-{{ .ind.indicator_data_name }}-{{ .count }}", 
-                    mapSpec, 
+                    mapSpec,
                     opt
                 ).then((res) => {
                     
                     res.view.insert("mapData", mapData).run()
                     
-                }).catch(console.error);;
+                }).catch(console.error);
                 
             });
 
@@ -182,7 +181,7 @@
                 .dedupe()
                 .objects()
             
-            d3.json("{{ site.BaseURL }}visualizations/spec/trendSpec.json").then(data => {
+            d3.json("{{ site.Params.data_repo }}/{{ site.Params.data_branch }}/neighborhood-reports/spec/trendSpec.json").then(data => {
                 
                 // make a deep copy of the spec
                 

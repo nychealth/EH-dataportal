@@ -1,35 +1,41 @@
 ---
-title: Birth Outcomes
+title: Birth outcomes
 date: 2021-05-28 18:02:58.890564
 draft: false
 notes: "Remove sex ratio per 7/13/2022 conversation with AQ team, wendy"
-seo_title: "Birth outcomes data for NYC."
+seo_title: "Birth outcomes data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["childhealth","healthoutcomes"]
 keywords: ["children","birth","birth defects","babies","pregnancy"]
 indicators:
-- header: null
+- header: Preterm birth
+  IndicatorID:
+  - 1
+  - 2
+- header: Low birthweight
+  IndicatorID:
+  - 4
+  - 3
+- header: Death
   IndicatorID:
   - 5
-  - 4
   - 6
   - 7
   - 8
-  - 1
+- header: Other
+  IndicatorID:
   - 9
-  - 3
-  - 2
 menu:
     main:
         identifier: '03'
 ---
 
-Close to 125,000 live births occur in New York City (NYC) each year. Most babies are born healthy, but those born prematurely or with low birth weight are at greater risk of disability or death. This site tracks indicators of fetal growth and development, infant and [perinatal mortality](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Perinata_mortality), [fertility](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Fertility) and [sex ratio at birth](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Sex_Ratio_at_Birth).
+Close to 125,000 live births occur in New York City (NYC) each year. Most babies are born healthy, but those born prematurely or with low birth weight are at greater risk of disability or death. This site tracks indicators of fetal growth and development, infant and perinatal mortality, fertility and sex ratio at birth.
 
 ### Birth Outcomes and the Environment
 
-Because many genetic and lifestyle factors influence growth and development of fetuses and babies, it can be difficult for researchers to study the effects of environmental exposures on birth outcomes. Smoking cigarettes during pregnancy, however, is known to result in exposure to many chemicals that can slow the growth of the fetus. Exposure to second-hand smoke can also be harmful. There is some evidence that  [prenatal exposure](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Prenatal_exposure) to air pollution (particulate matter and other pollutants), lead, pesticides and solvents increases the likelihood that a pregnancy results in an adverse outcome.   
+Because many genetic and lifestyle factors influence growth and development of fetuses and babies, it can be difficult for researchers to study the effects of environmental exposures on birth outcomes. Smoking cigarettes during pregnancy, however, is known to result in exposure to many chemicals that can slow the growth of the fetus. Exposure to second-hand smoke can also be harmful. There is some evidence that  prenatal exposure to air pollution (particulate matter and other pollutants), lead, pesticides and solvents increases the likelihood that a pregnancy results in an adverse outcome.   
   
 ### About the Data and Indicators
 
@@ -54,7 +60,7 @@ The following may increase the likelihood of a healthy pregnancy outcome:
 * Pregnant women should seek prenatal care in the first trimester of pregnancy, eat a nutritious and balanced diet and take folic acid beginning before conception, avoid being over or underweight and work with their doctors to control diabetes, high-blood pressure and sexually transmitted infections.
 * Health care providers should advise their patients about factors that affect birth outcomes, such as maternal smoking, drug and alcohol abuse, poor nutrition, stress, insufficient prenatal care, chronic illness or other medical problems.
 * Damaged lead-containing paint in homes should be safely addressed by properly trained workers, ideally prior to pregnancy.  Pregnant women and small children should stay out of the home until lead-paint projects are completed.
-* Employers should provide workplaces free from unsafe chemical exposures and provide protective gear to workers when necessary. To learn more about the chemicals at work, employees can ask their employers for the  [Material Safety Data Sheets](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Material_Safety_Data_Sheets) for the products used.
+* Employers should provide workplaces free from unsafe chemical exposures and provide protective gear to workers when necessary. To learn more about the chemicals at work, employees can ask their employers for the  Material Safety Data Sheets for the products used.
 
 ### Key Messages
 

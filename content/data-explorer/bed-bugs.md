@@ -1,8 +1,8 @@
 ---
-title: Bed Bugs
+title: Bed bugs
 date: 2021-05-28 18:02:58.735039
 draft: false
-seo_title: "Bed bugs data for NYC."
+seo_title: "Bed bugs data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["housing","pests","neighborhoods"]

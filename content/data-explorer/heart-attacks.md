@@ -3,7 +3,7 @@ title: Heart Attacks
 date: 2021-05-28 18:02:58.879198
 draft: true
 notes: "Decided to remove this 7/13/2022 with AQ team"
-seo_title: "Heart attacks data for NYC."
+seo_title: "Heart attacks data for NYC"
 seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: ["healthoutcomes"]
@@ -23,7 +23,7 @@ This site provides data on hospitalizations for heart attack.
 
 ### Heart Attacks and the Environment
 
-Genetics, lifestyle and environmental factors can all contribute to an increased risk for heart attack. In addition to lifestyle risk factors such as high LDL cholesterol, high blood pressure, obesity, smoking, lack of physical activity and diabetes, exposure to certain [ambient air pollutants](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Air_Pollutant) can also increase the risk of a heart attack. Most ambient air pollutants originate from fossil fuel (e.g. diesel, gasoline, fuel oil and coal) combustion.  
+Genetics, lifestyle and environmental factors can all contribute to an increased risk for heart attack. In addition to lifestyle risk factors such as high LDL cholesterol, high blood pressure, obesity, smoking, lack of physical activity and diabetes, exposure to certain ambient air pollutants can also increase the risk of a heart attack. Most ambient air pollutants originate from fossil fuel (e.g. diesel, gasoline, fuel oil and coal) combustion.  
   
 Second-hand smoke is the single largest contributor to indoor air pollution. Studies suggest that exposure to second-hand smoke can accelerate the progression of atherosclerosis.
 
@@ -31,7 +31,7 @@ Second-hand smoke is the single largest contributor to indoor air pollution. Stu
 
 The data presented on this site only include people who have been hospitalized for heart attack, and do not include those who died before admission or who were treated outside of the hospital.  
   
-Differences in heart attack hospitalization rates could reflect differences in diagnostic techniques, [disease coding practices](http://a816-dohbesp.nyc.gov/IndicatorPublic/Glossary.aspx#Disease_Coding_Practices) and factors that affect the likelihood of being hospitalized for heart attack, such as access to medical care.  
+Differences in heart attack hospitalization rates could reflect differences in diagnostic techniques, disease coding practices and factors that affect the likelihood of being hospitalized for heart attack, such as access to medical care.  
   
 Data show the number of heart attack hospitalizations rather than the number of people hospitalized. For example, if a person was hospitalized twice, they would be counted twice.  
   
