@@ -1,5 +1,6 @@
 {{- define "main" -}}
 
+
 <article class="container-fluid overflow-hidden" id="primary-content">
 
   <div class="row my-4">
@@ -16,93 +17,30 @@
       <h1>{{- .Title -}}</h1>
         {{- .Content -}}
 
-      <div class="row">
-        <div class="col-12">
-          <label for="exampleFormControlInput1" class="form-label">Enter your address</label>
-        </div>
+        <div class="row">
+          <div class="col-lg-6 col-sm-12"><h4>1. Enter your address</h4>   
+
+              <div class="srch input-group" role="search">
+                  <input class="rad-all form-control form-control-lg" placeholder="Search Address" id="map-search">
+              </div>
+
+              <!-- Map gets drawn here -->
+              <div id='mapLocator'></div>
+              
+        
+
+          </div>
+
+          <div class="col-lg-5 col-sm-12">
+              <h4>&nbsp;</h4>
+              <button class="btn btn-primary btn-lg" id="outputButton">2. Get Council District</button>  
+              <br> <br>
+              <span id="NTA" class="h4"></span> 
 
 
-        <div class="col-md-5">
-          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="123 Your Street, New York, NY">
-        </div>
-        <div class="col-1 mr-auto">
-          <button type="button" class="btn btn-primary" onclick="submitAddress()">Submit</button>
-        </div>
-
+          </div>
       </div>
 
-      <div class="row mt-4" id="output" style="display:none;">
-        <div class="col-7">
-          <p><span class="home-label">Your City Council District:</span> </p>
-          <p><span id="district">District XY</span></p>
-          <p><span class="home-label">Your councilmember:</span> </p>
-          <p><span id="cmOutput">Firstname Lastname</span></p>
-        </div>
-
-        <div class="col-12 mt-4">
-          <h4>Do you want to send them an email?</h4>
-          <p>City Council members listen to their constiuents' concerns and can often take action based on them. </p>
-        <button type="button" class="btn btn-outline-primary" onclick="email1()">Send my Council Member an email</button>
-        </div>
-      </div>
-
-      <div class="row mt-4" id="email" style="display:none">
-        <div class="col">
-          <h4>OK, let's send your Council Member an email.</h4>
-          <p>This page will help you write an email to your council member. </p>
-          <p class="home-label">First, what issues are you concerned about?</p>
-          <button type="button" class="btn btn-outline-secondary mb-1">Air quality</button>
-          <button type="button" class="btn btn-outline-secondary mb-1">Climate</button>
-          <button type="button" class="btn btn-outline-secondary mb-1">Housing</button>
-          <button type="button" class="btn btn-outline-secondary mb-1">Environmental justice</button>
-          <button type="button" class="btn btn-outline-secondary mb-1">Asthma</button>
-          <button type="button" class="btn btn-outline-secondary mb-1">Active design</button>
-          <button type="button" class="btn btn-outline-secondary mb-1">Children's health</button>
-          <button type="button" class="btn btn-outline-secondary mb-1">Pests and pesticides</button>
-          <button type="button" class="btn btn-outline-secondary mb-1">Food and drink issues</button>
-          <button type="button" class="btn btn-outline-primary mb-1">It's OK, I'll write it myself.</button>
-
-          <p class="mt-3 home-label">Secondly, why are you concerned?</p>
-          <button type="button" class="btn btn-outline-secondary mb-1">It's worse in my neighborhood</button>
-          <button type="button" class="btn btn-outline-secondary mb-1">It affects my life</button>
-          <button type="button" class="btn btn-outline-secondary mb-1">The whole City should improve</button>
-          <button type="button" class="btn btn-outline-primary mb-1">It's OK, I'll write it myself.</button>
-
-          <p class="mt-3 home-label">Last, what do you want?</p>
-          <button type="button" class="btn btn-outline-secondary mb-1">Services or resources available to me</button>
-          <button type="button" class="btn btn-outline-secondary mb-1">To know what they're doing to fix it</button>
-          <button type="button" class="btn btn-outline-primary mb-1">It's OK, I'll write it myself.</button>
-
-          <hr class="my-2">
-          <button type="button" class="btn btn-primary mb-1" onclick="writeEmail()">Write my email!</button>
-
-        </div>
-      </div>
-
-      <div class="row mt-3" id="emailText" style="display:none">
-        <div class="col">
-
-          <form>
-            <p><label for="w3review">Dear Council Member Lastname:</label></p>
-            <textarea id="textEntry" name="textEntry" style="width:75%;height:300px">I am one of your constituents, a resident of District XX.
-
-I was reading about neighborhood issues on one of the Health Department's websites, the Environment and Health Data Portal. I am concerned about:
-- Issue one, which reason
-- Issue two, which reason
-
-According to the data [this issue/these issues are worse in NEIGHBORHOOD]. They affect people like me. The whole City can do better.
-
-I'm writing to know: 
-- If there are services or resources available to people like me
-- What your office is doing to address this issue
-            </textarea>
-            <br>
-            <input type="submit" value="Send email" class="btn btn-primary mr-6">
-            <br>
-            <em class="fs-sm">Clicking this button will open your email client with this email ready to send.</em>
-          </form>
-        </div>
-      </div>
 
 
 
@@ -112,24 +50,37 @@ I'm writing to know:
 
 </article>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4.js"></script>
+<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.4.0/papaparse.min.js"></script>
+<script src="https://maps.nyc.gov/nyc-lib/v1.2.79/js/babel-polyfill.js"></script>
+<script src="https://maps.nyc.gov/nyc-lib/v1.2.79/js/nyc-ol-lib.js"></script>
+
 <script>
-  function submitAddress() {
-    document.getElementById('output').style.display = "block"
+    // This initializes and draws the locator map
+    var map = new nyc.ol.FrameworkMap({
+    mapTarget: '#mapLocator',
+    searchTarget: '#map-search',
+    startAt: '125 Worth Street',
+    geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example'
+    // Developer portal app_key and id don't work, though the nycLib example works
+    //geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=cfed478bf47829a2951bc5a3bbc26422&app_id=2d2a1b38'
+    });
+
+
+  
+  //Neighborhood Selector Button
+  document.querySelector("#outputButton").addEventListener("click",dataChange); // listens for button clicks to change neighborhood, changes data
+
+  // 
+  function dataChange() {
+    document.getElementById('NTA').innerHTML = map.location.data.nta;
+    console.log('Map geolocator produces the following data from map.location.data')
+    console.table(map.location.data)
   }
 
-  function email1() {
-    document.getElementById('email').style.display = "block"
-  }
-
-  function writeEmail() {
-    document.getElementById('emailText').style.display = "block"
-  }
-
-  var issues = ["Air quality","Climate","Housing","Environmental justice","Active Design","Children's health","Pests","Food and drink"]
-
-  var reasons = ["It is worse in my neighborhood","It affects my life","The whole City can do better"]
-
-  var needs = ["Services or resources available to me","What are you doing about it?"]
 
 </script>
+
+
 {{- end -}}
