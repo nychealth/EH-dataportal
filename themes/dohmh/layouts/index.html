@@ -293,7 +293,7 @@
                 
 {{ define "js_bot" }}
 
-{{- if eq hugo.Environment "data_staging" -}} 
+{{/*  {{- if eq hugo.Environment "data_staging" -}}   */}}
 
   {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
   <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
@@ -304,7 +304,7 @@
   {{- $js := resources.Get "js/uhflist.js" -}}
   <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
 
-{{ else }}
+{{/*  {{ else }}
 
   {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
   {{ $secureJS := $js | resources.Fingerprint "sha512" }}
@@ -324,6 +324,6 @@
     src="{{ $secureJS.RelPermalink }}" 
     integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-{{- end -}}
+{{- end -}}  */}}
 
 {{- end -}}
