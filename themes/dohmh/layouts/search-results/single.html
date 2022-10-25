@@ -71,7 +71,7 @@
 
 {{/*  {{- if eq hugo.Environment "data_staging" -}}   */}}
 
-  {{- $js := resources.Get "js/search-results.js" -}}
+  {{- $js := resources.Get "js/search-results.js" }}
   <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
 
 {{/*  {{ else }}

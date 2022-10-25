@@ -296,13 +296,13 @@
 
 {{/*  {{- if eq hugo.Environment "data_staging" -}}   */}}
 
-  {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
+  {{- $js := resources.Get "js/accessible-autocomplete.min.js" }}
   <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
 
-  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
+  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" }}
   <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
 
-  {{- $js := resources.Get "js/uhflist.js" -}}
+  {{- $js := resources.Get "js/uhflist.js" }}
   <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
 
 {{/*  {{ else }}
