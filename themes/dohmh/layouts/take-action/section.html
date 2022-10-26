@@ -108,9 +108,9 @@
           </div>
           <div class="col-md-6 col-sm-12">
             <div id="reasonsContainer">
-              <button type="button" class="btn btn-outline-secondary mb-1">This issue is worse in my neighborhood.</button>
-              <button type="button" class="btn btn-outline-secondary mb-1">It affects my life.</button>
-              <button type="button" class="btn btn-outline-secondary mb-1">The whole City should improve.</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">This issue is worse in my neighborhood</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">It affects my life</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">The whole city could be doing better</button>
             </div>
           </div>
         </div>
@@ -122,8 +122,8 @@
           </div>
           <div class="col-md-6 col-sm-12">
             <div id="needsContainer">
-              <button type="button" class="btn btn-outline-secondary mb-1">Services or resources available to me</button>
-              <button type="button" class="btn btn-outline-secondary mb-1">To know what they're doing to fix it</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">What services or resources are available to me</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">What you're doing to address these issues</button>
             </div>
           </div>
         </div>
@@ -145,13 +145,11 @@
             <p class="fs-xl font-weight-bold">Here's your email:</p>
             <div id="textDestination">
               <p>Dear <span id="councilMemberLastName">Lastname</span>,</p>
-              <p>I am one of your constituents, a resident of district <span id="districtNum">XX</span>. I was reading about neighborhood issues on one of the Health Department's websites, the Environment and Health Data Portal (on.nyc.gov/dataportal). I am concerned about the following issues: <span id="concerns"></span>.
+              <p>I am one of your constituents, a resident of district <span id="districtNum">XX</span>. I was reading about neighborhood issues on one of the Health Department's websites, the Environment and Health Data Portal (on.nyc.gov/dataportal). I am concerned about the following issues: <span id="concerns"></span>
   
-              <p>According to the data:
-                <div id="reasons"></div>
+              <p>I'm concerned because <span id="reasons"></span>
                 
-              <p>I'm writing to know:
-              <div id="needs"></div>
+              <p>I'm writing to ask you <span id="needs"></span>
   
               <p>I look forward to your reply. Thank you.</p>
   
@@ -299,28 +297,41 @@ function writeEmail() {
 
    // send Concerns to text
     var str = '';
-    concernsText.forEach(function(concern) {
-      str += concern + ', ';
-    }); 
+
+    for (i = 0 ; i < concernsText.length; i++) {
+      if (i === concernsText.length - 1) {
+        str += 'and ' + concernsText[i].toLowerCase() + '.' // end sentence
+      } else {
+        str += concernsText[i].toLowerCase() + ', ' // use commas in between
+      }
+    }
 
     document.getElementById("concerns").innerHTML = str;
 
     // send Reasons to text
-    var str2 = '<ul>'
-      reasonsText.forEach(function(reason) {
-        str2 += '<li>'+ reason + '</li>';
-      }); 
+    var str2 = ''
+    for (i = 0 ; i < reasonsText.length; i++) {
+      if (i === reasonsText.length - 1) {
+        str2 += 'and ' + reasonsText[i].toLowerCase() + '.' // end sentence
+      } else {
+        str2 += reasonsText[i].toLowerCase() + ', ' // use commas in between
+      }
+    }
   
-      str2 += '</ul></p>';
       document.getElementById("reasons").innerHTML = str2;
 
     // send Needs to text
-    var str3 = '<ul>'
-      needsText.forEach(function(need) {
-        str3 += '<li>'+ need + '</li>';
-      }); 
+    var str3 = ''
+    needsText
+
+    for (i = 0 ; i < needsText.length; i++) {
+      if (i === needsText.length - 1) {
+        str3 += 'and ' + needsText[i].toLowerCase() + '.' // end sentence
+      } else {
+        str3 += needsText[i].toLowerCase() + ', ' // use commas in between
+      }
+    }
   
-      str3 += '</ul></p>';
       document.getElementById("needs").innerHTML = str3;
 
     // send text to form
