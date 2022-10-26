@@ -5,4 +5,8 @@ draft: false
 mapLib: true
 ---
 
-Take action about issues in your community.
+Take action about issues in your community!
+
+Environmental health issues are big. They're not something that one person can tackle alone - they require an effort from everybody: city residents, City agencies, and our elected officials who make the policies that affect our environments. 
+
+One way to take action is to contact elected officials about issues. This page will help you do that. 

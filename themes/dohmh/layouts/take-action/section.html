@@ -17,132 +17,178 @@
       <h1>{{- .Title -}}</h1>
         {{- .Content -}}
 
-        <div class="row">
-          <div class="col-12">
-            <h4>1. Enter your address</h4>   
+      <div class="row border-top pt-2">
+        <div class="col-md-6 col-sm-12">
+          <p class="fs-xl font-weight-bold">First, enter your address.</p>
+          <p>Enter your address in the map. We'll use your address to tell you who your elected City Council Member is.</p>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <!-- Search/input -->
+          <div class="srch input-group" role="search">
+            <input class="rad-all form-control form-control-lg" placeholder="Search Address" id="map-search" onclick="getData()">
           </div>
 
-          <div class="col-lg-6 col-sm-12">
-
-              <!-- Search/input -->
-              <div class="srch input-group" role="search">
-                  <input class="rad-all form-control form-control-lg" placeholder="Search Address" id="map-search" onclick="getData()">
-              </div>
-
-              <!-- Map gets drawn here -->
-              <div id='mapLocator'></div>
-              
-          </div>
-
-          <div class="col-lg-5 col-sm-12">
-              <button class="btn btn-outline-primary btn-lg" id="outputButton" onclick="dataChange()">2. Get info:</button>  
-              <p>
-                <ul style="list-style-type:none; padding-left: 0;">
-                  <li><span class="home-label">Your City Council District:</span> <span id="CCD" class="font-weight-bold ml-3"></span></li>
-                  <li><span class="home-label">Your City Council Member:</span> <span id="CCM" class="font-weight-bold ml-3"></span></li>
-                </ul>
-              </p>
-              <button type="button" id="sendEmailBtn" class="btn btn-sm btn-block btn-outline-primary" onclick="email1()">3.Send my Council Member an email</button>
-
-          </div>
+          <!-- Map gets drawn here -->
+          <div id='mapLocator'></div>
+        </div>
       </div>
+
+
+
+      <div class="row mt-2 border-top pt-2">
+        <div class="col-md-6 col-sm-12">
+          <p class="fs-xl font-weight-bold">Next, get your Council Member.</p>
+          <p>Click the button on the right to get info about your Council Member.</p>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <button class="btn btn-outline-primary btn-block" id="outputButton" onclick="dataChange()">Get your CouncilMember:</button>  
+          <p>
+            <ul style="list-style-type:none; padding-left: 0;">
+              <li><span class="home-label">Your City Council District:</span> <span id="CCD" class="font-weight-bold ml-3"></span></li>
+              <li><span class="home-label">Your City Council Member:</span> <span id="CCM" class="font-weight-bold ml-3">[TBD]</span></li>
+            </ul>
+          </p>
+        </div>
+      </div>
+
+      <div class="row mt-2 border-top pt-2">
+        <div class="col-md-6 col-sm-12">
+          <p class="fs-xl font-weight-bold">Do you want to email your Council Member?</p>
+
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <button type="button" id="sendEmailBtn" class="btn btn-block btn-outline-primary" onclick="email1()" style="display:block;">Yes, send my Council Member an email</button>
+        </div>
+      </div>
+
 
       <script>
         function email1() {
           document.getElementById('email').style.display = "block"
+          document.getElementById('email').scrollIntoView({  behavior: 'smooth', // smooth scroll
+          block: 'start' // the upper border of the element will be aligned at the top of the visible part of the window of the scrollable area.
+        });
         }
       </script>
 
-      <div class="row mt-4" id="email" style="display:none">
-        <div class="col">
-          <h4>OK, let's send your Council Member an email.</h4>
-          <p>This page will help you write an email to your council member. </p>
-          <p class="home-label">First, what issues are you concerned about?</p>
-          <div id="concernContainer">
-            <button type="button" class="btn btn-outline-secondary mb-1">Air quality</button>
-            <button type="button" class="btn btn-outline-secondary mb-1">Climate</button>
-            <button type="button" class="btn btn-outline-secondary mb-1">Housing</button>
-            <button type="button" class="btn btn-outline-secondary mb-1">Environmental justice</button>
-            <button type="button" class="btn btn-outline-secondary mb-1">Asthma</button>
-            <button type="button" class="btn btn-outline-secondary mb-1">Active design</button>
-            <button type="button" class="btn btn-outline-secondary mb-1">Children's health</button>
-            <button type="button" class="btn btn-outline-secondary mb-1">Pests and pesticides</button>
-            <button type="button" class="btn btn-outline-secondary mb-1">Food and drink issues</button>
+      <div id="email" style="display:none">
+        <div class="row mt-2 border-top pt-2">
+          <div class="col-12">
+            <p class="fs-xl font-weight-bold">OK, let's send your Council Member an email.</p>
+            <p>This page will help you draft and send the email. If you want to, you'll be able to edit the text before you send it. Read the prompts on the left and select buttons on the right.</p>
+
           </div>
+        </div>
 
+        <div class="row mt-2 pt-2">
+          <div class="col-md-6 col-sm-12">
+            <p class="home-label">First, what issues are you concerned about?</p>
 
-
-
-
-          <p class="mt-3 home-label">Secondly, why are you concerned?</p>
-          <div id="reasonsContainer">
-            <button type="button" class="btn btn-outline-secondary mb-1">It's worse in my neighborhood</button>
-            <button type="button" class="btn btn-outline-secondary mb-1">It affects my life</button>
-            <button type="button" class="btn btn-outline-secondary mb-1">The whole City should improve</button>
           </div>
-
-
-          <p class="mt-3 home-label">Last, what do you want?</p>
-          <div id="needsContainer">
-            <button type="button" class="btn btn-outline-secondary mb-1">Services or resources available to me</button>
-            <button type="button" class="btn btn-outline-secondary mb-1">To know what they're doing to fix it</button>
+          <div class="col-md-6 col-sm-12">
+            <div id="concernContainer">
+              <button type="button" class="btn btn-outline-secondary mb-1">Air quality</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">Climate</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">Housing</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">Environmental justice</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">Asthma</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">Active design</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">Children's health</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">Pests and pesticides</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">Food and drink issues</button>
+            </div>
           </div>
+        </div> <!-- end of row -->
 
-          <hr class="my-2">
-          <button type="button" class="btn btn-outline-primary mb-1 float-right" onclick="illWrite()">It's OK, I'll write it myself.</button>
-          <button type="button" class="btn btn-primary mb-1 mr-1 float-right" onclick="writeEmail()">Write my email!</button>
+        <div class="row mt-2 border-top pt-2">
+          <div class="col-md-6 col-sm-12">
+            <p class="home-label">Next, why are you concerned?</p>
 
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <div id="reasonsContainer">
+              <button type="button" class="btn btn-outline-secondary mb-1">This issue is worse in my neighborhood.</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">It affects my life.</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">The whole City should improve.</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-2 border-top pt-2">
+          <div class="col-md-6 col-sm-12">
+            <p class="home-label">Last, what do you want?</p>
+
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <div id="needsContainer">
+              <button type="button" class="btn btn-outline-secondary mb-1">Services or resources available to me</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">To know what they're doing to fix it</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-2 border-top pt-2">
+          <div class="col-md-6 ml-auto col-sm-12">
+            <button type="button" class="btn btn-primary mb-1 btn-block" onclick="writeEmail()">Write my email!</button>
+          </div>
+        </div>
+
+
+
+
+      </div> <!-- close email bucket-->
+
+      <div style="display:none" id="emailText">
+        <div class="row mt-6 border-top p-2">
+          <div class="col-md-6" id="yourEmail">
+            <p class="fs-xl font-weight-bold">Here's your email:</p>
+            <div id="textDestination">
+              <p>Dear <span id="councilMemberLastName">Lastname</span>,</p>
+              <p>I am one of your constituents, a resident of district <span id="districtNum">XX</span>. I was reading about neighborhood issues on one of the Health Department's websites, the Environment and Health Data Portal (on.nyc.gov/dataportal). I am concerned about the following issues: <span id="concerns"></span>.
+  
+              <p>According to the data:
+                <div id="reasons"></div>
+                
+              <p>I'm writing to know:
+              <div id="needs"></div>
+  
+              <p>I look forward to your reply. Thank you.</p>
+  
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p class="fs-xl font-weight-bold">You can edit this text before you send it:</p>
+    
+            <span class="home-label" id="emailLabel">Your email is below. You can edit the text in the box before you send it.</span>
+            <form>
+              <textarea id="textEntry" name="textEntry" style="width:100%;height:300px">
+                Dear [Council Member],
+                I am one of your constituents, a resident of [MY NEIGHBORHOOD]. I was reading about neighborhood issues on one of the Health Department's websites, the Environment and Health Data Portal (on.nyc.gov/dataportal). I am concerned about [ISSUES YOU ARE CONCERNED ABOUT].
+  
+                These concern me because [WHY YOU ARE CONCERNED].
+  
+                I'm writing to know [WHAT YOU WANT YOUR COUNCIL MEMBER TO DO].
+  
+                Thank you for your attention, and I look forward to your reply.
+  
+                Sincerely,
+                [YOUR NAME]
+              </textarea>
+              <br>
+              <a href="" id="sendButton" target="_blank" class="btn btn-primary btn-block">
+                Send email!
+              </a>
+              <em class="fs-sm">This will open the email in your email client for you to send from your address.</em>
+            </form>      
+          </div>
+  
         </div>
       </div>
 
 
 
 
-
-      <div class="row mt-6" id="emailText" style="display:none">
-
-        <div class="col-12" style="display:none;">
-          <div id="textDestination">
-            <p>Dear <span id="councilMemberLastName">Lastname</span>,</p>
-            <p>I am one of your constituents, a resident of district <span id="districtNum">XX</span>. I was reading about neighborhood issues on one of the Health Department's websites, the Environment and Health Data Portal (on.nyc.gov/dataportal). I am concerned about:
-            <div id="concerns"></div>
-
-            <p>According to the data:
-              <div id="reasons"></div>
-              
-            <p>I'm writing to know:
-            <div id="needs"></div>
-
-            <p>I look forward to your reply. Thank you.</p>
-
-          </div>
-        </div>
-
-
-        <div class="col-12">
-
-          <span class="home-label" id="emailLabel">Your email is below. You can edit the text in the box before you send it.</span>
-          <form>
-            <textarea id="textEntry" name="textEntry" style="width:100%;height:300px">
-              Dear [Council Member],
-              I am one of your constituents, a resident of [MY NEIGHBORHOOD]. I was reading about neighborhood issues on one of the Health Department's websites, the Environment and Health Data Portal (on.nyc.gov/dataportal). I am concerned about [ISSUES YOU ARE CONCERNED ABOUT].
-
-              These concern me because [WHY YOU ARE CONCERNED].
-
-              I'm writing to know [WHAT YOU WANT YOUR COUNCIL MEMBER TO DO].
-
-              Thank you for your attention, and I look forward to your reply.
-
-              Sincerely,
-              [YOUR NAME]
-            </textarea>
-            <br>
-            <a href="" id="sendButton" target="_blank" class="btn btn-primary float-right">
-              Send email!
-            </a>
-          </form>
-        </div>
-      </div>
 
 
 
@@ -172,10 +218,7 @@
   //geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=cfed478bf47829a2951bc5a3bbc26422&app_id=2d2a1b38'
   });
 
-  function getData() {
-    console.log('getting data...')
-    setTimeout(500,dataChange)
-  }
+
 
 
 // runs on button click 
@@ -255,12 +298,11 @@ function writeEmail() {
    document.getElementById('districtNum').innerHTML = map.location.data.cityCouncilDistrict 
 
    // send Concerns to text
-    var str = '<ul>'
+    var str = '';
     concernsText.forEach(function(concern) {
-      str += '<li>'+ concern + '</li>';
+      str += concern + ', ';
     }); 
 
-    str += '</ul></p>';
     document.getElementById("concerns").innerHTML = str;
 
     // send Reasons to text
@@ -284,7 +326,11 @@ function writeEmail() {
     // send text to form
     document.getElementById('textEntry').textContent = document.getElementById('textDestination').textContent
 
-      sendButton()
+    sendButton()
+
+    document.getElementById('yourEmail').scrollIntoView({  behavior: 'smooth', // smooth scroll
+    block: 'start' // the upper border of the element will be aligned at the top of the visible part of the window of the scrollable area.
+  });
 
 }
 
