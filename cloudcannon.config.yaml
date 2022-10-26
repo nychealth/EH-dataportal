@@ -72,6 +72,18 @@ collections_config:
         - airquality/nycca
         - climatehealth/hvi
         - climatehealth/syndromic
+  about:
+    <<: *base-collection
+    path: content/about
+    name: About
+    singular_name: About
+    singular_key: about
+    description: About collection.
+    sort_options: *default-sort_options
+    schemas:
+      default:
+        <<: *base-schema
+        path: .cloudcannon/schemas/about.md
 collection_groups:
   - heading: Content
     collections:
