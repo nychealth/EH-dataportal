@@ -342,7 +342,7 @@ function illWrite() {
 }
 
 function sendButton() {
-  var address = 'District' + map.location.data.cityCouncilDistrict + "@council.nyc.gov"
+  var address = 'District' + Number.parseInt(map.location.data.cityCouncilDistrict) + "@council.nyc.gov"
   var subject = 'Health concerns in district ' + map.location.data.cityCouncilDistrict
   var body = document.getElementById('textEntry').textContent
 
