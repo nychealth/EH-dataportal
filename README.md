@@ -49,6 +49,7 @@ On merge, these branches are automatically [built](https://github.com/peaceiris/
 ### Automated actions
 When changed are merged into `development` or `production`, in addition to automated builds, these actions are triggered:
 - The site runs a CodeQL analysis on merges/builds, and is set up to use Github's Depandabot to review dependencies for vulnerabilities.
+- On merge to `development`, a Github Action builds and commits the site files to `gh-pages`. On merge to `production`, an Action bulids and commits the site files to `prod-deploy`. We deploy this branch to our server to serve up the production site. 
 - `Gruntfile.js` runs to create `/static/js/lunr/PagesIndex.json`, which powers the search function (`search-results.js`  uses Lunr functions to search `PagesIndex.jso`n and display results on the search-results template).
 
 ### Environments
@@ -127,6 +128,21 @@ Shortcodes can be called from content files (markdown). Essentially, the shortco
 Data accessible throughout the site can be stored in the `data` folder. This can be referenced by site templates. For example, `featured_data.yml` is referenced by `partials/featured-data.html` and displayed on the Home Page and the Data Explorer landing page. You can update "featured datasets" by updating this file.
 
 Other content in `data` are SEO variables and Neighborhood Reports core content.
+
+### Hugo/JavaScript Integrity
+We use Hugo's integrity function; this adds hashes to JS filenames and tells the pages to fetch the files with the hashed names. This is a way of improving security by ensuring the integrity of the JS files. This might not work on production if the server's DigiCert is expired. 
+
+### Image handling
+We use Hugo to automatically resize images. Where you put the source path of an image, there's additional code - Hugo resizes the image, generates a different size (puts it in the `/resources/_gen/images`), and automatically points to the resized image.
+
+### Environment-specific code
+We use a variety of environment-specific code to produce:
+- A conditional modal
+- Different analytics for staging and production
+- ...and possibly other stuff. 
+
+### Generating subtopic_indicators.json
+`data-index.html`, on site build, assembles a json file of topics and indicators. It ranges over DE topic frontmatter and produces a cross-reference of 
 
 
 ---
