@@ -1,0 +1,29 @@
+name: Check deployment
+
+# check to see if most recent build had been deployed
+
+on:
+  schedule:
+    - cron: '30 7 * * 1-5' # every weekday at 7:30
+
+jobs:
+  deploy:
+    name: Check deployment
+    runs-on: ubuntu-20.04
+
+    # output
+
+    outputs:
+      deployed_hash: ${{ steps.step1.outputs.test }}
+      built_hash: ${{ steps.step1.outputs.test }}
+
+    # define job's steps
+
+    steps:
+      - name: Checkout
+        id: d_hash
+        uses: actions/checkout@v3
+        with:
+          ref: prod-deploy
+        run: |
+          git log -1 --format=%H
