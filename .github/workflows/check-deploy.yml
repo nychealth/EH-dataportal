@@ -22,13 +22,17 @@ jobs:
 
     steps:
       
+      # checkout
+      
+      - name: checkout prod-deploy
+        uses: actions/checkout@v3
+        with:
+          ref: prod-deploy
+      
       # built hash
       
       - name: get built hash
         id: b_hash
-        uses: actions/checkout@v3
-        with:
-          ref: prod-deploy
         run: |
           echo "built_hash=$(git log -1 --format=%H)" >> $GITHUB_OUTPUT
 
