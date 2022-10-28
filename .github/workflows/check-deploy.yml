@@ -45,23 +45,33 @@ jobs:
         id: d_hash
         run: |
           echo "deployed_hash=$(curl https://a816-dohbesp.nyc.gov/indicatorpublic/beta/commit_hash.txt -s -o -)" >> $GITHUB_OUTPUT
+
+      # echo hash
+
+      - name: echo outputs
+        id: echo
+        run: |
+          echo "${{ steps.b_hash.built_hash }}"
+          echo "${{ steps.d_hash.deployed_hash }}"
+          echo "${{ steps.b_hash.outputs.built_hash }}"
+          echo "${{ steps.d_hash.outputs.deployed_hash }}"
       
       # get commits
 
       - name: last commit log
         id: log
 
-        if: steps.b_hash.built_hash != steps.d_hash.deployed_hash
+        if: steps.b_hash.outputs.built_hash != steps.d_hash.outputs.deployed_hash
 
         run: |
-          echo "git_log=$(git log ${{ steps.d_hash.deployed_hash }}..${{ steps.d_hash.built_hash }} --pretty='format:%C(auto)%h (%s, %cs)')" >> $GITHUB_OUTPUT
+          echo "git_log=$(git log ${{ steps.d_hash.outputs.deployed_hash }}..${{ steps.b_hash.outputs.built_hash }} --pretty='format:%C(auto)%h (%s, %cs)')" >> $GITHUB_OUTPUT
 
       # if hashes aren't equal, send en email saying that we need to deploy
 
       - name: send reminder
         id: send
         
-        if: steps.b_hash.built_hash != steps.d_hash.deployed_hash
+        if: steps.b_hash.outputs.built_hash != steps.d_hash.outputs.deployed_hash
 
         uses: dawidd6/action-send-mail@v3
         with:
