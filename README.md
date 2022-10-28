@@ -1,14 +1,15 @@
-# The NYC Environment and Health Data portal - frontend development
+# The NYC Environment and Health Data Dortal website
 
-This repository contains a prototype of the Environment and Health Data Portal. You can view a staged development version [here](https://nychealth.github.io/EH-dataportal/) and the live production version [here](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/). 
-
-Ths site is an ongoing work in process. We are always interested in people willing to do user testing and co-design work, so if you're interested in helping develop the site, you can:
-- [email us](mailto:trackingportal@health.nyc.gov)
-- [File an issue](https://github.com/nychealth/EH-dataportal/issues) or [open a pull request](https://github.com/nychealth/EH-dataportal/pulls).
+This repository contains source code for the Environment and Health Data Portal. You can view a staged development version [here](https://nychealth.github.io/EH-dataportal/) and the live production version [here](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/). 
 
 This repository contains the website's source code. [To get the raw data that the site displays, visit our data repo](https://www.github.com/nychealth/EHDP-data).
 
+Ths site is an ongoing work in progress. We are always interested in people willing to do user testing and co-design work, so if you're interested in helping develop the site, you can:
+- [email us](mailto:trackingportal@health.nyc.gov)
+- [File an issue](https://github.com/nychealth/EH-dataportal/issues) or [open a pull request](https://github.com/nychealth/EH-dataportal/pulls).
+
 ## General Development
+This Readme file documents the basics of site structure and functioning. 
 
 ### Getting started
 You will need the following things properly installed on your computer.
@@ -30,10 +31,10 @@ To build the source code, simply enter the command `hugo`. This assembles the si
 ### Start developing
 To begin work:
 - Branch off of production
-- Give the branch a unique name. Branches should be named hotfix-[FIXNAME], content-[CONTENTNAME], or feature-[PROJECTNAME].
-- Keep branch work focused on discrete tasks
+- Give the branch a unique name. We name branches: hotfix-[FIXNAME], content-[CONTENTNAME], or feature-[PROJECTNAME].
+- Keep branch work focused on discrete, unique tasks
 
-After committing, working branches can be merged into `development` for testing and `production` for deployment.
+After committing, working branches can be merged into `development` for testing then merged into `production` for deployment.
 
 ### Branches
 A run-down of main branches, actions, and purposes are:
@@ -50,7 +51,7 @@ On merge, these branches are automatically [built](https://github.com/peaceiris/
 When changed are merged into `development` or `production`, in addition to automated builds, these actions are triggered:
 - The site runs a CodeQL analysis on merges/builds, and is set up to use Github's Depandabot to review dependencies for vulnerabilities.
 - On merge to `development`, a Github Action builds and commits the site files to `gh-pages`. On merge to `production`, an Action bulids and commits the site files to `prod-deploy`. We deploy this branch to our server to serve up the production site. 
-- `Gruntfile.js` runs to create `/static/js/lunr/PagesIndex.json`, which powers the search function (`search-results.js`  uses Lunr functions to search `PagesIndex.jso`n and display results on the search-results template).
+- `Gruntfile.js` runs to create `/static/js/lunr/PagesIndex.json`, which powers the search function (`search-results.js`  uses Lunr functions to search `PagesIndex.json` and display results on the `search-results.html` template).
 
 ### Environments
 The `/config` folder includes subfolders with environment-specific configuration. Specifically, there are different configuration files for development, staging, and production envirnoments. You serve or build the site by specifying the environment (eg, `hugo serve --environment development` or `hugo --environment production`). This merges the contents of that environment's config file (in `/config/ENVIRONMENT/config.toml'` with  `/config/_default/config.toml`. **You may find it useful to create aliases for these functions ([in Powershell](https://www.tutorialspoint.com/how-to-create-powershell-alias-permanently), or [Bash](https://www.shell-tips.com/bash/alias/))**.
@@ -60,26 +61,26 @@ Some key uses of environment-specific variables in the `config` are:
 - Setting the variable `sitepath` (inserted into the templates to fix path issues)
 - Setting the variable `data_repo`, which tells the site to read data from `staging` or `production` branches of [EHDP-data](https://www.github.com/nychealth/EHDP-data).
 
-To deploy to a new environment, update the baseURL in `config.toml`. Update the path, if necessary, in the environment-specific `config.toml` file. And, you may need to update paths in other files, like `search-results.js`.
+To deploy to a new environment, update the baseURL in `config.toml`. Update the path, if necessary, in the environment-specific `config.toml` file. And, you may need to update paths in other files, like `search-results.js`. Crtl-F is your friend.
 
 ### Data repository
 
 Most of the data used by the site is stored in the separate [EHDP-data](https://github.com/nychealth/EHDP-data) repository. This setup allows us to update the site's data without needing to re-build the entire site. Look there for descriptions of the data files, and for the code used to generate the them. 
 
-Note that any file required to *build* the site should remain with the source code, but anything required only for display can and should be stored in the remote data repo, EHDP-data. 
+Note that any file required to *build* the site should remain with the source code, but anything required only for display can be stored in the remote data repo, EHDP-data. 
 
 ---
 ## How to create new content
 Generally, Hugo works by combining content (in markdown, located in `/content`) with templates (located in the `/themes`) - you'll notice that these two directories have identical structures, because Hugo combines content in `/content/data-stories`, for example, with templates in `/themes/layouts/data-stories`. 
-- A file named ```index.md``` will, by default, receive the ```single.html``` layout
-- A file named ```_index.md``` will get ```section.html``` layout 
+- A file named `_index.md` will get `section.html` layout 
+- A file named `index.md` will, by default, receive the `single.html` layout
 - And, a file with another name, `name.md`, will receive `single.html` layout 
 - A file with `layout: custom` in the frontmatter will get a layout called `custom.html` (all in the corresponding layouts folder).
 
-Templates can include Hugo code (which you can identify by {{ curly brackets }}. When Hugo serves or builds the site, it runs code, inserts content into the HTML, and produces static HTML pages. 
+Templates can include Hugo code (which you can identify by {{ curly brackets }}. When Hugo serves or builds the site, it runs code, inserts content into the HTML, and produces static HTML pages. Any template is actually an assembly of other templates.
 
 ### Creating a new data story
-- First create the markdown file with `hugo new data-stories/TITLE/index.md`. 
+- First create the markdown file with the terminal command `hugo new data-stories/TITLE/index.md`. 
 - Add a banner image to the same folder.
 - Copy, paste, and edit the frontmatter from pre-existing data stories. You will need these fields:
     - `title`, `date`, and `draft` 
@@ -103,7 +104,7 @@ To create a new Key Topic:
 To create a child page, create a subfolder within the keytopic - for example, see the folder structure under `/content/key-topics/airquality`.
 
 ### Data Explorer
-The data explorer includes markdown files for each topic (previously called subtopics). The associated indicators are specified in an array (with headers) in the frontmatter. 
+The data explorer includes markdown files for each topic (previously called subtopics). The associated indicators are specified in an array (with headers) in the frontmatter. Extensive Javascript powers the rest of the functions, with the javascript for each display (summary, map, trend, and links) in discrete files.
 
 ### Neighborhood Reports
 To publish a new neighborhood report, you'd need:
@@ -143,7 +144,6 @@ We use a variety of environment-specific code to produce:
 
 ### Generating subtopic_indicators.json
 `data-index.html`, on site build, assembles a json file of topics and indicators. It ranges over DE topic frontmatter and produces a cross-reference of 
-
 
 ---
 
