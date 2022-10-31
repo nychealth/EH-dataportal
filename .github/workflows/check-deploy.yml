@@ -53,8 +53,6 @@ jobs:
       - name: echo outputs
         id: echo
         run: |
-          echo "${{ steps.b_hash.built_hash }}"
-          echo "${{ steps.d_hash.deployed_hash }}"
           echo "${{ steps.b_hash.outputs.built_hash }}"
           echo "${{ steps.d_hash.outputs.deployed_hash }}"
       
@@ -67,6 +65,7 @@ jobs:
 
         run: |
           echo "git_log=$(git log ${{ steps.d_hash.outputs.deployed_hash }}..${{ steps.b_hash.outputs.built_hash }} --pretty='format:%C(auto)%h (%s, %cs)')" >> $GITHUB_OUTPUT
+          $GITHUB_OUTPUT
 
       # if hashes aren't equal, send en email saying that we need to deploy
 
@@ -77,9 +76,12 @@ jobs:
 
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: app22csmtp.health.dohmh.nycnet
+          server_address: smtp.gmail.com
           server_port: 25
-          subject: Pending deployment
+          subject: Pending deployment (${{ github.repository }})
           body: ${{ steps.log.git_log }}
           to: cgettings@health.nyc.gov,mmontesano@health.nyc.gov
-          from: ${{ github.repository }}
+          from: nyc.trackingportal@gmail.com
+          username: ${{secrets.MAIL_USERNAME}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          priority: high
