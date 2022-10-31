@@ -55,10 +55,9 @@ jobs:
       - name: echo outputs
         id: echo
         run: |
-          echo "${{ steps.b_hash.outputs.built_hash }}"
-          echo "${{ steps.d_hash.outputs.deployed_hash }}"
-          echo $("${{ steps.b_hash.outputs.built_hash }}" != "${{ steps.d_hash.outputs.deployed_hash }}")
-          echo "$(${{ steps.b_hash.outputs.built_hash }} != ${{ steps.d_hash.outputs.deployed_hash }})"
+          echo "built_hash: ${{ steps.b_hash.outputs.built_hash }}"
+          echo "deployed_hash: ${{ steps.d_hash.outputs.deployed_hash }}"
+          echo "not equal: $(${{ steps.b_hash.outputs.built_hash }} != ${{ steps.d_hash.outputs.deployed_hash }})"
       
       # get commits
 
@@ -68,9 +67,6 @@ jobs:
         if: ${{ steps.b_hash.outputs.built_hash }} != ${{ steps.d_hash.outputs.deployed_hash }}
 
         run: |
-          echo "$(${{ steps.b_hash.outputs.built_hash }} != ${{ steps.d_hash.outputs.deployed_hash }})"
-          echo ${{ steps.b_hash.outputs.built_hash }}
-          echo ${{ steps.d_hash.outputs.deployed_hash }}
           echo "git_log=$(git log ${{ steps.d_hash.outputs.deployed_hash }}..${{ steps.b_hash.outputs.built_hash }} --pretty='format:%C(auto)%h (%s, %cs)')" >> $GITHUB_OUTPUT
 
       # if hashes aren't equal, send en email saying that we need to deploy
