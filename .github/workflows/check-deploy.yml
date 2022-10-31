@@ -61,25 +61,26 @@ jobs:
       - name: last commit log
         id: log
 
-        if: steps.b_hash.outputs.built_hash != steps.d_hash.outputs.deployed_hash
+        if: ${{ steps.b_hash.outputs.built_hash }} != ${{ steps.d_hash.outputs.deployed_hash }}
 
         run: |
+          ${{ steps.b_hash.outputs.built_hash }}
+          ${{ steps.d_hash.outputs.deployed_hash }}
           echo "git_log=$(git log ${{ steps.d_hash.outputs.deployed_hash }}..${{ steps.b_hash.outputs.built_hash }} --pretty='format:%C(auto)%h (%s, %cs)')" >> $GITHUB_OUTPUT
-          $GITHUB_OUTPUT
 
       # if hashes aren't equal, send en email saying that we need to deploy
 
       - name: send reminder
         id: send
         
-        if: steps.b_hash.outputs.built_hash != steps.d_hash.outputs.deployed_hash
+        if: ${{ steps.b_hash.outputs.built_hash }} != ${{ steps.d_hash.outputs.deployed_hash }}
 
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
           server_port: 25
           subject: Pending deployment (${{ github.repository }})
-          body: ${{ steps.log.git_log }}
+          body: ${{ steps.log.outputs.git_log }}
           to: cgettings@health.nyc.gov,mmontesano@health.nyc.gov
           from: nyc.trackingportal@gmail.com
           username: ${{secrets.MAIL_USERNAME}}
