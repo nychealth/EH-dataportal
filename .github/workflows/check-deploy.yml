@@ -55,12 +55,12 @@ jobs:
       - name: echo outputs
         id: echo
         run: |
-          built_hash = ${{ steps.b_hash.outputs.built_hash }}
-          deployed_hash = ${{ steps.d_hash.outputs.deployed_hash }}
+          built_hash=${{ steps.b_hash.outputs.built_hash }}
+          deployed_hash=${{ steps.d_hash.outputs.deployed_hash }}
           echo "built_hash: ${{ steps.b_hash.outputs.built_hash }}"
           echo "deployed_hash: ${{ steps.d_hash.outputs.deployed_hash }}"
           echo "not equal: $(${{ steps.b_hash.outputs.built_hash }} != ${{ steps.d_hash.outputs.deployed_hash }})"
-          echo 'not equal: $("$built_hash" != "$deployed_hash")'
+          echo "not equal: $("$built_hash" != "$deployed_hash")""
       
       # get commits
 
