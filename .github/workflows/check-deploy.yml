@@ -56,8 +56,8 @@ jobs:
         run: |
           echo "${{ steps.b_hash.outputs.built_hash }}"
           echo "${{ steps.d_hash.outputs.deployed_hash }}"
-          $built_hash = "${{ steps.b_hash.outputs.built_hash }}"
-          $deployed_hash = "${{ steps.d_hash.outputs.deployed_hash }}"
+          echo "${{ steps.b_hash.outputs.built_hash }}" > $built_hash
+          echo "${{ steps.d_hash.outputs.deployed_hash }}" > $deployed_hash
           $built_hash
           $deployed_hash
       
