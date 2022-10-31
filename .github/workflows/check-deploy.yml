@@ -38,7 +38,7 @@ jobs:
         id: b_hash
         run: |
           echo "Current branch: $(git branch --show-current)"
-          echo "built_hash=$(git log -1 --format=%H)" >> $GITHUB_OUTPUT
+          echo "built_hash='$(git log -1 --format=%H)'" >> $GITHUB_OUTPUT
           git log -1 --format=%H
 
       # deployed hash
@@ -46,7 +46,7 @@ jobs:
       - name: get deployed hash
         id: d_hash
         run: |
-          echo "deployed_hash=$(curl https://a816-dohbesp.nyc.gov/indicatorpublic/beta/commit_hash.txt -s -o -)" >> $GITHUB_OUTPUT
+          echo "deployed_hash='$(curl https://a816-dohbesp.nyc.gov/indicatorpublic/beta/commit_hash.txt -s -o -)'" >> $GITHUB_OUTPUT
           curl https://a816-dohbesp.nyc.gov/indicatorpublic/beta/commit_hash.txt -s -o -
 
       # echo hash
@@ -56,19 +56,17 @@ jobs:
         run: |
           echo "${{ steps.b_hash.outputs.built_hash }}"
           echo "${{ steps.d_hash.outputs.deployed_hash }}"
-          echo "${{ steps.b_hash.outputs.built_hash }}" >> $BUILT_HASH
-          echo "${{ steps.d_hash.outputs.deployed_hash }}" >> $DEPLOYED_HASH
-          $BUILT_HASH
-          $DEPLOYED_HASH
+          ${{ steps.b_hash.outputs.built_hash }} != ${{ steps.d_hash.outputs.deployed_hash }}
       
       # get commits
 
       - name: last commit log
         id: log
 
-        if: ${{ steps.b_hash.outputs.built_hash }} == ${{ steps.d_hash.outputs.deployed_hash }}
+        if: ${{ steps.b_hash.outputs.built_hash }} != ${{ steps.d_hash.outputs.deployed_hash }}
 
         run: |
+          ${{ steps.b_hash.outputs.built_hash }} != ${{ steps.d_hash.outputs.deployed_hash }}
           echo ${{ steps.b_hash.outputs.built_hash }}
           echo ${{ steps.d_hash.outputs.deployed_hash }}
           echo "git_log=$(git log ${{ steps.d_hash.outputs.deployed_hash }}..${{ steps.b_hash.outputs.built_hash }} --pretty='format:%C(auto)%h (%s, %cs)')" >> $GITHUB_OUTPUT
