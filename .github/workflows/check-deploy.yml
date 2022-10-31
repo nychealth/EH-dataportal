@@ -60,6 +60,8 @@ jobs:
           echo "built_hash: ${{ steps.b_hash.outputs.built_hash }}"
           echo "deployed_hash: ${{ steps.d_hash.outputs.deployed_hash }}"
           echo "not equal: $($built_hash != $deployed_hash)"
+          echo $built_hash
+          echo $deployed_hash
       
       # get commits
 
@@ -73,22 +75,22 @@ jobs:
 
       # if hashes aren't equal, send en email saying that we need to deploy
 
-      - name: send reminder
-        id: send
+      # - name: send reminder
+      #   id: send
         
-        if: ${{ steps.b_hash.outputs.built_hash }} != ${{ steps.d_hash.outputs.deployed_hash }}
+      #   if: ${{ steps.b_hash.outputs.built_hash }} != ${{ steps.d_hash.outputs.deployed_hash }}
 
-        uses: dawidd6/action-send-mail@v3
-        with:
-          # server_address: app22csmtp.health.dohmh.nycnet
-          server_address: smtp.gmail.com
-          server_port: 25
-          secure: false
-          subject: Pending deployment (${{ github.repository }})
-          body: ${{ steps.log.outputs.git_log }}
-          # to: cgettings@health.nyc.gov,mmontesano@health.nyc.gov
-          to: cgettings@health.nyc.gov
-          from: trackingportal@health.nyc.gov
-          username: ${{secrets.MAIL_USERNAME}}
-          password: ${{secrets.MAIL_PASSWORD}}
-          priority: high
+      #   uses: dawidd6/action-send-mail@v3
+      #   with:
+      #     # server_address: app22csmtp.health.dohmh.nycnet
+      #     server_address: smtp.gmail.com
+      #     server_port: 25
+      #     secure: false
+      #     subject: Pending deployment (${{ github.repository }})
+      #     body: ${{ steps.log.outputs.git_log }}
+      #     # to: cgettings@health.nyc.gov,mmontesano@health.nyc.gov
+      #     to: cgettings@health.nyc.gov
+      #     from: trackingportal@health.nyc.gov
+      #     username: ${{secrets.MAIL_USERNAME}}
+      #     password: ${{secrets.MAIL_PASSWORD}}
+      #     priority: high
