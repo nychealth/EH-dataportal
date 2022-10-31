@@ -80,6 +80,7 @@ jobs:
         with:
           server_address: smtp.gmail.com
           server_port: 25
+          secure: false
           subject: Pending deployment (${{ github.repository }})
           body: ${{ steps.log.outputs.git_log }}
           to: cgettings@health.nyc.gov,mmontesano@health.nyc.gov
