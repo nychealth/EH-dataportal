@@ -56,6 +56,10 @@ jobs:
         run: |
           echo "${{ steps.b_hash.outputs.built_hash }}"
           echo "${{ steps.d_hash.outputs.deployed_hash }}"
+          $built_hash = "${{ steps.b_hash.outputs.built_hash }}"
+          $deployed_hash = "${{ steps.d_hash.outputs.deployed_hash }}"
+          $built_hash
+          $deployed_hash
       
       # get commits
 
@@ -78,13 +82,13 @@ jobs:
 
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: smtp.gmail.com
-          server_port: 25
-          secure: false
+          server_address: app22csmtp.health.dohmh.nycnet
+          server_port: 465
+          secure: true
           subject: Pending deployment (${{ github.repository }})
           body: ${{ steps.log.outputs.git_log }}
           to: cgettings@health.nyc.gov,mmontesano@health.nyc.gov
-          from: nyc.trackingportal@gmail.com
+          from: trackingportal@health.nyc.gov
           username: ${{secrets.MAIL_USERNAME}}
           password: ${{secrets.MAIL_PASSWORD}}
           priority: high
