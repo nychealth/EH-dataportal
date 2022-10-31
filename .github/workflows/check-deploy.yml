@@ -61,11 +61,11 @@ jobs:
       - name: last commit log
         id: log
 
-        if: ${{ steps.b_hash.outputs.built_hash }} != ${{ steps.d_hash.outputs.deployed_hash }}
+        if: ${{ steps.b_hash.outputs.built_hash }} == ${{ steps.d_hash.outputs.deployed_hash }}
 
         run: |
-          ${{ steps.b_hash.outputs.built_hash }}
-          ${{ steps.d_hash.outputs.deployed_hash }}
+          echo ${{ steps.b_hash.outputs.built_hash }}
+          echo ${{ steps.d_hash.outputs.deployed_hash }}
           echo "git_log=$(git log ${{ steps.d_hash.outputs.deployed_hash }}..${{ steps.b_hash.outputs.built_hash }} --pretty='format:%C(auto)%h (%s, %cs)')" >> $GITHUB_OUTPUT
 
       # if hashes aren't equal, send en email saying that we need to deploy
