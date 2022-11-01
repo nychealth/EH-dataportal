@@ -22,15 +22,15 @@
 
 {{/*  {{- if eq hugo.Environment "data_staging" -}}   */}}
 
-    {{- $js := resources.Get "js/main.js" }}
+    {{/*  {{- $js := resources.Get "js/main.js" }}
     <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
 
     {{- $js := resources.Get "js/search.js" }}
-    <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
+    <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>  */}}
 
 {{/*  {{ else }}  */}}
 
-    {{/*  {{- $js := resources.Get "js/main.js" -}}
+    {{- $js := resources.Get "js/main.js" -}}
     {{ $secureJS := $js | resources.Fingerprint "sha512" }}
     <script type="text/javascript" 
         src="{{ $secureJS.RelPermalink }}" 
@@ -40,6 +40,6 @@
     {{ $secureJS := $js | resources.Fingerprint "sha512" }}
     <script type="text/javascript" 
         src="{{ $secureJS.RelPermalink }}" 
-        integrity="{{ $secureJS.Data.Integrity }}"></script>  */}}
+        integrity="{{ $secureJS.Data.Integrity }}"></script>
 
 {{/*  {{ end }}  */}}
