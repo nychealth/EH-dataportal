@@ -36,7 +36,7 @@ jobs:
       - name: get built hash
         id: b_hash
         run: |
-          echo "EOL: $(git config --get core.eol)"
+          git config --get core.eol
           echo "Current branch: $(git branch --show-current)"
           echo "built_hash=$(git log -1 --format=%H)" >> $GITHUB_OUTPUT
           git log -1 --format=%H
