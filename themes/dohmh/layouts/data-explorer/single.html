@@ -194,7 +194,7 @@
             <nav aria-label="breadcrumb" class="mb-2">
                 <ul class="breadcrumb mr-auto">
                     <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}/data-explorer/">Data Explorer</a></li>
+                    <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}data-explorer/">Data Explorer</a></li>
 
                     <li class="breadcrumb-item active"><strong><a href="{{ .Page.RelPermalink }}">{{ .Title }}</a></strong></li>
                     <li class="nav-item ml-auto d-none d-lg-block">
@@ -520,14 +520,19 @@
 {{ end }}
 
 {{- define "js_bot" -}}
+
     {{/*  JS Dependencies  */}}
+    
     {{/*  Arquero  */}}
+
     {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" -}}
+
     <script type="text/javascript" 
         src="{{ $arquero.RelPermalink }}" 
         integrity="{{ $arquero.Data.Integrity }}"></script>
 
      {{/*  DataTables  */}}
+
     {{- $dataTables := resources.Get "node_modules/datatables.net/js/jquery.dataTables.min.js" -}}
     {{- $dataTablesButtons := resources.Get "node_modules/datatables.net-buttons/js/dataTables.buttons.min.js" -}}
     {{- $dataTablesButtonsHtml5 := resources.Get "node_modules/datatables.net-buttons/js/buttons.html5.min.js" -}}
@@ -537,30 +542,38 @@
     {{- $pdfmake := resources.Get "node_modules/pdfmake/build/pdfmake.min.js" -}}
     {{- $pdfmakeVfsFonts := resources.Get "node_modules/pdfmake/build/vfs_fonts.js" -}}
     
-    {{ $dataTablesBundelJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup $jszip $pdfmake $pdfmakeVfsFonts | resources.Concat "js/dataTableBundle.js" }}
+    {{- $dataTablesBundelJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup $jszip $pdfmake $pdfmakeVfsFonts | resources.Concat "js/dataTableBundle.js" -}}
+    {{- $DT_secureJS := $dataTablesBundelJS | resources.Fingerprint "sha512" -}}
+
     <script type="text/javascript" 
-        src="{{ $dataTablesBundelJS.RelPermalink }}" 
-        integrity="{{ $dataTablesBundelJS.Data.Integrity }}"></script>
+        src="{{ $DT_secureJS.RelPermalink }}" 
+        integrity="{{ $DT_secureJS.Data.Integrity }}"></script>
 
     {{/*  VegaLite  */}}
+
     {{- $vega := resources.Get "node_modules/vega/build/vega.min.js" -}}
     {{- $vegaLite := resources.Get "node_modules/vega-lite/build/vega-lite.min.js" -}}
     {{- $vegaEmbed := resources.Get "node_modules/vega-embed/build/vega-embed.min.js" -}}
 
-    {{ $vegaBundelJS := slice $vega $vegaLite $vegaEmbed | resources.Concat "js/vegaBundle.js" }}
+    {{- $vegaBundelJS := slice $vega $vegaLite $vegaEmbed | resources.Concat "js/vegaBundle.js" -}}
+    {{- $vega_secureJS := $vegaBundelJS | resources.Fingerprint "sha512" -}}
+
     <script type="text/javascript" 
-        src="{{ $vegaBundelJS.RelPermalink }}" 
-        integrity="{{ $vegaBundelJS.Data.Integrity }}"></script>
+        src="{{ $vega_secureJS.RelPermalink }}" 
+        integrity="{{ $vega_secureJS.Data.Integrity }}"></script>
 
     {{/*  D3  */}}
+
     {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" -}}
+    {{- $d3_secureJS := $d3 | resources.Fingerprint "sha512" -}}
 
     <script type="text/javascript" 
-        src="{{ $d3.RelPermalink }}" 
-        integrity="{{ $d3.Data.Integrity }}"></script>
+        src="{{ $d3_secureJS.RelPermalink }}" 
+        integrity="{{ $d3_secureJS.Data.Integrity }}"></script>
 
 
     {{/*  Data Explorer JS  */}}
+
     {{/*  renderIndicatorDropdown needs to be here becasue of the hugo's markup  */}}
 
     <script>
@@ -608,7 +621,7 @@
             let citation = "New York City Department of Health, Environment & Health Data Portal. "  + `{{ .Title }}` + " data. " + indicatorName + '. Accessed at ' + `{{ .Permalink}}` + ' on ' + today + "."
 
             // Add to form
-            document.getElementById('citeText').setAttribute('value',citation);
+            document.getElementById('citeText').setAttribute('value', citation);
 
             // console.log('CITATION CREATED')
 
@@ -646,22 +659,22 @@
     {{- $disparities := resources.Get "js/data-explorer/disparities.js" -}}
     {{- $app := resources.Get "js/data-explorer/app.js" -}}
     
-    {{ $dataExplorerJS := slice $global $data $renderMeasures $summary $map $trend $links $disparities $app | resources.Concat "js/bundle.js" }}
-    {{ $DE_secureJS := $dataExplorerJS | resources.Fingerprint "sha512" }}
+    {{- $dataExplorerJS := slice $global $data $renderMeasures $summary $map $trend $links $disparities $app | resources.Concat "js/bundle.js" -}}
+    {{- $DE_secureJS := $dataExplorerJS | resources.Fingerprint "sha512" -}}
 
     <script type="text/javascript" 
         src="{{ $DE_secureJS.RelPermalink }}" 
         integrity="{{ $DE_secureJS.Data.Integrity }}"></script>
 
     {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
-    {{ $secureJS := $js | resources.Fingerprint "sha512" }}
+    {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
 
     <script type="text/javascript" 
         src="{{ $secureJS.RelPermalink }}" 
         integrity="{{ $secureJS.Data.Integrity }}"></script>
 
     {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
-    {{ $secureJS := $js | resources.Fingerprint "sha512" }}
+    {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
     
     <script type="text/javascript" 
         src="{{ $secureJS.RelPermalink }}" 
