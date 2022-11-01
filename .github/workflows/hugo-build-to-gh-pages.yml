@@ -76,7 +76,7 @@ jobs:
       # set up Hugo
 
       - name: Hugo setup
-        uses: peaceiris/actions-hugo@v2.4.13
+        uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: "0.105.0"
           extended: true
