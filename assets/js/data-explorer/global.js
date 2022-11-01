@@ -92,27 +92,6 @@ const url = new URL(window.location);
 
 let hashchange = new Event('hashchange');
 
-function createCitation() {
-    // Create date
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    let yyyy = today.getFullYear();
-    today = mm + '/' + dd + '/' + yyyy;
-    
-    // Create citation
-    let citation = "New York City Department of Health, Environment & Health Data Portal. "  + `{{ .Title }}` + " data. " + indicatorName + '. Accessed at ' + `{{ .RelPermalink}}` + ' on ' + today + "."
-    
-    // Add to form
-    document.getElementById('citeText').setAttribute('value',citation);
-    
-    // console.log('CITATION CREATED')
-    
-    let btn = document.getElementById('citeButton')
-    btn.innerHTML = `<i class="fas fa-copy mr-1"></i>Copy citation`
-    
-}
-
 
 // define georank function at top scope, so we can use it later
 
@@ -136,6 +115,19 @@ const assignGeoRank = (GeoType) => {
             return 7;
     }
 }
+
+// array of geotypes in georank order
+
+const geoTypes = [
+    "Citywide",
+    "Borough",
+    "NYCKIDS",
+    "UHF34",
+    "UHF42",
+    "Subboro",
+    "CD",
+    "NTA"
+]
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // measure info functions

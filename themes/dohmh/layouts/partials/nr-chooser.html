@@ -56,7 +56,11 @@
         document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
           e.preventDefault(); // prevent page re-load
           var locVal = searchForm.options[searchForm.selectedIndex].value;
-          window.location = '{{ $.Site.Params.baseURL }}/neighborhood-reports/'+ DOMPurify.sanitize(locVal);
+          console.log("locVal", locVal);
+          {{/*  window.location = '{{ $.Site.Params.baseURL }}/neighborhood-reports/'+ DOMPurify.sanitize(locVal);  */}}
+          console.log("baseURL", baseURL);
+          // window.location = baseURL + 'neighborhood-reports/'+ DOMPurify.sanitize(locVal);
+          window.location ='{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(locVal);
           {{/*  window.location = '/neighborhood-reports/'+ DOMPurify.sanitize(locVal);  */}}
         });
       </script>

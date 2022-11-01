@@ -5,34 +5,26 @@
 
 window.onpopstate = function (event) {
 
-    // console.log("** pop **");
-    // console.log("state: ", window.history.state);
-    // console.log("event: ", event);
-
     const new_url = new URL(window.location);
     let new_indicatorId = parseFloat(new_url.searchParams.get('id'));
 
-    // console.log("new_indicatorId [pop]", new_indicatorId);
-    
     if (new_indicatorId != indicatorId) {
-        
+
         loadIndicator(new_indicatorId, true)
-        
+
     }
 };
 
 window.addEventListener("hashchange", () => {
 
     const hash = window.location.hash.replace('#', "");
-    // console.log("< hashchange > hash: ", hash);
-    
+
     switch (hash) {
 
         // using fallthrough
 
         case 'display=summary':
         case 'tab-table':
-            // console.log("< hashchange > summary");
             currentHash = 'display=summary';
             $('#tab-btn-table').tab('show');
             showTable();
@@ -40,7 +32,6 @@ window.addEventListener("hashchange", () => {
 
         case 'display=map':
         case 'tab-map':
-            // console.log("< hashchange > map");
             currentHash = 'display=map';
             $('#tab-btn-map').tab('show');
             showMap();
@@ -48,7 +39,6 @@ window.addEventListener("hashchange", () => {
 
         case 'display=trend':
         case 'tab-trend':
-            // console.log("< hashchange > trend");
             currentHash = 'display=trend';
             $('#tab-btn-trend').tab('show');
             showTrend();
@@ -56,24 +46,18 @@ window.addEventListener("hashchange", () => {
 
         case 'display=links':
         case 'tab-links':
-            // console.log("< hashchange > links");
             currentHash = 'display=links';
             $('#tab-btn-links').tab('show');
             showLinks();
             break;
 
         default:
-            // console.log("< hashchange > default");
             currentHash = 'display=summary';
-            {{/*  window.location.hash = 'display=summary';  */}}
-            {{/*  $('#tab-btn-table').tab('show');  */}}
-            {{/*  showTable();  */}}
             break;
     }
 
     state = window.history.state;
 
-    // console.log(">> state [hashchange]", state);
 
 });
 
@@ -129,24 +113,18 @@ $('#tab-btn-links').on('click', e => {
 })
 
 
-function copyCitation(){
-    let citeText = document.getElementById('citeText')
-    citeText.select()
-    citeText.setSelectionRange(0,99999);
-    navigator.clipboard.writeText(citeText.value)
-    let btn = document.getElementById('citeButton')
-    btn.innerHTML = `<i class="fas fa-copy mr-1"></i>Copied!`
-    // console.log('citation copied!')
-}
-
-createCitation();
-
 // export current table view
 
 $("#thisView").on("click", (e) => {
 
     let summaryTable = $('#tableID').DataTable();
     summaryTable.button("thisView:name").trigger();
+
+    gtag('event', 'file_download', {
+        'file_name': 'NYC EH Data Portal - ' + indicatorName + " (filtered)" + '.csv',
+        'file_extension': '.csv',
+        'link_text': 'Current table view'
+    });
 
     e.stopPropagation();
 
@@ -161,18 +139,24 @@ $("#allData").on("click", (e) => {
     let allData = aq.from(fullDataTableObjects)
         .groupby("Time", "GeoType", "GeoID", "GeoRank", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI")
-        .relocate(["Time", "GeoType", "GeoID", "GeoRank"], { before: 0 }) 
+        .relocate(["Time", "GeoType", "GeoID", "GeoRank"], { before: 0 })
 
     let downloadTableCSV = allData.toCSV();
 
     // Data URI
     let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
     let hiddenElement = document.createElement('a');
-    
+
     hiddenElement.href = csvData;
     hiddenElement.target = '_blank';
     hiddenElement.download = 'NYC EH Data Portal - ' + indicatorName + " (full)" + '.csv';
     hiddenElement.click();
+
+    gtag('event', 'file_download', {
+        'file_name': hiddenElement.download,
+        'file_extension': '.csv',
+        'link_text': 'Full table for this indicator'
+    });
 
     e.stopPropagation();
 
@@ -199,6 +183,12 @@ $("#rawData").on("click", (e) => {
         hiddenElement.target = '_blank';
         hiddenElement.download = 'NYC EH Data Portal - ' + indicatorName + " (raw)" + '.csv';
         hiddenElement.click();
+
+        gtag('event', 'file_download', {
+            'file_name': hiddenElement.download,
+            'file_extension': '.csv',
+            'link_text': 'Raw data for this indicator'
+        });
 
         e.stopPropagation();
 

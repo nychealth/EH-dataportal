@@ -1,6 +1,6 @@
-{{/* =================================================================== */}}
-{{/*  fetch and load indicators metadata into global object              */}}
-{{/* =================================================================== */}}
+// =================================================================== //
+//  fetch and load indicators metadata into global object
+// =================================================================== //
 
 fetch(data_repo + "/" + data_branch + '/indicators/indicators.json')
     .then(response => response.json())
@@ -44,13 +44,9 @@ const loadIndicator = (this_indicatorId, dont_add_to_history) => {
     console.log("** loadIndicator");
 
     currentHash = window.location.hash;
-    // console.log("currentHash [loadIndicator]", currentHash);
 
-    // console.log("this_indicatorId", this_indicatorId);
-    // console.log("window.history.state", window.history.state);
-
-    // if indicatorId isn't given, use the first indicator from the dropdown list 
-    //  (which is populated by Hugo reading the content frontmatter). 
+    // if indicatorId isn't given, use the first indicator from the dropdown list
+    //  (which is populated by Hugo reading the content frontmatter).
 
     const firstIndicatorId = document.querySelectorAll('#indicator-dropdown button')[0].getAttribute('data-indicator-id');
 
@@ -62,7 +58,7 @@ const loadIndicator = (this_indicatorId, dont_add_to_history) => {
 
     // get the list element for this indicator
     const thisIndicatorEl = document.querySelector(`button[data-indicator-id='${indicatorId}']`)
-    
+
     // set this element as active & selected
     $(thisIndicatorEl).addClass("active");
     $(thisIndicatorEl).attr('aria-selected', true);
@@ -75,10 +71,10 @@ const loadIndicator = (this_indicatorId, dont_add_to_history) => {
     indicatorShortName = indicator?.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
     indicatorMeasures = indicator?.Measures;
 
-    //create Citation
+    // create Citation
 
     createCitation(); // re-runs on updating Indicator
-    
+
     // send Indicator Title to vis headers
 
     document.getElementById('summaryTitle').innerHTML = indicatorName;
@@ -90,54 +86,35 @@ const loadIndicator = (this_indicatorId, dont_add_to_history) => {
     selectedMapMeasure = false;
     selectedTrendMeasure = false;
     selectedLinksMeasure = false;
-    
+
     // if dont_add_to_history is true, then don't push the state
     // if dont_add_to_history is false, or not set, push the state
-    // this prevents loadIndicator from setting new history entries when it's called 
+    // this prevents loadIndicator from setting new history entries when it's called
     //  on a popstate event, i.e. when the user is traversing the history stack
 
     // dont_add_to_history catches the pop state case, state.id != indicatorId catches the location change case
-    // we don't want to add to the history stack if we've landed on this page by way of the history stack 
-    
+    // we don't want to add to the history stack if we've landed on this page by way of the history stack
+
     url.searchParams.set('id', parseFloat(indicatorId));
 
     if (!dont_add_to_history && (window.history.state === null || state === null || window.history.state.id != indicatorId)) {
 
-        // console.log("++++ add to history");
-        
-        // console.log("indicatorId [1]:", url.searchParams.get('id'))
-
         if (!url.hash) {
-
-            // console.log("- no hash");
-            // console.log("state [pre]: ", window.history.state);
-            // console.log("indicatorId [2]:", url.searchParams.get('id'))
 
             // if loadIndicator is being called without a hash (like when a topic page is loaded), then show the first ID and summary
 
             url.hash = "display=summary";
             window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);
 
-            // console.log("state [post]: ", window.history.state);
-
         } else {
-
-            // console.log("# hash");
-            // console.log("state [pre]: ", window.history.state);
-            // console.log("indicatorId [3]:", url.searchParams.get('id'))
 
             url.hash = currentHash;
             window.history.pushState({ id: indicatorId, hash: url.hash }, '', url);
-
-            // console.log("state [post]: ", window.history.state);
 
         }
 
     } else {
 
-        // console.log("---- don't add to history");
-        // console.log("state: ", window.history.state);
-        // console.log("indicatorId [4]:", url.searchParams.get('id'))
 
     }
 
@@ -155,7 +132,7 @@ const loadIndicator = (this_indicatorId, dont_add_to_history) => {
 // ----------------------------------------------------------------------- //
 
 const loadData = (this_indicatorId) => {
-    
+
     fetch(data_repo + "/" + data_branch + `/indicators/data/${this_indicatorId}.json`)
     .then(response => response.json())
     .then(async data => {
@@ -167,8 +144,8 @@ const loadData = (this_indicatorId) => {
         ful = aq.from(data)
             .derive({ "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
             .groupby("Time", "GeoType", "GeoID", "GeoRank")
-        
-        
+
+
         aqData = ful
             .groupby("Time", "GeoType", "GeoID")
             .orderby(aq.desc('Time'), 'GeoRank')
@@ -182,16 +159,16 @@ const loadData = (this_indicatorId) => {
 const loadGeo = () => {
 
     const geoUrl = data_repo + "/" + data_branch + `/geography/GeoLookup.csv`; // col named "GeoType"
-    
+
     aq.loadCSV(geoUrl)
         .then(data => {
-            
+
             geoTable = data.select(aq.not('Lat', 'Long'));
-            
+
             // call the data-to-geo joining function
-            
+
             joinData();
-        
+
     });
 }
 
@@ -206,7 +183,7 @@ const joinData = () => {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     // flatten MeasureID + TimeDescription
-    
+
     let availableTimes = [];
 
     // create table column header with display type
@@ -214,23 +191,23 @@ const joinData = () => {
     let measurementDisplay = [];
 
     indicatorMeasures.map(
-    
+
         measure => {
 
-            let aqAvailableTimes = 
+            let aqAvailableTimes =
                 aq.from(measure.AvailableTimes)
                 .derive({MeasureID: `${measure.MeasureID}`})
-            
+
             availableTimes.push(aqAvailableTimes);
 
-            let aqMeasurementDisplay = 
+            let aqMeasurementDisplay =
                 aq.table(
                 {
-                    MeasureID: [measure.MeasureID], 
-                    MeasurementType: [measure.MeasurementType], 
+                    MeasureID: [measure.MeasureID],
+                    MeasurementType: [measure.MeasurementType],
                     DisplayType: [measure.DisplayType]
                 })
-            
+
             measurementDisplay.push(aqMeasurementDisplay);
 
         }
@@ -240,7 +217,7 @@ const joinData = () => {
 
     let aqMeasureIdTimes     = availableTimes.reduce((a, b) => a.concat(b))
     let aqMeasurementDisplay = measurementDisplay.reduce((a, b) => a.concat(b))
-    
+
     // foundational joined dataset
 
     joinedAqData = aqData
@@ -248,14 +225,14 @@ const joinData = () => {
         .rename({'Name': 'Geography'})
         .join(aqMeasureIdTimes, [["MeasureID", "Time"], ["MeasureID", "TimeDescription"]])
         .select(
-            "GeoID", 
-            "GeoType", 
-            "GeoRank", 
-            "Geography", 
+            "GeoID",
+            "GeoType",
+            "GeoRank",
+            "Geography",
             "MeasureID",
-            "Time", 
-            "Value", 
-            "DisplayValue", 
+            "Time",
+            "Value",
+            "DisplayValue",
             "CI",
             "start_period",
             "end_period"
@@ -267,7 +244,7 @@ const joinData = () => {
 
     fullDataTableObjects = joinedAqData
         .join_left(aqMeasurementDisplay, "MeasureID")
-        .derive({ 
+        .derive({
             MeasurementDisplay: d => op.trim(op.join([d.MeasurementType, d.DisplayType], " ")),
             DisplayCI: d => op.trim(op.join([d.DisplayValue, d.CI], " "))
         })
@@ -276,7 +253,7 @@ const joinData = () => {
         .objects()
 
     // data for map
-    
+
     fullDataMapObjects = joinedAqData
         .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
         .impute({ Value: () => NaN })
@@ -297,5 +274,5 @@ const joinData = () => {
     // call the measure rendering etc. function
 
     renderMeasures();
-    
+
 }

@@ -87,6 +87,16 @@ const renderLinksChart = (
             break;
     }
 
+    // get dimensions
+    var legendOrientation = "bottom"
+    var columns = 6;
+    var bubbleSize = 200;
+    var height;
+    window.innerWidth < 576 ? bubbleSize = 100: bubbleSize = 200
+    window.innerWidth < 576 ? columns = 3 : columns = 6;
+    window.innerWidth < 576 ? height = 350 : height = 500;
+
+    
     // define spec
 
     setTimeout(() => {
@@ -95,25 +105,26 @@ const renderLinksChart = (
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "description": "Asthma 5-17 ED visit rate and poverty scatterplot",
             "title": {
-                "text": [`${yIndicatorName && `${yIndicatorName}`} -`, ` ${yMeasure && `${yMeasure}`} ${yDisplay && `(${yDisplay})`}, ${yTime}`],
+                "text": [`${yIndicatorName && `${yIndicatorName}`}`, `${yMeasure && `${yMeasure}`} ${yDisplay && `${yDisplay}`} (${yTime})`],
                 "align": "left", 
                 "anchor": "start", 
-                "fontSize": 14, 
+                "fontSize": 12, 
+                "fontWeight": "normal",
                 "font": "sans-serif",
                 "baseline": "top",
                 "dy": -10,
                 "limit": 1000
             },            
             "width": "container",
-            "height": 500,
+            "height": height,
             "config": {
                 "background": "#FFFFFF",
                 "axisX": {
                     "labelFontSize": 11,
-                    "titleFontSize": 13,
+                    "titleFontSize": 12,
                     "titleFont": "sans-serif",
-                    "titlePadding": 10
-                    
+                    "titlePadding": 10,
+                    "titleFontWeight": "normal"
                 },
                 "axisY": {
                     "labelFontSize": 11,
@@ -123,8 +134,11 @@ const renderLinksChart = (
                     "titleFont": "sans-serif",
                 },
                 "legend": {
+                    "columns": columns,
                      "labelFontSize": 14,
-                     "symbolSize": 140
+                     "symbolSize": 140,
+                     "orient": legendOrientation,
+                     "title": null
                  },
                 "view": { "stroke": "transparent" },
                 "range": {
@@ -152,7 +166,7 @@ const renderLinksChart = (
                     "mark": { 
                         "type": "circle", 
                         "filled": true, 
-                        "size": 200, 
+                        "size": bubbleSize, // update based on Screen Size.
                         "stroke": "#7C7C7C", 
                         "strokeWidth": 2
                     },
@@ -174,7 +188,7 @@ const renderLinksChart = (
                             "type": "quantitative"
                         },
                         "x": {
-                            "title": [`${xIndicatorName && `${xIndicatorName}`}`, `- ${xMeasure} ${xDisplay && `(${xDisplay})`}, ${xTime}`],
+                            "title": [`${xIndicatorName && `${xIndicatorName}`}`, `${xMeasure} ${xDisplay && `(${xDisplay})`} (${xTime})`],
                             "field": xValue,
                             "type": "quantitative",
                             "scale": {"domainMin": xMin, "nice": true}

@@ -18,16 +18,13 @@ const renderMap = (
                 gt => gt.GeoType === mapGeoType
             )[0].GeoTypeDescription;
 
-        
         let mapDisplay = metadata[0].DisplayType;
         let mapTime = mapYears[0];
         let topoFile = '';
 
-        // console.log("testData [map.js]", testData);
-        
         // can add year to this
 
-        // console.log("mapGeoType [renderMap]", mapGeoType);
+        console.log("mapGeoType [renderMap]", mapGeoType);
 
         if (mapGeoType === "NTA") {
             topoFile = 'NTA.topo.json';
@@ -46,13 +43,12 @@ const renderMap = (
         }
 
         
-    // define spec
+        // define spec
         
         mapspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": {
-                "text": `${mapTime} - ${mapMeasurementType}${mapDisplay && ` (${mapDisplay})`}`,
-                "subtitle": mapGeoTypeDescription,
+                "text": `By ${mapGeoTypeDescription}, ${mapTime}`,
                 "subtitlePadding": 10
             },
             "data": {
@@ -63,7 +59,18 @@ const renderMap = (
                     }
                 }
             },
-            "config": {"concat": {"spacing": 20}},
+            "config": {
+                "concat": {"spacing": 20}, 
+                "view": {"stroke": "transparent"},
+                "axisY": {"domain": false,"ticks": false},
+                "title": {
+                    "fontWeight": "normal"
+                  },
+                "legend": {
+                    "offset": -25,
+                    "titleFontWeight": "normal",
+                }
+            },
             "projection": {"type": "mercator"},
             "vconcat": [
                 {
@@ -184,7 +191,7 @@ const renderMap = (
                             "field": "Value",
                             "type": "quantitative",
                             "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}},
-                            "legend": null
+                            "legend": {"direction": "horizontal","orient": "top-left","title": `${mapMeasurementType}`}
                         },
                         "stroke": {
                             "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
