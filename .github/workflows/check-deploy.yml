@@ -3,8 +3,10 @@ name: Check deployment
 # check to see if most recent build had been deployed
 
 on:
+  push:
+    branches: production
   schedule:
-    - cron: '30 7 * * 1-5' # every weekday at 7:30
+    - cron: '30 11 * * 1-5' # every weekday at 7:30 Eastern
 
 jobs:
   check_deploy:
