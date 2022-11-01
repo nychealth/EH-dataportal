@@ -59,7 +59,7 @@
 
           <div class="row mt-1 mb-2">
             <div class="col-md-4 ml-auto">
-              <a href="{{ .Site.BaseURL }}/data-stories/" class="ds-accent btn btn-block btn-outline-light text-primary">Browse all Data Stories<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+              <a href="{{ .Site.BaseURL }}data-stories/" class="ds-accent btn btn-block btn-outline-light text-primary">Browse all Data Stories<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
 
             </div>
           </div>
@@ -82,7 +82,7 @@
               Core issues that affect our city, our health, our lives.
             </p>
 
-              <a href="{{ .Site.BaseURL }}/key-topics/" class="kt-accent btn btn-block btn-outline-light text-dark ">All Key Topics<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+              <a href="{{ .Site.BaseURL }}key-topics/" class="kt-accent btn btn-block btn-outline-light text-dark ">All Key Topics<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
 
             <div class="card content-card mb-4">
               <div class="card-content">
@@ -128,7 +128,7 @@
           <div class="col-md-4 col-sm-12">
             <h3 class="de-accent"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Data Explorer</h3> 
               <p class="fs-sm">View maps and trends for hundreds of datasets.</p>
-              <a href="{{ .Site.BaseURL }}/data-explorer/" class="de-accent btn btn-block btn-outline-light text-primary">All datasets<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
+              <a href="{{ .Site.BaseURL }}data-explorer/" class="de-accent btn btn-block btn-outline-light text-primary">All datasets<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
 
               <div class="card content-card mb-4">
                 <div class="card-content">
@@ -176,7 +176,7 @@
             <div class="col-sm-4 mb-1">
               <div class="card fs-sm borderbox">
                 <div class="card-body">
-                  <img src="{{ .Site.BaseURL }}/images/data-map-3.png" alt="An example of a data map.">
+                  <img src="{{ .Site.BaseURL }}images/data-map-3.png" alt="An example of a data map.">
                 </div>
                 <div class="card-footer">
                   <span class="card-title text-muted"><strong>Maps</strong> show us what neighborhoods have the most or the least of something.</span>
@@ -186,7 +186,7 @@
             <div class="col-sm-4 mb-1">
               <div class="card fs-sm borderbox">
                 <div class="card-body">
-                  <img src="{{ .Site.BaseURL }}/images/trend-chart-3.png" alt="An example of a trend chart showing data over time.">
+                  <img src="{{ .Site.BaseURL }}images/trend-chart-3.png" alt="An example of a trend chart showing data over time.">
                 </div>
                 <div class="card-footer">
                   <span class="card-title text-muted"><strong>Trends</strong> show us how something has changed over time - if it's going up, going down, or staying stable.</span>
@@ -196,7 +196,7 @@
             <div class="col-sm-4 mb-1">
               <div class="card fs-sm borderbox">
                 <div class="card-body">
-                  <img src="{{ .Site.BaseURL }}/images/links-chart-3.png" alt="An example of a scatterplot, showing the relationship between two datasets.">
+                  <img src="{{ .Site.BaseURL }}images/links-chart-3.png" alt="An example of a scatterplot, showing the relationship between two datasets.">
                 </div>
                 <div class="card-footer">
                   <span class="card-title text-muted">And <strong>links</strong> show us how an <strong>environmental factor</strong> might be related to a <strong>health outcome</strong>.</span>
@@ -293,37 +293,25 @@
                 
 {{ define "js_bot" }}
 
-{{- if eq hugo.Environment "data_staging" -}} 
+{{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
+{{- $secureJS := $js | resources.Fingerprint "sha512" -}}
 
-  {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
-  <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
+<script type="text/javascript" 
+  src="{{ $secureJS.RelPermalink }}" 
+  integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
-  <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
+{{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
+{{- $secureJS := $js | resources.Fingerprint "sha512" -}}
 
-  {{- $js := resources.Get "js/uhflist.js" -}}
-  <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
+<script type="text/javascript" 
+  src="{{ $secureJS.RelPermalink }}" 
+  integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-{{ else }}
+{{- $js := resources.Get "js/uhflist.js" -}}
+{{- $secureJS := $js | resources.Fingerprint "sha512" -}}
 
-  {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
-  {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-  <script type="text/javascript" 
-    src="{{ $secureJS.RelPermalink }}" 
-    integrity="{{ $secureJS.Data.Integrity }}"></script>
-
-  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
-  {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-  <script type="text/javascript" 
-    src="{{ $secureJS.RelPermalink }}" 
-    integrity="{{ $secureJS.Data.Integrity }}"></script>
-
-  {{- $js := resources.Get "js/uhflist.js" -}}
-  {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-  <script type="text/javascript" 
-    src="{{ $secureJS.RelPermalink }}" 
-    integrity="{{ $secureJS.Data.Integrity }}"></script>
-
-{{- end -}}
+<script type="text/javascript" 
+  src="{{ $secureJS.RelPermalink }}" 
+  integrity="{{ $secureJS.Data.Integrity }}"></script>
 
 {{- end -}}
