@@ -67,7 +67,7 @@
     
 </article>
 
-{{/*  {{- if eq hugo.Environment "data_staging" -}} 
+{{/*  {{- if eq hugo.Environment "data_staging" -}}   */}}
 
   {{- $js := resources.Get "js/accessible-autocomplete.min.js" }}
   <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
@@ -75,9 +75,9 @@
   {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" }}
   <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
 
-{{ else }}  */}}
+{{/*  {{ else }}  */}}
 
-  {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
+  {{/*  {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
   {{ $secureJS := $js | resources.Fingerprint "sha512" }}
   <script type="text/javascript" 
     src="{{ $secureJS.RelPermalink }}" 
@@ -87,7 +87,7 @@
   {{ $secureJS := $js | resources.Fingerprint "sha512" }}
   <script type="text/javascript" 
     src="{{ $secureJS.RelPermalink }}" 
-    integrity="{{ $secureJS.Data.Integrity }}"></script>
+    integrity="{{ $secureJS.Data.Integrity }}"></script>  */}}
 
 {{/*  {{- end -}}  */}}
 
