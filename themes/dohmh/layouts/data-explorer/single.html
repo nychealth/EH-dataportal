@@ -565,18 +565,23 @@
     {{- $dataTablesBundelJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" -}}
     {{- $DT_secureJS := $dataTablesBundelJS | resources.Fingerprint "sha512" -}}
 
+    <script type="text/javascript" src="{{ $DT_secureJS.RelPermalink }}" integrity="{{ $DT_secureJS.Data.Integrity }}"></script>
+
+    
     {{/*  other libraries  */}}
 
-    <script type="text/javascript" src="{{ $DT_secureJS.RelPermalink }}" integrity="{{ $DT_secureJS.Data.Integrity }}"></script>
-    
     {{- $jszip := resources.Get "node_modules/jszip/dist/jszip.min.js" -}}
+    {{- $jszip_secureJS := $jszip | resources.Fingerprint "sha512" -}}
+
     {{- $pdfmake := resources.Get "node_modules/pdfmake/build/pdfmake.min.js" -}}
+    {{- $pdfmake_secureJS := $pdfmake | resources.Fingerprint "sha512" -}}
+
     {{- $pdfmakeVfsFonts := resources.Get "node_modules/pdfmake/build/vfs_fonts.js" -}}
+    {{- $pdfmakeVfsFonts_secureJS := $pdfmakeVfsFonts | resources.Fingerprint "sha512" -}}
 
-    {{- $pdfJS := slice $jszip $pdfmake $pdfmakeVfsFonts | resources.Concat "js/pdfBundle.js" -}}
-    {{- $pdf_secureJS := $pdfJS | resources.Fingerprint "sha512" -}}
-
-    <script type="text/javascript" src="{{ $pdf_secureJS.RelPermalink }}" integrity="{{ $pdf_secureJS.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $jszip_secureJS.RelPermalink }}" integrity="{{ $jszip_secureJS.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $pdfmake_secureJS.RelPermalink }}" integrity="{{ $pdfmake_secureJS.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $pdfmakeVfsFonts_secureJS.RelPermalink }}" integrity="{{ $pdfmakeVfsFonts_secureJS.Data.Integrity }}"></script>
 
     {{/*  VegaLite  */}}
 
