@@ -517,21 +517,44 @@
 
 </article>
 
+<!-- RELATED FOOTER -->
+{{- partial "related-footer-2" . -}}
+
 {{ end }}
 
 {{- define "js_bot" -}}
 
     {{/*  JS Dependencies  */}}
-    
+
+    {{/*  Accessible Autocomplete  */}}
+
+    {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
+    {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
+
+    <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+
+    {{/*  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
+    {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
+
+    <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>  */}}
+
     {{/*  Arquero  */}}
 
     {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" -}}
 
-    <script type="text/javascript" 
-        src="{{ $arquero.RelPermalink }}" 
-        integrity="{{ $arquero.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
 
      {{/*  DataTables  */}}
+
+     {{/*  CSS  */}}
+
+    {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" -}}
+    {{- $dataTablesBurronsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" -}}
+    {{- $dtCSS := slice $dataTablesCSS $dataTablesBurronsCSS | resources.Concat "css/dtCSS.css" -}}
+
+    <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}">
+
+    {{/*  JS  */}}
 
     {{- $dataTables := resources.Get "node_modules/datatables.net/js/jquery.dataTables.min.js" -}}
     {{- $dataTablesButtons := resources.Get "node_modules/datatables.net-buttons/js/dataTables.buttons.min.js" -}}
@@ -539,24 +562,21 @@
     {{- $dataTablesButtonsPrint := resources.Get "node_modules/datatables.net-buttons/js/buttons.print.min.js" -}}
     {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" -}}
     
-    {{/*  {{- $dataTablesBundelJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup $jszip $pdfmake $pdfmakeVfsFonts | resources.Concat "js/dataTableBundle.js" -}}  */}}
     {{- $dataTablesBundelJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" -}}
     {{- $DT_secureJS := $dataTablesBundelJS | resources.Fingerprint "sha512" -}}
 
-    <script type="text/javascript" 
-        src="{{ $DT_secureJS.RelPermalink }}" 
-        integrity="{{ $DT_secureJS.Data.Integrity }}"></script>
+    {{/*  other libraries  */}}
+
+    <script type="text/javascript" src="{{ $DT_secureJS.RelPermalink }}" integrity="{{ $DT_secureJS.Data.Integrity }}"></script>
     
     {{- $jszip := resources.Get "node_modules/jszip/dist/jszip.min.js" -}}
     {{- $pdfmake := resources.Get "node_modules/pdfmake/build/pdfmake.min.js" -}}
     {{- $pdfmakeVfsFonts := resources.Get "node_modules/pdfmake/build/vfs_fonts.js" -}}
 
-    {{- $pdfJS := slice $jszip $pdfmake $pdfmakeVfsFonts | resources.Concat "js/dataTableBundle.js" -}}
+    {{- $pdfJS := slice $jszip $pdfmake $pdfmakeVfsFonts | resources.Concat "js/pdfBundle.js" -}}
     {{- $pdf_secureJS := $pdfJS | resources.Fingerprint "sha512" -}}
 
-    <script type="text/javascript" 
-        src="{{ $pdf_secureJS.RelPermalink }}" 
-        integrity="{{ $pdf_secureJS.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $pdf_secureJS.RelPermalink }}" integrity="{{ $pdf_secureJS.Data.Integrity }}"></script>
 
     {{/*  VegaLite  */}}
 
@@ -567,18 +587,14 @@
     {{- $vegaBundelJS := slice $vega $vegaLite $vegaEmbed | resources.Concat "js/vegaBundle.js" -}}
     {{- $vega_secureJS := $vegaBundelJS | resources.Fingerprint "sha512" -}}
 
-    <script type="text/javascript" 
-        src="{{ $vega_secureJS.RelPermalink }}" 
-        integrity="{{ $vega_secureJS.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $vega_secureJS.RelPermalink }}" integrity="{{ $vega_secureJS.Data.Integrity }}"></script>
 
     {{/*  D3  */}}
 
     {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" -}}
     {{- $d3_secureJS := $d3 | resources.Fingerprint "sha512" -}}
 
-    <script type="text/javascript" 
-        src="{{ $d3_secureJS.RelPermalink }}" 
-        integrity="{{ $d3_secureJS.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $d3_secureJS.RelPermalink }}" integrity="{{ $d3_secureJS.Data.Integrity }}"></script>
 
 
     {{/*  Data Explorer JS  */}}
@@ -591,6 +607,8 @@
         {{/*  fetch and load indicators metadata into global object              */}}
         {{/* =================================================================== */}}
 
+        {{/*  dropdown (on mobile)  */}}
+
         const renderIndicatorDropdown = () => {
 
             const indicatorDropdown = document.getElementById("indicator-dropdown");
@@ -600,7 +618,7 @@
             {{- range .Params.Indicators }}
 
                 header = '{{ .header }}';
-                indicatorDropdown.innerHTML += header.length ? `<div class="dropdown-title"><strong>${header}</strong></div>` : '';
+                indicatorDropdown.innerHTML += header.length ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
 
                 {{ range $index, $id := .IndicatorID }}
 
@@ -613,6 +631,33 @@
                 {{- end -}}
             {{- end -}}
         }
+        
+
+        {{/*  buttons (on desktop)  */}}
+
+        const renderIndicatorButtons = () => {
+
+            const indicatorButtons = document.getElementById("indicatorButtons");
+            let this_indicatorName;
+            let header;
+            
+            {{- range .Params.Indicators }}
+
+                header = '{{ .header }}';
+                indicatorButtons.innerHTML += header.length ? '<div class="pl-1 mt-2 home-label">' + header + '</div>': '';
+
+                {{ range $index, $id := .IndicatorID -}}
+
+                    {{ if (eq $index 0) -}} defaultIndicatorId = {{ $id -}} {{ end }}
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID === {{ $id }});
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-light text-primary text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator({{ $id }})' data-indicator-id={{ $id }}>" + this_indicatorName + "</button>";
+                    
+                {{- end -}}
+            {{- end -}}
+        }
+
 
         {{/* =================================================================== */}}
         {{/*  citation functions                                                 */}}
@@ -650,10 +695,6 @@
         }
             
     </script>
-    
-
-    <!-- RELATED FOOTER -->
-    {{- partial "related-footer-2" . -}}
 
 
     {{/*  JS must be in this order  */}}
@@ -671,22 +712,6 @@
     {{- $dataExplorerJS := slice $global $data $renderMeasures $summary $map $trend $links $disparities $app | resources.Concat "js/bundle.js" -}}
     {{- $DE_secureJS := $dataExplorerJS | resources.Fingerprint "sha512" -}}
 
-    <script type="text/javascript" 
-        src="{{ $DE_secureJS.RelPermalink }}" 
-        integrity="{{ $DE_secureJS.Data.Integrity }}"></script>
-
-    {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
-    {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
-
-    <script type="text/javascript" 
-        src="{{ $secureJS.RelPermalink }}" 
-        integrity="{{ $secureJS.Data.Integrity }}"></script>
-
-    {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
-    {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
-    
-    <script type="text/javascript" 
-        src="{{ $secureJS.RelPermalink }}" 
-        integrity="{{ $secureJS.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $DE_secureJS.RelPermalink }}" integrity="{{ $DE_secureJS.Data.Integrity }}"></script>
 
 {{- end -}}
