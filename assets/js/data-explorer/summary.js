@@ -128,7 +128,7 @@ const renderTable = () => {
     // call function to show table
     
     $('#tableID').DataTable({
-        scrollY: 500,
+        scrollY: 475,
         scrollX: true,
         scrollCollapse: true,
         searching: false,

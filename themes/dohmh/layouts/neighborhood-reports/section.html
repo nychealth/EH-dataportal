@@ -103,12 +103,12 @@
   src="{{ $secureJS.RelPermalink }}" 
   integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-{{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
+{{/*  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
 {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
 
 <script type="text/javascript" 
   src="{{ $secureJS.RelPermalink }}" 
-  integrity="{{ $secureJS.Data.Integrity }}"></script>
+  integrity="{{ $secureJS.Data.Integrity }}"></script>  */}}
 
 {{- $js := resources.Get "js/uhflist.js" -}}
 {{- $secureJS := $js | resources.Fingerprint "sha512" -}}

@@ -11,7 +11,7 @@ paginate = 9
 ignoreFiles = ['Simplified.Chinese', 'Spanish']
 
 [params]
-  data_repo = "https://raw.githubusercontent.com/nychealth/EHDP-data"
+  data_repo = "https://raw.githubusercontent.com/nychealth/EHDP-data/"
   sitepath = "/EH-dataportal"
 
 [imaging]
