@@ -538,16 +538,25 @@
     {{- $dataTablesButtonsHtml5 := resources.Get "node_modules/datatables.net-buttons/js/buttons.html5.min.js" -}}
     {{- $dataTablesButtonsPrint := resources.Get "node_modules/datatables.net-buttons/js/buttons.print.min.js" -}}
     {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" -}}
-    {{- $jszip := resources.Get "node_modules/jszip/dist/jszip.min.js" -}}
-    {{- $pdfmake := resources.Get "node_modules/pdfmake/build/pdfmake.min.js" -}}
-    {{- $pdfmakeVfsFonts := resources.Get "node_modules/pdfmake/build/vfs_fonts.js" -}}
     
-    {{- $dataTablesBundelJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup $jszip $pdfmake $pdfmakeVfsFonts | resources.Concat "js/dataTableBundle.js" -}}
+    {{/*  {{- $dataTablesBundelJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup $jszip $pdfmake $pdfmakeVfsFonts | resources.Concat "js/dataTableBundle.js" -}}  */}}
+    {{- $dataTablesBundelJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" -}}
     {{- $DT_secureJS := $dataTablesBundelJS | resources.Fingerprint "sha512" -}}
 
     <script type="text/javascript" 
         src="{{ $DT_secureJS.RelPermalink }}" 
         integrity="{{ $DT_secureJS.Data.Integrity }}"></script>
+    
+    {{- $jszip := resources.Get "node_modules/jszip/dist/jszip.min.js" -}}
+    {{- $pdfmake := resources.Get "node_modules/pdfmake/build/pdfmake.min.js" -}}
+    {{- $pdfmakeVfsFonts := resources.Get "node_modules/pdfmake/build/vfs_fonts.js" -}}
+
+    {{- $pdfJS := slice $jszip $pdfmake $pdfmakeVfsFonts | resources.Concat "js/dataTableBundle.js" -}}
+    {{- $pdf_secureJS := $pdfJS | resources.Fingerprint "sha512" -}}
+
+    <script type="text/javascript" 
+        src="{{ $pdf_secureJS.RelPermalink }}" 
+        integrity="{{ $pdf_secureJS.Data.Integrity }}"></script>
 
     {{/*  VegaLite  */}}
 
