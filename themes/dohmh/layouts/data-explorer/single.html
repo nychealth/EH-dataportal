@@ -525,7 +525,7 @@
     
     {{/*  Arquero  */}}
 
-    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" -}}
+    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" -}}
 
     <script type="text/javascript" 
         src="{{ $arquero.RelPermalink }}" 
