@@ -71,21 +71,19 @@
 {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
 {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
 
-<script type="text/javascript" 
-  src="{{ $secureJS.RelPermalink }}" 
-  integrity="{{ $secureJS.Data.Integrity }}"></script>
+<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-{{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
+{{/*  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
 {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
 
-<script type="text/javascript" 
-  src="{{ $secureJS.RelPermalink }}" 
-  integrity="{{ $secureJS.Data.Integrity }}"></script>
+<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>  */}}
 
 
 <script type="text/javascript"> 
+
     // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
-    function populateDropDownList() {          
+
+    function populateDropDownList() {
         var ddlData = document.getElementById("all-data");
         {{- range .Pages -}} // range through data-explorer pages
         var option = document.createElement("OPTION");
