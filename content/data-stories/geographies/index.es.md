@@ -92,7 +92,7 @@ Cada PUMA se divide en áreas de tabulación de vecindarios (NTA), y cada NTA se
 
 <script>
 
-    var repo_branch = "{{< param data_repo >}}/{{< param data_branch >}}"
+    var repo_branch = "{{< param data_repo >}}{{< param data_branch >}}"
     var path = "data-stories/geographies" // hard-coded for now, but could Hugo paramaterize
     var trans = "mapspec-en"
     

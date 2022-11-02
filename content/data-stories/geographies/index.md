@@ -91,7 +91,7 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
 
 <script>
 
-    var repo_branch = "{{< param data_repo >}}/{{< param data_branch >}}"
+    var repo_branch = "{{< param data_repo >}}{{< param data_branch >}}"
     var path = "data-stories/geographies" // hard-coded for now, but could Hugo paramaterize
     var trans = "mapspec-en"
         

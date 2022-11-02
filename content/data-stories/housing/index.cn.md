@@ -186,7 +186,7 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 <script>
 
     // basic path
-    const repo_branch = "{{< param data_repo >}}/{{< param data_branch >}}"
+    const repo_branch = "{{< param data_repo >}}{{< param data_branch >}}"
     const path = "data-stories/housing" // hard-coded for now, but could Hugo paramaterize
     const trans = "mapspec-cn"
 
