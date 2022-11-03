@@ -21,7 +21,7 @@
 
 {{/*  get report JSON from EHDP-data as a resource  */}}
 
-{{- $reports_data := (resources.GetRemote (print site.Params.data_repo "/" site.Params.data_branch "/neighborhood-reports/reports/" $.Params.data_json ".json")) | transform.Unmarshal -}}
+{{- $reports_data := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/reports/" $.Params.data_json ".json")) | transform.Unmarshal -}}
 
 {{/* First loop of report JSON to get first level parameters */}}
 
@@ -78,7 +78,7 @@
         
         <script>
             // set data download location
-            var downloadLoc = {{ site.Params.data_repo }} + "/" + {{ site.Params.data_branch }} + "/neighborhood-reports/data/" + data_download_loc
+            var downloadLoc = {{ site.Params.data_repo }} + {{ site.Params.data_branch }} + "/neighborhood-reports/data/" + data_download_loc
             var reportData;
             var download
             
