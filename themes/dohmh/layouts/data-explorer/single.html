@@ -716,7 +716,7 @@
     {{- $disparities := resources.Get "js/data-explorer/disparities.js" -}}
     {{- $app := resources.Get "js/data-explorer/app.js" -}}
     
-    {{- $dataExplorerJS := slice $global $data $renderMeasures $summary $map $trend $links $disparities $app | resources.Concat "js/bundle.js" -}}
+    {{- $dataExplorerJS := slice $global $data $renderMeasures $summary $map $trend $links $disparities $app | resources.Concat "js/dataExplorer.js" -}}
     {{- $DE_secureJS := $dataExplorerJS | resources.Fingerprint "sha512" -}}
 
     <script type="text/javascript" src="{{ $DE_secureJS.RelPermalink }}" integrity="{{ $DE_secureJS.Data.Integrity }}"></script>
