@@ -114,7 +114,7 @@ const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasur
     //  (fetches run asynchronously by default, but we need this data to do other things, so we have to 
     //  `await` the result before continuing)
 
-    await fetch(`${data_repo}/${data_branch}/indicators/data/${secondaryIndicatorId}.json`)
+    await fetch(`${data_repo}${data_branch}/indicators/data/${secondaryIndicatorId}.json`)
         .then(response => response.json())
         .then(async data => {
 

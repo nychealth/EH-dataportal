@@ -47,8 +47,8 @@ var tabShown = 'tab-01-a';
 
 // path variables
 
-var aqe_path   = data_repo + "/" + data_branch + "/key-topics/air-quality-explorer";
-var nyccas_url = data_repo + "/" + data_branch + "/key-topics/air-quality-explorer/aqe-nta.csv";
+var aqe_path   = data_repo + data_branch + "/key-topics/air-quality-explorer";
+var nyccas_url = data_repo + data_branch + "/key-topics/air-quality-explorer/aqe-nta.csv";
 var PMBarVGSpec  = aqe_path + "/" + "PMBarSpec.vg.json";
 var NO2BarVGSpec = aqe_path + "/" + "NO2BarSpec.vg.json";
 var embed_opt = {
@@ -57,7 +57,7 @@ var embed_opt = {
 
 // path to topo json, will be loaded by vega
 
-var nta_topojson = data_repo + "/" + data_branch + "/geography/NTA.topo.json"; 
+var nta_topojson = data_repo + data_branch + "/geography/NTA.topo.json"; 
 
 // the d3 code below loads the data from a CSV file and dumps it into global javascript object variable.
 

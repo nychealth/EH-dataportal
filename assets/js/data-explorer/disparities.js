@@ -28,7 +28,7 @@ const loadDisparitiyData = async (disparityMetadata, disparityIndicatorId) => {
     
     // get disparity data
     
-    await fetch(`${data_repo}/${data_branch}/indicators/data/${disparityIndicatorId}.json`)
+    await fetch(`${data_repo}${data_branch}/indicators/data/${disparityIndicatorId}.json`)
         .then(response => response.json())
         .then(data => {
 

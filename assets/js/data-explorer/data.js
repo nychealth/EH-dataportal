@@ -2,7 +2,7 @@
 //  fetch and load indicators metadata into global object
 // =================================================================== //
 
-fetch(data_repo + "/" + data_branch + '/indicators/indicators.json')
+fetch(data_repo + data_branch + '/indicators/indicators.json')
     .then(response => response.json())
     .then(async data => {
 
@@ -134,7 +134,7 @@ const loadIndicator = (this_indicatorId, dont_add_to_history) => {
 
 const loadData = (this_indicatorId) => {
 
-    fetch(data_repo + "/" + data_branch + `/indicators/data/${this_indicatorId}.json`)
+    fetch(data_repo + data_branch + `/indicators/data/${this_indicatorId}.json`)
     .then(response => response.json())
     .then(async data => {
 
@@ -159,7 +159,7 @@ const loadData = (this_indicatorId) => {
 
 const loadGeo = () => {
 
-    const geoUrl = data_repo + "/" + data_branch + `/geography/GeoLookup.csv`; // col named "GeoType"
+    const geoUrl = data_repo + data_branch + `/geography/GeoLookup.csv`; // col named "GeoType"
 
     aq.loadCSV(geoUrl)
         .then(data => {
