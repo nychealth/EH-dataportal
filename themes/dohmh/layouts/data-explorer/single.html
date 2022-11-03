@@ -775,7 +775,7 @@
         {{/*  fetch and load indicators metadata into global object              */}}
         {{/* =================================================================== */}}
 
-        fetch(data_repo + "/" + data_branch + '/indicators/indicators.json')
+        fetch(data_repo + data_branch + '/indicators/indicators.json')
             .then(response => response.json())
             .then(async data => {
 
@@ -951,7 +951,7 @@
 
         const loadData = (this_indicatorId) => {
 
-            fetch(data_repo + "/" + data_branch + `/indicators/data/${this_indicatorId}.json`)
+            fetch(data_repo + data_branch + `/indicators/data/${this_indicatorId}.json`)
             .then(response => response.json())
             .then(async data => {
 
@@ -976,7 +976,7 @@
 
         const loadGeo = () => {
 
-            const geoUrl = data_repo + "/" + data_branch + `/geography/GeoLookup.csv`; // col named "GeoType"
+            const geoUrl = data_repo + data_branch + `/geography/GeoLookup.csv`; // col named "GeoType"
 
             aq.loadCSV(geoUrl)
                 .then(data => {
@@ -1212,7 +1212,7 @@
             //  (fetches run asynchronously by default, but we need this data to do other things, so we have to 
             //  `await` the result before continuing)
 
-            await fetch(`${data_repo}/${data_branch}/indicators/data/${secondaryIndicatorId}.json`)
+            await fetch(`${data_repo}${data_branch}/indicators/data/${secondaryIndicatorId}.json`)
                 .then(response => response.json())
                 .then(async data => {
 
@@ -2902,7 +2902,7 @@
 
     $("#rawData").on("click", (e) => {
 
-        let dataURL = data_repo + "/" + data_branch + '/indicators/data/' + indicatorId + '.json'
+        let dataURL = data_repo + data_branch + '/indicators/data/' + indicatorId + '.json'
 
         // console.log('Data are at: ' + dataURL)
 
