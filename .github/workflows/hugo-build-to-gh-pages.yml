@@ -3,6 +3,9 @@ name: Hugo Build to GitHub Pages
 # run action on a merged PR on "development"
 
 on:
+  push:
+    branches:
+      - development
   pull_request:
     branches:
       - development
