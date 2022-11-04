@@ -67,7 +67,7 @@ jobs:
         # if: steps.b_hash.outputs.built_hash == steps.d_hash.outputs.deployed_hash
 
         run: |
-          echo "git_log=$(git log ${{ steps.d_hash.outputs.deployed_hash }}..${{ steps.b_hash.outputs.built_hash }} --pretty='format:%C(auto)%h (%s, %cs)')" >> $GITHUB_OUTPUT
+          echo "git_log=$(git log ${{ steps.d_hash.outputs.deployed_hash }}^..${{ steps.b_hash.outputs.built_hash }} --pretty='format:%C(auto)%h (%s, %cs)')" >> $GITHUB_OUTPUT
 
       # if hashes aren't equal, send en email saying that we need to deploy
 
@@ -85,6 +85,6 @@ jobs:
           body: ${{ steps.log.outputs.git_log }}
           # to: cgettings@health.nyc.gov,mmontesano@health.nyc.gov
           to: cgettings@health.nyc.gov
-          from: EHDP
+          from: Chris Gettings
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
