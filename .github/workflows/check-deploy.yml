@@ -60,6 +60,9 @@ jobs:
           echo $built_hash
           echo $deployed_hash
 
+          echo "built_hash: $($built_hash)"
+          echo "deployed_hash: $($deployed_hash)"
+
           equal1=$([ ${{ steps.b_hash.outputs.built_hash }} = ${{ steps.d_hash.outputs.deployed_hash }} ] && echo yes || echo no)
           equal2=$([ "${{ steps.b_hash.outputs.built_hash }}" = "${{ steps.d_hash.outputs.deployed_hash }}" ] && echo yes || echo no)
 
@@ -71,10 +74,10 @@ jobs:
           echo $equal3
           echo $equal4
 
-          content1=$(curl https://a816-dohbesp.nyc.gov/indicatorpublic/beta/commit_hash.txt -s)
+          content1=$(curl -s -o - https://a816-dohbesp.nyc.gov/indicatorpublic/beta/commit_hash.txt)
           echo $content1
 
-          content2=$(wget -O - https://a816-dohbesp.nyc.gov/indicatorpublic/beta/commit_hash.txt)
+          content2=$(wget -q -O - https://a816-dohbesp.nyc.gov/indicatorpublic/beta/commit_hash.txt)
           echo $content2
       
       # get commits
