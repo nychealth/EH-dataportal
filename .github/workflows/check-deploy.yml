@@ -50,7 +50,7 @@ jobs:
           echo "built_hash: ${{ steps.b_hash.outputs.built_hash }}"
           echo "deployed_hash: ${{ steps.d_hash.outputs.deployed_hash }}"
           hashes_equal=$([ ${{ steps.b_hash.outputs.built_hash }} = ${{ steps.d_hash.outputs.deployed_hash }} ] && echo yes || echo no)
-          echo "hashes_equal: $($hashes_equal)"
+          echo "hashes_equal: $hashes_equal"
       
       # get commits
 
