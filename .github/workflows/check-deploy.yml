@@ -3,9 +3,6 @@ name: Check deployment
 # check to see if most recent build had been deployed
 
 on:
-  push:
-    branches:
-      - testing-deploy-workflow
   schedule:
     - cron: '30 11 * * 1-5' # every weekday at 7:30 Eastern
 
@@ -40,7 +37,6 @@ jobs:
         id: d_hash
         run: |
           echo "deployed_hash=$(curl https://a816-dohbesp.nyc.gov/indicatorpublic/beta/commit_hash.txt -s -o -)" >> $GITHUB_OUTPUT
-          curl https://a816-dohbesp.nyc.gov/indicatorpublic/beta/commit_hash.txt -s -o -
 
       # echo hash
 
