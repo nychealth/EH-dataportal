@@ -54,60 +54,39 @@ jobs:
       - name: echo outputs
         id: echo
         run: |
-          built_hash=${{ steps.b_hash.outputs.built_hash }}
-          deployed_hash=${{ steps.d_hash.outputs.deployed_hash }}
-
-          echo $built_hash
-          echo $deployed_hash
-
-          echo "$(built_hash: $built_hash)"
-          echo "$(deployed_hash: $deployed_hash)"
-
-          equal1=$([ ${{ steps.b_hash.outputs.built_hash }} = ${{ steps.d_hash.outputs.deployed_hash }} ] && echo yes || echo no)
-          equal2=$([ "${{ steps.b_hash.outputs.built_hash }}" = "${{ steps.d_hash.outputs.deployed_hash }}" ] && echo yes || echo no)
-
-          equal3=$([ $built_hash = $deployed_hash ] && echo yes || echo no)
-          equal4=$([ "$built_hash" = "$deployed_hash" ] && echo yes || echo no)
-
-          echo $equal1
-          echo $equal2
-          echo $equal3
-          echo $equal4
-
-          content1=$(curl -s -o - https://a816-dohbesp.nyc.gov/indicatorpublic/beta/commit_hash.txt)
-          echo $content1
-
-          content2=$(wget -q -O - https://a816-dohbesp.nyc.gov/indicatorpublic/beta/commit_hash.txt)
-          echo $content2
+          echo "$(built_hash: ${{ steps.b_hash.outputs.built_hash }})"
+          echo "$(deployed_hash: ${{ steps.d_hash.outputs.deployed_hash }})"
+          hashes_equal=$([ ${{ steps.b_hash.outputs.built_hash }} = ${{ steps.d_hash.outputs.deployed_hash }} ] && echo yes || echo no)
+          echo "hashes_equal: $(hashes_equal)"
       
       # get commits
 
       - name: last commit log
         id: log
 
-        if: ${{ steps.b_hash.outputs.built_hash != steps.d_hash.outputs.deployed_hash }}
+        if: steps.b_hash.outputs.built_hash != steps.d_hash.outputs.deployed_hash
 
         run: |
           echo "git_log=$(git log ${{ steps.d_hash.outputs.deployed_hash }}..${{ steps.b_hash.outputs.built_hash }} --pretty='format:%C(auto)%h (%s, %cs)')" >> $GITHUB_OUTPUT
 
       # if hashes aren't equal, send en email saying that we need to deploy
 
-      # - name: send reminder
-      #   id: send
+      - name: send reminder
+        id: send
         
-      #   if: ${{ steps.b_hash.outputs.built_hash }} != ${{ steps.d_hash.outputs.deployed_hash }}
+        if: steps.b_hash.outputs.built_hash == steps.d_hash.outputs.deployed_hash
 
-      #   uses: dawidd6/action-send-mail@v3
-      #   with:
-      #     # server_address: app22csmtp.health.dohmh.nycnet
-      #     server_address: smtp.gmail.com
-      #     server_port: 25
-      #     secure: false
-      #     subject: Pending deployment (${{ github.repository }})
-      #     body: ${{ steps.log.outputs.git_log }}
-      #     # to: cgettings@health.nyc.gov,mmontesano@health.nyc.gov
-      #     to: cgettings@health.nyc.gov
-      #     from: trackingportal@health.nyc.gov
-      #     username: ${{secrets.MAIL_USERNAME}}
-      #     password: ${{secrets.MAIL_PASSWORD}}
-      #     priority: high
+        uses: dawidd6/action-send-mail@v3
+        with:
+          # server_address: app22csmtp.health.dohmh.nycnet
+          server_address: smtp.office365.com
+          server_port: 587
+          secure: true
+          subject: Pending deployment for (${{ github.repository }})
+          body: ${{ steps.log.outputs.git_log }}
+          # to: cgettings@health.nyc.gov,mmontesano@health.nyc.gov
+          to: cgettings@health.nyc.gov
+          from: trackingportal@health.nyc.gov
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          priority: high
