@@ -81,7 +81,7 @@ jobs:
           # server_address: app22csmtp.health.dohmh.nycnet
           server_address: smtp.office365.com
           server_port: 587
-          secure: false
+          secure: true
           subject: Pending deployment for (${{ github.repository }})
           body: ${{ steps.log.outputs.git_log }}
           # to: cgettings@health.nyc.gov,mmontesano@health.nyc.gov
