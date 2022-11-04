@@ -78,7 +78,6 @@ jobs:
 
         uses: dawidd6/action-send-mail@v3
         with:
-          # server_address: app22csmtp.health.dohmh.nycnet
           server_address: smtp.gmail.com
           server_port: 465
           secure: true
@@ -86,7 +85,6 @@ jobs:
           body: ${{ steps.log.outputs.git_log }}
           # to: cgettings@health.nyc.gov,mmontesano@health.nyc.gov
           to: cgettings@health.nyc.gov
-          from: trackingportal@health.nyc.gov
+          from: EHDP
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          priority: high
