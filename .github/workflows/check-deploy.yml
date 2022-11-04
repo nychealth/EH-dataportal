@@ -57,9 +57,6 @@ jobs:
           built_hash=${{ steps.b_hash.outputs.built_hash }}
           deployed_hash=${{ steps.d_hash.outputs.deployed_hash }}
 
-          echo "built_hash: ${{ steps.b_hash.outputs.built_hash }}"
-          echo "deployed_hash: ${{ steps.d_hash.outputs.deployed_hash }}"
-
           echo $built_hash
           echo $deployed_hash
 
