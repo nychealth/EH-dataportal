@@ -3,6 +3,9 @@ name: Check deployment
 # check to see if most recent build had been deployed
 
 on:
+  push:
+    branches:
+      - testing-deploy-workflow
   schedule:
     - cron: '30 11 * * 1-5' # every weekday at 7:30 Eastern
 
@@ -53,9 +56,16 @@ jobs:
         run: |
           built_hash=${{ steps.b_hash.outputs.built_hash }}
           deployed_hash=${{ steps.d_hash.outputs.deployed_hash }}
+
           echo "built_hash: ${{ steps.b_hash.outputs.built_hash }}"
           echo "deployed_hash: ${{ steps.d_hash.outputs.deployed_hash }}"
-          echo "not equal: $built_hash != $deployed_hash"
+
+          equal1=$([ ${{ steps.b_hash.outputs.built_hash }} = ${{ steps.d_hash.outputs.deployed_hash }} ] && echo yes || echo no)
+          equal2=$([ $built_hash = $deployed_hash ] && echo yes || echo no)
+
+          echo $equal1
+          echo $equal2
+
           echo $built_hash
           echo $deployed_hash
       
@@ -64,7 +74,7 @@ jobs:
       - name: last commit log
         id: log
 
-        if: ${{ steps.b_hash.outputs.built_hash != steps.d_hash.outputs.deployed_hash }}
+        if: ${{ ''steps.b_hash.outputs.built_hash'' != ''steps.d_hash.outputs.deployed_hash'' }}
 
         run: |
           echo "git_log=$(git log ${{ steps.d_hash.outputs.deployed_hash }}..${{ steps.b_hash.outputs.built_hash }} --pretty='format:%C(auto)%h (%s, %cs)')" >> $GITHUB_OUTPUT
