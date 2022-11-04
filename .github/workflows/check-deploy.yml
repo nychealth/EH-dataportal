@@ -70,6 +70,12 @@ jobs:
           echo $equal2
           echo $equal3
           echo $equal4
+
+          content1=$(curl https://a816-dohbesp.nyc.gov/indicatorpublic/beta/commit_hash.txt -s)
+          echo $content1
+
+          content2=$(wget -O - https://a816-dohbesp.nyc.gov/indicatorpublic/beta/commit_hash.txt)
+          echo $content2
       
       # get commits
 
