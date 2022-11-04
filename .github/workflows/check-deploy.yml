@@ -64,7 +64,7 @@ jobs:
       - name: last commit log
         id: log
 
-        if: steps.b_hash.outputs.built_hash != steps.d_hash.outputs.deployed_hash
+        # if: steps.b_hash.outputs.built_hash == steps.d_hash.outputs.deployed_hash
 
         run: |
           echo "git_log=$(git log ${{ steps.d_hash.outputs.deployed_hash }}..${{ steps.b_hash.outputs.built_hash }} --pretty='format:%C(auto)%h (%s, %cs)')" >> $GITHUB_OUTPUT
@@ -74,7 +74,7 @@ jobs:
       - name: send reminder
         id: send
         
-        if: steps.b_hash.outputs.built_hash == steps.d_hash.outputs.deployed_hash
+        # if: steps.b_hash.outputs.built_hash == steps.d_hash.outputs.deployed_hash
 
         uses: dawidd6/action-send-mail@v3
         with:
