@@ -78,15 +78,16 @@ jobs:
 
         uses: dawidd6/action-send-mail@v3
         with:
+          connection_url: ${{ secrets.MAIL_CONNECTION }}
           # server_address: app22csmtp.health.dohmh.nycnet
-          server_address: smtp.office365.com
-          server_port: 587
-          secure: true
+          # server_address: smtp.office365.com
+          # server_port: 587
+          # secure: true
           subject: Pending deployment for (${{ github.repository }})
           body: ${{ steps.log.outputs.git_log }}
           # to: cgettings@health.nyc.gov,mmontesano@health.nyc.gov
           to: cgettings@health.nyc.gov
           from: trackingportal@health.nyc.gov
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
+          # username: ${{ secrets.MAIL_USERNAME }}
+          # password: ${{ secrets.MAIL_PASSWORD }}
           priority: high
