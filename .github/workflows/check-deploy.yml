@@ -64,10 +64,10 @@ jobs:
           echo $deployed_hash
 
           equal1=$([ ${{ steps.b_hash.outputs.built_hash }} = ${{ steps.d_hash.outputs.deployed_hash }} ] && echo yes || echo no)
-          equal2=$([ '${{ steps.b_hash.outputs.built_hash }}' = '${{ steps.d_hash.outputs.deployed_hash }}' ] && echo yes || echo no)
-          
+          equal2=$([ "${{ steps.b_hash.outputs.built_hash }}" = "${{ steps.d_hash.outputs.deployed_hash }}" ] && echo yes || echo no)
+
           equal3=$([ $built_hash = $deployed_hash ] && echo yes || echo no)
-          equal4=$([ '$built_hash' = '$deployed_hash' ] && echo yes || echo no)
+          equal4=$([ "$built_hash" = "$deployed_hash" ] && echo yes || echo no)
 
           echo $equal1
           echo $equal2
