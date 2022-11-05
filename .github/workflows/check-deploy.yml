@@ -49,7 +49,7 @@ jobs:
       
       # if hashes aren't equal:
       
-      # ...get commit logs
+      # ...get commit logs...
 
       - name: last commit log
         id: log
