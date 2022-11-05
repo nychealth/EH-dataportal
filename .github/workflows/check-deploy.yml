@@ -69,7 +69,7 @@ jobs:
           server_address: smtp.gmail.com
           server_port: 465
           secure: true
-          subject: Pending deployment for (${{ github.repository }})
+          subject: Pending deployment on ${{ github.repository }}
           body: ${{ steps.log.outputs.git_log }}
           to: cgettings@health.nyc.gov,mmontesano@health.nyc.gov
           from: Chris Gettings (via gmail)
