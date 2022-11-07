@@ -68,15 +68,13 @@
 </article>
 
 
-{{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
-{{- $secureJS := $js | resources.Fingerprint "sha512" -}}
+  {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
+  {{ $secureJS := $js | resources.Fingerprint "sha512" }}
+  <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
-
-{{/*  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
-{{- $secureJS := $js | resources.Fingerprint "sha512" -}}
-
-<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>  */}}
+  {{/*  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
+  {{ $secureJS := $js | resources.Fingerprint "sha512" }}
+  <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>  */}}
 
 
 <script type="text/javascript"> 
