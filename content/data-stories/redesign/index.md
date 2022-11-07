@@ -4,6 +4,8 @@ draft: false
 date: 2022-11-07T08:49:22-04:00
 image: ds-codesign-team.jpg
 photocredit: EH Data Portal team
+categories: 
+    - internal
 keywords:
     - how we work
     - civic service design
@@ -31,18 +33,17 @@ The navigation bar at the top always tells you where you are and provides quick 
 Our site has always aimed to show how environments affect health.&nbsp; Our updates focus not only on improving access to data, but also making it easier to explore connections between different datasets, topics and other site content:&nbsp;
 
 * [Key Topics](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/key-topics/) bring together in one display related datasets, custom data interactives, data stories, and neighborhood reports for special areas of environmental health. You can explore resources across the site for : [Air Quality](/key-topics/airquality/); [Climate](/key-topics/climatehealth/); [Housing](/key-topics/housing/); [Inequality and Health Inequities](/key-topics/social/); [Active Design,](/key-topics/transportation/)[Public Space, and Transportation](__notset__); [Environmental Health Outcomes](/key-topics/healthoutcomes/); [Child Health](/key-topics/childhealth/); [Pests and Pesticides](/key-topics/pests/); and [Food and Drink](/key-topics/foodanddrink/).&nbsp;
-
 * Keywords link you to other pages on the similar topics.&nbsp;
 
-![](/content/data-stories/redesigned-eh-data-portal/keywords-screenshot.png)
+![](keywords-screenshot.png)
 
 * Throughout the site , you'll&nbsp; see links to related content. &nbsp; For example: when you're browsing datasets about Air Quality, you'll be able to quickly jump directly to related Data Stories. &nbsp;
 
-![](/content/data-stories/redesigned-eh-data-portal/related-screenshot.png)
+![](related-screenshot.png)
 
 * And if you can't find what you're looking for, our re-vamped search function can help you find it.&nbsp;&nbsp;
 
-![](/content/data-stories/redesigned-eh-data-portal/search-screenshot.png)
+![](search-screenshot.png)
 
 **Greater usability**&nbsp;
 
@@ -50,7 +51,7 @@ Our goal is for you to be able to put our data and information to work improving
 
 For example, take a look at our re-vamped [Data Explorer](/data-explorer/). &nbsp;
 
-![](/content/data-stories/redesigned-eh-data-portal/data-explorer-screenshot.png)
+![](data-explorer-screenshot.png)
 
 On the page:&nbsp;
 
