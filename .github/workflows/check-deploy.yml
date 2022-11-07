@@ -11,13 +11,6 @@ jobs:
     name: Check deployment
     runs-on: ubuntu-20.04
 
-    # output
-
-    # outputs:
-    #   built_hash: ${{ steps.b_hash.outputs.built_hash }}
-    #   deployed_hash: ${{ steps.d_hash.outputs.deployed_hash }}
-    #   git_log: ${{ steps.log.outputs.git_log }}
-
     # define job's steps
 
     steps:
@@ -36,7 +29,6 @@ jobs:
         run: |
           echo "Current branch: $(git branch --show-current)"
           echo "built_hash=$(git log -1 --format=%H)" >> $GITHUB_OUTPUT
-          git log -1 --format=%H
 
       # deployed hash
 
@@ -44,49 +36,44 @@ jobs:
         id: d_hash
         run: |
           echo "deployed_hash=$(curl https://a816-dohbesp.nyc.gov/indicatorpublic/beta/commit_hash.txt -s -o -)" >> $GITHUB_OUTPUT
-          curl https://a816-dohbesp.nyc.gov/indicatorpublic/beta/commit_hash.txt -s -o -
 
       # echo hash
 
       - name: echo outputs
         id: echo
         run: |
-          built_hash=${{ steps.b_hash.outputs.built_hash }}
-          deployed_hash=${{ steps.d_hash.outputs.deployed_hash }}
           echo "built_hash: ${{ steps.b_hash.outputs.built_hash }}"
           echo "deployed_hash: ${{ steps.d_hash.outputs.deployed_hash }}"
-          echo "not equal: $built_hash != $deployed_hash"
-          echo $built_hash
-          echo $deployed_hash
+          hashes_equal=$([ ${{ steps.b_hash.outputs.built_hash }} = ${{ steps.d_hash.outputs.deployed_hash }} ] && echo yes || echo no)
+          echo "hashes_equal: $hashes_equal"
       
-      # get commits
+      # if hashes aren't equal:
+      
+      # ...get commit logs...
 
       - name: last commit log
         id: log
 
-        if: ${{ steps.b_hash.outputs.built_hash != steps.d_hash.outputs.deployed_hash }}
+        if: steps.b_hash.outputs.built_hash != steps.d_hash.outputs.deployed_hash
 
         run: |
           echo "git_log=$(git log ${{ steps.d_hash.outputs.deployed_hash }}..${{ steps.b_hash.outputs.built_hash }} --pretty='format:%C(auto)%h (%s, %cs)')" >> $GITHUB_OUTPUT
 
-      # if hashes aren't equal, send en email saying that we need to deploy
+      # ...and send en email saying that we need to deploy
 
-      # - name: send reminder
-      #   id: send
+      - name: send reminder
+        id: send
         
-      #   if: ${{ steps.b_hash.outputs.built_hash }} != ${{ steps.d_hash.outputs.deployed_hash }}
+        if: steps.b_hash.outputs.built_hash != steps.d_hash.outputs.deployed_hash
 
-      #   uses: dawidd6/action-send-mail@v3
-      #   with:
-      #     # server_address: app22csmtp.health.dohmh.nycnet
-      #     server_address: smtp.gmail.com
-      #     server_port: 25
-      #     secure: false
-      #     subject: Pending deployment (${{ github.repository }})
-      #     body: ${{ steps.log.outputs.git_log }}
-      #     # to: cgettings@health.nyc.gov,mmontesano@health.nyc.gov
-      #     to: cgettings@health.nyc.gov
-      #     from: trackingportal@health.nyc.gov
-      #     username: ${{secrets.MAIL_USERNAME}}
-      #     password: ${{secrets.MAIL_PASSWORD}}
-      #     priority: high
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          subject: Pending deployment on ${{ github.repository }}
+          body: ${{ steps.log.outputs.git_log }}
+          to: cgettings@health.nyc.gov,mmontesano@health.nyc.gov
+          from: Chris Gettings (via gmail)
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}

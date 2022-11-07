@@ -71,4 +71,4 @@ The Bureau of Environmental Surveillance and Policy is recruiting for a City Res
 **Division Counsel/Appeals Officer**
 
 Support the Bureau of Child Care on all legal matters regarding the implementation of Comprehensive Background Checks, including serving as an Appeals Officer.
-- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 505842.
+- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 558051.
