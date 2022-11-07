@@ -1,6 +1,6 @@
 ---
 _schema: default
-title: Redesigned EH Data Portal
+title: The redesigned EH Data Portal
 draft: false
 date: 2021-09-02T08:49:22-04:00
 image: /content/data-stories/codesign/ds-codesign-team.jpg
