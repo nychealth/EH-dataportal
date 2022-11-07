@@ -1,9 +1,8 @@
 ---
-_schema: default
 title: The redesigned EH Data Portal
 draft: false
-date: 2021-09-02T08:49:22-04:00
-image: /content/data-stories/codesign/ds-codesign-team.jpg
+date: 2022-11-07T08:49:22-04:00
+image: ds-codesign-team.jpg
 photocredit: EH Data Portal team
 keywords:
     - how we work
@@ -17,7 +16,7 @@ menu:
     main:
         identifier: '02'
 ---
-The Environment & Health Data Portal looks a little bit different\! We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health.&nbsp;&nbsp;
+The Environment and Health Data Portal looks a little bit different\! We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health.&nbsp;&nbsp;
 
 Here's what the new site has to offer:&nbsp;
 
