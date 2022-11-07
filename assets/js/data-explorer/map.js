@@ -18,13 +18,10 @@ const renderMap = (
                 gt => gt.GeoType === mapGeoType
             )[0].GeoTypeDescription;
 
-        
         let mapDisplay = metadata[0].DisplayType;
         let mapTime = mapYears[0];
         let topoFile = '';
 
-        // console.log("testData [map.js]", testData);
-        
         // can add year to this
 
         console.log("mapGeoType [renderMap]", mapGeoType);
@@ -46,7 +43,7 @@ const renderMap = (
         }
 
         
-    // define spec
+        // define spec
         
         mapspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",

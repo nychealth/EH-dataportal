@@ -294,18 +294,6 @@
 
 {{- end -}}
 
-{{/*  {{- if eq hugo.Environment "data_staging" -}}   */}}
-
-  {{/*  {{- $js := resources.Get "js/accessible-autocomplete.min.js" }}
-  <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
-
-  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" }}
-  <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
-
-  {{- $js := resources.Get "js/uhflist.js" }}
-  <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>  */}}
-
-{{/*  {{ else }}  */}}
 
   {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
   {{ $secureJS := $js | resources.Fingerprint "sha512" }}
@@ -319,7 +307,6 @@
   {{ $secureJS := $js | resources.Fingerprint "sha512" }}
   <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-{{/*  {{- end -}}  */}}
 
 <script type="text/javascript">
     // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
