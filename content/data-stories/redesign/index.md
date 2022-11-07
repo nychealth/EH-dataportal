@@ -33,11 +33,12 @@ The navigation bar at the top always tells you where you are and provides quick 
 Our site has always aimed to show how environments affect health.&nbsp; Our updates focus not only on improving access to data, but also making it easier to explore connections between different datasets, topics and other site content:&nbsp;
 
 * [Key Topics](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/key-topics/) bring together in one display related datasets, custom data interactives, data stories, and neighborhood reports for special areas of environmental health. You can explore resources across the site for : [Air Quality](/key-topics/airquality/); [Climate](/key-topics/climatehealth/); [Housing](/key-topics/housing/); [Inequality and Health Inequities](/key-topics/social/); [Active Design,](/key-topics/transportation/)[Public Space, and Transportation](__notset__); [Environmental Health Outcomes](/key-topics/healthoutcomes/); [Child Health](/key-topics/childhealth/); [Pests and Pesticides](/key-topics/pests/); and [Food and Drink](/key-topics/foodanddrink/).&nbsp;
+
 * Keywords link you to other pages on the similar topics.&nbsp;
 
 ![](keywords-screenshot.png)
 
-* Throughout the site , you'll&nbsp; see links to related content. &nbsp; For example: when you're browsing datasets about Air Quality, you'll be able to quickly jump directly to related Data Stories. &nbsp;
+* Throughout the site, you'll see links to related content. For example: when you're browsing datasets about Air Quality, you'll be able to quickly jump directly to related Data Stories. &nbsp;
 
 ![](related-screenshot.png)
 
@@ -78,7 +79,7 @@ Getting more from the data:&nbsp;
 
 **New technology**&nbsp;
 
-We completely overhauled the Portal’s technology to improve usability, mobile compatibility, and accessibility. For those of you who are interested, we use:&nbsp;
+We completely overhauled the Portal’s technology to improve usability, mobile compatibility, and accessibility. We use:
 
 * [Hugo](https://gohugo.io/), a static site generator&nbsp;
 * [Arquero](https://uwdata.github.io/arquero/), [Vega-Lite](https://vega.github.io/vega-lite/), and [DataTables](https://datatables.net/)&nbsp;to drive front-end data processing and visualization&nbsp;
