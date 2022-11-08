@@ -14,13 +14,14 @@ jobs:
     # define job's steps
 
     steps:
-      
+
       # checkout
       
       - name: checkout prod-deploy
         uses: actions/checkout@v3
         with:
           ref: prod-deploy
+          fetch-depth: 0
       
       # built hash
       
@@ -57,7 +58,14 @@ jobs:
         if: steps.b_hash.outputs.built_hash != steps.d_hash.outputs.deployed_hash
 
         run: |
-          echo "git_log=$(git log ${{ steps.d_hash.outputs.deployed_hash }}..${{ steps.b_hash.outputs.built_hash }} --pretty='format:%C(auto)%h (%s, %cs)')" >> $GITHUB_OUTPUT
+          echo "commit_count=$(git rev-list --count ${{ steps.d_hash.outputs.deployed_hash }}..${{ steps.b_hash.outputs.built_hash }})" >> $GITHUB_OUTPUT
+          git log ${{ steps.d_hash.outputs.deployed_hash }}..${{ steps.b_hash.outputs.built_hash }} --pretty='format:%C(auto)%h (%s, %cs)%n<br/>' > log.txt
+
+      - name: log output
+        id: log_output
+        run: |
+          echo "commit_count: ${{ steps.log.outputs.commit_count }}"
+          cat log.txt
 
       # ...and send en email saying that we need to deploy
 
@@ -71,8 +79,8 @@ jobs:
           server_address: smtp.gmail.com
           server_port: 465
           secure: true
-          subject: Pending deployment on ${{ github.repository }}
-          body: ${{ steps.log.outputs.git_log }}
+          subject: Pending deployment on ${{ github.repository }} (${{ steps.log.outputs.commit_count }} commits)
+          html_body: file://log.txt
           to: cgettings@health.nyc.gov,mmontesano@health.nyc.gov
           from: Chris Gettings (via gmail)
           username: ${{ secrets.MAIL_USERNAME }}
