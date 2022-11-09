@@ -52,7 +52,7 @@
         "encode": {
           "update": {
             "fill": [{
-                "test": "datum.GEOCODE==selectNTA",
+                "test": "datum.NTACode==selectNTA",
                 "value": "orange"
             },
                 {"value": "grey"}
