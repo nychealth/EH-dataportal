@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-md-6 col-sm-12 ml-auto">
             <div class="row">
                 <p>We combine data from our air quality monitoring network, NYCCAS, with other data to understand what
@@ -41,7 +41,7 @@
 
         <div class="col-md-5 mr-auto">
             <form id="nta-form">
-                <label for="last-neighborhood"><strong>Get air quality data for your neighborhood:</strong></label>
+                <label for="last-neighborhood"><strong>Choose a neighborhood to get data:</strong></label>
                 <div class="autocomplete-wrapper" style="display:inline-block;width:79%;">
                     <select name="last-neighborhood" id="last-neighborhood">
                         <option value="">Select a neighborhood</option>
@@ -252,183 +252,77 @@
                 style="display:none; margin-top: 25px; background-color: #fafafa; border-left: 15px solid gray; padding: 10px;"
                 class="card mb-3">
                 <p id="NTA"></p>
-                <p><em>This is a Neighborhood Tabulation Area (NTA). <a
-                            href="https://www1.nyc.gov/site/planning/data-maps/open-data/dwn-nynta.page">Read about NTAs
+                <p><em class="fs-sm">This is a Neighborhood Tabulation Area (NTA). <a
+                            href="/data-stories/geographies">Read about NTAs
                             and other geographies.</a></em> </p>
             </div>
         </div>
     </div>
 
-    <div class="row my-4">
-        <div class="col-lg-5 my-2 ml-auto pl-0">
-            <h5><i class="fas fa-smog"></i>&nbsp;Air quality in your neighborhood </h5>
-            <div class="card content-card">
-                <div class="card-content px-1 py-1">
-                    <p><b>PM2.5</b> (or fine particles) worsen lung and heart diseases and are linked to cancer and
-                        premature death. NYC meets the EPA's annual average standard (measured in micrograms per cubic
-                        meter, or μg/m<sup>3</sup>), but short-term concentrations sometimes exceed this threshold.</p>
-                    <hr>
-                    <div class="row mb-2">
-                        <div class="col-4">EPA standard:
-                            <h4>12 μg/m<sup>3</sup></h4>
-                        </div>
-                        <div class="col-4">NYC average:
-                            <h4>7.0 μg/m<sup>3</sup></h4>
-                        </div>
-                        <div class="col-4">Your neighborhood:<h4 id="PM"></h4>
-                        </div>
+    <style>
+        .badge-worse {
+        background-color:#8077b6; }
 
+        .badge-medium {
+            background-color: #bcbcdc;
+        }
+
+        .badge-better {
+            background-color:#f5f1f8;
+        }
+    </style>
+
+    <div id="outputContent" style="display:none"> <!--change to none-->
+        <div class="row my-4">
+
+            <div class="col-md-6 col-sm-12 ml-auto pl-0">
+                <h5><i class="fa fa-question-circle"></i>&nbsp;What affects the air in your neighborhood</h5>
+
+                <div class="row no-gutters">
+                    <div class="col-6">
+                        <button type="button" id="btn1" class="mapbtns btn btn-sm btn-block btn-outline-light text-black active" onclick="changeFactor(1,code)"><i class="h5 fas fa-smog mr-1" aria-hidden="true"></i>Building emissions <span id="buildingEmissions"></span></button>
+                        <button type="button" id="btn2" class="mapbtns btn btn-sm btn-block btn-outline-light text-black" onclick="changeFactor(2,code)"><i class="h5 fas fa-city mr-1" aria-hidden="true"></i>Building density<span id="buildingDensity"></span></button>
                     </div>
-                    <div style="height: 150px;" id="PMbar"></div>
+
+                    <div class="col-6">
+                        <button type="button" id="btn3" class="mapbtns btn btn-sm btn-block btn-outline-light text-black" onclick="changeFactor(3,code)"><i class="h5 fas fa-industry mr-1" aria-hdden="true"></i>Industrial area<span id="industrial"></span></button>
+                        <button type="button" id="btn4" class="mapbtns btn btn-sm btn-block btn-outline-light text-black" onclick="changeFactor(4,code)"><i class="h5 fas fa-car mr-1" aria-hidden="true"></i>Traffic density<span id="trafficDensity"></span></button>
+                    </div>
                 </div>
-            </div>
+                <div class="card content-card mb-4">
+                    <div class="card-content px-1 py-1">
 
-            <br>
+                        <!-- Map -->
+                        <div id="mapHolder" style="width:100%; height: 500px;">
 
-            <div class="card content-card">
-                <div class="card-content px-1 py-1">
-                    <p><b>Nitrogen dioxide</b> is linked to asthma hospitalizations and other respiratory conditions.
-                        NYC meets the EPA's annual standard (measured in parts per billion, or ppb), but short-term
-                        concentrations sometimes exceed this threshold.</p>
-                    <hr>
-                    <div class="row mb-2">
-                        <div class="col-4">EPA standard:
-                            <h4>53 ppb</h4>
                         </div>
-                        <div class="col-4">NYC average:
-                            <h4>17 ppb</h4>
+
+                        <!-- Legend -->
+                        <div class="fs-sm float-right mb-1">
+                            <span style="background-color:#f5f1f8; padding: 5px; font-weight:bold;">1 (Low)</span>
+                            <span style="background-color:#bcbcdc; padding: 5px; font-weight:bold;">2 (Medium)</span>
+                            <span style="background-color:#8077b6; padding: 5px; font-weight:bold;">3 (High)</span>
                         </div>
-                        <div class="col-4">Your neighborhood:<h4 id="NO2"></h4>
-                        </div>
-                    </div>
-                    <div style="height: 150px;" id="NO2bar">chart placeholder</div>
-                </div>
-            </div>
-            <br>
-            <p>For more air quality data, see <a href="https://nyc-ehs.net/report">The NYCCAS Annual Report</a>. </p>
-        </div>
 
-        <div class="col-lg-6 my-2 mr-auto">
-            <h5><i class="fa fa-question-circle"></i>&nbsp;What affects the air in your neighborhood</h5>
-
-            <div class="card mb-2 fs-sm">
-                <div class="card-body">
-                    <div class="nav nav-pills device-sm fs-sm" role="tablist">
-
-                        <a class="nav-item nav-link flex-fill active" id="tab-btn-01-a" href="#tab-01-a"
-                            data-toggle="pill" aria-controls="tab-01-a" aria-selected="true" role="tab">
-                            <i class="h4 fas fa-smog"></i>
-                            <p id="BuildingEmissions"></p>
-                        </a>
-
-                        <a class="nav-item nav-link flex-fill" id="tab-btn-01-d" href="#tab-01-d" data-toggle="pill"
-                            aria-controls="tab-01-d" aria-selected="false" role="tab">
-                            <i class="h4 fas fa-city"></i>
-                            <p id="BuildingDensity"></p>
-                        </a>
-
-                        <a class="nav-item nav-link flex-fill" id="tab-btn-01-b" href="#tab-01-b" data-toggle="pill"
-                            aria-controls="tab-01-b" aria-selected="false" role="tab">
-                            <i class="h4 fas fa-industry"></i>
-                            <p id="Industrial"></p>
-                        </a>
-
-                        <a class="nav-item nav-link flex-fill" id="tab-btn-01-c" href="#tab-01-c" data-toggle="pill"
-                            aria-controls="tab-01-c" aria-selected="false" role="tab">
-                            <i class="h4 fas fa-car"></i>
-                            <p id="TrafficDensity"></p>
-                        </a>
-                    </div>
-
-                    <div class="tab-content" id="tabs-01-content">
-                        <div class="tab-pane fade show active" id="tab-01-a" aria-labelledby="tab-btn-01-a"
-                            role="tabpanel">
-                            <div class="greyitem h-100">
-                                <h4>Building emissions</h4>
-
-                                <!--The legend starts here-->
-                                <div class="maplegend no-gutters">
-                                    <div class="row no-gutters">
-                                        <div class="col">
-                                            <strong><span style="color: #ffc2ff;" class="mr-1">Low</span>
-                                                <span style="color: #cc59ca;" class="mr-1">Medium</span>
-                                                <span style="color: #6e1e93;">High</span></strong>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--the legend ends here-->
-                                <div id="BEmap" style="width: 100%;"></div>
-
+                        <!-- Explanation -->
+                        <div style="clear:both" class="fs-sm">
+                            <div id="text1" class="descriptionText">
                                 <p>Building emissions affect your neighborhood's air quality. Like vehicles, buildings
                                     burn fuel: their boilers run on oil or gas to produce heat and hot water. These
                                     boilers emit pollutants that affect your neighborhood's air quality.</p>
                             </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="tab-01-d" aria-labelledby="tab-btn-01-d" role="tabpanel">
-                            <div class="greyitem h-100">
-                                <h4>Building density</h4>
-                                <!--The legend starts here-->
-                                <div class="maplegend no-gutters">
-                                    <div class="row no-gutters">
-                                        <div class="col">
-                                            <strong><span style="color: #ffc2ff;" class="mr-1">Low</span>
-                                                <span style="color: #cc59ca;" class="mr-1">Medium</span>
-                                                <span style="color: #6e1e93;">High</span></strong>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--the legend ends here-->
-                                <div id="BDmap" style="width: 100%;"></div>
-
+                            <div id="text2" class="descriptionText">
                                 <p>Building density is a key factor for air quality - since buildings emit pollutants, a
                                     neighborhood's building density can help predict its air quality. New York City's
                                     building density is a function of its population density - with over 26,000 people
                                     per square mile, it's is the densest American city.</p>
                             </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="tab-01-b" aria-labelledby="tab-btn-01-b" role="tabpanel">
-                            <div class="greyitem h-100">
-                                <h4>Industrial Area</h4>
-                                <!--The legend starts here-->
-                                <div class="maplegend no-gutters">
-                                    <div class="row no-gutters">
-                                        <div class="col">
-                                            <strong><span style="color: #ffc2ff;" class="mr-1">Low</span>
-                                                <span style="color: #cc59ca;" class="mr-1">Medium</span>
-                                                <span style="color: #6e1e93;">High</span></strong>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!--the legend ends here-->
-                                <div id="Industrialmap" style="width: 100%;"></div>
-
+                            <div id="text3" class="descriptionText">
                                 <p>The amount of industrial area in a neighborhood may affect its air quality in several
                                     ways. Manufacturing may emit pollutants, construction can kick up particulate
                                     matter, and increased truck traffic can lead to increased vehicular emissions. </p>
                             </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="tab-01-c" aria-labelledby="tab-btn-01-c" role="tabpanel">
-                            <div class="greyitem h-100">
-                                <h4>Traffic Density</h4>
-                                <!--The legend starts here-->
-                                <div class="maplegend no-gutters">
-                                    <div class="row no-gutters">
-                                        <div class="col">
-                                            <strong><span style="color: #ffc2ff;" class="mr-1">Low</span>
-                                                <span style="color: #cc59ca;" class="mr-1">Medium</span>
-                                                <span style="color: #6e1e93;">High</span></strong>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!--the legend ends here-->
-                                <div id="Trafficmap" style="width: 100%;"></div>
-
+                            <div id="text4" class="descriptionText">
                                 <p> Traffic density affects a neighborhood's air quality in a few ways. Combustion
                                     engines emit "tailpipe emissions" such as PM2.5, NOx and carbon monoxide (CO), while
                                     dust from wear to tires and from braking contribute additional particulate matter to
@@ -436,10 +330,62 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
+
+            </div>
+
+            <div class="col-md-5 mr-auto">
+                <h5><i class="fas fa-smog"></i>&nbsp;Air quality in your neighborhood </h5>
+                <div class="card content-card">
+                    <div class="card-content px-1 py-1">
+                        <p class="fs-sm"><b>PM2.5</b> (or fine particles) worsen lung and heart diseases and are linked to cancer and
+                            premature death. NYC meets the EPA's annual average standard (measured in micrograms per cubic
+                            meter, or μg/m<sup>3</sup>), but short-term concentrations sometimes exceed this threshold.</p>
+                        <hr>
+                        <div class="row mb-2">
+                            <div class="col-4"><span class="home-label">EPA standard:</span>
+                                <h4>12 μg/m<sup>3</sup></h4>
+                            </div>
+                            <div class="col-4"><span class="home-label">NYC average:</span>
+                                <h4>7.0 μg/m<sup>3</sup></h4>
+                            </div>
+                            <div class="col-4"><span class="home-label">Your area:</span><h4 id="PM"></h4>
+                            </div>
+    
+                        </div>
+                        <div style="height: 150px;" id="PMbar"></div>
+                    </div>
+                </div>
+    
+                <br>
+    
+                <div class="card content-card">
+                    <div class="card-content px-1 py-1">
+                        <p class="fs-sm"><b>Nitrogen dioxide</b> is linked to asthma hospitalizations and other respiratory conditions.
+                            NYC meets the EPA's annual standard (measured in parts per billion, or ppb), but short-term
+                            concentrations sometimes exceed this threshold.</p>
+                        <hr>
+                        <div class="row mb-2">
+                            <div class="col-4"><span class="home-label">EPA standard:</span>
+                                <h4>53 ppb</h4>
+                            </div>
+                            <div class="col-4"><span class="home-label">NYC average:</span>
+                                <h4>17 ppb</h4>
+                            </div>
+                            <div class="col-4"><span class="home-label">Your area:</span>
+                                <h4 id="NO2"></h4>
+                            </div>
+                        </div>
+                        <div style="height: 150px;" id="NO2bar">chart placeholder</div>
+                    </div>
+                </div>
+                <br>
+                <p>For more air quality data, see <a href="/key-topics/airquality/nyccas">The NYCCAS Annual Report</a>. </p>
             </div>
         </div>
     </div>
+
 
 </article>
 
