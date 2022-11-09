@@ -11,7 +11,7 @@ menu:
     main:
         identifier: '05'
 layout: aqe
-customJS: aqe2.js
+customJS: aqe.js
 accessibleAutocomplete: /js/accessible-autocomplete.min.js
 vega: true
 ---
