@@ -1,6 +1,6 @@
 "use strict";
 
-// STYLES AUTOCOMPLETE FORM
+// STYLES THE AUTOCOMPLETE FORM
 
 var selectEl = document.querySelector('#last-neighborhood')
 accessibleAutocomplete.enhanceSelectElement({
@@ -20,12 +20,19 @@ ntaForm.addEventListener('submit', function (event) {
     event.preventDefault();                      // prevent page re-load
     selectedName = event.target[0].value;    // gives you full neighborhood name
     selectedNeighborhood = event.target[0].value.slice(0, 4); // gives you NTA code
+    console.log('selectedNeighborhood: ' + selectedNeighborhood)
 
     document.getElementById('NTA').innerHTML = 'Your neighborhood: <h3><span style="font-weight:bold;color:#15607a">' + DOMPurify.sanitize(selectedName) + '</span></h3>';
     document.getElementById('yourneighb').style.display = "block";
+    document.getElementById('outputContent').style.display = "block";
     
-    dataFilter(nyccasData);
-    dataChange();
+    dataFilter(nyccasData); // filters NYCCAS Data for neighborhood data
+    dataChange(); // sends data to page
+    console.log('code: ')
+    console.log(code)
+
+    changeFactor(1,code) // loads the map
+
     
 });
 
@@ -37,20 +44,19 @@ var nyccasData = [];
 var neighborhoodData = [];
 var selectedNeighborhood;
 var selectedName = '';
+var code;
 var dPM = 0;
 var dNO2 = 0;
 var dBuildingEmissions = 0;
 var dBuildingDensity = 0;
 var dTrafficDensity = 0;
 var dIndustrial = 0;
-var tabShown = 'tab-01-a'; 
+
 
 // path variables
-
-var aqe_path   = data_repo + data_branch + "/key-topics/air-quality-explorer";
 var nyccas_url = data_repo + data_branch + "/key-topics/air-quality-explorer/aqe-nta.csv";
-var PMBarVGSpec  = aqe_path + "/" + "PMBarSpec.vg.json";
-var NO2BarVGSpec = aqe_path + "/" + "NO2BarSpec.vg.json";
+var PMBarVGSpec  = "PMBarSpec.vg.json";
+var NO2BarVGSpec = "NO2BarSpec.vg.json";
 var embed_opt = {
     actions:false
 };
@@ -77,18 +83,152 @@ function dataFilter(data) {
 
         return sf.NTACode === selectedNeighborhood;
 
+    
+
     });
 
 
 }
 
+
+// runs on hitting the map's buttons
+const changeFactor = (
+    x,   // number passed in by button selection
+    y   // looking for GEOCODE for highlighting
+    ) => {
+    var mapButtons = document.querySelectorAll(".mapbtns")
+    mapButtons.forEach(btn => {
+        btn.classList.remove('active')
+    })
+    var selBtn = 'btn'+x
+    document.getElementById(selBtn).classList.add('active')
+
+    // hide all text
+    var textDescr = document.querySelectorAll('.descriptionText')
+        textDescr.forEach(text => {
+            text.style.display = "none"
+        })
+    var text = 'text'+x
+    document.getElementById(text).style.display = "block"
+
+    var indicator;
+    var neighb = y.toString();
+    console.log(neighb)
+
+    if (x === 1) {
+      indicator = "tertile_buildingemissions";
+    } else if (x === 2) {
+        indicator = "tertile_buildingdensity";
+    } else if (x===3) {
+        indicator = "tertile_industrial";
+    } else {
+        indicator = "tertile_trafficdensity";
+    }
+
+    var mapSpec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+        "width": "container",
+        "height": "container",
+        "autosize": {"type": "fit", "contains": "padding"},
+        "config": {
+            "view": {"stroke": "transparent"},
+        },
+        "layer": [
+          {
+            "data": {
+              "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/NTA.topo.json",
+              "format": {"type": "topojson", "feature": "collection"}
+            },
+            "mark": {"type": "geoshape", "stroke": "#ffffff", "fill": "lightgray"}
+          },
+          {
+            "data": {
+              "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/NTA.topo.json",
+              "format": {"type": "topojson", "feature": "collection"}
+            },
+            "transform": [
+              {
+                "lookup": "properties.NTACode",
+                "from": {
+                  "data": {
+                    "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/air-quality-explorer/aqe-nta.csv"
+                  },
+                  "key": "NTACode",
+                  "fields": [
+                    "NTACode",
+                    "GEONAME",
+                    "GEOCODE",
+                    "tertile_buildingemissions",
+                    "tertile_buildingdensity",
+                    "tertile_industrial",
+                    "tertile_trafficdensity"
+                  ]
+                }
+              }
+            ],
+            "mark": {"type": "geoshape", "stroke": "#000000"},
+            "encoding": {
+              "color": {
+                "bin": false,
+                "field": indicator,
+                "type": "ordinal",
+                "scale": {"scheme": {"name": "purples", "extent": [-0.5, 1]}},
+                "legend": null
+              },
+              "strokeWidth": {
+                "condition": {"test": `datum.properties.GEOCODE === ${neighb}`, "value": 2.5},
+                "value": 0.5
+                },
+              "tooltip": [
+                {
+                    "field": "GEONAME",
+                    "type": "nominal",
+                    "title": "Neighborhood"
+                  },
+                  {
+                    "field": "tertile_buildingemissions",
+                    "type": "nominal",
+                    "title": "Building emissions"
+                  },
+                  {
+                    "field": "tertile_buildingdensity",
+                    "type": "nominal",
+                    "title": "Building density"
+                  },
+                  {
+                    "field": "tertile_industrial",
+                    "type": "nominal",
+                    "title": "Industrial area"
+                  },
+                  {
+                    "field": "tertile_trafficdensity",
+                    "type": "nominal",
+                    "title": "Traffic"
+                  }
+              ]
+            }
+          }
+        ]
+      };
+
+      vegaEmbed("#mapHolder", mapSpec, {actions: false})
+}
+
+
+
+
+
+
+
 // at this point we have: neighborhoodName (full name), ntaCode (4-digit), and neighborhooData (array of data)
 
 // UPON SELECTION, UPDATES DATA
 
+
 function dataChange() {
     
     selectedName = neighborhoodData[0].GEONAME;
+    code = neighborhoodData[0].GEOCODE
     
     dPM = numRound(neighborhoodData[0].Avg_annavg_PM25);
     dNO2 = numRound(neighborhoodData[0].Avg_annavg_NO2);
@@ -100,20 +240,12 @@ function dataChange() {
 
     document.querySelector("#PM").innerHTML = dPM + ' μg/m<sup>3</sup>';
     document.querySelector("#NO2").innerHTML = dNO2 + ' ppb';
-    document.querySelector("#BuildingEmissions").innerHTML = 'Building emissions<br><h5>' + tertileTranslate(dBuildingEmissions) + '</h5>';
-    document.querySelector("#BuildingDensity").innerHTML = 'Building density<br><h5>' + tertileTranslate(dBuildingDensity) + '</h5>';
-    document.querySelector("#TrafficDensity").innerHTML = 'Traffic density<br><h5>' + tertileTranslate(dTrafficDensity) + '</h5>';
-    document.querySelector("#Industrial").innerHTML = 'Industrial area<br><h5>' + tertileTranslate(dIndustrial) + '</h5>';
+    document.querySelector("#buildingEmissions").innerHTML = tertileTranslate(dBuildingEmissions);
+    document.querySelector("#buildingDensity").innerHTML = tertileTranslate(dBuildingDensity);
+    document.querySelector("#trafficDensity").innerHTML = tertileTranslate(dTrafficDensity);
+    document.querySelector("#industrial").innerHTML = tertileTranslate(dIndustrial) ;
     
-    buildMap(
-        mapUpdateID(tabShown), 
-        aqe_path + "/" + mapUpdateSpec(tabShown), 
-        nyccasData, 
-        nta_topojson,
-        selectedNeighborhood
-    );
     // load the PM2.5 bar chart
-
     buildChart(
         "#PMbar", 
         PMBarVGSpec, 
@@ -145,112 +277,18 @@ function numRound(x) {
 function tertileTranslate(tertileVal) {
     
     if (tertileVal == 3) {
-        return '<span class="badge badge-worse btn-block">high</span>';
+        return '<span class="badge badge-worse ml-1">High</span>';
         
     } else if (tertileVal == 2) {
-        return '<span class="badge badge-medium btn-block">medium</span>';
+        return '<span class="badge badge-medium ml-1">Medium</span>';
         
     } else {
-        return '<span class="badge badge-better btn-block">low</span>';
+        return '<span class="badge badge-better ml-1">Low</span>';
         
     };
 }
 
 
-// Returns in-line badges for text
-
-function tertileTranslate2(tertileVal) {
-    
-    if (tertileVal == 3) {
-        return '<span class="badge badge-worse">high</span>';
-        
-    } else if (tertileVal == 2) {
-        return '<span class="badge badge-medium">medium</span>';
-        
-    } else {
-        return '<span class="badge badge-better">low</span>';
-        
-    };
-} 
-
-
-// Returns map insert/update div IDs
-
-function mapUpdateID(tabShown) {
-    
-    if (tabShown === "tab-01-a") {
-        return '#BEmap';
-        
-    } else if (tabShown === "tab-01-d") {
-        return '#BDmap';
-        
-    } else if (tabShown === "tab-01-b") {
-        return '#Industrialmap';
-        
-    } else if (tabShown === "tab-01-c") {
-        return '#Trafficmap';
-        
-    } else {
-        console.log('Error: not sure which map to update');
-    };
-} 
-
-
-// Returns map specs for proper tab context
-
-function mapUpdateSpec(tabShown) {
-    
-    if (tabShown === "tab-01-a") {
-        return `BEmapSpec.vg.json`;
-        
-    } else if (tabShown === "tab-01-d") {
-        return `BDmapSpec.vg.json`;
-        
-    } else if (tabShown === "tab-01-b") {
-        return `IndustrialmapSpec.vg.json`;
-        
-    } else if (tabShown === "tab-01-c") {
-        return `TrafficmapSpec.vg.json`;
-        
-    } else {
-        console.log('Error: not sure which map to update');
-        
-    };
-} 
-
-
-// function to build maps
-
-function buildMap(div, spec, csv, topo, nbr) {
-    
-    d3.json(spec).then(spec => {
-            
-        // get data object whose url is "topo"
-        
-        var topo_url = spec.data.filter(data => {return data.url === "topo"})[0];
-        
-        // update url element of this data array (which updates the spec), because
-        //  top_url is a shallow copy / reference to the spec
-        
-        topo_url.url = topo;
-        
-        vegaEmbed(div, spec, {actions: false})
-            .then(async res => {
-
-                var res_view = 
-                    await res.view
-                        .signal("selectNTA", nbr)
-                        .insert("nyccasData", csv)
-                        .logLevel(vega.Info)
-                        .runAsync();
-
-                // console.log("getState", res_view.getState());
-                
-            })
-            .catch(console.error);
-
-    });
-}
 
 
 // function to build charts
@@ -274,98 +312,10 @@ function buildChart(div, spec, csv, nbr) {
         });
     }
 
-// load the charts after the page loads
-
-$( window ).on( "load", function() {
-
-    console.log("load");
-
-    // load the map
-    
-    buildMap(mapUpdateID(tabShown), aqe_path + "/" + mapUpdateSpec(tabShown), nyccasData, nta_topojson, selectedNeighborhood);
-    
-    // load the PM2.5 bar chart
-    
-    buildChart("#PMbar", PMBarVGSpec, nyccasData, selectedNeighborhood);
-    
-    // load the NO2 bar chart
-    
-    buildChart("#NO2bar", NO2BarVGSpec, nyccasData, selectedNeighborhood);
-
-});
-
-// change maps when tabs change
-
-$(document).ready(function () {
-    
-    $(document).alert('hi from jquery');
-    
-    $(".nav-pills a").click(function () {
-        $(this).tab('show');
-    });
-    
-    $('.nav-pills a').on('shown.bs.tab', function (event) {
-
-        console.log(".nav-pills a");
-        
-        tabShown = $(event.target).attr('aria-controls'); // active tab
-        
-        $(".act span").text(tabShown);
-        $(".prev span").text("did it again");
-
-        // load the map
-
-        buildMap(
-            mapUpdateID(tabShown), 
-            aqe_path + "/" + mapUpdateSpec(tabShown), 
-            nyccasData, 
-            nta_topojson,
-            selectedNeighborhood
-        );
-
-        // load the PM2.5 bar chart
-    
-        buildChart(
-            "#PMbar", 
-            PMBarVGSpec, 
-            nyccasData,
-            selectedNeighborhood
-        );
-    
-        // load the NO2 bar chart
-    
-        buildChart(
-            "#NO2bar", 
-            NO2BarVGSpec, 
-            nyccasData,
-            selectedNeighborhood
-        );
-        
-    });
-}); 
 
 
-// Source: https://github.com/jserz/js_piece/blob/master/DOM/ParentNode/append()/append().md
-(function (arr) {
-    arr.forEach(function (item) {
-        if (item.hasOwnProperty('append')) {
-            return;
-        }
-        Object.defineProperty(item, 'append', {
-            configurable: true,
-            enumerable: true,
-            writable: true,
-            value: function append() {
-                var argArr = Array.prototype.slice.call(arguments),
-                docFrag = document.createDocumentFragment();
-                
-                argArr.forEach(function (argItem) {
-                    var isNode = argItem instanceof Node;
-                    docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
-                });
-                
-                this.appendChild(docFrag);
-            }
-        });
-    });
-})([Element.prototype, Document.prototype, DocumentFragment.prototype]);
+
+
+
+
+
