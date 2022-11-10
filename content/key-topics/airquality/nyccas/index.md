@@ -64,9 +64,7 @@ Ozone levels are highest in:
 
 ### Pollutants Measured by NYCCAS: Health Effects and Sources
 
-&nbsp;
-
-{{&lt; accordion number="01" title="Fine Particles" content="</p><p>Fine particles (PM2.5) are tiny airborne solid and liquid particles less than 2.5 microns in diameter. PM2.5 is the most harmful urban air pollutant. It is small enough to penetrate deep into the lungs and enter the bloodstream, which can worsen lung and heart disease and lead to hospital admissions and premature deaths.</p><p>PM2.5 can either be directly emitted or formed in the atmosphere from other pollutants. Fuel combustion in vehicles, boilers in buildings, power plants, construction equipment, marine vessels and commercial cooking are all common sources of PM2.5. Up to 40% of the PM2.5 in New York City's air comes from sources in areas upwind from the city, such as coal-burning power plants in the Midwest.</p><p>" &gt;}}​​
+{{< accordion number="01" title="Fine Particles" content="Fine particles (PM2.5) are tiny airborne solid and liquid particles less than 2.5 microns in diameter. PM2.5 is the most harmful urban air pollutant. It is small enough to penetrate deep into the lungs and enter the bloodstream, which can worsen lung and heart disease and lead to hospital admissions and premature deaths. PM2.5 can either be directly emitted or formed in the atmosphere from other pollutants. Fuel combustion in vehicles, boilers in buildings, power plants, construction equipment, marine vessels and commercial cooking are all common sources of PM2.5. Up to 40% of the PM2.5 in New York City's air comes from sources in areas upwind from the city, such as coal-burning power plants in the Midwest." >}}
 
 \[IMAGE\]
 
