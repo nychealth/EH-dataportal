@@ -159,3 +159,30 @@ _editables:
     redo: false
     removeformat: false
     copyformatting: false
+    snippet: true
+
+_snippets:
+  datawrapper:
+    template: hugo_shortcode_named_args
+    inline: false
+    preview:
+      text: Datawrapper
+    definitions:
+      shortcode_name: datawrapper
+      named_args:
+        - editor_key: title
+          type: string
+        - editor_key: src
+          type: string
+  vega:
+    template: hugo_shortcode_named_args
+    inline: false
+    preview:
+      text: vega
+    definitions:
+      shortcode_name: vega
+      named_args:
+        - editor_key: id
+          type: string
+        - editor_key: spec
+          type: string
