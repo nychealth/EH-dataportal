@@ -732,6 +732,9 @@ const renderMeasures = async () => {
 
     console.log("** renderMeasures");
 
+    selectedSummaryYears = [];
+    selectedSummaryGeography = [];
+
     linksMeasures.length = 0
 
     const contentSummary = document.querySelector('#tab-table');
@@ -763,6 +766,8 @@ const renderMeasures = async () => {
     // create years dropdown for table
 
     const tableYears = [...new Set(fullDataTableObjects.map(item => item.Time))];
+
+    console.log("tableYears", tableYears);
 
     tableYears.forEach((year, index) => {
 
