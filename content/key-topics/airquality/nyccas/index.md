@@ -121,10 +121,10 @@ In the maps below, you can select a pollutant to see how air pollution is distri
 </div>
 
 <script type='text/javascript'>
-var divElement = document.getElementById('viz1581355801663');
-var vizElement = divElement.getElementsByTagName('object')[0];
- if ( divElement.offsetWidth > 800 ) { vizElement.style.width='971px';vizElement.style.height='627px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='971px';vizElement.style.height='627px';}
-else { vizElement.style.width='100%';vizElement.style.height='627px';}
+
+ var divElement = document.getElementById('viz1581355801663');
+  var vizElement = divElement.getElementsByTagName('object')[0];
+vizElement.style.width='971px';vizElement.style.height='627px';
 var scriptElement = document.createElement('script');
 scriptElement.src = 'https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js';
 vizElement.parentNode.insertBefore(scriptElement, vizElement);
