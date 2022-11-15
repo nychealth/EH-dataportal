@@ -111,21 +111,24 @@ In the maps below, you can select a pollutant to see how air pollution is distri
 <div class='tableauPlaceholder' id='viz1581355801663' style='position: relative'><noscript><a href='#'>
 <img alt=' ' src='https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js' style='border: none' /></a>
 </noscript>
-<object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fmsswva-dohhdi01.csc.nycnet%2F' /> 
-<param name='embed_code_version' value='3' /> 
+<object class='tableauViz' style='display:none;'><param name='host_url' value='https%3A%2F%2Fmsswva-dohhdi01.csc.nycnet%2F' />
+<param name='embed_code_version' value='3' />
 <param name='site_root' value='&#47;t&#47;Public' />
 <param name='name' value='pollutant_maps&#47;Dashboard2' />
 <param name='tabs' value='no' /><param name='toolbar' value='no' />
 <param name='showAppBanner' value='false' />
-              
+</object>
+</div>
+
 <script type='text/javascript'>
-                    var divElement = document.getElementById('viz1581355801663');                    
-var vizElement = divElement.getElementsByTagName('object')[0];                   
- if ( divElement.offsetWidth > 800 ) { vizElement.style.width='971px';vizElement.style.height='627px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='971px';vizElement.style.height='627px';} 
-else { vizElement.style.width='100%';vizElement.style.height='627px';}                     
-var scriptElement = document.createElement('script');                    
-scriptElement.src = 'https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                <
-/script>
+var divElement = document.getElementById('viz1581355801663');
+var vizElement = divElement.getElementsByTagName('object')[0];
+ if ( divElement.offsetWidth > 800 ) { vizElement.style.width='971px';vizElement.style.height='627px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='971px';vizElement.style.height='627px';}
+else { vizElement.style.width='100%';vizElement.style.height='627px';}
+var scriptElement = document.createElement('script');
+scriptElement.src = 'https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js';                    
+vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+</script>
 
 ---
 
@@ -169,4 +172,4 @@ More Information:
 * Environment & Health Data Portal : Neighborhood-level data and neighborhood air quality reports
 * The Public Health Impacts of PM2.5 from Traffic Air Pollution data story.
 * NYCCAS Air Pollution Rasters on NYC OpenData.
-* New York Community Air Survey: past reports
+* New York Community Air Survey: past reports</script></object></div>
