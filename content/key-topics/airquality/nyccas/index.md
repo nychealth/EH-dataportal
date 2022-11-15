@@ -130,9 +130,6 @@ scriptElement.src = 'https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.j
 vizElement.parentNode.insertBefore(scriptElement, vizElement);
 </script>
 
-<script type='text/javascript' src='https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js'>
-</script>
-
 
 ---
 
