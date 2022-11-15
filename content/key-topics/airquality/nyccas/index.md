@@ -131,11 +131,7 @@ vizElement.parentNode.insertBefore(scriptElement, vizElement);
 </script>
 
 <script type='text/javascript' src='https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js'>
-</script><div class='tableauPlaceholder' style='width: 971px; height: 627px;'><object class='tableauViz' width='971' height='627' style='display:none;'>
-<param name='host_url' value='https%3A%2F%2Fmsswva-dohhdi01.csc.nycnet%2F' /> <param name='embed_code_version' value='3' /> 
-<param name='site_root' value='&#47;t&#47;Public' /><param name='name' value='pollutant_maps&#47;Dashboard2' />
-<param name='tabs' value='no' />
-<param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /></object></div>
+</script>
 
 
 ---
