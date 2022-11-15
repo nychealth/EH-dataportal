@@ -108,17 +108,9 @@ In the maps below, you can select a pollutant to see how air pollution is distri
 
 \[MAP EMBED\]
 
-<div class='tableauPlaceholder' id='viz1581355801663' style='position: relative'><noscript><a href='#'>
+<div class="tableauPlaceholder" id="viz1581355801663" style="position: relative"><noscript><a href='#'>
 <img alt=' ' src='https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js' style='border: none' /></a>
-</noscript>
-<object class='tableauViz' style='display:none;'><param name='host_url' value='https%3A%2F%2Fmsswva-dohhdi01.csc.nycnet%2F' />
-<param name='embed_code_version' value='3' />
-<param name='site_root' value='&#47;t&#47;Public' />
-<param name='name' value='pollutant_maps&#47;Dashboard2' />
-<param name='tabs' value='no' /><param name='toolbar' value='no' />
-<param name='showAppBanner' value='false' />
-</object>
-</div>
+</noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fmsswva-dohhdi01.csc.nycnet%2F" /><param name="embed_code_version" value="3" /><param name="site_root" value="/t/Public" /><param name="name" value="pollutant_maps/Dashboard2" /><param name="tabs" value="no" /><param name="toolbar" value="no" /><param name="showAppBanner" value="false" /></object></div>
 
 <script type='text/javascript'>
 
@@ -129,7 +121,6 @@ var scriptElement = document.createElement('script');
 scriptElement.src = 'https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js';
 vizElement.parentNode.insertBefore(scriptElement, vizElement);
 </script>
-
 
 ---
 
@@ -166,10 +157,10 @@ Additionally, reducing emissions from other widely distributed sources of pollut
 
 More Information:
 
-* Appendix 1 (PDF) : Sampling Methodology and Data Sources for Emissions Indicators.
-* Appendix 2 (PDF) : Seasonal Average Pollutant Maps.
+* <a target="_blank" rel="noopener" href="https://nyccas.cityofnewyork.us/nyccas2021v9/sites/default/files/NYCCAS-appendix/Appendix1.pdf">Appendix 1 (PDF) </a>\: Sampling Methodology and Data Sources for Emissions Indicators.
+* <a target="_blank" rel="noopener" href="https://nyccas.cityofnewyork.us/nyccas2022/sites/default/files/NYCCAS-appendix/Appendix2.pdf">Appendix 2 (PDF) </a>\: Seasonal Average Pollutant Maps.
 * Appendix 3 (PDF) : Community District Average Pollution Levels
-* NYCCAS Air Quality Data Hub
+* [NYCCAS Air Quality Data Hub](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/key-topics/airquality/)
 * Environment & Health Data Portal : Neighborhood-level data and neighborhood air quality reports
 * The Public Health Impacts of PM2.5 from Traffic Air Pollution data story.
 * NYCCAS Air Pollution Rasters on NYC OpenData.
