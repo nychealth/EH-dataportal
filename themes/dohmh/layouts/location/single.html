@@ -9,13 +9,14 @@
     function getURL(x) {
         var thisTopic = '';
         var topicArray = [];
+        var ind = Number(x)
 
         for (let y in subtopicIndicators) {
             topicArray = subtopicIndicators[y].IndicatorID
-            if (topicArray.includes(x)) {
+            if (topicArray.includes(ind) || topicArray.includes(x)) {
                 thisTopic = y
                 console.log('topic is: ' + thisTopic)
-                document.getElementById(x).innerHTML = thisTopic
+                document.getElementById(ind).innerHTML = thisTopic
                 return 
             } else {}
         }
