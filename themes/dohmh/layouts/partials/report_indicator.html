@@ -1,5 +1,5 @@
 <!-- Get indicator ID -->
-{{ $indID := replace (replace .ind.indicator_URL "http://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=" "") ",1,1,Summarize" "" }}
+{{ $indID := .ind.IndicatorID }}
 
 <!--Modal button also fires getURL() -->
 <button data-toggle="modal" data-target="#modal-{{ .ind.indicator_data_name }}-{{ .count }}" onclick="getURL({{int $indID}});" class="indicator-anchor">
