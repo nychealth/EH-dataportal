@@ -32,7 +32,10 @@
                 URL = sitepath+'/data-explorer/'+thisTopic+"/?id="+ind; // creates URL
                 document.getElementById(ind).href = URL; // sends it to unique ID - Get the Dataset button
                 return 
-            } else {}
+            } else {
+                console.log('for ' + ind + ", no topic.")
+                document.getElementById(ind).style.display = "none";
+            }
         }
     } 
 
