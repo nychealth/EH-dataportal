@@ -5,17 +5,18 @@
     d3.json("https://raw.githubusercontent.com/nychealth/EH-dataportal/prod-deploy/IndicatorData/subtopic_indicators.json").then(data => {
         subtopicIndicators = data
     });
-
+    var thisInd;
     function getURL(x) {
         var thisTopic = '';
         var topicArray = [];
         var ind = Number(x)
+        console.log('getURL running for ' + x)
 
         for (let y in subtopicIndicators) {
             topicArray = subtopicIndicators[y].IndicatorID
-            if (topicArray.includes(ind) || topicArray.includes(x)) {
+            if (topicArray.includes(ind)) {
                 thisTopic = y
-                console.log('topic is: ' + thisTopic)
+                console.log('topic is: ' + ind + ": " + thisTopic)
                 document.getElementById(ind).innerHTML = thisTopic
                 return 
             } else {}
