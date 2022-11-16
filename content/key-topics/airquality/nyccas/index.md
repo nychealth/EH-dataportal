@@ -108,9 +108,13 @@ In the maps below, you can select a pollutant to see how air pollution is distri
 
 \[MAP EMBED\]
 
-<div class="tableauPlaceholder" id="viz1581355801663" style="position: relative"><noscript><a href='#'>
-<img alt=' ' src='https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js' style='border: none' /></a>
-</noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fmsswva-dohhdi01.csc.nycnet%2F" /><param name="embed_code_version" value="3" /><param name="site_root" value="/t/Public" /><param name="name" value="pollutant_maps/Dashboard2" /><param name="tabs" value="no" /><param name="toolbar" value="no" /><param name="showAppBanner" value="false" /></object></div>
+<div class="tableauPlaceholder" id="viz1581355801663" style="position: relative"><noscript>
+<a href='#'><img alt=' ' src='https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js' style='border: none' /></a>
+</noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fmsswva-dohhdi01.csc.nycnet%2F" /><param name="embed_code_version" value="3" />
+<param name="site_root" value="/t/Public" /><param name="name" value="pollutant_maps/Dashboard2" /><param name="tabs" value="no" /><param name="toolbar" value="no" />
+<param name="showAppBanner" value="false" />
+</object>
+</div>
 
 <script type='text/javascript'>
 
