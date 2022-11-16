@@ -30,11 +30,12 @@
                 thisTopic = y
                 console.log('topic is: ' + ind + ": " + thisTopic)
                 URL = sitepath+'/data-explorer/'+thisTopic+"/?id="+ind; // creates URL
+                document.getElementById(ind).style.display = "block";
                 document.getElementById(ind).href = URL; // sends it to unique ID - Get the Dataset button
                 return 
             } else {
-                console.log('for ' + ind + ", no topic.")
-                document.getElementById(ind).style.display = "none";
+                // console.log('for ' + ind + ", no topic.")
+                // document.getElementById(ind).style.display = "none";
             }
         }
     } 
