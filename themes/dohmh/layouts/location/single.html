@@ -2,14 +2,24 @@
 
 <script>
     var subtopicIndicators;
-    d3.json("https://raw.githubusercontent.com/nychealth/EH-dataportal/prod-deploy/IndicatorData/subtopic_indicators.json").then(data => {
-        subtopicIndicators = data
-    });
+    var sti;
     var thisInd;
-    function getURL(x) {
+
+    function getJSON() {
+        d3.json("https://raw.githubusercontent.com/nychealth/EH-dataportal/prod-deploy/IndicatorData/subtopic_indicators.json").then(data => {
+            subtopicIndicators = data
+        });
+    }
+
+    getJSON();
+
+    const getURL = async (x) => {
+        const result = await getJSON(); // will only run if getJSON() has finished.
+
         var thisTopic = '';
         var topicArray = [];
         var ind = Number(x)
+        var URL;
         console.log('getURL running for ' + x)
 
         for (let y in subtopicIndicators) {
@@ -17,11 +27,14 @@
             if (topicArray.includes(ind)) {
                 thisTopic = y
                 console.log('topic is: ' + ind + ": " + thisTopic)
-                document.getElementById(ind).innerHTML = thisTopic
+                URL = sitepath+'/data-explorer/'+thisTopic+"/?id="+ind;
+                document.getElementById(ind).href = URL;
                 return 
             } else {}
         }
-    } // basically this works when i run it in the console, but doesn't work as called in report_indicator !
+    } 
+
+
 
 </script>
 
