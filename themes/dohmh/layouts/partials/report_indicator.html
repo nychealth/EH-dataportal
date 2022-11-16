@@ -1,7 +1,9 @@
 <!-- Get indicator ID -->
 {{ $indID := replace (replace .ind.indicator_URL "http://a816-dohbesp.nyc.gov/IndicatorPublic/VisualizationData.aspx?id=" "") ",1,1,Summarize" "" }}
 
+<!--Modal button also fires getURL() -->
 <button data-toggle="modal" data-target="#modal-{{ .ind.indicator_data_name }}-{{ .count }}" onclick="getURL({{int $indID}});" class="indicator-anchor">
+    <!-- Table row -->
     <div class="row align-items-center">
         <div class="col-6 col-md-5">
             <span class="indicator-short-name">{{ .ind.indicator_short_name }}</span>
@@ -19,7 +21,7 @@
     </div>
 </button>
 
-<!-- modal -->
+<!-- Indicator modal -->
 <div class="modal fade report-modal" id="modal-{{ .ind.indicator_data_name }}-{{ .count }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">

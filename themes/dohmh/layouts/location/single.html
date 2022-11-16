@@ -5,6 +5,7 @@
     var sti;
     var thisInd;
 
+    // this gets a json of topics and nested indicators
     function getJSON() {
         d3.json("https://raw.githubusercontent.com/nychealth/EH-dataportal/prod-deploy/IndicatorData/subtopic_indicators.json").then(data => {
             subtopicIndicators = data
@@ -13,8 +14,9 @@
 
     getJSON();
 
+    // this is called when an indicator is clicked. it produces the indicator's data-explorer URL and sends it to the modal in report_indicator.html.
     const getURL = async (x) => {
-        const result = await getJSON(); // will only run if getJSON() has finished.
+        const result = await getJSON(); // runs when getJSON() has finished.
 
         var thisTopic = '';
         var topicArray = [];
@@ -27,8 +29,8 @@
             if (topicArray.includes(ind)) {
                 thisTopic = y
                 console.log('topic is: ' + ind + ": " + thisTopic)
-                URL = sitepath+'/data-explorer/'+thisTopic+"/?id="+ind;
-                document.getElementById(ind).href = URL;
+                URL = sitepath+'/data-explorer/'+thisTopic+"/?id="+ind; // creates URL
+                document.getElementById(ind).href = URL; // sends it to unique ID - Get the Dataset button
                 return 
             } else {}
         }
