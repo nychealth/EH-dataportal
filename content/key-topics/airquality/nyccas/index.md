@@ -26,7 +26,7 @@ In 2007, the New York City Department of Health and Mental Hygiene (Health Depar
 
 Help inform OneNYC, the City’s sustainability plan
 
-![](/content/key-topics/the-new-york-city-community-air-survey/img-1794ab-1.jpg)
+![](/content/key-topics/the-new-york-city-community-air-survey/img-1794ab-1.jpg)![](/content/key-topics/the-new-york-city-community-air-survey/img-1794ab-1.jpg)
 
 * Track changes in air quality over time
 * Estimate exposures for health research
