@@ -29,7 +29,7 @@
             if (topicArray.includes(ind)) {
                 thisTopic = y
                 console.log('topic is: ' + ind + ": " + thisTopic)
-                URL = baseURL+'/data-explorer/'+thisTopic+"/?id="+ind; // creates URL
+                URL = baseURL+'data-explorer/'+thisTopic+"/?id="+ind; // creates URL
                 document.getElementById(ind).style.display = "block";
                 document.getElementById(ind).href = URL; // sends it to unique ID - Get the Dataset button
                 return 
