@@ -20,6 +20,8 @@ menu:
         identifier: '05'
 layout: report
 ---
+## ![](/content/key-topics/the-new-york-city-community-air-survey/img-1794ab-1.jpg)
+
 ## ![](/content/key-topics/the-new-york-city-community-air-survey/img-1794ab.jpg)Neighborhood Air Quality 2008-2020
 
 In 2007, the New York City Department of Health and Mental Hygiene (Health Department) established the New York City Community Air Survey (NYCCAS), the largest ongoing urban air monitoring program of any U.S. City. NYCCAS, which began collecting data in December 2008, is a collaboration between the Health Department and Queens College of the City University of New York and provides data to:
@@ -110,11 +112,7 @@ In the maps below, you can select a pollutant to see how air pollution is distri
 
 <div class="tableauPlaceholder" id="viz1581355801663" style="position: relative"><noscript>
 <a href='#'><img alt=' ' src='https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js' style='border: none' /></a>
-</noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fmsswva-dohhdi01.csc.nycnet%2F" /><param name="embed_code_version" value="3" />
-<param name="site_root" value="/t/Public" /><param name="name" value="pollutant_maps/Dashboard2" /><param name="tabs" value="no" /><param name="toolbar" value="no" />
-<param name="showAppBanner" value="false" />
-</object>
-</div>
+</noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fmsswva-dohhdi01.csc.nycnet%2F" /><param name="embed_code_version" value="3" /><param name="site_root" value="/t/Public" /><param name="name" value="pollutant_maps/Dashboard2" /><param name="tabs" value="no" /><param name="toolbar" value="no" /><param name="showAppBanner" value="false" /></object></div>
 
 <script type='text/javascript'>
 
@@ -136,11 +134,7 @@ The figure below illustrates how the levels of each air pollutant change by seas
 
 <div class="tableauPlaceholder" id="viz3" style="position: relative"><noscript>
 <a href='#'><img alt=' ' src='https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js' style='border: none' /></a>
-</noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fmsswva-dohhdi01.csc.nycnet%2F" /><param name="embed_code_version" value="3" />
-<param name="site_root" value="&#47;t&#47;Public" /><param name="name" value="Pollutant_Sources&#47;Dashboard3" /><param name="tabs" value="no" /><param name="toolbar" value="no" />
-<param name="showAppBanner" value="false" />
-</object>
-</div>
+</noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fmsswva-dohhdi01.csc.nycnet%2F" /><param name="embed_code_version" value="3" /><param name="site_root" value="/t/Public" /><param name="name" value="Pollutant_Sources/Dashboard3" /><param name="tabs" value="no" /><param name="toolbar" value="no" /><param name="showAppBanner" value="false" /></object></div>
 
 <script type='text/javascript'>
 
@@ -162,11 +156,7 @@ Fuel used to provide heat and hot water in buildings has become significantly cl
 
 <div class="tableauPlaceholder" id="viz2" style="position: relative"><noscript>
 <a href='#'><img alt=' ' src='https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js' style='border: none' /></a>
-</noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fmsswva-dohhdi01.csc.nycnet%2F" /><param name="embed_code_version" value="3" />
-<param name="site_root" value="&#47;t&#47;Public" /><param name="name" value="SpatialInd2_15803111194230&#47;Dashboard2" /><param name="tabs" value="no" /><param name="toolbar" value="no" />
-<param name="showAppBanner" value="false" />
-</object>
-</div>
+</noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fmsswva-dohhdi01.csc.nycnet%2F" /><param name="embed_code_version" value="3" /><param name="site_root" value="/t/Public" /><param name="name" value="SpatialInd2_15803111194230/Dashboard2" /><param name="tabs" value="no" /><param name="toolbar" value="no" /><param name="showAppBanner" value="false" /></object></div>
 
 <script type='text/javascript'>
 
