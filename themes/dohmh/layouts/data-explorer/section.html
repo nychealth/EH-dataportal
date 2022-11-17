@@ -36,7 +36,7 @@
                             <div class="card-body">
                                 <span class="card-title text-dark"><em>Get trends...</em></span>
                               </div>
-                            <img class="card-img-top" src="{{ .Site.BaseURL }}/images/trend-chart-3.png" alt="Card image cap">
+                            <img class="card-img-top" src="{{ .Site.BaseURL }}images/trend-chart-3.png" alt="Card image cap">
                           </div>
                     </div>
 
@@ -45,7 +45,7 @@
                             <div class="card-body" style="text-align: center">
                                 <span class="card-title text-prdarkimary" ><em>...maps...</em></span>
                               </div>
-                            <img class="card-img-top" src="{{ .Site.BaseURL }}/images/data-map-3.png" alt="Card image cap">
+                            <img class="card-img-top" src="{{ .Site.BaseURL }}images/data-map-3.png" alt="Card image cap">
             
                           </div>
                     </div>
@@ -55,7 +55,7 @@
                             <div class="card-body" style="text-align: right">
                                 <span class="card-title text-dark"><em>...and more!</em></span>
                               </div>
-                            <img class="card-img-top" src="{{ .Site.BaseURL }}/images/links-chart-3.png" alt="Card image cap">
+                            <img class="card-img-top" src="{{ .Site.BaseURL }}images/links-chart-3.png" alt="Card image cap">
                           </div>
                     </div>
 
@@ -67,33 +67,21 @@
     
 </article>
 
-{{/*  {{- if eq hugo.Environment "data_staging" -}}   */}}
-
-  {{- $js := resources.Get "js/accessible-autocomplete.min.js" }}
-  <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
-
-  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" }}
-  <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
-
-{{/*  {{ else }}
 
   {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
   {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-  <script type="text/javascript" 
-    src="{{ $secureJS.RelPermalink }}" 
-    integrity="{{ $secureJS.Data.Integrity }}"></script>
+  <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
+  {{/*  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
   {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-  <script type="text/javascript" 
-    src="{{ $secureJS.RelPermalink }}" 
-    integrity="{{ $secureJS.Data.Integrity }}"></script>
+  <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>  */}}
 
-{{- end -}}  */}}
 
 <script type="text/javascript"> 
+
     // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
-    function populateDropDownList() {          
+
+    function populateDropDownList() {
         var ddlData = document.getElementById("all-data");
         {{- range .Pages -}} // range through data-explorer pages
         var option = document.createElement("OPTION");
@@ -102,7 +90,7 @@
         // set the option value - this adds the environment variable to give it the base URL.
         option.value = '{{ .RelPermalink }}'
         //Add the Option element to DropDownList.
-        ddlData.options.add(option);
+        ddlData && ddlData.options.add(option);
         {{- end -}}
     };
     

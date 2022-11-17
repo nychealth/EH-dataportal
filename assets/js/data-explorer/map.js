@@ -18,13 +18,10 @@ const renderMap = (
                 gt => gt.GeoType === mapGeoType
             )[0].GeoTypeDescription;
 
-        
         let mapDisplay = metadata[0].DisplayType;
         let mapTime = mapYears[0];
         let topoFile = '';
 
-        // console.log("testData [map.js]", testData);
-        
         // can add year to this
 
         console.log("mapGeoType [renderMap]", mapGeoType);
@@ -46,7 +43,7 @@ const renderMap = (
         }
 
         
-    // define spec
+        // define spec
         
         mapspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -82,7 +79,7 @@ const renderMap = (
                             "height": 500,
                             "width": "container",
                             "data": {
-                                "url": `${data_repo}/${data_branch}/geography/borough.topo.json`,
+                                "url": `${data_repo}${data_branch}/geography/borough.topo.json`,
                                 "format": {
                                     "type": "topojson",
                                     "feature": "collection"
@@ -107,7 +104,7 @@ const renderMap = (
                                     "lookup": "GeoID",
                                     "from": {
                                         "data": {
-                                            "url": `${data_repo}/${data_branch}/geography/${topoFile}`,
+                                            "url": `${data_repo}${data_branch}/geography/${topoFile}`,
                                             "format": {"type": "topojson", "feature": "collection"}
                                         },
                                         "key": "properties.GEOCODE"

@@ -8,7 +8,7 @@
                 <nav aria-label="breadcrumb" class="my-3">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}/data-explorer/">Data Explorer</a></li>
+                        <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}data-explorer/">Data Explorer</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                     </ul>
                 </nav>
@@ -85,7 +85,7 @@
                 
             </script>
             
-            <p class="sr-only">Also outputting a JSON version of the list to <code><a href="{{ .Site.BaseURL }}/IndicatorData/subtopic_indicators.json">/IndicatorData/subtopic_indicators.json</code></a> 
+            <p class="sr-only">Also outputting a JSON version of the list to <code><a href="{{ .Site.BaseURL }}IndicatorData/subtopic_indicators.json">/IndicatorData/subtopic_indicators.json</code></a> 
                 (which on build will be put into <code>/docs/IndicatorData/</code>)</strong>
                 
                 {{- $si_json_output_path := "/IndicatorData/subtopic_indicators.json" -}}
@@ -136,7 +136,7 @@
             
             
             // First, load Indicators.json
-            d3.json('{{ site.Params.data_repo }}/{{ site.Params.data_branch }}/indicators/indicators.json').then(function (data) {
+            d3.json('{{ site.Params.data_repo }}{{ site.Params.data_branch }}/indicators/indicators.json').then(function (data) {
                 indicators = data;
                 loopThroughIndicators() // run loops.
                 

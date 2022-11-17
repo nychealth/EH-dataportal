@@ -18,28 +18,19 @@
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script src="https://unpkg.com/lunr/lunr.js"></script>
+
 <!-- NYC template JS (RTL, search and language toggle, back to top)  -->
 
-{{/*  {{- if eq hugo.Environment "data_staging" -}}   */}}
+{{- $js := resources.Get "js/main.js" -}}
+{{- $secureJS := $js | resources.Fingerprint "sha512" -}}
 
-    {{- $js := resources.Get "js/main.js" }}
-    <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
+<script type="text/javascript" 
+    src="{{ $secureJS.RelPermalink }}" 
+    integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-    {{- $js := resources.Get "js/search.js" }}
-    <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
+{{- $js := resources.Get "js/search.js" -}}
+{{- $secureJS := $js | resources.Fingerprint "sha512" -}}
 
-{{/*  {{ else }}
-
-    {{- $js := resources.Get "js/main.js" -}}
-    {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-    <script type="text/javascript" 
-        src="{{ $secureJS.RelPermalink }}" 
-        integrity="{{ $secureJS.Data.Integrity }}"></script>
-
-    {{- $js := resources.Get "js/search.js" -}}
-    {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-    <script type="text/javascript" 
-        src="{{ $secureJS.RelPermalink }}" 
-        integrity="{{ $secureJS.Data.Integrity }}"></script>
-
-{{ end }}  */}}
+<script type="text/javascript" 
+    src="{{ $secureJS.RelPermalink }}" 
+    integrity="{{ $secureJS.Data.Integrity }}"></script>

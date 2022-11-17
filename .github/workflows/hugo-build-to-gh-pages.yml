@@ -3,6 +3,9 @@ name: Hugo Build to GitHub Pages
 # run action on a merged PR on "development"
 
 on:
+  push:
+    branches:
+      - development
   pull_request:
     branches:
       - development
@@ -27,6 +30,16 @@ jobs:
     # define job's steps
 
     steps:
+
+      # setting line endings to LF to match line endings in source files (which were used to compute resource integrity)
+
+      - name: set git EOL
+        run: |
+          git config --global core.eol lf
+          git config --global core.autocrlf input
+
+      # using checkout action
+
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -76,15 +89,15 @@ jobs:
       # set up Hugo
 
       - name: Hugo setup
-        uses: peaceiris/actions-hugo@v2.4.13
+        uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: "0.97.0"
+          hugo-version: "0.105.0"
           extended: true
 
       # cache Hugo modules
 
       - name: Hugo cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: /tmp/hugo_cache
           key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}

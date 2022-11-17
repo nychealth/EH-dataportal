@@ -51,14 +51,16 @@ document.getElementById('inputNum').addEventListener('change', function (event) 
 
 // ---- this function updates the chart based on timeselection ---- //
 
-function updateChart(x) {
-    
+function updateChart(days) {
+
+    console.log("days float:", parseFloat(days));
+
     var inputHours // hours in a day
-    inputHours = x * 24;
+    inputHours = parseFloat(days) * 24;
     
     var startingPoint;
     startingPoint = fullTable.length - inputHours;
-    // console.log('show chart for ' + inputHours + " hours");
+    console.log("inputHours:", inputHours);
     
     shortTable = fullTable.slice(startingPoint, fullTable.length)
     
@@ -83,19 +85,19 @@ var color;
 locInfoBox = document.getElementById('locInfoBox').outerHTML;
 locInfoDesc = document.getElementById('locInfoDesc').innerHTML;
 
-// this function updates the chart based on the location selection
+// this function updates the chart based on the (index of the) location selection
 
-function changeData(x) {
+function changeData(i) {
     
     // zoom to the corresponding leaflet marker
-    map.setView(monitors[x].getLatLng(), 13);
+    map.setView(monitors[i].getLatLng(), 13);
 
     // open marker's popup
-    monitors[x].openPopup();
+    monitors[i].openPopup();
     
     // create a color variable
-    color = monitor_locations[x].Color;
-    locSelect = monitor_locations[x].loc_col;
+    color = monitor_locations[i].Color;
+    locSelect = monitor_locations[i].loc_col;
     
     // ensure `locInfoDesc` has original innerHTML elements
     
@@ -107,22 +109,22 @@ function changeData(x) {
     document.getElementById("btnrestore").classList.remove('btn-outline-secondary')
     
     // add active class for selected button and remove default class
-    var btn = "btn" + x;
+    var btn = "btn" + i;
     document.getElementById(btn).classList.add('btn-secondary');
     document.getElementById(btn).classList.remove('btn-outline-secondary')
     document.getElementById("btnrestore").classList.remove('btn-secondary')
     
     // make all lines gray, thinner, and unmarked
-    for (let i = 0; i < current_spec.layer.length; i++) {
-        current_spec.layer[i].encoding.color.value = "lightgray"
-        current_spec.layer[i].mark.strokeWidth = 1
-        current_spec.layer[i].mark.point = false
+    for (let j = 0; j < current_spec.layer.length; j++) {
+        current_spec.layer[j].encoding.color.value = "lightgray"
+        current_spec.layer[j].mark.strokeWidth = 1
+        current_spec.layer[j].mark.point = false
     };
     
     // style the selected series
-    current_spec.layer[x].encoding.color.value = color
-    current_spec.layer[x].mark.strokeWidth = 2.5
-    current_spec.layer[x].mark.point = true
+    current_spec.layer[i].encoding.color.value = color
+    current_spec.layer[i].mark.strokeWidth = 2.5
+    current_spec.layer[i].mark.point = true
     
     // redraw the chart
     vegaEmbed("#vis2", current_spec).then((res) => {
@@ -302,7 +304,7 @@ d3.csv("data/monitor_locations.csv").then(data => {
     
     monitors_bounds = monitors_group.getBounds();
     
-    // now getting the center of the counds
+    // now getting the center of the bounds
     
     monitors_center = monitors_bounds.getCenter();
     
