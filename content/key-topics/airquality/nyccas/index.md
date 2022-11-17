@@ -47,7 +47,7 @@ This report:
 
 **Air quality improved significantly after the local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO2 in New York City. In 2020, only five of our 60 core sites detected any SO2, and the levels at those sites were similar to SO2 levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements.
 
-**Air quality changes with location.** PM2.5, NO2, NO, and BC are highest in:
+**Air quality changes with location.** PM<sub>2.5</sub>, NO2, NO, and BC are highest in:
 
 * Areas with higher density of commercial cooking grills and charbroilers
 * Industrial areas
@@ -64,7 +64,7 @@ Ozone levels are highest in:
 
 ### Pollutants Measured by NYCCAS: Health Effects and Sources
 
-{{< accordion number="01" title="Fine Particles" content="Fine particles (PM<sub>2.5</sub>) are tiny airborne solid and liquid particles less than 2.5 microns in diameter. PM2.5 is the most harmful urban air pollutant. It is small enough to penetrate deep into the lungs and enter the bloodstream, which can worsen lung and heart disease and lead to hospital admissions and premature deaths. PM<sub>2.5</sub> can either be directly emitted or formed in the atmosphere from other pollutants. Fuel combustion in vehicles, boilers in buildings, power plants, construction equipment, marine vessels and commercial cooking are all common sources of PM2.5. Up to 40% of the PM<sub>2.5</sub> in New York City's air comes from sources in areas upwind from the city, such as coal-burning power plants in the Midwest." >}}
+{{< accordion number="01" title="Fine Particles" content="Fine particles (PM<sub>2.5</sub>) are tiny airborne solid and liquid particles less than 2.5 microns in diameter. PM<sub>2.5</sub> is the most harmful urban air pollutant. It is small enough to penetrate deep into the lungs and enter the bloodstream, which can worsen lung and heart disease and lead to hospital admissions and premature deaths. PM<sub>2.5</sub> can either be directly emitted or formed in the atmosphere from other pollutants. Fuel combustion in vehicles, boilers in buildings, power plants, construction equipment, marine vessels and commercial cooking are all common sources of PM<sub>2.5</sub>. Up to 40% of the PM<sub>2.5</sub> in New York City's air comes from sources in areas upwind from the city, such as coal-burning power plants in the Midwest." >}}
 
 \[IMAGE\]
 
@@ -72,13 +72,13 @@ Ozone levels are highest in:
 
 \[IMAGE\]
 
-{{< accordion number="03" title="Nitrogen Dioxide and Nitric Oxide" content="</p><p>Nitrogen dioxide (NO2) and nitric oxide (NO) are part of a group of pollutants called &ldquo;oxides of nitrogen&rdquo; (NOX). Exposures to NOX are linked to increased emergency department visits and hospitalizations for respiratory conditions, particularly asthma. NOX also reacts with other compounds in the atmosphere to form PM2.5 and O3. A variety of combustion sources produce NOX in New York City, including motor vehicles, buildings, marine vessels and construction equipment.</p><p>" >}}
+{{< accordion number="03" title="Nitrogen Dioxide and Nitric Oxide" content="</p><p>Nitrogen dioxide (NO2) and nitric oxide (NO) are part of a group of pollutants called &ldquo;oxides of nitrogen&rdquo; (NOX). Exposures to NOX are linked to increased emergency department visits and hospitalizations for respiratory conditions, particularly asthma. NOX also reacts with other compounds in the atmosphere to form PM<sub>2.5</sub> and O3. A variety of combustion sources produce NOX in New York City, including motor vehicles, buildings, marine vessels and construction equipment.</p><p>" >}}
 
 \[IMAGE\]
 
 {{< accordion number="04" title="Ozone" content="</p><p>Ozone (O3) forms at ground level when NOX emissions combine with sunlight and other airborne pollutants. Measured O3 concentrations are often highest in the summer and downwind from areas with high NOX emissions, such as places with high traffic density. In areas with heavy traffic, NOX reacts with any ground-level O3 to reduce O3 concentrations. As a result, NYCCAS has measured lower O3 levels near roadways, in city centers and in other areas of high NOX emissions density. Higher levels of O3 are seen in areas away from dense traffic and building emissions.</p><p>" >}}
 
-{{< accordion number="05" title="Sulfur Dioxide" content="</p><p>Sulfur dioxide (SO2) is produced mainly by burning oils with high sulfur content, such as No. 4 and No. 6 oil (also known as residual fuel oil), or high-sulfur No. 2 oil. The primary use of fuel oil in NYC is to heat buildings and water, which is why we only monitor it in the winter. Some high-sulfur oil is also used to generate electricity and power marine vessels. SO2 exposures can worsen lung diseases, causing hospitalizations and emergency department visits for asthma and other respiratory conditions. SO2 also contributes to the formation of PM2.5 in the atmosphere, resulting in PM2.5 exposures downwind of SO2 emissions.</p><p>" >}}
+{{< accordion number="05" title="Sulfur Dioxide" content="</p><p>Sulfur dioxide (SO2) is produced mainly by burning oils with high sulfur content, such as No. 4 and No. 6 oil (also known as residual fuel oil), or high-sulfur No. 2 oil. The primary use of fuel oil in NYC is to heat buildings and water, which is why we only monitor it in the winter. Some high-sulfur oil is also used to generate electricity and power marine vessels. SO2 exposures can worsen lung diseases, causing hospitalizations and emergency department visits for asthma and other respiratory conditions. SO2 also contributes to the formation of PM<sub>2.5</sub> in the atmosphere, resulting in PM<sub>2.5</sub> exposures downwind of SO2 emissions.</p><p>" >}}
 
 ---
 
@@ -88,7 +88,7 @@ The Health Department designed NYCCAS to understand how average air pollution le
 
 The New York State Department of Environmental Conservation also has a network of 19 air quality monitors in New York City that are required by the Federal government, but they are mounted on building roofs. We placed our air samplers at street level to measure pollution where people spend time, and where traffic-related pollution levels are usually higher.
 
-NYCCAS has also deployed a limited number of monitors that can measure PM2.5 levels in real time. These monitors allow us to monitor air pollution as it changes based on the time of day, weather or due to local pollution sources, such as heavy-duty trucks. The data from these monitors is available here: Real-Time Air Quality.
+NYCCAS has also deployed a limited number of monitors that can measure PM<sub>2.5</sub> levels in real time. These monitors allow us to monitor air pollution as it changes based on the time of day, weather or due to local pollution sources, such as heavy-duty trucks. The data from these monitors is available here: Real-Time Air Quality.
 
 ---
 
@@ -104,7 +104,7 @@ The monitoring locations represent a wide variety of New York City environments 
 
 Since it is impossible to sample the air in every location in New York City, we monitor representative sites to determine how pollution levels vary in relation to traffic, buildings, trees and other neighborhood factors. We use NYCCAS monitoring data along with data on land use, traffic, building emissions and other neighborhood factors around the monitors to build a land-use regression (LUR) model. We then used the associations from these models to estimate the seasonal average air pollution levels at locations across the city, including places where no NYCCAS measurements were collected. For more details on emission source data, see Appendix 1 (PDF). For more details on the analysis methods, see NYCCAS Scientific Publications.
 
-In the maps below, you can select a pollutant to see how air pollution is distributed throughout the city and how it has changed over time. The City's air quality changed significantly during the spring and summer of 2020 and resulted in lower annual average values, especially for PM2.5, as can be seen in the maps below. Winter and summer average maps for BC, NO2, NO and PM2.5 are available in Appendix 2 (PDF).
+In the maps below, you can select a pollutant to see how air pollution is distributed throughout the city and how it has changed over time. The City's air quality changed significantly during the spring and summer of 2020 and resulted in lower annual average values, especially for PM<sub>2.5</sub>, as can be seen in the maps below. Winter and summer average maps for BC, NO2, NO and PM2.5 are available in Appendix 2 (PDF).
 
 \[MAP EMBED\]
 
@@ -130,7 +130,7 @@ vizElement.parentNode.insertBefore(scriptElement, vizElement);
 
 ### Pollutant Trends over Time by Sources
 
-Since monitoring began in winter 2008-2009 in New York City, we have seen a decrease in most of the air pollutants we measure. However, the concentrations of NO2, NO and PM2.5 continue to be higher in industrial zones with more diesel truck traffic, neighborhoods with large numbers of restaurants, and areas of higher traffic and building density. Air pollution changes not only by neighborhood, but also by season. Some pollutants are highest in certain seasons of the year because of either weather patterns or emissions sources. For example, O3 is produced when NOX and other airborne pollutants react in the presence of heat and sunlight. Therefore, we only monitor O3 in the summer when direct sunlight is highest and days are longer.
+Since monitoring began in winter 2008-2009 in New York City, we have seen a decrease in most of the air pollutants we measure. However, the concentrations of NO2, NO and PM<sub>2.5</sub> continue to be higher in industrial zones with more diesel truck traffic, neighborhoods with large numbers of restaurants, and areas of higher traffic and building density. Air pollution changes not only by neighborhood, but also by season. Some pollutants are highest in certain seasons of the year because of either weather patterns or emissions sources. For example, O3 is produced when NOX and other airborne pollutants react in the presence of heat and sunlight. Therefore, we only monitor O3 in the summer when direct sunlight is highest and days are longer.
 
 The figure below illustrates how the levels of each air pollutant change by season from winter 2008-2009 to fall 2020. We break out locations with high, medium and low densities of the most common sources of each. Since winter 2017-18 there have been too few sites with SO2 values above the detection limit for us to include it in this chart. SO2 levels have gone down dramatically since Local Law 43 of 2010 prohibited the burning of heavy fuel oil (No. 6) in New York City buildings.
 
@@ -140,9 +140,9 @@ The figure below illustrates how the levels of each air pollutant change by seas
 
 ### Pollutant Predictors
 
-NYCCAS data were analyzed using a land-use regression (LUR) model. LUR models estimate associations among pollution levels, average traffic, building emissions, land use and other neighborhood factors around the monitoring sites. The pollution sources that contribute most to differences in concentrations of NO, NO2, BC, and PM2.5 across NYC are listed in the table below. SO2 is now so low in NYC that it is not possible to build a LUR model for the most recent years of data.
+NYCCAS data were analyzed using a land-use regression (LUR) model. LUR models estimate associations among pollution levels, average traffic, building emissions, land use and other neighborhood factors around the monitoring sites. The pollution sources that contribute most to differences in concentrations of NO, NO2, BC, and PM<sub>2.5</sub> across NYC are listed in the table below. SO2 is now so low in NYC that it is not possible to build a LUR model for the most recent years of data.
 
-Fuel used to provide heat and hot water in buildings has become significantly cleaner under state and local regulations requiring use of cleaner burning fuels. As a result, commercial charbroiling and grilling operations have become a more important source of PM2.5 emissions over the past several years due to state and local regulations mandating cleaner burning fuels for building heat and hot water. The number of commercial cooking charbroilers and grills in an area now explains PM2.5 differences among neighborhoods better than building emissions. For more information on these changes, please see Tracking changes in New York City's sources of air pollution.
+Fuel used to provide heat and hot water in buildings has become significantly cleaner under state and local regulations requiring use of cleaner burning fuels. As a result, commercial charbroiling and grilling operations have become a more important source of PM<sub>2.5</sub> emissions over the past several years due to state and local regulations mandating cleaner burning fuels for building heat and hot water. The number of commercial cooking charbroilers and grills in an area now explains PM<sub>2.5</sub> differences among neighborhoods better than building emissions. For more information on these changes, please see Tracking changes in New York City's sources of air pollution.
 
 \[VIS EMBED\]
 
@@ -157,7 +157,7 @@ This report underscores the importance of emissions reduction efforts over the p
 * Creating more efficient freight networks and expanding truck retrofit and replacement programs
 * Continuing to reduce fossil fuel combustion in buildings
 
-Additionally, reducing emissions from other widely distributed sources of pollution, such as BC and PM2.5 from commercial charbroiling, will contribute to improved air quality in the future.
+Additionally, reducing emissions from other widely distributed sources of pollution, such as BC and PM<sub>2.5</sub> from commercial charbroiling, will contribute to improved air quality in the future.
 
 More Information:
 
@@ -166,6 +166,6 @@ More Information:
 * Appendix 3 (PDF) : Community District Average Pollution Levels
 * [NYCCAS Air Quality Data Hub](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/key-topics/airquality/)
 * Environment & Health Data Portal : Neighborhood-level data and neighborhood air quality reports
-* The Public Health Impacts of PM2.5 from Traffic Air Pollution data story.
+* The Public Health Impacts of PM<sub>2.5</sub> from Traffic Air Pollution data story.
 * NYCCAS Air Pollution Rasters on NYC OpenData.
 * New York Community Air Survey: past reports
