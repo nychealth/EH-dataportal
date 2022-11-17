@@ -145,6 +145,12 @@ We use a variety of environment-specific code to produce:
 ### Generating subtopic_indicators.json
 `data-index.html`, on site build, assembles a json file of topics and indicators. It ranges over DE topic frontmatter and produces a cross-reference of 
 
+### Cloudcannon integration
+The repo includes some files to integrate with Cloudcannon, an online CMS provider. Specifically:
+- `cloudcannon.config.yaml` sets up how the site appears in the CC CMS, what the editor reveals, what shortcodes are easily accessible, etc. 
+- `.cloudcannon/prebuild` is code that runs when Cloudcannon builds/serves the site.
+- `.cloudcannon/schemas` include frontmatter templates for when CC works with frontmatter.
+
 ---
 
 ## Contact us
