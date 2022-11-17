@@ -152,8 +152,7 @@
                 let hiddenElement = document.createElement('a');
                 hiddenElement.href = csvData;
                 hiddenElement.target = '_blank';
-                hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - " + {{ .geo_entity_name }
-            } + '.csv';
+                hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - " + {{ .geo_entity_name }} + '.csv';
             hiddenElement.click();
 
             gtag('event', 'file_download', {
