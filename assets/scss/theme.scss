@@ -85,7 +85,7 @@ h1 {
 }
 
 .site-header {
-    background-image: url("/EH-dataportal/images/header_background.jpg");
+    background-image: url("../images/header_background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -620,7 +620,7 @@ span.th-sub {
 
 .related-reading {
     padding: 100px 0;
-    background-image: url("/IndicatorPublic/beta/images/report_bottom_background.jpg"), url("/EH-dataportal/images/report_bottom_background.jpg");
+    background-image: url("../images/report_bottom_background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     border-top: 4px solid $primary;

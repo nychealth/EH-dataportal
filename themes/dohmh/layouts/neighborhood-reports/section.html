@@ -95,38 +95,19 @@
 
 {{ define "js_bot" }}
 
-{{/*  {{- if eq hugo.Environment "data_staging" -}}   */}}
-
-  {{- $js := resources.Get "js/accessible-autocomplete.min.js" }}
-  <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
-
-  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" }}
-  <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
-
-  {{- $js := resources.Get "js/uhflist.js" }}
-  <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
-
-{{/*  {{ else }}
 
   {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
   {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-  <script type="text/javascript" 
-    src="{{ $secureJS.RelPermalink }}" 
-    integrity="{{ $secureJS.Data.Integrity }}"></script>
+  <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
+  {{/*  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
   {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-  <script type="text/javascript" 
-    src="{{ $secureJS.RelPermalink }}" 
-    integrity="{{ $secureJS.Data.Integrity }}"></script>
+  <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>  */}}
 
   {{- $js := resources.Get "js/uhflist.js" -}}
   {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-  <script type="text/javascript" 
-    src="{{ $secureJS.RelPermalink }}" 
-    integrity="{{ $secureJS.Data.Integrity }}"></script>
+  <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-{{- end -}}  */}}
 
 <script type="text/javascript"> 
 // this script controls the topic menu
