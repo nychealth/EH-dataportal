@@ -45,7 +45,7 @@ This report:
 
 **Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2020.** Fine particles (PM<sub>2.5</sub>) -43% Nitrogen Dioxide (NO<sub>2</sub>) -39% Nitric Oxide (NO) -56% Sulfer Dioxide (SO<sub>2</sub>) -98%
 
-**Air quality improved significantly after the local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO<sub>2</sub> in New York City. In 2020, only five of our 60 core sites detected any SO2, and the levels at those sites were similar to SO<sub>2</sub> levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements.
+**Air quality improved significantly after the local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO<sub>2</sub> in New York City. In 2020, only five of our 60 core sites detected any SO<sub>2</sub>, and the levels at those sites were similar to SO<sub>2</sub> levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements.
 
 **Air quality changes with location.** PM<sub>2.5</sub>, NO<sub>2</sub>, NO, and BC are highest in:
 
@@ -134,7 +134,23 @@ Since monitoring began in winter 2008-2009 in New York City, we have seen a decr
 
 The figure below illustrates how the levels of each air pollutant change by season from winter 2008-2009 to fall 2020. We break out locations with high, medium and low densities of the most common sources of each. Since winter 2017-18 there have been too few sites with SO<sub>2</sub> values above the detection limit for us to include it in this chart. SO<sub>2</sub> levels have gone down dramatically since Local Law 43 of 2010 prohibited the burning of heavy fuel oil (No. 6) in New York City buildings.
 
-\[VIS EMBED\]
+<div class="tableauPlaceholder" id="viz3" style="position: relative"><noscript>
+<a href='#'><img alt=' ' src='https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js' style='border: none' /></a>
+</noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fmsswva-dohhdi01.csc.nycnet%2F" /><param name="embed_code_version" value="3" />
+<param name="site_root" value="&#47;t&#47;Public" /><param name="name" value="Pollutant_Sources&#47;Dashboard3" /><param name="tabs" value="no" /><param name="toolbar" value="no" />
+<param name="showAppBanner" value="false" />
+</object>
+</div>
+
+<script type='text/javascript'>
+
+ var divElement = document.getElementById('viz3');
+  var vizElement = divElement.getElementsByTagName('object')[0];
+vizElement.style.width='900px';vizElement.style.height='727px';
+var scriptElement = document.createElement('script');
+scriptElement.src = 'https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js';
+vizElement.parentNode.insertBefore(scriptElement, vizElement);
+</script>
 
 ---
 
@@ -144,7 +160,23 @@ NYCCAS data were analyzed using a land-use regression (LUR) model. LUR models es
 
 Fuel used to provide heat and hot water in buildings has become significantly cleaner under state and local regulations requiring use of cleaner burning fuels. As a result, commercial charbroiling and grilling operations have become a more important source of PM<sub>2.5</sub> emissions over the past several years due to state and local regulations mandating cleaner burning fuels for building heat and hot water. The number of commercial cooking charbroilers and grills in an area now explains PM<sub>2.5</sub> differences among neighborhoods better than building emissions. For more information on these changes, please see Tracking changes in New York City's sources of air pollution.
 
-\[VIS EMBED\]
+<div class="tableauPlaceholder" id="viz2" style="position: relative"><noscript>
+<a href='#'><img alt=' ' src='https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js' style='border: none' /></a>
+</noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fmsswva-dohhdi01.csc.nycnet%2F" /><param name="embed_code_version" value="3" />
+<param name="site_root" value="&#47;t&#47;Public" /><param name="name" value="SpatialInd2_15803111194230&#47;Dashboard2" /><param name="tabs" value="no" /><param name="toolbar" value="no" />
+<param name="showAppBanner" value="false" />
+</object>
+</div>
+
+<script type='text/javascript'>
+
+ var divElement = document.getElementById('viz2');
+  var vizElement = divElement.getElementsByTagName('object')[0];
+vizElement.style.width='800px';vizElement.style.height='687px';
+var scriptElement = document.createElement('script');
+scriptElement.src = 'https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js';
+vizElement.parentNode.insertBefore(scriptElement, vizElement);
+</script>
 
 ---
 
