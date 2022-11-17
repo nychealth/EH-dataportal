@@ -20,7 +20,6 @@ menu:
         identifier: '05'
 layout: report
 ---
-## ![](/content/key-topics/the-new-york-city-community-air-survey/img-1794ab-1.jpg)
 
 ## ![](/content/key-topics/the-new-york-city-community-air-survey/img-1794ab.jpg)Neighborhood Air Quality 2008-2020
 
