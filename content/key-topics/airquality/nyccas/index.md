@@ -33,7 +33,7 @@ Help inform OneNYC, the City’s sustainability plan
 This report:
 
 * Provides a summary of key findings, the air monitoring program, monitoring site selection, and descriptions of the pollutants measured
-* Describes the trends in air pollutant levels from more than a decade of data between winter 2008-2009 through fall 2020 for fine particulate matter (PM2.5), nitrogen dioxide (NO2), nitric oxide (NO), black carbon (BC), wintertime sulfur dioxide (SO2) and summertime ozone (O3)
+* Describes the trends in air pollutant levels from more than a decade of data between winter 2008-2009 through fall 2020 for fine particulate matter (PM<sub>2.5</sub>), nitrogen dioxide (NO2), nitric oxide (NO), black carbon (BC), wintertime sulfur dioxide (SO2) and summertime ozone (O3)
 * Presents maps of neighborhood air pollution levels by year
 * Identifies the local sources that contribute to high levels of these pollutants in New York City neighborhoods
 
@@ -43,7 +43,7 @@ This report:
 
 **In 2020, New York City and surrounding communities implemented measures to slow the spread of COVID-19. As a result, we saw dramatic changes in air pollution in some neighborhoods and smaller changes in others.** Overall, the levels in Spring through Summer 2020 were lower than previous years. For more information about these changes in air quality, see Air Quality during COVID-19.
 
-**Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2020.** Fine particles (PM2.5) -43% Nitrogen Dioxide (NO2) -39% Nitric Oxide (NO) -56% Sulfer Dioxide (SO2) -98%
+**Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2020.** Fine particles (PM<sub>2.5</sub>) -43% Nitrogen Dioxide (NO2) -39% Nitric Oxide (NO) -56% Sulfer Dioxide (SO2) -98%
 
 **Air quality improved significantly after the local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO2 in New York City. In 2020, only five of our 60 core sites detected any SO2, and the levels at those sites were similar to SO2 levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements.
 
@@ -64,11 +64,11 @@ Ozone levels are highest in:
 
 ### Pollutants Measured by NYCCAS: Health Effects and Sources
 
-{{< accordion number="01" title="Fine Particles" content="Fine particles (PM2.5) are tiny airborne solid and liquid particles less than 2.5 microns in diameter. PM2.5 is the most harmful urban air pollutant. It is small enough to penetrate deep into the lungs and enter the bloodstream, which can worsen lung and heart disease and lead to hospital admissions and premature deaths. PM2.5 can either be directly emitted or formed in the atmosphere from other pollutants. Fuel combustion in vehicles, boilers in buildings, power plants, construction equipment, marine vessels and commercial cooking are all common sources of PM2.5. Up to 40% of the PM2.5 in New York City's air comes from sources in areas upwind from the city, such as coal-burning power plants in the Midwest." >}}
+{{< accordion number="01" title="Fine Particles" content="Fine particles (PM<sub>2.5</sub>) are tiny airborne solid and liquid particles less than 2.5 microns in diameter. PM2.5 is the most harmful urban air pollutant. It is small enough to penetrate deep into the lungs and enter the bloodstream, which can worsen lung and heart disease and lead to hospital admissions and premature deaths. PM<sub>2.5</sub> can either be directly emitted or formed in the atmosphere from other pollutants. Fuel combustion in vehicles, boilers in buildings, power plants, construction equipment, marine vessels and commercial cooking are all common sources of PM2.5. Up to 40% of the PM<sub>2.5</sub> in New York City's air comes from sources in areas upwind from the city, such as coal-burning power plants in the Midwest." >}}
 
 \[IMAGE\]
 
-{{< accordion number="02" title="Black Carbon" content="</p><p>Black carbon (BC) is one type of PM2.5 and is the sooty black material emitted from gas and diesel engines, coal-fired power plants, and other sources that burn fossil fuels. It comprises up to 20% of fine particulate matter in New York City. Unlike other fine particles, BC is primarily from local sources. Inhalation of BC is associated with health problems, including respiratory and cardiovascular disease, cancer and birth defects. BC also contributes to climate change by altering the patterns of rain and clouds.</p><p>" >}}
+{{< accordion number="02" title="Black Carbon" content="</p><p>Black carbon (BC) is one type of PM<sub>2.5</sub> and is the sooty black material emitted from gas and diesel engines, coal-fired power plants, and other sources that burn fossil fuels. It comprises up to 20% of fine particulate matter in New York City. Unlike other fine particles, BC is primarily from local sources. Inhalation of BC is associated with health problems, including respiratory and cardiovascular disease, cancer and birth defects. BC also contributes to climate change by altering the patterns of rain and clouds.</p><p>" >}}
 
 \[IMAGE\]
 
