@@ -83,6 +83,13 @@ ignoreFiles = ['Simplified.Chinese', 'Spanish']
     url = "/key-topics/"
     weight = -80
 
+  [[menu.main]]
+    identifier = "06"
+    name = "Search"
+    # pre = "<span class='sr-only'>Search</span><span class='fas fa-search fa-lg'></span>"
+    # url = ""
+    weight = -50
+
 
 [module]
 
