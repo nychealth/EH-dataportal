@@ -143,7 +143,13 @@ We use a variety of environment-specific code to produce:
 - ...and possibly other stuff. 
 
 ### Generating subtopic_indicators.json
-`data-index.html`, on site build, assembles a json file of topics and indicators. It ranges over DE topic frontmatter and produces a cross-reference of 
+`data-index.html`, on site build, assembles a json file of topics and indicators. It ranges over DE topic frontmatter and produces a cross-reference of topics and indicators ([file](https://github.com/nychealth/EH-dataportal/blob/prod-deploy/IndicatorData/subtopic_indicators.json). This is used on `data-index.html` as well as on the Neighborhood Reports: when an indicator is clicked, it runs `getURL()` to find the parent topic for the indicator, generates a URL, and produces the Get The Dataset button. 
+
+### Cloudcannon integration
+The repo includes some files to integrate with Cloudcannon, an online CMS provider. Specifically:
+- `cloudcannon.config.yaml` sets up how the site appears in the CC CMS, what the editor reveals, what shortcodes are easily accessible, etc. 
+- `.cloudcannon/prebuild` is code that runs when Cloudcannon builds/serves the site.
+- `.cloudcannon/schemas` include frontmatter templates for when CC works with frontmatter.
 
 ---
 
