@@ -1,0 +1,90 @@
+name: Check deployment
+
+# check to see if most recent build had been deployed
+
+on:
+  schedule:
+    - cron: '30 11 * * 1-5' # every weekday at 7:30 Eastern
+
+jobs:
+  check_deploy:
+    name: Check deployment
+    runs-on: ubuntu-20.04
+
+    # define job's steps
+
+    steps:
+
+      # checkout
+      
+      - name: checkout prod-deploy
+        uses: actions/checkout@v3
+        with:
+          ref: prod-deploy
+          fetch-depth: 0
+      
+      # built hash
+      
+      - name: get built hash
+        id: b_hash
+        run: |
+          echo "Current branch: $(git branch --show-current)"
+          echo "built_hash=$(git log -1 --format=%H)" >> $GITHUB_OUTPUT
+
+      # deployed hash
+
+      - name: get deployed hash
+        id: d_hash
+        run: |
+          echo "deployed_hash=$(curl https://a816-dohbesp.nyc.gov/indicatorpublic/beta/commit_hash.txt -s -o -)" >> $GITHUB_OUTPUT
+
+      # echo hash
+
+      - name: echo outputs
+        id: echo
+        run: |
+          echo "built_hash: ${{ steps.b_hash.outputs.built_hash }}"
+          echo "deployed_hash: ${{ steps.d_hash.outputs.deployed_hash }}"
+          hashes_equal=$([ ${{ steps.b_hash.outputs.built_hash }} = ${{ steps.d_hash.outputs.deployed_hash }} ] && echo yes || echo no)
+          echo "hashes_equal: $hashes_equal"
+      
+      # if hashes aren't equal:
+      
+      # ...get commit logs...
+
+      - name: last commit log
+        id: log
+
+        if: steps.b_hash.outputs.built_hash != steps.d_hash.outputs.deployed_hash
+
+        run: |
+          echo "commit_count=$(git rev-list --count ${{ steps.d_hash.outputs.deployed_hash }}..${{ steps.b_hash.outputs.built_hash }})" >> $GITHUB_OUTPUT
+          git log ${{ steps.d_hash.outputs.deployed_hash }}..${{ steps.b_hash.outputs.built_hash }} --pretty='format:%C(auto)%h (%s, %cs)%n<br/>' > log.txt
+
+      - name: log output
+        id: log_output
+
+        if: steps.b_hash.outputs.built_hash != steps.d_hash.outputs.deployed_hash
+
+        run: |
+          echo "commit_count: ${{ steps.log.outputs.commit_count }}"
+          cat log.txt
+
+      # ...and send en email saying that we need to deploy
+
+      - name: send reminder
+        id: send
+        
+        if: steps.b_hash.outputs.built_hash != steps.d_hash.outputs.deployed_hash
+
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          subject: Pending deployment on ${{ github.repository }} (${{ steps.log.outputs.commit_count }} commits)
+          html_body: file://log.txt
+          to: cgettings@health.nyc.gov,mmontesano@health.nyc.gov
+          from: Chris Gettings (via gmail)
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}

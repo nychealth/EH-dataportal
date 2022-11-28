@@ -4,14 +4,14 @@
             <span class="indicator-short-name">{{ .ind.indicator_short_name }}</span>
         </div>
         <div class="col-6 col-md-4 topic-list">
-            <img src="{{ site.Params.data_repo }}/{{ site.Params.data_branch }}/neighborhood-reports/images/{{ .ind.summary_bar_svg }}" alt="Visualization showing neighborhood rank of {{ .ind.indicator_neighborhood_rank }} out of 42." width="100%" class="viz d-md-none mb-1">
+            <img src="{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/images/{{ .ind.summary_bar_svg }}" alt="Visualization showing neighborhood rank of {{ .ind.indicator_neighborhood_rank }} out of 42." width="100%" class="viz d-md-none mb-1">
             {{- if eq (string .ind.data_value_rank) "1" -}}<span class="worse">Worse</span>
             {{- else if eq (string .ind.data_value_rank) "2" -}}<span class="middle">Middle</span>
             {{- else -}}<span class="better">Better</span>
             {{- end -}}
         </div>
         <div class="d-none d-md-inline col-md-3">
-            <img src="{{ site.Params.data_repo }}/{{ site.Params.data_branch }}/neighborhood-reports/images/{{ .ind.summary_bar_svg }}" alt="Visualization showing neighborhood rank of {{ .ind.indicator_neighborhood_rank }} out of 42." class="viz">
+            <img src="{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/images/{{ .ind.summary_bar_svg }}" alt="Visualization showing neighborhood rank of {{ .ind.indicator_neighborhood_rank }} out of 42." class="viz">
         </div>
     </div>
 </button>
@@ -92,7 +92,7 @@
 
             // this is loaded when an indicator is clicked, but it will be cached
             
-            "{{ site.Params.data_repo }}/{{ site.Params.data_branch }}/neighborhood-reports/data/" + data_download_loc
+            "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/data/" + data_download_loc
         
         ).then(data => {
             
@@ -118,7 +118,7 @@
                 .objects()
                 
             
-            d3.json("{{ site.Params.data_repo }}/{{ site.Params.data_branch }}/neighborhood-reports/spec/summarySpec.json").then(data => {
+            d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/summarySpec.json").then(data => {
                 
                 summarySpec = data;
 
@@ -147,7 +147,7 @@
 
             var mapData = summaryData;
 
-            d3.json("{{ site.Params.data_repo }}/{{ site.Params.data_branch }}/neighborhood-reports/spec/mapSpec.json").then(data => {
+            d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/mapSpec.json").then(data => {
                 
                 mapSpec = data;
 
@@ -181,7 +181,7 @@
                 .dedupe()
                 .objects()
             
-            d3.json("{{ site.Params.data_repo }}/{{ site.Params.data_branch }}/neighborhood-reports/spec/trendSpec.json").then(data => {
+            d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/trendSpec.json").then(data => {
                 
                 // make a deep copy of the spec
                 

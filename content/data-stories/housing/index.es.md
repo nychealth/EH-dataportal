@@ -184,7 +184,7 @@ Explore los problemas comunes de vivienda de la ciudad de Nueva York en el sigui
 <script>
 
     // basic path
-    const repo_branch = "{{< param data_repo >}}/{{< param data_branch >}}"
+    const repo_branch = "{{< param data_repo >}}{{< param data_branch >}}"
     const path = "data-stories/housing" // hard-coded for now, but could Hugo paramaterize
     const trans = "mapspec-es"
 

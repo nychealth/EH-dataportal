@@ -1,0 +1,23 @@
+<div class="accordion-group my-3" role="tablist" id='accordion-{{ .Get "number"}}'>
+
+    <div class="card">
+
+        <a class="card-header font-weight-bold collapse collapsed" id='acc-button-{{ .Get "number"}}' data-toggle="collapse" href='#panel-acc-button-{{ .Get "number"}}'  role="tab" aria-expanded="false" aria-controls='panel-acc-button-{{ .Get "number"}}'>
+            <span class="title" role="heading" aria-level="3">{{ .Get "title"}}</span>
+        </a>
+
+        <div class="collapse" id='panel-acc-button-{{ .Get "number"}}' role="tabpanel" aria-labelledby='acc-button-{{ .Get "number"}}' data-parent='#accordion-{{ .Get "number"}}'>
+
+            <div class="card-body bg-white border fs-sm">
+                <p>
+                    {{ .Get "content" }}
+                </p>
+            </div>
+
+        </div>
+        <!-- .collapse -->
+
+    </div>
+    <!-- .card (end of first accordion, repeat as needed) -->
+
+</div>

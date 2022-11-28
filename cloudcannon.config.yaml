@@ -1,0 +1,188 @@
+%YAML 1.1
+---
+collections_config_override: true
+timezone: America/New_York
+paths:
+  data: data
+  uploads: content/[collection]/{title|slugify}
+  static: ''
+x-default_sort_options: &default-sort_options
+- key: date
+  order: desc
+- key: date
+- key: title
+- key: title
+  order: desc
+
+x-base-schema: &base-schema
+  hide_extra_inputs: true
+  remove_empty_inputs: true
+  remove_extra_inputs: false
+
+x-base-collection: &base-collection
+  sort_options: *default-sort_options
+  icon: article
+  schemas:
+    default:
+      <<: *base-schema
+
+x-hidden: &hidden
+  hidden: true
+
+collections_config:
+  data-stories:
+    <<: *base-collection
+    path: content/data-stories
+    name: Data Stories
+    singular_name: Data Stories
+    singular_key: data-stories
+    description: Data Stories collection.
+    sort_options: *default-sort_options
+    schemas:
+      default:
+        <<: *base-schema
+        path: .cloudcannon/schemas/data-stories.md
+  data-explorer:
+    <<: *base-collection
+    path: content/data-explorer
+    name: Data Explorer
+    singular_name: Data Explorer
+    singular_key: data-explorer
+    description: Data Explorer collection.
+    sort_options: *default-sort_options
+    schemas:
+      default:
+        <<: *base-schema
+        path: .cloudcannon/schemas/data-explorer.md
+  key-topics:
+    <<: *base-collection
+    path: content/key-topics
+    name: Key Topics
+    singular_name: Key Topics
+    singular_key: key-topics
+    description: Key Topics collection.
+    sort_options: *default-sort_options
+    schemas:
+      default:
+        <<: *base-schema
+        path: .cloudcannon/schemas/key-topics.md
+    filter:
+      exclude:
+        - airquality/aqe
+        - airquality/nycca
+        - climatehealth/hvi
+        - climatehealth/syndromic
+  about:
+    <<: *base-collection
+    path: content/about
+    name: About
+    singular_name: About
+    singular_key: about
+    description: About collection.
+    sort_options: *default-sort_options
+    schemas:
+      default:
+        <<: *base-schema
+        path: .cloudcannon/schemas/about.md
+collection_groups:
+  - heading: Content
+    collections:
+      - data-stories
+      - data-explorer
+      - key-topics
+      - about
+
+
+#####################
+# INPUTS ####
+# This where global inputs configuration go.
+###################
+_inputs:
+  menu: *hidden
+  date: *hidden
+  datetime: *hidden
+  layout: *hidden
+  keywords:
+    type: multiselect
+    options:
+      values: _select_data.keywords
+      allow_create: true
+  categories:
+    type: multiselect
+    options:
+      values: _select_data.categories
+      allow_create: true
+  keyTopic:
+    type: multiselect
+    options:
+      values: _select_data.categories
+      allow_create: true
+_select_data:
+  categories:
+    - housing
+    - childhealth
+    - social
+    - airquality
+    - transportation
+    - climatehealth
+    - foodanddrink
+    - outcomes
+    - pests
+  indicators:
+    comment: Select an indicator
+
+_enabled_editors:
+  - content
+  - data
+_editables:
+  content:
+    format: p h2 h3
+    image_size_attributes: false
+    blockquote: false
+    link: true
+    bold: true
+    italic: true
+    strike: false
+    subscript: false
+    superscript: false
+    underline: false
+    bulletedlist: true
+    indent: false
+    numberedlist: true
+    outdent: false
+    code: false
+    embed: false
+    horizontalrule: false
+    image: true
+    table: false
+    undo: false
+    redo: false
+    removeformat: false
+    copyformatting: false
+    snippet: true
+
+_snippets:
+  datawrapper:
+    template: hugo_shortcode_named_args
+    inline: false
+    preview:
+      text: Datawrapper
+    definitions:
+      shortcode_name: datawrapper
+      named_args:
+        - editor_key: title
+          type: string
+        - editor_key: src
+          type: string
+  vega:
+    template: hugo_shortcode_named_args
+    inline: false
+    preview:
+      text: vega
+    definitions:
+      shortcode_name: vega
+      named_args:
+        - editor_key: id
+          type: string
+        - editor_key: spec
+          type: string

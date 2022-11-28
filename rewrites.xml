@@ -10,34 +10,34 @@
             
             <add key="104" value="active-design" />
             <add key="122" value="air-quality" />
-            <add key="95" value="alcohol-use" />
-            <add key="97" value="alcohol-use" />
-            <add key="11" value="asthma" />
-            <add key="92" value="bed-bugs" />
-            <add key="16" value="birth-defects" />
-            <add key="12" value="birth-outcomes" />
-            <add key="39" value="cancer" />
-            <add key="93" value="cancers-in-children" />
-            <add key="51" value="carbon-monoxide-incidents" />
-            <add key="15" value="carbon-monoxide-incidents" />
-            <add key="3" value="cigarette-smoke" />
-            <add key="1" value="air-quality" />
+            <add key="95"  value="alcohol-use" />
+            <add key="97"  value="alcohol-use" />
+            <add key="11"  value="asthma" />
+            <add key="92"  value="bed-bugs" />
+            <add key="16"  value="birth-defects" />
+            <add key="12"  value="birth-outcomes" />
+            <add key="39"  value="cancer" />
+            <add key="93"  value="cancers-in-children" />
+            <add key="51"  value="carbon-monoxide-incidents" />
+            <add key="15"  value="carbon-monoxide-incidents" />
+            <add key="3"   value="cigarette-smoke" />
+            <add key="1"   value="air-quality" />
             <add key="107" value="climate" />
-            <add key="8" value="cockroaches" />
-            <add key="52" value="drinking-water-quality" />
+            <add key="8"   value="cockroaches" />
+            <add key="52"  value="drinking-water-quality" />
             <add key="108" value="falls-among-older-adults" />
             <add key="121" value="health-care" />
             <add key="103" value="health-impacts-of-air-pollution" />
             <add key="127" value="healthy-eating" />
-            <add key="36" value="housing-maintenance" />
-            <add key="7" value="mice-and-rats" />
+            <add key="36"  value="housing-maintenance" />
+            <add key="7"   value="mice-and-rats" />
             <add key="126" value="mortality" />
-            <add key="91" value="air-quality" />
+            <add key="91"  value="air-quality" />
             <add key="113" value="overweight" />
-            <add key="9" value="pesticides" />
-            <add key="96" value="physical-activity" />
+            <add key="9"   value="pesticides" />
+            <add key="96"  value="physical-activity" />
             <add key="106" value="social-conditions" />
-            <add key="98" value="restaurant-food-safety" />
+            <add key="98"  value="restaurant-food-safety" />
             <add key="109" value="social-conditions" />
             <add key="101" value="transportation-related-injuries" />
             <add key="116" value="vector-borne-disease" />
@@ -85,32 +85,18 @@
         
         <rules>
           
-          
-          <!-- <rule name="set-url-cookie" stopProcessing="true">
-            
-            <match url="(.+)" />
-            
-            <serverVariables>
-              
-              <set name="HTTP_COOKIE" value="original_url={UNENCODED_URL}" />
-              
-            </serverVariables>
-            
-          </rule> -->
-          
-          
           <!-- if the user has requested the old site, give them that -->
           
           <rule name="no-redirect" stopProcessing="true">
             
             <match url=".*" />
-  
+            
             <conditions trackAllCaptures="true">
               
               <add input="{HTTP_COOKIE}" pattern="want_old_site=true" />
               
             </conditions>
-  
+            
             <action type="None" />
             
           </rule>
@@ -119,18 +105,18 @@
           
           <rule name="Home" stopProcessing="true">
             
-            <match url="^/?$" />
-  
+            <match url="(^/?$|PublicTracking.aspx)" />
+            
             <conditions trackAllCaptures="true">
               
               <add input="{HTTP_COOKIE}" pattern="want_old_site=true" negate="true" />
               
             </conditions>
-  
+            
             <action type="Redirect" url="beta/" appendQueryString="false" redirectType="Temporary" />
             
           </rule>
-    
+          
           
           <!-- ## hub pages ## -->
           
@@ -248,25 +234,25 @@
           
         </rules>
         
-  
+        
         <outboundRules>
           
           <!-- set cookie with original URL -->
           
           <rule name="set-url-cookie">
-  
+            
             <match serverVariable="RESPONSE_Set_Cookie" pattern=".*" />
-  
-              <conditions>
-                <add input="{UNENCODED_URL}" pattern="/beta" negate="true" />
-                <add input="{HTTP_COOKIE}" pattern="want_old_site=true" negate="true" />
-  
-              </conditions>
-  
+            
+            <conditions>
+              <add input="{UNENCODED_URL}" pattern="/beta" negate="true" />
+              <add input="{HTTP_COOKIE}" pattern="want_old_site=true" negate="true" />
+              
+            </conditions>
+            
             <action type="Rewrite" value="original_url={UNENCODED_URL}; {R:0}" />
-  
+            
           </rule> 
-  
+          
           
         </outboundRules>
         

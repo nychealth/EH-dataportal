@@ -21,7 +21,7 @@
 
 {{/*  get report JSON from EHDP-data as a resource  */}}
 
-{{- $reports_data := (resources.GetRemote (print site.Params.data_repo "/" site.Params.data_branch "/neighborhood-reports/reports/" $.Params.data_json ".json")) | transform.Unmarshal -}}
+{{- $reports_data := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/reports/" $.Params.data_json ".json")) | transform.Unmarshal -}}
 
 {{/* First loop of report JSON to get first level parameters */}}
 
@@ -78,7 +78,7 @@
         
         <script>
             // set data download location
-            var downloadLoc = {{ site.Params.data_repo }} + "/" + {{ site.Params.data_branch }} + "/neighborhood-reports/data/" + data_download_loc
+            var downloadLoc = {{ site.Params.data_repo }} + {{ site.Params.data_branch }} + "/neighborhood-reports/data/" + data_download_loc
             var reportData;
             var download
             
@@ -294,38 +294,19 @@
 
 {{- end -}}
 
-{{- if eq hugo.Environment "data_staging" -}} 
-
-  {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
-  <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
-
-  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
-  <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
-
-  {{- $js := resources.Get "js/uhflist.js" -}}
-  <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
-
-{{ else }}
 
   {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
   {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-  <script type="text/javascript" 
-    src="{{ $secureJS.RelPermalink }}" 
-    integrity="{{ $secureJS.Data.Integrity }}"></script>
+  <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
+  {{/*  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
   {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-  <script type="text/javascript" 
-    src="{{ $secureJS.RelPermalink }}" 
-    integrity="{{ $secureJS.Data.Integrity }}"></script>
+  <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>  */}}
 
   {{- $js := resources.Get "js/uhflist.js" -}}
   {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-  <script type="text/javascript" 
-    src="{{ $secureJS.RelPermalink }}" 
-    integrity="{{ $secureJS.Data.Integrity }}"></script>
+  <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-{{- end -}}
 
 <script type="text/javascript">
     // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx

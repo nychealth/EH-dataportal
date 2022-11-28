@@ -11,6 +11,18 @@ We're hiring! See below for open positions in our bureau.
 ---
 <br>
 
+## Jobs on our team:
+
+**Health Content Manager** 
+
+We're looking for somebody to join the team that develops the Environment & Health Data Portal - this site! We're looking for a health communicator who's interested in how information works to contribute to user centered research, design, and site development. If you're a public health professional with interest in writing, user research, content strategy, design, or development, then we want to hear from you. 
+- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for Job ID 556725.
+
+---
+<br>
+
+## Jobs in our bureau:
+
 **Executive Director of Environmental Health Policy**
 
 We are looking for an experienced- high-level professional well-versed in applying research to policy and program, who will oversee our growing work in climate health and health equity in planning.
@@ -35,7 +47,7 @@ We're looking for a leader experienced in applying research to program design an
 
 **Social Resiliency Senior Manager**
 We're looking for a program manager, with experience in community and faith organization, to oversee a suite of programs aimed at bolstering social connections as a pathway for community-level climate resiliency.
-- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search - it will be posted soon.
+- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 518101.
 
 ---
 <br>
@@ -59,4 +71,4 @@ The Bureau of Environmental Surveillance and Policy is recruiting for a City Res
 **Division Counsel/Appeals Officer**
 
 Support the Bureau of Child Care on all legal matters regarding the implementation of Comprehensive Background Checks, including serving as an Appeals Officer.
-- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 505842.
+- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 558051.
