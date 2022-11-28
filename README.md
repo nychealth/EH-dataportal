@@ -133,6 +133,9 @@ Other content in `data` are SEO variables and Neighborhood Reports core content.
 ### Hugo/JavaScript Integrity
 We use Hugo's integrity function; this adds hashes to JS filenames and tells the pages to fetch the files with the hashed names. This is a way of improving security by ensuring the integrity of the JS files. This might not work on production if the server's DigiCert is expired. 
 
+### Dependency bundling
+Dependencies (The JS libraries the site uses: D3, Arquero, Vega-Lite, Accessible Autocomplete, etc) are served by the site rather than linked from CDNs. When you run `npm install` to configure your local repo, they are stored in `/node_modules`. When you run a build (`hugo` or via merging to `development` or `production`, per Github Actions), Hugo grabs these dependencies, applies the Integrity hash (see above), and references these 'local' versions. 
+
 ### Image handling
 We use Hugo to automatically resize images. Where you put the source path of an image, there's additional code - Hugo resizes the image, generates a different size (puts it in the `/resources/_gen/images`), and automatically points to the resized image.
 
