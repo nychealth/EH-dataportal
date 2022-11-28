@@ -1,5 +1,6 @@
 {{- define "main" -}}
-
+    <!--D3-->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
 
 <article class="container-fluid overflow-hidden" id="primary-content">
 
@@ -18,49 +19,64 @@
         {{- .Content -}}
 
       <div class="row border-top pt-2">
-        <div class="col-md-6 col-sm-12">
+        <div class="col-12">
           <p class="fs-xl font-weight-bold">First, enter your address.</p>
-          <p>Enter your address in the map. We'll use your address to tell you who your elected City Council Member is.</p>
+          <p>Enter your address below. We'll use your address to tell you who your elected City Council Member is.</p>
+          
         </div>
+      </div>
 
+      <div class="row pt-2">
         <div class="col-md-6 col-sm-12">
+
           <!-- Search/input -->
           <div class="srch input-group" role="search">
-            <input class="rad-all form-control form-control-lg" placeholder="Search Address" id="map-search" onclick="getData()">
+            <input class="rad-all form-control form-control-lg" placeholder="Search Address" id="map-search">
           </div>
 
           <!-- Map gets drawn here -->
           <div id='mapLocator'></div>
+
+
+       
+        </div>
+
+        <div class="col-md-6 col-sm-12" id="cmInfo">
+        <!-- entry button -->
+        <button class="btn btn-primary btn-block" id="outputButton" onclick="dataChange()">Get Council Member for this address:</button> 
+        <div class="row mt-2">
+          <div class="col-sm-5">
+            <span class="home-label">Your City Council Member:</span>
+          </div>
+          <div class="col-sm-7">
+            <span id="CCM" class="font-weight-bold"></span>
+          </div>
+        </div> 
+
+        <div class="row border-top">
+          <div class="col-sm-5">
+            <span class="home-label">Your City Council District:</span>
+          </div>
+          <div class="col-sm-7">
+            <span id="CCD" class="font-weight-bold"></span>
+          </div>
+        </div> 
+
+        <div class="row border-top mb-2">
+          <div class="col-sm-5">
+            <span class="home-label">Your Neighborhood:</span>
+          </div>
+          <div class="col-sm-7">
+            <span id="neighb" class="font-weight-bold fs-sm"></span>
+          </div>
+        </div> 
+
+          <button type="button" id="sendEmailBtn" class="btn btn-block btn-primary hide" onclick="email1()"><i class="fas fa-envelope-square mr-1"></i>Send my Council Member an email</button>
+
+
         </div>
       </div>
 
-
-
-      <div class="row mt-2 border-top pt-2">
-        <div class="col-md-6 col-sm-12">
-          <p class="fs-xl font-weight-bold">Next, get your Council Member.</p>
-          <p>Click the button on the right to get info about your Council Member.</p>
-        </div>
-        <div class="col-md-6 col-sm-12">
-          <button class="btn btn-outline-primary btn-block" id="outputButton" onclick="dataChange()">Get your CouncilMember:</button>  
-          <p>
-            <ul style="list-style-type:none; padding-left: 0;">
-              <li><span class="home-label">Your City Council District:</span> <span id="CCD" class="font-weight-bold ml-3"></span></li>
-              <li><span class="home-label">Your City Council Member:</span> <span id="CCM" class="font-weight-bold ml-3">[TBD]</span></li>
-            </ul>
-          </p>
-        </div>
-      </div>
-
-      <div class="row mt-2 border-top pt-2">
-        <div class="col-md-6 col-sm-12">
-          <p class="fs-xl font-weight-bold">Do you want to email your Council Member?</p>
-
-        </div>
-        <div class="col-md-6 col-sm-12">
-          <button type="button" id="sendEmailBtn" class="btn btn-block btn-outline-primary" onclick="email1()" style="display:block;">Yes, send my Council Member an email</button>
-        </div>
-      </div>
 
 
       <script>
@@ -69,13 +85,18 @@
           document.getElementById('email').scrollIntoView({  behavior: 'smooth', // smooth scroll
           block: 'start' // the upper border of the element will be aligned at the top of the visible part of the window of the scrollable area.
         });
+
+        document.getElementById('sendEmailBtn').classList.remove('btn-primary')
+        document.getElementById('sendEmailBtn').classList.add('btn-outline-primary')
+
+        document.getElementById('yourCM').innerHTML = districtInfo.CouncilMember;
         }
       </script>
 
       <div id="email" style="display:none">
         <div class="row mt-2 border-top pt-2">
           <div class="col-12">
-            <p class="fs-xl font-weight-bold">OK, let's send your Council Member an email.</p>
+            <p class="fs-xl font-weight-bold">OK, let's send Council Member <span id="yourCM" class="text-primary"></span> an email.</p>
             <p>This page will help you draft and send the email. If you want to, you'll be able to edit the text before you send it. Read the prompts on the left and select buttons on the right.</p>
 
           </div>
@@ -144,7 +165,7 @@
           <div class="col-md-6" id="yourEmail">
             <p class="fs-xl font-weight-bold">Here's your email:</p>
             <div id="textDestination">
-              <p>Dear <span id="councilMemberLastName">Councilmember</span>,</p>
+              <p>Dear Council Member <span id="councilMemberLastName"></span>,</p>
               <p>I am one of your constituents, a resident of district <span id="districtNum">XX</span>. I was reading about neighborhood issues on one of the Health Department's websites, the Environment and Health Data Portal (on.nyc.gov/dataportal). I am concerned about the following issues: <span id="concerns"></span>
   
               <p>I'm concerned because <span id="reasons"></span>
@@ -206,7 +227,7 @@
 <script src="https://maps.nyc.gov/nyc-lib/v1.2.79/js/nyc-ol-lib.js"></script>
 
 <script>
-  // This initializes and draws the locator map
+// This initializes and draws the locator map
   var map = new nyc.ol.FrameworkMap({
   mapTarget: '#mapLocator',
   searchTarget: '#map-search',
@@ -216,15 +237,53 @@
   //geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=cfed478bf47829a2951bc5a3bbc26422&app_id=2d2a1b38'
   });
 
+// Loads our City Council list
+var councilTable = [];
+var district;
+d3.csv('council.csv').then(function(data) {
+  councilTable = data;
+  // console.log('All City Council members:')
+  // console.table(councilTable)
 
+})
 
-
+// gets your initial info:
+var yourDistrict; 
+var districtInfo;
+var lastname;
 // runs on button click 
 function dataChange() {
-  document.getElementById('CCD').innerHTML = map.location.data.cityCouncilDistrict;
-  console.log('Map geolocator produces the following data from map.location.data')
+  document.getElementById('outputButton').classList.remove('btn-primary')
+  document.getElementById('outputButton').classList.add('btn-outline-primary')
+
+
+  yourDistrict = map.location.data.cityCouncilDistrict
+  document.getElementById('CCD').innerHTML = yourDistrict;
+  // console.log('Map geolocator produces the following data from map.location.data')
   // console.table(map.location.data)
   document.getElementById('sendEmailBtn').style.display = "block"
+
+  // get info from councilTable
+  for (let i = 0; i < councilTable.length; i ++) {
+    if (Number(councilTable[i].District) === Number(yourDistrict)) {
+      districtInfo = councilTable[i]
+      console.log('your district:')
+      console.table(districtInfo)
+    } else {}
+  }
+
+  // send info to page
+  document.getElementById('CCM').innerHTML = districtInfo.CouncilMember
+  document.getElementById('neighb').innerHTML = districtInfo.Neighborhoods
+
+  // reveal email button
+  document.getElementById('sendEmailBtn').classList.remove('hide')
+
+  // get last name
+  lastname = districtInfo.CouncilMember
+  lastname = lastname.substring(lastname.indexOf(" ") +1);
+
+
 }
 
 // Create CONCERNS
@@ -294,6 +353,7 @@ var neighborhoodName;
 function writeEmail() {
    document.getElementById('emailText').style.display = "block" // reveal text
    document.getElementById('districtNum').innerHTML = map.location.data.cityCouncilDistrict 
+   document.getElementById('councilMemberLastName').innerHTML = lastname;
 
    // send Concerns to text
     var str = '';
@@ -312,7 +372,7 @@ function writeEmail() {
     var str2 = ''
     for (i = 0 ; i < reasonsText.length; i++) {
       if (i === reasonsText.length - 1) {
-        str2 += 'and ' + reasonsText[i].toLowerCase() + '.' // end sentence
+        str2 += '' + reasonsText[i].toLowerCase() + '.' // end sentence
       } else {
         str2 += reasonsText[i].toLowerCase() + ', ' // use commas in between
       }
@@ -326,7 +386,7 @@ function writeEmail() {
 
     for (i = 0 ; i < needsText.length; i++) {
       if (i === needsText.length - 1) {
-        str3 += 'and ' + needsText[i].toLowerCase() + '.' // end sentence
+        str3 += '' + needsText[i].toLowerCase() + '.' // end sentence
       } else {
         str3 += needsText[i].toLowerCase() + ', ' // use commas in between
       }
