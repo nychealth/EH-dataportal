@@ -413,7 +413,9 @@ function illWrite() {
 }
 
 function sendButton() {
-  var address = 'District' + Number.parseInt(map.location.data.cityCouncilDistrict) + "@council.nyc.gov"
+  // var address = districtInfo.Email
+  var address = 'mmontesano@health.nyc.gov'
+
   var subject = 'Health concerns in district ' + map.location.data.cityCouncilDistrict
   var body = document.getElementById('textEntry').textContent
 
