@@ -138,6 +138,8 @@ const loadData = (this_indicatorId) => {
     .then(response => response.json())
     .then(async data => {
 
+        unreliabilityNotes = [...new Set(data.map(d => d.Note))];
+
         // call the geo file loading function
 
         loadGeo();
@@ -235,8 +237,10 @@ const joinData = () => {
             "Value",
             "DisplayValue",
             "CI",
+            // "Note",
             "start_period",
-            "end_period"
+            "end_period",
+            "ban_summary_flag"
         )
         .orderby(aq.desc('end_period'), aq.desc('GeoRank'))
         .reify()
