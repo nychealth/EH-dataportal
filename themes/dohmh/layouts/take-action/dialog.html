@@ -1,0 +1,35 @@
+{{- define "main" -}}
+    <!--D3-->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+<article class="container-fluid overflow-hidden" id="primary-content">
+
+  <div class="row my-4">
+    <div class="col-md-11 col-sm-12 mx-auto">
+      <!--start main column-->
+
+      <nav aria-label="breadcrumb" class="mb-2">
+        <ul class="breadcrumb mr-auto">
+            <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="..">
+              {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
+            <li class="breadcrumb-item active">{{ .Title }}</li>
+        </ul>                
+    </nav>
+
+      <h1>{{ .Title }}</h1>
+      <p>{{ .Content }}</p>
+
+      <div class="row">
+        <!-- Aaron: work in here -->
+
+      </div>
+
+
+    </div>
+    <!--end main column-->
+  </div>
+
+</article>
+
+{{- end -}}
