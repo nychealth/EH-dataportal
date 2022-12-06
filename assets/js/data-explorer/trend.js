@@ -22,7 +22,21 @@ const renderTrendChart = (
     window.innerWidth < 576 ? columns = 3 : columns = 6;
     window.innerWidth < 576 ? height = 350 : columns = 500;
 
-    
+
+    // get unique unreliability notes (dropping empty)
+
+    const trend_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
+
+    // console.log("trend_unreliability", trend_unreliability);
+
+    document.querySelector("#trend-unreliability").innerHTML = ""; // blank to start
+
+    for (let i = 0; i < trend_unreliability.length; i++) {
+        
+        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + trend_unreliability[i] + "</div>" ;
+        
+    }
+
     // define spec
     
     let trendspec = {
