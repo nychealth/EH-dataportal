@@ -96,14 +96,14 @@ const renderTable = () => {
     // console.log("measureImputeObj", measureImputeObj);
     
     const filteredTableAqData = aq.from(filteredTableData)
-        .groupby("Time", "GeoType", "GeoID", "GeoRank", "Geography")
+        .groupby("Time", "GeoTypeDesc", "GeoID", "GeoRank", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI")
     
         // need to put this down here because the data might be missing one of the measures, which will be undefined after the pivot
         // .impute(measureImputeObj) 
         
         // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
-        .relocate(["Time", "GeoType", "GeoID", "GeoRank"], { before: 0 }) 
+        .relocate(["Time", "GeoTypeDesc", "GeoID", "GeoRank"], { before: 0 }) 
     
     // console.log("filteredTableAqData [renderTable]");
     // filteredTableAqData.print({limit: 400})
@@ -150,9 +150,9 @@ const renderTable = () => {
         "createdRow": function ( row, data, index ) {
             // console.log('RENDER TABLE FUNCTION - CreatedRow')
             const time    = data[0];
-            const geoType = data[1];
-            if (time && geoType) {
-                row.setAttribute(`data-group`, `${time}-${geoType}`)
+            const GeoTypeDesc = data[1];
+            if (time && GeoTypeDesc) {
+                row.setAttribute(`data-group`, `${time}-${GeoTypeDesc}`)
                 row.setAttribute(`data-year`, `${time}`);
             }
         },
