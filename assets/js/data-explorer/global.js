@@ -12,6 +12,7 @@ let dataSources;
 let measureAbout = `N/A`;
 let measureSources = `N/A`;
 let geoTable;
+let unreliabilityNotes;
 let aqData;
 let joinedAqData;
 
