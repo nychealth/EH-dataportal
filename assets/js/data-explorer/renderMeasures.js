@@ -767,7 +767,7 @@ const renderMeasures = async () => {
 
     const tableYears = [...new Set(fullDataTableObjects.map(item => item.Time))];
 
-    console.log("tableYears", tableYears);
+    // console.log("tableYears", tableYears);
 
     tableYears.forEach((year, index) => {
 
