@@ -86,25 +86,11 @@
         
         var opt = {"renderer": "svg"};
 
-        // loading report-level CSV data
-        
-        aq.loadCSV(
-
-            // this is loaded when an indicator is clicked, but it will be cached
-            
-            "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/data/" + data_download_loc,
-
-            {autoMax: 10000}
-        
-        ).then(data => {
-            
-            arqTable = data;
-
-
             // ---- summary ---- //
 
             // get most recent data for each neighborhood
             
+            let summarySpec;
             var summaryData = 
                 arqTable
                 .filter(d => d.data_field_name == {{ .ind.indicator_data_name }})
@@ -147,6 +133,7 @@
 
             // uses summary data, but named dataset is in spec's '"transform" object
 
+            let mapSpec;
             var mapData = summaryData;
 
             d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/mapSpec.json").then(data => {
@@ -176,6 +163,7 @@
 
             // get all data points for this indicator
             
+            let trendSpec;
             var trendData = 
                 arqTable
                 .filter(d => d.data_field_name == {{ .ind.indicator_data_name }})
@@ -208,8 +196,6 @@
                 }).catch(console.error);;
                 
             });
-            
-        });
             
     });
         
