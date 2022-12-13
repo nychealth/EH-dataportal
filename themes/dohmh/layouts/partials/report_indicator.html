@@ -92,7 +92,9 @@
 
             // this is loaded when an indicator is clicked, but it will be cached
             
-            "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/data/" + data_download_loc
+            "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/data/" + data_download_loc,
+
+            {autoMax: 10000}
         
         ).then(data => {
             
@@ -181,6 +183,8 @@
                 .dedupe()
                 .objects()
             
+            console.log("trendData", trendData);
+
             d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/trendSpec.json").then(data => {
                 
                 // make a deep copy of the spec
