@@ -115,10 +115,9 @@
                     </div>
                 </form>
                 <hr class="mt-4 mb-1">
+                
+                <button onclick="downloadData()" class="btn btn-sm btn-block btn-report" target="_blank"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>
 
-                <button onclick="getData()" class="btn btn-sm btn-block btn-report" target="_blank"><i
-                       class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new
-                        tab)</span></button>
             </div>
             <!-- .sticky-top -->
 
@@ -126,40 +125,49 @@
         <!-- .col -->
 
         <script>
+
+            // loading report CSV data here, so it only loads once per location
+
+            var arqTable;
+            var downloadLoc = "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/data/" + data_download_loc
+
+            // loading report-level CSV data
+            
+            aq.loadCSV(
+                downloadLoc,
+                { autoMax: 10000,  parse: { time: String } }
+            )
+            .then(data => { arqTable = data })
+
+            {{/*  console.log("arqTable", arqTable);  */}}
+
+
             // set data download location
-            var downloadLoc = {{ site.Params.data_repo }} + {{ site.Params.data_branch }} + "/neighborhood-reports/data/" + data_download_loc
             var reportData;
-            var download
-
-            // ingest data for download
-            function getData() {
-                d3.csv(downloadLoc).then(data => {
-                    reportData = data;
-                    reportData.filter(x => x.neighborhood = '{{ .geo_entity_name }}') // filter Report Data for selected neighborhood
-                    // console.table(reportData)
-                    downloadData()
-                });
-            };
-
+            var download;
+            
             // create an element, create the CSV, and download it
             function downloadData() {
-                let data = aq.from(reportData); // create arquero object
-                download = data.select(aq.not('report_id', 'indicator_id', 'data_field_name', 'start_date', 'end_date',)) // drop unnecessary columns
 
+                download = arqTable
+                    .select(aq.not('report_id','indicator_id','data_field_name','start_date','end_date')) // drop unnecessary columns
+                    .filter(d => d.neighborhood = '{{ .geo_entity_name }}')
+                
                 let downloadTableCSV = download.toCSV(); // format as CSV
                 // Data URI
                 let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
                 let hiddenElement = document.createElement('a');
                 hiddenElement.href = csvData;
                 hiddenElement.target = '_blank';
-                hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - " + {{ .geo_entity_name }} + '.csv';
-            hiddenElement.click();
+                hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - {{ .geo_entity_name }}.csv";
+                hiddenElement.click();
+                
+                gtag('event', 'file_download', {
+                    'file_name': hiddenElement.download,
+                    'file_extension': '.csv',
+                    'link_text': 'Download Report Data'
+                });
 
-            gtag('event', 'file_download', {
-                'file_name': hiddenElement.download,
-                'file_extension': '.csv',
-                'link_text': 'Download Report Data'
-            });
             };
 
         </script>
