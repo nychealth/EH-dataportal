@@ -2,10 +2,6 @@
 {{ $indID := .ind.IndicatorID }}
 {{ $dataname := .ind.indicator_data_name }}
 
-<script>
-    console.log("indID", {{ .ind }});
-</script>
-
 <!--Modal button also fires getURL() -->
 <button data-toggle="modal" data-target="#modal-{{ .ind.indicator_data_name }}-{{ .count }}" onclick="getURL({{ $indID }}, {{ $dataname }});" class="indicator-anchor">
     <!-- Table row -->
@@ -117,9 +113,6 @@
                 .select(aq.not("end_date"))
                 .objects()
 
-            // highlight current neighborhood
-
-            summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
             
             vegaEmbed(
                 "#summary-{{ .ind.indicator_data_name }}-{{ .count }}", 
@@ -138,9 +131,6 @@
 
             var mapData = summaryData;
 
-            // highlight current neighborhood
-
-            mapSpec.layer[2].encoding.stroke.condition.test = "datum.neighborhood == '" + NeighborhoodName + "'";
             
             vegaEmbed(
                 "#map-{{ .ind.indicator_data_name }}-{{ .count }}", 
@@ -164,9 +154,6 @@
                 .dedupe()
                 .objects()
             
-            // highlight current neighborhood
-
-            trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
             
             vegaEmbed(
                 "#trend-{{ .ind.indicator_data_name }}-{{ .count }}", 

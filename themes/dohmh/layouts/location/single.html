@@ -42,14 +42,23 @@
         }
     }
 
-    // loading specs
+    // ==== loading specs ==== //
+
+    // ---- summary ---- //
 
     let summarySpec;
 
     d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/summarySpec.json").then(data => {
         
         summarySpec = data;
+        
+        // highlight current neighborhood
+        
+        summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+
     })
+
+    // ---- map ---- //
 
     let mapSpec;
 
@@ -57,13 +66,28 @@
         
         mapSpec = data;
         
+        // highlight current neighborhood
+    
+        mapSpec.layer[2].encoding.stroke.condition.test = "datum.neighborhood == '" + NeighborhoodName + "'";
+
+        // set data branch for geo files
+        
+        mapSpec.transform[0].from['data'].url = "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/geography/UHF42.topo.json"
+        mapSpec.layer[0].data.url = "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/geography/borough.topo.json"
+        
     });
+
+    // ---- trend ---- //
 
     let trendSpec;
 
     d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/trendSpec.json").then(data => {
         
         trendSpec = data;
+        
+        // highlight current neighborhood
+    
+        trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
         
     });
 
