@@ -951,6 +951,18 @@ height: 200px;}
     border-color: crimson;
 }
 
+.CDTA {
+    color: black;
+    background-color: #dc141464;
+    border-color: #dc1414;
+}
+
+.CDTA:hover, .CDTA.active  {
+    color: white;
+    background-color: #dc1414;
+    border-color: #dc1414;
+}
+
 
 
 .NTA {

@@ -1,5 +1,4 @@
 baseURL = "http://gcappbesp307/IndicatorPublic/beta/"
 [params]
     # sitepath = "/EH-dataportal"
-    # data_branch = "staging"
-    data_branch = "feature-add-unreliability-character"
+    data_branch = "staging"
