@@ -14,6 +14,7 @@ indicators:
   - 2105
   - 24
   - 48
+  - 2416
 menu:
     main:
         identifier: '03'
