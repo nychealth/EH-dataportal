@@ -117,9 +117,6 @@
                 .select(aq.not("end_date"))
                 .objects()
 
-            // highlight current neighborhood
-
-            summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
             
             vegaEmbed(
                 "#summary-{{ .ind.indicator_data_name }}-{{ .count }}", 
@@ -138,9 +135,6 @@
 
             var mapData = summaryData;
 
-            // highlight current neighborhood
-
-            mapSpec.layer[2].encoding.stroke.condition.test = "datum.neighborhood == '" + NeighborhoodName + "'";
             
             vegaEmbed(
                 "#map-{{ .ind.indicator_data_name }}-{{ .count }}", 
@@ -164,9 +158,6 @@
                 .dedupe()
                 .objects()
             
-            // highlight current neighborhood
-
-            trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
             
             vegaEmbed(
                 "#trend-{{ .ind.indicator_data_name }}-{{ .count }}", 
