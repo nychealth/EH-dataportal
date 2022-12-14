@@ -5,6 +5,8 @@ const renderMap = (
 
         console.log("** renderMap");
 
+        console.log("data:", data);
+
         // get unique time in data
 
         const mapYears =  [...new Set(data.map(item => item.Time))];
@@ -21,6 +23,22 @@ const renderMap = (
         let mapDisplay = metadata[0].DisplayType;
         let mapTime = mapYears[0];
         let topoFile = '';
+
+
+    // get unique unreliability notes (dropping empty)
+
+        const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
+
+        // console.log("map_unreliability", map_unreliability);
+
+        document.querySelector("#map-unreliability").innerHTML = ""; // blank to start
+
+        for (let i = 0; i < map_unreliability.length; i++) {
+            
+            document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + map_unreliability[i] + "</div>" ;
+            
+        }
+
 
         // can add year to this
 
@@ -140,10 +158,8 @@ const renderMap = (
                                 "tooltip": [
                                     {"field": "Geography", "title": "Neighborhood"},
                                     {
-                                        "field": "Value",
-                                        "type": "quantitative",
-                                        "title": mapMeasurementType,
-                                        "format": ",.1~f"
+                                        "field": "DisplayValue",
+                                        "title": mapMeasurementType
                                     },
                                 ],
                             },
@@ -179,10 +195,8 @@ const renderMap = (
                                 "title": "Neighborhood"
                             },
                             {
-                                "field": "Value", 
-                                "type": "quantitative", 
-                                "title": mapMeasurementType,
-                                "format": ",.1~f"
+                                "field": "DisplayValue", 
+                                "title": mapMeasurementType
                             },
                         ],
                         "x": {"field": "GeoID", "sort": "y", "axis": null},
