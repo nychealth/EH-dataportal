@@ -1,31 +1,126 @@
 {{- define "main" -}}
 
+<script>
+    var subtopicIndicators;
+    var sti;
+    var thisInd;
+
+    // this gets a json of topics and nested indicators
+    async function getJSON() {
+        d3.json("https://raw.githubusercontent.com/nychealth/EH-dataportal/prod-deploy/IndicatorData/subtopic_indicators.json").then(data => {
+            subtopicIndicators = data
+        });
+    }
+
+    getJSON();
+
+    // this is called when an indicator is clicked. it produces the indicator's data-explorer URL and sends it to the modal in report_indicator.html.
+
+    const getURL = async (indID, dataname) => {
+
+        console.log("getURL:", indID);
+
+        var thisTopic = '';
+        var topicArray = [];
+        var ind = Number(indID)
+        var URL;
+        console.log('getURL running for ' + ind)
+
+        for (let y in subtopicIndicators) {
+            topicArray = subtopicIndicators[y].IndicatorID
+            if (topicArray.includes(ind)) {
+                thisTopic = y
+                console.log('topic is: ' + ind + ": " + thisTopic)
+                URL = baseURL + 'data-explorer/' + thisTopic + "/?id=" + ind; // creates URL
+                document.getElementById(dataname).style.display = "block";
+                document.getElementById(dataname).href = URL; // sends it to unique ID - Get the Dataset button
+                return
+            } else {
+                // console.log('for ' + ind + ", no topic.")
+                // document.getElementById(dataname).style.display = "none";
+            }
+        }
+    }
+
+    // ==== loading specs ==== //
+
+    // ---- summary ---- //
+
+    let summarySpec;
+
+    d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/summarySpec.json").then(data => {
+        
+        summarySpec = data;
+        
+        // highlight current neighborhood
+        
+        summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+
+    })
+
+    // ---- map ---- //
+
+    let mapSpec;
+
+    d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/mapSpec.json").then(data => {
+        
+        mapSpec = data;
+        
+        // highlight current neighborhood
+    
+        mapSpec.layer[2].encoding.stroke.condition.test = "datum.neighborhood == '" + NeighborhoodName + "'";
+
+        // set data branch for geo files
+        
+        mapSpec.transform[0].from['data'].url = "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/geography/UHF42.topo.json"
+        mapSpec.layer[0].data.url = "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/geography/borough.topo.json"
+        
+    });
+
+    // ---- trend ---- //
+
+    let trendSpec;
+
+    d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/trendSpec.json").then(data => {
+        
+        trendSpec = data;
+        
+        // highlight current neighborhood
+    
+        trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
+        
+    });
+
+</script>
+
 {{/* Set scratch variables for neighborhood directory and report filename to be used in side bar */}}
 {{- $.Scratch.Set "neighborhoodDir" .Parent.File.Dir -}}
 {{- $.Scratch.Set "reportFile" .File.BaseFileName -}}
 
 <div class="d-flex flex-column report-header">
-    
+
     <!-- Toggle #sidebar-nav on mobile -->
     <div class="container-fluid p-0 d-lg-none">
         <div>
             <div class="btn-toggle">
-                <button class="btn btn-block btn-lg btn-primary shadow" data-toggle="collapse" data-target="#sidebar-nav" aria-expanded="false" aria-controls="sidebar-nav">
+                <button class="btn btn-block btn-lg btn-primary shadow" data-toggle="collapse"
+                        data-target="#sidebar-nav" aria-expanded="false" aria-controls="sidebar-nav">
                     <span class="title">Reports</span>
                 </button>
             </div>
         </div>
     </div>
-    
+
 </div>
 
-{{/*  get report JSON from EHDP-data as a resource  */}}
+{{/* get report JSON from EHDP-data as a resource  */}}
 
 {{- $reports_data := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/reports/" $.Params.data_json ".json")) | transform.Unmarshal -}}
 
 {{/* First loop of report JSON to get first level parameters */}}
 
 {{- range $reports_data -}}
+
 
 <script>
     var NeighborhoodName = "{{ .geo_entity_name }}"; // setting for use in visualizations
@@ -35,11 +130,11 @@
 
 <section class="container-fluid pl-lg-6" id="skip-header-target">
     <div class="row">
-        
+
         <div class="col-lg-3 collapse d-lg-block sidebar-report d-print-none" id="sidebar-nav">
             <div class="mt-5">
                 <a class="sr-only sr-only-focusable skip-menu" href="#primary-content">Skip Nav</a>
-                
+
                 <h2>Change Report</h2>
                 <nav role="navigation">
                     <div class="list-group custom-active">
@@ -48,13 +143,14 @@
                         {{- partial "location_sub_nav" (dict  "neighborhood" $neighborhood "report" $report) -}}
                     </div>
                 </nav>
-                
+
                 <hr class="mt-2">
-                
+
                 <h2 class="mt-4">Change Neighborhood</h2>
                 <form action="/neighborhood-reports" method="get" class="autocomplete-form">
                     <div class="row no-gutters">
-                        <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">What NYC neighborhood are you interested in?</label>
+                        <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">What NYC
+                            neighborhood are you interested in?</label>
                         <div class="col-9">
                             <div class="autocomplete-wrapper">
                                 <select name="last-neighborhood" id="last-neighborhood">
@@ -69,33 +165,42 @@
                 </form>
                 <hr class="mt-4 mb-1">
                 
-                <button onclick="getData()" class="btn btn-sm btn-block btn-report" target="_blank"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>
+                <button onclick="downloadData()" class="btn btn-sm btn-block btn-report" target="_blank"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>
+
             </div>
             <!-- .sticky-top -->
-            
+
         </div>
         <!-- .col -->
-        
+
         <script>
-            // set data download location
-            var downloadLoc = {{ site.Params.data_repo }} + {{ site.Params.data_branch }} + "/neighborhood-reports/data/" + data_download_loc
-            var reportData;
-            var download
+
+            // loading report CSV data here, so it only loads once per location
+
+            var arqTable;
+            var downloadLoc = "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/data/" + data_download_loc
+
+            // loading report-level CSV data
             
-            // ingest data for download
-            function getData() {
-                d3.csv(downloadLoc).then(data => {
-                    reportData = data;
-                    reportData.filter(x => x.neighborhood = '{{ .geo_entity_name }}') // filter Report Data for selected neighborhood
-                    // console.table(reportData)
-                    downloadData()
-                });
-            };
+            aq.loadCSV(
+                downloadLoc,
+                { autoMax: 10000,  parse: { time: String } }
+            )
+            .then(data => { arqTable = data })
+
+            {{/*  console.log("arqTable", arqTable);  */}}
+
+
+            // set data download location
+            var reportData;
+            var download;
             
             // create an element, create the CSV, and download it
             function downloadData() {
-                let data = aq.from(reportData); // create arquero object
-                download = data.select(aq.not('report_id','indicator_id','data_field_name','start_date','end_date',)) // drop unnecessary columns
+
+                download = arqTable
+                    .select(aq.not('report_id','indicator_id','data_field_name','start_date','end_date')) // drop unnecessary columns
+                    .filter(d => d.neighborhood = '{{ .geo_entity_name }}')
                 
                 let downloadTableCSV = download.toCSV(); // format as CSV
                 // Data URI
@@ -103,7 +208,7 @@
                 let hiddenElement = document.createElement('a');
                 hiddenElement.href = csvData;
                 hiddenElement.target = '_blank';
-                hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - " + {{ .geo_entity_name }} + '.csv';
+                hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - {{ .geo_entity_name }}.csv";
                 hiddenElement.click();
                 
                 gtag('event', 'file_download', {
@@ -111,10 +216,11 @@
                     'file_extension': '.csv',
                     'link_text': 'Download Report Data'
                 });
+
             };
-            
+
         </script>
-        
+
         <div class="col-12 col-lg-9 overflow-hidden" id="primary-content">
             <div class="my-5">
                 <div class="px-lg-6 my-4">
@@ -122,47 +228,49 @@
                         <span class="sub-title">{{ $.Params.neighborhood }}</span>
                     </h1>
                     <p class="report-description">{{ .report_description }}</p>
-                    
-                    <p><strong style="color:#00923E">{{ .geo_entity_name }}</strong> includes ZIP Codes: <span class="home-label">{{ .zip_code }}</span>.</p>
-                    
+
+                    <p><strong style="color:#00923E">{{ .geo_entity_name }}</strong> includes ZIP Codes: <span
+                              class="home-label">{{ .zip_code }}</span>.</p>
+
                     <hr class="mt-4">
-                    
+
                     <div>
-                        
+
                         {{- range $index, $content := .report_content -}}
                         {{- $count :=add $index 1 -}}
                         {{- $.Scratch.Set "location" .geo_entity_name -}}
                         {{- $.Scratch.Set "borough" .borough_name -}}
-                        
+
                         <div class="report-topic">
-                            
+
                             <div class="topic-header">
                                 <h2>{{ .report_topic }}</h2>
                                 <p>
                                     {{- .report_topic_description -}}
                                 </p>
                             </div>
-                            
+
                             <div class="container-fluid px-0 mb-4">
                                 <div class="row indicator-headings mb-2">
                                     <div class="col-6 col-md-5 pl-3">
                                         Topic
                                     </div>
                                     <div class="col-6 col-md-4">
-                                        
+
                                         <div class="position-relative">
                                             Comparison<br>
                                             <span class="meta"> to NYC average</span></a>
-                                            <a href="#" data-toggle="modal" data-target="#modal-rank" class="info-modal"><i class="fas fa-question-circle fs-rg"></i></a>
+                                            <a href="#" data-toggle="modal" data-target="#modal-rank"
+                                               class="info-modal"><i class="fas fa-question-circle fs-rg"></i></a>
                                         </div>
-                                        
+
                                     </div>
                                     <div class="d-none d-md-inline col-md-3">
                                         Rank<br>
                                         <span class="meta"> out of the 42 neighborhoods</span>
                                     </div>
                                 </div>
-                                
+
                                 {{- with .report_topic_data -}}
                                 {{- range sort . "data_value_rank" "desc" -}}
                                 {{- $location := $.Scratch.Get "location" -}}
@@ -172,11 +280,11 @@
                                 {{- end -}}
                             </div>
                             <!-- .container -->
-                            
+
                         </div>
                         <!-- .report-topic -->
                         {{- end -}}
-                        
+
                     </div>
                 </div>
                 <!-- .narrow -->
@@ -184,7 +292,7 @@
         </div>
     </div>
     <!-- .row -->
-    
+
 </section>
 {{/* Make sure we know what report content to load and that content_yml is set. If not we dont display the content */}}
 {{- if $.Params.content_yml -}}
@@ -194,49 +302,52 @@
 <section class="related-reading">
     <div class="container">
         <div class="row">
-            
+
             <div class="col-lg">
                 <div class="card bg-white text-black mb-2">
-                    <div class="card-header">What the city is doing?</div>
+                    <div class="card-header">What is the City doing?</div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
                             {{- range $content.city -}}
-                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
+                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
+                                   href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
                             {{- end -}}
                         </ul>
                     </div>
                 </div>
             </div>
             <!-- .col for city -->
-            
+
             <div class="col-lg">
                 <div class="card bg-white text-black mb-2">
                     <div class="card-header">What can you do?</div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
                             {{- range $content.you -}}
-                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
+                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
+                                   href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
                             {{- end -}}
                         </ul>
                     </div>
                 </div>
             </div>
             <!-- .col for you -->
-            
+
             <div class="col-lg">
                 <div class="card bg-white text-black">
                     <div class="card-header">More NYC neighborhood data</div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
                             {{- range $content.data -}}
-                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
+                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
+                                   href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
                             {{- end -}}
                         </ul>
                     </div>
                 </div>
             </div>
             <!-- .col for data -->
-            
+
             <!-- .row -->
         </div>
     </div>
@@ -259,7 +370,8 @@
 -->
 
 <!-- Modal-Rank -->
-<div class="modal fade report-modal" id="modal-rank" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-rank" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -275,14 +387,17 @@
                     <li class="mb-2"><span class="middle">Middle</span></li>
                     <li><span class="worse">Worse</span></li>
                 </ul>
-                <p>This shows us how the neighborhood compares to other NYC neighborhoods, if you ranked all of the NYC neighborhoods based on this indicator.</p>
+                <p>This shows us how the neighborhood compares to other NYC neighborhoods, if you ranked all of the NYC
+                    neighborhoods based on this indicator.</p>
                 <ul>
                     <li><strong>Better:</strong> in the top 1/3rd of all NYC neighorhoods.</li>
-                    <li><strong>Middle:</strong> it's close to the NYC median - ranking somewhere in the middle third of all neighborhoods.</li>
+                    <li><strong>Middle:</strong> it's close to the NYC median - ranking somewhere in the middle third of
+                        all neighborhoods.</li>
                     <li><strong>Worse:</strong> in the bottom 1/3rd of NYC neighborhoods.</li>
                 </ul>
-                <p>These are only based on the distribution of data values, not the range. The absolute values of indicators in different categoeis may not be all that different.</p>
-                
+                <p>These are only based on the distribution of data values, not the range. The absolute values of
+                    indicators in different categoeis may not be all that different.</p>
+
             </div>
             <!-- .modal-body -->
             <div class="modal-footer">
@@ -295,17 +410,18 @@
 {{- end -}}
 
 
-  {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
-  {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-  <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+{{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
+{{ $secureJS := $js | resources.Fingerprint "sha512" }}
+<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-  {{/*  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
-  {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-  <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>  */}}
+{{/* {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
+{{ $secureJS := $js | resources.Fingerprint "sha512" }}
+<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+*/}}
 
-  {{- $js := resources.Get "js/uhflist.js" -}}
-  {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-  <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
+{{- $js := resources.Get "js/uhflist.js" -}}
+{{ $secureJS := $js | resources.Fingerprint "sha512" }}
+<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
 
 <script type="text/javascript">
@@ -313,19 +429,19 @@
     function PopulateDropDownList() {
         //Build an array containing Neighborhood records.
         //UHFList.js contains a variable 'neighborhoods' with names zips and ids
-        
+
         var ddlNeighborhoods = document.getElementById("last-neighborhood");
-        
+
         //Add the Options to the DropDownList.
         for (var i = 0; i < neighborhoods.length; i++) {
             var option = document.createElement("OPTION");
-            
+
             //Set Neighborhood Name in Text part.
             option.innerHTML = neighborhoods[i].namezip;
-            
+
             //Set Neighborhood Id in Value part.
             option.value = neighborhoods[i].page_name;
-            
+
             //Add the Option element to DropDownList.
             ddlNeighborhoods.options.add(option);
         }
@@ -342,13 +458,13 @@
         minLength: 2,
         selectElement: selectEl
     })
-    
+
     // get report path relative to section starting with "neighborhood-reports" - makes it agnostic w/r/t server
     var thisURL = window.location.pathname.match(/neighborhood-reports.*/)
     var report = thisURL[0].split("/")[2];
 
     // check report and declare report
-    
+
     // this takes the form and on submit, sends page to a new location.
     var searchForm = document.getElementById('last-neighborhood-select') // this is last-neighborhood-select because of changes applied by the AA JS.
 
@@ -357,9 +473,9 @@
         var locVal = searchForm.options[searchForm.selectedIndex].value;
         console.log("locVal", locVal);
         // window.location = baseURL + 'neighborhood-reports/'+ DOMPurify.sanitize(locVal) + "/" + report;
-        window.location = '{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(locVal) + "/" + report;
+        window.location = '{{ site.BaseURL }}neighborhood-reports/' + DOMPurify.sanitize(locVal) + "/" + report;
     });
-    
+
 </script>
 
 {{- end -}}

@@ -119,7 +119,7 @@ const renderTable = () => {
         .relocate(["Time", "GeoTypeDesc", "GeoID", "GeoRank"], { before: 0 }) 
     
     // console.log("filteredTableAqData [renderTable]");
-    // filteredTableAqData.print({limit: 400})
+    // filteredTableAqData.print({limit: 40})
     
     // export Arquero table to HTML
     
@@ -158,6 +158,7 @@ const renderTable = () => {
         fixedHeader: true,
         orderFixed: [ 3, 'asc' ], // GeoRank
         columnDefs: [
+            { type: 'natural', targets: '_all' },
             { targets: [0, 1, 2, 3], visible: false}
         ],
         "createdRow": function ( row, data, index ) {

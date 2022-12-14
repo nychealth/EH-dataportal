@@ -640,6 +640,13 @@
 
     <script type="text/javascript" src="{{ $d3_secureJS.RelPermalink }}" integrity="{{ $d3_secureJS.Data.Integrity }}"></script>
 
+    {{/*  naturalSort - from https://datatables.net/plug-ins/sorting/natural  */}}
+
+    {{- $naturalSort := resources.Get "js/naturalSort.js" -}}
+    {{- $naturalSort_secureJS := $naturalSort | resources.Fingerprint "sha512" -}}
+
+    <script type="text/javascript" src="{{ $naturalSort_secureJS.RelPermalink }}" integrity="{{ $naturalSort_secureJS.Data.Integrity }}"></script>
+
 
     {{/*  Data Explorer JS  */}}
 
