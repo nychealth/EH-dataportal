@@ -6,7 +6,7 @@
     var thisInd;
 
     // this gets a json of topics and nested indicators
-    function getJSON() {
+    async function getJSON() {
         d3.json("https://raw.githubusercontent.com/nychealth/EH-dataportal/prod-deploy/IndicatorData/subtopic_indicators.json").then(data => {
             subtopicIndicators = data
         });
@@ -15,14 +15,16 @@
     getJSON();
 
     // this is called when an indicator is clicked. it produces the indicator's data-explorer URL and sends it to the modal in report_indicator.html.
-    const getURL = async (x) => {
-        const result = await getJSON(); // runs when getJSON() has finished.
+
+    const getURL = async (indID, dataname) => {
+
+        console.log("getURL:", indID);
 
         var thisTopic = '';
         var topicArray = [];
-        var ind = Number(x)
+        var ind = Number(indID)
         var URL;
-        console.log('getURL running for ' + x)
+        console.log('getURL running for ' + ind)
 
         for (let y in subtopicIndicators) {
             topicArray = subtopicIndicators[y].IndicatorID
@@ -30,17 +32,40 @@
                 thisTopic = y
                 console.log('topic is: ' + ind + ": " + thisTopic)
                 URL = baseURL + 'data-explorer/' + thisTopic + "/?id=" + ind; // creates URL
-                document.getElementById(ind).style.display = "block";
-                document.getElementById(ind).href = URL; // sends it to unique ID - Get the Dataset button
+                document.getElementById(dataname).style.display = "block";
+                document.getElementById(dataname).href = URL; // sends it to unique ID - Get the Dataset button
                 return
             } else {
                 // console.log('for ' + ind + ", no topic.")
-                // document.getElementById(ind).style.display = "none";
+                // document.getElementById(dataname).style.display = "none";
             }
         }
     }
 
+    // loading specs
 
+    let summarySpec;
+
+    d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/summarySpec.json").then(data => {
+        
+        summarySpec = data;
+    })
+
+    let mapSpec;
+
+    d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/mapSpec.json").then(data => {
+        
+        mapSpec = data;
+        
+    });
+
+    let trendSpec;
+
+    d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/trendSpec.json").then(data => {
+        
+        trendSpec = data;
+        
+    });
 
 </script>
 
