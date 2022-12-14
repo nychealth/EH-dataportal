@@ -1,4 +1,14 @@
-<button data-toggle="modal" data-target="#modal-{{ .ind.indicator_data_name }}-{{ .count }}" class="indicator-anchor">
+<!-- Get indicator ID -->
+{{ $indID := .ind.IndicatorID }}
+{{ $dataname := .ind.indicator_data_name }}
+
+<script>
+    console.log("indID", {{ .ind }});
+</script>
+
+<!--Modal button also fires getURL() -->
+<button data-toggle="modal" data-target="#modal-{{ .ind.indicator_data_name }}-{{ .count }}" onclick="getURL({{ $indID }}, {{ $dataname }});" class="indicator-anchor">
+    <!-- Table row -->
     <div class="row align-items-center">
         <div class="col-6 col-md-5">
             <span class="indicator-short-name">{{ .ind.indicator_short_name }}</span>
@@ -72,7 +82,9 @@
             <!-- .modal-body -->
             <div class="modal-footer flex-column">
                 {{- if isset .ind "source_description" -}}<p class="fs-sm mb-4"><em>Source: {{ htmlUnescape .ind.source_description }}</em></p>{{- end -}}
-                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+                <a id="{{ $dataname }}" href="/data-explorer/TOPIC/?id={{ $indID }}" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the dataset</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -90,7 +102,6 @@
 
             // get most recent data for each neighborhood
             
-            let summarySpec;
             var summaryData = 
                 arqTable
                 .filter(d => d.data_field_name == {{ .ind.indicator_data_name }})
@@ -104,66 +115,47 @@
                 .orderby("data_value") // sort for ordered bar chart
                 .select(aq.not("end_date"))
                 .objects()
-                
+
+            // highlight current neighborhood
+
+            summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
             
-            d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/summarySpec.json").then(data => {
+            vegaEmbed(
+                "#summary-{{ .ind.indicator_data_name }}-{{ .count }}", 
+                summarySpec, 
+                opt
+            ).then((res) => {
                 
-                summarySpec = data;
+                res.view.insert("summaryData", summaryData).run()
 
-                // highlight current neighborhood
-
-                summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
-                
-            }).then(() => {
-                
-                vegaEmbed(
-                    "#summary-{{ .ind.indicator_data_name }}-{{ .count }}", 
-                    summarySpec, 
-                    opt
-                ).then((res) => {
-                    
-                    res.view.insert("summaryData", summaryData).run()
-
-                }).catch(console.error);;
-                
-            });
+            }).catch(console.error);;
             
 
             // ---- map ---- //
 
             // uses summary data, but named dataset is in spec's '"transform" object
 
-            let mapSpec;
             var mapData = summaryData;
 
-            d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/mapSpec.json").then(data => {
-                
-                mapSpec = data;
+            // highlight current neighborhood
 
-                // highlight current neighborhood
-
-                mapSpec.layer[2].encoding.stroke.condition.test = "datum.neighborhood == '" + NeighborhoodName + "'";
-                
-            }).then(() => {
-                
-                vegaEmbed(
-                    "#map-{{ .ind.indicator_data_name }}-{{ .count }}", 
-                    mapSpec,
-                    opt
-                ).then((res) => {
-                    
-                    res.view.insert("mapData", mapData).run()
-                    
-                }).catch(console.error);
-                
-            });
-
+            mapSpec.layer[2].encoding.stroke.condition.test = "datum.neighborhood == '" + NeighborhoodName + "'";
             
+            vegaEmbed(
+                "#map-{{ .ind.indicator_data_name }}-{{ .count }}", 
+                mapSpec,
+                opt
+            ).then((res) => {
+                
+                res.view.insert("mapData", mapData).run()
+                
+            }).catch(console.error);
+            
+        
             // ---- trend ---- //
 
             // get all data points for this indicator
             
-            let trendSpec;
             var trendData = 
                 arqTable
                 .filter(d => d.data_field_name == {{ .ind.indicator_data_name }})
@@ -171,32 +163,20 @@
                 .dedupe()
                 .objects()
             
-            console.log("trendData", trendData);
+            // highlight current neighborhood
 
-            d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/trendSpec.json").then(data => {
-                
-                // make a deep copy of the spec
-                
-                trendSpec = data;
-                
-                // highlight current neighborhood
-
-                trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
-                
-            }).then(() => {
-                
-                vegaEmbed(
-                    "#trend-{{ .ind.indicator_data_name }}-{{ .count }}", 
-                    trendSpec, 
-                    opt
-                ).then((res) => {
-                    
-                    res.view.insert("trendData", trendData).run()
-                    
-                }).catch(console.error);;
-                
-            });
+            trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
             
+            vegaEmbed(
+                "#trend-{{ .ind.indicator_data_name }}-{{ .count }}", 
+                trendSpec, 
+                opt
+            ).then((res) => {
+                
+                res.view.insert("trendData", trendData).run()
+                
+            }).catch(console.error);;
+        
     });
         
     </script>
