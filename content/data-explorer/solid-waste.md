@@ -7,7 +7,10 @@ seo_description: "Explore data, visualizations, and more."
 tags: 
 categories: []
 keywords: ["waste","garbage"]
-indicators: 
+indicators:
+  - header: null
+    IndicatorID:
+    - 2416
 menu:
     main:
         identifier: '03'

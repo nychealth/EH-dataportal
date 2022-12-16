@@ -5,6 +5,8 @@ const renderMap = (
 
         console.log("** renderMap");
 
+        console.log("data:", data);
+
         // get unique time in data
 
         const mapYears =  [...new Set(data.map(item => item.Time))];
@@ -22,14 +24,34 @@ const renderMap = (
         let mapTime = mapYears[0];
         let topoFile = '';
 
+
+    // get unique unreliability notes (dropping empty)
+
+        const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
+
+        // console.log("map_unreliability", map_unreliability);
+
+        document.querySelector("#map-unreliability").innerHTML = ""; // blank to start
+
+        for (let i = 0; i < map_unreliability.length; i++) {
+            
+            document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + map_unreliability[i] + "</div>" ;
+            
+        }
+
+
         // can add year to this
 
         console.log("mapGeoType [renderMap]", mapGeoType);
 
-        if (mapGeoType === "NTA") {
-            topoFile = 'NTA.topo.json';
+        if (mapGeoType === "NTA2010") {
+            topoFile = 'NTA_2010.topo.json';
+        } else if (mapGeoType === "NTA2020") {
+            topoFile = 'NTA_2020.topo.json';
         } else if (mapGeoType === "CD") {
             topoFile = 'CD.topo.json';
+        } else if (mapGeoType === "CDTA2020") {
+            topoFile = 'CDTA_2020.topo.json';
         } else if (mapGeoType === "PUMA") {
             topoFile = 'PUMA_or_Subborough.topo.json';
         } else if (mapGeoType === "Subboro") {
@@ -38,8 +60,10 @@ const renderMap = (
             topoFile = 'UHF42.topo.json';
         } else if (mapGeoType === "UHF34") {
             topoFile = 'UHF34.topo.json';
-        } else if (mapGeoType === "NYCKIDS") {
-            topoFile = 'NYCKids.topo.json';
+        } else if (mapGeoType === "NYCKIDS2017") {
+            topoFile = 'NYCKids_2017.topo.json';
+        } else if (mapGeoType === "NYCKIDS2019") {
+            topoFile = 'NYCKids_2017.topo.json';
         }
 
         
@@ -140,10 +164,8 @@ const renderMap = (
                                 "tooltip": [
                                     {"field": "Geography", "title": "Neighborhood"},
                                     {
-                                        "field": "Value",
-                                        "type": "quantitative",
-                                        "title": mapMeasurementType,
-                                        "format": ",.1~f"
+                                        "field": "DisplayValue",
+                                        "title": mapMeasurementType
                                     },
                                 ],
                             },
@@ -179,10 +201,8 @@ const renderMap = (
                                 "title": "Neighborhood"
                             },
                             {
-                                "field": "Value", 
-                                "type": "quantitative", 
-                                "title": mapMeasurementType,
-                                "format": ",.1~f"
+                                "field": "DisplayValue", 
+                                "title": mapMeasurementType
                             },
                         ],
                         "x": {"field": "GeoID", "sort": "y", "axis": null},

@@ -65,18 +65,16 @@ const renderTable = () => {
         return;
     }
     
-    // console.log("filteredTableData", filteredTableData);
+    // if no selected geos not in data, then set table to blank and return early
 
     if (filteredTableData.length === 0) {
 
-        // if no selected geos not in data, then set table to blank and return early
         document.querySelector("#tableID").innerHTML = '';
         
         return;
-
     }
     
-    // console.log("filteredTableData [renderTable]", filteredTableData);
+    console.log("filteredTableData [renderTable]", filteredTableData);
     
     const measureAlignMap = new Map();
     // const measureImputeMap = new Map();
@@ -89,6 +87,21 @@ const renderTable = () => {
         
     });
     
+    // get unique unreliability notes (dropping empty)
+
+    const summary_unreliability = [...new Set(filteredTableData.map(d => d.Note))].filter(d => !d == "");
+
+    // console.log("summary_unreliability", summary_unreliability);
+
+    document.querySelector("#summary-unreliability").innerHTML = "" // blank to start
+
+    for (let i = 0; i < summary_unreliability.length; i++) {
+        
+        document.querySelector("#summary-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + summary_unreliability[i] + "</div>" ;
+        
+    }
+
+
     const measureAlignObj = Object.fromEntries(measureAlignMap);
     // const measureImputeObj = Object.fromEntries(measureImputeMap);
     
@@ -96,17 +109,17 @@ const renderTable = () => {
     // console.log("measureImputeObj", measureImputeObj);
     
     const filteredTableAqData = aq.from(filteredTableData)
-        .groupby("Time", "GeoType", "GeoID", "GeoRank", "Geography")
+        .groupby("Time", "GeoTypeDesc", "GeoID", "GeoRank", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI")
     
         // need to put this down here because the data might be missing one of the measures, which will be undefined after the pivot
         // .impute(measureImputeObj) 
         
         // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
-        .relocate(["Time", "GeoType", "GeoID", "GeoRank"], { before: 0 }) 
+        .relocate(["Time", "GeoTypeDesc", "GeoID", "GeoRank"], { before: 0 }) 
     
     // console.log("filteredTableAqData [renderTable]");
-    // filteredTableAqData.print({limit: 400})
+    // filteredTableAqData.print({limit: 40})
     
     // export Arquero table to HTML
     
@@ -145,14 +158,15 @@ const renderTable = () => {
         fixedHeader: true,
         orderFixed: [ 3, 'asc' ], // GeoRank
         columnDefs: [
+            { type: 'natural', targets: '_all' },
             { targets: [0, 1, 2, 3], visible: false}
         ],
         "createdRow": function ( row, data, index ) {
             // console.log('RENDER TABLE FUNCTION - CreatedRow')
             const time    = data[0];
-            const geoType = data[1];
-            if (time && geoType) {
-                row.setAttribute(`data-group`, `${time}-${geoType}`)
+            const GeoTypeDesc = data[1];
+            if (time && GeoTypeDesc) {
+                row.setAttribute(`data-group`, `${time}-${GeoTypeDesc}`)
                 row.setAttribute(`data-year`, `${time}`);
             }
         },
