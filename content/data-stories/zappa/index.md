@@ -6,7 +6,7 @@ seo_title: "How ZAPPA helps policy makers center equity in neighborhood air qual
 seo_description: "A data story on ZAPPA, a tool to understand air quality policies"
 tags: 
 categories: ["transportation","airquality"]
-keywords: ["air quality","traffic","transportation","covid","covid-19","coronavirus","air pollution", "lungs","breathing"]
+keywords: ["air quality","traffic","transportation","air pollution", "lungs","breathing","pm2.5","fine particles","fine particulate matter","health impacts","ZAPPA","modelling","model","policies","health impacts","health impact assessment"]
 image: ds-road-traffic.jpg
 menu:
     main:
