@@ -76,7 +76,7 @@
                 
             </div>
             <!-- .modal-body -->
-            <div class="modal-footer flex-column">
+            <div class="flex-column p-2">
                 {{- if isset .ind "source_description" -}}<p class="fs-sm mb-4"><em>Source: {{ htmlUnescape .ind.source_description }}</em></p>{{- end -}}
                 <a id="{{ $dataname }}" href="/data-explorer/TOPIC/?id={{ $indID }}" style="display:none">
                 <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the dataset</button></a>
