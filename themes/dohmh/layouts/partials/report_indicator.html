@@ -2,10 +2,6 @@
 {{ $indID := .ind.IndicatorID }}
 {{ $dataname := .ind.indicator_data_name }}
 
-<script>
-    console.log("indID", {{ .ind }});
-</script>
-
 <!--Modal button also fires getURL() -->
 <button data-toggle="modal" data-target="#modal-{{ .ind.indicator_data_name }}-{{ .count }}" onclick="getURL({{ $indID }}, {{ $dataname }});" class="indicator-anchor">
     <!-- Table row -->
