@@ -2,7 +2,7 @@
 title: A walk through history
 draft: false
 date: 2022-12-04T08:49:22-04:00
-image: ds-redlining.jpeg
+image: redlining-in-harlem.png
 photocredit: --
 layout: bbb
 categories: 
