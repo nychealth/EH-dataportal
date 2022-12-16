@@ -104,7 +104,7 @@ ZAPPA—a new, free online tool created by the NYC Health Department with Instit
 ## Step-by-Step: How do we use ZAPPA? 
 
 **First, create an account.**
-Your estimates and results will be saved to your account. 
+[Visit ZAPPA and create an account](https://treehug-app.its.unc.edu/nyserda/). Your estimates and results will be saved to your account. 
 
 **Next, start a new run.**  
 Select Start a new NYC run. Give it a name and description - the model and results will be saved to your account.  
