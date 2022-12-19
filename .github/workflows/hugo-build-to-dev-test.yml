@@ -3,6 +3,9 @@ name: Hugo Build to `dev-test` branch
 # run action on a merged PR on "build-to-dev-test"
 
 on:
+  push:
+    branches:
+      - build-to-dev-test
   pull_request:
     branches:
       - build-to-dev-test
