@@ -15,4 +15,4 @@ menu:
 photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 
-Tips for staying safe this winter. 
+[Cold weather can be dangerous](/data-explorer/weather-related-illness/?id=2175#display=summary). Here are some tips for staying safe this winter. 
