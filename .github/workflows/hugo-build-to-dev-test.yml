@@ -107,7 +107,7 @@ jobs:
       # build site with Hugo
 
       - name: Hugo Build
-        run: hugo --environment dev_test --cleanDestinationDir --ignoreCache
+        run: hugo --environment dev_test --cleanDestinationDir
 
       # run gruntfile action
 
@@ -128,7 +128,7 @@ jobs:
       - name: Publish to "dev-test"
         uses: peaceiris/actions-gh-pages@v3
         with:
-          full_commit_message: ${{ github.event.head_commit.message }}
+          full_commit_message: ${{ github.event.head_commit.message }} # will usually be merge commit
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: dev-test
           publish_dir: ./docs/
