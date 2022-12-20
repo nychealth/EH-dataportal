@@ -104,7 +104,7 @@ jobs:
       # build site with Hugo
 
       - name: Hugo Build
-        run: hugo --environment production --cleanDestinationDir
+        run: hugo --environment production --cleanDestinationDir --debug
 
       # run gruntfile action
 
@@ -125,6 +125,7 @@ jobs:
       - name: Publish to "prod-deploy"
         uses: peaceiris/actions-gh-pages@v3
         with:
+          full_commit_message: ${{ github.event.head_commit.message }} # will usually be merge commit
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: prod-deploy
           publish_dir: ./docs/
