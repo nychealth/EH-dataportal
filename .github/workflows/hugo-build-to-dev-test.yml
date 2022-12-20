@@ -3,9 +3,12 @@ name: Hugo Build to `dev-test` branch
 # run action on a merged PR on "development"
 
 on:
+  push:
+    branches:
+      - development
   pull_request:
     branches:
-      - build-to-dev-test
+      - development
     types:
       - closed
 
