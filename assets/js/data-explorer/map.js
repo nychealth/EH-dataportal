@@ -5,8 +5,6 @@ const renderMap = (
 
         console.log("** renderMap");
 
-        console.log("data:", data);
-
         // get unique time in data
 
         const mapYears =  [...new Set(data.map(item => item.Time))];
