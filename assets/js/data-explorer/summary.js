@@ -74,7 +74,7 @@ const renderTable = () => {
         return;
     }
     
-    console.log("filteredTableData [renderTable]", filteredTableData);
+    // console.log("filteredTableData [renderTable]", filteredTableData);
     
     const measureAlignMap = new Map();
     // const measureImputeMap = new Map();
