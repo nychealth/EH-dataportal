@@ -5,10 +5,10 @@ name: Hugo Build to `dev-test` branch
 on:
   push:
     branches:
-      - development
+      - build-to-dev-test
   pull_request:
     branches:
-      - development
+      - build-to-dev-test
     types:
       - closed
 
