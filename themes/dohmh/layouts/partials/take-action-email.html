@@ -11,12 +11,14 @@ Take action! Send elected officials an email.
         position: absolute;
         left: -9999px;
     }
+        */
 
     .dia-container {
         position: absolute;
         left: -9999px;
     }
-    */
+
+
 
 </style>
 
@@ -33,7 +35,7 @@ Take action! Send elected officials an email.
                       </div>
             
                       <!-- Map gets drawn here -->
-                      <div id='mapLocator'></div>
+                      <div id='mapLocator' style="height: 300px"></div>
             
             
                    
@@ -101,54 +103,47 @@ Take action! Send elected officials an email.
                     </div>
             
                     <div class="row mt-2 pt-2">
-                      <div class="col-md-6 col-sm-12">
+                      <div class="col-12">
                         <p class="home-label">First, what issues are you concerned about?</p>
-            
-                      </div>
-                      <div class="col-md-6 col-sm-12">
                         <div id="concernContainer">
-                          <button type="button" class="btn btn-outline-secondary mb-1">Air quality</button>
-                          <button type="button" class="btn btn-outline-secondary mb-1">Climate</button>
-                          <button type="button" class="btn btn-outline-secondary mb-1">Housing</button>
-                          <button type="button" class="btn btn-outline-secondary mb-1">Environmental justice</button>
-                          <button type="button" class="btn btn-outline-secondary mb-1">Asthma</button>
-                          <button type="button" class="btn btn-outline-secondary mb-1">Active design</button>
-                          <button type="button" class="btn btn-outline-secondary mb-1">Children's health</button>
-                          <button type="button" class="btn btn-outline-secondary mb-1">Pests and pesticides</button>
-                          <button type="button" class="btn btn-outline-secondary mb-1">Food and drink issues</button>
-                        </div>
+                            <button type="button" class="btn btn-outline-secondary mb-1">Air quality</button>
+                            <button type="button" class="btn btn-outline-secondary mb-1">Climate</button>
+                            <button type="button" class="btn btn-outline-secondary mb-1">Housing</button>
+                            <button type="button" class="btn btn-outline-secondary mb-1">Environmental justice</button>
+                            <button type="button" class="btn btn-outline-secondary mb-1">Asthma</button>
+                            <button type="button" class="btn btn-outline-secondary mb-1">Active design</button>
+                            <button type="button" class="btn btn-outline-secondary mb-1">Children's health</button>
+                            <button type="button" class="btn btn-outline-secondary mb-1">Pests and pesticides</button>
+                            <button type="button" class="btn btn-outline-secondary mb-1">Food and drink issues</button>
+                          </div>
                       </div>
                     </div> <!-- end of row -->
             
                     <div class="row mt-2 border-top pt-2">
-                      <div class="col-md-6 col-sm-12">
+                      <div class="col-12">
                         <p class="home-label">Next, why are you concerned?</p>
-            
-                      </div>
-                      <div class="col-md-6 col-sm-12">
                         <div id="reasonsContainer">
-                          <button type="button" class="btn btn-outline-secondary mb-1">This issue is worse in my neighborhood</button>
-                          <button type="button" class="btn btn-outline-secondary mb-1">It affects my life</button>
-                          <button type="button" class="btn btn-outline-secondary mb-1">The whole city could be doing better</button>
-                        </div>
+                            <button type="button" class="btn btn-outline-secondary mb-1">This issue is worse in my neighborhood</button>
+                            <button type="button" class="btn btn-outline-secondary mb-1">It affects my life</button>
+                            <button type="button" class="btn btn-outline-secondary mb-1">The whole city could be doing better</button>
+                          </div>
+            
                       </div>
                     </div>
             
                     <div class="row mt-2 border-top pt-2">
-                      <div class="col-md-6 col-sm-12">
+                      <div class="col-12">
                         <p class="home-label">Last, what do you want?</p>
-            
-                      </div>
-                      <div class="col-md-6 col-sm-12">
                         <div id="needsContainer">
-                          <button type="button" class="btn btn-outline-secondary mb-1">What services or resources are available to me</button>
-                          <button type="button" class="btn btn-outline-secondary mb-1">What you're doing to address these issues</button>
-                        </div>
+                            <button type="button" class="btn btn-outline-secondary mb-1">What services or resources are available to me</button>
+                            <button type="button" class="btn btn-outline-secondary mb-1">What you're doing to address these issues</button>
+                          </div>
+            
                       </div>
                     </div>
             
                     <div class="row mt-2 border-top pt-2">
-                      <div class="col-md-6 ml-auto col-sm-12">
+                      <div class="col-12">
                         <button type="button" class="btn btn-primary mb-1 btn-block" onclick="writeEmail()">Write my email!</button>
                       </div>
                     </div>
