@@ -107,7 +107,7 @@ jobs:
       # build site with Hugo
 
       - name: Hugo Build
-        run: hugo --environment development --cleanDestinationDir --debug --ignoreCache
+        run: hugo --environment development --cleanDestinationDir --debug
 
       # run gruntfile action
 
