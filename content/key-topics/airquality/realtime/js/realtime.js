@@ -182,54 +182,54 @@ function getAverage() {
     
     // ---- change info in locInfoBox depending on number of valid values ---- //
 
-    if (valid_vals >= 18) {
+    // if (valid_vals >= 18) {
         
-        // If there are 18 or more valid values, average them
+    //     // If there are 18 or more valid values, average them
 
-        avg_24 = aq.agg(arqTable, aq.op.mean(locSelect));
+    //     avg_24 = aq.agg(arqTable, aq.op.mean(locSelect));
         
-        // Print this value to 24av (NEED TO ROUND)
+    //     // Print this value to 24av (NEED TO ROUND)
         
-        document.getElementById('24av').innerHTML = avg_24.toFixed(1)
+    //     document.getElementById('24av').innerHTML = avg_24.toFixed(1)
         
-        if (avg_24 > 35) {
+    //     if (avg_24 > 35) {
 
-            // If this is above 35, print "above" to `comparison`
+    //         // If this is above 35, print "above" to `comparison`
             
-            document.getElementById('comparison').innerHTML = "above"
-            document.getElementById('comparison').classList.remove('badge-custom-below')
-            document.getElementById('comparison').classList.add('badge-custom-above')
+    //         document.getElementById('comparison').innerHTML = "above"
+    //         document.getElementById('comparison').classList.remove('badge-custom-below')
+    //         document.getElementById('comparison').classList.add('badge-custom-above')
             
-            // That's not great!
+    //         // That's not great!
 
-            document.getElementById('goodBad').innerHTML = "That's not great!"
-            document.getElementById('goodBad').classList.remove('badge-custom-below')
-            document.getElementById('goodBad').classList.add('badge-custom-above')
+    //         document.getElementById('goodBad').innerHTML = "That's not great!"
+    //         document.getElementById('goodBad').classList.remove('badge-custom-below')
+    //         document.getElementById('goodBad').classList.add('badge-custom-above')
 
             
-        } else if (avg_24 <= 35) {
+    //     } else if (avg_24 <= 35) {
             
-            // if less than 35, print "below" to `comparison`
+    //         // if less than 35, print "below" to `comparison`
 
-            document.getElementById('comparison').innerHTML = "below"
-            document.getElementById('comparison').classList.remove('badge-custom-above')
-            document.getElementById('comparison').classList.add('badge-custom-below')
+    //         document.getElementById('comparison').innerHTML = "below"
+    //         document.getElementById('comparison').classList.remove('badge-custom-above')
+    //         document.getElementById('comparison').classList.add('badge-custom-below')
             
-            // That's good!
+    //         // That's good!
 
-            document.getElementById('goodBad').innerHTML = "That's good!"
-            document.getElementById('goodBad').classList.remove('badge-custom-above')
-            document.getElementById('goodBad').classList.add('badge-custom-below')
+    //         document.getElementById('goodBad').innerHTML = "That's good!"
+    //         document.getElementById('goodBad').classList.remove('badge-custom-above')
+    //         document.getElementById('goodBad').classList.add('badge-custom-below')
         
-        }
+    //     }
 
-    } else if (valid_vals < 18) {
+    // } else if (valid_vals < 18) {
         
-        // If there are less than 18 valid values, print a 'no-value' message
+    //     // If there are less than 18 valid values, print a 'no-value' message
 
-        document.getElementById('locInfoDesc').innerHTML = "<p class=fs-sm><strong>No value:</strong> sometimes monitors go down or have other problems. We only produce average values if there are more than 18 hourly readings over the last 24 hours.</p>"
+    //     document.getElementById('locInfoDesc').innerHTML = "<p class=fs-sm><strong>No value:</strong> sometimes monitors go down or have other problems. We only produce average values if there are more than 18 hourly readings over the last 24 hours.</p>"
 
-    }
+    // }
 
     // Note - this may be easier with long version; location-selection buttons can apply a filter to the long file, which we can then pipe into the chart. 
     

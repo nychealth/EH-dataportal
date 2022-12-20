@@ -43,7 +43,7 @@
                 <strong>About the Data</strong>
                 <p>Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>).</p>
     
-                <p>Data come from the NYCCAS near-real-time monitor network. External factors can sometimes affect monitor functioning; these data are preliminary and subject to change. <a href="{{ site.Params.data_repo }}{{ site.Params.data_branch }}/key-topics/real-time-air-quality" target="_blank">Download these data on Github</a>.</p>
+                <p>Data come from the NYCCAS near-real-time monitor network. External factors can sometimes affect monitor functioning; these data are preliminary and subject to change. <!--<a href="https://github.com/nychealth/EHDP-data/tree/production/key-topics/real-time-air-quality" target="_blank">Download these data on Github</a>.--></p>
             </div>
              </div>
     </div>
@@ -114,9 +114,18 @@
         <div class="col-md-8">
             <div class="row">
                 <div class="col pl-2 mt-1">
+
+                    <div id="error">
+                        <hr class="mt-2">
+                        <p class="pl-2"><i class="fas fa-exclamation-triangle mr-1 font-weight-bold"></i>Our realtime air quality monitors are currently down. We're working on getting them back up as soon as we can.</p>
+                    </div>
+
+                    <!--
                     <em class="pl-2">Hourly PM2.5 measurements (in µg/m<sup>3</sup>)</em>
+
                     <div id="vis2" style="width: 100%; height: 400px;" class="mt-1">
                     </div>
+                    -->
                 </div>
             </div>
         </div>
@@ -127,10 +136,12 @@
             <!-- last 24-hour info box -->
             <div class="infobox" id="locInfoBox" style="display:none">
                 <div id="locInfoDesc">
+
+                    <p class=fs-sm><strong>No value:</strong> sometimes monitors go down or have other problems. We only produce average values if there are more than 18 hourly readings over the last 24 hours.</p>
                     
-                    <div class="col mx-1">
-                        <p>Most recent 24-hour average reading by this monitor: <span class="badge badge-primary badge-custom badge-custom-dark"><span id="24av">n/a</span> µg/m3</span>. This is <span id="comparison" class="badge badge-primary badge-custom">N/A</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">national standard</a> of 35 µg/m3 for 24 hours. <span id="goodBad" class="badge badge-primary badge-custom"></span></p>                                    
-                    </div>
+                    {{/*  <div class="col mx-1">
+                        <p>Most recent 24-hour average reading by this monitor: <span class="badge badge-primary badge-custom badge-custom-dark"><span id="24av">n/a</span> µg/m3</span>. This is <span id="comparison" class="badge badge-primary badge-custom">N/A</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">national standard</a> of 35 µg/m3 for 24 hours. <span id="goodBad" class="badge badge-primary badge-custom"></span></p>
+                    </div>  */}}
                 </div>
             </div>
         </div>
@@ -153,7 +164,7 @@
                     <p>Building density affects a neighborhood's air quality because like vehicles, buildings
                         burn fuel and emit pollutants: their boilers burn oil and gas to produce heat and hot
                         water. This is one reason we often see more air pollution in the winter. Because of new heating oil regulations, PM2.5 has gone down dramatically, and SO2 levels
-                        are now indetectable. <a href="https://nyccas.cityofnewyork.us/report">Read more at
+                        are now indetectable. <a href="../nyccas">Read more at
                             the NYCCAS annual report</a>. </p>
     
                     <h4 class="card-title"><i class="fas fa-industry mr-1" aria-hidden="true"></i>Industrial area
