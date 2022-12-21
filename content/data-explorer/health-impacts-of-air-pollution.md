@@ -26,7 +26,7 @@ menu:
         identifier: '03'
 ---
 
-Air pollution is an important environmental threat to the health of New York City residents. Exposures to two common air pollutants, [fine particulate matter (PM2.5)](http://www.nyc.gov/html/doh/html/environmental/tracking-glossary.shtml) and [ozone (O3)](http://www.nyc.gov/html/doh/html/environmental/tracking-glossary.shtml), can worsen respiratory illness and heart conditions and contribute to premature deaths. Older adults, children and people with existing heart and lung disease are especially affected. This site provides estimates of the impact of air pollution on the health of NYC residents as measured by the numbers of emergency department visits, hospitalizations, and deaths attributable to PM2.5 and ozone.
+Air pollution is an important environmental threat to the health of New York City residents. Exposures to two common air pollutants, **fine particulate matter (PM2.5)** and **ozone (O3)**, can worsen respiratory illness and heart conditions and contribute to premature deaths. Older adults, children and people with existing heart and lung disease are especially affected. This site provides estimates of the impact of air pollution on the health of NYC residents as measured by the numbers of emergency department visits, hospitalizations, and deaths attributable to PM2.5 and ozone.
 
 ### About PM2.5, Ozone and Health
 
