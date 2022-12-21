@@ -118,10 +118,10 @@ jobs:
 
       # commit built index
 
-      - name: Commit changes to PagesIndex.json
+      - name: Commit changes to PagesIndex.json, package.json, & package-lock.json
         uses: elstudio/actions-js-build/commit@v4
         with:
-          commitMessage: Regenerate index
+          commitMessage: Update index & NPM package list
 
       # publish to "gh-pages" branch, which triggers auto-deploy to GHP (configured thru repo settings)
 
