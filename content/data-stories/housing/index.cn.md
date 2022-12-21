@@ -277,15 +277,15 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
     <ul>
         <li>普遍失修可能会造成焦虑和抑郁。</li>
         <li>还有一些情况，如残破的石膏和剥落的油漆，或者内墙上的裂缝和孔洞，可能会<a
-                href="/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=14">使儿童接触含铅油漆。</a>
+                href="/IndicatorPublic/beta/data-explorer/lead/?id=2189#display=summary">使儿童接触含铅油漆。</a>
         </li>
         <li>漏水、窗户破裂、或者马桶故障，可能产生霉菌，导致过敏、
             <a
-                href="/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=11">哮喘</a>, 还可能加重慢性病。
+                href="/IndicatorPublic/beta/data-explorer/asthma/?id=2380#display=summary">哮喘</a>, 还可能加重慢性病。
         </li>
         <li>蟑螂、小鼠、大鼠等害虫可能使哮喘和过敏症状更为严重。</li>
         <li>没有空调会使住户有<a
-                href="/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=100">暑期高热致死</a>的风险。
+                href="/IndicatorPublic/beta/data-explorer/weather-related-illness/?id=2376#display=summary">暑期高热致死</a>的风险。
         </li>
     </ul>
 </div>
