@@ -3,7 +3,7 @@ title: Health impacts of air pollution
 date: 2021-05-28 18:02:58.777148
 draft: false
 seo_title: "Health impacts of air pollution: data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["airquality","transportation","healthoutcomes","social"]
 keywords: ["air quality","pollution","emissions","exhaust","pollutants","pm2.5","asthma","breathing","lungs","asthma","respiratory","illness","hospitalizations","emergency department visits"]

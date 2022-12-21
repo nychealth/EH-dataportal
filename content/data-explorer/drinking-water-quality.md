@@ -3,7 +3,7 @@ title: Drinking water quality
 date: 2021-05-28 18:02:58.785993
 draft: false
 seo_title: "Drinking water quality data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["foodanddrink"]
 keywords: ["food","drink","water","housing"]

@@ -3,7 +3,7 @@ title: "An update on air quality during COVID-19"
 date: 2022-04-20T08:33:22-04:00
 draft: false
 seo_title: "How COVID-19 affected air quality"
-seo_description: "How the shutdown affected air in NYC."
+seo_description: "How the COVID-19 shutdown affected air in NYC."
 tags: 
 categories: ["transportation","airquality","foodanddrink"]
 keywords: ["air quality","traffic","transportation","covid","covid-19","coronavirus","air pollution", "lungs","breathing","restaurants"]
