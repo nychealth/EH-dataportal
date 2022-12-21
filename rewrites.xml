@@ -164,7 +164,7 @@
           
           <rule name="cold-infographic" stopProcessing="true">
             
-            <match url="cold" />
+            <match url="^cold$" />
             <action type="Redirect" url="beta/data-stories/cold/" redirectType="Temporary" />
             
           </rule>
