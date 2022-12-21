@@ -50,7 +50,7 @@ Racism has always played a role in residential patterns in New York City. When N
 
 In 1661, when Black people petitioned the colony for land in the area, they were given land north of the wall, outside of the city proper.
 
-{{< figure src="colonial.png" Alt="A colonial map of New York City, showing the wall at Wall Street.">}}
+{{< figure src="colonial.png" alt="A colonial map of New York City, showing the wall at Wall Street.">}}
 
 Throughout history, many different practices have shaped racial and residential patterns in New York City. In the 20th century, a practice called redlining made racism a federal policy – with long-lasting repercussions for our housing and our health.
 
@@ -486,7 +486,7 @@ But a poorly maintained, unhealthy home can’t provide a truly safe haven. Inst
 {{< rawhtml >}}
 <div class="greyblock">
 {{< /rawhtml >}}
-{{< figure src="h1.jpeg" Alt="Workers work on a building.">}}
+{{< figure src="h1.jpeg" alt="Workers work on a building.">}}
 Policymakers and community advocates can support racial justice initiatives:
 - Invest in neighborhoods harmed by a history of structural racism. [Promote economic and educational equity and support Where We Live initiatives](https://wherewelive.cityofnewyork.us/).
 - Support Department of Housing Preservation and Development initiatives aimed at rehabilitating older housing.
@@ -495,7 +495,7 @@ Policymakers and community advocates can support racial justice initiatives:
 
 <div class="greyblock">
 {{< /rawhtml >}}
-{{< figure src="h2.jpeg" Alt="A New York City residential street.">}}
+{{< figure src="h2.jpeg" alt="A New York City residential street.">}}
 
 Tenants and homeowners can tap into systems that are here to support you.
 - Report maintenance problems to your building's management. [If your building manager doesn't address issues, call 311 to file a landlord maintenance complaint](https://www1.nyc.gov/nyc-resources/service/1950/residential-maintenance-complaint).
@@ -508,7 +508,7 @@ Tenants and homeowners can tap into systems that are here to support you.
 {{< /rawhtml >}}
 
 
-{{< figure src="h3.jpeg" Alt="A New York City apartment building.">}}
+{{< figure src="h3.jpeg" alt="A New York City apartment building.">}}
 Building owners and landlords should keep apartments safe and sanitary – it’s the law.
 - Promptly fix problems that tenants report.
 - Get rid of pests and mold, seal cracks, fix leaks, and improve garbage management.

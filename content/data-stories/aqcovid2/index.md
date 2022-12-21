@@ -57,10 +57,10 @@ With many New Yorkers staying home, activity in the CBD fell drastically. Explor
 <div class="medium my-4">
     <div class="row">
         <div class="col-6">
-            <img src="PM-animated-map.gif">
+            <img src="PM-animated-map.gif" alt="An animated map of PM2.5 over time">
         </div>
         <div class="col-6">
-            <img src="NO2-animated-map.gif">
+            <img src="NO2-animated-map.gif" alt="An animated map of NO2 over time">
         </div>
     </div>
 </div>
