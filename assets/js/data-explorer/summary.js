@@ -65,15 +65,13 @@ const renderTable = () => {
         return;
     }
     
-    // console.log("filteredTableData", filteredTableData);
+    // if no selected geos not in data, then set table to blank and return early
 
     if (filteredTableData.length === 0) {
 
-        // if no selected geos not in data, then set table to blank and return early
         document.querySelector("#tableID").innerHTML = '';
         
         return;
-
     }
     
     // console.log("filteredTableData [renderTable]", filteredTableData);
@@ -89,6 +87,21 @@ const renderTable = () => {
         
     });
     
+    // get unique unreliability notes (dropping empty)
+
+    const summary_unreliability = [...new Set(filteredTableData.map(d => d.Note))].filter(d => !d == "");
+
+    // console.log("summary_unreliability", summary_unreliability);
+
+    document.querySelector("#summary-unreliability").innerHTML = "" // blank to start
+
+    for (let i = 0; i < summary_unreliability.length; i++) {
+        
+        document.querySelector("#summary-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + summary_unreliability[i] + "</div>" ;
+        
+    }
+
+
     const measureAlignObj = Object.fromEntries(measureAlignMap);
     // const measureImputeObj = Object.fromEntries(measureImputeMap);
     
