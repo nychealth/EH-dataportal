@@ -97,6 +97,22 @@ const renderLinksChart = (
     window.innerWidth < 576 ? height = 350 : height = 500;
 
 
+    // get unique unreliability notes (dropping empty)
+
+    const comb_unreliability = data.map(d => d.Note_1).concat(data.map(d => d.Note_2))
+    const links_unreliability = [...new Set(comb_unreliability)].filter(d => !d == "");
+
+    // console.log("links_unreliability", links_unreliability);
+
+    document.querySelector("#links-unreliability").innerHTML = ""; // blank to start
+
+        for (let i = 0; i < links_unreliability.length; i++) {
+            
+            document.querySelector("#links-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + links_unreliability[i] + "</div>" ;
+            
+        }
+
+
     // define spec
 
     setTimeout(() => {
