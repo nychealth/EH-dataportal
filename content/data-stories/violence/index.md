@@ -70,7 +70,7 @@ This map shows the parts of NYC that were {{< rawhtml >}}<a href="#redliningColl
     to back loans so that people could buy homes. Through this system, people of color were
     denied the opportunity to buy homes, and white people had their home purchases federally
     subsidized. </p>
-    <p>Redlining drove segregation and economic inequality - along racial lines. <a href="/IndicatorPublic/Closerlook/housing/index.html">Its effects persist today</a>. According to the <a
+    <p>Redlining drove segregation and economic inequality - along racial lines. <a href="/data-stories/housing">Its effects persist today</a>. According to the <a
     href="https://ncrc.org/holc/">National Community Reinvestment Coalition</a>, 3 out
     of every 4 neighborhoods in the USA that were redlined in the 1930s are still
     low-to-moderate income today - and 2 out of every 3 are predominantly populated by
