@@ -3,7 +3,7 @@ title: Mice and rats
 date: 2021-05-28 18:02:58.762504
 draft: false
 seo_title: "Mice and rats data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["housing","pests"]
 keywords: ["mice","rats","rodents","pests","housing"]

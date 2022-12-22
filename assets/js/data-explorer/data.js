@@ -235,15 +235,20 @@ const joinData = () => {
             "Value",
             "DisplayValue",
             "CI",
+            "Note",
             "start_period",
-            "end_period"
+            "end_period",
+            "ban_summary_flag"
         )
         .orderby(aq.desc('end_period'), aq.desc('GeoRank'))
         .reify()
 
+    // joinedAqData.print()
+
     // data for summary table
 
     fullDataTableObjects = joinedAqData
+        .filter(d => d.ban_summary_flag == 0)
         .join_left(aqMeasurementDisplay, "MeasureID")
         .derive({
             MeasurementDisplay: d => op.trim(op.join([d.MeasurementType, d.DisplayType], " ")),
@@ -257,7 +262,7 @@ const joinData = () => {
 
     fullDataMapObjects = joinedAqData
         .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
-        .impute({ Value: () => NaN })
+        // .impute({ Value: () => NaN })
         .objects()
 
     // map for trend chart
