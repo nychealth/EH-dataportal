@@ -50,7 +50,7 @@ vega: true
 
 1661年，黑人向殖民地申请在此拥有土地，他们得到了城墙以北、市区以外的土地。
 
-{{< figure src="colonial.png" Alt="A colonial map of New York City, showing the wall at Wall Street.">}}
+{{< figure src="colonial.png" alt="A colonial map of New York City, showing the wall at Wall Street.">}}
 
 纵观历史，许多不同的做法塑造了纽约市的种族主义居住模式。在20世纪，一种被称为“红线圈定”的做法使种族主义成为一项联邦政策，对我们的住房和健康产生了持久的影响。
 
@@ -277,15 +277,15 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
     <ul>
         <li>普遍失修可能会造成焦虑和抑郁。</li>
         <li>还有一些情况，如残破的石膏和剥落的油漆，或者内墙上的裂缝和孔洞，可能会<a
-                href="/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=14">使儿童接触含铅油漆。</a>
+                href="/IndicatorPublic/beta/data-explorer/lead/?id=2189#display=summary">使儿童接触含铅油漆。</a>
         </li>
         <li>漏水、窗户破裂、或者马桶故障，可能产生霉菌，导致过敏、
             <a
-                href="/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=11">哮喘</a>, 还可能加重慢性病。
+                href="/IndicatorPublic/beta/data-explorer/asthma/?id=2380#display=summary">哮喘</a>, 还可能加重慢性病。
         </li>
         <li>蟑螂、小鼠、大鼠等害虫可能使哮喘和过敏症状更为严重。</li>
         <li>没有空调会使住户有<a
-                href="/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=100">暑期高热致死</a>的风险。
+                href="/IndicatorPublic/beta/data-explorer/weather-related-illness/?id=2376#display=summary">暑期高热致死</a>的风险。
         </li>
     </ul>
 </div>
@@ -421,7 +421,7 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 {{< rawhtml >}}
 <div class="greyblock">
 {{< /rawhtml >}}
-{{< figure src="h1.jpeg" Alt="Workers work on a building.">}}
+{{< figure src="h1.jpeg" alt="Workers work on a building.">}}
 政策制定者和社区倡导者可以支持种族正义倡议：
 - 投资那些被结构性种族主义历史所伤害的社区。促进经济和教育公平，支持[Where We Live 倡议](https://wherewelive.cityofnewyork.us/)。
 - 支持房屋维护及发展局（Department of Housing Preservation and Development，DHPD）为修复老房而提出的倡议。
@@ -430,7 +430,7 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 
 <div class="greyblock">
 {{< /rawhtml >}}
-{{< figure src="h2.jpeg" Alt="A New York City residential street.">}}
+{{< figure src="h2.jpeg" alt="A New York City residential street.">}}
 
 租户和业主可以进入此处的系统以为您提供援助：
 - [如果您的建筑物管理人不解决问题，可以拨打311发起业主维修投诉。](https://www1.nyc.gov/nyc-resources/service/1950/residential-maintenance-complaint).
@@ -443,7 +443,7 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 {{< /rawhtml >}}
 
 
-{{< figure src="h3.jpeg" Alt="A New York City apartment building.">}}
+{{< figure src="h3.jpeg" alt="A New York City apartment building.">}}
 建筑物所有者和业主应保持公寓的安全和卫生——这是法律的要求。
 - 及时修理租户报告的问题。
 - 除虫、除霉、封缝、补漏、改善垃圾管理。

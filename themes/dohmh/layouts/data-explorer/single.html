@@ -219,13 +219,17 @@
                     data-toggle="modal" data-target="#aboutModal">About {{ .Title }}</button>
     
             <div class="d-none d-lg-block">
-                <!-- Indicator buttons (hidden on mobile)-->
-                <span class='home-label d-none d-md-block border-bottom mb-1 font-weight-bold'>{{ .Title }} datasets:</span>
-                <div style="border-left: 8px solid #00923E50; border-bottom: 2px dashed #00923E50">
-                    <div id="indicatorButtons" class="pb-0 overflow-fade-ind mb-0">
-                        <!--Rendered via renderIndicatorButtons function -->
-                    </div>
-                </div>
+
+
+            <!-- Indicator buttons (hidden on mobile)-->
+            <span class='home-label d-none d-md-block border-bottom mb-1 font-weight-bold'><h1 class="home-label" style="display: inline-block;">{{ .Title }}</h1> datasets:</span>
+            <div style="border-left: 8px solid #00923E50; border-bottom: 2px dashed #00923E50">
+            <div id="indicatorButtons" class="pb-0 overflow-fade-ind mb-0">
+                    <!--Rendered via renderIndicatorButtons function -->
+            </div>
+            </div>
+
+
             </div>
     
     
@@ -247,6 +251,7 @@
                 {{- partial "keywords" . -}}
     
             </div>
+
         </div>
         
         <div class="col-lg-7 mx-auto col-md-12">
@@ -466,6 +471,7 @@
             luctus eleifend
             felis ornare vitae. Ut consequat laoreet libero eu venenatis.</p>
             
+
         </div>
     </div>
     <div class="col-md-6 col-xs-12">
@@ -490,6 +496,7 @@
             
         </div>
     </div>
+
 </div>
 </div>
 

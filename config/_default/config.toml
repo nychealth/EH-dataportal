@@ -39,7 +39,7 @@ ignoreFiles = ['Simplified.Chinese', 'Spanish']
   languageDesc = "Spanish-US"
   weight = 2
 
-[languages.cn]
+[languages.zh]
   languageName = "中文"
   languageDesc = "Chinese-Simplified"
   weight = 3
