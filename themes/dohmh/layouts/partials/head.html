@@ -48,6 +48,11 @@
 
 {{- partial "seo" . -}}
 
+{{- if .Params.mapLib -}}
+<!-- nyc-lib css (for maps in the core framework)-->
+<link href="https://maps.nyc.gov/nyc-lib/v1.2.79/css/nyc-basic-lib.css" rel="stylesheet">
+{{- end -}}
+
 <!-- jQuery (full, compressed version) -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
