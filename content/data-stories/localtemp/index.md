@@ -122,7 +122,7 @@ We found that the average temperature at the Edenwald spot was more than 2° coo
 
 <div class="col-md-6">
     <span class="">Edenwald, the Bronx</span>
-    <img src="Bx-EC_07_lidar_bigger.png" class="img-fluid">
+    <img src="Bx-EC_07_lidar_bigger.png" class="img-fluid" alt="Lidar imagery of an area in The Bronx.">
     <table class="table" style="color: black!important;">
         <thead>
             <tr>
@@ -468,7 +468,7 @@ As the climate changes, NYC faces rising average temperatures and heat waves tha
         src="2019.html"></iframe>
     </iframe>
     <div class="float-right fs-sm">
-        <img src="tree.png" width="15px"> Temperature sensor mounted on tree.
+        <img src="tree.png" width="15px" alt="A tree icon."> Temperature sensor mounted on tree.
     </div>
     <br><br><br><br>
     <div style="background-color:rgb(231, 231, 231); padding: 10px; border-radius: 5px;">

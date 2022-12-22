@@ -3,7 +3,7 @@ title: Weather-related illness
 date: 2021-05-28 18:02:58.866835
 draft: false
 seo_title: "Weather-related illness data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["social","climatehealth","healthoutcomes"]
 keywords: ["weather-related illness","climate change","heat","hot weather","cold weather","cold","mortality","social","hospitalizations","emergency department visits","summer","winter"]
