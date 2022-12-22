@@ -160,6 +160,16 @@
           </rule>
           
           
+          <!-- ## cold infographic ## -->
+          
+          <rule name="cold-infographic" stopProcessing="true">
+            
+            <match url="^cold/?$" />
+            <action type="Redirect" url="beta/data-stories/cold/" redirectType="Temporary" />
+            
+          </rule>
+
+          
           <!-- ## data stories ## -->
           
           <rule name="data-stories" stopProcessing="true">
