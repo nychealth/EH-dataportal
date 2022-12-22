@@ -249,6 +249,12 @@ module.exports = function(grunt) {
                 
             }
 
+            // allow indexing of page root
+
+            href = typeof href === "undefined" ? "" : href;
+
+            // grunt.log.writeln("pageName:", pageName, " > ", "href: ", href);
+
             let contentParsed = S(content[2])
                 .replace(/<!--(.|[\r\n])*?-->/gm, "")
                 .replace(/{{<.*rawhtml.*>}}(.|[\r\n])*?{{<.*\/rawhtml.*>}}/gm, "@")
