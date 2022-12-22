@@ -114,7 +114,7 @@ jobs:
       - name: Build index with Grunt
         run: |
           cd '${{ github.workspace }}'
-          grunt lunr-index
+          grunt lunr-index --stack
 
       # commit built index
 
