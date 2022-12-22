@@ -3,7 +3,7 @@ title: "Housing"
 date: 2021-10-02T07:56:00-04:00
 draft: false
 seo_title: "Housing in NYC"
-seo_description: "Data, data stories, interactives, and more."
+seo_description: "Data, data stories, interactives, and more about housing and health in NYC."
 tags: 
 categories: [housing]
 keyTopic: housing

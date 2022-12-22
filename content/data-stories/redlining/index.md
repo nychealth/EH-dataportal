@@ -3,7 +3,7 @@ title: "A brief history of redlining"
 date: 2021-01-06T08:07:31-04:00
 draft: false
 seo_title: "A brief history of redlining"
-seo_description: "A data story on how redlining affected NYC."
+seo_description: "A data story on how redlining affected NYC's neighborhoods and its residents."
 tags:
 categories: ["housing","social","childhealth","neighborhoods"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism"]
@@ -32,10 +32,10 @@ In the 1930s, during the Great Depression, unemployment rates were high and many
 
 To determine what loans they would guarantee, HOLC sent people to appraise neighborhoods in cities across the US. They documented the types of housing in neighborhoods, along with information about the people who lived there. They also catalogued “detrimental influences,” with racist descriptions like “infiltration of Negroes” and “mixed races" as characteristics that lowered a neighborhood's value.
 
-{{< figure src="rl1.png" Alt="A redlining document that details housing, construction type, average age, repair condition, occupancy, price range, and other information" >}}
+{{< figure src="rl1.png" alt="A redlining document that details housing, construction type, average age, repair condition, occupancy, price range, and other information" >}}
 *A redlining document that details housing, construction type, average age, repair condition, occupancy, price range, and other information.*
 
-{{< figure src="rl2.png" Alt="A redining document that reads: Detrimental influences: Obsolescence and poor maintenance. Infiltration of Negroes. Elevated structures on Lexington Ave & Fulton & Grand Avenue. Mixed races." >}}
+{{< figure src="rl2.png" alt="A redining document that reads: Detrimental influences: Obsolescence and poor maintenance. Infiltration of Negroes. Elevated structures on Lexington Ave & Fulton & Grand Avenue. Mixed races." >}}
 *A redining document that reads: Detrimental influences: Obsolescence and poor maintenance. Infiltration of Negroes. Elevated structures on Lexington Ave & Fulton & Grand Avenue. Mixed races.*
 
 With this information, HOLC made “residential security maps” for almost 250 cities, including New York City. On these maps, HOLC gave each neighborhood a classification:
