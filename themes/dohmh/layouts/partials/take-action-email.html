@@ -106,18 +106,21 @@ Take action! Send elected officials an email.
                       <div class="col-12">
                         <p class="home-label">First, what issues are you concerned about?</p>
                         <div id="concernContainer">
-                            <button type="button" class="btn btn-outline-secondary mb-1">Air quality</button>
-                            <button type="button" class="btn btn-outline-secondary mb-1">Climate</button>
-                            <button type="button" class="btn btn-outline-secondary mb-1">Housing</button>
-                            <button type="button" class="btn btn-outline-secondary mb-1">Environmental justice</button>
-                            <button type="button" class="btn btn-outline-secondary mb-1">Asthma</button>
-                            <button type="button" class="btn btn-outline-secondary mb-1">Active design</button>
-                            <button type="button" class="btn btn-outline-secondary mb-1">Children's health</button>
-                            <button type="button" class="btn btn-outline-secondary mb-1">Pests and pesticides</button>
-                            <button type="button" class="btn btn-outline-secondary mb-1">Food and drink issues</button>
+                            <button type="button" class="btn btn-outline-secondary mb-1" id="airquality">Air quality</button>
+                            <button type="button" class="btn btn-outline-secondary mb-1" id="climatehealth">Climate</button>
+                            <button type="button" class="btn btn-outline-secondary mb-1" id="housing">Housing</button>
+                            <button type="button" class="btn btn-outline-secondary mb-1" id="social">Environmental justice</button>
+                            <button type="button" class="btn btn-outline-secondary mb-1" id="transportation">Active design</button>
+                            <button type="button" class="btn btn-outline-secondary mb-1" id="childhealth">Children's health</button>
+                            <button type="button" class="btn btn-outline-secondary mb-1" id="pests">Pests and pesticides</button>
+                            <button type="button" class="btn btn-outline-secondary mb-1" id="foodanddrink">Food and drink issues</button>
+                            <button type="button" class="btn btn-outline-secondary mb-1" id="healthoutcomes">Environmental health</button>
+
                           </div>
                       </div>
                     </div> <!-- end of row -->
+
+
             
                     <div class="row mt-2 border-top pt-2">
                       <div class="col-12">
@@ -159,7 +162,9 @@ Take action! Send elected officials an email.
                         <p class="fs-xl font-weight-bold">Here's your email:</p>
                         <div id="textDestination">
                           <p>Dear Council Member <span id="councilMemberLastName"></span>,</p>
-                          <p>I am one of your constituents, a resident of district <span id="districtNum">XX</span>. I was reading about neighborhood issues on one of the Health Department's websites, the Environment and Health Data Portal (on.nyc.gov/dataportal). I am concerned about the following issues: <span id="concerns"></span>
+                          <p>I am one of your constituents, a resident of district <span id="districtNum">XX</span>. I was browsing data on {{ .Title }} on the Health Department's websites, the Environment and Health Data Portal ({{ .Permalink }}).</p>
+                          
+                          <p>Based on what I read, I am concerned about the following issues: <span id="concerns"></span>
               
                           <p>I'm concerned because <span id="reasons"></span>
                             
@@ -279,6 +284,11 @@ function dataChange() {
 // Create CONCERNS
 var concerns = [];
 var concernsText = [];
+
+// set page's relevant cat buttons to active
+{{ range .Params.categories}}
+document.getElementById('{{ . }}').classList.add('active')
+{{ end }}
 
 // get concern buttons
 var concernContainer = document.getElementById('concernContainer') 
