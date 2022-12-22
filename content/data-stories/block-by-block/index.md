@@ -17,6 +17,10 @@ keywords:
     - built environment
     - reinvestment
     - community development
+    - east harlem
+    - redlining
+    - housing
+    - transportation
 seo_title: 
 seo_description: ""
 menu:
