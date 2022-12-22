@@ -1,6 +1,6 @@
 name: Hugo Build to `dev-test` branch
 
-# run action on a merged PR on "development"
+# run action on a merged PR on "build-to-dev-test"
 
 on:
   push:
