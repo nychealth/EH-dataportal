@@ -32,10 +32,10 @@ image: ds-redlining.jpeg
 
 为了确定他们可以担保哪些贷款，HOLC派人去评估美国各地城市的社区房屋价值。他们记录了社区的住房类型，以及居住者的信息。他们还对“有害影响”进行了分类，将“黑人渗透”和“混血”等种族主义描述作为降低社区价值的特征。 
 
-{{< figure src="rl1.png" Alt="A redlining document that details housing, construction type, average age, repair condition, occupancy, price range, and other information" >}}
+{{< figure src="rl1.png" alt="A redlining document that details housing, construction type, average age, repair condition, occupancy, price range, and other information" >}}
 *详细说明住房、建筑类型、平均屋龄、维修条件、入住率、价格范围和其他信息的红线圈定文档。*
 
-{{< figure src="rl2.png" Alt="A redining document that reads: Detrimental influences: Obsolescence and poor maintenance. Infiltration of Negroes. Elevated structures on Lexington Ave & Fulton & Grand Avenue. Mixed races." >}}
+{{< figure src="rl2.png" alt="A redining document that reads: Detrimental influences: Obsolescence and poor maintenance. Infiltration of Negroes. Elevated structures on Lexington Ave & Fulton & Grand Avenue. Mixed races." >}}
 *一份红线圈定文件，内容如下：有害影响：过时和维护不善。黑人渗透。Lexington Ave和Fulton和Grand Avenue上的高架结构。混合人种。*
 
 根据这些信息，HOLC为包括纽约市在内的近250个城市制作了“住宅安全地图”。在这些地图上，HOLC给每个社区指定一个分类： 
