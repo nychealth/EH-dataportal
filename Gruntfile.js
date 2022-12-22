@@ -231,7 +231,7 @@ module.exports = function(grunt) {
                 
                 if (filename.search(/\.zh/) >= 0) {
                     
-                    href = "cn/" + subdir;
+                    href = "zh/" + subdir;
                     
                 } else if (filename.search(/\.es/) >= 0) {
                     
@@ -260,7 +260,7 @@ module.exports = function(grunt) {
                 .s
             
             // grunt.log.writeln("href [MD]:", href);
-            // if (href.startsWith("cn")) grunt.log.writeln("\n\n", href, "\n\n", contentParsed)
+            // if (href.startsWith("zh")) grunt.log.writeln("\n\n", href, "\n\n", contentParsed)
 
 
             // Build Lunr index for this page (keeping "-" in content)
