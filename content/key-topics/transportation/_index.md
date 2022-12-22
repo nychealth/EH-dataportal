@@ -3,7 +3,7 @@ title: "Active design, public space, and transportation"
 date: 2021-09-30T07:58:01-04:00
 draft: false
 seo_title: "Transportation and Active Design in NYC"
-seo_description: "Data, data stories, interactives, and more."
+seo_description: "Data, data stories, interactives, and more on active design, public space, and transportation."
 tags: 
 categories: [transportation]
 keyTopic: transportation

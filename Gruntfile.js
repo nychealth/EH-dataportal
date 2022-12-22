@@ -225,13 +225,13 @@ module.exports = function(grunt) {
 
             var pageName = S(filename).replace(/\..*/, "").s;
             
-            // if the filename has "index", maybe has 3 characters (".cn" or ".es") and then ends with ".md"
+            // if the filename has "index", maybe has 3 characters (".zh" or ".es") and then ends with ".md"
             
             if (filename.search(/index.{0,3}\.md/) >= 0) {
                 
-                if (filename.search(/\.cn/) >= 0) {
+                if (filename.search(/\.zh/) >= 0) {
                     
-                    href = "cn/" + subdir;
+                    href = "zh/" + subdir;
                     
                 } else if (filename.search(/\.es/) >= 0) {
                     
@@ -249,6 +249,12 @@ module.exports = function(grunt) {
                 
             }
 
+            // allow indexing of page root
+
+            href = typeof href === "undefined" ? "" : href;
+
+            // grunt.log.writeln("pageName:", pageName, " > ", "href: ", href);
+
             let contentParsed = S(content[2])
                 .replace(/<!--(.|[\r\n])*?-->/gm, "")
                 .replace(/{{<.*rawhtml.*>}}(.|[\r\n])*?{{<.*\/rawhtml.*>}}/gm, "@")
@@ -260,7 +266,7 @@ module.exports = function(grunt) {
                 .s
             
             // grunt.log.writeln("href [MD]:", href);
-            // if (href.startsWith("cn")) grunt.log.writeln("\n\n", href, "\n\n", contentParsed)
+            // if (href.startsWith("zh")) grunt.log.writeln("\n\n", href, "\n\n", contentParsed)
 
 
             // Build Lunr index for this page (keeping "-" in content)

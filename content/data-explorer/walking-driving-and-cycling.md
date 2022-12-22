@@ -3,7 +3,7 @@ title: Walking, driving, and cycling
 date: 2021-05-28 18:02:58.809768
 draft: false
 seo_title: "Walking, driving, and cycling data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["transportation","airquality"]
 keywords: ["transportation","walking","driving","cycling","infrastructure","streets","roads","safety"]
