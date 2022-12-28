@@ -18,4 +18,6 @@
 
 // Create leaflet filter/zooms
 
-// Create "show/hide DEC monitors" button: if operator = DEC, hide from 
+// Time period filter
+
+// Create "show/hide DEC monitors" button: if operator = DEC, hide from spec/chart.
