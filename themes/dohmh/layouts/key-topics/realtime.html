@@ -56,9 +56,11 @@
         
         <div class="col-12 ml-auto">
 
-            <button onclick="restore()" type="button" id="btnrestore" class="mb-1 selectorbtn btn btn-sm btn-dark">
+            <button onclick="restore()" type="button" id="btnrestore" class="mb-1 btn btn-sm btn-dark">
                 Reset</button>
+
             
+            <!--
             <button onclick="changeData(0)" type="button" id="btn0" class="mb-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
                 <span style="color: red">
                     <i class="fas fa-square mr-1"></i>
@@ -89,6 +91,11 @@
                     <i class="fas fa-square mr-1"></i>
                 </span>
                 Broadway/35th St</button>
+            -->
+
+            <div id="buttonHolder" style="display:inline-block;">
+                <!-- JavaScript creates buttons from available monitor feeds and inserts them here -->
+            </div>
             
 
             <div id="numberinput" class="float-right pt-1"
@@ -102,6 +109,8 @@
         </div>
         
     </div>
+
+
     
     <!-- map element -->
     <div class="row align-self-center">
@@ -115,17 +124,19 @@
             <div class="row">
                 <div class="col pl-2 mt-1">
 
+                    <!--
                     <div id="error">
                         <hr class="mt-2">
                         <p class="pl-2"><i class="fas fa-exclamation-triangle mr-1 font-weight-bold"></i>Our realtime air quality monitors are currently down. We're working on getting them back up as soon as we can.</p>
                     </div>
+                -->
 
-                    <!--
-                    <em class="pl-2">Hourly PM2.5 measurements (in µg/m<sup>3</sup>)</em>
+                    
+                    <em class="pl-2 fs-sm">Hourly PM2.5 measurements (in µg/m<sup>3</sup>)</em>
 
                     <div id="vis2" style="width: 100%; height: 400px;" class="mt-1">
                     </div>
-                    -->
+                    
                 </div>
             </div>
         </div>
@@ -230,6 +241,6 @@
 <script src="{{ $color_convert.RelPermalink }}"></script>
 
 <!--bring in realtime JS -->
-<script type="text/javascript" src="js/realtime.js"></script>
+<script type="text/javascript" src="js/realtime-2.js"></script>
 
 {{- end -}}

@@ -1,0 +1,23 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "PM2.5 in micrograms per cubic meter",
+    "data": {"url": "data/nyccas_realtime_DEC.csv"},
+    "config": {
+      "legend": {
+        "disable": true
+      }
+    },
+    "height": "container",
+    "width": "container",
+    "mark": {
+      "type": "line",
+      "point": true
+    },
+    "encoding": {
+      "x": {"field": "starttime", "type": "temporal"},
+      "y": {"field": "Value", "type": "quantitative"},
+      "color": {"field": "SiteName", "type": "nominal"}
+  
+    }
+  }
+  
