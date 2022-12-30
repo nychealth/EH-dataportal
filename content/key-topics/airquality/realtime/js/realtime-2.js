@@ -53,7 +53,6 @@ aq.loadCSV(
 var stations = [];
 function getStationsFromData() {
     var sites = [];
-    console.log('getting stations...')
     for (let i = 0; i<fullTable.length; i++) {
         sites.push(fullTable[i].SiteName)
     }
@@ -116,8 +115,20 @@ function updateData(x) {
     })
     document.getElementById(x).classList.add('active')
 
-    // zoom to the corresponding leaflet marker
+    // find index of where x = activeMonitors.loc_col
+    var index = getIndex(x)
 
+    // zoom to the corresponding leaflet marker
+    map.setView(monitors[index].getLatLng(), 13);
+
+}
+
+function getIndex(x) {
+    for (let i = 0; i < activeMonitors.length; i++) {
+        if (activeMonitors[i].loc_col === x) {
+            return i
+        }
+    } 
 }
 
 
