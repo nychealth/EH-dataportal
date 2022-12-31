@@ -12,14 +12,12 @@ TO DO LIST:
 Chart is currently semi-isolated from rest of functionality. We'll need to:
 - enhance updateData to highlight selected chart: set a conditional on opacity, give everything something like .25 and give the selected series 1. 
 
+Appropriating old things:
+- Time period filter (take from realtime.js)
 
 New things
 - create a switch to toggle on/off DEC monitors (based on Operator variable in data file)
 - Consider creating a test of data completeness to determine whether to pass data into activeMonitors
-
-Appropriating old things:
-- In updateData, zoom on click (adapt from realtime.js)
-- Time period filter (take from realtime.js)
 
 */
 
@@ -130,9 +128,6 @@ function listenButtons() {
 
 // ---- UPDATE DATA FUNCTION TO DEVELOP: takes loc_col as an argument ---- // 
 function updateData(x) {
-    // temporary documentation on page:
-    document.getElementById('vis2').innerHTML = 'button clicked, data updated for:' + x
-
     // /remove active classes, and highilght selected
     btns.forEach(x => {
         x.classList.remove('active') // remove from all 
@@ -267,6 +262,10 @@ function restore() {
     btns.forEach(x => {
         x.classList.remove('active') // remove from all 
     })
-    document.getElementById('vis2').innerHTML = 'ready...'
+    drawChart();
 
 }
+
+
+// ---- TIME SELECTION FUNCTIONALITY ---- // 
+// This can mostly be copied over from realtime.js, but the problem is the vegaEmbed that matches a data variable to the spec. We'll need to update that in both the JS and the spec to use a variable, and then we can stick this stuff in there. 
