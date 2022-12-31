@@ -1,12 +1,17 @@
 /*
+// ---- MAINTENANCE GOALS ---- //
+Realtime AQ should be durable to monitors coming online and offline.
+If a monitor is in the datafeed, it will need an entry in monitor_locations.csv
+In that file, loc_col will need to equal SiteName in the datafeed. 
+As long as we have that, buttons, colors, and the rest of the functionality will be handled. 
+*/
+
+
+/*
 TO DO LIST:
-
-Chart is currently isolated from rest of functionality. We'll need to:
-- color series according to monitor_locations.color: put colors into an array, matching index positions, and put that array into encoding.color.scale.range. this should match.
-
+Chart is currently semi-isolated from rest of functionality. We'll need to:
 - enhance updateData to highlight selected chart: set a conditional on opacity, give everything something like .25 and give the selected series 1. 
 
-- chart: add a tooltip. 
 
 New things
 - create a switch to toggle on/off DEC monitors (based on Operator variable in data file)
@@ -26,11 +31,7 @@ var shortTable;
 var locSelect = "No location"
 var res;
 
-// ---- Draw initial chart (isolated...) ---- //
-d3.json("js/spec2.json").then(data => {
-    current_spec = $.extend({}, data);
-    vegaEmbed("#vis2", current_spec)
-});
+
 
 
 // ---- INITIAL: ingest data feed ---- // 
@@ -76,7 +77,27 @@ d3.csv("data/monitor_locations.csv").then(data => {
     drawMap()
     drawButtons()
     listenButtons();
+    drawChart();
 })
+
+function drawChart() {
+    // ---- Draw initial chart (isolated...) ---- //
+    d3.json("js/spec2.json").then(data => {
+        current_spec = $.extend({}, data);
+        getColors();
+        vegaEmbed("#vis2", current_spec)
+    });
+}
+
+// ---- Create array of colors based on colors in activeMonitors. This gets sent to the json spec ---- //
+var colors = [];
+function getColors() {
+    for (let i = 0; i < activeMonitors.length; i++) {
+        colors.push(activeMonitors[i].Color)
+    }
+    console.log("colors: " + colors)
+    current_spec.encoding.color.scale.range = colors
+}
 
 
 // ---- Creates buttons based on active monitors coming via the file ---- // 
