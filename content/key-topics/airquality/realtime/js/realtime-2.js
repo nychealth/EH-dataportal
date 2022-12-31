@@ -2,8 +2,11 @@
 TO DO LIST:
 
 Chart is currently isolated from rest of functionality. We'll need to:
-- color series according to monitor_locations.color (not sure of best way)
-- enhance updateData to highlight selected chart
+- color series according to monitor_locations.color: put colors into an array, matching index positions, and put that array into encoding.color.scale.range. this should match.
+
+- enhance updateData to highlight selected chart: set a conditional on opacity, give everything something like .25 and give the selected series 1. 
+
+- chart: add a tooltip. 
 
 New things
 - create a switch to toggle on/off DEC monitors (based on Operator variable in data file)

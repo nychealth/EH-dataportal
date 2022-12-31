@@ -16,7 +16,13 @@
     "encoding": {
       "x": {"field": "starttime", "type": "temporal"},
       "y": {"field": "Value", "type": "quantitative"},
-      "color": {"field": "SiteName", "type": "nominal"}
+      "color": {
+        "field": "SiteName", 
+        "type": "nominal",
+        "scale": {
+          "range": ["blue", "yellow", "orange", "red", "green"]
+          }
+        }
   
     }
   }
