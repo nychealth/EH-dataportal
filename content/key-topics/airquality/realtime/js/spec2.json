@@ -69,6 +69,10 @@
           }
         },
         "tooltip": [
+            {
+              "field": "SiteName",
+              "title": "Location"
+          },
           {
               "field": "Value",
               "title": "PM2.5 (µg/m3)"
