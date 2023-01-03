@@ -134,7 +134,7 @@ var opacity;
 var stroke; 
 function updateData(x) {
     // document to console:
-    console.log('button clicked, data updated for:' + x)
+    console.log('Showing data for: ' + x)
 
     // /remove active classes, and highilght selected
     btns.forEach(x => {
@@ -163,7 +163,7 @@ function updateData(x) {
             },
           "value": 1
         }
-    console.log(opacity)
+
     current_spec.encoding.opacity = opacity
     current_spec.encoding.opacity.condition.test = `datum['SiteName'] === '${x}'`
     current_spec.encoding.strokeWidth = stroke
@@ -295,4 +295,22 @@ function restore() {
     })
     getSpec();
 
+}
+
+// ---- TIME FILTER ---- //
+
+// event listener on the time-selection form
+document.getElementById('inputNum').addEventListener('change', function (event) {
+    event.preventDefault();
+    inputNum = document.getElementById('inputNum').value;
+    getDate(inputNum)
+});
+
+function getDate(x) {
+    var last = fullTable.pop()
+    const date = new Date(last.starttime)
+    let msec = Date.parse(date)
+    console.log('most recent date: ' + msec) // this is the most recent date, in milliseconds since 1970
+    console.log('filter for dates larger than: ')
+    console.log(msec - x * 86400000)
 }
