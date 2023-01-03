@@ -34,11 +34,9 @@
       }, 
       "tooltip": true
       },
-    "transform": [{
-      "timeUnit": "day",
-      "field": "starttime",
-      "as": "days"
-    }],
+      "transform": [
+        {"filter": "datum.starttime > 1672048800000"}
+    ],
     "encoding": {
       "x": {
         "field": "starttime", 

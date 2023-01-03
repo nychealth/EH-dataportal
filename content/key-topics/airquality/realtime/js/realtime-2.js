@@ -311,6 +311,6 @@ function getDate(x) {
     const date = new Date(last.starttime)
     let msec = Date.parse(date)
     console.log('most recent date: ' + msec) // this is the most recent date, in milliseconds since 1970
-    console.log('filter for dates larger than: ')
+    console.log('filter for dates larger than: ') // you could be able to filter starttime
     console.log(msec - x * 86400000)
 }
