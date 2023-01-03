@@ -25,9 +25,9 @@ New things
 var current_spec;
 var dt;
 var fullTable;
-var shortTable;
 var locSelect = "No location"
 var res;
+var floorDate;
 
 
 
@@ -44,7 +44,10 @@ aq.loadCSV(
         .orderby("starttime");
     
     fullTable = dt.objects(); // puts the data into fullTable to use. 
-    shortTable = fullTable; // creating an array we'll slice for time-selection
+    // shortTable = fullTable; // creating an array we'll slice for time-selection
+    floorDate = new Date(fullTable[0].starttime)
+    floorDate = Date.parse(floorDate)
+    console.log('floor Date: ' + floorDate)
     
     // console.log("fullTable:", fullTable);
     getStationsFromData();
@@ -83,12 +86,15 @@ function getSpec() {
     d3.json("js/spec2.json").then(data => {
         current_spec = $.extend({}, data);
         getColors(); // gets colors from monitor_locations and inserts them into spec
+
+        // get floor date and filter by floor date:
+        current_spec.transform[0].filter = `'datum.starttime > ${floorDate}'`
         drawChart(current_spec)
     });
 }
 
-function drawChart(x) {
-    vegaEmbed("#vis2", x)
+function drawChart(spec) {
+    vegaEmbed("#vis2", spec)
 }
 
 // ---- Create array of colors based on colors in activeMonitors. This gets sent to the json spec ---- //
@@ -313,4 +319,10 @@ function getDate(x) {
     console.log('most recent date: ' + msec) // this is the most recent date, in milliseconds since 1970
     console.log('filter for dates larger than: ') // you could be able to filter starttime
     console.log(msec - x * 86400000)
+    var filterTo = msec - x * 86400000
+
+    // get floor date and filter by floor date:
+    current_spec.transform[0].filter = `'datum.starttime > ${filterTo}'`
+    console.log(current_spec)
+    drawChart(current_spec)
 }
