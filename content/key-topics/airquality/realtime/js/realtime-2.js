@@ -10,7 +10,7 @@ As long as we have that, buttons, colors, and the rest of the functionality will
 /*
 TO DO LIST:
 
-- ADD TIME PERIOD FILTER
+- ADD TIME PERIOD FILTER: https://stackoverflow.com/questions/71431037/in-vega-lite-how-do-i-filter-by-time
 - Change DEC colors to a gray...?
 - Add reference on page to DEC monitors.
 
