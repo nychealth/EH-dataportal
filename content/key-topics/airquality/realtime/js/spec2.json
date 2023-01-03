@@ -27,10 +27,16 @@
     "height": "container",
     "width": "container",
     "mark": {
-      "type": "line",
-      "point": true,
+      "type": "line", 
+      "point": {
+        "size": 5,
+        "opacity": 0.5
+      }, 
       "tooltip": true
-    },
+      },
+      "transform": [
+        {"filter": "datum.starttime > 1672048800000"}
+    ],
     "encoding": {
       "x": {
         "field": "starttime", 
@@ -67,6 +73,12 @@
         "scale": {
           "range": ["blue", "yellow", "orange", "red", "green","gray"]
           }
+        },
+        "opacity": {
+          "value": 0.7
+        },
+        "strokeWidth": {
+          "value": 1.5
         },
         "tooltip": [
             {

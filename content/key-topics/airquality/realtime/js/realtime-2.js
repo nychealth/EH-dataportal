@@ -9,8 +9,10 @@ As long as we have that, buttons, colors, and the rest of the functionality will
 
 /*
 TO DO LIST:
-Chart is currently semi-isolated from rest of functionality. We'll need to:
-- enhance updateData to highlight selected chart: set a conditional on opacity, give everything something like .25 and give the selected series 1. 
+
+- ADD TIME PERIOD FILTER: https://stackoverflow.com/questions/71431037/in-vega-lite-how-do-i-filter-by-time
+- Change DEC colors to a gray...?
+- Add reference on page to DEC monitors.
 
 Appropriating old things:
 - Time period filter (take from realtime.js)
@@ -25,9 +27,9 @@ New things
 var current_spec;
 var dt;
 var fullTable;
-var shortTable;
 var locSelect = "No location"
 var res;
+var floorDate;
 
 
 
@@ -44,7 +46,10 @@ aq.loadCSV(
         .orderby("starttime");
     
     fullTable = dt.objects(); // puts the data into fullTable to use. 
-    shortTable = fullTable; // creating an array we'll slice for time-selection
+    // shortTable = fullTable; // creating an array we'll slice for time-selection
+    floorDate = new Date(fullTable[0].starttime)
+    floorDate = Date.parse(floorDate)
+    console.log('floor Date: ' + floorDate)
     
     // console.log("fullTable:", fullTable);
     getStationsFromData();
@@ -75,16 +80,23 @@ d3.csv("data/monitor_locations.csv").then(data => {
     drawMap()
     drawButtons()
     listenButtons();
-    drawChart();
+    getSpec();
 })
 
-function drawChart() {
+function getSpec() {
     // ---- Draw initial chart (isolated...) ---- //
     d3.json("js/spec2.json").then(data => {
         current_spec = $.extend({}, data);
-        getColors();
-        vegaEmbed("#vis2", current_spec)
+        getColors(); // gets colors from monitor_locations and inserts them into spec
+
+        // get floor date and filter by floor date:
+        current_spec.transform[0].filter = `'datum.starttime > ${floorDate}'`
+        drawChart(current_spec)
     });
+}
+
+function drawChart(spec) {
+    vegaEmbed("#vis2", spec)
 }
 
 // ---- Create array of colors based on colors in activeMonitors. This gets sent to the json spec ---- //
@@ -93,7 +105,6 @@ function getColors() {
     for (let i = 0; i < activeMonitors.length; i++) {
         colors.push(activeMonitors[i].Color)
     }
-    console.log("colors: " + colors)
     current_spec.encoding.color.scale.range = colors
 }
 
@@ -127,7 +138,12 @@ function listenButtons() {
 }
 
 // ---- UPDATE DATA FUNCTION TO DEVELOP: takes loc_col as an argument ---- // 
+var opacity;
+var stroke; 
 function updateData(x) {
+    // document to console:
+    console.log('Showing data for: ' + x)
+
     // /remove active classes, and highilght selected
     btns.forEach(x => {
         x.classList.remove('active') // remove from all 
@@ -139,6 +155,29 @@ function updateData(x) {
 
     // zoom to the corresponding leaflet marker
     map.setView(monitors[index].getLatLng(), 13);
+
+    // update opacity for selected and deselected series, and redraw Chart:
+    opacity = {
+        "condition": {
+              "test": "datum['SiteName'] === 'CCNY'",
+              "value": 1
+            },
+          "value": 0.2
+        }
+    stroke = {
+        "condition": {
+              "test": "datum['SiteName'] === 'CCNY'",
+              "value": 2.5
+            },
+          "value": 1
+        }
+
+    current_spec.encoding.opacity = opacity
+    current_spec.encoding.opacity.condition.test = `datum['SiteName'] === '${x}'`
+    current_spec.encoding.strokeWidth = stroke
+    current_spec.encoding.strokeWidth.condition.test = `datum['SiteName'] === '${x}'`
+    vegaEmbed('#vis2', current_spec)
+
 
 }
 
@@ -262,10 +301,30 @@ function restore() {
     btns.forEach(x => {
         x.classList.remove('active') // remove from all 
     })
-    drawChart();
+    getSpec();
 
 }
 
+// ---- TIME FILTER ---- //
 
-// ---- TIME SELECTION FUNCTIONALITY ---- // 
-// This can mostly be copied over from realtime.js, but the problem is the vegaEmbed that matches a data variable to the spec. We'll need to update that in both the JS and the spec to use a variable, and then we can stick this stuff in there. 
+// event listener on the time-selection form
+document.getElementById('inputNum').addEventListener('change', function (event) {
+    event.preventDefault();
+    inputNum = document.getElementById('inputNum').value;
+    getDate(inputNum)
+});
+
+function getDate(x) {
+    var last = fullTable.pop()
+    const date = new Date(last.starttime)
+    let msec = Date.parse(date)
+    console.log('most recent date: ' + msec) // this is the most recent date, in milliseconds since 1970
+    console.log('filter for dates larger than: ') // you could be able to filter starttime
+    console.log(msec - x * 86400000)
+    var filterTo = msec - x * 86400000
+
+    // get floor date and filter by floor date:
+    current_spec.transform[0].filter = `'datum.starttime > ${filterTo}'`
+    console.log(current_spec)
+    drawChart(current_spec)
+}
