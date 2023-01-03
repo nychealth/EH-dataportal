@@ -74,6 +74,9 @@
         "opacity": {
           "value": 0.7
         },
+        "strokeWidth": {
+          "value": 1.5
+        },
         "tooltip": [
             {
               "field": "SiteName",

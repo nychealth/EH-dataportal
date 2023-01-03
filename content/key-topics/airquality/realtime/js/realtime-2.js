@@ -9,17 +9,15 @@ As long as we have that, buttons, colors, and the rest of the functionality will
 
 /*
 TO DO LIST:
-Chart is currently semi-isolated from rest of functionality. We'll need to:
-- enhance updateData to highlight selected chart: set a conditional on opacity, give everything something like .25 and give the selected series 1. 
+
+- ADD TIME PERIOD FILTER
+- Change DEC colors to a gray...?
+- Add reference on page to DEC monitors.
 
 
 New things
 - create a switch to toggle on/off DEC monitors (based on Operator variable in data file)
 - Consider creating a test of data completeness to determine whether to pass data into activeMonitors
-
-Appropriating old things:
-- In updateData, zoom on click (adapt from realtime.js)
-- Time period filter (take from realtime.js)
 
 */
 
@@ -133,6 +131,7 @@ function listenButtons() {
 
 // ---- UPDATE DATA FUNCTION TO DEVELOP: takes loc_col as an argument ---- // 
 var opacity;
+var stroke; 
 function updateData(x) {
     // document to console:
     console.log('button clicked, data updated for:' + x)
@@ -157,9 +156,18 @@ function updateData(x) {
             },
           "value": 0.2
         }
+    stroke = {
+        "condition": {
+              "test": "datum['SiteName'] === 'CCNY'",
+              "value": 2.5
+            },
+          "value": 1
+        }
     console.log(opacity)
     current_spec.encoding.opacity = opacity
     current_spec.encoding.opacity.condition.test = `datum['SiteName'] === '${x}'`
+    current_spec.encoding.strokeWidth = stroke
+    current_spec.encoding.strokeWidth.condition.test = `datum['SiteName'] === '${x}'`
     vegaEmbed('#vis2', current_spec)
 
 
