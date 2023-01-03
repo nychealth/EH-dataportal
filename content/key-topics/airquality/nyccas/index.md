@@ -121,6 +121,10 @@ scriptElement.src = 'https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.j
 vizElement.parentNode.insertBefore(scriptElement, vizElement);
 </script>
 
+<hr>
+
+<iframe src="https://nycehs.github.io/nyccas-vis-demo/pollutant-maps-over-time.html" frameborder="no" style="width: 100%; height: 600px"></iframe>
+
 ---
 
 ### Pollutant Trends over Time by Sources
@@ -145,7 +149,7 @@ vizElement.parentNode.insertBefore(scriptElement, vizElement);
 
 <hr>
 
-<iframe src="https://nycehs.github.io/nyccas-vis-demo/pollutant-maps-over-time.html" frameborder="no" style="width: 100%; height: 600px"></iframe>
+<iframe src="https://nycehs.github.io/nyccas-vis-demo/pollutant-trends.html" frameborder="no" style="width: 100%; height: 600px"></iframe>
 
 
 ---
