@@ -311,17 +311,17 @@ function restore() {
 document.getElementById('inputNum').addEventListener('change', function (event) {
     event.preventDefault();
     inputNum = document.getElementById('inputNum').value;
-    getDate(inputNum)
+    updateTime(inputNum)
 });
 
-function getDate(x) {
+function updateTime(x) {
     var last = fullTable.pop()
     const date = new Date(last.starttime)
-    let msec = Date.parse(date)
+    let dateInMsec = Date.parse(date)
     console.log('most recent date: ' + msec) // this is the most recent date, in milliseconds since 1970
     console.log('filter for dates larger than: ') // you could be able to filter starttime
     console.log(msec - x * 86400000)
-    var filterTo = msec - x * 86400000
+    var filterTo = dateInMsec - x * 86400000
 
     // get floor date and filter by floor date:
     current_spec.transform[0].filter = `'datum.starttime > ${filterTo}'`
