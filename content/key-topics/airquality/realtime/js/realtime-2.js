@@ -77,16 +77,20 @@ d3.csv("data/monitor_locations.csv").then(data => {
     drawMap()
     drawButtons()
     listenButtons();
-    drawChart();
+    getSpec();
 })
 
-function drawChart() {
+function getSpec() {
     // ---- Draw initial chart (isolated...) ---- //
     d3.json("js/spec2.json").then(data => {
         current_spec = $.extend({}, data);
-        getColors();
-        vegaEmbed("#vis2", current_spec)
+        getColors(); // gets colors from monitor_locations and inserts them into spec
+        drawChart(current_spec)
     });
+}
+
+function drawChart(x) {
+    vegaEmbed("#vis2", x)
 }
 
 // ---- Create array of colors based on colors in activeMonitors. This gets sent to the json spec ---- //
@@ -95,7 +99,6 @@ function getColors() {
     for (let i = 0; i < activeMonitors.length; i++) {
         colors.push(activeMonitors[i].Color)
     }
-    console.log("colors: " + colors)
     current_spec.encoding.color.scale.range = colors
 }
 
@@ -129,9 +132,10 @@ function listenButtons() {
 }
 
 // ---- UPDATE DATA FUNCTION TO DEVELOP: takes loc_col as an argument ---- // 
+var opacity;
 function updateData(x) {
-    // temporary documentation on page:
-    document.getElementById('vis2').innerHTML = 'button clicked, data updated for:' + x
+    // document to console:
+    console.log('button clicked, data updated for:' + x)
 
     // /remove active classes, and highilght selected
     btns.forEach(x => {
@@ -144,6 +148,20 @@ function updateData(x) {
 
     // zoom to the corresponding leaflet marker
     map.setView(monitors[index].getLatLng(), 13);
+
+    // update opacity for selected and deselected series, and redraw Chart:
+    opacity = {
+        "condition": {
+              "test": "datum['SiteName'] === 'CCNY'",
+              "value": 1
+            },
+          "value": 0.2
+        }
+    console.log(opacity)
+    current_spec.encoding.opacity = opacity
+    current_spec.encoding.opacity.condition.test = `datum['SiteName'] === '${x}'`
+    vegaEmbed('#vis2', current_spec)
+
 
 }
 
@@ -267,6 +285,6 @@ function restore() {
     btns.forEach(x => {
         x.classList.remove('active') // remove from all 
     })
-    document.getElementById('vis2').innerHTML = 'ready...'
+    getSpec();
 
 }
