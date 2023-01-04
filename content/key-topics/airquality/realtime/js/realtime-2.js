@@ -4,34 +4,23 @@ Realtime AQ should be durable to monitors coming online and offline.
 If a monitor is in the datafeed, it will need an entry in monitor_locations.csv
 In that file, loc_col will need to equal SiteName in the datafeed. 
 As long as we have that, buttons, colors, and the rest of the functionality will be handled. 
-*/
 
+When we get NYCCAS monitors back up, CH will create a "DEC average" in the field (instead of DEC monitors) so he can control what appears.
 
-/*
-TO DO LIST:
+NB: DEC monitors are designed to be averaged to report regional air quality
 
-- ADD TIME PERIOD FILTER: https://stackoverflow.com/questions/71431037/in-vega-lite-how-do-i-filter-by-time
-- Change DEC colors to a gray...?
-- Add reference on page to DEC monitors.
-
-Appropriating old things:
-- Time period filter (take from realtime.js)
-
-New things
-- create a switch to toggle on/off DEC monitors (based on Operator variable in data file)
 - Consider creating a test of data completeness to determine whether to pass data into activeMonitors
 
 */
 
-// initialize variables
+
+// initialize variables (other variables are initialized closer to their prime use)
 var current_spec;
 var dt;
 var fullTable;
 var locSelect = "No location"
 var res;
 var floorDate;
-
-
 
 
 // ---- INITIAL: ingest data feed ---- // 
@@ -46,10 +35,9 @@ aq.loadCSV(
         .orderby("starttime");
     
     fullTable = dt.objects(); // puts the data into fullTable to use. 
-    // shortTable = fullTable; // creating an array we'll slice for time-selection
-    floorDate = new Date(fullTable[0].starttime)
-    floorDate = Date.parse(floorDate)
-    console.log('floor Date: ' + floorDate)
+    floorDate = new Date(fullTable[0].starttime) // creates earliest date in 7-day feed - used for time filter
+    console.log('Showing data since: ' + floorDate)
+    floorDate = Date.parse(floorDate) // converting to milliseconds
     
     // console.log("fullTable:", fullTable);
     getStationsFromData();
@@ -77,24 +65,28 @@ d3.csv("data/monitor_locations.csv").then(data => {
             activeMonitors.push(allMonitorLocations[i])
         }
     }
+    // Draws map, buttons, listener, and retrieves chart spec
     drawMap()
     drawButtons()
     listenButtons();
     getSpec();
 })
 
+// ---- Getting the initial chart spec, inserts color and  earliest date in the data feed to it ---- // 
+var filter
 function getSpec() {
-    // ---- Draw initial chart (isolated...) ---- //
     d3.json("js/spec2.json").then(data => {
         current_spec = $.extend({}, data);
         getColors(); // gets colors from monitor_locations and inserts them into spec
 
         // get floor date and filter by floor date:
-        current_spec.transform[0].filter = `'datum.starttime > ${floorDate}'`
+        filter = `datum.starttime > ${floorDate}`
+        current_spec.transform[0] = {"filter": filter}
         drawChart(current_spec)
     });
 }
 
+// ---- DRAWS CHART! ---- //
 function drawChart(spec) {
     vegaEmbed("#vis2", spec)
 }
@@ -314,17 +306,19 @@ document.getElementById('inputNum').addEventListener('change', function (event) 
     updateTime(inputNum)
 });
 
+// Time update function - uses transform[0].filter
 function updateTime(x) {
     var last = fullTable.pop()
     const date = new Date(last.starttime)
     let dateInMsec = Date.parse(date)
-    console.log('most recent date: ' + msec) // this is the most recent date, in milliseconds since 1970
-    console.log('filter for dates larger than: ') // you could be able to filter starttime
-    console.log(msec - x * 86400000)
+    // console.log('most recent date: ' + dateInMsec) // this is the most recent date, in milliseconds since 1970
+    // console.log('filter for dates larger than: ') // you could be able to filter starttime
+    // console.log(dateInMsec - x * 86400000)
     var filterTo = dateInMsec - x * 86400000
 
-    // get floor date and filter by floor date:
-    current_spec.transform[0].filter = `'datum.starttime > ${filterTo}'`
-    console.log(current_spec)
+    // send date filter to spec and re-draw Chart
+    filter = `datum.starttime > ${filterTo}`
+    current_spec.transform[0] = {"filter": filter}
+    // console.log(current_spec)
     drawChart(current_spec)
 }

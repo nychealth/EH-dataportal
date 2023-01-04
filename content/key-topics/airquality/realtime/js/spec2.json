@@ -34,9 +34,7 @@
       }, 
       "tooltip": true
       },
-      "transform": [
-        {"filter": "datum.starttime > 1672048800000"}
-    ],
+      "transform": [],
     "encoding": {
       "x": {
         "field": "starttime", 
