@@ -17,7 +17,7 @@ ignoreFiles = ['Simplified.Chinese', 'Spanish']
 [caches]
     [caches.getresource]
       dir = ':cacheDir/:project'
-      maxAge = -1
+      maxAge = 0
 
 [imaging]
   anchor = 'Smart'
