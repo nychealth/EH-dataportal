@@ -25,8 +25,8 @@ var floorDate;
 
 // ---- INITIAL: ingest data feed ---- // 
 aq.loadCSV(
-    "data/nyccas_realtime_DEC.csv" // temporary local placeholder
-    // "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv"
+    // "data/nyccas_realtime_DEC.csv" // temporary local placeholder
+    "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv"
 
 ).then(data => {
 
