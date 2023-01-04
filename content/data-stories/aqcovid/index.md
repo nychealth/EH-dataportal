@@ -3,7 +3,7 @@ title: "Air quality during COVID-19"
 date: 2020-04-22T08:33:22-04:00
 draft: false
 seo_title: "Air quality during COVID-19"
-seo_description: "What our air quality monitors show when NYC stays home."
+seo_description: "What our air quality monitors showed when NYC stays home."
 tags: 
 categories: ["transportation","airquality"]
 keywords: ["air quality","traffic","transportation","covid","covid-19","coronavirus","air pollution", "lungs","breathing"]

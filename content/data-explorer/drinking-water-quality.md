@@ -3,7 +3,7 @@ title: Drinking water quality
 date: 2021-05-28 18:02:58.785993
 draft: false
 seo_title: "Drinking water quality data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["foodanddrink"]
 keywords: ["food","drink","water","housing"]
@@ -19,13 +19,13 @@ menu:
         identifier: '03'
 ---
 
-All NYC residences receive drinking water from a public water system. Most water is gravity fed from a network of reservoirs and lakes in protected watersheds, up to 125 miles from the city ([view map](http://www.nyc.gov/html/dep/html/drinking_water/wsmaps_wide.shtml)).
+All NYC residences receive drinking water from a public water system. Most water is gravity fed from a network of reservoirs and lakes in protected watersheds, up to 125 miles from the city.
 
 The NYC water system consists of two surface water systems (Croton and Catskill/Delaware) and a Southwestern Queens ground water system. Since 1999, the Croton system has served as a supplemental water system, and the Catskill/Delaware reservoir system has supplied almost all NYC drinking water.
 
 We display data on disinfection by-products, nitrates, and arsenic in NYC drinking water because these contaminants occur most frequently at levels that may be of public health significance in drinking water nationwide. Additional contaminants of emerging concern nationwide have either not been detected or detected at very low levels in the NYC drinking water system. These include atrazine, di(2-ethylhexyl)phthalate (DEHP), tetrachloroethylene (PCE), trichloroethylene (TCE), radium, and uranium.
 
-According to the [NYC DEP](http://www.nyc.gov/html/dep/html/drinking_water/lead_index.shtml) drinking water enters the NYC water system “virtually lead-free”.The DEP then uses anti-corrosion methods to reduce the leaching of any lead that may be present in plumbing fixtures, solder, or pipes that connect the water system to the thousands of buildings in NYC. Federal regulations require that lead testing of water is done at the tap of a sample NYC buildings each year.  In 2015, 90% of those samples tested below the action level of 15 μg/L. More detailed data on NYC drinking water quality and lead testing procedures and results can be found [here.](http://www.nyc.gov/html/dep/html/drinking_water/wsstate.shtml)
+According to the NYC DEP, drinking water enters the NYC water system “virtually lead-free”. The DEP then uses anti-corrosion methods to reduce the leaching of any lead that may be present in plumbing fixtures, solder, or pipes that connect the water system to the thousands of buildings in NYC. Federal regulations require that lead testing of water is done at the tap of a sample NYC buildings each year.  In 2015, 90% of those samples tested below the action level of 15 μg/L. More detailed data on NYC drinking water quality and lead testing procedures and results can be found [here.](http://www.nyc.gov/html/dep/html/drinking_water/wsstate.shtml)
 
 ### Drinking Water Quality and Health
 
@@ -44,11 +44,15 @@ The [New York City Department of Environmental Protection (DEP)](http://www.nyc.
 DBPs are divided into two families: total trihalomethanes (chloroform, bromodichloromethane, dibromochloromethane, and bromoform) and five haloacetic acids (trichloroacetic acid, dichloroacetic acid, monochloroacetic acid, dibromoacetic acid, and monobromoacetic acid).    
   
 
-| The maximum contaminant levels (MCLs) set by EPA are: |  |
-| o Arsenic | 10 µg/L |
-| o Nitrate | 10 mg/L |
-| o DBP: Total Trihalomethanes (TTHM) | 80 µg/L |
-| o DBP: Haloacetic Acids (HAA5) | 60 µg/L |
+The maximum contaminant levels (MCLs) set by EPA are:
+| Contaminent | Level |
+| ----------- | ----------- |
+| Arsenic | 10 µg/L |
+| Nitrate | 10 mg/L |
+| DBP: Total Trihalomethanes (TTHM) | 80 µg/L |
+| DBP: Haloacetic Acids (HAA5) | 60 µg/L |
+
+<br>
 
 ### Prevention
 

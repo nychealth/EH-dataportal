@@ -20,7 +20,7 @@ If you're a regular to the Environment & Health Data Portal, then you may notice
 
 #### Before
 {{< rawhtml >}}
-<img src="https://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/newlook/1.png" alt="The previous Environment and Health Data Portal home page">
+<img src="newlook1.png" alt="The previous Environment and Health Data Portal home page">
 
 {{< /rawhtml >}}
 
@@ -28,7 +28,7 @@ If you're a regular to the Environment & Health Data Portal, then you may notice
 
 #### After
 {{< rawhtml >}}
-<img src="https://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/newlook/2.png" alt="The new Environment and Health Data Portal home page">
+<img src="newlook2.png" alt="The new Environment and Health Data Portal home page">
 
 {{< /rawhtml >}}
 

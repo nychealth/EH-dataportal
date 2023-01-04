@@ -3,7 +3,7 @@ title: "Air quality snapshots: special findings from 10 years of NYCCAS"
 date: 2020-04-21T13:37:45-04:00
 draft: false
 seo_title: "Air quality snapshots"
-seo_description: "Special findings from 10 years of NYCCAS."
+seo_description: "Special findings from 10+ years of New York City's citywide air quality monitoring work."
 layout: flexible
 image: ds-AQsnapshots.jpg
 tags: 
@@ -46,7 +46,7 @@ photocredit: "Mayoral Photography Office"
         <div class="narrow">
             <p>For 10 years, the New York City Community Air Survey (NYCCAS) has measured air quality at 100 locations around NYC. We’ve combined these measurements with data on things related to air quality - like traffic, building emissions, green space, and much more - to model seasonal air quality in every New York City neighborhood. 
                 </p>
-            <p>Our full findings are available in <a href="https://nyc-ehs.net/besp-report/web/nyccas">our annual report</a> - but here are a few other interesting things we've found along the way.</p>
+            <p>Our full findings are available in <a href="/key-topics/airquality/nyccas/">our annual report</a> - but here are a few other interesting things we've found along the way.</p>
             </div>
             <div class="my-2 border" style="background:#f2f2f2;">
                 <div class="narrow py-4">
@@ -221,7 +221,7 @@ photocredit: "Mayoral Photography Office"
 </div>
 <!--end color panel-->
     <div class="narrow">
-        <p>For more information about NYCCAS and our findings over 10 years of air quality monitoring, <a href="/IndicatorPublic/AQHub/index.html">visit the Air Quality Hub</a>.</p>
+        <p>For more information about NYCCAS and our findings over 10 years of air quality monitoring, <a href="/key-topics/airquality/">visit the Air Quality Hub</a>.</p>
         </div>
         <!-- .narrow -->
         <footer class="narrow my-4" id="article-footer">

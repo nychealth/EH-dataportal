@@ -9,7 +9,14 @@
     gtag('config', 'G-64BWDRHRGB');
 </script>
 
+<!-- Google will index this page -->
+<meta name="robots" content="all" />
+
+
 {{ else if eq hugo.Environment "development"}}
+
+<!-- Google won't index this page or follow links -->
+<meta name="robots" content="noindex. nofollow">
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PB98MPZ31B"></script>

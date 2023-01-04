@@ -5,6 +5,7 @@
 const YAML = require('yamljs');
 const S = require("string");
 const { pathToFileURL } = require('url');
+const aq = require('arquero');
 // const path = require("path");
 
 
@@ -51,6 +52,11 @@ module.exports = function(grunt) {
             var mdPagesIndex = [];
             var htmlPagesIndex = [];
             var pagesIndex = [];
+            // var indicator_names = grunt.file.readJSON(build_dir + "/IndicatorData/indicator_names.json");
+            var indicator_names = aq.from(grunt.file.readJSON(build_dir + "/IndicatorData/indicator_names.json"));
+
+            grunt.log.writeln("indicator_names", indicator_names);
+            // grunt.log.writeln("indicator_names", Object.entries(indicator_names));
             
 
             //--------------------------------------------------------------------------------//
@@ -60,6 +66,8 @@ module.exports = function(grunt) {
             // ([rootdir, subdir] are necessary in the function call, or else grunt throws an error, so we need them, even though they don't do anything)
             
             grunt.file.recurse(build_dir, function(abspath, rootdir, subdir, filename) {
+
+                // grunt.log.writeln("recurse html:", indicator_names['1']);
 
                 // The full path to the current file, which is nothing more than
                 // the rootdir + subdir + filename arguments, joined.
@@ -76,7 +84,8 @@ module.exports = function(grunt) {
                 
                 if (S(filename).endsWith(".html")) {
                     
-                    pageObj = processFile(abspath, rootdir, subdir, filename);
+                    pageObj = processFile(abspath, rootdir, subdir, filename, indicator_names);
+                    // pageObj = processFile(abspath, rootdir, subdir, filename);
 
                     // put the pageObj data into the index, labeled with pageObj.href
                     htmlPagesIndex[pageObj.href] = pageObj;
@@ -89,10 +98,13 @@ module.exports = function(grunt) {
             //--------------------------------------------------------------------------------//
             
             grunt.file.recurse(content_dir, function(abspath, rootdir, subdir, filename) {
+
+                // grunt.log.writeln("recurse md:", indicator_names['1']);
                 
                 if (S(filename).endsWith(".md")) {
                     
-                    pageObj = processFile(abspath, rootdir, subdir, filename);
+                    pageObj = processFile(abspath, rootdir, subdir, filename, indicator_names);
+                    // pageObj = processFile(abspath, rootdir, subdir, filename);
 
                     if (pageObj === "draft") {
                         // grunt.log.writeln([">>> draft", abspath]);
@@ -114,7 +126,7 @@ module.exports = function(grunt) {
             mdPagesIndex.forEach(function(page){
 
                 // add html content to md content
-                
+
                 pageObj = {
                     content: htmlPagesIndex[page.href].content,
                     keywords: page.keywords 
@@ -132,19 +144,24 @@ module.exports = function(grunt) {
         //  defining general `processFile` function, which calls type-specific functions
         //--------------------------------------------------------------------------------//
         
-        var processFile = function(abspath, rootdir, subdir, filename) {
-            
+        var processFile = function(abspath, rootdir, subdir, filename, indicator_names) {
+        // var processFile = function(abspath, rootdir, subdir, filename) {
+
+            // grunt.log.writeln("generic:", indicator_names['1']);
+
             var pageIndex;
             
             if (filename !== '.DS_Store') {
                 
                 if (S(filename).endsWith(".html")) {
                     
-                    pageIndex = processHTMLFile(abspath, rootdir, subdir, filename);
-                    
+                    pageIndex = processHTMLFile(abspath, rootdir, subdir, filename, indicator_names);
+                    // pageIndex = processHTMLFile(abspath, rootdir, subdir, filename);
+
                 } else if (S(filename).endsWith(".md")) {
                     
-                    pageIndex = processMDFile(abspath, rootdir, subdir, filename);
+                    pageIndex = processMDFile(abspath, rootdir, subdir, filename, indicator_names);
+                    // pageIndex = processMDFile(abspath, rootdir, subdir, filename);
                     
                 }
                 
@@ -160,7 +177,10 @@ module.exports = function(grunt) {
 
         // this only processes files from "build_dir"
         
-        var processHTMLFile = function(abspath, rootdir, subdir, filename) {
+        var processHTMLFile = function(abspath, rootdir, subdir, filename, indicator_names) {
+        // var processHTMLFile = function(abspath, rootdir, subdir, filename) {
+
+            // grunt.log.writeln("process html:", indicator_names['1']);
             
             var content = grunt.file.read(abspath);
             
@@ -196,11 +216,17 @@ module.exports = function(grunt) {
         //  defining MD-specific function
         //--------------------------------------------------------------------------------//
         
-        var processMDFile = function(abspath, rootdir, subdir, filename) {
+        var processMDFile = function(abspath, rootdir, subdir, filename, indicator_names) {
+        // var processMDFile = function(abspath, rootdir, subdir, filename) {
             
+            // grunt.log.writeln("process md:", indicator_names['1']);
+
             var content = grunt.file.read(abspath);
             var pageIndex;
+            let these_names;
             
+            // grunt.log.writeln("indicator_names", indicator_names);
+
             // First separate the Front Matter from the content and parse it
             
             content = content.split("---");
@@ -216,22 +242,35 @@ module.exports = function(grunt) {
             // if this is draft content, stop processing
 
             if (frontMatter.draft == true) {
-                // grunt.log.writeln([">>> draft", abspath]);
                 return "draft";
             }
-            
+
+            if (abspath.match(/data-explorer/) && typeof frontMatter.indicators != 'undefined') {
+
+                // grunt.log.writeln("", frontMatter.indicators);
+
+                let these_indicator_ids = [...new Set(frontMatter.indicators.flatMap(x => x.IndicatorID))];
+
+                these_names = indicator_names
+                    .filter(aq.escape(d => these_indicator_ids.includes(parseInt(d.key))))
+                    .reify()
+                    .array("value")
+                
+                // grunt.log.writeln("these_names", grunt.log.wordlist(these_names));
+
+            }
             
             // replace all file extensions, i.e. everything after a period
 
             var pageName = S(filename).replace(/\..*/, "").s;
             
-            // if the filename has "index", maybe has 3 characters (".cn" or ".es") and then ends with ".md"
+            // if the filename has "index", maybe has 3 characters (".zh" or ".es") and then ends with ".md"
             
             if (filename.search(/index.{0,3}\.md/) >= 0) {
                 
-                if (filename.search(/\.cn/) >= 0) {
+                if (filename.search(/\.zh/) >= 0) {
                     
-                    href = "cn/" + subdir;
+                    href = "zh/" + subdir;
                     
                 } else if (filename.search(/\.es/) >= 0) {
                     
@@ -249,6 +288,12 @@ module.exports = function(grunt) {
                 
             }
 
+            // allow indexing of page root
+
+            href = typeof href === "undefined" ? "" : href;
+
+            // grunt.log.writeln("pageName:", pageName, " > ", "href: ", href);
+
             let contentParsed = S(content[2])
                 .replace(/<!--(.|[\r\n])*?-->/gm, "")
                 .replace(/{{<.*rawhtml.*>}}(.|[\r\n])*?{{<.*\/rawhtml.*>}}/gm, "@")
@@ -260,13 +305,14 @@ module.exports = function(grunt) {
                 .s
             
             // grunt.log.writeln("href [MD]:", href);
-            // if (href.startsWith("cn")) grunt.log.writeln("\n\n", href, "\n\n", contentParsed)
+            // if (href.startsWith("zh")) grunt.log.writeln("\n\n", href, "\n\n", contentParsed)
 
 
             // Build Lunr index for this page (keeping "-" in content)
 
             pageIndex = {
                 title: frontMatter.title,
+                indicator_names: these_names,
                 tags: frontMatter.tags,
                 categories: frontMatter.categories,
                 keywords: frontMatter.keywords,
