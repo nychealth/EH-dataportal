@@ -191,6 +191,26 @@
     }
     </style>
 
+{{/* ====  save indicator names as a resource  ==== */}}
+
+{{- /* ----  get indicators.json from data repo, and transform into a Hugo object  ---- */ -}}
+
+{{- $indicators_json_resource := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/indicators/indicators.json")) | transform.Unmarshal -}}
+
+{{- /* ----  get names from indicators.json, using scratch  ---- */ -}}
+
+{{- $indicators_scratch := newScratch -}}
+
+{{- range $indicators_json_resource -}}
+    {{- $indicators_scratch.SetInMap "names" (string .IndicatorID) (.IndicatorName) -}}
+{{- end -}}
+
+{{- /* ----  save resource  ---- */ -}}
+
+{{- $indicator_names_json := $indicators_scratch.Get "names" | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorData/indicator_names.json" -}}
+
+{{- warnf ">>>> indicator_names_json.RelPermalink >>>> " $indicator_names_json.RelPermalink -}}
+
 <article class="container-fluid" id="skip-header-target">
     <div class="row">
         <div class="col-12 mt-4">

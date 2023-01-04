@@ -33,6 +33,9 @@ function initLunr() {
                 this.field("title", {
                     boost: 10
                 });
+                this.field("indicator_names", {
+                    boost: 5
+                });
                 this.field("tags", {
                     boost: 5
                 });
