@@ -1,3 +1,7 @@
+// ======================================================================= //
+// links.js
+// ======================================================================= //
+
 const renderLinksChart = (
     data,
     primaryMetadata,   // indicators.json for primary indicator
@@ -8,13 +12,17 @@ const renderLinksChart = (
 
     console.log("** renderLinksChart");
 
+    // ----------------------------------------------------------------------- //
     // arquero table for extracting arrays easily
+    // ----------------------------------------------------------------------- //
 
     let aqData = aq.from(data);
     let Value_1 = aqData.array("Value_1");
     let Value_2 = aqData.array("Value_2");
 
+    // ----------------------------------------------------------------------- //
     // get measure metadata
+    // ----------------------------------------------------------------------- //
 
     const primaryMeasurementType = primaryMetadata[0].MeasurementType;
     const primaryMeasureName     = primaryMetadata[0].MeasureName;
@@ -39,8 +47,9 @@ const renderLinksChart = (
             l => l.MeasureID === secondaryMeasureId
         )[0].SecondaryAxis;
 
-
+    // ----------------------------------------------------------------------- //
     // switch field assignment based on SecondaryAxis preference
+    // ----------------------------------------------------------------------- //
 
     let xMeasure;
     let yMeasure;
@@ -87,7 +96,10 @@ const renderLinksChart = (
             break;
     }
 
+    // ----------------------------------------------------------------------- //
     // get dimensions
+    // ----------------------------------------------------------------------- //
+    
     var legendOrientation = "bottom"
     var columns = 6;
     var bubbleSize = 200;
@@ -96,8 +108,10 @@ const renderLinksChart = (
     window.innerWidth < 576 ? columns = 3 : columns = 6;
     window.innerWidth < 576 ? height = 350 : height = 500;
 
-
+    
+    // ----------------------------------------------------------------------- //
     // get unique unreliability notes (dropping empty)
+    // ----------------------------------------------------------------------- //
 
     const comb_unreliability = data.map(d => d.Note_1).concat(data.map(d => d.Note_2))
     const links_unreliability = [...new Set(comb_unreliability)].filter(d => !d == "");
@@ -112,8 +126,9 @@ const renderLinksChart = (
             
         }
 
-
+    // ----------------------------------------------------------------------- //
     // define spec
+    // ----------------------------------------------------------------------- //
 
     setTimeout(() => {
 
@@ -285,6 +300,10 @@ const renderLinksChart = (
             ]
 
         }
+        
+        // ----------------------------------------------------------------------- //
+        // render chart
+        // ----------------------------------------------------------------------- //
 
         vegaEmbed("#links", linkspec);
 

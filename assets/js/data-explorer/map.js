@@ -1,3 +1,7 @@
+// ======================================================================= //
+// map.js
+// ======================================================================= //
+
 const renderMap = (
     data,
     metadata
@@ -5,8 +9,10 @@ const renderMap = (
 
         console.log("** renderMap");
 
+        // ----------------------------------------------------------------------- //
         // get unique time in data
-
+        // ----------------------------------------------------------------------- //
+        
         const mapYears =  [...new Set(data.map(item => item.Time))];
 
         // console.log("mapYears [map.js]", mapYears);
@@ -23,7 +29,9 @@ const renderMap = (
         let topoFile = '';
 
 
-    // get unique unreliability notes (dropping empty)
+        // ----------------------------------------------------------------------- //
+        // get unique unreliability notes (dropping empty)
+        // ----------------------------------------------------------------------- //
 
         const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
 
@@ -37,8 +45,9 @@ const renderMap = (
             
         }
 
-
-        // can add year to this
+        // ----------------------------------------------------------------------- //
+        // set geo file based on geo type
+        // ----------------------------------------------------------------------- //
 
         console.log("mapGeoType [renderMap]", mapGeoType);
 
@@ -64,8 +73,9 @@ const renderMap = (
             topoFile = 'NYCKids_2017.topo.json';
         }
 
-        
+        // ----------------------------------------------------------------------- //
         // define spec
+        // ----------------------------------------------------------------------- //
         
         mapspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -224,5 +234,9 @@ const renderMap = (
             ]
         }
         
+        // ----------------------------------------------------------------------- //
+        // render chart
+        // ----------------------------------------------------------------------- //
+
         vegaEmbed("#map", mapspec);
     }
