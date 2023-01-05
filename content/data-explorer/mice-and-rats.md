@@ -15,6 +15,7 @@ indicators:
   - 24
   - 48
 - header: null
+  IndicatorID:
   - 2416
 menu:
     main:
