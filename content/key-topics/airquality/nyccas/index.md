@@ -123,7 +123,25 @@ vizElement.parentNode.insertBefore(scriptElement, vizElement);
 
 <hr>
 
-<iframe src="https://nycehs.github.io/nyccas-vis-demo/pollutant-maps-over-time.html" frameborder="no" style="width: 100%; height: 600px"></iframe>
+<button type="button" onclick="updateiframe(1)" class="btn btn-outline-primary yearbtn active" id='btn1'>2021</button>
+<button type="button" onclick="updateiframe(2)"  class="btn btn-outline-primary yearbtn" id='btn2'>All years</button>
+
+<iframe id="iframeEmbed" src="https://nycehs.github.io/nyccas-vis-demo/pollutant-maps.html" frameborder="no" style="width: 100%; height: 600px"></iframe>
+
+<script>
+function updateiframe(x) {
+    document.getElementById('btn1').classList.remove('active')
+    document.getElementById('btn2').classList.remove('active')
+  if (x === 1) {
+    document.getElementById('iframeEmbed').src = 'https://nycehs.github.io/nyccas-vis-demo/pollutant-maps.html'
+    document.getElementById('btn1').classList.add('active')
+
+  } else {
+    document.getElementById('iframeEmbed').src = 'https://nycehs.github.io/nyccas-vis-demo/pollutant-maps-over-time.html'
+    document.getElementById('btn2').classList.add('active')
+  }
+}
+</script>
 
 ---
 
