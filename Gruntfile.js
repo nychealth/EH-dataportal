@@ -17,8 +17,9 @@ if (typeof process.env.GITHUB_WORKSPACE != "undefined") {
     
     // these are hard-coded for now, but GHA vars would allow us to change them dynamically
     
-    var content_dir = process.env.GITHUB_WORKSPACE + "/content";
-    var build_dir   = process.env.GITHUB_WORKSPACE + "/docs";
+    var content_dir  = process.env.GITHUB_WORKSPACE + "/content";
+    var build_dir    = process.env.GITHUB_WORKSPACE + "/docs";
+    var static_dir   = process.env.GITHUB_WORKSPACE + "/static";
     
     // site_root variable, constructed from repo name and github organization
     
@@ -30,8 +31,9 @@ if (typeof process.env.GITHUB_WORKSPACE != "undefined") {
 
     // if not, set vars relative to local dir
     
-    var content_dir = "content";
-    var build_dir   = "docs";
+    var content_dir  = "content";
+    var build_dir    = "docs";
+    var static_dir   = "static";
     
     // site_root variable, constructed from repo name and github organization
     
@@ -52,10 +54,9 @@ module.exports = function(grunt) {
             var mdPagesIndex = [];
             var htmlPagesIndex = [];
             var pagesIndex = [];
-            // var indicator_names = grunt.file.readJSON(build_dir + "/IndicatorData/indicator_names.json");
             var indicator_names = aq.from(grunt.file.readJSON(build_dir + "/IndicatorData/indicator_names.json"));
 
-            grunt.log.writeln("indicator_names", indicator_names);
+            // grunt.log.writeln("indicator_names", indicator_names);
             // grunt.log.writeln("indicator_names", Object.entries(indicator_names));
             
 
@@ -223,6 +224,7 @@ module.exports = function(grunt) {
 
             var content = grunt.file.read(abspath);
             var pageIndex;
+            let these_indicator_ids;
             let these_names;
             
             // grunt.log.writeln("indicator_names", indicator_names);
@@ -249,7 +251,9 @@ module.exports = function(grunt) {
 
                 // grunt.log.writeln("", frontMatter.indicators);
 
-                let these_indicator_ids = [...new Set(frontMatter.indicators.flatMap(x => x.IndicatorID))];
+                these_indicator_ids = [...new Set(frontMatter.indicators.flatMap(x => x.IndicatorID))];
+
+                grunt.log.writeln("these_indicator_ids:", grunt.log.wordlist(these_indicator_ids));
 
                 these_names = indicator_names
                     .filter(aq.escape(d => these_indicator_ids.includes(parseInt(d.key))))
@@ -316,7 +320,7 @@ module.exports = function(grunt) {
                 tags: frontMatter.tags,
                 categories: frontMatter.categories,
                 keywords: frontMatter.keywords,
-                indicators: frontMatter.indicators,
+                indicators: these_indicator_ids,
                 neighborhood: frontMatter.neighborhood,
                 summary: frontMatter.summary,
                 data_json: frontMatter.data_json,
@@ -332,9 +336,14 @@ module.exports = function(grunt) {
             
             return pageIndex;
         };
-
-        grunt.file.write(build_dir + "/js/lunr/PagesIndex.json", JSON.stringify(indexPages(), replacer = null, space = 4));
-        grunt.log.ok("Index built");
+        
+        // save to docs
+        grunt.file.write(`${build_dir}/js/lunr/PagesIndex.json`, JSON.stringify(indexPages(), replacer = null, space = 4));
+        grunt.log.ok("Index built to docs");
+        
+        // copy to static (for local serving)
+        grunt.file.copy(`${build_dir}/js/lunr/PagesIndex.json`, `${static_dir}/js/lunr/PagesIndex.json`);
+        grunt.log.ok("Index copied to static");
 
     });
 };
