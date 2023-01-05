@@ -230,7 +230,7 @@ Take action! Send elected officials an email.
 // Loads our City Council list
 var councilTable = [];
 var district;
-d3.csv(sitepath+'/take-action/council.csv').then(function(data) {
+d3.csv('{{ .Site.BaseURL }}take-action/council.csv').then(function(data) {
   councilTable = data;
   // console.log('All City Council members:')
   // console.table(councilTable)
