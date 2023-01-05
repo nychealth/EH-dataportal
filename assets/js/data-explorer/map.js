@@ -70,7 +70,7 @@ const renderMap = (
         } else if (mapGeoType === "NYCKIDS2017") {
             topoFile = 'NYCKids_2017.topo.json';
         } else if (mapGeoType === "NYCKIDS2019") {
-            topoFile = 'NYCKids_2017.topo.json';
+            topoFile = 'NYCKids_2019.topo.json';
         }
 
         // ----------------------------------------------------------------------- //
