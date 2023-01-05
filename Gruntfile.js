@@ -6,7 +6,6 @@ const YAML = require('yamljs');
 const S = require("string");
 const { pathToFileURL } = require('url');
 const aq = require('arquero');
-// const path = require("path");
 
 
 // check to see if this is running on GHA
@@ -21,12 +20,6 @@ if (typeof process.env.GITHUB_WORKSPACE != "undefined") {
     var build_dir    = process.env.GITHUB_WORKSPACE + "/docs";
     var static_dir   = process.env.GITHUB_WORKSPACE + "/static";
     
-    // site_root variable, constructed from repo name and github organization
-    
-    // var repo_name  = process.env.GITHUB_REPOSITORY;         // nychealth/EH-dataportal
-    // var repo_owner = process.env.GITHUB_REPOSITORY_OWNER;   // nychealth
-    // var site_root  = S(repo_name).chompLeft(repo_owner).s + "/";  // EH-dataportal
-    
 } else {
 
     // if not, set vars relative to local dir
@@ -34,10 +27,6 @@ if (typeof process.env.GITHUB_WORKSPACE != "undefined") {
     var content_dir  = "content";
     var build_dir    = "docs";
     var static_dir   = "static";
-    
-    // site_root variable, constructed from repo name and github organization
-    
-    // var site_root  = ""; 
     
 }
 
@@ -55,10 +44,6 @@ module.exports = function(grunt) {
             var htmlPagesIndex = [];
             var pagesIndex = [];
             var indicator_names = aq.from(grunt.file.readJSON(build_dir + "/IndicatorData/indicator_names.json"));
-
-            // grunt.log.writeln("indicator_names", indicator_names);
-            // grunt.log.writeln("indicator_names", Object.entries(indicator_names));
-            
 
             //--------------------------------------------------------------------------------//
             // running `processFile` on all HTML files on gh-pages branch
@@ -86,7 +71,6 @@ module.exports = function(grunt) {
                 if (S(filename).endsWith(".html")) {
                     
                     pageObj = processFile(abspath, rootdir, subdir, filename, indicator_names);
-                    // pageObj = processFile(abspath, rootdir, subdir, filename);
 
                     // put the pageObj data into the index, labeled with pageObj.href
                     htmlPagesIndex[pageObj.href] = pageObj;
@@ -100,12 +84,10 @@ module.exports = function(grunt) {
             
             grunt.file.recurse(content_dir, function(abspath, rootdir, subdir, filename) {
 
-                // grunt.log.writeln("recurse md:", indicator_names['1']);
                 
                 if (S(filename).endsWith(".md")) {
                     
                     pageObj = processFile(abspath, rootdir, subdir, filename, indicator_names);
-                    // pageObj = processFile(abspath, rootdir, subdir, filename);
 
                     if (pageObj === "draft") {
                         // grunt.log.writeln([">>> draft", abspath]);
@@ -146,9 +128,6 @@ module.exports = function(grunt) {
         //--------------------------------------------------------------------------------//
         
         var processFile = function(abspath, rootdir, subdir, filename, indicator_names) {
-        // var processFile = function(abspath, rootdir, subdir, filename) {
-
-            // grunt.log.writeln("generic:", indicator_names['1']);
 
             var pageIndex;
             
@@ -157,12 +136,10 @@ module.exports = function(grunt) {
                 if (S(filename).endsWith(".html")) {
                     
                     pageIndex = processHTMLFile(abspath, rootdir, subdir, filename, indicator_names);
-                    // pageIndex = processHTMLFile(abspath, rootdir, subdir, filename);
 
                 } else if (S(filename).endsWith(".md")) {
                     
                     pageIndex = processMDFile(abspath, rootdir, subdir, filename, indicator_names);
-                    // pageIndex = processMDFile(abspath, rootdir, subdir, filename);
                     
                 }
                 
@@ -179,10 +156,7 @@ module.exports = function(grunt) {
         // this only processes files from "build_dir"
         
         var processHTMLFile = function(abspath, rootdir, subdir, filename, indicator_names) {
-        // var processHTMLFile = function(abspath, rootdir, subdir, filename) {
 
-            // grunt.log.writeln("process html:", indicator_names['1']);
-            
             var content = grunt.file.read(abspath);
             
             // replace all file extensions, i.e. everything after a period
@@ -197,7 +171,6 @@ module.exports = function(grunt) {
             let contentParsed = S(content[2])
                 .stripTags()
                 .replace(/(<!--)(.|[\r\n])*?(-->)/gm, "")
-                // .replace(/(\{\{<.*rawhtml.*>\}\})(.|[\r\n])*?(\{\{<.*\/rawhtml.*>\}\})/gm, "")
                 .replace(/[!\"#\＄%&\'\(\)\*\+,-\./:;<=>\?@\[\\\]\^`{\|}~]/g, "")
                 .replace(/\s-\s/g, " ")
                 .replace(/\s+/g, " ")
@@ -206,7 +179,6 @@ module.exports = function(grunt) {
 
             return {
                 title: pageName,
-                // href: site_root + S(href).dasherize().s.toLowerCase(),
                 href: S(href).dasherize().s.toLowerCase(),
                 content: contentParsed
             };
@@ -218,9 +190,6 @@ module.exports = function(grunt) {
         //--------------------------------------------------------------------------------//
         
         var processMDFile = function(abspath, rootdir, subdir, filename, indicator_names) {
-        // var processMDFile = function(abspath, rootdir, subdir, filename) {
-            
-            // grunt.log.writeln("process md:", indicator_names['1']);
 
             var content = grunt.file.read(abspath);
             var pageIndex;
@@ -249,11 +218,9 @@ module.exports = function(grunt) {
 
             if (abspath.match(/data-explorer/) && typeof frontMatter.indicators != 'undefined') {
 
-                // grunt.log.writeln("", frontMatter.indicators);
-
                 these_indicator_ids = [...new Set(frontMatter.indicators.flatMap(x => x.IndicatorID))];
 
-                grunt.log.writeln("these_indicator_ids:", grunt.log.wordlist(these_indicator_ids));
+                grunt.log.writeln(filename, ":", grunt.log.wordlist(these_indicator_ids));
 
                 these_names = indicator_names
                     .filter(aq.escape(d => these_indicator_ids.includes(parseInt(d.key))))
@@ -329,7 +296,6 @@ module.exports = function(grunt) {
                 seo_title: frontMatter.seo_title,
                 seo_description: frontMatter.seo_description,
                 seo_image: frontMatter.seo_image,
-                // href: site_root + S(href).trim().s.toLowerCase(),
                 href: S(href).trim().s.toLowerCase(),
                 content: contentParsed
             };
