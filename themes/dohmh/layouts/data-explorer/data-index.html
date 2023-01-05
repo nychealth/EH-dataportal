@@ -23,8 +23,12 @@
         {{- $subtopic_indicators_dict := newScratch -}}
         {{- $subtopic_indicators_map := newScratch -}}
         
-        {{/*  iterate over all pages on the site  */}}
+        {{/*  create a slice for an array of all internal_ids  */}}
+
+        {{- $all_indicator_ids := slice -}}
         
+        {{/*  iterate over all pages on the site  */}}
+
         {{- range .Site.Pages -}}
             
             {{/*  create a new "slice" (i.e., an array)  */}}
@@ -60,9 +64,18 @@
                 {{- $subtopic_indicators_map.SetInMap "subtopic_indicators" $subtopic ($subtopic_indicators_dict) -}}
 
             {{- end -}}
+
+            {{- $all_indicator_ids = $all_indicator_ids | append $indicators -}}
             
         {{- end -}}
 
+        {{-  $all_unique_indicator_ids := $all_indicator_ids | uniq | sort  -}}
+
+        {{-  warnf "all_unique_indicator_ids >>>> " $all_unique_indicator_ids  -}}
+        
+        {{- $all_unique_indicator_ids_json := $all_unique_indicator_ids | jsonify | resources.FromString "/IndicatorData/all_unique_indicator_ids.json" -}}
+        
+        {{-  warnf ">>>> all_unique_indicator_ids_json.RelPermalink >>>> " $all_unique_indicator_ids_json.RelPermalink  -}}
         
         <p class="sr-only">This produces a list of subtopics and IndicatorIDs, stored in the variable <code>$subtopic_indicators</code>, 
             and printed to the console as a JavaScript variable, and then as an Arquero table.</p>
