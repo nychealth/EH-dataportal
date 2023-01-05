@@ -1,9 +1,11 @@
-// import { all, desc, op, table } from '../../../node_modules/arquero/dist/arquero.min.js';
+// ======================================================================= //
+// global.js
+// ======================================================================= //
 
-// clicking on the indicator dropdown calls loadIndicator with that IndicatorID
+// ----------------------------------------------------------------------- //
+// top scope variables
+// ----------------------------------------------------------------------- //
 
-// let indicators = []; // indicator data
-// let defaultIndicatorId;
 let selectedSummaryYears = [];
 let selectedSummaryGeography = [];
 let aboutMeasures;
@@ -93,6 +95,9 @@ const url = new URL(window.location);
 
 let hashchange = new Event('hashchange');
 
+// ----------------------------------------------------------------------- //
+// geo ranks
+// ----------------------------------------------------------------------- //
 
 // define georank function at top scope, so we can use it later
 
@@ -139,9 +144,9 @@ const geoTypes = [
     "NTA2020"
 ]
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 // measure info functions
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 
 // Renders the Indicator Title and Description
 
@@ -163,9 +168,9 @@ const renderAboutSources = (about, sources) => {
     dataSources.innerHTML = sources;
 }
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 // chart resize
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 
 const updateChartPlotSize = () => {
     setTimeout(() => {

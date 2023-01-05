@@ -1,3 +1,7 @@
+// ======================================================================= //
+// summary.js
+// ======================================================================= //
+
 const renderTable = () => {
 
     console.log("** renderTable");
@@ -85,7 +89,6 @@ const renderTable = () => {
     measures.forEach((m) => {
         
         measureAlignMap.set(m, "r")
-        // measureImputeMap.set(m, () => "-")
         
     });
     
@@ -105,7 +108,6 @@ const renderTable = () => {
 
 
     const measureAlignObj = Object.fromEntries(measureAlignMap);
-    // const measureImputeObj = Object.fromEntries(measureImputeMap);
     
     // console.log("measureAlignObj", measureAlignObj);
     // console.log("measureImputeObj", measureImputeObj);
@@ -140,7 +142,9 @@ const renderTable = () => {
     document.querySelector('#summary-table table').className = "cell-border stripe"
     document.querySelector('#summary-table table').width = "100%"
     
-    // call function to show table
+    // ----------------------------------------------------------------------- //
+    // specify DataTable
+    // ----------------------------------------------------------------------- //
     
     $('#tableID').DataTable({
         scrollY: 475,
@@ -164,7 +168,6 @@ const renderTable = () => {
             { targets: [0, 1, 2, 3], visible: false}
         ],
         "createdRow": function ( row, data, index ) {
-            // console.log('RENDER TABLE FUNCTION - CreatedRow')
             const time    = data[0];
             const GeoTypeDesc = data[1];
             if (time && GeoTypeDesc) {
@@ -173,7 +176,6 @@ const renderTable = () => {
             }
         },
         "drawCallback": function ( settings ) {
-            // console.log('RENDER TABLE FUNCTION - DrawCallback')
             const api = this.api();
             const data = api.rows( {page:'current'} ).data()
             const rows = api.rows( {page:'current'} ).nodes();
@@ -211,9 +213,9 @@ const renderTable = () => {
     }
 
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 // handler functions for summary table
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 
 const handleToggle = () => {
 
