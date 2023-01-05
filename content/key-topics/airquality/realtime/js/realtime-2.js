@@ -26,7 +26,7 @@ var floorDate;
 // ---- INITIAL: ingest data feed ---- // 
 aq.loadCSV(
     // "data/nyccas_realtime_DEC.csv" // temporary local placeholder
-    "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv"
+    "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv" // actual live data feed
 
 ).then(data => {
 
@@ -41,6 +41,7 @@ aq.loadCSV(
     
     // console.log("fullTable:", fullTable);
     getStationsFromData();
+    loadMonitorLocations()
     
 });
 
@@ -57,20 +58,25 @@ function getStationsFromData() {
 // ---- Creates list of active monitors and their metadata (lat/longs, colors, etc) and run other functions ---- //
 var allMonitorLocations;
 var activeMonitors = [];
-d3.csv("data/monitor_locations.csv").then(data => {
-    allMonitorLocations = data;
-    for (let i = 0; i < allMonitorLocations.length; i++) {
-        // if stations includes allMonitorLocations[i].loc_col, push allMonitorLocations[i] to activeMonitors
-        if (stations.includes(allMonitorLocations[i].loc_col)) {
-            activeMonitors.push(allMonitorLocations[i])
+function loadMonitorLocations() {
+    d3.csv("data/monitor_locations.csv").then(data => {
+        allMonitorLocations = data;
+        for (let i = 0; i < allMonitorLocations.length; i++) {
+            // if stations includes allMonitorLocations[i].loc_col, push allMonitorLocations[i] to activeMonitors
+            if (stations.includes(allMonitorLocations[i].loc_col)) {
+                activeMonitors.push(allMonitorLocations[i])
+            }
         }
-    }
-    // Draws map, buttons, listener, and retrieves chart spec
-    drawMap()
-    drawButtons()
-    listenButtons();
-    getSpec();
-})
+        // Draws map, buttons, listener, and retrieves chart spec
+        drawMap()
+        drawButtons()
+        listenButtons();
+        getSpec();
+    })
+}
+
+
+
 
 // ---- Getting the initial chart spec, inserts color and  earliest date in the data feed to it ---- // 
 var filter
@@ -294,6 +300,7 @@ function restore() {
         x.classList.remove('active') // remove from all 
     })
     getSpec();
+    document.getElementById('inputNum').value = 7
 
 }
 
