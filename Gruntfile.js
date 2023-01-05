@@ -253,7 +253,7 @@ module.exports = function(grunt) {
 
                 these_indicator_ids = [...new Set(frontMatter.indicators.flatMap(x => x.IndicatorID))];
 
-                grunt.log.writeln("these_indicator_ids:", grunt.log.wordlist(these_indicator_ids));
+                // grunt.log.writeln("these_indicator_ids:", grunt.log.wordlist(these_indicator_ids));
 
                 these_names = indicator_names
                     .filter(aq.escape(d => these_indicator_ids.includes(parseInt(d.key))))
