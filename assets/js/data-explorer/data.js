@@ -228,6 +228,7 @@ const joinData = () => {
         .select(
             "GeoID",
             "GeoType",
+            "GeoTypeDesc",
             "GeoRank",
             "Geography",
             "MeasureID",

@@ -248,8 +248,8 @@
                     row_i.appendChild(cell_3);
                     
                     // geographies
-                    
-                    const geos_order = ["Citywide", "Borough", "NYCKIDS", "UHF33", "UHF34", "UHF42", "Subboro", "CD", "NTA"];
+
+                    const geos_order = ["Citywide", "Borough", "NYCKIDS2017", "NYCKIDS2019", "UHF33", "UHF34", "UHF42", "Subboro", "CD", "CDTA", "NTA2010", "NTA2020"];
                     let unique_geographies = [...new Set(geographies)];
                     
                     // sorting unique_geographies based on order of geos_order
@@ -265,13 +265,18 @@
                     
                     for (l = 0; l < unique_geographies.length; l++) {
                         
-                        
                         let li = document.createElement('li')
+
+                        {{/*  console.log("unique_geographies[l]", unique_geographies[l]);  */}}
+
+                        let geoTypePretty = prettifyGeoType(unique_geographies[l])
+
+                        console.log("geoTypePretty", geoTypePretty);
                         
                         // setting id as geo name
-                        li.innerHTML = unique_geographies[l];
-                        li.setAttribute("geo", unique_geographies[l]);
-                        li.classList.add("btn", "btn-sm", "geobullets", unique_geographies[l])
+                        li.innerHTML = geoTypePretty;
+                        li.setAttribute("geo", geoTypePretty);
+                        li.classList.add("btn", "btn-sm", "geobullets", geoTypePretty)
                         
                         // setting 'onclick' action for each geography, with the geo as the argument
                         
@@ -291,10 +296,9 @@
                     cell_5.innerHTML = maxTime.getFullYear();
                     row_i.appendChild(cell_5)
 
-                                        
+
                     // sources
                     let unique_sources = [...new Set(sources)];
-                    // console.log("unique_sources", unique_sources);
                     let usrc = document.createElement('ul')
                     usrc.classList.add('no-bullets')
                     cell_6.appendChild(usrc);
@@ -337,14 +341,19 @@
                 
                 $('#indicators').DataTable().column(":contains(Geographies)").search(active_geo.join('|'), true, false, false).draw()
                 
-                // Adding this here is sort of a kludge, but I'd have to refactor the entire pattern to avoid it
-                // buttons with either geo as a class
-                let geo_buttons = document.querySelectorAll(active_geo.map(i => "." + i).toString());
-                
-                for (let i = 0; i < geo_buttons.length; i++) {
-                    geo_buttons[i].classList.add("active");
+                // only filter if geos are selected (to avoid calling `querySelectorAll` on null)
+
+                if (active_geo.length > 0) {
+
+                    // Adding this here is sort of a kludge, but I'd have to refactor the entire pattern to avoid it
+                    // buttons with either geo as a class
+                    let geo_buttons = document.querySelectorAll(active_geo.map(i => "." + i).toString());
+
+                    for (let i = 0; i < geo_buttons.length; i++) {
+                        geo_buttons[i].classList.add("active");
+                    }
                 }
-                
+
             }
             
             function toggle_button(e) {
@@ -392,6 +401,34 @@
                 
                 geobullet_filter(active_geographies);
                 
+            }
+            
+            // create geo dropdown for table (keeping georank order)
+            
+            const prettifyGeoType = (GeoType) => {
+
+                switch (GeoType) {
+
+                    case 'NYCKIDS2017':
+                        return 'NYCKIDS';
+
+                    case 'NYCKIDS2019':
+                        return 'NYCKIDS';
+
+                    case 'CDTA2020':
+                        return 'CDTA';
+
+                    case 'NTA2010':
+                        return 'NTA';
+
+                    case 'NTA2020':
+                        return 'NTA';
+
+                    default:
+                        console.log("**default**");
+                        return GeoType;
+
+                }
             }
             
         </script>

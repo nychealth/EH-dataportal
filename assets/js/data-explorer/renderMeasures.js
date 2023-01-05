@@ -787,13 +787,55 @@ const renderMeasures = async () => {
 
     // create geo dropdown for table (keeping georank order)
 
+    const prettifyGeoType = (GeoType) => {
+
+        switch (GeoType) {
+
+            case 'NYCKIDS2017':
+                return 'NYCKIDS';
+
+            case 'NYCKIDS2019':
+                return 'NYCKIDS';
+
+            case 'CDTA2020':
+                return 'CDTA';
+
+            case 'NTA2010':
+                return 'NTA';
+
+            case 'NTA2020':
+                return 'NTA';
+
+            default:
+                console.log("**default**");
+                return GeoType;
+            
+        }
+    }
+
     const tableGeoTypes = [...new Set(fullDataTableObjects.map(item => item.GeoType))];
     const dropdownGeoTypes = geoTypes.filter(g => tableGeoTypes.includes(g))
 
+    // console.log("geoTypes:", geoTypes);
+    // console.log("dropdownGeoTypes:", dropdownGeoTypes);
+
     dropdownGeoTypes.forEach((geoType, index) => {
 
+        // use generic GeoType instead of year-specific
+
+        let geoTypePretty = geoType.slice(); // new array
+        
+        // console.log("DD geoType:", geoType);
+
+        geoTypePretty = prettifyGeoType(geoTypePretty);
+            
+        // console.log("DD geoTypePretty:", geoTypePretty);
+
         selectedSummaryGeography.push(geoType);
-        dropdownTableGeo.innerHTML += `<label class="dropdown-item checkbox-geo"><input type="checkbox" value="${geoType}" checked /> ${geoType}</label>`;
+        
+        // console.log("selectedSummaryGeography:", selectedSummaryGeography);
+
+        dropdownTableGeo.innerHTML += `<label class="dropdown-item checkbox-geo"><input type="checkbox" value="${geoType}" checked /> ${geoTypePretty}</label>`;
 
     });
 
