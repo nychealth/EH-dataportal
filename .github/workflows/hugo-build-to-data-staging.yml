@@ -18,7 +18,7 @@ jobs:
 
     if: github.event.pull_request.merged == true
 
-    # don't run two of these jobs at the same time, but queue other ones for the same ref group
+    # wait for other triggered jobs to finish before running this
 
     concurrency:
       group: $${{ github.ref }}
