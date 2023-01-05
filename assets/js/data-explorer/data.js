@@ -138,6 +138,8 @@ const loadData = (this_indicatorId) => {
     .then(response => response.json())
     .then(async data => {
 
+        // console.log("data [loadData]", data);
+
         // call the geo file loading function
 
         loadGeo();

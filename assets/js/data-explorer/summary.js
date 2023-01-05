@@ -7,6 +7,8 @@ const renderTable = () => {
     const groupId = 0;
     let filteredTableData;
 
+    // console.log("fullDataTableObjects", fullDataTableObjects);
+
     const filteredTableYearData = 
         fullDataTableObjects
         .filter(d => selectedSummaryYears.includes(d.Time))
@@ -60,16 +62,16 @@ const renderTable = () => {
     } else {
         
         // if no selected geo, then set table to blank and return early
-        document.querySelector("#tableID").innerHTML = '';
+        document.getElementById('summary-table').innerHTML = '';
 
         return;
     }
     
-    // if no selected geos not in data, then set table to blank and return early
+    // if selected geos not in data, then set table to blank and return early
 
     if (filteredTableData.length === 0) {
 
-        document.querySelector("#tableID").innerHTML = '';
+        document.getElementById('summary-table').innerHTML = '';
         
         return;
     }
