@@ -39,11 +39,12 @@ After committing, working branches can be merged into `development` for testing 
 ### Branches
 A run-down of main branches, actions, and purposes are:
 
-| Branch name:  | Action on merge:         | `EHDP-data` branch:  | Used for:                          |
-|---------------|--------------------------|----------------------|------------------------------------|
-| `development` | Builds to `gh-pages`     | `production`         | General development                |
-| `production`  | Builds to `data-staging` | `staging`            | Demoing data (build/deploy to 201) |
-| `production`  | Builds to `prod-deploy ` | `production`         | Deployment to live server          |
+| Branch name:  | Action on merge:         | `EHDP-data` branch:  | Deploy to | Used for:                          |
+|---------------|--------------------------|----------------------|------------|------------------------------------|
+| `development` | Builds to `gh-pages`     | `production`         | github pages | General development                |
+| `development` | Builds to `dev-test`     | `staging`            | 307 (internal) | Demoing data & content        |
+| `production`  | Builds to `data-staging` | `staging`            | (307 (internal)) | Demoing data  |
+| `production`  | Builds to `prod-deploy ` | `production`         | Production servers | Live site          |
 
 On merge, these branches are automatically [built](https://github.com/peaceiris/actions-hugo and [served](https://github.com/peaceiris/actions-gh-pages) to other branches using Github Actions (triggerd by a merged pull request).  _(Note that this requires a workflow YAML file in both [`main`](https://github.com/nychealth/EH-dataportal/blob/main/.github/workflows/hugo-build-gh-pages.yml) and [`development`](https://github.com/nychealth/EH-dataportal/blob/development/.github/workflows/hugo-build-gh-pages.yml).)_
 
