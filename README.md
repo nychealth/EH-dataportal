@@ -155,6 +155,9 @@ The repo includes some files to integrate with Cloudcannon, an online CMS provid
 - `.cloudcannon/prebuild` is code that runs when Cloudcannon builds/serves the site.
 - `.cloudcannon/schemas` include frontmatter templates for when CC works with frontmatter.
 
+### Build caching
+Resources used to build (like Neighborhood Report spec json, for example) may be cached by whatever machine is running a build. Updates to resources might not be reflected in a build if they're cached. In `config.toml`, setting the cache to have a `maxAge = 0` reduces the cache lifespan so that the build uses fresh, updates resources. 
+
 ---
 
 ## Contact us
