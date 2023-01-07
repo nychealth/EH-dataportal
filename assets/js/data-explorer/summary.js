@@ -17,9 +17,9 @@ const renderTable = () => {
         fullDataTableObjects
         .filter(d => selectedSummaryYears.includes(d.Time))
 
-    // get geoTypes available for this year
+    // get (pretty) geoTypes available for this year
 
-    const dataGeos = [...new Set(filteredTableYearData.map(d => d.GeoType))];
+    const dataGeos = [...new Set(filteredTableYearData.map(d => prettifyGeoType(d.GeoType)))];
 
     // console.log("dataGeos", dataGeos);
 
@@ -36,7 +36,8 @@ const renderTable = () => {
     $(allGeoChecks).removeClass("disabled");
     $(allGeoChecks).attr('aria-disabled', false);
     
-    // add disabled class for geos not available for this year
+    // now add disabled class for geos not available for this year
+
     for (const checkbox of allGeoChecks) {
 
         // console.log("checkbox", checkbox.children[0].value);
@@ -61,7 +62,7 @@ const renderTable = () => {
         
         filteredTableData = 
             filteredTableYearData
-            .filter(d => selectedSummaryGeography.includes(d.GeoType))
+            .filter(d => selectedSummaryGeography.includes(prettifyGeoType(d.GeoType)))
 
     } else {
         
@@ -83,7 +84,6 @@ const renderTable = () => {
     // console.log("filteredTableData [renderTable]", filteredTableData);
     
     const measureAlignMap = new Map();
-    // const measureImputeMap = new Map();
     const measures = [...new Set(filteredTableData.map(d => d.MeasurementDisplay))];
     
     measures.forEach((m) => {

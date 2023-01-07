@@ -31,11 +31,6 @@ const renderLinksChart = (
 
     const primaryGeoType = data[0].GeoType; // from the actual data we're charting
 
-    const primaryGeoTypeDescription = 
-        primaryMetadata[0].AvailableGeographyTypes.filter(
-            gt => gt.GeoType === primaryGeoType
-        )[0].GeoTypeDescription;    
-
     const secondaryMeasurementType = secondaryMetadata[0].MeasurementType
     const secondaryMeasureName     = secondaryMetadata[0].MeasureName
     const secondaryMeasureId       = secondaryMetadata[0].MeasureID

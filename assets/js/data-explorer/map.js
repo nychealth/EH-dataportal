@@ -24,7 +24,6 @@ const renderMap = (
                 gt => gt.GeoType === mapGeoType
             )[0].GeoTypeDescription;
 
-        let mapDisplay = metadata[0].DisplayType;
         let mapTime = mapYears[0];
         let topoFile = '';
 
@@ -136,7 +135,8 @@ const renderMap = (
                                     "lookup": "GeoID",
                                     "from": {
                                         "data": {
-                                            "url": `${data_repo}${data_branch}/geography/${topoFile}`,
+                                            // "url": `${data_repo}${data_branch}/geography/${topoFile}`,
+                                            "url": `${baseURL}/geography/${topoFile}`,
                                             "format": {"type": "topojson", "feature": "collection"}
                                         },
                                         "key": "properties.GEOCODE"
