@@ -3,7 +3,7 @@ title: Climate
 date: 2021-05-28 18:02:58.827642
 draft: false
 seo_title: "Climate data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["climatehealth"]
 keywords: ["climate change","global warming","health","climate","weather-related illness","storms"]

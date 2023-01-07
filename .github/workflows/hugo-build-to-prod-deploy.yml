@@ -18,11 +18,11 @@ jobs:
 
     if: github.event.pull_request.merged == true
 
-    # don't run two of these jobs at the same time
+    # wait for other triggered jobs to finish before running this
 
     concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: true
+      group: $${{ github.ref }}
+      cancel-in-progress: false
 
     # define job's steps
 
@@ -104,27 +104,28 @@ jobs:
       # build site with Hugo
 
       - name: Hugo Build
-        run: hugo --environment production --cleanDestinationDir
+        run: hugo --environment production --cleanDestinationDir --debug
 
       # run gruntfile action
 
       - name: Build index with Grunt
         run: |
           cd '${{ github.workspace }}'
-          grunt lunr-index
+          grunt lunr-index --stack
 
       # commit built index
 
-      - name: Commit changes to PagesIndex.json
+      - name: Commit changes to PagesIndex.json, package.json, & package-lock.json
         uses: elstudio/actions-js-build/commit@v4
         with:
-          commitMessage: Regenerate index
+          commitMessage: Update index & NPM package list
 
       # publish to "deploy" branch
 
       - name: Publish to "prod-deploy"
         uses: peaceiris/actions-gh-pages@v3
         with:
+          full_commit_message: ${{ github.event.head_commit.message }} # will usually be merge commit
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: prod-deploy
           publish_dir: ./docs/

@@ -3,7 +3,7 @@ title: "We're Hiring"
 date: 2021-11-24T13:30:21-05:00
 draft: false
 seo_title: "Our bureau is hiring"
-seo_description: "Join our team."
+seo_description: "Join our team at the NYC Department of Health."
 ---
 
 We're hiring! See below for open positions in our bureau.
@@ -43,29 +43,7 @@ We're looking for a leader experienced in applying research to program design an
 - Visit  [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 552896.
 
 ---
-<br>
 
-**Social Resiliency Senior Manager**
-We're looking for a program manager, with experience in community and faith organization, to oversee a suite of programs aimed at bolstering social connections as a pathway for community-level climate resiliency.
-- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 518101.
-
----
-<br>
-
-**Environmental Operations Data Scientist**
-
-The Bureau of Environmental Surveillance and Policy is recruiting for a City Research Scientist to provide critical support for analysis and reporting for food service establishment inspection activities.
-- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 544194.
-
----
-<br>
-
-**Environmental Operations Data Scientist**
-
-The Bureau of Environmental Surveillance and Policy is recruiting for a City Research Scientist to provide critical support for analysis and reporting for food service establishment inspection activities.
-- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 544204.
-
----
 <br>
 
 **Division Counsel/Appeals Officer**

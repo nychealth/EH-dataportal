@@ -1,3 +1,7 @@
+// ======================================================================= //
+// map.js
+// ======================================================================= //
+
 const renderMap = (
     data,
     metadata
@@ -5,8 +9,10 @@ const renderMap = (
 
         console.log("** renderMap");
 
+        // ----------------------------------------------------------------------- //
         // get unique time in data
-
+        // ----------------------------------------------------------------------- //
+        
         const mapYears =  [...new Set(data.map(item => item.Time))];
 
         // console.log("mapYears [map.js]", mapYears);
@@ -18,18 +24,40 @@ const renderMap = (
                 gt => gt.GeoType === mapGeoType
             )[0].GeoTypeDescription;
 
-        let mapDisplay = metadata[0].DisplayType;
         let mapTime = mapYears[0];
         let topoFile = '';
 
-        // can add year to this
+
+        // ----------------------------------------------------------------------- //
+        // get unique unreliability notes (dropping empty)
+        // ----------------------------------------------------------------------- //
+
+        const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
+
+        // console.log("map_unreliability", map_unreliability);
+
+        document.querySelector("#map-unreliability").innerHTML = ""; // blank to start
+
+        for (let i = 0; i < map_unreliability.length; i++) {
+            
+            document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + map_unreliability[i] + "</div>" ;
+            
+        }
+
+        // ----------------------------------------------------------------------- //
+        // set geo file based on geo type
+        // ----------------------------------------------------------------------- //
 
         console.log("mapGeoType [renderMap]", mapGeoType);
 
-        if (mapGeoType === "NTA") {
-            topoFile = 'NTA.topo.json';
+        if (mapGeoType === "NTA2010") {
+            topoFile = 'NTA_2010.topo.json';
+        } else if (mapGeoType === "NTA2020") {
+            topoFile = 'NTA_2020.topo.json';
         } else if (mapGeoType === "CD") {
             topoFile = 'CD.topo.json';
+        } else if (mapGeoType === "CDTA2020") {
+            topoFile = 'CDTA_2020.topo.json';
         } else if (mapGeoType === "PUMA") {
             topoFile = 'PUMA_or_Subborough.topo.json';
         } else if (mapGeoType === "Subboro") {
@@ -38,12 +66,15 @@ const renderMap = (
             topoFile = 'UHF42.topo.json';
         } else if (mapGeoType === "UHF34") {
             topoFile = 'UHF34.topo.json';
-        } else if (mapGeoType === "NYCKIDS") {
-            topoFile = 'NYCKids.topo.json';
+        } else if (mapGeoType === "NYCKIDS2017") {
+            topoFile = 'NYCKids_2017.topo.json';
+        } else if (mapGeoType === "NYCKIDS2019") {
+            topoFile = 'NYCKids_2019.topo.json';
         }
 
-        
+        // ----------------------------------------------------------------------- //
         // define spec
+        // ----------------------------------------------------------------------- //
         
         mapspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -104,7 +135,8 @@ const renderMap = (
                                     "lookup": "GeoID",
                                     "from": {
                                         "data": {
-                                            "url": `${data_repo}${data_branch}/geography/${topoFile}`,
+                                            // "url": `${data_repo}${data_branch}/geography/${topoFile}`,
+                                            "url": `${baseURL}/geography/${topoFile}`,
                                             "format": {"type": "topojson", "feature": "collection"}
                                         },
                                         "key": "properties.GEOCODE"
@@ -140,10 +172,8 @@ const renderMap = (
                                 "tooltip": [
                                     {"field": "Geography", "title": "Neighborhood"},
                                     {
-                                        "field": "Value",
-                                        "type": "quantitative",
-                                        "title": mapMeasurementType,
-                                        "format": ",.1~f"
+                                        "field": "DisplayValue",
+                                        "title": mapMeasurementType
                                     },
                                 ],
                             },
@@ -179,10 +209,8 @@ const renderMap = (
                                 "title": "Neighborhood"
                             },
                             {
-                                "field": "Value", 
-                                "type": "quantitative", 
-                                "title": mapMeasurementType,
-                                "format": ",.1~f"
+                                "field": "DisplayValue", 
+                                "title": mapMeasurementType
                             },
                         ],
                         "x": {"field": "GeoID", "sort": "y", "axis": null},
@@ -206,5 +234,9 @@ const renderMap = (
             ]
         }
         
+        // ----------------------------------------------------------------------- //
+        // render chart
+        // ----------------------------------------------------------------------- //
+
         vegaEmbed("#map", mapspec);
     }

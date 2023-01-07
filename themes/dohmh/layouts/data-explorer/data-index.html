@@ -17,14 +17,18 @@
         
         <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
         {{- .Content -}}
-        
+
         <!-- Generate JSON object with subtopic pages and keys, and internal_ids in arrays -->
-        
+
         {{- $subtopic_indicators_dict := newScratch -}}
         {{- $subtopic_indicators_map := newScratch -}}
         
-        {{/*  iterate over all pages on the site  */}}
+        {{/*  create a slice for an array of all internal_ids  */}}
+
+        {{- $all_indicator_ids := slice -}}
         
+        {{/*  iterate over all pages on the site  */}}
+
         {{- range .Site.Pages -}}
             
             {{/*  create a new "slice" (i.e., an array)  */}}
@@ -51,7 +55,7 @@
                     {{/*  create an array of internal_ids  */}}
                     
                     {{- $indicators = $indicators | append .IndicatorID -}}
-                
+
                 {{- end -}}
                 
                 {{/*  create a map with subtopic as key and array of internal_ids as value */}}
@@ -60,9 +64,18 @@
                 {{- $subtopic_indicators_map.SetInMap "subtopic_indicators" $subtopic ($subtopic_indicators_dict) -}}
 
             {{- end -}}
+
+            {{- $all_indicator_ids = $all_indicator_ids | append $indicators -}}
             
         {{- end -}}
 
+        {{-  $all_unique_indicator_ids := $all_indicator_ids | uniq | sort  -}}
+
+        {{-  warnf "all_unique_indicator_ids >>>> " $all_unique_indicator_ids  -}}
+        
+        {{- $all_unique_indicator_ids_json := $all_unique_indicator_ids | jsonify | resources.FromString "/IndicatorData/all_unique_indicator_ids.json" -}}
+        
+        {{-  warnf ">>>> all_unique_indicator_ids_json.RelPermalink >>>> " $all_unique_indicator_ids_json.RelPermalink  -}}
         
         <p class="sr-only">This produces a list of subtopics and IndicatorIDs, stored in the variable <code>$subtopic_indicators</code>, 
             and printed to the console as a JavaScript variable, and then as an Arquero table.</p>
@@ -89,7 +102,7 @@
                 (which on build will be put into <code>/docs/IndicatorData/</code>)</strong>
                 
                 {{- $si_json_output_path := "/IndicatorData/subtopic_indicators.json" -}}
-                {{- $si_resource := $subtopic_indicators_map.Get "subtopic_indicators" | jsonify | resources.FromString $si_json_output_path -}}
+                {{- $si_resource := $subtopic_indicators_map.Get "subtopic_indicators" | jsonify (dict "indent" "  ") | resources.FromString $si_json_output_path -}}
                 
                 <script>
                     // console.log("$si_json_output_path", {{$si_json_output_path }})
@@ -248,8 +261,8 @@
                     row_i.appendChild(cell_3);
                     
                     // geographies
-                    
-                    const geos_order = ["Citywide", "Borough", "NYCKIDS", "UHF33", "UHF34", "UHF42", "Subboro", "CD", "NTA"];
+
+                    const geos_order = ["Citywide", "Borough", "NYCKIDS2017", "NYCKIDS2019", "UHF33", "UHF34", "UHF42", "Subboro", "CD", "CDTA", "NTA2010", "NTA2020"];
                     let unique_geographies = [...new Set(geographies)];
                     
                     // sorting unique_geographies based on order of geos_order
@@ -265,13 +278,18 @@
                     
                     for (l = 0; l < unique_geographies.length; l++) {
                         
-                        
                         let li = document.createElement('li')
+
+                        {{/*  console.log("unique_geographies[l]", unique_geographies[l]);  */}}
+
+                        let geoTypePretty = prettifyGeoType(unique_geographies[l])
+
+                        console.log("geoTypePretty", geoTypePretty);
                         
                         // setting id as geo name
-                        li.innerHTML = unique_geographies[l];
-                        li.setAttribute("geo", unique_geographies[l]);
-                        li.classList.add("btn", "btn-sm", "geobullets", unique_geographies[l])
+                        li.innerHTML = geoTypePretty;
+                        li.setAttribute("geo", geoTypePretty);
+                        li.classList.add("btn", "btn-sm", "geobullets", geoTypePretty)
                         
                         // setting 'onclick' action for each geography, with the geo as the argument
                         
@@ -291,10 +309,9 @@
                     cell_5.innerHTML = maxTime.getFullYear();
                     row_i.appendChild(cell_5)
 
-                                        
+
                     // sources
                     let unique_sources = [...new Set(sources)];
-                    // console.log("unique_sources", unique_sources);
                     let usrc = document.createElement('ul')
                     usrc.classList.add('no-bullets')
                     cell_6.appendChild(usrc);
@@ -337,14 +354,19 @@
                 
                 $('#indicators').DataTable().column(":contains(Geographies)").search(active_geo.join('|'), true, false, false).draw()
                 
-                // Adding this here is sort of a kludge, but I'd have to refactor the entire pattern to avoid it
-                // buttons with either geo as a class
-                let geo_buttons = document.querySelectorAll(active_geo.map(i => "." + i).toString());
-                
-                for (let i = 0; i < geo_buttons.length; i++) {
-                    geo_buttons[i].classList.add("active");
+                // only filter if geos are selected (to avoid calling `querySelectorAll` on null)
+
+                if (active_geo.length > 0) {
+
+                    // Adding this here is sort of a kludge, but I'd have to refactor the entire pattern to avoid it
+                    // buttons with either geo as a class
+                    let geo_buttons = document.querySelectorAll(active_geo.map(i => "." + i).toString());
+
+                    for (let i = 0; i < geo_buttons.length; i++) {
+                        geo_buttons[i].classList.add("active");
+                    }
                 }
-                
+
             }
             
             function toggle_button(e) {
@@ -392,6 +414,34 @@
                 
                 geobullet_filter(active_geographies);
                 
+            }
+            
+            // create geo dropdown for table (keeping georank order)
+            
+            const prettifyGeoType = (GeoType) => {
+
+                switch (GeoType) {
+
+                    case 'NYCKIDS2017':
+                        return 'NYCKIDS';
+
+                    case 'NYCKIDS2019':
+                        return 'NYCKIDS';
+
+                    case 'CDTA2020':
+                        return 'CDTA';
+
+                    case 'NTA2010':
+                        return 'NTA';
+
+                    case 'NTA2020':
+                        return 'NTA';
+
+                    default:
+                        console.log("**default**");
+                        return GeoType;
+
+                }
             }
             
         </script>

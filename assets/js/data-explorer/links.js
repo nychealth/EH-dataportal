@@ -1,3 +1,7 @@
+// ======================================================================= //
+// links.js
+// ======================================================================= //
+
 const renderLinksChart = (
     data,
     primaryMetadata,   // indicators.json for primary indicator
@@ -8,13 +12,17 @@ const renderLinksChart = (
 
     console.log("** renderLinksChart");
 
+    // ----------------------------------------------------------------------- //
     // arquero table for extracting arrays easily
+    // ----------------------------------------------------------------------- //
 
     let aqData = aq.from(data);
     let Value_1 = aqData.array("Value_1");
     let Value_2 = aqData.array("Value_2");
 
+    // ----------------------------------------------------------------------- //
     // get measure metadata
+    // ----------------------------------------------------------------------- //
 
     const primaryMeasurementType = primaryMetadata[0].MeasurementType;
     const primaryMeasureName     = primaryMetadata[0].MeasureName;
@@ -22,11 +30,6 @@ const renderLinksChart = (
     const primaryTime            = data[0].Time_1;
 
     const primaryGeoType = data[0].GeoType; // from the actual data we're charting
-
-    const primaryGeoTypeDescription = 
-        primaryMetadata[0].AvailableGeographyTypes.filter(
-            gt => gt.GeoType === primaryGeoType
-        )[0].GeoTypeDescription;    
 
     const secondaryMeasurementType = secondaryMetadata[0].MeasurementType
     const secondaryMeasureName     = secondaryMetadata[0].MeasureName
@@ -39,8 +42,9 @@ const renderLinksChart = (
             l => l.MeasureID === secondaryMeasureId
         )[0].SecondaryAxis;
 
-
+    // ----------------------------------------------------------------------- //
     // switch field assignment based on SecondaryAxis preference
+    // ----------------------------------------------------------------------- //
 
     let xMeasure;
     let yMeasure;
@@ -87,7 +91,10 @@ const renderLinksChart = (
             break;
     }
 
+    // ----------------------------------------------------------------------- //
     // get dimensions
+    // ----------------------------------------------------------------------- //
+    
     var legendOrientation = "bottom"
     var columns = 6;
     var bubbleSize = 200;
@@ -96,8 +103,27 @@ const renderLinksChart = (
     window.innerWidth < 576 ? columns = 3 : columns = 6;
     window.innerWidth < 576 ? height = 350 : height = 500;
 
+    
+    // ----------------------------------------------------------------------- //
+    // get unique unreliability notes (dropping empty)
+    // ----------------------------------------------------------------------- //
 
+    const comb_unreliability = data.map(d => d.Note_1).concat(data.map(d => d.Note_2))
+    const links_unreliability = [...new Set(comb_unreliability)].filter(d => !d == "");
+
+    // console.log("links_unreliability", links_unreliability);
+
+    document.querySelector("#links-unreliability").innerHTML = ""; // blank to start
+
+        for (let i = 0; i < links_unreliability.length; i++) {
+            
+            document.querySelector("#links-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + links_unreliability[i] + "</div>" ;
+            
+        }
+
+    // ----------------------------------------------------------------------- //
     // define spec
+    // ----------------------------------------------------------------------- //
 
     setTimeout(() => {
 
@@ -269,6 +295,10 @@ const renderLinksChart = (
             ]
 
         }
+        
+        // ----------------------------------------------------------------------- //
+        // render chart
+        // ----------------------------------------------------------------------- //
 
         vegaEmbed("#links", linkspec);
 

@@ -3,7 +3,7 @@ title: Violence
 date: 2021-05-28 18:02:58.737039
 draft: false
 seo_title: "Violence data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["social","healthoutcomes"]
 keywords: ["violence","injury","neighborhoods","social","justice","poverty"]

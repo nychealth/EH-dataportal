@@ -1,3 +1,7 @@
+// ======================================================================= //
+// disparities.js
+// ======================================================================= //
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // function to create the dataset for the disparities chart
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -73,8 +77,6 @@ const loadDisparitiyData = async (disparityMetadata, disparityIndicatorId) => {
 
                 .objects()
             
-            // console.log("disparitiyData", disparitiyData);
-
         })
 }
 
@@ -154,6 +156,23 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
     // render combined info
 
     renderAboutSources(combinedAbout, combinedSources);
+
+    
+    // get unique unreliability notes (dropping empty)
+
+    const comb_unreliability = data.map(d => d.Note_1).concat(data.map(d => d.Note_2))
+    const disp_unreliability = [...new Set(comb_unreliability)].filter(d => !d == "");
+
+    // console.log("disp_unreliability", disp_unreliability);
+
+    document.querySelector("#trend-unreliability").innerHTML = ""; // blank to start
+
+    for (let i = 0; i < disp_unreliability.length; i++) {
+        
+        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + disp_unreliability[i] + "</div>" ;
+        
+    }
+    
     
     // define spec
     

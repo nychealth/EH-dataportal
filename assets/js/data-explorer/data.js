@@ -1,6 +1,10 @@
-// =================================================================== //
+// ======================================================================= //
+// app.js
+// ======================================================================= //
+
+// ======================================================================= //
 //  fetch and load indicators metadata into global object
-// =================================================================== //
+// ======================================================================= //
 
 fetch(data_repo + data_branch + '/indicators/indicators.json')
     .then(response => response.json())
@@ -138,6 +142,8 @@ const loadData = (this_indicatorId) => {
     .then(response => response.json())
     .then(async data => {
 
+        // console.log("data [loadData]", data);
+
         // call the geo file loading function
 
         loadGeo();
@@ -228,6 +234,7 @@ const joinData = () => {
         .select(
             "GeoID",
             "GeoType",
+            "GeoTypeDesc",
             "GeoRank",
             "Geography",
             "MeasureID",
@@ -235,15 +242,20 @@ const joinData = () => {
             "Value",
             "DisplayValue",
             "CI",
+            "Note",
             "start_period",
-            "end_period"
+            "end_period",
+            "ban_summary_flag"
         )
         .orderby(aq.desc('end_period'), aq.desc('GeoRank'))
         .reify()
 
+    // joinedAqData.print()
+
     // data for summary table
 
     fullDataTableObjects = joinedAqData
+        .filter(d => d.ban_summary_flag == 0)
         .join_left(aqMeasurementDisplay, "MeasureID")
         .derive({
             MeasurementDisplay: d => op.trim(op.join([d.MeasurementType, d.DisplayType], " ")),
@@ -257,7 +269,7 @@ const joinData = () => {
 
     fullDataMapObjects = joinedAqData
         .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
-        .impute({ Value: () => NaN })
+        // .impute({ Value: () => NaN })
         .objects()
 
     // map for trend chart

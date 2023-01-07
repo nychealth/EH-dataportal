@@ -1,3 +1,7 @@
+// ======================================================================= //
+// renderMeasures.js
+// ======================================================================= //
+
 // ----------------------------------------------------------------------- //
 // function to create data and metadata for links chart
 // ----------------------------------------------------------------------- //
@@ -402,7 +406,6 @@ const updateMapData = (e) => {
     const measurementType = measureMetadata[0].MeasurementType;
     const about           = measureMetadata[0].how_calculated;
     const sources         = measureMetadata[0].Sources;
-    const display         = measureMetadata[0].DisplayType;
 
 
     // ----- set measure info boxes ----- //
@@ -479,7 +482,6 @@ const updateTrendData = (e) => {
     const measurementType = measureMetadata[0].MeasurementType;
     const about           = measureMetadata[0].how_calculated;
     const sources         = measureMetadata[0].Sources;
-    const display         = measureMetadata[0].DisplayType;
 
 
     // ----- set measure info boxes ----- //
@@ -658,14 +660,6 @@ const updateLinksData = async (e) => {
     renderAboutSources(selectedLinksAbout, selectedLinksSources);
 
 
-    // ----- create dataset ----- //
-
-    // get the highest GeoRank, then keep just that geo
-
-    // let maxGeoRank = Math.max(joinedDataLinksObjects[0].GeoRank);
-    // filteredLinksData = joinedDataLinksObjects.filter(obj => obj.GeoRank === maxGeoRank)
-
-
     // ----- render the chart ----- //
 
     renderLinksChart(
@@ -745,9 +739,8 @@ const renderMeasures = async () => {
     // ----- set dropdowns for this indicator ----- //
 
     const dropdownTableYear = contentSummary.querySelector('div[aria-labelledby="dropdownTableYear"]');
-    const dropdownMapMeasures = document.querySelector('div[aria-labelledby="dropdownMapMeasures"]');
+    const dropdownMapMeasures = contentMap.querySelector('div[aria-labelledby="dropdownMapMeasures"]');
 
-    const dropdownMapYear  = contentMap.querySelector('div[aria-labelledby="dropdownMapYear"]');
     const dropdownTableGeo = contentSummary.querySelector('div[aria-labelledby="dropdownTableGeo"]');
     const dropdownTrendMeasures = contentTrend.querySelector('div[aria-labelledby="dropdownTrendMeasures"]');
     const dropdownLinksMeasures = contentLinks.querySelector('div[aria-labelledby="dropdownLinksMeasures"]');
@@ -785,15 +778,21 @@ const renderMeasures = async () => {
 
     });
 
-    // create geo dropdown for table (keeping georank order)
+    // create geo dropdown for table (using pretty geotypes, keeping georank order)
 
-    const tableGeoTypes = [...new Set(fullDataTableObjects.map(item => item.GeoType))];
+    const tableGeoTypes = [...new Set(fullDataTableObjects.map(item => prettifyGeoType(item.GeoType)))];
     const dropdownGeoTypes = geoTypes.filter(g => tableGeoTypes.includes(g))
 
-    dropdownGeoTypes.forEach((geoType, index) => {
+    console.log("geoTypes:", geoTypes);
+    console.log("dropdownGeoTypes:", dropdownGeoTypes);
 
-        selectedSummaryGeography.push(geoType);
-        dropdownTableGeo.innerHTML += `<label class="dropdown-item checkbox-geo"><input type="checkbox" value="${geoType}" checked /> ${geoType}</label>`;
+    dropdownGeoTypes.forEach(geo => {
+
+        selectedSummaryGeography.push(geo);
+        
+        // console.log("selectedSummaryGeography:", selectedSummaryGeography);
+
+        dropdownTableGeo.innerHTML += `<label class="dropdown-item checkbox-geo"><input type="checkbox" value="${geo}" checked /> ${geo}</label>`;
 
     });
 
@@ -805,15 +804,9 @@ const renderMeasures = async () => {
     indicatorMeasures.map((measure, index) => {
 
         const type = measure?.MeasurementType;
-        const displayType = measure?.DisplayType;
-        const years = measure?.AvailableTimes.sort((a, b) => b.start_period - a.start_period);
-        const geography = measure?.AvailableGeographyTypes;
         const links = measure?.VisOptions[0].Links && measure?.VisOptions[0]?.Links[0];
         const map = measure?.VisOptions[0].Map && measure?.VisOptions[0].Map[0]?.On;
         const trend = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0]?.On;
-        const trendDisparities = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0]?.Disparities;
-        const about = measure.how_calculated;
-        const sources = measure.Sources;
         const measureId = measure.MeasureID;
 
 
@@ -827,7 +820,7 @@ const renderMeasures = async () => {
 
             const dropdownMapMeasuresColumn = document.querySelector(`.dropdown-column-${index}`);
 
-            mapYears.map((time, index) => {
+            mapYears.map(time => {
                 dropdownMapMeasuresColumn.innerHTML += `<button class="dropdown-item link-measure mapbutton"
                 data-measure-id="${measureId}"
                 data-time="${time}">
@@ -863,12 +856,7 @@ const renderMeasures = async () => {
 
             // get secondary measure id
 
-            const secondaryMeasureId = measure.VisOptions[0].Links[0].MeasureID;
-
-
             if (fullDataTableObjects) {
-
-                const linkYears = [...new Set(fullDataTableObjects.map(item => item.Time))];
 
                 dropdownLinksMeasures.innerHTML +=
                     `<div class="dropdown-title"><strong> ${type}</strong></div>`;
@@ -1324,12 +1312,6 @@ const renderMeasures = async () => {
 
             // ----- create dataset ----- //
 
-            // use joinedDataLinksObjects (created in filterSecondaryIndicatorMeasure) to get the
-            //  highest GeoRank, then keep just that geo
-
-            // let maxGeoRank = Math.max(joinedDataLinksObjects[0].GeoRank);
-            // filteredLinksData = joinedDataLinksObjects.filter(obj => obj.GeoRank === maxGeoRank)
-
             renderTitleDescription(indicatorShortName, indicatorDesc);
             renderAboutSources(defaultLinksAbout, defaultLinksSources);
 
@@ -1393,7 +1375,6 @@ const renderMeasures = async () => {
 
     // this is effectively the state of the tabs when the indicator is loaded or changed
 
-    const tabTableSelected = tabTable.getAttribute('aria-selected');
     const tabMapSelected   = tabMap.getAttribute('aria-selected');
     const tabTrendSelected = tabTrend.getAttribute('aria-selected');
     const tabLinksSelected = tabLinks.getAttribute('aria-selected');
@@ -1430,6 +1411,7 @@ const renderMeasures = async () => {
         enableTab(tabMap);
     }
 
+    // if there's no trend data or only 1 time period, don't show the tab
 
     const onlyOneTime = trendMeasures.every(m => m.AvailableTimes.length <= 1)
 
