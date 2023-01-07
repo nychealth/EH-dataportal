@@ -61,7 +61,6 @@ let secondaryMeasureMetadata;
 
 let filteredMapData;
 let filteredTrendData;
-let filteredLinksData;
 
 let mapMeasures = [];
 let trendMeasures = [];
@@ -128,21 +127,52 @@ const assignGeoRank = (GeoType) => {
     }
 }
 
-// array of geotypes in georank order
+// array of (pretty) geotypes in georank order
 
 const geoTypes = [
     "Citywide",
     "Borough",
-    "NYCKIDS2017",
-    "NYCKIDS2019",
+    "NYCKIDS",
     "UHF34",
     "UHF42",
     "Subboro",
     "CD",
-    "CDTA2020",
-    "NTA2010",
-    "NTA2020"
+    "CDTA",
+    "NTA"
 ]
+
+// ----------------------------------------------------------------------- //
+// pretty generic geotypes
+// ----------------------------------------------------------------------- //
+
+// this allows us to have different versions of the same geotype on the back-end,
+//  while keeping them generic on the front-end. We use this function to convert
+//  versioned geotypes in the data into generic geotypes.
+
+const prettifyGeoType = (GeoType) => {
+    
+    switch (GeoType) {
+        
+        case 'NYCKIDS2017':
+        return 'NYCKIDS';
+        
+        case 'NYCKIDS2019':
+        return 'NYCKIDS';
+        
+        case 'CDTA2020':
+        return 'CDTA';
+        
+        case 'NTA2010':
+        return 'NTA';
+        
+        case 'NTA2020':
+        return 'NTA';
+        
+        default:
+        return GeoType;
+        
+    }
+}
 
 // ----------------------------------------------------------------------- //
 // measure info functions
