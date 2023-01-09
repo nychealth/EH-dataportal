@@ -19,7 +19,6 @@ const renderMap = (
 
         let mapGeoType            = data[0].GeoType;
         let mapMeasurementType    = metadata[0].MeasurementType;
-        // console.log(metadata[0])
         let displayType           = metadata[0].DisplayType;
         console.log('displayType: ' + displayType)
         let mapGeoTypeDescription = 
@@ -139,7 +138,6 @@ const renderMap = (
                                     "from": {
                                         "data": {
                                             "url": `${data_repo}${data_branch}/geography/${topoFile}`,
-                                            // "url": `${baseURL}/geography/${topoFile}`,
                                             "format": {"type": "topojson", "feature": "collection"}
                                         },
                                         "key": "properties.GEOCODE"
