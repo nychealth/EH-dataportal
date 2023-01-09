@@ -19,6 +19,8 @@ const renderMap = (
 
         let mapGeoType            = data[0].GeoType;
         let mapMeasurementType    = metadata[0].MeasurementType;
+        let displayType           = metadata[0].DisplayType;
+        console.log('displayType: ' + displayType)
         let mapGeoTypeDescription = 
             metadata[0].AvailableGeographyTypes.filter(
                 gt => gt.GeoType === mapGeoType
@@ -135,8 +137,7 @@ const renderMap = (
                                     "lookup": "GeoID",
                                     "from": {
                                         "data": {
-                                            // "url": `${data_repo}${data_branch}/geography/${topoFile}`,
-                                            "url": `${baseURL}/geography/${topoFile}`,
+                                            "url": `${data_repo}${data_branch}/geography/${topoFile}`,
                                             "format": {"type": "topojson", "feature": "collection"}
                                         },
                                         "key": "properties.GEOCODE"
@@ -219,7 +220,7 @@ const renderMap = (
                             "field": "Value",
                             "type": "quantitative",
                             "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}},
-                            "legend": {"direction": "horizontal","orient": "top-left","title": `${mapMeasurementType}`}
+                            "legend": {"direction": "horizontal","orient": "top-left","title": `${mapMeasurementType} ${displayType && `(${displayType})`}`}
                         },
                         "stroke": {
                             "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
