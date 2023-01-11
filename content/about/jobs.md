@@ -16,24 +16,17 @@ We're hiring! See below for open positions in our bureau.
 **Health Content Manager** 
 
 We're looking for somebody to join the team that develops the Environment & Health Data Portal - this site! We're looking for a health communicator who's interested in how information works to contribute to user centered research, design, and site development. If you're a public health professional with interest in writing, user research, content strategy, design, or development, then we want to hear from you. 
-- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for Job ID 556725.
+- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job ID 556725.
 
 ---
 <br>
 
 ## Jobs in our bureau:
 
-**Executive Director of Environmental Health Policy**
+**Senior Director of Environmental Health Policy**
 
 We are looking for an experienced- high-level professional well-versed in applying research to policy and program, who will oversee our growing work in climate health and health equity in planning.
-- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search - it will be posted soon.
-
----
-<br>
-
-**Senior Planning and Policy Analyst**
-We're looking for an urban planning or environmental policy expert who works at the intersection of environment and health equity.
-- Visit  [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 528335.
+- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job ID 559175.
 
 ---
 <br>
@@ -43,7 +36,13 @@ We're looking for a leader experienced in applying research to program design an
 - Visit  [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 552896.
 
 ---
+<br>
 
+**Environmental Review Policy Analyst**
+We're looking for an urban planning or environmental policy expert who works at the intersection of environment and health equity.
+- Visit  [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 528335.
+
+---
 <br>
 
 **Division Counsel/Appeals Officer**
