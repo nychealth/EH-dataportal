@@ -6,13 +6,17 @@
 //  fetch and load indicators metadata into global object
 // ======================================================================= //
 
+// ----------------------------------------------------------------------- //
+// full indicator metadata
+// ----------------------------------------------------------------------- //
+
 fetch(data_repo + data_branch + '/indicators/indicators.json')
     .then(response => response.json())
     .then(async data => {
 
         // console.log("** fetch indicators.json");
 
-        indicators = data;
+        let indicators = data;
 
         const paramId = url.searchParams.get('id') !== null ? parseInt(url.searchParams.get('id')) : false;
         
@@ -32,6 +36,20 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
     })
     .catch(error => console.log(error));
 
+// ----------------------------------------------------------------------- //
+// indicator comparisons metadata
+// ----------------------------------------------------------------------- //
+
+fetch(data_repo + data_branch + '/indicators/comparisons.json')
+    .then(response => response.json())
+    .then(async data => {
+
+        // console.log("** fetch comparisons.json");
+
+        comparisons = data;
+
+    })
+    .catch(error => console.log(error));
 
 // ======================================================================= //
 // data loading and manipulation functions
@@ -75,6 +93,9 @@ const loadIndicator = (this_indicatorId, dont_add_to_history) => {
     indicatorDesc = indicator?.IndicatorDescription ? indicator.IndicatorDescription : '';
     indicatorShortName = indicator?.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
     indicatorMeasures = indicator?.Measures;
+    indicatorComparisonId = indicator?.Comparisons;
+
+    console.log("indicatorComparisonId", indicatorComparisonId);
 
     // create Citation
 

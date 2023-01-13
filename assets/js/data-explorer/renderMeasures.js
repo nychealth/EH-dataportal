@@ -197,6 +197,58 @@ const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasur
 
 
 // ----------------------------------------------------------------------- //
+// function to create data and metadata for comparisons chart
+// ----------------------------------------------------------------------- //
+
+// indicatorComparisonId is array of ComparisonIDs
+// map over indicatorComparisonId and filter comparisons.json into indicatorComparisonMetadata
+//  - also used by comparisons.js
+// map over indicatorComparisonMetadata, map over Indicators, fetch indicator data, map over Measures and filter data
+// single data frame with ComparisonID, IndicatorID, MeasureID
+
+// use test before funtion call?
+
+if (indicatorComparisonId !== null) {
+
+    return
+
+}
+
+const createComparisonData = async () => {
+    
+    indicatorComparisonMetadata = comparisons.filter(
+            d => indicatorComparisonId.includes(d.ComparisonID)
+        )
+
+        let compData;
+        
+        indicatorComparisonMetadata.map(c => {
+
+            c.Indicators.map(i => {
+
+                fetch(`${data_repo}${data_branch}/indicators/data/${i.IndicatorID}.json`)
+                    .then(response => response.json())
+                    .then(data => {
+                        compData.concat()
+                            
+                })
+            })
+        })
+                
+            }
+
+
+if (indicatorComparisonId !== null) {
+    
+    if (fullDataTrendObjects) {
+        dropdownTrendMeasures.innerHTML += `<button class="dropdown-item link-measure trendbutton"
+        data-measure-id="${measureId}">
+        ${type}
+        </button>`;
+    }
+}
+
+// ----------------------------------------------------------------------- //
 // tab default measure functions
 // ----------------------------------------------------------------------- //
 
@@ -743,6 +795,7 @@ const renderMeasures = async () => {
 
     const dropdownTableGeo = contentSummary.querySelector('div[aria-labelledby="dropdownTableGeo"]');
     const dropdownTrendMeasures = contentTrend.querySelector('div[aria-labelledby="dropdownTrendMeasures"]');
+    const dropdownTrendComparisons = contentTrend.querySelector('div[aria-labelledby="dropdownTrendComparisons"]');
     const dropdownLinksMeasures = contentLinks.querySelector('div[aria-labelledby="dropdownLinksMeasures"]');
 
     // clear Measure Dropdowns
@@ -751,6 +804,7 @@ const renderMeasures = async () => {
     dropdownTableGeo.innerHTML = ``;
     dropdownMapMeasures.innerHTML = ``;
     dropdownTrendMeasures.innerHTML = ``;
+    dropdownTrendComparisons.innerHTML = ``;
     dropdownLinksMeasures.innerHTML = ``;
 
     mapMeasures.length = 0;

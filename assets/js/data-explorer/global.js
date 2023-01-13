@@ -34,6 +34,11 @@ let indicatorId;
 let primaryIndicatorName;
 let secondaryIndicatorName;
 
+let indicatorComparisonId;
+let indicatorComparisonMetadata;
+let indicatorComparisonData;
+let comparisons;
+
 let defaultTrendMetadata = [];
 let defaultTrendAbout;
 let defaultTrendSources;

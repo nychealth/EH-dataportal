@@ -382,16 +382,25 @@
 
                 <div class="tab-pane fade py-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
                     <div class="dropdown float-right">
+
+                        <!-- trend measures button -->
                         <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
                                 id="dropdownTrendMeasures" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false"> Measure </button>
-                        <!-- disparities button - display style changed to show or hide (currently hidden full time due to glitch on percents-->
-                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary btn-show-disparities d-none"
-                                style="display:inline"> Dispartites </button>
-            
+                                
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownTrendMeasures">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
+
+                        <!-- comparisons button -->
+                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle btn-show-comparisons" type="button"
+                                id="dropdownTrendComparisons" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"> Comparisons </button>
+                                
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownTrendComparisons">
+                            <!-- INSERT MENU ITEMS HERE -->
+                        </div>
+            
                     </div>
                     <span id="trendTitle" class="home-label  border-bottom"></span>
                     <!-- INSERT TREND CHART HERE -->
@@ -410,6 +419,11 @@
                     <div class="dropdown float-right">
                         <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
                                 id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Select link </button>
+
+                        <!-- disparities button - display style changed to show or hide (currently hidden full time due to glitch on percents-->
+                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary btn-show-disparities d-none"
+                                style="display:inline"> Dispartites </button>
+
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownLinksMeasures">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
