@@ -200,7 +200,7 @@
 
                 download = arqTable
                     .select(aq.not('report_id','indicator_id','data_field_name','start_date','end_date')) // drop unnecessary columns
-                    .filter(d => d.neighborhood = '{{ .geo_entity_name }}')
+                    .filter(d => d.neighborhood == '{{ .geo_entity_name }}')
                 
                 let downloadTableCSV = download.toCSV(); // format as CSV
                 // Data URI
