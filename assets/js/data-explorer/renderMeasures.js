@@ -208,45 +208,65 @@ const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasur
 
 // use test before funtion call?
 
-if (indicatorComparisonId !== null) {
-
-    return
-
-}
-
 const createComparisonData = async () => {
     
+    indicatorComparisonId = indicator?.Comparisons;
+
     indicatorComparisonMetadata = comparisons.filter(
             d => indicatorComparisonId.includes(d.ComparisonID)
         )
-
-        let compData;
         
-        indicatorComparisonMetadata.map(c => {
+        let all_comp_data = [];
 
-            c.Indicators.map(i => {
+        await indicatorComparisonMetadata.map(c => {
 
-                fetch(`${data_repo}${data_branch}/indicators/data/${i.IndicatorID}.json`)
-                    .then(response => response.json())
+            c.Indicators.map(async i => {
+
+                await aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${i.IndicatorID}.json`)
                     .then(data => {
-                        compData.concat()
+
+                        data.print();
+
+                        // arquero doesn't let you concat with an empty table, unlike dplyr and bind_rows,
+                        //  so here we need to convert back to plain JS objects and concat, then convert
+                        //  back to an arquero table
+
+                        let comp_data = data
+                            .derive({
+                                ComparisonID: aq.escape(c.ComparisonID),
+                                IndicatorID: aq.escape(i.IndicatorID)
+                            })
+                            .filter(aq.escape(d => d.MeasureID.includes(i.Measures)))
+                            .objects()
                             
+                        all_comp_data = all_comp_data.concat(comp_data);
+                        
                 })
             })
         })
-                
-            }
 
+        indicatorComparisonData = aq.from(all_comp_data);
+        
+        console.log("indicatorComparisonData:");
+        indicatorComparisonData.print({limit: 100})
+
+    }
 
 if (indicatorComparisonId !== null) {
-    
-    if (fullDataTrendObjects) {
-        dropdownTrendMeasures.innerHTML += `<button class="dropdown-item link-measure trendbutton"
-        data-measure-id="${measureId}">
-        ${type}
-        </button>`;
+
+    createComparisonData()
+
     }
-}
+
+// if (indicatorComparisonId !== null) {
+    
+//     if (fullDataTrendObjects) {
+//         dropdownTrendMeasures.innerHTML += `<button class="dropdown-item link-measure trendbutton"
+//         data-measure-id="${measureId}">
+//         ${type}
+//         </button>`;
+//     }
+// }
 
 // ----------------------------------------------------------------------- //
 // tab default measure functions

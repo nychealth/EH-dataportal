@@ -1,5 +1,5 @@
 // ======================================================================= //
-// app.js
+// data.js
 // ======================================================================= //
 
 // ======================================================================= //
@@ -16,7 +16,7 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
 
         // console.log("** fetch indicators.json");
 
-        let indicators = data;
+        indicators = data;
 
         const paramId = url.searchParams.get('id') !== null ? parseInt(url.searchParams.get('id')) : false;
         
@@ -42,14 +42,17 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
 
 fetch(data_repo + data_branch + '/indicators/comparisons.json')
     .then(response => response.json())
-    .then(async data => {
+    .then(data => {
 
         // console.log("** fetch comparisons.json");
 
         comparisons = data;
+        
+        console.log("comparisons:", comparisons);
 
     })
     .catch(error => console.log(error));
+
 
 // ======================================================================= //
 // data loading and manipulation functions
@@ -93,7 +96,6 @@ const loadIndicator = (this_indicatorId, dont_add_to_history) => {
     indicatorDesc = indicator?.IndicatorDescription ? indicator.IndicatorDescription : '';
     indicatorShortName = indicator?.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
     indicatorMeasures = indicator?.Measures;
-    indicatorComparisonId = indicator?.Comparisons;
 
     console.log("indicatorComparisonId", indicatorComparisonId);
 
