@@ -46,8 +46,6 @@ This report:
 
 ### Key Findings
 
-**In 2020, New York City and surrounding communities implemented measures to slow the spread of COVID-19. As a result, we saw dramatic changes in air pollution in some neighborhoods and smaller changes in others.** Overall, the levels in Spring through Summer 2020 were lower than previous years. For more information about these changes in air quality, see Air Quality during COVID-19.
-
 **Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2021.** Fine particles (PM<sub>2.5</sub>) -40% Nitrogen Dioxide (NO<sub>2</sub>) -38% Nitric Oxide (NO) -58% Sulfer Dioxide (SO<sub>2</sub>) -97%
 
 **Air quality improved significantly after the local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO<sub>2</sub> in New York City. In 2021, only eight of our 90 sites detected any SO<sub>2</sub>, and the levels at those sites were similar to SO<sub>2</sub> levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements.
@@ -62,7 +60,7 @@ This report:
 Ozone levels are highest in:
 
 * The outer boroughs
-* Areas that are downwind of high NOX (oxides of nitrogen) emissions
+* Areas that are downwind of high NO<sub>X</sub>&nbsp;(oxides of nitrogen) emissions
 * Areas with fewer combustion emissions
 
 ---
@@ -95,9 +93,9 @@ The monitoring locations represent a wide variety of New York City environments 
 
 Since it is impossible to sample the air in every location in New York City, we monitor representative sites to determine how pollution levels vary in relation to traffic, buildings, trees and other neighborhood factors. We use NYCCAS monitoring data along with data on land use, traffic, building emissions and other neighborhood factors around the monitors to build a land-use regression (LUR) model. We then used the associations from these models to estimate the seasonal average air pollution levels at locations across the city, including places where no NYCCAS measurements were collected. For more details on emission source data, see Appendix 1 (PDF). For more details on the analysis methods, see NYCCAS Scientific Publications.
 
-In the maps below, you can select a pollutant to see how air pollution is distributed throughout the city and how it has changed over time. The City's air quality changed significantly since NYCCAS began monitoring, as can be seen in the maps below. The levels of BC, NO<sub>2</sub>, NO, SO<sub>2</sub> and PM<sub>2.5</sub> have been significantly reduced citywide. The areas where we see the highest levels of these pollutants has also shifted.
+In the maps below, you can select a pollutant to see how air pollution is distributed throughout the city and how it has changed over time. The City's air quality has changed significantly since NYCCAS began monitoring, as can be seen in the maps below. The levels of BC, NO<sub>2</sub>, NO, SO<sub>2</sub> and PM<sub>2.5</sub> have been significantly reduced citywide. The areas where we see the highest levels of these pollutants has also shifted.
 
-Over time, the data we use to model the relationships between land use and pollution has gotten better. For example, in previous years industrial land use was used as a primary indicator of BC, NO, NO<sub>2</sub> and PM<sub>2.5</sub>, but we have noticed in recent years this pollution has become more closely related to the presence of distribution centers within these industrial areas. Therefore, more destinct pollution hotspots are shown in recent years near distribution centers in the Newtown Creek area in Queens and Brooklyn, near JFK airport and Hunts Point in the Bronx.
+Over time, the data we use to model the relationships between land use and pollution has gotten better. For example, in previous years industrial land use was used as a primary indicator of BC, NO, NO<sub>2</sub> and PM<sub>2.5&nbsp;</sub>pollution, but we have noticed in recent years this pollution has become more closely related to the presence of distribution centers within these industrial areas. Therefore, more destinct pollution hotspots are shown in recent years near distribution centers in the Newtown Creek area in Queens and Brooklyn, JFK airport and Hunts Point in the Bronx.
 
 Winter and summer average maps for BC, NO<sub>2</sub>, NO and PM<sub>2.5</sub> are available in Appendix 2 (PDF).
 
@@ -146,7 +144,7 @@ function updateiframe(x) {
 
 Since monitoring began in winter 2008-2009 in New York City, we have seen a decrease in most of the air pollutants we measure. However, the concentrations of NO<sub>2</sub>, NO and PM<sub>2.5</sub> continue to be higher in industrial zones with more diesel truck traffic, neighborhoods with large numbers of restaurants, and areas of higher traffic and building density. Air pollution changes not only by neighborhood, but also by season. Some pollutants are highest in certain seasons of the year because of either weather patterns or emissions sources. For example, O<sub>3</sub> is produced when NOX and other airborne pollutants react in the presence of heat and sunlight. Therefore, we only monitor O<sub>3</sub> in the summer when direct sunlight is highest and days are longer.
 
-The figure below illustrates how the levels of each air pollutant change by season from winter 2008-2009 to fall 2020. We break out locations with high, medium and low densities of the most common sources of each. Since winter 2017-18 there have been too few sites with SO<sub>2</sub> values above the detection limit for us to include it in this chart. SO<sub>2</sub> levels have gone down dramatically since Local Law 43 of 2010 prohibited the burning of heavy fuel oil (No. 6) in New York City buildings.
+The figure below illustrates how the levels of each air pollutant change by season from winter 2008-2009 to fall 2021. We break out locations with high, medium and low densities of the most common sources of each. Since winter 2017-18 there have been too few sites with SO<sub>2</sub> values above the detection limit for us to include it in this chart. SO<sub>2</sub> levels have gone down dramatically since Local Law 43 of 2010 prohibited the burning of heavy fuel oil (No. 6) in New York City buildings.
 
 <div class="tableauPlaceholder" id="viz3" style="position: relative"><noscript>
 <a href='#'><img alt=' ' src='https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js' style='border: none' /></a>
