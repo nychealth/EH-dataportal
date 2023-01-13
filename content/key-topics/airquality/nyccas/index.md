@@ -95,9 +95,11 @@ The monitoring locations represent a wide variety of New York City environments 
 
 Since it is impossible to sample the air in every location in New York City, we monitor representative sites to determine how pollution levels vary in relation to traffic, buildings, trees and other neighborhood factors. We use NYCCAS monitoring data along with data on land use, traffic, building emissions and other neighborhood factors around the monitors to build a land-use regression (LUR) model. We then used the associations from these models to estimate the seasonal average air pollution levels at locations across the city, including places where no NYCCAS measurements were collected. For more details on emission source data, see Appendix 1 (PDF). For more details on the analysis methods, see NYCCAS Scientific Publications.
 
-Over time, the data we use to model the relationships between land use and pollution has gotten better. For example, in previous years industrial land use was used as a primary indicator of BC, NO2, NO and PM2.5, but we have noticed in recent years this pollution has become more closely related to the presence of distribution centers within these industrial areas.&nbsp;
+In the maps below, you can select a pollutant to see how air pollution is distributed throughout the city and how it has changed over time. The City's air quality changed significantly since NYCCAS began monitoring, as can be seen in the maps below. The levels of BC, NO2, NO, SO2 and PM2.5 have been significantly reduced citywide. The areas where we see the highest levels of these pollutants has also shifted.
 
-In the maps below, you can select a pollutant to see how air pollution is distributed throughout the city and how it has changed over time. The City's air quality changed significantly during the spring and summer of 2020 and resulted in lower annual average values, especially for PM<sub>2.5</sub>, as can be seen in the maps below. Winter and summer average maps for BC, NO<sub>2</sub>, NO and PM<sub>2.5</sub> are available in Appendix 2 (PDF).
+Over time, the data we use to model the relationships between land use and pollution has gotten better. For example, in previous years industrial land use was used as a primary indicator of BC, NO2, NO and PM2.5, but we have noticed in recent years this pollution has become more closely related to the presence of distribution centers within these industrial areas. Therefore, more destinct pollution hotspots are shown in recent years near distribution centers in the Newtown Creek area in Queens and Brooklyn, near JFK airport and Hunts Point in the Bronx.
+
+Winter and summer average maps for BC, NO<sub>2</sub>, NO and PM<sub>2.5</sub> are available in Appendix 2 (PDF).
 
 \[MAP EMBED\]
 
