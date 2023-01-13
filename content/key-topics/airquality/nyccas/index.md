@@ -48,9 +48,9 @@ This report:
 
 **In 2020, New York City and surrounding communities implemented measures to slow the spread of COVID-19. As a result, we saw dramatic changes in air pollution in some neighborhoods and smaller changes in others.** Overall, the levels in Spring through Summer 2020 were lower than previous years. For more information about these changes in air quality, see Air Quality during COVID-19.
 
-**Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2020.** Fine particles (PM<sub>2.5</sub>) -43% Nitrogen Dioxide (NO<sub>2</sub>) -39% Nitric Oxide (NO) -56% Sulfer Dioxide (SO<sub>2</sub>) -98%
+**Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2021.** Fine particles (PM<sub>2.5</sub>) -40% Nitrogen Dioxide (NO<sub>2</sub>) -38% Nitric Oxide (NO) -58% Sulfer Dioxide (SO<sub>2</sub>) -97%
 
-**Air quality improved significantly after the local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO<sub>2</sub> in New York City. In 2020, only five of our 60 core sites detected any SO<sub>2</sub>, and the levels at those sites were similar to SO<sub>2</sub> levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements.
+**Air quality improved significantly after the local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO<sub>2</sub> in New York City. In 2021, only eight of our 90 sites detected any SO<sub>2</sub>, and the levels at those sites were similar to SO<sub>2</sub> levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements.
 
 **Air quality changes with location.** PM<sub>2.5</sub>, NO<sub>2</sub>, NO, and BC are highest in:
 
