@@ -3,7 +3,6 @@ _schema: default
 title: The New York City Community Air Survey
 draft: false
 date: 2022-11-08T11:14:56-04:00
-image: nyccas.png
 categories:
     - airquality
 keywords:
@@ -16,20 +15,18 @@ keywords:
     - pollutants
 seo_title: NYC Community Air Survey Annual Report
 seo_description: Data, findings, and more.
+image: nyccas.png
 menu:
     main:
         identifier: '05'
 layout: report
 ---
-
-<style>
- hr {
+<style type="text/css">hr {
   margin-top: 25px;
   margin-bottom: 25px;
- }
-</style>
+ }</style>
 
-## Neighborhood Air Quality 2008-2020
+## Neighborhood Air Quality 2008-2021
 
 In 2007, the New York City Department of Health and Mental Hygiene (Health Department) established the New York City Community Air Survey (NYCCAS), the largest ongoing urban air monitoring program of any U.S. City. NYCCAS, which began collecting data in December 2008, is a collaboration between the Health Department and Queens College of the City University of New York and provides data to:
 
@@ -72,11 +69,7 @@ Ozone levels are highest in:
 
 ### Pollutants Measured by NYCCAS: Health Effects and Sources
 
-{{< accordion number="01" title="Fine Particles" content="Fine particles (PM<sub>2.5</sub>) are tiny airborne solid and liquid particles less than 2.5 microns in diameter. PM<sub>2.5</sub> is the most harmful urban air pollutant. It is small enough to penetrate deep into the lungs and enter the bloodstream, which can worsen lung and heart disease and lead to hospital admissions and premature deaths. PM<sub>2.5</sub> can either be directly emitted or formed in the atmosphere from other pollutants. Fuel combustion in vehicles, boilers in buildings, power plants, construction equipment, marine vessels and commercial cooking are all common sources of PM<sub>2.5</sub>. Up to 40% of the PM<sub>2.5</sub> in New York City's air comes from sources in areas upwind from the city, such as coal-burning power plants in the Midwest." >}}
-{{< accordion number="02" title="Black Carbon" content="Black carbon (BC) is one type of PM<sub>2.5</sub> and is the sooty black material emitted from gas and diesel engines, coal-fired power plants, and other sources that burn fossil fuels. It comprises up to 20% of fine particulate matter in New York City. Unlike other fine particles, BC is primarily from local sources. Inhalation of BC is associated with health problems, including respiratory and cardiovascular disease, cancer and birth defects. BC also contributes to climate change by altering the patterns of rain and clouds." >}}
-{{< accordion number="03" title="Nitrogen Dioxide and Nitric Oxide" content="Nitrogen dioxide (NO<sub>2</sub>) and nitric oxide (NO) are part of a group of pollutants called &ldquo;oxides of nitrogen&rdquo; (NOX). Exposures to NOX are linked to increased emergency department visits and hospitalizations for respiratory conditions, particularly asthma. NOX also reacts with other compounds in the atmosphere to form PM<sub>2.5</sub> and O<sub>3</sub>. A variety of combustion sources produce NOX in New York City, including motor vehicles, buildings, marine vessels and construction equipment." >}}
-{{< accordion number="04" title="Ozone" content="Ozone (O<sub>3</sub>) forms at ground level when NOX emissions combine with sunlight and other airborne pollutants. Measured O<sub>3</sub> concentrations are often highest in the summer and downwind from areas with high NOX emissions, such as places with high traffic density. In areas with heavy traffic, NOX reacts with any ground-level O<sub>3</sub> to reduce O<sub>3</sub> concentrations. As a result, NYCCAS has measured lower O3 levels near roadways, in city centers and in other areas of high NOX emissions density. Higher levels of O<sub>3</sub> are seen in areas away from dense traffic and building emissions." >}}
-{{< accordion number="05" title="Sulfur Dioxide" content="Sulfur dioxide (SO<sub>2</sub>) is produced mainly by burning oils with high sulfur content, such as No. 4 and No. 6 oil (also known as residual fuel oil), or high-sulfur No. 2 oil. The primary use of fuel oil in NYC is to heat buildings and water, which is why we only monitor it in the winter. Some high-sulfur oil is also used to generate electricity and power marine vessels. SO2 exposures can worsen lung diseases, causing hospitalizations and emergency department visits for asthma and other respiratory conditions. SO<sub>2</sub> also contributes to the formation of PM<sub>2.5</sub> in the atmosphere, resulting in PM<sub>2.5</sub> exposures downwind of SO<sub>2</sub> emissions." >}}
+{{< accordion number="01" title="Fine Particles" content="Fine particles (PM<sub>2.5</sub>) are tiny airborne solid and liquid particles less than 2.5 microns in diameter. PM<sub>2.5</sub> is the most harmful urban air pollutant. It is small enough to penetrate deep into the lungs and enter the bloodstream, which can worsen lung and heart disease and lead to hospital admissions and premature deaths. PM<sub>2.5</sub> can either be directly emitted or formed in the atmosphere from other pollutants. Fuel combustion in vehicles, boilers in buildings, power plants, construction equipment, marine vessels and commercial cooking are all common sources of PM<sub>2.5</sub>. Up to 40% of the PM<sub>2.5</sub> in New York City's air comes from sources in areas upwind from the city, such as coal-burning power plants in the Midwest." >}} {{< accordion number="02" title="Black Carbon" content="Black carbon (BC) is one type of PM<sub>2.5</sub> and is the sooty black material emitted from gas and diesel engines, coal-fired power plants, and other sources that burn fossil fuels. It comprises up to 20% of fine particulate matter in New York City. Unlike other fine particles, BC is primarily from local sources. Inhalation of BC is associated with health problems, including respiratory and cardiovascular disease, cancer and birth defects. BC also contributes to climate change by altering the patterns of rain and clouds." >}} {{< accordion number="03" title="Nitrogen Dioxide and Nitric Oxide" content="Nitrogen dioxide (NO<sub>2</sub>) and nitric oxide (NO) are part of a group of pollutants called &ldquo;oxides of nitrogen&rdquo; (NOX). Exposures to NOX are linked to increased emergency department visits and hospitalizations for respiratory conditions, particularly asthma. NOX also reacts with other compounds in the atmosphere to form PM<sub>2.5</sub> and O<sub>3</sub>. A variety of combustion sources produce NOX in New York City, including motor vehicles, buildings, marine vessels and construction equipment." >}} {{< accordion number="04" title="Ozone" content="Ozone (O<sub>3</sub>) forms at ground level when NOX emissions combine with sunlight and other airborne pollutants. Measured O<sub>3</sub> concentrations are often highest in the summer and downwind from areas with high NOX emissions, such as places with high traffic density. In areas with heavy traffic, NOX reacts with any ground-level O<sub>3</sub> to reduce O<sub>3</sub> concentrations. As a result, NYCCAS has measured lower O3 levels near roadways, in city centers and in other areas of high NOX emissions density. Higher levels of O<sub>3</sub> are seen in areas away from dense traffic and building emissions." >}} {{< accordion number="05" title="Sulfur Dioxide" content="Sulfur dioxide (SO<sub>2</sub>) is produced mainly by burning oils with high sulfur content, such as No. 4 and No. 6 oil (also known as residual fuel oil), or high-sulfur No. 2 oil. The primary use of fuel oil in NYC is to heat buildings and water, which is why we only monitor it in the winter. Some high-sulfur oil is also used to generate electricity and power marine vessels. SO2 exposures can worsen lung diseases, causing hospitalizations and emergency department visits for asthma and other respiratory conditions. SO<sub>2</sub> also contributes to the formation of PM<sub>2.5</sub> in the atmosphere, resulting in PM<sub>2.5</sub> exposures downwind of SO<sub>2</sub> emissions." >}}
 
 ---
 
@@ -95,7 +88,6 @@ NYCCAS has also deployed a limited number of monitors that can measure PM<sub>2.
 The monitoring locations represent a wide variety of New York City environments – sidewalks, busy streets, parks and quiet neighborhood roads. Most of the sites (80%) were chosen by the Health Department at random to ensure representation in all types of neighborhoods, including residential, commercial and industrial areas. The remaining sites were selected because they are near potentially high-emission locations that were not captured in the random assignment. These include Times Square, the Port Authority Bus Terminal and the entrance to the Holland Tunnel. The locations vary in tree canopy and in the density of traffic and buildings. The number of sites has changed over the years as we have learned about air quality in our city. In 2020, we monitored 78 routine locations and an additional 15 sites in low-income neighborhoods that would benefit from additional monitoring to understand potential sources of emissions. We refer to these as Environmental Justice Sites on the map.
 
 <iframe src="https://nycehs.github.io/nyccas-vis-demo/nyccas-sites-leaflet.html" frameborder="no" style="width: 100%; height: 500px"></iframe>
-
 
 ---
 
@@ -121,10 +113,11 @@ scriptElement.src = 'https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.j
 vizElement.parentNode.insertBefore(scriptElement, vizElement);
 </script>
 
-<hr>
+---
 
-<button type="button" onclick="updateiframe(1)" class="btn btn-outline-primary yearbtn active" id='btn1'>2021</button>
-<button type="button" onclick="updateiframe(2)"  class="btn btn-outline-primary yearbtn" id='btn2'>All years</button>
+<button type="button" class="btn btn-outline-primary yearbtn active" id="btn1" onclick="updateiframe(1)">2021</button>
+
+<button type="button" class="btn btn-outline-primary yearbtn" id="btn2" onclick="updateiframe(2)">All years</button>
 
 <iframe id="iframeEmbed" src="https://nycehs.github.io/nyccas-vis-demo/pollutant-maps.html" frameborder="no" style="width: 100%; height: 600px"></iframe>
 
@@ -165,10 +158,9 @@ scriptElement.src = 'https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.j
 vizElement.parentNode.insertBefore(scriptElement, vizElement);
 </script>
 
-<hr>
+---
 
 <iframe src="https://nycehs.github.io/nyccas-vis-demo/pollutant-trends.html" frameborder="no" style="width: 100%; height: 600px"></iframe>
-
 
 ---
 
@@ -192,10 +184,9 @@ scriptElement.src = 'https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.j
 vizElement.parentNode.insertBefore(scriptElement, vizElement);
 </script>
 
-<hr>
+---
 
 <iframe src="https://nycehs.github.io/nyccas-vis-demo/pollutant-predictors.html" frameborder="no" style="width: 100%; height: 350px"></iframe>
-
 
 ---
 
