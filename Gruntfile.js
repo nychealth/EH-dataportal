@@ -250,7 +250,7 @@ module.exports = function(grunt) {
 
                 these_names = nr_indicator_names.filter(d => d.title == title)[0].indicator_names
 
-                grunt.log.writeln(filename, ":", these_names);
+                // grunt.log.writeln(filename, ":", these_names);
                 // grunt.log.writeln(filename, ":", grunt.log.wordlist(these_names));
 
             }
