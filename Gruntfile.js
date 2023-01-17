@@ -44,6 +44,7 @@ module.exports = function(grunt) {
             var htmlPagesIndex = [];
             var pagesIndex = [];
             var indicator_names = aq.from(grunt.file.readJSON(build_dir + "/IndicatorData/indicator_names.json"));
+            var nr_indicator_names = aq.from(grunt.file.readJSON(build_dir + "/IndicatorData/nr_indicator_names.json"));
 
             //--------------------------------------------------------------------------------//
             // running `processFile` on all HTML files on gh-pages branch
@@ -217,6 +218,21 @@ module.exports = function(grunt) {
             }
 
             if (abspath.match(/data-explorer/) && typeof frontMatter.indicators != 'undefined') {
+
+                these_indicator_ids = [...new Set(frontMatter.indicators.flatMap(x => x.IndicatorID))];
+
+                grunt.log.writeln(filename, ":", grunt.log.wordlist(these_indicator_ids));
+
+                these_names = indicator_names
+                    .filter(aq.escape(d => these_indicator_ids.includes(parseInt(d.key))))
+                    .reify()
+                    .array("value")
+                
+                // grunt.log.writeln("these_names", grunt.log.wordlist(these_names));
+
+            }
+            
+            if (abspath.match(/neighborhood-reports/) && !filename.match("index")) {
 
                 these_indicator_ids = [...new Set(frontMatter.indicators.flatMap(x => x.IndicatorID))];
 
