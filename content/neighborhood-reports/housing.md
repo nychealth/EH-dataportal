@@ -2,7 +2,7 @@
 title: 'Housing and Health'
 categories: ["housing","childhealth","social","neighborhoods"]
 layout: topiclanding
-title: 'Housing and Health in NYC'
+seo_title: 'Housing and Health in NYC'
 menu:
     main:
         identifier: '04'

@@ -200,7 +200,7 @@
 
                 download = arqTable
                     .select(aq.not('report_id','indicator_id','data_field_name','start_date','end_date')) // drop unnecessary columns
-                    .filter(d => d.neighborhood = '{{ .geo_entity_name }}')
+                    .filter(d => d.neighborhood == '{{ .geo_entity_name }}')
                 
                 let downloadTableCSV = download.toCSV(); // format as CSV
                 // Data URI
@@ -396,7 +396,7 @@
                     <li><strong>Worse:</strong> in the bottom 1/3rd of NYC neighborhoods.</li>
                 </ul>
                 <p>These are only based on the distribution of data values, not the range. The absolute values of
-                    indicators in different categoeis may not be all that different.</p>
+                    indicators in different categories may not be all that different.</p>
 
             </div>
             <!-- .modal-body -->
