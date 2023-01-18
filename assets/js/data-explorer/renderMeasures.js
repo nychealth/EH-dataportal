@@ -196,68 +196,6 @@ const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasur
 }
 
 
-// ----------------------------------------------------------------------- //
-// function to create data and metadata for comparisons chart
-// ----------------------------------------------------------------------- //
-
-// indicatorComparisonId is array of ComparisonIDs
-// map over indicatorComparisonId and filter comparisons.json into indicatorComparisonMetadata
-//  - also used by comparisons.js
-// map over indicatorComparisonMetadata, map over Indicators, fetch indicator data, map over Measures and filter data
-// single data frame with ComparisonID, IndicatorID, MeasureID
-
-// use test before funtion call?
-
-const createComparisonData = async () => {
-    
-    indicatorComparisonId = indicator?.Comparisons;
-
-    indicatorComparisonMetadata = comparisons.filter(
-            d => indicatorComparisonId.includes(d.ComparisonID)
-        )
-        
-        let all_comp_data = [];
-
-        await indicatorComparisonMetadata.map(c => {
-
-            c.Indicators.map(async i => {
-
-                await aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${i.IndicatorID}.json`)
-                    .then(data => {
-
-                        data.print();
-
-                        // arquero doesn't let you concat with an empty table, unlike dplyr and bind_rows,
-                        //  so here we need to convert back to plain JS objects and concat, then convert
-                        //  back to an arquero table
-
-                        let comp_data = data
-                            .derive({
-                                ComparisonID: aq.escape(c.ComparisonID),
-                                IndicatorID: aq.escape(i.IndicatorID)
-                            })
-                            .filter(aq.escape(d => d.MeasureID.includes(i.Measures)))
-                            .objects()
-                            
-                        all_comp_data = all_comp_data.concat(comp_data);
-                        
-                })
-            })
-        })
-
-        indicatorComparisonData = aq.from(all_comp_data);
-        
-        console.log("indicatorComparisonData:");
-        indicatorComparisonData.print({limit: 100})
-
-    }
-
-if (indicatorComparisonId !== null) {
-
-    createComparisonData()
-
-    }
-
 // if (indicatorComparisonId !== null) {
     
 //     if (fullDataTrendObjects) {

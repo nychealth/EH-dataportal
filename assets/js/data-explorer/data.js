@@ -14,7 +14,7 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
     .then(response => response.json())
     .then(async data => {
 
-        // console.log("** fetch indicators.json");
+        console.log("** fetch indicators.json");
 
         indicators = data;
 
@@ -27,11 +27,17 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
         //  of this depends on the global "indicator" object, we call loadIndicator here
         
         if (paramId) {
-            await loadIndicator(paramId)
+            loadIndicator(paramId)
         } else {
             // console.log('no param', url.searchParams.get('id'));
-            await loadIndicator()
+            loadIndicator()
         }
+
+    if (indicatorComparisonId !== null) {
+
+        fetch_comparisons();
+
+    }
         
     })
     .catch(error => console.log(error));
@@ -40,18 +46,126 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
 // indicator comparisons metadata
 // ----------------------------------------------------------------------- //
 
-fetch(data_repo + data_branch + '/indicators/comparisons.json')
-    .then(response => response.json())
-    .then(data => {
+const fetch_comparisons = async () => {
+    
+    console.log("** fetch_comparisons");
 
-        // console.log("** fetch comparisons.json");
+    await fetch(data_repo + data_branch + '/indicators/comparisons.json')
+        .then(response => response.json())
+        .then(async data => {
+            
+            console.log("** fetch comparisons.json");
+            
+            comparisons = data;
+            
+            console.log("comparisons:", comparisons);
+            
+        })
+        .catch(error => console.log(error));
 
-        comparisons = data;
+    let x = createComparisonData(comparisons).then(d => console.log(">>>>>>>>>>> d", d))
+
+    console.log(">>>>>>> x", x);
+
+    // .then(async (data) => {
+
+    //     await aq_comp(data);
+
+    // });
+
+}
+
+
+// ----------------------------------------------------------------------- //
+// function to create data and metadata for comparisons chart
+// ----------------------------------------------------------------------- //
+
+// indicatorComparisonId is array of ComparisonIDs
+// map over indicatorComparisonId and filter comparisons.json into indicatorComparisonMetadata
+//  - also used by comparisons.js
+// map over indicatorComparisonMetadata, map over Indicators, fetch indicator data, map over Measures and filter data
+// single data frame with ComparisonID, IndicatorID, MeasureID
+
+// use test before funtion call?
+
+const createComparisonData = async (comps) => {
+
+    console.log("** createComparisonData");
+
+    console.log("comps [createComparisonData]:", comps);
+    
+    indicatorComparisonMetadata = await comps.filter(
+            d => indicatorComparisonId.includes(d.ComparisonID)
+        )
         
-        console.log("comparisons:", comparisons);
+    console.log("indicatorComparisonMetadata [createComparisonData]:", indicatorComparisonMetadata);
 
+    let all_comp_data;
+
+    console.log("typeof all_comp_data", typeof all_comp_data === "undefined");
+
+    await indicatorComparisonMetadata.map(async c => {
+
+        console.log("*** indicatorComparisonMetadata.map");
+
+        await c.Indicators.map(async i => {
+
+            console.log("*** c.Indicators.map");
+            // NEED UNIQUE
+
+            // console.log("i.IndicatorID:", i.IndicatorID);
+
+            await aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${i.IndicatorID}.json`)
+                .then(async data => {
+
+                    console.log("*** aq.loadJSON");
+                    console.log("i.IndicatorID:", i.IndicatorID);
+                    console.log("i.Measures:", i.Measures);
+                    data.print({limit: 5});
+
+                    // arquero doesn't let you concat with an empty table, unlike dplyr and bind_rows,
+                    //  so here we need to convert back to plain JS objects and concat, then convert
+                    //  back to an arquero table
+
+                    let comp_data = await data
+                        .derive({
+                            ComparisonID: aq.escape(c.ComparisonID),
+                            IndicatorID: aq.escape(i.IndicatorID)
+                        })
+                        // .filter(aq.escape(d => d.MeasureID.some(i.Measures)))
+                        // .filter(`d => op.includes(d.MeasureID, ${i.Measures})`)
+                        .objects()
+                        
+                    console.log("comp_data [inside]:", comp_data);
+
+                    // console.log("all_comp_data [inside]:", all_comp_data);
+
+                    if (typeof all_comp_data === "undefined") all_comp_data = []
+
+                    all_comp_data = await all_comp_data.concat(comp_data);
+
+                    console.log("all_comp_data [inside]:", all_comp_data);
+                    
+            })
+        })
     })
-    .catch(error => console.log(error));
+
+    console.log("all_comp_data [return]", all_comp_data);
+
+    return all_comp_data;
+
+}
+
+const aq_comp = (data) => {
+
+    console.log(">>> aq_comp");
+    console.log("all_comp_data [outside]:", data);
+    
+    indicatorComparisonData = aq.from(data);
+    
+    console.log("indicatorComparisonData:");
+    indicatorComparisonData.print({limit: 10})
+}
 
 
 // ======================================================================= //
@@ -95,9 +209,14 @@ const loadIndicator = (this_indicatorId, dont_add_to_history) => {
     indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : '';
     indicatorDesc = indicator?.IndicatorDescription ? indicator.IndicatorDescription : '';
     indicatorShortName = indicator?.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
+    indicatorComparisonId = indicator?.Comparisons;
     indicatorMeasures = indicator?.Measures;
 
-    console.log("indicatorComparisonId", indicatorComparisonId);
+    console.log("indicatorComparisonId:", indicatorComparisonId);
+    // console.log("indicator", indicator);
+
+
+    // console.log("indicatorComparisonId", indicatorComparisonId);
 
     // create Citation
 
