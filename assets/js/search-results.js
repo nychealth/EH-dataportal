@@ -8,7 +8,7 @@ let lunrIndex,
 // stopwords taken from the 'sw_loughran_mcdonald_long' dataset in the 'lexicon' R package, which sourced it from https://sraf.nd.edu/textual-analysis/stopwords/, modified to remove "above" and "below"
 //  'according' is the first full word here that's in PagesIndex and not in the default stop word filter, so you can search for 'according' to test the extended filter
 
-const moreStopWords = ["a", "a's", "able", "about", "according", "accordingly", "across", "actually", "after", "afterwards", "again",
+const moreStopWords = ["a", "a's", "able", "about", "according", "accordingly", "across", "actually", "adult", "after", "afterwards", "again",
     "against", "ain't", "all", "allow", "allows", "almost", "alone", "along", "already", "also", "although", "always", "am", "among",
     "amongst", "an", "and", "another", "any", "anybody", "anyhow", "anyone", "anything", "anyway", "anyways", "anywhere", "apart", "appear",
     "appreciate", "appropriate", "are", "aren't", "around", "as", "aside", "ask", "asking", "associated", "at", "available", "away", "awfully",
@@ -47,12 +47,12 @@ const moreStopWords = ["a", "a's", "able", "about", "according", "accordingly", 
     "who", "who's", "whoever", "whole", "whom", "whose", "why", "will", "willing", "wish", "with", "within", "without", "won't", "wonder", 
     "would", "wouldn't", "x", "y", "yes", "yet", "you", "you'd", "you'll", "you're", "you've", "your", "yours", "yourself", "yourselves", "z", "zero"];
 
+const extendedStopWordFilter = lunr.generateStopWordFilter(moreStopWords);
+lunr.Pipeline.registerFunction(extendedStopWordFilter, 'extendedStopWordFilter');
+
 // Initialize lunrjs using our generated index file
 
 function initLunr() {
-
-    const biggerStopWordFilter = lunr.generateStopWordFilter(moreStopWords);
-    lunr.Pipeline.registerFunction(biggerStopWordFilter, 'moreStopWords');
 
     var request = new XMLHttpRequest();
 
@@ -73,7 +73,11 @@ function initLunr() {
 
             lunrIndex = lunr(function () {
 
-                console.log("this [lunr]", this);
+                // console.log("this [lunr]", this);
+
+                // add extended stop word filter after default
+
+                this.pipeline.before(lunr.stopWordFilter, extendedStopWordFilter);
 
                 this.field("title", {
                     boost: 10
@@ -119,10 +123,6 @@ function initLunr() {
                 for (var i = 0; i < pagesIndex.length; ++i) {
                     this.add(pagesIndex[i]);
                 }
-
-                // add extended stop word filter after default
-
-                this.pipeline.after(lunr.stopWordFilter, biggerStopWordFilter);
 
             });
 
@@ -194,7 +194,7 @@ function search(query) {
     //  {title:"Page1", href:"/section/page1", ...}
     return lunrIndex.search(query).map(function (result) {
 
-            // console.log("result [lunrIndex]", result);
+        console.log("result [lunrIndex]", result);
 
         return pagesIndex.filter(function (page) {
 
