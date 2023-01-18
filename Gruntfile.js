@@ -232,8 +232,9 @@ module.exports = function(grunt) {
                     .filter(aq.escape(d => these_indicator_ids.includes(parseInt(d.key))))
                     .reify()
                     .array("value")
+                    .join(" ")
                 
-                // grunt.log.writeln("these_names", grunt.log.wordlist(these_names));
+                grunt.log.writeln("these_names", these_names);
 
             }
             
@@ -248,9 +249,9 @@ module.exports = function(grunt) {
 
                 // grunt.log.writeln(filename, ":", title.s);
 
-                these_names = nr_indicator_names.filter(d => d.title == title)[0].indicator_names
+                these_names = nr_indicator_names.filter(d => d.title == title)[0].indicator_names.join(" ")
 
-                // grunt.log.writeln(filename, ":", these_names);
+                grunt.log.writeln(filename, ":", these_names);
                 // grunt.log.writeln(filename, ":", grunt.log.wordlist(these_names));
 
             }
