@@ -43,8 +43,10 @@ module.exports = function(grunt) {
             var mdPagesIndex = [];
             var htmlPagesIndex = [];
             var pagesIndex = [];
-            var de_indicator_names = aq.from(grunt.file.readJSON(build_dir + "/IndicatorData/indicator_names.json"));
+            var de_indicator_names = aq.from(aq.from(grunt.file.readJSON(build_dir + "/IndicatorData/indicator_names.json")).array("value"));
             var nr_indicator_names = grunt.file.readJSON(build_dir + "/IndicatorData/nr_indicator_names.json");
+            
+            // grunt.log.writeln(de_indicator_names.array("value"))
 
             // ------------------------------------------------------------------------------- //
             // running `processFile` on all HTML files on gh-pages branch
@@ -53,8 +55,6 @@ module.exports = function(grunt) {
             // ([rootdir, subdir] are necessary in the function call, or else grunt throws an error, so we need them, even though they don't do anything)
             
             grunt.file.recurse(build_dir, function(abspath, rootdir, subdir, filename) {
-
-                // grunt.log.writeln("recurse html:", de_indicator_names['1']);
 
                 // The full path to the current file, which is nothing more than
                 // the rootdir + subdir + filename arguments, joined.
@@ -195,7 +195,8 @@ module.exports = function(grunt) {
             var content = grunt.file.read(abspath);
             var pageIndex;
             let these_indicator_ids;
-            let these_names;
+            let indicator_names;
+            let indicator_descriptions;
             
             // grunt.log.writeln("de_indicator_names", de_indicator_names);
             // grunt.log.writeln("nr_indicator_names", nr_indicator_names);
@@ -228,12 +229,19 @@ module.exports = function(grunt) {
 
                 // grunt.log.writeln(filename, ":", grunt.log.wordlist(these_indicator_ids));
 
-                these_names = de_indicator_names
-                    .filter(aq.escape(d => these_indicator_ids.includes(parseInt(d.key))))
-                    .reify()
-                    .array("value")
+                let indicator_details = de_indicator_names
+                    .filter(aq.escape(d => these_indicator_ids.includes(d.IndicatorID)))
                 
-                // grunt.log.writeln("these_names", grunt.log.wordlist(these_names));
+                indicator_names = indicator_details
+                    .array("name")
+                    .join(" ")
+                
+                indicator_descriptions = indicator_details
+                    .array("description")
+                    .join(" ")
+                
+                // grunt.log.writeln("indicator_names", indicator_names);
+                // grunt.log.writeln("indicator_descriptions", indicator_descriptions);
 
             }
             
@@ -248,10 +256,11 @@ module.exports = function(grunt) {
 
                 // grunt.log.writeln(filename, ":", title.s);
 
-                these_names = nr_indicator_names.filter(d => d.title == title)[0].indicator_names
+                indicator_names = [...new Set(nr_indicator_names.filter(d => d.title == title)[0].indicator_names)].join(" ")
+                indicator_descriptions = [...new Set(nr_indicator_names.filter(d => d.title == title)[0].indicator_descriptions)].join(" ")
 
-                // grunt.log.writeln(filename, ":", these_names);
-                // grunt.log.writeln(filename, ":", grunt.log.wordlist(these_names));
+                // grunt.log.writeln(filename, ":", indicator_names);
+                // grunt.log.writeln(filename, ":", grunt.log.wordlist(indicator_names));
 
             }
             
@@ -307,21 +316,22 @@ module.exports = function(grunt) {
 
             pageIndex = {
                 title: frontMatter.title,
-                indicator_names: these_names,
-                tags: frontMatter.tags,
+                indicator_names: indicator_names,
+                indicator_descriptions: indicator_descriptions,
+                summary: frontMatter.summary,
+                // tags: frontMatter.tags,
                 categories: frontMatter.categories,
                 keywords: frontMatter.keywords,
-                indicators: these_indicator_ids,
+                indicators_ids: these_indicator_ids,
                 neighborhood: frontMatter.neighborhood,
-                summary: frontMatter.summary,
-                data_json: frontMatter.data_json,
-                content_yml: frontMatter.content_yml,
-                type: frontMatter.type,
+                // data_json: frontMatter.data_json,
+                // content_yml: frontMatter.content_yml,
+                // type: frontMatter.type,
                 seo_title: frontMatter.seo_title,
-                seo_description: frontMatter.seo_description,
-                seo_image: frontMatter.seo_image,
-                href: S(href).trim().s.toLowerCase(),
-                content: contentParsed
+                // seo_description: frontMatter.seo_description,
+                // seo_image: frontMatter.seo_image,
+                content: contentParsed,
+                href: S(href).trim().s.toLowerCase()
             };
             
             return pageIndex;
