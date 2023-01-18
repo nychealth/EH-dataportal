@@ -45,7 +45,8 @@ const moreStopWords = ["a", "a's", "able", "about", "according", "accordingly", 
     "we'll", "we're", "we've", "welcome", "well", "went", "were", "weren't", "what", "what's", "whatever", "when", "whence", "whenever", 
     "where", "where's", "whereafter", "whereas", "whereby", "wherein", "whereupon", "wherever", "whether", "which", "while", "whither", 
     "who", "who's", "whoever", "whole", "whom", "whose", "why", "will", "willing", "wish", "with", "within", "without", "won't", "wonder", 
-    "would", "wouldn't", "x", "y", "yes", "yet", "you", "you'd", "you'll", "you're", "you've", "your", "yours", "yourself", "yourselves", "z", "zero"];
+    "would", "wouldn't", "x", "y", "yes", "yet", "you", "you'd", "you'll", "you're", "you've", "your", "yours", "yourself", "yourselves", 
+    "z", "zero", "nyc"];
 
 const extendedStopWordFilter = lunr.generateStopWordFilter(moreStopWords);
 lunr.Pipeline.registerFunction(extendedStopWordFilter, 'extendedStopWordFilter');
@@ -85,36 +86,42 @@ function initLunr() {
                 this.field("indicator_names", {
                     boost: 7
                 });
-                this.field("tags", {
+                this.field("indicator_descriptions", {
                     boost: 5
                 });
+                this.field("summary", {
+                    boost: 5
+                });
+                // this.field("tags", {
+                //     boost: 5
+                // });
                 this.field("categories", {
                     boost: 5
                 });
                 this.field("keywords", {
-                    boost: 5
+                    boost: 8
                 });
-                this.field("indicators", {
+                this.field("indicator_ids", {
                     boost: 5
                 });
                 this.field("neighborhood", {
-                    boost: 5
-                });
-                this.field("seo_description", {
-                    boost: 5
+                    boost: 7
                 });
                 this.field("seo_title", {
                     boost: 5
                 });
-                this.field("type", {
-                    boost: 5
-                });
-                this.field("content_yml", {
-                    boost: 5
-                });
-                this.field("data_json", {
-                    boost: 5
-                });
+                // this.field("seo_description", {
+                //     boost: 5
+                // });
+                // this.field("type", {
+                //     boost: 5
+                // });
+                // this.field("content_yml", {
+                //     boost: 5
+                // });
+                // this.field("data_json", {
+                //     boost: 5
+                // });
                 this.field("content");
                 
                 // ref is the result item identifier (I chose the page URL)
