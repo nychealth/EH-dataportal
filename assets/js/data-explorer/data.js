@@ -89,83 +89,60 @@ const fetch_comparisons = async () => {
 // use test before funtion call?
 
 const createComparisonData = async (comps) => {
-
+    
     console.log("** createComparisonData");
-
-    console.log("comps [createComparisonData]:", comps);
+    
+    // console.log("comps [createComparisonData]:", comps);
     
     indicatorComparisonMetadata = await comps.filter(
-            d => indicatorComparisonId.includes(d.ComparisonID)
-        )
+        d => indicatorComparisonId.includes(d.ComparisonID)
+    )
         
     console.log("indicatorComparisonMetadata [createComparisonData]:", indicatorComparisonMetadata);
+    
+    // Promise.all takes the array of promises returned by map, and then the `then` callback executes after they've all resolved
 
-    let all_comp_data;
+    Promise.all(indicatorComparisonMetadata.map(c => {
+        
+        console.log("ComparisonID:", c.ComparisonID);
+        
+        c.Indicators.map(i => {
+            
+            console.log("IndicatorID:", i.IndicatorID);
 
-    console.log("typeof all_comp_data", typeof all_comp_data === "undefined");
-
-    await indicatorComparisonMetadata.map(async c => {
-
-        console.log("*** indicatorComparisonMetadata.map");
-
-        await c.Indicators.map(async i => {
-
-            console.log("*** c.Indicators.map");
             // NEED UNIQUE
-
-            // console.log("i.IndicatorID:", i.IndicatorID);
-
-            await aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${i.IndicatorID}.json`)
-                .then(async data => {
-
+            
+            
+            aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${i.IndicatorID}.json`)
+                .then(data => {
+                    
                     console.log("*** aq.loadJSON");
                     console.log("i.IndicatorID:", i.IndicatorID);
                     console.log("i.Measures:", i.Measures);
+
                     data.print({limit: 5});
-
-                    // arquero doesn't let you concat with an empty table, unlike dplyr and bind_rows,
-                    //  so here we need to convert back to plain JS objects and concat, then convert
-                    //  back to an arquero table
-
-                    let comp_data = await data
+                    
+                    let comp_data = data
                         .derive({
                             ComparisonID: aq.escape(c.ComparisonID),
                             IndicatorID: aq.escape(i.IndicatorID)
                         })
                         // .filter(aq.escape(d => d.MeasureID.some(i.Measures)))
-                        // .filter(`d => op.includes(d.MeasureID, ${i.Measures})`)
-                        .objects()
-                        
-                    console.log("comp_data [inside]:", comp_data);
-
-                    // console.log("all_comp_data [inside]:", all_comp_data);
-
-                    if (typeof all_comp_data === "undefined") all_comp_data = []
-
-                    all_comp_data = await all_comp_data.concat(comp_data);
-
-                    console.log("all_comp_data [inside]:", all_comp_data);
+                        .filter(`d => op.includes(d.MeasureID, ${i.Measures})`)
                     
-            })
+                    console.log("comp_data [inside]:", comp_data);
+                    
+                    return comp_data;
+                
+                })
         })
-    })
 
-    console.log("all_comp_data [return]", all_comp_data);
+    }))
 
-    return all_comp_data;
-
+    // 
+    .then(dataArray => indicatorComparisonData = dataArray.reduce((a, b) => a.concat(b)))
 }
 
-const aq_comp = (data) => {
-
-    console.log(">>> aq_comp");
-    console.log("all_comp_data [outside]:", data);
-    
-    indicatorComparisonData = aq.from(data);
-    
-    console.log("indicatorComparisonData:");
-    indicatorComparisonData.print({limit: 10})
-}
 
 
 // ======================================================================= //
