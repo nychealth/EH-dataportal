@@ -322,7 +322,7 @@ module.exports = function(grunt) {
                 // tags: frontMatter.tags,
                 categories: frontMatter.categories,
                 keywords: frontMatter.keywords,
-                indicators_ids: these_indicator_ids,
+                indicator_ids: these_indicator_ids,
                 neighborhood: frontMatter.neighborhood,
                 // data_json: frontMatter.data_json,
                 // content_yml: frontMatter.content_yml,
