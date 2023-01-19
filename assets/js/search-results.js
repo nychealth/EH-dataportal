@@ -84,13 +84,13 @@ function initLunr() {
                     boost: 10
                 });
                 this.field("indicator_names", {
-                    boost: 7
+                    boost: 8
                 });
                 this.field("indicator_descriptions", {
-                    boost: 5
+                    boost: 7
                 });
                 this.field("summary", {
-                    boost: 5
+                    boost: 6
                 });
                 // this.field("tags", {
                 //     boost: 5
@@ -99,7 +99,7 @@ function initLunr() {
                     boost: 5
                 });
                 this.field("keywords", {
-                    boost: 8
+                    boost: 9
                 });
                 this.field("indicator_ids", {
                     boost: 5
