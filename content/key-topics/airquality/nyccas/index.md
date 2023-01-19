@@ -21,7 +21,7 @@ menu:
         identifier: '05'
 layout: report
 ---
-![](/content/key-topics/the-new-york-city-community-air-survey/sky.jpg)
+![](/content/key-topics/airquality/nyccas/nyccas.png)
 
 <style type="text/css">hr {
   margin-top: 25px;
