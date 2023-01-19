@@ -26,7 +26,11 @@ layout: report
   margin-bottom: 25px;
  }</style>
 
-## ![](/content/key-topics/airquality/nyccas/nyccas.png)Neighborhood Air Quality 2008-2021
+
+
+## Neighborhood Air Quality 2008-2021
+
+{{< figure src="nyccas.png" alt="NYC skyline." >}}
 
 In 2007, the New York City Department of Health and Mental Hygiene (Health Department) established the New York City Community Air Survey (NYCCAS), the largest ongoing urban air monitoring program of any U.S. City. NYCCAS, which began collecting data in December 2008, is a collaboration between the Health Department and Queens College of the City University of New York and provides data to:
 
