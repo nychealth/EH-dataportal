@@ -109,6 +109,7 @@ Over time, the data we use to model the relationships between land use and pollu
 Winter and summer average maps for BC, NO<sub>2</sub>, NO and PM<sub>2.5</sub> are available in Appendix 2 (PDF).
 
 ---
+
 {{< rawhtml >}}
 
 <button type="button" class="btn btn-outline-primary yearbtn active mb-2" id="btn1" onclick="updateiframe(1)">2021</button>
@@ -144,54 +145,10 @@ The figure below illustrates how the levels of each air pollutant change by seas
 
 ---
 
-</div>
-<div class="col-10 mx-auto">
+<div class="col-10 mx-auto"><iframe src="https://nycehs.github.io/nyccas-vis-demo/pollutant-trends.html" style="height:700px;width:100%;border:none;overflow:hidden;"></iframe></div>
 
-<iframe src="https://nycehs.github.io/nyccas-vis-demo/pollutant-trends.html" style="height:700px;width:100%;border:none;overflow:hidden;"></iframe>
+<div class="col-md-8 col-sm-12 mx-auto"><hr /><h3>Pollutant Predictors</h3><p>NYCCAS data were analyzed using a land-use regression (LUR) model. LUR models estimate associations among pollution levels, average traffic, building emissions, land use and other neighborhood factors around the monitoring sites. The pollution sources that contribute most to differences in concentrations of NO, NO<sub>2</sub>, BC, and PM<sub>2.5</sub> across NYC are listed in the table below. SO<sub>2</sub> is now so low in NYC that it is not possible to build a LUR model for the most recent years of data.</p><p>Fuel used to provide heat and hot water in buildings has become significantly cleaner under state and local regulations requiring use of cleaner burning fuels. As a result, commercial charbroiling and grilling operations have become a more important source of PM<sub>2.5</sub> emissions over the past several years due to state and local regulations mandating cleaner burning fuels for building heat and hot water. The number of commercial cooking charbroilers and grills in an area now explains PM<sub>2.5</sub> differences among neighborhoods better than building emissions. For more information on these changes, please see Tracking changes in New York City's sources of air pollution.</p><hr /></div>
 
-</div>
-<div class="col-md-8 col-sm-12 mx-auto">
+<div class="col-10 mx-auto"><iframe src="https://nycehs.github.io/nyccas-vis-demo/pollutant-predictors.html" frameborder="no" style="width: 100%; height: 500px"></iframe></div>
 
----
-
-### Pollutant Predictors
-
-NYCCAS data were analyzed using a land-use regression (LUR) model. LUR models estimate associations among pollution levels, average traffic, building emissions, land use and other neighborhood factors around the monitoring sites. The pollution sources that contribute most to differences in concentrations of NO, NO<sub>2</sub>, BC, and PM<sub>2.5</sub> across NYC are listed in the table below. SO<sub>2</sub> is now so low in NYC that it is not possible to build a LUR model for the most recent years of data.
-
-Fuel used to provide heat and hot water in buildings has become significantly cleaner under state and local regulations requiring use of cleaner burning fuels. As a result, commercial charbroiling and grilling operations have become a more important source of PM<sub>2.5</sub> emissions over the past several years due to state and local regulations mandating cleaner burning fuels for building heat and hot water. The number of commercial cooking charbroilers and grills in an area now explains PM<sub>2.5</sub> differences among neighborhoods better than building emissions. For more information on these changes, please see Tracking changes in New York City's sources of air pollution.
-
----
-
-</div>
-<div class="col-10 mx-auto">
-
-<iframe src="https://nycehs.github.io/nyccas-vis-demo/pollutant-predictors.html" frameborder="no" style="width: 100%; height: 500px"></iframe>
-
-</div>
-<div class="col-md-8 col-sm-12 mx-auto">
-
----
-
-### Conclusion
-
-This report underscores the importance of emissions reduction efforts over the past decade and highlights the continued need to reduce emissions citywide. The City’s sustainability plan, OneNYC, and its roadmap to reduce greenhouse gas emissions, 80x50, have already and will continue to improve air quality, providing important public health benefits to all New Yorkers. These strategies and measures include:
-
-* Transitioning the City's fleet to more efficient, less polluting heavy-duty vehicles, such as trash trucks and school buses
-* Reducing motor vehicle use by shifting to more sustainable modes of transportation
-* Creating more efficient freight networks and expanding truck retrofit and replacement programs
-* Continuing to reduce fossil fuel combustion in buildings
-
-Additionally, reducing emissions from other widely distributed sources of pollution, such as BC and PM<sub>2.5</sub> from commercial charbroiling, will contribute to improved air quality in the future.
-
-More Information:
-
-* <a target="_blank" rel="noopener" href="https://nyccas.cityofnewyork.us/nyccas2021v9/sites/default/files/NYCCAS-appendix/Appendix1.pdf">Appendix 1 (PDF) </a>\: Sampling Methodology and Data Sources for Emissions Indicators.
-* <a target="_blank" rel="noopener" href="https://nyccas.cityofnewyork.us/nyccas2022/sites/default/files/NYCCAS-appendix/Appendix2.pdf">Appendix 2 (PDF) </a>\: Seasonal Average Pollutant Maps.
-* Appendix 3 (PDF) : Community District Average Pollution Levels
-* [NYCCAS Air Quality Data Hub](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/key-topics/airquality/)
-* Environment & Health Data Portal : Neighborhood-level data and neighborhood air quality reports
-* The Public Health Impacts of PM<sub>2.5</sub> from Traffic Air Pollution data story.
-* NYCCAS Air Pollution Rasters on NYC OpenData.
-* New York Community Air Survey: past reports
-
-<div class="mb-4"></div>
+<div class="col-md-8 col-sm-12 mx-auto"><hr /><h3>Conclusion</h3><p>This report underscores the importance of emissions reduction efforts over the past decade and highlights the continued need to reduce emissions citywide. The City’s sustainability plan, OneNYC, and its roadmap to reduce greenhouse gas emissions, 80x50, have already and will continue to improve air quality, providing important public health benefits to all New Yorkers. These strategies and measures include:</p><ul><li>Transitioning the City's fleet to more efficient, less polluting heavy-duty vehicles, such as trash trucks and school buses</li><li>Reducing motor vehicle use by shifting to more sustainable modes of transportation</li><li>Creating more efficient freight networks and expanding truck retrofit and replacement programs</li><li>Continuing to reduce fossil fuel combustion in buildings</li></ul><p>Additionally, reducing emissions from other widely distributed sources of pollution, such as BC and PM<sub>2.5</sub> from commercial charbroiling, will contribute to improved air quality in the future.</p><p><img src="/content/key-topics/airquality/nyccas/conclusion3.jpg" /></p><p>More Information:</p><ul><li><a target="_blank" rel="noopener" href="https://nyccas.cityofnewyork.us/nyccas2021v9/sites/default/files/NYCCAS-appendix/Appendix1.pdf">Appendix 1 (PDF) </a>: Sampling Methodology and Data Sources for Emissions Indicators.</li><li><a target="_blank" rel="noopener" href="https://nyccas.cityofnewyork.us/nyccas2022/sites/default/files/NYCCAS-appendix/Appendix2.pdf">Appendix 2 (PDF) </a>: Seasonal Average Pollutant Maps.</li><li>Appendix 3 (PDF) : Community District Average Pollution Levels</li><li><a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/key-topics/airquality/">NYCCAS Air Quality Data Hub</a></li><li>Environment &amp; Health Data Portal : Neighborhood-level data and neighborhood air quality reports</li><li>The Public Health Impacts of PM<sub>2.5</sub> from Traffic Air Pollution data story.</li><li>NYCCAS Air Pollution Rasters on NYC OpenData.</li><li>New York Community Air Survey: past reports</li></ul><div class="mb-4"> </div></div>
