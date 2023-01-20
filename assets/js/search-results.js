@@ -201,7 +201,7 @@ function search(query) {
     //  {title:"Page1", href:"/section/page1", ...}
     return lunrIndex.search(query).map(function (result) {
 
-        console.log("result [lunrIndex]", result);
+        // console.log("result [lunrIndex]", result);
 
         return pagesIndex.filter(function (page) {
 
