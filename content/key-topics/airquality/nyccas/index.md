@@ -58,7 +58,7 @@ This report:
 * Areas of higher traffic density
 * Areas with higher building density
 
-Ozone (O<sub>3</sub>)levels are highest in:
+Ozone (O<sub>3</sub>) levels are highest in:
 
 * The outer boroughs
 * Areas that are downwind of high NO<sub>X</sub>&nbsp;(oxides of nitrogen) emissions
@@ -94,7 +94,7 @@ NYCCAS has also deployed a limited number of monitors that can measure PM<sub>2.
 
 The monitoring locations represent a wide variety of New York City environments – sidewalks, busy streets, parks and quiet neighborhood roads. Most of the sites (80%) were chosen by the Health Department at random to ensure representation in all types of neighborhoods, including residential, commercial and industrial areas. The remaining sites were selected because they are near potentially high-emission locations that were not captured in the random assignment. These include Times Square, the Port Authority Bus Terminal and the entrance to the Holland Tunnel. The locations vary in tree canopy and in the density of traffic and buildings. The number of sites has changed over the years as we have learned about air quality in our city. In 2021, we monitored 78 routine locations and an additional 15 sites in low-income neighborhoods that would benefit from additional monitoring to understand potential sources of emissions. We refer to these as Environmental Justice Sites on the map.
 
-<iframe src="https://nycehs.github.io/nyccas-vis-demo/nyccas-sites-leaflet.html" frameborder="no" style="width: 100%; height: 500px"></iframe>
+<iframe src="https://nycehs.github.io/nyccas-vis-demo/nyccas-sites-leaflet.html" frameborder="no" style="width: 100%; height: 550px"></iframe>
 
 ---
 
@@ -109,10 +109,11 @@ Over time, the data we use to model the relationships between land use and pollu
 Winter and summer average maps for BC, NO<sub>2</sub>, NO and PM<sub>2.5</sub> are available in Appendix 2 (PDF).
 
 ---
+{{< rawhtml >}}
 
-<button type="button" class="btn btn-outline-primary yearbtn active" id="btn1" onclick="updateiframe(1)">2021</button>
+<button type="button" class="btn btn-outline-primary yearbtn active mb-2" id="btn1" onclick="updateiframe(1)">2021</button>
 
-<button type="button" class="btn btn-outline-primary yearbtn" id="btn2" onclick="updateiframe(2)">All years</button>
+<button type="button" class="btn btn-outline-primary yearbtn mb-2" id="btn2" onclick="updateiframe(2)">All years</button>
 
 <iframe id="iframeEmbed" src="https://nycehs.github.io/nyccas-vis-demo/pollutant-maps.html" frameborder="no" style="width: 100%; height: 600px"></iframe>
 
@@ -125,11 +126,13 @@ function updateiframe(x) {
     document.getElementById('btn1').classList.add('active')
 
   } else {
-    document.getElementById('iframeEmbed').src = 'https://nycehs.github.io/nyccas-vis-demo/pollutant-maps-over-time.html'
+    document.getElementById('iframeEmbed').src = 'https://nycehs.github.io/nyccas-vis-demo/pollutant-trend-images.html'
     document.getElementById('btn2').classList.add('active')
   }
 }
 </script>
+
+{{< /rawhtml >}}
 
 ---
 
@@ -141,7 +144,13 @@ The figure below illustrates how the levels of each air pollutant change by seas
 
 ---
 
-<iframe src="https://nycehs.github.io/nyccas-vis-demo/pollutant-trends.html" frameborder="no" style="width: 100%; height: 600px"></iframe>
+</div>
+<div class="col-10 mx-auto">
+
+<iframe src="https://nycehs.github.io/nyccas-vis-demo/pollutant-trends.html" style="height:700px;width:100%;border:none;overflow:hidden;"></iframe>
+
+</div>
+<div class="col-md-8 col-sm-12 mx-auto">
 
 ---
 
@@ -153,7 +162,13 @@ Fuel used to provide heat and hot water in buildings has become significantly cl
 
 ---
 
-<iframe src="https://nycehs.github.io/nyccas-vis-demo/pollutant-predictors.html" frameborder="no" style="width: 100%; height: 350px"></iframe>
+</div>
+<div class="col-10 mx-auto">
+
+<iframe src="https://nycehs.github.io/nyccas-vis-demo/pollutant-predictors.html" frameborder="no" style="width: 100%; height: 500px"></iframe>
+
+</div>
+<div class="col-md-8 col-sm-12 mx-auto">
 
 ---
 
@@ -178,3 +193,5 @@ More Information:
 * The Public Health Impacts of PM<sub>2.5</sub> from Traffic Air Pollution data story.
 * NYCCAS Air Pollution Rasters on NYC OpenData.
 * New York Community Air Survey: past reports
+
+<div class="mb-4"></div>
