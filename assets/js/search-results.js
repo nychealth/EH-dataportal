@@ -153,7 +153,11 @@ function initUI() {
     // console.log("textSearchTerms:", textSearchTerms);
     
     if (searchTerm) {
-        
+
+        // set the input to the searched term
+
+        $('form[role="search"] input').val(searchTerm)
+
         // add some fuzzyness to the string matching to help with spelling mistakes.
         // var fuzzLength = Math.round(Math.min(Math.max(searchTerm.length / 4, 1), 3));
         // var fuzzyQuery = searchTerm + '~' + fuzzLength;
@@ -189,7 +193,17 @@ function initUI() {
   }
 
   const add_plus = match =>  {
-    return match.replace(/.+/, "+$&");
+    
+    // if this quoted term doesn't have a space, add a plus
+    // if (match.match(/\s/) === null) {
+
+        return match.replace(/.+/, "+$&");
+
+    // } else {
+
+    //     return match;
+
+    // }
   }
 
 /**
@@ -211,19 +225,19 @@ function search(query) {
     //  that the word is required
 
     // check for quotes
-    
-    if (query.match(/".+"|'.+'/) !== null) {
+
+    if (query.match(/".+"/) !== null) {
         
         query = query
 
             // if there's a space inside the quote, escape it
-            .replaceAll(/"(.*?)"|'(.*?)'/g, escape_space)
+            .replaceAll(/"(.*?)"/g, escape_space)
 
-            // add a plus t odenote required terms
-            .replaceAll(/"(.*?)"|'(.*?)'/g, add_plus)
+            // add a plus to denote required terms
+            .replaceAll(/"(.*?)"/g, add_plus)
 
             // remove the surrounding quotes
-            .replaceAll(/(")(.*?)(")|(')(.*?)(')/g, "$2")
+            .replaceAll(/(")(.*?)(")/g, "$2")
         
         // escape the escape characters, so that they appear in the console
         console.log("lunr query:", query.replace(/\\/, "\\\\"));
@@ -276,7 +290,7 @@ function renderResults(results) {
     const otherResults = [];
     
     if (!results.length) {
-        $searchResultsTitle.innerHTML = `We couldn't find any results for '${DOMPurify.sanitize(searchTerm)}'`;
+        $searchResultsTitle.innerHTML = `We couldn't find any results for <strong><em>${DOMPurify.sanitize(searchTerm)}</em></strong>`;
         return;
     }
     
@@ -291,8 +305,7 @@ function renderResults(results) {
         // console.log("ahref", ahref);
 
         resultsCount = resultsCount += 1;
-        $searchResultsTitle.innerHTML = 
-            `<span class="fas fa-search fa-md"></span> ${resultsCount} results for '${DOMPurify.sanitize(searchTerm)}'`;
+        $searchResultsTitle.innerHTML = `<span class="fas fa-search fa-md"></span> <strong>${resultsCount}</strong> results for <strong><em>${DOMPurify.sanitize(searchTerm)}</em></strong>`;
         
         const section = (str) => {
             if (result.href.includes(str)) {
@@ -323,7 +336,7 @@ function renderResults(results) {
     const displaySection = (count, el) => {
         if (count > 0) {
             el.querySelector('.search-results-info').innerHTML =
-                `<strong>${count}</strong> results for <strong>'${DOMPurify.sanitize(searchTerm)}'</strong>`;
+                `<strong>${count}</strong> results for <strong><em>${DOMPurify.sanitize(searchTerm)}</em></strong>`;
             el.removeAttribute('hidden');
         }
     }
