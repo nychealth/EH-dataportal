@@ -102,45 +102,58 @@ const createComparisonData = async (comps) => {
     
     // Promise.all takes the array of promises returned by map, and then the `then` callback executes after they've all resolved
 
-    Promise.all(indicatorComparisonMetadata.map(c => {
+    // await Promise.all(indicatorComparisonMetadata.map(async c => {
+    Promise.all(indicatorComparisonMetadata.map(async c => {
         
-        console.log("ComparisonID:", c.ComparisonID);
+        // console.log("ComparisonID:", c.ComparisonID);
         
-        c.Indicators.map(i => {
+        // return await Promise.all(c.Indicators.map(async i => {
+        // return Promise.all(c.Indicators.map(async i => {
+        return Promise.all(c.Indicators.map(async i => {
             
-            console.log("IndicatorID:", i.IndicatorID);
+            // console.log("IndicatorID:", i.IndicatorID);
+            
+            console.log("*** aq.loadJSON");
 
             // NEED UNIQUE
             
             
-            aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${i.IndicatorID}.json`)
+            // return await aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${i.IndicatorID}.json`)
+            return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${i.IndicatorID}.json`)
                 .then(data => {
-                    
-                    console.log("*** aq.loadJSON");
-                    console.log("i.IndicatorID:", i.IndicatorID);
-                    console.log("i.Measures:", i.Measures);
 
-                    data.print({limit: 5});
+                    console.log("ComparisonID:", c.ComparisonID);
+                    console.log("IndicatorID:", i.IndicatorID);
+                    console.log("Measures:", i.Measures);
+                    // data.print({limit: 5});
                     
                     let comp_data = data
                         .derive({
                             ComparisonID: aq.escape(c.ComparisonID),
                             IndicatorID: aq.escape(i.IndicatorID)
                         })
-                        // .filter(aq.escape(d => d.MeasureID.some(i.Measures)))
-                        .filter(`d => op.includes(d.MeasureID, ${i.Measures})`)
+                        .filter(aq.escape(d => i.Measures.includes(d.MeasureID)))
+                        .reify()
                     
                     console.log("comp_data [inside]:", comp_data);
                     
                     return comp_data;
                 
                 })
-        })
+        }))
 
     }))
 
     // 
-    .then(dataArray => indicatorComparisonData = dataArray.reduce((a, b) => a.concat(b)))
+    .then(async dataArray => {
+
+        console.log("dataArray:", dataArray.flatMap(d => d));
+        
+        indicatorComparisonData = await dataArray.flatMap(d => d).reduce((a, b) => a.concat(b))
+
+        console.log("indicatorComparisonData:", indicatorComparisonData);
+
+    })
 }
 
 
