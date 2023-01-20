@@ -26,10 +26,7 @@ layout: report
   margin-bottom: 25px;
  }</style>
 
-
-
 ## Neighborhood Air Quality 2008-2021
-
 {{< figure src="nyccas.png" alt="NYC skyline." >}}
 
 In 2007, the New York City Department of Health and Mental Hygiene (Health Department) established the New York City Community Air Survey (NYCCAS), the largest ongoing urban air monitoring program of any U.S. City. NYCCAS, which began collecting data in December 2008, is a collaboration between the Health Department and Queens College of the City University of New York and provides data to:
@@ -42,7 +39,7 @@ In 2007, the New York City Department of Health and Mental Hygiene (Health Depar
 This report:
 
 * Provides a summary of key findings, the air monitoring program, monitoring site selection, and descriptions of the pollutants measured
-* Describes the trends in air pollutant levels from more than a decade of data between winter 2008-2009 through fall 2020 for fine particulate matter (PM<sub>2.5</sub>), nitrogen dioxide (NO<sub>2</sub>), nitric oxide (NO), black carbon (BC), wintertime sulfur dioxide (SO<sub>2</sub>) and summertime ozone (O<sub>3</sub>)
+* Describes the trends in air pollutant levels from more than a decade of data between winter 2008-2009 through fall 2021 for fine particulate matter (PM<sub>2.5</sub>), nitrogen dioxide (NO<sub>2</sub>), nitric oxide (NO), black carbon (BC), wintertime sulfur dioxide (SO<sub>2</sub>) and summertime ozone (O<sub>3</sub>)
 * Presents maps of neighborhood air pollution levels by year
 * Identifies the local sources that contribute to high levels of these pollutants in New York City neighborhoods
 
@@ -71,13 +68,13 @@ Ozone levels are highest in:
 
 ### Pollutants Measured by NYCCAS: Health Effects and Sources
 
-{{< accordion number="01" title="Fine Particles" content="Fine particles (PM<sub>2.5</sub>) are tiny airborne solid and liquid particles less than 2.5 microns in diameter. PM<sub>2.5</sub> is the most harmful urban air pollutant. It is small enough to penetrate deep into the lungs and enter the bloodstream, which can worsen lung and heart disease and lead to hospital admissions and premature deaths. PM<sub>2.5</sub> can either be directly emitted or formed in the atmosphere from other pollutants. Fuel combustion in vehicles, boilers in buildings, power plants, construction equipment, marine vessels and commercial cooking are all common sources of PM<sub>2.5</sub>. Up to 40% of the PM<sub>2.5</sub> in New York City's air comes from sources in areas upwind from the city, such as coal-burning power plants in the Midwest." >}} 
+{{< accordion number="01" title="Fine Particles" content="Fine particles (PM<sub>2.5</sub>) are tiny airborne solid and liquid particles less than 2.5 microns in diameter. PM<sub>2.5</sub> is the most harmful urban air pollutant. It is small enough to penetrate deep into the lungs and enter the bloodstream, which can worsen lung and heart disease and lead to hospital admissions and premature deaths. PM<sub>2.5</sub> can either be directly emitted or formed in the atmosphere from other pollutants. Fuel combustion in vehicles, boilers in buildings, power plants, construction equipment, marine vessels and commercial cooking are all common sources of PM<sub>2.5</sub>. Up to 40% of the PM<sub>2.5</sub> in New York City's air comes from sources in areas upwind from the city, such as coal-burning power plants in the Midwest." >}}
 
-{{< accordion number="02" title="Black Carbon" content="Black carbon (BC) is one type of PM<sub>2.5</sub> and is the sooty black material emitted from gas and diesel engines, coal-fired power plants, and other sources that burn fossil fuels. It comprises up to 20% of fine particulate matter in New York City. Unlike other fine particles, BC is primarily from local sources. Inhalation of BC is associated with health problems, including respiratory and cardiovascular disease, cancer and birth defects. BC also contributes to climate change by altering the patterns of rain and clouds." >}} 
+{{< accordion number="02" title="Black Carbon" content="Black carbon (BC) is one type of PM<sub>2.5</sub> and is the sooty black material emitted from gas and diesel engines, coal-fired power plants, and other sources that burn fossil fuels. It comprises up to 20% of fine particulate matter in New York City. Unlike other fine particles, BC is primarily from local sources. Inhalation of BC is associated with health problems, including respiratory and cardiovascular disease, cancer and birth defects. BC also contributes to climate change by altering the patterns of rain and clouds." >}}
 
-{{< accordion number="03" title="Nitrogen Dioxide and Nitric Oxide" content="Nitrogen dioxide (NO<sub>2</sub>) and nitric oxide (NO) are part of a group of pollutants called &ldquo;oxides of nitrogen&rdquo; (NOX). Exposures to NOX are linked to increased emergency department visits and hospitalizations for respiratory conditions, particularly asthma. NOX also reacts with other compounds in the atmosphere to form PM<sub>2.5</sub> and O<sub>3</sub>. A variety of combustion sources produce NOX in New York City, including motor vehicles, buildings, marine vessels and construction equipment." >}} 
+{{< accordion number="03" title="Nitrogen Dioxide and Nitric Oxide" content="Nitrogen dioxide (NO<sub>2</sub>) and nitric oxide (NO) are part of a group of pollutants called &ldquo;oxides of nitrogen&rdquo; (NOX). Exposures to NOX are linked to increased emergency department visits and hospitalizations for respiratory conditions, particularly asthma. NOX also reacts with other compounds in the atmosphere to form PM<sub>2.5</sub> and O<sub>3</sub>. A variety of combustion sources produce NOX in New York City, including motor vehicles, buildings, marine vessels and construction equipment." >}}
 
-{{< accordion number="04" title="Ozone" content="Ozone (O<sub>3</sub>) forms at ground level when NOX emissions combine with sunlight and other airborne pollutants. Measured O<sub>3</sub> concentrations are often highest in the summer and downwind from areas with high NOX emissions, such as places with high traffic density. In areas with heavy traffic, NOX reacts with any ground-level O<sub>3</sub> to reduce O<sub>3</sub> concentrations. As a result, NYCCAS has measured lower O3 levels near roadways, in city centers and in other areas of high NOX emissions density. Higher levels of O<sub>3</sub> are seen in areas away from dense traffic and building emissions." >}} 
+{{< accordion number="04" title="Ozone" content="Ozone (O<sub>3</sub>) forms at ground level when NOX emissions combine with sunlight and other airborne pollutants. Measured O<sub>3</sub> concentrations are often highest in the summer and downwind from areas with high NOX emissions, such as places with high traffic density. In areas with heavy traffic, NOX reacts with any ground-level O<sub>3</sub> to reduce O<sub>3</sub> concentrations. As a result, NYCCAS has measured lower O3 levels near roadways, in city centers and in other areas of high NOX emissions density. Higher levels of O<sub>3</sub> are seen in areas away from dense traffic and building emissions." >}}
 
 {{< accordion number="05" title="Sulfur Dioxide" content="Sulfur dioxide (SO<sub>2</sub>) is produced mainly by burning oils with high sulfur content, such as No. 4 and No. 6 oil (also known as residual fuel oil), or high-sulfur No. 2 oil. The primary use of fuel oil in NYC is to heat buildings and water, which is why we only monitor it in the winter. Some high-sulfur oil is also used to generate electricity and power marine vessels. SO2 exposures can worsen lung diseases, causing hospitalizations and emergency department visits for asthma and other respiratory conditions. SO<sub>2</sub> also contributes to the formation of PM<sub>2.5</sub> in the atmosphere, resulting in PM<sub>2.5</sub> exposures downwind of SO<sub>2</sub> emissions." >}}
 
@@ -113,19 +110,7 @@ Winter and summer average maps for BC, NO<sub>2</sub>, NO and PM<sub>2.5</sub> a
 
 \[MAP EMBED\]
 
-<div class="tableauPlaceholder" id="viz1581355801663" style="position: relative"><noscript>
-<a href='#'><img alt=' ' src='https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js' style='border: none' /></a>
-</noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fmsswva-dohhdi01.csc.nycnet%2F" /><param name="embed_code_version" value="3" /><param name="site_root" value="/t/Public" /><param name="name" value="pollutant_maps/Dashboard2" /><param name="tabs" value="no" /><param name="toolbar" value="no" /><param name="showAppBanner" value="false" /></object></div>
 
-<script type='text/javascript'>
-
- var divElement = document.getElementById('viz1581355801663');
-  var vizElement = divElement.getElementsByTagName('object')[0];
-vizElement.style.width='971px';vizElement.style.height='627px';
-var scriptElement = document.createElement('script');
-scriptElement.src = 'https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js';
-vizElement.parentNode.insertBefore(scriptElement, vizElement);
-</script>
 
 ---
 
@@ -158,20 +143,6 @@ Since monitoring began in winter 2008-2009 in New York City, we have seen a decr
 
 The figure below illustrates how the levels of each air pollutant change by season from winter 2008-2009 to fall 2021. We break out locations with high, medium and low densities of the most common sources of each. Since winter 2017-18 there have been too few sites with SO<sub>2</sub> values above the detection limit for us to include it in this chart. SO<sub>2</sub> levels have gone down dramatically since Local Law 43 of 2010 prohibited the burning of heavy fuel oil (No. 6) in New York City buildings.
 
-<div class="tableauPlaceholder" id="viz3" style="position: relative"><noscript>
-<a href='#'><img alt=' ' src='https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js' style='border: none' /></a>
-</noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fmsswva-dohhdi01.csc.nycnet%2F" /><param name="embed_code_version" value="3" /><param name="site_root" value="/t/Public" /><param name="name" value="Pollutant_Sources/Dashboard3" /><param name="tabs" value="no" /><param name="toolbar" value="no" /><param name="showAppBanner" value="false" /></object></div>
-
-<script type='text/javascript'>
-
- var divElement = document.getElementById('viz3');
-  var vizElement = divElement.getElementsByTagName('object')[0];
-vizElement.style.width='900px';vizElement.style.height='727px';
-var scriptElement = document.createElement('script');
-scriptElement.src = 'https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js';
-vizElement.parentNode.insertBefore(scriptElement, vizElement);
-</script>
-
 ---
 
 <iframe src="https://nycehs.github.io/nyccas-vis-demo/pollutant-trends.html" frameborder="no" style="width: 100%; height: 600px"></iframe>
@@ -183,20 +154,6 @@ vizElement.parentNode.insertBefore(scriptElement, vizElement);
 NYCCAS data were analyzed using a land-use regression (LUR) model. LUR models estimate associations among pollution levels, average traffic, building emissions, land use and other neighborhood factors around the monitoring sites. The pollution sources that contribute most to differences in concentrations of NO, NO<sub>2</sub>, BC, and PM<sub>2.5</sub> across NYC are listed in the table below. SO<sub>2</sub> is now so low in NYC that it is not possible to build a LUR model for the most recent years of data.
 
 Fuel used to provide heat and hot water in buildings has become significantly cleaner under state and local regulations requiring use of cleaner burning fuels. As a result, commercial charbroiling and grilling operations have become a more important source of PM<sub>2.5</sub> emissions over the past several years due to state and local regulations mandating cleaner burning fuels for building heat and hot water. The number of commercial cooking charbroilers and grills in an area now explains PM<sub>2.5</sub> differences among neighborhoods better than building emissions. For more information on these changes, please see Tracking changes in New York City's sources of air pollution.
-
-<div class="tableauPlaceholder" id="viz2" style="position: relative"><noscript>
-<a href='#'><img alt=' ' src='https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js' style='border: none' /></a>
-</noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fmsswva-dohhdi01.csc.nycnet%2F" /><param name="embed_code_version" value="3" /><param name="site_root" value="/t/Public" /><param name="name" value="SpatialInd2_15803111194230/Dashboard2" /><param name="tabs" value="no" /><param name="toolbar" value="no" /><param name="showAppBanner" value="false" /></object></div>
-
-<script type='text/javascript'>
-
- var divElement = document.getElementById('viz2');
-  var vizElement = divElement.getElementsByTagName('object')[0];
-vizElement.style.width='800px';vizElement.style.height='687px';
-var scriptElement = document.createElement('script');
-scriptElement.src = 'https://msswva-dohhdi01.csc.nycnet/javascripts/api/viz_v1.js';
-vizElement.parentNode.insertBefore(scriptElement, vizElement);
-</script>
 
 ---
 
