@@ -1,5 +1,5 @@
 const searchTerm = DOMPurify.sanitize(new URL(location.href).searchParams.get("search"));
-console.log("searchTerm", searchTerm);
+console.log("searchTerm:", searchTerm);
 
 let lunrIndex,
     $results,
@@ -148,16 +148,15 @@ function initLunr() {
 // Nothing crazy here, just hook up a event handler on the input field
 function initUI() {
     
-    const textSearchTerms = document.querySelectorAll('.search_term');
+    // const textSearchTerms = document.querySelectorAll('.search_term');
+
+    // console.log("textSearchTerms:", textSearchTerms);
     
     if (searchTerm) {
-        textSearchTerms.forEach(term => {
-            term.innerHTML = `'${DOMPurify.sanitize(searchTerm)}'`
-        })
         
         // add some fuzzyness to the string matching to help with spelling mistakes.
-        var fuzzLength = Math.round(Math.min(Math.max(searchTerm.length / 4, 1), 3));
-        var fuzzyQuery = searchTerm + '~' + fuzzLength;
+        // var fuzzLength = Math.round(Math.min(Math.max(searchTerm.length / 4, 1), 3));
+        // var fuzzyQuery = searchTerm + '~' + fuzzLength;
         
         // var results = search(fuzzyQuery);
         
@@ -177,8 +176,6 @@ function initUI() {
         
     } else {
         // redirect to the homepage if there is no search term
-        // window.location.href = site_root;
-        // window.location.href = baseURL;
         window.location.href = baseURL;
     }
 }
@@ -187,6 +184,14 @@ function initUI() {
 // search def
 // ----------------------------------------------------- //
 
+  const escape_space = match =>  {
+    return match.replaceAll(/\s/g, "\\ ");
+  }
+
+  const add_plus = match =>  {
+    return match.replace(/.+/, "+$&");
+  }
+
 /**
 * Trigger a search in lunr and transform the result
 *
@@ -194,11 +199,37 @@ function initUI() {
 * @return {Array}  results
 */
 function search(query) {
+
     // Find the item in our index corresponding to the lunr one to have more info
     // Lunr result: 
     //  {ref: "/section/page1", score: 0.2725657778206127}
     // Our result:
     //  {title:"Page1", href:"/section/page1", ...}
+    
+    // implement exact searches for terms that include quotes. If a phrase is quoted, then escape the spaces, 
+    //  so that lunr doesn't tokenize the words separately. If a single word is quoted, append a "+" to it, to tell lunr
+    //  that the word is required
+
+    // check for quotes
+    
+    if (query.match(/".+"|'.+'/) !== null) {
+        
+        query = query
+
+            // if there's a space inside the quote, escape it
+            .replaceAll(/"(.*?)"|'(.*?)'/g, escape_space)
+
+            // add a plus t odenote required terms
+            .replaceAll(/"(.*?)"|'(.*?)'/g, add_plus)
+
+            // remove the surrounding quotes
+            .replaceAll(/(")(.*?)(")|(')(.*?)(')/g, "$2")
+        
+        // escape the escape characters, so that they appear in the console
+        console.log("lunr query:", query.replace(/\\/, "\\\\"));
+    }
+
+
     return lunrIndex.search(query).map(function (result) {
 
         // console.log("result [lunrIndex]", result);
