@@ -39,7 +39,7 @@ In 2007, the New York City Department of Health and Mental Hygiene (Health Depar
 This report:
 
 * Provides a summary of key findings, the air monitoring program, monitoring site selection, and descriptions of the pollutants measured
-* Describes the trends in air pollutant levels from more than a decade of data between winter 2008-2009 through fall 2021 for fine particulate matter (PM<sub>2.5</sub>), nitrogen dioxide (NO<sub>2</sub>), nitric oxide (NO), black carbon (BC), wintertime sulfur dioxide (SO<sub>2</sub>) and summertime ozone (O<sub>3</sub>)
+* Describes the trends in air pollutant levels from more than a decade of data between winter 2008-2009 through fall 2021 for fine particulate matter, nitrogen dioxide, nitric oxide, black carbon, wintertime sulfur dioxide and summertime ozone
 * Presents maps of neighborhood air pollution levels by year
 * Identifies the local sources that contribute to high levels of these pollutants in New York City neighborhoods
 
@@ -58,7 +58,7 @@ This report:
 * Areas of higher traffic density
 * Areas with higher building density
 
-Ozone levels are highest in:
+Ozone (O<sub>3</sub>)levels are highest in:
 
 * The outer boroughs
 * Areas that are downwind of high NO<sub>X</sub>&nbsp;(oxides of nitrogen) emissions
@@ -107,10 +107,6 @@ In the maps below, you can select a pollutant to see how air pollution is distri
 Over time, the data we use to model the relationships between land use and pollution has gotten better. For example, in previous years industrial land use was used as a primary indicator of BC, NO, NO<sub>2</sub> and PM<sub>2.5&nbsp;</sub>pollution, but we have noticed in recent years this pollution has become more closely related to the presence of distribution centers within these industrial areas. Therefore, more destinct pollution hotspots are shown in recent years near distribution centers in the Newtown Creek area in Queens and Brooklyn, JFK airport and Hunts Point in the Bronx.
 
 Winter and summer average maps for BC, NO<sub>2</sub>, NO and PM<sub>2.5</sub> are available in Appendix 2 (PDF).
-
-\[MAP EMBED\]
-
-
 
 ---
 
