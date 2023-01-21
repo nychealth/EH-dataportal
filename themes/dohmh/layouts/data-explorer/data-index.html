@@ -278,15 +278,10 @@
 
                     let pretty_unique_geographies = [...new Set(unique_geographies.map(geo => prettifyGeoType(geo)))]
 
-                    console.log("unique_geographies:", unique_geographies);
-                    console.log("pretty_unique_geographies:", pretty_unique_geographies);
-                    
                     for (l = 0; l < pretty_unique_geographies.length; l++) {
                         
                         let li = document.createElement('li')
 
-                        console.log("pretty_unique_geographies[l]", pretty_unique_geographies[l]);
-                        
                         // setting id as geo name
                         li.innerHTML = pretty_unique_geographies[l];
                         li.setAttribute("geo", pretty_unique_geographies[l]);
