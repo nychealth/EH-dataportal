@@ -275,21 +275,22 @@
                     cell_4.appendChild(geobullets)
                     
                     // looping through indicator's unique geos
+
+                    let pretty_unique_geographies = [...new Set(unique_geographies.map(geo => prettifyGeoType(geo)))]
+
+                    console.log("unique_geographies:", unique_geographies);
+                    console.log("pretty_unique_geographies:", pretty_unique_geographies);
                     
-                    for (l = 0; l < unique_geographies.length; l++) {
+                    for (l = 0; l < pretty_unique_geographies.length; l++) {
                         
                         let li = document.createElement('li')
 
-                        {{/*  console.log("unique_geographies[l]", unique_geographies[l]);  */}}
-
-                        let geoTypePretty = prettifyGeoType(unique_geographies[l])
-
-                        console.log("geoTypePretty", geoTypePretty);
+                        console.log("pretty_unique_geographies[l]", pretty_unique_geographies[l]);
                         
                         // setting id as geo name
-                        li.innerHTML = geoTypePretty;
-                        li.setAttribute("geo", geoTypePretty);
-                        li.classList.add("btn", "btn-sm", "geobullets", geoTypePretty)
+                        li.innerHTML = pretty_unique_geographies[l];
+                        li.setAttribute("geo", pretty_unique_geographies[l]);
+                        li.classList.add("btn", "btn-sm", "geobullets", pretty_unique_geographies[l])
                         
                         // setting 'onclick' action for each geography, with the geo as the argument
                         
@@ -438,7 +439,7 @@
                         return 'NTA';
 
                     default:
-                        console.log("**default**");
+                        {{/*  console.log("**default**");  */}}
                         return GeoType;
 
                 }
