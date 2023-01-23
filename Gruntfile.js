@@ -179,7 +179,8 @@ module.exports = function(grunt) {
                 .s
 
             return {
-                title: pageName,
+                searchTitle: pageName,
+                displayTitle: pageName,
                 href: S(href).dasherize().s.toLowerCase(),
                 content: contentParsed
             };
@@ -194,10 +195,12 @@ module.exports = function(grunt) {
 
             var content = grunt.file.read(abspath);
             var pageIndex;
-            let these_indicator_ids;
+            let indicator_ids;
             let indicator_names;
             let indicator_descriptions;
-            
+            let searchTitle;
+            let seo_title;
+
             // grunt.log.writeln("de_indicator_names", de_indicator_names);
             // grunt.log.writeln("nr_indicator_names", nr_indicator_names);
 
@@ -225,12 +228,12 @@ module.exports = function(grunt) {
 
             if (abspath.match(/data-explorer/) && typeof frontMatter.indicators != 'undefined') {
 
-                these_indicator_ids = [...new Set(frontMatter.indicators.flatMap(x => x.IndicatorID))];
+                indicator_ids = [...new Set(frontMatter.indicators.flatMap(x => x.IndicatorID))];
 
-                // grunt.log.writeln(filename, ":", grunt.log.wordlist(these_indicator_ids));
+                // grunt.log.writeln(filename, ":", grunt.log.wordlist(indicator_ids));
 
                 let indicator_details = de_indicator_names
-                    .filter(aq.escape(d => these_indicator_ids.includes(d.IndicatorID)))
+                    .filter(aq.escape(d => indicator_ids.includes(d.IndicatorID)))
                 
                 indicator_names = indicator_details
                     .array("name")
@@ -250,17 +253,41 @@ module.exports = function(grunt) {
             // neighborhood reports indicator names
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-            if (abspath.match(/neighborhood-reports/) && filename.match("activedesign.md\.md|asthma\.md|climateandhealth\.md|housing\.md|outdoorair\.md")) {
+            if (abspath.match(/neighborhood-reports/)) {
 
-                let title = S(frontMatter.title).replace(/\s+/g, "_").replace(/,/g, "")
+                if (filename.match("activedesign.md\.md|asthma\.md|climateandhealth\.md|housing\.md|outdoorair\.md")) {
 
-                grunt.log.writeln(filename, ":", title.s);
+                    let title = S(frontMatter.title).replace(/\s+/g, "_").replace(/,/g, "")
+                    
+                    grunt.log.writeln(filename, ":", title.s);
+                    
+                    // add these fields to NR topic landing pages
+                    
+                    searchTitle = frontMatter.title;
+                    displayTitle = frontMatter.title;
+                    seo_title = frontMatter.seo_title;
+                    summary = frontMatter.summary;
 
-                indicator_names = [...new Set(nr_indicator_names.filter(d => d.title == title)[0].indicator_names)].join(" ")
-                indicator_descriptions = [...new Set(nr_indicator_names.filter(d => d.title == title)[0].indicator_descriptions)].join(" ")
+                    indicator_names = [...new Set(nr_indicator_names.filter(d => d.title == title)[0].indicator_names)].join(" ")
+                    indicator_descriptions = [...new Set(nr_indicator_names.filter(d => d.title == title)[0].indicator_descriptions)].join(" ")
+                    
+                    // grunt.log.writeln(filename, ":", indicator_names);
+                    // grunt.log.writeln(filename, ":", grunt.log.wordlist(indicator_names));
 
-                // grunt.log.writeln(filename, ":", indicator_names);
-                // grunt.log.writeln(filename, ":", grunt.log.wordlist(indicator_names));
+                } else {
+                    // only add displayTitle for NR neighborhood pages, i.e. searchTitle = undefined
+                    // we don't want every neighborhood to show up in topic searches
+                    displayTitle = frontMatter.seo_title;
+                }
+
+            } else {
+
+                // add these fields for all non-NR pages
+
+                searchTitle = frontMatter.title;
+                displayTitle = frontMatter.title;
+                seo_title = frontMatter.seo_title;
+                summary = frontMatter.summary;
 
             }
             
@@ -315,19 +342,20 @@ module.exports = function(grunt) {
             // Build Lunr index for this page (keeping "-" in content)
 
             pageIndex = {
-                title: frontMatter.title,
+                title: searchTitle,
+                displayTitle: displayTitle,
                 indicator_names: indicator_names,
                 indicator_descriptions: indicator_descriptions,
-                summary: frontMatter.summary,
+                summary: summary,
                 // tags: frontMatter.tags,
                 categories: frontMatter.categories,
                 keywords: frontMatter.keywords,
-                indicator_ids: these_indicator_ids,
+                indicator_ids: indicator_ids,
                 neighborhood: frontMatter.neighborhood,
                 // data_json: frontMatter.data_json,
                 // content_yml: frontMatter.content_yml,
                 // type: frontMatter.type,
-                seo_title: frontMatter.seo_title,
+                seo_title: seo_title,
                 // seo_description: frontMatter.seo_description,
                 // seo_image: frontMatter.seo_image,
                 content: contentParsed,

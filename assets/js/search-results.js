@@ -269,6 +269,8 @@ function search(query) {
 */
 function renderResults(results) {
 
+    console.log("results [renderResults]", results);
+
     const $searchResultsTitle = document.querySelector('.search-results-title');
     const $other = document.getElementById("other");
     const $nieghborhoodReports = document.getElementById("neighborhood-reports");
@@ -299,7 +301,7 @@ function renderResults(results) {
         var li = document.createElement('li');
         var ahref = document.createElement('a');
         ahref.href = baseURL + result.href;
-        ahref.text = result.title;
+        ahref.text = result.displayTitle;
 
         li.append(ahref);
         // console.log("ahref", ahref);
@@ -316,7 +318,6 @@ function renderResults(results) {
         }
         
         if (section('neighborhood-reports')) {
-            ahref.text = result.seo_title;
             nieghborhoodResults.push(ahref);
 
         } else if (section('data-stories')) {
