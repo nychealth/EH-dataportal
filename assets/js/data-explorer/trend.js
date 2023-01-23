@@ -1,3 +1,7 @@
+// ======================================================================= //
+// summary.js
+// ======================================================================= //
+
 const renderTrendChart = (
     data,
     metadata
@@ -5,25 +9,32 @@ const renderTrendChart = (
 
     console.log("** renderTrendChart");
 
+    // ----------------------------------------------------------------------- //
     // arquero table for extracting arrays easily
-
+    // ----------------------------------------------------------------------- //
+    
     let aqData = aq.from(data);
     let Value = aqData.array("Value");
     let valueMin = Math.min.apply(null, Value);
-
+    
+    // ----------------------------------------------------------------------- //
     // extract measure metadata
-
+    // ----------------------------------------------------------------------- //
+    
     let trendMeasurementType = metadata[0].MeasurementType;
     let trendDisplay = metadata[0].DisplayType;
-
+    
     // get dimensions
+
     var columns = 6;
     var height = 500
     window.innerWidth < 576 ? columns = 3 : columns = 6;
     window.innerWidth < 576 ? height = 350 : columns = 500;
-
-
+    
+    
+    // ----------------------------------------------------------------------- //
     // get unique unreliability notes (dropping empty)
+    // ----------------------------------------------------------------------- //
 
     const trend_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
 
@@ -37,7 +48,9 @@ const renderTrendChart = (
         
     }
 
+    // ----------------------------------------------------------------------- //
     // define spec
+    // ----------------------------------------------------------------------- //
     
     let trendspec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -220,6 +233,10 @@ const renderTrendChart = (
             }
         ]
     }
+    
+    // ----------------------------------------------------------------------- //
+    // render chart
+    // ----------------------------------------------------------------------- //
     
     vegaEmbed("#trend", trendspec);
     

@@ -1,6 +1,10 @@
-// =================================================================== //
+// ======================================================================= //
+// app.js
+// ======================================================================= //
+
+// ======================================================================= //
 //  fetch and load indicators metadata into global object
-// =================================================================== //
+// ======================================================================= //
 
 fetch(data_repo + data_branch + '/indicators/indicators.json')
     .then(response => response.json())
@@ -138,6 +142,8 @@ const loadData = (this_indicatorId) => {
     .then(response => response.json())
     .then(async data => {
 
+        // console.log("data [loadData]", data);
+
         // call the geo file loading function
 
         loadGeo();
@@ -228,6 +234,7 @@ const joinData = () => {
         .select(
             "GeoID",
             "GeoType",
+            "GeoTypeDesc",
             "GeoRank",
             "Geography",
             "MeasureID",

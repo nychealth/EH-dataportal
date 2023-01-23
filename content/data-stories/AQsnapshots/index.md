@@ -221,7 +221,7 @@ photocredit: "Mayoral Photography Office"
 </div>
 <!--end color panel-->
     <div class="narrow">
-        <p>For more information about NYCCAS and our findings over 10 years of air quality monitoring, <a href="/key-topics/airquality">visit the Air Quality Hub</a>.</p>
+        <p>For more information about NYCCAS and our findings over 10 years of air quality monitoring, <a href="/key-topics/airquality/">visit the Air Quality Hub</a>.</p>
         </div>
         <!-- .narrow -->
         <footer class="narrow my-4" id="article-footer">

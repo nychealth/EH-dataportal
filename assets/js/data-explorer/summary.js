@@ -1,3 +1,7 @@
+// ======================================================================= //
+// summary.js
+// ======================================================================= //
+
 const renderTable = () => {
 
     console.log("** renderTable");
@@ -7,13 +11,15 @@ const renderTable = () => {
     const groupId = 0;
     let filteredTableData;
 
+    // console.log("fullDataTableObjects", fullDataTableObjects);
+
     const filteredTableYearData = 
         fullDataTableObjects
         .filter(d => selectedSummaryYears.includes(d.Time))
 
-    // get geoTypes available for this year
+    // get (pretty) geoTypes available for this year
 
-    const dataGeos = [...new Set(filteredTableYearData.map(d => d.GeoType))];
+    const dataGeos = [...new Set(filteredTableYearData.map(d => prettifyGeoType(d.GeoType)))];
 
     // console.log("dataGeos", dataGeos);
 
@@ -30,7 +36,8 @@ const renderTable = () => {
     $(allGeoChecks).removeClass("disabled");
     $(allGeoChecks).attr('aria-disabled', false);
     
-    // add disabled class for geos not available for this year
+    // now add disabled class for geos not available for this year
+
     for (const checkbox of allGeoChecks) {
 
         // console.log("checkbox", checkbox.children[0].value);
@@ -55,21 +62,21 @@ const renderTable = () => {
         
         filteredTableData = 
             filteredTableYearData
-            .filter(d => selectedSummaryGeography.includes(d.GeoType))
+            .filter(d => selectedSummaryGeography.includes(prettifyGeoType(d.GeoType)))
 
     } else {
         
         // if no selected geo, then set table to blank and return early
-        document.querySelector("#tableID").innerHTML = '';
+        document.getElementById('summary-table').innerHTML = '';
 
         return;
     }
     
-    // if no selected geos not in data, then set table to blank and return early
+    // if selected geos not in data, then set table to blank and return early
 
     if (filteredTableData.length === 0) {
 
-        document.querySelector("#tableID").innerHTML = '';
+        document.getElementById('summary-table').innerHTML = '';
         
         return;
     }
@@ -77,13 +84,11 @@ const renderTable = () => {
     // console.log("filteredTableData [renderTable]", filteredTableData);
     
     const measureAlignMap = new Map();
-    // const measureImputeMap = new Map();
     const measures = [...new Set(filteredTableData.map(d => d.MeasurementDisplay))];
     
     measures.forEach((m) => {
         
         measureAlignMap.set(m, "r")
-        // measureImputeMap.set(m, () => "-")
         
     });
     
@@ -103,20 +108,19 @@ const renderTable = () => {
 
 
     const measureAlignObj = Object.fromEntries(measureAlignMap);
-    // const measureImputeObj = Object.fromEntries(measureImputeMap);
     
     // console.log("measureAlignObj", measureAlignObj);
     // console.log("measureImputeObj", measureImputeObj);
     
     const filteredTableAqData = aq.from(filteredTableData)
-        .groupby("Time", "GeoType", "GeoID", "GeoRank", "Geography")
+        .groupby("Time", "GeoTypeDesc", "GeoID", "GeoRank", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI")
     
         // need to put this down here because the data might be missing one of the measures, which will be undefined after the pivot
         // .impute(measureImputeObj) 
         
         // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
-        .relocate(["Time", "GeoType", "GeoID", "GeoRank"], { before: 0 }) 
+        .relocate(["Time", "GeoTypeDesc", "GeoID", "GeoRank"], { before: 0 }) 
     
     // console.log("filteredTableAqData [renderTable]");
     // filteredTableAqData.print({limit: 40})
@@ -138,7 +142,9 @@ const renderTable = () => {
     document.querySelector('#summary-table table').className = "cell-border stripe"
     document.querySelector('#summary-table table').width = "100%"
     
-    // call function to show table
+    // ----------------------------------------------------------------------- //
+    // specify DataTable
+    // ----------------------------------------------------------------------- //
     
     $('#tableID').DataTable({
         scrollY: 475,
@@ -162,16 +168,14 @@ const renderTable = () => {
             { targets: [0, 1, 2, 3], visible: false}
         ],
         "createdRow": function ( row, data, index ) {
-            // console.log('RENDER TABLE FUNCTION - CreatedRow')
             const time    = data[0];
-            const geoType = data[1];
-            if (time && geoType) {
-                row.setAttribute(`data-group`, `${time}-${geoType}`)
+            const GeoTypeDesc = data[1];
+            if (time && GeoTypeDesc) {
+                row.setAttribute(`data-group`, `${time}-${GeoTypeDesc}`)
                 row.setAttribute(`data-year`, `${time}`);
             }
         },
         "drawCallback": function ( settings ) {
-            // console.log('RENDER TABLE FUNCTION - DrawCallback')
             const api = this.api();
             const data = api.rows( {page:'current'} ).data()
             const rows = api.rows( {page:'current'} ).nodes();
@@ -209,9 +213,9 @@ const renderTable = () => {
     }
 
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 // handler functions for summary table
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 
 const handleToggle = () => {
 

@@ -18,11 +18,11 @@ jobs:
 
     if: github.event_name == 'push' || github.event.pull_request.merged == true
 
-    # don't run two of these jobs at the same time
+    # wait for other triggered jobs to finish before running this
 
-    concurrency: # don't run two of these jobs at the same time
-      group: ${{ github.workflow }}-${{ github.ref_name }} # ref name is branch name, so only one job on a branch will run at a time
-      cancel-in-progress: true # this makes it so that only the most recent job is run
+    concurrency:
+      group: $${{ github.ref }}
+      cancel-in-progress: false
 
     # define job's steps
 
@@ -45,7 +45,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: lts/*
           cache: "npm"
 
       - name: Installing npm

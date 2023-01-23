@@ -191,6 +191,27 @@
     }
     </style>
 
+{{/* ====  save indicator names as a resource  ==== */}}
+
+{{- /* ----  get indicators.json from data repo, and transform into a Hugo object  ---- */ -}}
+
+{{- $indicators_json_resource := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/indicators/indicators.json")) | transform.Unmarshal -}}
+
+{{- /* ----  get names from indicators.json, using scratch  ---- */ -}}
+
+{{- $indicators_scratch := newScratch -}}
+{{- $indicators_map := dict -}}
+
+{{- range $indicators_json_resource -}}
+    {{- $indicators_scratch.SetInMap "details" (string .IndicatorID) (dict "IndicatorID" .IndicatorID "name" .IndicatorName "description" .IndicatorDescription) -}}
+{{- end -}}
+
+{{- /* ----  save resource  ---- */ -}}
+
+{{- $indicator_names_json := $indicators_scratch.Get "details" | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorData/indicator_names.json" -}}
+
+{{- warnf ">>>> indicator_names_json.RelPermalink >>>> " $indicator_names_json.RelPermalink -}}
+
 <article class="container-fluid" id="skip-header-target">
     <div class="row">
         <div class="col-12 mt-4">
@@ -227,8 +248,6 @@
             </div>
             </div>
             </div>
-    
-    
             <!-- About text (hidden on mobile)-->
             <div class="d-none d-lg-block">
                 <span class='home-label d-none d-md-block border-bottom mt-3 mb-1 font-weight-bold'>About
@@ -247,6 +266,9 @@
                 {{- partial "keywords" . -}}
     
             </div>
+
+            {{- partial "take-action-email" . -}}
+            
         </div>
         
         <div class="col-lg-7 mx-auto col-md-12">
