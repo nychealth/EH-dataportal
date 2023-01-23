@@ -1,6 +1,6 @@
 
 # don't track resources folder (temp files for serve)
-resources/_gen/assets/
+resources/_gen/
 
 # don't track mac file 
 .DS_Store
@@ -37,8 +37,4 @@ static/js/lunr/
 assets/js/lunr/
 
 static/geography/
-<<<<<<< Updated upstream
 assets/js/testing stop words.js
-=======
-assets/js/testing stop words.js
->>>>>>> Stashed changes
