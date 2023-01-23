@@ -39,12 +39,15 @@
         </div>
 
         <div class="col-md-4 mr-auto my-4">
-            <div class="aboutbox">
+            <div class="aboutbox fs-sm mt-2">
                 <strong>About the Data</strong>
                 <p>Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>).</p>
     
-                <p>Data come from: the NYCCAS near-real-time monitor network, and from air quality sensors operated by the NYS Department of Environmental Conservation. External factors can sometimes affect monitor functioning; these data are preliminary and subject to change. <!--<a href="https://github.com/nychealth/EHDP-data/tree/production/key-topics/real-time-air-quality" target="_blank">Download these data on Github</a>.--></p>
+                <p>Data come from: NYCCAS near-real-time street-level monitors, and from roof-top air quality sensors operated by the NYS Department of Environmental Conservation as required by the Federal Clean Air Act. External factors can sometimes affect monitor functioning; these data are preliminary and subject to change. <!--<a href="https://github.com/nychealth/EHDP-data/tree/production/key-topics/real-time-air-quality" target="_blank">Download these data on Github</a>.--></p>
             </div>
+
+            <div class="aboutbox fs-sm mt-1">Or, see <a href="../aqe">your neighborhood air quality</a>.</div>
+
              </div>
     </div>
 
@@ -234,6 +237,9 @@
     </div>
 
 </article>
+
+<!-- Related footer -->
+{{- partial "related-footer-2" . -}}
 
 <!-- color name to hex converter -->
 <!-- from https://gist.github.com/njvack/02ad8efcb0d552b0230d -->
