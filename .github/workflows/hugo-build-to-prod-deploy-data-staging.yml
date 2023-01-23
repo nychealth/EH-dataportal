@@ -1,4 +1,4 @@
-name: Hugo Build to `prod-deploy` branch
+name: Hugo Build to prod-deploy and data-staging
 
 # run action on a merged PR on "production"
 
