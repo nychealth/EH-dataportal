@@ -4,7 +4,7 @@ name: Hugo Build to `dev-test` branch
 
 on:
   workflow_run:
-    workflows: ["Hugo Build to GitHub Pages"]
+    workflows: [hugo-build-to-gh-pages]
     types:
       - completed
 
