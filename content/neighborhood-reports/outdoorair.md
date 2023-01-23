@@ -2,7 +2,7 @@
 title: 'Outdoor Air and Health'
 categories: ["airquality","childhealth","transportation","neighborhoods"]
 layout: topiclanding
-title: 'Outdoor Air and Health in NYC'
+seo_title: 'Outdoor Air and Health in NYC'
 menu:
     main:
         identifier: '04'
