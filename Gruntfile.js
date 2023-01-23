@@ -250,11 +250,11 @@ module.exports = function(grunt) {
             // neighborhood reports indicator names
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-            if (abspath.match(/neighborhood-reports/) && !filename.match("index")) {
+            if (abspath.match(/neighborhood-reports/) && filename.match("activedesign.md\.md|asthma\.md|climateandhealth\.md|housing\.md|outdoorair\.md")) {
 
                 let title = S(frontMatter.title).replace(/\s+/g, "_").replace(/,/g, "")
 
-                // grunt.log.writeln(filename, ":", title.s);
+                grunt.log.writeln(filename, ":", title.s);
 
                 indicator_names = [...new Set(nr_indicator_names.filter(d => d.title == title)[0].indicator_names)].join(" ")
                 indicator_descriptions = [...new Set(nr_indicator_names.filter(d => d.title == title)[0].indicator_descriptions)].join(" ")
