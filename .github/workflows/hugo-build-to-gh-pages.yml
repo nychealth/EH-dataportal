@@ -3,11 +3,15 @@ name: Hugo Build to GitHub Pages
 # run action on a merged PR on "development"
 
 on:
-  pull_request:
-    branches:
-      - development
-    types:
-      - closed
+  # pull_request:
+  #   branches:
+  #     - development
+  #   types:
+  #     - closed
+
+  # effectively turning this off, but keeping it in the repo
+  schedule:
+    - cron: 0 0 1 1 * 
 
 jobs:
   deploy:
