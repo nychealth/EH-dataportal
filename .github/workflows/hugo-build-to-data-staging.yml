@@ -3,11 +3,10 @@ name: Hugo Build to `data-staging` branch
 # run action on a merged PR on "production"
 
 on:
-  pull_request:
-    branches:
-      - production
+  workflow_run:
+    workflows: [Hugo Build to `prod-deploy` branch]
     types:
-      - closed
+      - completed
 
 jobs:
   deploy:
