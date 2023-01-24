@@ -32,18 +32,17 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
             // console.log('no param', url.searchParams.get('id'));
             loadIndicator()
         }
-
-    if (indicatorComparisonId !== null) {
-
-        fetch_comparisons();
-
-    }
         
     })
     .catch(error => console.log(error));
 
+
+// ======================================================================= //
+//  fetch and load comparison chart data into global object
+// ======================================================================= //
+
 // ----------------------------------------------------------------------- //
-// indicator comparisons metadata
+// function to fetch indicator comparisons metadata
 // ----------------------------------------------------------------------- //
 
 const fetch_comparisons = async () => {
@@ -58,35 +57,20 @@ const fetch_comparisons = async () => {
             
             comparisons = data;
             
-            console.log("comparisons:", comparisons);
+            // console.log("comparisons:", comparisons);
             
         })
         .catch(error => console.log(error));
+    
+    // call function to create comparisons data
 
-    let x = createComparisonData(comparisons).then(d => console.log(">>>>>>>>>>> d", d))
-
-    console.log(">>>>>>> x", x);
-
-    // .then(async (data) => {
-
-    //     await aq_comp(data);
-
-    // });
+    createComparisonData(comparisons);
 
 }
-
 
 // ----------------------------------------------------------------------- //
 // function to create data and metadata for comparisons chart
 // ----------------------------------------------------------------------- //
-
-// indicatorComparisonId is array of ComparisonIDs
-// map over indicatorComparisonId and filter comparisons.json into indicatorComparisonMetadata
-//  - also used by comparisons.js
-// map over indicatorComparisonMetadata, map over Indicators, fetch indicator data, map over Measures and filter data
-// single data frame with ComparisonID, IndicatorID, MeasureID
-
-// use test before funtion call?
 
 const createComparisonData = async (comps) => {
     
@@ -94,68 +78,63 @@ const createComparisonData = async (comps) => {
     
     // console.log("comps [createComparisonData]:", comps);
     
-    indicatorComparisonMetadata = await comps.filter(
+    let comparisonsMetadata = await comps.filter(
         d => indicatorComparisonId.includes(d.ComparisonID)
     )
         
-    console.log("indicatorComparisonMetadata [createComparisonData]:", indicatorComparisonMetadata);
+    console.log("comparisonsMetadata [createComparisonData]:", comparisonsMetadata);
+
+    // merged metadata
+
+    let mergedComparisonsMetadata = [];
+
+    comparisonsMetadata.map(c => {
+        
+        c.Indicators.map(i => mergedComparisonsMetadata.push(i))
+    })
+
+    console.log("mergedComparisonsMetadata:", mergedComparisonsMetadata);
+
+    indicatorComparisonMetadata = aq.from(mergedComparisonsMetadata)
+        .unroll("Measures")
+        .dedupe()
+
+    let metadataObjects = indicatorComparisonMetadata
+        .groupby("IndicatorID")
+        .objects({columns: "Measures", grouped: "entries"})
+
+    console.log("metadataObjects:", metadataObjects);
     
     // Promise.all takes the array of promises returned by map, and then the `then` callback executes after they've all resolved
 
-    // await Promise.all(indicatorComparisonMetadata.map(async c => {
-    Promise.all(indicatorComparisonMetadata.map(async c => {
-        
-        // console.log("ComparisonID:", c.ComparisonID);
-        
-        // return await Promise.all(c.Indicators.map(async i => {
-        // return Promise.all(c.Indicators.map(async i => {
-        return Promise.all(c.Indicators.map(async i => {
-            
-            // console.log("IndicatorID:", i.IndicatorID);
-            
-            console.log("*** aq.loadJSON");
+    Promise.all(metadataObjects.map(async ind => {
 
-            // NEED UNIQUE
+            let measures = ind[1].flatMap(m => Object.values(m));
             
-            
-            // return await aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${i.IndicatorID}.json`)
-            return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${i.IndicatorID}.json`)
-                .then(data => {
+            return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
+                .then(async data => {
 
-                    console.log("ComparisonID:", c.ComparisonID);
-                    console.log("IndicatorID:", i.IndicatorID);
-                    console.log("Measures:", i.Measures);
-                    // data.print({limit: 5});
-                    
+                    // console.log("*** aq.loadJSON");
+
                     let comp_data = data
-                        .derive({
-                            ComparisonID: aq.escape(c.ComparisonID),
-                            IndicatorID: aq.escape(i.IndicatorID)
-                        })
-                        .filter(aq.escape(d => i.Measures.includes(d.MeasureID)))
+                        .derive({IndicatorID: aq.escape(ind[0])})
+                        .filter(aq.escape(d => measures.includes(d.MeasureID)))
                         .reify()
-                    
-                    console.log("comp_data [inside]:", comp_data);
                     
                     return comp_data;
                 
                 })
-        }))
 
     }))
 
-    // 
     .then(async dataArray => {
 
-        console.log("dataArray:", dataArray.flatMap(d => d));
-        
         indicatorComparisonData = await dataArray.flatMap(d => d).reduce((a, b) => a.concat(b))
 
         console.log("indicatorComparisonData:", indicatorComparisonData);
 
     })
 }
-
 
 
 // ======================================================================= //
@@ -201,12 +180,6 @@ const loadIndicator = (this_indicatorId, dont_add_to_history) => {
     indicatorShortName = indicator?.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
     indicatorComparisonId = indicator?.Comparisons;
     indicatorMeasures = indicator?.Measures;
-
-    console.log("indicatorComparisonId:", indicatorComparisonId);
-    // console.log("indicator", indicator);
-
-
-    // console.log("indicatorComparisonId", indicatorComparisonId);
 
     // create Citation
 
@@ -262,7 +235,15 @@ const loadIndicator = (this_indicatorId, dont_add_to_history) => {
     indicatorTitle.innerHTML = indicatorName
 
     loadData(indicatorId)
+
+    // call function to fetch comparisons data
+
+    if (indicatorComparisonId !== null) {
+        fetch_comparisons();
+    }
+
 }
+
 
 // ----------------------------------------------------------------------- //
 // function to Load indicator data and create Arquero data frame
