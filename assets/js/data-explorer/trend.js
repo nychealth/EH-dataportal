@@ -1,5 +1,5 @@
 // ======================================================================= //
-// summary.js
+// trend.js
 // ======================================================================= //
 
 const renderTrendChart = (
@@ -13,9 +13,9 @@ const renderTrendChart = (
     // arquero table for extracting arrays easily
     // ----------------------------------------------------------------------- //
     
-    let aqData = aq.from(data);
-    let Value = aqData.array("Value");
-    let valueMin = Math.min.apply(null, Value);
+    // let aqData = aq.from(data);
+    // let Value = aqData.array("Value");
+    // let valueMin = Math.min.apply(null, Value);
     
     // ----------------------------------------------------------------------- //
     // extract measure metadata
