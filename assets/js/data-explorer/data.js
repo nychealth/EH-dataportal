@@ -78,7 +78,7 @@ const createComparisonData = async (comps) => {
     
     // console.log("comps [createComparisonData]:", comps);
     
-    let comparisonsMetadata = await comps.filter(
+    comparisonsMetadata = await comps.filter(
         d => indicatorComparisonId.includes(d.ComparisonID)
     )
         
@@ -109,21 +109,21 @@ const createComparisonData = async (comps) => {
 
     Promise.all(metadataObjects.map(async ind => {
 
-            let measures = ind[1].flatMap(m => Object.values(m));
-            
-            return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
-                .then(async data => {
+        let measures = ind[1].flatMap(m => Object.values(m));
+        
+        return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
+            .then(async data => {
 
-                    // console.log("*** aq.loadJSON");
+                // console.log("*** aq.loadJSON");
 
-                    let comp_data = data
-                        .derive({IndicatorID: aq.escape(ind[0])})
-                        .filter(aq.escape(d => measures.includes(d.MeasureID)))
-                        .reify()
-                    
-                    return comp_data;
+                let comp_data = data
+                    .derive({IndicatorID: aq.escape(ind[0])})
+                    .filter(aq.escape(d => measures.includes(d.MeasureID)))
+                    .reify()
                 
-                })
+                return comp_data;
+            
+            })
 
     }))
 
