@@ -88,9 +88,8 @@ The New York State Department of Environmental Conservation also has a network o
 
 NYCCAS has also deployed a limited number of monitors that can measure PM<sub>2.5</sub> levels in real time. These monitors allow us to monitor air pollution as it changes based on the time of day, weather or due to local pollution sources, such as heavy-duty trucks. The data from these monitors is available here: [Real-Time Air Quality](https://nychealth.github.io/EH-dataportal/key-topics/airquality/realtime/).
 
-{{< figure src="DSC_0359-1.jpg" alt="NYCCAS installation" >}}
+{{< figure src="NyccasInstall_red.jpg" alt="NYCCAS installation" >}}
 
-![](/content/key-topics/the-new-york-city-community-air-survey/dsc-0359-1.jpg)
 
 ---
 
