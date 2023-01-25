@@ -196,15 +196,6 @@ const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasur
 }
 
 
-// if (indicatorComparisonId !== null) {
-    
-//     if (fullDataTrendObjects) {
-//         dropdownTrendMeasures.innerHTML += `<button class="dropdown-item link-measure trendbutton"
-//         data-measure-id="${measureId}">
-//         ${type}
-//         </button>`;
-//     }
-// }
 
 // ----------------------------------------------------------------------- //
 // tab default measure functions
@@ -509,42 +500,108 @@ const updateTrendData = (e) => {
     renderAboutSources(selectedTrendAbout, selectedTrendSources);
 
 
-    // ----- handle disparities button ----- //
+    // ----- create dataset ----- //
 
-    // check if disparities is enabled for this measure
+    // created filtered trend data, to be passed to render function
 
-    const disparities =
-        measureMetadata[0].VisOptions[0].Trend &&
-        measureMetadata[0].VisOptions[0].Trend[0]?.Disparities;
+    filteredTrendData = fullDataTrendObjects.filter(m => m.MeasureID === measureId);
 
-    // hide or how disparities button
 
-    if (disparities == 0) {
+    // ----- render the chart ----- //
 
-        // if disparities is disabled, hide the button
+    // chart only the annual average for the following measureIds:
+    // 365 - PM2.5 (Fine particles), Mean
+    // 370 - Black carbon, Mean
+    // 391 - Nitric oxide, Mean
+    // 375 - Nitrogen dioxide, Mean
 
-        btnShowDisparities.style.display = "none";
+    const measureIdsAnnualAvg = [365, 370, 375, 391];
 
-        // remove click listeners to button that calls renderDisparities
+    // chart only the summer average for the following measureIds:
+    // 386 - Ozone (O3), Mean
 
-        $(btnShowDisparities).off()
+    const measureIdsSummer = [386];
 
-    } else if (disparities == 1) {
+    if (measureIdsAnnualAvg.includes(measureId)) {
 
-        // remove event listener added when/if button was clicked
+        const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.Time.startsWith('Annual Average'));
 
-        btnShowDisparities.innerText = "Show Disparities";
-        $(btnShowDisparities).off()
+        renderTrendChart(filteredTrendDataAnnualAvg, measureMetadata);
+        updateChartPlotSize();
 
-        // if disparities is enabled, show the button
+    } else if (measureIdsSummer.includes(measureId)) {
 
-        btnShowDisparities.style.display = "inline";
+        const filteredTrendDataSummer = filteredTrendData.filter(d => d.Time.startsWith('Summer'));
 
-        // add click listener to button that calls renderDisparities
+        renderTrendChart(filteredTrendDataSummer, measureMetadata);
+        updateChartPlotSize();
 
-        $(btnShowDisparities).on("click", () => renderDisparities(measureMetadata, 221));
+    } else {
+
+        renderTrendChart(filteredTrendData, measureMetadata);
+        updateChartPlotSize();
 
     }
+
+    // allow trend chart to persist when changing tabs
+
+    selectedTrendMeasure = true;
+
+}
+
+
+// ===== trend comparisons ===== //
+
+const updateTrendComparisonsdData = (e) => {
+
+    console.log("updateTrendComparisonsdData");
+
+    // ----- handle selection ----- //
+
+    // get meaasureId of selected dropdown element
+
+    const comparisonId = parseInt(e.target.dataset.comparisonId);
+
+    console.log("comparisonId", comparisonId);
+
+    // persistent selection
+
+    // remove active class from every list element
+    $('.comparisonsbutton').removeClass("active");
+    $('.comparisonsbutton').attr('aria-selected', false);
+
+    // set this element as active & selected
+    $(e.target).addClass("active");
+    $(e.target).attr('aria-selected', true);
+
+    // ----- get metatadata for selected measure ----- //
+
+    // >>>>>>>>>> HERE <<<<<<<<<<<<<
+    // >>>>>>>>>> HERE <<<<<<<<<<<<<
+    // >>>>>>>>>> HERE <<<<<<<<<<<<<
+    // >>>>>>>>>> HERE <<<<<<<<<<<<<
+    // >>>>>>>>>> HERE <<<<<<<<<<<<<
+
+    // trendMeasures is created by renderMeasures, which evals before this would be called
+    const measureMetadata = trendMeasures.filter(m => m.MeasureID == measureId);
+    const measurementType = measureMetadata[0].MeasurementType;
+    const about           = measureMetadata[0].how_calculated;
+    const sources         = measureMetadata[0].Sources;
+
+
+    // ----- set measure info boxes ----- //
+
+    selectedTrendAbout =
+        `<h6>${indicatorName} - ${measurementType}</h6>
+        <p>${about}</p>`;
+
+    selectedTrendSources =
+        `<h6>${indicatorName} - ${measurementType}</h6>
+        <p>${sources}</p>`;
+
+    // render measure info boxes
+
+    renderAboutSources(selectedTrendAbout, selectedTrendSources);
 
 
     // ----- create dataset ----- //
@@ -833,7 +890,7 @@ const renderMeasures = async () => {
             const dropdownMapMeasuresColumn = document.querySelector(`.dropdown-column-${index}`);
 
             mapYears.map(time => {
-                dropdownMapMeasuresColumn.innerHTML += `<button class="dropdown-item link-measure mapbutton"
+                dropdownMapMeasuresColumn.innerHTML += `<button class="dropdown-item mapbutton"
                 data-measure-id="${measureId}"
                 data-time="${time}">
                 ${time}
@@ -850,7 +907,7 @@ const renderMeasures = async () => {
             trendMeasures.push(measure)
 
             if (fullDataTrendObjects) {
-                dropdownTrendMeasures.innerHTML += `<button class="dropdown-item link-measure trendbutton"
+                dropdownTrendMeasures.innerHTML += `<button class="dropdown-item trendbutton"
                 data-measure-id="${measureId}">
                 ${type}
                 </button>`;
@@ -877,7 +934,8 @@ const renderMeasures = async () => {
 
                     const linksSecondaryIndicator = indicators.filter(indicator =>
                         indicator.Measures.some(m =>
-                            m.MeasureID === link.MeasureID)
+                            m.MeasureID === link.MeasureID
+                        )
                     );
 
                     const linksSecondaryMeasure = linksSecondaryIndicator[0].Measures.filter(m =>
@@ -885,7 +943,7 @@ const renderMeasures = async () => {
                     );
 
                     dropdownLinksMeasures.innerHTML +=
-                        `<button class="dropdown-item link-measure linksbutton"
+                        `<button class="dropdown-item linksbutton"
                         data-primary-measure-id="${measureId}"
                         data-measure-id="${measure.MeasureID}"
                         data-secondary-measure-id="${link.MeasureID}">
@@ -898,10 +956,50 @@ const renderMeasures = async () => {
     });
 
 
+    // ----- handle comparisons viz ----- //
+
+    if (indicatorComparisonId === null) {
+
+        console.log(">>>> null");
+
+        // if disparities is disabled, hide the button
+
+        btnShowComparisons.style.display = "none";
+
+        // remove click listeners to button that calls renderDisparities
+
+        $(btnShowComparisons).off()
+
+    } else if (indicatorComparisonId !== null) {
+        
+        console.log(">>>> NOT null");
+
+        comparisonsMetadata.map(c => {
+
+            console.log("ComparisonID:", c.ComparisonID);
+            console.log("ComparisonName:", c.ComparisonName);
+            
+            dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton"
+            data-comparison-id="${c.ComparisonID}">
+            ${c.ComparisonName}
+            </button>`;
+
+        })
+
+        // if disparities is enabled, show the button
+
+        btnShowComparisons.style.display = "inline";
+
+        // add click listener to button that calls renderDisparities
+
+        
+    }
+
+
     setDefaultMapMeasure(mapMeasures);
     setDefaultTrendMeasure(trendMeasures);
 
-    // set default measure for links; also calls filterSecondaryIndicatorMeasure, which creates the joined data
+    // set default measure for links; also calls (and waits for) filterSecondaryIndicatorMeasure, which creates the joined data
 
     await setDefaultLinksMeasure(linksMeasures);
 
@@ -1136,35 +1234,6 @@ const renderMeasures = async () => {
             const disparities =
                 defaultTrendMetadata[0].VisOptions[0].Trend &&
                 defaultTrendMetadata[0].VisOptions[0].Trend[0]?.Disparities;
-
-            // hide or show disparities button
-
-            if (disparities == 0) {
-
-                // if disparities is disabled, hide the button
-
-                btnShowDisparities.style.display = "none";
-
-                // remove click listeners to button that calls renderDisparities
-
-                $(btnShowDisparities).off()
-
-            } else if (disparities == 1) {
-
-                // remove event listener added when/if button was clicked
-
-                btnShowDisparities.innerText = "Show Disparities";
-                $(btnShowDisparities).off()
-
-                // if disparities is enabled, show the button
-
-                btnShowDisparities.style.display = "inline";
-
-                // add click listener to button that calls renderDisparities
-
-                $(btnShowDisparities).on("click", () => renderDisparities(defaultTrendMetadata, 221))
-
-            }
 
 
             // ----- create dataset ----- //
@@ -1514,6 +1583,7 @@ const renderMeasures = async () => {
 
     let mapMeasuresLinks = document.querySelectorAll('.mapbutton');
     let trendMeasuresLinks = document.querySelectorAll('.trendbutton');
+    let trendComparisonsLinks = document.querySelectorAll('.comparisonsbutton');
     let linksMeasuresLinks = document.querySelectorAll('.linksbutton');
 
     // adding click listeners using update functions
@@ -1525,6 +1595,10 @@ const renderMeasures = async () => {
 
     trendMeasuresLinks.forEach(link => {
         link.addEventListener('click', updateTrendData);
+    })
+
+    trendComparisonsLinks.forEach(link => {
+        link.addEventListener('click', updateTrendComparisonsdData);
     })
 
     linksMeasuresLinks.forEach(link => {
