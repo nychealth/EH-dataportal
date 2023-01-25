@@ -64,6 +64,8 @@ Ozone (O<sub>3</sub>) levels are highest in:
 * Areas that are downwind of high NO<sub>X</sub> (oxides of nitrogen) emissions
 * Areas with fewer combustion emissions
 
+ZAPPA add in
+
 ---
 
 ### Pollutants Measured by NYCCAS: Health Effects and Sources
@@ -89,7 +91,6 @@ The New York State Department of Environmental Conservation also has a network o
 NYCCAS has also deployed a limited number of monitors that can measure PM<sub>2.5</sub> levels in real time. These monitors allow us to monitor air pollution as it changes based on the time of day, weather or due to local pollution sources, such as heavy-duty trucks. The data from these monitors is available here: [Real-Time Air Quality](https://nychealth.github.io/EH-dataportal/key-topics/airquality/realtime/).
 
 {{< figure src="NyccasInstall_red.jpg" alt="NYCCAS installation" >}}
-
 
 ---
 
