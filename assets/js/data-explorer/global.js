@@ -38,6 +38,7 @@ let indicatorComparisonId;
 let indicatorComparisonMetadata;
 let indicatorComparisonData;
 let comparisons;
+let comparisonsMetadata;
 
 let defaultTrendMetadata = [];
 let defaultTrendAbout;
@@ -91,7 +92,10 @@ let state;
 let tabTrendDropDown = document.querySelector('#tab-trend .dropdown');
 
 // get disparities button dom element, so it can be removed and appended as needed
-let btnShowDisparities = document.querySelector('.btn-show-disparities');
+// let btnShowDisparities = document.querySelector('.btn-show-disparities');
+
+// get comparisons button dom element, so it can be removed and appended as needed
+let btnShowComparisons = document.querySelector('.btn-comparisons');
 
 const url = new URL(window.location);
 
