@@ -381,27 +381,31 @@
                 <!-- TREND TAB -->
 
                 <div class="tab-pane fade py-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
-                    <div class="dropdown float-right">
+
+                    <div class="dropdown float-right dropdownTrendMeasures">
 
                         <!-- trend measures button -->
-                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
-                                id="dropdownTrendMeasures" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false"> Measure </button>
-                                
+                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle btn-trend" type="button"
+                                id="dropdownTrendMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Measure </button>
+                        
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownTrendMeasures">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
 
+                    </div>
+
+                    <div class="dropdown float-right dropdownTrendComparisons">
+
                         <!-- comparisons button -->
-                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle btn-show-comparisons" type="button"
-                                id="dropdownTrendComparisons" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false"> Comparisons </button>
-                                
+                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle btn-comparisons" type="button"
+                                id="dropdownTrendComparisons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Comparisons </button>
+                        
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownTrendComparisons">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
             
                     </div>
+
                     <span id="trendTitle" class="home-label  border-bottom"></span>
                     <!-- INSERT TREND CHART HERE -->
                     <div id="trend" class="vis-bucket"></div>
@@ -776,10 +780,12 @@
     {{- $map := resources.Get "js/data-explorer/map.js" -}}
     {{- $trend := resources.Get "js/data-explorer/trend.js" -}}
     {{- $links := resources.Get "js/data-explorer/links.js" -}}
-    {{- $disparities := resources.Get "js/data-explorer/disparities.js" -}}
+    {{/*  {{- $disparities := resources.Get "js/data-explorer/disparities.js" -}}  */}}
+    {{- $comparisons := resources.Get "js/data-explorer/comparisons.js" -}}
     {{- $app := resources.Get "js/data-explorer/app.js" -}}
     
-    {{- $dataExplorerJS := slice $global $data $renderMeasures $summary $map $trend $links $disparities $app | resources.Concat "js/dataExplorer.js" -}}
+    {{/*  {{- $dataExplorerJS := slice $global $data $renderMeasures $summary $map $trend $links $disparities $comparisons $app | resources.Concat "js/dataExplorer.js" -}}  */}}
+    {{- $dataExplorerJS := slice $global $data $renderMeasures $summary $map $trend $links $comparisons $app | resources.Concat "js/dataExplorer.js" -}}
     {{- $DE_secureJS := $dataExplorerJS | resources.Fingerprint "sha512" -}}
 
     <script type="text/javascript" src="{{ $DE_secureJS.RelPermalink }}" integrity="{{ $DE_secureJS.Data.Integrity }}"></script>
