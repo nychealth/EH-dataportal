@@ -35,10 +35,11 @@ let primaryIndicatorName;
 let secondaryIndicatorName;
 
 let indicatorComparisonId;
-let indicatorComparisonMetadata;
-let indicatorComparisonData;
 let comparisons;
 let comparisonsMetadata;
+let aqComparisonsMetadata;
+let aqComparisonsIndicatorsMetadata;
+let aqComparisonsIndicatorData;
 
 let defaultTrendMetadata = [];
 let defaultTrendAbout;
@@ -54,10 +55,13 @@ let defaultLinksSources;
 let selectedMapMeasure;
 let selectedTrendMeasure;
 let selectedLinksMeasure;
+let selectedComparison;
 let selectedMapAbout;
 let selectedMapSources;
 let selectedTrendAbout;
 let selectedTrendSources;
+let selectedComparisonAbout = "";
+let selectedComparisonSources = "";
 let selectedLinksAbout;
 let selectedLinksSources;
 let selectedlinksSecondaryMeasureTime;
@@ -67,6 +71,8 @@ let secondaryMeasureMetadata;
 
 let filteredMapData;
 let filteredTrendData;
+let filteredComparisonsData;
+let filteredComparisonsMetadata;
 
 let mapMeasures = [];
 let trendMeasures = [];

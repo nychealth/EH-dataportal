@@ -47,13 +47,11 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
 
 const fetch_comparisons = async () => {
     
-    console.log("** fetch_comparisons");
+    console.log("** fetch_comparisons.json");
 
     await fetch(data_repo + data_branch + '/indicators/comparisons.json')
         .then(response => response.json())
         .then(async data => {
-            
-            console.log("** fetch comparisons.json");
             
             comparisons = data;
             
@@ -77,6 +75,8 @@ const createComparisonData = async (comps) => {
     console.log("** createComparisonData");
     
     // console.log("comps [createComparisonData]:", comps);
+
+    // will be used by renderMeasures to create dropdown
     
     comparisonsMetadata = await comps.filter(
         d => indicatorComparisonId.includes(d.ComparisonID)
@@ -85,29 +85,70 @@ const createComparisonData = async (comps) => {
     console.log("comparisonsMetadata [createComparisonData]:", comparisonsMetadata);
 
     // merged metadata
+    
+    console.log("aqComparisonsMetadata:");
 
-    let mergedComparisonsMetadata = [];
+    aqComparisonsMetadata = aq.from(comparisonsMetadata)
+        .unroll("Indicators")
+        .derive({
+            IndicatorID: d => d.Indicators.IndicatorID,
+            MeasureID: d => d.Indicators.Measures
+        })
+        .unroll("MeasureID")
+        .select(aq.not("Indicators"))
+        .print()
 
-    comparisonsMetadata.map(c => {
-        
-        c.Indicators.map(i => mergedComparisonsMetadata.push(i))
-    })
+    console.log("aqUniqueIndicatorMeasure:");
 
-    console.log("mergedComparisonsMetadata:", mergedComparisonsMetadata);
+    // get unique combinations of indicators and measures
 
-    indicatorComparisonMetadata = aq.from(mergedComparisonsMetadata)
-        .unroll("Measures")
+    let aqUniqueIndicatorMeasure = aqComparisonsMetadata
+        .select("IndicatorID", "MeasureID")
         .dedupe()
 
-    let metadataObjects = indicatorComparisonMetadata
+    let uniqueIndicatorMeasure = aqUniqueIndicatorMeasure
         .groupby("IndicatorID")
-        .objects({columns: "Measures", grouped: "entries"})
+        .objects({grouped: "entries"})
 
-    console.log("metadataObjects:", metadataObjects);
-    
+    let comparisonsIndicatorIDs = [... new Set(aqComparisonsMetadata.array("IndicatorID"))]
+    let comparisonsMeasureIDs = [... new Set(aqComparisonsMetadata.array("MeasureID"))]
+
+    let comparisonsIndicatorsMetadata = indicators.filter(
+        ind => comparisonsIndicatorIDs.includes(ind.IndicatorID)
+    )
+    // console.log("comparisonsIndicatorsMetadata:", comparisonsIndicatorsMetadata);
+
+    console.log("aqComparisonsIndicatorsMetadata:");
+
+    aqComparisonsIndicatorsMetadata = aq.from(comparisonsIndicatorsMetadata)
+        .select("IndicatorID", "IndicatorName", "Measures")
+        .unroll("Measures")
+        .derive({
+            MeasureID: d => d.Measures.MeasureID,
+            MeasureName: d => d.Measures.MeasureName,
+            MeasurementType: d => d.Measures.MeasurementType,
+            Sources: d => d.Measures.Sources,
+            how_calculated: d => d.Measures.how_calculated,
+            DisplayType: d => d.Measures.DisplayType,
+        })
+        .select(aq.not("Measures"))
+        .filter(aq.escape(d => comparisonsMeasureIDs.includes(d.MeasureID)))
+        .print()
+
+
+
+    // join comparisons metadata tables
+
+    // console.log("aqCombinedComparisonsMetadata:");
+
+    // aqCombinedComparisonsMetadata = aqComparisonsMetadata
+    //     .join(aqComparisonMeasuresMetadata, "MeasureID")
+    //     .print()
+
+
     // Promise.all takes the array of promises returned by map, and then the `then` callback executes after they've all resolved
 
-    Promise.all(metadataObjects.map(async ind => {
+    Promise.all(uniqueIndicatorMeasure.map(async ind => {
 
         let measures = ind[1].flatMap(m => Object.values(m));
         
@@ -129,9 +170,10 @@ const createComparisonData = async (comps) => {
 
     .then(async dataArray => {
 
-        indicatorComparisonData = await dataArray.flatMap(d => d).reduce((a, b) => a.concat(b))
+        aqComparisonsIndicatorData = await dataArray.flatMap(d => d).reduce((a, b) => a.concat(b))
 
-        console.log("indicatorComparisonData:", indicatorComparisonData);
+        console.log("aqComparisonsIndicatorData:");
+        aqComparisonsIndicatorData.print();
 
     })
 }

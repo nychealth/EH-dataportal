@@ -574,82 +574,68 @@ const updateTrendComparisonsdData = (e) => {
     $(e.target).addClass("active");
     $(e.target).attr('aria-selected', true);
 
+
     // ----- get metatadata for selected measure ----- //
 
-    // >>>>>>>>>> HERE <<<<<<<<<<<<<
-    // >>>>>>>>>> HERE <<<<<<<<<<<<<
-    // >>>>>>>>>> HERE <<<<<<<<<<<<<
-    // >>>>>>>>>> HERE <<<<<<<<<<<<<
-    // >>>>>>>>>> HERE <<<<<<<<<<<<<
+    // aqCombinedComparisonsMetadata
+    // aqComparisonsIndicatorData
 
-    // trendMeasures is created by renderMeasures, which evals before this would be called
-    const measureMetadata = trendMeasures.filter(m => m.MeasureID == measureId);
-    const measurementType = measureMetadata[0].MeasurementType;
-    const about           = measureMetadata[0].how_calculated;
-    const sources         = measureMetadata[0].Sources;
+    // extract metadata for about & sources boxes
 
 
     // ----- set measure info boxes ----- //
 
-    selectedTrendAbout =
-        `<h6>${indicatorName} - ${measurementType}</h6>
-        <p>${about}</p>`;
+    // >>>>>>>> what does function need?
 
-    selectedTrendSources =
-        `<h6>${indicatorName} - ${measurementType}</h6>
-        <p>${sources}</p>`;
+    aqComparisonsIndicatorsMetadata.objects().forEach(m => {
 
-    // render measure info boxes
+    selectedComparisonAbout +=
+        `<h6>${m.IndicatorName} - ${m.MeasurementType}</h6>
+        <p>${m.how_calculated}</p>`;
 
-    renderAboutSources(selectedTrendAbout, selectedTrendSources);
+    selectedComparisonSources +=
+        `<h6>${m.IndicatorName} - ${m.MeasurementType}</h6>
+        <p>${m.Sources}</p>`;
+})
+
+    // render the measure info boxes
+
+    renderAboutSources(selectedComparisonAbout, selectedComparisonSources);
 
 
     // ----- create dataset ----- //
 
-    // created filtered trend data, to be passed to render function
+    // metadata
 
-    filteredTrendData = fullDataTrendObjects.filter(m => m.MeasureID === measureId);
+    filteredComparisonsMetadata = aqComparisonsMetadata
+        .filter(aq.escape(d => d.ComparisonID == comparisonId))
+        .join(aqComparisonsIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
+
+    console.log("filteredComparisonsMetadata:");
+    filteredComparisonsMetadata.print()
+    
+    // data
+
+    filteredComparisonsData = filteredComparisonsMetadata
+        .select("IndicatorID", "MeasureID")
+        .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
+
+    console.log("filteredComparisonsData:");
+    filteredComparisonsData.print()
 
 
     // ----- render the chart ----- //
 
-    // chart only the annual average for the following measureIds:
-    // 365 - PM2.5 (Fine particles), Mean
-    // 370 - Black carbon, Mean
-    // 391 - Nitric oxide, Mean
-    // 375 - Nitrogen dioxide, Mean
+    renderComparisonsChart(
+        filteredComparisonsData,
+        filteredComparisonsMetadata
+    );
 
-    const measureIdsAnnualAvg = [365, 370, 375, 391];
+    updateChartPlotSize();
 
-    // chart only the summer average for the following measureIds:
-    // 386 - Ozone (O3), Mean
+    // allow comparisons chart to persist when changing tabs
 
-    const measureIdsSummer = [386];
-
-    if (measureIdsAnnualAvg.includes(measureId)) {
-
-        const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.Time.startsWith('Annual Average'));
-
-        renderTrendChart(filteredTrendDataAnnualAvg, measureMetadata);
-        updateChartPlotSize();
-
-    } else if (measureIdsSummer.includes(measureId)) {
-
-        const filteredTrendDataSummer = filteredTrendData.filter(d => d.Time.startsWith('Summer'));
-
-        renderTrendChart(filteredTrendDataSummer, measureMetadata);
-        updateChartPlotSize();
-
-    } else {
-
-        renderTrendChart(filteredTrendData, measureMetadata);
-        updateChartPlotSize();
-
-    }
-
-    // allow trend chart to persist when changing tabs
-
-    selectedTrendMeasure = true;
+    selectedComparison = true;
 
 }
 
@@ -980,9 +966,9 @@ const renderMeasures = async () => {
             console.log("ComparisonName:", c.ComparisonName);
             
             dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton"
-            data-comparison-id="${c.ComparisonID}">
-            ${c.ComparisonName}
-            </button>`;
+                data-comparison-id="${c.ComparisonID}">
+                ${c.ComparisonName}
+                </button>`;
 
         })
 
@@ -991,7 +977,6 @@ const renderMeasures = async () => {
         btnShowComparisons.style.display = "inline";
 
         // add click listener to button that calls renderDisparities
-
         
     }
 
