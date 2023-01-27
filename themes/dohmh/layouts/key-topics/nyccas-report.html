@@ -1,0 +1,461 @@
+{{- define "main" -}}
+
+<style type="text/css">hr {
+    margin-top: 25px;
+    margin-bottom: 25px;
+   }
+
+   .greenleftborder {
+    border-left: 8px solid #00923E50;
+    padding-left: 10px;
+}
+</style>
+
+<div class="container-fluid px-0">
+    <div class="row no-gutters px-0">
+        {{ $src := .Resources.GetMatch .Params.image }}
+        {{ $image := $src.Resize "1920x"}}
+        <div id="datastoryheader" style="background-image: URL({{ $image.Permalink }}); background-position: 50% 25%">
+    
+            <div class="medium my-auto">
+                <h1 class="titleheader py-2 px-4">
+                    {{ .Title }}
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-4 pl-0">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href="..">
+                        {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
+                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-2 mr-auto"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 col-sm-12 mx-auto">
+            <!-- Introduction and Key Findings -->
+            <div class="medium mb-2">        
+                {{- .Content  -}}
+            </div>
+
+            <!-- Pollutants and Methods -->
+            <div class="wide mb-2">
+                <hr>
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12 fs-sm">
+                        <div class="greenleftborder">
+                            <h3>Methods</h3>
+                            <p>The Health Department designed NYCCAS to understand how average air pollution levels vary from place to place within New York City. NYCCAS staff mount samplers on street light poles 10 to 12 feet off the ground along residential and commercial streets and in parks. The monitors use a small battery-powered pump and filters to collect air samples. Our air samplers are deployed at each NYCCAS site once each season and collect data for a two-week period. Samples are collected in all seasons for NO, NO<sub>2</sub>, PM<sub>2.5</sub> and BC; in the summer for O<sub>3</sub>; and in the winter for SO<sub>2</sub>. For more details on sample collection methods, see <a href="https://nyccas.cityofnewyork.us/nyccas2021v9/sites/default/files/NYCCAS-appendix/Appendix1.pdf">Appendix 1 (PDF)</a>.</p>
+                            <p>The New York State Department of Environmental Conservation also has a network of 19 air quality monitors in New York City that are required by the Federal government, but they are mounted on building roofs. We placed our air samplers at street level to measure pollution where people spend time, and where traffic-related pollution levels are usually higher.</p>
+                            <p>NYCCAS has also deployed a limited number of monitors that can measure PM<sub>2.5</sub> levels in real time. These monitors allow us to monitor air pollution as it changes based on the time of day, weather or due to local pollution sources, such as heavy-duty trucks. The data from these monitors is available here: <a href="https://nychealth.github.io/EH-dataportal/key-topics/airquality/realtime/">Real-Time Air Quality</a>.</p>
+    
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xs-12">
+                        <h3>Pollutants measured</h3>
+
+                        <div class="accordion-group my-3" role="tablist" id="accordion-01">
+                            <div class="card">
+                                <a class="card-header font-weight-bold collapse collapsed" id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01" role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
+                                    <span class="title" role="heading" aria-level="3">Fine Particles</span>
+                                </a>
+                                <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
+                                    <div class="card-body bg-white border fs-sm">
+                                        <p>
+                                            Fine particles (PM<sub>2.5</sub>) are tiny airborne solid and liquid particles less than 2.5 microns in diameter. PM<sub>2.5</sub> is the most harmful urban air pollutant. It is small enough to penetrate deep into the lungs and enter the bloodstream, which can worsen lung and heart disease and lead to hospital admissions and premature deaths. PM<sub>2.5</sub> can either be directly emitted or formed in the atmosphere from other pollutants. Fuel combustion in vehicles, boilers in buildings, power plants, construction equipment, marine vessels and commercial cooking are all common sources of PM<sub>2.5</sub>. Up to 40% of the PM<sub>2.5</sub> in New York City's air comes from sources in areas upwind from the city, such as coal-burning power plants in the Midwest.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-group my-3" role="tablist" id="accordion-02">
+                            <div class="card">
+                                <a class="card-header font-weight-bold collapse collapsed" id="acc-button-02" data-toggle="collapse" href="#panel-acc-button-02" role="tab" aria-expanded="false" aria-controls="panel-acc-button-02">
+                                    <span class="title" role="heading" aria-level="3">Black Carbon</span>
+                                </a>
+                                <div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02" data-parent="#accordion-02">
+                                    <div class="card-body bg-white border fs-sm">
+                                        <p>
+                                            Black carbon (BC) is one type of PM<sub>2.5</sub> and is the sooty black material emitted from gas and diesel engines, coal-fired power plants, and other sources that burn fossil fuels. It comprises up to 20% of fine particulate matter in New York City. Unlike other fine particles, BC is primarily from local sources. Inhalation of BC is associated with health problems, including respiratory and cardiovascular disease, cancer and birth defects. BC also contributes to climate change by altering the patterns of rain and clouds.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-group my-3" role="tablist" id="accordion-03">
+                            <div class="card">
+                                <a class="card-header font-weight-bold collapse collapsed" id="acc-button-03" data-toggle="collapse" href="#panel-acc-button-03" role="tab" aria-expanded="false" aria-controls="panel-acc-button-03">
+                                    <span class="title" role="heading" aria-level="3">Nitrogen Dioxide and Nitric Oxide</span>
+                                </a>
+                                <div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-03" data-parent="#accordion-03">
+                                    <div class="card-body bg-white border fs-sm">
+                                        <p>
+                                            Nitrogen dioxide (NO<sub>2</sub>) and nitric oxide (NO) are part of a group of pollutants called &amp;ldquo;oxides of nitrogen&amp;rdquo; (NOX). Exposures to NOX are linked to increased emergency department visits and hospitalizations for respiratory conditions, particularly asthma. NOX also reacts with other compounds in the atmosphere to form PM<sub>2.5</sub> and O<sub>3</sub>. A variety of combustion sources produce NOX in New York City, including motor vehicles, buildings, marine vessels and construction equipment.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-group my-3" role="tablist" id="accordion-04">
+                            <div class="card">
+                                <a class="card-header font-weight-bold collapse collapsed" id="acc-button-04" data-toggle="collapse" href="#panel-acc-button-04" role="tab" aria-expanded="false" aria-controls="panel-acc-button-04">
+                                    <span class="title" role="heading" aria-level="3">Ozone</span>
+                                </a>
+                                <div class="collapse" id="panel-acc-button-04" role="tabpanel" aria-labelledby="acc-button-04" data-parent="#accordion-04">
+                                    <div class="card-body bg-white border fs-sm">
+                                        <p>
+                                            Ozone (O<sub>3</sub>) forms at ground level when NOX emissions combine with sunlight and other airborne pollutants. Measured O<sub>3</sub> concentrations are often highest in the summer and downwind from areas with high NOX emissions, such as places with high traffic density. In areas with heavy traffic, NOX reacts with any ground-level O<sub>3</sub> to reduce O<sub>3</sub> concentrations. As a result, NYCCAS has measured lower O3 levels near roadways, in city centers and in other areas of high NOX emissions density. Higher levels of O<sub>3</sub> are seen in areas away from dense traffic and building emissions.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-group my-3" role="tablist" id="accordion-05">
+                            <div class="card">
+                                <a class="card-header font-weight-bold collapse collapsed" id="acc-button-05" data-toggle="collapse" href="#panel-acc-button-05" role="tab" aria-expanded="false" aria-controls="panel-acc-button-05">
+                                    <span class="title" role="heading" aria-level="3">Sulfur Dioxide</span>
+                                </a>
+                                <div class="collapse" id="panel-acc-button-05" role="tabpanel" aria-labelledby="acc-button-05" data-parent="#accordion-05">
+                                    <div class="card-body bg-white border fs-sm">
+                                        <p>
+                                            Sulfur dioxide (SO<sub>2</sub>) is produced mainly by burning oils with high sulfur content, such as No. 4 and No. 6 oil (also known as residual fuel oil), or high-sulfur No. 2 oil. The primary use of fuel oil in NYC is to heat buildings and water, which is why we only monitor it in the winter. Some high-sulfur oil is also used to generate electricity and power marine vessels. SO2 exposures can worsen lung diseases, causing hospitalizations and emergency department visits for asthma and other respiratory conditions. SO<sub>2</sub> also contributes to the formation of PM<sub>2.5</sub> in the atmosphere, resulting in PM<sub>2.5</sub> exposures downwind of SO<sub>2</sub> emissions.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="wide">
+                <img src="NyccasInstall_red.jpg" alt="NYCCAS installation">
+                <hr>
+            </div>
+
+            <!-- Sites -->
+            <div class="wide mb-4">
+                <div class="row">
+                    <div class="col-sm-5 col-cx-12 fs-sm">
+                        <div class="greenleftborder">
+                            <h3>NYCCAS Sites</h3>
+                            <p>The monitoring locations represent a wide variety of New York City environments – sidewalks, busy streets, parks and quiet neighborhood roads. Most of the sites (80%) were chosen by the Health Department at random to ensure representation in all types of neighborhoods, including residential, commercial and industrial areas. The remaining sites were selected because they are near potentially high-emission locations that were not captured in the random assignment. These include Times Square, the Port Authority Bus Terminal and the entrance to the Holland Tunnel. The locations vary in tree canopy and in the density of traffic and buildings. The number of sites has changed over the years as we have learned about air quality in our city. In 2021, we monitored 78 routine locations and an additional 15 sites in low-income neighborhoods that would benefit from additional monitoring to understand potential sources of emissions. We refer to these as <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/AQsnapshots/Index.html#section5">Environmental Justice Sites</a> on the map.</p>
+    
+                        </div>
+                    </div>
+                    <div class="col-sm-7 col-cx-12">
+                        <iframe src="nyccas-sites-leaflet.html" frameborder="no" style="width: 100%; height: 550px"></iframe>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- Pollutant maps: text to FMV, maps to template -->
+            <h3>Pollutant Maps</h3>
+            {{ .Params.pollutantMaps | safeHTML }}
+
+            <button type="button" class="btn btn-outline-dark yearbtn active mb-2" id="btn1" onclick="updateiframe(1)">2021</button>
+            <button type="button" class="btn btn-outline-dark yearbtn mb-2" id="btn2" onclick="updateiframe(2)">All years</button>
+
+            <div id="iframeEmbed" style="width:100%; height: 600px; border: 1px solid black">
+                Placeholder for pollutant maps: 2021
+            </div>
+
+            <script>
+                function updateiframe(x) {
+                    document.getElementById('btn1').classList.remove('active')
+                    document.getElementById('btn2').classList.remove('active')
+                  if (x === 1) {
+                    document.getElementById('iframeEmbed').innerHTML = 'Placeholder for pollutant maps: 2021'
+                    document.getElementById('btn1').classList.add('active')
+                
+                  } else {
+                    document.getElementById('iframeEmbed').innerHTML = 'Placeholder for pollutant maps: all years'
+                    document.getElementById('btn2').classList.add('active')
+                  }
+                }
+                </script>
+
+            <hr>
+
+            <!-- Pollutant trends: text to FMV, maps to template -->
+            <h3>Pollutant Trends</h3>
+            {{ .Params.pollutantTrends | safeHTML }}
+
+        </div>
+    </div>
+
+    <div class="row my-2">
+        <div class="col-md-10 col-sm-12 mx-auto">
+                <iframe src="pollutant-trends.html" frameborder="no" style="width: 100%; height: 800px"></iframe>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 col-sm-12 mx-auto">
+
+            <!-- Pollutant predictors: template -->
+            <h3>Pollutant predictors</h3>
+            <p>NYCCAS data were analyzed using a land-use regression (LUR) model. LUR models estimate associations among pollution levels, average traffic, building emissions, land use and other neighborhood factors around the monitoring sites. The pollution sources that contribute most to differences in concentrations of NO, NO<sub>2</sub>, BC, and PM<sub>2.5</sub> across NYC are listed in the table below. SO<sub>2</sub> is now so low in NYC that it is not possible to build a LUR model for the most recent years of data.</p><p>Fuel used to provide heat and hot water in buildings has become significantly cleaner under state and local regulations requiring use of cleaner burning fuels. As a result, commercial charbroiling and grilling operations have become a more important source of PM<sub>2.5</sub> emissions over the past several years due to state and local regulations mandating cleaner burning fuels for building heat and hot water. The number of commercial cooking charbroilers and grills in an area now explains PM<sub>2.5</sub> differences among neighborhoods better than building emissions. For more information on these changes, please see <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq-cooking/">Tracking changes in New York City's sources of air pollution</a>.</p>
+
+            <div id="pollutantPredictors">
+                <div class="row">
+                    <div class="col-md-7">
+                        <p>Choose pollutant:<br>
+                            <div class="">
+                                <button type="button" class="btn polbtn btn-outline-dark active" onclick="changePollutant('bc')" id="bcbtn" value="bc">Black carbon</button>
+                                <button type="button" class="btn polbtn btn-outline-dark" onclick="changePollutant('no')" id="nobtn" value="no">Nitric oxide</button>
+                                <button type="button" class="btn polbtn btn-outline-dark" onclick="changePollutant('no2')" id="no2btn" value="no2">NO<sub>2</sub></button>
+                                <button type="button" class="btn polbtn btn-outline-dark" onclick="changePollutant('o3')" id="o3btn" value="o3">O<sub>3</sub></button>
+                                <button type="button" class="btn polbtn btn-outline-dark" onclick="changePollutant('pm')" id="pmbtn" value="pm">PM<sub>2.5</sub></button>
+                            </div>
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="col">
+                        <div class="mt-1">
+                            <div id="bc" class="polSources">
+                                <!--black carbon source info-->
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Indicator</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Associated sources and interpretation</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <th scope="row">Industrial area</th>
+                                        <td>Area of industrial land use within 1,000 meters</td>
+                                        <td>Emissions from trucks idling and traveling through industrial areas and industrial combustion equipment</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">Road density</th>
+                                        <td>Percent impervious road surface within 250 meters</td>
+                                        <td>Emissions from motor vehicles on paved roadways</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">PM<sub>2.5</sub></th>
+                                        <td>PM<sub>2.5</sub> emissions from heat and hot water boilers in buildings within 1,000 meters</td>
+                                        <td>Combustion of heating oil and natural gas</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">Traffic density</th>
+                                        <td>Weighted by relative PM<sub>2.5</sub> emissions rates by vehicle type (car, truck, bus) within 50 meters</td>
+                                        <td>PM<sub>2.5</sub> emissions from all on-road motor vehicle based on vehicle miles and the relative emissions rates of different vehicle types</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+            
+                            </div>
+            
+                            <div id="no" class="polSources hide">
+                                <!--NO source buttons -->
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Indicator</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Associated sources and interpretation</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <th scope="row">Industrial area</th>
+                                        <td>Area of industrial land use within 1,000 meters</td>
+                                        <td>Emissions from trucks idling and traveling through industrial areas and industrial combustion equipment</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">Traffic density</th>
+                                        <td>Weighted by relative PM<sub>2.5</sub> emissions rates by vehicle type (car, truck, bus) within 50 meters</td>
+                                        <td>PM<sub>2.5</sub> emissions from all on-road motor vehicle based on vehicle miles and the relative emissions rates of different vehicle types</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">Bus traffic</th>
+                                        <td>Location on a bus route (compared to non-bus route locations</td>
+                                        <td>Emissions from buses and other vehicles on busy roadways - indicator of traffic congestion</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">NOx</sub></th>
+                                        <td>NOx emissions from buildings heat and hot water boilers within 400 meters, taking into account changes in building heating fuels over time</td>
+                                        <td>Combustion of heating oil and natural gas</td>
+                                      </tr>
+        
+                                    </tbody>
+                                  </table>                    </div>
+        
+                            <div id="no2" class="polSources hide">
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Indicator</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Associated sources and interpretation</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <th scope="row">Industrial area</th>
+                                        <td>Area of industrial land use within 1,000 meters</td>
+                                        <td>Emissions from trucks idling and traveling through industrial areas and industrial combustion equipment</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">Bus traffic</th>
+                                        <td>Location on a bus route (compared to non-bus route locations</td>
+                                        <td>Emissions from buses and other vehicles on busy roadways - indicator of traffic congestion</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">Building density</sub></th>
+                                        <td>Area of interior building space within 1,000 meters</td>
+                                        <td>Combustion of heating oil and natural gas</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">Road density</th>
+                                        <td>Percent impervious road surface within 250 meters</td>
+                                        <td>Emissions from motor vehicles on paved roadways</td>
+                                      </tr>
+        
+                                    </tbody>
+                                  </table> 
+        
+                            </div>
+        
+                            <div id="o3" class="polSources hide">
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Indicator</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Associated sources and interpretation</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <th scope="row">NO<sub>2</sub></th>
+                                        <td>Level of NO<sub>2</sub> measured at the same location</td>
+                                        <td>Nitric oxides (NO<sub>x</sub> at elevated concentrations react with ground-level ozone (O<sub>3</sub> to create NO<sub>2</sub> and O<sub>3</sub>, also called "quenching ozone."</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">Tree cover</th>
+                                        <td>Tree cover within 50 meters</td>
+                                        <td>Reduced levels thorugh reactions of ozone with leaf surfaces.</td>
+                                      </tr>
+                                    </tbody>
+                                  </table> 
+                            </div>
+        
+                            <div id="pm" class="polSources hide">
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Indicator</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Associated sources and interpretation</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <th scope="row">Commercial cooking</th>
+                                        <td>Number of permitted commercial cooking grills and charbroilers within 1,000 meters</td>
+                                        <td>Emissions from commercial cooking.</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">Traffic density</th>
+                                        <td>Weighted by relative PM<sub>2.5</sub> emissions rates by vehicle type (car, truck, bus) within 50 meters</td>
+                                        <td>PM<sub>2.5</sub> emissions from all on-road motor vehicle based on vehicle miles and the relative emissions rates of different vehicle types</td>
+                                      </tr>
+                                      <tr>
+                                        <th scope="row">Industrial area</th>
+                                        <td>Area of industrial land use within 1,000 meters</td>
+                                        <td>Emissions from trucks idling and traveling through industrial areas and industrial combustion equipment</td>
+                                      </tr>
+                                    </tbody>
+                                  </table> 
+        
+                            </div>
+        
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    function changePollutant(x) {
+                        var pollutant = x;
+                        console.log('pollutant: ')
+                        console.log(x)
+
+                        // remove active classes from .polbtn
+                        const btns = document.querySelectorAll(".polbtn")
+                        for (var i = 0; i < btns.length; i++) {
+                            btns[i].classList.remove('active')
+                        }
+
+                        // add active class to x+btn
+                        console.log(x + 'btn')
+
+                        // show/hide subbuttons
+                        var subButtons = document.getElementsByClassName("polSources");
+                        for (let i = 0; i < subButtons.length; i ++ ) {
+                        subButtons[i].classList.add('hide')
+
+                        // show the selected one
+                        document.getElementById(x).classList.remove('hide')
+                    }
+                    }
+                </script>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Conclusion and more info -->
+    <div class="row my-4">
+        <div class="col-sm-8 mx-auto col-xs-12">
+            <h3>Conclusion</h3>
+            {{ .Params.conclusion | safeHTML }}
+            <hr>
+            <div class="greenleftborder mb-4">
+                <strong>More information</strong>
+                {{ .Params.moreInfo | safeHTML }}
+                </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+    
+        </div>
+    </div>
+
+
+
+</article>
+
+{{- end -}}
