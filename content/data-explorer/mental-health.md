@@ -21,9 +21,7 @@ menu:
 
 Mental health is a person’s emotional, psychological, and social wellbeing. It is an important part of overall health.
 
-Mental illness can include depression, serious psychological distress, hospitalization for psychiatric reasons, and even suicide.
-
-Many factors can contribute to mental illness. Poor mental health is associated with a variety of risk factors. These include chronic disease, poverty, and poor environmental conditions. Many adults with mental illness do not receive the treatment they need.
+Many factors can contribute to poor mental health. These include chronic disease, poverty, and poor environmental conditions. Many adults with mental illness do not receive the treatment they need.
 
 ### Mental health and the environment
 A person’s environment affects their mental health.
