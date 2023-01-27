@@ -119,6 +119,12 @@ _inputs:
       allow_create: true
   pollutantMaps:
     type: textarea
+  pollutantTrends:
+    type: textarea
+  conclusion:
+    type: textarea
+  moreInfo:
+    type: textarea
 _select_data:
   categories:
     - housing
