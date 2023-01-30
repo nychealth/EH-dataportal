@@ -17,8 +17,7 @@ const renderTrendChart = (
     let Value = aqData.array("Value");
     let valueMin = Math.min.apply(null, Value);
     let valueMax = Math.max.apply(null, Value);
-    var tickMinStep;
-    valueMax > 5 ? tickMinStep = 1 : tickMinStep = 0.5
+    let tickMinStep = valueMax > 2.9 ? 1 : 0.5
     // console.log('tickMinStep: ' + tickMinStep)
     
     // ----------------------------------------------------------------------- //
