@@ -332,11 +332,11 @@
                     <div class="col-md-7">
                         <p>Choose pollutant:<br>
                             <div class="">
-                                <button type="button" class="btn polbtn btn-outline-dark active" onclick="changePollutant('bc')" id="bcbtn" value="bc">Black carbon</button>
-                                <button type="button" class="btn polbtn btn-outline-dark" onclick="changePollutant('no')" id="nobtn" value="no">Nitric oxide</button>
-                                <button type="button" class="btn polbtn btn-outline-dark" onclick="changePollutant('no2')" id="no2btn" value="no2">NO<sub>2</sub></button>
-                                <button type="button" class="btn polbtn btn-outline-dark" onclick="changePollutant('o3')" id="o3btn" value="o3">O<sub>3</sub></button>
-                                <button type="button" class="btn polbtn btn-outline-dark" onclick="changePollutant('pm')" id="pmbtn" value="pm">PM<sub>2.5</sub></button>
+                                <button type="button" class="btn srcbtn btn-outline-dark active" onclick="changePollutant('bc')" id="bcbtn" value="bc">BC</button>
+                                <button type="button" class="btn srcbtn btn-outline-dark" onclick="changePollutant('no')" id="nobtn" value="no">NO</button>
+                                <button type="button" class="btn srcbtn btn-outline-dark" onclick="changePollutant('no2')" id="no2btn" value="no2">NO<sub>2</sub></button>
+                                <button type="button" class="btn srcbtn btn-outline-dark" onclick="changePollutant('o3')" id="o3btn" value="o3">O<sub>3</sub></button>
+                                <button type="button" class="btn srcbtn btn-outline-dark" onclick="changePollutant('pm')" id="pmbtn" value="pm">PM<sub>2.5</sub></button>
                             </div>
                     </div>
                 </div>
@@ -516,13 +516,14 @@
                         console.log(x)
 
                         // remove active classes from .polbtn
-                        const btns = document.querySelectorAll(".polbtn")
+                        const btns = document.querySelectorAll(".srcbtn")
                         for (var i = 0; i < btns.length; i++) {
                             btns[i].classList.remove('active')
                         }
 
                         // add active class to x+btn
                         console.log(x + 'btn')
+                        document.getElementById(x+'btn').classList.add('active')
 
                         // show/hide subbuttons
                         var subButtons = document.getElementsByClassName("polSources");
