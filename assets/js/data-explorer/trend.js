@@ -16,6 +16,10 @@ const renderTrendChart = (
     let aqData = aq.from(data);
     let Value = aqData.array("Value");
     let valueMin = Math.min.apply(null, Value);
+    let valueMax = Math.max.apply(null, Value);
+    var tickMinStep;
+    valueMax > 5 ? tickMinStep = 1 : tickMinStep = 0.5
+    // console.log('tickMinStep: ' + tickMinStep)
     
     // ----------------------------------------------------------------------- //
     // extract measure metadata
@@ -68,7 +72,7 @@ const renderTrendChart = (
             "axisY": {
                 "labelAngle": 0,
                 "labelFontSize": 11,
-                "tickMinStep": 1
+                "tickMinStep": tickMinStep
             },
             "legend": {
                 "columns": columns,
