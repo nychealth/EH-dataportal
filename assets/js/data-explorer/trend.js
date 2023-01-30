@@ -68,6 +68,7 @@ const renderTrendChart = (
             "axisY": {
                 "labelAngle": 0,
                 "labelFontSize": 11,
+                "tickMinStep": 1
             },
             "legend": {
                 "columns": columns,
