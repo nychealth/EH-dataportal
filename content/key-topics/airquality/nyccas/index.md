@@ -41,7 +41,7 @@ pollutantMaps: >-
     primary indicator of BC, NO, NO<sub>2</sub> and
     PM<sub>2.5&nbsp;</sub>pollution, but we have noticed in recent years this
     pollution has become more closely related to the presence of distribution
-    centers within these industrial areas. Therefore, more destinct pollution
+    centers within these industrial areas. Therefore, more distinct pollution
     hotspots are shown in recent years near distribution centers in the Newtown
     Creek area in Queens and Brooklyn, JFK airport and Hunts Point in the
     Bronx.</p> <p>Winter and summer average maps for BC, NO<sub>2</sub>, NO and
