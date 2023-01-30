@@ -39,11 +39,12 @@ After committing, working branches can be merged into `development` for testing 
 ### Branches
 A run-down of main branches, actions, and purposes are:
 
-| Branch name:  | Action on merge:         | `EHDP-data` branch:  | Used for:                          |
-|---------------|--------------------------|----------------------|------------------------------------|
-| `development` | Builds to `gh-pages`     | `production`         | General development                |
-| `production`  | Builds to `data-staging` | `staging`            | Demoing data (build/deploy to 201) |
-| `production`  | Builds to `prod-deploy ` | `production`         | Deployment to live server          |
+| Branch name:  | Action on merge:         | `EHDP-data` branch:  | Deploy to | Used for:                          |
+|---------------|--------------------------|----------------------|------------|------------------------------------|
+| `development` | Builds to `gh-pages`     | `production`         | github pages | General development                |
+| `development` | Builds to `dev-test`     | `staging`            | 307 (internal) | Demoing data & content        |
+| `production`  | Builds to `data-staging` | `staging`            | (307 (internal)) | Demoing data  |
+| `production`  | Builds to `prod-deploy ` | `production`         | Production servers | Live site          |
 
 On merge, these branches are automatically [built](https://github.com/peaceiris/actions-hugo and [served](https://github.com/peaceiris/actions-gh-pages) to other branches using Github Actions (triggerd by a merged pull request).  _(Note that this requires a workflow YAML file in both [`main`](https://github.com/nychealth/EH-dataportal/blob/main/.github/workflows/hugo-build-gh-pages.yml) and [`development`](https://github.com/nychealth/EH-dataportal/blob/development/.github/workflows/hugo-build-gh-pages.yml).)_
 
@@ -153,6 +154,9 @@ The repo includes some files to integrate with Cloudcannon, an online CMS provid
 - `cloudcannon.config.yaml` sets up how the site appears in the CC CMS, what the editor reveals, what shortcodes are easily accessible, etc. 
 - `.cloudcannon/prebuild` is code that runs when Cloudcannon builds/serves the site.
 - `.cloudcannon/schemas` include frontmatter templates for when CC works with frontmatter.
+
+### Build caching
+Resources used in a build (like a Neighborhood Report json spec, for example) may be cached by whatever machine is running the build. Updates to resources might not be reflected in a build if Hugo is using cached versions. In `config.toml`, setting the cache to have a `maxAge = 0` effectively turns it off, ensuring that Hugo will use the original, non-cached resources. Caching in Hugo is explained more [here](https://gohugo.io/getting-started/configuration/#configure-file-caches).
 
 ---
 

@@ -158,6 +158,7 @@ const renderLinksChart = (
                     "labelAngle": 0,
                     "titlePadding": 10,
                     "titleFont": "sans-serif",
+                    "tickMinStep": 1
                 },
                 "legend": {
                     "columns": columns,

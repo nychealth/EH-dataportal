@@ -200,14 +200,15 @@
 {{- /* ----  get names from indicators.json, using scratch  ---- */ -}}
 
 {{- $indicators_scratch := newScratch -}}
+{{- $indicators_map := dict -}}
 
 {{- range $indicators_json_resource -}}
-    {{- $indicators_scratch.SetInMap "names" (string .IndicatorID) (.IndicatorName) -}}
+    {{- $indicators_scratch.SetInMap "details" (string .IndicatorID) (dict "IndicatorID" .IndicatorID "name" .IndicatorName "description" .IndicatorDescription) -}}
 {{- end -}}
 
 {{- /* ----  save resource  ---- */ -}}
 
-{{- $indicator_names_json := $indicators_scratch.Get "names" | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorData/indicator_names.json" -}}
+{{- $indicator_names_json := $indicators_scratch.Get "details" | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorData/indicator_names.json" -}}
 
 {{- warnf ">>>> indicator_names_json.RelPermalink >>>> " $indicator_names_json.RelPermalink -}}
 

@@ -211,9 +211,13 @@ const setDefaultMapMeasure = (visArray) => {
     let defaultArray = [];
 
     const hasAgeAdjustedRate = visArray.filter(measure =>
-        measure.MeasurementType.includes('Age Adjusted Rate')
+        measure.MeasurementType.includes('Age-adjusted rate')
     )
     const hasRate = visArray.filter(measure =>
+        measure.MeasurementType.includes('rate')
+    )
+
+    const isRate = visArray.filter(measure =>
         measure.MeasurementType.includes('Rate')
     )
     const hasPercent = visArray.filter(measure =>
@@ -238,6 +242,9 @@ const setDefaultMapMeasure = (visArray) => {
 
     } else if (hasRate.length) {
         defaultArray.push(hasRate[0]);
+
+    } else if (isRate.length) {
+        defaultArray.push(isRate[0]);
 
     } else if (hasPercent.length) {
         defaultArray.push(hasPercent[0]);
@@ -266,9 +273,13 @@ const setDefaultTrendMeasure = (visArray) => {
     if (visArray.length > 0) {
 
         const hasAgeAdjustedRate = visArray.filter(measure =>
-            measure.MeasurementType.includes('Age Adjusted Rate')
+            measure.MeasurementType.includes('Age-adjusted rate')
         )
         const hasRate = visArray.filter(measure =>
+            measure.MeasurementType.includes('rate')
+        )
+
+        const isRate = visArray.filter(measure =>
             measure.MeasurementType.includes('Rate')
         )
         const hasPercent = visArray.filter(measure =>
@@ -293,6 +304,9 @@ const setDefaultTrendMeasure = (visArray) => {
 
         } else if (hasRate.length) {
             defaultArray.push(hasRate[0]);
+
+        } else if (isRate.length) {
+            defaultArray.push(isRate[0]);
 
         } else if (hasPercent.length) {
             defaultArray.push(hasPercent[0]);
@@ -321,9 +335,13 @@ const setDefaultLinksMeasure = async (visArray) => {
     if (visArray.length > 0) {
 
         const hasAgeAdjustedRate = visArray.filter(measure =>
-            measure.MeasurementType.includes('Age Adjusted Rate')
+            measure.MeasurementType.includes('Age-adjusted rate')
         )
         const hasRate = visArray.filter(measure =>
+            measure.MeasurementType.includes('rate')
+        )
+
+        const isRate = visArray.filter(measure =>
             measure.MeasurementType.includes('Rate')
         )
         const hasPercent = visArray.filter(measure =>
@@ -347,6 +365,9 @@ const setDefaultLinksMeasure = async (visArray) => {
 
         } else if (hasRate.length) {
             defaultArray.push(hasRate[0]);
+
+        } else if (isRate.length) {
+            defaultArray.push(isRate[0]);
 
         } else if (hasPercent.length) {
             defaultArray.push(hasPercent[0]);
