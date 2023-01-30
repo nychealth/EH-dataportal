@@ -49,176 +49,247 @@
             <div class="medium mb-2">        
                 {{- .Content  -}}
             </div>
-
-            <!-- Pollutants and Methods -->
-            <div class="wide mb-2">
-                <hr>
-                <div class="row">
-                    <div class="col-sm-6 col-xs-12 fs-sm">
-                        <div class="greenleftborder">
-                            <h3>Methods</h3>
-                            <p>The Health Department designed NYCCAS to understand how average air pollution levels vary from place to place within New York City. NYCCAS staff mount samplers on street light poles 10 to 12 feet off the ground along residential and commercial streets and in parks. The monitors use a small battery-powered pump and filters to collect air samples. Our air samplers are deployed at each NYCCAS site once each season and collect data for a two-week period. Samples are collected in all seasons for NO, NO<sub>2</sub>, PM<sub>2.5</sub> and BC; in the summer for O<sub>3</sub>; and in the winter for SO<sub>2</sub>. For more details on sample collection methods, see <a href="https://nyccas.cityofnewyork.us/nyccas2021v9/sites/default/files/NYCCAS-appendix/Appendix1.pdf">Appendix 1 (PDF)</a>.</p>
-                            <p>The New York State Department of Environmental Conservation also has a network of 19 air quality monitors in New York City that are required by the Federal government, but they are mounted on building roofs. We placed our air samplers at street level to measure pollution where people spend time, and where traffic-related pollution levels are usually higher.</p>
-                            <p>NYCCAS has also deployed a limited number of monitors that can measure PM<sub>2.5</sub> levels in real time. These monitors allow us to monitor air pollution as it changes based on the time of day, weather or due to local pollution sources, such as heavy-duty trucks. The data from these monitors is available here: <a href="https://nychealth.github.io/EH-dataportal/key-topics/airquality/realtime/">Real-Time Air Quality</a>.</p>
-    
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-xs-12">
-                        <h3>Pollutants measured</h3>
-
-                        <div class="accordion-group my-3" role="tablist" id="accordion-01">
-                            <div class="card">
-                                <a class="card-header font-weight-bold collapse collapsed" id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01" role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
-                                    <span class="title" role="heading" aria-level="3">Fine Particles</span>
-                                </a>
-                                <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
-                                    <div class="card-body bg-white border fs-sm">
-                                        <p>
-                                            Fine particles (PM<sub>2.5</sub>) are tiny airborne solid and liquid particles less than 2.5 microns in diameter. PM<sub>2.5</sub> is the most harmful urban air pollutant. It is small enough to penetrate deep into the lungs and enter the bloodstream, which can worsen lung and heart disease and lead to hospital admissions and premature deaths. PM<sub>2.5</sub> can either be directly emitted or formed in the atmosphere from other pollutants. Fuel combustion in vehicles, boilers in buildings, power plants, construction equipment, marine vessels and commercial cooking are all common sources of PM<sub>2.5</sub>. Up to 40% of the PM<sub>2.5</sub> in New York City's air comes from sources in areas upwind from the city, such as coal-burning power plants in the Midwest.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-group my-3" role="tablist" id="accordion-02">
-                            <div class="card">
-                                <a class="card-header font-weight-bold collapse collapsed" id="acc-button-02" data-toggle="collapse" href="#panel-acc-button-02" role="tab" aria-expanded="false" aria-controls="panel-acc-button-02">
-                                    <span class="title" role="heading" aria-level="3">Black Carbon</span>
-                                </a>
-                                <div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02" data-parent="#accordion-02">
-                                    <div class="card-body bg-white border fs-sm">
-                                        <p>
-                                            Black carbon (BC) is one type of PM<sub>2.5</sub> and is the sooty black material emitted from gas and diesel engines, coal-fired power plants, and other sources that burn fossil fuels. It comprises up to 20% of fine particulate matter in New York City. Unlike other fine particles, BC is primarily from local sources. Inhalation of BC is associated with health problems, including respiratory and cardiovascular disease, cancer and birth defects. BC also contributes to climate change by altering the patterns of rain and clouds.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-group my-3" role="tablist" id="accordion-03">
-                            <div class="card">
-                                <a class="card-header font-weight-bold collapse collapsed" id="acc-button-03" data-toggle="collapse" href="#panel-acc-button-03" role="tab" aria-expanded="false" aria-controls="panel-acc-button-03">
-                                    <span class="title" role="heading" aria-level="3">Nitrogen Dioxide and Nitric Oxide</span>
-                                </a>
-                                <div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-03" data-parent="#accordion-03">
-                                    <div class="card-body bg-white border fs-sm">
-                                        <p>
-                                            Nitrogen dioxide (NO<sub>2</sub>) and nitric oxide (NO) are part of a group of pollutants called &amp;ldquo;oxides of nitrogen&amp;rdquo; (NOX). Exposures to NOX are linked to increased emergency department visits and hospitalizations for respiratory conditions, particularly asthma. NOX also reacts with other compounds in the atmosphere to form PM<sub>2.5</sub> and O<sub>3</sub>. A variety of combustion sources produce NOX in New York City, including motor vehicles, buildings, marine vessels and construction equipment.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-group my-3" role="tablist" id="accordion-04">
-                            <div class="card">
-                                <a class="card-header font-weight-bold collapse collapsed" id="acc-button-04" data-toggle="collapse" href="#panel-acc-button-04" role="tab" aria-expanded="false" aria-controls="panel-acc-button-04">
-                                    <span class="title" role="heading" aria-level="3">Ozone</span>
-                                </a>
-                                <div class="collapse" id="panel-acc-button-04" role="tabpanel" aria-labelledby="acc-button-04" data-parent="#accordion-04">
-                                    <div class="card-body bg-white border fs-sm">
-                                        <p>
-                                            Ozone (O<sub>3</sub>) forms at ground level when NOX emissions combine with sunlight and other airborne pollutants. Measured O<sub>3</sub> concentrations are often highest in the summer and downwind from areas with high NOX emissions, such as places with high traffic density. In areas with heavy traffic, NOX reacts with any ground-level O<sub>3</sub> to reduce O<sub>3</sub> concentrations. As a result, NYCCAS has measured lower O3 levels near roadways, in city centers and in other areas of high NOX emissions density. Higher levels of O<sub>3</sub> are seen in areas away from dense traffic and building emissions.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-group my-3" role="tablist" id="accordion-05">
-                            <div class="card">
-                                <a class="card-header font-weight-bold collapse collapsed" id="acc-button-05" data-toggle="collapse" href="#panel-acc-button-05" role="tab" aria-expanded="false" aria-controls="panel-acc-button-05">
-                                    <span class="title" role="heading" aria-level="3">Sulfur Dioxide</span>
-                                </a>
-                                <div class="collapse" id="panel-acc-button-05" role="tabpanel" aria-labelledby="acc-button-05" data-parent="#accordion-05">
-                                    <div class="card-body bg-white border fs-sm">
-                                        <p>
-                                            Sulfur dioxide (SO<sub>2</sub>) is produced mainly by burning oils with high sulfur content, such as No. 4 and No. 6 oil (also known as residual fuel oil), or high-sulfur No. 2 oil. The primary use of fuel oil in NYC is to heat buildings and water, which is why we only monitor it in the winter. Some high-sulfur oil is also used to generate electricity and power marine vessels. SO2 exposures can worsen lung diseases, causing hospitalizations and emergency department visits for asthma and other respiratory conditions. SO<sub>2</sub> also contributes to the formation of PM<sub>2.5</sub> in the atmosphere, resulting in PM<sub>2.5</sub> exposures downwind of SO<sub>2</sub> emissions.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-
-            <hr>
-
-            <!-- Sites -->
-            <div class="wide mb-4">
-                <div class="row">
-                    <div class="col-sm-5 col-cx-12 fs-sm">
-                        <div class="greenleftborder">
-                            <h3>NYCCAS Sites</h3>
-                            <p>The monitoring locations represent a wide variety of New York City environments – sidewalks, busy streets, parks and quiet neighborhood roads. Most of the sites (80%) were chosen by the Health Department at random to ensure representation in all types of neighborhoods, including residential, commercial and industrial areas. The remaining sites were selected because they are near potentially high-emission locations that were not captured in the random assignment. These include Times Square, the Port Authority Bus Terminal and the entrance to the Holland Tunnel. The locations vary in tree canopy and in the density of traffic and buildings. The number of sites has changed over the years as we have learned about air quality in our city. In 2021, we monitored 78 routine locations and an additional 15 sites in low-income neighborhoods that would benefit from additional monitoring to understand potential sources of emissions. We refer to these as <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/AQsnapshots/Index.html#section5">Environmental Justice Sites</a> on the map.</p>
-    
-                        </div>
-                    </div>
-                    <div class="col-sm-7 col-cx-12">
-                        <iframe src="nyccas-sites-leaflet.html" frameborder="no" style="width: 100%; height: 550px"></iframe>
-                    </div>
-
-
-                </div>
-            </div>
-
-        </div>
     </div>
 
-    <div class="row no-gutters my-4">
-        <div class="col-12">
-            <img src="NyccasInstall_red.jpg" alt="NYCCAS installation" style="width:100%;">
+
+            <!-- Pollutants and Methods -->
+
+    <div class="row">
+        <div class="col-md-10 col-sm-12 mx-auto">
+            <hr class="my-2">
+            <div class="row">
+                <div class="col-sm-7 col-xs-12">
+                    <div class="greenleftborder">
+                        <h3>Methods</h3>
+                        <p>The Health Department designed NYCCAS to understand how average air pollution levels vary from place to place within New York City. NYCCAS staff mount samplers on street light poles 10 to 12 feet off the ground along residential and commercial streets and in parks. The monitors use a small battery-powered pump and filters to collect air samples. Our air samplers are deployed at each NYCCAS site once each season and collect data for a two-week period. Samples are collected in all seasons for NO, NO<sub>2</sub>, PM<sub>2.5</sub> and BC; in the summer for O<sub>3</sub>; and in the winter for SO<sub>2</sub>. For more details on sample collection methods, see <a href="https://nyccas.cityofnewyork.us/nyccas2021v9/sites/default/files/NYCCAS-appendix/Appendix1.pdf">Appendix 1 (PDF)</a>.</p>
+                        <p>The New York State Department of Environmental Conservation also has a network of 19 air quality monitors in New York City that are required by the Federal government, but they are mounted on building roofs. We placed our air samplers at street level to measure pollution where people spend time, and where traffic-related pollution levels are usually higher.</p>
+                        <p>NYCCAS has also deployed a limited number of monitors that can measure PM<sub>2.5</sub> levels in real time. These monitors allow us to monitor air pollution as it changes based on the time of day, weather or due to local pollution sources, such as heavy-duty trucks. The data from these monitors is available here: <a href="https://nychealth.github.io/EH-dataportal/key-topics/airquality/realtime/">Real-Time Air Quality</a>.</p>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-5 col-xs-12">
+                    <h3>Pollutants measured</h3>
+
+                    <div class="accordion-group my-3" role="tablist" id="accordion-01">
+                        <div class="card">
+                            <a class="card-header font-weight-bold collapse collapsed" id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01" role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
+                                <span class="title" role="heading" aria-level="3">Fine Particles</span>
+                            </a>
+                            <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
+                                <div class="card-body bg-white border fs-sm">
+                                    <p>
+                                        Fine particles (PM<sub>2.5</sub>) are tiny airborne solid and liquid particles less than 2.5 microns in diameter. PM<sub>2.5</sub> is the most harmful urban air pollutant. It is small enough to penetrate deep into the lungs and enter the bloodstream, which can worsen lung and heart disease and lead to hospital admissions and premature deaths. PM<sub>2.5</sub> can either be directly emitted or formed in the atmosphere from other pollutants. Fuel combustion in vehicles, boilers in buildings, power plants, construction equipment, marine vessels and commercial cooking are all common sources of PM<sub>2.5</sub>. Up to 40% of the PM<sub>2.5</sub> in New York City's air comes from sources in areas upwind from the city, such as coal-burning power plants in the Midwest.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-group my-3" role="tablist" id="accordion-02">
+                        <div class="card">
+                            <a class="card-header font-weight-bold collapse collapsed" id="acc-button-02" data-toggle="collapse" href="#panel-acc-button-02" role="tab" aria-expanded="false" aria-controls="panel-acc-button-02">
+                                <span class="title" role="heading" aria-level="3">Black Carbon</span>
+                            </a>
+                            <div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02" data-parent="#accordion-02">
+                                <div class="card-body bg-white border fs-sm">
+                                    <p>
+                                        Black carbon (BC) is one type of PM<sub>2.5</sub> and is the sooty black material emitted from gas and diesel engines, coal-fired power plants, and other sources that burn fossil fuels. It comprises up to 20% of fine particulate matter in New York City. Unlike other fine particles, BC is primarily from local sources. Inhalation of BC is associated with health problems, including respiratory and cardiovascular disease, cancer and birth defects. BC also contributes to climate change by altering the patterns of rain and clouds.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-group my-3" role="tablist" id="accordion-03">
+                        <div class="card">
+                            <a class="card-header font-weight-bold collapse collapsed" id="acc-button-03" data-toggle="collapse" href="#panel-acc-button-03" role="tab" aria-expanded="false" aria-controls="panel-acc-button-03">
+                                <span class="title" role="heading" aria-level="3">Nitrogen Dioxide and Nitric Oxide</span>
+                            </a>
+                            <div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-03" data-parent="#accordion-03">
+                                <div class="card-body bg-white border fs-sm">
+                                    <p>
+                                        Nitrogen dioxide (NO<sub>2</sub>) and nitric oxide (NO) are part of a group of pollutants called &amp;ldquo;oxides of nitrogen&amp;rdquo; (NOX). Exposures to NOX are linked to increased emergency department visits and hospitalizations for respiratory conditions, particularly asthma. NOX also reacts with other compounds in the atmosphere to form PM<sub>2.5</sub> and O<sub>3</sub>. A variety of combustion sources produce NOX in New York City, including motor vehicles, buildings, marine vessels and construction equipment.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-group my-3" role="tablist" id="accordion-04">
+                        <div class="card">
+                            <a class="card-header font-weight-bold collapse collapsed" id="acc-button-04" data-toggle="collapse" href="#panel-acc-button-04" role="tab" aria-expanded="false" aria-controls="panel-acc-button-04">
+                                <span class="title" role="heading" aria-level="3">Ozone</span>
+                            </a>
+                            <div class="collapse" id="panel-acc-button-04" role="tabpanel" aria-labelledby="acc-button-04" data-parent="#accordion-04">
+                                <div class="card-body bg-white border fs-sm">
+                                    <p>
+                                        Ozone (O<sub>3</sub>) forms at ground level when NOX emissions combine with sunlight and other airborne pollutants. Measured O<sub>3</sub> concentrations are often highest in the summer and downwind from areas with high NOX emissions, such as places with high traffic density. In areas with heavy traffic, NOX reacts with any ground-level O<sub>3</sub> to reduce O<sub>3</sub> concentrations. As a result, NYCCAS has measured lower O3 levels near roadways, in city centers and in other areas of high NOX emissions density. Higher levels of O<sub>3</sub> are seen in areas away from dense traffic and building emissions.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-group my-3" role="tablist" id="accordion-05">
+                        <div class="card">
+                            <a class="card-header font-weight-bold collapse collapsed" id="acc-button-05" data-toggle="collapse" href="#panel-acc-button-05" role="tab" aria-expanded="false" aria-controls="panel-acc-button-05">
+                                <span class="title" role="heading" aria-level="3">Sulfur Dioxide</span>
+                            </a>
+                            <div class="collapse" id="panel-acc-button-05" role="tabpanel" aria-labelledby="acc-button-05" data-parent="#accordion-05">
+                                <div class="card-body bg-white border fs-sm">
+                                    <p>
+                                        Sulfur dioxide (SO<sub>2</sub>) is produced mainly by burning oils with high sulfur content, such as No. 4 and No. 6 oil (also known as residual fuel oil), or high-sulfur No. 2 oil. The primary use of fuel oil in NYC is to heat buildings and water, which is why we only monitor it in the winter. Some high-sulfur oil is also used to generate electricity and power marine vessels. SO2 exposures can worsen lung diseases, causing hospitalizations and emergency department visits for asthma and other respiratory conditions. SO<sub>2</sub> also contributes to the formation of PM<sub>2.5</sub> in the atmosphere, resulting in PM<sub>2.5</sub> exposures downwind of SO<sub>2</sub> emissions.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <hr class="my-2">
+
+            <div class="row">
+                <div class="col-sm-6 col-cx-12">
+                    <div class="greenleftborder">
+                        <h3>NYCCAS Sites</h3>
+                        <p>The monitoring locations represent a wide variety of New York City environments – sidewalks, busy streets, parks and quiet neighborhood roads. Most of the sites (80%) were chosen by the Health Department at random to ensure representation in all types of neighborhoods, including residential, commercial and industrial areas. The remaining sites were selected because they are near potentially high-emission locations that were not captured in the random assignment. These include Times Square, the Port Authority Bus Terminal and the entrance to the Holland Tunnel. The locations vary in tree canopy and in the density of traffic and buildings. The number of sites has changed over the years as we have learned about air quality in our city. In 2021, we monitored 78 routine locations and an additional 15 sites in low-income neighborhoods that would benefit from additional monitoring to understand potential sources of emissions. We refer to these as <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/AQsnapshots/Index.html#section5">Environmental Justice Sites</a> on the map.</p>
+
+                    </div>
+                </div>
+                <div class="col-sm-6 col-cx-12">
+                    <iframe src="nyccas-sites-leaflet.html" frameborder="no" style="width: 100%; height: 550px"></iframe>
+                </div>
+
+            </div>
+
+            <hr class="my-2">
+
+
+
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-8 col-sm-12 mx-auto">
+            <img src="NyccasInstall_red.jpg" alt="NYCCAS installation" style="width:100%;" class="my-2">
 
+            <hr class="my-2">
             <!-- Pollutant maps: text to FMV, maps to template -->
             <h3>Pollutant Maps</h3>
             {{ .Params.pollutantMaps | safeHTML }}
 
-            <button type="button" class="btn btn-outline-dark yearbtn active mb-2" id="btn1" onclick="updateiframe(1)">2021</button>
-            <button type="button" class="btn btn-outline-dark yearbtn mb-2" id="btn2" onclick="updateiframe(2)">All years</button>
 
-            <div id="iframeEmbed" style="width:100%; height: 600px; border: 1px solid black">
-                Placeholder for pollutant maps: 2021
+            <div id="pollutantMaps">
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn btn-outline yearbtn" id="btn1" disabled>2021:</button>
+                        <button type="button" class="btn polbtn btn-outline-dark active" value="bc">BC</button>
+                        <button type="button" class="btn polbtn btn-outline-dark" value="no">NO</button>
+                        <button type="button" class="btn polbtn btn-outline-dark" value="no2">NO<sub>2</sub></button>
+                        <button type="button" class="btn polbtn  btn-outline-dark" value="o3">O<sub>3</sub></button>
+                        <button type="button" class="btn polbtn btn-outline-dark" value="pm">PM<sub>2.5</sub></button>
+                        <button type="button" class="btn btn-outline-dark mb-2 float-right" id="btn2">All years</button>
+                    </div>
+                </div>
+
+                <div class="row" style="height: 550px;">
+                    <div class="col-sm-8">
+                        <iframe id="iframeEmbed" src="leaflet/bc_2021.html" style="width:100%;height:100%;" frameborder="off"></iframe>
+                    </div>
+
+                    <div class="col-sm-4" id="mapText">
+                        <div id="bcText" class="polText fs-sm">
+                            <p>Citywide, annual average levels of Black Carbon declined by 45% between 2009 and 2020, an average of 0.06 micrograms per cubic meter per year.</p>
+                            <p>Across the twelve-year period, higher levels were consistently seen at sites in industrial areas (reflecting increased truck traffic density) and in areas with higher nearby commercial cooking grills/charbroilers.</p>
+                            <p>In 2020, seasonal average BC concentrations across NYCCAS monitoring sites ranged from 0.16 to 2.0 micrograms per cubic meter.</p>
+                        </div>
+
+                        <div id="noText" class="polText hide fs-sm">
+                            <p>Citywide, annual average levels of Nitric Oxide declined by 56% between 2009 and 2020, an average of 1.7 parts per billion per year.</p>
+                            <p>Across the twelve-year period, higher levels were consistently seen at sites with higher nearby emissions from traffic sources and higher densities of nearby industrial areas. Medium and heavy duty diesel trucks tend to concentrate in industrial areas and this indicator has become more important in explaining higher levels of NO than indicators of all traffic volume.</p>
+                            <p>In 2020, seasonal average NO concentrations across NYCCAS monitoring sites ranged from 2.3 to 70.1 ppb.</p>
+                        </div>
+
+                        <div id="noText" class="polText hide fs-sm">
+                            <p>Citywide, annual average levels of Nitric Oxide declined by 56% between 2009 and 2020, an average of 1.7 parts per billion per year.</p>
+                            <p>Across the twelve-year period, higher levels were consistently seen at sites with higher nearby emissions from traffic sources and higher densities of nearby industrial areas. Medium and heavy duty diesel trucks tend to concentrate in industrial areas and this indicator has become more important in explaining higher levels of NO than indicators of all traffic volume.</p>
+                            <p>In 2020, seasonal average NO concentrations across NYCCAS monitoring sites ranged from 2.3 to 70.1 ppb.</p>
+                        </div>
+
+                        <div id="no2Text" class="polText hide fs-sm">
+                            <p>Citywide, annual average levels of Nitrogen Dioxide declined by 39% between 2009 and 2020, an average of 0.89 parts per billion per year.</p>
+                            <p>Across the twelve-year period, higher levels were consistently seen at sites with higher nearby building and traffic emissions.</p>
+                            <p>In 2020, seasonal average NO<sub>2</sub> concentrations across NYCCAS monitoring sites ranged from 5.1 to 46.5 ppb.</p>
+                        </div>
+
+                        <div id="o3Text" class="polText hide fs-sm">
+                            <p>Since the first summer (2009) when relatively cool temperatures contributed to lower levels of Ozone, citiwide summertime average levels varied slightly year to year (ranging from 27.8 ppb to 31.4 ppb between 2010 and 2020), without a consistent trend.</p>
+                            <p>Higher levels were consistently measured at sites with lower traffic density and lower NO<sub>2</sub> concentrations such as areas of outer Queens, Brooklyn, and Staten Island, reflecting less removal of ozone from the atmosphere by fresh combusion NOx emissions.</p>
+                            <p>In summer 2020, seasonal average O<sub>3</sub> varied from 23.8 to 42.5 ppb across the monitoring sites.</p>
+                        </div>
+
+                        <div id="pmText" class="polText hide fs-sm">
+                            <p>Citywide, annual average levels of fine particulate matter declined by 43% between 2009 and 2020, an average of 0.4 micrograms per cubic meter per year. Some of the reduction in 2020 was likely due to COVID-19 prevention measures that reduced traffic and commercial cooking emissions.</p>
+                            <p>Recently, higher levels of PM<sub>2.5</sub> have been seen at sites with nearby commercial cooking grills/charbroilers and traffic emissions. This is largely due to buildings using cleaner fuels for heating and therefore emitting less PM<sub>2.5</sub> than when NYCCAS began monitoring.</p>
+                            <p>In 2020, seasonal average PM<sub>2.5</sub> concentrations across NYCCAS monitoring sites ranged frojm 1.7 to 19.5 micrograms per cubic meter.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <script>
-                function updateiframe(x) {
-                    document.getElementById('btn1').classList.remove('active')
-                    document.getElementById('btn2').classList.remove('active')
-                  if (x === 1) {
-                    document.getElementById('iframeEmbed').innerHTML = 'Placeholder for pollutant maps: 2021'
-                    document.getElementById('btn1').classList.add('active')
-                
-                  } else {
-                    document.getElementById('iframeEmbed').innerHTML = 'Placeholder for pollutant maps: all years'
-                    document.getElementById('btn2').classList.add('active')
-                  }
+            <style>
+                .show {
+                    display: block;
                 }
-                </script>
+
+                .hide {
+                display: none;
+                }
+            </style>
+
+            <script>
+                const polbtns = document.querySelectorAll('.polbtn')
+                var mapPol;
+                var embed;
+                for (let i = 0; i < polbtns.length; i++) {
+                    polbtns[i].addEventListener("click", function() {
+                        mapPol = this.value
+                        //Turns off highlights on everything based on class
+                        for (let button of document.querySelectorAll('.polbtn')) button.classList.remove('active');
+                        this.classList.add('active')
+                        embed = 'leaflet/' + this.value + '_2021.html'
+                        document.getElementById('iframeEmbed').src = embed;
+
+                        const mapTexts = document.querySelectorAll('.polText')
+                        for (let div of document.querySelectorAll('.polText')) div.classList.add('hide')
+                        var chosenText = mapPol+'Text'
+                        document.getElementById(chosenText).classList.remove('hide')
+
+                    })
+                }
+
+
+            </script>
+
+
+
 
             <hr>
 
             <!-- Pollutant trends: text to FMV, maps to template -->
             <h3>Pollutant Trends</h3>
             {{ .Params.pollutantTrends | safeHTML }}
+            <iframe src="pollutant-trends.html" frameborder="no" style="width: 100%; height: 800px" class="my-2"></iframe>
+
+
 
         </div>
     </div>
 
-    <div class="row my-2">
-        <div class="col-md-10 col-sm-12 mx-auto">
-                <iframe src="pollutant-trends.html" frameborder="no" style="width: 100%; height: 800px"></iframe>
-        </div>
-    </div>
+
 
     <div class="row">
         <div class="col-md-8 col-sm-12 mx-auto">
@@ -454,14 +525,6 @@
     </div>
 
 
-
-
-
-
-
-    
-        </div>
-    </div>
 
 
 
