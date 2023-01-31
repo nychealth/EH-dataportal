@@ -152,7 +152,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-cx-12">
-                    <iframe src="nyccas-sites-leaflet.html" frameborder="no" style="width: 100%; height: 550px"></iframe>
+                    <iframe src="embed/nyccas-sites-leaflet.html" frameborder="no" style="width: 100%; height: 550px"></iframe>
                 </div>
 
             </div>
@@ -252,7 +252,72 @@
           </button>
         </div>
         <div class="modal-body">
-          <iframe src="https://nycehs.github.io/nyccas-vis-demo/pollutant-trend-images.html" style="width:100%; height: 65vh;" frameborder="off"></iframe>
+            <div class="row no-gutters border-bottom mb-1">
+                <div class="col-sm-7">
+                    <button type="button" class="btn mtBtn btn-sm btn-outline-dark active" value="BC">BC</button>
+                    <button type="button" class="btn mtBtn btn-sm btn-outline-dark" value="NO">NO</button>
+                    <button type="button" class="btn mtBtn btn-sm btn-outline-dark" value="NO2">NO<sub>2</sub></button>
+                    <button type="button" class="btn mtBtn btn-sm btn-outline-dark" value="O3">O<sub>3</sub></button>
+                    <button type="button" class="btn mtBtn btn-sm btn-outline-dark" value="PM25">PM<sub>2.5</sub></button>
+                    <button type="button" class="btn mtBtn btn-sm btn-outline-dark" value="SO2">SO<sub>2</sub></button>
+
+                </div>
+
+                <div class="col-sm-3 ml-auto">
+                    <span id="yearPrint" class="pb-2">2020</span>
+                    <div style="display:inline-block;" class="">
+                        <input type="range" min="2009" max="2020" value="2020" class="mt-0" id="myRange">
+                    </div>
+                </div>
+
+
+
+              </div>
+    
+              <div class="row no-gutters">
+                <div class="col-8 mx-auto">
+                  <img id="raster" src="embed/map-images/BC_2020.png" style="width:100%; height: auto;">
+    
+                </div>
+              </div>
+
+              <script>
+                // update image
+                var chosenYear = 2020
+                var mtPol = "BC"
+
+
+                function updateRaster() {
+                var filename = mtPol + "_" + chosenYear + ".png"
+                // console.log(filename)
+                document.getElementById('raster').src = "embed/map-images/" + filename
+
+                }
+
+                // Change var pollutant and polYear on Button Click
+                const mtBtns = document.querySelectorAll(".mtBtn ")
+                for (var i = 0; i < mtBtns.length; i++) {
+                mtBtns[i].addEventListener("click", function() {
+                for (let button of mtBtns) button.classList.remove('active');
+                this.className += " active";
+                mtPol = this.value
+                polYear = mtPol+chosenYear
+                updateRaster()
+                });
+                }
+
+                // Change year value when dragging slider
+                const year = document.getElementById('myRange')
+                year.addEventListener("change",function(){
+                chosenYear = year.value;
+                polYear = mtPol+chosenYear
+                document.getElementById('yearPrint').innerHTML = year.value
+                updateRaster()
+                })
+          </script>
+
+
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -303,7 +368,7 @@
             <!-- Pollutant trends: text to FMV, maps to template -->
             <h3>Pollutant Trends</h3>
             {{ .Params.pollutantTrends | safeHTML }}
-            <iframe src="pollutant-trends.html" frameborder="no" style="width: 100%; height: 800px" class="my-2"></iframe>
+            <iframe src="embed/pollutant-trends.html" frameborder="no" style="width: 100%; height: 800px" class="my-2"></iframe>
 
 
 
