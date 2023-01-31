@@ -13,6 +13,7 @@ indicators:
   - 2338
   - 2020
   - 2017
+  - 2421
 - header: Smoking
   IndicatorID:
   - 2019
