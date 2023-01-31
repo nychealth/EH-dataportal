@@ -409,7 +409,7 @@ const joinData = () => {
 
     // data for summary table
 
-    fullDataTableObjects = joinedAqData
+    tableData = joinedAqData
         .filter(d => d.ban_summary_flag == 0)
         .join_left(aqMeasurementDisplay, "MeasureID")
         .derive({
@@ -422,20 +422,20 @@ const joinData = () => {
 
     // data for map
 
-    fullDataMapObjects = joinedAqData
+    mapData = joinedAqData
         .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
         // .impute({ Value: () => NaN })
         .objects()
 
     // map for trend chart
 
-    fullDataTrendObjects = joinedAqData
+    trendData = joinedAqData
         .filter(d => op.match(d.GeoType, /Citywide|Borough/)) // keep only Citywide and Boro
         .objects()
 
     // data for links & disparities chart
 
-    fullDataLinksObjects = joinedAqData
+    linksData = joinedAqData
         .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
         .objects()
 

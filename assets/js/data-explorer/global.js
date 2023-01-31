@@ -18,10 +18,10 @@ let unreliabilityNotes;
 let aqData;
 let joinedAqData;
 
-let fullDataTableObjects;
-let fullDataMapObjects;
-let fullDataTrendObjects;
-let fullDataLinksObjects;
+let tableData;
+let mapData;
+let trendData;
+let linksData;
 let joinedDataLinksObjects;
 let disparitiyData; // used by disparities.js
 

@@ -85,7 +85,7 @@ const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasur
     // primary measure data
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    const filteredPrimaryMeasureData = fullDataLinksObjects
+    const filteredPrimaryMeasureData = linksData
 
         // keep primary measure
         .filter(d => d.MeasureID === primaryMeasureId)
@@ -452,7 +452,7 @@ const updateMapData = (e) => {
     // filter map data using selected measure and time
 
     let mapMeasureData =
-        fullDataMapObjects.filter(
+        mapData.filter(
             obj => obj.MeasureID === measureId &&
             obj.Time === time
         );
@@ -525,7 +525,7 @@ const updateTrendData = (e) => {
 
     // created filtered trend data, to be passed to render function
 
-    filteredTrendData = fullDataTrendObjects.filter(m => m.MeasureID === measureId);
+    filteredTrendData = trendData.filter(m => m.MeasureID === measureId);
 
 
     // ----- render the chart ----- //
@@ -834,7 +834,7 @@ const renderMeasures = async () => {
 
     // create years dropdown for table
 
-    const tableYears = [...new Set(fullDataTableObjects.map(item => item.Time))];
+    const tableYears = [...new Set(tableData.map(item => item.Time))];
 
     // console.log("tableYears", tableYears);
 
@@ -856,7 +856,7 @@ const renderMeasures = async () => {
 
     // create geo dropdown for table (using pretty geotypes, keeping georank order)
 
-    const tableGeoTypes = [...new Set(fullDataTableObjects.map(item => prettifyGeoType(item.GeoType)))];
+    const tableGeoTypes = [...new Set(tableData.map(item => prettifyGeoType(item.GeoType)))];
     const dropdownGeoTypes = geoTypes.filter(g => tableGeoTypes.includes(g))
 
     console.log("geoTypes:", geoTypes);
@@ -875,7 +875,7 @@ const renderMeasures = async () => {
 
     // ----- handle measures for this indicator ----- //
 
-    const mapYears = [...new Set(fullDataMapObjects.map(item => item.Time))];
+    const mapYears = [...new Set(mapData.map(item => item.Time))];
 
     indicatorMeasures.map((measure, index) => {
 
@@ -913,7 +913,7 @@ const renderMeasures = async () => {
 
             trendMeasures.push(measure)
 
-            if (fullDataTrendObjects) {
+            if (trendData) {
                 dropdownTrendMeasures.innerHTML += `<button class="dropdown-item trendbutton"
                 data-measure-id="${measureId}">
                 ${type}
@@ -932,7 +932,7 @@ const renderMeasures = async () => {
 
             // get secondary measure id
 
-            if (fullDataTableObjects) {
+            if (tableData) {
 
                 dropdownLinksMeasures.innerHTML +=
                     `<div class="dropdown-title"><strong> ${type}</strong></div>`;
@@ -1121,7 +1121,7 @@ const renderMeasures = async () => {
 
             // filter map data using default measure
 
-            let mapMeasureData = fullDataMapObjects.filter(
+            let mapMeasureData = mapData.filter(
                     obj => obj.MeasureID === defaultMapMeasureId
                 );
 
@@ -1245,7 +1245,7 @@ const renderMeasures = async () => {
             // ----- create dataset ----- //
 
             const defaultTrendMeasureId = defaultTrendMetadata[0].MeasureID;
-            filteredTrendData = fullDataTrendObjects.filter(m => m.MeasureID === defaultTrendMeasureId);
+            filteredTrendData = trendData.filter(m => m.MeasureID === defaultTrendMeasureId);
 
 
             // ----- render the chart ----- //

@@ -13,16 +13,19 @@ const renderComparisonsChart = (
     // arquero table for extracting arrays easily
     // ----------------------------------------------------------------------- //
     
-    // let aqData = aq.from(data);
-    // let Value = aqData.array("Value");
+    let aqData = aq.from(data);
+    let Value = aqData.array("Value");
     // let valueMin = Math.min.apply(null, Value);
-    
+    let valueMax = Math.max.apply(null, Value);
+    let tickMinStep = valueMax >= 3.0 ? 1 : 0.5
+
     // ----------------------------------------------------------------------- //
     // extract measure metadata
     // ----------------------------------------------------------------------- //
     
-    let trendMeasurementType = metadata[0].MeasurementType;
-    let trendDisplay = metadata[0].DisplayType;
+    let compMeasureNames = metadata.array("MeasureName");
+    let compDisplayTypes = metadata.array("DisplayType");
+    let compName = metadata.array("ComparisonName");
     
     // get dimensions
 
@@ -40,7 +43,7 @@ const renderComparisonsChart = (
 
     // console.log("trend_unreliability", trend_unreliability);
 
-    document.querySelector("#trend-unreliability").innerHTML = ""; // blank to start
+    document.querySelector("#comp-unreliability").innerHTML = ""; // blank to start
 
     for (let i = 0; i < trend_unreliability.length; i++) {
         
@@ -52,7 +55,7 @@ const renderComparisonsChart = (
     // define spec
     // ----------------------------------------------------------------------- //
     
-    let trendspec = {
+    let compspec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "config": {
             "background": "#FFFFFF",
@@ -78,16 +81,16 @@ const renderComparisonsChart = (
                 "fontWeight": "normal"
                 },
             "view": {"stroke": "transparent"},
-            "range": {
-                "category": [
-                    "#1696d2",
-                    "#fdbf11",
-                    "#ec008b",
-                    "#000000",
-                    "#a8a8a8",
-                    "#55b748"
-                ]
-            },
+            // "range": {
+            //     "category": [
+            //         "#1696d2",
+            //         "#fdbf11",
+            //         "#ec008b",
+            //         "#000000",
+            //         "#a8a8a8",
+            //         "#55b748"
+            //     ]
+            // },
             
             "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 3},
             
@@ -109,7 +112,7 @@ const renderComparisonsChart = (
             "fontSize": 13, 
             "font": "sans-serif",
             "baseline": "top",
-            "text": `${trendMeasurementType} ${trendDisplay && `(${trendDisplay})`}`,
+            "text": compName,
             "dy": -10
         },
         "encoding": {
@@ -123,7 +126,7 @@ const renderComparisonsChart = (
             {
                 "encoding": {
                     "color": {
-                        "field": "Geography",
+                        "field": "Geography", // this is combo of indicator + measure or geo
                         "type": "nominal",
                         "legend": {
                             "orient": "bottom",
@@ -238,6 +241,6 @@ const renderComparisonsChart = (
     // render chart
     // ----------------------------------------------------------------------- //
     
-    vegaEmbed("#trend", trendspec);
+    vegaEmbed("#comp", compspec);
     
 }
