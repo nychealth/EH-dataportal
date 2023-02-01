@@ -35,17 +35,17 @@ pollutantMaps: >-
     below. The levels of BC, NO<sub>2</sub>, NO, SO<sub>2</sub> and
     PM<sub>2.5</sub> have been significantly reduced citywide. The areas where
     we see the highest levels of these pollutants has also shifted.</p> <p>Over
-    time, the data we use to model the relationships between land use and
-    pollution has gotten better and the pattern of air pollution changes may
-    shift. For example, in previous years industrial land use was used as a
-    primary indicator of BC, NO, NO<sub>2</sub> and
-    PM<sub>2.5&nbsp;</sub>pollution, but we have noticed in recent years this
-    pollution has become more closely related to the presence of distribution
-    centers within these industrial areas. Therefore, more distinct pollution
-    hotspots are shown in recent years near distribution centers in the Newtown
-    Creek area in Queens and Brooklyn, JFK airport and Hunts Point in the
-    Bronx.</p> <p>Winter and summer average maps for BC, NO<sub>2</sub>, NO and
-    PM<sub>2.5</sub> are available in <a
+    time, there is better data available for us to understand the relationships
+    between land use and pollution and the air pollution patterns have shifted
+    as the city changes (link to data story). Although industrial land use has
+    been a primary indicator of BC, NO, NO<sub>2</sub> and PM<sub>2.5</sub>
+    pollution in the past, in the most recent years of data we see evidence that
+    the density of warehouses with loading docks better explains the difference
+    in pollution levels between neighborhoods.  Industrial neighborhoods with a
+    higher density of warehouses, such as Newtown Creek area in Queens and
+    Brooklyn, JFK airport and Hunts Point in the Bronx, have higher levels of
+    pollution.</p> <p>Winter and summer average maps for BC, NO<sub>2</sub>, NO
+    and PM<sub>2.5</sub> are available in <a
     href="https://nyccas.cityofnewyork.us/nyccas2022/sites/default/files/NYCCAS-appendix/Appendix2.pdf">Appendix
     2 (PDF)</a>.</p>
 pollutantTrends: >-
@@ -119,7 +119,7 @@ In 2007, the New York City Department of Health and Mental Hygiene (Health Depar
 * Help inform OneNYC, the City’s sustainability plan
 * Track changes in air quality over time
 * Estimate exposures for health research
-* Inform the public about local topics, such as: [tools we use to measure health impacts from air quality policy changes](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/zappa/), [air quality in the time of COVID-19](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aqcovid2/), [recent air quality improvements](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/breatheeasy/), [car-free zones](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aqts/), [changes in the sources of air pollution](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq-cooking/), [unique studies conducted in New York City](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aqsnapshots/), [efforts to reduce health impacts](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/hia/) and [differences in air quality and health impacts across NYC neighborhoods](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq2/).
+* Inform the public about local topics, such as:&nbsp;[recent air quality improvements](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/breatheeasy/), [car-free zones](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aqts/), [changes in the sources of air pollution](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq-cooking/), [unique studies conducted in New York City](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aqsnapshots/), [efforts to reduce health impacts](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/hia/) and [differences in air quality and health impacts across NYC neighborhoods](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq2/).
 
 This report:
 
@@ -144,7 +144,7 @@ This report:
 **Air quality changes with location.** PM<sub>2.5</sub>, NO<sub>2</sub>, NO, and BC are highest in:
 
 * Areas with higher density of commercial cooking grills and charbroilers
-* Industrial areas
+* Industrial areas, specifically areas with higher density of warehouses
 * Areas of higher traffic density
 * Areas with higher building density
 
