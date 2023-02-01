@@ -25,7 +25,7 @@
         }
         img.retired { 
             filter: hue-rotate(20deg);
-            opacity: 0.5;
+            opacity: 0;
         }
 
     </style>
@@ -54,7 +54,7 @@
 
         // using d3.csv to import csv - may use a lighter approach...?
         d3.csv('Sites_in_history.csv').then(function(data) {
-            sites = data;
+            sites = data.filter(site => site.symbol_cla != 'Retired Site'); // filter out Retired Sites
             console.table(sites)
             addSitesToMap()
         })
