@@ -151,5 +151,4 @@ This report:
 Ozone (O<sub>3</sub>) levels are highest in:
 
 * The outer boroughs
-* Areas that are downwind of high NO<sub>X</sub> (oxides of nitrogen) emissions
-* Areas with fewer combustion emissions
+* Areas with lower vehicle emissions
