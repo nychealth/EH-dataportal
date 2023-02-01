@@ -3,6 +3,7 @@ _schema: default
 title: The New York City Community Air Survey
 draft: false
 date: 2022-11-08T11:14:56-04:00
+vega: true
 categories:
     - airquality
 keywords:
@@ -68,7 +69,7 @@ pollutantTrends: >-
     have gone down dramatically since <a
     href="https://www1.nyc.gov/assets/dep/downloads/pdf/air/local-law-43-biodiesel-fuel-requirement.pdf">Local
     Law 43 of 2010 prohibited the burning of heavy fuel oil (No. 6) in New York
-    City buildings</a>.
+    City buildings</a>.</p>
 conclusion: >-
     <p>This report underscores the importance of emissions reduction efforts
     over the past decade and highlights the continued need to reduce emissions

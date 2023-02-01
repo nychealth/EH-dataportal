@@ -13,72 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@4/build-es5/vega-lite.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6/build-es5/vega-embed.js"></script>
 
-    <style>
 
-        .hide {
-        display: none;
-        }
-
-        .switch {
-          position: relative;
-          display: inline-block;
-          width: 60px;
-          height: 34px;
-        }
-        
-        .switch input { 
-          opacity: 0;
-          width: 0;
-          height: 0;
-        }
-        
-        .slider {
-          position: absolute;
-          cursor: pointer;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-color: #ccc;
-          -webkit-transition: .4s;
-          transition: .4s;
-        }
-        
-        .slider:before {
-          position: absolute;
-          content: "";
-          height: 26px;
-          width: 26px;
-          left: 4px;
-          bottom: 4px;
-          background-color: white;
-          -webkit-transition: .4s;
-          transition: .4s;
-        }
-        
-        input:checked + .slider {
-          background-color: #2196F3;
-        }
-        
-        input:focus + .slider {
-          box-shadow: 0 0 1px #2196F3;
-        }
-        
-        input:checked + .slider:before {
-          -webkit-transform: translateX(26px);
-          -ms-transform: translateX(26px);
-          transform: translateX(26px);
-        }
-        
-        /* Rounded sliders */
-        .slider.round {
-          border-radius: 34px;
-        }
-        
-        .slider.round:before {
-          border-radius: 50%;
-        }
-        </style>
 
 </head>
 
@@ -97,9 +32,9 @@
                     </div>
             </div>
 
-            <div class="col-6">
+            <div class="col-5 ml-auto">
                 <p class="fs-sm" style="text-align: right;">Choose emissions source:<br>
-                <div id="subCont"></div>
+                <div id="subCont" class="ml-auto float-right"></div>
             </div>
         </div>
 
@@ -114,20 +49,12 @@
                 <div id="vis" style="width: 100%;"></div>
             </div>
         </div>
-
-
-        <div class="row hide">
-            <div class="col">
-                <button type="button" id="seasonbutton" value="1" onclick="tertile('ssn')" class="bybtn btn btn-sm btn-outline-success active">By season</button>
-                <button type="button" id="tertilebutton" value="2" onclick="tertile('ttl')" class="bybtn btn btn-sm btn-outline-success">By tertile</button>
-            </div>
-        </div>
-
     
 
     </div>
 
     <script>
+      function trendBrowser() {
         var pollutant
         var source
         var view; // ssn (season) or ttl (tertile)
@@ -202,22 +129,22 @@
             document.getElementById('subCont').innerHTML = '';
             for (let i = 0; i < sources.length; i++) {
                 var thisSource = sources[i]
-                var newButton = `<button type="button" class="btn btn-sm srcbtn btn-outline-secondary mr-1 float-right">${thisSource}</button>`
+                var newButton = `<a href="#"><span class="badge srcbtn badge-light mr-1">${thisSource}</span></a>`
                 document.getElementById('subCont').innerHTML += newButton
             };
 
             // loop through newly-added buttons, get first, apply Active state
             var srcBtns = document.querySelectorAll('.srcbtn')
-            srcBtns[0].classList.add('active')
+            srcBtns[0].classList.add('border')
 
             // put listener on source buttons
             for (let x = 0; x < srcBtns.length; x++) {
                 srcBtns[x].addEventListener("click", function() {
                 // remove "active" from classnames
-                var activeSource = document.querySelectorAll('.srcbtn.active')
-                activeSource[0].classList.remove('active')
+                var activeSource = document.querySelectorAll('.srcbtn.border')
+                activeSource[0].classList.remove('border')
                 // apply Active to selected source button
-                this.className += " active";
+                this.className += " border";
                 source = this.innerHTML;
                 drawChart();
                 })
@@ -324,6 +251,10 @@
 
         drawChart();
 
+      }
+
+
+      trendBrowser()
 
 
     </script>
