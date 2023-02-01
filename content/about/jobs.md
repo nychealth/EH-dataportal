@@ -1,27 +1,15 @@
 ---
-title: "We're Hiring"
+title: "We're Hiring!"
 date: 2021-11-24T13:30:21-05:00
 draft: false
 seo_title: "Our bureau is hiring"
 seo_description: "Join our team at the NYC Department of Health."
 ---
 
-We're hiring! See below for open positions in our bureau.
+Join our team! See below for open positions in our bureau.
 
 ---
 <br>
-
-## Jobs on our team:
-
-**Health Content Manager** 
-
-We're looking for somebody to join the team that develops the Environment & Health Data Portal - this site! We're looking for a health communicator who's interested in how information works to contribute to user centered research, design, and site development. If you're a public health professional with interest in writing, user research, content strategy, design, or development, then we want to hear from you. 
-- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job ID 556725.
-
----
-<br>
-
-## Jobs in our bureau:
 
 **Senior Director of Environmental Health Policy**
 
