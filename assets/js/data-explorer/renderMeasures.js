@@ -638,7 +638,7 @@ const updateTrendComparisonsdData = (e) => {
     // data
 
     filteredComparisonsData = filteredComparisonsMetadata
-        .select("IndicatorID", "MeasureID")
+        .select("IndicatorID", "MeasureID", "comp_groups")
         .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
 
     console.log("filteredComparisonsData:");

@@ -39,11 +39,11 @@ const renderComparisonsChart = (
     // get unique unreliability notes (dropping empty)
     // ----------------------------------------------------------------------- //
 
-    const trend_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
+    const trend_unreliability = [...new Set(data.objects().map(d => d.Note))].filter(d => !d == "");
 
     // console.log("trend_unreliability", trend_unreliability);
 
-    document.querySelector("#comp-unreliability").innerHTML = ""; // blank to start
+    document.querySelector("#trend-unreliability").innerHTML = ""; // blank to start
 
     for (let i = 0; i < trend_unreliability.length; i++) {
         
@@ -81,17 +81,6 @@ const renderComparisonsChart = (
                 "fontWeight": "normal"
                 },
             "view": {"stroke": "transparent"},
-            // "range": {
-            //     "category": [
-            //         "#1696d2",
-            //         "#fdbf11",
-            //         "#ec008b",
-            //         "#000000",
-            //         "#a8a8a8",
-            //         "#55b748"
-            //     ]
-            // },
-            
             "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 3},
             
             "point": {"filled": true},
@@ -126,10 +115,14 @@ const renderComparisonsChart = (
             {
                 "encoding": {
                     "color": {
-                        "field": "Geography", // this is combo of indicator + measure or geo
+                        "field": "comp_groups", // this is combo of indicator + measure or geo
                         "type": "nominal",
+                        "scale": {
+                            "range": ["blue", "yellow", "orange", "red", "green","gray"]
+                        },
                         "legend": {
-                            "orient": "bottom",
+                            "orient": "left",
+                            "direction": "vertical",
                             "title": null
                         }
                     },
@@ -162,15 +155,15 @@ const renderComparisonsChart = (
                 ]
             },
             {
-                "transform": [
-                    {
-                        "pivot": "Geography",
-                        "value": "Value",
-                        "groupby": [
-                            "Time"
-                        ]
-                    }
-                ],
+                // "transform": [
+                //     {
+                //         "pivot": "comp_groups",
+                //         "value": "Value",
+                //         "groupby": [
+                //             "Time"
+                //         ]
+                //     }
+                // ],
                 "mark": "rule",
                 "encoding": {
                     "opacity": {
@@ -183,40 +176,18 @@ const renderComparisonsChart = (
                     },
                     "tooltip": [
                         {
+                            "field": "comp_groups",
+                            "title": "Comparison"
+                        },
+                        {
+                            "field": "Value"
+                            // "title": "PM2.5 (µg/m3)"
+                        },
+                        {
                             "title": "Year",
                             "field": "Time",
                             "type": "nominal"
                         },
-                        {
-                            "field": "New York City",
-                            "type": "quantitative",
-                            "format": ",.1~f"
-                        },
-                        {
-                            "field": "Bronx",
-                            "type": "quantitative",
-                            "format": ",.1~f"
-                        },
-                        {
-                            "field": "Brooklyn",
-                            "type": "quantitative",
-                            "format": ",.1~f"
-                        },
-                        {
-                            "field": "Manhattan",
-                            "type": "quantitative",
-                            "format": ",.1~f"
-                        },
-                        {
-                            "field": "Queens",
-                            "type": "quantitative",
-                            "format": ",.1~f"
-                        },
-                        {
-                            "field": "Staten Island",
-                            "type": "quantitative",
-                            "format": ",.1~f"
-                        }
                     ]
                 },
                 "params": [
@@ -241,6 +212,6 @@ const renderComparisonsChart = (
     // render chart
     // ----------------------------------------------------------------------- //
     
-    vegaEmbed("#comp", compspec);
+    vegaEmbed("#trend", compspec);
     
 }

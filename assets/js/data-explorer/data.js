@@ -120,6 +120,8 @@ const createComparisonData = async (comps) => {
 
     console.log("aqComparisonsIndicatorsMetadata:");
 
+    // comp_groups for now is just measureName for oldportal comparisons, but it could include geography
+
     aqComparisonsIndicatorsMetadata = aq.from(comparisonsIndicatorsMetadata)
         .select("IndicatorID", "IndicatorName", "Measures")
         .unroll("Measures")
@@ -130,6 +132,7 @@ const createComparisonData = async (comps) => {
             Sources: d => d.Measures.Sources,
             how_calculated: d => d.Measures.how_calculated,
             DisplayType: d => d.Measures.DisplayType,
+            comp_groups: d => d.Measures.MeasureName
         })
         .select(aq.not("Measures"))
         .filter(aq.escape(d => comparisonsMeasureIDs.includes(d.MeasureID)))
@@ -159,7 +162,10 @@ const createComparisonData = async (comps) => {
 
                 let comp_data = data
                     .derive({IndicatorID: aq.escape(ind[0])})
-                    .filter(aq.escape(d => measures.includes(d.MeasureID)))
+                    .filter(
+                        aq.escape(d => measures.includes(d.MeasureID)), 
+                        d => op.match(d.GeoType, /Citywide/) // keep only Citywide and Boro
+                    )
                     .reify()
                 
                 return comp_data;
@@ -429,8 +435,11 @@ const joinData = () => {
 
     // map for trend chart
 
+    // comp_groups for now is just Geography for oldportal comparisons, but it could include measures
+
     trendData = joinedAqData
         .filter(d => op.match(d.GeoType, /Citywide|Borough/)) // keep only Citywide and Boro
+        .derive({comp_groups: d => d.Geography})
         .objects()
 
     // data for links & disparities chart

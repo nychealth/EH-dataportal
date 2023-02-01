@@ -167,7 +167,7 @@ const renderTrendChart = (
                 "transform": [
                     {
                         "pivot": "Geography",
-                        "value": "Value",
+                        "value": "DisplayValue",
                         "groupby": [
                             "Time"
                         ]
