@@ -242,7 +242,7 @@
                 "width": width,
                 "description": "NYCCAS data by season, source, and pollutant",
                 "data": {
-                  "url": "https://raw.githubusercontent.com/nycehs/nyccas-vis-demo/main/TrendChart.csv"
+                  "url": "pollutant-trends-data.csv"
                 },
                 "config": {
                     "title": {"anchor": "start", "fontSize": 14},
@@ -279,7 +279,7 @@
                     "sort": ["Winter", "Spring", "Summer", "Fall"],
                     "header": {"labelFontSize": 15,"labelAlign":"left","labelAnchor": "start"}
                   },
-                  "x": {"timeUnit": "year", "field": "Time"},
+                  "x": {"timeUnit": "utcyear", "field": "Time"},
                   "y": {"field": "Value", "type": "quantitative"},
                   "tooltip": [
                     {"field": "Value", "title": "Value"},
