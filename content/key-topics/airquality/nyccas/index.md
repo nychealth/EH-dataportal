@@ -17,6 +17,7 @@ keywords:
 seo_title: NYC Community Air Survey Annual Report
 seo_description: Data, findings, and more.
 pollutantMaps: >-
+    <img src="NyccasInstall_red.jpg" alt="NYCCAS installation" align="right" style="width:50%;" class="my-2">
     <p>Since it is impossible to sample the air in every location in New York
     City, we monitor representative sites to determine how pollution levels vary
     in relation to traffic, buildings, trees and other neighborhood factors. We
@@ -95,11 +96,6 @@ moreInfo: >-
     2 (PDF) </a>: Seasonal Average Pollutant Maps.</li><li><a
     href="https://nyccas.cityofnewyork.us/nyccas2022/sites/default/files/NYCCAS-appendix/Appendix3.pdf">Appendix
     3 (PDF)</a> : Community District Average Pollution Levels</li><li><a
-    href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/key-topics/airquality/">NYCCAS
-    Air Quality Data Hub</a></li><li><a
-    href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/key-topics/airquality/aqe/">Environment
-    &amp; Health Data Portal </a>: Neighborhood-level data and neighborhood air
-    quality reports</li><li><a
     href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Traffic/index.html">The
     Public Health Impacts of PM<sub>2.5</sub> from Traffic Air Pollution data
     story.</a></li><li>NYCCAS Air Pollution Rasters on <a

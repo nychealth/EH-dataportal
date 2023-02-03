@@ -166,16 +166,15 @@
 
     <div class="row">
         <div class="col-md-8 col-sm-12 mx-auto">
-            <img src="NyccasInstall_red.jpg" alt="NYCCAS installation" style="width:100%;" class="my-2">
-
-            <hr class="my-2">
             <!-- Pollutant maps: text to FMV, maps to template -->
             <h3>Pollutant Maps</h3>
             {{ .Params.pollutantMaps | safeHTML }}
 
 
             <div id="pollutantMaps">
+                <hr>
                 <div class="row">
+
                     <div class="col">
                         <button type="button" class="btn btn-outline yearbtn" id="btn1" disabled>2021:</button>
                         <button type="button" class="btn polbtn btn-outline-dark active" value="bc">BC</button>
@@ -205,7 +204,7 @@
                         <div id="noText" class="polText hide fs-sm">
                             <p>Citywide, annual average levels of Nitric Oxide declined by 58% between 2009 and 2021, an average of 1.7 parts per billion per year.
                             </p>
-                            <p>Across the thirteen-year period, higher levels were consistently seen at sites with higher nearby emissions from traffic sources and higher densities of nearby distribution centers within industrial areas. Medium and heavy duty diesel trucks tend to concentrate near distribution centers and this indicator has become more important in explaining higher levels of NO than indicators of all traffic volume.
+                            <p>Across the thirteen-year period, higher levels were consistently seen at sites with higher nearby emissions from traffic sources and higher densities of nearby warehouses within industrial areas. Medium and heavy duty diesel trucks tend to concentrate near warehouses and this indicator has become more important in explaining higher levels of NO than indicators of all traffic volume.
                             </p>
                             <p>In 2021, seasonal average NO concentrations across NYCCAS monitoring sites ranged from 2.6 to 59.9 ppb.
                             </p>
@@ -375,11 +374,10 @@
             <!-- Pollutant trends -->
             <h3>Pollutant Trends</h3>
             {{ .Params.pollutantTrends | safeHTML }}
-
+            <hr>
             <div id="pollutantTrendsEmbed">
                 <div class="row">
-                    <div class="col-6">
-                            <p class="fs-sm homelabel">Choose pollutant:<br>
+                    <div class="col-12">
                             <div class="">
                                 <button type="button" class="btn trpolbtn btn-outline-dark active" value="BC">BC</button>
                                 <button type="button" class="btn trpolbtn btn-outline-dark" value="NO">NO</button>
@@ -390,25 +388,28 @@
                             </div>
                     </div>
               
-                    <div class="col-6 ml-auto">
-                        <p class="fs-sm homelabel" style="text-align: right;">Choose emissions source:<br>
-                        <div id="subCont" class="ml-auto float-right"></div>
+                    <div class="col-12">
+                        <div id="subCont" class="mt-1 mb-2"></div>
                     </div>
                 </div>
               
-                <div class="row mt-2">
+                <div class="row mt-1">
                     <div class="col-12">
-                        <hr>
                         <p><span class="fs-lg" style="font-weight: bold;"><span id='polPrint' class="">Pollutant</span> by <span id='sourcePrint'>Source</span></span><br>
                         <em><span id="unitPrint" class="fs-sm"></span></em>
                         </p>
                         <div id="vis" style="width: 100%;"></div>
                     </div>
                 </div>
+                <hr>
               
                 <style>
                     .srcbtn {
                     cursor: pointer;}
+                    .border {
+                        background-color:#6c7287;
+                        color: white;
+                    }
                 </style>
               
                 <script>
@@ -485,7 +486,7 @@
                           document.getElementById('subCont').innerHTML = '';
                           for (let i = 0; i < sources.length; i++) {
                               var thisSource = sources[i]
-                              var newButton = `<span class="badge srcbtn badge-light float-right mr-1">${thisSource}</span><br>`
+                              var newButton = `<span class="badge srcbtn badge-light mr-1">${thisSource}</span>`
                               document.getElementById('subCont').innerHTML += newButton
                           };
               
@@ -544,7 +545,8 @@
                                         "#8c96c6"
               
                                       ]
-                                    }
+                                    },
+                                    "legend": {"orient": "bottom"}
                                 },
                               "columns": 2,
                               "transform": [
@@ -570,8 +572,7 @@
                                 ],
                                 "color": {
                                   "field": "Tertile", 
-                                  "type": "nominal",
-                                  "legend": null
+                                  "type": "nominal"
                                 }
                               }
                             };
@@ -605,10 +606,10 @@
             <h3>Pollutant predictors</h3>
             <p>NYCCAS data were analyzed using a land-use regression (LUR) model. LUR models estimate associations among pollution levels, average traffic, building emissions, land use and other neighborhood factors around the monitoring sites. The pollution sources that contribute most to differences in concentrations of NO, NO<sub>2</sub>, BC, and PM<sub>2.5</sub> across NYC are listed in the table below. SO<sub>2</sub> is now so low in NYC that it is not possible to build a LUR model for the most recent years of data.</p><p>Fuel used to provide heat and hot water in buildings has become significantly cleaner under state and local regulations requiring use of cleaner burning fuels. As a result, commercial charbroiling and grilling operations have become a more important source of PM<sub>2.5</sub> emissions over the past several years due to state and local regulations mandating cleaner burning fuels for building heat and hot water. The number of commercial cooking charbroilers and grills in an area now explains PM<sub>2.5</sub> differences among neighborhoods better than building emissions. For more information on these changes, please see <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq-cooking/">Tracking changes in New York City's sources of air pollution</a>.</p>
 
+            <hr>
             <div id="pollutantPredictors">
                 <div class="row">
                     <div class="col-md-7">
-                        <p>Choose pollutant:<br>
                             <div class="">
                                 <button type="button" class="btn srcbtn btn-outline-dark active" onclick="changePollutant('bc')" id="bcbtn" value="bc">BC</button>
                                 <button type="button" class="btn srcbtn btn-outline-dark" onclick="changePollutant('no')" id="nobtn" value="no">NO</button>
@@ -786,6 +787,7 @@
                         </div>
                     </div>
                 </div>
+                <hr>
 
                 <script>
                     function changePollutant(x) {
@@ -819,7 +821,7 @@
     </div>
 
     <!-- Conclusion and more info -->
-    <div class="row my-4">
+    <div class="row my-2">
         <div class="col-sm-8 mx-auto col-xs-12">
             <h3>Conclusion</h3>
             {{ .Params.conclusion | safeHTML }}
