@@ -175,6 +175,7 @@ const renderComparisonsChart = (
                     {
                         "mark": {
                             "type": "line",
+                            "interpolate": "monotone",
                             "point": {"filled": false, "fill": "white"}
                         }
                         
