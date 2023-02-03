@@ -17,19 +17,56 @@ const renderComparisonsChart = (
     let Value = aqData.array("Value");
     // let valueMin = Math.min.apply(null, Value);
     let valueMax = Math.max.apply(null, Value);
-    let tickMinStep = valueMax >= 3.0 ? 1 : 0.5
+    let tickMinStep = valueMax >= 3.0 ? 1 : 0.1
 
     // ----------------------------------------------------------------------- //
     // extract measure metadata
     // ----------------------------------------------------------------------- //
     
-    let compMeasureNames = metadata.array("MeasureName");
-    let compDisplayTypes = metadata.array("DisplayType");
-    let compName = metadata.array("ComparisonName");
+    let compName = [... new Set(metadata.array("ComparisonName"))];
+    
+    let compIndicatorLabel = [... new Set(metadata.array("IndicatorLabel"))];
+    let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
+    let compIndicatorMeasure = [... new Set(metadata.array("IndicatorMeasure"))];
+    // let compDisplayTypes = metadata.array("DisplayType");
+
+    // comparison group label is either measure, indicator, or combo. can include geo eventually
+
+    let compGroupLabel;
+
+    if (compIndicatorLabel.length == 1) {
+        
+        // if there's only 1 indicator label, use measurement type to label the groups
+
+        compGroupLabel = compMeasurementType;
+        comp_group_col = "MeasurementType"
+
+    } else if (compMeasurementType.length == 1) {
+
+        // if there's only 1 measurement type, use indicator label to label the groups
+
+        compGroupLabel = compIndicatorLabel;
+        comp_group_col = "IndicatorLabel"
+
+    } else {
+        
+        // if there are more than 1 of both, use joined IndicatorMeasure 
+
+        compGroupLabel = compIndicatorMeasure;
+        comp_group_col = "IndicatorMeasure"
+
+    } 
+
+    // create tooltips JSON
+
+    let compTooltips = compGroupLabel.map(x => {return {"field": x}})
+
+    console.log(">>>> comp_group_col:", comp_group_col);
+    console.log(">>>> compGroupLabel:", compGroupLabel);
     
     // get dimensions
 
-    var columns = 6;
+    var columns = 1;
     var height = 500
     window.innerWidth < 576 ? columns = 3 : columns = 6;
     window.innerWidth < 576 ? height = 350 : columns = 500;
@@ -73,7 +110,7 @@ const renderComparisonsChart = (
                 "labelFontSize": 11,
             },
             "legend": {
-                "columns": columns,
+                // "columns": columns,
                 "labelFontSize": 14,
                 "symbolSize": 140
             },
@@ -115,15 +152,16 @@ const renderComparisonsChart = (
             {
                 "encoding": {
                     "color": {
-                        "field": "comp_groups", // this is combo of indicator + measure or geo
+                        "field": comp_group_col, // this is combo of indicator + measure or geo
                         "type": "nominal",
                         "scale": {
-                            "range": ["blue", "yellow", "orange", "red", "green","gray"]
+                            "range": ["blue", "green", "orange", "red", "magenta","gray"]
                         },
                         "legend": {
-                            "orient": "left",
+                            "orient": "bottom",
                             "direction": "vertical",
-                            "title": null
+                            "title": null,
+                            "labelLimit": 1000
                         }
                     },
                     "y": {
@@ -155,15 +193,15 @@ const renderComparisonsChart = (
                 ]
             },
             {
-                // "transform": [
-                //     {
-                //         "pivot": "comp_groups",
-                //         "value": "Value",
-                //         "groupby": [
-                //             "Time"
-                //         ]
-                //     }
-                // ],
+                "transform": [
+                    {
+                        "pivot": comp_group_col,
+                        "value": "DisplayValue",
+                        "groupby": [
+                            "Time"
+                        ]
+                    }
+                ],
                 "mark": "rule",
                 "encoding": {
                     "opacity": {
@@ -176,18 +214,11 @@ const renderComparisonsChart = (
                     },
                     "tooltip": [
                         {
-                            "field": "comp_groups",
-                            "title": "Comparison"
-                        },
-                        {
-                            "field": "Value"
-                            // "title": "PM2.5 (µg/m3)"
-                        },
-                        {
                             "title": "Year",
                             "field": "Time",
                             "type": "nominal"
                         },
+                        ...compTooltips,
                     ]
                 },
                 "params": [

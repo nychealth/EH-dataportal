@@ -28,6 +28,7 @@ let disparitiyData; // used by disparities.js
 let indicator;
 let indicatorName;
 let indicatorDesc;
+let indicatorLabel;
 let indicatorShortName;
 let indicatorMeasures;
 let indicatorId;

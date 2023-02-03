@@ -116,14 +116,13 @@ const createComparisonData = async (comps) => {
     let comparisonsIndicatorsMetadata = indicators.filter(
         ind => comparisonsIndicatorIDs.includes(ind.IndicatorID)
     )
-    // console.log("comparisonsIndicatorsMetadata:", comparisonsIndicatorsMetadata);
+    console.log("comparisonsIndicatorsMetadata:", comparisonsIndicatorsMetadata);
 
     console.log("aqComparisonsIndicatorsMetadata:");
 
-    // comp_groups for now is just measureName for oldportal comparisons, but it could include geography
 
     aqComparisonsIndicatorsMetadata = aq.from(comparisonsIndicatorsMetadata)
-        .select("IndicatorID", "IndicatorName", "Measures")
+        .select("IndicatorID", "IndicatorName", "IndicatorLabel", "Measures")
         .unroll("Measures")
         .derive({
             MeasureID: d => d.Measures.MeasureID,
@@ -131,9 +130,9 @@ const createComparisonData = async (comps) => {
             MeasurementType: d => d.Measures.MeasurementType,
             Sources: d => d.Measures.Sources,
             how_calculated: d => d.Measures.how_calculated,
-            DisplayType: d => d.Measures.DisplayType,
-            comp_groups: d => d.Measures.MeasureName
+            DisplayType: d => d.Measures.DisplayType
         })
+        .derive({IndicatorMeasure: d => d.IndicatorLabel + ": " + d.MeasurementType})
         .select(aq.not("Measures"))
         .filter(aq.escape(d => comparisonsMeasureIDs.includes(d.MeasureID)))
         .print()
@@ -164,7 +163,7 @@ const createComparisonData = async (comps) => {
                     .derive({IndicatorID: aq.escape(ind[0])})
                     .filter(
                         aq.escape(d => measures.includes(d.MeasureID)), 
-                        d => op.match(d.GeoType, /Citywide/) // keep only Citywide and Boro
+                        d => op.match(d.GeoType, /Citywide/) // keep only Citywide
                     )
                     .reify()
                 
@@ -177,6 +176,10 @@ const createComparisonData = async (comps) => {
     .then(async dataArray => {
 
         aqComparisonsIndicatorData = await dataArray.flatMap(d => d).reduce((a, b) => a.concat(b))
+
+        aqComparisonsIndicatorData = aqComparisonsIndicatorData
+            .filter(d => op.match(d.GeoType, /Citywide/))
+            .reify()
 
         console.log("aqComparisonsIndicatorData:");
         aqComparisonsIndicatorData.print();
@@ -435,11 +438,8 @@ const joinData = () => {
 
     // map for trend chart
 
-    // comp_groups for now is just Geography for oldportal comparisons, but it could include measures
-
     trendData = joinedAqData
         .filter(d => op.match(d.GeoType, /Citywide|Borough/)) // keep only Citywide and Boro
-        .derive({comp_groups: d => d.Geography})
         .objects()
 
     // data for links & disparities chart

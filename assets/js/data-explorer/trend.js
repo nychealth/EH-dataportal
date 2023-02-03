@@ -19,7 +19,7 @@ const renderTrendChart = (
     let Value = aqData.array("Value");
     // let valueMin = Math.min.apply(null, Value);
     let valueMax = Math.max.apply(null, Value);
-    let tickMinStep = valueMax >= 3.0 ? 1 : 0.5
+    let tickMinStep = valueMax >= 3.0 ? 1 : 0.1
     
     // ----------------------------------------------------------------------- //
     // extract measure metadata

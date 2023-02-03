@@ -638,7 +638,7 @@ const updateTrendComparisonsdData = (e) => {
     // data
 
     filteredComparisonsData = filteredComparisonsMetadata
-        .select("IndicatorID", "MeasureID", "comp_groups")
+        .select("IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure")
         .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
 
     console.log("filteredComparisonsData:");
@@ -984,11 +984,11 @@ const renderMeasures = async () => {
         comparisonsMetadata.map(c => {
 
             console.log("ComparisonID:", c.ComparisonID);
-            console.log("ComparisonName:", c.ComparisonName);
+            console.log("LegendTitle:", c.LegendTitle);
             
             dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton"
                 data-comparison-id="${c.ComparisonID}">
-                ${c.ComparisonName}
+                ${c.LegendTitle}
                 </button>`;
 
         })
