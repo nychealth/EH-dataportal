@@ -9,7 +9,10 @@ const renderTrendChart = (
 
     console.log("** renderTrendChart");
 
-    console.log("trendData", aq.from(data).print());
+    // console.log("trendData", aq.from(data).print());
+
+    console.log("trend data", data);
+    console.log("trend metadata", metadata);
 
     // ----------------------------------------------------------------------- //
     // arquero table for extracting arrays easily
@@ -20,14 +23,16 @@ const renderTrendChart = (
     // let valueMin = Math.min.apply(null, Value);
     let valueMax = Math.max.apply(null, Value);
     let tickMinStep = valueMax >= 3.0 ? 1 : 0.1
+
+    // let aqMetadata = aq.from(metadata);
     
     // ----------------------------------------------------------------------- //
     // extract measure metadata
     // ----------------------------------------------------------------------- //
     
-    let trendMeasurementType = metadata[0].MeasurementType;
-    let trendDisplay = metadata[0].DisplayType;
-    
+    let trendMeasurementType = [... new Set(metadata.array("MeasurementType"))];
+    let trendDisplay = [... new Set(metadata.array("DisplayType"))];
+
     // get dimensions
 
     var columns = 6;

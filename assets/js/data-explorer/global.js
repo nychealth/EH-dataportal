@@ -43,6 +43,7 @@ let aqComparisonsIndicatorsMetadata;
 let aqComparisonsIndicatorData;
 
 let defaultTrendMetadata = [];
+let aqDefaultTrendMetadata;
 let defaultTrendAbout;
 let defaultTrendSources;
 let defaultMapMetadata = [];

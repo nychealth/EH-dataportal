@@ -20,7 +20,6 @@ const renderMap = (
         let mapGeoType            = data[0].GeoType;
         let mapMeasurementType    = metadata[0].MeasurementType;
         let displayType           = metadata[0].DisplayType;
-        console.log('displayType: ' + displayType)
         let mapGeoTypeDescription = 
             metadata[0].AvailableGeographyTypes.filter(
                 gt => gt.GeoType === mapGeoType

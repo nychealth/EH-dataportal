@@ -425,6 +425,7 @@ const updateMapData = (e) => {
     // ----- get metatadata for selected measure ----- //
 
     const measureMetadata = mapMeasures.filter(m => m.MeasureID == measureId);
+    
     const measurementType = measureMetadata[0].MeasurementType;
     const about           = measureMetadata[0].how_calculated;
     const sources         = measureMetadata[0].Sources;
@@ -505,6 +506,8 @@ const updateTrendData = (e) => {
     const about           = measureMetadata[0].how_calculated;
     const sources         = measureMetadata[0].Sources;
 
+    const aqMeasureMetadata = aq.from(measureMetadata);
+
 
     // ----- set measure info boxes ----- //
 
@@ -547,19 +550,19 @@ const updateTrendData = (e) => {
 
         const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.Time.startsWith('Annual Average'));
 
-        renderTrendChart(filteredTrendDataAnnualAvg, measureMetadata);
+        renderTrendChart(filteredTrendDataAnnualAvg, aqMeasureMetadata);
         updateChartPlotSize();
 
     } else if (measureIdsSummer.includes(measureId)) {
 
         const filteredTrendDataSummer = filteredTrendData.filter(d => d.Time.startsWith('Summer'));
 
-        renderTrendChart(filteredTrendDataSummer, measureMetadata);
+        renderTrendChart(filteredTrendDataSummer, aqMeasureMetadata);
         updateChartPlotSize();
 
     } else {
 
-        renderTrendChart(filteredTrendData, measureMetadata);
+        renderTrendChart(filteredTrendData, aqMeasureMetadata);
         updateChartPlotSize();
 
     }
@@ -991,6 +994,10 @@ const renderMeasures = async () => {
                 ${c.LegendTitle}
                 </button>`;
 
+
+            header = '{{ .header }}';
+            indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
+
         })
 
         // if disparities is enabled, show the button
@@ -1218,6 +1225,8 @@ const renderMeasures = async () => {
             const sources = defaultTrendMetadata[0].Sources;
             const measure = defaultTrendMetadata[0].MeasurementType;
 
+            aqDefaultTrendMetadata = aq.from(defaultTrendMetadata);
+
 
             // ----- set measure info boxes ----- //
 
@@ -1267,19 +1276,19 @@ const renderMeasures = async () => {
 
                 const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.Time.startsWith('Annual Average'));
 
-                renderTrendChart(filteredTrendDataAnnualAvg, defaultTrendMetadata);
+                renderTrendChart(filteredTrendDataAnnualAvg, aqDefaultTrendMetadata);
                 updateChartPlotSize();
 
             } else if (measureIdsSummer.includes(defaultTrendMeasureId)) {
 
                 const filteredTrendDataSummer = filteredTrendData.filter(d => d.Time.startsWith('Summer'));
 
-                renderTrendChart(filteredTrendDataSummer, defaultTrendMetadata);
+                renderTrendChart(filteredTrendDataSummer, aqDefaultTrendMetadata);
                 updateChartPlotSize();
 
             } else {
 
-                renderTrendChart(filteredTrendData, defaultTrendMetadata);
+                renderTrendChart(filteredTrendData, aqDefaultTrendMetadata);
                 updateChartPlotSize();
 
             }
@@ -1309,7 +1318,7 @@ const renderMeasures = async () => {
 
             // ----- render the chart ----- //
 
-            renderTrendChart(filteredTrendData, defaultTrendMetadata);
+            renderTrendChart(filteredTrendData, aqDefaultTrendMetadata);
 
             updateChartPlotSize();
         }
