@@ -8,6 +8,9 @@ tags:
 categories: ["housing","pests"]
 keywords: ["mice","rats","rodents","pests","housing"]
 indicators:
+- header: null
+  IndicatorID:
+  - 2416
 - header: Asthma triggers
   IndicatorID:
   - 2394
