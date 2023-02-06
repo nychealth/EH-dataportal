@@ -9,10 +9,11 @@ const renderTrendChart = (
 
     console.log("** renderTrendChart");
 
-    // console.log("trendData", aq.from(data).print());
+    console.log(">>> trend data");
+    data.print()
 
-    console.log("trend data", data);
-    console.log("trend metadata", metadata);
+    console.log(">>> trend metadata");
+    metadata.print()
 
     // ----------------------------------------------------------------------- //
     // arquero table for extracting arrays easily
