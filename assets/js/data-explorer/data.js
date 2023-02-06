@@ -440,6 +440,7 @@ const joinData = () => {
 
     trendData = joinedAqData
         .filter(d => op.match(d.GeoType, /Citywide|Borough/)) // keep only Citywide and Boro
+        .orderby("GeoRank", "GeoID")
         .objects()
 
     // data for links & disparities chart
