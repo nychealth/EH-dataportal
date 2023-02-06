@@ -12,9 +12,14 @@ const renderComparisonsChart = (
     // ----------------------------------------------------------------------- //
     // arquero table for extracting arrays easily
     // ----------------------------------------------------------------------- //
+
+    console.log(">>> comp metadata");
+    metadata.print()
     
-    let aqData = aq.from(data);
-    let Value = aqData.array("Value");
+    console.log(">>> comp data:");
+    data.print()
+
+    let Value = data.array("Value");
     // let valueMin = Math.min.apply(null, Value);
     let valueMax = Math.max.apply(null, Value);
     let tickMinStep = valueMax >= 3.0 ? 1 : 0.1
@@ -26,16 +31,34 @@ const renderComparisonsChart = (
     let compName = [... new Set(metadata.array("ComparisonName"))];
     
     let compIndicatorLabel = [... new Set(metadata.array("IndicatorLabel"))];
+    let compLegendTitle;
     let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
-    let compIndicatorMeasure = [... new Set(metadata.array("IndicatorMeasure"))];
     // let compDisplayTypes = metadata.array("DisplayType");
 
     // comparison group label is either measure, indicator, or combo. can include geo eventually
 
     let compGroupLabel;
+    let plotTitle;
+    let colors = ["blue", "green", "orange", "red", "magenta"];
 
-    if (compIndicatorLabel.length == 1) {
+     if (compName[0] === "Boroughs") {
+
+        // if this is a boro comparison, tweak some things
+
+        compGroupLabel = [... new Set(data.array("Geography"))];
+        let hasBoros = compGroupLabel.length > 1 ? true : false; 
         
+        // add black to start of list for NYC
+        colors.splice(0, 0, "black");
+
+        plotTitle = compMeasurementType + (hasBoros ? " by Borough" : "");
+        comp_group_col = "Geography"
+
+    } else if (compIndicatorLabel.length == 1) {
+        
+        compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
+        plotTitle = compIndicatorLabel + " by " + compLegendTitle;
+
         // if there's only 1 indicator label, use measurement type to label the groups
 
         compGroupLabel = compMeasurementType;
@@ -43,26 +66,32 @@ const renderComparisonsChart = (
 
     } else if (compMeasurementType.length == 1) {
 
+        compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
+        plotTitle = compMeasurementType + " by " + compLegendTitle;
+
         // if there's only 1 measurement type, use indicator label to label the groups
 
         compGroupLabel = compIndicatorLabel;
         comp_group_col = "IndicatorLabel"
 
-    } else {
+    } else if (compMeasurementType.length > 1 && compIndicatorLabel.length > 1) {
         
+        compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
+        plotTitle = compName + " by " + compLegendTitle;
+
         // if there are more than 1 of both, use joined IndicatorMeasure 
 
-        compGroupLabel = compIndicatorMeasure;
+        compGroupLabel = [... new Set(metadata.array("IndicatorMeasure"))];
         comp_group_col = "IndicatorMeasure"
 
-    } 
+    }
 
     // create tooltips JSON
 
     let compTooltips = compGroupLabel.map(x => {return {"field": x}})
 
-    console.log(">>>> comp_group_col:", comp_group_col);
-    console.log(">>>> compGroupLabel:", compGroupLabel);
+    // console.log(">>>> comp_group_col:", comp_group_col);
+    // console.log(">>>> compGroupLabel:", compGroupLabel);
     
     // get dimensions
 
@@ -70,6 +99,8 @@ const renderComparisonsChart = (
     var height = 500
     window.innerWidth < 576 ? columns = 3 : columns = 6;
     window.innerWidth < 576 ? height = 350 : columns = 500;
+
+    console.log(">>> colors", colors);
     
     
     // ----------------------------------------------------------------------- //
@@ -138,7 +169,7 @@ const renderComparisonsChart = (
             "fontSize": 13, 
             "font": "sans-serif",
             "baseline": "top",
-            "text": compName,
+            "text": plotTitle,
             "dy": -10
         },
         "encoding": {
@@ -155,8 +186,9 @@ const renderComparisonsChart = (
                         "field": comp_group_col, // this is combo of indicator + measure or geo
                         "type": "nominal",
                         "scale": {
-                            "range": ["blue", "green", "orange", "red", "magenta","gray"]
+                            "range": colors
                         },
+                        "sort": null,
                         "legend": {
                             "orient": "bottom",
                             "direction": "vertical",
