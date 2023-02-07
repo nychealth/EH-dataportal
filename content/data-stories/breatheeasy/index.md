@@ -48,7 +48,7 @@ So it’s good news that since monitoring neighborhood-level air pollution began
 
 By burning heating oil, New York City's buildings are responsible for about 50 percent of the city’s PM2.5 emissions — and traffic is responsible for another 17 percent (see a data story on the Public Health Impacts of PM2.5 from Air Pollution). That means that reducing traffic and working to make sure that buildings burn cleaner fuel are great ways to clean up the air and help keep our air cleaner - and both are important parts of OneNYC, the city’s sustainability plan.
 
-But since 45 percent of PM2.5 in NYC comes from outside the city, rollbacks of federal regulations like the Clean Power Plan will also affect the quality of our air. The City is providing comments to the Environmental Protection Agency in support of stricter emissions standards for power plants, cars, and trucks so that NYC's air quality continues to improve.
+But since 20 to 30 percent of PM2.5 in NYC comes from outside the city, rollbacks of federal regulations like the Clean Power Plan will also affect the quality of our air. The City is providing comments to the Environmental Protection Agency in support of stricter emissions standards for power plants, cars, and trucks so that NYC's air quality continues to improve.
 
 ### PM2.5 is only one piece of the puzzle
 While NYCCAS has let us see ways that air quality has improved, it also identifies areas where we can make better progress. For example, we’ve learned that:
