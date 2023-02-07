@@ -212,7 +212,10 @@ const renderLinksChart = (
                     "encoding": {
                         "y": {
                             "field": yValue,
-                            "type": "quantitative"
+                            "type": "quantitative",
+                            "axis": {
+                                "tickCount": 5
+                            },
                         },
                         "x": {
                             "title": [`${xIndicatorName && `${xIndicatorName}`}`, `${xMeasure} ${xDisplay && `(${xDisplay})`} (${xTime})`],

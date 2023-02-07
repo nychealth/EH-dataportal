@@ -145,6 +145,9 @@ const renderTrendChart = (
                         "field": "Value",
                         "type": "quantitative",
                         "title": null,
+                        "axis": {
+                            "tickCount": 5
+                        },
                         "scale": {"domainMin": 0, "nice": true} // change domainMin to valueMin to scale with data
                     }
                 },
@@ -152,6 +155,7 @@ const renderTrendChart = (
                     {
                         "mark": {
                             "type": "line",
+                            "interpolate": "monotone",
                             "point": {"filled": false, "fill": "white"}
                         }
                         
