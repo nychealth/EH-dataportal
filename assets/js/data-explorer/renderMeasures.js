@@ -207,7 +207,7 @@ const setDefaultMapMeasure = (visArray) => {
 
     // modified so that defaultMapMetadata is explicitly set, instead of by reference
     //  through defaultArray
-
+    
     let defaultArray = [];
 
     const hasAgeAdjustedRate = visArray.filter(measure =>

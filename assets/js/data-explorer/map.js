@@ -28,6 +28,17 @@ const renderMap = (
         let mapTime = mapYears[0];
         let topoFile = '';
 
+        var color = 'purplered'
+        var rankReverse = defaultMapMetadata[0].VisOptions[0].Map[0].RankReverse
+        if (rankReverse === 0) {
+            color = 'purplered'
+        } else if (rankReverse === 1) {
+            color = 'blues'
+        }
+
+        console.log('rank reverse?', rankReverse)
+        console.log('color', color)
+
 
         // ----------------------------------------------------------------------- //
         // get unique unreliability notes (dropping empty)
@@ -80,7 +91,7 @@ const renderMap = (
         mapspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": {
-                "text": `By ${mapGeoTypeDescription}, ${mapTime}`,
+                "text":  `${mapMeasurementType} ${displayType && `(${displayType})`}, by ${mapGeoTypeDescription} (${mapTime})`,
                 "subtitlePadding": 10
             },
             "data": {
@@ -152,7 +163,7 @@ const renderMap = (
                                         "bin": false,
                                         "field": "Value",
                                         "type": "quantitative",
-                                        "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}}
+                                        "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}}
                                     },
                                     "value": "#808080"
                                 },
@@ -201,6 +212,7 @@ const renderMap = (
                             "axis": {
                                 "labelAngle": 0,
                                 "labelFontSize": 11,
+                                "tickCount": 3
                             }
                         },
                         "tooltip": [
@@ -218,8 +230,8 @@ const renderMap = (
                             "bin": false,
                             "field": "Value",
                             "type": "quantitative",
-                            "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}},
-                            "legend": {"direction": "horizontal","orient": "top-left","title": `${mapMeasurementType} ${displayType && `(${displayType})`}`}
+                            "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}},
+                            "legend": {"direction": "horizontal","orient": "top-left","title": null}
                         },
                         "stroke": {
                             "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
