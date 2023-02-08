@@ -13,11 +13,11 @@ const renderComparisonsChart = (
     // arquero table for extracting arrays easily
     // ----------------------------------------------------------------------- //
 
-    console.log(">>> comp metadata");
-    metadata.print()
+    // console.log(">>> comp metadata");
+    // metadata.print()
     
-    console.log(">>> comp data:");
-    data.print()
+    // console.log(">>> comp data:");
+    // data.print()
 
     let Value = data.array("Value");
     // let valueMin = Math.min.apply(null, Value);
