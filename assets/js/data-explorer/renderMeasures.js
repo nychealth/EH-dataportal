@@ -424,11 +424,11 @@ const updateMapData = (e) => {
 
     // ----- get metatadata for selected measure ----- //
 
-    const measureMetadata = mapMeasures.filter(m => m.MeasureID == measureId);
+    selectedMapMetadata = mapMeasures.filter(m => m.MeasureID == measureId);
     
-    const measurementType = measureMetadata[0].MeasurementType;
-    const about           = measureMetadata[0].how_calculated;
-    const sources         = measureMetadata[0].Sources;
+    const measurementType = selectedMapMetadata[0].MeasurementType;
+    const about           = selectedMapMetadata[0].how_calculated;
+    const sources         = selectedMapMetadata[0].Sources;
 
 
     // ----- set measure info boxes ----- //
@@ -465,7 +465,7 @@ const updateMapData = (e) => {
 
     // ----- render the map ----- //
 
-    renderMap(filteredMapData, measureMetadata);
+    renderMap(filteredMapData, selectedMapMetadata);
 
     updateChartPlotSize();
 
@@ -505,17 +505,16 @@ const updateTrendData = (e) => {
     // ----- get metatadata for selected measure ----- //
 
     // trendMeasures is created by renderMeasures, which evals before this would be called
-    const measureMetadata = trendMeasures.filter(m => m.MeasureID == measureId);
-    const measurementType = measureMetadata[0].MeasurementType;
-    const about           = measureMetadata[0].how_calculated;
-    const sources         = measureMetadata[0].Sources;
+    let selectedTrendMetadata = trendMeasures.filter(m => m.MeasureID == measureId);
+    const measurementType = selectedTrendMetadata[0].MeasurementType;
+    const about           = selectedTrendMetadata[0].how_calculated;
+    const sources         = selectedTrendMetadata[0].Sources;
 
-    // const aqMeasureMetadata = aq.from(measureMetadata);
-    const aqMeasureMetadata = aq.from(measureMetadata)
-                .derive({
-                    IndicatorLabel: aq.escape(indicatorName),
-                    ComparisonName: aq.escape('Boroughs')
-                })
+    aqSelectedTrendMetadata = aq.from(selectedTrendMetadata)
+        .derive({
+            IndicatorLabel: aq.escape(indicatorName),
+            ComparisonName: aq.escape('Boroughs')
+        })
 
     // ----- set measure info boxes ----- //
 
@@ -561,7 +560,7 @@ const updateTrendData = (e) => {
         let aqFilteredTrendDataAnnualAvg = aq.from(filteredTrendDataAnnualAvg);
 
         // renderTrendChart(filteredTrendDataAnnualAvg, aqMeasureMetadata);
-        renderComparisonsChart(aqFilteredTrendDataAnnualAvg, aqMeasureMetadata);
+        renderComparisonsChart(aqFilteredTrendDataAnnualAvg, aqSelectedTrendMetadata);
         updateChartPlotSize();
 
     } else if (measureIdsSummer.includes(measureId)) {
@@ -571,7 +570,7 @@ const updateTrendData = (e) => {
         let aqFilteredTrendDataSummer = aq.from(filteredTrendDataSummer);
 
         // renderTrendChart(filteredTrendDataSummer, aqMeasureMetadata);
-        renderComparisonsChart(aqFilteredTrendDataSummer, aqMeasureMetadata);
+        renderComparisonsChart(aqFilteredTrendDataSummer, aqSelectedTrendMetadata);
         updateChartPlotSize();
 
     } else {
@@ -579,7 +578,7 @@ const updateTrendData = (e) => {
         let aqFilteredTrendData = aq.from(filteredTrendData);
 
         // renderTrendChart(filteredTrendData, aqMeasureMetadata);
-        renderComparisonsChart(aqFilteredTrendData, aqMeasureMetadata);
+        renderComparisonsChart(aqFilteredTrendData, aqSelectedTrendMetadata);
         updateChartPlotSize();
 
     }
@@ -593,9 +592,9 @@ const updateTrendData = (e) => {
 
 // ===== trend comparisons ===== //
 
-const updateTrendComparisonsdData = (e) => {
+const updateTrendComparisonsData = (e) => {
 
-    console.log("updateTrendComparisonsdData");
+    // console.log("updateTrendComparisonsData");
 
     // ----- handle selection ----- //
 
@@ -837,7 +836,7 @@ const renderMeasures = async () => {
     const contentTrend   = document.querySelector('#tab-trend');
     const contentLinks   = document.querySelector('#tab-links');
 
-    console.log("contentTrend", contentTrend);
+    // console.log("contentTrend", contentTrend);
 
     // ----- set dropdowns for this indicator ----- //
 
@@ -849,7 +848,7 @@ const renderMeasures = async () => {
     const dropdownTrendComparisons = contentTrend.querySelector('div[aria-labelledby="dropdownTrendComparisons"]');
     const dropdownLinksMeasures = contentLinks.querySelector('div[aria-labelledby="dropdownLinksMeasures"]');
 
-    console.log("dropdownTrendComparisons", dropdownTrendComparisons);
+    // console.log("dropdownTrendComparisons", dropdownTrendComparisons);
 
     // clear Measure Dropdowns
 
@@ -909,7 +908,7 @@ const renderMeasures = async () => {
     const mapYears = [...new Set(mapData.map(item => item.Time))];
 
 
-    console.log(">>>> indicatorMeasures", indicatorMeasures);
+    // console.log(">>>> indicatorMeasures", indicatorMeasures);
 
     let geographyTitle = ["Geography"]
 
@@ -947,7 +946,7 @@ const renderMeasures = async () => {
 
         if (trend === 1) {
 
-            console.log(">>>> trend");
+            // console.log(">>>> trend");
 
             trendMeasures.push(measure)
 
@@ -958,8 +957,8 @@ const renderMeasures = async () => {
 
             header = geographyTitle[index];
 
-            console.log("header", header);
-            console.log("index", index);
+            // console.log("header", header);
+            // console.log("index", index);
 
             dropdownTrendComparisons.innerHTML += header ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
 
@@ -1181,8 +1180,8 @@ const renderMeasures = async () => {
             let maxGeoRank = Math.max(mapTimeData[0].GeoRank);
 
             filteredMapData = mapTimeData.filter(
-                    obj => obj.GeoRank === maxGeoRank
-                );
+                obj => obj.GeoRank === maxGeoRank
+            );
 
 
             // ----- render the map ----- //
@@ -1243,6 +1242,40 @@ const renderMeasures = async () => {
         tabTrend.setAttribute('aria-selected', true);
         tabLinks.setAttribute('aria-selected', false);
 
+        // If there's not a normal trend available, show comparisons
+
+        // console.log(">>>> trendMeasures", trendMeasures);
+        // console.log(">>>> onlyOneTime", onlyOneTime);
+
+        if (trendMeasures.length === 0 || onlyOneTime) {
+
+            // if not, show a trend comparison
+            debugger;
+            showTrendComparisons()
+
+        } else {
+
+            showNormalTrend()
+
+        }
+
+
+    }
+
+    showNormalTrend = (e) => {
+
+        // chart only the annual average for the following measureIds:
+        // 365 - PM2.5 (Fine particles), Mean
+        // 370 - Black carbon, Mean
+        // 391 - Nitric oxide, Mean
+        // 375 - Nitrogen dioxide, Mean
+
+        const measureIdsAnnualAvg = [365, 370, 375, 391];
+
+        // chart only the summer average for the following measureIds:
+        // 386 - Ozone (O3), Mean
+
+        const measureIdsSummer = [386];
 
         // ----- allow chart to persist when changing tabs ----- //
 
@@ -1300,46 +1333,33 @@ const renderMeasures = async () => {
 
             // ----- render the chart ----- //
 
-            // chart only the annual average for the following measureIds:
-            // 365 - PM2.5 (Fine particles), Mean
-            // 370 - Black carbon, Mean
-            // 391 - Nitric oxide, Mean
-            // 375 - Nitrogen dioxide, Mean
+            // using 'aqFilteredTrendData' for all of the datasets allows the "else selected" block to use
+            //  this same dataset. It will be whatever was most recently assigned to it.
 
-            const measureIdsAnnualAvg = [365, 370, 375, 391];
+            if (measureIdsAnnualAvg.includes(defaultTrendMeasureId)) {
+                
+                const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.Time.startsWith('Annual Average'));
+                aqFilteredTrendData = aq.from(filteredTrendDataAnnualAvg);
+                
+                renderComparisonsChart(aqFilteredTrendData, aqDefaultTrendMetadata);
+                updateChartPlotSize();
+                
+            } else if (measureIdsSummer.includes(defaultTrendMeasureId)) {
+                
+                const filteredTrendDataSummer = filteredTrendData.filter(d => d.Time.startsWith('Summer'));
+                aqFilteredTrendData = aq.from(filteredTrendDataSummer);
+                
+                renderComparisonsChart(aqFilteredTrendDataSummer, aqDefaultTrendMetadata);
+                updateChartPlotSize();
+                
+            } else {
 
-            // chart only the summer average for the following measureIds:
-            // 386 - Ozone (O3), Mean
-
-            const measureIdsSummer = [386];
-
-        if (measureIdsAnnualAvg.includes(defaultTrendMeasureId)) {
-            
-            const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.Time.startsWith('Annual Average'));
-            let aqFilteredTrendDataAnnualAvg = aq.from(filteredTrendDataAnnualAvg);
-            
-            // renderTrendChart(filteredTrendDataAnnualAvg, aqDefaultTrendMetadata);
-            renderComparisonsChart(aqFilteredTrendDataAnnualAvg, aqDefaultTrendMetadata);
-            updateChartPlotSize();
-            
-        } else if (measureIdsSummer.includes(defaultTrendMeasureId)) {
-            
-            const filteredTrendDataSummer = filteredTrendData.filter(d => d.Time.startsWith('Summer'));
-            let aqFilteredTrendDataSummer = aq.from(filteredTrendDataSummer);
-            
-            // renderTrendChart(filteredTrendDataSummer, aqDefaultTrendMetadata);
-            renderComparisonsChart(aqFilteredTrendDataSummer, aqDefaultTrendMetadata);
-            updateChartPlotSize();
-            
-        } else {
-
-            let aqFilteredTrendData = aq.from(filteredTrendData);
-            
-            // renderTrendChart(filteredTrendData, aqDefaultTrendMetadata);
-            renderComparisonsChart(aqFilteredTrendData, aqDefaultTrendMetadata);
-            updateChartPlotSize();
-            
-        }
+                aqFilteredTrendData = aq.from(filteredTrendData);
+                
+                renderComparisonsChart(aqFilteredTrendData, aqDefaultTrendMetadata);
+                updateChartPlotSize();
+                
+            }
 
 
             // ----- persistent selection ----- //
@@ -1370,15 +1390,130 @@ const renderMeasures = async () => {
 
             // ----- render the chart ----- //
 
-            let aqFilteredTrendData = aq.from(filteredTrendData);
-
             // renderTrendChart(filteredTrendData, aqDefaultTrendMetadata);
-            renderComparisonsChart(aqFilteredTrendData, aqDefaultTrendMetadata);
+            renderComparisonsChart(aqFilteredTrendData, aqSelectedTrendMetadata);
 
             updateChartPlotSize();
+
         }
 
     };
+    
+    // ===== trend comparisons ===== //
+
+    showTrendComparisons = (e) => {
+
+        console.log("showTrendComparisons");
+
+        // ----- allow chart to persist when changing tabs ----- //
+
+        if (!selectedComparison) {
+
+            // ----- handle selection ----- //
+
+            // get first comparisonId
+
+            const comparisonId = parseInt(comparisonsMetadata[0].ComparisonID);
+
+            console.log("comparisonId", comparisonId);
+
+            // persistent selection
+
+            // remove active class from every list element
+            $('.comparisonsbutton').removeClass("active");
+            $('.comparisonsbutton').attr('aria-selected', false);
+
+            // also trend, which is in this combinded dropdown
+            $('.trendbutton').removeClass("active");
+            $('.trendbutton').attr('aria-selected', false);
+
+            // set this element as active & selected
+
+            let trendMeasureEl = document.querySelector(`.comparisonsbutton[data-comparison-id='${comparisonId}']`)
+
+            $(trendMeasureEl).addClass("active");
+            $(trendMeasureEl).attr('aria-selected', true);
+
+            // ----- get metatadata for selected measure ----- //
+
+            // aqCombinedComparisonsMetadata
+            // aqComparisonsIndicatorData
+
+            // extract metadata for about & sources boxes
+
+
+            // ----- set measure info boxes ----- //
+
+            aqComparisonsIndicatorsMetadata.objects().forEach(m => {
+
+                selectedComparisonAbout +=
+                    `<h6>${m.IndicatorName} - ${m.MeasurementType}</h6>
+                    <p>${m.how_calculated}</p>`;
+
+                selectedComparisonSources +=
+                    `<h6>${m.IndicatorName} - ${m.MeasurementType}</h6>
+                    <p>${m.Sources}</p>`;
+            })
+
+            // render the measure info boxes
+
+            renderTitleDescription(indicatorShortName, indicatorDesc);
+            renderAboutSources(selectedComparisonAbout, selectedComparisonSources);
+
+
+            // ----- create dataset ----- //
+
+            // metadata
+
+            filteredComparisonsMetadata = aqComparisonsMetadata
+                .filter(aq.escape(d => d.ComparisonID == comparisonId))
+                .join(aqComparisonsIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
+
+            // console.log("filteredComparisonsMetadata:");
+            // filteredComparisonsMetadata.print()
+            
+            // data
+
+            filteredComparisonsData = filteredComparisonsMetadata
+                .select("IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure")
+                .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
+
+                // put host indicator first, so it gets the black line
+                .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
+
+            // console.log("filteredComparisonsData:");
+            // filteredComparisonsData.print()
+
+
+            // ----- render the chart ----- //
+
+            renderComparisonsChart(
+                filteredComparisonsData,
+                filteredComparisonsMetadata
+            );
+
+            updateChartPlotSize();
+
+        } else {
+
+            // if there was a chart already, restore it
+
+            // ----- set measure info boxes ----- //
+
+            renderAboutSources(selectedComparisonAbout, selectedComparisonSources);
+
+            // ----- render the chart ----- //
+
+            // renderTrendChart(filteredTrendData, aqDefaultTrendMetadata);
+            renderComparisonsChart(
+                filteredComparisonsData,
+                filteredComparisonsMetadata
+            );
+
+            updateChartPlotSize();
+
+        }
+    }
 
 
     // ===== links ===== //
@@ -1674,7 +1809,7 @@ const renderMeasures = async () => {
     })
 
     trendComparisonsLinks.forEach(link => {
-        link.addEventListener('click', updateTrendComparisonsdData);
+        link.addEventListener('click', updateTrendComparisonsData);
     })
 
     linksMeasuresLinks.forEach(link => {
