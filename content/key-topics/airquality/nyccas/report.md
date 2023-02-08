@@ -7,9 +7,6 @@ seo_description: "Data, findings, and more."
 tags: 
 categories: [airquality]
 keywords: ["air quality","report","monitoring","emissions","exhaust","pm2.5","pollutants"]
-menu:
-    main:
-        identifier: '05'
 layout: report
 ---
 

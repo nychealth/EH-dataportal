@@ -16,9 +16,6 @@ indicators:
   - 2025
   - 2027
   - 2026
-menu:
-    main:
-        identifier: '03'
 ---
 
 **Air quality can vary** **from neighborhood to neighborhood**. That is why the **New York City Community Air Survey (NYCCAS)**keeps track of street-level air pollution from about 100 locations throughout New York City every season. NYCCAS is part of [OneNYC](http://www1.nyc.gov/html/onenyc/index.html "OneNYC"), New York City's long-term plan for sustainability.

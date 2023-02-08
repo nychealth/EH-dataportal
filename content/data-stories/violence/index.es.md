@@ -7,9 +7,6 @@ seo_description: "Uso de la salud pública para prevenir la violencia."
 categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
 keywords: ["violence","assaults","injustice","poverty","social determinants","redlining","disinvestment","racism","neighborhoods"]
 image: ds-povasthma.jpg
-menu:
-    main:
-        identifier: '02'
 image: ds-violence.jpg
 vega: true
 layout: advanced

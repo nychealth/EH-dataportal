@@ -8,9 +8,6 @@ tags:
 categories: ["transportation","airquality"]
 keywords: ["air quality","traffic","transportation","cars","traffic","car-free","carfree","pedestrians","cycling","bikes","biking","pollution","air pollution", "lungs","breathing"]
 image: ds-aqts.jpeg
-menu:
-    main:
-        identifier: '02'
 photocredit: "Ed Reed/Mayoral Photography Office"
 ---
 

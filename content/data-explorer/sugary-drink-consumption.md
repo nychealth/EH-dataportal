@@ -12,9 +12,6 @@ indicators:
   IndicatorID:
   - 2097
   - 2098
-menu:
-    main:
-        identifier: '03'
 ---
 
 Sugary drinks contribute to a higher-calorie diet, long-term weight gain, and increased risk of heart disease and diabetes. Sugary drinks provide little or no nutritional value, and because they don’t fill you up the way food does, you end up consuming more calories. Also, food and beverage portion sizes have exploded over the past several decades, and studies have shown that when given larger portions, people consume more without recognizing it.

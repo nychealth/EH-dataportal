@@ -8,9 +8,6 @@ tags:
 categories: [pests]
 keyTopic: pests
 keywords: ["pests","mice","rats","cockroaches","roaches","bed bugs","bugs","extermination","ticks","lyme disease","pesticides"]
-menu:
-    main:
-        identifier: '05'
 layout: single
 image: cockroaches.jpeg
 ---

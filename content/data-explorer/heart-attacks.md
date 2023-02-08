@@ -12,9 +12,6 @@ indicators:
 - header: null
   IndicatorID: 
   - 90
-menu:
-    main:
-        identifier: '03'
 ---
 
 A heart attack is referred to medically as an acute myocardial infarction. It is caused when the blood flow that brings oxygen to the heart is severely reduced or cut off altogether. Without adequate blood flow, heart cells can quickly become injured or die. Most heart attacks are an acute event that follows years of atherosclerosis - a build up of plaque in the arteries around the heart. Factors in the environment may contribute to both atherosclerosis and to the acute event itself.

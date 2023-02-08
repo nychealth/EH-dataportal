@@ -8,9 +8,6 @@ tags:
 categories: ["foodanddrink","climatehealth"]
 keywords: ["foodborne illness","food poisoning","restaurant","restaurants","inspections","heat","hot weater","grades","eating","food"]
 image: ds-food.JPG
-menu:
-    main:
-        identifier: '02'
 photocredit: "Edwin J. Torres/Mayoral Photography Office"
 ---
 

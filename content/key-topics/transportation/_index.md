@@ -8,9 +8,6 @@ tags:
 categories: [transportation]
 keyTopic: transportation
 keywords: ["transportation","built environment","cycling","walking","transit","subways","buses","cycling","biking","infrastructure"]
-menu:
-    main:
-        identifier: '05'
 layout: single
 image: nyc-active-design.jpg
 ---
