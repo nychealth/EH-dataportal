@@ -39,7 +39,8 @@ const renderComparisonsChart = (
 
     let compGroupLabel;
     let plotTitle;
-    let colors = ["blue", "green", "orange", "red", "magenta"];
+    // let colors = ["blue", "green", "orange", "red", "magenta"];
+    let colors = ["black", "blue", "green", "orange", "red", "magenta"];
 
      if (compName[0] === "Boroughs") {
 
@@ -49,7 +50,7 @@ const renderComparisonsChart = (
         let hasBoros = compGroupLabel.length > 1 ? true : false; 
         
         // add black to start of list for NYC
-        colors.splice(0, 0, "black");
+        // colors.splice(0, 0, "black");
 
         plotTitle = compMeasurementType + (hasBoros ? " by Borough" : "");
         comp_group_col = "Geography"
@@ -95,13 +96,9 @@ const renderComparisonsChart = (
     
     // get dimensions
 
-    var columns = 1;
-    var height = 500
-    window.innerWidth < 576 ? columns = 3 : columns = 6;
-    window.innerWidth < 576 ? height = 350 : columns = 500;
+    let columns = window.innerWidth < 576 ? 3 : 6;
+    let height = window.innerWidth < 576 ? 350 : 500;
 
-    console.log(">>> colors", colors);
-    
     
     // ----------------------------------------------------------------------- //
     // get unique unreliability notes (dropping empty)
@@ -141,7 +138,7 @@ const renderComparisonsChart = (
                 "labelFontSize": 11,
             },
             "legend": {
-                // "columns": columns,
+                "columns": columns,
                 "labelFontSize": 14,
                 "symbolSize": 140
             },
@@ -191,7 +188,7 @@ const renderComparisonsChart = (
                         "sort": null,
                         "legend": {
                             "orient": "bottom",
-                            "direction": "vertical",
+                            // "direction": "vertical",
                             "title": null,
                             "labelLimit": 1000
                         }
