@@ -82,11 +82,11 @@ const createComparisonData = async (comps) => {
         d => indicatorComparisonId.includes(d.ComparisonID)
     )
         
-    console.log("comparisonsMetadata [createComparisonData]:", comparisonsMetadata);
+    // console.log("comparisonsMetadata [createComparisonData]:", comparisonsMetadata);
 
     // merged metadata
     
-    console.log("aqComparisonsMetadata:");
+    // console.log("aqComparisonsMetadata:");
 
     aqComparisonsMetadata = aq.from(comparisonsMetadata)
         .unroll("Indicators")
@@ -96,9 +96,9 @@ const createComparisonData = async (comps) => {
         })
         .unroll("MeasureID")
         .select(aq.not("Indicators"))
-        .print()
+        // .print()
 
-    console.log("aqUniqueIndicatorMeasure:");
+    // console.log("aqUniqueIndicatorMeasure:");
 
     // get unique combinations of indicators and measures
 
@@ -116,10 +116,9 @@ const createComparisonData = async (comps) => {
     let comparisonsIndicatorsMetadata = indicators.filter(
         ind => comparisonsIndicatorIDs.includes(ind.IndicatorID)
     )
-    console.log("comparisonsIndicatorsMetadata:", comparisonsIndicatorsMetadata);
+    // console.log("comparisonsIndicatorsMetadata:", comparisonsIndicatorsMetadata);
 
-    console.log("aqComparisonsIndicatorsMetadata:");
-
+    // console.log("aqComparisonsIndicatorsMetadata:");
 
     aqComparisonsIndicatorsMetadata = aq.from(comparisonsIndicatorsMetadata)
         .select("IndicatorID", "IndicatorName", "IndicatorLabel", "Measures")
@@ -135,7 +134,7 @@ const createComparisonData = async (comps) => {
         .derive({IndicatorMeasure: d => d.IndicatorLabel + ": " + d.MeasurementType})
         .select(aq.not("Measures"))
         .filter(aq.escape(d => comparisonsMeasureIDs.includes(d.MeasureID)))
-        .print()
+        // .print()
 
 
 
@@ -181,8 +180,8 @@ const createComparisonData = async (comps) => {
             .filter(d => op.match(d.GeoType, /Citywide/))
             .reify()
 
-        console.log("aqComparisonsIndicatorData:");
-        aqComparisonsIndicatorData.print();
+        // console.log("aqComparisonsIndicatorData:");
+        // aqComparisonsIndicatorData.print();
 
     })
 }
@@ -247,6 +246,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     selectedMapMeasure = false;
     selectedTrendMeasure = false;
     selectedLinksMeasure = false;
+    selectedComparison = false;
 
     // if dont_add_to_history is true, then don't push the state
     // if dont_add_to_history is false, or not set, push the state
@@ -274,9 +274,6 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
         }
 
-    } else {
-
-
     }
 
     // call data loading function
@@ -287,13 +284,13 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
     // call function to fetch comparisons data
 
-    console.log(">>>> indicatorComparisonId", indicatorComparisonId);
+    // console.log(">>>> indicatorComparisonId", indicatorComparisonId);
 
     if (indicatorComparisonId !== null) {
         await fetch_comparisons();
     }
 
-    loadData(indicatorId)
+    loadData(indicatorId);
 
 }
 
