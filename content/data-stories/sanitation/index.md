@@ -8,9 +8,6 @@ tags:
 categories: ["transportation","social","pests"]
 keywords: ["trash","garbage","sanitation","rats","pests","justice","inequalities","inequitites"]
 image: ds-sanitation-trucks.jpg
-menu:
-    main:
-        identifier: '02'
 photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 

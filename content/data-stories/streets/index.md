@@ -9,9 +9,6 @@ categories: ["transportation","healthoutcomes","neighborhoods"]
 keywords: ["transportation","built environment","streets","cycling", "biking", "active design","injuries","fatalities","roads","safety","bike lanes","cycle lanes","hospitalizations","emergency department visits"]
 image: ds-streets.jpg
 layout: flexible
-menu:
-    main:
-        identifier: '02'
 photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 

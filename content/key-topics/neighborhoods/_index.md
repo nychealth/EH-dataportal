@@ -8,9 +8,6 @@ tags:
 categories: [neighborhoods]
 keyTopic: neighborhoods
 keywords: ["built environments","neighborhoods","active design","safety"]
-menu:
-    main:
-        identifier: '05'
 layout: single
 ---
 

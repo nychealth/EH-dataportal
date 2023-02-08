@@ -8,9 +8,6 @@ tags:
 categories: ["neighborhoods"]
 keywords: ["pollution","neighborhoods"]
 indicators: 
-menu:
-    main:
-        identifier: '03'
 ---
 
 [PlaNYC](http://www.nyc.gov/html/planyc2030/html/home/home.shtml "PlaNYC Home Page") is a comprehensive sustainability plan for New York City's future. Goal: Clean up all contaminated land in the city. 

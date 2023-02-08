@@ -11,9 +11,6 @@ indicators:
 - header: null
   IndicatorID: 
   - 776
-menu:
-    main:
-        identifier: '03'
 ---
 
 There is broad consensus within the scientific community that human activity is changing the Earth's climate through **increasing concentrations of greenhouse gases (GHGs)** — primarily carbon dioxide (CO2), methane (CH4), nitrous oxide (N2O), and chlorofluorocarbons (CFCs) — in the atmosphere.
