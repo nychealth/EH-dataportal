@@ -345,7 +345,7 @@
                         //Turns off highlights on everything based on class
                         for (let button of document.querySelectorAll('.polbtn')) button.classList.remove('active');
                         this.classList.add('active')
-                        embed = 'leaflet/' + this.value + '_2021.html'
+                        embed = 'raster/' + this.value + '_2021.html'
                         document.getElementById('iframeEmbed').src = embed;
 
                         const mapTexts = document.querySelectorAll('.polText')
