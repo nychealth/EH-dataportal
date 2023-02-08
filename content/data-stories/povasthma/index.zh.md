@@ -8,9 +8,6 @@ tags:
 categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
 keywords: ["poverty","asthma","injustice","housing","children","emergency department visits","ed visits","emergency room","social determinants","kids"]
 image: ds-povasthma.jpg
-menu:
-    main:
-        identifier: '02'
 photocredit: "Benjamin Kanter/Mayoral Photography Office"
 ---
 

@@ -18,9 +18,6 @@ indicators:
     - 2335
     - 2146
     - 2323
-menu:
-    main:
-        identifier: '03'
 ---
 
 Social and economic conditions affect people’s health. These conditions (also called “social determinants of health”) are conditions that people may be born into or fall into over the course of their lives. 

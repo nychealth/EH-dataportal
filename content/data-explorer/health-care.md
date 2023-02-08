@@ -14,9 +14,6 @@ indicators:
   - 2132
   - 2401
   - 2232
-menu:
-    main:
-        identifier: '03'
 ---
 
 Health care is a valuable tool to stay healthy. 

@@ -11,9 +11,6 @@ categories:
 keywords: ["air quality","traffic","transportation","pollution","air pollution", "lungs","breathing","health equity","poverty","health impacts of air pollution","health impact assessment","policy","policies"]
 seo_title: Health impact assessments
 seo_description: "Air pollution causes significant illness and death in New York City. To improve health, where should we start?"
-menu:
-    main:
-        identifier: '02'
 ---
 
 Every year in NYC between 2015 and 2017 (the most recent years for which this analysis is available), fine particulate matter pollution from motor vehicles and burning fossil fuels caused:
@@ -36,7 +33,7 @@ In cities across the USA, there's a clear pattern: [the worst air quality tends 
 ## Using health impact assessments to make bigger improvements
 We can use data modelling tools to predict which policies to improve air quality would yield the greatest public health benefit. This type of analysis is called a health impact assessment. 
 
-[A recent health impact assessment estimates the effects of reducing 80% of greenhouse gass emissions by 2050](https://pubs.acs.org/doi/full/10.1021/acs.est.0c00694), a policy called “80 x 50.” This policy would reduce fine particulate matter (also called PM2.5) throughout the city, regardless of neighborhood poverty level: 
+[A recent health impact assessment estimates the effects of reducing 80% of greenhouse gas emissions by 2050](https://pubs.acs.org/doi/full/10.1021/acs.est.0c00694), a policy called “80 x 50.” This policy would reduce fine particulate matter (also called PM2.5) throughout the city, regardless of neighborhood poverty level: 
 
 {{< datawrapper src="pt7no/1/" height="168" title="Reductions in PM2.5 would be similar across neighborhoods..." >}}
 

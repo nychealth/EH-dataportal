@@ -23,9 +23,6 @@ indicators:
   - 101
   - 29
   - 34
-menu:
-    main:
-        identifier: '03'
 ---
 **Note:** We are no longer updating birth defects data on the EH Data Portal. [For more recent data, visit the New York State Environmental Public Health Tracker](https://apps.health.ny.gov/statistics/environmental/public_health_tracking/tracker/index.html#/bdcounty).
 

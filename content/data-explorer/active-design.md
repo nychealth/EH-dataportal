@@ -20,9 +20,6 @@ indicators:
   - 2391
   - 2389
   - 2133
-menu:
-    main:
-        identifier: '03'
 ---
 
 Physical activity and healthy eating are among the leading ways to get and stay healthy. 

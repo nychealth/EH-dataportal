@@ -8,9 +8,6 @@ tags:
 categories: [social]
 keyTopic: social
 keywords: ["social justice","poverty","racism","oppression","social determinants","public health","social determinants of health","inequality","health equity","justice","injustice"]
-menu:
-    main:
-        identifier: '05'
 layout: single
 image: nyc-neighborhood.jpg
 ---

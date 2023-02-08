@@ -8,9 +8,6 @@ tags:
 categories: ["transportation","airquality","neighborhoods"]
 keywords: ["air quality","traffic","transportation","cars","traffic","car-free","carfree","pedestrians","cycling","bikes","biking","pollution","air pollution", "lungs","breathing"]
 image: ds-aq2.jpeg
-menu:
-    main:
-        identifier: '02'
 photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 

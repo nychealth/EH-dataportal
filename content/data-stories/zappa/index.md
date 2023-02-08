@@ -8,9 +8,6 @@ tags:
 categories: ["transportation","airquality"]
 keywords: ["air quality","traffic","transportation","air pollution", "lungs","breathing","pm2.5","fine particles","fine particulate matter","health impacts","ZAPPA","modelling","data science","computer modelling","model","policies","policy","health impacts","health impact assessment"]
 image: ds-road-traffic.jpg
-menu:
-    main:
-        identifier: '02'
 photocredit: "Ed Reed/Mayoral Photography Office"
 ---
 <style>

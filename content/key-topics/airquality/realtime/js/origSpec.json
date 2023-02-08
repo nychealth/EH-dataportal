@@ -62,7 +62,8 @@
                     "type": "quantitative",
                     "title": " ",
                     "axis": {
-                        "offset": 10
+                        "offset": 10,
+                        "tickCount": 5
                     }
                 },
                 "color": {

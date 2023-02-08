@@ -7,9 +7,6 @@ seo_description: "Hour to hour, there's large variation in our air quality - eve
 tags: 
 categories: [airquality]
 keywords: ["interactive","air quality","neighborhoods","data","transportation","buildings","emissions","exhaust","cars","traffic"]
-menu:
-    main:
-        identifier: '05'
 layout: realtime
 vega: true
 arquero: true

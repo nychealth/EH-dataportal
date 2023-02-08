@@ -8,9 +8,6 @@ tags:
 categories: ["climatehealth","social","healthoutcomes","neighborhoods"]
 keywords: ["climate","heat","weather","mortality","death","climate change","air conditioner", "air conditioning","global warming"]
 image: ds-heat.jpg
-menu:
-    main:
-        identifier: '02'
 photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 
