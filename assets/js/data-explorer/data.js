@@ -199,7 +199,7 @@ const createComparisonData = async (comps) => {
 // function to load indicator metadata
 // ----------------------------------------------------------------------- //
 
-const loadIndicator = (this_indicatorId, dont_add_to_history) => {
+const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
     console.log("** loadIndicator");
 
@@ -285,13 +285,15 @@ const loadIndicator = (this_indicatorId, dont_add_to_history) => {
 
     indicatorTitle.innerHTML = indicatorName
 
-    loadData(indicatorId)
-
     // call function to fetch comparisons data
 
+    console.log(">>>> indicatorComparisonId", indicatorComparisonId);
+
     if (indicatorComparisonId !== null) {
-        fetch_comparisons();
+        await fetch_comparisons();
     }
+
+    loadData(indicatorId)
 
 }
 
@@ -301,6 +303,8 @@ const loadIndicator = (this_indicatorId, dont_add_to_history) => {
 // ----------------------------------------------------------------------- //
 
 const loadData = (this_indicatorId) => {
+
+    console.log("** loadData");
 
     fetch(data_repo + data_branch + `/indicators/data/${this_indicatorId}.json`)
     .then(response => response.json())
@@ -329,6 +333,8 @@ const loadData = (this_indicatorId) => {
 
 const loadGeo = () => {
 
+    console.log("** loadGeo");
+
     const geoUrl = data_repo + data_branch + `/geography/GeoLookup.csv`; // col named "GeoType"
 
     aq.loadCSV(geoUrl)
@@ -348,6 +354,8 @@ const loadGeo = () => {
 // ----------------------------------------------------------------------- //
 
 const joinData = () => {
+
+    console.log("** joinData");
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // get metadata fields

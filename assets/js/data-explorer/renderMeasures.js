@@ -665,6 +665,9 @@ const updateTrendComparisonsdData = (e) => {
         .select("IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure")
         .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
 
+        // put host indicator first, so it gets the black line
+        .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
+
     // console.log("filteredComparisonsData:");
     // filteredComparisonsData.print()
 
@@ -834,6 +837,8 @@ const renderMeasures = async () => {
     const contentTrend   = document.querySelector('#tab-trend');
     const contentLinks   = document.querySelector('#tab-links');
 
+    console.log("contentTrend", contentTrend);
+
     // ----- set dropdowns for this indicator ----- //
 
     const dropdownTableYear = contentSummary.querySelector('div[aria-labelledby="dropdownTableYear"]');
@@ -843,6 +848,8 @@ const renderMeasures = async () => {
     // const dropdownTrendMeasures = contentTrend.querySelector('div[aria-labelledby="dropdownTrendMeasures"]');
     const dropdownTrendComparisons = contentTrend.querySelector('div[aria-labelledby="dropdownTrendComparisons"]');
     const dropdownLinksMeasures = contentLinks.querySelector('div[aria-labelledby="dropdownLinksMeasures"]');
+
+    console.log("dropdownTrendComparisons", dropdownTrendComparisons);
 
     // clear Measure Dropdowns
 
@@ -940,6 +947,8 @@ const renderMeasures = async () => {
 
         if (trend === 1) {
 
+            console.log(">>>> trend");
+
             trendMeasures.push(measure)
 
             // geographyTitle is 1 element long. If there are any trend measure, we'll show it once by
@@ -948,6 +957,10 @@ const renderMeasures = async () => {
             //  indicatorMeasures twice.
 
             header = geographyTitle[index];
+
+            console.log("header", header);
+            console.log("index", index);
+
             dropdownTrendComparisons.innerHTML += header ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
 
             if (trendData) {
@@ -1002,17 +1015,7 @@ const renderMeasures = async () => {
 
     // ----- handle comparisons viz ----- //
 
-    if (indicatorComparisonId === null) {
-
-        // if disparities is disabled, hide the button
-
-        btnShowComparisons.style.display = "none";
-
-        // remove click listeners to button that calls renderDisparities
-
-        $(btnShowComparisons).off()
-
-    } else if (indicatorComparisonId !== null) {
+    if (indicatorComparisonId !== null) {
 
         let compLegendTitles = [...new Set(comparisonsMetadata.map(item => item.LegendTitle))]
         
@@ -1028,10 +1031,6 @@ const renderMeasures = async () => {
                 data-comparison-id="${c.ComparisonID}">
                 ${c.ComparisonName}
                 </button>`;
-
-
-            // header = '{{ .header }}';
-            // indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
 
         })
 
@@ -1567,7 +1566,13 @@ const renderMeasures = async () => {
 
     const onlyOneTime = trendMeasures.every(m => m.AvailableTimes.length <= 1)
 
-    if (trendMeasures.length === 0 || onlyOneTime) {
+    // debugger;
+
+    // disable trend tab if there are no trend measures (or only 1 time period) and there are no comparisons
+
+    if ((trendMeasures.length === 0 || onlyOneTime) && (typeof comparisonsMetadata === 'undefined' || comparisonsMetadata.length === 0)) {
+
+        console.log("turn off trend");
 
         if (tabTrendSelected && window.location.hash === '#display=trend') {
 
