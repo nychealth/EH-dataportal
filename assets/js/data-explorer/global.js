@@ -58,14 +58,22 @@ let selectedMapMeasure;
 let selectedTrendMeasure;
 let selectedLinksMeasure;
 let selectedComparison;
+
 let selectedMapAbout;
 let selectedMapSources;
+let selectedMapMetadata;
+
 let selectedTrendAbout;
 let selectedTrendSources;
+let aqSelectedTrendMetadata;
+
 let selectedComparisonAbout = "";
 let selectedComparisonSources = "";
+let selectedComparisonMetadata;
+
 let selectedLinksAbout;
 let selectedLinksSources;
+let selectedLinksMetadata;
 let selectedlinksSecondaryMeasureTime;
 
 let primaryMeasureMetadata;
@@ -73,6 +81,7 @@ let secondaryMeasureMetadata;
 
 let filteredMapData;
 let filteredTrendData;
+let aqFilteredTrendData;
 let filteredComparisonsData;
 let filteredComparisonsMetadata;
 
@@ -88,6 +97,8 @@ let tabLinks;
 let showTable;
 let showMap;
 let showTrend;
+let showNormalTrend;
+let showTrendComparisons;
 let showLinks;
 
 // store hash, so display knows where it just was
