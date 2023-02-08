@@ -214,7 +214,7 @@ const renderLinksChart = (
                             "field": yValue,
                             "type": "quantitative",
                             "axis": {
-                                "tickCount": 5
+                                "tickCount": 4
                             },
                         },
                         "x": {

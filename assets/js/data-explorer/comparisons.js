@@ -198,7 +198,7 @@ const renderComparisonsChart = (
                         "type": "quantitative",
                         "title": null,
                         "axis": {
-                            "tickCount": 5
+                            "tickCount": 4
                         },
                         "scale": {"domainMin": 0, "nice": true} // change domainMin to valueMin to scale with data
                     }
