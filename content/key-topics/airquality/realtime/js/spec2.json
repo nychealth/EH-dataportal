@@ -28,6 +28,7 @@
     "width": "container",
     "mark": {
       "type": "line", 
+      "interpolate": "monotone",
       "point": {
         "size": 5,
         "opacity": 0.5
