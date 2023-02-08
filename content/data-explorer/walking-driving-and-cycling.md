@@ -27,9 +27,6 @@ indicators:
   - 2112
   - 2113
   - 2114
-menu:
-    main:
-        identifier: '03'
 ---
  
 People get around New York City in many ways - public transit, walking, cycling, driving, and other modes too. When these individual behaviors are added up, they shape our city and our health.

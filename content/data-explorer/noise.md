@@ -11,9 +11,6 @@ indicators:
 - header: null
   IndicatorID: 
   - 2134
-menu:
-    main:
-        identifier: '03'
 ---
 
 Ambient noise is sound from an environmental source, such as traffic, construction, industrial or recreation activities, animals, or people’s voices, that is unwanted to the person who hears it.

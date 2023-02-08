@@ -8,9 +8,6 @@ tags:
 categories: [housing, social]
 keyTopic: housing
 keywords: ["housing","gentrification","displacement","justice","equity"]
-menu:
-    main:
-        identifier: '05'
 layout: displacement
 ---
 

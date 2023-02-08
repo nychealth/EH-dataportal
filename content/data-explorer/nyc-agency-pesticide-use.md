@@ -15,9 +15,6 @@ indicators:
   - 2351
   - 2354
   - 2357
-menu:
-    main:
-        identifier: '03'
 ---
 
 None

@@ -9,9 +9,6 @@ categories: ["internal","neighborhoods"]
 keywords: ["geography","maps","neighborhoods","health data","methods","geographic"]
 image: ds-geographies.jpg
 layout: single
-menu:
-    main:
-        identifier: '02'
 vega: true
 photocredit: "Edwin J. Torres/Mayoral Photography Office"
 ---

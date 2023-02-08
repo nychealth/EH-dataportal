@@ -7,9 +7,6 @@ seo_description: "Get data on your neighborhood's air quality."
 tags: 
 categories: [airquality]
 keywords: ["interactive","air quality","neighborhoods","data","transportation","buildings","emissions","exhaust","cars","traffic"]
-menu:
-    main:
-        identifier: '05'
 layout: aqe
 customJS: aqe.js
 accessibleAutocomplete: /js/accessible-autocomplete.min.js

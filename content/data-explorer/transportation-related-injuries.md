@@ -14,9 +14,6 @@ indicators:
   - 2086
   - 2094
   - 2093
-menu:
-    main:
-        identifier: '03'
 ---
 
 Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.

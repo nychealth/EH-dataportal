@@ -8,9 +8,6 @@ tags:
 categories: ["transportation","airquality","foodanddrink"]
 keywords: ["air quality","traffic","transportation","covid","covid-19","coronavirus","air pollution", "lungs","breathing","restaurants"]
 image: ds-aqcovid.jpeg
-menu:
-    main:
-        identifier: '02'
 photocredit: "Ed Reed/Mayoral Photography Office"
 ---
 

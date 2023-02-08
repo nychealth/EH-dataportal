@@ -8,9 +8,6 @@ tags:
 categories: ["internal"]
 keywords: ["how we work","civic service design","design","technology"]
 image: ds-newlook.jpg
-menu:
-    main:
-        identifier: '02'
 photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 

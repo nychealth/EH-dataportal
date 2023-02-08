@@ -9,9 +9,6 @@ image: ds-AQsnapshots.jpg
 tags: 
 categories: ["transportation","airquality"]
 keywords: ["air quality","traffic","transportation","air pollution", "lungs","breathing","environmental justice","justice"]
-menu:
-    main:
-        identifier: '02'
 photocredit: "Mayoral Photography Office"
 ---
 

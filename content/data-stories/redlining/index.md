@@ -8,9 +8,6 @@ tags:
 categories: ["housing","social","childhealth","neighborhoods"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism"]
 image: ds-povasthma.jpg
-menu:
-    main:
-        identifier: '02'
 layout: advanced
 image: ds-redlining.jpeg
 ---

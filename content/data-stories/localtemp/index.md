@@ -8,9 +8,6 @@ tags:
 categories: ["climatehealth","neighborhoods"]
 keywords: ["heat","hot weather","weather","climate","temperature","summer","greenspace","parks","green space","heat island","urban heat island","cooling","air conditioning","building","housing","global warming"]
 image: ds-localtemp.jpeg
-menu:
-    main:
-        identifier: '02'
 photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 

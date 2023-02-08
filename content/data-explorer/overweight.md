@@ -14,9 +14,6 @@ indicators:
   - 2064
   - 2061
   - 2062
-menu:
-    main:
-        identifier: '03'
 ---
 
 People who are overweight or obese are at increased risk for heart disease and diabetes. Physical activity and healthy eating can promote well-being and relieve stress.

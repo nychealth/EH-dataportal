@@ -15,9 +15,6 @@ indicators:
   - 2035
   - 2033
   - 2031
-menu:
-    main:
-        identifier: '03'
 ---
 
 Cancer begins when cells in a part of the body start to grow out of control. There are many kinds of cancer, but they all start because of out-of-control growth of abnormal cells. Leukemia (cancer of the blood-forming cells) is the most common form of childhood cancer. There are different kinds of childhood leukemia. The most common kinds are acute lymphocytic leukemia and acute myeloid leukemia . Brain and other nervous system cancers are the second most common types of childhood cancers. Of all childhood cancer, leukemias and brain and other nervous system cancers account for about 50% of cases among children less than 15 years old.

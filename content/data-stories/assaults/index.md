@@ -8,9 +8,6 @@ tags:
 categories: ["social","healthoutcomes","neighborhoods"]
 keywords: ["violence","assaults","poverty","public health","injuries","hospitalizations","emergency department visits","ED visits"]
 image: ds-assaults.jpg
-menu:
-    main:
-        identifier: '02'
 photocredit: "Benjamin Kanter/Mayoral Photography Office"
 ---
 

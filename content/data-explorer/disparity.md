@@ -11,9 +11,6 @@ indicators:
   - 2106
   - 13
   - 2107
-menu:
-    main:
-        identifier: '03'
 ---
 
 Neighborhood Poverty 

@@ -13,9 +13,6 @@ indicators:
   - 22
   - 2393
   - 107
-menu:
-    main:
-        identifier: '03'
 ---
 
 Cockroaches are a common urban pest. Though there are more than a thousand species of roaches, just a few are found in NYC homes.  The most common are American Cockroaches, typically found in moist basements and lower floors, and German Cockroaches, found anywhere inside homes.

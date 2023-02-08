@@ -8,9 +8,6 @@ tags:
 categories: ["airquality"]
 keywords: ["air quality","pollution","PM2.5","traffic","breathing","asthma","heart disease","lung disease","stroke","emissions"]
 image: ds-breatheeasy.jpg
-menu:
-    main:
-        identifier: '02'
 photocredit: "Ed Reed/Mayoral Photography Office"
 ---
 

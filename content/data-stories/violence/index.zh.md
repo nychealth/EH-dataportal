@@ -7,9 +7,6 @@ seo_description: "利用公共卫生预防暴力 "
 categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
 keywords: ["violence","assaults","injustice","poverty","social determinants","redlining","disinvestment","racism","neighborhoods"]
 image: ds-povasthma.jpg
-menu:
-    main:
-        identifier: '02'
 image: ds-violence.jpg
 vega: true
 layout: advanced

@@ -11,9 +11,6 @@ categories:
 keywords: ["air quality","traffic","transportation","pollution","air pollution", "lungs","breathing","health equity","poverty","health impacts of air pollution","health impact assessment","policy","policies"]
 seo_title: Health impact assessments
 seo_description: "Air pollution causes significant illness and death in New York City. To improve health, where should we start?"
-menu:
-    main:
-        identifier: '02'
 ---
 
 Every year in NYC between 2015 and 2017 (the most recent years for which this analysis is available), fine particulate matter pollution from motor vehicles and burning fossil fuels caused:
