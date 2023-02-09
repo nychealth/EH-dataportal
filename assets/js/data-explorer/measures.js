@@ -1,12 +1,12 @@
 // ======================================================================= //
-// renderMeasures.js
+// measures.js
 // ======================================================================= //
 
 // ----------------------------------------------------------------------- //
 // tab default measure functions
 // ----------------------------------------------------------------------- //
 
-// ===== map ===== //
+// ===== map ================================================== //
 
 const setDefaultMapMeasure = (visArray) => {
 
@@ -66,7 +66,7 @@ const setDefaultMapMeasure = (visArray) => {
 }
 
 
-// ===== trend ===== //
+// ===== trend ================================================== //
 
 const setDefaultTrendMeasure = (visArray) => {
 
@@ -128,7 +128,7 @@ const setDefaultTrendMeasure = (visArray) => {
 }
 
 
-// ===== links ===== //
+// ===== links ================================================== //
 
 const setDefaultLinksMeasure = async (visArray) => {
 
@@ -198,15 +198,17 @@ const setDefaultLinksMeasure = async (visArray) => {
 }
 
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 // tab update functions
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 
-// ===== map ===== //
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// map
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 const updateMapData = (e) => {
 
-    // ----- handle selection ----- //
+    // ----- handle selection -------------------------------------------------- //
 
     // get meaasureId of selected dropdown element
 
@@ -227,7 +229,7 @@ const updateMapData = (e) => {
     $(e.target).attr('aria-selected', true);
 
 
-    // ----- get metatadata for selected measure ----- //
+    // ----- get metatadata for selected measure -------------------------------------------------- //
 
     selectedMapMetadata = mapMeasures.filter(m => m.MeasureID == measureId);
     
@@ -236,7 +238,7 @@ const updateMapData = (e) => {
     const sources         = selectedMapMetadata[0].Sources;
 
 
-    // ----- set measure info boxes ----- //
+    // ----- set measure info boxes -------------------------------------------------- //
 
     // "indicatorName" is set in loadIndicator
 
@@ -253,7 +255,7 @@ const updateMapData = (e) => {
     renderAboutSources(selectedMapAbout, selectedMapSources);
 
 
-    // ----- create dataset ----- //
+    // ----- create dataset -------------------------------------------------- //
 
     // filter map data using selected measure and time
 
@@ -268,7 +270,7 @@ const updateMapData = (e) => {
     let maxGeoRank = Math.max(mapMeasureData[0].GeoRank);
     filteredMapData = mapMeasureData.filter(obj => obj.GeoRank === maxGeoRank)
 
-    // ----- render the map ----- //
+    // ----- render the map -------------------------------------------------- //
 
     renderMap(filteredMapData, selectedMapMetadata);
 
@@ -280,14 +282,17 @@ const updateMapData = (e) => {
 
 }
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// trend
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-// ===== trend ===== //
+// ===== normal trend ================================================== //
 
 const updateTrendData = (e) => {
 
     console.log("updateTrendData");
 
-    // ----- handle selection ----- //
+    // ----- handle selection -------------------------------------------------- //
 
     // get meaasureId of selected dropdown element
 
@@ -307,7 +312,7 @@ const updateTrendData = (e) => {
     $(e.target).addClass("active");
     $(e.target).attr('aria-selected', true);
 
-    // ----- get metatadata for selected measure ----- //
+    // ----- get metatadata for selected measure -------------------------------------------------- //
 
     // trendMeasures is created by renderMeasures, which evals before this would be called
     let selectedTrendMetadata = trendMeasures.filter(m => m.MeasureID == measureId);
@@ -321,7 +326,7 @@ const updateTrendData = (e) => {
             ComparisonName: aq.escape('Boroughs')
         })
 
-    // ----- set measure info boxes ----- //
+    // ----- set measure info boxes -------------------------------------------------- //
 
     selectedTrendAbout =
         `<h6>${indicatorName} - ${measurementType}</h6>
@@ -336,14 +341,14 @@ const updateTrendData = (e) => {
     renderAboutSources(selectedTrendAbout, selectedTrendSources);
 
 
-    // ----- create dataset ----- //
+    // ----- create dataset -------------------------------------------------- //
 
     // created filtered trend data, to be passed to render function
 
     filteredTrendData = trendData.filter(m => m.MeasureID === measureId);
 
 
-    // ----- render the chart ----- //
+    // ----- render the chart -------------------------------------------------- //
 
     // chart only the annual average for the following measureIds:
     // 365 - PM2.5 (Fine particles), Mean
@@ -395,13 +400,13 @@ const updateTrendData = (e) => {
 }
 
 
-// ===== trend comparisons ===== //
+// ===== trend comparisons ================================================== //
 
 const updateTrendComparisonsData = (e) => {
 
     // console.log("updateTrendComparisonsData");
 
-    // ----- handle selection ----- //
+    // ----- handle selection -------------------------------------------------- //
 
     // get meaasureId of selected dropdown element
 
@@ -424,7 +429,7 @@ const updateTrendComparisonsData = (e) => {
     $(e.target).attr('aria-selected', true);
 
 
-    // ----- get metatadata for selected measure ----- //
+    // ----- get metatadata for selected measure -------------------------------------------------- //
 
     // aqCombinedComparisonsMetadata
     // aqComparisonsIndicatorData
@@ -432,55 +437,55 @@ const updateTrendComparisonsData = (e) => {
     // extract metadata for about & sources boxes
 
 
-    // ----- set measure info boxes ----- //
+    // ----- set measure info boxes -------------------------------------------------- //
 
-    // >>>>>>>> what does function need?
+    // this iterates over all the indicators and measures in the comparison
 
     aqComparisonsIndicatorsMetadata.objects().forEach(m => {
 
-    selectedComparisonAbout +=
-        `<h6>${m.IndicatorName} - ${m.MeasurementType}</h6>
-        <p>${m.how_calculated}</p>`;
+        selectedComparisonAbout +=
+            `<h6>${m.IndicatorName} - ${m.MeasurementType}</h6>
+            <p>${m.how_calculated}</p>`;
 
-    selectedComparisonSources +=
-        `<h6>${m.IndicatorName} - ${m.MeasurementType}</h6>
-        <p>${m.Sources}</p>`;
-})
+        selectedComparisonSources +=
+            `<h6>${m.IndicatorName} - ${m.MeasurementType}</h6>
+            <p>${m.Sources}</p>`;
+    })
 
     // render the measure info boxes
 
     renderAboutSources(selectedComparisonAbout, selectedComparisonSources);
 
 
-    // ----- create dataset ----- //
+    // ----- create dataset -------------------------------------------------- //
 
-    // metadata
+    // keep just the clicked comparison
 
-    filteredComparisonsMetadata = aqComparisonsMetadata
+    aqFilteredComparisonsMetadata = aqComparisonsMetadata
         .filter(aq.escape(d => d.ComparisonID == comparisonId))
         .join(aqComparisonsIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
 
-    // console.log("filteredComparisonsMetadata:");
-    // filteredComparisonsMetadata.print()
+    // console.log("aqFilteredComparisonsMetadata:");
+    // aqFilteredComparisonsMetadata.print()
     
-    // data
+    // use filtered metadata to filter data
 
-    filteredComparisonsData = filteredComparisonsMetadata
+    aqFilteredComparisonsData = aqFilteredComparisonsMetadata
         .select("IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure")
         .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
 
         // put host indicator first, so it gets the black line
         .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
 
-    // console.log("filteredComparisonsData:");
-    // filteredComparisonsData.print()
+    // console.log("aqFilteredComparisonsData:");
+    // aqFilteredComparisonsData.print()
 
 
-    // ----- render the chart ----- //
+    // ----- render the chart -------------------------------------------------- //
 
     renderComparisonsChart(
-        filteredComparisonsData,
-        filteredComparisonsMetadata
+        aqFilteredComparisonsData,
+        aqFilteredComparisonsMetadata
     );
 
     updateChartPlotSize();
@@ -492,11 +497,11 @@ const updateTrendComparisonsData = (e) => {
 }
 
 
-// ===== links ===== //
+// ===== links ================================================== //
 
 const updateLinksData = async (e) => {
 
-    // ---- handle selection ----- //
+    // ---- handle selection -------------------------------------------------- //
 
     // persistent selection
 
@@ -519,7 +524,7 @@ const updateLinksData = async (e) => {
     await filterSecondaryIndicatorMeasure(primaryMeasureId, secondaryMeasureId)
 
 
-    // ----- get metatadata for selected measure ----- //
+    // ----- get metatadata for selected measure -------------------------------------------------- //
 
     // for all indicators, get the ones that are linked to the current indicator
 
@@ -546,7 +551,7 @@ const updateLinksData = async (e) => {
     const secondarySources = secondaryMeasureMetadata[0].Sources;
 
 
-    // ----- set measure info boxes ----- //
+    // ----- set measure info boxes -------------------------------------------------- //
 
     selectedLinksAbout =
         `<h6>${primaryIndicatorName} - ${primaryMeasurementType}</h6>
@@ -565,7 +570,7 @@ const updateLinksData = async (e) => {
     renderAboutSources(selectedLinksAbout, selectedLinksSources);
 
 
-    // ----- render the chart ----- //
+    // ----- render the chart -------------------------------------------------- //
 
     renderLinksChart(
         joinedDataLinksObjects,
@@ -583,13 +588,14 @@ const updateLinksData = async (e) => {
 
 }
 
+
 // ----------------------------------------------------------------------- //
 // table filtering functions
 // ----------------------------------------------------------------------- //
 
 // need to be defined before `renderMeasures`, where they're added as listener callbacks
 
-// ===== year ===== //
+// ===== year ================================================== //
 
 const handleYearFilter = (el) => {
     el.addEventListener('change', (e) => {
@@ -600,7 +606,7 @@ const handleYearFilter = (el) => {
     })
 }
 
-// ===== geo ===== //
+// ===== geo ================================================== //
 
 const handleGeoFilter = (el) => {
 
@@ -623,8 +629,9 @@ const handleGeoFilter = (el) => {
     })
 }
 
+
 // ----------------------------------------------------------------------- //
-// finally, render the measures
+// function to render the measures
 // ----------------------------------------------------------------------- //
 
 const renderMeasures = async () => {
@@ -643,29 +650,32 @@ const renderMeasures = async () => {
 
     // console.log("contentTrend", contentTrend);
 
-    // ----- set dropdowns for this indicator ----- //
-
-    const dropdownTableYear = contentSummary.querySelector('div[aria-labelledby="dropdownTableYear"]');
-    const dropdownMapMeasures = contentMap.querySelector('div[aria-labelledby="dropdownMapMeasures"]');
+    // ----- set dropdowns for this indicator ================================================== //
 
     const dropdownTableGeo = contentSummary.querySelector('div[aria-labelledby="dropdownTableGeo"]');
-    // const dropdownTrendMeasures = contentTrend.querySelector('div[aria-labelledby="dropdownTrendMeasures"]');
+    const dropdownTableYear = contentSummary.querySelector('div[aria-labelledby="dropdownTableYear"]');
+
     const dropdownTrendComparisons = contentTrend.querySelector('div[aria-labelledby="dropdownTrendComparisons"]');
+
+    const dropdownMapMeasures = contentMap.querySelector('div[aria-labelledby="dropdownMapMeasures"]');
     const dropdownLinksMeasures = contentLinks.querySelector('div[aria-labelledby="dropdownLinksMeasures"]');
 
     // console.log("dropdownTrendComparisons", dropdownTrendComparisons);
 
+
     // clear Measure Dropdowns
 
-    dropdownTableYear.innerHTML = ``;
     dropdownTableGeo.innerHTML = ``;
-    dropdownMapMeasures.innerHTML = ``;
-    // dropdownTrendMeasures.innerHTML = ``;
+    dropdownTableYear.innerHTML = ``;
+
     dropdownTrendComparisons.innerHTML = ``;
+
+    dropdownMapMeasures.innerHTML = ``;
     dropdownLinksMeasures.innerHTML = ``;
 
     mapMeasures.length = 0;
     trendMeasures.length = 0;
+
 
     // create years dropdown for table
 
@@ -708,7 +718,7 @@ const renderMeasures = async () => {
     });
 
 
-    // ----- handle measures for this indicator ----- //
+    // ----- handle measures for this indicator -------------------------------------------------- //
 
     const mapYears = [...new Set(mapData.map(item => item.Time))];
 
@@ -726,7 +736,7 @@ const renderMeasures = async () => {
         const measureId = measure.MeasureID;
 
 
-        // ----- handle map measures ----- //
+        // ----- handle map measures -------------------------------------------------- //
 
         if (map === 1) {
 
@@ -747,7 +757,7 @@ const renderMeasures = async () => {
         }
 
 
-        // ----- handle trend measures ----- //
+        // ----- handle trend measures -------------------------------------------------- //
 
         if (trend === 1) {
 
@@ -776,7 +786,7 @@ const renderMeasures = async () => {
         }
 
 
-        // ----- handle links measures ----- //
+        // ----- handle links measures -------------------------------------------------- //
 
         if (links) {
 
@@ -817,7 +827,7 @@ const renderMeasures = async () => {
     });
 
 
-    // ----- handle comparisons viz ----- //
+    // ----- handle comparisons viz -------------------------------------------------- //
 
     if (indicatorComparisonId !== null) {
 
@@ -859,15 +869,13 @@ const renderMeasures = async () => {
     // functions to show to tabs
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    // ===== table ===== //
-
-    // define function
+    // ===== table ================================================== //
 
     showTable = (e) => {
 
         console.log("showTable");
 
-        // ----- handle tab selection ----- //
+        // ----- handle tab selection -------------------------------------------------- //
 
         // set hash to summary
 
@@ -877,7 +885,7 @@ const renderMeasures = async () => {
 
         currentHash = 'display=summary'
 
-        // reset aria attributes
+        // reset aria attributes for tabs
 
         tabTable.setAttribute('aria-selected', true);
         tabMap.setAttribute('aria-selected', false);
@@ -885,13 +893,13 @@ const renderMeasures = async () => {
         tabLinks.setAttribute('aria-selected', false);
 
 
-        // ----- set measure info boxes ----- //
+        // ----- set measure info boxes -------------------------------------------------- //
 
         renderTitleDescription(indicatorShortName, indicatorDesc);
         renderAboutSources(measureAbout, measureSources);
 
 
-        // ----- render the table ----- //
+        // ----- render the table -------------------------------------------------- //
 
         renderTable();
 
@@ -904,20 +912,18 @@ const renderMeasures = async () => {
     };
 
 
-    // ===== map ===== //
-
-    // define function
+    // ===== map ================================================== //
 
     showMap = (e) => {
 
-        // ----- handle tab selection ----- //
+        // ----- handle tab selection -------------------------------------------------- //
 
         // set hash to map
 
         window.location.hash = 'display=map'
         currentHash = 'display=map'
 
-        // reset aria attributes
+        // reset aria attributes for tabs
 
         tabTable.setAttribute('aria-selected', false);
         tabMap.setAttribute('aria-selected', true);
@@ -925,7 +931,7 @@ const renderMeasures = async () => {
         tabLinks.setAttribute('aria-selected', false);
 
 
-        // ----- allow map to persist when changing tabs ----- //
+        // ----- allow map to persist when changing tabs -------------------------------------------------- //
 
         if (!selectedMapMeasure) {
 
@@ -933,7 +939,7 @@ const renderMeasures = async () => {
             //  after selecting a measure, we don't want to recompute everything. We'll use the
             //  values created by the update function
 
-            // ----- get metatadata for default measure ----- //
+            // ----- get metatadata for default measure -------------------------------------------------- //
 
             // get default measure id
 
@@ -946,7 +952,7 @@ const renderMeasures = async () => {
             const measure = defaultMapMetadata[0].MeasurementType;
 
 
-            // ----- set measure info boxes ----- //
+            // ----- set measure info boxes -------------------------------------------------- //
 
             defaultMapAbout   =
                 `<h6>${indicatorName} - ${measure}</h6>
@@ -962,7 +968,7 @@ const renderMeasures = async () => {
             renderAboutSources(defaultMapAbout, defaultMapSources);
 
 
-            // ----- create dataset ----- //
+            // ----- create dataset -------------------------------------------------- //
 
             // filter map data using default measure
 
@@ -989,13 +995,13 @@ const renderMeasures = async () => {
             );
 
 
-            // ----- render the map ----- //
+            // ----- render the map -------------------------------------------------- //
 
             renderMap(filteredMapData, defaultMapMetadata);
 
             updateChartPlotSize();
 
-            // ----- persistent selection ----- //
+            // ----- persistent selection -------------------------------------------------- //
 
             // remove active class from every list element
             $('.mapbutton').removeClass("active");
@@ -1013,11 +1019,11 @@ const renderMeasures = async () => {
 
             // if there was a map already, restore it
 
-            // ----- set measure info boxes ----- //
+            // ----- set measure info boxes -------------------------------------------------- //
 
             renderAboutSources(selectedMapAbout, selectedMapSources);
 
-            // ----- render the map ----- //
+            // ----- render the map -------------------------------------------------- //
 
             renderMap(filteredMapData, defaultMapMetadata);
 
@@ -1027,38 +1033,35 @@ const renderMeasures = async () => {
     };
 
 
-    // ===== trend ===== //
+    // ===== trend ================================================== //
 
-    // define function
+    // ----- handle tab selection -------------------------------------------------- //
 
     showTrend = (e) => {
-
-        // ----- handle tab selection ----- //
 
         // set hash to trend
 
         window.location.hash = 'display=trend'
         currentHash = 'display=trend'
 
-        // reset aria attributes
+        // reset aria attributes for tabs
 
         tabTable.setAttribute('aria-selected', false);
         tabMap.setAttribute('aria-selected', false);
         tabTrend.setAttribute('aria-selected', true);
         tabLinks.setAttribute('aria-selected', false);
 
-        // If there's not a normal trend available, show comparisons
-
-        // console.log(">>>> trendMeasures", trendMeasures);
-        // console.log(">>>> onlyOneTime", onlyOneTime);
+        // han dle different trend chart types
 
         if (trendMeasures.length === 0 || onlyOneTime) {
 
-            // if not, show a trend comparison
-            debugger;
+            // If there's not a normal trend available, show comparisons
+
             showTrendComparisons()
 
         } else {
+            
+            // if there's normal trend available, show that
 
             showNormalTrend()
 
@@ -1066,6 +1069,8 @@ const renderMeasures = async () => {
 
 
     }
+
+    // ----- show the normal trend chart -------------------------------------------------- //
 
     showNormalTrend = (e) => {
 
@@ -1082,7 +1087,7 @@ const renderMeasures = async () => {
 
         const measureIdsSummer = [386];
 
-        // ----- allow chart to persist when changing tabs ----- //
+        // ----- allow chart to persist when changing tabs -------------------------------------------------- //
 
         if (!selectedTrendMeasure) {
 
@@ -1091,7 +1096,7 @@ const renderMeasures = async () => {
             //  values created by the update function
 
 
-            // ----- get metatadata for default measure ----- //
+            // ----- get metatadata for default measure -------------------------------------------------- //
 
             const about   = defaultTrendMetadata[0]?.how_calculated;
             const sources = defaultTrendMetadata[0].Sources;
@@ -1107,7 +1112,7 @@ const renderMeasures = async () => {
             // aqDefaultTrendMetadata.print()
 
 
-            // ----- set measure info boxes ----- //
+            // ----- set measure info boxes -------------------------------------------------- //
 
             defaultTrendAbout =
                 `<h6>${indicatorName} - ${measure}</h6>
@@ -1121,7 +1126,7 @@ const renderMeasures = async () => {
             renderAboutSources(defaultTrendAbout, defaultTrendSources);
 
 
-            // ----- handle disparities button ----- //
+            // ----- handle disparities button -------------------------------------------------- //
 
             // switch on/off the disparities button
 
@@ -1130,13 +1135,13 @@ const renderMeasures = async () => {
                 defaultTrendMetadata[0].VisOptions[0].Trend[0]?.Disparities;
 
 
-            // ----- create dataset ----- //
+            // ----- create dataset -------------------------------------------------- //
 
             const defaultTrendMeasureId = defaultTrendMetadata[0].MeasureID;
             filteredTrendData = trendData.filter(m => m.MeasureID === defaultTrendMeasureId);
 
 
-            // ----- render the chart ----- //
+            // ----- render the chart -------------------------------------------------- //
 
             // using 'aqFilteredTrendData' for all of the datasets allows the "else selected" block to use
             //  this same dataset. It will be whatever was most recently assigned to it.
@@ -1167,7 +1172,7 @@ const renderMeasures = async () => {
             }
 
 
-            // ----- persistent selection ----- //
+            // ----- persistent selection -------------------------------------------------- //
 
             // remove active class from every list element
             $('.trendbutton').removeClass("active");
@@ -1189,11 +1194,11 @@ const renderMeasures = async () => {
 
             // if there was a chart already, restore it
 
-            // ----- set measure info boxes ----- //
+            // ----- set measure info boxes -------------------------------------------------- //
 
             renderAboutSources(selectedTrendAbout, selectedTrendSources);
 
-            // ----- render the chart ----- //
+            // ----- render the chart -------------------------------------------------- //
 
             // renderTrendChart(filteredTrendData, aqDefaultTrendMetadata);
             renderComparisonsChart(aqFilteredTrendData, aqSelectedTrendMetadata);
@@ -1204,17 +1209,18 @@ const renderMeasures = async () => {
 
     };
     
-    // ===== trend comparisons ===== //
+
+    // ----- show the trend comparisons chart -------------------------------------------------- //
 
     showTrendComparisons = (e) => {
 
         console.log("showTrendComparisons");
 
-        // ----- allow chart to persist when changing tabs ----- //
+        // ----- allow chart to persist when changing tabs -------------------------------------------------- //
 
         if (!selectedComparison) {
 
-            // ----- handle selection ----- //
+            // ----- handle selection -------------------------------------------------- //
 
             // get first comparisonId
 
@@ -1239,7 +1245,7 @@ const renderMeasures = async () => {
             $(trendMeasureEl).addClass("active");
             $(trendMeasureEl).attr('aria-selected', true);
 
-            // ----- get metatadata for selected measure ----- //
+            // ----- get metatadata for selected measure -------------------------------------------------- //
 
             // aqCombinedComparisonsMetadata
             // aqComparisonsIndicatorData
@@ -1247,7 +1253,7 @@ const renderMeasures = async () => {
             // extract metadata for about & sources boxes
 
 
-            // ----- set measure info boxes ----- //
+            // ----- set measure info boxes -------------------------------------------------- //
 
             aqComparisonsIndicatorsMetadata.objects().forEach(m => {
 
@@ -1266,35 +1272,35 @@ const renderMeasures = async () => {
             renderAboutSources(selectedComparisonAbout, selectedComparisonSources);
 
 
-            // ----- create dataset ----- //
+            // ----- create dataset -------------------------------------------------- //
 
             // metadata
 
-            filteredComparisonsMetadata = aqComparisonsMetadata
+            aqFilteredComparisonsMetadata = aqComparisonsMetadata
                 .filter(aq.escape(d => d.ComparisonID == comparisonId))
                 .join(aqComparisonsIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
 
-            // console.log("filteredComparisonsMetadata:");
-            // filteredComparisonsMetadata.print()
+            // console.log("aqFilteredComparisonsMetadata:");
+            // aqFilteredComparisonsMetadata.print()
             
             // data
 
-            filteredComparisonsData = filteredComparisonsMetadata
+            aqFilteredComparisonsData = aqFilteredComparisonsMetadata
                 .select("IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure")
                 .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
 
                 // put host indicator first, so it gets the black line
                 .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
 
-            // console.log("filteredComparisonsData:");
-            // filteredComparisonsData.print()
+            // console.log("aqFilteredComparisonsData:");
+            // aqFilteredComparisonsData.print()
 
 
-            // ----- render the chart ----- //
+            // ----- render the chart -------------------------------------------------- //
 
             renderComparisonsChart(
-                filteredComparisonsData,
-                filteredComparisonsMetadata
+                aqFilteredComparisonsData,
+                aqFilteredComparisonsMetadata
             );
 
             updateChartPlotSize();
@@ -1303,16 +1309,16 @@ const renderMeasures = async () => {
 
             // if there was a chart already, restore it
 
-            // ----- set measure info boxes ----- //
+            // ----- set measure info boxes -------------------------------------------------- //
 
             renderAboutSources(selectedComparisonAbout, selectedComparisonSources);
 
-            // ----- render the chart ----- //
+            // ----- render the chart -------------------------------------------------- //
 
             // renderTrendChart(filteredTrendData, aqDefaultTrendMetadata);
             renderComparisonsChart(
-                filteredComparisonsData,
-                filteredComparisonsMetadata
+                aqFilteredComparisonsData,
+                aqFilteredComparisonsMetadata
             );
 
             updateChartPlotSize();
@@ -1321,20 +1327,20 @@ const renderMeasures = async () => {
     }
 
 
-    // ===== links ===== //
+    // ===== links ================================================== //
 
     // define function
 
     showLinks = (e) => {
 
-        // ----- handle tab selection ----- //
+        // ----- handle tab selection -------------------------------------------------- //
 
         // set hash to links
 
         window.location.hash = 'display=links'
         currentHash = 'display=links'
 
-        // reset aria attributes
+        // reset aria attributes for tabs
 
         tabTable.setAttribute('aria-selected', false);
         tabMap.setAttribute('aria-selected', false);
@@ -1342,7 +1348,7 @@ const renderMeasures = async () => {
         tabLinks.setAttribute('aria-selected', true);
 
 
-        // ----- allow chart to persist when changing tabs ----- //
+        // ----- allow chart to persist when changing tabs -------------------------------------------------- //
 
         if (!selectedLinksMeasure) {
 
@@ -1350,7 +1356,7 @@ const renderMeasures = async () => {
             //  after selecting a measure, we don't want to recompute everything. We'll use the
             //  values created by the update function
 
-            // ----- get metatadata for default measure ----- //
+            // ----- get metatadata for default measure -------------------------------------------------- //
 
             // get first linked measure by default
 
@@ -1384,7 +1390,7 @@ const renderMeasures = async () => {
             const secondarySources       = linksSecondaryMeasure[0].Sources;
 
 
-            // ----- set measure info boxes ----- //
+            // ----- set measure info boxes -------------------------------------------------- //
 
             // creating indicator & measure info
 
@@ -1401,13 +1407,13 @@ const renderMeasures = async () => {
                 <p>${secondarySources}</p>`;
 
 
-            // ----- create dataset ----- //
+            // ----- create dataset -------------------------------------------------- //
 
             renderTitleDescription(indicatorShortName, indicatorDesc);
             renderAboutSources(defaultLinksAbout, defaultLinksSources);
 
 
-            // ----- render the chart ----- //
+            // ----- render the chart -------------------------------------------------- //
 
             // joined data and metadata created in filterSecondaryIndicatorMeasure called fron setDefaultLinksMeasure
 
@@ -1422,7 +1428,7 @@ const renderMeasures = async () => {
             updateChartPlotSize();
 
 
-            // ----- persistent selection ----- //
+            // ----- persistent selection -------------------------------------------------- //
 
             // remove active class from every list element
             $('.linksbutton').removeClass("active");
@@ -1440,11 +1446,11 @@ const renderMeasures = async () => {
 
             // if there was a chart already, restore it
 
-            // ----- set measure info boxes ----- //
+            // ----- set measure info boxes -------------------------------------------------- //
 
             renderAboutSources(selectedLinksAbout, selectedLinksSources);
 
-            // ----- render the chart ----- //
+            // ----- render the chart -------------------------------------------------- //
 
             renderLinksChart(
                 joinedDataLinksObjects,
