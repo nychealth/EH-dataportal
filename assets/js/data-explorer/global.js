@@ -82,8 +82,8 @@ let secondaryMeasureMetadata;
 let filteredMapData;
 let filteredTrendData;
 let aqFilteredTrendData;
-let filteredComparisonsData;
-let filteredComparisonsMetadata;
+let aqFilteredComparisonsData;
+let aqFilteredComparisonsMetadata;
 
 let mapMeasures = [];
 let trendMeasures = [];
