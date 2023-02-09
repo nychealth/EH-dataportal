@@ -8,9 +8,6 @@ type: location
 seo_title: "Climate and Health in Greenpoint"
 seo_description: "Climate and Health data profile for the Greenpoint neighborhood of NYC."
 seo_image: "images/nyc_health_report_climate_health.jpg"
-menu:
-    main:
-        identifier: '04'
 vega: true
 arquero: true
 ---

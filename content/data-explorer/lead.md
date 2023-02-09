@@ -21,9 +21,6 @@ indicators:
   IndicatorID: 
   - 41
   - 16
-menu:
-    main:
-        identifier: '03'
 ---
 
 Lead is a metal that is toxic to people. There is no safe level of lead in your body. It can cause learning and behavior problems, and delay physical growth and mental development.

@@ -11,9 +11,6 @@ indicators:
 - header: null
   IndicatorID: 
   - 2006
-menu:
-    main:
-        identifier: '03'
 ---
 
 [OneNYC](http://www1.nyc.gov/html/onenyc/index.html) is a comprehensive sustainability plan for New York City's future.

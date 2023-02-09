@@ -14,9 +14,6 @@ indicators:
   - 2418
   - 2419
   - 2420
-menu:
-    main:
-        identifier: '03'
 ---
 
 Mental health is a person’s emotional, psychological, and social wellbeing. It is an important part of overall health.

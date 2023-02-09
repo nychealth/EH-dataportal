@@ -15,9 +15,6 @@ indicators:
   - 6
   - 8
 
-menu:
-    main:
-        identifier: '03'
 ---
 
 Death is, of course, a severe health outcome. Many deaths are preventable.

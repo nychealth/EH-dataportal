@@ -23,9 +23,6 @@ indicators:
 - header: null
   IndicatorID: 
   - 2026
-menu:
-    main:
-        identifier: '03'
 ---
 
 Air quality is a **measure of the condition of the air around us**. The less air pollution there is, the better the air quality.

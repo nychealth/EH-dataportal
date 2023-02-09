@@ -8,9 +8,6 @@ type: location
 seo_title: "Asthma and the Environment in Bedford Stuyvesant - Crown Heights"
 seo_description: "Asthma and the Environment data profile for the Bedford Stuyvesant - Crown Heights neighborhood of NYC."
 seo_image: "images/nyc_health_report_asthma_environment.jpg"
-menu:
-    main:
-        identifier: '04'
 vega: true
 arquero: true
 ---

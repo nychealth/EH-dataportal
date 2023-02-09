@@ -8,9 +8,6 @@ tags:
 categories: ["childhealth"]
 keyTopic: childhealth
 keywords: ["children","child health","housing","asthma","lead","housing"]
-menu:
-    main:
-        identifier: '05'
 layout: single
 image: nyc-children-playing.jpg
 ---

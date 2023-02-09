@@ -6,9 +6,6 @@ seo_title: "Real-time heat-related illness in NYC."
 seo_description: "Explore this summer's high temps and health effects."
 categories: [climatehealth]
 keywords: ["interactive","heat","weather","hot weather","extreme heat","heat mortality","heat-related illness","emergency room","emergency department","ED visit"]
-menu:
-    main:
-        identifier: '05'
 layout: syndromic
 ---
 

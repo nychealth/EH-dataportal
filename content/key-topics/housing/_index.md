@@ -8,9 +8,6 @@ tags:
 categories: [housing]
 keyTopic: housing
 keywords: ["housing","maintenance","maintenance deficiencies","homes","lead","carbon monoxide","mice","rats","pests","cockroaches","asthma","bed bugs","poverty","injustice"]
-menu:
-    main:
-        identifier: '05'
 layout: single
 image: nyc-housing.jpg
 ---

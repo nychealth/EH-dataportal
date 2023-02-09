@@ -14,9 +14,6 @@ keywords:
     - user research
 seo_title: Redesigned EH Data Portal
 seo_description: "We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health."
-menu:
-    main:
-        identifier: '02'
 ---
 The Environment and Health Data Portal looks a little bit different\! We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health.&nbsp;&nbsp;
 

@@ -16,9 +16,6 @@ indicators:
 - header: Safety
   IndicatorID: 
   - 2377
-menu:
-    main:
-        identifier: '03'
 ---
 
 Chronic obstructive pulmonary disease, or COPD, is a group of diseases that include emphysemia and chronic bronchitis.

@@ -39,9 +39,6 @@ indicators:
   - 2026
   - 2113
   - 2143
-menu:
-    main:
-        identifier: '03'
 ---
 
 Coming soon!

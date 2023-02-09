@@ -8,9 +8,6 @@ type: location
 seo_title: "Active Design Physical Activity and Health in East New York"
 seo_description: "Active Design Physical Activity and Health data profile for the East New York neighborhood of NYC."
 seo_image: "images/nyc_health_report_active_design_health.jpg"
-menu:
-    main:
-        identifier: '04'
 vega: true
 arquero: true
 ---

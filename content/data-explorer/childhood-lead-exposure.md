@@ -13,9 +13,6 @@ indicators:
   - 2189
   - 2184
   - 2216
-menu:
-    main:
-        identifier: '03'
 ---
 
 Childhood lead poisoning is a serious but preventable public health problem. Lead is a toxic metal that can cause learning and behavior problems, and delay physical growth and mental development. Testing for lead poisoning is a key component of childhood lead poisoning prevention, since most children with elevated blood lead levels exhibit no symptoms.
