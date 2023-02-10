@@ -61,7 +61,7 @@
                 <div class="col-sm-7 col-xs-12">
                     <div class="greenleftborder">
                         <h3>Methods</h3>
-                        <p>The Health Department designed NYCCAS to understand how average air pollution levels vary from place to place within New York City. NYCCAS staff mount samplers on street light poles 10 to 12 feet off the ground along residential and commercial streets and in parks. The monitors use a small battery-powered pump and filters to collect air samples. Our air samplers are deployed at each NYCCAS site once each season and collect data for a two-week period. Samples are collected in all seasons for NO, NO<sub>2</sub>, PM<sub>2.5</sub> and BC; in the summer for O<sub>3</sub>; and in the winter for SO<sub>2</sub>. For more details on sample collection methods, see <a href="https://nyccas.cityofnewyork.us/nyccas2021v9/sites/default/files/NYCCAS-appendix/Appendix1.pdf">Appendix 1 (PDF)</a>.</p>
+                        <p>The Health Department designed NYCCAS to understand how average air pollution levels vary from place to place within New York City. NYCCAS staff mount samplers on street light poles 10 to 12 feet off the ground along residential and commercial streets and in parks. The monitors use a small battery-powered pump and filters to collect air samples. Our air samplers are deployed at each NYCCAS site once each season and collect data for a two-week period. Samples are collected in all seasons for NO, NO<sub>2</sub>, PM<sub>2.5</sub> and BC; in the summer for O<sub>3</sub>; and in the winter for SO<sub>2</sub>. For more details on sample collection methods, see <a href="Appendix1.pdf">Appendix 1 (PDF)</a>.</p>
                         <p>The New York State Department of Environmental Conservation also has a network of 19 air quality monitors in New York City that are required by the Federal government, but they are mounted on building roofs. We placed our air samplers at street level to measure pollution where people spend time, and where traffic-related pollution levels are usually higher.</p>
                         <p>NYCCAS has also deployed a limited number of monitors that can measure PM<sub>2.5</sub> levels in real time. These monitors allow us to monitor air pollution as it changes based on the time of day, weather or due to local pollution sources, such as heavy-duty trucks. The data from these monitors is available here: <a href="../realtime/">Real-Time Air Quality</a>.</p>
 
@@ -107,7 +107,7 @@
                             <div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-03" data-parent="#accordion-01">
                                 <div class="card-body bg-white fs-sm">
                                     <p>
-                                        Nitrogen dioxide (NO<sub>2</sub>) and nitric oxide (NO) are part of a group of pollutants called &amp;ldquo;oxides of nitrogen&amp;rdquo; (NOX). Exposures to NOX are linked to increased emergency department visits and hospitalizations for respiratory conditions, particularly asthma. NOX also reacts with other compounds in the atmosphere to form PM<sub>2.5</sub> and O<sub>3</sub>. A variety of combustion sources produce NOX in New York City, including motor vehicles, buildings, marine vessels and construction equipment.
+                                        Nitrogen dioxide (NO<sub>2</sub>) and nitric oxide (NO) are part of a group of pollutants called &amp;ldquo;oxides of nitrogen&amp;rdquo; (NO<sub>X</sub>). Exposures to NO<sub>X</sub> are linked to increased emergency department visits and hospitalizations for respiratory conditions, particularly asthma. NO<sub>X</sub> also reacts with other compounds in the atmosphere to form PM<sub>2.5</sub> and O<sub>3</sub>. A variety of combustion sources produce NO<sub>X</sub> in New York City, including motor vehicles, buildings, marine vessels and construction equipment.
                                     </p>
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
                             <div class="collapse" id="panel-acc-button-04" role="tabpanel" aria-labelledby="acc-button-04" data-parent="#accordion-01">
                                 <div class="card-body bg-white fs-sm">
                                     <p>
-                                        Ozone (O<sub>3</sub>) forms at ground level when NOX emissions combine with sunlight and other airborne pollutants. Measured O<sub>3</sub> concentrations are often highest in the summer and downwind from areas with high NOX emissions, such as places with high traffic density. In areas with heavy traffic, NOX reacts with any ground-level O<sub>3</sub> to reduce O<sub>3</sub> concentrations. As a result, NYCCAS has measured lower O3 levels near roadways, in city centers and in other areas of high NOX emissions density. Higher levels of O<sub>3</sub> are seen in areas away from dense traffic and building emissions.
+                                        Ozone (O<sub>3</sub>) forms at ground level when NO<sub>X</sub> emissions combine with sunlight and other airborne pollutants. Measured O<sub>3</sub> concentrations are often highest in the summer and downwind from areas with high NO<sub>X</sub> emissions, such as places with high traffic density. In areas with heavy traffic, NO<sub>X</sub> reacts with any ground-level O<sub>3</sub> to reduce O<sub>3</sub> concentrations. As a result, NYCCAS has measured lower O3 levels near roadways, in city centers and in other areas of high NO<sub>X</sub> emissions density. Higher levels of O<sub>3</sub> are seen in areas away from dense traffic and building emissions.
                                     </p>
                                 </div>
                             </div>
@@ -222,7 +222,7 @@
                         <div id="o3Text" class="polText hide fs-sm">
                             <p>Since the first summer (2009) when relatively cool temperatures contributed to lower levels of Ozone, citywide summertime average levels varied slightly year to year (ranging from 27.8 ppb to 31.4 ppb between 2010 and 2021), without a consistent trend.
                             </p>
-                            <p>Higher levels were consistently measured at sites with lower traffic density and lower NO<sub>2</sub> concentrations such as areas of outer Queens, Brooklyn, and Staten Island, reflecting less removal of ozone from the atmosphere by fresh combustion NOx emissions.
+                            <p>Higher levels were consistently measured at sites with lower traffic density and lower NO<sub>2</sub> concentrations such as areas of outer Queens, Brooklyn, and Staten Island, reflecting less removal of ozone from the atmosphere by fresh combustion NO<sub>X</sub> emissions.
                             </p>
                             <p>In summer 2021, seasonal average O<sub>3</sub> varied from 24.3 to 38 ppb across the monitoring sites.
                             </p>
@@ -422,7 +422,7 @@
                       
                       // arrays of pollutant-specific sources
                       var bcSources = ['Commercial Cooking', 'Industrial Areas', 'Traffic Density'];
-                      var noSources = ['Boiler Density','Traffic NOx Emissions'];
+                      var noSources = ['Boiler Density','Traffic NO<sub>X</sub> Emissions'];
                       var no2Sources = ['Traffic Density', 'Building Density'];
                       var o3Sources = ['Traffic Density'];
                       var pmSources = ['Boiler PM2.5 Emissions','Commercial Cooking','Traffic Density'];
@@ -682,8 +682,8 @@
                                       </tr>
                                       <tr>
                                         <th scope="row">Traffic density</th>
-                                        <td>Traffic density, weighted by relative NOx emissions rates and vehicle type (car, truck, bus) within 400 m</td>
-                                        <td>NOx emissions from all on-road motor vehicles based on vehicle miles and the relative emission rates of different vehicle types</td>
+                                        <td>Traffic density, weighted by relative NO<sub>X</sub> emissions rates and vehicle type (car, truck, bus) within 400 m</td>
+                                        <td>NO<sub>X</sub> emissions from all on-road motor vehicles based on vehicle miles and the relative emission rates of different vehicle types</td>
                                       </tr>
                                       <tr>
                                         <th scope="row">Impervious surfaces</sub></th>
@@ -718,8 +718,8 @@
 
                                           <tr>
                                             <th scope="row">Traffic density</th>
-                                            <td>Traffic density, weighted by relative NOx emissions rates and vehicle type (car, truck, bus) within 100 m</td>
-                                            <td>NOx emissions from all on-road motor vehicles based on vehicle miles and the relative emission rates of different vehicle types</td>
+                                            <td>Traffic density, weighted by relative NO<sub>X</sub> emissions rates and vehicle type (car, truck, bus) within 100 m</td>
+                                            <td>NO<sub>X</sub> emissions from all on-road motor vehicles based on vehicle miles and the relative emission rates of different vehicle types</td>
                                           </tr>
 
                                           <tr>
