@@ -27,7 +27,7 @@ pollutantMaps: >-
     pollution levels at locations across the city, including places where no
     NYCCAS measurements were collected. For more details on emission source
     data, see <a
-    href="https://nyccas.cityofnewyork.us/nyccas2021v9/sites/default/files/NYCCAS-appendix/Appendix1.pdf">Appendix
+    href="Appendix1.pdf">Appendix
     1 (PDF)</a>. For more details on the analysis methods, see <a
     href="https://www1.nyc.gov/site/doh/data/data-publications/air-quality-nyc-community-air-survey.page#nyccas-pubs">NYCCAS
     Scientific Publications</a>.</p> <p>In the maps below, you can select a
@@ -50,7 +50,7 @@ pollutantMaps: >-
     JFK airport and Hunts Point in the Bronx, have higher levels of
     pollution.</p> <p>Winter and summer average maps for BC, NO<sub>2</sub>, NO
     and PM<sub>2.5</sub> are available in <a
-    href="https://nyccas.cityofnewyork.us/nyccas2022/sites/default/files/NYCCAS-appendix/Appendix2.pdf">Appendix
+    href="Appendix2.pdf">Appendix
     2 (PDF)</a>.</p>
 pollutantTrends: >-
     <p>Since monitoring began in winter 2008-2009 in New York City, we have seen
