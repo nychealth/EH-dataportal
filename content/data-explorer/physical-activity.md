@@ -3,7 +3,7 @@ title: Physical activity
 date: 2021-05-28 18:02:58.740215
 draft: false
 seo_title: "Physical activity data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["transportation"]
 keywords: ["physical activity","transportation","active design","health"]
@@ -15,9 +15,6 @@ indicators:
   - 2172
   - 2058
   - 2059
-menu:
-    main:
-        identifier: '03'
 ---
 
 Physical activity is an important part of a healthy lifestyle. Regular physical activity is associated with many health benefits, including improved fitness, prevention of weight gain, and lower risk of heart disease, stroke, high blood pressure, diabetes and some cancers. In addition, regular physical activity and healthy eating can promote well-being and relieve stress. For children, regular physical activity is also associated with improved academic performance.

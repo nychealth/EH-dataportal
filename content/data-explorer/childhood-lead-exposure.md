@@ -3,7 +3,7 @@ title: Childhood Lead Exposure
 date: 2021-05-28 18:02:58.848903
 draft: true
 seo_title: "Childhood lead exposure data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["housing","childhealth","social"]
 keywords: ["lead","poisoning","housing","children","child","testing","blood"]
@@ -13,9 +13,6 @@ indicators:
   - 2189
   - 2184
   - 2216
-menu:
-    main:
-        identifier: '03'
 ---
 
 Childhood lead poisoning is a serious but preventable public health problem. Lead is a toxic metal that can cause learning and behavior problems, and delay physical growth and mental development. Testing for lead poisoning is a key component of childhood lead poisoning prevention, since most children with elevated blood lead levels exhibit no symptoms.

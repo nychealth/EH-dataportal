@@ -3,7 +3,7 @@ title: Walking, driving, and cycling
 date: 2021-05-28 18:02:58.809768
 draft: false
 seo_title: "Walking, driving, and cycling data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["transportation","airquality"]
 keywords: ["transportation","walking","driving","cycling","infrastructure","streets","roads","safety"]
@@ -27,9 +27,6 @@ indicators:
   - 2112
   - 2113
   - 2114
-menu:
-    main:
-        identifier: '03'
 ---
  
 People get around New York City in many ways - public transit, walking, cycling, driving, and other modes too. When these individual behaviors are added up, they shape our city and our health.

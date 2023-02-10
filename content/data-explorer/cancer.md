@@ -3,7 +3,7 @@ title: Cancer
 date: 2021-05-28 18:02:58.804723
 draft: false
 seo_title: "Cancer data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["housing","healthoutcomes"]
 keywords: ["cancer","cancers","children","environmental health"]
@@ -27,9 +27,6 @@ indicators:
   - 2091
   - 64
   - 690
-menu:
-    main:
-        identifier: '03'
 ---
 
 Cancer is the general name for a group of more than 100 diseases in which cells in a part of the body begin to grow out of control.

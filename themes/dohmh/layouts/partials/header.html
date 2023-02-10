@@ -161,8 +161,12 @@
 
             <nav class="nav nav-pills border-bottom" role="navigation">
                 {{- $currentPage := . -}}
+
+                <span id="File.Path" style="display: none">{{ $currentPage.File.Path }}</span>
+                <span id="FirstSection.RelPermalink" style="display: none">{{ $currentPage.FirstSection.RelPermalink }}</span>
+
                 {{- range .Site.Menus.main -}}
-                <div class="nav-item{{ if or ($currentPage.IsMenuCurrent `main` .) (eq $currentPage.RelPermalink .URL) }} active{{- end -}}">
+                <div class="nav-item {{- if (eq $currentPage.FirstSection.RelPermalink .URL) }} active {{- end -}}">
 
                     <a class="nav-link" href="{{ .URL }}" id="nav-item-{{ .Identifier }}">
                         {{ .Pre }} {{ .Name }}

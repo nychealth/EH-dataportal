@@ -3,7 +3,7 @@ title: Pesticides
 date: 2021-05-28 18:02:58.904121
 draft: false
 seo_title: "Pesticide data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["pests"]
 keywords: ["pests","pesticides","mice","rats","cockroaches","bed bugs","rodents"]
@@ -32,9 +32,6 @@ indicators:
   - 2369
   - 2374
   - 2370
-menu:
-    main:
-        identifier: '03'
 ---
 
 Pesticides are chemicals applied to kill or control insects, rats and mice, undesirable plants and weeds, or fungi (e.g., mold). Pesticides are often categorized by type of use (e.g., rodenticide, insecticide) or chemical class (e.g., organophosphate, pyrethroid).

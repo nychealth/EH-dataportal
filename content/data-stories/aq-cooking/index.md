@@ -2,15 +2,12 @@
 title: "Tracking changes in New York City's sources of air pollution"
 date: 2021-04-12T12:02:09-04:00
 draft: false
-seo_title: "Restaurants and air quality"
+seo_title: "Restaurants and air quality in NYC."
 seo_description: "Tracking changes in New York City's sources of air pollution."
 tags: 
 categories: ["foodanddrink","airquality","neighborhoods"]
 keywords: ["air quality","PM2.5","fine particles","cooking","restaurants","buildings","density","emissions","pollution","air pollution", "lungs","breathing"]
 image: ds-aq-cooking.jpeg
-menu:
-    main:
-        identifier: '02'
 photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 As city life changes, so does its air quality, as sources of emissions that affect the city's outdoor air quality, like truck traffic, building boilers and restaurants, also change. For more than a decade, we have been tracking air quality through the {{< rawhtml >}}  <a href="#NYCCAS" data-toggle="collapse" class="badge badge-pill badge-primary">NYC Community Air Survey (NYCCAS)</a>{{< /rawhtml >}} and exploring the factors that drive neighborhood differences. We have found some interesting changes in the sources of air pollution across NYC neighborhoods.

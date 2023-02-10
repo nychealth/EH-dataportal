@@ -3,7 +3,7 @@ title: Parks and Public Space
 date: 2021-05-28 18:02:58.757692
 draft: true
 seo_title: "Parks and public space data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["transportation","neighborhoods"]
 keywords: ["parks","neighborhoods","transportation","green","trees","greenspace"]
@@ -11,9 +11,6 @@ indicators:
 - header: null
   IndicatorID: 
   - 775
-menu:
-    main:
-        identifier: '03'
 ---
 
 [OneNYC](http://www1.nyc.gov/html/onenyc/index.html) is a comprehensive sustainability plan for New York City's future.

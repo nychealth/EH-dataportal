@@ -8,9 +8,6 @@ tags:
 categories: ["housing","social","childhealth","neighborhoods"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism"]
 image: ds-povasthma.jpg
-menu:
-    main:
-        identifier: '02'
 layout: advanced
 image: ds-redlining.jpeg
 ---
@@ -32,10 +29,10 @@ En la década de 1930, durante la Gran Depresión, las tasas de desempleo eran a
 
 Para determinar qué préstamos podía garantizar, la HOLC envió personas a tasar vecindarios en las ciudades de los EE. UU. Determinaron los tipos de viviendas en los vecindarios, junto con información sobre las personas que vivían allí. También catalogaron las “influencias perjudiciales” con descripciones racistas como “infiltración de negros” y “razas mixtas” como características que reducían el valor de un vecindario. 
 
-{{< figure src="rl1.png" Alt="A redlining document that details housing, construction type, average age, repair condition, occupancy, price range, and other information" >}}
+{{< figure src="rl1.png" alt="A redlining document that details housing, construction type, average age, repair condition, occupancy, price range, and other information" >}}
 *Documento de redlining que detalla las viviendas, el tipo de construcción, la antigüedad promedio, las condiciones de reparación, la ocupación, el rango de precio y otra información. *
 
-{{< figure src="rl2.png" Alt="A redining document that reads: Detrimental influences: Obsolescence and poor maintenance. Infiltration of Negroes. Elevated structures on Lexington Ave & Fulton & Grand Avenue. Mixed races." >}}
+{{< figure src="rl2.png" alt="A redining document that reads: Detrimental influences: Obsolescence and poor maintenance. Infiltration of Negroes. Elevated structures on Lexington Ave & Fulton & Grand Avenue. Mixed races." >}}
 *Un documento de redlining que indica lo siguiente: "Influencias perjudiciales: Obsolescencia y mantenimiento deficiente. Infiltración de negros. Estructuras elevadas en Lexington Ave., y Fulton y Grand Avenue. Razas mixtas."*
 
 Con esta información, la HOLC diagramó “mapas de seguridad residencial” para casi 250 ciudades, incluida la ciudad de Nueva York. En estos mapas, la HOLC les dio a los vecindarios una clasificación: 

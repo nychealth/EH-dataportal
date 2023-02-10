@@ -3,7 +3,7 @@ title: Neighborhood Air Quality
 date: 2021-05-28 18:02:58.795124
 draft: true
 seo_title: "Neighborhood air quality data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["airquality","neighborhoods"]
 keywords: ["air quality","pollution","emissions","exhaust","pollutants","pm2.5","asthma","breathing","lungs","asthma","respiratory","illness","hospitalizations","emergency department visits"]
@@ -16,9 +16,6 @@ indicators:
   - 2025
   - 2027
   - 2026
-menu:
-    main:
-        identifier: '03'
 ---
 
 **Air quality can vary** **from neighborhood to neighborhood**. That is why the **New York City Community Air Survey (NYCCAS)**keeps track of street-level air pollution from about 100 locations throughout New York City every season. NYCCAS is part of [OneNYC](http://www1.nyc.gov/html/onenyc/index.html "OneNYC"), New York City's long-term plan for sustainability.

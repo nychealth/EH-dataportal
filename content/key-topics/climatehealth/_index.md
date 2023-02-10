@@ -3,14 +3,11 @@ title: "Climate and health"
 date: 2021-10-03T12:33:17-04:00
 draft: false
 seo_title: "Climate and Health in NYC"
-seo_description: "Data, data stories, interactives, and more."
+seo_description: "Data, data stories, interactives, and more about climate and health in NYC."
 tags: 
 categories: [climatehealth]
 keyTopic: climatehealth
 keywords: ["climate","climate change","public health","emergencies","heat","heat-related illness","storms","hurricanes","weather-related illness","weather"]
-menu:
-    main:
-        identifier: '05'
 layout: single
 image: nyc-climate.jpg
 ---

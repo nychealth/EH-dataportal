@@ -3,7 +3,7 @@ title: Health impacts of air pollution
 date: 2021-05-28 18:02:58.777148
 draft: false
 seo_title: "Health impacts of air pollution: data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["airquality","transportation","healthoutcomes","social"]
 keywords: ["air quality","pollution","emissions","exhaust","pollutants","pm2.5","asthma","breathing","lungs","asthma","respiratory","illness","hospitalizations","emergency department visits"]
@@ -21,12 +21,9 @@ indicators:
   IndicatorID:
   - 2121
   - 2108
-menu:
-    main:
-        identifier: '03'
 ---
 
-Air pollution is an important environmental threat to the health of New York City residents. Exposures to two common air pollutants, [fine particulate matter (PM2.5)](http://www.nyc.gov/html/doh/html/environmental/tracking-glossary.shtml) and [ozone (O3)](http://www.nyc.gov/html/doh/html/environmental/tracking-glossary.shtml), can worsen respiratory illness and heart conditions and contribute to premature deaths. Older adults, children and people with existing heart and lung disease are especially affected. This site provides estimates of the impact of air pollution on the health of NYC residents as measured by the numbers of emergency department visits, hospitalizations, and deaths attributable to PM2.5 and ozone.
+Air pollution is an important environmental threat to the health of New York City residents. Exposures to two common air pollutants, **fine particulate matter (PM2.5)** and **ozone (O3)**, can worsen respiratory illness and heart conditions and contribute to premature deaths. Older adults, children and people with existing heart and lung disease are especially affected. This site provides estimates of the impact of air pollution on the health of NYC residents as measured by the numbers of emergency department visits, hospitalizations, and deaths attributable to PM2.5 and ozone.
 
 ### About PM2.5, Ozone and Health
 

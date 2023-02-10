@@ -14,6 +14,11 @@ ignoreFiles = ['Simplified.Chinese', 'Spanish']
   data_repo = "https://raw.githubusercontent.com/nychealth/EHDP-data/"
   sitepath = "/EH-dataportal"
 
+[caches]
+    [caches.getresource]
+      dir = ':cacheDir/:project'
+      maxAge = 0
+
 [imaging]
   anchor = 'Smart'
   bgColor = '#ffffff'
@@ -34,7 +39,7 @@ ignoreFiles = ['Simplified.Chinese', 'Spanish']
   languageDesc = "Spanish-US"
   weight = 2
 
-[languages.cn]
+[languages.zh]
   languageName = "中文"
   languageDesc = "Chinese-Simplified"
   weight = 3

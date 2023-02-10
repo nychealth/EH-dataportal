@@ -3,7 +3,7 @@ title: Bed bugs
 date: 2021-05-28 18:02:58.735039
 draft: false
 seo_title: "Bed bugs data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["housing","pests","neighborhoods"]
 keywords: ["bed bugs","pests","housing","maintenance deficiencies"]
@@ -11,9 +11,6 @@ indicators:
 - header: null
   IndicatorID: 
   - 2030
-menu:
-    main:
-        identifier: '03'
 ---
 
 Bed bugs are small insects that feed mainly on human blood. They are often confused with other insects, and many people are not even aware of their presence until they have been bitten. However, not everyone has a reaction to bed bug bites. You may not discover that you have bed bugs until you see other signs of the pests such as, bed bugs themselves, their eggs or droppings, or the blood stains they leave behind in mattresses, box springs, chairs or other materials.

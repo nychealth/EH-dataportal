@@ -3,7 +3,7 @@ title: Cockroaches
 date: 2021-05-28 18:02:58.860064
 draft: false
 seo_title: "Cockroaches data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["pests","housing","neighborhoods"]
 keywords: ["pests","cockroaches","roaches","bugs","housing"]
@@ -13,9 +13,6 @@ indicators:
   - 22
   - 2393
   - 107
-menu:
-    main:
-        identifier: '03'
 ---
 
 Cockroaches are a common urban pest. Though there are more than a thousand species of roaches, just a few are found in NYC homes.  The most common are American Cockroaches, typically found in moist basements and lower floors, and German Cockroaches, found anywhere inside homes.

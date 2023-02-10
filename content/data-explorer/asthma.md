@@ -3,7 +3,7 @@ title: Asthma
 date: 2021-05-28 18:02:58.749912
 draft: false
 seo_title: "Asthma data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["airquality","childhealth","housing","transportation","climatehealth","healthoutcomes","social","pests"]
 keywords: ["asthma","children","hospitalizations","emergency department visits","breathing","housing","physical activity"]
@@ -30,9 +30,7 @@ indicators:
   - 2147
   - 2149
   - 2339
-menu:
-    main:
-        identifier: '03'
+  - 2414
 ---
 
 Asthma is a **common disease in which the lungs become swollen, making breathing difficult**. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. **Asthma cannot be cured, but it can be controlled**.

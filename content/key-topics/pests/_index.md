@@ -3,14 +3,11 @@ title: "Pests and pesticides"
 date: 2021-05-05T07:59:02-04:00
 draft: false
 seo_title: "Pests and Pesticides in NYC"
-seo_description: "Data, data stories, interactives, and more."
+seo_description: "Data, data stories, interactives, and more about pests, pesticides, and health in NYC."
 tags: 
 categories: [pests]
 keyTopic: pests
 keywords: ["pests","mice","rats","cockroaches","roaches","bed bugs","bugs","extermination","ticks","lyme disease","pesticides"]
-menu:
-    main:
-        identifier: '05'
 layout: single
 image: cockroaches.jpeg
 ---

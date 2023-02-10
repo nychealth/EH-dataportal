@@ -4,7 +4,7 @@ date: 2021-05-28 18:02:58.890564
 draft: false
 notes: "Remove sex ratio per 7/13/2022 conversation with AQ team, wendy"
 seo_title: "Birth outcomes data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["childhealth","healthoutcomes"]
 keywords: ["children","birth","birth defects","babies","pregnancy"]
@@ -26,9 +26,6 @@ indicators:
 - header: Other
   IndicatorID:
   - 9
-menu:
-    main:
-        identifier: '03'
 ---
 
 Close to 125,000 live births occur in New York City (NYC) each year. Most babies are born healthy, but those born prematurely or with low birth weight are at greater risk of disability or death. This site tracks indicators of fetal growth and development, infant and perinatal mortality, fertility and sex ratio at birth.

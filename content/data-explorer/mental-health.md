@@ -3,14 +3,11 @@ title: Mental health
 date: 2021-05-28 18:02:58.738512
 draft: true
 seo_title: "Mental health data in NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["social","transportation","healthoutcomes","housing","climatehealth"]
 keywords: ["mental health","mental illness","health care","health care access","health","depression","hospitalization","suicide","self-harm","violence"]
 indicators: 
-menu:
-    main:
-        identifier: '03'
 ---
 
 Mental health is a person’s emotional, psychological, and social wellbeing. It is an important part of overall health.

@@ -3,14 +3,11 @@ title: "Air quality"
 date: 2021-10-04T12:32:15-04:00
 draft: false
 seo_title: "Air Quality in NYC"
-seo_description: "Data, data stories, interactives, and more."
+seo_description: "Data, data stories, interactives, and more about NYC's air quality."
 tags: 
 categories: [airquality]
 keyTopic: airquality
 keywords: ["air quality","pollution","emissions","smog","PM2.5","asthma","breathing","lungs"]
-menu:
-    main:
-        identifier: '05'
 layout: single
 image: outdoor-air.jpg
 ---

@@ -9,7 +9,14 @@
     gtag('config', 'G-64BWDRHRGB');
 </script>
 
+<!-- Google will index this page -->
+<meta name="robots" content="all" />
+
+
 {{ else if eq hugo.Environment "development"}}
+
+<!-- Google won't index this page or follow links -->
+<meta name="robots" content="noindex. nofollow">
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PB98MPZ31B"></script>
@@ -44,6 +51,11 @@
 {{- end -}}
 
 {{- partial "seo" . -}}
+
+{{- if .Params.mapLib -}}
+<!-- nyc-lib css (for maps in the core framework)-->
+<link href="https://maps.nyc.gov/nyc-lib/v1.2.79/css/nyc-basic-lib.css" rel="stylesheet">
+{{- end -}}
 
 <!-- jQuery (full, compressed version) -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"

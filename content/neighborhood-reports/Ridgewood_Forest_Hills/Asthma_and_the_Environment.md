@@ -8,9 +8,6 @@ type: location
 seo_title: "Asthma and the Environment in Ridgewood - Forest Hills"
 seo_description: "Asthma and the Environment data profile for the Ridgewood - Forest Hills neighborhood of NYC."
 seo_image: "images/nyc_health_report_asthma_environment.jpg"
-menu:
-    main:
-        identifier: '04'
 vega: true
 arquero: true
 ---

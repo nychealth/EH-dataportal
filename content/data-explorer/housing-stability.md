@@ -3,7 +3,7 @@ title: Housing stability
 date: 2021-05-28 18:02:58.817845
 draft: false
 seo_title: "Housing data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["housing","social","neighborhoods","climatehealth"]
 keywords: ["built environments","neighborhoods","social","housing","maintenance","maintenance deficiencies","healthy housing","evictions","crowding","home ownership"]
@@ -14,9 +14,6 @@ indicators:
   - 15
   - 17
   - 2336
-menu:
-    main:
-        identifier: '03'
 ---
 
 Most people spend most of their time in their home. That makes the home a crucial environment that can affect one's health.
