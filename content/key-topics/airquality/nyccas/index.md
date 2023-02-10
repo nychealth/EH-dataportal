@@ -91,12 +91,12 @@ conclusion: >-
     future.</p>
 moreInfo: >-
     <ul><li><a target="_blank" rel="noopener"
-    href="Appendix1.pdf">Appendix
+    href="https://needed-komodo.cloudvent.net/key-topics/airquality/nyccas/Appendix1.pdf">Appendix
     1 (PDF) </a>: Sampling Methodology and Data Sources for Emissions
     Indicators.</li><li><a target="_blank" rel="noopener"
-    href="Appendix2.PDF">Appendix
-    2 (PDF) </a>: Seasonal Average Pollutant Maps.</li><li><a
-    href="Appendix3.pdf">Appendix
+    href="Appendix2.PDF">Appendix 2 (PDF) </a>: Seasonal Average Pollutant
+    Maps.</li><li><a
+    href="https://needed-komodo.cloudvent.net/key-topics/airquality/nyccas/Appendix1.pdf">Appendix
     3 (PDF)</a> : Community District Average Pollution Levels</li><li><a
     href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Traffic/index.html">The
     Public Health Impacts of PM<sub>2.5</sub> from Traffic Air Pollution data
