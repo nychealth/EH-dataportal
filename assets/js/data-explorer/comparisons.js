@@ -16,8 +16,8 @@ const renderComparisonsChart = (
     // console.log(">>> comp metadata");
     // metadata.print()
     
-    // console.log(">>> comp data:");
-    // data.print()
+    console.log(">>> comp data:");
+    data.print(100)
 
     let Value = data.array("Value");
     // let valueMin = Math.min.apply(null, Value);
@@ -89,8 +89,9 @@ const renderComparisonsChart = (
 
     // create tooltips JSON
 
-    let compTooltips = compGroupLabel.map(x => {return {"field": x}})
+    let compTooltips = compGroupLabel.map(x => {return {"field": x, "type": "nominal"}})
 
+    console.log(">>>> compTooltips:", compTooltips);
     // console.log(">>>> comp_group_col:", comp_group_col);
     // console.log(">>>> compGroupLabel:", compGroupLabel);
     
@@ -229,7 +230,7 @@ const renderComparisonsChart = (
                 "transform": [
                     {
                         "pivot": comp_group_col,
-                        "value": "DisplayValue",
+                        "value": "Value",
                         "groupby": [
                             "Time"
                         ]
