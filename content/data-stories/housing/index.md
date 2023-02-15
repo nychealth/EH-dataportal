@@ -307,21 +307,21 @@ These problems go far beyond inconvenience or mess. {{< rawhtml >}}
         <li>General disrepair is associated with anxiety and depression.</li>
         <li>Some forms, like <strong>broken plaster and peeling paint</strong>, or
             <strong>cracks and holes in interior walls</strong>, can <a
-                href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-explorer/lead/?id=2189#display=summary">expose
+                href=/data-explorer/lead/?id=2189#display=summary">expose
                 children to lead paint</a>.
         </li>
         <li><strong>Water leaks</strong>, broken windows, or <strong>toilet
                 breakdowns</strong> can introduce mold - which triggers allergies,
             <a
-                href="/IndicatorPublic/beta/data-explorer/asthma/?id=2380#display=summary">asthma</a>,
+                href=/data-explorer/asthma/?id=2380#display=summary">asthma</a>,
             and can make chronic conditions worse.
         </li>
         <li>Pests, like <strong>cockroaches, mice, and rats</strong> can make <a
-                href="/IndicatorPublic/beta/data-explorer/asthma/?id=2380#display=summary">asthma</a>
+                href=/data-explorer/asthma/?id=2380#display=summary">asthma</a>
             and allergies worse.</li>
         <li>The <strong>lack of an air conditioner</strong> places people at risk of
             <a
-                href="/IndicatorPublic/beta/data-explorer/weather-related-illness/?id=2074#display=summary">death
+                href=/data-explorer/weather-related-illness/?id=2074#display=summary">death
                 during hot weather</a>.
         </li>
     </ul>
