@@ -3,14 +3,14 @@ name: Hugo Build to `dev-test` branch
 # run action on a merged PR on "development"
 
 on:
-  # workflow_run:
-  #   workflows: [Hugo Build to GitHub Pages]
-  #   types:
-  #     - completed
-  
-  # effectively turning this off, but keeping it in the repo
-  schedule:
-    - cron: 0 0 1 1 * 
+  push:
+    branches:
+      - build-to-dev-test
+  pull_request:
+    branches:
+      - build-to-dev-test
+    types:
+      - closed
 
 jobs:
   deploy:
