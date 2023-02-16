@@ -151,7 +151,7 @@ const assignGeoRank = (GeoType) => {
         case 'NTA2010':
             return 8;
         case 'NTA2020':
-            return 8;
+            return 9;
     }
 }
 
