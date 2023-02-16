@@ -119,11 +119,11 @@ const assignGeoRank = (GeoType) => {
         case 'CD':
             return 6;
         case 'CDTA2020':
-            return 7;
+            return 6;
         case 'NTA2010':
-            return 8;
+            return 7;
         case 'NTA2020':
-            return 8;
+            return 7;
     }
 }
 
