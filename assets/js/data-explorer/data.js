@@ -247,6 +247,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     selectedTrendMeasure = false;
     selectedLinksMeasure = false;
     selectedComparison = false;
+    showingNormalTrend = false;
 
     // if dont_add_to_history is true, then don't push the state
     // if dont_add_to_history is false, or not set, push the state
@@ -285,6 +286,9 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     // call function to fetch comparisons data
 
     // console.log(">>>> indicatorComparisonId", indicatorComparisonId);
+    
+    // make sure metadata is empty, so that we can use its length for conditionals
+    comparisonsMetadata = [];
 
     if (indicatorComparisonId !== null) {
         await fetch_comparisons();

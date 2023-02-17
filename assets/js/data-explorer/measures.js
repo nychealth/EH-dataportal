@@ -397,7 +397,7 @@ const updateTrendData = (e) => {
 
     selectedTrendMeasure = true;
     selectedComparison = false;
-    showingTrendComparisons = false;
+    showingNormalTrend = true;
 
 }
 
@@ -496,7 +496,7 @@ const updateTrendComparisonsData = (e) => {
 
     selectedComparison = true;
     selectedTrendMeasure = false;
-    showingTrendComparisons = true;
+    showingNormalTrend = false;
 
 }
 
@@ -1057,23 +1057,24 @@ const renderMeasures = async () => {
         tabTrend.setAttribute('aria-selected', true);
         tabLinks.setAttribute('aria-selected', false);
 
-        // han dle different trend chart types
+        // handle different trend chart types
 
-        // if (trendMeasures.length === 0 || onlyOneTime || selectedComparison || !showingNormalTrend) {
-        
-        console.log("trendMeasures.length === 0:", trendMeasures.length === 0, "onlyOneTime:", onlyOneTime, "showingTrendComparisons:", showingTrendComparisons);
+        console.log("comparisonsMetadata.length === 0:", comparisonsMetadata.length === 0, "showingNormalTrend:", showingNormalTrend);
 
-        if (trendMeasures.length === 0 || onlyOneTime || showingTrendComparisons) {
+        // debugger;
 
-            // If there's not a normal trend available, show comparisons
-
-            showTrendComparisons()
-
-        } else {
+        // if (trendMeasures.length === 0 || onlyOneTime || showingNormalTrend) {
+        if (comparisonsMetadata.length === 0 || showingNormalTrend) {
             
-            // if there's normal trend available, show that
+            // if there's not a comparisons trend available, show the normal trend
 
             showNormalTrend()
+
+        } else {
+
+            // If there is a comparisons trend available, show comparisons
+
+            showTrendComparisons()
 
         }
 
@@ -1228,7 +1229,7 @@ const renderMeasures = async () => {
 
         }
 
-        showingTrendComparisons = false;
+        showingNormalTrend = true;
 
     };
     
@@ -1349,7 +1350,7 @@ const renderMeasures = async () => {
             
         }
         
-        showingTrendComparisons = true;
+        showingNormalTrend = false;
         
     }
 
