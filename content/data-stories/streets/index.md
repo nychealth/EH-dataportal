@@ -40,7 +40,7 @@ photocredit: "Michael Appleton/Mayoral Photography Office"
                                     as
                                     well as pedestrians. Along with
                                     these injury statistics, we have data on traffic density (e.g., measured in vehicle
-                                    miles travelled on specific roads),
+                                    miles traveled on specific roads),
                                     infrastructure (e.g., the presence of bike lanes), and cycling (e.g., how many
                                     people regularly bicycle to get around).
                                 </p>

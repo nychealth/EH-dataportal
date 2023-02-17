@@ -11,7 +11,7 @@ keywords: ["housing","maintenance","maintenance deficiencies","homes","lead","ca
 layout: single
 image: nyc-housing.jpg
 ---
-Most people spend most of their time at home - so the household environment can significantly affect health. Disrepair that stems from longterm maintenance neglect can lead to serious health problems, including: lead poisoning from lead paint; asthma and other respiratory issues triggered by pests; and carbon monoxide poisoning.
+Most people spend most of their time at home - so the household environment can significantly affect health. Disrepair that stems from long-term maintenance neglect can lead to serious health problems, including: lead poisoning from lead paint; asthma and other respiratory issues triggered by pests; and carbon monoxide poisoning.
 
 In NYC, substandard housing is disproportionately located in low-income neighborhoods, as historical disinvestment lead to severe, systemic maintenance deficiencies that threatens people's health. No family should have to choose between affordable and healthy housing - all tenants are entitled to safe, decent, healthy housing that prevents disease and injury.
 
