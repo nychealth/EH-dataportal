@@ -259,7 +259,7 @@ module.exports = function(grunt) {
 
                     let title = S(frontMatter.title).replace(/\s+/g, "_").replace(/,/g, "")
                     
-                    grunt.log.writeln(filename, ":", title.s);
+                    // grunt.log.writeln(filename, ":", title.s);
                     
                     // add these fields to NR topic landing pages
                     

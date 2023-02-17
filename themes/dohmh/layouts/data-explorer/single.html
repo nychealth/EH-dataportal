@@ -148,6 +148,12 @@
     .checkbox-geo.disabled > input {
         accent-color: #656565;
     }
+
+    /* disabled comparisons button */
+
+    .btn-comparisons.disabled {
+        color: #656565;
+    }
     
     /* SCROLLBAR */
 
@@ -362,15 +368,15 @@
                 <!-- MAP TAB -->
 
                 <div class="tab-pane fade py-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
-                    <div class="dropdown">
+                    <div class="dropdown pb-2">
                         <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
-                                id="dropdownMapMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Measure </button>
+                                id="dropdownMapMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Show... </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMapMeasures">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
                     </div>
                 
-                    <span id="mapTitle" class="home-label  border-bottom"></span>
+                    <span id="mapTitle" class="home-label border-bottom"></span>
                     <div id="map" class="vis-bucket"></div>
 
                     <div id="map-unreliability" class="pt-3">
@@ -383,19 +389,32 @@
                 <!-- TREND TAB -->
 
                 <div class="tab-pane fade py-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
-                    <div class="dropdown float-right">
-                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
-                                id="dropdownTrendMeasures" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false"> Measure </button>
-                        <!-- disparities button - display style changed to show or hide (currently hidden full time due to glitch on percents-->
-                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary btn-show-disparities d-none"
-                                style="display:inline"> Dispartites </button>
-            
+
+                    {{/*  <div class="dropdown float-right dropdownTrendMeasures">
+
+                        <!-- trend measures button -->
+                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle btn-trend" type="button"
+                                id="dropdownTrendMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Measure </button>
+                        
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownTrendMeasures">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
+
+                    </div>  */}}
+
+                    <div class="dropdown dropdownTrendComparisons pb-2">
+
+                        <!-- comparisons button -->
+                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle btn-comparisons" type="button"
+                                id="dropdownTrendComparisons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Show... </button>
+                        
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownTrendComparisons">
+                            <!-- INSERT MENU ITEMS HERE -->
+                        </div>
+            
                     </div>
-                    <span id="trendTitle" class="home-label  border-bottom"></span>
+
+                    <span id="trendTitle" class="home-label border-bottom"></span>
                     <!-- INSERT TREND CHART HERE -->
                     <div id="trend" class="vis-bucket"></div>
 
@@ -409,14 +428,19 @@
                 <!-- LINKS TAB -->
 
                 <div class="tab-pane fade py-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
-                    <div class="dropdown float-right">
+                    <div class="dropdown pb-2">
                         <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
-                                id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Select link </button>
+                                id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Link to... </button>
+
+                        <!-- disparities button - display style changed to show or hide (currently hidden full time due to glitch on percents-->
+                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary btn-show-disparities d-none"
+                                style="display:inline"> Dispartites </button>
+
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownLinksMeasures">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
                     </div>
-                    <span id="linksTitle" class="home-label border-bottom">Explore correlation</span>
+                    <span id="linksTitle" class="home-label border-bottom">Show correlations</span>
                     <!-- INSERT LINKS CHART HERE -->
                     <div id="links" class="vis-bucket"></div>
 
@@ -759,15 +783,17 @@
 
     {{- $global := resources.Get "js/data-explorer/global.js" -}}
     {{- $data := resources.Get "js/data-explorer/data.js" -}}
-    {{- $renderMeasures := resources.Get "js/data-explorer/renderMeasures.js" -}}
+    {{- $renderMeasures := resources.Get "js/data-explorer/measures.js" -}}
     {{- $summary := resources.Get "js/data-explorer/summary.js" -}}
     {{- $map := resources.Get "js/data-explorer/map.js" -}}
     {{- $trend := resources.Get "js/data-explorer/trend.js" -}}
     {{- $links := resources.Get "js/data-explorer/links.js" -}}
-    {{- $disparities := resources.Get "js/data-explorer/disparities.js" -}}
+    {{/*  {{- $disparities := resources.Get "js/data-explorer/disparities.js" -}}  */}}
+    {{- $comparisons := resources.Get "js/data-explorer/comparisons.js" -}}
     {{- $app := resources.Get "js/data-explorer/app.js" -}}
     
-    {{- $dataExplorerJS := slice $global $data $renderMeasures $summary $map $trend $links $disparities $app | resources.Concat "js/dataExplorer.js" -}}
+    {{/*  {{- $dataExplorerJS := slice $global $data $renderMeasures $summary $map $trend $links $disparities $comparisons $app | resources.Concat "js/dataExplorer.js" -}}  */}}
+    {{- $dataExplorerJS := slice $global $data $renderMeasures $summary $map $trend $links $comparisons $app | resources.Concat "js/dataExplorer.js" -}}
     {{- $DE_secureJS := $dataExplorerJS | resources.Fingerprint "sha512" -}}
 
     <script type="text/javascript" src="{{ $DE_secureJS.RelPermalink }}" integrity="{{ $DE_secureJS.Data.Integrity }}"></script>
