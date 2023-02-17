@@ -13,8 +13,8 @@ const renderComparisonsChart = (
     // arquero table for extracting arrays easily
     // ----------------------------------------------------------------------- //
 
-    // console.log(">>> comp metadata");
-    // metadata.print()
+    console.log(">>> comp metadata");
+    metadata.print()
     
     // console.log(">>> comp data:");
     // data.print(100)
@@ -33,7 +33,9 @@ const renderComparisonsChart = (
     let compIndicatorLabel = [... new Set(metadata.array("IndicatorLabel"))];
     let compLegendTitle;
     let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
+    let compDisplayTypes = [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
     // let compDisplayTypes = metadata.array("DisplayType");
+    console.log(">>>> compDisplayTypes", compDisplayTypes);
 
     // comparison group label is either measure, indicator, or combo. can include geo eventually
 
@@ -54,13 +56,13 @@ const renderComparisonsChart = (
         // add black to start of list for NYC
         // colors.splice(0, 0, "black");
 
-        plotTitle = compMeasurementType + (hasBoros ? " by Borough" : "");
+        plotTitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? " by Borough" : "");
         comp_group_col = "Geography"
 
     } else if (compIndicatorLabel.length == 1) {
         
         compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
-        plotTitle = compIndicatorLabel + " by " + compLegendTitle;
+        plotTitle = compIndicatorLabel + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
 
         // if there's only 1 indicator label, use measurement type to label the groups
 
@@ -70,7 +72,7 @@ const renderComparisonsChart = (
     } else if (compMeasurementType.length == 1) {
 
         compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
-        plotTitle = compMeasurementType + " by " + compLegendTitle;
+        plotTitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
 
         // if there's only 1 measurement type, use indicator label to label the groups
 
@@ -80,7 +82,7 @@ const renderComparisonsChart = (
     } else if (compMeasurementType.length > 1 && compIndicatorLabel.length > 1) {
         
         compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
-        plotTitle = compName + " by " + compLegendTitle;
+        plotTitle = compName + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
 
         // if there are more than 1 of both, use joined IndicatorMeasure 
 
