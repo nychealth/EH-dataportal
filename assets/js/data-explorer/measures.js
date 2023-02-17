@@ -729,15 +729,20 @@ const renderMeasures = async () => {
 
     // console.log(">>>> indicatorMeasures", indicatorMeasures);
 
-    let geographyTitle = ["Geography"]
+    let header = "";
 
     indicatorMeasures.map((measure, index) => {
+
+        console.log("index", index);
+        console.log("measure", measure);
 
         const type = measure?.MeasurementType;
         const links = measure?.VisOptions[0].Links && measure?.VisOptions[0]?.Links[0];
         const map = measure?.VisOptions[0].Map && measure?.VisOptions[0].Map[0]?.On;
         const trend = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0]?.On;
         const measureId = measure.MeasureID;
+
+        console.log("type", type, "links", links, "map", map, "trend", trend);
 
 
         // ----- handle map measures -------------------------------------------------- //
@@ -769,14 +774,19 @@ const renderMeasures = async () => {
 
             trendMeasures.push(measure)
 
-            // geographyTitle is 1 element long. If there are any trend measure, we'll show it once by
-            //  returning "Geography" for geographyTitle[0] and 'undefined' on every other iteration, which
-            //  suppresses the header via the ternary. This prevents us from having to map over
-            //  indicatorMeasures twice.
+            // if header hasn't been assigned yet, make it "Geography". If it's already been 
+            //  assigned, make it 'undefined', which suppresses the header via the ternary. 
+            //  This prevents us from having to map over indicatorMeasures twice.
+            
+            if (header === "") {
+                header = "Geography";
+            } else if (header === "Geography") {
+                header = undefined;
+            } else {
+                header = undefined;
+            }
 
-            header = geographyTitle[index];
-
-            // console.log("header", header);
+            console.log("header", header);
             // console.log("index", index);
 
             dropdownTrendComparisons.innerHTML += header ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
