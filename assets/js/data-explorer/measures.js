@@ -1073,6 +1073,18 @@ const renderMeasures = async () => {
 
         // debugger;
 
+        if (trendMeasures.length + comparisonsMetadata.length === 1) {
+
+            dropdownTrendComparisons.setAttribute('aria-disabled', true);
+            $('#dropdownTrendComparisons').addClass("disabled");
+
+        } else {
+
+            dropdownTrendComparisons.setAttribute('aria-disabled', false);
+            $('#dropdownTrendComparisons').removeClass("disabled");
+
+        }
+
         // if (trendMeasures.length === 0 || onlyOneTime || showingNormalTrend) {
         if (comparisonsMetadata.length === 0 || showingNormalTrend) {
             
