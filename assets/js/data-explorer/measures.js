@@ -733,8 +733,8 @@ const renderMeasures = async () => {
 
     indicatorMeasures.map((measure, index) => {
 
-        console.log("index", index);
-        console.log("measure", measure);
+        // console.log("index", index);
+        // console.log("measure", measure);
 
         const type = measure?.MeasurementType;
         const links = measure?.VisOptions[0].Links && measure?.VisOptions[0]?.Links[0];
@@ -742,7 +742,7 @@ const renderMeasures = async () => {
         const trend = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0]?.On;
         const measureId = measure.MeasureID;
 
-        console.log("type", type, "links", links, "map", map, "trend", trend);
+        // console.log("type", type, "links", links, "map", map, "trend", trend);
 
 
         // ----- handle map measures -------------------------------------------------- //
@@ -786,7 +786,7 @@ const renderMeasures = async () => {
                 header = undefined;
             }
 
-            console.log("header", header);
+            // console.log("header", header);
             // console.log("index", index);
 
             dropdownTrendComparisons.innerHTML += header ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
@@ -1069,7 +1069,7 @@ const renderMeasures = async () => {
 
         // handle different trend chart types
 
-        console.log("comparisonsMetadata.length === 0:", comparisonsMetadata.length === 0, "showingNormalTrend:", showingNormalTrend);
+        // console.log("comparisonsMetadata.length === 0:", comparisonsMetadata.length === 0, "showingNormalTrend:", showingNormalTrend);
 
         // debugger;
 
@@ -1111,7 +1111,7 @@ const renderMeasures = async () => {
 
         // ----- allow chart to persist when changing tabs -------------------------------------------------- //
 
-        console.log("selectedTrendMeasure", selectedTrendMeasure);
+        // console.log("selectedTrendMeasure", selectedTrendMeasure);
 
         if (!selectedTrendMeasure) {
 
@@ -1172,7 +1172,7 @@ const renderMeasures = async () => {
 
             if (measureIdsAnnualAvg.includes(defaultTrendMeasureId)) {
 
-                console.log("measureIdsAnnualAvg.includes(defaultTrendMeasureId)");
+                // console.log("measureIdsAnnualAvg.includes(defaultTrendMeasureId)");
                 
                 const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.Time.startsWith('Annual Average'));
                 aqFilteredTrendData = aq.from(filteredTrendDataAnnualAvg);
@@ -1182,7 +1182,7 @@ const renderMeasures = async () => {
                 
             } else if (measureIdsSummer.includes(defaultTrendMeasureId)) {
 
-                console.log("measureIdsSummer.includes(defaultTrendMeasureId)");
+                // console.log("measureIdsSummer.includes(defaultTrendMeasureId)");
                 
                 const filteredTrendDataSummer = filteredTrendData.filter(d => d.Time.startsWith('Summer'));
                 aqFilteredTrendData = aq.from(filteredTrendDataSummer);
@@ -1192,7 +1192,7 @@ const renderMeasures = async () => {
                 
             } else {
 
-                console.log(">>>>> else");
+                // console.log(">>>>> else");
 
                 aqFilteredTrendData = aq.from(filteredTrendData);
                 
@@ -1249,7 +1249,7 @@ const renderMeasures = async () => {
     showTrendComparisons = (e) => {
 
         console.log("* showTrendComparisons");
-        console.log("selectedComparison", selectedComparison);
+        // console.log("selectedComparison", selectedComparison);
 
         // ----- allow chart to persist when changing tabs -------------------------------------------------- //
 
@@ -1261,7 +1261,7 @@ const renderMeasures = async () => {
 
             const comparisonId = parseInt(comparisonsMetadata[0].ComparisonID);
 
-            console.log("comparisonId", comparisonId);
+            // console.log("comparisonId", comparisonId);
 
             // persistent selection
 
@@ -1556,7 +1556,7 @@ const renderMeasures = async () => {
 
     if ((trendMeasures.length === 0 || onlyOneTime) && (typeof comparisonsMetadata === 'undefined' || comparisonsMetadata.length === 0)) {
 
-        console.log("turn off trend");
+        // console.log("turn off trend");
 
         if (tabTrendSelected && window.location.hash === '#display=trend') {
 
