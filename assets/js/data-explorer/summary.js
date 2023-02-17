@@ -11,10 +11,10 @@ const renderTable = () => {
     const groupId = 0;
     let filteredTableData;
 
-    // console.log("fullDataTableObjects", fullDataTableObjects);
+    // console.log("tableData", tableData);
 
     const filteredTableYearData = 
-        fullDataTableObjects
+        tableData
         .filter(d => selectedSummaryYears.includes(d.Time))
 
     // get (pretty) geoTypes available for this year

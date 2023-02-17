@@ -1,15 +1,6 @@
 /*
-// ---- MAINTENANCE GOALS ---- //
-Realtime AQ should be durable to monitors coming online and offline.
-If a monitor is in the datafeed, it will need an entry in monitor_locations.csv
-In that file, loc_col will need to equal SiteName in the datafeed. 
-As long as we have that, buttons, colors, and the rest of the functionality will be handled. 
-
-When we get NYCCAS monitors back up, CH will create a "DEC average" in the field (instead of DEC monitors) so he can control what appears.
-
-NB: DEC monitors are designed to be averaged to report regional air quality
-
-- Consider creating a test of data completeness to determine whether to pass data into activeMonitors
+// ---- REALTIME AQ ---- //
+This app is built to be durable to monitors coming online and offline. If a monitor is in the datafeed, it will need an entry in monitor_locations.csv. In that file, loc_col will need to equal SiteName in the datafeed. 
 
 */
 
@@ -26,7 +17,7 @@ var floorDate;
 // ---- INITIAL: ingest data feed ---- // 
 aq.loadCSV(
      // "data/nyccas_realtime_DEC.csv" // temporary local placeholder
-     "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv" // actual live data feed. Also update this in spec json.
+      "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv" // actual live data feed. Also update this in spec json.
 
 ).then(data => {
 
@@ -41,7 +32,7 @@ aq.loadCSV(
     
     // console.log("fullTable:", fullTable);
     getStationsFromData();
-    loadMonitorLocations()
+
     
 });
 
@@ -53,6 +44,9 @@ function getStationsFromData() {
         sites.push(fullTable[i].SiteName)
     }
     stations = [...new Set(sites)]
+
+    // with stations in hand, load locations from data file
+    loadMonitorLocations();
 }
 
 // ---- Creates list of active monitors and their metadata (lat/longs, colors, etc) and run other functions ---- //
