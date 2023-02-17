@@ -16,8 +16,8 @@ const renderComparisonsChart = (
     // console.log(">>> comp metadata");
     // metadata.print()
     
-    console.log(">>> comp data:");
-    data.print(100)
+    // console.log(">>> comp data:");
+    // data.print(100)
 
     let Value = data.array("Value");
     // let valueMin = Math.min.apply(null, Value);
@@ -39,8 +39,10 @@ const renderComparisonsChart = (
 
     let compGroupLabel;
     let plotTitle;
-    // let colors = ["blue", "green", "orange", "red", "magenta"];
-    let colors = ["black", "blue", "green", "orange", "red", "magenta"];
+    // let colors = ["black", "blue", "green", "orange", "red", "magenta"];
+    // let colors = ["#000000FF", "#0000805F", "#0080005F", "#FFA5005F", "#FF00005F", "#FF00FF5F"];
+    // black, blue, orange, magenta, green, purple
+    let colors = ["#000000ff", "#1696d296", "#f2921496", "#ec008b96", "#55b74896", "#80008096"];
 
      if (compName[0] === "Boroughs") {
 
@@ -91,7 +93,7 @@ const renderComparisonsChart = (
 
     let compTooltips = compGroupLabel.map(x => {return {"field": x, "type": "nominal"}})
 
-    console.log(">>>> compTooltips:", compTooltips);
+    // console.log(">>>> compTooltips:", compTooltips);
     // console.log(">>>> comp_group_col:", comp_group_col);
     // console.log(">>>> compGroupLabel:", compGroupLabel);
     
@@ -147,7 +149,7 @@ const renderComparisonsChart = (
                 "fontWeight": "normal"
                 },
             "view": {"stroke": "transparent"},
-            "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 3},
+            "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
             
             "point": {"filled": true},
             "text": {
@@ -209,7 +211,14 @@ const renderComparisonsChart = (
                         "mark": {
                             "type": "line",
                             "interpolate": "monotone",
-                            "point": {"filled": false, "fill": "white"}
+                            "point": { 
+                                "filled": false, 
+                                "fill": "white", 
+                                "size": 40, 
+                                "strokeWidth": 2.5
+                                // "opacity": 100,
+                                // "fillOpacity": 100
+                            }
                         }
                         
                     },
