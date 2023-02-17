@@ -353,8 +353,8 @@ const updateTrendData = (e) => {
     // chart only the annual average for the following measureIds:
     // 365 - PM2.5 (Fine particles), Mean
     // 370 - Black carbon, Mean
-    // 391 - Nitric oxide, Mean
     // 375 - Nitrogen dioxide, Mean
+    // 391 - Nitric oxide, Mean
 
     const measureIdsAnnualAvg = [365, 370, 375, 391];
 
@@ -396,6 +396,8 @@ const updateTrendData = (e) => {
     // allow trend chart to persist when changing tabs
 
     selectedTrendMeasure = true;
+    selectedComparison = false;
+    showingTrendComparisons = false;
 
 }
 
@@ -404,7 +406,7 @@ const updateTrendData = (e) => {
 
 const updateTrendComparisonsData = (e) => {
 
-    // console.log("updateTrendComparisonsData");
+    console.log("updateTrendComparisonsData");
 
     // ----- handle selection -------------------------------------------------- //
 
@@ -493,6 +495,8 @@ const updateTrendComparisonsData = (e) => {
     // allow comparisons chart to persist when changing tabs
 
     selectedComparison = true;
+    selectedTrendMeasure = false;
+    showingTrendComparisons = true;
 
 }
 
@@ -1039,6 +1043,8 @@ const renderMeasures = async () => {
 
     showTrend = (e) => {
 
+        console.log("* showTrend");
+
         // set hash to trend
 
         window.location.hash = 'display=trend'
@@ -1053,7 +1059,11 @@ const renderMeasures = async () => {
 
         // han dle different trend chart types
 
-        if (trendMeasures.length === 0 || onlyOneTime) {
+        // if (trendMeasures.length === 0 || onlyOneTime || selectedComparison || !showingNormalTrend) {
+        
+        console.log("trendMeasures.length === 0:", trendMeasures.length === 0, "onlyOneTime:", onlyOneTime, "showingTrendComparisons:", showingTrendComparisons);
+
+        if (trendMeasures.length === 0 || onlyOneTime || showingTrendComparisons) {
 
             // If there's not a normal trend available, show comparisons
 
@@ -1067,12 +1077,13 @@ const renderMeasures = async () => {
 
         }
 
-
     }
 
     // ----- show the normal trend chart -------------------------------------------------- //
 
     showNormalTrend = (e) => {
+
+        console.log("* showNormalTrend");
 
         // chart only the annual average for the following measureIds:
         // 365 - PM2.5 (Fine particles), Mean
@@ -1088,6 +1099,8 @@ const renderMeasures = async () => {
         const measureIdsSummer = [386];
 
         // ----- allow chart to persist when changing tabs -------------------------------------------------- //
+
+        console.log("selectedTrendMeasure", selectedTrendMeasure);
 
         if (!selectedTrendMeasure) {
 
@@ -1147,6 +1160,8 @@ const renderMeasures = async () => {
             //  this same dataset. It will be whatever was most recently assigned to it.
 
             if (measureIdsAnnualAvg.includes(defaultTrendMeasureId)) {
+
+                console.log("measureIdsAnnualAvg.includes(defaultTrendMeasureId)");
                 
                 const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.Time.startsWith('Annual Average'));
                 aqFilteredTrendData = aq.from(filteredTrendDataAnnualAvg);
@@ -1155,6 +1170,8 @@ const renderMeasures = async () => {
                 updateChartPlotSize();
                 
             } else if (measureIdsSummer.includes(defaultTrendMeasureId)) {
+
+                console.log("measureIdsSummer.includes(defaultTrendMeasureId)");
                 
                 const filteredTrendDataSummer = filteredTrendData.filter(d => d.Time.startsWith('Summer'));
                 aqFilteredTrendData = aq.from(filteredTrendDataSummer);
@@ -1163,6 +1180,8 @@ const renderMeasures = async () => {
                 updateChartPlotSize();
                 
             } else {
+
+                console.log(">>>>> else");
 
                 aqFilteredTrendData = aq.from(filteredTrendData);
                 
@@ -1199,6 +1218,8 @@ const renderMeasures = async () => {
             renderAboutSources(selectedTrendAbout, selectedTrendSources);
 
             // ----- render the chart -------------------------------------------------- //
+            
+            aqFilteredTrendData = aq.from(filteredTrendData);
 
             // renderTrendChart(filteredTrendData, aqDefaultTrendMetadata);
             renderComparisonsChart(aqFilteredTrendData, aqSelectedTrendMetadata);
@@ -1207,6 +1228,8 @@ const renderMeasures = async () => {
 
         }
 
+        showingTrendComparisons = false;
+
     };
     
 
@@ -1214,7 +1237,8 @@ const renderMeasures = async () => {
 
     showTrendComparisons = (e) => {
 
-        console.log("showTrendComparisons");
+        console.log("* showTrendComparisons");
+        console.log("selectedComparison", selectedComparison);
 
         // ----- allow chart to persist when changing tabs -------------------------------------------------- //
 
@@ -1322,8 +1346,11 @@ const renderMeasures = async () => {
             );
 
             updateChartPlotSize();
-
+            
         }
+        
+        showingTrendComparisons = true;
+        
     }
 
 
