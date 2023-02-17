@@ -3,7 +3,7 @@ title: "Why violence is a public health issue"
 date: 2021-02-08T08:07:31-04:00
 draft: false
 seo_title: "Why violence is a public health issue"
-seo_description: "A data story on violence, disparties, and real public health justice in NYC."
+seo_description: "A data story on violence, disparities, and real public health justice in NYC."
 categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
 keywords: ["violence","assaults","injustice","poverty","social determinants","redlining","disinvestment","racism","neighborhoods"]
 image: ds-povasthma.jpg
@@ -86,7 +86,7 @@ A map of recent shootings lines up with the heavily <span style="font-weight: bo
 Decades of government and societal {{< rawhtml >}}<a href="#disinvestmentCollapse" data-toggle="collapse" class="badge badge-pill badge-warning">disinvestment</a> from practices like redlining means limited opportunity and resources, and results in higher rates of poverty in some neighborhoods.</p>
 <div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="disinvestmentCollapse">
     <strong>Disinvestment</strong> is when either government agencies or private companies deliberately withhold or withdraw resources and opportunity from a neighborhood or community. </p>
-    <p>The history of disinvesment is tied to racist practices and policies - like denyng people of color loans to buy homes. Disinvestment is also planned shrinkage, a steady decline of public funding for public housing, services, education - especially in cities, and especially in neighborhoods populated mostly by people of color.</p>
+    <p>The history of disinvestment is tied to racist practices and policies - like denyng people of color loans to buy homes. Disinvestment is also planned shrinkage, a steady decline of public funding for public housing, services, education - especially in cities, and especially in neighborhoods populated mostly by people of color.</p>
     </div>{{< /rawhtml >}}
 
 As a result of this disinvestment, we see a clear relationship between poverty and violence. As a neighborhood's poverty level increases, so do assaults.

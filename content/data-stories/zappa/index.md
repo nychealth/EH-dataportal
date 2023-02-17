@@ -93,7 +93,7 @@ Compared to Midtown, the South Bronx has a smaller average reduction in PM2.5 bu
 
 ### Key takeaways 
 
-ZAPPA—a new, free online tool created by the NYC Health Department with Institute for the Environment at UNC-Chapel Hill–-can help New Yorkers understand the health outcomes of proposed emission-reduction policies. ZAPPA uses fine-grained, ZIP-Code level data to produce precise, reliable estiamtes. It lets us compare outcomes by neighborhood, and provides data that can inform air quality policy development, program planning, and advocacy, and enable users to center equity and public health in environmental measures. 
+ZAPPA—a new, free online tool created by the NYC Health Department with Institute for the Environment at UNC-Chapel Hill–-can help New Yorkers understand the health outcomes of proposed emission-reduction policies. ZAPPA uses fine-grained, ZIP-Code level data to produce precise, reliable estimates. It lets us compare outcomes by neighborhood, and provides data that can inform air quality policy development, program planning, and advocacy, and enable users to center equity and public health in environmental measures. 
 
 ---
 <br>
