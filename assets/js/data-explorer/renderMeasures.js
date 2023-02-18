@@ -789,12 +789,12 @@ const renderMeasures = async () => {
 
             selectedSummaryYears.push(year);
             dropdownTableYear.innerHTML +=
-                `<label class="dropdown-item checkbox-year"><input type="checkbox" name="year" value="${year}" checked /> ${year}</label>`;
+                `<label class="dropdown-item checkbox-year"><input type="radio" name="year" value="${year}" checked /> ${year}</label>`;
 
         } else {
 
             dropdownTableYear.innerHTML +=
-                `<label class="dropdown-item checkbox-year"><input type="checkbox" name="year" value="${year}" /> ${year}</label>`;
+                `<label class="dropdown-item checkbox-year"><input type="radio" name="year" value="${year}" /> ${year}</label>`;
         }
 
     });
