@@ -1,5 +1,5 @@
 // ======================================================================= //
-// summary.js
+// trend.js
 // ======================================================================= //
 
 const renderTrendChart = (
@@ -9,24 +9,31 @@ const renderTrendChart = (
 
     console.log("** renderTrendChart");
 
+    // console.log(">>> trend data");
+    // data.print()
+
+    // console.log(">>> trend metadata");
+    // metadata.print()
+
     // ----------------------------------------------------------------------- //
     // arquero table for extracting arrays easily
     // ----------------------------------------------------------------------- //
     
     let aqData = aq.from(data);
     let Value = aqData.array("Value");
-    let valueMin = Math.min.apply(null, Value);
+    // let valueMin = Math.min.apply(null, Value);
     let valueMax = Math.max.apply(null, Value);
-    let tickMinStep = valueMax >= 3.0 ? 1 : 0.5
-    // console.log('tickMinStep: ' + tickMinStep)
+    let tickMinStep = valueMax >= 3.0 ? 1 : 0.1
+
+    // let aqMetadata = aq.from(metadata);
     
     // ----------------------------------------------------------------------- //
     // extract measure metadata
     // ----------------------------------------------------------------------- //
     
-    let trendMeasurementType = metadata[0].MeasurementType;
-    let trendDisplay = metadata[0].DisplayType;
-    
+    let trendMeasurementType = [... new Set(metadata.array("MeasurementType"))];
+    let trendDisplay = [... new Set(metadata.array("DisplayType"))];
+
     // get dimensions
 
     var columns = 6;
@@ -138,6 +145,9 @@ const renderTrendChart = (
                         "field": "Value",
                         "type": "quantitative",
                         "title": null,
+                        "axis": {
+                            "tickCount": 5
+                        },
                         "scale": {"domainMin": 0, "nice": true} // change domainMin to valueMin to scale with data
                     }
                 },
@@ -145,6 +155,7 @@ const renderTrendChart = (
                     {
                         "mark": {
                             "type": "line",
+                            "interpolate": "monotone",
                             "point": {"filled": false, "fill": "white"}
                         }
                         
@@ -166,7 +177,7 @@ const renderTrendChart = (
                 "transform": [
                     {
                         "pivot": "Geography",
-                        "value": "Value",
+                        "value": "DisplayValue",
                         "groupby": [
                             "Time"
                         ]
