@@ -708,9 +708,25 @@ const updateLinksData = async (e) => {
 // ===== year ===== //
 
 const handleYearFilter = (el) => {
+
     el.addEventListener('change', (e) => {
+
+        // console.log("e", e);
+
         if (e.target.checked) {
-            selectedSummaryYears = [e.target.value]
+
+            // selectedSummaryYears = [e.target.value]
+            selectedSummaryYears.push(e.target.value)
+
+        } else {
+
+            // if the selected element is not checked, remove it from summary years
+
+            let index = selectedSummaryYears.indexOf(e.target.value);
+
+            if (index !== -1) {
+                selectedSummaryYears.splice(index, 1);
+            }
         }
         renderTable()
     })
@@ -787,14 +803,17 @@ const renderMeasures = async () => {
 
         if (index === 0) {
 
-            selectedSummaryYears.push(year);
+            // default to most recent year
+
+            selectedSummaryYears = [year];
+
             dropdownTableYear.innerHTML +=
-                `<label class="dropdown-item checkbox-year"><input type="radio" name="year" value="${year}" checked /> ${year}</label>`;
+                `<label class="dropdown-item checkbox-year"><input class="largerCheckbox" type="checkbox" name="year" value="${year}" checked /> ${year}</label>`;
 
         } else {
 
             dropdownTableYear.innerHTML +=
-                `<label class="dropdown-item checkbox-year"><input type="radio" name="year" value="${year}" /> ${year}</label>`;
+                `<label class="dropdown-item checkbox-year"><input class="largerCheckbox" type="checkbox" name="year" value="${year}" /> ${year}</label>`;
         }
 
     });
@@ -804,8 +823,8 @@ const renderMeasures = async () => {
     const tableGeoTypes = [...new Set(fullDataTableObjects.map(item => prettifyGeoType(item.GeoType)))];
     const dropdownGeoTypes = geoTypes.filter(g => tableGeoTypes.includes(g))
 
-    console.log("geoTypes:", geoTypes);
-    console.log("dropdownGeoTypes:", dropdownGeoTypes);
+    // console.log("geoTypes:", geoTypes);
+    // console.log("dropdownGeoTypes:", dropdownGeoTypes);
 
     dropdownGeoTypes.forEach(geo => {
 
@@ -813,7 +832,7 @@ const renderMeasures = async () => {
         
         // console.log("selectedSummaryGeography:", selectedSummaryGeography);
 
-        dropdownTableGeo.innerHTML += `<label class="dropdown-item checkbox-geo"><input type="checkbox" value="${geo}" checked /> ${geo}</label>`;
+        dropdownTableGeo.innerHTML += `<label class="dropdown-item checkbox-geo"><input class="largerCheckbox" type="checkbox" value="${geo}" checked /> ${geo}</label>`;
 
     });
 
