@@ -17,6 +17,10 @@ const renderTable = () => {
         fullDataTableObjects
         .filter(d => selectedSummaryYears.includes(d.Time))
 
+    const dataTimes = [...new Set(filteredTableYearData.map(d => d.Time))];
+
+    console.log(">>>> dataTimes", dataTimes);
+
     // get (pretty) geoTypes available for this year
 
     const dataGeos = [...new Set(filteredTableYearData.map(d => prettifyGeoType(d.GeoType)))];
@@ -186,12 +190,20 @@ const renderTable = () => {
             let lastYr = null;
             
             const createGroupRow = (groupColumn, lvl) => {
+
+                console.log("groupColumn", groupColumn);
+                console.log("lvl", lvl);
                 
                 api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
+
+                    console.log("group", group);
+                    console.log("i", i);
                     
                     const year = data[i][0]
                     const groupName = `${year}-${group}`
                     
+                    console.log("year", year);
+
                     if ( last !== group || lastYr !== year ) {
                         
                         $(rows).eq( i ).before(
@@ -233,17 +245,21 @@ const handleToggle = () => {
             const subGroupRow = $(`tr[data-year="${group}"]`);
 
             if (subGroupToggle.css('display') === 'none') {
+
                 subGroupToggle.removeClass('hidden');
                 subGroupRow.removeClass('hidden');
                 td.removeClass('hidden');
                 subGroupToggle.show();
                 subGroupRow.show();
+
             } else {
+
                 subGroupToggle.addClass('hidden');
                 subGroupRow.addClass('hidden');
                 td.addClass('hidden');
                 subGroupToggle.hide();
                 subGroupRow.hide();
+
             }
         }
 
@@ -255,11 +271,14 @@ const handleToggle = () => {
             const parentGroupToggle = $(`td[data-group="${parentDataGroup}"]`);
 
             if (subGroupRow.css('display') == 'none')  {
+
                 subGroupRow.show();
                 td.removeClass('hidden');
                 subGroupRow.removeClass('hidden');
                 parentGroupToggle.removeClass('hidden');
+
             } else {
+
                 subGroupRow.hide();
                 td.addClass('hidden');
                 subGroupRow.addClass('hidden');
@@ -267,9 +286,13 @@ const handleToggle = () => {
         }
 
         if (groupLevel === 0) {
+
             handleGroupToggle();
+
         } else {
+
             handleSubGroupToggle();
+            
         }
 
     });
