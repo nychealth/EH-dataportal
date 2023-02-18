@@ -19,7 +19,7 @@ const renderTable = () => {
 
     const dataTimes = [...new Set(filteredTableYearData.map(d => d.Time))];
 
-    console.log(">>>> dataTimes", dataTimes);
+    // console.log(">>>> dataTimes", dataTimes);
 
     // get (pretty) geoTypes available for this year
 
@@ -191,18 +191,18 @@ const renderTable = () => {
             
             const createGroupRow = (groupColumn, lvl) => {
 
-                console.log("groupColumn", groupColumn);
-                console.log("lvl", lvl);
+                // console.log("groupColumn", groupColumn);
+                // console.log("lvl", lvl);
                 
                 api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
 
-                    console.log("group", group);
-                    console.log("i", i);
+                    // console.log("group", group);
+                    // console.log("i", i);
                     
                     const year = data[i][0]
                     const groupName = `${year}-${group}`
                     
-                    console.log("year", year);
+                    // console.log("year", year);
 
                     if ( last !== group || lastYr !== year ) {
                         
