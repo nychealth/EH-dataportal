@@ -210,19 +210,47 @@ const updateMapData = (e) => {
 
     // ----- handle selection -------------------------------------------------- //
 
-    // get meaasureId of selected dropdown element
+    let measureId;
+    let time;
 
-    const measureId = parseInt(e.target.dataset.measureId);
+    if (typeof e.target.dataset.measureId != 'undefined') {
+        
+        // get meaasureId of selected dropdown element
+        
+        measureId = parseInt(e.target.dataset.measureId);
+        
+        time = $('.maptimesbutton.active').attr("data-time")
 
-    // get selected time
+        console.log(">>> measure", "measureId", measureId, "time", time);
 
-    const time = e.target.dataset.time;
+        // persistent selection
+        
+        // measures
 
-    // persistent selection
+        $('.mapmeasuresbutton').removeClass("active");
+        $('.mapmeasuresbutton').attr('aria-selected', false);
+        
+    }
 
-    // remove active class from every list element
-    $('.mapbutton').removeClass("active");
-    $('.mapbutton').attr('aria-selected', false);
+    if (typeof e.target.dataset.time != 'undefined') {
+        
+        // get selected time
+        
+        time = parseInt(e.target.dataset.time);
+
+        measureId = $('.mapmeasuresbutton.active').attr("data-measure-id")
+        
+        console.log(">>> time", "measureId", measureId, "time", time);
+
+        // persistent selection
+
+        // times
+
+        $('.maptimesbutton').removeClass("active");
+        $('.maptimesbutton').attr('aria-selected', false);
+
+    }
+
 
     // set this element as active & selected
     $(e.target).addClass("active");
@@ -261,9 +289,11 @@ const updateMapData = (e) => {
 
     let mapMeasureData =
         mapData.filter(
-            obj => obj.MeasureID === measureId &&
-            obj.Time === time
+            obj => obj.MeasureID == measureId &&
+            obj.Time == time
         );
+
+    // console.log("mapMeasureData", mapMeasureData);
 
     // get the highest GeoRank, then keep just that geo
 
@@ -673,11 +703,12 @@ const renderMeasures = async () => {
     // ----- set dropdowns for this indicator ================================================== //
 
     const dropdownTableGeo = contentSummary.querySelector('div[aria-labelledby="dropdownTableGeo"]');
-    const dropdownTableYear = contentSummary.querySelector('div[aria-labelledby="dropdownTableYear"]');
+    const dropdownTableTime = contentSummary.querySelector('div[aria-labelledby="dropdownTableTime"]');
 
     const dropdownTrendComparisons = contentTrend.querySelector('div[aria-labelledby="dropdownTrendComparisons"]');
 
     const dropdownMapMeasures = contentMap.querySelector('div[aria-labelledby="dropdownMapMeasures"]');
+    const dropdownMapTimes = contentMap.querySelector('div[aria-labelledby="dropdownMapTimes"]');
     const dropdownLinksMeasures = contentLinks.querySelector('div[aria-labelledby="dropdownLinksMeasures"]');
 
     // console.log("dropdownTrendComparisons", dropdownTrendComparisons);
@@ -686,11 +717,12 @@ const renderMeasures = async () => {
     // clear Measure Dropdowns
 
     dropdownTableGeo.innerHTML = ``;
-    dropdownTableYear.innerHTML = ``;
+    dropdownTableTime.innerHTML = ``;
 
     dropdownTrendComparisons.innerHTML = ``;
 
     dropdownMapMeasures.innerHTML = ``;
+    dropdownMapTimes.innerHTML = ``;
     dropdownLinksMeasures.innerHTML = ``;
 
     mapMeasures.length = 0;
@@ -711,16 +743,17 @@ const renderMeasures = async () => {
 
             selectedSummaryYears = [year];
 
-            dropdownTableYear.innerHTML +=
+            dropdownTableTime.innerHTML +=
                 `<label class="dropdown-item checkbox-year"><input class="largerCheckbox" type="checkbox" name="year" value="${year}" checked /> ${year}</label>`;
 
         } else {
 
-            dropdownTableYear.innerHTML +=
+            dropdownTableTime.innerHTML +=
                 `<label class="dropdown-item checkbox-year"><input class="largerCheckbox" type="checkbox" name="year" value="${year}" /> ${year}</label>`;
         }
 
     });
+
 
     // create geo dropdown for table (using pretty geotypes, keeping georank order)
 
@@ -743,10 +776,19 @@ const renderMeasures = async () => {
 
     // ----- handle measures for this indicator -------------------------------------------------- //
 
-    const mapYears = [...new Set(mapData.map(item => item.Time))];
+    const mapTimes = [...new Set(mapData.map(item => item.Time))];
 
+    console.log("mapTimes", mapTimes);
 
-    // console.log(">>>> indicatorMeasures", indicatorMeasures);
+    mapTimes.map(time => {
+
+        dropdownMapTimes.innerHTML += `<button class="dropdown-item link-time maptimesbutton"
+            data-time="${time}">
+            ${time}
+            </button>`;
+
+    });
+
 
     let header = "";
 
@@ -760,28 +802,22 @@ const renderMeasures = async () => {
         const map = measure?.VisOptions[0].Map && measure?.VisOptions[0].Map[0]?.On;
         const trend = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0]?.On;
         const measureId = measure.MeasureID;
+        const measureName = measure.MeasureName;
 
         // console.log("type", type, "links", links, "map", map, "trend", trend);
 
 
-        // ----- handle map measures -------------------------------------------------- //
+        // ----- handle map measures ----------------------------------------------------------------------------------------------- //
 
         if (map === 1) {
-
+            
             mapMeasures.push(measure)
-
-            dropdownMapMeasures.innerHTML += `<div class="dropdown-column-${index}"><div class="dropdown-title"><strong> ${type}</strong></div></div>`;
-
-            const dropdownMapMeasuresColumn = document.querySelector(`.dropdown-column-${index}`);
-
-            mapYears.map(time => {
-                dropdownMapMeasuresColumn.innerHTML += `<button class="dropdown-item mapbutton"
-                data-measure-id="${measureId}"
-                data-time="${time}">
-                ${time}
+            
+            dropdownMapMeasures.innerHTML += `<button class="dropdown-item link-measure mapmeasuresbutton"
+                data-measure-id="${measureId}">
+                ${type}
                 </button>`;
-
-            });
+            
         }
 
 
@@ -1037,15 +1073,25 @@ const renderMeasures = async () => {
             // ----- persistent selection -------------------------------------------------- //
 
             // remove active class from every list element
-            $('.mapbutton').removeClass("active");
-            $('.mapbutton').attr('aria-selected', false);
+            
+            // measures
+            $('.mapmeasuresbutton').removeClass("active");
+            $('.mapmeasuresbutton').attr('aria-selected', false);
+
+            // times
+            $('.maptimesbutton').removeClass("active");
+            $('.maptimesbutton').attr('aria-selected', false);
 
             // set this element as active & selected
 
-            let mapMeasureEl = document.querySelector(`.mapbutton[data-measure-id='${defaultMapMeasureId}'][data-time='${latest_time}']`)
+            let mapMeasureEl = document.querySelector(`.mapmeasuresbutton[data-measure-id='${defaultMapMeasureId}']`)
+            let mapTimeEl = document.querySelector(`.maptimesbutton[data-time='${latest_time}']`)
 
             $(mapMeasureEl).addClass("active");
             $(mapMeasureEl).attr('aria-selected', true);
+
+            $(mapTimeEl).addClass("active");
+            $(mapTimeEl).attr('aria-selected', true);
 
 
         } else {
@@ -1250,10 +1296,12 @@ const renderMeasures = async () => {
             $(trendMeasureEl).addClass("active");
             $(trendMeasureEl).attr('aria-selected', true);
 
+            // ----- set measure info boxes -------------------------------------------------- //
 
         } else {
 
             // if there was a chart already, restore it
+            // ----- render the chart -------------------------------------------------- //
 
             // ----- set measure info boxes -------------------------------------------------- //
 
@@ -1672,7 +1720,8 @@ const renderMeasures = async () => {
 
     // without custom class, selector would be '[aria-labelledby="dropdownMapMeasures"] button.link-measure'
 
-    let mapMeasuresLinks = document.querySelectorAll('.mapbutton');
+    let mapMeasuresLinks = document.querySelectorAll('.mapmeasuresbutton');
+    let mapTimesLinks = document.querySelectorAll('.maptimesbutton');
     let trendMeasuresLinks = document.querySelectorAll('.trendbutton');
     let trendComparisonsLinks = document.querySelectorAll('.comparisonsbutton');
     let linksMeasuresLinks = document.querySelectorAll('.linksbutton');
@@ -1681,6 +1730,10 @@ const renderMeasures = async () => {
     // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#memory_issues
 
     mapMeasuresLinks.forEach(link => {
+        link.addEventListener('click', updateMapData);
+    })
+
+    mapTimesLinks.forEach(link => {
         link.addEventListener('click', updateMapData);
     })
 
@@ -1732,4 +1785,4 @@ const renderMeasures = async () => {
 
     renderAboutSources(measureAbout, measureSources);
 
-}
+    }
