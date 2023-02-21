@@ -114,6 +114,7 @@ const renderMap = (
                     "titleFontWeight": "normal",
                 }
             },
+            // "width": "container",
             "projection": {"type": "mercator"},
             "vconcat": [
                 {

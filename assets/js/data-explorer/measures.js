@@ -208,19 +208,25 @@ const setDefaultLinksMeasure = async (visArray) => {
 
 const updateMapData = (e) => {
 
-    console.log("e [updateMapData]", e);
-
     // ----- handle selection -------------------------------------------------- //
+
+    let measureId;
+    let time;
 
     if (typeof e.target.dataset.measureId != 'undefined') {
         
         // get meaasureId of selected dropdown element
         
-        const measureId = parseInt(e.target.dataset.measureId);
+        measureId = parseInt(e.target.dataset.measureId);
         
-        // remove active class from every list element
+        time = $('.maptimesbutton.active').attr("data-time")
+
+        console.log(">>> measure", "measureId", measureId, "time", time);
+
+        // persistent selection
         
         // measures
+
         $('.mapmeasuresbutton').removeClass("active");
         $('.mapmeasuresbutton').attr('aria-selected', false);
         
@@ -230,24 +236,21 @@ const updateMapData = (e) => {
         
         // get selected time
         
-        const time = parseInt(e.target.dataset.time);
+        time = parseInt(e.target.dataset.time);
+
+        measureId = $('.mapmeasuresbutton.active').attr("data-measure-id")
         
+        console.log(">>> time", "measureId", measureId, "time", time);
+
+        // persistent selection
+
         // times
+
         $('.maptimesbutton').removeClass("active");
         $('.maptimesbutton').attr('aria-selected', false);
 
     }
 
-
-    const time = e.target.dataset.time;
-
-
-
-    // persistent selection
-
-    // remove active class from every list element
-    $('.mapbutton').removeClass("active");
-    $('.mapbutton').attr('aria-selected', false);
 
     // set this element as active & selected
     $(e.target).addClass("active");
@@ -286,9 +289,11 @@ const updateMapData = (e) => {
 
     let mapMeasureData =
         mapData.filter(
-            obj => obj.MeasureID === measureId &&
-            obj.Time === time
+            obj => obj.MeasureID == measureId &&
+            obj.Time == time
         );
+
+    // console.log("mapMeasureData", mapMeasureData);
 
     // get the highest GeoRank, then keep just that geo
 
@@ -703,7 +708,7 @@ const renderMeasures = async () => {
     const dropdownTrendComparisons = contentTrend.querySelector('div[aria-labelledby="dropdownTrendComparisons"]');
 
     const dropdownMapMeasures = contentMap.querySelector('div[aria-labelledby="dropdownMapMeasures"]');
-    const dropdownMapTime = contentMap.querySelector('div[aria-labelledby="dropdownMapTime"]');
+    const dropdownMapTimes = contentMap.querySelector('div[aria-labelledby="dropdownMapTimes"]');
     const dropdownLinksMeasures = contentLinks.querySelector('div[aria-labelledby="dropdownLinksMeasures"]');
 
     // console.log("dropdownTrendComparisons", dropdownTrendComparisons);
@@ -717,7 +722,7 @@ const renderMeasures = async () => {
     dropdownTrendComparisons.innerHTML = ``;
 
     dropdownMapMeasures.innerHTML = ``;
-    dropdownMapTime.innerHTML = ``;
+    dropdownMapTimes.innerHTML = ``;
     dropdownLinksMeasures.innerHTML = ``;
 
     mapMeasures.length = 0;
@@ -749,6 +754,7 @@ const renderMeasures = async () => {
 
     });
 
+
     // create geo dropdown for table (using pretty geotypes, keeping georank order)
 
     const tableGeoTypes = [...new Set(tableData.map(item => prettifyGeoType(item.GeoType)))];
@@ -770,19 +776,21 @@ const renderMeasures = async () => {
 
     // ----- handle measures for this indicator -------------------------------------------------- //
 
-    const mapTimes = [...new Set(fullDataMapObjects.map(item => item.Time))];
+    const mapTimes = [...new Set(mapData.map(item => item.Time))];
 
-    if (map === 1) {
+    console.log("mapTimes", mapTimes);
 
-        mapTimes.map(time => {
+    mapTimes.map(time => {
 
-            dropdownMapTime.innerHTML += `<button class="dropdown-item link-time maptimesbutton"
+        dropdownMapTimes.innerHTML += `<button class="dropdown-item link-time maptimesbutton"
             data-time="${time}">
             ${time}
             </button>`;
 
-        });
-    }
+    });
+
+
+    let header = "";
 
     indicatorMeasures.map((measure, index) => {
 
@@ -794,6 +802,7 @@ const renderMeasures = async () => {
         const map = measure?.VisOptions[0].Map && measure?.VisOptions[0].Map[0]?.On;
         const trend = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0]?.On;
         const measureId = measure.MeasureID;
+        const measureName = measure.MeasureName;
 
         // console.log("type", type, "links", links, "map", map, "trend", trend);
 
@@ -805,8 +814,8 @@ const renderMeasures = async () => {
             mapMeasures.push(measure)
             
             dropdownMapMeasures.innerHTML += `<button class="dropdown-item link-measure mapmeasuresbutton"
-                data-measure-id="${measureId}"
-                ${measure}
+                data-measure-id="${measureId}">
+                ${type}
                 </button>`;
             
         }
