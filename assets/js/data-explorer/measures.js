@@ -1829,3 +1829,4 @@ const renderMeasures = async () => {
     renderAboutSources(measureAbout, measureSources);
 
     }
+}
