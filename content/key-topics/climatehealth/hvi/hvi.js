@@ -59,7 +59,7 @@ var HVImapSpec = "HVIMapSpec.vg.json";
 
 // path to topo json, will be loaded by vega
 
-var nta_topojson = data_repo + data_branch + "/geography/NTA.topo.json"; 
+var nta_topojson = data_repo + data_branch + "/geography/NTA_2010.topo.json"; 
 
 // copy establishing variables for tertiles
 

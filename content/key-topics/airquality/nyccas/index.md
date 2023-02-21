@@ -3,13 +3,10 @@ title: "The New York City Community Air Survey"
 date: 2022-04-20T11:14:56-04:00
 draft: false
 seo_title: "NYC Community Air Survey Annual Report"
-seo_description: "Data, findings, and more."
+seo_description: "Data, findings, and more from NYC's citywide air quality monitoring program."
 tags: 
 categories: [airquality]
 keywords: ["air quality","report","monitoring","emissions","exhaust","pm2.5","pollutants"]
-menu:
-    main:
-        identifier: '05'
 layout: report
 ---
 

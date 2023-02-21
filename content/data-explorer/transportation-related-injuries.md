@@ -3,7 +3,7 @@ title: Transportation-related injuries
 date: 2021-05-28 18:02:58.745496
 draft: false
 seo_title: "Transportation-related injury data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["transportation","healthoutcomes"]
 keywords: ["transportation","traffic","cars","trucks","roads","streets","safety","emissions","driving","cars","hospitalizations","emergency department visits","biking","cycling","bikes"]
@@ -14,9 +14,6 @@ indicators:
   - 2086
   - 2094
   - 2093
-menu:
-    main:
-        identifier: '03'
 ---
 
 Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.

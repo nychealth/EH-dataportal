@@ -3,7 +3,7 @@ title: Water Supply
 date: 2021-05-28 18:02:58.819938
 draft: true
 seo_title: "Water supply data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["foodanddrink"]
 keywords: ["water","food","drink"]
@@ -12,9 +12,6 @@ indicators:
   IndicatorID:
   - 2001
   - 2009
-menu:
-    main:
-        identifier: '03'
 ---
 
 [OneNYC](http://www1.nyc.gov/html/onenyc/index.html) is a comprehensive sustainability plan for New York City's future.

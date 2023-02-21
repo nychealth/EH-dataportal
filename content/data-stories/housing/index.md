@@ -8,9 +8,6 @@ tags:
 categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism","renting","pests","maintenance","maintenance deficiencies"]
 image: ds-povasthma.jpg
-menu:
-    main:
-        identifier: '02'
 layout: advanced
 image: ds-housing.jpeg
 vega: true
@@ -50,7 +47,7 @@ Racism has always played a role in residential patterns in New York City. When N
 
 In 1661, when Black people petitioned the colony for land in the area, they were given land north of the wall, outside of the city proper.
 
-{{< figure src="colonial.png" Alt="A colonial map of New York City, showing the wall at Wall Street.">}}
+{{< figure src="colonial.png" alt="A colonial map of New York City, showing the wall at Wall Street.">}}
 
 Throughout history, many different practices have shaped racial and residential patterns in New York City. In the 20th century, a practice called redlining made racism a federal policy – with long-lasting repercussions for our housing and our health.
 
@@ -310,21 +307,21 @@ These problems go far beyond inconvenience or mess. {{< rawhtml >}}
         <li>General disrepair is associated with anxiety and depression.</li>
         <li>Some forms, like <strong>broken plaster and peeling paint</strong>, or
             <strong>cracks and holes in interior walls</strong>, can <a
-                href="/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=14">expose
+                href=/data-explorer/lead/?id=2189#display=summary">expose
                 children to lead paint</a>.
         </li>
         <li><strong>Water leaks</strong>, broken windows, or <strong>toilet
                 breakdowns</strong> can introduce mold - which triggers allergies,
             <a
-                href="/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=11">asthma</a>,
+                href=/data-explorer/asthma/?id=2380#display=summary">asthma</a>,
             and can make chronic conditions worse.
         </li>
         <li>Pests, like <strong>cockroaches, mice, and rats</strong> can make <a
-                href="/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=11">asthma</a>
+                href=/data-explorer/asthma/?id=2380#display=summary">asthma</a>
             and allergies worse.</li>
         <li>The <strong>lack of an air conditioner</strong> places people at risk of
             <a
-                href="/IndicatorPublic/Subtopic.aspx?theme_code=2,3&subtopic_id=100">death
+                href=/data-explorer/weather-related-illness/?id=2074#display=summary">death
                 during hot weather</a>.
         </li>
     </ul>
@@ -486,7 +483,7 @@ But a poorly maintained, unhealthy home can’t provide a truly safe haven. Inst
 {{< rawhtml >}}
 <div class="greyblock">
 {{< /rawhtml >}}
-{{< figure src="h1.jpeg" Alt="Workers work on a building.">}}
+{{< figure src="h1.jpeg" alt="Workers work on a building.">}}
 Policymakers and community advocates can support racial justice initiatives:
 - Invest in neighborhoods harmed by a history of structural racism. [Promote economic and educational equity and support Where We Live initiatives](https://wherewelive.cityofnewyork.us/).
 - Support Department of Housing Preservation and Development initiatives aimed at rehabilitating older housing.
@@ -495,7 +492,7 @@ Policymakers and community advocates can support racial justice initiatives:
 
 <div class="greyblock">
 {{< /rawhtml >}}
-{{< figure src="h2.jpeg" Alt="A New York City residential street.">}}
+{{< figure src="h2.jpeg" alt="A New York City residential street.">}}
 
 Tenants and homeowners can tap into systems that are here to support you.
 - Report maintenance problems to your building's management. [If your building manager doesn't address issues, call 311 to file a landlord maintenance complaint](https://www1.nyc.gov/nyc-resources/service/1950/residential-maintenance-complaint).
@@ -508,7 +505,7 @@ Tenants and homeowners can tap into systems that are here to support you.
 {{< /rawhtml >}}
 
 
-{{< figure src="h3.jpeg" Alt="A New York City apartment building.">}}
+{{< figure src="h3.jpeg" alt="A New York City apartment building.">}}
 Building owners and landlords should keep apartments safe and sanitary – it’s the law.
 - Promptly fix problems that tenants report.
 - Get rid of pests and mold, seal cracks, fix leaks, and improve garbage management.

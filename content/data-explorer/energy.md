@@ -3,7 +3,7 @@ title: Energy
 date: 2021-05-28 18:02:58.729040
 draft: true
 seo_title: "Energy data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["climatehealth"]
 keywords: ["climate","climate change","energy"]
@@ -11,9 +11,6 @@ indicators:
 - header: null
   IndicatorID: 
   - 2006
-menu:
-    main:
-        identifier: '03'
 ---
 
 [OneNYC](http://www1.nyc.gov/html/onenyc/index.html) is a comprehensive sustainability plan for New York City's future.

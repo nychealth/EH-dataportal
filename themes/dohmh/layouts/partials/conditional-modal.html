@@ -20,8 +20,6 @@
                     or opportunities to participate in user research. 
                     <a href='https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform'>Click here to sign up</a>.
                 </p>
-                <br />
-                <p>Prefer to use the old site? <a id="want_old_site" class="close-dialog" data-dismiss="modal" onclick="setCookie()">Click here.</a></p>
             </div>
             <hr>
             <button type="button" class="btn btn-outline-primary close-dialog" data-dismiss="modal">Close</button>
@@ -31,13 +29,6 @@
 
 <script>
 
-    // set cookie on click
-
-    const setCookie = () => {
-        document.cookie = "want_old_site=true; path=/IndicatorPublic/";
-        $('#prototypeModal').modal('hide');
-    }
-
     // get original page URL before redirect
 
     let original_url = document.cookie
@@ -46,12 +37,6 @@
         ?.replace("original_url=", "");
 
     original_url = original_url ? original_url : "/IndicatorPublic/";
-
-    {{/*  console.log("original_url", original_url);  */}}
-    
-    // redirect to originally clicked URL
-
-    document.querySelector("#want_old_site").href = original_url;
 
 </script>
 
@@ -72,8 +57,7 @@
                 <h5 class='modal-title'>Welcome to the Prototype EH Data website. </h5>
             </div>
             <div class='modal-body'>
-                <p>This prototype is a work in progress. That means that not all of the data or information is final.
-                    But, feel free to click around and explore.
+                <p>Welcome to our <em>development</em> site. Not all of the data or information on this site is final. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/">Please visit our production site here</a>.
                 </p>
                 <p><strong>Please sign up for our email list</strong>. We will email you every few months with updates,
                     or opportunities to participate in user research. 
@@ -110,8 +94,6 @@
                     or opportunities to participate in user research. 
                     <a href='https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform'>Click here to sign up</a>.
                 </p>
-                <br />
-                <p>Prefer to use the old site? <a id="want_old_site" class="close-dialog" data-dismiss="modal" onclick="setCookie()">Click here.</a></p>
             </div>
             <hr>
             <button type="button" class="btn btn-outline-primary close-dialog" data-dismiss="modal">Close</button>
@@ -120,13 +102,6 @@
 </div>
 
 <script>
-
-    // set cookie on click
-
-    const setCookie = () => {
-        document.cookie = "want_old_site=true; path=/IndicatorPublic/";
-        $('#prototypeModal').modal('hide');
-    }
 
     // get original page URL before redirect
 
@@ -141,7 +116,7 @@
     
     // redirect to originally clicked URL
 
-    document.querySelector("#want_old_site").href = original_url;
+    {{/*  document.querySelector("#want_old_site").href = original_url;  */}}
     
 </script>
 

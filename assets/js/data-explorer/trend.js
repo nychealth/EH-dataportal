@@ -1,3 +1,7 @@
+// ======================================================================= //
+// summary.js
+// ======================================================================= //
+
 const renderTrendChart = (
     data,
     metadata
@@ -5,25 +9,51 @@ const renderTrendChart = (
 
     console.log("** renderTrendChart");
 
+    // ----------------------------------------------------------------------- //
     // arquero table for extracting arrays easily
-
+    // ----------------------------------------------------------------------- //
+    
     let aqData = aq.from(data);
     let Value = aqData.array("Value");
     let valueMin = Math.min.apply(null, Value);
-
+    let valueMax = Math.max.apply(null, Value);
+    let tickMinStep = valueMax >= 3.0 ? 1 : 0.5
+    // console.log('tickMinStep: ' + tickMinStep)
+    
+    // ----------------------------------------------------------------------- //
     // extract measure metadata
-
+    // ----------------------------------------------------------------------- //
+    
     let trendMeasurementType = metadata[0].MeasurementType;
     let trendDisplay = metadata[0].DisplayType;
-
+    
     // get dimensions
+
     var columns = 6;
     var height = 500
     window.innerWidth < 576 ? columns = 3 : columns = 6;
     window.innerWidth < 576 ? height = 350 : columns = 500;
-
     
+    
+    // ----------------------------------------------------------------------- //
+    // get unique unreliability notes (dropping empty)
+    // ----------------------------------------------------------------------- //
+
+    const trend_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
+
+    // console.log("trend_unreliability", trend_unreliability);
+
+    document.querySelector("#trend-unreliability").innerHTML = ""; // blank to start
+
+    for (let i = 0; i < trend_unreliability.length; i++) {
+        
+        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + trend_unreliability[i] + "</div>" ;
+        
+    }
+
+    // ----------------------------------------------------------------------- //
     // define spec
+    // ----------------------------------------------------------------------- //
     
     let trendspec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -41,6 +71,7 @@ const renderTrendChart = (
             "axisY": {
                 "labelAngle": 0,
                 "labelFontSize": 11,
+                "tickMinStep": tickMinStep
             },
             "legend": {
                 "columns": columns,
@@ -206,6 +237,10 @@ const renderTrendChart = (
             }
         ]
     }
+    
+    // ----------------------------------------------------------------------- //
+    // render chart
+    // ----------------------------------------------------------------------- //
     
     vegaEmbed("#trend", trendspec);
     
