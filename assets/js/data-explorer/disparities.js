@@ -18,7 +18,7 @@ const loadDisparitiyData = async (disparityMetadata, disparityIndicatorId) => {
     // create primary data
 
     const aqPrimaryData = 
-        aq.from(fullDataLinksObjects) // fullDataTrendObjects is created by the joinData function
+        aq.from(linksData) // trendData is created by the joinData function
         .select("GeoType", "GeoRank", "GeoID", "Time", "end_period", "Value", "DisplayValue")
         .reify()
 
