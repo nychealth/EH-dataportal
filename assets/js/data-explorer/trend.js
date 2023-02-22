@@ -120,7 +120,8 @@ const renderTrendChart = (
             "fontSize": 13, 
             "font": "sans-serif",
             "baseline": "top",
-            "text": `${trendMeasurementType} ${trendDisplay && `(${trendDisplay})`}`,
+            "text": indicatorName,
+            "subtitle": `${trendMeasurementType} ${trendDisplay && `(${trendDisplay})`}`,
             "dy": -10
         },
         "encoding": {
