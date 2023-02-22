@@ -140,7 +140,7 @@ const renderLinksChart = (
                 "baseline": "top",
                 "dy": -10,
                 "limit": 1000
-            },            
+            },
             "width": "container",
             "height": height,
             "config": {

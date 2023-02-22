@@ -237,9 +237,9 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
     // send Indicator Title to vis headers
 
-    document.getElementById('summaryTitle').innerHTML = indicatorName;
-    document.getElementById('mapTitle').innerHTML     = indicatorName;
-    document.getElementById('trendTitle').innerHTML   = indicatorName;
+    // document.getElementById('summaryTitle').innerHTML = indicatorName;
+    // document.getElementById('mapTitle').innerHTML     = indicatorName;
+    // document.getElementById('trendTitle').innerHTML   = indicatorName;
 
     // reset selected measure flags
 
