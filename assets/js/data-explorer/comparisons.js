@@ -171,7 +171,8 @@ const renderComparisonsChart = (
             "fontSize": 13, 
             "font": "sans-serif",
             "baseline": "top",
-            "text": plotTitle,
+            "text": indicatorName,
+            "subtitle": plotTitle,
             "dy": -10
         },
         "encoding": {

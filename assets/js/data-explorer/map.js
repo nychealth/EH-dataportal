@@ -91,7 +91,8 @@ const renderMap = (
         mapspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": {
-                "text":  `${mapMeasurementType} ${displayType && `(${displayType})`}, by ${mapGeoTypeDescription} (${mapTime})`,
+                "text":  `${indicatorName}`,
+                "subtitle": `${mapMeasurementType} ${displayType && `(${displayType})`}, by ${mapGeoTypeDescription} (${mapTime})`,
                 "subtitlePadding": 10
             },
             "data": {
