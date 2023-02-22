@@ -36,8 +36,8 @@ const renderMap = (
             color = 'blues'
         }
 
-        console.log('rank reverse?', rankReverse)
-        console.log('color', color)
+        // console.log('rank reverse?', rankReverse)
+        // console.log('color', color)
 
 
         // ----------------------------------------------------------------------- //
