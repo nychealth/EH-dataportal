@@ -342,7 +342,7 @@
 
                 <div class="tab-pane fade show active py-2" id="tab-table" aria-labelledby="tab-btn-table" role="tabpanel">
                     <div class="dropdown">
-                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
+                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
                                 id="dropdownTableTime" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Time </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownTableTime">
                             <!-- INSERT MENU ITEMS HERE -->
@@ -350,7 +350,7 @@
                     </div>
             
                     <div class="dropdown">
-                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle" type="button"
+                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
                                 id="dropdownTableGeo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Geography </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownTableGeo">
                             <!-- INSERT MENU ITEMS HERE -->
@@ -375,18 +375,18 @@
 
                     <div class="dropdown">
 
-                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
+                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
                             id="dropdownMapTimes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Time </button>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMapTimes">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
 
-                    {{/*  </div>
+                    </div>
 
-                    <div class="dropdown">  */}}
+                    <div class="dropdown">
 
-                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle pb-2" type="button"
+                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
                             id="dropdownMapMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Show </button>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMapMeasures">
@@ -421,10 +421,10 @@
 
                     </div>  */}}
 
-                    <div class="dropdown dropdownTrendComparisons pb-2">
+                    <div class="dropdown dropdownTrendComparisons">
 
                         <!-- comparisons button -->
-                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle btn-comparisons" type="button"
+                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle btn-comparisons mb-1" type="button"
                                 id="dropdownTrendComparisons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Show </button>
                         
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownTrendComparisons">
@@ -447,19 +447,19 @@
                 <!-- LINKS TAB -->
 
                 <div class="tab-pane fade py-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
-                    <div class="dropdown pb-2">
-                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
+                    <div class="dropdown">
+                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
                                 id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Link </button>
 
                         <!-- disparities button - display style changed to show or hide (currently hidden full time due to glitch on percents-->
-                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary btn-show-disparities d-none"
+                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary btn-show-disparities d-none mb-1"
                                 style="display:inline"> Dispartites </button>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownLinksMeasures">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
                     </div>
-                    <span id="linksTitle" class="home-label border-bottom">Show correlations</span>
+                    <span id="linksTitle" class="home-label border-bottom"></span>
                     <!-- INSERT LINKS CHART HERE -->
                     <div id="links" class="vis-bucket"></div>
 

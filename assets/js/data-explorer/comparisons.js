@@ -184,7 +184,7 @@ const renderComparisonsChart = (
             "subtitlePadding": 10,
             "fontWeight": "normal",
             "anchor": "start", 
-            "fontSize": 20, 
+            "fontSize": 18, 
             "font": "sans-serif",
             "baseline": "top",
             "subtitle": plotSubtitle,

@@ -125,188 +125,183 @@ const renderLinksChart = (
     // define spec
     // ----------------------------------------------------------------------- //
 
-    setTimeout(() => {
-
-        let linkspec = {
-            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "description": "Asthma 5-17 ED visit rate and poverty scatterplot",
-            "title": {
-                "text": [`${yIndicatorName && `${yIndicatorName}`}`, `${yMeasure && `${yMeasure}`} ${yDisplay && `${yDisplay}`} (${yTime})`],
-                "align": "left", 
-                "anchor": "start", 
-                "fontSize": 12, 
-                "fontWeight": "normal",
-                "font": "sans-serif",
-                "baseline": "top",
-                "dy": -10,
-                "limit": 1000
+    let linkspec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "title": {
+            "text": [`${yIndicatorName && `${yIndicatorName}`}`, `${yMeasure && `${yMeasure}`} ${yDisplay && `${yDisplay}`} (${yTime})`],
+            "align": "left", 
+            "anchor": "start", 
+            "fontSize": 15, 
+            "fontWeight": "normal",
+            "font": "sans-serif",
+            "baseline": "top",
+            "dy": -10,
+            "limit": 1000
+        },
+        "width": "container",
+        "height": height,
+        "config": {
+            "background": "#FFFFFF",
+            "axisX": {
+                "labelFontSize": 11,
+                "titleFontSize": 15,
+                "titleFont": "sans-serif",
+                "titlePadding": 10,
+                "titleFontWeight": "normal"
             },
-            "width": "container",
-            "height": height,
-            "config": {
-                "background": "#FFFFFF",
-                "axisX": {
-                    "labelFontSize": 11,
-                    "titleFontSize": 12,
-                    "titleFont": "sans-serif",
-                    "titlePadding": 10,
-                    "titleFontWeight": "normal"
-                },
-                "axisY": {
-                    "labelFontSize": 11,
-                    "titleFontSize": 0, // to turn off axis title
-                    "labelAngle": 0,
-                    "titlePadding": 10,
-                    "titleFont": "sans-serif",
-                    "tickMinStep": 1
-                },
-                "legend": {
-                    "columns": columns,
-                     "labelFontSize": 14,
-                     "symbolSize": 140,
-                     "orient": legendOrientation,
-                     "title": null
-                 },
-                "view": { "stroke": "transparent" },
-                "range": {
-                    "category": [
-                        // "#000000", 
-                        "#1696d2", 
-                        "#ffa500", 
-                        "#ec008b", 
-                        "#55b748", 
-                        "#f29214"
-                    ]
-                },
-                "text": {
-                    "color": "#1696d2",
-                    "fontSize": 11,
-                    "align": "center",
-                    "fontWeight": 400,
-                    "size": 11
-                }
+            "axisY": {
+                "labelFontSize": 11,
+                "titleFontSize": 0, // to turn off axis title
+                "labelAngle": 0,
+                "titlePadding": 10,
+                "titleFont": "sans-serif",
+                "tickMinStep": 1
             },
-            "data": {
-                "values": data
+            "legend": {
+                "columns": columns,
+                    "labelFontSize": 14,
+                    "symbolSize": 140,
+                    "orient": legendOrientation,
+                    "title": null
+                },
+            "view": { "stroke": "transparent" },
+            "range": {
+                "category": [
+                    // "#000000", 
+                    "#1696d2", 
+                    "#ffa500", 
+                    "#ec008b", 
+                    "#55b748", 
+                    "#f29214"
+                ]
             },
-            "layer":[
-                {
-                    "mark": { 
-                        "type": "circle", 
-                        "filled": true, 
-                        "size": bubbleSize, // update based on Screen Size.
-                        "stroke": "#7C7C7C", 
-                        "strokeWidth": 2
+            "text": {
+                "color": "#1696d2",
+                "fontSize": 11,
+                "align": "center",
+                "fontWeight": 400,
+                "size": 11
+            }
+        },
+        "data": {
+            "values": data
+        },
+        "layer":[
+            {
+                "mark": { 
+                    "type": "circle", 
+                    "filled": true, 
+                    "size": bubbleSize, // update based on Screen Size.
+                    "stroke": "#7C7C7C", 
+                    "strokeWidth": 2
+                },
+                "params": [
+                    {
+                        "name": "borough",
+                        "select": { "type": "point", "fields": ["Borough"], "on": "click" },
+                        "bind": "legend"
                     },
-                    "params": [
+                    {
+                        "name": "hover",
+                        "value": "#7C7C7C",
+                        "select": { "type": "point", "on": "mouseover" }
+                    }
+                ],
+                "encoding": {
+                    "y": {
+                        "field": yValue,
+                        "type": "quantitative",
+                        "axis": {
+                            "tickCount": 4
+                        },
+                    },
+                    "x": {
+                        "title": [`${xIndicatorName && `${xIndicatorName}`}`, `${xMeasure} ${xDisplay && `(${xDisplay})`} (${xTime})`],
+                        "field": xValue,
+                        "type": "quantitative",
+                        "scale": {"domainMin": xMin, "nice": true}
+                    },
+                    "tooltip": [
                         {
-                            "name": "borough",
-                            "select": { "type": "point", "fields": ["Borough"], "on": "click" },
-                            "bind": "legend"
-                        },
-                        {
-                            "name": "hover",
-                            "value": "#7C7C7C",
-                            "select": { "type": "point", "on": "mouseover" }
-                        }
-                    ],
-                    "encoding": {
-                        "y": {
-                            "field": yValue,
-                            "type": "quantitative",
-                            "axis": {
-                                "tickCount": 4
-                            },
-                        },
-                        "x": {
-                            "title": [`${xIndicatorName && `${xIndicatorName}`}`, `${xMeasure} ${xDisplay && `(${xDisplay})`} (${xTime})`],
-                            "field": xValue,
-                            "type": "quantitative",
-                            "scale": {"domainMin": xMin, "nice": true}
-                        },
-                        "tooltip": [
-                            {
-                                "title": "Borough",
-                                "field": "Borough",
-                                "type": "nominal"
-                            },
-                            {
-                                "title": "Neighborhood",
-                                "field": "Geography_1",
-                                "type": "nominal"
-                            },
-                            {
-                                "title": "Time",
-                                "field": "Time_2",
-                                "type": "nominal"
-                            },
-                            {
-                                "title": yMeasureName,
-                                "field": yValue,
-                                "type": "quantitative",
-                                "format": ",.1~f"
-                            },
-                            {
-                                "title": xMeasureName,
-                                "field": xValue,
-                                "type": "quantitative",
-                                "format": ",.1~f"
-                            }
-                        ],
-                        "color": {
                             "title": "Borough",
                             "field": "Borough",
                             "type": "nominal"
                         },
-                        "opacity": {
-                            "condition": {
-                                "param": "borough",
-                                "empty": true,
-                                "value": 1
-                            },
-                            "value": 0.2
+                        {
+                            "title": "Neighborhood",
+                            "field": "Geography_1",
+                            "type": "nominal"
                         },
-                        "stroke": {
-                            "condition": {
-                                "param": "hover",
-                                "empty": false,
-                                "value": "#7C7C7C"
-                            },
-                            "value": null
+                        {
+                            "title": "Time",
+                            "field": "Time_2",
+                            "type": "nominal"
+                        },
+                        {
+                            "title": yMeasureName,
+                            "field": yValue,
+                            "type": "quantitative",
+                            "format": ",.1~f"
+                        },
+                        {
+                            "title": xMeasureName,
+                            "field": xValue,
+                            "type": "quantitative",
+                            "format": ",.1~f"
                         }
-                    }
-                },
-                {"mark": {
-                    "type": "line",
-                    "color": "darkgray"
-                  },
-                  "transform": [
-                    {
-                      "regression": yValue,
-                      "on": xValue
-                    }
-                  ],
-                  "encoding": {
-                    "x": {
-                      "field": xValue,
-                      "type": "quantitative"
+                    ],
+                    "color": {
+                        // "title": "Borough",
+                        "field": "Borough",
+                        "type": "nominal"
                     },
-                    "y": {
-                      "field": yValue,
-                      "type": "quantitative"
+                    "opacity": {
+                        "condition": {
+                            "param": "borough",
+                            "empty": true,
+                            "value": 1
+                        },
+                        "value": 0.2
+                    },
+                    "stroke": {
+                        "condition": {
+                            "param": "hover",
+                            "empty": false,
+                            "value": "#7C7C7C"
+                        },
+                        "value": null
                     }
-                  }
                 }
-            ]
+            },
+            {"mark": {
+                "type": "line",
+                "color": "darkgray"
+                },
+                "transform": [
+                {
+                    "regression": yValue,
+                    "on": xValue
+                }
+                ],
+                "encoding": {
+                "x": {
+                    "field": xValue,
+                    "type": "quantitative"
+                },
+                "y": {
+                    "field": yValue,
+                    "type": "quantitative"
+                }
+                }
+            }
+        ]
 
-        }
-        
-        // ----------------------------------------------------------------------- //
-        // render chart
-        // ----------------------------------------------------------------------- //
+    }
+    
+    // ----------------------------------------------------------------------- //
+    // render chart
+    // ----------------------------------------------------------------------- //
 
-        vegaEmbed("#links", linkspec);
-
-    }, 300)
+    vegaEmbed("#links", linkspec);
 
 }
