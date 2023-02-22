@@ -40,6 +40,7 @@ const renderComparisonsChart = (
     // comparison group label is either measure, indicator, or combo. can include geo eventually
 
     let compGroupLabel;
+    let plotSubtitle;
     let plotTitle;
     // let colors = ["black", "blue", "green", "orange", "red", "magenta"];
     // let colors = ["#000000FF", "#0000805F", "#0080005F", "#FFA5005F", "#FF00005F", "#FF00FF5F"];
@@ -47,6 +48,8 @@ const renderComparisonsChart = (
     let colors = ["#000000ff", "#1696d296", "#f2921496", "#ec008b96", "#55b74896", "#80008096"];
 
      if (compName[0] === "Boroughs") {
+
+        console.log("boros");
 
         // if this is a boro comparison, tweak some things
 
@@ -56,13 +59,17 @@ const renderComparisonsChart = (
         // add black to start of list for NYC
         // colors.splice(0, 0, "black");
 
-        plotTitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? " by Borough" : "");
+        plotTitle = indicatorName;
+        plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? " by Borough" : "");
         comp_group_col = "Geography"
 
     } else if (compIndicatorLabel.length == 1) {
+
+        console.log("1 indicator");
         
         compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
-        plotTitle = compIndicatorLabel + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+        plotTitle = compName;
+        plotSubtitle = compIndicatorLabel + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
 
         // if there's only 1 indicator label, use measurement type to label the groups
 
@@ -71,8 +78,11 @@ const renderComparisonsChart = (
 
     } else if (compMeasurementType.length == 1) {
 
+        console.log("1 measure");
+
         compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
-        plotTitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+        plotTitle = compName;
+        plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
 
         // if there's only 1 measurement type, use indicator label to label the groups
 
@@ -81,8 +91,11 @@ const renderComparisonsChart = (
 
     } else if (compMeasurementType.length > 1 && compIndicatorLabel.length > 1) {
         
+        console.log("> 1 measure & indicator");
+
         compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
-        plotTitle = compName + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+        plotTitle = compName;
+        plotSubtitle = compName + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
 
         // if there are more than 1 of both, use joined IndicatorMeasure 
 
@@ -147,9 +160,9 @@ const renderComparisonsChart = (
                 "labelFontSize": 14,
                 "symbolSize": 140
             },
-            "title": {
-                "fontWeight": "normal"
-                },
+            // "title": {
+            //     "fontWeight": "normal"
+            //     },
             "view": {"stroke": "transparent"},
             "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
             
@@ -167,13 +180,16 @@ const renderComparisonsChart = (
         "width": "container",
         "height": height,
         "title": { 
+            "text": plotTitle,
+            "subtitlePadding": 10,
+            "fontWeight": "normal",
             "anchor": "start", 
-            "fontSize": 13, 
+            "fontSize": 18, 
             "font": "sans-serif",
             "baseline": "top",
-            "text": indicatorName,
-            "subtitle": plotTitle,
-            "dy": -10
+            "subtitle": plotSubtitle,
+            "dy": -10,
+            "subtitleFontSize": 13
         },
         "encoding": {
             "x": {

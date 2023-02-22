@@ -91,9 +91,15 @@ const renderMap = (
         mapspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": {
-                "text":  `${indicatorName}`,
+                "text": indicatorName,
+                "subtitlePadding": 10,
+                "fontWeight": "normal",
+                "anchor": "start", 
+                "fontSize": 18, 
+                "font": "sans-serif",
+                "baseline": "top",
                 "subtitle": `${mapMeasurementType} ${displayType && `(${displayType})`}, by ${mapGeoTypeDescription} (${mapTime})`,
-                "subtitlePadding": 10
+                "subtitleFontSize": 13
             },
             "data": {
                 "values": data,
@@ -107,15 +113,7 @@ const renderMap = (
                 "concat": {"spacing": 20}, 
                 "view": {"stroke": "transparent"},
                 "axisY": {"domain": false,"ticks": false},
-                "title": {
-                    "fontWeight": "normal"
-                  },
-                "legend": {
-                    "offset": -25,
-                    "titleFontWeight": "normal",
-                }
             },
-            // "width": "container",
             "projection": {"type": "mercator"},
             "vconcat": [
                 {
@@ -233,7 +231,13 @@ const renderMap = (
                             "field": "Value",
                             "type": "quantitative",
                             "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}},
-                            "legend": {"direction": "horizontal","orient": "top-left","title": null}
+                            "legend": {
+                                "direction": "horizontal", 
+                                "orient": "top-left",
+                                "title": null,
+                                "offset": -30,
+                                "padding": 10,
+                            }
                         },
                         "stroke": {
                             "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
