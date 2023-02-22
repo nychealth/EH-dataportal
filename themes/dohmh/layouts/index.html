@@ -72,10 +72,11 @@
 
       {{- range first 7 (where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index") -}}
       {{- if ne .Title "Key Topics in Environmental Health" -}}
-     <a href="{{ .RelPermalink }}">{{ .Title }}</a> | &nbsp; 
+     <a href="{{ .RelPermalink }}" class="btn btn-sm btn-outline-light text-primary mt-1 mx-1">{{ .Title }}</a>
       {{- end -}}
       {{- end -}}
-      <a href="key-topics" class="font-weight-bold">More topics...</a>
+
+      <a href="key-topics" class="btn btn-sm btn-outline-info mt-1 mx-1">More topics <i class="fas fa-arrow-right ml-1" aria-hidden="true"></i></a>
 
       <hr class="mt-1 mb-2">
 
