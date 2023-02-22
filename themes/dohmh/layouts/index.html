@@ -2,219 +2,125 @@
 
 <article class="container-fluid overflow-hidden" id="primary-content">
 
-  <div class="row">
-    <div class="col-md-10 col-sm-12 mx-auto">
-      <!--start main column-->
+  <div class="row mt-4">
+    <div class="col-md-8 card content-card">
+      <h1 class="fs-lg text-info"><i class="fas fa-star mr-1" aria-hidden="true"></i>Featured:</h1>
+      <div class="card-content">
+        <a href="{{ .Params.featured_link }}">
+        <div style="width:100%; height:80%; background-image: URL(images/{{ .Params.featured_image }}); background-size: cover"></div>
+        </a>
 
-      <div class="row mt-4">
-        <div class="col-md-6 mx-auto">
-          <h1 class="text-primary">What's the environment?</h1>
-          <p class="text-muted">It's everything around us: our air and water, the climate, our city's buildings and streets, and the society that we live in. It shapes our lives and our health.</p>
 
-          <p class="text-muted">We collect data from many different sources, and we put them together in different ways to show <strong class="text-primary">how environments affect health</strong>. Explore how here.</p>
+      <div class="card-body">
+        <h1 class="card-title text-primary">{{ .Params.featured_title }}</h1>
+        <span class="card-text">{{ .Params.featured_text }}</span>
+        <span class="card-link"><a href="{{ .Params.featured_link }}">Get the data ></a></span>
+          
+          
 
-          {{ if eq site.Params.data_branch "staging"}}
-          <span style="background-color:#f2e5e5; border-left: 3px solid #800000; padding: 5px;">
-           <strong><i class="fas fa-flag mr-1"></i>Note:</strong> This prototype site is displaying staging data.
-          </span>
-          {{ end }}
-
-        </div>
       </div>
+    </div>
+    </div>
 
-      <div class="row my-4">
-        <div class="col-6 mx-auto">
-          <hr>
-        </div>
-      </div>
+    <div class="col-md-4 card content-card">
+      <h2 class="fs-lg text-info"><i class="fas fa-passport mr-1" aria-hidden="true"></i>New data stories:</h2>
+      <div class="card-content mb-4">
+        <div class="card-body">
+          {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
 
-      <div class="row mt-4">
-        <div class="col">
-          <h2 class="ds-accent"><i class="fas fa-atlas mr-1" aria-hidden="true"></i>Data Stories</h2>
+          <div class="row no-gutters mt-2">
+            <div class="col-4 border mh-100">
+              {{ $src := .Resources.GetMatch .Params.image }}
+                  {{ $image := $src.Resize "740x"}}
+                  <div style="width:100%; height:100%; background-image: URL({{ $image.Permalink }}); background-size: cover"></div>
+            </div>
 
-          <div class="row mt-2">
-            {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
-            <div class="col-md-4 mb-2">
-              <div class="card content-card">
-                  <div class="card-content">
-                      <a href="{{ .RelPermalink }}">
-                        
-                          {{/*  {{ $src := .Resources.GetMatch (print .RelPermalink .Params.image) }}  */}}
-                          {{ $src := .Resources.GetMatch .Params.image }}
-                          {{ $image := $src.Resize "740x"}}
-                          <div style="width:100%; height:250px; background-image: URL({{ $image.Permalink }}); background-size: cover"></div></a>
-
-                      <div class="card-body">
-                      <p class="fs-md"><a href="{{ .RelPermalink }}" class="ds-accent">{{ .Title }}</a></p>
-                      <p class="fs-sm">{{ .Content | truncate 75 | plainify }}</p>
-                      <p class="fs-sm float-right mb-2"><a href="{{ .RelPermalink }}" class="ds-accent">Read more <i
-                          class="fas fa-arrow-circle-right"></i></a></p>
-                    </div>
-                  </div>
-                </div>
-          </div>
-            {{- end -}}
-
-          </div>
-
-          <div class="row mt-1 mb-2">
-            <div class="col-md-4 ml-auto">
-              <a href="{{ .Site.BaseURL }}data-stories/" class="ds-accent btn btn-block btn-outline-light text-primary">Browse all Data Stories<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
-
+            <div class="col-8 ml-auto h-100 pl-1">
+              <p class="fs-sm"><strong class="text-primary">{{ .Title }} </strong>: {{ .Content | plainify | truncate 75 | htmlUnescape }} <a href="{{ .RelPermalink }}" class="text-info font-weight-bold">Read more ></a> </p>
             </div>
           </div>
 
+        {{- end -}}
         </div>
       </div>
 
-      <div class="row my-4">
-        <div class="col-6 mx-auto">
-          <hr>
-        </div>
-      </div>
+      <h2 class="fs-lg text-info"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Recently updated data:</h2>
+      <div class="card-content">
+        <div class="card-body">
 
-      <div class="row mt-4">
-
-        <div class="col-md-4 col-sm-12">
-          <h3 class="kt-accent"><i class="fas fa-star mr-1" aria-hidden="true"></i>Key
-            Topics</h3>   
-            <p class="fs-sm">
-              Core issues that affect our city, our health, our lives.
-            </p>
-
-              <a href="{{ .Site.BaseURL }}key-topics/" class="kt-accent btn btn-block btn-outline-light text-dark ">All Key Topics<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
-
-            <div class="card content-card mb-4">
-              <div class="card-content">
-                  <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                      {{- range first 5 (where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index") -}}
-                      {{- if ne .Title "Key Topics in Environmental Health" -}}
-                      <li class="list-group-item fs-sm"><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-                      {{- end -}}
-                      {{- end -}}
-                    </ul>
-
-                </div>
-              </div>
+            <div class="row no-gutters p-0">
+              {{- range .Params.recently_updated -}}
+              <a href="{{ .Link }}" class="btn btn-sm btn-block btn-outline-primary">{{ .Name }}</a>
+              {{- end -}}
             </div>
 
-        </div>
-        <!-- .col -->
-
-        <div class="col-md-4 col-sm-12">
-          <h3 class="nr-accent"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
-          <p class="fs-sm">
-            Get data for your neighborhood on select topics:
-          </p>
-          <a href="{{ .Site.BaseURL }}neighborhood-reports/" class="btn btn-block btn-outline-light text-dark nr-accent">All Reports<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
-
-          <div class="card content-card mb-4">
-            <div class="card-content">
-                <div class="card-body">
-                  <ul class="list-group list-group-flush fs-sm">
-                    <li class="list-group-item"><a href="{{ .Site.BaseURL }}neighborhood-reports/asthma/" class="">Asthma</a></li>
-                    <li class="list-group-item"><a href="{{ .Site.BaseURL }}neighborhood-reports/activedesign/">Active design</a></li>
-                    <li class="list-group-item"><a href="{{ .Site.BaseURL }}neighborhood-reports/climateandhealth/">Climate and health</a></li>
-                    <li class="list-group-item"><a href="{{ .Site.BaseURL }}neighborhood-reports/housing/">Housing and health</a></li>
-                    <li class="list-group-item"><a href="{{ .Site.BaseURL }}neighborhood-reports/outdoorair/">Outdoor Air and health</a></li>
-        
-                  </ul>
-              </div>
-            </div>
-          </div>        
-          </div>
-
-          <div class="col-md-4 col-sm-12">
-            <h3 class="de-accent"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Data Explorer</h3> 
-              <p class="fs-sm">View maps and trends for hundreds of datasets.</p>
-              <a href="{{ .Site.BaseURL }}data-explorer/" class="de-accent btn btn-block btn-outline-light text-primary">All datasets<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
-
-              <div class="card content-card mb-4">
-                <div class="card-content">
-                    <div class="card-body">
-                      <span class="home-label">Featured datasets:</span>
-                      {{- partial "featured-data-2" . -}}
-                  </div>
-                </div>
-              </div>
-          </div>
-
-      </div>
-      <!-- .row -->
-
-      <div class="row my-4">
-        <div class="col-6 mx-auto">
-          <hr>
+          <p class="float-right fs-sm text-info mt-2"><a href="/data-explorer" class="text-info font-weight-bold">Get all data ></a></p>
         </div>
       </div>
 
-      <div class="row my-4">
-        <div class="col-md-6">
-          <h3 class="text-muted">Explore your city - through data.</h3> 
-          <div class="card bg-lightgray mt-1">
-            <div class="card-body">
-                <p class="fs-sm">Get data. Learn what issues affect your health and your community. And take action to make change and build a better, healthier city.</p>
-                </div>
-              </div>
-        </div>
+      </div>
+    </div>
 
-        <div class="col-md-6">
+  </div>
+
+  <div class="row my-6">
+    <div class="col-md-7 mx-auto">
+      <h2 class="text-info fs-xl">Explore your city - through data</h1>
+      <p class="text-muted"><span class="text-primary font-weight-bold">The environment is everything around us:</span> our air and water, the climate, our city's buildings and streets, and the society that we live in:</p>
+
+      <hr class="mt-2 mb-1">
+
+      {{- range first 7 (where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index") -}}
+      {{- if ne .Title "Key Topics in Environmental Health" -}}
+     <a href="{{ .RelPermalink }}">{{ .Title }}</a> | &nbsp; 
+      {{- end -}}
+      {{- end -}}
+      <a href="key-topics" class="font-weight-bold">More topics...</a>
+
+      <hr class="mt-1 mb-2">
+
+
+      <p class="text-muted">We collect data from many different sources and put them together to show you how <span class="font-weight-bold text-primary">the environment shapes our health</span>. </p>
+
+    </div>
+  </div>
+
+  <div class="row my-4">
+    <div class="col-md-4">
+      <div style="height:350px; width: 100%; border: 1px solid black">
+        Data stories
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div style="height:350px; width: 100%; border: 1px solid black">
+        Neighborhood reports
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div style="height:350px; width: 100%; border: 1px solid black">
+        Data explorer
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-4">
+    <div class="col-md-7 mx-auto">
+      <div class="row">
+        <div class="col-md-6 my-2">
           <div class="card bg-lightgray mt-1">
             <div class="card-body">
               <h5 class="card-title text-muted fs-sm">Get updates and announcements</h5>
-              {{- partial "signup" . -}}
+              <p class="fs-sm">
+              <em>We will send occasional announcements. We won't share your email address with anybody. </em></p>
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform?embedded=true" class="btn btn-outline-gray btn-block btn-sm mt-2">Sign up here</a>
     
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-10 col-md-12 mx-auto">
-          <div class="row">
-            <div class="col-sm-4 mb-1">
-              <div class="card fs-sm borderbox">
-                <div class="card-body">
-                  <img src="{{ .Site.BaseURL }}images/data-map-3.png" alt="An example of a data map.">
-                </div>
-                <div class="card-footer">
-                  <span class="card-title text-muted"><strong>Maps</strong> show us what neighborhoods have the most or the least of something.</span>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4 mb-1">
-              <div class="card fs-sm borderbox">
-                <div class="card-body">
-                  <img src="{{ .Site.BaseURL }}images/trend-chart-3.png" alt="An example of a trend chart showing data over time.">
-                </div>
-                <div class="card-footer">
-                  <span class="card-title text-muted"><strong>Trends</strong> show us how something has changed over time - if it's going up, going down, or staying stable.</span>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4 mb-1">
-              <div class="card fs-sm borderbox">
-                <div class="card-body">
-                  <img src="{{ .Site.BaseURL }}images/links-chart-3.png" alt="An example of a scatterplot, showing the relationship between two datasets.">
-                </div>
-                <div class="card-footer">
-                  <span class="card-title text-muted">And <strong>links</strong> show us how an <strong>environmental factor</strong> might be related to a <strong>health outcome</strong>.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row my-4">
-        <div class="col-6 mx-auto">
-          <hr>
-        </div>
-      </div>
-
-      <div class="row my-4">
-        <div class="col-md-4 ">
+    
+        <div class="col-md-6 my-2">
           <div class="card bg-lightgray mt-1">
             <div class="card-body">
               <h5 class="card-title text-muted fs-sm">About us</h5>
@@ -227,95 +133,64 @@
               </div>
         </div>
 
-        <div class="col-md-4 ">
+        <div class="col-md-6 my-2">
           <div class="card bg-lightgray mt-1">
             <div class="card-body">
               <h5 class="card-title text-muted fs-sm">Visit our Github repo</h5>
                 <p class="fs-sm">Know code? Want raw data? Found a bug? Visit our Github repo, file an issue, and download raw data.</p>
                 <a href="https://www.github.com/nychealth/EH-dataportal" class="btn btn-outline-gray btn-block btn-sm mt-2">Github<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
-
+    
                 </div>
           </div>
         </div>
 
-        <div class="col-md-4 ">
+
+        <div class="col-md-6 my-2">
           <div class="card bg-lightgray mt-1">
             <div class="card-body">
               <h5 class="card-title text-muted fs-sm">Join our team</h5>
-                <p class="fs-sm">Passionate about health, environmental justice, and technology? Check out open positions in our bureau.</p>
+                <p class="fs-sm">Passionate about health, environmental justice, and technology? Check out our open positions.</p>
                 {{- with .Site.GetPage "about/jobs.md" -}}
                 <a href="{{ .RelPermalink }}" class="btn btn-outline-gray btn-block btn-sm mt-2">Jobs<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
                   {{- end -}}
                 </div>
           </div>
         </div>
+
       </div>
+    </div>
+  </div>
 
-      {{- if eq hugo.Environment "production" -}} 
 
-        <div class="row my-4">
-          <div class="col-md-4 mx-auto">
-            <div class="d-inline-block bg-light p-2">
-              <p class="fs-md">Prefer to use our old site? <b><a id="want_old_site_home" onclick="setCookieHome()">Click here.</a></b></p>
-              </div>
-          </div>
+  {{- if eq hugo.Environment "production" -}} 
+
+  <div class="row my-4">
+    <div class="col-md-4 mx-auto">
+      <div class="d-inline-block bg-light p-2" style="width:100%;">
+        <p class="fs-md">Prefer to use our old site? <b><a id="want_old_site_home" onclick="setCookieHome()">Click here.</a></b></p>
         </div>
-        
-        <script>
-          
-          // set cookie on click
-          
-          const setCookieHome = () => {
-            document.cookie = "want_old_site=true; path=/IndicatorPublic/";
-          }
-          
-          // redirect to home page
-          
-          document.querySelector("#want_old_site_home").href = "/IndicatorPublic/";
-          
-        </script>
+    </div>
+  </div>
+  
+  <script>
+    
+    // set cookie on click
+    
+    const setCookieHome = () => {
+      document.cookie = "want_old_site=true; path=/IndicatorPublic/";
+    }
+    
+    // redirect to home page
+    
+    document.querySelector("#want_old_site_home").href = "/IndicatorPublic/";
+    
+  </script>
 
-      {{- end -}} 
-              
-              <!-- <div class="row mb-4">
-                <div class="col-md-6 col-sm-12 mb-2">
-                  
-                  <div class="card bg-lightgray h-100">
-                    <div class="card-body">
-                      <h5 class="card-title text-muted"><i class="fas fa-book-open"></i>&nbsp;Teaching
-                        resources</h5>
-                        <p class="card-text fs-sm">Lesson plans and classroom tools that use our data.</p>
-                        <hr>
-                        <a href="" class="btn btn-outline-gray btn-sm mt-2" style="float:right">Go to
-                          Teaching
-                          Resources&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
-                        </div>
-                      </div>
-                      
-                    </div>
-                    
-                    <div class="col-md-6 col-sm-12 mb-2">
-                      
-                      <div class="card bg-lightgray h-100 ">
-                        <div class="card-body">
-                          <h5 class="card-title text-muted"><i class="fab fa-buromobelexperte"></i>&nbsp;Data
-                            downloads</h5>
-                            <p class="card-text fs-sm">Customize and download datasets for your own research.
-                            </p>
-                            <hr>
-                            <a href="" class="btn btn-outline-gray btn-sm mt-2" style="float:right">Go to Data
-                              Downloads&nbsp;<i class="fas fa-chevron-circle-right"></i></a>
-                            </div>
-                          </div>
-                          
-                        </div>
-                      </div> -->
-                    </div>
-                    <!--end main column-->
-                  </div>
-                  
-                </article>
-                {{- end -}}
+{{- end -}} 
+
+       
+</article>
+{{- end -}}
                 
 {{ define "js_bot" }}
 
