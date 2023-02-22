@@ -49,7 +49,7 @@ const renderComparisonsChart = (
 
      if (compName[0] === "Boroughs") {
 
-        console.log("boros");
+        // console.log("boros");
 
         // if this is a boro comparison, tweak some things
 
@@ -65,7 +65,7 @@ const renderComparisonsChart = (
 
     } else if (compIndicatorLabel.length == 1) {
 
-        console.log("1 indicator");
+        // console.log("1 indicator");
         
         compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
         plotTitle = compName;
@@ -78,7 +78,7 @@ const renderComparisonsChart = (
 
     } else if (compMeasurementType.length == 1) {
 
-        console.log("1 measure");
+        // console.log("1 measure");
 
         compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
         plotTitle = compName;
@@ -91,7 +91,7 @@ const renderComparisonsChart = (
 
     } else if (compMeasurementType.length > 1 && compIndicatorLabel.length > 1) {
         
-        console.log("> 1 measure & indicator");
+        // console.log("> 1 measure & indicator");
 
         compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
         plotTitle = compName;
