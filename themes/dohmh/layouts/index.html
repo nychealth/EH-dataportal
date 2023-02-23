@@ -69,7 +69,7 @@
       <h2 class="text-info fs-xl">Explore your city - through data</h1>
       <p class="text-muted"><span class="text-primary font-weight-bold">The environment is everything around us:</span> our air and water, the climate, our city's buildings and streets, and the society that we live in:</p>
 
-      <hr class="mt-2 mb-1">
+
 
       {{- range first 7 (where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index") -}}
       {{- if ne .Title "Key Topics in Environmental Health" -}}
@@ -79,10 +79,9 @@
 
       <a href="key-topics" class="btn btn-sm btn-outline-info mt-1 mx-1">More topics <i class="fas fa-arrow-right ml-1" aria-hidden="true"></i></a>
 
-      <hr class="mt-1 mb-2">
 
 
-      <p class="text-muted">We collect data from many different sources and put them together to show you how <span class="font-weight-bold text-primary">the environment shapes our health</span>. </p>
+      <p class="text-muted mt-3">We collect data from many different sources and put them together to show you how <span class="font-weight-bold text-primary">the environment shapes our health</span>. </p>
 
     </div>
   </div>
