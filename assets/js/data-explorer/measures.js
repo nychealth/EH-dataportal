@@ -900,28 +900,64 @@ const renderMeasures = async () => {
 
     if (indicatorComparisonId !== null) {
 
-        let compLegendTitles = [...new Set(comparisonsMetadata.map(item => item.LegendTitle))]
-        
-        comparisonsMetadata.map((c, i) => {
+        let compLegendTitles = [... new Set(aqCombinedComparisonsMetadata.array("LegendTitle"))]
 
-            // console.log("ComparisonID:", c.ComparisonID);
-            // console.log("LegendTitle:", c.LegendTitle);
+        compLegendTitles.map(title => {
 
-            header = compLegendTitles[i];
-            dropdownTrendComparisons.innerHTML += header ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
-            
-            dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton"
-                data-comparison-id="${c.ComparisonID}">
-                ${c.ComparisonName}
-                </button>`;
+            let titleGroup = aqCombinedComparisonsMetadata.filter(aq.escape(d => d.LegendTitle == title))
+
+            // add each unique legend title as a header, with the included comparisons underneath
+
+            dropdownTrendComparisons.innerHTML += title ? '<div class="dropdown-title"><strong>' + title + '</strong></div>' : '';
+
+            let comparisonIDs = [... new Set(titleGroup.array("ComparisonID"))]
+
+            comparisonIDs.map(comp => {
+
+                console.log("ComparisonID", comp);
+                
+                let compGroup = titleGroup.filter(aq.escape(d => d.ComparisonID == comp))
+                
+                let compIndicatorLabel = [... new Set(compGroup.array("IndicatorLabel"))];
+                let compMeasurementType = [... new Set(compGroup.array("MeasurementType"))];
+                let compY_axis_title = [... new Set(compGroup.array("Y_axis_title"))];
+                let compIndicatorMeasure = [... new Set(compGroup.array("IndicatorMeasure"))];
+                
+                if (compIndicatorLabel.length == 1) {
+
+                    console.log("1 indicator [Y_axis_title]");
+                    console.log(compY_axis_title);
+
+                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton"
+                        data-comparison-id="${comp}">
+                        ${compY_axis_title}
+                        </button>`;
+                    
+                } else if (compMeasurementType.length == 1) {
+
+                    console.log("1 measure [MeasurementType]");
+                    console.log(compMeasurementType);
+
+                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton"
+                        data-comparison-id="${comp}">
+                        ${compMeasurementType}
+                        </button>`;
+                    
+                } else if (compMeasurementType.length > 1 && compIndicatorLabel.length > 1) {
+
+                    console.log("> 1 measure & > 1 indicator [IndicatorMeasure]");
+                    console.log(compIndicatorMeasure);
+
+                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton"
+                        data-comparison-id="${comp}">
+                        ${compIndicatorMeasure}
+                        </button>`;
+                    
+                }
+                
+            })
 
         })
-
-        // if disparities is enabled, show the button
-
-        btnShowComparisons.style.display = "inline";
-
-        // add click listener to button that calls renderDisparities
         
     }
 
@@ -1264,7 +1300,7 @@ const renderMeasures = async () => {
                 const filteredTrendDataSummer = filteredTrendData.filter(d => d.Time.startsWith('Summer'));
                 aqFilteredTrendData = aq.from(filteredTrendDataSummer);
                 
-                renderComparisonsChart(aqFilteredTrendDataSummer, aqDefaultTrendMetadata);
+                renderComparisonsChart(aqFilteredTrendData, aqDefaultTrendMetadata);
                 updateChartPlotSize();
                 
             } else {

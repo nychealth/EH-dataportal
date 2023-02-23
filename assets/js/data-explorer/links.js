@@ -12,6 +12,8 @@ const renderLinksChart = (
 
     console.log("** renderLinksChart");
 
+    console.log("data [renderLinksChart]", data);
+
     // ----------------------------------------------------------------------- //
     // arquero table for extracting arrays easily
     // ----------------------------------------------------------------------- //
@@ -297,6 +299,8 @@ const renderLinksChart = (
         ]
 
     }
+
+    console.log("linkspec [renderLinksChart]", linkspec.valueOf());
     
     // ----------------------------------------------------------------------- //
     // render chart

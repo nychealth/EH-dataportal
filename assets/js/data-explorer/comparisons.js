@@ -13,14 +13,13 @@ const renderComparisonsChart = (
     // arquero table for extracting arrays easily
     // ----------------------------------------------------------------------- //
 
-    console.log(">>> comp metadata");
-    metadata.print()
+    // console.log(">>> comp metadata");
+    // metadata.print()
     
     // console.log(">>> comp data:");
     // data.print(100)
 
     let Value = data.array("Value");
-    // let valueMin = Math.min.apply(null, Value);
     let valueMax = Math.max.apply(null, Value);
     let tickMinStep = valueMax >= 3.0 ? 1 : 0.1
 
@@ -29,25 +28,19 @@ const renderComparisonsChart = (
     // ----------------------------------------------------------------------- //
     
     let compName = [... new Set(metadata.array("ComparisonName"))];
-    
     let compIndicatorLabel = [... new Set(metadata.array("IndicatorLabel"))];
-    let compLegendTitle;
     let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
     let compDisplayTypes = [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
-    // let compDisplayTypes = metadata.array("DisplayType");
-    console.log(">>>> compDisplayTypes", compDisplayTypes);
 
     // comparison group label is either measure, indicator, or combo. can include geo eventually
 
     let compGroupLabel;
     let plotSubtitle;
     let plotTitle;
-    // let colors = ["black", "blue", "green", "orange", "red", "magenta"];
-    // let colors = ["#000000FF", "#0000805F", "#0080005F", "#FFA5005F", "#FF00005F", "#FF00FF5F"];
-    // black, blue, orange, magenta, green, purple
+
     let colors = ["#000000ff", "#1696d296", "#f2921496", "#ec008b96", "#55b74896", "#80008096"];
 
-     if (compName[0] === "Boroughs") {
+    if (compName[0] === "Boroughs") {
 
         // console.log("boros");
 
@@ -66,10 +59,13 @@ const renderComparisonsChart = (
     } else if (compIndicatorLabel.length == 1) {
 
         // console.log("1 indicator");
+
+        let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
+        let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))]
         
-        compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
         plotTitle = compName;
-        plotSubtitle = compIndicatorLabel + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+        // plotSubtitle = compIndicatorLabel + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+        plotSubtitle = compY_axis_title + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
 
         // if there's only 1 indicator label, use measurement type to label the groups
 
@@ -80,7 +76,9 @@ const renderComparisonsChart = (
 
         // console.log("1 measure");
 
-        compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
+        let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
+        let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))]
+
         plotTitle = compName;
         plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
 
@@ -93,7 +91,9 @@ const renderComparisonsChart = (
         
         // console.log("> 1 measure & indicator");
 
-        compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
+        let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
+        let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))]
+
         plotTitle = compName;
         plotSubtitle = compName + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
 
@@ -154,9 +154,11 @@ const renderComparisonsChart = (
             "axisY": {
                 "labelAngle": 0,
                 "labelFontSize": 11,
+                "tickMinStep": tickMinStep
             },
             "legend": {
                 "columns": columns,
+                // "columns": 3,
                 "labelFontSize": 14,
                 "symbolSize": 140
             },

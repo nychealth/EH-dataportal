@@ -85,6 +85,7 @@ let filteredTrendData;
 let aqFilteredTrendData;
 let aqFilteredComparisonsData;
 let aqFilteredComparisonsMetadata;
+let aqCombinedComparisonsMetadata;
 
 let mapMeasures = [];
 let trendMeasures = [];
