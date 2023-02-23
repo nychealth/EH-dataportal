@@ -101,9 +101,9 @@
                             </div>
                             <!-- .col -->
 
-                            <div class="col-auto">
+                            <div class="col-auto justify-content-end">
 
-                                <ul class="extensible-list horizontal">
+                                <ul class="extensible-list horizontal justify-content-end">
                                     <li>
                                         <button class="no-btn-style" type="button" title="Language"
                                             data-toggle="collapse" data-target="#global-language"
@@ -124,6 +124,8 @@
                                 </li>
 
                                 </ul>
+
+                                <a class="btn btn-sm btn-light" style="border-radius: 3px;" href="/about/about">About us</a>
 
                             </div>
                             <!-- .col -->
@@ -176,11 +178,11 @@
                 <span id="File.Path" style="display: none">{{ $currentPage.File.Path }}</span>
                 <span id="FirstSection.RelPermalink" style="display: none">{{ $currentPage.FirstSection.RelPermalink }}</span>
 
-                <button class="btn nav-item-search border">
-                    <a href="{{ site.BaseURL }}">
+                <div class="nav-item-search border-right">
+                    <a class="nav-link" id="nav-item-01" href="{{ site.BaseURL }}">
                     <span class='text-primary'><i class='fa fa-home' aria-hidden='true'></i><span class="sr-only">Home</span></span> 
                     </a>
-                </button>
+                </div>
 
                     {{- range .Site.Menus.main -}}
 
