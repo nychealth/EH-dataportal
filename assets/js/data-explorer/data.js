@@ -86,7 +86,7 @@ const createComparisonData = async (comps) => {
 
     // merged metadata
     
-    // console.log("aqComparisonsMetadata:");
+    console.log("aqComparisonsMetadata:");
 
     aqComparisonsMetadata = aq.from(comparisonsMetadata)
         .unroll("Indicators")
@@ -96,7 +96,7 @@ const createComparisonData = async (comps) => {
         })
         .unroll("MeasureID")
         .select(aq.not("Indicators"))
-        // .print()
+        .print()
 
     // console.log("aqUniqueIndicatorMeasure:");
 
@@ -118,7 +118,7 @@ const createComparisonData = async (comps) => {
     )
     // console.log("comparisonsIndicatorsMetadata:", comparisonsIndicatorsMetadata);
 
-    // console.log("aqComparisonsIndicatorsMetadata:");
+    console.log("aqComparisonsIndicatorsMetadata:");
 
     aqComparisonsIndicatorsMetadata = aq.from(comparisonsIndicatorsMetadata)
         .select("IndicatorID", "IndicatorName", "IndicatorLabel", "Measures")
@@ -134,17 +134,17 @@ const createComparisonData = async (comps) => {
         .derive({IndicatorMeasure: d => d.IndicatorLabel + ": " + d.MeasurementType})
         .select(aq.not("Measures"))
         .filter(aq.escape(d => comparisonsMeasureIDs.includes(d.MeasureID)))
-        // .print()
+        .print()
 
 
 
     // join comparisons metadata tables
 
-    // console.log("aqCombinedComparisonsMetadata:");
+    console.log("aqCombinedComparisonsMetadata:");
 
-    // aqCombinedComparisonsMetadata = aqComparisonsMetadata
-    //     .join(aqComparisonMeasuresMetadata, "MeasureID")
-    //     .print()
+    aqCombinedComparisonsMetadata = aqComparisonsMetadata
+        .join(aqComparisonsIndicatorsMetadata, [["MeasureID", "IndicatorID"], ["MeasureID", "IndicatorID"]])
+        .print()
 
 
     // Promise.all takes the array of promises returned by map, and then the `then` callback executes after they've all resolved
@@ -235,12 +235,6 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
     createCitation(); // re-runs on updating Indicator
 
-    // send Indicator Title to vis headers
-
-    document.getElementById('summaryTitle').innerHTML = indicatorName;
-    document.getElementById('mapTitle').innerHTML     = indicatorName;
-    document.getElementById('trendTitle').innerHTML   = indicatorName;
-
     // reset selected measure flags
 
     selectedMapMeasure = false;
@@ -263,7 +257,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
         if (!url.hash) {
 
-            // if loadIndicator is being called without a hash (like when a topic page is loaded), then show the first ID and summary
+            // if loadIndicator is being called without a hash (like when a topic page is loaded), then show the first ID and table
 
             url.hash = "display=summary";
             window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);

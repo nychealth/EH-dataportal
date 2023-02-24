@@ -1,39 +1,44 @@
 // ======================================================================= //
-// summary.js
+// table.js
 // ======================================================================= //
 
 const renderTable = () => {
 
     console.log("** renderTable");
-    
-    const groupColumnYear = 0
-    const groupColumnGeo = 1;
-    const groupId = 0;
-    let filteredTableData;
+
+    // ----------------------------------------------------------------------- //
+    // prep data
+    // ----------------------------------------------------------------------- //
 
     // console.log("tableData", tableData);
 
-    const filteredTableYearData = 
-        tableData
-        .filter(d => selectedSummaryYears.includes(d.Time))
+    const filteredTableYearData = tableData.filter(d => selectedTableYears.includes(d.Time))
 
-    const dataTimes = [...new Set(filteredTableYearData.map(d => d.Time))];
+    // ----------------------------------------------------------------------- //
+    // format geography dropdown checkboxes
+    // ----------------------------------------------------------------------- //
 
-    // console.log(">>>> dataTimes", dataTimes);
-
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // get (pretty) geoTypes available for this year
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     const dataGeos = [...new Set(filteredTableYearData.map(d => prettifyGeoType(d.GeoType)))];
 
     // console.log("dataGeos", dataGeos);
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // get all geo check boxes
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     const allGeoChecks = document.querySelectorAll('.checkbox-geo');
 
     // console.log("allGeoChecks", allGeoChecks);
 
     let geosNotAvailable = [];
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // format
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     
     // remove disabled class from every geo list element
 
@@ -44,8 +49,6 @@ const renderTable = () => {
 
     for (const checkbox of allGeoChecks) {
 
-        // console.log("checkbox", checkbox.children[0].value);
-
         if (!dataGeos.includes(checkbox.children[0].value)) {
             
             geosNotAvailable.push(checkbox)
@@ -55,22 +58,25 @@ const renderTable = () => {
             $(checkbox).attr('aria-disabled', true);
             
         }
-
     }
 
-    // console.log("geosNotAvailable", geosNotAvailable);
 
+    // ----------------------------------------------------------------------- //
     // only render table if a geography is checked
+    // ----------------------------------------------------------------------- //
 
-    if (selectedSummaryGeography.length > 0) {
+    let filteredTableData;
+
+    if (selectedTableGeography.length > 0) {
         
         filteredTableData = 
             filteredTableYearData
-            .filter(d => selectedSummaryGeography.includes(prettifyGeoType(d.GeoType)))
+            .filter(d => selectedTableGeography.includes(prettifyGeoType(d.GeoType)))
 
     } else {
         
         // if no selected geo, then set table to blank and return early
+
         document.getElementById('summary-table').innerHTML = '';
 
         return;
@@ -84,38 +90,41 @@ const renderTable = () => {
         
         return;
     }
-    
-    // console.log("filteredTableData [renderTable]", filteredTableData);
-    
-    const measureAlignMap = new Map();
-    const measures = [...new Set(filteredTableData.map(d => d.MeasurementDisplay))];
-    
-    measures.forEach((m) => {
         
-        measureAlignMap.set(m, "r")
+    // ----------------------------------------------------------------------- //
+    // get unique unreliability notes (dropping empty)
+    // ----------------------------------------------------------------------- //
+
+    const table_unreliability = [...new Set(filteredTableData.map(d => d.Note))].filter(d => !d == "");
+
+    document.querySelector("#table-unreliability").innerHTML = "" // blank to start
+
+    table_unreliability.forEach(element => {
+        
+        document.querySelector("#table-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
         
     });
     
-    // get unique unreliability notes (dropping empty)
+    // ----------------------------------------------------------------------- //
+    // create html table for DataTables
+    // ----------------------------------------------------------------------- //
 
-    const summary_unreliability = [...new Set(filteredTableData.map(d => d.Note))].filter(d => !d == "");
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // table column alignment
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    // console.log("summary_unreliability", summary_unreliability);
-
-    document.querySelector("#summary-unreliability").innerHTML = "" // blank to start
-
-    for (let i = 0; i < summary_unreliability.length; i++) {
-        
-        document.querySelector("#summary-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + summary_unreliability[i] + "</div>" ;
-        
-    }
-
+    const measureAlignMap = new Map();
+    const measures = [...new Set(filteredTableData.map(d => d.MeasurementDisplay))];
+    
+    measures.forEach(m => measureAlignMap.set(m, "r"));
 
     const measureAlignObj = Object.fromEntries(measureAlignMap);
     
-    // console.log("measureAlignObj", measureAlignObj);
-    // console.log("measureImputeObj", measureImputeObj);
     
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // pivot data so measures are columns
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
     const filteredTableAqData = aq.from(filteredTableData)
         .groupby("Time", "GeoTypeDesc", "GeoID", "GeoRank", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI")
@@ -126,10 +135,12 @@ const renderTable = () => {
         // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
         .relocate(["Time", "GeoTypeDesc", "GeoID", "GeoRank"], { before: 0 }) 
     
-    console.log("filteredTableAqData [renderTable]");
-    filteredTableAqData.print({limit: 40})
+    // console.log("filteredTableAqData [renderTable]");
+    // filteredTableAqData.print({limit: 40})
     
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // export Arquero table to HTML
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     
     document.getElementById('summary-table').innerHTML = 
         filteredTableAqData.toHTML({
@@ -146,10 +157,14 @@ const renderTable = () => {
     document.querySelector('#summary-table table').className = "cell-border stripe"
     document.querySelector('#summary-table table').width = "100%"
     
+
     // ----------------------------------------------------------------------- //
     // specify DataTable
     // ----------------------------------------------------------------------- //
     
+    const groupColumnYear = 0
+    const groupColumnGeo = 1;
+
     $('#tableID').DataTable({
         scrollY: 475,
         scrollX: true,
