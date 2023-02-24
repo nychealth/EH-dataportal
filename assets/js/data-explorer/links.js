@@ -12,7 +12,7 @@ const renderLinksChart = (
 
     console.log("** renderLinksChart");
 
-    console.log("data [renderLinksChart]", data);
+    // console.log("data [renderLinksChart]", data);
 
     // ----------------------------------------------------------------------- //
     // arquero table for extracting arrays easily
@@ -30,8 +30,6 @@ const renderLinksChart = (
     const primaryMeasureName     = primaryMetadata[0].MeasureName;
     const primaryDisplay         = primaryMetadata[0].DisplayType;
     const primaryTime            = data[0].Time_1;
-
-    const primaryGeoType = data[0].GeoType; // from the actual data we're charting
 
     const secondaryMeasurementType = secondaryMetadata[0].MeasurementType
     const secondaryMeasureName     = secondaryMetadata[0].MeasureName
@@ -94,16 +92,12 @@ const renderLinksChart = (
     }
 
     // ----------------------------------------------------------------------- //
-    // get dimensions
+    // set chart properties
     // ----------------------------------------------------------------------- //
     
-    var legendOrientation = "bottom"
-    var columns = 6;
-    var bubbleSize = 200;
-    var height;
-    window.innerWidth < 576 ? bubbleSize = 100: bubbleSize = 200
-    window.innerWidth < 576 ? columns = 3 : columns = 6;
-    window.innerWidth < 576 ? height = 350 : height = 500;
+    let bubbleSize = window.innerWidth < 576 ? 100 : 200;
+    let columns = window.innerWidth < 576 ? 3 : 6;
+    let height = window.innerWidth < 576 ? 350 : 500;
 
     
     // ----------------------------------------------------------------------- //
@@ -117,11 +111,11 @@ const renderLinksChart = (
 
     document.querySelector("#links-unreliability").innerHTML = ""; // blank to start
 
-        for (let i = 0; i < links_unreliability.length; i++) {
-            
-            document.querySelector("#links-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + links_unreliability[i] + "</div>" ;
-            
-        }
+    links_unreliability.forEach(element => {
+
+        document.querySelector("#links-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
+        
+    });
 
     // ----------------------------------------------------------------------- //
     // define spec
@@ -163,7 +157,7 @@ const renderLinksChart = (
                 "columns": columns,
                     "labelFontSize": 14,
                     "symbolSize": 140,
-                    "orient": legendOrientation,
+                    "orient": "bottom",
                     "title": null
                 },
             "view": { "stroke": "transparent" },
@@ -300,8 +294,6 @@ const renderLinksChart = (
 
     }
 
-    console.log("linkspec [renderLinksChart]", linkspec.valueOf());
-    
     // ----------------------------------------------------------------------- //
     // render chart
     // ----------------------------------------------------------------------- //
