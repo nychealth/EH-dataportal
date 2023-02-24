@@ -1,5 +1,5 @@
 // ======================================================================= //
-// summary.js
+// table.js
 // ======================================================================= //
 
 const renderTable = () => {
@@ -10,13 +10,13 @@ const renderTable = () => {
     // get unique unreliability notes (dropping empty)
     // ----------------------------------------------------------------------- //
 
-    const summary_unreliability = [...new Set(filteredTableData.map(d => d.Note))].filter(d => !d == "");
+    const table_unreliability = [...new Set(filteredTableData.map(d => d.Note))].filter(d => !d == "");
 
-    document.querySelector("#summary-unreliability").innerHTML = "" // blank to start
+    document.querySelector("#table-unreliability").innerHTML = "" // blank to start
 
-    summary_unreliability.forEach(element => {
+    table_unreliability.forEach(element => {
         
-        document.querySelector("#summary-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
+        document.querySelector("#table-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
         
     });
 
@@ -29,7 +29,7 @@ const renderTable = () => {
 
     // console.log("tableData", tableData);
 
-    const filteredTableYearData = tableData.filter(d => selectedSummaryYears.includes(d.Time))
+    const filteredTableYearData = tableData.filter(d => selectedTableYears.includes(d.Time))
 
     // ----------------------------------------------------------------------- //
     // format geography dropdown checkboxes
@@ -81,11 +81,11 @@ const renderTable = () => {
     // only render table if a geography is checked
     // ----------------------------------------------------------------------- //
 
-    if (selectedSummaryGeography.length > 0) {
+    if (selectedTableGeography.length > 0) {
         
         filteredTableData = 
             filteredTableYearData
-            .filter(d => selectedSummaryGeography.includes(prettifyGeoType(d.GeoType)))
+            .filter(d => selectedTableGeography.includes(prettifyGeoType(d.GeoType)))
 
     } else {
         

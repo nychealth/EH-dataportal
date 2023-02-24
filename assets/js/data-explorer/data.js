@@ -257,7 +257,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
         if (!url.hash) {
 
-            // if loadIndicator is being called without a hash (like when a topic page is loaded), then show the first ID and summary
+            // if loadIndicator is being called without a hash (like when a topic page is loaded), then show the first ID and table
 
             url.hash = "display=summary";
             window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);

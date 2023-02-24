@@ -639,17 +639,17 @@ const handleYearFilter = (el) => {
 
         if (e.target.checked) {
 
-            // selectedSummaryYears = [e.target.value]
-            selectedSummaryYears.push(e.target.value)
+            // selectedTableYears = [e.target.value]
+            selectedTableYears.push(e.target.value)
 
         } else {
 
-            // if the selected element is not checked, remove it from summary years
+            // if the selected element is not checked, remove it from table years
 
-            let index = selectedSummaryYears.indexOf(e.target.value);
+            let index = selectedTableYears.indexOf(e.target.value);
 
             if (index !== -1) {
-                selectedSummaryYears.splice(index, 1);
+                selectedTableYears.splice(index, 1);
             }
         }
         renderTable()
@@ -663,14 +663,14 @@ const handleGeoFilter = (el) => {
     el.addEventListener('change', (e) => {
 
         if (e.target.checked) {
-            selectedSummaryGeography.push(e.target.value)
+            selectedTableGeography.push(e.target.value)
         } else {
-            selectedSummaryGeography = selectedSummaryGeography.filter(item => item !== e.target.value);
+            selectedTableGeography = selectedTableGeography.filter(item => item !== e.target.value);
         }
 
         // only render table if a geography is checked
 
-        if (selectedSummaryGeography.length > 0) {
+        if (selectedTableGeography.length > 0) {
             renderTable()
 
         } else {
@@ -688,12 +688,12 @@ const renderMeasures = async () => {
 
     console.log("** renderMeasures");
 
-    selectedSummaryYears = [];
-    selectedSummaryGeography = [];
+    selectedTableYears = [];
+    selectedTableGeography = [];
 
     linksMeasures.length = 0
 
-    const contentSummary = document.querySelector('#tab-table');
+    const contentTable = document.querySelector('#tab-table');
     const contentMap     = document.querySelector('#tab-map')
     const contentTrend   = document.querySelector('#tab-trend');
     const contentLinks   = document.querySelector('#tab-links');
@@ -702,8 +702,8 @@ const renderMeasures = async () => {
 
     // ----- set dropdowns for this indicator ================================================== //
 
-    const dropdownTableGeo = contentSummary.querySelector('div[aria-labelledby="dropdownTableGeo"]');
-    const dropdownTableTime = contentSummary.querySelector('div[aria-labelledby="dropdownTableTime"]');
+    const dropdownTableGeo = contentTable.querySelector('div[aria-labelledby="dropdownTableGeo"]');
+    const dropdownTableTime = contentTable.querySelector('div[aria-labelledby="dropdownTableTime"]');
 
     const dropdownTrendComparisons = contentTrend.querySelector('div[aria-labelledby="dropdownTrendComparisons"]');
 
@@ -741,7 +741,7 @@ const renderMeasures = async () => {
 
             // default to most recent year
 
-            selectedSummaryYears = [year];
+            selectedTableYears = [year];
 
             dropdownTableTime.innerHTML +=
                 `<label class="dropdown-item checkbox-year"><input class="largerCheckbox" type="checkbox" name="year" value="${year}" checked /> ${year}</label>`;
@@ -765,9 +765,9 @@ const renderMeasures = async () => {
 
     dropdownGeoTypes.forEach(geo => {
 
-        selectedSummaryGeography.push(geo);
+        selectedTableGeography.push(geo);
         
-        // console.log("selectedSummaryGeography:", selectedSummaryGeography);
+        // console.log("selectedTableGeography:", selectedTableGeography);
 
         dropdownTableGeo.innerHTML += `<label class="dropdown-item checkbox-geo"><input class="largerCheckbox" type="checkbox" value="${geo}" checked /> ${geo}</label>`;
 
@@ -982,7 +982,7 @@ const renderMeasures = async () => {
 
         // ----- handle tab selection -------------------------------------------------- //
 
-        // set hash to summary
+        // set hash to summary table
 
         if (window.location.hash !== '#display=summary' && window.location.hash !== 'display=summary') {
             window.location.hash = 'display=summary';
@@ -1620,7 +1620,7 @@ const renderMeasures = async () => {
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // disable tabs and switch to summary if there are no measures
+    // disable tabs and switch to table if there are no measures
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     // this is effectively the state of the tabs when the indicator is loaded or changed
