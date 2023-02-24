@@ -1,0 +1,399 @@
+{{- define "main" -}}
+
+<div class="container-fluid px-0">
+
+    {{ $src := .Resources.GetMatch .Params.image }}
+    {{ $image := $src.Resize "1920x"}}
+    <div id="datastoryheader" style="background-image: URL({{ $image.Permalink }}); background-position: 50% 25%">
+
+        <div class="medium my-auto">
+            <h1 class="titleheader py-2 px-4">
+                {{ .Title }}
+            </h1>
+        </div>
+    </div>
+</div>
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-xl-2"></div>
+        <!-- .col -->
+
+        <!--start main content section-->
+        <div class="col-xl-8 overflow-hidden fs-rg" id="primary-content">
+
+        <!-- language selection -->
+        {{- if .IsTranslated -}}
+            <nav class="navbar navbar-default my-2">
+                    <ul class="nav navbar-nav fs-sm">
+                        <span class="mr-2">Read this data story in:</span> 
+                        {{- range .Translations -}}
+                        <li class="mb-1"><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>  
+                        {{- end -}}
+                    </ul>
+            </nav>
+        {{- end -}}
+
+        <div class="narrow my-2">
+                {{- .Content -}}
+
+                <p>Legend:<br>
+                     <span class="pop ehbadge home-label">population</span>
+                     <span class="housing ehbadge home-label">housing</span> 
+                     <span class="health ehbadge home-label">health department and local activism</span>
+                     <span class="transpo ehbadge home-label">Transportation</span> 
+                     <span class="dis ehbadge home-label">Disinvestment and zoning</span>  </p>
+                     <hr class="my-2">
+
+        </div>
+
+        <div class="medium">
+            <div>
+                <style>
+
+.ehbadge {
+    padding: 2px 5px;
+    border-radius: 6px;
+    margin-right: 5px;
+}
+
+.pop {
+    background-color: #dbf0ff;
+}
+
+.housing {
+    background-color: #b2000025;
+}
+
+.health {
+    background-color: #00800025;
+}
+
+.transpo {
+    background-color: #A0870050;
+}
+
+.dis {
+    background-color: #E5CCE5;
+}
+
+/* https://code-boxx.com/simple-pure-css-timeline/ */
+
+/* (A) TIMELINE CONTAINER */
+.alt-vtl {
+    /* (A1) RELATIVE POSITION REQUIRED TO PROPERLY POSITION THE TIMELINE */
+    position: relative;
+   
+    /* (A2) WIDTH RESTRICTION & CENTER ON PAGE */
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* (B) DRAW TIMELINE USING ::BEFORE */
+  .alt-vtl::before {
+    /* (B1) VERTICAL LINE */
+    content: "";
+    width: 5px;
+    background-color: #1da1ff;
+   
+    /* (B2) POSITION IN THE MIDDLE */
+    position: absolute;
+    top: 0; bottom: 0; left: 50%;
+  }
+  
+  /* (C) EVENTS */
+  div.alt-event {
+    /* (C1) COSMETICS */
+    border-radius: 6px;
+   
+    /* (C2) DIMENSIONS */
+    padding: 15px 15px;
+    width: 45%;
+    margin-bottom: 10px;
+   
+    /* (C3) POSITION - DEFAULT LEFT SIDE */
+    position: relative;
+    left: 0;
+  }
+   
+  /* (C4) CHANGE EVENT POSITION TO RIGHT SIDE */
+  div.right { left: 55%; }
+  
+  /* (D) COSMETICS FOR EVENT DATE & TEXT */
+  p.date {
+    font-size: 1em;
+    font-weight: 700;
+    color: #666666;
+    border-bottom: 1px solid black;
+  }
+  p.txt {
+    margin: 5px 0 0 0;
+    color: #222;
+    font-size: 0.8em;
+  }
+  
+  /* (E) EVENT "SPEECH BUBBLE CALLOUT" */
+  /* (E1) SHARED */
+  div.alt-event::before, div.alt-event.right::before {
+    content: "";
+    border: 10px solid transparent;
+    position: absolute;
+  }
+   
+  /* (E2) FOR EVENTS ON THE LEFT */
+  div.alt-event::before {
+    /* (E2-1) "MAGIC TRIANGLE" */
+    border-left-color: #66666650;
+    border-right: 0;
+   
+    /* (E2-2) POSITION TRIANGLE ON THE RIGHT */
+    left: 100%; top: 20%;
+  }
+   
+  /* (E3) FOR EVENTS ON THE RIGHT */
+  div.alt-event.right::before {
+    /* (E3-1) "MAGIC TRIANGLE" */
+    border-right-color: #66666650;
+    border-left: 0;
+   
+    /* (E3-2) POSITION TRIANGLE ON THE LEFT */
+    left: auto; right: 100%; top: 20%;
+  }
+   
+  /* (F) EVENT CIRCLE ON TIMELINE */
+  /* (F1) SHARED */
+  div.alt-event::after, div.alt-event.right::after {
+    /* (F1-1) "MAGIC CIRCLE" */
+    content: "";
+    background: #fff;
+    border: 4px solid #1da1ff;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+   
+    /* (F1-2) POSITION */
+    position: absolute;
+  }
+   
+  /* (F2) POSITION TO THE LEFT */
+  div.alt-event::after { top: 20%; left: 109%; }
+   
+  /* (F3) POSITION TO THE RIGHT */
+  div.alt-event.right::after { top: 20%; left: auto; right: 107%; }
+                </style>
+                
+                
+                <div class="alt-vtl">
+                    <div class="alt-event pop">
+                      <p class="date">mid-1800s</p>
+                      <p class="txt">Cheap housing and employment opportunities draw European immigrants to East Harlem.                    </p>
+                    </div>
+                    <div class="alt-event right transpo">
+                      <p class="date">1880</p>
+                      <p class="txt">The New York Elevated Railroad extends north to the Harlem River, making East Harlem accessible to other areas of Manhattan.</p>
+                    </div>
+
+                    <div class="alt-event pop">
+                        <p class="date">Late 1800s</p>
+                        <p class="txt">The search for jobs plus racialized violence and oppression in the US South leads to the Great Migration of Black people to the North, which continues for decades. Many settle in East Harlem.</p>
+
+                    </div>
+
+
+                    <div class="alt-event right health">
+                      <p class="date">1921</p>
+                      <p class="txt">The East Harlem Health Center opens to address local public health needs through a partnership with the Health Department, the American Red Cross, and health and social service providers.</p>
+                    </div>
+                    <div class="alt-event health">
+                      <p class="date">1931</p>
+                      <p class="txt">Due to the success of the East Harlem Health Center, Health Commissioner Shirley W. Wynne announces plans to establish health centers in 30 districts in NYC.
+                    </p>
+                    </div>
+                    <div class="alt-event transpo right">
+                      <p class="date">1934</p>
+                      <p class="txt">Construction of the Franklin Delano Roosevelt Drive begins. The parkway runs along the East River and Manhattan neighborhoods, including East Harlem.</p>
+                    </div>
+
+                    <div class="alt-event housing">
+                        <p class="date">1934</p>
+                        <p class="txt">Congress creates the Federal Housing Administration, which ranks neighborhoods from most to least desirable in the racist practice known as redlining. Black and Latino neighborhoods are outlined in read - meaning high risk - on maps guiding real estate investments. Redlining devastates the East Harlem housing market, contributes to racial residential segregation and impacts the neighborhood for the next several decades. <a href="/data-stories/redlining/">Read more about redlining</a>.
+                        </p>
+                    </div>
+
+
+                    <div class="alt-event housing right">
+                        <p class="date">1937</p>
+
+                        <p class="txt">
+                            With the federal Housing Act of 1937, the NYC Housing Authority (NYCHA) demolishes East Harlem tenements to make way for high-rise public housing buildings, a process that continues for two decades.
+                        </p>
+                    </div>
+
+                    <div class="alt-event housing">
+                        <p class="date">1944</p>
+                        <p class="txt">The G.I. Bill provides benefits to returning World War II veterans. However, non-White veterans are denied loans by banks and mortgage agencies while White veterans build capital and wealth through homeownership. East Harlem's demographics change as Italian and Eastern Europeans move to postwar suburbs, deepening residential segregation.</p>
+
+                    </div>
+
+                    <div class="alt-event pop right">
+                        <p class="date">1940s</p>
+                        <p class="txt">Puerto Ricans move to East Harlem. The neighborhood is nicknamed Spanish Harlem and El Barrio.</p>
+                    </div>
+
+                    <div class="alt-event housing">
+                        <p class="date">1967</p>
+                        <p class="txt">NYCHA builds thousands of apartment units in East Harlem. Though offering affordable housing, the developments transform large tracts of land from mixed-use spaces to residential areas where foot traffic is limited to building residents.</p>
+                    </div>
+
+
+                    <div class="alt-event housing right">
+                        <p class="date">1968</p>
+                        <p class="txt">The Fair Housing Act is passed to protect people from discrimination when renting, buying or getting financing for housing. <a href="/data-stories/housing/">More about health, housing, and history</a>.</p>
+                    </div>
+
+                    <div class="alt-event  health">
+                        <p class="date">1969</p>
+                        <p class="txt">The Young Lords Party, a Puerto Rican activist group, starts teh Garbage Offensive to improve sanitation in East Harlem after the neighborhood is denied street cleaning by the Department of Sanitation. <a href="/data-stories/sanitation/">Read more about sanitation and public health</a>.</p>
+                    </div>
+
+                    <div class="alt-event dis right">
+                        <p class="date">1970</p>
+                        <p class="txt">Daniel Patrick Moynihan, President Richard Nixon's urban affairs advisor, proposed benign neglect, which encourages the government to move public money from inner cities to suburbs.</p>
+                    </div>
+
+                    <div class="alt-event dis ">
+                        <p class="date">1976</p>
+                        <p class="txt">NYC Housing Preservation and Development Commissioner Roger Starr proposes planned shrinkage, and the City withdraws services like garbage removal, fire service and street repairs from low-income neighborhoods, including East Harlem.</p>
+                    </div>
+
+                    <div class="alt-event transpo right">
+                        <p class="date">1976</p>
+                        <p class="txt">The New York Elevated Railway tracks are demolished as the NYC train system moves underground.</p>
+
+                    </div>
+
+                    <div class="alt-event health ">
+                        <p class="date">1976</p>
+                        <p class="txt">The Young Lords Party conducts door-to-door tuberculosis testing in East Harlem to compensate for poor health services in the neighborhood.</p>
+                        <p class="txt">A coalition of residents, hospitals, organizations, the Health Department and other City agencies establishes the East Harlem Environmental Extension Service to address environmental health and safety in tenement housing.</p>
+                    </div>
+
+                    <div class="alt-event pop right">
+                        <p class="date">1980s</p>
+                        <p class="txt">A wave of immigrants from Mexico, Central and South America, the Caribbean, West Africa and Asia come to NYC - many settle in East Harlem. <a href="/data-explorer/social-conditions/?id=14#display=summary">Get data on foreign-born residents</a>.</p>
+                    </div>
+
+                    <div class="alt-event  dis">
+                        <p class="date">2002</p>
+                        <p class="txt">The NYC Department of City Planning rezones areas in East Harlem, leading to the development of large residential buidings and retail spaces.</p>
+                    </div>
+
+                    <div class="alt-event health right">
+                        <p class="date">2003</p>
+                        <p class="txt">The Health Department launches three District Public Health Offices, including one in Harlem, to focus public health resources in NYC neighborhoods with the highest rates of illness and premature death. <a href="/data-explorer/health-care/?id=2151#display=summary">Get data on health care</a> and <a href="/data-explorer/mortality/?id=2322#display=summary">data on premature mortality</a>.
+                        </p>
+                    </div>
+
+                    <div class="alt-event transpo ">
+                        <p class="date">2003</p>
+                        <p class="txt">Protected bike lanes are extended to East Harlem along First and Second Avenues. <a href="/data-explorer/active-design/?id=2390#display=summary">Get data on bike lanes</a>.</p>
+                    </div>
+
+                    <div class="alt-event dis right">
+                        <p class="date">2016</p>
+                        <p class="txt">The NYC Department of City Planning presents a rezoning plan for East Harlem, which would create new housing. Residents worry that the plan will make the area unaffordable and lead to displacement. <a href="data-explorer/housing-stability/?id=2365#display=summary">Get data on housing stability</a>.</p>
+                        </p>
+                    </div>
+
+                    <div class="alt-event health">
+                        <p class="date">2016</p>
+                        <p class="txt">The East Harlem Community Walking Trail is created to promote physical activity and build a sense of community. <a href="/data-explorer/active-design/?id=2133#display=summary">Get data on walkability</a>.</p>
+                        </p>
+                    </div>
+
+                    <div class="alt-event transpo right">
+                        <p class="date">2016</p>
+                        <p class="txt">Citi Bike, the NYC bike share program, expands to East Harlem. <a href="/data-explorer/walking-driving-and-cycling/?id=2059#display=summary">Get data on bicycling</a>.</p>
+                        </p>
+                    </div>
+
+                    <div class="alt-event health">
+                        <p class="date">2016</p>
+                        <p class="txt">Building upon the District Public Health Offices, the Health Department launches Neighborhood Health Action Centers, including one in Harlem, to offer coordinated health and social services to residents.
+                        </p>
+                    </div>
+
+                    <div class="alt-event transpo right">
+                        <p class="date">2017</p>
+                        <p class="txt">The Second Avenue Subway is completed with plans to extend the line to East Harlem in the coming years. <a href="/data-explorer/active-design/?id=2391#display=summary">Get data on subway access</a>.</p>
+                    </div>
+
+                  </div>
+
+            </div>
+        </div>
+
+        <footer class="narrow my-4" id="article-footer">
+
+            <div class="border-top border-dark">
+                <ul class="extensible-list text-muted mt-3">
+                    <li>
+                        <a class="text-muted" href="mailto:trackingportal@health.nyc.gov"
+                            title="Share through email">
+                            <span class="fa fa-envelope mr-1"></span> Questions about this data story? Ideas
+                            for another one? Email us.</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- .narrow -->
+
+        </footer>
+        <!-- #article-footer -->
+
+        </div>
+        <!-- .col (main) -->
+
+        <!--right-hand column for extra resources and links-->
+        <div class="col-xl-2 border-xl-left">
+
+            <div class="py-3 mt-3 mt-xl-0 sticky-top" style="z-index: 0">
+                {{- partial "socialshare.html" . -}}
+
+                <hr class="my-2">
+
+                {{- partial "keywords" . -}}
+
+                <hr class="my-2">
+
+                <div class="fs-sm">
+                    {{- if .Params.photocredit -}}
+                        <i class="fas fa-images mr-1"></i><strong class="keywords">Banner image:</strong><br>
+                        {{- .Params.photocredit -}}
+                        <hr class="my-2">
+                    {{- end -}}
+
+                    <strong class="keywords">Published on:</strong><br>
+                    {{- .Date.Format "January 2, 2006" -}}
+                </div>
+
+
+
+
+
+            </div>
+            <!-- .my-3 -->
+
+        </div>
+        <!-- .col -->
+
+    </div>
+    <!-- .row -->
+
+
+</article>
+<!-- #primary-content -->
+
+<!-- Related footer -->
+{{- partial "related-footer-2" . -}}
+
+{{- end -}}
