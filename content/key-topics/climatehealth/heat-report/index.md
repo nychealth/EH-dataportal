@@ -76,13 +76,10 @@ Notes: The number of heat-stress deaths for 2020 is provisional. If additional d
 
 **Note on race and ethnicity:** Deaths are grouped into these five race and ethnicity categories due to the small sample size of deaths and the availability of denominator data. However, these categories represent an oversimplification of the ethnically and racially diverse population found in NYC. People identified as two or more races or races/ethnicities not listed here are included in the other or unknown category, and the Hispanic/Latino category includes people of any race. Differences in mortality rates among racial and ethnic groups are due to long-term structural racism, not biological or personal traits. Structural racism — centuries of racist policies and discriminatory practices across institutions, including government agencies, and society — prevents communities of color from accessing vital resources (such as health care and healthy housing) and opportunities (such as employment and education), and negatively affects overall health and well-being. See Appendix Methods and Supplemental Data for more information on numbers and percentages by race and ethnicity.
 
-### Neighborhood Poverty Level of Heat Stress Deaths, 2011-2020
-
-### Place of Residents of Heat Stress Decedents, 2011-2020
-
-### Average Annual Rates of Heat Stress by Age Group, 2011-2020
-
-### Sex of Heat Stress Decedents, 2011-2020
+- Neighborhood Poverty Level of Heat Stress Deaths, 2011-2020
+- Place of Residents of Heat Stress Decedents, 2011-2020
+- Average Annual Rates of Heat Stress by Age Group, 2011-2020
+- Sex of Heat Stress Decedents, 2011-2020
 
 ## Health and Other Risk Factors
 
@@ -98,9 +95,7 @@ People who died from heat-stress were most often exposed to dangerous heat in th
 
 Among New Yorkers who died after becoming dangerously hot at home, and for whom there was information about the presence or absence of an AC, 81% had no AC and the rest had AC that was either not working or not in use.
 
-<iframe title="Heat Stress Deaths" aria-label="Bar Chart" id="datawrapper-chart-4p5mh" src="https://datawrapper.dwcdn.net/4p5mh/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="600" data-external="1"></iframe>
-
-<script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+<iframe title="AC status of heat stress deaths at home" aria-label="Table" id="datawrapper-chart-7F4Tg" src="https://datawrapper.dwcdn.net/7F4Tg/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="210" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
 </script>
 
 **Note on race and ethnicity:** Deaths are grouped into these five race and ethnicity categories due to the small sample size of deaths and the availability of denominator data. However, these categories represent an oversimplification of the ethnically and racially diverse population found in NYC. People identified as two or more races or races/ethnicities not listed here are included in the other or unknown category, and the Hispanic/Latino category includes people of any race. Differences in mortality rates among racial and ethnic groups are due to long-term structural racism, not biological or personal traits. Structural racism — centuries of racist policies and discriminatory practices across institutions, including government agencies, and society — prevents communities of color from accessing vital resources (such as health care and healthy housing) and opportunities (such as employment and education), and negatively affects overall health and well-being. See Appendix Methods and Supplemental Data for more information on numbers and percentages by race and ethnicity.
