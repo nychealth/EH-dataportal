@@ -782,7 +782,7 @@ const renderMeasures = async () => {
 
     mapTimes.map(time => {
 
-        dropdownMapTimes.innerHTML += `<button class="dropdown-item link-time maptimesbutton"
+        dropdownMapTimes.innerHTML += `<button class="dropdown-item link-time maptimesbutton pl-2"
             data-time="${time}">
             ${time}
             </button>`;
@@ -802,7 +802,6 @@ const renderMeasures = async () => {
         const map = measure?.VisOptions[0].Map && measure?.VisOptions[0].Map[0]?.On;
         const trend = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0]?.On;
         const measureId = measure.MeasureID;
-        const measureName = measure.MeasureName;
 
         // console.log("type", type, "links", links, "map", map, "trend", trend);
 
@@ -813,7 +812,7 @@ const renderMeasures = async () => {
             
             mapMeasures.push(measure)
             
-            dropdownMapMeasures.innerHTML += `<button class="dropdown-item link-measure mapmeasuresbutton"
+            dropdownMapMeasures.innerHTML += `<button class="dropdown-item link-measure mapmeasuresbutton pl-2"
                 data-measure-id="${measureId}">
                 ${type}
                 </button>`;
@@ -835,8 +834,10 @@ const renderMeasures = async () => {
             
             if (header === "") {
                 header = "Geography";
+
             } else if (header === "Geography") {
                 header = undefined;
+
             } else {
                 header = undefined;
             }
@@ -844,10 +845,10 @@ const renderMeasures = async () => {
             // console.log("header", header);
             // console.log("index", index);
 
-            dropdownTrendComparisons.innerHTML += header ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
+            dropdownTrendComparisons.innerHTML += header ? '<div class="dropdown-title pl-2"><strong>' + header + '</strong></div>' : '';
 
             if (trendData) {
-                dropdownTrendComparisons.innerHTML += `<button class="dropdown-item trendbutton"
+                dropdownTrendComparisons.innerHTML += `<button class="dropdown-item trendbutton pl-3"
                 data-measure-id="${measureId}">
                 ${type}
                 </button>`;
@@ -868,7 +869,7 @@ const renderMeasures = async () => {
             if (tableData) {
 
                 dropdownLinksMeasures.innerHTML +=
-                    `<div class="dropdown-title"><strong> ${type}</strong></div>`;
+                    `<div class="dropdown-title pl-2"><strong> ${type}</strong></div>`;
 
                 measure.VisOptions[0].Links.map(link => {
 
@@ -883,7 +884,7 @@ const renderMeasures = async () => {
                     );
 
                     dropdownLinksMeasures.innerHTML +=
-                        `<button class="dropdown-item linksbutton"
+                        `<button class="dropdown-item linksbutton pl-3"
                         data-primary-measure-id="${measureId}"
                         data-measure-id="${measure.MeasureID}"
                         data-secondary-measure-id="${link.MeasureID}">
@@ -908,7 +909,7 @@ const renderMeasures = async () => {
 
             // add each unique legend title as a header, with the included comparisons underneath
 
-            dropdownTrendComparisons.innerHTML += title ? '<div class="dropdown-title"><strong>' + title + '</strong></div>' : '';
+            dropdownTrendComparisons.innerHTML += title ? '<div class="dropdown-title pl-2"><strong>' + title + '</strong></div>' : '';
 
             let comparisonIDs = [... new Set(titleGroup.array("ComparisonID"))]
 
@@ -928,7 +929,7 @@ const renderMeasures = async () => {
                     console.log("1 indicator [Y_axis_title]");
                     console.log(compY_axis_title);
 
-                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton"
+                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
                         data-comparison-id="${comp}">
                         ${compY_axis_title}
                         </button>`;
@@ -938,7 +939,7 @@ const renderMeasures = async () => {
                     console.log("1 measure [MeasurementType]");
                     console.log(compMeasurementType);
 
-                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton"
+                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
                         data-comparison-id="${comp}">
                         ${compMeasurementType}
                         </button>`;
@@ -948,7 +949,7 @@ const renderMeasures = async () => {
                     console.log("> 1 measure & > 1 indicator [IndicatorMeasure]");
                     console.log(compIndicatorMeasure);
 
-                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton"
+                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
                         data-comparison-id="${comp}">
                         ${compIndicatorMeasure}
                         </button>`;
