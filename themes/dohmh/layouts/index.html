@@ -69,17 +69,13 @@
       <h2 class="text-info fs-xl">Explore your city - through data</h1>
       <p class="text-muted"><span class="text-primary font-weight-bold">The environment is everything around us:</span> our air and water, the climate, our city's buildings and streets, and the society that we live in:</p>
 
-
-
-      {{- range first 7 (where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index") -}}
-      {{- if ne .Title "Key Topics in Environmental Health" -}}
-     <a href="{{ .RelPermalink }}" class="btn btn-sm btn-outline-light text-primary mt-1 mx-1">{{ .Title }}</a>
-      {{- end -}}
-      {{- end -}}
-
-      <a href="key-topics" class="btn btn-sm btn-outline-info mt-1 mx-1">More topics <i class="fas fa-arrow-right ml-1" aria-hidden="true"></i></a>
-
-
+      <a href="/key-topics/airquality" class="btn btn-sm btn-outline-light text-primary mt-1 mr-1">Air quality</a> 
+      <a href="/key-topics/climatehealth" class="btn btn-sm btn-outline-light text-primary mt-1 mr-1">Climate</a>
+      <a href="/key-topics/housing" class="btn btn-sm btn-outline-light text-primary mt-1 mr-1">Housing</a>
+      <a href="/key-topics/transportation" class="btn btn-sm btn-outline-light text-primary mt-1 mr-1">Public space</a>
+      <a href="/key-topics/healthoutcomes" class="btn btn-sm btn-outline-light text-primary mt-1 mr-1">Health</a>
+      <a href="/key-topics/social" class="btn btn-sm btn-outline-light text-primary mt-1 mr-1">Inequality</a>
+      <a href="key-topics" class="btn btn-sm btn-outline-info mt-1 mx-1 float-right">More topics <i class="fas fa-arrow-right ml-1" aria-hidden="true"></i></a>
 
       <p class="text-muted mt-3">We collect data from many different sources and put them together to show you how <span class="font-weight-bold text-primary">the environment shapes our health</span>. </p>
 
