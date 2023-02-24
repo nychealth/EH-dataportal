@@ -19,9 +19,7 @@ const renderTable = () => {
         document.querySelector("#summary-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
         
     });
-    
-    const groupColumnYear = 0
-    const groupColumnGeo = 1;
+
 
     // ----------------------------------------------------------------------- //
     // prep data
@@ -165,6 +163,9 @@ const renderTable = () => {
     // specify DataTable
     // ----------------------------------------------------------------------- //
     
+    const groupColumnYear = 0
+    const groupColumnGeo = 1;
+
     $('#tableID').DataTable({
         scrollY: 475,
         scrollX: true,
