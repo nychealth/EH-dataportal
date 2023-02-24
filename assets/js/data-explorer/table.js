@@ -5,27 +5,10 @@
 const renderTable = () => {
 
     console.log("** renderTable");
-    
-    // ----------------------------------------------------------------------- //
-    // get unique unreliability notes (dropping empty)
-    // ----------------------------------------------------------------------- //
-
-    const table_unreliability = [...new Set(filteredTableData.map(d => d.Note))].filter(d => !d == "");
-
-    document.querySelector("#table-unreliability").innerHTML = "" // blank to start
-
-    table_unreliability.forEach(element => {
-        
-        document.querySelector("#table-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
-        
-    });
-
 
     // ----------------------------------------------------------------------- //
     // prep data
     // ----------------------------------------------------------------------- //
-
-    let filteredTableData;
 
     // console.log("tableData", tableData);
 
@@ -52,6 +35,7 @@ const renderTable = () => {
     // console.log("allGeoChecks", allGeoChecks);
 
     let geosNotAvailable = [];
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // format
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -81,6 +65,8 @@ const renderTable = () => {
     // only render table if a geography is checked
     // ----------------------------------------------------------------------- //
 
+    let filteredTableData;
+
     if (selectedTableGeography.length > 0) {
         
         filteredTableData = 
@@ -104,7 +90,20 @@ const renderTable = () => {
         
         return;
     }
-    
+        
+    // ----------------------------------------------------------------------- //
+    // get unique unreliability notes (dropping empty)
+    // ----------------------------------------------------------------------- //
+
+    const table_unreliability = [...new Set(filteredTableData.map(d => d.Note))].filter(d => !d == "");
+
+    document.querySelector("#table-unreliability").innerHTML = "" // blank to start
+
+    table_unreliability.forEach(element => {
+        
+        document.querySelector("#table-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
+        
+    });
     
     // ----------------------------------------------------------------------- //
     // create html table for DataTables
