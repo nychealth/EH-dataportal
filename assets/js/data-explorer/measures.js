@@ -214,6 +214,8 @@ const updateMapData = (e) => {
     let time;
 
     if (typeof e.target.dataset.measureId != 'undefined') {
+
+        // console.log("e", e.target.dataset);
         
         // get meaasureId of selected dropdown element
         
@@ -226,17 +228,19 @@ const updateMapData = (e) => {
         // persistent selection
         
         // measures
-
+        
         $('.mapmeasuresbutton').removeClass("active");
         $('.mapmeasuresbutton').attr('aria-selected', false);
         
     }
-
+    
     if (typeof e.target.dataset.time != 'undefined') {
         
+        // console.log("e", e.target.dataset);
+
         // get selected time
         
-        time = parseInt(e.target.dataset.time);
+        time = String(e.target.dataset.time);
 
         measureId = $('.mapmeasuresbutton.active').attr("data-measure-id")
         
