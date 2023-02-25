@@ -927,6 +927,7 @@ const renderMeasures = async () => {
                 let compMeasurementType = [... new Set(compGroup.array("MeasurementType"))];
                 let compY_axis_title = [... new Set(compGroup.array("Y_axis_title"))];
                 let compIndicatorMeasure = [... new Set(compGroup.array("IndicatorMeasure"))];
+                let ComparisonName = [... new Set(compGroup.array("ComparisonName"))];
                 
                 if (compIndicatorLabel.length == 1) {
 
@@ -951,11 +952,15 @@ const renderMeasures = async () => {
                 } else if (compMeasurementType.length > 1 && compIndicatorLabel.length > 1) {
 
                     console.log("> 1 measure & > 1 indicator [IndicatorMeasure]");
-                    console.log(compIndicatorMeasure);
+                    console.log("compGroup:", compGroup);
+                    console.log("compIndicatorLabel:", compIndicatorLabel);
+                    console.log("compMeasurementType:", compMeasurementType);
+                    console.log("compY_axis_title:", compY_axis_title);
+                    console.log("compIndicatorMeasure:", compIndicatorMeasure);
 
                     dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
                         data-comparison-id="${comp}">
-                        ${compIndicatorMeasure}
+                        ${ComparisonName}
                         </button>`;
                     
                 }
