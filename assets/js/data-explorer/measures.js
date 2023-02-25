@@ -1268,15 +1268,6 @@ const renderMeasures = async () => {
             renderAboutSources(defaultTrendAbout, defaultTrendSources);
 
 
-            // ----- handle disparities button -------------------------------------------------- //
-
-            // switch on/off the disparities button
-
-            const disparities =
-                defaultTrendMetadata[0].VisOptions[0].Trend &&
-                defaultTrendMetadata[0].VisOptions[0].Trend[0]?.Disparities;
-
-
             // ----- create dataset -------------------------------------------------- //
 
             const defaultTrendMeasureId = defaultTrendMetadata[0].MeasureID;
@@ -1513,6 +1504,15 @@ const renderMeasures = async () => {
             // this is all inside the conditional, because if a user clicks on this tab again
             //  after selecting a measure, we don't want to recompute everything. We'll use the
             //  values created by the update function
+
+
+            // ----- handle disparities button -------------------------------------------------- //
+
+            // switch on/off the disparities button
+
+            // const disparities =
+            //     defaultLinksMetadata[0].VisOptions[0].Trend &&
+            //     defaultLinksMetadata[0].VisOptions[0].Trend[0]?.Disparities;
 
             // ----- get metatadata for default measure -------------------------------------------------- //
 
