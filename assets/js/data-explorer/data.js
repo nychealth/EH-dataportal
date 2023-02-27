@@ -86,7 +86,7 @@ const createComparisonData = async (comps) => {
 
     // merged metadata
     
-    console.log("aqComparisonsMetadata:");
+    // console.log("aqComparisonsMetadata:");
 
     aqComparisonsMetadata = aq.from(comparisonsMetadata)
         .unroll("Indicators")
@@ -96,7 +96,7 @@ const createComparisonData = async (comps) => {
         })
         .unroll("MeasureID")
         .select(aq.not("Indicators"))
-        .print()
+        // .print()
 
     // console.log("aqUniqueIndicatorMeasure:");
 
@@ -118,7 +118,7 @@ const createComparisonData = async (comps) => {
     )
     // console.log("comparisonsIndicatorsMetadata:", comparisonsIndicatorsMetadata);
 
-    console.log("aqComparisonsIndicatorsMetadata:");
+    // console.log("aqComparisonsIndicatorsMetadata:");
 
     aqComparisonsIndicatorsMetadata = aq.from(comparisonsIndicatorsMetadata)
         .select("IndicatorID", "IndicatorName", "IndicatorLabel", "Measures")
@@ -134,17 +134,17 @@ const createComparisonData = async (comps) => {
         .derive({IndicatorMeasure: d => d.IndicatorLabel + ": " + d.MeasurementType})
         .select(aq.not("Measures"))
         .filter(aq.escape(d => comparisonsMeasureIDs.includes(d.MeasureID)))
-        .print()
+        // .print()
 
 
 
     // join comparisons metadata tables
 
-    console.log("aqCombinedComparisonsMetadata:");
+    // console.log("aqCombinedComparisonsMetadata:");
 
     aqCombinedComparisonsMetadata = aqComparisonsMetadata
         .join(aqComparisonsIndicatorsMetadata, [["MeasureID", "IndicatorID"], ["MeasureID", "IndicatorID"]])
-        .print()
+        // .print()
 
 
     // Promise.all takes the array of promises returned by map, and then the `then` callback executes after they've all resolved
@@ -389,7 +389,7 @@ const joinData = () => {
     
     // bind rows of Arquero tables in arrays
 
-    let aqMeasureIdTimes     = availableTimes.reduce((a, b) => a.concat(b))
+    aqMeasureIdTimes     = availableTimes.reduce((a, b) => a.concat(b))
     let aqMeasurementDisplay = measurementDisplay.reduce((a, b) => a.concat(b))
 
     // foundational joined dataset
