@@ -223,7 +223,7 @@ const updateMapData = (e) => {
         
         time = $('.maptimesbutton.active').attr("data-time")
 
-        console.log(">>> measure", "measureId", measureId, "time", time);
+        // console.log(">>> measure", "measureId", measureId, "time", time);
 
         // persistent selection
         
@@ -244,7 +244,7 @@ const updateMapData = (e) => {
 
         measureId = $('.mapmeasuresbutton.active').attr("data-measure-id")
         
-        console.log(">>> time", "measureId", measureId, "time", time);
+        // console.log(">>> time", "measureId", measureId, "time", time);
 
         // persistent selection
 
@@ -465,14 +465,6 @@ const updateTrendComparisonsData = (e) => {
     $(e.target).attr('aria-selected', true);
 
 
-    // ----- get metatadata for selected measure -------------------------------------------------- //
-
-    // aqCombinedComparisonsMetadata
-    // aqComparisonsIndicatorData
-
-    // extract metadata for about & sources boxes
-
-
     // ----- set measure info boxes -------------------------------------------------- //
 
     // this iterates over all the indicators and measures in the comparison
@@ -512,9 +504,26 @@ const updateTrendComparisonsData = (e) => {
 
         // put host indicator first, so it gets the black line
         .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
-
-    // console.log("aqFilteredComparisonsData:");
+    
+    // console.log(">>>> aqFilteredComparisonsData:");
     // aqFilteredComparisonsData.print()
+
+    // show only last 3 years of DWQ measures with quarterly data
+
+    let hasQuarters = [858, 859, 860, 861, 862, 863];
+
+    if (aqFilteredComparisonsMetadata.array("MeasureID").some(m => hasQuarters.includes(m))) {
+
+        // console.log(">>>> aqFilteredComparisonsData [quarters]:");
+
+        aqFilteredComparisonsData = aqFilteredComparisonsData
+            .join(aqMeasureIdTimes, [["MeasureID", "Time"], ["MeasureID", "TimeDescription"]])
+            .derive({"year": d => op.year(d.end_period)})
+            .filter(d => d.year > op.max(d.year) - 3)
+            .select(aq.not("TimeDescription", "year"))
+            .print(20)
+
+    }
 
 
     // ----- render the chart -------------------------------------------------- //
@@ -782,7 +791,7 @@ const renderMeasures = async () => {
 
     const mapTimes = [...new Set(mapData.map(item => item.Time))];
 
-    console.log("mapTimes", mapTimes);
+    // console.log("mapTimes", mapTimes);
 
     mapTimes.map(time => {
 
@@ -919,7 +928,7 @@ const renderMeasures = async () => {
 
             comparisonIDs.map(comp => {
 
-                console.log("ComparisonID", comp);
+                // console.log("ComparisonID", comp);
                 
                 let compGroup = titleGroup.filter(aq.escape(d => d.ComparisonID == comp))
                 
@@ -927,7 +936,7 @@ const renderMeasures = async () => {
                 let compMeasurementType = [... new Set(compGroup.array("MeasurementType"))];
                 let compY_axis_title = [... new Set(compGroup.array("Y_axis_title"))];
                 let compIndicatorMeasure = [... new Set(compGroup.array("IndicatorMeasure"))];
-                let ComparisonName = [... new Set(compGroup.array("ComparisonName"))];
+                let compName = [... new Set(compGroup.array("ComparisonName"))];
                 
                 if (compIndicatorLabel.length == 1) {
 
@@ -956,11 +965,12 @@ const renderMeasures = async () => {
                     console.log("compIndicatorLabel:", compIndicatorLabel);
                     console.log("compMeasurementType:", compMeasurementType);
                     console.log("compY_axis_title:", compY_axis_title);
-                    console.log("compIndicatorMeasure:", compIndicatorMeasure);
+                    // console.log("compIndicatorMeasure:", "compIndicatorMeasure", compIndicatorMeasure);
+                    console.log("compName", compName);
 
                     dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
                         data-comparison-id="${comp}">
-                        ${ComparisonName}
+                        ${compName}
                         </button>`;
                     
                 }
@@ -1451,6 +1461,26 @@ const renderMeasures = async () => {
 
                 // put host indicator first, so it gets the black line
                 .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
+
+            // console.log(">>>> aqFilteredComparisonsData:");
+            // aqFilteredComparisonsData.print()
+
+            // show only last 3 years of DWQ measures with quarterly data
+
+            let hasQuarters = [858, 859, 860, 861, 862, 863];
+
+            if (aqFilteredComparisonsMetadata.array("MeasureID").some(m => hasQuarters.includes(m))) {
+
+                // console.log(">>>> aqFilteredComparisonsData [quarters]:");
+
+                aqFilteredComparisonsData = aqFilteredComparisonsData
+                    .join(aqMeasureIdTimes, [["MeasureID", "Time"], ["MeasureID", "TimeDescription"]])
+                    .derive({"year": d => op.year(d.end_period)})
+                    .filter(d => d.year > op.max(d.year) - 3)
+                    .select(aq.not("TimeDescription", "year"))
+                    .print(20)
+
+            }
 
             // console.log("aqFilteredComparisonsData:");
             // aqFilteredComparisonsData.print()

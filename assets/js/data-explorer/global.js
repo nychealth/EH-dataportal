@@ -17,6 +17,7 @@ let geoTable;
 let unreliabilityNotes;
 let aqData;
 let joinedAqData;
+let aqMeasureIdTimes;
 
 let tableData;
 let mapData;
