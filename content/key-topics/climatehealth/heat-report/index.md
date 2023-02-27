@@ -63,11 +63,15 @@ Notes: The number of heat-stress deaths for 2020 is provisional. If additional d
 
 ## Demographics
 
-* The age-adjusted death rate among non-Hispanic Black New Yorkers is twice as high as that of non-Hispanic White New Yorkers (2.2 deaths per million versus 0.9 deaths per million) from 2011-2020. This inequity is rooted in systemic racism.1 Lack of equitable access to resources needed for wellness – for example, jobs that pay a living wage, affordable and healthy housing with air conditioning, and health care – are causes of these differences in heat-related mortality.
-* Death rates were higher in neighborhoods with more residents living below the federal poverty line compared with wealthier neighborhoods.
-* Age-adjusted death rates were highest in Brooklyn and the Bronx.
-* Heat-stress deaths occurred among all age groups, with the lowest rates among people who were 20-29 and the highest among people who were 80 and older.
-* About two thirds of heat stress-deaths occurred among men.
+**Average Annual Rates of Heat Stress by Age Group, 2012-2021:**&nbsp;Heat-stress deaths occurred among all age groups, with the lowest rates among people who were 20-29 and the highest among people who were 80 and older.
+
+**Neighborhood Poverty Level of Heat Stress Deaths, 2012-2021**\: Death rates were higher in neighborhoods with more residents living below the federal poverty line compared with wealthier neighborhoods.
+
+**Average Annual Rates of Heat Stress by Race/Ethnicity, 2012-2021:&nbsp;**&nbsp;The age-adjusted death rate among non-Hispanic Black New Yorkers is twice as high as that of non-Hispanic White New Yorkers (2.2 deaths per million versus 0.9 deaths per million) from 2011-2020. This inequity is rooted in systemic racism.1 Lack of equitable access to resources needed for wellness – for example, jobs that pay a living wage, affordable and healthy housing with air conditioning, and health care – are causes of these differences in heat-related mortality.
+
+**Average Annual Rates of Heat Stress by Place of Residence, 2012-2021**\: Age-adjusted death rates were highest in Brooklyn and the Bronx.
+
+**Average Annual Rates of Heat Stress by Sex, 2012-2021**\: About two thirds of heat stress-deaths occurred among men.
 
 <iframe title="Heat Stress Deaths" aria-label="Bar Chart" id="datawrapper-chart-4p5mh" src="https://datawrapper.dwcdn.net/4p5mh/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="600" data-external="1"></iframe>
 
@@ -76,18 +80,16 @@ Notes: The number of heat-stress deaths for 2020 is provisional. If additional d
 
 **Note on race and ethnicity:** Deaths are grouped into these five race and ethnicity categories due to the small sample size of deaths and the availability of denominator data. However, these categories represent an oversimplification of the ethnically and racially diverse population found in NYC. People identified as two or more races or races/ethnicities not listed here are included in the other or unknown category, and the Hispanic/Latino category includes people of any race. Differences in mortality rates among racial and ethnic groups are due to long-term structural racism, not biological or personal traits. Structural racism — centuries of racist policies and discriminatory practices across institutions, including government agencies, and society — prevents communities of color from accessing vital resources (such as health care and healthy housing) and opportunities (such as employment and education), and negatively affects overall health and well-being. See Appendix Methods and Supplemental Data for more information on numbers and percentages by race and ethnicity.
 
-* Neighborhood Poverty Level of Heat Stress Deaths, 2011-2020
-* Place of Residents of Heat Stress Decedents, 2011-2020
-* Average Annual Rates of Heat Stress by Age Group, 2011-2020
-* Sex of Heat Stress Decedents, 2011-2020
-
 ## Health and Other Risk Factors
 
 Among the deaths with detailed medical examiner records available, more than 90% had at least one chronic health condition.
 
 Common chronic conditions included cardiovascular disease, substance or alcohol use, serious mental health or cognitive conditions, and having a history of diabetes. Of adults 18-64 years old, 41% had obesity, with a body mass index of 30 or greater.
 
-\[VIS EMBED\]
+<iframe title="Health conditions table" aria-label="Table" id="datawrapper-chart-zAvcP" src="https://datawrapper.dwcdn.net/zAvcP/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="387" data-external="1"></iframe>
+
+<script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+</script>
 
 ## Heat Exposure Circumstances
 
@@ -100,8 +102,6 @@ Among New Yorkers who died after becoming dangerously hot at home, and for whom 
 <script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
 </script>
 
-**Note on race and ethnicity:** Deaths are grouped into these five race and ethnicity categories due to the small sample size of deaths and the availability of denominator data. However, these categories represent an oversimplification of the ethnically and racially diverse population found in NYC. People identified as two or more races or races/ethnicities not listed here are included in the other or unknown category, and the Hispanic/Latino category includes people of any race. Differences in mortality rates among racial and ethnic groups are due to long-term structural racism, not biological or personal traits. Structural racism — centuries of racist policies and discriminatory practices across institutions, including government agencies, and society — prevents communities of color from accessing vital resources (such as health care and healthy housing) and opportunities (such as employment and education), and negatively affects overall health and well-being. See Appendix Methods and Supplemental Data for more information on numbers and percentages by race and ethnicity.
-
 More than a quarter (n=16, 28%) of decedents had an electric fan present and on, indicating that only using an electric fan without an AC cannot always prevent death during extreme heat for people who are at highest heat risk.
 
 Previous Health Department studies have found that air conditioning access differs across race and class. Black New Yorkers and low-income New Yorkers are less likely to own or use an AC during hot weather, and the main reason is cost.3 While more than 90% of NYC households have air conditioning, access is also lower in neighborhoods where more people are living with limited financial resources.
@@ -112,8 +112,8 @@ Deaths from chronic conditions that are not recognized as heat-related on death 
 
 We estimated heat-exacerbated mortality risk and number of deaths for 2011 through 2019 using weather and natural cause death data for May-September in NYC. The average natural death count was about 18,000 deaths for May through September each year. We used statistical models to compare deaths on hot days with those on cooler days. We estimated heat-exacerbated deaths using:
 
-* an indicator for extreme heat event days defined by the National Weather Service’s heat advisory threshold for NYC. Based on the Health Department’s previous analysis of heat-exacerbated mortality, heat advisories are for at least 2 consecutive days with 95°F or higher daily maximum heat index (HI) or any day with a maximum HI of 100°F or higher.
-* the range of hot daily maximum temperatures that includes both extreme heat event days and other hot days. We assessed risk for days ranging from the median maximum daily temperature of 82°F through the highest temperature during the period.
+* An indicator for extreme heat event days defined by the National Weather Service’s heat advisory threshold for NYC. Based on the Health Department’s previous analysis of heat-exacerbated mortality, heat advisories are for at least 2 consecutive days with 95°F or higher daily maximum heat index (HI) or any day with a maximum HI of 100°F or higher.
+* The range of hot daily maximum temperatures that includes both extreme heat event days and other hot days. We assessed risk for days ranging from the median maximum daily temperature of 82°F through the highest temperature during the period.
 
 In addition, to describe the impact of climate change, we examined how the number of hot days during warm months changed over the past five decades. We included deaths occurring on the date of exposure to hot weather and over the following 3 days, because previous Health Department studies have shown that heat-related deaths can occur up to 3 days after the initial hot weather.4 Detailed methods used to estimate risks and attributable deaths can be found here.
 
