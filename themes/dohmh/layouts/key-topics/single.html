@@ -95,18 +95,27 @@
                         {{- if where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
                             <h3 class="fs-lg mt-2 text-info border-bottom"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Related Data Stories</h3>
 
-                        <div class="row">
+
                             {{- range where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
-                            <div class="col-md-12">
-                                <div class=" my-2 p-2 borderbox itemfocus">
-                                    <a class="h2 fs-md" href="{{ .RelPermalink }}">{{ .Title }}</a>
-                                    <p class="fs-sm">{{ htmlUnescape .Content | plainify | truncate 150 }}</p> 
-                                    <p class="text-right fs-sm"><a href="{{ .RelPermalink }}">Read more...</a></p>
-                                    </div>
-                            </div>
+                            <div class="row no-gutters mt-2">
+
+                    
+                                <div class="col-9 ml-auto h-100 pr-1">
+                                  <p class="fs-sm text-align-right"><a class="text-primary font-weight-bold" href="{{ .RelPermalink }}">{{ .Title }}</a> {{ .Content | plainify | truncate 125 | htmlUnescape }} </p>
+                                </div>
+
+                                <div class="col-3 border mh-100">
+                                    {{ $src := .Resources.GetMatch .Params.image }}
+                                        {{ $image := $src.Resize "740x"}}
+                                        <a href="{{ .RelPermalink }}">
+                                        <div style="width:100%; height:100%; background-image: URL({{ $image.Permalink }}); background-size: cover"></div></a>
+                                  </div>
+                              </div>
+
+                              <hr class="my-2 mx-6">
         
                             {{- end -}}
-                        </div>
+
 
                         {{- end -}}
                     </div>
