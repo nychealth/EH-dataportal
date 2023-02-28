@@ -16,6 +16,7 @@ indicators:
   - 2238
   - 2114
   - 2112
+  - 2415
 ---
  
 Coming soon
