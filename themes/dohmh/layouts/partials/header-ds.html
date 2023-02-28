@@ -65,7 +65,7 @@
     <div class="container-fluid collapse d-lg-block px-0 border-lg-top" id="nav-primary">
             
         <div class="wide"> 
-            
+                
             <nav class="nav nav-pills border-bottom border-right justify-content-center" role="navigation">
 
                 {{- $currentPage := . -}}
@@ -73,13 +73,11 @@
             <span id="File.Path" style="display: none">{{ $currentPage.File.Path }}</span>
             <span id="FirstSection.RelPermalink" style="display: none">{{ $currentPage.FirstSection.RelPermalink }}</span>
 
-            <button class="btn nav-item-search border">
-                <a href="{{ site.BaseURL }}">
+            <div class="nav-item-search border-right">
+                <a class="nav-link" id="nav-item-01" href="{{ site.BaseURL }}">
                 <span class='text-primary'><i class='fa fa-home' aria-hidden='true'></i><span class="sr-only">Home</span></span> 
                 </a>
-            </button>
-
-
+            </div>
 
                 {{- range .Site.Menus.main -}}
 
