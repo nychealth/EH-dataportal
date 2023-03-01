@@ -77,16 +77,16 @@ conclusion: >-
     citywide. The City’s sustainability plan, OneNYC, and its roadmap to reduce
     greenhouse gas emissions, 80x50, have already and will continue to improve
     air quality, providing important public health benefits to all New Yorkers.
-    These strategies and measures include:</p><ul><li>Transitioning the
-    City&apos;s fleet to more efficient, less polluting heavy-duty vehicles,
-    such as trash trucks and school buses</li><li>Reducing motor vehicle use by
-    shifting to more sustainable modes of transportation</li><li>Creating more
-    efficient freight networks and expanding truck retrofit and replacement
-    programs</li><li>Continuing to reduce fossil fuel combustion in
-    buildings</li></ul><p>Additionally, reducing emissions from other widely
-    distributed sources of pollution, such as BC and PM<sub>2.5</sub> from
-    commercial charbroiling, will contribute to improved air quality in the
-    future.</p>
+    These strategies and measures include:</p><ul><li>Reducing emissions from
+    commercial charbroiling through regulations and an accelerator program to
+    support restaurants</li><li>Creating low/zero emission freight networks and
+    reducing reliance on trucks</li><li>Improving and expanding public
+    transit</li><li>Continuing to transition the City's fleet to more efficient,
+    less polluting heavy-duty vehicles, such as trash trucks and school
+    buses</li><li>Accelerating the phase out of fossil fuel combustion in
+    buildings</li></ul><p>Air quality in New York City has greatly improved over
+    the past decade and will continue to improve with efforts to control
+    emissions from the most important sources.  </p>
 moreInfo: >-
     <ul><li><a target="_blank" rel="noopener"
     href="https://needed-komodo.cloudvent.net/key-topics/airquality/nyccas/Appendix1.pdf">Appendix
