@@ -22,7 +22,7 @@ pollutantMaps: >-
     determine how pollution levels vary in relation to traffic, buildings, trees
     and other neighborhood factors. We use NYCCAS monitoring data along with
     data on land use, traffic, building emissions and other neighborhood factors
-    around the monitors to build a land-use regression (LUR) model. We then used
+    around the monitors to build a land-use regression (LUR) model. We then use
     the associations from these models to estimate the seasonal average air
     pollution levels at locations across the city, including places where no
     NYCCAS measurements were collected. For more details on emission source
@@ -36,7 +36,7 @@ pollutantMaps: >-
     below. The levels of BC, NO<sub>2</sub>, NO, SO<sub>2</sub> and
     PM<sub>2.5</sub> have been significantly reduced citywide. The areas where
     we see the highest levels of these pollutants has also shifted.</p> <p>Over
-    time, there is better data available for us to understand the relationships
+    time, there are better data available for us to understand the relationships
     between land use and pollution and the air pollution patterns have shifted
     <a
     href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq-cooking/">as
@@ -46,9 +46,19 @@ pollutantMaps: >-
     warehouses with loading docks better explains the difference in pollution
     levels between neighborhoods.  Industrial neighborhoods with a higher
     density of warehouses, such as Newtown Creek area in Queens and Brooklyn,
-    JFK airport and Hunts Point in the Bronx, have higher levels of
-    pollution.</p> <p>Winter and summer average maps for BC, NO<sub>2</sub>, NO
-    and PM<sub>2.5</sub> are available in <a href="Appendix2.pdf">Appendix 2
+    JFK airport, Sunset Park in Brooklyn and Hunts Point in the Bronx, have
+    higher levels of pollution.</p> <p>
+
+    There have been too few sites with SO<sub>2</sub> values above the detection
+    limit for us to include data after winter 2017-2018 in these maps and
+    charts. SO<sub>2</sub> levels have gone down dramatically since  <a
+    href="https://www1.nyc.gov/assets/dep/downloads/pdf/air/local-law-43-biodiesel-fuel-requirement.pdf">Local
+    Law 43 of 2010 prohibited the burning of heavy fuel oil (No. 6) in New York
+    City buildings</a>. Historical maps for SO<sub>2</sub> and other pollutants
+    are available by clicking on the “All years” button below.</p>
+
+    <p>Winter and summer average maps for BC, NO<sub>2</sub>, NO and
+    PM<sub>2.5</sub> are available in <a href="Appendix2.pdf">Appendix 2
     (PDF)</a>.</p>
 pollutantTrends: >-
     <p>Since monitoring began in winter 2008-2009 in New York City, we have seen
@@ -63,14 +73,9 @@ pollutantTrends: >-
     presence of heat and sunlight. Therefore, we only monitor O<sub>3</sub> in
     the summer when direct sunlight is highest and days are longer.</p><p>The
     figure below illustrates how the levels of each air pollutant change by
-    season from winter 2008-2009 to fall 2021. We break out locations with high,
-    medium and low densities of the most common sources of each. Since winter
-    2017-18 there have been too few sites with SO<sub>2</sub> values above the
-    detection limit for us to include it in this chart. SO<sub>2</sub> levels
-    have gone down dramatically since <a
-    href="https://www1.nyc.gov/assets/dep/downloads/pdf/air/local-law-43-biodiesel-fuel-requirement.pdf">Local
-    Law 43 of 2010 prohibited the burning of heavy fuel oil (No. 6) in New York
-    City buildings</a>.</p>
+    season from winter 2008-2009 to fall 2021. We compare trends among locations
+    with high, medium and low densities of the most common sources of each
+    pollutant.</p>
 conclusion: >-
     <p>This report underscores the importance of emissions reduction efforts
     over the past decade and highlights the continued need to reduce emissions
