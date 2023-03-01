@@ -14,8 +14,14 @@
                         <a class="text-reset" href="https://www1.nyc.gov/">
                             <strong>nyc.gov</strong>
                         </a>
-                        <span class="mx-1" aria-hidden="true">|</span>
-                        Health
+                        <span class="mx-1" aria-hidden="true">></span>
+                        <a class="text-reset" href="https://www1.nyc.gov/">
+                            Health
+                        </a>
+                        <span class="mx-1" aria-hidden="true">></span>
+                        <a class="text-reset" href="{{ site.BaseURL }}">
+                        EH Data Portal
+                        </a>
                     </p>
                 </div>
                 <!-- .col -->
@@ -68,8 +74,8 @@
                         <div class="d-flex justify-content-center justify-content-lg-start">
 
                             <p class="text-white">
-                                <span class="site-title">Environment and Health Data Portal</span>
-                                <span class="site-subtitle">Understand how environments shape health in New York City</span>
+                                <span class="site-title title-hover"><a href="{{ site.BaseURL }}" class="link-no-dec">Environment and Health Data Portal</span>
+                                <span class="site-subtitle">Understand how environments shape health in New York City</a></span>
                             </p>
 
 
@@ -95,9 +101,9 @@
                             </div>
                             <!-- .col -->
 
-                            <div class="col-auto">
+                            <div class="col-auto justify-content-end">
 
-                                <ul class="extensible-list horizontal">
+                                <ul class="extensible-list horizontal justify-content-end">
                                     <li>
                                         <button class="no-btn-style" type="button" title="Language"
                                             data-toggle="collapse" data-target="#global-language"
@@ -107,14 +113,19 @@
                                         </button>
                                     </li>
                                     <li>
-                                        <button class="no-btn-style" type="button" title="Search" 
-                                            data-toggle="collapse" data-target="#global-search" 
-                                            aria-controls="global-search" aria-expanded="false">
-                                            <span class="sr-only">Search</span>
-                                            <span class="fas fa-search fa-lg"></span>
-                                        </button>
-                                    </li>
+                                        <button class="btn nav-item-search d-lg-none" type="button" title="Search" 
+                                        data-toggle="collapse" data-target="#global-search" 
+                                        aria-controls="global-search" aria-expanded="false">
+                                        
+                                        <span class="sr-only">Search</span>
+                                        <span class="fas fa-search fa-lg"></span>
+                                        
+                                    </button>
+                                </li>
+
                                 </ul>
+
+                                <a class="btn-sm text-white font-weight-bold mr-2" style="border: 1px solid lightgray; border-radius: 3px;" href="/about/about">About us</a>
 
                             </div>
                             <!-- .col -->
@@ -140,48 +151,100 @@
             </div>
         </div>
 
-        <div class="container-fluid border-top collapse" id="global-search">
+        {{/*  <div class="container-fluid border-top collapse d-lg-none" id="global-search">
             <form class="narrow py-2" aria-label="Search" role="search">
                 <div class="input-group">
                     <label class="sr-only" for="global-search-bar">Search</label>
-                    <input class="form-control form-control-lg" id="global-search-bar" placeholder="Search">
-                    <div class="input-group-btn">
-                        <button class="btn btn-primary btn-lg" type="button" title="Search">
+                    <input class="form-control form-control-lg" id="global-search-bar" placeholder="Search">  */}}
+                    {{/*  <div class="input-group-btn">  */}}
+                        {{/*  <button class="btn btn-primary btn-lg" type="button" title="Search">
                             <span class="sr-only">Search</span>
                             <span class="fas fa-arrow-right"></span>
-                        </button>
-                    </div>
+                        </button>  */}}
+                    {{/*  </div>
                 </div>
             </form>
+        </div>  */}}
+
         </div>
-    </div>
-    <div class="container-fluid collapse d-lg-block px-0 border-lg-top" id="nav-primary">
+        <div class="container-fluid collapse d-lg-block px-0 border-lg-top" id="nav-primary">
+            
+            <div class="wide"> 
+                
+                <nav class="nav nav-pills border-bottom border-right justify-content-center" role="navigation">
 
-        <div class="wide"> 
-
-            <nav class="nav nav-pills border-bottom" role="navigation">
-                {{- $currentPage := . -}}
+                    {{- $currentPage := . -}}
 
                 <span id="File.Path" style="display: none">{{ $currentPage.File.Path }}</span>
                 <span id="FirstSection.RelPermalink" style="display: none">{{ $currentPage.FirstSection.RelPermalink }}</span>
 
-                {{- range .Site.Menus.main -}}
-                <div class="nav-item {{- if (eq $currentPage.FirstSection.RelPermalink .URL) }} active {{- end -}}">
-
-                    <a class="nav-link" href="{{ .URL }}" id="nav-item-{{ .Identifier }}">
-                        {{ .Pre }} {{ .Name }}
+                <div class="nav-item-search border-right">
+                    <a class="nav-link" id="nav-item-01" href="{{ site.BaseURL }}">
+                    <span class='text-primary'><i class='fa fa-home' aria-hidden='true'></i><span class="sr-only">Home</span></span> 
                     </a>
+                </div>
+
+                    {{- range .Site.Menus.main -}}
+
+                    {{- if (ne .Name "Search") -}}
+                    
+                    <div class="nav-item {{- if (eq $currentPage.FirstSection.RelPermalink .URL) }} active {{- end -}}">
+                        
+                        <a class="nav-link" href="{{ .URL }}" id="nav-item-{{ .Identifier }}">{{ .Pre }} {{ .Name }}</a>
+                        
+                    </div>
+                    
+                    {{- else -}}
+
+                    <button class="btn nav-item-search d-none d-lg-block" type="button" title="Search" 
+                            data-toggle="collapse" data-target="#global-search" 
+                            aria-controls="global-search" aria-expanded="false">
+                            
+                        <span class="sr-only">Search</span>
+                        <span class="fas fa-search fa-md"></span>
+                    
+                    </button>
+                    
+                    {{- end -}}
+                    
+                    <!-- .nav-item -->
+                    {{- end -}}
+                        
+                </nav>
+                    
+            </div>
+                
+        </div>
+        
+        <div class="container-fluid-lg border-top collapse" id="global-search">
+            
+            <form class="narrow py-2" aria-label="Search" role="search">
+                
+                <div class="input-group">
+                    
+                    <label class="sr-only" for="global-search-bar">Search</label>
+                    
+                    <input class="form-control form-control-lg" id="global-search-bar" placeholder="Search">
+                    
+                    <div class="input-group-btn">
+                        
+                        <button class="btn btn-primary btn-lg" type="button" title="Search">
+                            
+                            <span class="sr-only">Search</span>
+                            <span class="fas fa-arrow-right"></span>
+                            
+                        </button>
+                        
+                    </div>
 
                 </div>
-                <!-- .nav-item -->
-                {{- end -}}
-                
-            </nav>
 
-        </div>
-        <!-- .wide -->
-
+            </form>
+            
+            
+            <!-- .wide -->
+            
     </div>
-
+        
 </header>
 <!-- #global-header -->
