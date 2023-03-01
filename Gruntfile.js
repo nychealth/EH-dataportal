@@ -110,6 +110,8 @@ module.exports = function(grunt) {
             // ------------------------------------------------------------------------------- //
             // creating separate entries in the index for indicators
             // ------------------------------------------------------------------------------- //
+
+            // unique indicators, only 1 subtopic per indicator
             
             let aq_subtopic_indicators = aq.from(subtopic_indicators)
                 .rename({key: "subtopic"})
@@ -123,15 +125,9 @@ module.exports = function(grunt) {
                 .join(de_indicator_names, "IndicatorID")
                 
 
-            // grunt.log.writeln(arqTable.print());
+            // add each row to the index
 
             for (const row of aq_subtopic_indicators) {
-
-                // grunt.log.writeln(Object.entries(row.IndicatorID));
-                grunt.log.writeln(row.IndicatorID);
-
-                // let indicator_name = row.name;
-                // let indicator_id = row.IndicatorID;
 
                 pageObj = {
                     title: row.name,
@@ -140,8 +136,6 @@ module.exports = function(grunt) {
                     indicator_ids: row.IndicatorID,
                     href: 'data-explorer/' + row.subtopic + "/?id=" + row.IndicatorID
                 };
-
-                // grunt.log.writeln(Object.entries(pageObj));
 
                 pagesIndex.push(pageObj);
 
