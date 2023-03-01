@@ -9,12 +9,13 @@ featured_link: "/key-topics/airquality/realtime"
 featured_image: realtime-example.png
 recently_updated:
 - Name: Alcohol access and use
-  Link: /data-explorer
-- Name: Litter basket coverage
-  Link: /data-explorer
-- Name: Mental health
-  Link: /data-explorer
-- Name: Citibike availability
-  Link: /data-explorer
+  Link: /data-explorer/alcohol-use/?id=2049#display=summary
+- Name: Air quality action days
+  Link: /data-explorer/air-quality/?id=92#display=summary
+- Name: Babesiosis
+  Link: /data-explorer/vector-borne-disease/?id=2218#display=summary
+- Name: Drinking water quality
+  Link: /data-explorer/drinking-water-quality/?id=2044#display=summary
+
 
 ---
