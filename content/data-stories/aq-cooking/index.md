@@ -78,6 +78,6 @@ With the increase in commercial cooking emissions, our model shows that the numb
 
 {{< datawrapper title="Percent of variation explained" src="AEQXF/2/" height="400" >}}
 
-What can we do about this?
+## What can we do about this?
 
 In 2015, New York City took a step forward in addressing this pollutant source when City Council passed Local Law 38, which updated the NYC Air Code to include commercial cooking emissions. Following input from an advisory committee made up of representatives from health and environmental organizations, as well as the restaurant industry, the New York City Department of Environmental Protection created regulations requiring the registration of commercial charbroilers and the installation of emissions control devices on new grills and charbroilers in restaurants that cook significant amounts of meat. Like with building boiler emissions, knowing where charbroilers are located will help us better understand the impact on neighborhood air quality. With this information, government and industry must think creatively about how to support all impacted restaurants - large and small - in reducing emissions from commercial cooking. Together NYC can continue to clean up its air – and protect the lungs of New Yorkers.

@@ -10,11 +10,7 @@ keywords: ["air quality","traffic","transportation","air pollution", "lungs","br
 image: ds-road-traffic.jpg
 photocredit: "Ed Reed/Mayoral Photography Office"
 ---
-<style>
-td {
-    padding-right: 15px;
-}
-</style>
+
 
 ## How do we know what air quality policies will have the biggest effect?  
 
@@ -41,6 +37,12 @@ Generating electricity releases pollutants like nitrogen oxides and sulfur dioxi
 ZAPPA shows us that if we closed all the city’s power plants, we would see a fairly small reduction in average PM2.5 across the city: citywide PM2.5 would go down by 0.12 µg/m3. This would prevent only 5 deaths per million people aged 30 and older and avoid only 9 asthma emergency department visits per million people.
 
 <div class="medium my-4">
+
+<style>
+td {
+    padding-right: 15px;
+}
+</style>
 
 |**Reductions in:**| Value |
 |-------------|----------------|

@@ -1,4 +1,3 @@
-
 // this sits at the top level of the local dir, so "content" and "docs" are folders at the top level
 // in GHA it sits in GITHUB_WORKSPACE
 
@@ -7,6 +6,9 @@ const S = require("string");
 const { pathToFileURL } = require('url');
 const aq = require('arquero');
 
+let content_dir;
+let build_dir;
+let static_dir;
 
 // check to see if this is running on GHA
 
@@ -16,17 +18,17 @@ if (typeof process.env.GITHUB_WORKSPACE != "undefined") {
     
     // these are hard-coded for now, but GHA vars would allow us to change them dynamically
     
-    var content_dir  = process.env.GITHUB_WORKSPACE + "/content";
-    var build_dir    = process.env.GITHUB_WORKSPACE + "/docs";
-    var static_dir   = process.env.GITHUB_WORKSPACE + "/static";
+    content_dir  = process.env.GITHUB_WORKSPACE + "/content";
+    build_dir    = process.env.GITHUB_WORKSPACE + "/docs";
+    static_dir   = process.env.GITHUB_WORKSPACE + "/static";
     
 } else {
 
     // if not, set vars relative to local dir
     
-    var content_dir  = "content";
-    var build_dir    = "docs";
-    var static_dir   = "static";
+    content_dir  = "content";
+    build_dir    = "docs";
+    static_dir   = "static";
     
 }
 
@@ -43,8 +45,11 @@ module.exports = function(grunt) {
             var mdPagesIndex = [];
             var htmlPagesIndex = [];
             var pagesIndex = [];
-            var de_indicator_names = aq.from(aq.from(grunt.file.readJSON(build_dir + "/IndicatorData/indicator_names.json")).array("value"));
-            var nr_indicator_names = grunt.file.readJSON(build_dir + "/IndicatorData/nr_indicator_names.json");
+
+            // this is convoluted but necessary to get an arquero table with the right structure
+            var de_indicator_names  = aq.from(aq.from(grunt.file.readJSON(build_dir + "/IndicatorData/indicator_names.json")).array("value"));
+            var nr_indicator_names  = grunt.file.readJSON(build_dir + "/IndicatorData/nr_indicator_names.json");
+            var subtopic_indicators = grunt.file.readJSON(build_dir + "/IndicatorData/subtopic_indicators.json");
             
             // grunt.log.writeln(de_indicator_names.array("value"))
 
@@ -101,6 +106,40 @@ module.exports = function(grunt) {
                     mdPagesIndex[pageObj.href] = pageObj;
                 }
             });
+
+            // ------------------------------------------------------------------------------- //
+            // creating separate entries in the index for indicators
+            // ------------------------------------------------------------------------------- //
+
+            // unique indicators, only 1 subtopic per indicator
+            
+            let aq_subtopic_indicators = aq.from(subtopic_indicators)
+                .rename({key: "subtopic"})
+                .derive({
+                    IndicatorID: d => d.value.IndicatorID,
+                    subtopic_name: d => d.value.subtopic_name
+                })
+                .select(aq.not("value"))
+                .unroll("IndicatorID")
+                .dedupe("IndicatorID")
+                .join(de_indicator_names, "IndicatorID")
+                
+
+            // add each row to the index
+
+            for (const row of aq_subtopic_indicators) {
+
+                pageObj = {
+                    title: row.name,
+                    displayTitle: row.name,
+                    indicator_descriptions: row.description,
+                    indicator_ids: row.IndicatorID,
+                    href: 'data-explorer/' + row.subtopic + "/?id=" + row.IndicatorID
+                };
+
+                pagesIndex.push(pageObj);
+
+            }
             
 
             // ------------------------------------------------------------------------------- //
@@ -166,7 +205,6 @@ module.exports = function(grunt) {
             
             href = subdir + "/" + pageName;
 
-            // console.log("href [HTML]:", href);
             // grunt.log.writeln([">>> ", href, " - content: ", S(content[2]).s]);
 
             let contentParsed = S(content[2])
@@ -237,11 +275,11 @@ module.exports = function(grunt) {
                 
                 indicator_names = indicator_details
                     .array("name")
-                    .join(" ")
+                    .join("##")
                 
                 indicator_descriptions = indicator_details
                     .array("description")
-                    .join(" ")
+                    .join("##")
                 
                 // grunt.log.writeln("indicator_names", indicator_names);
                 // grunt.log.writeln("indicator_descriptions", indicator_descriptions);

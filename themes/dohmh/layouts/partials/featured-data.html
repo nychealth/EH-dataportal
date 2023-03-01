@@ -1,13 +1,13 @@
-<p><strong class="text-primary">Featured datasets:</strong></p>
+<div class="row">
+    <p class="home-label"><i class="fas fa-table mr-1" aria-hidden="true"></i>Featured datasets:</p>
+
+</div>
+
 <div class="row">
     {{ range .Site.Data.featured_data.featured}}
-    <div class="col-md-4 col-sm-6 col-xs-12">
-        <div class="card de-card borderbox fs-sm mt-1">
-            <div class="card-body">
-                <span class="card-title text-primary"><a href="{{ .link }}">{{ .copy }}</a></span>
-              </div>
-          </div>
-    </div>
+
+    <a href="{{ .link }}" class="btn btn-outline-primary btn-block btn-sm">{{ .copy }}</a>
+
     {{ end }}
   
 </div>
