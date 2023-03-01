@@ -214,6 +214,8 @@ const updateMapData = (e) => {
     let time;
 
     if (typeof e.target.dataset.measureId != 'undefined') {
+
+        // console.log("e", e.target.dataset);
         
         // get meaasureId of selected dropdown element
         
@@ -221,26 +223,28 @@ const updateMapData = (e) => {
         
         time = $('.maptimesbutton.active').attr("data-time")
 
-        console.log(">>> measure", "measureId", measureId, "time", time);
+        // console.log(">>> measure", "measureId", measureId, "time", time);
 
         // persistent selection
         
         // measures
-
+        
         $('.mapmeasuresbutton').removeClass("active");
         $('.mapmeasuresbutton').attr('aria-selected', false);
         
     }
-
+    
     if (typeof e.target.dataset.time != 'undefined') {
         
+        // console.log("e", e.target.dataset);
+
         // get selected time
         
-        time = parseInt(e.target.dataset.time);
+        time = String(e.target.dataset.time);
 
         measureId = $('.mapmeasuresbutton.active').attr("data-measure-id")
         
-        console.log(">>> time", "measureId", measureId, "time", time);
+        // console.log(">>> time", "measureId", measureId, "time", time);
 
         // persistent selection
 
@@ -461,14 +465,6 @@ const updateTrendComparisonsData = (e) => {
     $(e.target).attr('aria-selected', true);
 
 
-    // ----- get metatadata for selected measure -------------------------------------------------- //
-
-    // aqCombinedComparisonsMetadata
-    // aqComparisonsIndicatorData
-
-    // extract metadata for about & sources boxes
-
-
     // ----- set measure info boxes -------------------------------------------------- //
 
     // this iterates over all the indicators and measures in the comparison
@@ -508,9 +504,26 @@ const updateTrendComparisonsData = (e) => {
 
         // put host indicator first, so it gets the black line
         .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
-
-    // console.log("aqFilteredComparisonsData:");
+    
+    // console.log(">>>> aqFilteredComparisonsData:");
     // aqFilteredComparisonsData.print()
+
+    // show only last 3 years of DWQ measures with quarterly data
+
+    let hasQuarters = [858, 859, 860, 861, 862, 863];
+
+    if (aqFilteredComparisonsMetadata.array("MeasureID").some(m => hasQuarters.includes(m))) {
+
+        // console.log(">>>> aqFilteredComparisonsData [quarters]:");
+
+        aqFilteredComparisonsData = aqFilteredComparisonsData
+            .join(aqMeasureIdTimes, [["MeasureID", "Time"], ["MeasureID", "TimeDescription"]])
+            .derive({"year": d => op.year(d.end_period)})
+            .filter(d => d.year > op.max(d.year) - 3)
+            .select(aq.not("TimeDescription", "year"))
+            .print(20)
+
+    }
 
 
     // ----- render the chart -------------------------------------------------- //
@@ -639,17 +652,17 @@ const handleYearFilter = (el) => {
 
         if (e.target.checked) {
 
-            // selectedSummaryYears = [e.target.value]
-            selectedSummaryYears.push(e.target.value)
+            // selectedTableYears = [e.target.value]
+            selectedTableYears.push(e.target.value)
 
         } else {
 
-            // if the selected element is not checked, remove it from summary years
+            // if the selected element is not checked, remove it from table years
 
-            let index = selectedSummaryYears.indexOf(e.target.value);
+            let index = selectedTableYears.indexOf(e.target.value);
 
             if (index !== -1) {
-                selectedSummaryYears.splice(index, 1);
+                selectedTableYears.splice(index, 1);
             }
         }
         renderTable()
@@ -663,14 +676,14 @@ const handleGeoFilter = (el) => {
     el.addEventListener('change', (e) => {
 
         if (e.target.checked) {
-            selectedSummaryGeography.push(e.target.value)
+            selectedTableGeography.push(e.target.value)
         } else {
-            selectedSummaryGeography = selectedSummaryGeography.filter(item => item !== e.target.value);
+            selectedTableGeography = selectedTableGeography.filter(item => item !== e.target.value);
         }
 
         // only render table if a geography is checked
 
-        if (selectedSummaryGeography.length > 0) {
+        if (selectedTableGeography.length > 0) {
             renderTable()
 
         } else {
@@ -688,12 +701,12 @@ const renderMeasures = async () => {
 
     console.log("** renderMeasures");
 
-    selectedSummaryYears = [];
-    selectedSummaryGeography = [];
+    selectedTableYears = [];
+    selectedTableGeography = [];
 
     linksMeasures.length = 0
 
-    const contentSummary = document.querySelector('#tab-table');
+    const contentTable = document.querySelector('#tab-table');
     const contentMap     = document.querySelector('#tab-map')
     const contentTrend   = document.querySelector('#tab-trend');
     const contentLinks   = document.querySelector('#tab-links');
@@ -702,8 +715,8 @@ const renderMeasures = async () => {
 
     // ----- set dropdowns for this indicator ================================================== //
 
-    const dropdownTableGeo = contentSummary.querySelector('div[aria-labelledby="dropdownTableGeo"]');
-    const dropdownTableTime = contentSummary.querySelector('div[aria-labelledby="dropdownTableTime"]');
+    const dropdownTableGeo = contentTable.querySelector('div[aria-labelledby="dropdownTableGeo"]');
+    const dropdownTableTime = contentTable.querySelector('div[aria-labelledby="dropdownTableTime"]');
 
     const dropdownTrendComparisons = contentTrend.querySelector('div[aria-labelledby="dropdownTrendComparisons"]');
 
@@ -741,7 +754,7 @@ const renderMeasures = async () => {
 
             // default to most recent year
 
-            selectedSummaryYears = [year];
+            selectedTableYears = [year];
 
             dropdownTableTime.innerHTML +=
                 `<label class="dropdown-item checkbox-year"><input class="largerCheckbox" type="checkbox" name="year" value="${year}" checked /> ${year}</label>`;
@@ -765,9 +778,9 @@ const renderMeasures = async () => {
 
     dropdownGeoTypes.forEach(geo => {
 
-        selectedSummaryGeography.push(geo);
+        selectedTableGeography.push(geo);
         
-        // console.log("selectedSummaryGeography:", selectedSummaryGeography);
+        // console.log("selectedTableGeography:", selectedTableGeography);
 
         dropdownTableGeo.innerHTML += `<label class="dropdown-item checkbox-geo"><input class="largerCheckbox" type="checkbox" value="${geo}" checked /> ${geo}</label>`;
 
@@ -778,11 +791,11 @@ const renderMeasures = async () => {
 
     const mapTimes = [...new Set(mapData.map(item => item.Time))];
 
-    console.log("mapTimes", mapTimes);
+    // console.log("mapTimes", mapTimes);
 
     mapTimes.map(time => {
 
-        dropdownMapTimes.innerHTML += `<button class="dropdown-item link-time maptimesbutton"
+        dropdownMapTimes.innerHTML += `<button class="dropdown-item link-time maptimesbutton pl-2"
             data-time="${time}">
             ${time}
             </button>`;
@@ -802,7 +815,6 @@ const renderMeasures = async () => {
         const map = measure?.VisOptions[0].Map && measure?.VisOptions[0].Map[0]?.On;
         const trend = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0]?.On;
         const measureId = measure.MeasureID;
-        const measureName = measure.MeasureName;
 
         // console.log("type", type, "links", links, "map", map, "trend", trend);
 
@@ -813,7 +825,7 @@ const renderMeasures = async () => {
             
             mapMeasures.push(measure)
             
-            dropdownMapMeasures.innerHTML += `<button class="dropdown-item link-measure mapmeasuresbutton"
+            dropdownMapMeasures.innerHTML += `<button class="dropdown-item link-measure mapmeasuresbutton pl-2"
                 data-measure-id="${measureId}">
                 ${type}
                 </button>`;
@@ -835,8 +847,10 @@ const renderMeasures = async () => {
             
             if (header === "") {
                 header = "Geography";
+
             } else if (header === "Geography") {
                 header = undefined;
+
             } else {
                 header = undefined;
             }
@@ -844,10 +858,10 @@ const renderMeasures = async () => {
             // console.log("header", header);
             // console.log("index", index);
 
-            dropdownTrendComparisons.innerHTML += header ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
+            dropdownTrendComparisons.innerHTML += header ? '<div class="dropdown-title pl-2"><strong>' + header + '</strong></div>' : '';
 
             if (trendData) {
-                dropdownTrendComparisons.innerHTML += `<button class="dropdown-item trendbutton"
+                dropdownTrendComparisons.innerHTML += `<button class="dropdown-item trendbutton pl-3"
                 data-measure-id="${measureId}">
                 ${type}
                 </button>`;
@@ -868,7 +882,7 @@ const renderMeasures = async () => {
             if (tableData) {
 
                 dropdownLinksMeasures.innerHTML +=
-                    `<div class="dropdown-title"><strong> ${type}</strong></div>`;
+                    `<div class="dropdown-title pl-2"><strong> ${type}</strong></div>`;
 
                 measure.VisOptions[0].Links.map(link => {
 
@@ -883,7 +897,7 @@ const renderMeasures = async () => {
                     );
 
                     dropdownLinksMeasures.innerHTML +=
-                        `<button class="dropdown-item linksbutton"
+                        `<button class="dropdown-item linksbutton pl-3"
                         data-primary-measure-id="${measureId}"
                         data-measure-id="${measure.MeasureID}"
                         data-secondary-measure-id="${link.MeasureID}">
@@ -900,28 +914,70 @@ const renderMeasures = async () => {
 
     if (indicatorComparisonId !== null) {
 
-        let compLegendTitles = [...new Set(comparisonsMetadata.map(item => item.LegendTitle))]
-        
-        comparisonsMetadata.map((c, i) => {
+        let compLegendTitles = [... new Set(aqCombinedComparisonsMetadata.array("LegendTitle"))]
 
-            // console.log("ComparisonID:", c.ComparisonID);
-            // console.log("LegendTitle:", c.LegendTitle);
+        compLegendTitles.map(title => {
 
-            header = compLegendTitles[i];
-            dropdownTrendComparisons.innerHTML += header ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
-            
-            dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton"
-                data-comparison-id="${c.ComparisonID}">
-                ${c.ComparisonName}
-                </button>`;
+            let titleGroup = aqCombinedComparisonsMetadata.filter(aq.escape(d => d.LegendTitle == title))
+
+            // add each unique legend title as a header, with the included comparisons underneath
+
+            dropdownTrendComparisons.innerHTML += title ? '<div class="dropdown-title pl-2"><strong>' + title + '</strong></div>' : '';
+
+            let comparisonIDs = [... new Set(titleGroup.array("ComparisonID"))]
+
+            comparisonIDs.map(comp => {
+
+                // console.log("ComparisonID", comp);
+                
+                let compGroup = titleGroup.filter(aq.escape(d => d.ComparisonID == comp))
+                
+                let compIndicatorLabel = [... new Set(compGroup.array("IndicatorLabel"))];
+                let compMeasurementType = [... new Set(compGroup.array("MeasurementType"))];
+                let compY_axis_title = [... new Set(compGroup.array("Y_axis_title"))];
+                let compIndicatorMeasure = [... new Set(compGroup.array("IndicatorMeasure"))];
+                let compName = [... new Set(compGroup.array("ComparisonName"))];
+                
+                if (compIndicatorLabel.length == 1) {
+
+                    console.log("1 indicator [Y_axis_title]");
+                    console.log(compY_axis_title);
+
+                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
+                        data-comparison-id="${comp}">
+                        ${compY_axis_title}
+                        </button>`;
+                    
+                } else if (compMeasurementType.length == 1) {
+
+                    console.log("1 measure [MeasurementType]");
+                    console.log(compMeasurementType);
+
+                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
+                        data-comparison-id="${comp}">
+                        ${compMeasurementType}
+                        </button>`;
+                    
+                } else if (compMeasurementType.length > 1 && compIndicatorLabel.length > 1) {
+
+                    console.log("> 1 measure & > 1 indicator [IndicatorMeasure]");
+                    console.log("compGroup:", compGroup);
+                    console.log("compIndicatorLabel:", compIndicatorLabel);
+                    console.log("compMeasurementType:", compMeasurementType);
+                    console.log("compY_axis_title:", compY_axis_title);
+                    // console.log("compIndicatorMeasure:", "compIndicatorMeasure", compIndicatorMeasure);
+                    console.log("compName", compName);
+
+                    dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
+                        data-comparison-id="${comp}">
+                        ${compName}
+                        </button>`;
+                    
+                }
+                
+            })
 
         })
-
-        // if disparities is enabled, show the button
-
-        btnShowComparisons.style.display = "inline";
-
-        // add click listener to button that calls renderDisparities
         
     }
 
@@ -946,7 +1002,7 @@ const renderMeasures = async () => {
 
         // ----- handle tab selection -------------------------------------------------- //
 
-        // set hash to summary
+        // set hash to summary table
 
         if (window.location.hash !== '#display=summary' && window.location.hash !== 'display=summary') {
             window.location.hash = 'display=summary';
@@ -1264,7 +1320,7 @@ const renderMeasures = async () => {
                 const filteredTrendDataSummer = filteredTrendData.filter(d => d.Time.startsWith('Summer'));
                 aqFilteredTrendData = aq.from(filteredTrendDataSummer);
                 
-                renderComparisonsChart(aqFilteredTrendDataSummer, aqDefaultTrendMetadata);
+                renderComparisonsChart(aqFilteredTrendData, aqDefaultTrendMetadata);
                 updateChartPlotSize();
                 
             } else {
@@ -1405,6 +1461,26 @@ const renderMeasures = async () => {
 
                 // put host indicator first, so it gets the black line
                 .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
+
+            // console.log(">>>> aqFilteredComparisonsData:");
+            // aqFilteredComparisonsData.print()
+
+            // show only last 3 years of DWQ measures with quarterly data
+
+            let hasQuarters = [858, 859, 860, 861, 862, 863];
+
+            if (aqFilteredComparisonsMetadata.array("MeasureID").some(m => hasQuarters.includes(m))) {
+
+                // console.log(">>>> aqFilteredComparisonsData [quarters]:");
+
+                aqFilteredComparisonsData = aqFilteredComparisonsData
+                    .join(aqMeasureIdTimes, [["MeasureID", "Time"], ["MeasureID", "TimeDescription"]])
+                    .derive({"year": d => op.year(d.end_period)})
+                    .filter(d => d.year > op.max(d.year) - 3)
+                    .select(aq.not("TimeDescription", "year"))
+                    .print(20)
+
+            }
 
             // console.log("aqFilteredComparisonsData:");
             // aqFilteredComparisonsData.print()
@@ -1584,7 +1660,7 @@ const renderMeasures = async () => {
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // disable tabs and switch to summary if there are no measures
+    // disable tabs and switch to table if there are no measures
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     // this is effectively the state of the tabs when the indicator is loaded or changed

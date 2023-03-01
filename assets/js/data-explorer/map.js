@@ -46,15 +46,13 @@ const renderMap = (
 
         const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
 
-        // console.log("map_unreliability", map_unreliability);
-
         document.querySelector("#map-unreliability").innerHTML = ""; // blank to start
 
-        for (let i = 0; i < map_unreliability.length; i++) {
+        map_unreliability.forEach(element => {
+
+            document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
             
-            document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + map_unreliability[i] + "</div>" ;
-            
-        }
+        });
 
         // ----------------------------------------------------------------------- //
         // set geo file based on geo type

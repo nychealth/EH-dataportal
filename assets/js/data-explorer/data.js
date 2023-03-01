@@ -142,9 +142,9 @@ const createComparisonData = async (comps) => {
 
     // console.log("aqCombinedComparisonsMetadata:");
 
-    // aqCombinedComparisonsMetadata = aqComparisonsMetadata
-    //     .join(aqComparisonMeasuresMetadata, "MeasureID")
-    //     .print()
+    aqCombinedComparisonsMetadata = aqComparisonsMetadata
+        .join(aqComparisonsIndicatorsMetadata, [["MeasureID", "IndicatorID"], ["MeasureID", "IndicatorID"]])
+        // .print()
 
 
     // Promise.all takes the array of promises returned by map, and then the `then` callback executes after they've all resolved
@@ -257,7 +257,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
         if (!url.hash) {
 
-            // if loadIndicator is being called without a hash (like when a topic page is loaded), then show the first ID and summary
+            // if loadIndicator is being called without a hash (like when a topic page is loaded), then show the first ID and table
 
             url.hash = "display=summary";
             window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);
@@ -389,7 +389,7 @@ const joinData = () => {
     
     // bind rows of Arquero tables in arrays
 
-    let aqMeasureIdTimes     = availableTimes.reduce((a, b) => a.concat(b))
+    aqMeasureIdTimes     = availableTimes.reduce((a, b) => a.concat(b))
     let aqMeasurementDisplay = measurementDisplay.reduce((a, b) => a.concat(b))
 
     // foundational joined dataset
