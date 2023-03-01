@@ -26,9 +26,8 @@ pollutantMaps: >-
     the associations from these models to estimate the seasonal average air
     pollution levels at locations across the city, including places where no
     NYCCAS measurements were collected. For more details on emission source
-    data, see <a
-    href="Appendix1.pdf">Appendix
-    1 (PDF)</a>. For more details on the analysis methods, see <a
+    data, see <a href="Appendix1.pdf">Appendix 1 (PDF)</a>. For more details on
+    the analysis methods, see <a
     href="https://www1.nyc.gov/site/doh/data/data-publications/air-quality-nyc-community-air-survey.page#nyccas-pubs">NYCCAS
     Scientific Publications</a>.</p> <p>In the maps below, you can select a
     pollutant to see how air pollution is distributed throughout the city and
@@ -49,9 +48,8 @@ pollutantMaps: >-
     density of warehouses, such as Newtown Creek area in Queens and Brooklyn,
     JFK airport and Hunts Point in the Bronx, have higher levels of
     pollution.</p> <p>Winter and summer average maps for BC, NO<sub>2</sub>, NO
-    and PM<sub>2.5</sub> are available in <a
-    href="Appendix2.pdf">Appendix
-    2 (PDF)</a>.</p>
+    and PM<sub>2.5</sub> are available in <a href="Appendix2.pdf">Appendix 2
+    (PDF)</a>.</p>
 pollutantTrends: >-
     <p>Since monitoring began in winter 2008-2009 in New York City, we have seen
     a decrease in most of the air pollutants we measure. However, the
@@ -116,15 +114,15 @@ layout: nyccas-report
 
 In 2007, the New York City Department of Health and Mental Hygiene (Health Department) established the New York City Community Air Survey (NYCCAS), the largest ongoing urban air monitoring program of any U.S. City. NYCCAS, which began collecting data in December 2008, is a collaboration between the Health Department and Queens College of the City University of New York and provides data to:
 
-* Help inform OneNYC, the City’s sustainability plan
+* Help inform PlaNYC, the City’s sustainability plan
 * Track changes in air quality over time
 * Estimate exposures for health research
-* Inform the public about local topics, such as: [recent air quality improvements](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/breatheeasy/), [car-free zones](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aqts/), [changes in the sources of air pollution](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq-cooking/), [unique studies conducted in New York City](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aqsnapshots/), [efforts to reduce health impacts](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/hia/) and [differences in air quality and health impacts across NYC neighborhoods](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq2/).
+* Inform the public about local topics, such as: [recent air quality improvements](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/breatheeasy/), [car-free zones](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aqts/), [changes in the sources of air pollution](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq-cooking/), [unique air quality studies conducted in New York City](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aqsnapshots/), [efforts to reduce health impacts](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/hia/) and [differences in air quality and related health impacts across NYC neighborhoods](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq2/).
 
 This report:
 
 * Provides a summary of key findings, the air monitoring program, monitoring site selection, and descriptions of the pollutants measured
-* Describes the trends in air pollutant levels from more than a decade of data between winter 2008-2009 through fall 2021 for fine particulate matter, nitrogen dioxide, nitric oxide, black carbon, wintertime sulfur dioxide and summertime ozone
+* Describes the trends in air pollutant levels from more than a decade of data from winter 2008-2009 through fall 2021 for fine particulate matter, nitrogen dioxide, nitric oxide, black carbon, wintertime sulfur dioxide and summertime ozone
 * Presents maps of neighborhood air pollution levels by year
 * Identifies the local sources that contribute to high levels of these pollutants in New York City neighborhoods
 
@@ -139,9 +137,11 @@ This report:
 * Nitric Oxide (NO)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -58%
 * Sulfer Dioxide (SO<sub>2</sub>)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -97%
 
-**Air quality improved significantly after the local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO<sub>2</sub> in New York City. In 2021, only eight of our 90 sites detected any SO<sub>2</sub>, and the levels at those sites were similar to SO<sub>2</sub> levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements.
+**Air quality improved significantly after local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO<sub>2</sub> in New York City. In 2021, only eight of our 90 sites detected any SO<sub>2</sub>, and the levels at those sites were similar to SO<sub>2</sub> levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements.
 
-**Air quality changes with location.** PM<sub>2.5</sub>, NO<sub>2</sub>, NO, and BC are highest in:
+**Air quality changes with location.**
+
+PM<sub>2.5</sub>, NO<sub>2</sub>, NO, and BC are highest in:
 
 * Areas with higher density of commercial cooking grills and charbroilers
 * Industrial areas, specifically areas with higher density of warehouses
