@@ -87,7 +87,7 @@ function initLunr() {
                     boost: 8
                 });
                 this.field("indicator_descriptions", {
-                    boost: 7
+                    boost: 6
                 });
                 this.field("summary", {
                     boost: 6
