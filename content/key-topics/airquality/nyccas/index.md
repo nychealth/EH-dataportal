@@ -88,7 +88,7 @@ conclusion: >-
     include:</p><ul><li>Reducing emissions from commercial charbroiling through
     regulations and technical support to restaurants</li><li>Creating low/zero
     emission freight networks and reducing reliance on trucks</li><li>Improving
-    and expanding public transit</li><li>Get the most polluting trucks of New
+    and expanding public transit</li><li>Get the most polluting trucks off New
     York City streets</li><li>Accelerating the phase out of fossil fuel
     combustion in buildings focusing on the communities most impacted by air
     pollution related health impacts</li></ul><p>Air quality in New York City
