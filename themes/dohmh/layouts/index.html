@@ -7,7 +7,8 @@
       <h1 class="fs-lg text-info"><i class="fas fa-star mr-1" aria-hidden="true"></i>Featured:</h1>
       <div class="card-content">
         <a href="{{ .Params.featured_link }}">
-        <div style="width:100%; height:80%; background-image: URL(images/{{ .Params.featured_image }}); background-size: cover"></div>
+        {{/*  <div style="width:100%; height:80%; background-image: URL(images/{{ .Params.featured_image }}); background-size: cover; background-position: bottom;"></div>  */}}
+        <img class="card-img-top" src="/images/{{ .Params.featured_image }}")>
         </a>
 
 
@@ -25,19 +26,19 @@
     <div class="col-md-4 card content-card">
       <h2 class="fs-lg text-info"><i class="fas fa-passport mr-1" aria-hidden="true"></i>New data stories:</h2>
       <div class="card-content mb-4">
-        <div class="card-body">
+        <div class="card-body mh-100">
           {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
 
           <div class="row no-gutters mt-2">
-            <div class="col-4 border mh-100">
+            <div class="col-4 border">
               {{ $src := .Resources.GetMatch .Params.image }}
                   {{ $image := $src.Resize "740x"}}
                   <a href="{{ .RelPermalink }}">
-                  <div style="width:100%; height:100%; background-image: URL({{ $image.Permalink }}); background-size: cover"></div></a>
+                  <div style="width:100%; height:100%; background-image: URL({{ $image.Permalink }}); background-size: cover; background-position: center center; "></div></a>
             </div>
 
-            <div class="col-8 ml-auto h-100 pl-1">
-              <p class="fs-sm"><a class="text-info font-weight-bold" href="{{ .RelPermalink }}">{{ .Title }}</a> {{ .Content | plainify | truncate 75 | htmlUnescape }} </p>
+            <div class="col-8 ml-auto h-100 pl-1 mb-2">
+              <p class="fs-sm"><a class="text-info font-weight-bold" href="{{ .RelPermalink }}">{{ .Title }}</a> {{ .Content | plainify | truncate 100 | htmlUnescape }} </p>
             </div>
           </div>
 
@@ -67,14 +68,16 @@
   <div class="row my-6">
     <div class="col-md-7 mx-auto">
       <h2 class="text-info">Explore your city - through data</h2>
-      <p class="text-muted"><span class="text-primary font-weight-bold">The environment is everything around us:</span> our air and water, the climate, our city's buildings and streets, and the society that we live in:</p>
+      <p class="text-muted my-2">
+        <span class="text-primary font-weight-bold">The environment is everything around us:</span> our air and water, the climate, our city's buildings and streets, and the society that we live in:
+      </p>
 
-      <a href="/key-topics/airquality" class="btn btn-outline-light text-primary mt-1 mr-1">Air quality</a> 
-      <a href="/key-topics/climatehealth" class="btn btn-outline-light text-primary mt-1 mr-1">Climate</a>
-      <a href="/key-topics/housing" class="btn btn-outline-light text-primary mt-1 mr-1">Housing</a>
-      <a href="/key-topics/transportation" class="btn btn-outline-light text-primary mt-1 mr-1">Public space</a>
-      <a href="/key-topics/healthoutcomes" class="btn btn-outline-light text-primary mt-1 mr-1">Health</a>
-      <a href="/key-topics/social" class="btn btn-outline-light text-primary mt-1 mr-1">Inequality</a>
+      <a href="/key-topics/airquality" class="btn btn-outline-light btn-lg text-primary mt-1 mr-1">Air quality</a> 
+      <a href="/key-topics/climatehealth" class="btn btn-outline-light btn-lg text-primary mt-1 mr-1">Climate</a>
+      <a href="/key-topics/housing" class="btn btn-outline-light btn-lg text-primary mt-1 mr-1">Housing</a>
+      <a href="/key-topics/transportation" class="btn btn-outline-light btn-lg text-primary mt-1 mr-1">Public space</a>
+      <a href="/key-topics/healthoutcomes" class="btn btn-outline-light btn-lg text-primary mt-1 mr-1">Health</a>
+      <a href="/key-topics/social" class="btn btn-outline-light btn-lg text-primary mt-1 mr-1">Inequality</a>
 
       <p class="text-muted mt-3">We collect data from many different sources and put them together to show you how <span class="font-weight-bold text-primary">the environment shapes our health</span>. <a href="key-topics" class="text-info font-weight-bold">See all topics</a>.</p>
 
@@ -85,7 +88,7 @@
     <div class="col-md-4 card content-card">
       <div class="card-content mb-4">
         <a href="/data-stories">
-        <img src="/images/home-sample-image-datastory.png">
+        <img class="card-img-top" src="/images/home-sample-image-datastory.png">
         </a>
         <div class="card-body">
           <h3 class="text-info"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data stories</h3>
@@ -99,7 +102,7 @@
     <div class="col-md-4 card content-card">
       <div class="card-content mb-4">
         <a href="/neighborhood-reports">
-        <img src="/images/home-sample-image-NR.png">
+        <img class="card-img-top" src="/images/home-sample-image-NR.png">
         </a>
         <div class="card-body">
          <h3 class="text-info"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
@@ -112,7 +115,7 @@
     <div class="col-md-4 card content-card">
       <div class="card-content mb-4">
         <a href="/data-explorer">
-        <img src="/images/home-sample-image-DE-5.png">
+        <img class="card-img-top" src="/images/home-sample-image-DE-5.png">
         </a>
         <div class="card-body">
           <h3 class="text-info"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Data Explorer</h3>
