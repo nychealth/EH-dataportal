@@ -80,12 +80,15 @@ conclusion: >-
     <p>This report underscores the importance of emissions reduction efforts
     over the past decade and highlights the continued need to reduce emissions
     citywide. The City’s sustainability plan, OneNYC, and its roadmap to reduce
-    greenhouse gas emissions, 80x50, have already and will continue to improve
-    air quality, providing important public health benefits to all New Yorkers.
-    These strategies and measures include:</p><ul><li>Reducing emissions from
-    commercial charbroiling through regulations and an accelerator program to
-    support restaurants</li><li>Creating low/zero emission freight networks and
-    reducing reliance on trucks</li><li>Improving and expanding public
+    greenhouse gas emissions, <a
+    href="https://www.nyc.gov/assets/sustainability/downloads/pdf/publications/New
+    York City's Roadmap to 80 x 50_Final.pdf">80x50</a>, have already and will
+    continue to improve air quality, providing important public health benefits
+    to all New Yorkers. These strategies and measures
+    include:</p><ul><li>Reducing emissions from commercial charbroiling through
+    regulations and an accelerator program to support
+    restaurants</li><li>Creating low/zero emission freight networks and reducing
+    reliance on trucks</li><li>Improving and expanding public
     transit</li><li>Continuing to transition the City's fleet to more efficient,
     less polluting heavy-duty vehicles, such as trash trucks and school
     buses</li><li>Accelerating the phase out of fossil fuel combustion in
