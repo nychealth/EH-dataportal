@@ -3,31 +3,44 @@
 <article class="container-fluid overflow-hidden" id="primary-content">
 
   <div class="row mt-4">
-    <div class="col-md-8 card content-card">
-      <h1 class="fs-lg text-info"><i class="fas fa-star mr-1" aria-hidden="true"></i>Featured:</h1>
-      <div class="card-content">
-        <a href="{{ .Params.featured_link }}">
-        {{/*  <div style="width:100%; height:80%; background-image: URL(images/{{ .Params.featured_image }}); background-size: cover; background-position: bottom;"></div>  */}}
-        <img class="card-img-top" src="/images/{{ .Params.featured_image }}")>
-        </a>
-
-
-      <div class="card-body">
-        <h1 class="card-title text-primary">{{ .Params.featured_title }}</h1>
-        <span class="card-text">{{ .Params.featured_text }}</span>
-        <span class="card-link"><a href="{{ .Params.featured_link }}">Get the data ></a></span>
-          
-          
-
+    <div class="col-md-8 mb-3">
+      <div class="card content-card mb-2">
+        <h1 class="fs-lg text-info"><i class="fas fa-star mr-1" aria-hidden="true"></i>Featured:</h1>
+        <div class="card-content">
+          <a href="{{ .Params.featured_link }}">
+          {{/*  <div style="width:100%; height:80%; background-image: URL(images/{{ .Params.featured_image }}); background-size: cover; background-position: bottom;"></div>  */}}
+          <img class="card-img-top" src="/images/{{ .Params.featured_image }}")>
+          </a>
+  
+  
+        <div class="card-body">
+          <h1 class="card-title text-primary">{{ .Params.featured_title }}</h1>
+          <span class="card-text">{{ .Params.featured_text }}</span>
+          <span class="card-link"><a href="{{ .Params.featured_link }}">Get the data ></a></span>
+            
+        
+            
+  
+        </div>
       </div>
-    </div>
+      </div>
+
+
+        <h2 class="fs-lg text-info mt-4"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Recently updated data:</h2>
+
+        {{- range .Params.recently_updated -}}
+        <a href="{{ .Link }}" class="btn btn-sm btn-outline-primary mr-1 mb-1"><i class="fas fa-table mr-1" aria-hidden="true"></i>{{ .Name }}</a>
+        {{- end -}}
+
+        <a href="/data-explorer" class="text-info font-weight-bold">All data > </a>
+
     </div>
 
-    <div class="col-md-4 card content-card">
+    <div class="col-md-4 card content-card pt-0">
       <h2 class="fs-lg text-info"><i class="fas fa-passport mr-1" aria-hidden="true"></i>New data stories:</h2>
       <div class="card-content mb-4">
         <div class="card-body mh-100">
-          {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
+          {{- range first 4 ((where .Site.RegularPages "Section" "data-stories")) -}}
 
           <div class="row no-gutters mt-2">
             <div class="col-4 border">
@@ -43,53 +56,59 @@
           </div>
 
         {{- end -}}
+          <hr class="my-2">
+        <a href="/data-stories" class="text-info font-weight-bold my-1 float-right">All data stories > </a>
+
         </div>
       </div>
-
-      <h2 class="fs-lg text-info"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Recently updated data:</h2>
-      <div class="card-content">
-        <div class="card-body">
-
-            <div class="row no-gutters p-0">
-              {{- range .Params.recently_updated -}}
-              <a href="{{ .Link }}" class="btn btn-sm btn-block btn-outline-primary">{{ .Name }}</a>
-              {{- end -}}
-            </div>
-
-          <p class="float-right fs-sm text-info mt-2"><a href="/data-explorer" class="text-info font-weight-bold">Get all data ></a></p>
-        </div>
-      </div>
-
       </div>
     </div>
 
   </div>
 
-  <div class="row my-6">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <hr>
+    </div>
+  </div>
+
+  <div class="row mt-6">
     <div class="col-md-7 mx-auto">
       <h2 class="text-info">Explore your city - through data</h2>
       <p class="text-muted my-2">
         <span class="text-primary font-weight-bold">The environment is everything around us:</span> our air and water, the climate, our city's buildings and streets, and the society that we live in:
       </p>
+    </div>
+  </div>
 
-
+  <div class="row">
+    <div class="col-md-10 mx-auto">
       <div class="card-group">
-
-        <a href="/key-topics/airquality" class="card btn btn-outline-light btn-lg border border-info text-primary mt-1 mr-1">Air quality</a> 
-        <a href="/key-topics/climatehealth" class="card btn btn-outline-light btn-lg border border-info text-primary mt-1 mr-1">Climate</a>
-        <a href="/key-topics/housing" class="card btn btn-outline-light btn-lg border border-info text-primary mt-1 mr-1">Housing</a>
-        <a href="/key-topics/transportation" class="card btn btn-outline-light btn-lg border border-info text-primary mt-1 mr-1">Public space</a>
-        <a href="/key-topics/healthoutcomes" class="card btn btn-outline-light btn-lg border border-info text-primary mt-1 mr-1">Health</a>
-        <a href="/key-topics/social" class="card btn btn-outline-light btn-lg border border-info text-primary mt-1 mr-1">Inequality</a>
+        <a href="/key-topics/airquality" class="card btn btn-outline-light border border-info text-primary mt-1 mr-1 py-2">Air quality</a> 
+        <a href="/key-topics/climatehealth" class="card btn btn-outline-light border border-info text-primary mt-1 mr-1 py-2">Climate</a>
+        <a href="/key-topics/housing" class="card btn btn-outline-light  border border-info text-primary mt-1 mr-1 py-2">Housing</a>
+        <a href="/key-topics/transportation" class="card btn btn-outline-light  border border-info text-primary mt-1 mr-1 py-2">Public space</a>
+        <a href="/key-topics/healthoutcomes" class="card btn btn-outline-light border border-info text-primary mt-1 mr-1 py-2">Health</a>
+        <a href="/key-topics/social" class="card btn btn-outline-light border border-info text-primary mt-1 mr-1 py-2">Inequality</a>
 
       </div>
 
+
+    </div>
+    </div>
+
+  <div class="row">
+    <div class="col-md-7 mx-auto">
       <p class="text-muted mt-3">We collect data from many different sources and put them together to show you how <span class="font-weight-bold text-primary">the environment shapes our health</span>. <a href="key-topics" class="text-info font-weight-bold">See all topics</a>.</p>
 
     </div>
   </div>
 
-  <div class="row my-4">
+
+
+
+
+  <div class="row mt-6 mb-4">
     <div class="col-md-4 card content-card">
       <div class="card-content mb-4">
         <a href="/data-stories">
@@ -134,16 +153,14 @@
 
 
   <div class="row my-4">
-    <div class="col-md-7 mx-auto">
-      <div class="card bg-lightgray mt-1">
-        <div class="card-body">
-          <h5 class="card-title text-muted fs-sm">Get updates and announcements</h5>
+    <div class="col-4 mx-auto">
+          <h4 class="text-muted"><i class="fas fa-bullhorn mr-1" aria-hidden="true"></i>Get updates and announcements</h4>
           <p class="fs-sm">
-          <em>We will send occasional announcements. We won't share your email address with anybody. </em></p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform?embedded=true" class="btn btn-outline-gray btn-block btn-sm mt-2">Sign up here</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform?embedded=true">Sign up here</a>
 
-        </div>
-      </div>
+          <em>We won't share your email address with anybody. </em></p>
+
+
     </div>
   </div>
 
@@ -169,7 +186,7 @@
           <div class="card bg-lightgray mt-1">
             <div class="card-body">
               <h5 class="card-title text-muted fs-sm">Visit our Github repo</h5>
-                <p class="fs-sm">Know code? Want raw data? Found a bug? Visit our Github repo, file an issue, and download raw data.</p>
+                <p class="fs-sm">Found a bug? Know code? Visit our Github repo to get code, file an issue, or download data.</p>
                 <a href="https://www.github.com/nychealth/EH-dataportal" class="btn btn-outline-gray btn-block btn-sm mt-2">Github<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
     
                 </div>
