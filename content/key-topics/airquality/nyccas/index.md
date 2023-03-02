@@ -17,7 +17,7 @@ seo_title: NYC Community Air Survey Annual Report
 seo_description: Data, findings, and more.
 pollutantMaps: >-
     <img src="NyccasInstall_red.jpg" alt="NYCCAS installation" align="right"
-    style="width:50%;" class="my-2"> <p>Since it is impossible to sample the air
+    style="width:50%;" class="my-2 pl-2"> <p>Since it is impossible to sample the air
     in every location in New York City, we monitor representative sites to
     determine how pollution levels vary in relation to traffic, buildings, trees
     and other neighborhood factors. We use NYCCAS monitoring data along with
