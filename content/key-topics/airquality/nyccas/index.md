@@ -86,15 +86,14 @@ conclusion: >-
     continue to improve air quality, providing important public health benefits
     to all New Yorkers. These strategies and measures
     include:</p><ul><li>Reducing emissions from commercial charbroiling through
-    regulations and an accelerator program to support
-    restaurants</li><li>Creating low/zero emission freight networks and reducing
-    reliance on trucks</li><li>Improving and expanding public
-    transit</li><li>Continuing to transition the City's fleet to more efficient,
-    less polluting heavy-duty vehicles, such as trash trucks and school
-    buses</li><li>Accelerating the phase out of fossil fuel combustion in
-    buildings</li></ul><p>Air quality in New York City has greatly improved over
-    the past decade and will continue to improve with efforts to control
-    emissions from the most important sources.  </p>
+    regulations and technical support to restaurants</li><li>Creating low/zero
+    emission freight networks and reducing reliance on trucks</li><li>Improving
+    and expanding public transit</li><li>Get the most polluting trucks of New
+    York City streets</li><li>Accelerating the phase out of fossil fuel
+    combustion in buildings focusing on the communities most impacted by air
+    pollution related health impacts</li></ul><p>Air quality in New York City
+    has greatly improved over the past decade and will continue to improve with
+    efforts to control emissions from the most important sources.  </p>
 moreInfo: >-
     <ul><li><a target="_blank" rel="noopener"
     href="https://needed-komodo.cloudvent.net/key-topics/airquality/nyccas/Appendix1.pdf">Appendix
