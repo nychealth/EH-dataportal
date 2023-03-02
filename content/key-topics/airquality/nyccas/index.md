@@ -37,7 +37,7 @@ pollutantMaps: >-
     PM<sub>2.5</sub> have been significantly reduced citywide. The areas where
     we see the highest levels of these pollutants has also shifted.</p> <p>Over
     time, there are better data available for us to understand the relationships
-    between land use and pollution and the air pollution patterns have shifted
+    between land use and pollution, and the air pollution patterns have shifted
     <a
     href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq-cooking/">as
     the city changes</a>. Although industrial land use has been a primary
@@ -97,7 +97,7 @@ moreInfo: >-
     href="https://needed-komodo.cloudvent.net/key-topics/airquality/nyccas/Appendix1.pdf">Appendix
     1 (PDF) </a>: Sampling Methodology and Data Sources for Emissions
     Indicators.</li><li><a target="_blank" rel="noopener"
-    href="Appendix2.PDF">Appendix 2 (PDF) </a>: Seasonal Average Pollutant
+    href="Appendix2.pdf">Appendix 2 (PDF) </a>: Seasonal Average Pollutant
     Maps.</li><li><a
     href="https://needed-komodo.cloudvent.net/key-topics/airquality/nyccas/Appendix1.pdf">Appendix
     3 (PDF)</a> : Community District Average Pollution Levels</li><li><a
