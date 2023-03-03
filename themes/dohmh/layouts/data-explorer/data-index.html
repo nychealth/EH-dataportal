@@ -205,7 +205,7 @@
                     for (st = 0; st < subtopics.length; st++) {
 
                         let li = document.createElement('li');
-                        li.innerHTML = "<a href='" + {{ .Site.BaseURL }} + "/data-explorer/" + subtopics[st].subtopic + "/'>" + subtopics[st].subtopic_name + "</a>"
+                        li.innerHTML = "<a href='" + {{ .Site.BaseURL }} + "data-explorer/" + subtopics[st].subtopic + "/'>" + subtopics[st].subtopic_name + "</a>"
                         // can eventually add an anchor or other deep-linking method
         
                         st_li.appendChild(li)
