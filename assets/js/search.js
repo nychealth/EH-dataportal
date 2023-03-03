@@ -2,7 +2,7 @@ const handleSearch = (e) => {
   const search = $('form[role="search"] input').val()
   e.preventDefault();
     // baseURL declared in single.html
-    window.location.href = `${baseURL}/search-results/index.html?search=${encodeURIComponent(DOMPurify.sanitize(search))}`;
+    window.location.href = `${baseURL}search-results/index.html?search=${encodeURIComponent(DOMPurify.sanitize(search))}`;
 }
 
 $('form[role="search"] .btn-primary').on('click', (e) => {
