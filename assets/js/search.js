@@ -1,7 +1,7 @@
 const handleSearch = (e) => {
   const search = $('form[role="search"] input').val()
   e.preventDefault();
-    // baseURL declared in single.html
+    // baseURL declared in head.html
     window.location.href = `${baseURL}search-results/index.html?search=${encodeURIComponent(DOMPurify.sanitize(search))}`;
 }
 

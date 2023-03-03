@@ -59,7 +59,7 @@ function initLunr() {
 
     // download grunt-generated index data
 
-    request.open('GET', `${baseURL}/js/lunr/PagesIndex.json`, true); // baseURL declared in head.html
+    request.open('GET', `${baseURL}js/lunr/PagesIndex.json`, true); // baseURL declared in head.html
 
     request.onload = function () {
 
