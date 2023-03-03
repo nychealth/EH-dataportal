@@ -322,10 +322,10 @@
 </div>
 
 
-<!-- Generate JSON object with subtopic pages and keys, and internal_ids in arrays -->
+<!-- Generate JSON object with topic pages and keys, and internal_ids in arrays -->
         
-{{- $subtopic_indicators_dict := newScratch -}}
-{{- $subtopic_indicators_map := newScratch -}}
+{{- $topic_indicators_dict := newScratch -}}
+{{- $topic_indicators_map := newScratch -}}
 
 {{/*  iterate over all pages on the site  */}}
 
@@ -334,7 +334,7 @@
     {{/*  create a new "slice" (i.e., an array)  */}}
     
     {{- $indicators := slice -}}
-    {{- $subtopic_name := slice -}}
+    {{- $topic_name := slice -}}
     
     {{/*  only process if it's a data explorer page */}}
     
@@ -342,11 +342,11 @@
         
         {{/*  turn params into strings  */}}
         
-        {{- $subtopic := .RelPermalink | path.Base | string -}}
+        {{- $topic := .RelPermalink | path.Base | string -}}
 
-        {{/*  subtopic names  */}}
+        {{/*  topic names  */}}
         
-        {{- $subtopic_title := .Title -}}
+        {{- $topic_title := .Title -}}
 
         {{/*  get internal_ids  */}}
         
@@ -358,10 +358,10 @@
         
         {{- end -}}
         
-        {{/*  create a map with subtopic as key and array of internal_ids as value */}}
+        {{/*  create a map with topic as key and array of internal_ids as value */}}
         
-        {{- $subtopic_indicators_dict := dict "subtopic_name" $subtopic_title "IndicatorID" $indicators -}}
-        {{- $subtopic_indicators_map.SetInMap "subtopic_indicators" $subtopic ($subtopic_indicators_dict) -}}
+        {{- $topic_indicators_dict := dict "topic_name" $topic_title "IndicatorID" $indicators -}}
+        {{- $topic_indicators_map.SetInMap "topic_indicators" $topic ($topic_indicators_dict) -}}
 
     {{- end -}}
     
@@ -370,8 +370,8 @@
 
 
 <script>
-    var subtopic_indicators = {{ $subtopic_indicators_map.Get "subtopic_indicators" }};
-    // console.log(subtopic_indicators)
+    var topic_indicators = {{ $topic_indicators_map.Get "topic_indicators" }};
+    // console.log(topic_indicators)
 
     var destination = document.getElementById('indicatorNames')    
 

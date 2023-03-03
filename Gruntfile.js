@@ -49,7 +49,7 @@ module.exports = function(grunt) {
             // this is convoluted but necessary to get an arquero table with the right structure
             var de_indicator_names  = aq.from(aq.from(grunt.file.readJSON(build_dir + "/IndicatorData/indicator_names.json")).array("value"));
             var nr_indicator_names  = grunt.file.readJSON(build_dir + "/IndicatorData/nr_indicator_names.json");
-            var subtopic_indicators = grunt.file.readJSON(build_dir + "/IndicatorData/subtopic_indicators.json");
+            var topic_indicators = grunt.file.readJSON(build_dir + "/IndicatorData/topic_indicators.json");
             
             // grunt.log.writeln(de_indicator_names.array("value"))
 
@@ -113,7 +113,7 @@ module.exports = function(grunt) {
 
             // unique indicators, only 1 subtopic per indicator
             
-            let aq_subtopic_indicators = aq.from(subtopic_indicators)
+            let aq_topic_indicators = aq.from(topic_indicators)
                 .rename({key: "subtopic"})
                 .derive({
                     IndicatorID: d => d.value.IndicatorID,
@@ -127,7 +127,7 @@ module.exports = function(grunt) {
 
             // add each row to the index
 
-            for (const row of aq_subtopic_indicators) {
+            for (const row of aq_topic_indicators) {
 
                 pageObj = {
                     title: row.name,
