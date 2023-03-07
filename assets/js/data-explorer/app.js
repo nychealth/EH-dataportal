@@ -154,7 +154,7 @@ $("#allData").on("click", (e) => {
 
     // pivot the full dataset
 
-    let allData = aq.from(fullDataTableObjects)
+    let allData = aq.from(tableData)
         .groupby("Time", "GeoType", "GeoID", "GeoRank", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI")
         .relocate(["Time", "GeoType", "GeoID", "GeoRank"], { before: 0 })

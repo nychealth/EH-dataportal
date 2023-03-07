@@ -59,7 +59,7 @@ function initLunr() {
 
     // download grunt-generated index data
 
-    request.open('GET', `${baseURL}/js/lunr/PagesIndex.json`, true); // baseURL declared in head.html
+    request.open('GET', `${baseURL}js/lunr/PagesIndex.json`, true); // baseURL declared in head.html
 
     request.onload = function () {
 
@@ -87,7 +87,7 @@ function initLunr() {
                     boost: 8
                 });
                 this.field("indicator_descriptions", {
-                    boost: 7
+                    boost: 6
                 });
                 this.field("summary", {
                     boost: 6
