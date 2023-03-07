@@ -1,14 +1,14 @@
 {{- define "main" -}}
 
 <script>
-    var subtopicIndicators;
+    var topicIndicators;
     var sti;
     var thisInd;
 
     // this gets a json of topics and nested indicators
     async function getJSON() {
-        d3.json("https://raw.githubusercontent.com/nychealth/EH-dataportal/prod-deploy/IndicatorData/subtopic_indicators.json").then(data => {
-            subtopicIndicators = data
+        d3.json("https://raw.githubusercontent.com/nychealth/EH-dataportal/prod-deploy/IndicatorData/topic_indicators.json").then(data => {
+            topicIndicators = data
         });
     }
 
@@ -26,8 +26,8 @@
         var URL;
         console.log('getURL running for ' + ind)
 
-        for (let y in subtopicIndicators) {
-            topicArray = subtopicIndicators[y].IndicatorID
+        for (let y in topicIndicators) {
+            topicArray = topicIndicators[y].IndicatorID
             if (topicArray.includes(ind)) {
                 thisTopic = y
                 console.log('topic is: ' + ind + ": " + thisTopic)
