@@ -11,10 +11,10 @@ const renderTable = () => {
     const groupId = 0;
     let filteredTableData;
 
-    // console.log("fullDataTableObjects", fullDataTableObjects);
+    // console.log("tableData", tableData);
 
     const filteredTableYearData = 
-        fullDataTableObjects
+        tableData
         .filter(d => selectedSummaryYears.includes(d.Time))
 
     const dataTimes = [...new Set(filteredTableYearData.map(d => d.Time))];
@@ -126,8 +126,8 @@ const renderTable = () => {
         // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
         .relocate(["Time", "GeoTypeDesc", "GeoID", "GeoRank"], { before: 0 }) 
     
-    // console.log("filteredTableAqData [renderTable]");
-    // filteredTableAqData.print({limit: 40})
+    console.log("filteredTableAqData [renderTable]");
+    filteredTableAqData.print({limit: 40})
     
     // export Arquero table to HTML
     
@@ -166,7 +166,7 @@ const renderTable = () => {
         ],
         bInfo: false,
         fixedHeader: true,
-        orderFixed: [ 3, 'asc' ], // GeoRank
+        orderFixed: [[ 0, 'desc' ], [ 3, 'asc' ]], // GeoRank
         columnDefs: [
             { type: 'natural', targets: '_all' },
             { targets: [0, 1, 2, 3], visible: false}
