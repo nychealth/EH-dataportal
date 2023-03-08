@@ -36,8 +36,8 @@ const renderMap = (
             color = 'blues'
         }
 
-        console.log('rank reverse?', rankReverse)
-        console.log('color', color)
+        // console.log('rank reverse?', rankReverse)
+        // console.log('color', color)
 
 
         // ----------------------------------------------------------------------- //
@@ -46,15 +46,13 @@ const renderMap = (
 
         const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
 
-        // console.log("map_unreliability", map_unreliability);
-
         document.querySelector("#map-unreliability").innerHTML = ""; // blank to start
 
-        for (let i = 0; i < map_unreliability.length; i++) {
+        map_unreliability.forEach(element => {
+
+            document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
             
-            document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + map_unreliability[i] + "</div>" ;
-            
-        }
+        });
 
         // ----------------------------------------------------------------------- //
         // set geo file based on geo type
@@ -91,8 +89,15 @@ const renderMap = (
         mapspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": {
-                "text":  `${mapMeasurementType} ${displayType && `(${displayType})`}, by ${mapGeoTypeDescription} (${mapTime})`,
-                "subtitlePadding": 10
+                "text": indicatorName,
+                "subtitlePadding": 10,
+                "fontWeight": "normal",
+                "anchor": "start", 
+                "fontSize": 18, 
+                "font": "sans-serif",
+                "baseline": "top",
+                "subtitle": `${mapMeasurementType} ${displayType && `(${displayType})`}, by ${mapGeoTypeDescription} (${mapTime})`,
+                "subtitleFontSize": 13
             },
             "data": {
                 "values": data,
@@ -106,13 +111,6 @@ const renderMap = (
                 "concat": {"spacing": 20}, 
                 "view": {"stroke": "transparent"},
                 "axisY": {"domain": false,"ticks": false},
-                "title": {
-                    "fontWeight": "normal"
-                  },
-                "legend": {
-                    "offset": -25,
-                    "titleFontWeight": "normal",
-                }
             },
             "projection": {"type": "mercator"},
             "vconcat": [
@@ -231,7 +229,13 @@ const renderMap = (
                             "field": "Value",
                             "type": "quantitative",
                             "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}},
-                            "legend": {"direction": "horizontal","orient": "top-left","title": null}
+                            "legend": {
+                                "direction": "horizontal", 
+                                "orient": "top-left",
+                                "title": null,
+                                "offset": -30,
+                                "padding": 10,
+                            }
                         },
                         "stroke": {
                             "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
