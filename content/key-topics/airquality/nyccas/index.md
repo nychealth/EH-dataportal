@@ -17,14 +17,14 @@ seo_title: NYC Community Air Survey Annual Report
 seo_description: Data, findings, and more.
 pollutantMaps: >-
     <img src="NyccasInstall_red.jpg" alt="NYCCAS installation" align="right"
-    style="width:50%;" class="my-2 pl-2"> <p>Since it is impossible to sample the air
-    in every location in New York City, we monitor representative sites to
-    determine how pollution levels vary in relation to traffic, buildings, trees
-    and other neighborhood factors. We use NYCCAS monitoring data along with
-    data on land use, traffic, building emissions and other neighborhood factors
-    around the monitors to build a land-use regression (LUR) model. We then use
-    the associations from these models to estimate the seasonal average air
-    pollution levels at locations across the city, including places where no
+    style="width:50%;" class="my-2 pl-2"> <p>Since it is impossible to sample
+    the air in every location in New York City, we monitor representative sites
+    to determine how pollution levels vary in relation to traffic, buildings,
+    trees and other neighborhood factors. We use NYCCAS monitoring data along
+    with data on land use, traffic, building emissions and other neighborhood
+    factors around the monitors to build a land-use regression (LUR) model. We
+    then use the associations from these models to estimate the seasonal average
+    air pollution levels at locations across the city, including places where no
     NYCCAS measurements were collected. For more details on emission source
     data, see <a href="Appendix1.pdf">Appendix 1 (PDF)</a>. For more details on
     the analysis methods, see <a
@@ -44,10 +44,10 @@ pollutantMaps: >-
     indicator of BC, NO, NO<sub>2</sub> and PM<sub>2.5</sub> pollution in the
     past, in the most recent years of data we see evidence that the density of
     warehouses with loading docks better explains the difference in pollution
-    levels between neighborhoods.  Industrial neighborhoods with a higher
-    density of warehouses, such as Newtown Creek area in Queens and Brooklyn,
-    JFK airport, Sunset Park in Brooklyn and Hunts Point in the Bronx, have
-    higher levels of pollution.</p> <p>
+    levels between neighborhoods.  Areas with a higher density of warehouses,
+    such as Newtown Creek area in Queens and Brooklyn, near JFK airport, Sunset
+    Park in Brooklyn and Hunts Point in the Bronx, have higher levels of
+    pollution.</p> <p>
 
     There have been too few sites with SO<sub>2</sub> values above the detection
     limit for us to include data after winter 2017-2018 in these maps and
@@ -139,10 +139,10 @@ This report:
 
 **Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2021.**
 
-* Fine particles (PM<sub>2.5</sub>)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;-40%
-* Nitrogen Dioxide (NO<sub>2</sub>)&nbsp; &nbsp; -38%
-* Nitric Oxide (NO)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -58%
-* Sulfur Dioxide (SO<sub>2</sub>)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -97%
+* Fine particles (PM<sub>2.5</sub>) -40%
+* Nitrogen Dioxide (NO<sub>2</sub>) -38%
+* Nitric Oxide (NO) -58%
+* Sulfur Dioxide (SO<sub>2</sub>) -97%
 
 **Air quality improved significantly after local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO<sub>2</sub> in New York City. In 2021, only eight of our 90 sites detected any SO<sub>2</sub>, and the levels at those sites were similar to SO<sub>2</sub> levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements.
 
