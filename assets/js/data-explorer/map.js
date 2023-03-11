@@ -96,7 +96,7 @@ const renderMap = (
                 "fontSize": 18, 
                 "font": "sans-serif",
                 "baseline": "top",
-                "subtitle": `${mapMeasurementType} ${displayType && `(${displayType})`}, by ${mapGeoTypeDescription} (${mapTime})`,
+                "subtitle": `${mapMeasurementType}${displayType && ` (${displayType})`}, by ${mapGeoTypeDescription} (${mapTime})`,
                 "subtitleFontSize": 13
             },
             "data": {
