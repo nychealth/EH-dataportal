@@ -9,8 +9,8 @@ const renderComparisonsChart = (
 
     console.log("** renderComparisonsChart");
 
-    // console.log(">>> comp metadata");
-    // metadata.print()
+    console.log(">>> comp metadata");
+    metadata.print()
     
     // console.log(">>> comp data:");
     // data.print(100)
@@ -53,10 +53,13 @@ const renderComparisonsChart = (
     // extract measure metadata for chart text
     // ----------------------------------------------------------------------- //
     
+    let compId =            [... new Set(metadata.array("ComparisonID"))][0];
     let compName =            [... new Set(metadata.array("ComparisonName"))];
     let compIndicatorLabel =  [... new Set(metadata.array("IndicatorLabel"))];
     let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
     let compDisplayTypes =    [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
+
+    console.log("compId", compId);
 
     // ----------------------------------------------------------------------- //
     // set chart text based on type of comparison
@@ -65,6 +68,8 @@ const renderComparisonsChart = (
     let compGroupLabel;
     let plotSubtitle;
     let plotTitle;
+
+    let suppressSubtitleBy = [553, 564, 565, 566, 704, 715];
 
     // comparison group label is either measure, indicator, or combo. can include geo eventually
 
@@ -94,8 +99,21 @@ const renderComparisonsChart = (
         let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))]
         
         plotTitle = compName;
-        // plotSubtitle = compIndicatorLabel + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
-        plotSubtitle = compY_axis_title + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+
+        // suppress subtitle "by" part
+
+        if (suppressSubtitleBy.includes(compId)) {
+
+            console.log(">>> SUPPRESS by", compId);
+
+            plotSubtitle = compY_axis_title;
+
+        } else {
+
+            plotSubtitle = compY_axis_title + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+
+        }
+
 
         // if there's only 1 indicator label, use measurement type to label the groups
 
@@ -112,7 +130,20 @@ const renderComparisonsChart = (
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
 
         plotTitle = compName;
-        plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+
+        // suppress subtitle "by" part
+
+        if (suppressSubtitleBy.includes(compId)) {
+
+            console.log(">>> SUPPRESS by", compId);
+
+            plotSubtitle = compMeasurementType;
+
+        } else {
+
+            plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+
+        }
 
         // if there's only 1 measurement type, use indicator label to label the groups
 
@@ -127,9 +158,23 @@ const renderComparisonsChart = (
         // console.log("> 1 measure & indicator");
 
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
+        let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))]
 
         plotTitle = compName;
-        plotSubtitle = compName + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+
+        // suppress subtitle "by" part
+
+        if (suppressSubtitleBy.includes(compId)) {
+
+            console.log(">>> SUPPRESS by", compId);
+
+            plotSubtitle = compY_axis_title;
+
+        } else {
+
+            plotSubtitle = compName + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+
+        }
 
         // if there are more than 1 of both, use joined IndicatorMeasure 
 
@@ -137,6 +182,7 @@ const renderComparisonsChart = (
         comp_group_col = "IndicatorMeasure"
 
     }
+
 
     // ----------------------------------------------------------------------- //
     // create tooltips JSON
