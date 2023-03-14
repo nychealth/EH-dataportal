@@ -1,7 +1,7 @@
 ---
 title: "Why trash is a public health issue"
 date: 2022-07-28T13:11:44-04:00
-draft: true
+draft: false
 seo_title: "How sanitation service, trash, and rats affect our lives and our health"
 seo_description: "A data story on the state of our neighborhoods, and what it takes to build safe, clean neighborhoods."
 tags: 
@@ -13,17 +13,55 @@ photocredit: "Michael Appleton/Mayoral Photography Office"
 
 # Why trash service is crucial for public health  
 
-Ever since humans’ first civilizations, clean water and sanitation have been core parts of healthy cities and societies. In fact, New York City’s modern history of public health starts in the 1600s with the Bureau of Sanitary Inspections, and ever since, sanitation has been an essential part of public health – fighting disease by keeping our city clean. 
+New York City’s modern history of public health starts in the 1600s with the Bureau of Sanitary Inspections, and ever since, sanitation has been an essential part of public health — fighting disease by keeping our city clean. 
 
 {{< figure src="nyc-sanitation-1600s.png" alt="Chronology of important events. New York City Department of Health and its Predecessor Agencies 1655-1966. 1657: Activities of the Bureau of Sanitary Inspections originated to some degree with an ordinance forbidding inhabitants of this city to throw garbage and other refuge in the streets." >}}
 
 *From [A Chronology of the NYC Department of Health](https://www1.nyc.gov/assets/doh/downloads/pdf/history/chronology-1966centennial.pdf)*
 
+## How does sanitation affect health
+
+Proper sanitation is a crucial component of public health and of safe, health, and equitable neighborhood environments. 
+
+<div class = "mx-4 bg-light">
+
+**Trash** can pollute our soil, water, and air, becoming an issue  of health, quality of life and equity. New Yorkers live, work, &and play in our public spaces: when they aren't clean, they're not welcoming, safe, healthy places for us. 
+
+Trash feeds populations of pests like **cockroaches and rats**, which can damage property, degrade housing, contaminate food, and transmit diseases. Pests can trigger asthma and other health issues. These pests are unfortunately no surprise to any New Yorker, but due to differences in sanitation, they are more prevalent in some neighborhoods than others. 
+
+In areas where unhoused people seek shelter, if there aren't **public restrooms**, then feces and urine (which are not handled by the sanitation system) become a crucial sanitation issue that affects health and quality of life. 
+
+</div>
+
+<br>
+
+In East Harlem, the Health Department's Bureau of Neighborhood health has been partnering with community organizations to document the lived reality of the impact of sanitation for residents. And throughout the city, the Department of Sanitation (DSNY) and City Hall are working to address sanitation concerns in ways that benefit all New Yorkers regardless of where they live. 
+
 ## Everyone is entitled to clean streets  
 
-In East Harlem, street cleanliness affects people’s lives every day. There are three sanitation transfer stations in East Harlem, but residents experience a lot of trash on streets and sidewalks.  
+In East Harlem, street cleanliness affects people’s lives every day. In East Harlem, residents experience a lot of trash on streets and sidewalks.  
 
-Community health workers have documented concerns about trash on the streets, inadequate trash service, overflowing waste bins, sidewalk blockages, and accessibility issues. 
+Community health workers report that excess trash threatens the quality of life for those who come face-to-face with it. 
+<br>
+
+{{< rawhtml >}}
+</div>
+<div class="medium my-4 py-2">
+    <div class="row">
+        <div class="col-sm-6">
+            <img class="img-responsive" src="tree-trash-photovoice.jpg" alt="Tree pit on the sidewalk. The pit is filled with water, covered in plastic bags, clothes hangers, paper bags, and other litter. Syringes are also visible in the pit." style="width:100%">
+        </div>
+        <div class="col-sm-6">
+            <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Garbage on our streets</strong> “Our daily lives have changed as a result of the COVID-19 pandemic, especially as some social problems have become more visible than ever before. This includes the accumulation of trash in our neighborhood; the garbage is taking over. Surrounding this tree are several plastic hangers, bottles, syringes and paper scraps. This is concerning because our environment influences our health, and the accumulation of all this trash may be harmful to children. It also looks nasty. The City should increase its sanitation and cleaning services, provide more public trash bins and better educate residents about how to deal with dangerous items.” <em>Colasa Noesis</em> </p></div>
+        </div>
+    </div>
+</div>
+<div class="narrow">
+{{< /rawhtml >}}
+
+<br>
+These community health workers have documented concerns about trash on the streets, inadequate trash service, overflowing waste bins, sidewalk blockages, and accessibility issues. 
+<br>
 
 {{< rawhtml >}}
 </div>
@@ -41,28 +79,11 @@ Community health workers have documented concerns about trash on the streets, in
 {{< /rawhtml >}}
 
 <br>
-Community health workers report that excess trash threatens the quality of life for those who come face-to-face with it.  
-<br>
-{{< rawhtml >}}
-</div>
-<div class="medium my-4 py-2">
-    <div class="row">
-        <div class="col-sm-6">
-            <img class="img-responsive" src="tree-trash-photovoice.jpg" alt="Tree pit on the sidewalk. The pit is filled with water, covered in plastic bags, clothes hangers, paper bags, and other litter. Syringes are also visible in the pit." style="width:100%">
-        </div>
-        <div class="col-sm-6">
-            <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Garbage on our streets</strong> “Our daily lives have changed as a result of the COVID-19 pandemic, especially as some social problems have become more visible than ever before. This includes the accumulation of trash in our neighborhood; the garbage is taking over. Surrounding this tree are several plastic hangers, bottles, syringes and paper scraps. This is concerning because our environment influences our health, and the accumulation of all this trash may be harmful to children. It also looks nasty. The City should increase its sanitation and cleaning services, provide more public trash bins and better educate residents about how to deal with dangerous items.” <em>Colasa Noesis</em> </p></div>
-        </div>
-    </div>
-</div>
-<div class="narrow">
-{{< /rawhtml >}}
-
-<br>
 
 Trash on streets discourages outside play for neighborhood residents and impacts people’s mental health as they go about their everyday lives. Residents see rats scurrying around trash looking for food, which creates uneasy feelings and physical barriers to where they need to go.  
 
-No one should have to handle streets in this condition. 
+No one should have to walk on sidewalks in this condition. 
+<br>
 
 {{< rawhtml >}}
 </div>
@@ -86,9 +107,10 @@ No one should have to handle streets in this condition.
 ---
 <br>
 
-## How trash service varies by neighborhood 
+## How sanitation services vary by neighborhood 
+New York's sanitation system is vast. It includes the Department of Sanitation (DSNY), which is responsible for residential trash, recycling, and street cleaning; private waste haulers who pick up garbage produced by businesses; the Department of Parks and Recreation, which is responsible for trash pickups in our parks; and Business Improvement Districts, which often fund street litter baskets (garbage cans) and additional services to help clean their neighborhood.
 
-A big part of adequate sanitation is street litter baskets. The Department of Sanitation (DSNY) publishes the location of its street litter baskets on [NYC Open Data](https://opendata.cityofnewyork.us/data/), which we include here on the Environment and Health Data Portal. Let’s look at these data. 
+DSNY publishes the location of street litter baskets on [NYC Open Data](https://opendata.cityofnewyork.us/data/), which we make available here on the Environment and Health Data Portal. 
 
 In New York City, litter baskets are either wire and open at the top, or non-wired and enclosed.
 
@@ -100,7 +122,7 @@ In New York City, litter baskets are either wire and open at the top, or non-wir
             <img class="img-responsive" src="trash-can-wire.png" alt="Open wire basket with some trash. Next to a pole and plastic newspaper stand "style="width:100%">
         </div>
         <div class="col-sm-6">
-            <img class="img-responsive" src="trash-can-enclosed.png" alt="Round, grey, enclosed trash baskets are lined up next to each other. These three baskets have a small circulare opening at the top and take different types of trash (mixed paper, litter, and metal/glass/plastic/cartons) A fourth basket that has a handle to open the trash basket is next to the other baskets." style="width:100%">
+            <img class="img-responsive" src="trash-can-enclosed.png" alt="Round, grey, enclosed trash baskets are lined up next to each other. These three baskets have a small circular opening at the top and take different types of trash (mixed paper, litter, and metal/glass/plastic/cartons) A fourth basket that has a handle to open the trash basket is next to the other baskets." style="width:100%">
         </div>
         <div class="col-sm-6 mt-1">
             <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Wire baskets</strong> are more likely to be damaged, have trash blow or fall out of them, and attract pests like rats and mice.</p></div>
@@ -115,9 +137,11 @@ In New York City, litter baskets are either wire and open at the top, or non-wir
 
 <br>
 
-East Harlem has very few enclosed baskets, according to DSNY data. There are more litter baskets per square mile in the Upper East Side (UES) – and far more enclosed baskets, with a stark difference at 96th Street, the border between these two neighborhoods. 
+Often, better baskets are bought by local Business Improvement Districts (BIDs), which receive funding from taxes on property owners in the district. [Overall, BIDS spend over 25% of their funding on additional sanitation services in their area](nyc.gov/site/sbs/neighborhoods/bids.page). There are BIDS all over the city, but none in East Harlem [see a map of BID locations](data.cityofnewyork.us/Business/Business-Improvement-Districts/ejxk-d93y). Since establishing a BID is a long and difficult process, neighborhoods with more resources are more likely to have BIDs. Also, neighborhoods can get additional trash service from elected officials. Council members can use discretionary funds to pay for more new baskets, trash service, and street and sidewalk cleaning. But these optional opportunities contribute to neighborhoods across the city having different levels of trash services. 
 
-We also see this difference in data on rat inspections, with more properties north of 96th street failing inspections for rats, garbage, and harborage. Where there are fewer enclosed litter baskets, there is a dramatic increase in garbage and rat activity. 
+East Harlem has very few enclosed baskets. A few blocks south on the Upper East Side, there are more litter baskets per square mile – and far more enclosed baskets. 
+
+We also see this difference between neighborhoods in data on rat inspections, with more properties north of 96th street failing inspections for rats, garbage, and harborage (conditions that provide shelter for rodents). 
 
 <br>
 {{< rawhtml >}}
@@ -125,7 +149,7 @@ We also see this difference in data on rat inspections, with more properties nor
 <div class="medium my-4 py-2">
     <div class="row">
         <div class="col-sm-5">
-            <strong>Density of enclosed litter baskets</strong>
+            <strong>Enclosed baskets per square mile</strong>
             <iframe title="EH / UES locator map" aria-label="Locator maps" id="datawrapper-chart-5WJ8y" src="https://datawrapper.dwcdn.net/5WJ8y/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="350"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
 </script>
             <a href="">Explore litter basket data here</a>.
@@ -145,41 +169,36 @@ We also see this difference in data on rat inspections, with more properties nor
 ---
 <br>
 
-## How does sanitation affect health? 
+The difference in litter baskets, garbage and rats in these two neighborhoods is just one example of the ways that sanitation varies between neighborhoods, creating very different conditions and quality of life for New York City's residents. 
 
-Sanitation is a public health concern: 
+## What sanitation services does the city need to protect health? 
 
-- **Trash** is a health issue, and a quality-of-life and equity issue 
-- **Rats** feed on trash, damage property, degrade housing, contaminate food, and transmit diseases. Rats in NYC are unfortunately no surprise to any New Yorker, but due to differences in sanitation, rats are more prevalent in some neighborhoods than others. 
-- In areas where unhoused people seek shelter, if there aren’t **public restrooms**, then feces and urine (which are not handled by the sanitation system) become an issue, which affects health and quality of life. 
+City agencies are working toward comprehensive, equitable sanitation for all neighborhoods: litter baskets, trash pickup, systematic street cleaning, and services like public restrooms where people gather. In 2022, [City Hall announced millions of dollars in new funding](https://www.nyc.gov/office-of-the-mayor/news/824-22/mayor-adams-consolidates-citywide-cleaning-functions-get-stuff-clean-14-5-million#/0) to clean neglected areas, distribute new litter baskets, and address illegal dumping. Meanwhile, the Department of Sanitation (DSNY) has been spreadheading new initiatives that transform how the city stores and collects waste. This work includes [Clean Curbs](https://www.nyc.gov/assets/dsny/site/our-work/containerized-waste-rfei), a program to get garbage bags off sidewalks and into on-street, rat-proof containers; [Better Bins](https://www.nyc.gov/assets/dsny/site/our-work/better-bin), the production of higher-quality street litter baskets; and neighborhood curbside composting programs. 
 
-Proper sanitation is a crucial component of public health and of safe, healthy, and equitable neighborhood environments. So, what do neighborhoods like East Harlem and others need for proper sanitation? 
+In 2017, the Health Department launched the [Neighborhood Rat Reduction Initiative](https://www.nyc.gov/site/doh/health/health-topics/rats-working-in-your-community.page). Through this initiative, the Health Department collaborates with DSNY, the Department of Parks and recreation, the NYC Housing Authority, Department of Transportation, and the Department of Small Business Services to reduce neigborhood-level rat activity in four Rat Mitigation Zones — the newest of which is in Harlem.
 
-- **More comprehensive sanitization services** - including more frequent trash pickup, systematic street cleaning, and public bathrooms  
-- **More trash receptables** – including expanding pilots for things like on-street, rat-proof, containerized trash storage, to keep sidewalks clear, and prevent trash from feeding rats
-- **Expansion of pilot projects** for things like solar compacting trash cans, curbside organics composting programs, and more
-- **Equitable funding and distribution of sanitation resources**: it’s not right for one neighborhood to host trucks and transfer stations, while not having sufficient sanitation services and funding. And, neighborhoods shouldn’t need the additional resources of a Business Improvement District in order to have adequate sanitation. 
-
-<div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm">“One of the most egregious examples of inequitable distribution of City facilities is the 	City’s historical siting of waste transfer stations (WTS), where intra-city waste haulers 	deposit their cargos for transfer to landfills and recycling facilities. Seventy-six percent 	(76%) of the total citywide permitted capacity for waste disposal is allocated to stations 	in just four community districts.” - NYC City Council’s Fair Share Report (2017)</p></div>
-
+All these initiatives are vital ways to increase the effectiveness of our city's sanitation system, working to build clean, healthy public spaces for New Yorkers. Neighborhoods like East Harlem and others shouldn't have to rely on discretionary funding from elected officials, or establishing Business Improvement Districts, in order to have adequate sanitation. The city needs **equitable funding and distribution of sanitation resources.** 
 <br>
 
-## What can we do to improve sanitation? 
+## What can you do to improve sanitation in your neighborhood? 
 
-Inequality in trash service is a long-standing issue in East Harlem. In the 1960s, a Puerto Rican activist group called the Young Lords fought for better conditions in East Harlem. There, garbage and sanitation emerged as a priority issue. The lack of trash service in East Harlem meant trash remained on the streets, rotting for weeks: a visible sign of neighborhood neglect and disinvestment that had a daily impact on quality of life. In response, the Young Lords organized the Garbage Offensive, barricading major roads with the uncollected trash to disrupt the City and force it to address the problem. 
+Sanitation is a long-standing issue in East Harlem, and there's a history of community organizing for better conditions. In the 1960s, the Puerto Rican activist group the Young Lords organized the Garbage Offensive, barricading major roads with uncollected trash to protest the City's neglect of the neighborhood and force government to address the problem. 
 
-But you don’t have to be part of the Young Lords to do something about trash in your neighborhood. 
+Today, here's how New Yorkers can help improve sanitation: 
 
-One way neighborhoods get additional trash service is through elected officials. Council members use discretionary funds to pay for more new baskets, trash service, and street and sidewalk cleaning. You can call your [local elected official](https://council.nyc.gov/districts/) and tell them you need more trash service in the neighborhood. 
+* You can call your [local elected officials](https://council.nyc.gov/districts/) and tell them you need more trash service in the neighborhood. They often do listen to calls and concerns from their constituents. 
+* Attend Community Board meetings — discuss your complaints with your neighbords and encourage the Community Board to take action. 
+* And the City listens to complaints made through 311. You can [report rat sightings](https://portal.311.nyc.gov/article/?kanumber=KA-01107) or [missed trash service collection](https://portal.311.nyc.gov/article/?kanumber=KA-01788) to 311. These 311 reports generate complaint data that can help improve conditions in your neighborhood. 
 
-And, the City listens to complaints made through 311. You can [report rat sightings](https://portal.311.nyc.gov/article/?kanumber=KA-01107), [missing litter baskets](https://portal.311.nyc.gov/article/?kanumber=KA-02143), or [missed trash service collection](https://portal.311.nyc.gov/article/?kanumber=KA-01788) to 311. These 311 reports generate complaint data that can help improve conditions in your neighborhood.  
+Check the Rat Information Portal [www.nyc.gov/rats](www.nyc.gov/rats) for rat inspection data or [Rat Indexing](https://www.nyc.gov/site/doh/health/health-topics/rat-maps-and-data-rat-indexing.page) for more comprehensive data. 
 
-Check the Rat Information Portal [www.nyc.gov/rats](www.nyc.gov/rats) for rat inspection data. 
+**** 
+
+<br>
 
 <div style="background-color:#fafafa; padding: 10px; border-radius: 5px; font-size: 12pt;">
 <p><em>Photographs and quotes in this piece are courtesy of The Photovoice Project, a research project from the <a href="https://www1.nyc.gov/site/doh/health/neighborhood-health/harlem-health-advocacy-partners.page">Harlem Health Advocacy Partners</a>.</em></p>
 <p><em>Special thanks to: Giselle Guerrero (<a href="https://elbarriobikes.wixsite.com/elbarriobikes">El Barrio Bikes</a>), Philippa Godoy (We Out and <a href="https://elbarriobikes.wixsite.com/elbarriobikes">El Barrio Bikes</a>), Tara Mardigan, (<a href="https://elbarriobikes.wixsite.com/elbarriobikes">El Barrio Bikes</a> and Harlem Community Walking), and Carey King (<a href="http://uptowngrandcentral.org/">Uptown Grand Central</a> and <a href="https://elbarriobikes.wixsite.com/elbarriobikes">El Barrio Bikes</a>) for reviewing and providing feedback on this data story.</em></p>
-<p><em>A very special thanks to Doris Chiu, 2022 HRTP Intern with the EH Data Portal team, for excellent work researching, developing, and writing this data story.</em></p>
 
 </div>
 
