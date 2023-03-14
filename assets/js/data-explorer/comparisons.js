@@ -53,13 +53,11 @@ const renderComparisonsChart = (
     // extract measure metadata for chart text
     // ----------------------------------------------------------------------- //
     
-    let compId =            [... new Set(metadata.array("ComparisonID"))][0];
     let compName =            [... new Set(metadata.array("ComparisonName"))];
     let compIndicatorLabel =  [... new Set(metadata.array("IndicatorLabel"))];
     let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
     let compDisplayTypes =    [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
 
-    console.log("compId", compId);
 
     // ----------------------------------------------------------------------- //
     // set chart text based on type of comparison
@@ -69,7 +67,7 @@ const renderComparisonsChart = (
     let plotSubtitle;
     let plotTitle;
 
-    let suppressSubtitleBy = [553, 564, 565, 566, 704, 715];
+    let suppressSubtitleBy = [564, 565, 566, 704, 715];
 
     // comparison group label is either measure, indicator, or combo. can include geo eventually
 
@@ -77,7 +75,7 @@ const renderComparisonsChart = (
 
         // ----- by boros: 1 indicator, 1 measure, 5 boros -------------------------------------------------- //
 
-        // console.log("boros");
+        console.log("boros");
 
         // if this is a boro comparison, tweak some things
 
@@ -94,9 +92,12 @@ const renderComparisonsChart = (
         // ----- by measure: 1 indicator, 2+ measures, 1 citywide -------------------------------------------------- //
 
         // console.log("1 indicator");
-
+        
+        let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
         let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))]
+
+        console.log("compId", compId);
         
         plotTitle = compName;
 
@@ -127,7 +128,10 @@ const renderComparisonsChart = (
 
         // console.log("1 measure");
 
+        let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
+
+        console.log("compId", compId);
 
         plotTitle = compName;
 
@@ -157,8 +161,11 @@ const renderComparisonsChart = (
 
         // console.log("> 1 measure & indicator");
 
+        let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
         let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))]
+
+        console.log("compId", compId);
 
         plotTitle = compName;
 
