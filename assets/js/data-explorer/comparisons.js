@@ -9,8 +9,8 @@ const renderComparisonsChart = (
 
     console.log("** renderComparisonsChart");
 
-    // console.log(">>> comp metadata");
-    // metadata.print()
+    console.log(">>> comp metadata");
+    metadata.print()
     
     // console.log(">>> comp data:");
     // data.print(100)
@@ -58,6 +58,7 @@ const renderComparisonsChart = (
     let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
     let compDisplayTypes =    [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
 
+
     // ----------------------------------------------------------------------- //
     // set chart text based on type of comparison
     // ----------------------------------------------------------------------- //
@@ -66,13 +67,15 @@ const renderComparisonsChart = (
     let plotSubtitle;
     let plotTitle;
 
+    let suppressSubtitleBy = [564, 565, 566, 704, 715];
+
     // comparison group label is either measure, indicator, or combo. can include geo eventually
 
     if (compName[0] === "Boroughs") {
 
         // ----- by boros: 1 indicator, 1 measure, 5 boros -------------------------------------------------- //
 
-        // console.log("boros");
+        console.log("boros");
 
         // if this is a boro comparison, tweak some things
 
@@ -89,13 +92,29 @@ const renderComparisonsChart = (
         // ----- by measure: 1 indicator, 2+ measures, 1 citywide -------------------------------------------------- //
 
         // console.log("1 indicator");
-
+        
+        let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
         let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))]
+
+        console.log("compId", compId);
         
         plotTitle = compName;
-        // plotSubtitle = compIndicatorLabel + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
-        plotSubtitle = compY_axis_title + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+
+        // suppress subtitle "by" part
+
+        if (suppressSubtitleBy.includes(compId)) {
+
+            console.log(">>> SUPPRESS by", compId);
+
+            plotSubtitle = compY_axis_title;
+
+        } else {
+
+            plotSubtitle = compY_axis_title + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+
+        }
+
 
         // if there's only 1 indicator label, use measurement type to label the groups
 
@@ -109,10 +128,26 @@ const renderComparisonsChart = (
 
         // console.log("1 measure");
 
+        let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
 
+        console.log("compId", compId);
+
         plotTitle = compName;
-        plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+
+        // suppress subtitle "by" part
+
+        if (suppressSubtitleBy.includes(compId)) {
+
+            console.log(">>> SUPPRESS by", compId);
+
+            plotSubtitle = compMeasurementType;
+
+        } else {
+
+            plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+
+        }
 
         // if there's only 1 measurement type, use indicator label to label the groups
 
@@ -126,10 +161,27 @@ const renderComparisonsChart = (
 
         // console.log("> 1 measure & indicator");
 
+        let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
+        let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))]
+
+        console.log("compId", compId);
 
         plotTitle = compName;
-        plotSubtitle = compName + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+
+        // suppress subtitle "by" part
+
+        if (suppressSubtitleBy.includes(compId)) {
+
+            console.log(">>> SUPPRESS by", compId);
+
+            plotSubtitle = compY_axis_title;
+
+        } else {
+
+            plotSubtitle = compName + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+
+        }
 
         // if there are more than 1 of both, use joined IndicatorMeasure 
 
@@ -137,6 +189,7 @@ const renderComparisonsChart = (
         comp_group_col = "IndicatorMeasure"
 
     }
+
 
     // ----------------------------------------------------------------------- //
     // create tooltips JSON
