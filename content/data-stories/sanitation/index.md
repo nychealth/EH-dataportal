@@ -23,7 +23,7 @@ New York City’s modern history of public health starts in the 1600s with the B
 
 Proper sanitation is a crucial component of public health and of safe, health, and equitable neighborhood environments. 
 
-<div class = "mx-4 bg-light">
+<div class="mx-4 mt-2 mb-4 p-2" style="background-color:#fafafa;">
 
 **Trash** can pollute our soil, water, and air, becoming an issue  of health, quality of life and equity. New Yorkers live, work, &and play in our public spaces: when they aren't clean, they're not welcoming, safe, healthy places for us. 
 
@@ -32,8 +32,6 @@ Trash feeds populations of pests like **cockroaches and rats**, which can damage
 In areas where unhoused people seek shelter, if there aren't **public restrooms**, then feces and urine (which are not handled by the sanitation system) become a crucial sanitation issue that affects health and quality of life. 
 
 </div>
-
-<br>
 
 In East Harlem, the Health Department's Bureau of Neighborhood health has been partnering with community organizations to document the lived reality of the impact of sanitation for residents. And throughout the city, the Department of Sanitation (DSNY) and City Hall are working to address sanitation concerns in ways that benefit all New Yorkers regardless of where they live. 
 
@@ -52,7 +50,7 @@ Community health workers report that excess trash threatens the quality of life 
             <img class="img-responsive" src="tree-trash-photovoice.jpg" alt="Tree pit on the sidewalk. The pit is filled with water, covered in plastic bags, clothes hangers, paper bags, and other litter. Syringes are also visible in the pit." style="width:100%">
         </div>
         <div class="col-sm-6">
-            <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Garbage on our streets</strong> “Our daily lives have changed as a result of the COVID-19 pandemic, especially as some social problems have become more visible than ever before. This includes the accumulation of trash in our neighborhood; the garbage is taking over. Surrounding this tree are several plastic hangers, bottles, syringes and paper scraps. This is concerning because our environment influences our health, and the accumulation of all this trash may be harmful to children. It also looks nasty. The City should increase its sanitation and cleaning services, provide more public trash bins and better educate residents about how to deal with dangerous items.” <em>Colasa Noesis</em> </p></div>
+            <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Garbage on our streets</strong><br>“Our daily lives have changed as a result of the COVID-19 pandemic, especially as some social problems have become more visible than ever before. This includes the accumulation of trash in our neighborhood; the garbage is taking over. Surrounding this tree are several plastic hangers, bottles, syringes and paper scraps. This is concerning because our environment influences our health, and the accumulation of all this trash may be harmful to children. It also looks nasty. The City should increase its sanitation and cleaning services, provide more public trash bins and better educate residents about how to deal with dangerous items.” <em>Colasa Noesis</em> </p></div>
         </div>
     </div>
 </div>
@@ -71,7 +69,7 @@ These community health workers have documented concerns about trash on the stree
             <img class="img-responsive" src="trash-can-photovoice.jpg" alt="Two black plastic trash bins in front of a fence near a NYCHA building. One is closed and the other is are overflowing with garbage. There are several bags of garbage sitting in front of the trash bins and pieces of litter near the bags."style="width:100%">
         </div>
         <div class="col-sm-6">
-            <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Trash overflow</strong> “As a Community Health Worker, I face a lot of different situations while walking through the community, especially garbage overflow. In this photo, we see a lot of trash outside of the garbage bins near the entrance to NYCHA’s Johnson Houses. This creates barriers for people going in and out of their buildings, which I have experienced myself while making home visits. It also creates health concerns within the community and can make transportation difficult for people with disabilities. Finally, rats and mice are attracted to scenes like this and can often be seen running around looking for food, and that is scary!” <em>Colasa Noesis</em> </p></div>
+            <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Trash overflow</strong><br> “As a Community Health Worker, I face a lot of different situations while walking through the community, especially garbage overflow. In this photo, we see a lot of trash outside of the garbage bins near the entrance to NYCHA’s Johnson Houses. This creates barriers for people going in and out of their buildings, which I have experienced myself while making home visits. It also creates health concerns within the community and can make transportation difficult for people with disabilities. Finally, rats and mice are attracted to scenes like this and can often be seen running around looking for food, and that is scary!” <em>Colasa Noesis</em> </p></div>
         </div>
     </div>
 </div>
@@ -96,7 +94,7 @@ No one should have to walk on sidewalks in this condition.
                     <img class="img-responsive" src="feces-2-photovoice.jpg"style="width:100%">
         </div>
         <div class="col-12 mt-1">
-                    <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Watch Your Step</strong> “Everywhere I go, from the time I step out of the train station to my workplace, and until I get home, there is dog poop everywhere. *It is a gross and unsightly mess that requires you to watch your every step.* When it’s not dog poop, then it’s human poop. And if it’s not poop, then it’s syringes. This is overwhelmingly depressing, especially because if you go to lower Manhattan, you do not see these things. As a community, we need more spaces where the dogs can run about and do their business and where curbing can be enforced.” <em>Camille Clarke</em> </p></div>
+                    <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Watch Your Step</strong><br>“Everywhere I go, from the time I step out of the train station to my workplace, and until I get home, there is dog poop everywhere. It is a gross and unsightly mess that requires you to watch your every step. When it’s not dog poop, then it’s human poop. And if it’s not poop, then it’s syringes. This is overwhelmingly depressing, especially because if you go to lower Manhattan, you do not see these things. As a community, we need more spaces where the dogs can run about and do their business and where curbing can be enforced.” <em>Camille Clarke</em> </p></div>
         </div>
     </div>
 </div>
@@ -108,7 +106,7 @@ No one should have to walk on sidewalks in this condition.
 <br>
 
 ## How sanitation services vary by neighborhood 
-New York's sanitation system is vast. It includes the Department of Sanitation (DSNY), which is responsible for residential trash, recycling, and street cleaning; private waste haulers who pick up garbage produced by businesses; the Department of Parks and Recreation, which is responsible for trash pickups in our parks; and Business Improvement Districts, which often fund street litter baskets (garbage cans) and additional services to help clean their neighborhood.
+New York's sanitation system is vast. It includes the Department of Sanitation, which is responsible for residential trash, recycling, and street cleaning; private waste haulers who pick up garbage produced by businesses; the Department of Parks and Recreation, which is responsible for trash pickups in our parks; and Business Improvement Districts, which often fund street litter baskets (garbage cans) and additional services to help clean their neighborhood.
 
 DSNY publishes the location of street litter baskets on [NYC Open Data](https://opendata.cityofnewyork.us/data/), which we make available here on the Environment and Health Data Portal. 
 
@@ -173,9 +171,9 @@ The difference in litter baskets, garbage and rats in these two neighborhoods is
 
 ## What sanitation services does the city need to protect health? 
 
-City agencies are working toward comprehensive, equitable sanitation for all neighborhoods: litter baskets, trash pickup, systematic street cleaning, and services like public restrooms where people gather. In 2022, [City Hall announced millions of dollars in new funding](https://www.nyc.gov/office-of-the-mayor/news/824-22/mayor-adams-consolidates-citywide-cleaning-functions-get-stuff-clean-14-5-million#/0) to clean neglected areas, distribute new litter baskets, and address illegal dumping. Meanwhile, the Department of Sanitation (DSNY) has been spreadheading new initiatives that transform how the city stores and collects waste. This work includes [Clean Curbs](https://www.nyc.gov/assets/dsny/site/our-work/containerized-waste-rfei), a program to get garbage bags off sidewalks and into on-street, rat-proof containers; [Better Bins](https://www.nyc.gov/assets/dsny/site/our-work/better-bin), the production of higher-quality street litter baskets; and neighborhood curbside composting programs. 
+City agencies are working toward comprehensive, equitable sanitation for all neighborhoods: litter baskets, trash pickup, systematic street cleaning, and services like public restrooms where people gather. In 2022, [City Hall announced millions of dollars in new funding](https://www.nyc.gov/office-of-the-mayor/news/824-22/mayor-adams-consolidates-citywide-cleaning-functions-get-stuff-clean-14-5-million#/0) to clean neglected areas, distribute new litter baskets, and address illegal dumping. Meanwhile, DSNY has been spearheading new initiatives that transform how the city stores and collects waste. This work includes [Clean Curbs](https://www.nyc.gov/assets/dsny/site/our-work/containerized-waste-rfei), a program to get garbage bags off sidewalks and into on-street, rat-proof containers; [Better Bins](https://www.nyc.gov/assets/dsny/site/our-work/better-bin), the production of higher-quality street litter baskets; and neighborhood curbside composting programs. 
 
-In 2017, the Health Department launched the [Neighborhood Rat Reduction Initiative](https://www.nyc.gov/site/doh/health/health-topics/rats-working-in-your-community.page). Through this initiative, the Health Department collaborates with DSNY, the Department of Parks and recreation, the NYC Housing Authority, Department of Transportation, and the Department of Small Business Services to reduce neigborhood-level rat activity in four Rat Mitigation Zones — the newest of which is in Harlem.
+In 2017, the Health Department launched the [Neighborhood Rat Reduction Initiative](https://www.nyc.gov/site/doh/health/health-topics/rats-working-in-your-community.page). Through this initiative, the Health Department collaborates with DSNY, the Department of Parks and recreation, the NYC Housing Authority, Department of Transportation, and the Department of Small Business Services to reduce neighborhood-level rat activity in four Rat Mitigation Zones — the newest of which is in Harlem.
 
 All these initiatives are vital ways to increase the effectiveness of our city's sanitation system, working to build clean, healthy public spaces for New Yorkers. Neighborhoods like East Harlem and others shouldn't have to rely on discretionary funding from elected officials, or establishing Business Improvement Districts, in order to have adequate sanitation. The city needs **equitable funding and distribution of sanitation resources.** 
 <br>
@@ -187,7 +185,7 @@ Sanitation is a long-standing issue in East Harlem, and there's a history of com
 Today, here's how New Yorkers can help improve sanitation: 
 
 * You can call your [local elected officials](https://council.nyc.gov/districts/) and tell them you need more trash service in the neighborhood. They often do listen to calls and concerns from their constituents. 
-* Attend Community Board meetings — discuss your complaints with your neighbords and encourage the Community Board to take action. 
+* Attend Community Board meetings — discuss your complaints with your neighbors and encourage the Community Board to take action. 
 * And the City listens to complaints made through 311. You can [report rat sightings](https://portal.311.nyc.gov/article/?kanumber=KA-01107) or [missed trash service collection](https://portal.311.nyc.gov/article/?kanumber=KA-01788) to 311. These 311 reports generate complaint data that can help improve conditions in your neighborhood. 
 
 Check the Rat Information Portal [www.nyc.gov/rats](www.nyc.gov/rats) for rat inspection data or [Rat Indexing](https://www.nyc.gov/site/doh/health/health-topics/rat-maps-and-data-rat-indexing.page) for more comprehensive data. 
