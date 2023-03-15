@@ -1,6 +1,6 @@
 ---
 title: "Why trash is a public health issue"
-date: 2022-08-28T13:11:44-04:00
+date: 2022-03-28T13:11:44-04:00
 draft: false
 seo_title: "How sanitation service, trash, and rats affect our lives and our health"
 seo_description: "A data story on the state of our neighborhoods, and what it takes to build safe, clean neighborhoods."
