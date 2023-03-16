@@ -10,8 +10,6 @@ featured_image: realtime-example.png
 recently_updated:
 - Name: Alcohol access and use
   Link: /data-explorer/alcohol-use/?id=2049#display=summary
-- Name: Air quality action days
-  Link: /data-explorer/air-quality/?id=92#display=summary
 - Name: Babesiosis
   Link: /data-explorer/vector-borne-disease/?id=2218#display=summary
 - Name: Drinking water quality
