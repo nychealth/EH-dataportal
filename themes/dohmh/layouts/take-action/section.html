@@ -22,7 +22,7 @@
 
       <div class="row">
 
-        {{- range first 2 ((where .Site.RegularPages "Section" "take-action")) -}}
+        {{- range ((where .Site.RegularPages "Section" "take-action")) -}}
         <div class="col-md-6 mb-2">
             <div class="card content-card mb-4">
                 <div class="card-content">

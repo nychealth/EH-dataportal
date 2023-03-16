@@ -1,0 +1,233 @@
+{{- define "main" -}}
+    <!--D3-->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+<article class="container-fluid overflow-hidden" id="primary-content">
+
+  <div class="row my-4">
+    <div class="col-md-11 col-sm-12 mx-auto">
+      <!--start main column-->
+
+      <nav aria-label="breadcrumb" class="mb-2">
+        <ul class="breadcrumb mr-auto">
+            <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="..">
+              {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
+            <li class="breadcrumb-item active">{{ .Title }}</li>
+        </ul>                
+    </nav>
+
+      <h1>{{- .Title -}}</h1>
+        {{- .Content -}}
+
+      <div class="row border-top pt-2">
+        <div class="col-12">
+          <p>We'll get your elected officials and their contact information. <em>We won't store your address information.</em></p>
+        </div>
+      </div>
+
+      <div class="row pt-2">
+        <div class="col-md-6 col-sm-12 h-100">
+
+          <!-- Search/input -->
+          <div class="srch input-group" role="search" autocomplete="off">
+            <input class="rad-all form-control form-control-lg" placeholder="Search Address" id="map-search">
+          </div>
+
+          <!-- Map gets drawn here -->
+          <div id='mapLocator' style="height:100%;"></div>
+
+
+       
+        </div>
+
+        <div class="col-md-6 col-sm-12 h-100">
+
+          <style>
+            .form-check {
+            text-align: right;
+          }
+          </style>
+
+        <div id="outputOne">
+        </div>
+
+        <table id="resultsTable" class="table hide">
+          <thead>
+            <tr>
+              <th>Office<br></th>
+              <th>Representative</th>
+              <th style="text-align:right">Email them?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="home-label">City Council Member</td>
+              <td id="printCM" class="font-weight-bold"></td>
+              <td>
+                <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="checkCM" checked>
+                <label class="form-check-label" for="checkCM"></label>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="home-label">Borough President</td>
+              <td></td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="checkBP" checked>
+                  <label class="form-check-label" for="checkBP"></label>
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="home-label">Public Advocate</td>
+              <td></td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="checkPA" checked>
+                  <label class="form-check-label" for="checkPA"></label>
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="home-label">State Assembly Member</td>
+              <td></td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="checkSA" checked>
+                  <label class="form-check-label" for="checkSA"></label>
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="home-label">State Senator</td>
+              <td></td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="checkSS" checked>
+                  <label class="form-check-label" for="checkSS"></label>
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="home-label">Congressperson</td>
+              <td></td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="checkCP" checked>
+                  <label class="form-check-label" for="checkCP"></label>
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="home-label">Senator</td>
+              <td></td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="checkS" checked>
+                  <label class="form-check-label" for="checkS"></label>
+                  </div>
+              </td>
+            </tr>
+          </tbody>
+          </table>
+
+          <button type="button" id="sendEmailBtn" class="btn btn-block btn-primary hide" onclick="email1()"><i class="fas fa-envelope-square mr-1"></i>Send my Council Member an email</button>
+
+
+        </div>
+      </div>
+
+      <div class="row my-4">
+        <div class="col-md-6 mx-auto">
+          <button class="btn btn-outline-primary btn-large btn-block">Send them an email</button>
+        </div>
+      </div>
+
+
+
+
+
+    </div>
+    <!--end main column-->
+  </div>
+
+</article>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4.js"></script>
+<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.4.0/papaparse.min.js"></script>
+<script src="https://maps.nyc.gov/nyc-lib/v1.2.79/js/babel-polyfill.js"></script>
+<script src="https://maps.nyc.gov/nyc-lib/v1.2.79/js/nyc-ol-lib.js"></script>
+
+<script>
+// This initializes and draws the locator map
+  var map = new nyc.ol.FrameworkMap({
+  mapTarget: '#mapLocator',
+  searchTarget: '#map-search',
+  // startAt: '125 Worth Street',
+  geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example'
+  // Developer portal app_key and id don't work, though the nycLib example works
+  //geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=cfed478bf47829a2951bc5a3bbc26422&app_id=2d2a1b38'
+  });
+
+// Loads our City Council list
+var councilTable = [];
+var district;
+d3.csv(sitepath+'/take-action/council.csv').then(function(data) {
+  councilTable = data;
+  // console.log('All City Council members:')
+  // console.table(councilTable)
+
+})
+
+
+// gets your initial info:
+var yourDistrict; 
+var districtInfo;
+var lastname;
+var setLoc;
+
+// Add event listener on entry form
+document.getElementById('map-search').addEventListener("change", getData)
+
+function getData() {
+  console.log('hey, the map has changed :) ')
+  document.getElementById('outputOne').innerHTML = "Getting info..."
+  document.getElementById('resultsTable').classList.add('hide')
+
+
+  setTimeout(() => {
+    document.getElementById('outputOne').innerHTML = ""
+    document.getElementById('resultsTable').classList.remove('hide')
+
+    setLoc = map.location.name
+    console.log(map.location.data);
+    yourDistrict = map.location.data.cityCouncilDistrict
+    // get info from councilTable
+    for (let i = 0; i < councilTable.length; i ++) {
+      if (Number(councilTable[i].District) === Number(yourDistrict)) {
+        districtInfo = councilTable[i]
+        console.log('your district:')
+        console.table(districtInfo)
+      } else {}
+    }
+  
+    // send info to page
+    document.getElementById('printCM').innerHTML = districtInfo.CouncilMember
+
+    // next, send map.location.name to Google Api
+
+
+  }, 1500);
+}
+
+
+
+
+</script>
+
+
+{{- end -}}
