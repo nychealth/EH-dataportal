@@ -16,6 +16,8 @@ recently_updated:
   Link: /data-explorer/vector-borne-disease/?id=2218#display=summary
 - Name: Drinking water quality
   Link: /data-explorer/drinking-water-quality/?id=2044#display=summary
-
-
+- Name: Litter basket coverage
+  Link: /data-explorer/mice-and-rats/?id=2416#display=summary
+- Name: Tobacco retailers
+  Link: /data-explorer/cigarette-smoke/?id=2421#display=summary
 ---
