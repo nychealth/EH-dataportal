@@ -6,4 +6,4 @@ baseURL = "https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/"
 [caches]
     [caches.getresource]
       dir = ':cacheDir/:project'
-      maxAge = -1
+      maxAge = 0
