@@ -112,7 +112,7 @@
               </td>
             </tr>
             <tr>
-              <td class="home-label">Congressperson</td>
+              <td class="home-label">US Congressperson</td>
               <td></td>
               <td>
                 <div class="form-check">
@@ -122,12 +122,22 @@
               </td>
             </tr>
             <tr>
-              <td class="home-label">Senator</td>
+              <td class="home-label">US Senator</td>
               <td></td>
               <td>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="" id="checkS" checked>
                   <label class="form-check-label" for="checkS"></label>
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="home-label">US Senator</td>
+              <td></td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="checkS2" checked>
+                  <label class="form-check-label" for="checkS2"></label>
                   </div>
               </td>
             </tr>
@@ -143,6 +153,36 @@
       <div class="row my-4">
         <div class="col-md-6 mx-auto">
           <button class="btn btn-outline-primary btn-large btn-block">Send them an email</button>
+        </div>
+      </div>
+
+      <div class="row my-4">
+        <div class="col-md-6">
+          <h3>Email tips</h3>
+        </div>
+        <div class="col-md-6">
+          <h3>Your email:</h3>
+          <span class="home-label" id="emailLabel">You can edit the text in the box before you send it.</span>
+          <form>
+            <textarea id="textEntry" name="textEntry" style="width:100%;height:300px">
+              Dear [Council Member],
+              I am one of your constituents, a resident of [MY NEIGHBORHOOD]. I was reading about neighborhood issues on one of the Health Department's websites, the Environment and Health Data Portal (on.nyc.gov/dataportal). I am concerned about [ISSUES YOU ARE CONCERNED ABOUT].
+
+              These concern me because [WHY YOU ARE CONCERNED].
+
+              I'm writing to know [WHAT YOU WANT YOUR COUNCIL MEMBER TO DO].
+
+              Thank you for your attention, and I look forward to your reply.
+
+              Sincerely,
+              [YOUR NAME]
+            </textarea>
+            <br>
+            <a href="" id="sendButton" target="_blank" class="btn btn-primary btn-block">
+              Send email!
+            </a>
+            <em class="fs-sm">This will open the email in your email client for you to send from your address.</em>
+          </form>   
         </div>
       </div>
 
@@ -219,12 +259,25 @@ function getData() {
     document.getElementById('printCM').innerHTML = districtInfo.CouncilMember
 
     // next, send map.location.name to Google Api
-
+    getFromAPI(setLoc)
 
   }, 1500);
 }
 
+var apiData = {};
 
+function getFromAPI(x) {
+  console.log(x)
+  fetch('https://content-civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyBEi5U-9-QQevrhUxhmGDEg4CvvbtpLehU&address='+x)
+    .then(res => res.json())
+    .then(data => storeData(data))
+}
+
+function storeData(x){
+  apiData = x;
+  console.log('apiData: ')
+  console.log(apiData)
+}
 
 
 </script>
