@@ -268,7 +268,7 @@ var apiData = {};
 
 function getFromAPI(x) {
   console.log(x)
-  fetch('https://content-civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyBEi5U-9-QQevrhUxhmGDEg4CvvbtpLehU&address='+x)
+  fetch('https://content-civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyBEi5U-9-QQevrhUxhmGDEg4CvvbtpLehU&address='+x+'&')
     .then(res => res.json())
     .then(data => storeData(data))
 }
