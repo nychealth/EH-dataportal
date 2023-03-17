@@ -417,7 +417,7 @@ const joinData = () => {
         .orderby(aq.desc('end_period'), aq.desc('GeoRank'))
         .reify()
 
-    // joinedAqData.print()
+    joinedAqData.print()
 
     // data for summary table
 
@@ -438,6 +438,8 @@ const joinData = () => {
         .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
         // .impute({ Value: () => NaN })
         .objects()
+    
+    console.log("mapData", mapData);
 
     // map for trend chart
 

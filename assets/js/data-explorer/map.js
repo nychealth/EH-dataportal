@@ -15,6 +15,8 @@ const renderMap = (
         
         const mapYears =  [...new Set(data.map(item => item.Time))];
 
+        // debugger;
+
         // console.log("mapYears [map.js]", mapYears);
 
         let mapGeoType            = data[0].GeoType;
@@ -168,7 +170,7 @@ const renderMap = (
                                     "value": "#808080"
                                 },
                                 "stroke": {
-                                    "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
+                                    "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
                                     // "value": "#161616"
                                     "value": "#dadada"
                                 },
@@ -240,7 +242,7 @@ const renderMap = (
                             }
                         },
                         "stroke": {
-                            "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
+                            "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
                             "value": "white"
                         },
                         "strokeWidth": {
