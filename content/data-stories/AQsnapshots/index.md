@@ -9,9 +9,6 @@ image: ds-AQsnapshots.jpg
 tags: 
 categories: ["transportation","airquality"]
 keywords: ["air quality","traffic","transportation","air pollution", "lungs","breathing","environmental justice","justice"]
-menu:
-    main:
-        identifier: '02'
 photocredit: "Mayoral Photography Office"
 ---
 
@@ -221,7 +218,7 @@ photocredit: "Mayoral Photography Office"
 </div>
 <!--end color panel-->
     <div class="narrow">
-        <p>For more information about NYCCAS and our findings over 10 years of air quality monitoring, <a href="/key-topics/airquality">visit the Air Quality Hub</a>.</p>
+        <p>For more information about NYCCAS and our findings over 10 years of air quality monitoring, <a href="/key-topics/airquality/">visit the Air Quality Hub</a>.</p>
         </div>
         <!-- .narrow -->
         <footer class="narrow my-4" id="article-footer">

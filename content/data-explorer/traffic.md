@@ -16,9 +16,6 @@ indicators:
   - 2238
   - 2114
   - 2112
-menu:
-    main:
-        identifier: '03'
 ---
  
 Coming soon

@@ -16,9 +16,6 @@ indicators:
   - 2394
   - 107
   - 48
-menu:
-    main:
-        identifier: '03'
 ---
 
 Housing conditions can trigger asthma. In New York City, childhood asthma is a significant health threat that affects thousands of children per year. 

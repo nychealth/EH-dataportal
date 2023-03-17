@@ -11,9 +11,6 @@ indicators:
 - header: null
   IndicatorID: 
   - 38
-menu:
-    main:
-        identifier: '03'
 ---
 
 Coming Soon.

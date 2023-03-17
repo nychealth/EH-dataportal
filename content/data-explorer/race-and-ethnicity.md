@@ -8,9 +8,6 @@ tags:
 categories: ["social"]
 keywords: ["race","ethnicity"]
 indicators: 
-menu:
-    main:
-        identifier: '03'
 ---
 
 None

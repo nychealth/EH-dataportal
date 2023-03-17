@@ -1,3 +1,7 @@
+// ======================================================================= //
+// trend.js
+// ======================================================================= //
+
 const renderTrendChart = (
     data,
     metadata
@@ -5,25 +9,42 @@ const renderTrendChart = (
 
     console.log("** renderTrendChart");
 
-    // arquero table for extracting arrays easily
+    // console.log(">>> trend data");
+    // data.print()
 
+    // console.log(">>> trend metadata");
+    // metadata.print()
+
+    // ----------------------------------------------------------------------- //
+    // arquero table for extracting arrays easily
+    // ----------------------------------------------------------------------- //
+    
     let aqData = aq.from(data);
     let Value = aqData.array("Value");
-    let valueMin = Math.min.apply(null, Value);
+    // let valueMin = Math.min.apply(null, Value);
+    let valueMax = Math.max.apply(null, Value);
+    let tickMinStep = valueMax >= 3.0 ? 1 : 0.1
 
+    // let aqMetadata = aq.from(metadata);
+    
+    // ----------------------------------------------------------------------- //
     // extract measure metadata
-
-    let trendMeasurementType = metadata[0].MeasurementType;
-    let trendDisplay = metadata[0].DisplayType;
+    // ----------------------------------------------------------------------- //
+    
+    let trendMeasurementType = [... new Set(metadata.array("MeasurementType"))];
+    let trendDisplay = [... new Set(metadata.array("DisplayType"))];
 
     // get dimensions
+
     var columns = 6;
     var height = 500
     window.innerWidth < 576 ? columns = 3 : columns = 6;
     window.innerWidth < 576 ? height = 350 : columns = 500;
-
-
+    
+    
+    // ----------------------------------------------------------------------- //
     // get unique unreliability notes (dropping empty)
+    // ----------------------------------------------------------------------- //
 
     const trend_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
 
@@ -37,7 +58,9 @@ const renderTrendChart = (
         
     }
 
+    // ----------------------------------------------------------------------- //
     // define spec
+    // ----------------------------------------------------------------------- //
     
     let trendspec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -55,6 +78,7 @@ const renderTrendChart = (
             "axisY": {
                 "labelAngle": 0,
                 "labelFontSize": 11,
+                "tickMinStep": tickMinStep
             },
             "legend": {
                 "columns": columns,
@@ -121,6 +145,9 @@ const renderTrendChart = (
                         "field": "Value",
                         "type": "quantitative",
                         "title": null,
+                        "axis": {
+                            "tickCount": 5
+                        },
                         "scale": {"domainMin": 0, "nice": true} // change domainMin to valueMin to scale with data
                     }
                 },
@@ -128,6 +155,7 @@ const renderTrendChart = (
                     {
                         "mark": {
                             "type": "line",
+                            "interpolate": "monotone",
                             "point": {"filled": false, "fill": "white"}
                         }
                         
@@ -149,7 +177,7 @@ const renderTrendChart = (
                 "transform": [
                     {
                         "pivot": "Geography",
-                        "value": "Value",
+                        "value": "DisplayValue",
                         "groupby": [
                             "Time"
                         ]
@@ -220,6 +248,10 @@ const renderTrendChart = (
             }
         ]
     }
+    
+    // ----------------------------------------------------------------------- //
+    // render chart
+    // ----------------------------------------------------------------------- //
     
     vegaEmbed("#trend", trendspec);
     

@@ -14,9 +14,6 @@ keywords:
     - user research
 seo_title: Redesigned EH Data Portal
 seo_description: "We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health."
-menu:
-    main:
-        identifier: '02'
 ---
 The Environment and Health Data Portal looks a little bit different\! We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health.&nbsp;&nbsp;
 
@@ -32,7 +29,7 @@ The navigation bar at the top always tells you where you are and provides quick 
 
 Our site has always aimed to show how environments affect health.&nbsp; Our updates focus not only on improving access to data, but also making it easier to explore connections between different datasets, topics and other site content:&nbsp;
 
-* [Key Topics](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/key-topics/) bring together in one display related datasets, custom data interactives, data stories, and neighborhood reports for special areas of environmental health. You can explore resources across the site for : [Air Quality](/key-topics/airquality/); [Climate](/key-topics/climatehealth/); [Housing](/key-topics/housing/); [Inequality and Health Inequities](/key-topics/social/); [Active Design,](/key-topics/transportation/)[Public Space, and Transportation](__notset__); [Environmental Health Outcomes](/key-topics/healthoutcomes/); [Child Health](/key-topics/childhealth/); [Pests and Pesticides](/key-topics/pests/); and [Food and Drink](/key-topics/foodanddrink/).&nbsp;
+* [Key Topics](/key-topics/) bring together in one display related datasets, custom data interactives, data stories, and neighborhood reports for special areas of environmental health. You can explore resources across the site for : [Air Quality](/key-topics/airquality/); [Climate](/key-topics/climatehealth/); [Housing](/key-topics/housing/); [Inequality and Health Inequities](/key-topics/social/); [Active Design,](/key-topics/transportation/)[Public Space, and Transportation](__notset__); [Environmental Health Outcomes](/key-topics/healthoutcomes/); [Child Health](/key-topics/childhealth/); [Pests and Pesticides](/key-topics/pests/); and [Food and Drink](/key-topics/foodanddrink/).&nbsp;
 
 * Keywords link you to other pages on the similar topics.&nbsp;
 

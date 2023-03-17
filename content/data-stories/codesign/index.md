@@ -8,9 +8,6 @@ tags:
 categories: ["internal"]
 keywords: ["how we work","civic service design","design","technology","research","user research"]
 image: ds-codesign.jpg
-menu:
-    main:
-        identifier: '02'
 ---
 We're making changes, and we need your help.
 

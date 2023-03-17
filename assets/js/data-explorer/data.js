@@ -1,12 +1,20 @@
-// =================================================================== //
+// ======================================================================= //
+// data.js
+// ======================================================================= //
+
+// ======================================================================= //
 //  fetch and load indicators metadata into global object
-// =================================================================== //
+// ======================================================================= //
+
+// ----------------------------------------------------------------------- //
+// full indicator metadata
+// ----------------------------------------------------------------------- //
 
 fetch(data_repo + data_branch + '/indicators/indicators.json')
     .then(response => response.json())
     .then(async data => {
 
-        // console.log("** fetch indicators.json");
+        console.log("** fetch indicators.json");
 
         indicators = data;
 
@@ -19,14 +27,164 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
         //  of this depends on the global "indicator" object, we call loadIndicator here
         
         if (paramId) {
-            await loadIndicator(paramId)
+            loadIndicator(paramId)
         } else {
             // console.log('no param', url.searchParams.get('id'));
-            await loadIndicator()
+            loadIndicator()
         }
         
     })
     .catch(error => console.log(error));
+
+
+// ======================================================================= //
+//  fetch and load comparison chart data into global object
+// ======================================================================= //
+
+// ----------------------------------------------------------------------- //
+// function to fetch indicator comparisons metadata
+// ----------------------------------------------------------------------- //
+
+const fetch_comparisons = async () => {
+    
+    console.log("** fetch_comparisons.json");
+
+    await fetch(data_repo + data_branch + '/indicators/comparisons.json')
+        .then(response => response.json())
+        .then(async data => {
+            
+            comparisons = data;
+            
+            // console.log("comparisons:", comparisons);
+            
+        })
+        .catch(error => console.log(error));
+    
+    // call function to create comparisons data
+
+    createComparisonData(comparisons);
+
+}
+
+// ----------------------------------------------------------------------- //
+// function to create data and metadata for comparisons chart
+// ----------------------------------------------------------------------- //
+
+const createComparisonData = async (comps) => {
+    
+    console.log("** createComparisonData");
+    
+    // console.log("comps [createComparisonData]:", comps);
+
+    // will be used by renderMeasures to create dropdown
+    
+    comparisonsMetadata = await comps.filter(
+        d => indicatorComparisonId.includes(d.ComparisonID)
+    )
+        
+    // console.log("comparisonsMetadata [createComparisonData]:", comparisonsMetadata);
+
+    // merged metadata
+    
+    // console.log("aqComparisonsMetadata:");
+
+    aqComparisonsMetadata = aq.from(comparisonsMetadata)
+        .unroll("Indicators")
+        .derive({
+            IndicatorID: d => d.Indicators.IndicatorID,
+            MeasureID: d => d.Indicators.Measures
+        })
+        .unroll("MeasureID")
+        .select(aq.not("Indicators"))
+        // .print()
+
+    // console.log("aqUniqueIndicatorMeasure:");
+
+    // get unique combinations of indicators and measures
+
+    let aqUniqueIndicatorMeasure = aqComparisonsMetadata
+        .select("IndicatorID", "MeasureID")
+        .dedupe()
+
+    let uniqueIndicatorMeasure = aqUniqueIndicatorMeasure
+        .groupby("IndicatorID")
+        .objects({grouped: "entries"})
+
+    let comparisonsIndicatorIDs = [... new Set(aqComparisonsMetadata.array("IndicatorID"))]
+    let comparisonsMeasureIDs = [... new Set(aqComparisonsMetadata.array("MeasureID"))]
+
+    let comparisonsIndicatorsMetadata = indicators.filter(
+        ind => comparisonsIndicatorIDs.includes(ind.IndicatorID)
+    )
+    // console.log("comparisonsIndicatorsMetadata:", comparisonsIndicatorsMetadata);
+
+    // console.log("aqComparisonsIndicatorsMetadata:");
+
+    aqComparisonsIndicatorsMetadata = aq.from(comparisonsIndicatorsMetadata)
+        .select("IndicatorID", "IndicatorName", "IndicatorLabel", "Measures")
+        .unroll("Measures")
+        .derive({
+            MeasureID: d => d.Measures.MeasureID,
+            MeasureName: d => d.Measures.MeasureName,
+            MeasurementType: d => d.Measures.MeasurementType,
+            Sources: d => d.Measures.Sources,
+            how_calculated: d => d.Measures.how_calculated,
+            DisplayType: d => d.Measures.DisplayType
+        })
+        .derive({IndicatorMeasure: d => d.IndicatorLabel + ": " + d.MeasurementType})
+        .select(aq.not("Measures"))
+        .filter(aq.escape(d => comparisonsMeasureIDs.includes(d.MeasureID)))
+        // .print()
+
+
+
+    // join comparisons metadata tables
+
+    // console.log("aqCombinedComparisonsMetadata:");
+
+    aqCombinedComparisonsMetadata = aqComparisonsMetadata
+        .join(aqComparisonsIndicatorsMetadata, [["MeasureID", "IndicatorID"], ["MeasureID", "IndicatorID"]])
+        // .print()
+
+
+    // Promise.all takes the array of promises returned by map, and then the `then` callback executes after they've all resolved
+
+    Promise.all(uniqueIndicatorMeasure.map(async ind => {
+
+        let measures = ind[1].flatMap(m => Object.values(m));
+        
+        return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
+            .then(async data => {
+
+                // console.log("*** aq.loadJSON");
+
+                let comp_data = data
+                    .derive({IndicatorID: aq.escape(ind[0])})
+                    .filter(
+                        aq.escape(d => measures.includes(d.MeasureID)), 
+                        d => op.match(d.GeoType, /Citywide/) // keep only Citywide
+                    )
+                    .reify()
+                
+                return comp_data;
+            
+            })
+
+    }))
+
+    .then(async dataArray => {
+
+        aqComparisonsIndicatorData = await dataArray.flatMap(d => d).reduce((a, b) => a.concat(b))
+
+        aqComparisonsIndicatorData = aqComparisonsIndicatorData
+            .filter(d => op.match(d.GeoType, /Citywide/))
+            .reify()
+
+        // console.log("aqComparisonsIndicatorData:");
+        // aqComparisonsIndicatorData.print();
+
+    })
+}
 
 
 // ======================================================================= //
@@ -40,7 +198,7 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
 // function to load indicator metadata
 // ----------------------------------------------------------------------- //
 
-const loadIndicator = (this_indicatorId, dont_add_to_history) => {
+const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
     console.log("** loadIndicator");
 
@@ -70,23 +228,20 @@ const loadIndicator = (this_indicatorId, dont_add_to_history) => {
     indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : '';
     indicatorDesc = indicator?.IndicatorDescription ? indicator.IndicatorDescription : '';
     indicatorShortName = indicator?.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
+    indicatorComparisonId = indicator?.Comparisons;
     indicatorMeasures = indicator?.Measures;
 
     // create Citation
 
     createCitation(); // re-runs on updating Indicator
 
-    // send Indicator Title to vis headers
-
-    document.getElementById('summaryTitle').innerHTML = indicatorName;
-    document.getElementById('mapTitle').innerHTML     = indicatorName;
-    document.getElementById('trendTitle').innerHTML   = indicatorName;
-
     // reset selected measure flags
 
     selectedMapMeasure = false;
     selectedTrendMeasure = false;
     selectedLinksMeasure = false;
+    selectedComparison = false;
+    showingNormalTrend = false;
 
     // if dont_add_to_history is true, then don't push the state
     // if dont_add_to_history is false, or not set, push the state
@@ -102,7 +257,7 @@ const loadIndicator = (this_indicatorId, dont_add_to_history) => {
 
         if (!url.hash) {
 
-            // if loadIndicator is being called without a hash (like when a topic page is loaded), then show the first ID and summary
+            // if loadIndicator is being called without a hash (like when a topic page is loaded), then show the first ID and table
 
             url.hash = "display=summary";
             window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);
@@ -114,9 +269,6 @@ const loadIndicator = (this_indicatorId, dont_add_to_history) => {
 
         }
 
-    } else {
-
-
     }
 
     // call data loading function
@@ -125,8 +277,21 @@ const loadIndicator = (this_indicatorId, dont_add_to_history) => {
 
     indicatorTitle.innerHTML = indicatorName
 
-    loadData(indicatorId)
+    // call function to fetch comparisons data
+
+    // console.log(">>>> indicatorComparisonId", indicatorComparisonId);
+    
+    // make sure metadata is empty, so that we can use its length for conditionals
+    comparisonsMetadata = [];
+
+    if (indicatorComparisonId !== null) {
+        await fetch_comparisons();
+    }
+
+    loadData(indicatorId);
+
 }
+
 
 // ----------------------------------------------------------------------- //
 // function to Load indicator data and create Arquero data frame
@@ -134,9 +299,13 @@ const loadIndicator = (this_indicatorId, dont_add_to_history) => {
 
 const loadData = (this_indicatorId) => {
 
+    console.log("** loadData");
+
     fetch(data_repo + data_branch + `/indicators/data/${this_indicatorId}.json`)
     .then(response => response.json())
     .then(async data => {
+
+        // console.log("data [loadData]", data);
 
         // call the geo file loading function
 
@@ -159,6 +328,8 @@ const loadData = (this_indicatorId) => {
 
 const loadGeo = () => {
 
+    console.log("** loadGeo");
+
     const geoUrl = data_repo + data_branch + `/geography/GeoLookup.csv`; // col named "GeoType"
 
     aq.loadCSV(geoUrl)
@@ -178,6 +349,8 @@ const loadGeo = () => {
 // ----------------------------------------------------------------------- //
 
 const joinData = () => {
+
+    console.log("** joinData");
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // get metadata fields
@@ -216,7 +389,7 @@ const joinData = () => {
     
     // bind rows of Arquero tables in arrays
 
-    let aqMeasureIdTimes     = availableTimes.reduce((a, b) => a.concat(b))
+    aqMeasureIdTimes     = availableTimes.reduce((a, b) => a.concat(b))
     let aqMeasurementDisplay = measurementDisplay.reduce((a, b) => a.concat(b))
 
     // foundational joined dataset
@@ -228,6 +401,7 @@ const joinData = () => {
         .select(
             "GeoID",
             "GeoType",
+            "GeoTypeDesc",
             "GeoRank",
             "Geography",
             "MeasureID",
@@ -247,7 +421,7 @@ const joinData = () => {
 
     // data for summary table
 
-    fullDataTableObjects = joinedAqData
+    tableData = joinedAqData
         .filter(d => d.ban_summary_flag == 0)
         .join_left(aqMeasurementDisplay, "MeasureID")
         .derive({
@@ -260,20 +434,21 @@ const joinData = () => {
 
     // data for map
 
-    fullDataMapObjects = joinedAqData
+    mapData = joinedAqData
         .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
         // .impute({ Value: () => NaN })
         .objects()
 
     // map for trend chart
 
-    fullDataTrendObjects = joinedAqData
+    trendData = joinedAqData
         .filter(d => op.match(d.GeoType, /Citywide|Borough/)) // keep only Citywide and Boro
+        .orderby("GeoRank", "GeoID")
         .objects()
 
     // data for links & disparities chart
 
-    fullDataLinksObjects = joinedAqData
+    linksData = joinedAqData
         .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
         .objects()
 
@@ -281,4 +456,197 @@ const joinData = () => {
 
     renderMeasures();
 
+}
+
+// ----------------------------------------------------------------------- //
+// function to create data and metadata for links chart
+// ----------------------------------------------------------------------- //
+
+// WHAT'S THE MOST RECENT YEAR WHERE PRIMARY AND SECONDARY SHARE A GEOGRAPHY?
+
+const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasureId) => {
+
+    // console.log("primaryMeasureId", primaryMeasureId);
+    // console.log("secondaryMeasureId", secondaryMeasureId);
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // primary measure metadata
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // get metadata for the selected primary measure, assign to global variable
+    // indicatorMeasures created in loadIndicator
+
+    primaryMeasureMetadata = linksMeasures.filter(
+        measure => measure.MeasureID === primaryMeasureId
+    )
+
+    // get available geos for primary measure (excluding citywide and boro)
+
+    const primaryMeasureGeos = primaryMeasureMetadata[0].AvailableGeographyTypes
+        .map(g => g.GeoType)
+        .filter(g => !/Citywide|Borough/.test(g))
+
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // secondary measure metadata
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // if no secondary measure ID is given, set it to the first in the primary measure's links list
+
+    if (typeof secondaryMeasureId == "undefined") {
+        secondaryMeasureId = primaryMeasureMetadata[0].VisOptions[0].Links[0].MeasureID;
+    }
+
+    // get the indicator element for the selected secondary measure
+
+    const secondaryIndicator = indicators.filter(
+        indicator => indicator.Measures.some(
+            measure => measure.MeasureID === secondaryMeasureId
+        )
+    )
+
+    // get secondary indicatorID, to get secondary data and metadata
+
+    const secondaryIndicatorId = secondaryIndicator[0].IndicatorID
+
+    // get metadata for the selected secondary measure, assign to global variable
+
+    secondaryMeasureMetadata =
+        secondaryIndicator[0].Measures.filter(
+        measure => measure.MeasureID === secondaryMeasureId
+    )
+
+
+    // ==== geography ==== //
+
+    // get avilable geos for secondary measure (excluding citywide and boro)
+
+    const secondaryMeasureGeos = secondaryMeasureMetadata[0].AvailableGeographyTypes
+        .map(g => g.GeoType)
+        .filter(g => !/Citywide|Borough/.test(g))
+
+
+    // ---- get primary x secondary intersection ---- //
+
+    const sharedGeos = secondaryMeasureGeos.filter(g => primaryMeasureGeos.includes(g));
+
+    // ==== times ==== //
+
+    // get available time periods for secondary measure
+
+    const secondaryMeasureTimes   = secondaryMeasureMetadata[0].AvailableTimes;
+    const aqSecondaryMeasureTimes = aq.from(secondaryMeasureTimes);
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // primary measure data
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    const filteredPrimaryMeasureData = linksData
+
+        // keep primary measure
+        .filter(d => d.MeasureID === primaryMeasureId)
+        
+        // get shared geos
+        .filter(d => sharedGeos.includes(d.GeoType))
+
+
+    // get most recent time period for primary measure
+    //  (at shared geo level, which is why we're using the data, and not the metadata)
+
+    const mostRecentPrimaryMeasureEndTime = Math.max(...filteredPrimaryMeasureData.map(d => d.end_period));
+
+    // keep only most recent time period
+
+    const filteredPrimaryMeasureTimesData = filteredPrimaryMeasureData
+
+        .filter(d => d.end_period === mostRecentPrimaryMeasureEndTime)
+
+    // convert to arquero table
+
+    const aqFilteredPrimaryMeasureTimesData = aq.from(filteredPrimaryMeasureTimesData);
+
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // secondary measure data
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // get secondary data with shared geo and time period that is closest with most recent primary data
+    //  (fetches run asynchronously by default, but we need this data to do other things, so we have to 
+    //  `await` the result before continuing)
+
+    await fetch(`${data_repo}${data_branch}/indicators/data/${secondaryIndicatorId}.json`)
+        .then(response => response.json())
+        .then(async data => {
+
+            // get secondary measure data
+
+            const secondaryMeasureData = data.filter(d => d.MeasureID === secondaryMeasureId)
+
+            // join with geotable and times, keep only geos in primary data
+
+            const aqFilteredSecondaryMeasureData = aq.from(secondaryMeasureData)
+                .join(
+                    geoTable,
+                    [["GeoID", "GeoType"], ["GeoID", "GeoType"]]
+                )
+
+                // get same geotypes as primary data (no citywide or boro)
+                .filter(aq.escape(d => sharedGeos.includes(d.GeoType)))
+
+                .derive({ "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
+                .rename({'Name': 'Geography'})
+
+                // get end periods
+                .join(
+                    aqSecondaryMeasureTimes,
+                    ["Time", "TimeDescription"]
+                )
+                .select(aq.not("TimeDescription"))
+
+            // convert to JS object
+
+            const filteredSecondaryMeasureTimesDataObjects = aqFilteredSecondaryMeasureData.objects();
+            
+
+            // ==== get closest data ==== //
+
+            // get the secondary end time closest to most recent primary end time
+
+            const closestSecondaryTime = filteredSecondaryMeasureTimesDataObjects.reduce((prev, curr) => {
+
+                return (Math.abs(curr.end_period - mostRecentPrimaryMeasureEndTime) < Math.abs(prev.end_period - mostRecentPrimaryMeasureEndTime) ? curr : prev);
+
+            });
+
+
+            // use end time to get closest secondary data
+
+            const aqClosestSecondaryData = aqFilteredSecondaryMeasureData
+
+                // data with the latest end period
+                .filter(`d => d.end_period === ${closestSecondaryTime.end_period}`)
+
+                // get the finest geo left
+                .filter(d => d.GeoRank === op.max(d.GeoRank))
+
+                // in case there are two time periods left, get the one that starts the earliest,
+                //  which will be yearly over seasonal
+                .filter(d => d.start_period === op.min(d.start_period))
+                
+
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+            // join primary and secondary measure data
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+            
+            const aqJoinedPrimarySecondaryData = aqFilteredPrimaryMeasureTimesData
+                .join(
+                    aqClosestSecondaryData,
+                    [["GeoID", "GeoType"], ["GeoID", "GeoType"]]
+                )
+
+            // set the value of joinedDataLinksObjects, and make sure to wait for it
+
+            joinedDataLinksObjects = await aqJoinedPrimarySecondaryData.objects();
+
+        })
 }

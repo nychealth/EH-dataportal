@@ -27,9 +27,6 @@ indicators:
   - 2091
   - 64
   - 690
-menu:
-    main:
-        identifier: '03'
 ---
 
 Cancer is the general name for a group of more than 100 diseases in which cells in a part of the body begin to grow out of control.

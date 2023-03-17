@@ -20,9 +20,6 @@ indicators:
   - 41
   - 2399
   - 2179
-menu:
-    main:
-        identifier: '03'
 ---
 Buildings with maintenance issues and disrepair can harm health. Across NYC, low-income neighborhoods have a higher percentage of buildings in disrepair due to past and present disinvestment and housing discrimination. This housing disrepair harms residents' health.
 

@@ -54,13 +54,6 @@ ignoreFiles = ['Simplified.Chinese', 'Spanish']
 [menu]
 
   [[menu.main]]
-    identifier = "01"
-    name = "Home"
-    pre = "<span class='text-primary'><i class='fa fa-home' aria-hidden='true'></i></span>"
-    url = "/"
-    weight = -110
-
-  [[menu.main]]
     identifier = "02"
     name = "Data Stories"
     pre = "<span class='text-primary'><i class='fas fa-passport' aria-hidden='true'></i></span>"
@@ -86,70 +79,21 @@ ignoreFiles = ['Simplified.Chinese', 'Spanish']
     name = "Key Topics"
     pre = "<span class='text-primary'><i class='fas fa-star' aria-hidden='true'></i></span>"
     url = "/key-topics/"
-    weight = -80
+    weight = -110
+
+  [[menu.main]]
+    identifier = "06"
+    name = "Search"
+    # pre = "<span class='sr-only'>Search</span><span class='fas fa-search fa-lg'></span>"
+    # url = ""
+    weight = -50
 
 
 [module]
 
   [[module.mounts]]
-    source = "node_modules/arquero/dist/arquero.min.js"
-    target = "assets/node_modules/arquero/dist/arquero.min.js"
-
-  [[module.mounts]]
-    source = "node_modules/datatables.net/js/jquery.dataTables.min.js"
-    target = "assets/node_modules/datatables.net/js/jquery.dataTables.min.js"
-
-  [[module.mounts]]
-    source = "node_modules/datatables.net-dt/css/jquery.dataTables.min.css"
-    target = "assets/node_modules/datatables.net-dt/css/jquery.dataTables.min.css"
-
-  [[module.mounts]]
-    source = "node_modules/datatables.net-buttons/js/dataTables.buttons.min.js"
-    target = "assets/node_modules/datatables.net-buttons/js/dataTables.buttons.min.js"
-
-  [[module.mounts]]
-    source = "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css"
-    target = "assets/node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css"
-
-  [[module.mounts]]
-    source = "node_modules/datatables.net-buttons/js/buttons.html5.min.js"
-    target = "assets/node_modules/datatables.net-buttons/js/buttons.html5.min.js"
-
-  [[module.mounts]]
-    source = "node_modules/datatables.net-buttons/js/buttons.print.min.js"
-    target = "assets/node_modules/datatables.net-buttons/js/buttons.print.min.js"
-
-  [[module.mounts]]
-    source = "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js"
-    target = "assets/node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js"
-  
-  [[module.mounts]]
-    source = "node_modules/jszip/dist/jszip.min.js"
-    target = "assets/node_modules/jszip/dist/jszip.min.js"
-  
-  [[module.mounts]]
-    source = "node_modules/pdfmake/build/pdfmake.min.js"
-    target = "assets/node_modules/pdfmake/build/pdfmake.min.js"
-  
-  [[module.mounts]]
-    source = "node_modules/pdfmake/build/vfs_fonts.js"
-    target = "assets/node_modules/pdfmake/build/vfs_fonts.js"
-
-  [[module.mounts]]
-    source = "node_modules/vega/build/vega.min.js"
-    target = "assets/node_modules/vega/build/vega.min.js"
-
-  [[module.mounts]]
-    source = "node_modules/vega-lite/build/vega-lite.min.js"
-    target = "assets/node_modules/vega-lite/build/vega-lite.min.js"
-
-  [[module.mounts]]
-    source = "node_modules/vega-embed/build/vega-embed.min.js"
-    target = "assets/node_modules/vega-embed/build/vega-embed.min.js"
-
-  [[module.mounts]]
-    source = "node_modules/d3/dist/d3.min.js"
-    target = "assets/node_modules/d3/dist/d3.min.js"
+    source = "node_modules"
+    target = "assets/node_modules"
 
  [[module.mounts]]
     source = "content"
