@@ -16,18 +16,17 @@
             <li class="breadcrumb-item active">{{ .Title }}</li>
         </ul>                
     </nav>
-
-      <h1>{{- .Title -}}</h1>
-        {{- .Content -}}
-
-      <div class="row border-top pt-2">
+    
+      <div class="row border-bottom py-2">
         <div class="col-12">
-          <p>We'll get your elected officials and their contact information. <em>We won't store your address information.</em></p>
+          <h1>{{- .Title -}}</h1>
+          {{- .Content -}}
         </div>
       </div>
 
-      <div class="row pt-2">
-        <div class="col-md-6 col-sm-12 h-100">
+      <div class="row mt-2">
+        <div class="col-md-6 col-sm-12 mx-auto">
+          <p>First, enter your address to get your elected officials and their contact information. <em>We won't store your address information.</em></p>
 
           <!-- Search/input -->
           <div class="srch input-group" role="search" autocomplete="off">
@@ -35,156 +34,167 @@
           </div>
 
           <!-- Map gets drawn here -->
-          <div id='mapLocator' style="height:100%;"></div>
-
-
-       
+          <div id='mapLocator' style="height:350px;"></div>
         </div>
+      </div>
 
-        <div class="col-md-6 col-sm-12 h-100">
+      <div class="row my-2">
+        <div class="col-md-10 col-sm-12 mx-auto">
+          <div id="outputOne"></div>
 
-          <style>
-            .form-check {
-            text-align: right;
-          }
-          </style>
+          <table id="tableTwo" class="table table-striped">
+            <thead class="thead-light">
+              <tr>
+                <th>Office</th>
+                <th>Name</th>
+                <th>Website</th>
+                <th>Office phone number</th>
+                <th>Email address</th>
+              </tr>
+            </thead>
+            <tbody id="tableTwoBody">
 
-        <div id="outputOne">
-        </div>
-
-        <table id="resultsTable" class="table hide">
-          <thead>
-            <tr>
-              <th>Office<br></th>
-              <th>Representative</th>
-              <th style="text-align:right">Email them?</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="home-label">City Council Member</td>
-              <td id="printCM" class="font-weight-bold"></td>
-              <td>
-                <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="checkCM" checked>
-                <label class="form-check-label" for="checkCM"></label>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="home-label">Borough President</td>
-              <td></td>
-              <td>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="checkBP" checked>
-                  <label class="form-check-label" for="checkBP"></label>
-                  </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="home-label">Public Advocate</td>
-              <td></td>
-              <td>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="checkPA" checked>
-                  <label class="form-check-label" for="checkPA"></label>
-                  </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="home-label">State Assembly Member</td>
-              <td></td>
-              <td>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="checkSA" checked>
-                  <label class="form-check-label" for="checkSA"></label>
-                  </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="home-label">State Senator</td>
-              <td></td>
-              <td>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="checkSS" checked>
-                  <label class="form-check-label" for="checkSS"></label>
-                  </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="home-label">US Congressperson</td>
-              <td></td>
-              <td>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="checkCP" checked>
-                  <label class="form-check-label" for="checkCP"></label>
-                  </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="home-label">US Senator</td>
-              <td></td>
-              <td>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="checkS" checked>
-                  <label class="form-check-label" for="checkS"></label>
-                  </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="home-label">US Senator</td>
-              <td></td>
-              <td>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="checkS2" checked>
-                  <label class="form-check-label" for="checkS2"></label>
-                  </div>
-              </td>
-            </tr>
-          </tbody>
+            </tbody>
           </table>
 
-          <button type="button" id="sendEmailBtn" class="btn btn-block btn-primary hide" onclick="email1()"><i class="fas fa-envelope-square mr-1"></i>Send my Council Member an email</button>
-
-
+          <table id="resultsTable" class="table table-striped hide">
+            <thead class="thead-light">
+              <tr>
+                <th>Office<br></th>
+                <th>Representative</th>
+                <th style="text-align:right">Email them?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="home-label">City Council Member</td>
+                <td><span id="printCM" class="font-weight-bold"></span></td>
+                <td>
+                  <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="checkCM" checked>
+                  <label class="form-check-label" for="checkCM"></label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="home-label">Borough President</td>
+                <td><span id="bpNameOutput" class="font-weight-bold"></span></td>
+                <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkBP" checked>
+                    <label class="form-check-label" for="checkBP"></label>
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="home-label">Public Advocate</td>
+                <td><span id="paNameOutput" class="font-weight-bold"></span></td>
+                <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkPA" checked>
+                    <label class="form-check-label" for="checkPA"></label>
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="home-label">State Senator</td>
+                <td><span id="ssNameOutput" class="font-weight-bold"></span></td>
+                <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkSA" checked>
+                    <label class="form-check-label" for="checkSA"></label>
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="home-label">State Assembly Member</td>
+                <td><span id="saNameOutput" class="font-weight-bold"></span></td>
+                <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkSS" checked>
+                    <label class="form-check-label" for="checkSS"></label>
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="home-label">US Senator</td>
+                <td><span id="senOneNameOutput" class="font-weight-bold"></span></td>
+                <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkS" disabled>
+                    <label class="form-check-label" for="checkS"></label>
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="home-label">US Senator</td>
+                <td><span id="senTwoNameOutput" class="font-weight-bold"></span></td>
+                <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkS2" disabled>
+                    <label class="form-check-label" for="checkS2" inactive></label>
+                    </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="home-label">US Congressperson</td>
+                <td><span id="repNameOutput" class="font-weight-bold"></span></td>
+                <td>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkCP" disabled>
+                    <label class="form-check-label" for="checkCP"></label>
+                    </div>
+                </td>
+              </tr>
+            </tbody>
+            </table>
         </div>
       </div>
 
-      <div class="row my-4">
-        <div class="col-md-6 mx-auto">
-          <button class="btn btn-outline-primary btn-large btn-block">Send them an email</button>
+
+
+
+
+
+      <div id="contactContainer" class="">
+        <div class="row my-4">
+          <div class="col-md-6 ml-auto">
+            <button class="btn btn-outline-primary btn-large btn-block">Send them an email</button>
+          </div>
+        </div>
+
+        <div class="row my-4">
+          <div class="col-md-6">
+            <h3>Email tips</h3>
+            <p>In the box to the right, you can write an email to your elected officials. Here are some tips for writing a good email:</p>
+            <p><strong>Identify yourself as a constituent:</strong> tell them where you live and that they are your elected representative. For example: <em>I live on Flatbush Avenue in Brooklyn, in your district."</em></p>
+            <p><strong>State your concerns.</strong></p>
+            
+            <p><strong>Cite data.</strong> For example: <em>"According to data on housing conditions, over 50% of households in our neighborhood are rent burdened. (NYC Environment and Health Data Portal: https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-explorer/housing-stability/?id=2336#display=summary)" </em></p>
+
+            <p><strong>Make a request.</strong> You can ask them where they stand on the issue, what they're doing to improve it, or what services are available to help their constituents.</p>
+
+          </div>
+          <div class="col-md-6">
+            <h3>Your email:</h3>
+            <form>
+              <textarea id="textEntry" name="textEntry" style="width:100%;height:300px">I am one of your constituents, a resident of [MY NEIGHBORHOOD]. I was reading about neighborhood issues on one of the Health Department's websites, the Environment and Health Data Portal (on.nyc.gov/dataportal). I am concerned about [ISSUES YOU ARE CONCERNED ABOUT]. These concern me because [WHY YOU ARE CONCERNED].I'm writing to know [WHAT YOU WANT YOUR COUNCIL MEMBER TO DO].Thank you for your attention, and I look forward to your reply.
+  
+                Sincerely,
+                [YOUR NAME]
+              </textarea>
+              <br>
+              <a href="" id="sendButton" target="_blank" class="btn btn-primary btn-block">
+                Send email!
+              </a>
+              <em class="fs-sm">This will open the email in your email client for you to send from your address.</em>
+            </form>   
+          </div>
         </div>
       </div>
 
-      <div class="row my-4">
-        <div class="col-md-6">
-          <h3>Email tips</h3>
-        </div>
-        <div class="col-md-6">
-          <h3>Your email:</h3>
-          <span class="home-label" id="emailLabel">You can edit the text in the box before you send it.</span>
-          <form>
-            <textarea id="textEntry" name="textEntry" style="width:100%;height:300px">
-              Dear [Council Member],
-              I am one of your constituents, a resident of [MY NEIGHBORHOOD]. I was reading about neighborhood issues on one of the Health Department's websites, the Environment and Health Data Portal (on.nyc.gov/dataportal). I am concerned about [ISSUES YOU ARE CONCERNED ABOUT].
 
-              These concern me because [WHY YOU ARE CONCERNED].
 
-              I'm writing to know [WHAT YOU WANT YOUR COUNCIL MEMBER TO DO].
-
-              Thank you for your attention, and I look forward to your reply.
-
-              Sincerely,
-              [YOUR NAME]
-            </textarea>
-            <br>
-            <a href="" id="sendButton" target="_blank" class="btn btn-primary btn-block">
-              Send email!
-            </a>
-            <em class="fs-sm">This will open the email in your email client for you to send from your address.</em>
-          </form>   
-        </div>
-      </div>
 
 
 
@@ -229,6 +239,7 @@ var yourDistrict;
 var districtInfo;
 var lastname;
 var setLoc;
+var emails = [];
 
 // Add event listener on entry form
 document.getElementById('map-search').addEventListener("change", getData)
@@ -242,6 +253,7 @@ function getData() {
   setTimeout(() => {
     document.getElementById('outputOne').innerHTML = ""
     document.getElementById('resultsTable').classList.remove('hide')
+    // document.getElementById('contactContainer').classList.remove('hide')
 
     setLoc = map.location.name
     console.log(map.location.data);
@@ -252,6 +264,7 @@ function getData() {
         districtInfo = councilTable[i]
         console.log('your district:')
         console.table(districtInfo)
+        emails.push(districtInfo.Email)
       } else {}
     }
   
@@ -265,12 +278,70 @@ function getData() {
 }
 
 var apiData = {};
+var rootRequest = 'https://content-civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyBEi5U-9-QQevrhUxhmGDEg4CvvbtpLehU&address='
+var boroPres = {};
+var publicAdvocate = {};
+var stateReps = {}
+var congressReps = {}
 
-function getFromAPI(x) {
-  console.log(x)
-  fetch('https://content-civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyBEi5U-9-QQevrhUxhmGDEg4CvvbtpLehU&address='+x+'&')
+
+
+function getFromAPI(address) {
+  console.log(address)
+
+  // get all data
+  fetch(rootRequest+address)
     .then(res => res.json())
-    .then(data => storeData(data))
+    .then(data => {
+      apiData = data
+    })
+
+  // get BP
+  fetch(rootRequest+address+'&levels=administrativeArea2&roles=headofGovernment')
+    .then (res => res.json())
+    .then(data => {
+      boroPres = data
+      // console.log('boroPres: ')
+      // console.log(boroPres)
+      document.getElementById('bpNameOutput').innerHTML = boroPres.officials[0].name
+      emails.push(boroPres.officials[0].emails[0])
+    })
+
+  // get PA
+  fetch(rootRequest+address+'&levels=locality&roles=governmentOfficer')
+  .then (res => res.json())
+  .then(data => {
+    publicAdvocate = data
+    document.getElementById('paNameOutput').innerHTML = publicAdvocate.officials[1].name
+    emails.push(publicAdvocate.officials[1].emails[0])
+
+  })
+
+  // get state assemblymember and state senator.
+  fetch(rootRequest+address+'&levels=administrativeArea1&roles=legislatorUpperBody&roles=legislatorLowerBody')
+  .then (res => res.json())
+  .then(data => {
+    stateReps = data;
+    document.getElementById('ssNameOutput').innerHTML = stateReps.officials[0].name
+    document.getElementById('saNameOutput').innerHTML = stateReps.officials[1].name
+    emails.push(stateReps.officials[0].emails[0])
+    emails.push(stateReps.officials[1].emails[0])
+    console.log(emails)
+
+  })
+
+
+  // get congresspeople
+  fetch(rootRequest+address+'&levels=country&roles=legislatorUpperBody&roles=legislatorLowerBody')
+  .then (res => res.json())
+  .then(data => {
+    congressReps = data;
+    console.log(congressReps)
+    document.getElementById('senOneNameOutput').innerHTML = congressReps.officials[0].name
+    document.getElementById('senTwoNameOutput').innerHTML = congressReps.officials[1].name
+    document.getElementById('repNameOutput').innerHTML = congressReps.officials[2].name
+  })
+
 }
 
 function storeData(x){
@@ -278,6 +349,8 @@ function storeData(x){
   console.log('apiData: ')
   console.log(apiData)
 }
+
+
 
 
 </script>
