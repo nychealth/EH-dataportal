@@ -80,6 +80,8 @@ const renderMap = (
             topoFile = 'NYCKids_2017.topo.json';
         } else if (mapGeoType === "NYCKIDS2019") {
             topoFile = 'NYCKids_2019.topo.json';
+        } else if (mapGeoType === "NYCKIDS2021") {
+            topoFile = 'NYCKids_2021.topo.json';
         }
 
         // ----------------------------------------------------------------------- //
