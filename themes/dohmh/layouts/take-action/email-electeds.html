@@ -1,6 +1,6 @@
 {{- define "main" -}}
-    <!--D3-->
-    <script src="https://d3js.org/d3.v5.min.js"></script>
+<!--D3-->
+<script src="https://d3js.org/d3.v5.min.js"></script>
 
 <article class="container-fluid overflow-hidden" id="primary-content">
 
@@ -42,7 +42,7 @@
         <div class="col-md-10 col-sm-12 mx-auto">
           <div id="outputOne"></div>
 
-          <table id="tableTwo" class="table table-striped">
+          <table id="tableTwo" class="table table-striped hide">
             <thead class="thead-light">
               <tr>
                 <th>Office</th>
@@ -57,97 +57,7 @@
             </tbody>
           </table>
 
-          <table id="resultsTable" class="table table-striped hide">
-            <thead class="thead-light">
-              <tr>
-                <th>Office<br></th>
-                <th>Representative</th>
-                <th style="text-align:right">Email them?</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="home-label">City Council Member</td>
-                <td><span id="printCM" class="font-weight-bold"></span></td>
-                <td>
-                  <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="checkCM" checked>
-                  <label class="form-check-label" for="checkCM"></label>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="home-label">Borough President</td>
-                <td><span id="bpNameOutput" class="font-weight-bold"></span></td>
-                <td>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="checkBP" checked>
-                    <label class="form-check-label" for="checkBP"></label>
-                    </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="home-label">Public Advocate</td>
-                <td><span id="paNameOutput" class="font-weight-bold"></span></td>
-                <td>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="checkPA" checked>
-                    <label class="form-check-label" for="checkPA"></label>
-                    </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="home-label">State Senator</td>
-                <td><span id="ssNameOutput" class="font-weight-bold"></span></td>
-                <td>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="checkSA" checked>
-                    <label class="form-check-label" for="checkSA"></label>
-                    </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="home-label">State Assembly Member</td>
-                <td><span id="saNameOutput" class="font-weight-bold"></span></td>
-                <td>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="checkSS" checked>
-                    <label class="form-check-label" for="checkSS"></label>
-                    </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="home-label">US Senator</td>
-                <td><span id="senOneNameOutput" class="font-weight-bold"></span></td>
-                <td>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="checkS" disabled>
-                    <label class="form-check-label" for="checkS"></label>
-                    </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="home-label">US Senator</td>
-                <td><span id="senTwoNameOutput" class="font-weight-bold"></span></td>
-                <td>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="checkS2" disabled>
-                    <label class="form-check-label" for="checkS2" inactive></label>
-                    </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="home-label">US Congressperson</td>
-                <td><span id="repNameOutput" class="font-weight-bold"></span></td>
-                <td>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="checkCP" disabled>
-                    <label class="form-check-label" for="checkCP"></label>
-                    </div>
-                </td>
-              </tr>
-            </tbody>
-            </table>
+
         </div>
       </div>
 
@@ -156,10 +66,10 @@
 
 
 
-      <div id="contactContainer" class="">
+      <div id="contactContainer" class="hide">
         <div class="row my-4">
-          <div class="col-md-6 ml-auto">
-            <button class="btn btn-outline-primary btn-large btn-block">Send them an email</button>
+          <div class="col-md-6 mx-auto">
+            <p>Go ahead and write your elected officials an email!</p>
           </div>
         </div>
 
@@ -240,36 +150,56 @@ var districtInfo;
 var lastname;
 var setLoc;
 var emails = [];
+var rowCM;
 
 // Add event listener on entry form
 document.getElementById('map-search').addEventListener("change", getData)
 
 function getData() {
-  console.log('hey, the map has changed :) ')
+  document.getElementById('tableTwo').classList.remove('hide')
+
+  console.log('The map has changed')
   document.getElementById('outputOne').innerHTML = "Getting info..."
-  document.getElementById('resultsTable').classList.add('hide')
 
 
   setTimeout(() => {
     document.getElementById('outputOne').innerHTML = ""
-    document.getElementById('resultsTable').classList.remove('hide')
     // document.getElementById('contactContainer').classList.remove('hide')
 
     setLoc = map.location.name
-    console.log(map.location.data);
+    // console.log(map.location.data);
     yourDistrict = map.location.data.cityCouncilDistrict
     // get info from councilTable
     for (let i = 0; i < councilTable.length; i ++) {
       if (Number(councilTable[i].District) === Number(yourDistrict)) {
         districtInfo = councilTable[i]
-        console.log('your district:')
+        console.log('Your City Council district:')
         console.table(districtInfo)
         emails.push(districtInfo.Email)
       } else {}
     }
   
-    // send info to page
-    document.getElementById('printCM').innerHTML = districtInfo.CouncilMember
+    // send Council Member info to page
+    rowCM = document.createElement('tr'); // create row
+    let cell_1 = document.createElement('td') 
+        cell_1.innerHTML = 'Council Member: District ' + districtInfo.District
+        rowCM.appendChild(cell_1)
+    let cell_2 = document.createElement('td')
+        cell_2.innerHTML = districtInfo.CouncilMember
+        rowCM.appendChild(cell_2)
+    let cell_3 = document.createElement('td')
+        cell_3.innerHTML = 'n/a'
+        rowCM.appendChild(cell_3)
+    let cell_4 = document.createElement('td')
+        cell_4.innerHTML = 'n/a'
+        rowCM.appendChild(cell_4)
+    let cell_5 = document.createElement('td')
+        cell_5.innerHTML = districtInfo.Email
+        rowCM.appendChild(cell_5)
+    document.getElementById('tableTwoBody').appendChild(rowCM)
+    
+
+
 
     // next, send map.location.name to Google Api
     getFromAPI(setLoc)
@@ -287,7 +217,7 @@ var congressReps = {}
 
 
 function getFromAPI(address) {
-  console.log(address)
+  // console.log(address)
 
   // get all data
   fetch(rootRequest+address)
@@ -303,8 +233,8 @@ function getFromAPI(address) {
       boroPres = data
       // console.log('boroPres: ')
       // console.log(boroPres)
-      document.getElementById('bpNameOutput').innerHTML = boroPres.officials[0].name
       emails.push(boroPres.officials[0].emails[0])
+      printInfoFromApi(boroPres.offices[0], boroPres.officials[0])
     })
 
   // get PA
@@ -312,8 +242,8 @@ function getFromAPI(address) {
   .then (res => res.json())
   .then(data => {
     publicAdvocate = data
-    document.getElementById('paNameOutput').innerHTML = publicAdvocate.officials[1].name
     emails.push(publicAdvocate.officials[1].emails[0])
+    printInfoFromApi(publicAdvocate.offices[1], publicAdvocate.officials[1])
 
   })
 
@@ -322,11 +252,11 @@ function getFromAPI(address) {
   .then (res => res.json())
   .then(data => {
     stateReps = data;
-    document.getElementById('ssNameOutput').innerHTML = stateReps.officials[0].name
-    document.getElementById('saNameOutput').innerHTML = stateReps.officials[1].name
     emails.push(stateReps.officials[0].emails[0])
     emails.push(stateReps.officials[1].emails[0])
-    console.log(emails)
+    printInfoFromApi(stateReps.offices[0], stateReps.officials[0])
+    printInfoFromApi(stateReps.offices[1], stateReps.officials[1])
+
 
   })
 
@@ -337,10 +267,17 @@ function getFromAPI(address) {
   .then(data => {
     congressReps = data;
     console.log(congressReps)
-    document.getElementById('senOneNameOutput').innerHTML = congressReps.officials[0].name
-    document.getElementById('senTwoNameOutput').innerHTML = congressReps.officials[1].name
-    document.getElementById('repNameOutput').innerHTML = congressReps.officials[2].name
+    printInfoFromApi(congressReps.offices[0], congressReps.officials[0])
+    printInfoFromApi(congressReps.offices[1], congressReps.officials[1])
+    printInfoFromApi(congressReps.offices[1], congressReps.officials[2])
   })
+
+  // Available emails:
+  console.log('Available emails:')
+  console.log(emails)
+
+  // reveal Email Content
+  document.getElementById('contactContainer').classList.remove('hide')
 
 }
 
@@ -348,6 +285,31 @@ function storeData(x){
   apiData = x;
   console.log('apiData: ')
   console.log(apiData)
+}
+
+// prints info from API calls to the table
+function printInfoFromApi(office, info) {
+  let newRow = document.createElement('tr')
+  let cell_office = document.createElement('td')
+    cell_office.innerHTML = office.name // we'll pass in dataArray.offices[x]
+    newRow.appendChild(cell_office)
+  let cell_name = document.createElement('td')
+    cell_name.innerHTML = info.name // we'll pass in dataArray.officials[x]
+    newRow.appendChild(cell_name)
+  let cell_website = document.createElement('td')
+    cell_website.innerHTML = info.urls[0]
+    newRow.appendChild(cell_website)
+  let cell_phone = document.createElement('td')
+    cell_phone.innerHTML = info.phones[0]
+    newRow.appendChild(cell_phone)
+  let cell_email = document.createElement('td')
+    if (info.emails) {
+      cell_email.innerHTML = info.emails[0]
+    } else {
+      cell_email.innerHTML = 'No email address found'
+    }
+    newRow.appendChild(cell_email)
+    document.getElementById('tableTwoBody').appendChild(newRow)
 }
 
 
