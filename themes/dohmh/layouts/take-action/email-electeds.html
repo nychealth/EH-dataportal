@@ -87,6 +87,7 @@
           </div>
           <div class="col-md-6">
             <h3>Your email:</h3>
+            <div id="allEmails"></div>
             <form>
               <textarea id="textEntry" name="textEntry" style="width:100%;height:300px">I am one of your constituents, a resident of [MY NEIGHBORHOOD]. I was reading about neighborhood issues on one of the Health Department's websites, the Environment and Health Data Portal (on.nyc.gov/dataportal). I am concerned about [ISSUES YOU ARE CONCERNED ABOUT]. These concern me because [WHY YOU ARE CONCERNED].I'm writing to know [WHAT YOU WANT YOUR COUNCIL MEMBER TO DO].Thank you for your attention, and I look forward to your reply.
   
@@ -123,7 +124,25 @@
 <script src="https://maps.nyc.gov/nyc-lib/v1.2.79/js/nyc-ol-lib.js"></script>
 
 <script>
-// This initializes and draws the locator map
+// ********** INITIAL: ********** // 
+
+// Initialize variables
+var councilTable = [];
+var district;
+var yourDistrict; 
+var districtInfo;
+var lastname;
+var setLoc;
+var peopleToEmail = [];
+var rowCM;
+var apiData = {};
+var rootRequest = 'https://content-civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyBEi5U-9-QQevrhUxhmGDEg4CvvbtpLehU&address='
+var boroPres = {};
+var publicAdvocate = {};
+var stateReps = {}
+var congressReps = {}
+
+// Loads and draws ap
   var map = new nyc.ol.FrameworkMap({
   mapTarget: '#mapLocator',
   searchTarget: '#map-search',
@@ -133,49 +152,34 @@
   //geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=cfed478bf47829a2951bc5a3bbc26422&app_id=2d2a1b38'
   });
 
-// Loads our City Council list
-var councilTable = [];
-var district;
+// Loads  City Council list
 d3.csv(sitepath+'/take-action/council.csv').then(function(data) {
   councilTable = data;
-  // console.log('All City Council members:')
-  // console.table(councilTable)
-
 })
-
-
-// gets your initial info:
-var yourDistrict; 
-var districtInfo;
-var lastname;
-var setLoc;
-var emails = [];
-var rowCM;
 
 // Add event listener on entry form
 document.getElementById('map-search').addEventListener("change", getData)
 
+
+// ********** INITIAL FUNCTION gets data when event listener (above) detects map change: ********** // 
 function getData() {
   document.getElementById('tableTwo').classList.remove('hide')
-
   console.log('The map has changed')
   document.getElementById('outputOne').innerHTML = "Getting info..."
 
-
+  // on a timeout, gets council data and then passes location in to the Civic Info API
   setTimeout(() => {
     document.getElementById('outputOne').innerHTML = ""
-    // document.getElementById('contactContainer').classList.remove('hide')
 
     setLoc = map.location.name
-    // console.log(map.location.data);
     yourDistrict = map.location.data.cityCouncilDistrict
+
     // get info from councilTable
     for (let i = 0; i < councilTable.length; i ++) {
       if (Number(councilTable[i].District) === Number(yourDistrict)) {
         districtInfo = councilTable[i]
         console.log('Your City Council district:')
         console.table(districtInfo)
-        emails.push(districtInfo.Email)
       } else {}
     }
   
@@ -197,52 +201,39 @@ function getData() {
         cell_5.innerHTML = districtInfo.Email
         rowCM.appendChild(cell_5)
     document.getElementById('tableTwoBody').appendChild(rowCM)
-    
+      var recipient = {};
+      recipient.name = districtInfo.CouncilMember
+      recipient.area = 'District ' + districtInfo.District
+      recipient.email = districtInfo.Email
+      peopleToEmail.push(recipient)
 
-
-
-    // next, send map.location.name to Google Api
+    // IMPORTANT NEXT STEP: send map.location.name to Google Api
     getFromAPI(setLoc)
 
-  }, 1500);
+  }, 1500); // set a delay that ensures that we have setLoc
 }
 
-var apiData = {};
-var rootRequest = 'https://content-civicinfo.googleapis.com/civicinfo/v2/representatives?key=AIzaSyBEi5U-9-QQevrhUxhmGDEg4CvvbtpLehU&address='
-var boroPres = {};
-var publicAdvocate = {};
-var stateReps = {}
-var congressReps = {}
 
 
+
+// ********** SECOND FUNCTION passes location into API to get data: ********** // 
 
 function getFromAPI(address) {
-  // console.log(address)
-
-  // get all data
-  fetch(rootRequest+address)
-    .then(res => res.json())
-    .then(data => {
-      apiData = data
-    })
-
-  // get BP
+  // get Boro President
   fetch(rootRequest+address+'&levels=administrativeArea2&roles=headofGovernment')
     .then (res => res.json())
     .then(data => {
       boroPres = data
       // console.log('boroPres: ')
       // console.log(boroPres)
-      emails.push(boroPres.officials[0].emails[0])
       printInfoFromApi(boroPres.offices[0], boroPres.officials[0])
     })
 
-  // get PA
+  // get Public Advocate
   fetch(rootRequest+address+'&levels=locality&roles=governmentOfficer')
   .then (res => res.json())
   .then(data => {
     publicAdvocate = data
-    emails.push(publicAdvocate.officials[1].emails[0])
     printInfoFromApi(publicAdvocate.offices[1], publicAdvocate.officials[1])
 
   })
@@ -252,40 +243,28 @@ function getFromAPI(address) {
   .then (res => res.json())
   .then(data => {
     stateReps = data;
-    emails.push(stateReps.officials[0].emails[0])
-    emails.push(stateReps.officials[1].emails[0])
     printInfoFromApi(stateReps.offices[0], stateReps.officials[0])
     printInfoFromApi(stateReps.offices[1], stateReps.officials[1])
-
-
   })
-
 
   // get congresspeople
   fetch(rootRequest+address+'&levels=country&roles=legislatorUpperBody&roles=legislatorLowerBody')
   .then (res => res.json())
   .then(data => {
     congressReps = data;
-    console.log(congressReps)
     printInfoFromApi(congressReps.offices[0], congressReps.officials[0])
     printInfoFromApi(congressReps.offices[1], congressReps.officials[1])
     printInfoFromApi(congressReps.offices[1], congressReps.officials[2])
+    printEmails()
   })
 
-  // Available emails:
-  console.log('Available emails:')
-  console.log(emails)
 
   // reveal Email Content
   document.getElementById('contactContainer').classList.remove('hide')
 
 }
 
-function storeData(x){
-  apiData = x;
-  console.log('apiData: ')
-  console.log(apiData)
-}
+
 
 // prints info from API calls to the table
 function printInfoFromApi(office, info) {
@@ -305,6 +284,10 @@ function printInfoFromApi(office, info) {
   let cell_email = document.createElement('td')
     if (info.emails) {
       cell_email.innerHTML = info.emails[0]
+      var recipient = [];
+      recipient.name = info.name
+      recipient.email = info.emails[0]
+      peopleToEmail.push(recipient)
     } else {
       cell_email.innerHTML = 'No email address found'
     }
@@ -312,8 +295,12 @@ function printInfoFromApi(office, info) {
     document.getElementById('tableTwoBody').appendChild(newRow)
 }
 
-
-
+function printEmails() {
+  for (let i = 0; i < peopleToEmail.length; i++) {
+    var newButton = `<button class="btn btn-sm btn-outline-primary mr-1 mb-1">${peopleToEmail[i].email}</button>`
+    document.getElementById('allEmails').innerHTML += newButton
+  }
+}
 
 </script>
 
