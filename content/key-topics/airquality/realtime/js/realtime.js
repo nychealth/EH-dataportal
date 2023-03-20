@@ -97,6 +97,7 @@ function getColors() {
     for (let i = 0; i < activeMonitors.length; i++) {
         colors.push(activeMonitors[i].Color)
     }
+    colors.push('darkgray')
     current_spec.encoding.color.scale.range = colors
 }
 
@@ -115,6 +116,9 @@ function drawButtons() {
     </button>`
         holder.innerHTML += button;
     };
+    var decBtn = `<button type="button" id="DEC_Avg" class="mb-1 ml-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
+        <span style="color:darkgray"><i class="fas fa-square mr-1"></i></span>DEC Monitor Average</button>`
+    holder.innerHTML += decBtn
     btns = document.querySelectorAll('.selectorbtn')
 
 }
