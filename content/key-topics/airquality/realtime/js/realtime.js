@@ -61,6 +61,9 @@ function loadMonitorLocations() {
                 activeMonitors.push(allMonitorLocations[i])
             }
         }
+        // alphabetize activeMonitors for color coordination
+        activeMonitors.sort(GetSortOrder("Location"))
+
         // Draws map, buttons, listener, and retrieves chart spec
         drawMap()
         drawButtons()
@@ -69,6 +72,17 @@ function loadMonitorLocations() {
     })
 }
 
+//Comparer Function    
+function GetSortOrder(prop) {    
+    return function(a, b) {    
+        if (a[prop] > b[prop]) {    
+            return 1;    
+        } else if (a[prop] < b[prop]) {    
+            return -1;    
+        }    
+        return 0;    
+    }    
+}  
 
 
 
@@ -116,9 +130,6 @@ function drawButtons() {
     </button>`
         holder.innerHTML += button;
     };
-    var decBtn = `<button type="button" id="DEC_Avg" class="mb-1 ml-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
-        <span style="color:darkgray"><i class="fas fa-square mr-1"></i></span>DEC Monitor Average</button>`
-    holder.innerHTML += decBtn
     btns = document.querySelectorAll('.selectorbtn')
 
 }
