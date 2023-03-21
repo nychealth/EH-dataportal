@@ -1,6 +1,6 @@
 ---
 title: "Why trash is a public health issue"
-date: 2022-03-28T13:11:44-04:00
+date: 2023-03-20T13:11:44-04:00
 draft: false
 seo_title: "How sanitation service, trash, and rats affect our lives and our health"
 seo_description: "A data story on the state of our neighborhoods, and what it takes to build safe, clean neighborhoods."
@@ -106,7 +106,7 @@ No one should have to walk on sidewalks in this condition.
 <br>
 
 ## How sanitation services vary by neighborhood 
-New York's sanitation system is vast. It includes DSNY which is responsible for residential trash, recycling, and street cleaning; private waste haulers who pick up garbage produced by businesses; the Department of Parks and Recreation, which is responsible for trash pickups in our parks; and Business Improvement Districts, which often fund street litter baskets (garbage cans) and additional services to help clean their neighborhood.
+New York's sanitation system is vast. It includes DSNY which is responsible for residential trash, recycling, and street cleaning; private waste haulers who pick up garbage produced by businesses; the Department of Parks and Recreation, which is responsible for trash pickups in our parks; and Business Improvement Districts (BIDs), which often fund street litter baskets (garbage cans) and additional services to help clean their neighborhood.
 
 DSNY publishes the location of street litter baskets on [NYC Open Data](https://opendata.cityofnewyork.us/data/), which we make available here on the Environment and Health Data Portal. 
 
@@ -126,7 +126,7 @@ In New York City, litter baskets are either wire and open at the top, or non-wir
             <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Wire baskets</strong> are more likely to be damaged, have trash blow or fall out of them, and attract pests like rats and mice.</p></div>
         </div>
         <div class="col-sm-6 mt-1">
-            <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Enclosed baskets</strong> are better, protecting trash from the elements and from pests. Often, these better baskets are bought by local Business Improvement Districts (BIDs). Overall, <a href="https://www1.nyc.gov/site/sbs/neighborhoods/bids.page">BIDs spend over 25% of their funding on additional sanitation services in their areas</a>.</p></div>
+            <div style="background-color:blanchedalmond; padding: 10px; border-radius: 5px"><p class="fs-sm"><strong>Enclosed baskets</strong> are better, protecting trash from the elements and from pests. Often, these better baskets are bought by local BIDs. Overall, <a href="https://www1.nyc.gov/site/sbs/neighborhoods/bids.page">BIDs spend over 25% of their funding on additional sanitation services in their areas</a>.</p></div>
         </div>
     </div>
 </div>
@@ -135,7 +135,7 @@ In New York City, litter baskets are either wire and open at the top, or non-wir
 
 <br>
 
-Often, better baskets are bought by local BIDs, which receive funding from taxes on property owners in the district. [Overall, BIDS spend over 25% of their funding on additional sanitation services in their area](nyc.gov/site/sbs/neighborhoods/bids.page). There are BIDS in many areas in the city, but none in East Harlem [see a map of BID locations](data.cityofnewyork.us/Business/Business-Improvement-Districts/ejxk-d93y). Since establishing a BID is a long and difficult process, neighborhoods with more resources are more likely to have BIDs. Also, neighborhoods can get additional trash service from elected officials. Council members can use discretionary funds to pay for more new baskets, trash service, and street and sidewalk cleaning. But these optional opportunities contribute to neighborhoods across the city having different levels of trash services. 
+Often, better baskets are bought by local BIDs, which receive funding from taxes on property owners in the district. [Overall, BIDS spend over 25% of their funding on additional sanitation services in their area](nyc.gov/site/sbs/neighborhoods/bids.page). There are BIDS in many areas in the city, but none in East Harlem ([see a map of BID locations](data.cityofnewyork.us/Business/Business-Improvement-Districts/ejxk-d93y)). Since establishing a BID is a long and difficult process, neighborhoods with more resources are more likely to have BIDs. Also, neighborhoods can get additional trash service from elected officials. Council members can use discretionary funds to pay for more new baskets, trash service, and street and sidewalk cleaning. But these optional opportunities contribute to neighborhoods across the city having different levels of trash services. 
 
 East Harlem has very few enclosed baskets. A few blocks south on the Upper East Side, there are more litter baskets per square mile – and far more enclosed baskets. 
 
@@ -146,17 +146,17 @@ We also see this difference between neighborhoods in data on rat inspections, wi
 </div>
 <div class="medium my-4 py-2">
     <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-6">
             <strong>Enclosed baskets per square mile</strong>
-            <iframe title="EH / UES locator map" aria-label="Locator maps" id="datawrapper-chart-5WJ8y" src="https://datawrapper.dwcdn.net/5WJ8y/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="350"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+            <iframe title="EH / UES locator map" aria-label="Locator maps" id="datawrapper-chart-5WJ8y" src="https://datawrapper.dwcdn.net/5WJ8y/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="350"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
 </script>
-            <a href="">Explore litter basket data here</a>.
+            <a href="/data-explorer/active-design/?id=2416#display=summary">Explore litter basket data here</a>.
         </div>
-        <div class="col-sm-7">
+        <div class="col-sm-6">
             <strong>Rat Indexing</strong>
-            <iframe title="East Harlem rat indexing" aria-label="Bar Chart" id="datawrapper-chart-ayRqE" src="https://datawrapper.dwcdn.net/ayRqE/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="121"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
+            <iframe title="East Harlem rat indexing" aria-label="Bar Chart" id="datawrapper-chart-ayRqE" src="https://datawrapper.dwcdn.net/ayRqE/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="121"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
             <br><br><br>
-            <iframe title="Upper East Side (CD8)" aria-label="Bar Chart" id="datawrapper-chart-d7150" src="https://datawrapper.dwcdn.net/d7150/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="153"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+            <iframe title="Upper East Side (CD8)" aria-label="Bar Chart" id="datawrapper-chart-d7150" src="https://datawrapper.dwcdn.net/d7150/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="153"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
 </script>
         </div>
     </div>
@@ -198,8 +198,8 @@ Check the Rat Information Portal [www.nyc.gov/rats](www.nyc.gov/rats) for rat in
 
 <div style="background-color:#fafafa; padding: 10px; border-radius: 5px; font-size: 12pt;">
 <p><em>Photographs and quotes in this piece are courtesy of The Photovoice Project, a research project from the <a href="https://www1.nyc.gov/site/doh/health/neighborhood-health/harlem-health-advocacy-partners.page">Harlem Health Advocacy Partners</a>.</em></p>
-<p><em>Special thanks to: Giselle Guerrero (<a href="https://elbarriobikes.wixsite.com/elbarriobikes">El Barrio Bikes</a>), Philippa Godoy (We Out and <a href="https://elbarriobikes.wixsite.com/elbarriobikes">El Barrio Bikes</a>), Tara Mardigan, (<a href="https://elbarriobikes.wixsite.com/elbarriobikes">El Barrio Bikes</a> and Harlem Community Walking), and Carey King (<a href="http://uptowngrandcentral.org/">Uptown Grand Central</a> and <a href="https://elbarriobikes.wixsite.com/elbarriobikes">El Barrio Bikes</a>) for reviewing and providing feedback on this data story.</em></p>
-
+<p><em>Thanks to: Giselle Guerrero (<a href="https://elbarriobikes.wixsite.com/elbarriobikes">El Barrio Bikes</a>), Philippa Godoy (We Out and <a href="https://elbarriobikes.wixsite.com/elbarriobikes">El Barrio Bikes</a>), Tara Mardigan, (<a href="https://elbarriobikes.wixsite.com/elbarriobikes">El Barrio Bikes</a> and Harlem Community Walking), and Carey King (<a href="http://uptowngrandcentral.org/">Uptown Grand Central</a> and <a href="https://elbarriobikes.wixsite.com/elbarriobikes">El Barrio Bikes</a>) for reviewing and providing feedback on this data story.</em></p>
+<p><em>Special thanks to Doris Chiu for researching and writing this data story.</em></p>
 </div>
 
 
