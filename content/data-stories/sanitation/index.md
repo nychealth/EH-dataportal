@@ -106,7 +106,7 @@ No one should have to walk on sidewalks in this condition.
 <br>
 
 ## How sanitation services vary by neighborhood 
-New York's sanitation system is vast. It includes the Department of Sanitation, which is responsible for residential trash, recycling, and street cleaning; private waste haulers who pick up garbage produced by businesses; the Department of Parks and Recreation, which is responsible for trash pickups in our parks; and Business Improvement Districts, which often fund street litter baskets (garbage cans) and additional services to help clean their neighborhood.
+New York's sanitation system is vast. It includes DSNY which is responsible for residential trash, recycling, and street cleaning; private waste haulers who pick up garbage produced by businesses; the Department of Parks and Recreation, which is responsible for trash pickups in our parks; and Business Improvement Districts, which often fund street litter baskets (garbage cans) and additional services to help clean their neighborhood.
 
 DSNY publishes the location of street litter baskets on [NYC Open Data](https://opendata.cityofnewyork.us/data/), which we make available here on the Environment and Health Data Portal. 
 
@@ -135,7 +135,7 @@ In New York City, litter baskets are either wire and open at the top, or non-wir
 
 <br>
 
-Often, better baskets are bought by local Business Improvement Districts (BIDs), which receive funding from taxes on property owners in the district. [Overall, BIDS spend over 25% of their funding on additional sanitation services in their area](nyc.gov/site/sbs/neighborhoods/bids.page). There are BIDS all over the city, but none in East Harlem [see a map of BID locations](data.cityofnewyork.us/Business/Business-Improvement-Districts/ejxk-d93y). Since establishing a BID is a long and difficult process, neighborhoods with more resources are more likely to have BIDs. Also, neighborhoods can get additional trash service from elected officials. Council members can use discretionary funds to pay for more new baskets, trash service, and street and sidewalk cleaning. But these optional opportunities contribute to neighborhoods across the city having different levels of trash services. 
+Often, better baskets are bought by local BIDs, which receive funding from taxes on property owners in the district. [Overall, BIDS spend over 25% of their funding on additional sanitation services in their area](nyc.gov/site/sbs/neighborhoods/bids.page). There are BIDS in many areas in the city, but none in East Harlem [see a map of BID locations](data.cityofnewyork.us/Business/Business-Improvement-Districts/ejxk-d93y). Since establishing a BID is a long and difficult process, neighborhoods with more resources are more likely to have BIDs. Also, neighborhoods can get additional trash service from elected officials. Council members can use discretionary funds to pay for more new baskets, trash service, and street and sidewalk cleaning. But these optional opportunities contribute to neighborhoods across the city having different levels of trash services. 
 
 East Harlem has very few enclosed baskets. A few blocks south on the Upper East Side, there are more litter baskets per square mile – and far more enclosed baskets. 
 
@@ -171,9 +171,11 @@ The difference in litter baskets, garbage and rats in these two neighborhoods is
 
 ## What sanitation services does the city need to protect health? 
 
-City agencies are working toward comprehensive, equitable sanitation for all neighborhoods: litter baskets, trash pickup, systematic street cleaning, and services like public restrooms where people gather. In 2022, [City Hall announced millions of dollars in new funding](https://www.nyc.gov/office-of-the-mayor/news/824-22/mayor-adams-consolidates-citywide-cleaning-functions-get-stuff-clean-14-5-million#/0) to clean neglected areas, distribute new litter baskets, and address illegal dumping. Meanwhile, DSNY has been spearheading new initiatives that transform how the city stores and collects waste. This work includes [Clean Curbs](https://www.nyc.gov/assets/dsny/site/our-work/containerized-waste-rfei), a program to get garbage bags off sidewalks and into on-street, rat-proof containers; [Better Bins](https://www.nyc.gov/assets/dsny/site/our-work/better-bin), the production of higher-quality street litter baskets; and neighborhood curbside composting programs. 
+City agencies are working toward comprehensive, equitable sanitation for all neighborhoods: litter baskets, trash pickup, systematic street cleaning, and services like [public restrooms where people gather.](https://www.nyc.gov/assets/designcommission/downloads/pdf/2-13-23-pres-DPR-p-PortlandLoo) 
 
-In 2017, the Health Department launched the [Neighborhood Rat Reduction Initiative](https://www.nyc.gov/site/doh/health/health-topics/rats-working-in-your-community.page). Through this initiative, the Health Department collaborates with DSNY, the Department of Parks and recreation, the NYC Housing Authority, Department of Transportation, and the Department of Small Business Services to reduce neighborhood-level rat activity in four Rat Mitigation Zones — the newest of which is in Harlem.
+In 2022, [City Hall announced millions of dollars in new funding](https://www.nyc.gov/office-of-the-mayor/news/824-22/mayor-adams-consolidates-citywide-cleaning-functions-get-stuff-clean-14-5-million#/0) to clean neglected areas, distribute new litter baskets, and address illegal dumping. Meanwhile, DSNY has been spearheading new initiatives that transform how the city stores and collects waste. This work includes [Clean Curbs](https://www.nyc.gov/assets/dsny/site/our-work/containerized-waste-rfei), a program to get garbage bags off sidewalks and into on-street, rat-proof containers; [Better Bins](https://www.nyc.gov/assets/dsny/site/our-work/better-bin), the production of higher-quality street litter baskets; and neighborhood curbside composting programs. 
+
+In 2017, the Health Department launched the [Neighborhood Rat Reduction Initiative](https://www.nyc.gov/site/doh/health/health-topics/rats-working-in-your-community.page). Through this initiative, the Health Department collaborates with DSNY, the Department of Parks and recreation, the NYC Housing Authority, Department of Transportation, and the Department of Small Business Services to manage trash and take other steps to reduce neighborhood-level rat activity in four Rat Mitigation Zones — the newest of which is in Harlem.
 
 All these initiatives are vital ways to increase the effectiveness of our city's sanitation system, working to build clean, healthy public spaces for New Yorkers. Neighborhoods like East Harlem and others shouldn't have to rely on discretionary funding from elected officials, or establishing Business Improvement Districts, in order to have adequate sanitation. The city needs **equitable funding and distribution of sanitation resources.** 
 <br>
@@ -182,11 +184,11 @@ All these initiatives are vital ways to increase the effectiveness of our city's
 
 Sanitation is a long-standing issue in East Harlem, and there's a history of community organizing for better conditions. In the 1960s, the Puerto Rican activist group the Young Lords organized the Garbage Offensive, barricading major roads with uncollected trash to protest the City's neglect of the neighborhood and force government to address the problem. 
 
-Today, here's how New Yorkers can help improve sanitation: 
+Today, New York can help improve sanitation: 
 
-* You can call your [local elected officials](https://council.nyc.gov/districts/) and tell them you need more trash service in the neighborhood. They often do listen to calls and concerns from their constituents. 
+* Call your [local elected officials](https://council.nyc.gov/districts/) and tell them you need more trash service in the neighborhood. They often do listen to calls and concerns from their constituents. 
 * Attend Community Board meetings — discuss your complaints with your neighbors and encourage the Community Board to take action. 
-* And the City listens to complaints made through 311. You can [report rat sightings](https://portal.311.nyc.gov/article/?kanumber=KA-01107) or [missed trash service collection](https://portal.311.nyc.gov/article/?kanumber=KA-01788) to 311. These 311 reports generate complaint data that can help improve conditions in your neighborhood. 
+* File a request on 311. You can [report rat sightings](https://portal.311.nyc.gov/article/?kanumber=KA-01107) or [missed trash service collection](https://portal.311.nyc.gov/article/?kanumber=KA-01788). These 311 reports generate complaint data that can help improve conditions in your neighborhood. 
 
 Check the Rat Information Portal [www.nyc.gov/rats](www.nyc.gov/rats) for rat inspection data or [Rat Indexing](https://www.nyc.gov/site/doh/health/health-topics/rat-maps-and-data-rat-indexing.page) for more comprehensive data. 
 
