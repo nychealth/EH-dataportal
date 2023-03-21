@@ -6,4 +6,6 @@ mapLib: true
 layout: email-electeds
 ---
 
+Democracy is a public health intervention. 
+
 One way you can take action on environmental health issues is to contact your elected officials. This page will help you find your elected officials and their contact information, and help you write an email or give them a phone call.
