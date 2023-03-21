@@ -182,7 +182,7 @@ All these initiatives are vital ways to increase the effectiveness of our city's
 
 ## What can you do to improve sanitation in your neighborhood? 
 
-Sanitation is a long-standing issue in East Harlem, and there's a history of community organizing for better conditions. In the 1960s, the Puerto Rican activist group the Young Lords organized the Garbage Offensive, barricading major roads with uncollected trash to protest the City's neglect of the neighborhood and force government to address the problem. 
+Sanitation is a long-standing issue in East Harlem, and there's a history of community organizing for better conditions. In the 1960s, the Puerto Rican activist group, the Young Lords, organized the Garbage Offensive, barricading major roads with uncollected trash to protest the City's neglect of the neighborhood and force government to address the problem. 
 
 Today, New York can help improve sanitation: 
 
