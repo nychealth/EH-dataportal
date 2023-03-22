@@ -26,17 +26,13 @@ We display data on disinfection by-products, nitrates, and arsenic in NYC drinki
 
 The New york Department of Environmental Protection (DEP) regularly samples, analyzes and reports contaminant levels at the source and in the drinking water distribution system. Monitoring drinking water is important because contamination in a single system could exposes many people at once. People can be exposed to contaminants in many ways besides drinking the water. They can also be exposed through eating food prepared with the water, breathing water droplets or chemicals released from the water while showering, or by absorbing chemicals through their skin while bathing. 
 
-* ## Lead
-According to the DEP, drinking water enters the NYC water system "virtually lead-free." The DEP then uses anti-corrosion methods to reduce the leaching of any lead that may be present in plumbing fixtures, solder, or pipes, which connect the water system to buildings in NYC. Federal regulations require that lead testing of water is done at the tap of a sample of NYC buildings each year. 
+**Lead**: According to the DEP, drinking water enters the NYC water system "virtually lead-free." The DEP then uses anti-corrosion methods to reduce the leaching of any lead that may be present in plumbing fixtures, solder, or pipes, which connect the water system to buildings in NYC. Federal regulations require that lead testing of water is done at the tap of a sample of NYC buildings each year. 
 
-* ## Disinfection by-products
-Drinking water is disinfected to reduce the possibility of illness from microorganisms. Disinfection by-products (DBPs) are chemicals that can form when a disinfectant such as chlorine reacts with naturally occurring organic matter and other substances in the source water. Current research is looking at whether there are health effects from chronic exposure to the by-products of water disinfection. 
+**Disinfection by-products**: Drinking water is disinfected to reduce the possibility of illness from microorganisms. Disinfection by-products (DBPs) are chemicals that can form when a disinfectant such as chlorine reacts with naturally occurring organic matter and other substances in the source water. Current research is looking at whether there are health effects from chronic exposure to the by-products of water disinfection. 
 
-* ## Nitrates
-Nitrates are commonly found in water near where nitrogen-based fertilizers are used. Decades ago, it was discovered that infants who were fed formula made with water containing nitrates over 10 mg/L sometimes became seriously ill, due to the interference of nitrate with the oxygen-carrying capacity of blood. 
+**Nitrates**: Nitrates are commonly found in water near where nitrogen-based fertilizers are used. Decades ago, it was discovered that infants who were fed formula made with water containing nitrates over 10 mg/L sometimes became seriously ill, due to the interference of nitrate with the oxygen-carrying capacity of blood. 
 
-* ## Arsenic
-Arsenic is naturally occurring in groundwater systems in some parts of the US. It may also enter drinking water systems through past use of arsenic-containing pesticides and wood preservatives. Chronic exposure may increase risk of certain cancers. It is not detected in NYC drinking water. 
+**Arsenic**: Arsenic is naturally occurring in groundwater systems in some parts of the US. It may also enter drinking water systems through past use of arsenic-containing pesticides and wood preservatives. Chronic exposure may increase risk of certain cancers. It is not detected in NYC drinking water. 
 
 ### About the Data and Indicators
 
