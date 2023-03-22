@@ -66,8 +66,10 @@ pollutantTrends: >-
     concentrations of NO<sub>2</sub>, NO and PM<sub>2.5</sub> continue to be
     higher in industrial zones with more diesel truck traffic, neighborhoods
     with large numbers of restaurants, and areas of higher traffic and building
-    density. Air pollution changes not only by neighborhood, but also by season.
-    Some pollutants are highest in certain seasons of the year because of either
+    density. 
+
+    Air pollution changes not only by neighborhood, but also by season. Some
+    pollutants are highest in certain seasons of the year because of either
     weather patterns or emissions sources. For example, O<sub>3</sub> is
     produced when NO<sub>X</sub>&nbsp;and other airborne pollutants react in the
     presence of heat and sunlight. Therefore, we only monitor O<sub>3</sub> in
@@ -136,7 +138,7 @@ This report:
 
 ---
 
-## Key Findings
+### Key Findings
 
 **Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2021.**
 
