@@ -1,6 +1,11 @@
 /*
 // ---- REALTIME AQ ---- //
-This app is built to be durable to monitors coming online and offline. If a monitor is in the datafeed, it will need an entry in monitor_locations.csv. In that file, loc_col will need to equal SiteName in the datafeed. 
+If a monitor is in the datafeed, it needs an entry in monitor_locations.csv.
+loc_col needs to equal SiteName in the datafeed.
+
+This app excludes DEC_Avg from conventional functionality: 
+- monitors_group_noDEC sets the map bounds without the DEC Average monitor - which is given an abitrary off-coast lat/long
+- if (x != 'DEC_Avg') changes what happens to the map zoom on button click - just zooming to the initial extent if somebody selects the DEC_Avg option.
 
 */
 
@@ -157,11 +162,18 @@ function updateData(x) {
     })
     document.getElementById(x).classList.add('active')
 
-    // find index of where x = activeMonitors.loc_col
-    var index = getIndex(x)
+    if (x != 'DEC_Avg') {
+        // find index of where x = activeMonitors.loc_col
+        var index = getIndex(x)
 
-    // zoom to the corresponding leaflet marker
-    map.setView(monitors[index].getLatLng(), 13);
+        // zoom to the corresponding leaflet marker
+        map.setView(monitors[index].getLatLng(), 13);
+
+    } else {
+        resetZoom()
+    }
+
+
 
     // update opacity for selected and deselected series, and redraw Chart:
     opacity = {
@@ -201,6 +213,7 @@ function getIndex(x) {
 // ---- Create leaflet map ---- // 
 var map;
 var monitors_group = L.featureGroup();
+var monitors_group_noDEC = L.featureGroup();
 var monitors;
 var monitors_center = L.Point();
 var monitors_bounds = L.Bounds();
@@ -208,7 +221,7 @@ var monitor_locations;
 
 // draw map fires when data and monitor_locations load:
 function drawMap() {
-    monitor_locations = activeMonitors;
+    monitor_locations = activeMonitors
     
     // adding each monitor to the feature group
     
@@ -225,6 +238,14 @@ function drawMap() {
             L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
             .bindTooltip(monitor.Location, {permanent: true, opacity: 0.85, interactive: true})
             .addTo(monitors_group)
+        
+        // create group without the DEC Monitor, which we'll use to set the center and bounds
+        if (monitor.Location != "DEC Monitor Average") {
+            var those_monitors = 
+            L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
+            .bindTooltip(monitor.Location, {permanent: true, opacity: 0.85, interactive: true})
+            .addTo(monitors_group_noDEC)
+        }
 
         // setting tooltip mouseover rise-to-top
 
@@ -254,10 +275,10 @@ function drawMap() {
     });
 
     monitors = monitors_group.getLayers();
-    
+
     // getting the bounds of the markers
     
-    monitors_bounds = monitors_group.getBounds();
+    monitors_bounds = monitors_group_noDEC.getBounds();
     
     // now getting the center of the bounds
     
