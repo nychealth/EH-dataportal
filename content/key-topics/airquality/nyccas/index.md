@@ -31,7 +31,7 @@ pollutantMaps: >-
     href="https://www1.nyc.gov/site/doh/data/data-publications/air-quality-nyc-community-air-survey.page#nyccas-pubs">NYCCAS
     Scientific Publications</a>.</p> <p>In the maps below, you can select a
     pollutant to see how air pollution is distributed throughout the city and
-    how it has changed over time. The City’s air quality has changed
+    how it has changed over time. The city’s air quality has changed
     significantly since NYCCAS began monitoring, as can be seen in the maps
     below. The levels of BC, NO<sub>2</sub>, NO, SO<sub>2</sub> and
     PM<sub>2.5</sub> have been significantly reduced citywide. The areas where
@@ -54,8 +54,8 @@ pollutantMaps: >-
     charts. SO<sub>2</sub> levels have gone down dramatically since  <a
     href="https://www1.nyc.gov/assets/dep/downloads/pdf/air/local-law-43-biodiesel-fuel-requirement.pdf">Local
     Law 43 of 2010 prohibited the burning of heavy fuel oil (No. 6) in New York
-    City buildings</a>. Historical maps for SO<sub>2</sub> and other pollutants
-    are available by clicking on the “All years” button below.</p>
+    City buildings (PDF)</a>. Historical maps for SO<sub>2</sub> and other
+    pollutants are available by clicking on the “All years” button below.</p>
 
     <p>Winter and summer average maps for BC, NO<sub>2</sub>, NO and
     PM<sub>2.5</sub> are available in <a href="Appendix2.pdf">Appendix 2
@@ -86,14 +86,15 @@ conclusion: >-
     continue to improve air quality, providing important public health benefits
     to all New Yorkers. These strategies and measures
     include:</p><ul><li>Reducing emissions from commercial charbroiling through
-    regulations and technical support to restaurants</li><li>Creating low/zero
-    emission freight networks and reducing reliance on trucks</li><li>Improving
-    and expanding public transit</li><li>Get the most polluting trucks off New
-    York City streets</li><li>Accelerating the phase out of fossil fuel
-    combustion in buildings focusing on the communities most impacted by air
-    pollution related health impacts</li></ul><p>Air quality in New York City
-    has greatly improved over the past decade and will continue to improve with
-    efforts to control emissions from the most important sources.  </p>
+    regulations and technical support to restaurants</li><li>Creating low or
+    zero emission freight networks and reducing reliance on
+    trucks</li><li>Improving and expanding public transit</li><li>Get the most
+    polluting trucks off New York City streets</li><li>Accelerating the
+    phase-out of fossil fuel combustion in buildings focusing on the communities
+    most impacted by air pollution related health impacts</li></ul><p>Air
+    quality in New York City has greatly improved over the past decade and will
+    continue to improve with efforts to control emissions from the most
+    important sources.  </p>
 moreInfo: >-
     <ul><li><a target="_blank" rel="noopener"
     href="https://needed-komodo.cloudvent.net/key-topics/airquality/nyccas/Appendix1.pdf">Appendix
@@ -105,11 +106,11 @@ moreInfo: >-
     3 (PDF)</a> : Community District Average Pollution Levels</li><li><a
     href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Traffic/index.html">The
     Public Health Impacts of PM<sub>2.5</sub> from Traffic Air Pollution data
-    story.</a></li><li>NYCCAS Air Pollution Rasters on <a
+    story.</a></li><li><a
     href="https://data.cityofnewyork.us/Environment/NYCCAS-Air-Pollution-Rasters/q68s-8qxv">NYC
-    OpenData</a>.</li><li>New York Community Air Survey: <a
-    href="https://www.nyc.gov/site/doh/data/data-sets/air-quality-nyc-community-air-survey.page">past
-    reports</a></li></ul>
+    OpenData: NYCCAS Air Pollution Rasters</a>.</li><li> <a
+    href="https://www.nyc.gov/site/doh/data/data-sets/air-quality-nyc-community-air-survey.page">New
+    York Community Air Survey: past reports</a></li></ul>
 vega: true
 image: nyccas.png
 menu:
@@ -119,7 +120,7 @@ layout: nyccas-report
 ---
 ## NYCCAS Report: 2008-2021
 
-In 2007, the New York City Department of Health and Mental Hygiene (Health Department) established the New York City Community Air Survey (NYCCAS), the largest ongoing urban air monitoring program of any U.S. City. NYCCAS, which began collecting data in December 2008, is a collaboration between the Health Department and Queens College of the City University of New York and provides data to:
+In 2007, the New York City Department of Health and Mental Hygiene (Health Department) established the New York City Community Air Survey (NYCCAS), the largest ongoing urban air monitoring program of any U.S. city. NYCCAS, which began collecting data in December 2008, is a collaboration between the Health Department and Queens College of the City University of New York and provides data to:
 
 * Help inform PlaNYC, the City’s sustainability plan
 * Track changes in air quality over time
