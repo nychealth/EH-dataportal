@@ -1,7 +1,7 @@
 ---
 title: A walk through history
 draft: false
-date: 2022-12-04T08:49:22-04:00
+date: 2023-03-19T08:49:22-04:00
 image: redlining-in-harlem.png
 photocredit: Mapping Inequality
 layout: bbb
