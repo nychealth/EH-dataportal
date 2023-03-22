@@ -158,5 +158,4 @@ PM<sub>2.5</sub>, NO<sub>2</sub>, NO, and BC are highest in:
 
 Ozone (O<sub>3</sub>) levels are highest in:
 
-* The outer boroughs
 * Areas with lower vehicle emissions
