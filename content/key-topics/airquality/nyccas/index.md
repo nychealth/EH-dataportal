@@ -136,7 +136,7 @@ This report:
 
 ---
 
-### Key Findings
+## Key Findings
 
 **Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2021.**
 
