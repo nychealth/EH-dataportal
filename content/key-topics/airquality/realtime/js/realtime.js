@@ -7,6 +7,8 @@ This app excludes DEC_Avg from conventional functionality:
 - monitors_group_noDEC sets the map bounds without the DEC Average monitor - which is given an abitrary off-coast lat/long
 - if (x != 'DEC_Avg') changes what happens to the map zoom on button click - just zooming to the initial extent if somebody selects the DEC_Avg option.
 
+Because of CORS restrictions to localhost1313, test by copying the contents of the azure feed to data/nyccas_realtime_DEC.csv, and replace the locations both in the initial ingestion (below) and in spec.json.
+
 */
 
 
@@ -21,8 +23,8 @@ var floorDate;
 
 // ---- INITIAL: ingest data feed ---- // 
 aq.loadCSV(
-     "data/nyccas_realtime_DEC.csv" // temporary local placeholder
-     // "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv" // actual live data feed. Also update this in spec json.
+     // "data/nyccas_realtime_DEC.csv" // temporary local placeholder
+    "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv" // actual live data feed. Also update this in spec json.
 
 ).then(data => {
 
