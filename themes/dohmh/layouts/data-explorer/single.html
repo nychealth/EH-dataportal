@@ -636,8 +636,8 @@
      {{/*  CSS  */}}
 
     {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" -}}
-    {{- $dataTablesBurronsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" -}}
-    {{- $dtCSS := slice $dataTablesCSS $dataTablesBurronsCSS | resources.Concat "css/dtCSS.css" -}}
+    {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" -}}
+    {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" -}}
 
     <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}">
 
@@ -649,8 +649,8 @@
     {{- $dataTablesButtonsPrint := resources.Get "node_modules/datatables.net-buttons/js/buttons.print.min.js" -}}
     {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" -}}
     
-    {{- $dataTablesBundelJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" -}}
-    {{- $DT_secureJS := $dataTablesBundelJS | resources.Fingerprint "sha512" -}}
+    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" -}}
+    {{- $DT_secureJS := $dataTablesBundleJS | resources.Fingerprint "sha512" -}}
 
     <script type="text/javascript" src="{{ $DT_secureJS.RelPermalink }}" integrity="{{ $DT_secureJS.Data.Integrity }}"></script>
 
@@ -678,8 +678,8 @@
     {{- $vegaLite := resources.Get "node_modules/vega-lite/build/vega-lite.min.js" -}}
     {{- $vegaEmbed := resources.Get "node_modules/vega-embed/build/vega-embed.min.js" -}}
 
-    {{- $vegaBundelJS := slice $vega $vegaLite $vegaEmbed | resources.Concat "js/vegaBundle.js" -}}
-    {{- $vega_secureJS := $vegaBundelJS | resources.Fingerprint "sha512" -}}
+    {{- $vegaBundleJS := slice $vega $vegaLite $vegaEmbed | resources.Concat "js/vegaBundle.js" -}}
+    {{- $vega_secureJS := $vegaBundleJS | resources.Fingerprint "sha512" -}}
 
     <script type="text/javascript" src="{{ $vega_secureJS.RelPermalink }}" integrity="{{ $vega_secureJS.Data.Integrity }}"></script>
 
