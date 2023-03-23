@@ -66,9 +66,9 @@ pollutantTrends: >-
     concentrations of NO<sub>2</sub>, NO and PM<sub>2.5</sub> continue to be
     higher in industrial zones with more diesel truck traffic, neighborhoods
     with large numbers of restaurants, and areas of higher traffic and building
-    density. 
+    density. </p>
 
-    Air pollution changes not only by neighborhood, but also by season. Some
+    <p>Air pollution changes not only by neighborhood, but also by season. Some
     pollutants are highest in certain seasons of the year because of either
     weather patterns or emissions sources. For example, O<sub>3</sub> is
     produced when NO<sub>X</sub>&nbsp;and other airborne pollutants react in the
@@ -127,7 +127,7 @@ In 2007, the New York City Department of Health and Mental Hygiene (Health Depar
 * Help inform PlaNYC, the City’s sustainability plan
 * Track changes in air quality over time
 * Estimate exposures for health research
-* Inform the public about local topics, such as: [recent air quality improvements](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/breatheeasy/), [car-free zones](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aqts/), [changes in the sources of air pollution](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq-cooking/), [unique air quality studies conducted in New York City](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aqsnapshots/), [efforts to reduce health impacts](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/hia/) and [differences in air quality and related health impacts across NYC neighborhoods](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq2/).
+* Inform the public about local topics, such as&nbsp;[recent air quality improvements](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/breatheeasy/), [car-free zones](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aqts/), [changes in the sources of air pollution](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq-cooking/), [unique air quality studies conducted in New York City](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aqsnapshots/), [efforts to reduce health impacts](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/hia/) and [differences in air quality and related health impacts across NYC neighborhoods](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq2/).
 
 This report:
 
