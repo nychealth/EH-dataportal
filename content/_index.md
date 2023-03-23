@@ -6,7 +6,7 @@ seo_description: "A project by the NYC Health Department."
 featured_title: "Real-time air quality in NYC"
 featured_text: "Get hourly data on air quality from sensors around the city."
 featured_link: "/key-topics/airquality/realtime"
-featured_image: realtime-example.png
+featured_image: realtime-screenshot.png
 recently_updated:
 - Name: Alcohol access and use
   Link: /data-explorer/alcohol-use/?id=2049#display=summary
