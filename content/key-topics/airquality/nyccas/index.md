@@ -127,7 +127,7 @@ In 2007, the New York City Department of Health and Mental Hygiene (Health Depar
 * Help inform PlaNYC, the City’s sustainability plan
 * Track changes in air quality over time
 * Estimate exposures for health research
-* Inform the public about local topics, such as: [recent air quality improvements](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/breatheeasy/), [car-free zones](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aqts/), [changes in the sources of air pollution](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq-cooking/), [unique air quality studies conducted in New York City](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aqsnapshots/), [efforts to reduce health impacts](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/hia/) and [differences in air quality and related health impacts across NYC neighborhoods](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq2/).
+* Inform the public about local topics, such as&nbsp;[recent air quality improvements](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/breatheeasy/), [car-free zones](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aqts/), [changes in the sources of air pollution](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq-cooking/), [unique air quality studies conducted in New York City](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aqsnapshots/), [efforts to reduce health impacts](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/hia/) and [differences in air quality and related health impacts across NYC neighborhoods](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq2/).
 
 This report:
 
