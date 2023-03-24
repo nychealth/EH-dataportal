@@ -21,24 +21,23 @@ layout: report
 ---
 ## Summary
 
-Each summer, an estimated **370 New Yorkers die prematurely because of hot weather** in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May - September. Of the 370 deaths:
+Each summer, on average, an estimated **340 New Yorkers die prematurely because of hot weather** in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May - September. Of the deaths:
 
-* From 2011-2020, there was an average of 10 heat-stress deaths (caused directly by heat).
-* From 2011-2019, there was an average of about 360 heat-exacerbated deaths (caused indirectly by heat aggravating an underlying illness).
+* From 2012-2021, there was an average of 7 heat-stress deaths (caused directly by heat).
+* From 2016-2020, there was an average of about 335 heat-exacerbated deaths (caused indirectly by heat aggravating an underlying illness).
+* Heat-exacerbated deaths have been increasing in the past decade, mainly due to the increase of hot, but not extreme, days.
 
 **Black New Yorkers are more likely to die** from heat stress, with death rates two times higher than among White New Yorkers. This inequity is due to past and current structural racism that creates economic, health care, housing, energy, and other systems that benefit white people and disadvantage people of color.
 
 **Lack of access to home air conditioning** (AC) is an important risk factor for heat-stress death. Among those who died from heat stress, the place of death was most often an un-air-conditioned home.
 
-**NYC summers are getting hotter.** More warm season days now reach hotter temperatures (90°F and higher) compared to a few decades ago.
-
-Emergency response to extreme heat must be coupled with equitable investments in structural interventions and heat mitigation measures, for example energy efficient home cooling that New Yorkers can afford to run and tree planting and greening, to protect residents throughout the increasingly hot warm season weather.
+NYC summers are getting hotter because of climate change. **Emergency response to extreme heat must be coupled with equitable investments in structural interventions and heat mitigation measures**, for example energy efficient home cooling that New Yorkers can afford to run and tree planting and greening, to protect residents throughout the increasingly hot warm season weather.
 
 ---
 
 ## Introduction
 
-Hot weather is dangerous to health, sometimes resulting in death. Heat-related deaths are preventable. In this second annual report on heat-related mortality, the Health Department examined data from 2011-2021.
+Hot weather is dangerous to health, sometimes resulting in death. Heat-related deaths are preventable. In this second annual report on heat-related mortality, the Health Department examined data from 2012-2022.
 
 We track heat-related deaths in three ways:
 
