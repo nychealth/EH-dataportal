@@ -28,14 +28,19 @@
         <div class="col-md-6 col-sm-12 mx-auto">
           <p>First, enter your address to get your elected officials and their contact information. <em>This page works for NYC addresses only.</em></p>
 
+
           <!-- Search/input -->
-          <div class="srch input-group" role="search" autocomplete="off">
+          <div class="srch input-group" role="search" autocomplete="off" id="searchHolder">
             <input class="rad-all form-control form-control-lg" placeholder="Search Address" id="map-search">
           </div>
 
           <!-- Map gets drawn here -->
           <div id='mapLocator' style="height:350px;"></div>
           <em>We won't store any information you enter on this page.</em>
+
+          <div id="startOverHolder" class="mt-2"></div>
+
+
         </div>
       </div>
 
@@ -172,6 +177,8 @@
     <div class="row my-4 hide" id="contactContainer">
       <div class="col-md-4 mx-auto">
         <button class="btn btn-block btn-outline-primary glow py-2" onclick="printEmails()" href="#tips">Click to write an email to your elected officials</button>
+        <button class="btn btn-block btn-sm btn-outline-info" onclick="startOver()">Start over</button>
+
       </div>
     </div>
 
@@ -264,15 +271,27 @@ var publicAdvocate = {};
 var stateReps = {}
 var congressReps = {}
 
-// Loads and draws ap
-  var map = new nyc.ol.FrameworkMap({
-  mapTarget: '#mapLocator',
-  searchTarget: '#map-search',
-  // startAt: '125 Worth Street',
-  geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example'
-  // Developer portal app_key and id don't work, though the nycLib example works
-  //geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=cfed478bf47829a2951bc5a3bbc26422&app_id=2d2a1b38'
-  });
+// Loads and draws map
+var map;
+function drawMap() {
+  document.getElementById('mapLocator').innerHTML = ''
+  document.getElementById('searchHolder').innerHTML = `<input class="rad-all form-control form-control-lg" placeholder="Search Address" id="map-search">
+  `
+
+  map = new nyc.ol.FrameworkMap({
+    mapTarget: '#mapLocator',
+    searchTarget: '#map-search',
+    // startAt: '125 Worth Street',
+    geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example'
+    // Developer portal app_key and id don't work, though the nycLib example works
+    //geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=cfed478bf47829a2951bc5a3bbc26422&app_id=2d2a1b38'
+    });
+}
+drawMap()
+
+function startOver() {
+  location.reload()
+}
 
 // Loads  City Council list
 d3.csv(sitepath+'/take-action/council.csv').then(function(data) {
@@ -285,6 +304,8 @@ document.getElementById('map-search').addEventListener("change", getData)
 
 // ********** INITIAL FUNCTION gets data when event listener (above) detects map change: ********** // 
 function getData() {
+  document.getElementById('startOverHolder').innerHTML = `<button class="btn btn-block btn-sm btn-outline-info" onclick="startOver()">Start over</button>
+  `
   document.getElementById('repRow').classList.remove('hide')
   document.getElementById('officials').scrollIntoView({behavior: "smooth", block: "start"})
   console.log('The map has changed')
