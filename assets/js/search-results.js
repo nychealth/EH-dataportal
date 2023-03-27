@@ -307,7 +307,7 @@ function renderResults(results) {
         // console.log("ahref", ahref);
 
         resultsCount = resultsCount += 1;
-        $searchResultsTitle.innerHTML = `<span class="fas fa-search fa-md"></span> <strong>${resultsCount}</strong> results for <strong><em>${DOMPurify.sanitize(searchTerm)}</em></strong>`;
+        $searchResultsTitle.innerHTML = `<i class="fa fa-magnifying-glass"></i> <strong>${resultsCount}</strong> results for <strong><em>${DOMPurify.sanitize(searchTerm)}</em></strong>`;
         
         const section = (str) => {
             if (result.href.includes(str)) {

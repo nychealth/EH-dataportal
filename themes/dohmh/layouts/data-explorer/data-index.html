@@ -71,7 +71,7 @@
 
         {{-  $all_unique_indicator_ids := $all_indicator_ids | uniq | sort  -}}
 
-        {{-  warnf "all_unique_indicator_ids >>>> " $all_unique_indicator_ids  -}}
+        {{/*  {{-  warnf "all_unique_indicator_ids >>>> " $all_unique_indicator_ids  -}}  */}}
         
         {{- $all_unique_indicator_ids_json := $all_unique_indicator_ids | jsonify | resources.FromString "/IndicatorData/all_unique_indicator_ids.json" -}}
         
