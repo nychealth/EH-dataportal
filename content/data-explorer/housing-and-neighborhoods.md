@@ -3,7 +3,7 @@ title: Housing and Neighborhoods
 date: 2021-05-28 18:02:58.727801
 draft: true
 seo_title: "Housing and neighborhood data for NYC"
-seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 tags: 
 categories: ["housing","social","neighborhoods"]
 keywords: ["built environments","neighborhoods","active design","safety","social","housing"]
