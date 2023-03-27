@@ -36,7 +36,7 @@ The New york Department of Environmental Protection (DEP) regularly samples, ana
 
 ### About the Data and Indicators
 
-The data presented here provie summary measures of contaminants in drinking water sampled at many points in the distribution system. 
+The data presented here provide summary measures of contaminants in drinking water sampled at many points in the distribution system. 
 
 ### Prevention
 
