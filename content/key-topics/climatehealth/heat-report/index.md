@@ -123,7 +123,7 @@ In addition, to describe the impact of climate change, we examined how the numbe
 
 Hotter Summers: The proportion of summer days reaching hot temperatures has substantially increased in the latest decade compared to the earliest of the past five decades (Figure 4). More than 20% of late June through mid-August dates during 2011-2020 had daily maximum temperatures of 90°F or higher. More than 30% of Mid-July dates experienced daily maximum temperatures of 90°F or higher. Given the consistently high and increasing proportion of hot days between late June through mid-August, heat-risk mitigation planning needs to emphasize non-emergency planning, such as access to air-conditioning.
 
-\[VIS EMBED\]
+\[VIS EMBED\]![](/content/key-topics/2022-nyc-heat-related-mortality-report/revised-figure6-ehe-and-tmax-crr-trend-5yr-window-2000-2020.jpg)
 
 \[VIS EMBED\]
 
