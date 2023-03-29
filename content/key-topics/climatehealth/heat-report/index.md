@@ -62,16 +62,6 @@ Notes: The number of heat-stress deaths for 2020 is provisional. If additional d
 
 ## Demographics
 
-**Average Annual Rates of Heat Stress by Age Group, 2012-2021:**&nbsp;Heat-stress deaths occurred among all age groups, with the lowest rates among people who were 20-29 and the highest among people who were 80 and older.
-
-**Neighborhood Poverty Level of Heat Stress Deaths, 2012-2021**\: Death rates were higher in neighborhoods with more residents living below the federal poverty line compared with wealthier neighborhoods.
-
-**Average Annual Rates of Heat Stress by Race/Ethnicity, 2012-2021:&nbsp;**&nbsp;The age-adjusted death rate among non-Hispanic Black New Yorkers is twice as high as that of non-Hispanic White New Yorkers (2.2 deaths per million versus 0.9 deaths per million) from 2011-2020. This inequity is rooted in systemic racism.1 Lack of equitable access to resources needed for wellness – for example, jobs that pay a living wage, affordable and healthy housing with air conditioning, and health care – are causes of these differences in heat-related mortality.
-
-**Average Annual Rates of Heat Stress by Place of Residence, 2012-2021**\: Age-adjusted death rates were highest in Brooklyn and the Bronx.
-
-**Average Annual Rates of Heat Stress by Sex, 2012-2021**\: About two thirds of heat stress-deaths occurred among men.
-
 <iframe title="Heat Stress Deaths" aria-label="Bar Chart" id="datawrapper-chart-4p5mh" src="https://datawrapper.dwcdn.net/4p5mh/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="600" data-external="1"></iframe>
 
 <script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
@@ -123,7 +113,7 @@ In addition, to describe the impact of climate change, we examined how the numbe
 
 Hotter Summers: The proportion of summer days reaching hot temperatures has substantially increased in the latest decade compared to the earliest of the past five decades (Figure 4). More than 20% of late June through mid-August dates during 2011-2020 had daily maximum temperatures of 90°F or higher. More than 30% of Mid-July dates experienced daily maximum temperatures of 90°F or higher. Given the consistently high and increasing proportion of hot days between late June through mid-August, heat-risk mitigation planning needs to emphasize non-emergency planning, such as access to air-conditioning.
 
-\[VIS EMBED\]![](/content/key-topics/2022-nyc-heat-related-mortality-report/revised-figure6-ehe-and-tmax-crr-trend-5yr-window-2000-2020.jpg)
+![](/content/key-topics/2023-nyc-heat-related-mortality-report/revised-figure6-ehe-and-tmax-crr-trend-5yr-window-2000-2020.jpg)\[VIS EMBED\]![](/content/key-topics/2022-nyc-heat-related-mortality-report/revised-figure6-ehe-and-tmax-crr-trend-5yr-window-2000-2020.jpg)
 
 \[VIS EMBED\]
 
