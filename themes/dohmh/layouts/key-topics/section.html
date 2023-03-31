@@ -18,6 +18,8 @@
         <div class="card-content">
             <a href="{{ .RelPermalink}}">
 
+                {{ warnf "@@@@ >>>> " .RelPermalink }}
+
                 {{ $src := .Resources.GetMatch .Params.image }}
                 {{ $image := $src.Resize "740x"}}
                 <div style="width:100%; height:250px; background-image: url({{ $image.Permalink }}); background-size:cover"></div></a>
