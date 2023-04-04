@@ -57,7 +57,7 @@
             <hr>
             <div class="modal-body">
                 <h3>{{- .ind.indicator_name -}}</h3>
-                <p>  <em>{{- .ind.measurement_type -}} {{- .ind.units -}}</em></p>
+                <p>  <em>{{ .ind.measurement_type }} {{ .ind.units }}</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-{{ .ind.indicator_data_name }}-{{ .count }}"></div> 
                 
             </div>

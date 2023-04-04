@@ -71,9 +71,9 @@
 
 {{/*  CSS  */}}
 
-{{- $fontawesome_CSS := resources.Get "node_modules/@fortawesome/fontawesome-free/css/all.min.css" | resources.Fingerprint "sha512" -}}
+{{- $fontawesome_CSS := resources.Get "node_modules/@fortawesome/fontawesome-free/css/all.min.css" -}}
 
-<link rel="stylesheet" href="{{ $fontawesome_CSS.RelPermalink }}" integrity="{{ $fontawesome_CSS.Data.Integrity }}" />
+<link rel="stylesheet" href="{{ $fontawesome_CSS.RelPermalink }}" />
 
 {{/*  JS  */}}
 
@@ -140,9 +140,9 @@
 
     {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" -}}
     {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" -}}
-    {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" | resources.Fingerprint "sha512" -}}
+    {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" -}}
 
-    <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}" integrity="{{ $dtCSS.Data.Integrity }}">
+    <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}" >
 
     {{/*  JS  */}}
 
@@ -175,9 +175,9 @@
 
     <!-- leaflet CSS -->
 
-    {{- $leaflet_CSS := resources.Get "node_modules/leaflet/dist/leaflet.css" | resources.Fingerprint "sha512" -}}
+    {{- $leaflet_CSS := resources.Get "node_modules/leaflet/dist/leaflet.css" -}}
 
-    <link rel="stylesheet" href="{{ $leaflet_CSS.RelPermalink }}" integrity="{{ $leaflet_CSS.Data.Integrity }}" />
+    <link rel="stylesheet" href="{{ $leaflet_CSS.RelPermalink }}" />
 
     <!-- leaflet source -->
 
@@ -188,9 +188,9 @@
 
     <!-- leaflet easybutton CSS -->
 
-    {{- $easybutton_CSS := resources.Get "node_modules/leaflet-easybutton/src/easy-button.css" | resources.Fingerprint "sha512" -}}
+    {{- $easybutton_CSS := resources.Get "node_modules/leaflet-easybutton/src/easy-button.css" -}}
 
-    <link rel="stylesheet" href="{{ $easybutton_CSS.RelPermalink }}" integrity="{{ $easybutton_CSS.Data.Integrity }}" />
+    <link rel="stylesheet" href="{{ $easybutton_CSS.RelPermalink }}" />
 
     <!-- leaflet easybutton source -->
 
@@ -222,9 +222,9 @@
 
     {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" -}}
     {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" -}}
-    {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" | resources.Fingerprint "sha512" -}}
+    {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" -}}
 
-    <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}" integrity="{{ $dtCSS.Data.Integrity }}">
+    <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}" >
 
     {{/*  JS  */}}
 

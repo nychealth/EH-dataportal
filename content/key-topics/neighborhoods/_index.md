@@ -8,6 +8,7 @@ tags:
 categories: [neighborhoods]
 keyTopic: neighborhoods
 keywords: ["built environments","neighborhoods","active design","safety"]
+image: nyc-housing.jpg
 layout: single
 ---
 
