@@ -22,6 +22,7 @@ indicators:
 - header: Asthma triggers
   IndicatorID: 
   - 25
+  - 2404
 ---
 
 Smoking causes over a dozen cancers, heart disease, stroke, type 2 diabetes and many other diseases; it remains a leading cause of death in New York City (NYC). On average, people who do not smoke live about 10 years longer than people who do.
