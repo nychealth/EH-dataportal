@@ -37,10 +37,8 @@ pollutantMaps: >-
     PM<sub>2.5</sub> have been significantly reduced citywide. The areas where
     we see the highest levels of these pollutants has also shifted.</p> <p>Over
     time, there are better data available for us to understand the relationships
-    between land use and pollution, and the air pollution patterns have shifted
-    <a
-    href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq-cooking/">as
-    the city changes</a>. Although industrial land use has been a primary
+    between land use and pollution, and the air pollution patterns have shifted as
+    the city changes. Although industrial land use has been a primary
     indicator of BC, NO, NO<sub>2</sub> and PM<sub>2.5</sub> pollution in the
     past, in the most recent years of data we see evidence that the density of
     warehouses with loading docks better explains the difference in pollution
@@ -71,7 +69,7 @@ pollutantTrends: >-
     <p>Air pollution changes not only by neighborhood, but also by season. Some
     pollutants are highest in certain seasons of the year because of either
     weather patterns or emissions sources. For example, O<sub>3</sub> is
-    produced when NO<sub>X</sub>&nbsp;and other airborne pollutants react in the
+    produced when NO and NO<sub>2</sub> and other airborne pollutants react in the
     presence of heat and sunlight. Therefore, we only monitor O<sub>3</sub> in
     the summer when direct sunlight is highest and days are longer.</p><p>The
     figure below illustrates how the levels of each air pollutant change by
@@ -99,12 +97,12 @@ conclusion: >-
     important sources.  </p>
 moreInfo: >-
     <ul><li><a target="_blank" rel="noopener"
-    href="https://needed-komodo.cloudvent.net/key-topics/airquality/nyccas/Appendix1.pdf">Appendix
+    href="Appendix1.pdf">Appendix
     1 (PDF) </a>: Sampling Methodology and Data Sources for Emissions
     Indicators.</li><li><a target="_blank" rel="noopener"
     href="Appendix2.pdf">Appendix 2 (PDF) </a>: Seasonal Average Pollutant
     Maps.</li><li><a
-    href="https://needed-komodo.cloudvent.net/key-topics/airquality/nyccas/Appendix1.pdf">Appendix
+    href="Appendix3.pdf">Appendix
     3 (PDF)</a> : Community District Average Pollution Levels</li><li><a
     href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Traffic/index.html">The
     Public Health Impacts of PM<sub>2.5</sub> from Traffic Air Pollution data
