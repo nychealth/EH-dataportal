@@ -16,6 +16,9 @@ keywords:
   - roads
   - safety
 indicators:
+  - header: null
+    IndicatorID: 
+    - 2415
   - header: Walking
     IndicatorID:
       - 2133
@@ -37,9 +40,6 @@ indicators:
       - 2112
       - 2113
       - 2114
-  - header: null
-    IndicatorID: 
-    - 2415
 seo_title: Walking, driving, and cycling data for NYC
 seo_description: >-
   Explore data, visualizations, and more on ways that environments shape health
