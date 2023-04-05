@@ -4,15 +4,16 @@
     var topicIndicators;
     var sti;
     var thisInd;
+    var NeighborhoodName = "{{ $.Params.neighborhood }}"; // setting for use in visualizations
 
     // this gets a json of topics and nested indicators
-    async function getJSON() {
+    async function get_topic_indicators() {
         d3.json("https://raw.githubusercontent.com/nychealth/EH-dataportal/prod-deploy/IndicatorData/topic_indicators.json").then(data => {
             topicIndicators = data
         });
     }
 
-    getJSON();
+    get_topic_indicators();
 
     // this is called when an indicator is clicked. it produces the indicator's data-explorer URL and sends it to the modal in report_indicator.html.
 
@@ -115,17 +116,21 @@
 
 {{/* get report JSON from EHDP-data as a resource  */}}
 
-{{- $reports_data := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/reports/" $.Params.data_json ".json")) | transform.Unmarshal -}}
+{{/*  {{ warnf "%v" "@@@@ **** " $.Params.data_json }}  */}}
 
-{{/* First loop of report JSON to get first level parameters */}}
+{{- $topic_desc_indicators := index $.Site.Data.globals.NR_content $.Params.content_yml -}}
 
-{{- range $reports_data -}}
+{{/*  {{ if .File }}{{ warnf "%v" "@@@@ **** " .File.BaseFileName }}{{ end }}  */}}
+
+{{ $data_download_loc := (print .File.BaseFileName "_data.csv") }}
 
 
 <script>
-    var NeighborhoodName = "{{ .geo_entity_name }}"; // setting for use in visualizations
     var report_name = "{{ $.Params.title }}"
-    var data_download_loc = "{{ .data_download_loc }}"
+    var data_download_loc = "{{ $data_download_loc }}"
+
+    console.log("data_download_loc", data_download_loc)
+
 </script>
 
 <section class="container-fluid pl-lg-6" id="skip-header-target">
@@ -200,7 +205,7 @@
 
                 download = arqTable
                     .select(aq.not('report_id','indicator_id','data_field_name','start_date','end_date')) // drop unnecessary columns
-                    .filter(d => d.neighborhood == '{{ .geo_entity_name }}')
+                    .filter(d => d.neighborhood == NeighborhoodName)
                 
                 let downloadTableCSV = download.toCSV(); // format as CSV
                 // Data URI
@@ -208,7 +213,7 @@
                 let hiddenElement = document.createElement('a');
                 hiddenElement.href = csvData;
                 hiddenElement.target = '_blank';
-                hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - {{ .geo_entity_name }}.csv";
+                hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - " + NeighborhoodName + ".csv";
                 hiddenElement.click();
                 
                 gtag('event', 'file_download', {
@@ -221,63 +226,85 @@
 
         </script>
 
+
+        {{/*  {{- $reports_data := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/reports/" $.Params.data_json ".json")) | transform.Unmarshal -}}  */}}
+
+        {{/* First loop of report JSON to get first level parameters */}}
+
+        {{- range $reports_data -}}
+
         <div class="col-12 col-lg-9 overflow-hidden" id="primary-content">
             <div class="my-5">
                 <div class="px-lg-6 my-4">
                     <h1 class="report-title">{{ $.Params.title }} in<br>
                         <span class="sub-title">{{ $.Params.neighborhood }}</span>
                     </h1>
-                    <p class="report-description">{{ .report_description }}</p>
+                    <p class="report-description">{{ $.Params.title }}</p> 
 
-                    <p><strong style="color:#00923E">{{ .geo_entity_name }}</strong> includes ZIP Codes: <span
-                              class="home-label">{{ .zip_code }}</span>.</p>
+                    <p><strong style="color:#00923E">{{ $.Params.neighborhood }}</strong> includes ZIP Codes: 
+                        <span class="home-label">{{ .zip_code }}</span>. {{/*  from data or frontmatter  */}}
+                    </p> 
 
                     <hr class="mt-4">
 
                     <div>
 
+                        {{/*
+                            this ranges over topics, which have the "rows" in them. this should instead range 
+                                over topics in a YAML file in data. topics have names and descriptions, and have 
+                                indicator IDs nested underneath. the indicator IDs are used to subset the data file.
+                        */}}
+
+                        {{/*  reportLevel3_new should have all columns  */}}
+
                         {{- range $index, $content := .report_content -}}
-                        {{- $count :=add $index 1 -}}
-                        {{- $.Scratch.Set "location" .geo_entity_name -}}
-                        {{- $.Scratch.Set "borough" .borough_name -}}
+
+                            {{- $count := add $index 1 -}}
+                            {{- $.Scratch.Set "location" $.Params.neighborhood -}}
+                            {{- $.Scratch.Set "borough" .borough_name -}} {{/*  from data  */}}
 
                         <div class="report-topic">
 
                             <div class="topic-header">
-                                <h2>{{ .report_topic }}</h2>
+                                <h2>{{ .report_topic }}</h2> {{/*  from YAML  */}}
                                 <p>
-                                    {{- .report_topic_description -}}
+                                    {{- .report_topic_description -}} {{/*  from YAML  */}}
                                 </p>
                             </div>
 
                             <div class="container-fluid px-0 mb-4">
                                 <div class="row indicator-headings mb-2">
-                                    <div class="col-6 col-md-5 pl-3">
-                                        Topic
-                                    </div>
+                                    <div class="col-6 col-md-5 pl-3">Topic</div>
                                     <div class="col-6 col-md-4">
 
                                         <div class="position-relative">
-                                            Comparison<br>
-                                            <span class="meta"> to NYC average</span></a>
+                                            Comparison<br><span class="meta"> to NYC average</span>
                                             <a href="#" data-toggle="modal" data-target="#modal-rank"
                                                class="info-modal"><i class="fas fa-question-circle fs-rg"></i></a>
                                         </div>
 
                                     </div>
                                     <div class="d-none d-md-inline col-md-3">
-                                        Rank<br>
-                                        <span class="meta"> out of the 42 neighborhoods</span>
+                                        Rank<br><span class="meta"> out of the 42 neighborhoods</span>
                                     </div>
                                 </div>
 
-                                {{- with .report_topic_data -}}
-                                {{- range sort . "data_value_rank" "desc" -}}
-                                {{- $location := $.Scratch.Get "location" -}}
-                                {{- $borough := $.Scratch.Get "borough" -}}
-                                {{- partial "report_indicator.html" (dict "location" $location "borough" $borough "ind" . "count" $count) -}}
+                                {{/*  from data, filtering on: neighborhood, topic  */}}
+
+                                {{- with .report_topic_data -}} {{/*  from data  */}}
+
+                                    {{- range sort . "data_value_rank" "desc" -}} {{/*  ranging over rows - add date descending, index 0  */}}
+
+                                        {{- $location := $.Scratch.Get "location" -}}
+                                        {{- $borough := $.Scratch.Get "borough" -}}
+                                        
+                                        {{/*  "ind" is a row  */}}
+                                        {{- partial "report_indicator.html" (dict "location" $location "borough" $borough "ind" . "count" $count) -}}
+
+                                    {{- end -}}
+
                                 {{- end -}}
-                                {{- end -}}
+
                             </div>
                             <!-- .container -->
 
@@ -298,7 +325,7 @@
 {{- if $.Params.content_yml -}}
 
 {{/* Variable to load the the data file from the content_yml frontmatter */}}
-{{- $content := index $.Site.Data.globals.report_content $.Params.content_yml -}}
+{{- $content := index $.Site.Data.globals.NR_footer $.Params.content_yml -}}
 <section class="related-reading">
     <div class="container">
         <div class="row">
