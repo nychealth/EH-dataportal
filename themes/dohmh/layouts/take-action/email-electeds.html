@@ -200,22 +200,23 @@
     <div class="row my-4 hide" id="emailContainer">
       <div class="col-md-6">
         <h3 id="tips">Email tips</h3>
-        <p>In the box to the right, you can write an email to your elected officials. <strong>Note:</strong> Congress members can only be reached directly by phone, but you can use the e-mail you write as a script for when you call them. Here are some tips for writing an effective email/script.</p>
-        <p><strong>Identify yourself as a constituent:</strong> tell them where you live and that they are your elected representative. For example: <em>I live on Flatbush Avenue in Brooklyn, in your district."</em></p>
-        <p><strong>State your concerns.</strong> For example: <em>Our neighborhood's rates of childhood asthma are among the highest in the city.</em></p>
+        <p>In the box to the right, you can write an email to your elected officials. Here are some tips for writing an effective email/script.</p>
+        <hr class="my-2">
+        <p><strong>Identify yourself as a constituent:</strong> tell them where you live and that they are your elected representative. For example: <em>"I live on Hunts Point Ave in the Bronx, in your district."</em></p>
+        <p><strong>State your concerns.</strong> For example: <em>"Our neighborhood's rates of childhood asthma are among the highest in the city."</em></p>
 
-        <p><strong>Tell your story:</strong> Offer some brief detail on how you see this environmental health issue affecting you and the people you know.</p>
+        <p><strong>Tell your story:</strong> Offer some brief detail on how you see this environmental health issue affecting you and the people you know. For example: <em>"Last year, my daughter was diagnosed with asthma, and this issue is a challenge for our whole family."</em></p>
         
-        <p><strong>Cite data:</strong> For example: <em>"According to data on housing conditions, over 50% of households in our neighborhood are rent burdened. (NYC Environment and Health Data Portal: https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-explorer/housing-stability/?id=2336#display=summary)" </em></p>
+        <p><strong>Cite data:</strong> For example: <em>"According to data on housing conditions, 75% of renters' households in our neighborhood have maintenance problems that threaten health. (NYC Environment and Health Data Portal: https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-explorer/housing-maintenance/?id=2399#display=map)" </em></p>
 
         <p><strong>Make a request:</strong> You can ask them where they stand on the issue, what they're doing to improve it, or what services are available to help their constituents.</p>
         <hr class="my-2">
-        <em>We can't find email addresses for some elected officials, but you can always call their offices to share your concerns.</em>
+        <em>We can't find email addresses for some elected officials, but you can always call their offices to share your concerns, and use your email as a script when you speak to a staffer.</em>
       </div>
 
       <div class="col-md-6">
         <label for="subject">Subject:</label>
-        <textarea id="subject" style="width:100%" spellcheck="true">A constituent with concerns</textarea>
+        <textarea id="subject" style="width:100%" spellcheck="true">A constituent with concerns.</textarea>
         <br>
 
         <label for="textEntry">Write your email:</label>
@@ -326,7 +327,7 @@ function getData() {
 
     // send CM info to page (static table)
     document.getElementById('cmName').innerHTML = districtInfo.CouncilMember
-    document.getElementById('cmWebsite').innerHTML = 'n/a'
+    document.getElementById('cmWebsite').innerHTML = `<a href="https://council.nyc.gov/district-${districtInfo.District}">Website</a>`
     document.getElementById('cmPhone').innerHTML = 'n/a'
     document.getElementById('cmEmail').innerHTML = districtInfo.Email
     
