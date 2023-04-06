@@ -25,7 +25,7 @@ Proper sanitation is a crucial component of public health and of safe, health, a
 
 <div class="mx-4 mt-2 mb-4 p-2" style="background-color:#fafafa;">
 
-**Trash** can pollute our soil, water, and air, becoming an issue  of health, quality of life and equity. New Yorkers live, work, &and play in our public spaces: when they aren't clean, they're not welcoming, safe, healthy places for us. 
+**Trash** can pollute our soil, water, and air, becoming an issue  of health, quality of life and equity. New Yorkers live, work, and play in our public spaces: when they aren't clean, they're not welcoming, safe, healthy places for us. 
 
 Trash feeds populations of pests like **cockroaches and rats**, which can damage property, degrade housing, contaminate food, and transmit diseases. Pests can trigger asthma and other health issues. These pests are unfortunately no surprise to any New Yorker, but due to differences in sanitation, they are more prevalent in some neighborhoods than others. 
 
