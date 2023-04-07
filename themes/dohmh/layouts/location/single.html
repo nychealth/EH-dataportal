@@ -116,13 +116,7 @@
 
 {{/* get report JSON from EHDP-data as a resource  */}}
 
-{{/*  {{ warnf "%v" "@@@@ **** " $.Params.data_json }}  */}}
-
-
-{{/*  {{ if .File }}{{ warnf "%v" "@@@@ **** " .File.BaseFileName }}{{ end }}  */}}
-
 {{ $data_download_loc := (print .File.BaseFileName "_data.csv") }}
-
 
 <script>
     var report_name = "{{ $.Params.title }}"
@@ -152,26 +146,26 @@
                     <div class="row no-gutters">
                         <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">What NYC
                             neighborhood are you interested in?</label>
-                            <div class="col-9">
-                                <div class="autocomplete-wrapper">
-                                    <select name="last-neighborhood" id="last-neighborhood">
-                                        <option value="">Select a neighborhood</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <button type="submit" class="btn-primary btn btn-block fs-sm">Go</button>
+                        <div class="col-9">
+                            <div class="autocomplete-wrapper">
+                                <select name="last-neighborhood" id="last-neighborhood">
+                                    <option value="">Select a neighborhood</option>
+                                </select>
                             </div>
                         </div>
-                    </form>
-                    <hr class="mt-4 mb-1">
-                    
-                    <button onclick="downloadData()" class="btn btn-sm btn-block btn-report" target="_blank"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>
-                    
-                </div>
-                <!-- .sticky-top -->
+                        <div class="col-3">
+                            <button type="submit" class="btn-primary btn btn-block fs-sm">Go</button>
+                        </div>
+                    </div>
+                </form>
+                <hr class="mt-4 mb-1">
+                
+                <button onclick="downloadData()" class="btn btn-sm btn-block btn-report" target="_blank"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>
                 
             </div>
+            <!-- .sticky-top -->
+            
+        </div>
             <!-- .col -->
             
             <script>
@@ -311,67 +305,67 @@
         </div>
     </div>
     <!-- .row -->
-        
-    </section>
-    {{/* Make sure we know what report content to load and that content_yml is set. If not we dont display the content */}}
-    {{- if $.Params.content_yml -}}
+    
+</section>
+{{/* Make sure we know what report content to load and that content_yml is set. If not we dont display the content */}}
+{{- if $.Params.content_yml -}}
 
-    {{/* Variable to load the the data file from the content_yml frontmatter */}}
-    {{- $content := index $.Site.Data.globals.NR_footer $.Params.content_yml -}}
-    <section class="related-reading">
-        <div class="container">
-            <div class="row">
-                
-                <div class="col-lg">
-                    <div class="card bg-white text-black mb-2">
-                        <div class="card-header">What is the City doing?</div>
-                        <div class="card-body">
-                            <ul class="list-group list-group-flush">
-                                {{- range $content.city -}}
-                                <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
-                                    href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
-                                    {{- end -}}
-                            </ul>
-                        </div>
+{{/* Variable to load the the data file from the content_yml frontmatter */}}
+{{- $content := index $.Site.Data.globals.NR_footer $.Params.content_yml -}}
+<section class="related-reading">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-lg">
+                <div class="card bg-white text-black mb-2">
+                    <div class="card-header">What is the City doing?</div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {{- range $content.city -}}
+                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
+                                href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
+                                {{- end -}}
+                        </ul>
                     </div>
                 </div>
-                <!-- .col for city -->
-                
-                <div class="col-lg">
-                    <div class="card bg-white text-black mb-2">
-                        <div class="card-header">What can you do?</div>
-                        <div class="card-body">
-                            <ul class="list-group list-group-flush">
-                                {{- range $content.you -}}
-                                <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
-                                    href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
-                                    {{- end -}}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- .col for you -->
-                
-                <div class="col-lg">
-                    <div class="card bg-white text-black">
-                        <div class="card-header">More NYC neighborhood data</div>
-                        <div class="card-body">
-                            <ul class="list-group list-group-flush">
-                                {{- range $content.data -}}
-                                <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
-                                    href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
-                                    {{- end -}}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- .col for data -->
-                
-                <!-- .row -->
             </div>
+            <!-- .col for city -->
+            
+            <div class="col-lg">
+                <div class="card bg-white text-black mb-2">
+                    <div class="card-header">What can you do?</div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {{- range $content.you -}}
+                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
+                                href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
+                                {{- end -}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- .col for you -->
+            
+            <div class="col-lg">
+                <div class="card bg-white text-black">
+                    <div class="card-header">More NYC neighborhood data</div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {{- range $content.data -}}
+                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
+                                href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
+                                {{- end -}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- .col for data -->
+            
+            <!-- .row -->
         </div>
-    </section>
-    {{- end -}}
+    </div>
+</section>
+{{- end -}}
     
 <!-- Modal-Rank -->
 <div class="modal fade report-modal" id="modal-rank" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
