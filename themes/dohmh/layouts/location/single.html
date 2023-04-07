@@ -49,7 +49,7 @@
     
     let summarySpec;
     
-    d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/summarySpec.json").then(data => {
+    d3.json("{{ site.baseURL }}/js/neighborhood-reports/spec/summarySpec.json").then(data => {
         
         summarySpec = data;
         
@@ -63,7 +63,7 @@
     
     let mapSpec;
     
-    d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/mapSpec.json").then(data => {
+    d3.json("{{ site.baseURL }}/js/neighborhood-reports/spec/mapSpec.json").then(data => {
         
         mapSpec = data;
         
