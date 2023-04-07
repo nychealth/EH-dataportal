@@ -265,7 +265,7 @@
 
                                 {{/*  subsetting data  */}}
                                 
-                                {{- $reports_data := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/reportLevel3_new.json")) | transform.Unmarshal -}}
+                                {{- $reports_data := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/report_content.json")) | transform.Unmarshal -}}
 
                                 {{- $topic_desc_indicators := index $.Site.Data.globals.NR_content $.Params.content_yml -}}
 
