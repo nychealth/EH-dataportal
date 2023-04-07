@@ -203,7 +203,7 @@
                 function downloadData() {
                     
                     download = arqTable
-                    .select(aq.not('report_id','indicator_id','data_field_name','start_date','end_date')) // drop unnecessary columns
+                    .select(aq.not('report_id','indicator_id','indicator_data_name','start_date','end_date')) // drop unnecessary columns
                     .filter(d => d.neighborhood == NeighborhoodName)
                     
                     let downloadTableCSV = download.toCSV(); // format as CSV
@@ -275,7 +275,7 @@
 
 
                                 {{/*  {{ $data := where $reports_data "MeasureID" "in" $rt.MeasureID }}  */}}
-                                {{ $data := where (where $reports_data "geo_entity_name" $.Params.neighborhood) "MeasureID" "in" $rt.MeasureID }}
+                                {{ $data := where (where $reports_data "neighborhood" $.Params.neighborhood) "MeasureID" "in" $rt.MeasureID }}
 
                                 {{/*  {{ warnf "@@@@@ >>> " $rt.report_topic }}  */}}
                                 {{/*  {{ warnf "@@@@@ >>> " (index $data 0 "report_topic") }}  */}}
