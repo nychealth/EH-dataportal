@@ -17,6 +17,8 @@ const renderMap = (
         
         const mapYears =  [...new Set(data.map(item => item.Time))];
 
+        // debugger;
+
         // console.log("mapYears [map.js]", mapYears);
 
         let mapGeoType            = data[0].GeoType;
@@ -82,6 +84,8 @@ const renderMap = (
             topoFile = 'NYCKids_2017.topo.json';
         } else if (mapGeoType === "NYCKIDS2019") {
             topoFile = 'NYCKids_2019.topo.json';
+        } else if (mapGeoType === "NYCKIDS2021") {
+            topoFile = 'NYCKids_2021.topo.json';
         } else if (mapGeoType === "Borough") {
             topoFile = 'borough.topo.json';
         }
@@ -170,7 +174,7 @@ const renderMap = (
                                     "value": "#808080"
                                 },
                                 "stroke": {
-                                    "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
+                                    "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
                                     // "value": "#161616"
                                     "value": "#dadada"
                                 },
@@ -242,7 +246,7 @@ const renderMap = (
                             }
                         },
                         "stroke": {
-                            "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
+                            "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
                             "value": "white"
                         },
                         "strokeWidth": {

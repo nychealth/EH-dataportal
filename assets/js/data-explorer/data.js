@@ -419,7 +419,7 @@ const joinData = () => {
         .orderby(aq.desc('end_period'), aq.desc('GeoRank'))
         .reify()
 
-    // joinedAqData.print()
+    joinedAqData.print()
 
     // data for summary table
 
@@ -444,6 +444,8 @@ const joinData = () => {
         ) 
         // .impute({ Value: () => NaN })
         .objects()
+    
+    console.log("mapData", mapData);
 
     // map for trend chart
 

@@ -260,8 +260,6 @@
             </div>
             </div>
             </div>
-    
-    
             <!-- About text (hidden on mobile)-->
             <div class="d-none d-lg-block">
                 <span class='home-label d-none d-md-block border-bottom mt-3 mb-1 font-weight-bold'>About
@@ -276,10 +274,13 @@
             </div>
     
             <!-- Keywords partial -->
-            <div class="d-none d-lg-block p-2 borderbox mt-2 mb-2">
+            <div class="d-none d-lg-block p-2 borderbox my-4 mb-2">
                 {{- partial "keywords" . -}}
     
             </div>
+            <p class="home-label">Concerned? Take action:
+            <a href="../../take-action/email-electeds" class="btn btn-sm btn-block btn-outline-primary">Email elected officials about this.</a>
+            </p>
         </div>
         
         <div class="col-lg-7 mx-auto col-md-12">
@@ -401,7 +402,6 @@
 
                     </div>
                 
-                    <span id="mapTitle" class="home-label border-bottom"></span>
                     <div id="map" class="vis-bucket"></div>
 
                     <div id="map-unreliability" class="pt-3">
@@ -439,7 +439,6 @@
             
                     </div>
 
-                    <span id="trendTitle" class="home-label border-bottom"></span>
                     <!-- INSERT TREND CHART HERE -->
                     <div id="trend" class="vis-bucket"></div>
 
