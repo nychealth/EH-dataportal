@@ -437,7 +437,11 @@ const joinData = () => {
     // data for map
 
     mapData = joinedAqData
-        .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
+        // remove Citywide
+        .filter(
+            d => !op.match(d.GeoType, /Citywide/),
+            d => !op.match(d.Geography, /Harborwide/)
+        ) 
         // .impute({ Value: () => NaN })
         .objects()
     
