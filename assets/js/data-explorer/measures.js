@@ -259,9 +259,39 @@ const updateMapData = (e) => {
         
         $('.mapmeasuresbutton').removeClass("active");
         $('.mapmeasuresbutton').attr('aria-selected', false);
-        
+
+        // allow map to persist when changing tabs
+
+        selectedMapMeasure = true;
+
     }
     
+    if (typeof e.target.dataset.geo != 'undefined') {
+        
+        // console.log("geo", e.target.dataset);
+
+        // get selected geo
+        
+        geo = String(e.target.dataset.geo);
+
+        measureId = $('.mapmeasuresbutton.active').attr("data-measure-id")
+        time = $('.maptimesbutton.active').attr("data-time")
+
+        // console.log("*geo*:", geo, "*measureId*:", measureId, "*time*:", time);
+
+        // persistent selection
+
+        // geos
+
+        $('.mapgeosbutton').removeClass("active");
+        $('.mapgeosbutton').attr('aria-selected', false);
+
+        // allow map to persist when changing tabs
+
+        selectedMapGeo = true;
+
+    }
+
     if (typeof e.target.dataset.time != 'undefined') {
         
         // console.log("time", e.target.dataset);
@@ -282,31 +312,14 @@ const updateMapData = (e) => {
         $('.maptimesbutton').removeClass("active");
         $('.maptimesbutton').attr('aria-selected', false);
 
-    }
-    
-    if (typeof e.target.dataset.geo != 'undefined') {
-        
-        // console.log("geo", e.target.dataset);
+        // allow map to persist when changing tabs
 
-        // get selected time
-        
-        geo = String(e.target.dataset.geo);
-
-        measureId = $('.mapmeasuresbutton.active').attr("data-measure-id")
-        time = $('.maptimesbutton.active').attr("data-time")
-
-        // console.log("*geo*:", geo, "*measureId*:", measureId, "*time*:", time);
-
-        // persistent selection
-
-        // times
-
-        $('.mapgeosbutton').removeClass("active");
-        $('.mapgeosbutton').attr('aria-selected', false);
+        selectedMapTime = true;
 
     }
 
-    console.log("*geo*:", geo, "*measureId*:", measureId, "*time*:", time);
+
+    console.log("*measureId*", measureId, "*geo*", geo, "*time*", time);
     // console.log("geo", geo);
     // console.log("measureId", measureId);
     // console.log("time", time);
@@ -347,29 +360,25 @@ const updateMapData = (e) => {
 
     // filter map data using selected measure and time
 
-    let filteredMapData =
+    filteredMapData =
         mapData.filter(
             obj => obj.MeasureID == measureId &&
             obj.Time == time &&
             prettifyGeoType(obj.GeoType) == geo
         );
 
-    // console.log("mapMeasureData", mapMeasureData);
+    console.log("filteredMapData [updateMapData]", filteredMapData);
 
     // get the highest GeoRank, then keep just that geo
 
-    // let maxGeoRank = Math.max(mapMeasureData[0].GeoRank);
-    // filteredMapData = mapMeasureData.filter(obj => obj.GeoRank === maxGeoRank)
+    // let maxGeoRank = Math.max(filteredMapData[0].GeoRank);
+    // filteredMapData = filteredMapData.filter(obj => obj.GeoRank === maxGeoRank)
 
     // ----- render the map -------------------------------------------------- //
 
     renderMap(filteredMapData, selectedMapMetadata);
 
     updateChartPlotSize();
-
-    // allow map to persist when changing tabs
-
-    selectedMapMeasure = true;
 
 }
 
@@ -578,7 +587,7 @@ const updateTrendComparisonsData = (e) => {
             .derive({"year": d => op.year(d.end_period)})
             .filter(d => d.year > op.max(d.year) - 3)
             .select(aq.not("TimeDescription", "year"))
-            .print(20)
+            // .print(20)
 
     }
 
@@ -1144,74 +1153,126 @@ const renderMeasures = async () => {
         tabTrend.setAttribute('aria-selected', false);
         tabLinks.setAttribute('aria-selected', false);
 
+        console.log("mapData [showMap]", mapData);
 
-        // ----- allow map to persist when changing tabs -------------------------------------------------- //
+        if (!selectedMapGeo && !selectedMapTime && !selectedMapMeasure) {
 
-        if (!selectedMapMeasure) {
+            console.log(">> no selected [showMap]");
 
-            // this is all inside the conditional, because if a user clicks on this tab again
-            //  after selecting a measure, we don't want to recompute everything. We'll use the
-            //  values created by the update function
+            // let mapMeasureData;
+            // let mapTimeData;
+            // let defaultMapMeasureId;
+            let latest_time;
+            let maxGeoPretty;
+
 
             // ----- get metatadata for default measure -------------------------------------------------- //
 
             // get default measure id
 
-            const defaultMapMeasureId = defaultMapMetadata[0].MeasureID;
-
-            // extract metadata for info boxes
-
-            const about   = defaultMapMetadata[0]?.how_calculated;
-            const sources = defaultMapMetadata[0].Sources;
-            const measure = defaultMapMetadata[0].MeasurementType;
-
-
-            // ----- set measure info boxes -------------------------------------------------- //
-
-            defaultMapAbout   =
-                `<h6>${indicatorName} - ${measure}</h6>
-                <p>${about}</p>`;
-
-            defaultMapSources =
-                `<h6>${indicatorName} - ${measure}</h6>
-                <p>${sources}</p>`;
-
-            // render measure info boxes
-
-            renderTitleDescription(indicatorShortName, indicatorDesc);
-            renderAboutSources(defaultMapAbout, defaultMapSources);
-
+            let defaultMapMeasureId = defaultMapMetadata[0].MeasureID;
 
             // ----- create dataset -------------------------------------------------- //
 
             // filter map data using default measure
 
-            let mapMeasureData = mapData.filter(
+            filteredMapData = mapData.filter(
                     obj => obj.MeasureID === defaultMapMeasureId
                 );
 
-            // get the latest end_period
+            console.log("filteredMapData [showMap]", filteredMapData);
 
-            let latest_end_period = Math.max(mapMeasureData[0].end_period);
+            // ----- allow map to persist when changing tabs -------------------------------------------------- //
 
-            let mapTimeData = mapMeasureData.filter(
-                    obj => obj.end_period === latest_end_period
+            // if (!selectedMapMeasure) {
+
+                // console.log(">> no selectedMapMeasure");
+
+                // this is all inside the conditional, because if a user clicks on this tab again
+                //  after selecting a measure, we don't want to recompute everything. We'll use the
+                //  values created by the update function
+
+                // ----- get metatadata for default measure -------------------------------------------------- //
+
+                // get default measure id
+
+                // defaultMapMeasureId = defaultMapMetadata[0].MeasureID;
+
+                // extract metadata for info boxes
+
+                const about   = defaultMapMetadata[0]?.how_calculated;
+                const sources = defaultMapMetadata[0].Sources;
+                const measure = defaultMapMetadata[0].MeasurementType;
+
+
+                // ----- set measure info boxes -------------------------------------------------- //
+
+                defaultMapAbout   =
+                    `<h6>${indicatorName} - ${measure}</h6>
+                    <p>${about}</p>`;
+
+                defaultMapSources =
+                    `<h6>${indicatorName} - ${measure}</h6>
+                    <p>${sources}</p>`;
+
+                // render measure info boxes
+
+                renderTitleDescription(indicatorShortName, indicatorDesc);
+                renderAboutSources(defaultMapAbout, defaultMapSources);
+
+
+                // ----- create dataset -------------------------------------------------- //
+
+                // filter map data using default measure
+
+                filteredMapData = filteredMapData.filter(
+                        obj => obj.MeasureID === defaultMapMeasureId
+                    );
+
+                console.log("filteredMapData [no selectedMapMeasure]", filteredMapData);
+
+            // }
+
+
+            // if (!selectedMapTime) {
+
+                // console.log(">> no selectedMapTime");
+
+                // get the latest end_period
+
+                let latest_end_period = Math.max(filteredMapData[0].end_period);
+
+                filteredMapData = filteredMapData.filter(
+                        obj => obj.end_period === latest_end_period
+                    );
+
+                latest_time = filteredMapData[0].Time
+
+                console.log("filteredMapData [no selectedMapTime]", filteredMapData);
+
+            // }
+
+            // if (!selectedMapGeo) {
+
+                // console.log(">> no selectedMapGeo [showMap]");
+
+                // get the highest GeoRank for this measure and end_period
+
+                let maxGeoRank = Math.max(filteredMapData[0].GeoRank);
+
+                filteredMapData = filteredMapData.filter(
+                    obj => obj.GeoRank === maxGeoRank
                 );
 
-            let latest_time = mapTimeData[0].Time
+                let maxGeo = filteredMapData[0].GeoType
+                maxGeoPretty = prettifyGeoType(maxGeo)
 
-            // get the highest GeoRank for this measure and end_period
+                console.log("filteredMapData [no selectedMapGeo]", filteredMapData);
 
-            let maxGeoRank = Math.max(mapTimeData[0].GeoRank);
+                console.log("maxGeo", maxGeo);
+                console.log("maxGeoPretty", maxGeoPretty);
 
-            filteredMapData = mapTimeData.filter(
-                obj => obj.GeoRank === maxGeoRank
-            );
-
-            let maxGeo = prettifyGeoType(filteredMapData[0].GeoType)
-
-            // console.log("maxGeo", maxGeo);
-
+            // }
 
             // ----- render the map -------------------------------------------------- //
 
@@ -1237,7 +1298,7 @@ const renderMeasures = async () => {
 
             // set this element as active & selected
 
-            let mapGeoEl = document.querySelector(`.mapgeosbutton[data-geo='${maxGeo}']`)
+            let mapGeoEl = document.querySelector(`.mapgeosbutton[data-geo='${maxGeoPretty}']`)
             let mapMeasureEl = document.querySelector(`.mapmeasuresbutton[data-measure-id='${defaultMapMeasureId}']`)
             let mapTimeEl = document.querySelector(`.maptimesbutton[data-time='${latest_time}']`)
 
@@ -1253,6 +1314,8 @@ const renderMeasures = async () => {
 
         } else {
 
+            console.log("else [showMap]");
+
             // if there was a map already, restore it
 
             // ----- set measure info boxes -------------------------------------------------- //
@@ -1261,7 +1324,7 @@ const renderMeasures = async () => {
 
             // ----- render the map -------------------------------------------------- //
 
-            renderMap(filteredMapData, defaultMapMetadata);
+            renderMap(filteredMapData, selectedMapMetadata);
 
             updateChartPlotSize();
         }
@@ -1570,7 +1633,7 @@ const renderMeasures = async () => {
                     .derive({"year": d => op.year(d.end_period)})
                     .filter(d => d.year > op.max(d.year) - 3)
                     .select(aq.not("TimeDescription", "year"))
-                    .print(20)
+                    // .print(20)
 
             }
 
