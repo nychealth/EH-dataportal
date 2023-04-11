@@ -238,16 +238,18 @@ const updateMapData = (e) => {
 
     let measureId;
     let time;
+    let geo;
 
     if (typeof e.target.dataset.measureId != 'undefined') {
 
-        // console.log("e", e.target.dataset);
+        // console.log("measureId", e.target.dataset);
         
         // get meaasureId of selected dropdown element
         
         measureId = parseInt(e.target.dataset.measureId);
         
         time = $('.maptimesbutton.active').attr("data-time")
+        geo = $('.mapgeosbutton.active').attr("data-geo")
 
         // console.log(">>> measure", "measureId", measureId, "time", time);
 
@@ -262,14 +264,15 @@ const updateMapData = (e) => {
     
     if (typeof e.target.dataset.time != 'undefined') {
         
-        // console.log("e", e.target.dataset);
+        // console.log("time", e.target.dataset);
 
         // get selected time
         
         time = String(e.target.dataset.time);
 
         measureId = $('.mapmeasuresbutton.active').attr("data-measure-id")
-        
+        geo = $('.mapgeosbutton.active').attr("data-geo")
+
         // console.log(">>> time", "measureId", measureId, "time", time);
 
         // persistent selection
@@ -280,6 +283,33 @@ const updateMapData = (e) => {
         $('.maptimesbutton').attr('aria-selected', false);
 
     }
+    
+    if (typeof e.target.dataset.geo != 'undefined') {
+        
+        // console.log("geo", e.target.dataset);
+
+        // get selected time
+        
+        geo = String(e.target.dataset.geo);
+
+        measureId = $('.mapmeasuresbutton.active').attr("data-measure-id")
+        time = $('.maptimesbutton.active').attr("data-time")
+
+        // console.log("*geo*:", geo, "*measureId*:", measureId, "*time*:", time);
+
+        // persistent selection
+
+        // times
+
+        $('.mapgeosbutton').removeClass("active");
+        $('.mapgeosbutton').attr('aria-selected', false);
+
+    }
+
+    console.log("*geo*:", geo, "*measureId*:", measureId, "*time*:", time);
+    // console.log("geo", geo);
+    // console.log("measureId", measureId);
+    // console.log("time", time);
 
 
     // set this element as active & selected
@@ -317,18 +347,19 @@ const updateMapData = (e) => {
 
     // filter map data using selected measure and time
 
-    let mapMeasureData =
+    let filteredMapData =
         mapData.filter(
             obj => obj.MeasureID == measureId &&
-            obj.Time == time
+            obj.Time == time &&
+            prettifyGeoType(obj.GeoType) == geo
         );
 
     // console.log("mapMeasureData", mapMeasureData);
 
     // get the highest GeoRank, then keep just that geo
 
-    let maxGeoRank = Math.max(mapMeasureData[0].GeoRank);
-    filteredMapData = mapMeasureData.filter(obj => obj.GeoRank === maxGeoRank)
+    // let maxGeoRank = Math.max(mapMeasureData[0].GeoRank);
+    // filteredMapData = mapMeasureData.filter(obj => obj.GeoRank === maxGeoRank)
 
     // ----- render the map -------------------------------------------------- //
 
@@ -741,13 +772,15 @@ const renderMeasures = async () => {
 
     // ----- set dropdowns for this indicator ================================================== //
 
-    const dropdownTableGeo = contentTable.querySelector('div[aria-labelledby="dropdownTableGeo"]');
-    const dropdownTableTime = contentTable.querySelector('div[aria-labelledby="dropdownTableTime"]');
+    const dropdownTableGeos = contentTable.querySelector('div[aria-labelledby="dropdownTableGeos"]');
+    const dropdownTableTimes = contentTable.querySelector('div[aria-labelledby="dropdownTableTimes"]');
 
     const dropdownTrendComparisons = contentTrend.querySelector('div[aria-labelledby="dropdownTrendComparisons"]');
 
     const dropdownMapMeasures = contentMap.querySelector('div[aria-labelledby="dropdownMapMeasures"]');
     const dropdownMapTimes = contentMap.querySelector('div[aria-labelledby="dropdownMapTimes"]');
+    const dropdownMapGeos = contentMap.querySelector('div[aria-labelledby="dropdownMapGeos"]');
+
     const dropdownLinksMeasures = contentLinks.querySelector('div[aria-labelledby="dropdownLinksMeasures"]');
 
     // console.log("dropdownTrendComparisons", dropdownTrendComparisons);
@@ -755,20 +788,24 @@ const renderMeasures = async () => {
 
     // clear Measure Dropdowns
 
-    dropdownTableGeo.innerHTML = ``;
-    dropdownTableTime.innerHTML = ``;
+    dropdownTableGeos.innerHTML = ``;
+    dropdownTableTimes.innerHTML = ``;
 
     dropdownTrendComparisons.innerHTML = ``;
 
     dropdownMapMeasures.innerHTML = ``;
     dropdownMapTimes.innerHTML = ``;
+    dropdownMapGeos.innerHTML = ``;
+
     dropdownLinksMeasures.innerHTML = ``;
 
     mapMeasures.length = 0;
     trendMeasures.length = 0;
 
 
-    // create years dropdown for table
+    // ----- create dropdowns for table ================================================== //
+
+    // ----- years -------------------------------------------------- //
 
     const tableYears = [...new Set(tableData.map(item => item.Time))];
 
@@ -782,38 +819,66 @@ const renderMeasures = async () => {
 
             selectedTableYears = [year];
 
-            dropdownTableTime.innerHTML +=
+            dropdownTableTimes.innerHTML +=
                 `<label class="dropdown-item checkbox-year"><input class="largerCheckbox" type="checkbox" name="year" value="${year}" checked /> ${year}</label>`;
 
         } else {
 
-            dropdownTableTime.innerHTML +=
+            dropdownTableTimes.innerHTML +=
                 `<label class="dropdown-item checkbox-year"><input class="largerCheckbox" type="checkbox" name="year" value="${year}" /> ${year}</label>`;
         }
 
     });
 
 
+    // ----- geo types -------------------------------------------------- //
+
     // create geo dropdown for table (using pretty geotypes, keeping georank order)
 
     const tableGeoTypes = [...new Set(tableData.map(item => prettifyGeoType(item.GeoType)))];
-    const dropdownGeoTypes = geoTypes.filter(g => tableGeoTypes.includes(g))
+    const dropdownTableGeoTypes = geoTypes.filter(g => tableGeoTypes.includes(g))
 
     // console.log("geoTypes:", geoTypes);
-    // console.log("dropdownGeoTypes:", dropdownGeoTypes);
+    // console.log("dropdownTableGeoTypes:", dropdownTableGeoTypes);
 
-    dropdownGeoTypes.forEach(geo => {
+    dropdownTableGeoTypes.forEach(geo => {
 
         selectedTableGeography.push(geo);
         
         // console.log("selectedTableGeography:", selectedTableGeography);
 
-        dropdownTableGeo.innerHTML += `<label class="dropdown-item checkbox-geo"><input class="largerCheckbox" type="checkbox" value="${geo}" checked /> ${geo}</label>`;
+        dropdownTableGeos.innerHTML += `<label class="dropdown-item checkbox-geo"><input class="largerCheckbox" type="checkbox" value="${geo}" checked /> ${geo}</label>`;
 
     });
 
 
-    // ----- handle measures for this indicator -------------------------------------------------- //
+    // ----- create dropdowns for map ================================================== //
+
+    // ----- geo types -------------------------------------------------- //
+
+    // create geo dropdown for table (using pretty geotypes, keeping georank order)
+
+    const mapGeoTypes = [...new Set(mapData.map(item => prettifyGeoType(item.GeoType)))];
+    const dropdownMapGeoTypes = geoTypes.filter(g => mapGeoTypes.includes(g))
+
+    // console.log("geoTypes:", geoTypes);
+    // console.log("dropdownMapGeoTypes:", dropdownMapGeoTypes);
+
+    dropdownMapGeoTypes.forEach(geo => {
+
+        // selectedTableGeography.push(geo);
+        
+        // console.log("selectedTableGeography:", selectedTableGeography);
+
+        dropdownMapGeos.innerHTML += `<button class="dropdown-item link-time mapgeosbutton pl-2"
+            data-geo="${geo}">
+            ${geo}
+            </button>`;
+
+    });
+
+
+    // ----- times -------------------------------------------------- //
 
     const mapTimes = [...new Set(mapData.map(item => item.Time))];
 
@@ -828,6 +893,8 @@ const renderMeasures = async () => {
 
     });
 
+
+    // ----- handle measures for this indicator ================================================== //
 
     let header = "";
 
@@ -845,7 +912,7 @@ const renderMeasures = async () => {
         // console.log("type", type, "links", links, "map", map, "trend", trend);
 
 
-        // ----- handle map measures ----------------------------------------------------------------------------------------------- //
+        // ----- handle map measures -------------------------------------------------- //
 
         if (map === 1) {
             
@@ -966,8 +1033,8 @@ const renderMeasures = async () => {
                 
                 if (compIndicatorLabel.length == 1) {
 
-                    console.log("1 indicator [Y_axis_title]");
-                    console.log(compY_axis_title);
+                    // console.log("1 indicator [Y_axis_title]");
+                    // console.log(compY_axis_title);
 
                     dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
                         data-comparison-id="${comp}">
@@ -976,8 +1043,8 @@ const renderMeasures = async () => {
                     
                 } else if (compMeasurementType.length == 1) {
 
-                    console.log("1 measure [MeasurementType]");
-                    console.log(compMeasurementType);
+                    // console.log("1 measure [MeasurementType]");
+                    // console.log(compMeasurementType);
 
                     dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
                         data-comparison-id="${comp}">
@@ -986,9 +1053,9 @@ const renderMeasures = async () => {
                     
                 } else if (compMeasurementType.length > 1 && compIndicatorLabel.length > 1) {
 
-                    console.log("> 1 measure & > 1 indicator [IndicatorMeasure]");
+                    // console.log("> 1 measure & > 1 indicator [IndicatorMeasure]");
                     // console.log("compIndicatorMeasure", compIndicatorMeasure);
-                    console.log("compName", compName);
+                    // console.log("compName", compName);
 
                     dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
                         data-comparison-id="${comp}">
@@ -1141,6 +1208,10 @@ const renderMeasures = async () => {
                 obj => obj.GeoRank === maxGeoRank
             );
 
+            let maxGeo = prettifyGeoType(filteredMapData[0].GeoType)
+
+            // console.log("maxGeo", maxGeo);
+
 
             // ----- render the map -------------------------------------------------- //
 
@@ -1151,6 +1222,10 @@ const renderMeasures = async () => {
             // ----- persistent selection -------------------------------------------------- //
 
             // remove active class from every list element
+
+            // geos
+            $('.mapgeosbutton').removeClass("active");
+            $('.mapgeosbutton').attr('aria-selected', false);
             
             // measures
             $('.mapmeasuresbutton').removeClass("active");
@@ -1162,6 +1237,7 @@ const renderMeasures = async () => {
 
             // set this element as active & selected
 
+            let mapGeoEl = document.querySelector(`.mapgeosbutton[data-geo='${maxGeo}']`)
             let mapMeasureEl = document.querySelector(`.mapmeasuresbutton[data-measure-id='${defaultMapMeasureId}']`)
             let mapTimeEl = document.querySelector(`.maptimesbutton[data-time='${latest_time}']`)
 
@@ -1170,6 +1246,9 @@ const renderMeasures = async () => {
 
             $(mapTimeEl).addClass("active");
             $(mapTimeEl).attr('aria-selected', true);
+
+            $(mapGeoEl).addClass("active");
+            $(mapGeoEl).attr('aria-selected', true);
 
 
         } else {
@@ -1812,7 +1891,7 @@ const renderMeasures = async () => {
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // add event listeners to measure dropdown elements, will call the
+    // add event listeners to dropdown elements, will call the
     //  respective update functions
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
@@ -1820,6 +1899,7 @@ const renderMeasures = async () => {
 
     let mapMeasuresLinks = document.querySelectorAll('.mapmeasuresbutton');
     let mapTimesLinks = document.querySelectorAll('.maptimesbutton');
+    let mapGeosLinks = document.querySelectorAll('.mapgeosbutton');
     let trendMeasuresLinks = document.querySelectorAll('.trendbutton');
     let trendComparisonsLinks = document.querySelectorAll('.comparisonsbutton');
     let linksMeasuresLinks = document.querySelectorAll('.linksbutton');
@@ -1832,6 +1912,10 @@ const renderMeasures = async () => {
     })
 
     mapTimesLinks.forEach(link => {
+        link.addEventListener('click', updateMapData);
+    })
+
+    mapGeosLinks.forEach(link => {
         link.addEventListener('click', updateMapData);
     })
 
