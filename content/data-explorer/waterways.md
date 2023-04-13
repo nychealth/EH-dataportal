@@ -1,16 +1,17 @@
 ---
 title: Waterways
 date: 2021-05-28 18:02:58.751855
-draft: true
+draft: false
 seo_title: "Waterway data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
-categories: ["transportation","neighborhoods"]
-keywords: ["water","harbor","pollution"]
+categories: ["social","climatehealth"]
+keywords: ["water","harbor","pollution", "climate", "climatehealth"]
 indicators:
 - header: null
   IndicatorID: 
-  - 2008
+  - 2427
+  - 2428
 ---
 
 [OneNYC](http://www1.nyc.gov/html/onenyc/index.html) is a comprehensive sustainability plan for New York City's future.
