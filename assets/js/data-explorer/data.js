@@ -14,7 +14,7 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
     .then(response => response.json())
     .then(async data => {
 
-        console.log("** fetch indicators.json");
+        // console.log("** fetch indicators.json");
 
         indicators = data;
 
@@ -238,6 +238,8 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     // reset selected measure flags
 
     selectedMapMeasure = false;
+    selectedMapTime = false;
+    selectedMapGeo = false;
     selectedTrendMeasure = false;
     selectedLinksMeasure = false;
     selectedComparison = false;
@@ -435,7 +437,11 @@ const joinData = () => {
     // data for map
 
     mapData = joinedAqData
-        .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
+        // remove Citywide
+        .filter(
+            d => !op.match(d.GeoType, /Citywide/),
+            d => !op.match(d.Geography, /Harborwide/)
+        ) 
         // .impute({ Value: () => NaN })
         .objects()
 

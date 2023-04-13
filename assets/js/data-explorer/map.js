@@ -9,6 +9,8 @@ const renderMap = (
 
         console.log("** renderMap");
 
+        console.log("data [renderMap]", data);
+
         // ----------------------------------------------------------------------- //
         // get unique time in data
         // ----------------------------------------------------------------------- //
@@ -80,6 +82,8 @@ const renderMap = (
             topoFile = 'NYCKids_2017.topo.json';
         } else if (mapGeoType === "NYCKIDS2019") {
             topoFile = 'NYCKids_2019.topo.json';
+        } else if (mapGeoType === "Borough") {
+            topoFile = 'borough.topo.json';
         }
 
         // ----------------------------------------------------------------------- //
