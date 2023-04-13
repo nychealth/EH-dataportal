@@ -27,7 +27,7 @@ const renderMap = (
         
         // can add year to this
 
-        console.log("mapGeoType [renderMap]", mapGeoType);
+        // console.log("mapGeoType [renderMap]", mapGeoType);
 
         if (mapGeoType === "NTA") {
             topoFile = 'NTA.topo.json';
@@ -46,7 +46,7 @@ const renderMap = (
         }
 
     // get dimensions
-    console.log(document.getElementById('map').offsetWidth)
+    // console.log(document.getElementById('map').offsetWidth)
         
     // define spec
         
@@ -216,7 +216,7 @@ const renderMap = (
         vegaEmbed("#map", mapspec);
 
     // get dimensions
-    console.log('map width = ' + document.getElementById('map').offsetWidth)
+    // console.log('map width = ' + document.getElementById('map').offsetWidth)
 
 
     }

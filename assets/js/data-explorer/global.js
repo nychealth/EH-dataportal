@@ -56,6 +56,8 @@ let defaultLinksAbout;
 let defaultLinksSources;
 
 let selectedMapMeasure;
+let selectedMapTime;
+let selectedMapGeo;
 let selectedTrendMeasure;
 let selectedLinksMeasure;
 let selectedComparison;

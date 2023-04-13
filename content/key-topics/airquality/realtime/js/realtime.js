@@ -23,8 +23,8 @@ var floorDate;
 
 // ---- INITIAL: ingest data feed ---- // 
 aq.loadCSV(
-     // "data/nyccas_realtime_DEC.csv" // temporary local placeholder
-    "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv" // actual live data feed. Also update this in spec json.
+   // "data/nyccas_realtime_DEC.csv" // temporary local placeholder
+     "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv" // actual live data feed. Also update this in spec json.
 
 ).then(data => {
 
@@ -69,7 +69,7 @@ function loadMonitorLocations() {
             }
         }
         // alphabetize activeMonitors for color coordination
-        activeMonitors.sort(GetSortOrder("Location"))
+        activeMonitors.sort(GetSortOrder("loc_col"))
 
         // Draws map, buttons, listener, and retrieves chart spec
         drawMap()
@@ -118,7 +118,7 @@ function getColors() {
     for (let i = 0; i < activeMonitors.length; i++) {
         colors.push(activeMonitors[i].Color)
     }
-    colors.push('darkgray')
+    // colors.push('darkgray') // if DEC_Avg is present.
     current_spec.encoding.color.scale.range = colors
 }
 

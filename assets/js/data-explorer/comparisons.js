@@ -9,8 +9,8 @@ const renderComparisonsChart = (
 
     console.log("** renderComparisonsChart");
 
-    console.log(">>> comp metadata");
-    metadata.print()
+    // console.log(">>> comp metadata");
+    // metadata.print()
     
     // console.log(">>> comp data:");
     // data.print(100)
@@ -75,7 +75,7 @@ const renderComparisonsChart = (
 
         // ----- by boros: 1 indicator, 1 measure, 5 boros -------------------------------------------------- //
 
-        console.log("boros");
+        // console.log("boros");
 
         // if this is a boro comparison, tweak some things
 
@@ -97,7 +97,7 @@ const renderComparisonsChart = (
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
         let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))]
 
-        console.log("compId", compId);
+        // console.log("compId", compId);
         
         plotTitle = compName;
 
@@ -105,7 +105,7 @@ const renderComparisonsChart = (
 
         if (suppressSubtitleBy.includes(compId)) {
 
-            console.log(">>> SUPPRESS by", compId);
+            // console.log(">>> SUPPRESS by", compId);
 
             plotSubtitle = compY_axis_title;
 
@@ -131,7 +131,7 @@ const renderComparisonsChart = (
         let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
 
-        console.log("compId", compId);
+        // console.log("compId", compId);
 
         plotTitle = compName;
 
@@ -139,7 +139,7 @@ const renderComparisonsChart = (
 
         if (suppressSubtitleBy.includes(compId)) {
 
-            console.log(">>> SUPPRESS by", compId);
+            // console.log(">>> SUPPRESS by", compId);
 
             plotSubtitle = compMeasurementType;
 
@@ -165,7 +165,7 @@ const renderComparisonsChart = (
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
         let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))]
 
-        console.log("compId", compId);
+        // console.log("compId", compId);
 
         plotTitle = compName;
 
@@ -173,7 +173,7 @@ const renderComparisonsChart = (
 
         if (suppressSubtitleBy.includes(compId)) {
 
-            console.log(">>> SUPPRESS by", compId);
+            // console.log(">>> SUPPRESS by", compId);
 
             plotSubtitle = compY_axis_title;
 
