@@ -216,9 +216,13 @@ const setDefaultLinksMeasure = async (visArray) => {
         // assigning to global object
         defaultLinksMetadata = defaultArray;
 
-        // using await here because filterSecondaryIndicatorMeasure calls fetch, and we need that data
+        // using await here because createJoinedLinksData calls fetch, and we need that data
 
-        await filterSecondaryIndicatorMeasure(defaultPrimaryMeasureId, defaultSecondaryMeasureId)
+        let aqJoinedLinksDataObjects = await createJoinedLinksData(defaultPrimaryMeasureId, defaultSecondaryMeasureId)
+
+        joinedLinksDataObjects = aqJoinedLinksDataObjects.objects()
+
+        // console.log(">> joinedLinksDataObjects [setDefaultLinksMeasure]", joinedLinksDataObjects);
 
     }
 }
@@ -319,7 +323,7 @@ const updateMapData = (e) => {
     }
 
 
-    console.log("*measureId*", measureId, "*geo*", geo, "*time*", time);
+    // console.log("*measureId*", measureId, "*geo*", geo, "*time*", time);
     // console.log("geo", geo);
     // console.log("measureId", measureId);
     // console.log("time", time);
@@ -367,7 +371,7 @@ const updateMapData = (e) => {
             prettifyGeoType(obj.GeoType) == geo
         );
 
-    console.log("filteredMapData [updateMapData]", filteredMapData);
+    // console.log("filteredMapData [updateMapData]", filteredMapData);
 
     // get the highest GeoRank, then keep just that geo
 
@@ -631,10 +635,14 @@ const updateLinksData = async (e) => {
     const primaryMeasureId = parseInt(e.target.dataset.primaryMeasureId);
     const secondaryMeasureId = parseInt(e.target.dataset.secondaryMeasureId);
 
-    // call filterSecondaryIndicatorMeasure, which creates joinedDataLinksObjects,
+    // call createJoinedLinksData, which creates joinedLinksDataObjects,
     //  primaryMeasureMetadata, secondaryMeasureMetadata
 
-    await filterSecondaryIndicatorMeasure(primaryMeasureId, secondaryMeasureId)
+    let aqJoinedLinksDataObjects = await createJoinedLinksData(primaryMeasureId, secondaryMeasureId)
+    
+    joinedLinksDataObjects = aqJoinedLinksDataObjects.objects()
+
+    // console.log(">> joinedLinksDataObjects [updateLinksData]", joinedLinksDataObjects);
 
 
     // ----- get metatadata for selected measure -------------------------------------------------- //
@@ -686,7 +694,7 @@ const updateLinksData = async (e) => {
     // ----- render the chart -------------------------------------------------- //
 
     renderLinksChart(
-        joinedDataLinksObjects,
+        joinedLinksDataObjects,
         primaryMeasureMetadata,
         secondaryMeasureMetadata,
         primaryIndicatorName,
@@ -1000,11 +1008,11 @@ const renderMeasures = async () => {
 
                     dropdownLinksMeasures.innerHTML +=
                         `<button class="dropdown-item linksbutton pl-3"
-                        data-primary-measure-id="${measureId}"
-                        data-measure-id="${measure.MeasureID}"
-                        data-secondary-measure-id="${link.MeasureID}">
-                        ${linksSecondaryMeasure[0].MeasureName}
-                    </button>`;
+                            data-primary-measure-id="${measureId}"
+                            data-measure-id="${measure.MeasureID}"
+                            data-secondary-measure-id="${link.MeasureID}">
+                            ${linksSecondaryMeasure[0].MeasureName}
+                        </button>`;
 
                 });
             }
@@ -1083,7 +1091,7 @@ const renderMeasures = async () => {
     setDefaultMapMeasure(mapMeasures);
     setDefaultTrendMeasure(trendMeasures);
 
-    // set default measure for links; also calls (and waits for) filterSecondaryIndicatorMeasure, which creates the joined data
+    // set default measure for links; also calls (and waits for) createJoinedLinksData, which creates the joined data
 
     await setDefaultLinksMeasure(linksMeasures);
 
@@ -1153,11 +1161,11 @@ const renderMeasures = async () => {
         tabTrend.setAttribute('aria-selected', false);
         tabLinks.setAttribute('aria-selected', false);
 
-        console.log("mapData [showMap]", mapData);
+        // console.log("mapData [showMap]", mapData);
 
         if (!selectedMapGeo && !selectedMapTime && !selectedMapMeasure) {
 
-            console.log(">> no selected [showMap]");
+            // console.log(">> no selected [showMap]");
 
             // let mapMeasureData;
             // let mapTimeData;
@@ -1180,7 +1188,7 @@ const renderMeasures = async () => {
                     obj => obj.MeasureID === defaultMapMeasureId
                 );
 
-            console.log("filteredMapData [showMap]", filteredMapData);
+            // console.log("filteredMapData [showMap]", filteredMapData);
 
             // ----- allow map to persist when changing tabs -------------------------------------------------- //
 
@@ -1229,7 +1237,7 @@ const renderMeasures = async () => {
                         obj => obj.MeasureID === defaultMapMeasureId
                     );
 
-                console.log("filteredMapData [no selectedMapMeasure]", filteredMapData);
+                // console.log("filteredMapData [no selectedMapMeasure]", filteredMapData);
 
             // }
 
@@ -1248,7 +1256,7 @@ const renderMeasures = async () => {
 
                 latest_time = filteredMapData[0].Time
 
-                console.log("filteredMapData [no selectedMapTime]", filteredMapData);
+                // console.log("filteredMapData [no selectedMapTime]", filteredMapData);
 
             // }
 
@@ -1267,10 +1275,10 @@ const renderMeasures = async () => {
                 let maxGeo = filteredMapData[0].GeoType
                 maxGeoPretty = prettifyGeoType(maxGeo)
 
-                console.log("filteredMapData [no selectedMapGeo]", filteredMapData);
+                // console.log("filteredMapData [no selectedMapGeo]", filteredMapData);
 
-                console.log("maxGeo", maxGeo);
-                console.log("maxGeoPretty", maxGeoPretty);
+                // console.log("maxGeo", maxGeo);
+                // console.log("maxGeoPretty", maxGeoPretty);
 
             // }
 
@@ -1314,7 +1322,7 @@ const renderMeasures = async () => {
 
         } else {
 
-            console.log("else [showMap]");
+            // console.log("else [showMap]");
 
             // if there was a map already, restore it
 
@@ -1709,9 +1717,38 @@ const renderMeasures = async () => {
 
             // switch on/off the disparities button
 
-            // const disparities =
-            //     defaultLinksMetadata[0].VisOptions[0].Trend &&
-            //     defaultLinksMetadata[0].VisOptions[0].Trend[0]?.Disparities;
+            const disparities =
+                defaultLinksMetadata[0].VisOptions[0].Trend &&
+                defaultLinksMetadata[0].VisOptions[0].Trend[0]?.Disparities;
+
+            // hide or how disparities button
+
+            if (disparities == 0) {
+
+                // if disparities is disabled, hide the button
+
+                btnShowDisparities.style.display = "none";
+
+                // remove click listeners to button that calls renderDisparities
+
+                $(btnShowDisparities).off()
+
+            } else if (disparities == 1) {
+
+                // remove event listener added when/if button was clicked
+
+                btnShowDisparities.innerText = "Show Disparities";
+                $(btnShowDisparities).off()
+
+                // if disparities is enabled, show the button
+
+                btnShowDisparities.style.display = "inline";
+
+                // add click listener to button that calls renderDisparities
+
+                $(btnShowDisparities).on("click", () => renderDisparities(defaultLinksMetadata, 221));
+
+            }
 
             // ----- get metatadata for default measure -------------------------------------------------- //
 
@@ -1772,10 +1809,10 @@ const renderMeasures = async () => {
 
             // ----- render the chart -------------------------------------------------- //
 
-            // joined data and metadata created in filterSecondaryIndicatorMeasure called fron setDefaultLinksMeasure
+            // joined data and metadata created in createJoinedLinksData called fron setDefaultLinksMeasure
 
             renderLinksChart(
-                joinedDataLinksObjects,
+                joinedLinksDataObjects,
                 primaryMeasureMetadata,
                 secondaryMeasureMetadata,
                 primaryIndicatorName,
@@ -1810,7 +1847,7 @@ const renderMeasures = async () => {
             // ----- render the chart -------------------------------------------------- //
 
             renderLinksChart(
-                joinedDataLinksObjects,
+                joinedLinksDataObjects,
                 primaryMeasureMetadata,
                 secondaryMeasureMetadata,
                 primaryIndicatorName,
