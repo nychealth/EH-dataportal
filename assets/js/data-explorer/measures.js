@@ -394,7 +394,7 @@ const updateMapData = (e) => {
 
 const updateTrendData = (e) => {
 
-    console.log("updateTrendData");
+    console.log("* updateTrendData");
 
     // ----- handle selection -------------------------------------------------- //
 
@@ -510,7 +510,7 @@ const updateTrendData = (e) => {
 
 const updateTrendComparisonsData = (e) => {
 
-    console.log("updateTrendComparisonsData");
+    console.log("* updateTrendComparisonsData");
 
     // ----- handle selection -------------------------------------------------- //
 
@@ -1104,7 +1104,7 @@ const renderMeasures = async () => {
 
     showTable = (e) => {
 
-        console.log("showTable");
+        console.log("* showTable");
 
         // ----- handle tab selection -------------------------------------------------- //
 
