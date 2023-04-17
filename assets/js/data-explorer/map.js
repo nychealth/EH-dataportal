@@ -9,7 +9,7 @@ const renderMap = (
 
         console.log("** renderMap");
 
-        console.log("data [renderMap]", data);
+        // console.log("data [renderMap]", data);
 
         // ----------------------------------------------------------------------- //
         // get unique time in data
@@ -62,7 +62,7 @@ const renderMap = (
         // set geo file based on geo type
         // ----------------------------------------------------------------------- //
 
-        console.log("mapGeoType [renderMap]", mapGeoType);
+        // console.log("mapGeoType [renderMap]", mapGeoType);
 
         if (mapGeoType === "NTA2010") {
             topoFile = 'NTA_2010.topo.json';
