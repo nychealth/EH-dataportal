@@ -1,6 +1,6 @@
 
 # don't track resources folder (temp files for serve)
-resources/_gen/assets/
+resources/_gen/
 
 # don't track mac file 
 .DS_Store
@@ -35,3 +35,10 @@ staging site, staging data notes.txt
 
 static/js/lunr/
 assets/js/lunr/
+
+static/geography/
+assets/js/testing stop words.js
+static/images/home-sample-image-DE.R
+EH-dataportal.Rproj
+reports_data.json
+links data columns.js

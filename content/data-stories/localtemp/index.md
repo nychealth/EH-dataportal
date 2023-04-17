@@ -8,9 +8,6 @@ tags:
 categories: ["climatehealth","neighborhoods"]
 keywords: ["heat","hot weather","weather","climate","temperature","summer","greenspace","parks","green space","heat island","urban heat island","cooling","air conditioning","building","housing","global warming"]
 image: ds-localtemp.jpeg
-menu:
-    main:
-        identifier: '02'
 photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 
@@ -122,7 +119,7 @@ We found that the average temperature at the Edenwald spot was more than 2° coo
 
 <div class="col-md-6">
     <span class="">Edenwald, the Bronx</span>
-    <img src="Bx-EC_07_lidar_bigger.png" class="img-fluid">
+    <img src="Bx-EC_07_lidar_bigger.png" class="img-fluid" alt="Lidar imagery of an area in The Bronx.">
     <table class="table" style="color: black!important;">
         <thead>
             <tr>
@@ -441,7 +438,7 @@ A block covered in trees, grass, and shrubs might have an average summertime eve
 
 Cooling a block by 2° may not sound like much, but small differences in temperature - especially at peak summer temperatures - really matter. For example, the average temperature at Central Park increased 3.4° from 1900 to 2013. Cooling blocks by just a few degrees can help offset the effects of climate change at the local level.
 
-As the climate changes, NYC faces rising average temperatures and heat waves that place New Yorkers at risk. Already more than 100 New Yorkers die each year due to extreme heat. Even modest cooling can save lives, and cooling neighborhoods with trees and other vegetation is a critical step we can take to protect people from hot weather. Even modest cooling can save lives.
+As the climate changes, NYC faces rising average temperatures and heat waves that place New Yorkers at risk. Already more than 100 New Yorkers die each year due to extreme heat. Even modest cooling can save lives, and cooling neighborhoods with trees and other vegetation is a critical step we can take to protect people from hot weather.
 
 {{< rawhtml >}}
 </div>
@@ -468,12 +465,12 @@ As the climate changes, NYC faces rising average temperatures and heat waves tha
         src="2019.html"></iframe>
     </iframe>
     <div class="float-right fs-sm">
-        <img src="tree.png" width="15px"> Temperature sensor mounted on tree.
+        <img src="tree.png" width="15px" alt="A tree icon."> Temperature sensor mounted on tree.
     </div>
     <br><br><br><br>
     <div style="background-color:rgb(231, 231, 231); padding: 10px; border-radius: 5px;">
         <span style="font-weight: bold; color: #5e5e5e;">More about NYC's greening efforts</span>
-        <p>There are numerous efforts to increase tree canopy and green space overall in NYC. The City plants and cares for <a href="https://www.nycgovparks.org/trees/street-tree-planting">street trees</a> along the right-of-way; forbs, shrubs, and trees in parkland; <a href="https://www1.nyc.gov/site/dep/water/rain-gardens.page">rain gardens</a> and <a href="https://www1.nyc.gov/site/dep/water/green-infrastructure.page">other green infrastructure</a> to capture stormwater; and more. Many tree plantings have been concentrated in areas with <a href="https://www.milliontreesnyc.org/html/million_trees/neighborhoods.shtml">higher than average rates of asthma</a> and <a href="/key-topics/climatehealth/hvi">heat-vulnerable neighborhoods</a>.</p>
+        <p>There are numerous efforts to increase tree canopy and green space overall in NYC. The City plants and cares for <a href="https://www.nycgovparks.org/trees/street-tree-planting">street trees</a> along the right-of-way; forbs, shrubs, and trees in parkland; <a href="https://www1.nyc.gov/site/dep/water/rain-gardens.page">rain gardens</a> and <a href="https://www1.nyc.gov/site/dep/water/green-infrastructure.page">other green infrastructure</a> to capture stormwater; and more. Many tree plantings have been concentrated in areas with <a href="https://www.milliontreesnyc.org/html/million_trees/neighborhoods.shtml">higher than average rates of asthma</a> and <a href="/key-topics/climatehealth/hvi/">heat-vulnerable neighborhoods</a>.</p>
         <p>Trust for Public Land’s <a href="https://www.tpl.org/our-work/new-york-city-playgrounds">New York City Playgrounds program</a> has transformed over 200 playgrounds from using asphalt to using cooler, greener materials. There are also <a href="https://naturalareasnyc.org/map">forests in all five boroughs</a>, and the Department of Parks and Recreation and the Natural Areas Conservancy have developed the <a href="https://naturalareasnyc.org/forests">Forest Management Framework for New York City</a>, a 25-year plan that lays out the process, costs, best practices, and goals for caring for forests in the city.  </p>
         <p>You can get involved, too:</p>
         <ul>

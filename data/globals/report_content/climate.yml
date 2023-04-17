@@ -1,34 +1,31 @@
 ---
 city:
 - entry: 
-  copy: "Enforces tenant and housing laws: landlords must keep homes free of pests and mold"
-  link: https://www1.nyc.gov/assets/doh/downloads/pdf/asthma/local-law-55.pdf
+  copy: "Plants trees, funds Cool Roof projects, and supports heat awareness trainings and more to address extreme heat."
+  link: 
 - entry: 
-  copy: "Offers free Healthy Homes Community Workshops"
-  link: https://www1.nyc.gov/site/doh/health/health-topics/healthy-home-workshops.page
-- entry: 
-  copy: "Monitors air quality across neighborhoods through the NYC Community Air Survey"
-  link: https://www1.nyc.gov/site/doh/data/data-sets/air-quality-nyc-community-air-survey.page
-- entry: 
-  copy: "Follows a plan called OneNYC to create a more sustainable and equitable City"
+  copy: "Set a goal to achieve carbon neutrality by 2050 using the OneNYC strategic plan."
   link: https://onenyc.cityofnewyork.us/
+- entry:
+  copy: "Helps low-income households buy and install air conditioners."
+  link: https://access.nyc.gov/programs/cooling-assistance-benefit/
+- entry: 
+  copy: "Operates the largest electric municipal fleet in the nation."
+  link: 
+- entry: 
+  copy: "Supports energy-efficiency changes in municipal and community buildings."
+  link: 
 you:
 - entry: 
-  copy: "Work with your healthcare provider to create an asthma action plan"
-  link: http://www.nyc.gov/health/asthma
+  copy: "Be a Buddy and check in on neighbors to help them stay cool when it’s hot."
+  link: https://www.nyc.gov/site/doh/health/emergency-preparedness/cold-weather-be-a-buddy.page
 - entry: 
-  copy: "Check the weather report for the air quality index and pollen counts"
-  link: http://www.weather.gov/
+  copy: "Get info during weather emergencies."
+  link: https://www.nyc.gov/site/severeweather/index.page
 - entry: 
-  copy: "If you smoke, quit. Don’t allow smoking in your home or car"
-  link: https://www1.nyc.gov/site/doh/health/health-topics/smoking-smoke-free-housing.page
-- entry: 
-  copy: "Reduce dust levels in your home. Removing clutter and cleaning regularly can help."
-  link:
-- entry: 
-  copy: "Fix leaks in your home to prevent mold. Notify your landlord. If they do not fix leaks promptly, call 311."
-  link: https://www1.nyc.gov/site/doh/health/health-topics/healthy-home.page
+  copy: "Request a street tree to help cool your neighborhood."
+  link: https://www.nycgovparks.org/trees/street-tree-planting/request
 data:
 - entry: 
-  copy: NYC Community Health Profiles
+  copy: NYC Community Health Profiles.
   link: https://www1.nyc.gov/site/doh/data/data-publications/profiles.page

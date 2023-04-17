@@ -1,259 +1,229 @@
+/*
+// ---- REALTIME AQ ---- //
+If a monitor is in the datafeed, it needs an entry in monitor_locations.csv.
+loc_col needs to equal SiteName in the datafeed.
+
+This app excludes DEC_Avg from conventional functionality: 
+- monitors_group_noDEC sets the map bounds without the DEC Average monitor - which is given an abitrary off-coast lat/long
+- if (x != 'DEC_Avg') changes what happens to the map zoom on button click - just zooming to the initial extent if somebody selects the DEC_Avg option.
+
+Because of CORS restrictions to localhost1313, test by copying the contents of the azure feed to data/nyccas_realtime_DEC.csv, and replace the locations both in the initial ingestion (below) and in spec.json.
+
+*/
+
+
+// initialize variables (other variables are initialized closer to their prime use)
 var current_spec;
 var dt;
 var fullTable;
-var shortTable;
 var locSelect = "No location"
 var res;
+var floorDate;
 
-d3.json("js/origSpec.json").then(data => {
+
+// ---- INITIAL: ingest data feed ---- // 
+aq.loadCSV(
+   // "data/nyccas_realtime_DEC.csv" // temporary local placeholder
+     "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv" // actual live data feed. Also update this in spec json.
+
+).then(data => {
+
+    dt = data
+        .derive({starttime: d => op.parse_date(d.starttime)})
+        .orderby("starttime");
     
-    current_spec = $.extend({}, data);
+    fullTable = dt.objects(); // puts the data into fullTable to use. 
+    floorDate = new Date(fullTable[0].starttime) // creates earliest date in 7-day feed - used for time filter
+    console.log('Showing data since: ' + floorDate)
+    floorDate = Date.parse(floorDate) // converting to milliseconds
     
-}).then(() => {
-    
-    // ---- Loads the csv as an arquero table ---- //
-    
-    aq.loadCSV(
-        "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime.csv"
+    // console.log("fullTable:", fullTable);
+    getStationsFromData();
 
-    ).then(data => {
-
-        dt = data
-            .derive({starttime: d => op.parse_date(d.starttime)})
-            .orderby("starttime");
-
-        // console.log("dt:", dt);
-        
-        fullTable = dt.objects(); // puts the data into fullTable to use. 
-        shortTable = fullTable; // creating an array we'll slice for time-selection
-        
-        // console.log("fullTable:", fullTable);
-
-        vegaEmbed("#vis2", current_spec).then((res) => {
-
-            res.view.insert("lineData", fullTable).run()
-            
-        });
-        
-    });
-});
-
-var inputNum; // the number of days we want to select
-
-// event listener on the time-selection form
-document.getElementById('inputNum').addEventListener('change', function (event) {
-    event.preventDefault();
-    inputNum = document.getElementById('inputNum').value;
-    updateChart(inputNum);
     
 });
 
+// ---- Gets stations currently reporting data ---- // 
+var stations = [];
+function getStationsFromData() {
+    var sites = [];
+    for (let i = 0; i<fullTable.length; i++) {
+        sites.push(fullTable[i].SiteName)
+    }
+    stations = [...new Set(sites)]
 
-// ---- this function updates the chart based on timeselection ---- //
-
-function updateChart(days) {
-
-    console.log("days float:", parseFloat(days));
-
-    var inputHours // hours in a day
-    inputHours = parseFloat(days) * 24;
-    
-    var startingPoint;
-    startingPoint = fullTable.length - inputHours;
-    console.log("inputHours:", inputHours);
-    
-    shortTable = fullTable.slice(startingPoint, fullTable.length)
-    
-    // inserts fullTable into the spec and draws the chart
-    vegaEmbed("#vis2", current_spec).then((res) => {
-        
-        res.view.insert("lineData", shortTable).run()
-        
-    });
-    
+    // with stations in hand, load locations from data file
+    loadMonitorLocations();
 }
 
-// ---- establish the spec that we'll manipulate and chart ---- //
-
-// Grab the buttons for manipulation later
-var buttons = document.querySelectorAll('.selectorbtn');
-var buttons_orig = buttons;
-var locSelect;
-var color;
-
-// Save the original locInfoBox & locInfoDesc
-locInfoBox = document.getElementById('locInfoBox').outerHTML;
-locInfoDesc = document.getElementById('locInfoDesc').innerHTML;
-
-// this function updates the chart based on the (index of the) location selection
-
-function changeData(i) {
-    
-    // zoom to the corresponding leaflet marker
-    map.setView(monitors[i].getLatLng(), 13);
-
-    // open marker's popup
-    monitors[i].openPopup();
-    
-    // create a color variable
-    color = monitor_locations[i].Color;
-    locSelect = monitor_locations[i].loc_col;
-    
-    // ensure `locInfoDesc` has original innerHTML elements
-    
-    document.getElementById('locInfoDesc').innerHTML = locInfoDesc
-    
-    // remove active class from buttons and add default class
-    buttons.forEach(button => button.classList.remove('btn-secondary'))
-    buttons.forEach(button => button.classList.add('btn-outline-secondary'))
-    document.getElementById("btnrestore").classList.remove('btn-outline-secondary')
-    
-    // add active class for selected button and remove default class
-    var btn = "btn" + i;
-    document.getElementById(btn).classList.add('btn-secondary');
-    document.getElementById(btn).classList.remove('btn-outline-secondary')
-    document.getElementById("btnrestore").classList.remove('btn-secondary')
-    
-    // make all lines gray, thinner, and unmarked
-    for (let j = 0; j < current_spec.layer.length; j++) {
-        current_spec.layer[j].encoding.color.value = "lightgray"
-        current_spec.layer[j].mark.strokeWidth = 1
-        current_spec.layer[j].mark.point = false
-    };
-    
-    // style the selected series
-    current_spec.layer[i].encoding.color.value = color
-    current_spec.layer[i].mark.strokeWidth = 2.5
-    current_spec.layer[i].mark.point = true
-    
-    // redraw the chart
-    vegaEmbed("#vis2", current_spec).then((res) => {
-        
-        res.view.insert("lineData", shortTable).run(); // shortTable is fullTable until updateChart is called
-        
-    });
-    
-    // show the summary box
-    document.getElementById('locInfoBox').style.display = "block";
-    
-    // run getAverage
-    getAverage();
-    
-}
-
-
-var avTable; // creating an abridged data table
-var selectedLoc;
-var arqTable;
-
-// Here, we'll calculate the most recent 24-hour average for a selected neighborhood.
-
-function getAverage() {
-    
-    var startAt = fullTable.length - 24; // get a starting point of most recent 24 hours
-    avTable = fullTable.slice(startAt, fullTable.length) // slicing the table to most recent 24 hours
-
-    arqTable = aq.from(avTable);
-
-    // ---- Filter by selected neighborhood ---- //
-
-    // deriving a new column `new_col` for the parsed selected column. I want the parsed column to have the 
-    //	selected column's name, so I'm creating a Map object which will rename "new_col" to the value of `locSelect`
-
-    const new_col = new Map()
-
-    new_col.set("new_col", locSelect)
-    // console.log("new_col:", new_col)
-
-    // you can use an object that contains a variable name by enclosing the whole expression in back-ticks, then 
-    //	using `${var}` to insert the value
-    // described at https://uwdata.github.io/arquero/api/expressions#limitations
-
-    arqTable = arqTable
-        .derive({new_col: `d => aq.op.parse_float(d['${locSelect}'])`})
-        .rename(new_col)
-    
-    // console.log("arqTable (after parse_float and rename):")
-    // arqTable.slice(-24,).print(Infinity)
-    
-    // Count number of valid entries.
-    valid_vals = aq.agg(arqTable, aq.op.valid(locSelect));
-    // console.log("valid_vals:", valid_vals)
-    
-    // ---- change info in locInfoBox depending on number of valid values ---- //
-
-    if (valid_vals >= 18) {
-        
-        // If there are 18 or more valid values, average them
-
-        avg_24 = aq.agg(arqTable, aq.op.mean(locSelect));
-        
-        // Print this value to 24av (NEED TO ROUND)
-        
-        document.getElementById('24av').innerHTML = avg_24.toFixed(1)
-        
-        if (avg_24 > 35) {
-
-            // If this is above 35, print "above" to `comparison`
-            
-            document.getElementById('comparison').innerHTML = "above"
-            document.getElementById('comparison').classList.remove('badge-custom-below')
-            document.getElementById('comparison').classList.add('badge-custom-above')
-            
-            // That's not great!
-
-            document.getElementById('goodBad').innerHTML = "That's not great!"
-            document.getElementById('goodBad').classList.remove('badge-custom-below')
-            document.getElementById('goodBad').classList.add('badge-custom-above')
-
-            
-        } else if (avg_24 <= 35) {
-            
-            // if less than 35, print "below" to `comparison`
-
-            document.getElementById('comparison').innerHTML = "below"
-            document.getElementById('comparison').classList.remove('badge-custom-above')
-            document.getElementById('comparison').classList.add('badge-custom-below')
-            
-            // That's good!
-
-            document.getElementById('goodBad').innerHTML = "That's good!"
-            document.getElementById('goodBad').classList.remove('badge-custom-above')
-            document.getElementById('goodBad').classList.add('badge-custom-below')
-        
+// ---- Creates list of active monitors and their metadata (lat/longs, colors, etc) and run other functions ---- //
+var allMonitorLocations;
+var activeMonitors = [];
+function loadMonitorLocations() {
+    d3.csv("data/monitor_locations.csv").then(data => {
+        allMonitorLocations = data;
+        for (let i = 0; i < allMonitorLocations.length; i++) {
+            // if stations includes allMonitorLocations[i].loc_col, push allMonitorLocations[i] to activeMonitors
+            if (stations.includes(allMonitorLocations[i].loc_col)) {
+                activeMonitors.push(allMonitorLocations[i])
+            }
         }
+        // alphabetize activeMonitors for color coordination
+        activeMonitors.sort(GetSortOrder("loc_col"))
 
-    } else if (valid_vals < 18) {
-        
-        // If there are less than 18 valid values, print a 'no-value' message
+        // Draws map, buttons, listener, and retrieves chart spec
+        drawMap()
+        drawButtons()
+        listenButtons();
+        getSpec();
+    })
+}
 
-        document.getElementById('locInfoDesc').innerHTML = "<p class=fs-sm><strong>No value:</strong> sometimes monitors go down or have other problems. We only produce average values if there are more than 18 hourly readings over the last 24 hours.</p>"
+//Comparer Function    
+function GetSortOrder(prop) {    
+    return function(a, b) {    
+        if (a[prop] > b[prop]) {    
+            return 1;    
+        } else if (a[prop] < b[prop]) {    
+            return -1;    
+        }    
+        return 0;    
+    }    
+}  
 
+
+
+// ---- Getting the initial chart spec, inserts color and  earliest date in the data feed to it ---- // 
+var filter
+function getSpec() {
+    d3.json("js/spec.json").then(data => {
+        current_spec = $.extend({}, data);
+        getColors(); // gets colors from monitor_locations and inserts them into spec
+
+        // get floor date and filter by floor date:
+        filter = `datum.starttime > ${floorDate}`
+        current_spec.transform[0] = {"filter": filter}
+        drawChart(current_spec)
+    });
+}
+
+// ---- DRAWS CHART! ---- //
+function drawChart(spec) {
+    vegaEmbed("#vis2", spec)
+}
+
+// ---- Create array of colors based on colors in activeMonitors. This gets sent to the json spec ---- //
+var colors = [];
+function getColors() {
+    for (let i = 0; i < activeMonitors.length; i++) {
+        colors.push(activeMonitors[i].Color)
+    }
+    // colors.push('darkgray') // if DEC_Avg is present.
+    current_spec.encoding.color.scale.range = colors
+}
+
+
+// ---- Creates buttons based on active monitors coming via the file ---- // 
+var holder = document.getElementById('buttonHolder')
+var btns;
+function drawButtons() {
+    var button = 'hi :) '
+    for (let i = 0; i < activeMonitors.length; i++) {
+        button = `<button type="button" id="${activeMonitors[i].loc_col}" class="mb-1 ml-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
+        <span style="color: ${activeMonitors[i].Color};">
+            <i class="fas fa-square mr-1"></i>
+        </span>
+        ${activeMonitors[i].Location}
+    </button>`
+        holder.innerHTML += button;
+    };
+    btns = document.querySelectorAll('.selectorbtn')
+
+}
+
+// ---- Event listener on the buttons runs updateData and passes in the button's id (loc_col) ---- // 
+function listenButtons() {
+    btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            updateData(btn.id)
+        })
+    })
+
+}
+
+// ---- UPDATE DATA FUNCTION TO DEVELOP: takes loc_col as an argument ---- // 
+var opacity;
+var stroke; 
+function updateData(x) {
+    // document to console:
+    console.log('Showing data for: ' + x)
+
+    // /remove active classes, and highilght selected
+    btns.forEach(x => {
+        x.classList.remove('active') // remove from all 
+    })
+    document.getElementById(x).classList.add('active')
+
+    if (x != 'DEC_Avg') {
+        // find index of where x = activeMonitors.loc_col
+        var index = getIndex(x)
+
+        // zoom to the corresponding leaflet marker
+        map.setView(monitors[index].getLatLng(), 13);
+
+    } else {
+        resetZoom()
     }
 
-    // Note - this may be easier with long version; location-selection buttons can apply a filter to the long file, which we can then pipe into the chart. 
-    
+
+
+    // update opacity for selected and deselected series, and redraw Chart:
+    opacity = {
+        "condition": {
+              "test": "datum['SiteName'] === 'CCNY'",
+              "value": 1
+            },
+          "value": 0.2
+        }
+    stroke = {
+        "condition": {
+              "test": "datum['SiteName'] === 'CCNY'",
+              "value": 2.5
+            },
+          "value": 1
+        }
+
+    current_spec.encoding.opacity = opacity
+    current_spec.encoding.opacity.condition.test = `datum['SiteName'] === '${x}'`
+    current_spec.encoding.strokeWidth = stroke
+    current_spec.encoding.strokeWidth.condition.test = `datum['SiteName'] === '${x}'`
+    vegaEmbed('#vis2', current_spec)
+
+
+}
+
+function getIndex(x) {
+    for (let i = 0; i < activeMonitors.length; i++) {
+        if (activeMonitors[i].loc_col === x) {
+            return i
+        }
+    } 
 }
 
 
-// ---- function to reset zoom on click ---- //
 
-function resetZoom() {
-    map.setView(monitors_center, 11).fitBounds(monitors_bounds);
-}
-
-// ---- creating variables for leaflet objects ---- //
-
+// ---- Create leaflet map ---- // 
 var map;
 var monitors_group = L.featureGroup();
+var monitors_group_noDEC = L.featureGroup();
 var monitors;
 var monitors_center = L.Point();
 var monitors_bounds = L.Bounds();
 var monitor_locations;
 
-d3.csv("data/monitor_locations.csv").then(data => {
-    
-    monitor_locations = data;
+// draw map fires when data and monitor_locations load:
+function drawMap() {
+    monitor_locations = activeMonitors
     
     // adding each monitor to the feature group
     
@@ -270,6 +240,14 @@ d3.csv("data/monitor_locations.csv").then(data => {
             L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
             .bindTooltip(monitor.Location, {permanent: true, opacity: 0.85, interactive: true})
             .addTo(monitors_group)
+        
+        // create group without the DEC Monitor, which we'll use to set the center and bounds
+        if (monitor.Location != "DEC Monitor Average") {
+            var those_monitors = 
+            L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
+            .bindTooltip(monitor.Location, {permanent: true, opacity: 0.85, interactive: true})
+            .addTo(monitors_group_noDEC)
+        }
 
         // setting tooltip mouseover rise-to-top
 
@@ -293,16 +271,16 @@ d3.csv("data/monitor_locations.csv").then(data => {
         
         this_monitor.on('click', function (e) {
             map.setView(e.latlng, 13);
-            changeData(i);
+            updateData(monitor_locations[i].loc_col)
         });
         
     });
 
     monitors = monitors_group.getLayers();
-    
+
     // getting the bounds of the markers
     
-    monitors_bounds = monitors_group.getBounds();
+    monitors_bounds = monitors_group_noDEC.getBounds();
     
     // now getting the center of the bounds
     
@@ -337,57 +315,49 @@ d3.csv("data/monitor_locations.csv").then(data => {
                 resetZoom();
             }
         }]
-    }).addTo(map);                            
-    
-});
+    }).addTo(map);      
+}
 
-// ---- restore defaults ---- //
+// ---- function to reset zoom on click ---- //
+
+function resetZoom() {
+    map.setView(monitors_center, 11).fitBounds(monitors_bounds);
+}
+
+// ---- function to reset on Restore ---- //
 
 function restore() {
-
-    // chart vars
-    
-    locSelect = "No location";
-    inputNum = [];
-    color = [];
-    
-    // reset map zoom
-    
     resetZoom();
+    btns.forEach(x => {
+        x.classList.remove('active') // remove from all 
+    })
+    getSpec();
+    document.getElementById('inputNum').value = 7
 
-    // close popups
+}
 
-    monitors.forEach(monitor => {monitor.closePopup()})
-    
-    // reset info box to be blank (like initial)
+// ---- TIME FILTER ---- //
 
-    document.getElementById('locInfoBox').outerHTML = locInfoBox;
-    document.getElementById('inputNum').value = "";
-    
-    // remove active class from buttons and add default class
+// event listener on the time-selection form
+document.getElementById('inputNum').addEventListener('change', function (event) {
+    event.preventDefault();
+    inputNum = document.getElementById('inputNum').value;
+    updateTime(inputNum)
+});
 
-    buttons.forEach(button => button.classList.remove('btn-secondary'))
-    buttons.forEach(button => button.classList.add('btn-outline-secondary'))     
-    document.getElementById("btnrestore").classList.remove('btn-outline-secondary')
+// Time update function - uses transform[0].filter
+function updateTime(x) {
+    var last = fullTable.pop()
+    const date = new Date(last.starttime)
+    let dateInMsec = Date.parse(date)
+    // console.log('most recent date: ' + dateInMsec) // this is the most recent date, in milliseconds since 1970
+    // console.log('filter for dates larger than: ') // you could be able to filter starttime
+    // console.log(dateInMsec - x * 86400000)
+    var filterTo = dateInMsec - x * 86400000
 
-    var restore_spec;
-    
-    d3.json("js/origSpec.json")
-    .then(data => {
-        
-        // create 1-time use spec
-        restore_spec = $.extend({}, data);
-
-        // reset current_spec to default
-        current_spec = $.extend({}, data);
-        
-        // redraw the chart
-        vegaEmbed("#vis2", restore_spec).then((res) => {
-                
-                res.view.insert("lineData", fullTable).run(); // shortTable is fullTable until updateChart is called
-                
-            });
-
-        })
-    }
-    
+    // send date filter to spec and re-draw Chart
+    filter = `datum.starttime > ${filterTo}`
+    current_spec.transform[0] = {"filter": filter}
+    // console.log(current_spec)
+    drawChart(current_spec)
+}

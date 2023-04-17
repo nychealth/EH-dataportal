@@ -1,4 +1,4 @@
-# The NYC Environment and Health Data Dortal website
+# The NYC Environment and Health Data Portal website
 
 This repository contains source code for the Environment and Health Data Portal. You can view a staged development version [here](https://nychealth.github.io/EH-dataportal/) and the live production version [here](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/). 
 
@@ -39,11 +39,12 @@ After committing, working branches can be merged into `development` for testing 
 ### Branches
 A run-down of main branches, actions, and purposes are:
 
-| Branch name:  | Action on merge:         | `EHDP-data` branch:  | Used for:                          |
-|---------------|--------------------------|----------------------|------------------------------------|
-| `development` | Builds to `gh-pages`     | `production`         | General development                |
-| `production`  | Builds to `data-staging` | `staging`            | Demoing data (build/deploy to 201) |
-| `production`  | Builds to `prod-deploy ` | `production`         | Deployment to live server          |
+| Branch name:  | Action on merge:         | `EHDP-data` branch:  | Deploy to | Used for:                          |
+|---------------|--------------------------|----------------------|------------|------------------------------------|
+| `development` | Builds to `gh-pages`     | `production`         | github pages | General development                |
+| `development` | Builds to `dev-test`     | `staging`            | 307 (internal) | Demoing data & content        |
+| `production`  | Builds to `data-staging` | `staging`            | (307 (internal)) | Demoing data  |
+| `production`  | Builds to `prod-deploy ` | `production`         | Production servers | Live site          |
 
 On merge, these branches are automatically [built](https://github.com/peaceiris/actions-hugo and [served](https://github.com/peaceiris/actions-gh-pages) to other branches using Github Actions (triggerd by a merged pull request).  _(Note that this requires a workflow YAML file in both [`main`](https://github.com/nychealth/EH-dataportal/blob/main/.github/workflows/hugo-build-gh-pages.yml) and [`development`](https://github.com/nychealth/EH-dataportal/blob/development/.github/workflows/hugo-build-gh-pages.yml).)_
 
@@ -133,6 +134,9 @@ Other content in `data` are SEO variables and Neighborhood Reports core content.
 ### Hugo/JavaScript Integrity
 We use Hugo's integrity function; this adds hashes to JS filenames and tells the pages to fetch the files with the hashed names. This is a way of improving security by ensuring the integrity of the JS files. This might not work on production if the server's DigiCert is expired. 
 
+### Dependency bundling
+Dependencies (The JS libraries the site uses: D3, Arquero, Vega-Lite, Accessible Autocomplete, etc) are served by the site rather than linked from CDNs. When you run `npm install` to configure your local repo, they are stored in `/node_modules`. When you run a build (`hugo` or via merging to `development` or `production`, per Github Actions), Hugo grabs these dependencies, applies the Integrity hash (see above), and references these 'local' versions. 
+
 ### Image handling
 We use Hugo to automatically resize images. Where you put the source path of an image, there's additional code - Hugo resizes the image, generates a different size (puts it in the `/resources/_gen/images`), and automatically points to the resized image.
 
@@ -142,8 +146,17 @@ We use a variety of environment-specific code to produce:
 - Different analytics for staging and production
 - ...and possibly other stuff. 
 
-### Generating subtopic_indicators.json
-`data-index.html`, on site build, assembles a json file of topics and indicators. It ranges over DE topic frontmatter and produces a cross-reference of 
+### Generating topic_indicators.json
+`data-index.html`, on site build, assembles a json file of topics and indicators. It ranges over DE topic frontmatter and produces a cross-reference of topics and indicators ([file](https://github.com/nychealth/EH-dataportal/blob/prod-deploy/IndicatorData/topic_indicators.json). This is used on `data-index.html` as well as on the Neighborhood Reports: when an indicator is clicked, it runs `getURL()` to find the parent topic for the indicator, generates a URL, and produces the Get The Dataset button. 
+
+### Cloudcannon integration
+The repo includes some files to integrate with Cloudcannon, an online CMS provider. Specifically:
+- `cloudcannon.config.yaml` sets up how the site appears in the CC CMS, what the editor reveals, what shortcodes are easily accessible, etc. 
+- `.cloudcannon/prebuild` is code that runs when Cloudcannon builds/serves the site.
+- `.cloudcannon/schemas` include frontmatter templates for when CC works with frontmatter.
+
+### Build caching
+Resources used in a build (like a Neighborhood Report json spec, for example) may be cached by whatever machine is running the build. Updates to resources might not be reflected in a build if Hugo is using cached versions. In `config.toml`, setting the cache to have a `maxAge = 0` effectively turns it off, ensuring that Hugo will use the original, non-cached resources. Caching in Hugo is explained more [here](https://gohugo.io/getting-started/configuration/#configure-file-caches).
 
 ---
 

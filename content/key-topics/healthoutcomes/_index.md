@@ -3,14 +3,11 @@ title: "Environmental health outcomes"
 date: 2021-08-04T12:32:15-04:00
 draft: false
 seo_title: "Environmental health outcomes in NYC"
-seo_description: "Data, data stories, interactives, and more."
+seo_description: "Data, data stories, interactives, and more about environmental health outcomes in NYC."
 tags: 
 categories: [healthoutcomes]
 keyTopic: healthoutcomes
 keywords: ["health","public health","health outcomes"]
-menu:
-    main:
-        identifier: '05'
 layout: single
 image: medgar-evers.jpg
 ---

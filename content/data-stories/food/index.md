@@ -8,9 +8,6 @@ tags:
 categories: ["foodanddrink","climatehealth"]
 keywords: ["foodborne illness","food poisoning","restaurant","restaurants","inspections","heat","hot weater","grades","eating","food"]
 image: ds-food.JPG
-menu:
-    main:
-        identifier: '02'
 photocredit: "Edwin J. Torres/Mayoral Photography Office"
 ---
 
@@ -59,4 +56,4 @@ Inspectors discuss problems they find during inspections with restaurant staff a
 
 These measures go a long way to keeping people safe. But by analyzing data from inspections, we continue to identify ways to improve our work and that of the restaurants we regulate.
 
-If you want to make sure that your favorite restaurant is taking the right steps to keep you safe, you can [look up restaurant inspection results](http://a816-restaurantinspection.nyc.gov/RestaurantInspection/SearchBrowse.do). Meanwhile, we'll keep looking for ways to support restaurateurs so that they can keep your food safe - no matter the weather.
+If you want to make sure that your favorite restaurant is taking the right steps to keep you safe, you can [look up restaurant inspection results](https://a816-health.nyc.gov/ABCEatsRestaurants/#!/Search). Meanwhile, we'll keep looking for ways to support restaurateurs so that they can keep your food safe - no matter the weather.

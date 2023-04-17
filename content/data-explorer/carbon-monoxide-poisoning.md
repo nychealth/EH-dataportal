@@ -3,7 +3,7 @@ title: Carbon Monoxide Poisoning
 date: 2021-05-28 18:02:58.836583
 draft: true
 seo_title: "Carbon monoxide poisoning data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["housing","childhealth","healthoutcomes"]
 keywords: ["carbon","monoxide","poisoning","hospitalization","emergency department visits","children","housing"] 
@@ -13,9 +13,6 @@ indicators:
   - 2398
   - 2405
   - 2406
-menu:
-    main:
-        identifier: '03'
 ---
 
 Carbon monoxide (CO) is a poisonous gas that forms when fuel or other materials are burned.  It is invisible and has no odor.  Even short-term exposure to high levels of carbon monoxide can be fatal.

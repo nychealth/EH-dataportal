@@ -1,3 +1,7 @@
+// ======================================================================= //
+// map.js
+// ======================================================================= //
+
 const renderMap = (
     data,
     metadata
@@ -5,31 +9,67 @@ const renderMap = (
 
         console.log("** renderMap");
 
-        // get unique time in data
+        // console.log("data [renderMap]", data);
 
+        // ----------------------------------------------------------------------- //
+        // get unique time in data
+        // ----------------------------------------------------------------------- //
+        
         const mapYears =  [...new Set(data.map(item => item.Time))];
 
         // console.log("mapYears [map.js]", mapYears);
 
         let mapGeoType            = data[0].GeoType;
         let mapMeasurementType    = metadata[0].MeasurementType;
+        let displayType           = metadata[0].DisplayType;
         let mapGeoTypeDescription = 
             metadata[0].AvailableGeographyTypes.filter(
                 gt => gt.GeoType === mapGeoType
             )[0].GeoTypeDescription;
 
-        let mapDisplay = metadata[0].DisplayType;
         let mapTime = mapYears[0];
         let topoFile = '';
 
-        // can add year to this
+        var color = 'purplered'
+        var rankReverse = defaultMapMetadata[0].VisOptions[0].Map[0].RankReverse
+        if (rankReverse === 0) {
+            color = 'purplered'
+        } else if (rankReverse === 1) {
+            color = 'blues'
+        }
 
-        console.log("mapGeoType [renderMap]", mapGeoType);
+        // console.log('rank reverse?', rankReverse)
+        // console.log('color', color)
 
-        if (mapGeoType === "NTA") {
-            topoFile = 'NTA.topo.json';
+
+        // ----------------------------------------------------------------------- //
+        // get unique unreliability notes (dropping empty)
+        // ----------------------------------------------------------------------- //
+
+        const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
+
+        document.querySelector("#map-unreliability").innerHTML = ""; // blank to start
+
+        map_unreliability.forEach(element => {
+
+            document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
+            
+        });
+
+        // ----------------------------------------------------------------------- //
+        // set geo file based on geo type
+        // ----------------------------------------------------------------------- //
+
+        // console.log("mapGeoType [renderMap]", mapGeoType);
+
+        if (mapGeoType === "NTA2010") {
+            topoFile = 'NTA_2010.topo.json';
+        } else if (mapGeoType === "NTA2020") {
+            topoFile = 'NTA_2020.topo.json';
         } else if (mapGeoType === "CD") {
             topoFile = 'CD.topo.json';
+        } else if (mapGeoType === "CDTA2020") {
+            topoFile = 'CDTA_2020.topo.json';
         } else if (mapGeoType === "PUMA") {
             topoFile = 'PUMA_or_Subborough.topo.json';
         } else if (mapGeoType === "Subboro") {
@@ -38,18 +78,30 @@ const renderMap = (
             topoFile = 'UHF42.topo.json';
         } else if (mapGeoType === "UHF34") {
             topoFile = 'UHF34.topo.json';
-        } else if (mapGeoType === "NYCKIDS") {
-            topoFile = 'NYCKids.topo.json';
+        } else if (mapGeoType === "NYCKIDS2017") {
+            topoFile = 'NYCKids_2017.topo.json';
+        } else if (mapGeoType === "NYCKIDS2019") {
+            topoFile = 'NYCKids_2019.topo.json';
+        } else if (mapGeoType === "Borough") {
+            topoFile = 'borough.topo.json';
         }
 
-        
+        // ----------------------------------------------------------------------- //
         // define spec
+        // ----------------------------------------------------------------------- //
         
         mapspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": {
-                "text": `By ${mapGeoTypeDescription}, ${mapTime}`,
-                "subtitlePadding": 10
+                "text": indicatorName,
+                "subtitlePadding": 10,
+                "fontWeight": "normal",
+                "anchor": "start", 
+                "fontSize": 18, 
+                "font": "sans-serif",
+                "baseline": "top",
+                "subtitle": `${mapMeasurementType}${displayType && ` (${displayType})`}, by ${mapGeoTypeDescription} (${mapTime})`,
+                "subtitleFontSize": 13
             },
             "data": {
                 "values": data,
@@ -63,13 +115,6 @@ const renderMap = (
                 "concat": {"spacing": 20}, 
                 "view": {"stroke": "transparent"},
                 "axisY": {"domain": false,"ticks": false},
-                "title": {
-                    "fontWeight": "normal"
-                  },
-                "legend": {
-                    "offset": -25,
-                    "titleFontWeight": "normal",
-                }
             },
             "projection": {"type": "mercator"},
             "vconcat": [
@@ -120,7 +165,7 @@ const renderMap = (
                                         "bin": false,
                                         "field": "Value",
                                         "type": "quantitative",
-                                        "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}}
+                                        "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}}
                                     },
                                     "value": "#808080"
                                 },
@@ -140,10 +185,8 @@ const renderMap = (
                                 "tooltip": [
                                     {"field": "Geography", "title": "Neighborhood"},
                                     {
-                                        "field": "Value",
-                                        "type": "quantitative",
-                                        "title": mapMeasurementType,
-                                        "format": ",.1~f"
+                                        "field": "DisplayValue",
+                                        "title": mapMeasurementType
                                     },
                                 ],
                             },
@@ -171,6 +214,7 @@ const renderMap = (
                             "axis": {
                                 "labelAngle": 0,
                                 "labelFontSize": 11,
+                                "tickCount": 3
                             }
                         },
                         "tooltip": [
@@ -179,10 +223,8 @@ const renderMap = (
                                 "title": "Neighborhood"
                             },
                             {
-                                "field": "Value", 
-                                "type": "quantitative", 
-                                "title": mapMeasurementType,
-                                "format": ",.1~f"
+                                "field": "DisplayValue", 
+                                "title": mapMeasurementType
                             },
                         ],
                         "x": {"field": "GeoID", "sort": "y", "axis": null},
@@ -190,8 +232,14 @@ const renderMap = (
                             "bin": false,
                             "field": "Value",
                             "type": "quantitative",
-                            "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}},
-                            "legend": {"direction": "horizontal","orient": "top-left","title": `${mapMeasurementType}`}
+                            "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}},
+                            "legend": {
+                                "direction": "horizontal", 
+                                "orient": "top-left",
+                                "title": null,
+                                "offset": -30,
+                                "padding": 10,
+                            }
                         },
                         "stroke": {
                             "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
@@ -206,5 +254,9 @@ const renderMap = (
             ]
         }
         
+        // ----------------------------------------------------------------------- //
+        // render chart
+        // ----------------------------------------------------------------------- //
+
         vegaEmbed("#map", mapspec);
     }

@@ -3,7 +3,7 @@ title: Birth defects
 date: 2021-05-28 18:02:58.732973
 draft: false
 seo_title: "Birth defects data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["childhealth","healthoutcomes"]
 keywords: ["children","birth","birth defects","babies","pregnancy"]
@@ -23,9 +23,6 @@ indicators:
   - 101
   - 29
   - 34
-menu:
-    main:
-        identifier: '03'
 ---
 **Note:** We are no longer updating birth defects data on the EH Data Portal. [For more recent data, visit the New York State Environmental Public Health Tracker](https://apps.health.ny.gov/statistics/environmental/public_health_tracking/tracker/index.html#/bdcounty).
 

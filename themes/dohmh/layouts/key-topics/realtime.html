@@ -34,17 +34,20 @@
 
     <div class="row">
         <div class="col-md-7 col-sm-12 pl-0 ml-auto">
-                <h2><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h2>
+                <h1><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
                 {{- .Content  -}}
         </div>
 
         <div class="col-md-4 mr-auto my-4">
-            <div class="aboutbox">
+            <div class="aboutbox fs-sm mt-2">
                 <strong>About the Data</strong>
                 <p>Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>).</p>
     
-                <p>Data come from the NYCCAS near-real-time monitor network. External factors can sometimes affect monitor functioning; these data are preliminary and subject to change. <a href="{{ site.Params.data_repo }}{{ site.Params.data_branch }}/key-topics/real-time-air-quality" target="_blank">Download these data on Github</a>.</p>
+                <p>Data come from: NYCCAS near-real-time street-level monitors, and from roof-top air quality sensors operated by the <i class="fas fa-square mr-1" style="color:darkgray"></i>NYS Department of Environmental Conservation as required by the Federal Clean Air Act. External factors can sometimes affect monitor functioning; these data are preliminary and subject to change. <!--<a href="https://github.com/nychealth/EHDP-data/tree/production/key-topics/real-time-air-quality" target="_blank">Download these data on Github</a>.--></p>
             </div>
+
+            <div class="aboutbox fs-sm mt-1">Or, see <a href="../aqe">your neighborhood air quality</a>.</div>
+
              </div>
     </div>
 
@@ -56,9 +59,11 @@
         
         <div class="col-12 ml-auto">
 
-            <button onclick="restore()" type="button" id="btnrestore" class="mb-1 selectorbtn btn btn-sm btn-dark">
+            <button onclick="restore()" type="button" id="btnrestore" class="mb-1 btn btn-sm btn-dark">
                 Reset</button>
+
             
+            <!--
             <button onclick="changeData(0)" type="button" id="btn0" class="mb-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
                 <span style="color: red">
                     <i class="fas fa-square mr-1"></i>
@@ -89,6 +94,11 @@
                     <i class="fas fa-square mr-1"></i>
                 </span>
                 Broadway/35th St</button>
+            -->
+
+            <div id="buttonHolder" style="display:inline-block;">
+                <!-- JavaScript creates buttons from available monitor feeds and inserts them here -->
+            </div>
             
 
             <div id="numberinput" class="float-right pt-1"
@@ -102,6 +112,8 @@
         </div>
         
     </div>
+
+
     
     <!-- map element -->
     <div class="row align-self-center">
@@ -114,23 +126,41 @@
         <div class="col-md-8">
             <div class="row">
                 <div class="col pl-2 mt-1">
-                    <em class="pl-2">Hourly PM2.5 measurements (in µg/m<sup>3</sup>)</em>
+
+                    <!--
+                    <div id="error">
+                        <hr class="mt-2">
+                        <p class="pl-2"><i class="fas fa-exclamation-triangle mr-1 font-weight-bold"></i>Our realtime air quality monitors are currently down. We're working on getting them back up as soon as we can.</p>
+                    </div>
+                -->
+
+                    
+                    <em class="pl-2 fs-sm">Hourly PM2.5 measurements (in µg/m<sup>3</sup>)</em>
+
                     <div id="vis2" style="width: 100%; height: 400px;" class="mt-1">
                     </div>
+                    
                 </div>
             </div>
         </div>
     </div>
 
+    
+
     <div class="row">
         <div class="col-12">
+            <div style="background-color:#f2f2f275; border-left: 2px solid darkgray;" class="p-1">
+                <p class="fs-sm">Note: "DEC Monitor Average" is the average value of 11 roof-top monitors throughout the city, designed and placed for regulatory reporting. DOHMH street-level monitors are designed to measure ground-level exposures.</p>
+            </div>
             <!-- last 24-hour info box -->
             <div class="infobox" id="locInfoBox" style="display:none">
                 <div id="locInfoDesc">
+
+                    <p class=fs-sm><strong>No value:</strong> sometimes monitors go down or have other problems. We only produce average values if there are more than 18 hourly readings over the last 24 hours.</p>
                     
-                    <div class="col mx-1">
-                        <p>Most recent 24-hour average reading by this monitor: <span class="badge badge-primary badge-custom badge-custom-dark"><span id="24av">n/a</span> µg/m3</span>. This is <span id="comparison" class="badge badge-primary badge-custom">N/A</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">national standard</a> of 35 µg/m3 for 24 hours. <span id="goodBad" class="badge badge-primary badge-custom"></span></p>                                    
-                    </div>
+                    {{/*  <div class="col mx-1">
+                        <p>Most recent 24-hour average reading by this monitor: <span class="badge badge-primary badge-custom badge-custom-dark"><span id="24av">n/a</span> µg/m3</span>. This is <span id="comparison" class="badge badge-primary badge-custom">N/A</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">national standard</a> of 35 µg/m3 for 24 hours. <span id="goodBad" class="badge badge-primary badge-custom"></span></p>
+                    </div>  */}}
                 </div>
             </div>
         </div>
@@ -153,7 +183,7 @@
                     <p>Building density affects a neighborhood's air quality because like vehicles, buildings
                         burn fuel and emit pollutants: their boilers burn oil and gas to produce heat and hot
                         water. This is one reason we often see more air pollution in the winter. Because of new heating oil regulations, PM2.5 has gone down dramatically, and SO2 levels
-                        are now indetectable. <a href="https://nyccas.cityofnewyork.us/report">Read more at
+                        are now indetectable. <a href="../nyccas">Read more at
                             the NYCCAS annual report</a>. </p>
     
                     <h4 class="card-title"><i class="fas fa-industry mr-1" aria-hidden="true"></i>Industrial area
@@ -212,6 +242,9 @@
     </div>
 
 </article>
+
+<!-- Related footer -->
+{{- partial "related-footer-2" . -}}
 
 <!-- color name to hex converter -->
 <!-- from https://gist.github.com/njvack/02ad8efcb0d552b0230d -->

@@ -3,7 +3,7 @@ title: Noise
 date: 2021-05-28 18:02:58.747003
 draft: true
 seo_title: "Noise data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["transportation","neighborhoods"]
 keywords: ["neighborhoods","traffic","noise","construction"]
@@ -11,9 +11,6 @@ indicators:
 - header: null
   IndicatorID: 
   - 2134
-menu:
-    main:
-        identifier: '03'
 ---
 
 Ambient noise is sound from an environmental source, such as traffic, construction, industrial or recreation activities, animals, or people’s voices, that is unwanted to the person who hears it.

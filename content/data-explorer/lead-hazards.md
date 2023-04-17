@@ -3,7 +3,7 @@ title: Lead Hazards
 date: 2021-05-28 18:02:58.832294
 draft: true
 seo_title: "Lead hazard data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["housing","childhealth","social","neighborhoods"]
 keywords: ["lead","poisoning","children","housing"]
@@ -15,9 +15,6 @@ indicators:
 - header: Maintenance
   IndicatorID: 
   - 41
-menu:
-    main:
-        identifier: '03'
 ---
 
 The main source of childhood lead poisoning in NYC, as in most of the United States, is lead-based paint in older, deteriorated housing. Nationwide, lead poisoning is associated with housing constructed before 1950, when lead-based paint was widely used and contained more lead than in later decades. In 1960, NYC banned the use of lead-based paint in homes and a national ban went into effect in 1978. Older layers of lead paint may still be present in older buildings and can become a lead hazard when the paint chips, peels or is abraded, or when renovations or repairs are conducted without taking appropriate actions to control dust. Families residing in older, poorly maintained housing are at higher risk for lead poisoning.

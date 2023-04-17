@@ -3,7 +3,7 @@ title: Social and economic conditions
 date: 2021-05-28 18:02:58.798880
 draft: true
 seo_title: "Social and economic conditions data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["social","housing"]
 keywords: ["social","social justice","justice","injustice","social conditions","poverty","racism","housing","health"]
@@ -29,9 +29,6 @@ indicators:
     - 2365
     - 15
     - 17
-menu:
-    main:
-        identifier: '03'
 ---
 
 Social and economic conditions affect people’s health. These conditions (also called “social determinants of health”) are conditions that people may be born into or fall into over the course of their lives. They are shaped by local, national and global distribution of resources and power.

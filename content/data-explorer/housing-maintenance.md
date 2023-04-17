@@ -3,7 +3,7 @@ title: Housing maintenance
 date: 2021-05-28 18:02:58.817845
 draft: false
 seo_title: "Housing data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["housing","social","neighborhoods"]
 keywords: ["built environments","neighborhoods","social","housing","maintenance","maintenance deficiencies","healthy housing"]
@@ -20,9 +20,6 @@ indicators:
   - 41
   - 2399
   - 2179
-menu:
-    main:
-        identifier: '03'
 ---
 Buildings with maintenance issues and disrepair can harm health. Across NYC, low-income neighborhoods have a higher percentage of buildings in disrepair due to past and present disinvestment and housing discrimination. This housing disrepair harms residents' health.
 

@@ -3,7 +3,7 @@ title: Lead poisoning
 date: 2021-05-28 18:02:58.848903
 draft: false
 seo_title: "Lead exposure and poisoning in NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["housing","childhealth","social","neighborhoods"]
 keywords: ["lead","poisoning","housing","children","child","testing","blood"]
@@ -21,9 +21,6 @@ indicators:
   IndicatorID: 
   - 41
   - 16
-menu:
-    main:
-        identifier: '03'
 ---
 
 Lead is a metal that is toxic to people. There is no safe level of lead in your body. It can cause learning and behavior problems, and delay physical growth and mental development.

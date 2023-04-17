@@ -3,20 +3,18 @@ title: Mice and rats
 date: 2021-05-28 18:02:58.762504
 draft: false
 seo_title: "Mice and rats data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["housing","pests"]
 keywords: ["mice","rats","rodents","pests","housing"]
 indicators:
-- header: Asthma triggers
+- header: null
   IndicatorID:
   - 2394
   - 2105
   - 24
   - 48
-menu:
-    main:
-        identifier: '03'
+  - 2416
 ---
 
 Rats and mice are common, but preventable. In NYC, rats tend to be seen on streets and sidewalks, and in backyards and basements, while mice are almost always found inside homes.

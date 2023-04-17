@@ -3,11 +3,10 @@ title: "2022 NYC Heat-Related Mortality Report"
 date: 2021-09-08T11:14:56-04:00
 draft: true
 tags: 
+seo_title: "Annual Report on heat mortality in NYC."
+seo_description: "Data and findings on the impact of heat in NYC."
 categories: [climatehealth]
 keywords: ["heat","report","climate","temperature","summer","disparities","mortality"]
-menu:
-    main:
-        identifier: '05'
 layout: report
 ---
 

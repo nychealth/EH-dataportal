@@ -3,14 +3,11 @@ title: Brownfields
 date: 2021-05-28 18:02:58.750940
 draft: true
 seo_title: "Brownfields data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["neighborhoods"]
 keywords: ["pollution","neighborhoods"]
 indicators: 
-menu:
-    main:
-        identifier: '03'
 ---
 
 [PlaNYC](http://www.nyc.gov/html/planyc2030/html/home/home.shtml "PlaNYC Home Page") is a comprehensive sustainability plan for New York City's future. Goal: Clean up all contaminated land in the city. 

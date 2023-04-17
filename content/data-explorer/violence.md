@@ -3,7 +3,7 @@ title: Violence
 date: 2021-05-28 18:02:58.737039
 draft: false
 seo_title: "Violence data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["social","healthoutcomes"]
 keywords: ["violence","injury","neighborhoods","social","justice","poverty"]
@@ -12,9 +12,6 @@ indicators:
   IndicatorID:
   - 2400
   - 2375
-menu:
-    main:
-        identifier: '03'
 ---
 
 Violence is the use of physical, verbal, and/or emotional force to injure, harm, abuse, damage, or destroy. Interpersonal violence includes child abuse and neglect, youth violence, intimate partner violence, sexual violence, and elder abuse. Violence can involve injury to self, including self-harm, suicide attempts, and death by suicide. Violence can also take the form of power against a group or community.

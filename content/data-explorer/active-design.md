@@ -3,7 +3,7 @@ title: Active design
 date: 2021-05-28 18:02:58.738512
 draft: false
 seo_title: "Active design data in NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["transportation","neighborhoods","airquality","climate"]
 keyTopic: transportation
@@ -20,9 +20,7 @@ indicators:
   - 2391
   - 2389
   - 2133
-menu:
-    main:
-        identifier: '03'
+  - 2416
 ---
 
 Physical activity and healthy eating are among the leading ways to get and stay healthy. 

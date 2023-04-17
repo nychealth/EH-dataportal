@@ -1,3 +1,10 @@
+// ======================================================================= //
+// app.js
+// ======================================================================= //
+
+// ----------------------------------------------------------------------- //
+// history traversal
+// ----------------------------------------------------------------------- //
 
 // clicking on the indicator dropdown calls loadIndicator with that IndicatorID
 
@@ -61,6 +68,9 @@ window.addEventListener("hashchange", () => {
 
 });
 
+// ----------------------------------------------------------------------- //
+// tab event listeners
+// ----------------------------------------------------------------------- //
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -74,15 +84,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+// ----------------------------------------------------------------------- //
+// content truncation
+// ----------------------------------------------------------------------- //
+
 function reveal() {
     document.getElementById('truncate').classList.toggle('hide');
     document.getElementById('full').classList.toggle('show');
     document.getElementById('contenttoggle').innerHTML = `Show less... <i class="fas fa-caret-square-up" aria-hidden="true"></i>`;
 }
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 // add listeners to tabs
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 
 // ===== table ===== /
 
@@ -113,6 +127,10 @@ $('#tab-btn-links').on('click', e => {
 })
 
 
+// ----------------------------------------------------------------------- //
+// export functions
+// ----------------------------------------------------------------------- //
+
 // export current table view
 
 $("#thisView").on("click", (e) => {
@@ -136,7 +154,7 @@ $("#allData").on("click", (e) => {
 
     // pivot the full dataset
 
-    let allData = aq.from(fullDataTableObjects)
+    let allData = aq.from(tableData)
         .groupby("Time", "GeoType", "GeoID", "GeoRank", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI")
         .relocate(["Time", "GeoType", "GeoID", "GeoRank"], { before: 0 })

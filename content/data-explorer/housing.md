@@ -3,7 +3,7 @@ title: Housing
 date: 2021-05-28 18:02:58.817845
 draft: true
 seo_title: "Housing data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["housing","social","neighborhoods"]
 keywords: ["built environments","neighborhoods","social","housing","maintenance","maintenance deficiencies","healthy housing"]
@@ -41,9 +41,6 @@ indicators:
 - header: null
   IndicatorID: 
   - 2003
-menu:
-    main:
-        identifier: '03'
 ---
 
 No family should have to choose between affordable and healthy housing. **All tenants are entitled to safe, decent and sanitary housing, which prevents disease and injury.**

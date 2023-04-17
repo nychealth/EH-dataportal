@@ -63,6 +63,9 @@ jobs:
 
       - name: log output
         id: log_output
+
+        if: steps.b_hash.outputs.built_hash != steps.d_hash.outputs.deployed_hash
+
         run: |
           echo "commit_count: ${{ steps.log.outputs.commit_count }}"
           cat log.txt

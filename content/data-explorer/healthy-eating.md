@@ -3,7 +3,7 @@ title: "Healthy eating"
 date: 2021-11-17T12:01:22-05:00
 draft: false
 seo_title: "Healthy eating data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["neighborhoods","foodanddrink"]
 keywords: ["food","drink","nutrition","food environment","food desert","sugary drinks","soda","neighborhoods"]
@@ -13,9 +13,6 @@ indicators:
   - 2389
   - 2097
   - 2098
-menu:
-    main:
-        identifier: '03'
 ---
 
 Healthy eating is associated with better health, including a reduced risk of cardiovascular disease. That means that having access to healthy, safe, and affordable food choices is crucial for a person to achieve healthy eating habits. 

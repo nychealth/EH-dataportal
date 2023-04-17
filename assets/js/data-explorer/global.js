@@ -1,37 +1,50 @@
-// import { all, desc, op, table } from '../../../node_modules/arquero/dist/arquero.min.js';
+// ======================================================================= //
+// global.js
+// ======================================================================= //
 
-// clicking on the indicator dropdown calls loadIndicator with that IndicatorID
+// ----------------------------------------------------------------------- //
+// top scope variables
+// ----------------------------------------------------------------------- //
 
-// let indicators = []; // indicator data
-// let defaultIndicatorId;
-let selectedSummaryYears = [];
-let selectedSummaryGeography = [];
+let selectedTableYears = [];
+let selectedTableGeography = [];
 let aboutMeasures;
 let dataSources;
 
 let measureAbout = `N/A`;
 let measureSources = `N/A`;
 let geoTable;
+let unreliabilityNotes;
 let aqData;
 let joinedAqData;
+let aqMeasureIdTimes;
 
-let fullDataTableObjects;
-let fullDataMapObjects;
-let fullDataTrendObjects;
-let fullDataLinksObjects;
+let tableData;
+let mapData;
+let trendData;
+let linksData;
 let joinedDataLinksObjects;
 let disparitiyData; // used by disparities.js
 
 let indicator;
 let indicatorName;
 let indicatorDesc;
+let indicatorLabel;
 let indicatorShortName;
 let indicatorMeasures;
 let indicatorId;
 let primaryIndicatorName;
 let secondaryIndicatorName;
 
+let indicatorComparisonId;
+let comparisons;
+let comparisonsMetadata;
+let aqComparisonsMetadata;
+let aqComparisonsIndicatorsMetadata;
+let aqComparisonsIndicatorData;
+
 let defaultTrendMetadata = [];
+let aqDefaultTrendMetadata;
 let defaultTrendAbout;
 let defaultTrendSources;
 let defaultMapMetadata = [];
@@ -43,14 +56,28 @@ let defaultLinksAbout;
 let defaultLinksSources;
 
 let selectedMapMeasure;
+let selectedMapTime;
+let selectedMapGeo;
 let selectedTrendMeasure;
 let selectedLinksMeasure;
+let selectedComparison;
+let showingNormalTrend;
+
 let selectedMapAbout;
 let selectedMapSources;
+let selectedMapMetadata;
+
 let selectedTrendAbout;
 let selectedTrendSources;
+let aqSelectedTrendMetadata;
+
+let selectedComparisonAbout = "";
+let selectedComparisonSources = "";
+let selectedComparisonMetadata;
+
 let selectedLinksAbout;
 let selectedLinksSources;
+let selectedLinksMetadata;
 let selectedlinksSecondaryMeasureTime;
 
 let primaryMeasureMetadata;
@@ -58,7 +85,10 @@ let secondaryMeasureMetadata;
 
 let filteredMapData;
 let filteredTrendData;
-let filteredLinksData;
+let aqFilteredTrendData;
+let aqFilteredComparisonsData;
+let aqFilteredComparisonsMetadata;
+let aqCombinedComparisonsMetadata;
 
 let mapMeasures = [];
 let trendMeasures = [];
@@ -72,6 +102,8 @@ let tabLinks;
 let showTable;
 let showMap;
 let showTrend;
+let showNormalTrend;
+let showTrendComparisons;
 let showLinks;
 
 // store hash, so display knows where it just was
@@ -84,7 +116,10 @@ let state;
 let tabTrendDropDown = document.querySelector('#tab-trend .dropdown');
 
 // get disparities button dom element, so it can be removed and appended as needed
-let btnShowDisparities = document.querySelector('.btn-show-disparities');
+// let btnShowDisparities = document.querySelector('.btn-show-disparities');
+
+// get comparisons button dom element, so it can be removed and appended as needed
+let btnShowComparisons = document.querySelector('.btn-comparisons');
 
 const url = new URL(window.location);
 
@@ -92,6 +127,9 @@ const url = new URL(window.location);
 
 let hashchange = new Event('hashchange');
 
+// ----------------------------------------------------------------------- //
+// geo ranks
+// ----------------------------------------------------------------------- //
 
 // define georank function at top scope, so we can use it later
 
@@ -101,7 +139,9 @@ const assignGeoRank = (GeoType) => {
             return 0;
         case 'Borough':
             return 1;
-        case 'NYCKIDS':
+        case 'NYCKIDS2017':
+            return 2;
+        case 'NYCKIDS2019':
             return 2;
         case 'UHF34':
             return 3;
@@ -111,12 +151,16 @@ const assignGeoRank = (GeoType) => {
             return 5;
         case 'CD':
             return 6;
-        case 'NTA':
+        case 'CDTA2020':
             return 7;
+        case 'NTA2010':
+            return 8;
+        case 'NTA2020':
+            return 9;
     }
 }
 
-// array of geotypes in georank order
+// array of (pretty) geotypes in georank order
 
 const geoTypes = [
     "Citywide",
@@ -126,12 +170,46 @@ const geoTypes = [
     "UHF42",
     "Subboro",
     "CD",
+    "CDTA",
     "NTA"
 ]
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
+// pretty generic geotypes
+// ----------------------------------------------------------------------- //
+
+// this allows us to have different versions of the same geotype on the back-end,
+//  while keeping them generic on the front-end. We use this function to convert
+//  versioned geotypes in the data into generic geotypes.
+
+const prettifyGeoType = (GeoType) => {
+    
+    switch (GeoType) {
+        
+        case 'NYCKIDS2017':
+        return 'NYCKIDS';
+        
+        case 'NYCKIDS2019':
+        return 'NYCKIDS';
+        
+        case 'CDTA2020':
+        return 'CDTA';
+        
+        case 'NTA2010':
+        return 'NTA';
+        
+        case 'NTA2020':
+        return 'NTA';
+        
+        default:
+        return GeoType;
+        
+    }
+}
+
+// ----------------------------------------------------------------------- //
 // measure info functions
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 
 // Renders the Indicator Title and Description
 
@@ -153,9 +231,9 @@ const renderAboutSources = (about, sources) => {
     dataSources.innerHTML = sources;
 }
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 // chart resize
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 
 const updateChartPlotSize = () => {
     setTimeout(() => {

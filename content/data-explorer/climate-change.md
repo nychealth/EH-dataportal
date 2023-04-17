@@ -3,7 +3,7 @@ title: Climate Change
 date: 2021-05-28 18:02:58.884809
 draft: true
 seo_title: "Climate change data for NYC"
-seo_description: "Explore data, visualizations, and more."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
 categories: ["climatehealth"]
 keywords: ["climate change","global warming","health","climate","weather-related illness","storms"]
@@ -11,9 +11,6 @@ indicators:
 - header: null
   IndicatorID: 
   - 776
-menu:
-    main:
-        identifier: '03'
 ---
 
 There is broad consensus within the scientific community that human activity is changing the Earth's climate through **increasing concentrations of greenhouse gases (GHGs)** — primarily carbon dioxide (CO2), methane (CH4), nitrous oxide (N2O), and chlorofluorocarbons (CFCs) — in the atmosphere.

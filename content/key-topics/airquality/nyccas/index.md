@@ -14,7 +14,7 @@ keywords:
     - pm2.5
     - pollutants
 seo_title: NYC Community Air Survey Annual Report
-seo_description: Data, findings, and more.
+seo_description: Data, findings, and more from NYC's citywide air quality monitoring program.
 pollutantMaps: >-
     <img src="NyccasInstall_red.jpg" alt="NYCCAS installation" align="right"
     style="width:50%;" class="my-2 pl-2"> <p>Since it is impossible to sample
@@ -113,9 +113,6 @@ moreInfo: >-
     York Community Air Survey: past reports</a></li></ul>
 vega: true
 image: nyccas.png
-menu:
-    main:
-        identifier: '05'
 layout: nyccas-report
 ---
 ## NYCCAS Report: 2008-2021
