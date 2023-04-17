@@ -319,7 +319,7 @@ const updateMapData = (e) => {
     }
 
 
-    console.log("*measureId*", measureId, "*geo*", geo, "*time*", time);
+    // console.log("*measureId*", measureId, "*geo*", geo, "*time*", time);
     // console.log("geo", geo);
     // console.log("measureId", measureId);
     // console.log("time", time);
@@ -367,7 +367,7 @@ const updateMapData = (e) => {
             prettifyGeoType(obj.GeoType) == geo
         );
 
-    console.log("filteredMapData [updateMapData]", filteredMapData);
+    // console.log("filteredMapData [updateMapData]", filteredMapData);
 
     // get the highest GeoRank, then keep just that geo
 
@@ -390,7 +390,7 @@ const updateMapData = (e) => {
 
 const updateTrendData = (e) => {
 
-    console.log("updateTrendData");
+    console.log("* updateTrendData");
 
     // ----- handle selection -------------------------------------------------- //
 
@@ -506,7 +506,7 @@ const updateTrendData = (e) => {
 
 const updateTrendComparisonsData = (e) => {
 
-    console.log("updateTrendComparisonsData");
+    console.log("* updateTrendComparisonsData");
 
     // ----- handle selection -------------------------------------------------- //
 
@@ -1096,7 +1096,7 @@ const renderMeasures = async () => {
 
     showTable = (e) => {
 
-        console.log("showTable");
+        console.log("* showTable");
 
         // ----- handle tab selection -------------------------------------------------- //
 
@@ -1153,11 +1153,11 @@ const renderMeasures = async () => {
         tabTrend.setAttribute('aria-selected', false);
         tabLinks.setAttribute('aria-selected', false);
 
-        console.log("mapData [showMap]", mapData);
+        // console.log("mapData [showMap]", mapData);
 
         if (!selectedMapGeo && !selectedMapTime && !selectedMapMeasure) {
 
-            console.log(">> no selected [showMap]");
+            // console.log(">> no selected [showMap]");
 
             // let mapMeasureData;
             // let mapTimeData;
@@ -1180,7 +1180,7 @@ const renderMeasures = async () => {
                     obj => obj.MeasureID === defaultMapMeasureId
                 );
 
-            console.log("filteredMapData [showMap]", filteredMapData);
+            // console.log("filteredMapData [showMap]", filteredMapData);
 
             // ----- allow map to persist when changing tabs -------------------------------------------------- //
 
@@ -1229,7 +1229,7 @@ const renderMeasures = async () => {
                         obj => obj.MeasureID === defaultMapMeasureId
                     );
 
-                console.log("filteredMapData [no selectedMapMeasure]", filteredMapData);
+                // console.log("filteredMapData [no selectedMapMeasure]", filteredMapData);
 
             // }
 
@@ -1248,7 +1248,7 @@ const renderMeasures = async () => {
 
                 latest_time = filteredMapData[0].Time
 
-                console.log("filteredMapData [no selectedMapTime]", filteredMapData);
+                // console.log("filteredMapData [no selectedMapTime]", filteredMapData);
 
             // }
 
@@ -1267,10 +1267,10 @@ const renderMeasures = async () => {
                 let maxGeo = filteredMapData[0].GeoType
                 maxGeoPretty = prettifyGeoType(maxGeo)
 
-                console.log("filteredMapData [no selectedMapGeo]", filteredMapData);
+                // console.log("filteredMapData [no selectedMapGeo]", filteredMapData);
 
-                console.log("maxGeo", maxGeo);
-                console.log("maxGeoPretty", maxGeoPretty);
+                // console.log("maxGeo", maxGeo);
+                // console.log("maxGeoPretty", maxGeoPretty);
 
             // }
 
@@ -1314,7 +1314,7 @@ const renderMeasures = async () => {
 
         } else {
 
-            console.log("else [showMap]");
+            // console.log("else [showMap]");
 
             // if there was a map already, restore it
 
