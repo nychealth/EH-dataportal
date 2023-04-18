@@ -1147,6 +1147,8 @@ const renderMeasures = async () => {
 
     showMap = (e) => {
 
+        console.log("* showMap");
+
         // ----- handle tab selection -------------------------------------------------- //
 
         // set hash to map
@@ -1688,6 +1690,8 @@ const renderMeasures = async () => {
     // define function
 
     showLinks = (e) => {
+
+        console.log("* showLinks");
 
         // ----- handle tab selection -------------------------------------------------- //
 

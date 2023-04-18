@@ -12,7 +12,7 @@ const renderLinksChart = (
 
     console.log("** renderLinksChart");
 
-    console.log("data [renderLinksChart]", data);
+    // console.log("data [renderLinksChart]", data);
 
     // ----------------------------------------------------------------------- //
     // arquero table for extracting arrays easily

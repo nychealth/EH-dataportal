@@ -242,6 +242,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     selectedMapGeo = false;
     selectedTrendMeasure = false;
     selectedLinksMeasure = false;
+    selectedDisparity = false;
     selectedComparison = false;
     showingNormalTrend = false;
 
