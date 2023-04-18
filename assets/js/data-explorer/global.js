@@ -157,6 +157,8 @@ const assignGeoRank = (GeoType) => {
             return 8;
         case 'NTA2020':
             return 9;
+        case 'NYHarbor':
+            return 10;
     }
 }
 
@@ -171,7 +173,8 @@ const geoTypes = [
     "Subboro",
     "CD",
     "CDTA",
-    "NTA"
+    "NTA",
+    "NYHarbor"
 ]
 
 // ----------------------------------------------------------------------- //
