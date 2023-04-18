@@ -86,6 +86,8 @@ const renderMap = (
             topoFile = 'NYCKids_2021.topo.json';
         } else if (mapGeoType === "Borough") {
             topoFile = 'borough.topo.json';
+        } else if (mapGeoType === "NYHarbor") {
+            topoFile = 'ny_harbor.topo.json';
         }
 
         // ----------------------------------------------------------------------- //
