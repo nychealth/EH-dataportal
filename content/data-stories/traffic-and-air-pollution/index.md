@@ -20,3 +20,7 @@ To do:
 - update the other frontmatter fields (check)
 - populate the content 
 - update image
+
+***What is PM2.5 and why is it a health risk?*** 
+
+PM2.5—or fine particulate matter—are tiny particles that pollute the air and result from everyday urban activities like driving. PM2.5 can be solid or liquid in form when it is airborne. PM2.5 is the most harmful air pollution for humans to breathe in because the particles are small enough to enter the bloodstream through the lungs. Each PM2.5 particle is less than 2.5 microns in diameter. That is small enough to fit inside a red blood cell. 
