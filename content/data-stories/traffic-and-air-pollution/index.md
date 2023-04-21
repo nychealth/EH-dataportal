@@ -17,64 +17,80 @@ seo_description: "The public health impacts of PM2.5 from traffic air pollution 
 ---
 
 To do:
-- update the other frontmatter fields (check)
 - populate the content 
 - update image
+- Change titles of viz
+- Update DW iframes if additional changes requested. Redrop in iframes if needed? 
+- Change svgs if needed (e.g. the 1 in X graphic needs a title). Also the text should be readable as text - but it isn't. Is this about the code that we're using to display it? Should we remove all embedded text from images? Probably. 
+- Update alt text
+- Fix spacing/sizing/labeling
 
-***What is PM2.5 and why is it a health risk?***
+## What is PM2.5 and why is it a health risk?
 
 PM2.5—or fine particulate matter—are tiny particles that pollute the air and result from everyday urban activities like driving. PM2.5 can be solid or liquid in form when it is airborne. PM2.5 is the most harmful air pollution for humans to breathe in because the particles are small enough to enter the bloodstream through the lungs. Each PM2.5 particle is less than 2.5 microns in diameter. That is small enough to fit inside a red blood cell. 
 
- - IMG goes here 
+<br></br>
 
-***The public health impacts of PM2.5*** 
+ <img src = "PM2.5 particle_final.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/>
+
+<br></br>
+
+## The public health impacts of PM2.5
 
 Once in the bloodstream, PM2.5 can cause health problems to the respiratory and circulatory systems, and even lower life expectancy. Health outcomes caused or worsened by PM2.5 include asthma, cancer, stroke, lung disease and reduced lung function, and cardiovascular disease. 
 
-- IMG goes here 
+<img src = "anatomy with annotation.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/>
 
-***Health impacts of PM2.5 in New York City*** 
+<img src = "sources.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/>
+
+## Health impacts of PM2.5 in New York City 
 
 In New York City, current overall PM2.5 levels from all sources contribute to 2,300 deaths and 6,300 emergency department visits and hospitalizations for respiratory and cardiovascular disease each year. 
 
-- IMG goes here
+ <img src = "resp hosp_pictogram.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/>
 
-***Traffic is a major source of PM2.5 in NYC*** 
+## Traffic is a major source of PM2.5 in NYC
 
 PM2.5 in NYC comes from inside and outside the city from all kinds of combustion activity. This includes the burning of fuel in vehicles, buildings, power plants, and construction equipment, as well as commercial cooking and industrial activities. PM2.5 can either come directly from these sources or be formed in the atmosphere from other pollutants. 
 
+<iframe title="PM2.5 sources in NYC (Copy)" aria-label="Donut Chart" id="datawrapper-chart-8VqIl" src="https://datawrapper.dwcdn.net/8VqIl/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="430" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
-- Datawrapper 1 - pie chart 
 
 17% of the PM2.5 emitted from NYC activities comes from everyday car, bus, and truck traffic. With the prevalence of people getting more deliveries, traffic patterns are changing.  
 
 However, the health impacts of PM2.5 from traffic are still felt more acutely in less wealthy neighborhoods. 
 
-***PM2.5 pollution from traffic is not evenly distributed throughout the city***
+## PM2.5 pollution from traffic is not evenly distributed throughout the city
 
 Some neighborhoods in New York City experience higher concentrations of PM2.5 from traffic than others. 
 
- - Raster map
+<img src = "Raster map key.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/>
+<img src = "map-04_trucks and buses_nyc.png" alt="PM2.5 causes adverse health effects on New Yorkers"/>
+<img src = "map-05_cars in nyc.png" alt="PM2.5 causes adverse health effects on New Yorkers"/>
 
-***PM2.5 pollution from traffic contributes to adverse health effects*** 
+## PM2.5 pollution from traffic contributes to adverse health effects 
  
 PM2.5 pollution from traffic in NYC contributes to about 320 premature deaths and 870 emergency department (ED) visits and hospitalizations each year. 
 
-- Datawrapper bar chart
+<iframe title="Adverse health effects caused by PM2.5" aria-label="Stacked Bars" id="datawrapper-chart-B0N7e" src="https://datawrapper.dwcdn.net/B0N7e/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="222" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
-***PM2.5-related health problems from traffic are highest in the poorest neighborhoods*** 
+## PM2.5-related health problems from traffic are highest in the poorest neighborhoods 
 
 PM2.5 levels from all traffic sources are about 50% higher in high poverty neighborhoods than in low poverty neighborhoods. PM2.5 levels from trucks and buses are about 70% higher in high poverty neighborhoods than low poverty neighborhoods. The number of hospitalizations and ED visits related to pollution from traffic are highest in the poorest neighborhoods.
 
-- Slope charttt
-- Truck chart
+<iframe title="PM2.5 and neighborhood poverty" aria-label="Interactive line chart" id="datawrapper-chart-rVmD7" src="https://datawrapper.dwcdn.net/rVmD7/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="510" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
-***How is your neighborhood affected?***
+<br></br>
+
+ <img src = "trucks_final.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/>
+
+## How is your neighborhood affected?
 
 You can find out the mortality rate, hospitalizations for respiratory and cardiovascular illness rates, and emergency department visits for asthma rate for any neighborhood by entering it into the table below. You can compare these rates with poverty level to see how health impacts from traffic-related PM2.5 are differently distributed based upon income in a given neighborhood. 
 
-- Table 
+<iframe title="old data - PM2.5 health impacts and poverty levels (Copy)" aria-label="Table" id="datawrapper-chart-vd4T9" src="https://datawrapper.dwcdn.net/vd4T9/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="749" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
-***How is the city combatting PM2.5 pollution?*** 
+
+## How is the city combatting PM2.5 pollution?
 
 - Conclusion? 
