@@ -84,6 +84,8 @@ PM2.5 levels from all traffic sources are about 50% higher in high poverty neigh
 
  <img src = "trucks_final.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/>
 
+ <br></br>
+
 ## How is your neighborhood affected?
 
 You can find out the mortality rate, hospitalizations for respiratory and cardiovascular illness rates, and emergency department visits for asthma rate for any neighborhood by entering it into the table below. You can compare these rates with poverty level to see how health impacts from traffic-related PM2.5 are differently distributed based upon income in a given neighborhood. 
