@@ -241,7 +241,7 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
                         },
                     },
                     "x": {
-                        "title": [`${disparityIndicatorName && `${disparityIndicatorName}`}`, `${disparityMeasurementType} ${disparityDisplay && `(${disparityDisplay})`} (${disparityTime})`],
+                        "title": [`${disparityIndicatorName && `${disparityIndicatorName}`}`, `(${disparityTime})`],
                         "field": "PovRank", // Changed
                         "type": "ordinal",
                         "axis": {
