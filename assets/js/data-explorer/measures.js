@@ -1707,6 +1707,10 @@ const renderMeasures = async () => {
         tabTrend.setAttribute('aria-selected', false);
         tabLinks.setAttribute('aria-selected', true);
 
+        // make sure the "Link to" button is enabled
+        $("#dropdownLinksMeasures").removeClass("disabled");
+        $("#dropdownLinksMeasures").attr('aria-disabled', false);
+
 
         // ----- allow chart to persist when changing tabs -------------------------------------------------- //
 
@@ -1744,9 +1748,13 @@ const renderMeasures = async () => {
                 // btnToggleDisparities.innerText = "Show Disparities";
                 // $(btnToggleDisparities).off()
 
-                // if disparities is enabled, show the button
+                // make sure that the "links" button is active by default
+                $("#show-links").addClass("active");
+                $("#show-disparities").removeClass("active");
 
+                // if disparities is enabled, show the button
                 btnToggleDisparities.style.display = "inline";
+
 
             }
 
@@ -1868,18 +1876,11 @@ const renderMeasures = async () => {
 
             if (e.target && e.target.matches("#show-disparities") && !e.target.classList.contains("active")) {
 
-                console.log("#### renderDisparities");
-
                 renderDisparities(defaultLinksMetadata, 221)
 
             } else if (e.target && e.target.matches("#show-links") && !e.target.classList.contains("active")) {
 
-                console.log("#### showLinks");
-                
                 showLinks();
-                
-                $("#dropdownLinksMeasures").removeClass("disabled");
-                $("#dropdownLinksMeasures").attr('aria-disabled', false);
 
             }
 

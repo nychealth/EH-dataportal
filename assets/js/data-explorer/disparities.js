@@ -17,33 +17,9 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
     // toggle button
     // ----------------------------------------------------------------------- //
 
-    // let btnLinksMeasures = $("#dropdownLinksMeasures")
-
     // disable links measures dropdown
     $("#dropdownLinksMeasures").addClass("disabled");
     $("#dropdownLinksMeasures").attr('aria-disabled', true);
-
-    // switch button text
-    // btnToggleDisparities.innerText = "Show Links";
-
-    // remove disparities event listeners
-    // $(btnToggleDisparities).off()
-
-    // add links event listener
-    // $(btnToggleDisparities).on("click", e => {
-
-    //     showLinks(e)
-    //     // reenable links measures dropdown
-    //     $(btnLinksMeasures).removeClass("disabled");
-    //     $(btnLinksMeasures).attr('aria-disabled', false);
-
-    //     // switch button text
-    //     // btnToggleDisparities.innerText = "Show Disparities";
-
-    //     $(btnToggleDisparities).on("click", () => renderDisparities(primaryMetadata, disparityMeasureId))
-
-    // });
-
 
     // ----------------------------------------------------------------------- //
     // extract primary metadata
@@ -240,18 +216,6 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
             "data": {
                 "values": disparityData
             },
-            // "transform": [
-            // {
-            //     "calculate": "datum.PovCat",
-            //     "as": "PovCat_2"
-            // } // gives us labels
-            // ],
-            // "transform": [
-            // {
-            //     "calculate": "(datum.Value_2 > 30 ? 'Very high (> 30%)' : (datum.Value_2 > 20  ? 'High (20-30%)' : ( datum.Value_2 > 2  ? 'Moderate (10-20%)' : 'Low (0-10%)')))",
-            //     "as": "PovCat"
-            // } // gives us labels
-            // ],
             "layer": [
             {
                 "mark": {
@@ -280,9 +244,8 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
                         "title": [`${disparityIndicatorName && `${disparityIndicatorName}`}`, `${disparityMeasurementType} ${disparityDisplay && `(${disparityDisplay})`} (${disparityTime})`],
                         "field": "PovRank", // Changed
                         "type": "ordinal",
-                        // "label": "PovCat",
                         "axis": {
-                            "labelExpr": "warn(datum.value == 4 ? 'Very high (over 30%)' : (datum.value == 3  ? 'High (20 - 29.9%)' : ( datum.value == 2  ? 'Moderate (10 - 19.9%)' : 'Low (0 - 9.9%)')))",
+                            "labelExpr": "(datum.value == 4 ? 'Very high (over 30%)' : (datum.value == 3  ? 'High (20 - 29.9%)' : ( datum.value == 2  ? 'Moderate (10 - 19.9%)' : 'Low (0 - 9.9%)')))",
                             "labelAlign": "center",
                             "labelAngle": 0
                         }
