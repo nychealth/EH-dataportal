@@ -92,13 +92,13 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
     console.log("** renderDisparities");
     
     // remove disparities event listeners
-    $(btnShowDisparities).off()
+    $(btnToggleDisparities).off()
 
     // add trend event listener
-    $(btnShowDisparities).on("click", e => showTrend(e));
+    $(btnToggleDisparities).on("click", e => showTrend(e));
 
     // switch button text
-    btnShowDisparities.innerText = "Show Trend";
+    btnToggleDisparities.innerText = "Show Trend";
 
 
     // extract primary metadata

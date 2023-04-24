@@ -17,32 +17,32 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
     // toggle button
     // ----------------------------------------------------------------------- //
 
-    let btnLinksMeasures = $("#dropdownLinksMeasures")
+    // let btnLinksMeasures = $("#dropdownLinksMeasures")
 
     // disable links measures dropdown
-    $(btnLinksMeasures).addClass("disabled");
-    $(btnLinksMeasures).attr('aria-disabled', true);
+    $("#dropdownLinksMeasures").addClass("disabled");
+    $("#dropdownLinksMeasures").attr('aria-disabled', true);
 
     // switch button text
-    btnShowDisparities.innerText = "Show Links";
+    // btnToggleDisparities.innerText = "Show Links";
 
     // remove disparities event listeners
-    $(btnShowDisparities).off()
+    // $(btnToggleDisparities).off()
 
     // add links event listener
-    $(btnShowDisparities).on("click", e => {
+    // $(btnToggleDisparities).on("click", e => {
 
-        showLinks(e)
-        // reenable links measures dropdown
-        $(btnLinksMeasures).removeClass("disabled");
-        $(btnLinksMeasures).attr('aria-disabled', false);
+    //     showLinks(e)
+    //     // reenable links measures dropdown
+    //     $(btnLinksMeasures).removeClass("disabled");
+    //     $(btnLinksMeasures).attr('aria-disabled', false);
 
-        // switch button text
-        btnShowDisparities.innerText = "Show Disparities";
+    //     // switch button text
+    //     // btnToggleDisparities.innerText = "Show Disparities";
 
-        $(btnShowDisparities).on("click", () => renderDisparities(primaryMetadata, disparityMeasureId))
+    //     $(btnToggleDisparities).on("click", () => renderDisparities(primaryMetadata, disparityMeasureId))
 
-    });
+    // });
 
 
     // ----------------------------------------------------------------------- //
@@ -112,8 +112,8 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
                     .derive({ PovCat: d => (d.PovRank == 4 ? 'Very high (> 30%)' : (d.PovRank == 3  ? 'High (20-30%)' : ( d.PovRank == 2  ? 'Moderate (10-20%)' : 'Low (0-10%)'))) })
                     .derive({ randomOffsetX: aq.escape(d => d.PovRank + (myrng()*2 - 1)) })
                 
-                // console.log("dispData");
-                // dispData.print()
+                console.log("dispData");
+                dispData.print()
                 
                 return dispData;
             })
@@ -242,6 +242,12 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
             },
             // "transform": [
             // {
+            //     "calculate": "datum.PovCat",
+            //     "as": "PovCat_2"
+            // } // gives us labels
+            // ],
+            // "transform": [
+            // {
             //     "calculate": "(datum.Value_2 > 30 ? 'Very high (> 30%)' : (datum.Value_2 > 20  ? 'High (20-30%)' : ( datum.Value_2 > 2  ? 'Moderate (10-20%)' : 'Low (0-10%)')))",
             //     "as": "PovCat"
             // } // gives us labels
@@ -274,9 +280,9 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
                         "title": [`${disparityIndicatorName && `${disparityIndicatorName}`}`, `${disparityMeasurementType} ${disparityDisplay && `(${disparityDisplay})`} (${disparityTime})`],
                         "field": "PovRank", // Changed
                         "type": "ordinal",
-                        "label": "PovCat",
-                        "axis": { // added
-                            // "labelExpr": "(datum.label == 4 ? 'Very high (> 30%)' : (datum.label == 3  ? 'High (20-30%)' : ( datum.label == 2  ? 'Moderate (10-20%)' : 'Low (0-10%)')))",
+                        // "label": "PovCat",
+                        "axis": {
+                            "labelExpr": "warn(datum.value == 4 ? 'Very high (> 30%)' : (datum.value == 3  ? 'High (20-30%)' : ( datum.value == 2  ? 'Moderate (10-20%)' : 'Low (0-10%)')))",
                             "labelAlign": "center",
                             "labelAngle": 0
                         }

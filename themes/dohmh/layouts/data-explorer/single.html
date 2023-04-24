@@ -445,13 +445,25 @@
                         <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
                                 id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Link to </button>
 
-                        <!-- disparities button - display style changed to show or hide (currently hidden full time due to glitch on percents-->
-                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary btn-show-disparities mb-1"
-                                style="display:inline"> Dispartites </button>
-
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownLinksMeasures">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
+
+                        <!-- disparities button - display style changed to show or hide (currently hidden full time due to glitch on percents-->
+
+                        <div class="btn-group btn-group-toggle btn-toggle-disparities" data-toggle="buttons" style="display:inline">
+
+                            <label class="btn btn-sm mr-1 float-right btn-outline-secondary" id="show-disparities">
+                                <input type="radio" name="options" id="disparities-btn" autocomplete="off"> Disparities
+                            </label>
+                            <label class="btn btn-sm float-right btn-outline-secondary active" id="show-links">
+                                <input type="radio" name="options" id="links-btn" autocomplete="off" checked> Links
+                            </label>
+
+                            <span class="float-right mr-1">Show:</span>
+
+                        </div>
+                        
                     </div>
                     <span id="linksTitle" class="home-label border-bottom"></span>
                     <!-- INSERT LINKS CHART HERE -->

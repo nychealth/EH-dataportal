@@ -1731,26 +1731,22 @@ const renderMeasures = async () => {
 
                 // if disparities is disabled, hide the button
 
-                btnShowDisparities.style.display = "none";
+                btnToggleDisparities.style.display = "none";
 
                 // remove click listeners to button that calls renderDisparities
 
-                $(btnShowDisparities).off()
+                // $(btnToggleDisparities).off()
 
             } else if (disparities == 1) {
 
                 // remove event listener added when/if button was clicked
 
-                btnShowDisparities.innerText = "Show Disparities";
-                $(btnShowDisparities).off()
+                // btnToggleDisparities.innerText = "Show Disparities";
+                // $(btnToggleDisparities).off()
 
                 // if disparities is enabled, show the button
 
-                btnShowDisparities.style.display = "inline";
-
-                // add click listener to button that calls renderDisparities
-
-                $(btnShowDisparities).on("click", () => renderDisparities(defaultLinksMetadata, 221));
+                btnToggleDisparities.style.display = "inline";
 
             }
 
@@ -1860,6 +1856,34 @@ const renderMeasures = async () => {
 
             updateChartPlotSize();
         }
+
+
+        // add click listener to button that calls renderDisparities
+
+        $(btnToggleDisparities).off()
+
+        $(btnToggleDisparities).on("click", (e) => {
+
+            console.log("** btnToggleDisparities **", e);
+
+            if (e.target && e.target.matches("#show-disparities") && !e.target.classList.contains("active")) {
+
+                console.log("#### renderDisparities");
+
+                renderDisparities(defaultLinksMetadata, 221)
+
+            } else if (e.target && e.target.matches("#show-links") && !e.target.classList.contains("active")) {
+
+                console.log("#### showLinks");
+                
+                showLinks();
+                
+                $("#dropdownLinksMeasures").removeClass("disabled");
+                $("#dropdownLinksMeasures").attr('aria-disabled', false);
+
+            }
+
+        });
 
     };
 
