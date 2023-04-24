@@ -282,7 +282,7 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
                         "type": "ordinal",
                         // "label": "PovCat",
                         "axis": {
-                            "labelExpr": "warn(datum.value == 4 ? 'Very high (> 30%)' : (datum.value == 3  ? 'High (20-30%)' : ( datum.value == 2  ? 'Moderate (10-20%)' : 'Low (0-10%)')))",
+                            "labelExpr": "warn(datum.value == 4 ? 'Very high (over 30%)' : (datum.value == 3  ? 'High (20 - 29.9%)' : ( datum.value == 2  ? 'Moderate (10 - 19.9%)' : 'Low (0 - 9.9%)')))",
                             "labelAlign": "center",
                             "labelAngle": 0
                         }
