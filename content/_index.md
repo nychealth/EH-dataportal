@@ -9,7 +9,7 @@ featured_link: "/key-topics/airquality/realtime"
 featured_image: realtime-screenshot.png
 recently_updated:
 - Name: Commuting modes
-  Link: /data-explorer/cigarette-smoke/?id=2415#display=summary
+  Link: /data-explorer/walking-driving-and-cycling/?id=2415#display=summary
 - Name: Tobacco retailers
   Link: /data-explorer/cigarette-smoke/?id=2421#display=summary
 - Name: Litter basket coverage
