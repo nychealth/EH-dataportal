@@ -22,6 +22,7 @@ const renderMap = (
         // console.log("mapYears [map.js]", mapYears);
 
         let mapGeoType            = data[0].GeoType;
+        let geoTypeShortDesc      = data[0].GeoTypeShortDesc;
         let mapMeasurementType    = metadata[0].MeasurementType;
         let displayType           = metadata[0].DisplayType;
         let mapGeoTypeDescription = 
@@ -187,7 +188,10 @@ const renderMap = (
                                     "value": 0
                                 },
                                 "tooltip": [
-                                    {"field": "Geography", "title": "Neighborhood"},
+                                    {
+                                        "field": "Geography", 
+                                        "title": geoTypeShortDesc
+                                    },
                                     {
                                         "field": "DisplayValue",
                                         "title": mapMeasurementType
@@ -224,7 +228,7 @@ const renderMap = (
                         "tooltip": [
                             {
                                 "field": "Geography", 
-                                "title": "Neighborhood"
+                                "title": geoTypeShortDesc
                             },
                             {
                                 "field": "DisplayValue", 
