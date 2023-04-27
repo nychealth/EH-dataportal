@@ -55,12 +55,11 @@ In New York City, current overall PM2.5 levels from all sources contribute to 2,
 </div>
 <div class="wide my-4">
     <div class="row">
-        <div class="col-md-6" style="height: 200px; border: 1px solid lightgray;">1 in 31 respiratory hospitalizations</div>
-        <div class="col-md-6" style="height: 200px; border: 1px solid lightgray;">1 in 31 cardiovascular hospitalizations</div>
-        <div class="col-md-6" style="height: 200px; border: 1px solid lightgray;">1 in 17 asthma emergency department visits</div>
-        <div class="col-md-6" style="height: 200px; border: 1px solid lightgray;">1 in 20 deaths</div>
+        <div class="col-md-6" style="height: 350px; border: 1px solid lightgray;">1 in 17 asthma emergency room visits<img src= "1 in 17.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
+        <div class="col-md-6" style="height: 350px; border: 1px solid lightgray;">1 in 31 cardiovascular hospitalizations<img src= "1 in 31.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
+        <div class="col-md-6" style="height: 350px; border: 1px solid lightgray;">1 in 17 asthma emergency department visits<img src= "1 in 31.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
+        <div class="col-md-6" style="height: 350px; border: 1px solid lightgray;">1 in 20 deaths<img src = "1 in 20.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
     </div>
-     <img src = "resp hosp_pictogram.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/>
 </div>
 <div class="narrow">
 
