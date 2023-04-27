@@ -17,13 +17,9 @@ seo_description: "The public health impacts of PM2.5 from traffic air pollution 
 ---
 
 To do:
-- populate the content 
 - update image
 - Change titles of viz
-- Update DW iframes if additional changes requested. Redrop in iframes if needed? 
-- Change svgs if needed (e.g. the 1 in X graphic needs a title). Also the text should be readable as text - but it isn't. Is this about the code that we're using to display it? Should we remove all embedded text from images? Probably. 
 - Update alt text
-- Fix spacing/sizing/labeling
 
 ## What is PM2.5 and why is it a health risk?
 
