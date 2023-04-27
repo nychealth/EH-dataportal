@@ -55,10 +55,10 @@ In New York City, current overall PM2.5 levels from all sources contribute to 2,
 </div>
 <div class="wide my-4">
     <div class="row">
-        <div class="col-md-6" style="height: 350px; border: 1px solid lightgray;">1 in 17 asthma emergency room visits<img src= "1 in 17.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
-        <div class="col-md-6" style="height: 350px; border: 1px solid lightgray;">1 in 31 cardiovascular hospitalizations<img src= "1 in 31.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
-        <div class="col-md-6" style="height: 350px; border: 1px solid lightgray;">1 in 17 asthma emergency department visits<img src= "1 in 31.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
-        <div class="col-md-6" style="height: 350px; border: 1px solid lightgray;">1 in 20 deaths<img src = "1 in 20.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
+        <div class="col-md-6 mt-2"><h3 class="mb-3"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 17 asthma emergency room visits</h3><img src= "1 in 17.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
+        <div class="col-md-6 mt-2" ><h3 class="mb-3"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 31 cardiovascular hospitalizations</h3><img src= "1 in 31.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
+        <div class="col-md-6 mt-2" ><h3 class="mb-3"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 31 respiratory hospital visits<h3><img src= "1 in 31.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
+        <div class="col-md-6 mt-2" ><h3 class="mb-3"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 20 deaths</h3><img src = "1 in 20.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
     </div>
 </div>
 <div class="narrow">
@@ -68,7 +68,7 @@ In New York City, current overall PM2.5 levels from all sources contribute to 2,
 
 PM2.5 in NYC comes from inside and outside the city from all kinds of combustion activity. This includes the burning of fuel in vehicles, buildings, power plants, and construction equipment, as well as commercial cooking and industrial activities. PM2.5 can either come directly from these sources or be formed in the atmosphere from other pollutants. 
 
-<iframe title="PM2.5 sources in NYC (Copy)" class="my-4" aria-label="Donut Chart" id="datawrapper-chart-8VqIl" src="https://datawrapper.dwcdn.net/8VqIl/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="430" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<iframe title="17% of PM2.5 comes from traffic" aria-label="Donut Chart" id="datawrapper-chart-8VqIl" src="https://datawrapper.dwcdn.net/8VqIl/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="459" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
 
 17% of the PM2.5 emitted from NYC activities comes from everyday car, bus, and truck traffic. With the prevalence of people getting more deliveries, traffic patterns are changing.  
@@ -118,7 +118,7 @@ PM2.5 pollution from traffic in NYC contributes to about 320 premature deaths an
 
 </div>
 <div class="wide my-4">
-<iframe title="Adverse health effects caused by PM2.5" aria-label="Stacked Bars" id="datawrapper-chart-B0N7e" src="https://datawrapper.dwcdn.net/B0N7e/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="222" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<iframe title="Adverse health effects caused by PM2.5 from trucks and buses and cars" aria-label="Stacked Bars" id="datawrapper-chart-B0N7e" src="https://datawrapper.dwcdn.net/B0N7e/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="219" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 <div class="narrow">
 
@@ -126,7 +126,7 @@ PM2.5 pollution from traffic in NYC contributes to about 320 premature deaths an
 
 PM2.5 levels from all traffic sources are about 50% higher in high poverty neighborhoods than in low poverty neighborhoods. PM2.5 levels from trucks and buses are about 70% higher in high poverty neighborhoods than low poverty neighborhoods. The number of hospitalizations and ED visits related to pollution from traffic are highest in the poorest neighborhoods.
 
-<iframe class="px-4" title="PM2.5 and neighborhood poverty" aria-label="Interactive line chart" id="datawrapper-chart-rVmD7" src="https://datawrapper.dwcdn.net/rVmD7/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="510" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<iframe title="PM2.5 from traffic is highest in the poorest neighborhoods" aria-label="Interactive line chart" id="datawrapper-chart-rVmD7" src="https://datawrapper.dwcdn.net/rVmD7/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="510" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
 <br></br>
 
