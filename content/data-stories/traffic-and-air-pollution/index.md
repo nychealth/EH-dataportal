@@ -2,8 +2,8 @@
 title: The Public Health Impacts of PM2.5 from Traffic Air Pollution
 draft: false
 date: 2023-04-05T08:49:22-04:00
-image: ds-codesign-team.jpg
-photocredit: EH Data Portal team
+image: ESB_sunrise_JulienneSchaer-066.JPG
+photocredit: © Julienne Schaer
 categories: 
     - airquality
     - transportation
@@ -17,9 +17,8 @@ seo_description: "The public health impacts of PM2.5 from traffic air pollution 
 ---
 
 To do:
-- update image
-- Change titles of viz
 - Update alt text
+- Conclusion
 
 ## What is PM2.5 and why is it a health risk?
 
@@ -51,10 +50,10 @@ In New York City, current overall PM2.5 levels from all sources contribute to 2,
 </div>
 <div class="wide my-4">
     <div class="row">
-        <div class="col-md-6 mt-2"><h3 class="mb-3"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 17 asthma emergency room visits</h3><img src= "1 in 17.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
         <div class="col-md-6 mt-2" ><h3 class="mb-3"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 31 cardiovascular hospitalizations</h3><img src= "1 in 31.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
         <div class="col-md-6 mt-2" ><h3 class="mb-3"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 31 respiratory hospital visits<h3><img src= "1 in 31.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
-        <div class="col-md-6 mt-2" ><h3 class="mb-3"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 20 deaths</h3><img src = "1 in 20.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
+        <div class="col-md-6 mt-2"><h3 class="mb-3"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 17 asthma emergency room visits</h3><img src= "1 in 17 cropped.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
+        <div class="col-md-6 mt-2" ><h3 class="mb-3"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 20 deaths</h3><img src = "1 in 20 cropped.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
     </div>
 </div>
 <div class="narrow">
@@ -114,8 +113,7 @@ PM2.5 pollution from traffic in NYC contributes to about 320 premature deaths an
 
 </div>
 <div class="wide my-4">
-<iframe title="Adverse health effects caused by PM2.5 from trucks and buses and cars" aria-label="Stacked Bars" id="datawrapper-chart-B0N7e" src="https://datawrapper.dwcdn.net/B0N7e/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="219" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
-</div>
+<iframe title="Adverse health effects caused by PM2.5 from trucks and buses and cars" aria-label="Stacked Bars" id="datawrapper-chart-B0N7e" src="https://datawrapper.dwcdn.net/B0N7e/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="219" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 <div class="narrow">
 
 ## PM2.5-related health problems from traffic are highest in the poorest neighborhoods 
@@ -137,10 +135,8 @@ You can find out the mortality rate, hospitalizations for respiratory and cardio
 </div>
 <div class="wide my-4">
 
-<iframe title="old data - PM2.5 health impacts and poverty levels (Copy)" aria-label="Table" id="datawrapper-chart-vd4T9" src="https://datawrapper.dwcdn.net/vd4T9/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="749" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<iframe title="Health impacts due to PM2.5 from traffic" aria-label="Table" id="datawrapper-chart-vd4T9" src="https://datawrapper.dwcdn.net/vd4T9/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="733" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 <div class="narrow">
 
-## How is the city combatting PM2.5 pollution?
-
-- Conclusion? 
+<a href="https://ehjournal.biomedcentral.com/articles/10.1186/s12940-016-0172-6"> Read the full report on how PM2.5 from traffic contributes to negative health effects in New York City.</a>
