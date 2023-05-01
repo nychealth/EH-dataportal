@@ -76,9 +76,10 @@ The number of heat-stress deaths for 2021 is provisional. If additional deaths a
 
 ## Health and Other Risk Factors
 
-Among the deaths with detailed medical examiner records available, more than 90% had at least one chronic health condition.
+* Among decedents with detailed medical examiner records available, 90% had at least one chronic health condition.
+* Common chronic conditions included cardiovascular disease, substance or alcohol use, serious mental health or cognitive conditions, and having a history of diabetes.
 
-Common chronic conditions included cardiovascular disease, substance or alcohol use, serious mental health or cognitive conditions, and having a history of diabetes. Of adults 18-64 years old, 41% had obesity, with a body mass index of 30 or greater.
+**Table 1: Medical characteristics among subset with review of health conditions in medical examiner records (n=59), 2012-2021.**
 
 <iframe title="Health conditions table" aria-label="Table" id="datawrapper-chart-zAvcP" src="https://datawrapper.dwcdn.net/zAvcP/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="387" data-external="1"></iframe>
 
@@ -87,38 +88,51 @@ Common chronic conditions included cardiovascular disease, substance or alcohol 
 
 ## Heat Exposure Circumstances
 
-People who died from heat-stress were most often exposed to dangerous heat in their homes (69%, n= 57 of 83 records with detailed information). Another 7% were exposed indoors but not at their own residence. Without AC, indoor temperatures can be much higher than outdoors, especially at night, and can continue for days after a heat wave.2
+People who died from heat stress were most often exposed to dangerous heat in homes (60%, n= 35 of 58 records with detailed information available about onset place). Without AC,&nbsp;[indoor temperatures can be much higher than outdoors](https://journals.ametsoc.org/view/journals/bams/99/12/bams-d-16-0280.1.xml), especially at night, and can continue for days after a heat wave \[2\]. Of those exposed in homes, and for whom there was information about the presence or absence of an AC, none had or were using AC. Another 26% (n=15) were exposed outdoors, 7% (n=4) were exposed in parked cars, and 5% (n=3) were exposed indoors at worksites. Overall, 10%(n=6) of deaths were work-related.
 
-Among New Yorkers who died after becoming dangerously hot at home, and for whom there was information about the presence or absence of an AC, 81% had no AC and the rest had AC that was either not working or not in use.
+**Table 2: Air conditioning presence among heat stress decedents exposed to heat in homes, 2012-2021.**
 
 <iframe title="AC status of heat stress deaths at home" aria-label="Table" id="datawrapper-chart-7F4Tg" src="https://datawrapper.dwcdn.net/7F4Tg/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="210" data-external="1"></iframe>
 
 <script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
 </script>
 
-More than a quarter (n=16, 28%) of decedents had an electric fan present and on, indicating that only using an electric fan without an AC cannot always prevent death during extreme heat for people who are at highest heat risk.
+About a third (n=12, 35%) of decedents exposed in homes had an electric fan present and on, indicating that only using an electric fan without an AC cannot always prevent death during extreme heat for people who are at highest heat risk.
 
-Previous Health Department studies have found that air conditioning access differs across race and class. Black New Yorkers and low-income New Yorkers are less likely to own or use an AC during hot weather, and the main reason is cost.3 While more than 90% of NYC households have air conditioning, access is also lower in neighborhoods where more people are living with limited financial resources.
+Previous Health Department studies have found that air conditioning access differs across race and class. Non-Hispanic Black New Yorkers and low-income New Yorkers are less likely to own or use an AC during hot weather, and the main reason is cost [\[3\]](https://nyccas.cityofnewyork.us/nyccas2022/report/1#References). While more than 90% of NYC households currently have air conditioning, access can be as low as 76% in neighborhoods where more people are living with limited financial resources.
 
 ## Heat Exacerbated Deaths
 
-Deaths from chronic conditions that are not recognized as heat-related on death certificates can be estimated using statistical models. There are more of these deaths than those from heat stress and they are called “excess deaths” or “heat-exacerbated deaths.” Unlike heat stress deaths, which can be identified and investigated, excess deaths can only be estimated as aggregate counts. However, estimating heat-exacerbated deaths – or “mortality” – better captures how many people are dying of the heat.
+Deaths from chronic conditions that are not recognized as heat-related on death certificates can be estimated using statistical models. They are called “excess deaths” or “heat-exacerbated deaths.” There are more of these deaths than those from heat stress. Unlike heat-stress deaths, which can be individually identified and investigated, excess deaths can be estimated only as aggregate counts. However, estimating heat-exacerbated deaths – or “mortality” – better captures the true extent of how many New Yorkers are dying of the heat.
 
-We estimated heat-exacerbated mortality risk and number of deaths for 2011 through 2019 using weather and natural cause death data for May-September in NYC. The average natural death count was about 18,000 deaths for May through September each year. We used statistical models to compare deaths on hot days with those on cooler days. We estimated heat-exacerbated deaths using:
+In the previous two annual reports, we estimated heat-exacerbated mortality risk and number of deaths for a 9-year period (e.g., 2011-2019 for the 2022 report) using weather and natural cause death data for May-September in NYC. Starting this year, we report estimated heat-exacerbated deaths for the current and historical data in five-year rolling time windows to characterize trends. The average natural death count per year was about 18,000 for May through September for the most recent 5-year period (2016-2020). We used time-series statistical models to compare deaths on hot days with those on cooler days. We estimated heat-exacerbated deaths using:
 
-* An indicator for extreme heat event days defined by the National Weather Service’s heat advisory threshold for NYC. Based on the Health Department’s previous analysis of heat-exacerbated mortality, heat advisories are for at least 2 consecutive days with 95°F or higher daily maximum heat index (HI) or any day with a maximum HI of 100°F or higher.
-* The range of hot daily maximum temperatures that includes both extreme heat event days and other hot days. We assessed risk for days ranging from the median maximum daily temperature of 82°F through the highest temperature during the period.
+* an indicator (yes/no) for extreme heat event days defined by the National Weather Service’s heat advisory threshold for NYC. Established in 2008 based on the Health Department’s heat-exacerbated mortality analysis, heat advisories are defined as at least 2 consecutive days with 95°F or higher daily maximum heat index (HI) or any day with a maximum HI of 100°F or higher.
+* a range of hot daily maximum temperatures that includes both extreme heat event days and other hot days. We estimated heat-exacerbated deaths for days ranging from the median maximum daily temperature of 82°F through the highest temperature during the period.
 
-In addition, to describe the impact of climate change, we examined how the number of hot days during warm months changed over the past five decades. We included deaths occurring on the date of exposure to hot weather and over the following 3 days, because previous Health Department studies have shown that heat-related deaths can occur up to 3 days after the initial hot weather.4 Detailed methods used to estimate risks and attributable deaths can be found here.
+These models were run in 5-year rolling time windows between 1971 and 2020. We included deaths occurring on the date of exposure to hot weather and over the following 3 days because previous Health Department studies have shown that heat-exacerbated deaths can occur up to 3 days after the initial hot weather \[4\]. Detailed methods used to estimate risks and attributable deaths can be found here \[insert updated link when available\].
 
-* From 2011 to 2019, the estimated annual average of heat-exacerbated deaths from May-September for all hot days was 364 (95% Confidence Interval \[95CI\]: 144, 593). Heat-exacerbated deaths make up approximately 2% of all natural-cause deaths in the warm months.
-* The estimated annual average of heat-exacerbated deaths associated with extreme heat events was 96 (95% CI: 55, 134).
-* Heat-exacerbated mortality risks were observed across the full range of all hot days (maximum temperature at or above 82°F) during the summer months. Risk increased with temperature, with the largest increases occurring at the highest temperatures, and a steeper slope of relative risk above 90°F (see Figure 3).
-* Heat attributable deaths occurred most frequently in July (40%), followed by August (26%), June (17%), September (10%), and May (7%).
+To describe the impact of climate change, we examined how the number of hot days during warm months changed over the past five decades (1971-2020) in rolling 5-year time windows. We also computed the average of daily maximum temperature for each month between May and September to examine if changes in temperature varied by month. &nbsp;
+
+* Historically, the estimated impacts of heat, both extreme and non-extreme hot days, declined substantially between 1971 and 2000, plateaued after 2000, and then started increasing in the past decade (see Figure 3).
+* From 2016 to 2020, the most recent 5-year time window, the estimated annual average of heat-exacerbated deaths from May-September for all hot days was 345 (95% Confidence Interval \[95CI\]: 139, 549). Heat-exacerbated deaths make up approximately 2% of all natural-cause deaths in the warm months in this most recent period. Heat-exacerbated deaths at and above 82°F show an upward trend in the past decade. (See Figure 3).
+
+* The estimated annual average of heat-exacerbated deaths associated with extreme heat events for 2016-2020 was 115 (95% CI: 50, 177). In contrast to the trend for both extreme and non-extreme hot days, heat-exacerbated deaths due to only extreme heat days are relatively constant over the past decade (see Figure 3).
+* Heat-exacerbated mortality risks were observed across the full range of hot days (maximum temperature at or above 82°F) during warm season months. Examining the most recent decade 2011-2020, risk increased with temperature, with the largest increases occurring at the highest temperatures, and a steeper slope of relative risk above 90°F (see Figure 4).
+* Estimated heat-attributable deaths occurred most frequently in July (37%), followed by August (28%), June (18%), September (10%), and May (7%) for 2016-2020.
 
 ![alt text goes here](/key-topics/climatehealth/heat-report/MicrosoftTeams-image.png)
 
-Hotter Summers: The proportion of summer days reaching hot temperatures has substantially increased in the latest decade compared to the earliest of the past five decades (Figure 4). More than 20% of late June through mid-August dates during 2011-2020 had daily maximum temperatures of 90°F or higher. More than 30% of Mid-July dates experienced daily maximum temperatures of 90°F or higher. Given the consistently high and increasing proportion of hot days between late June through mid-August, heat-risk mitigation planning needs to emphasize non-emergency planning, such as access to air-conditioning.
+\[insert Figure 3 and Figure 4\]
+
+*Hotter Summers**\:* There are many more days every summer that are hot but not extremely hot (i.e., daily maximum temperature at or above 82°F to single days of 95°F) compared to extreme heat event days. These days are also associated with increased risk of heat-related death (Figure 4). Due to climate change, the numbers of extreme heat events and non-extreme hot days are increasing, which contributes to an increase in heat-exacerbated deaths.
+
+* The average number of non-extreme hot days increased from 52 in 1971-1975 to 74 days in 2016-2020, whereas the number of extreme heat days only increased from 4 in 1971-1975 to 11 in 2016-2020(See Figure 5). Based on the results presented in Figures 3 and 5,&nbsp; the increasing number of non-extreme hot days in the past decade accounts for the increase in overall heat-exacerbated deaths in the past decade.
+* The average daily maximum temperature in July—the month with the highest heat-health risk—increased 5°F, from 83°F in 1971-1975 to 88°F in 2016-2020. The average daily maximum temperature in other months also increased by 3 to 5°F (see Figure 6).
+
+Given the consistently high and increasing proportion of hot days in July and August, heat-risk mitigation planning needs to emphasize non-emergency interventions, such as access to air conditioning. According to US Census Bureau’s [American Housing Survey](https://www.census.gov/programs-surveys/ahs.html) and [Housing and Vacancy Survey](https://www.census.gov/programs-surveys/nychvs.html) conducted in New York City, air conditioning (AC) prevalence increased from ~40% in 1970 to over 80% by mid-2000 (Figure 7), likely explaining the reduction in estimated heat-exacerbated deaths in the corresponding period (Figure 3). However, the rate of increase in AC prevalence appears to have slowed since mid-2000 (Figure 7), as the number of hot days continued to increase, highlighting the urgency of achieving equitable cooling in the very near future. &nbsp; &nbsp;&nbsp;&nbsp;
+
+\[Insert Figure 5, Figure 6, and Figure 7\]
 
 ![](/key-topics/2023-nyc-heat-related-mortality-report/revised-figure6-ehe-and-tmax-crr-trend-5yr-window-2000-2020.jpg)\[VIS EMBED\]![](/key-topics/2022-nyc-heat-related-mortality-report/revised-figure6-ehe-and-tmax-crr-trend-5yr-window-2000-2020.jpg)
 
