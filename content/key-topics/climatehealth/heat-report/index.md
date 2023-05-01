@@ -60,11 +60,19 @@ The number of heat-stress deaths for 2021 is provisional. If additional deaths a
 
 ## Demographics
 
+* Heat-stress deaths occurred among all age groups, with the lowest rates among those aged 20 and younger and the highest among people aged 60 and older. &nbsp;
+* About two thirds of heat-stress deaths occurred among men.&nbsp;
+* The age-adjusted death rate among non-Hispanic Black New Yorkers is twice as high as that of non-Hispanic White New Yorkers (1.3 deaths per million versus 0.6 deaths per million) from 2012-2021, an inequity rooted in systemic racism \[1\]. Lack of equitable access to resources needed for wellness – such as jobs that pay a living wage, affordable and healthy housing with air conditioning, and health care – are causes of these differences in heat-related mortality.&nbsp;
+* Death rates were higher in neighborhoods with more residents living below the federal poverty line compared to wealthier neighborhoods.&nbsp;
+* Age-adjusted death rates were highest in Brooklyn.
+
+**Figure 2: Demographic characteristics of heat-stress decedents, 2012-2021.**
+
 <iframe title="Demographic characteristics of heat stress decedents, 2012-2012" aria-label="Bar Chart" id="datawrapper-chart-Spd0s" src="https://datawrapper.dwcdn.net/Spd0s/5/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="765" data-external="1"></iframe>
 
 <script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
-**Note on race and ethnicity:** Deaths are grouped into these five race and ethnicity categories due to the small sample size of deaths and the availability of denominator data. However, these categories represent an oversimplification of the ethnically and racially diverse population found in NYC. People identified as two or more races or races/ethnicities not listed here are included in the other or unknown category, and the Hispanic/Latino category includes people of any race. Differences in mortality rates among racial and ethnic groups are due to long-term structural racism, not biological or personal traits. Structural racism — centuries of racist policies and discriminatory practices across institutions, including government agencies, and society — prevents communities of color from accessing vital resources (such as health care and healthy housing) and opportunities (such as employment and education), and negatively affects overall health and well-being. See Appendix Methods and Supplemental Data for more information on numbers and percentages by race and ethnicity.
+**Note on race and ethnicity:** Deaths are grouped into five race and ethnicity categories due to the small sample size of deaths and the availability of denominator data. However, these categories represent an oversimplification of the ethnically and racially diverse population found in NYC. People identified as two or more races or races/ethnicities not listed here are included in the other or unknown category, and the Hispanic category includes people of any race. Differences in mortality rates among racial and ethnic groups are due to long-term structural racism, not biological or personal traits. Structural racism — centuries of racist policies and discriminatory practices across institutions, including government agencies, and society — prevents communities of color from accessing vital resources (such as health care and healthy housing) and opportunities (such as employment and education), and negatively affects overall health and well-being. See Appendix Methods and Supplemental Data \[link\] for more information on numbers and percentages by race and ethnicity.
 
 ## Health and Other Risk Factors
 
