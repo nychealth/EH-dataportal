@@ -152,22 +152,25 @@ The best indicator of neighborhood-level heat impacts is the HVI, which shows di
 
 ## Conclusion
 
-Heat contributes to the deaths of 370 New Yorkers on average each year during the warm season of May through September. The climate crisis is also making NYC's warm season hotter. To reduce heat-related deaths in NYC and prepare for a hotter future, the city needs long-lasting structural interventions alongside emergency preparedness and response, including:
+Heat contributes to the deaths of about 350 New Yorkers, on average, each year during the warm season of May through September. July accounts for the greatest share of heat-exacerbated deaths, and the average daily maximum temperature in July has increased by about 5°F in the past five decades. Deaths have been increasing over the past decade, likely due to both increasing temperatures and lagging access to home AC, particularly in communities most burdened by heat-health impacts. To prevent heat-related deaths and prepare for a hotter future, the city needs long-lasting, structural interventions alongside emergency preparedness and response.
 
-* Continue to prioritize high HVI neighborhoods for heat mitigation and structural interventions, such as home cooling assistance, green infrastructure like tree planting and greening, cool roofs, and electric grid resilience to decrease risk. These measures should be coupled with housing and energy policies that help longtime neighborhood residents benefit from improvements without being priced out of the area.
-* Support community-based organizations working to reduce the health impacts of heat and climate change in their neighborhoods and include them in decision-making processes about investments in their communities. Fund and provide technical assistance for community resiliency programming by local community and faith organizations, such as the Health Department’s Be a Buddy program, aimed at deepening social connections and providing individuals with access to physical and mental resources to stay safe in the heat.
-* Continue to strengthen emergency response measures during periods of extreme heat, such as opening cooling centers and issuing heat-health warnings, prioritizing people and communities with the greatest need for these interventions.
-* Extend equitable access to air conditioning to people most impacted by heat through a suite of policies designed to help all New Yorkers realize the benefits of equitable cooling as they weather the effects of the climate crisis.
-  * Explore regulations to require landlords to provide working air conditioning to tenants and to prohibit additional surcharges on AC use.
-  * Provide assistance with ongoing summer utility costs through the Home Energy Assistance Program.
-  * Prohibit electricity disconnections during hot weather, even if bills are unpaid, so people are not exposed to dangerous heat at home and make energy prices affordable for all New Yorkers.
-  * Support energy efficient home cooling and discourage excess cooling in commercial establishments
+A suite of policies is required for effective citywide heat adaptation, designed to help all New Yorkers realize the benefits of equitable cooling as they weather the effects of the climate crisis. Development will be spurred by the policy pathway to maximum temperature regulations laid out in the 2023 [PlaNYC: Getting Sustainability Done](https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/) report from the Mayor’s Office of Climate and Environmental Justice. In addition, the City and state can also help ensure equitable residential cooling by:
 
-Learn more about what the City is doing to mitigate the effects of heat, and how the HVI guides that work, at Cool Neighborhoods NYC. More data and information about heat, climate, and health is also available on the Health Department’s Climate and Health Hub.
+* * Exploring regulations to require landlords to provide working air conditioning to tenants and to prohibit additional surcharges on AC use.&nbsp;
+  * Providing assistance with ongoing summer utility costs through the Home Energy Assistance Program.&nbsp;
+  * Prohibiting electricity disconnections during hot weather, even if bills are unpaid, so people are not exposed to dangerous heat at home and make energy prices affordable for all New Yorkers.&nbsp;
+  * Supporting energy efficient home cooling and discourage excess cooling in commercial establishments.
+  * Supporting affordable energy rates for low- and middle-income customers.
+
+* Continuing to prioritize high HVI neighborhoods for heat mitigation and structural interventions, such as home cooling assistance, green infrastructure like tree planting and greening, cool roofs, and electric grid resilience to decrease risk. These measures should be coupled with housing and energy policies that help longtime neighborhood residents benefit from improvements without being priced out of the area.&nbsp;
+* Continuing to strengthen emergency response measures during periods of extreme heat, such as opening cooling centers and issuing heat-health warnings, prioritizing people and communities with the greatest need for these interventions.
+* Supporting community-based organizations working to reduce the health impacts of heat and climate change in their neighborhoods and include them in decision-making processes about investments in their communities.
+
+Learn more about what the City is doing to mitigate the effects of heat as part of [PlaNYC: Getting Sustainability Done](https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/). More data and information about heat, climate, and health is also available on the Health Department’s&nbsp;[Climate and Health Hub.](http://a816-dohbesp.nyc.gov/IndicatorPublic/HeatHub/index.html)
 
 Note on years of data included:
 
-For heat-stress, data for 2020 and 2021 are considered preliminary because death data are still being compiled by the Bureau of Vital Statistics. These numbers may be updated in future reports as final data become available. 2020 heat-stress numbers are less likely to change. All heat-stress tables are based on heat-stress deaths from 2011-2020. The heat-exacerbated mortality analysis requires complete daily counts to produce accurate estimates, making 2019 the most recent available year of data.
+For heat-stress, data for 2021 and 2022 are considered preliminary because death data are still being compiled by the Bureau of Vital Statistics. These numbers may be updated in future reports as final data become available; 2021 heat-stress numbers are less likely to change. All heat-stress tables are based on heat-stress deaths from 2012-2021. The heat-exacerbated mortality analysis requires complete daily death counts to produce accurate estimates, making 2020 the most recent available year of data.
 
 ### References
 
