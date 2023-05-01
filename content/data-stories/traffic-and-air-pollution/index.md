@@ -16,15 +16,11 @@ seo_title: Traffic and PM2.5 air pollution
 seo_description: "The public health impacts of PM2.5 from traffic air pollution in New York City affect neighborhoods differently."
 ---
 
-To do:
-- Update alt text
-- Conclusion
-
 ## What is PM2.5 and why is it a health risk?
 
 PM2.5—or fine particulate matter—are tiny particles that pollute the air and result from everyday urban activities like driving. PM2.5 can be solid or liquid in form when it is airborne. PM2.5 is the most harmful air pollution for humans to breathe in because the particles are small enough to enter the bloodstream through the lungs. Each PM2.5 particle is less than 2.5 microns in diameter. That is small enough to fit inside a red blood cell. 
 
- <img src = "PM2.5 particle_final.svg" alt="PM2.5 causes adverse health effects on New Yorkers" class="px-6 my-4">
+ <img src = "PM2.5 particle_final.svg" alt="A PM2.5 particle is smaller than a red blood cell" class="px-6 my-4">
 
 ## The public health impacts of PM2.5
 
@@ -34,10 +30,10 @@ Once in the bloodstream, PM2.5 can cause health problems to the respiratory and 
     <div class="wide my-4">
         <div class="row">
             <div class="col-md-6">
-                <img src = "anatomy with annotation.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/>
+                <img src = "anatomy with annotation.svg" alt="A person breathing in PM2.5 and it entering the bloodstream and lungs"/>
             </div>
             <div class="col-md-6">
-                <img src = "sources.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/>
+                <img src = "sources.svg" alt="Industrial activity, a grill, a truck, and a building demonstrate common sources of PM2.5"/>
             </div>
         </div>
     </div>
@@ -50,10 +46,10 @@ In New York City, current overall PM2.5 levels from all sources contribute to 2,
 </div>
 <div class="wide my-4">
     <div class="row">
-        <div class="col-md-6 mt-2" ><h3 class="mb-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 31 cardiovascular hospitalizations</h3><img src= "1 in 31.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
-        <div class="col-md-6 mt-2" ><h3 class="mb-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 31 respiratory hospital visits<h3><img src= "1 in 31.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
-        <div class="col-md-6 mt-2"><h3 class="my-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 17 asthma emergency room visits</h3><img src= "1 in 17 cropped.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
-        <div class="col-md-6 mt-2" ><h3 class="my-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 20 deaths</h3><img src = "1 in 20 cropped.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
+        <div class="col-md-6 mt-2" ><h3 class="mb-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 31 cardiovascular hospitalizations</h3><img src= "1 in 31.svg" alt="1 out 31 cardiovascular hospitalizations in NYC are caused by PM2.5"/></div>
+        <div class="col-md-6 mt-2" ><h3 class="mb-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 31 respiratory hospital visits<h3><img src= "1 in 31.svg" alt="1 out of 31 respiratory hospital visits in NYC are caused by PM2.5"/></div>
+        <div class="col-md-6 mt-2"><h3 class="my-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 17 asthma emergency room visits</h3><img src= "1 in 17 cropped.svg" alt="1 out of 17 asthma emergency room visits in NYC are caused by PM2.5"/></div>
+        <div class="col-md-6 mt-2" ><h3 class="my-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 20 deaths</h3><img src = "1 in 20 cropped.svg" alt="1 out of 20 deaths are caused by PM2.5"/></div>
     </div>
 </div>
 <div class="narrow">
@@ -79,11 +75,11 @@ Some neighborhoods in New York City experience higher concentrations of PM2.5 fr
     <div class="row my-2">
         <div class="col-md-6">
             <h3>PM2.5 from trucks and buses</h3>
-            <img src = "map-04_trucks and buses_nyc.png" alt="PM2.5 causes adverse health effects on New Yorkers"/>
+            <img src = "map-04_trucks and buses_nyc.png" alt="Map showing the concentrations of PM2.5 from trucks and buses in NYC"/>
         </div>
         <div class="col-md-6">
             <h3>PM2.5 from cars</h3>
-            <img src = "map-05_cars in nyc.png" alt="PM2.5 causes adverse health effects on New Yorkers"/>
+            <img src = "map-05_cars in nyc.png" alt="Map showing the concentrations of PM2.5 from cars in NYC"/>
         </div>
         <div class="col-3">
             <span style="color:#fcf1df"><i class="fas fa-square-full mr-1"></i></span>0.09-0.32<br>
@@ -125,7 +121,7 @@ PM2.5 levels from all traffic sources are about 50% higher in high poverty neigh
 
 <br></br>
 
- <img src = "trucks_final.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/>
+ <img src = "trucks_final.svg" alt="PM2.5 levels from trucks and buses are about 70% higher in high poverty neighborhoods"/>
 
  <br></br>
 
