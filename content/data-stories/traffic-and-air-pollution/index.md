@@ -3,7 +3,7 @@ title: The Public Health Impacts of PM2.5 from Traffic Air Pollution
 draft: false
 date: 2023-04-05T08:49:22-04:00
 image: ESB_sunrise_JulienneSchaer-066.JPG
-photocredit: © Julienne Schaer
+photocredit: Julienne Schaer/Mayoral Photography Office
 categories: 
     - airquality
     - transportation
@@ -50,10 +50,10 @@ In New York City, current overall PM2.5 levels from all sources contribute to 2,
 </div>
 <div class="wide my-4">
     <div class="row">
-        <div class="col-md-6 mt-2" ><h3 class="mb-3"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 31 cardiovascular hospitalizations</h3><img src= "1 in 31.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
-        <div class="col-md-6 mt-2" ><h3 class="mb-3"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 31 respiratory hospital visits<h3><img src= "1 in 31.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
-        <div class="col-md-6 mt-2"><h3 class="mb-3"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 17 asthma emergency room visits</h3><img src= "1 in 17 cropped.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
-        <div class="col-md-6 mt-2" ><h3 class="mb-3"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 20 deaths</h3><img src = "1 in 20 cropped.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
+        <div class="col-md-6 mt-2" ><h3 class="mb-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 31 cardiovascular hospitalizations</h3><img src= "1 in 31.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
+        <div class="col-md-6 mt-2" ><h3 class="mb-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 31 respiratory hospital visits<h3><img src= "1 in 31.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
+        <div class="col-md-6 mt-2"><h3 class="my-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 17 asthma emergency room visits</h3><img src= "1 in 17 cropped.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
+        <div class="col-md-6 mt-2" ><h3 class="my-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 20 deaths</h3><img src = "1 in 20 cropped.svg" alt="PM2.5 causes adverse health effects on New Yorkers"/></div>
     </div>
 </div>
 <div class="narrow">
@@ -114,6 +114,7 @@ PM2.5 pollution from traffic in NYC contributes to about 320 premature deaths an
 </div>
 <div class="wide my-4">
 <iframe title="Adverse health effects caused by PM2.5 from trucks and buses and cars" aria-label="Stacked Bars" id="datawrapper-chart-B0N7e" src="https://datawrapper.dwcdn.net/B0N7e/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="219" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+</div>
 <div class="narrow">
 
 ## PM2.5-related health problems from traffic are highest in the poorest neighborhoods 
