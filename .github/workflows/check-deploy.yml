@@ -84,7 +84,7 @@ jobs:
           secure: true
           subject: Pending deployment on ${{ github.repository }} (${{ steps.log.outputs.commit_count }} commits)
           html_body: file://log.txt
-          to: cgettings@health.nyc.gov,mmontesano@health.nyc.gov
+          to: cgettings@health.nyc.gov,mmontesano@health.nyc.gov,etorem@health.nyc.gov
           from: Chris Gettings (via gmail)
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
