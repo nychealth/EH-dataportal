@@ -11,10 +11,10 @@ layout: syndromic
 
 Extreme heat is dangerous. It can cause illness, make chronic conditions worse, and even kill. Heat-related illnesses happen when the body cannot cool down enough. These include:
 
- - heat exhaustion 
- - muscle cramps 
- - fainting 
- - heat stroke, the most serious form of heat-related illness.  
+ - Heat exhaustion 
+ - Muscle cramps 
+ - Fainting 
+ - Heat stroke, the most serious form of heat-related illness
 
 
 Heat can also exacerbate chronic conditions, such as cardiovascular diseases or kidney conditions. These conditions may not be recognized or labeled as heat-related in a medical record but can be assessed using statistical models and are another a negative health outcome related to heat.  
