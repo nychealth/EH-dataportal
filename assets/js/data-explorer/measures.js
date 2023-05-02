@@ -216,9 +216,13 @@ const setDefaultLinksMeasure = async (visArray) => {
         // assigning to global object
         defaultLinksMetadata = defaultArray;
 
-        // using await here because filterSecondaryIndicatorMeasure calls fetch, and we need that data
+        // using await here because createJoinedLinksData calls fetch, and we need that data
 
-        await filterSecondaryIndicatorMeasure(defaultPrimaryMeasureId, defaultSecondaryMeasureId)
+        let aqJoinedLinksDataObjects = await createJoinedLinksData(defaultPrimaryMeasureId, defaultSecondaryMeasureId)
+
+        joinedLinksDataObjects = aqJoinedLinksDataObjects.objects()
+
+        // console.log(">> joinedLinksDataObjects [setDefaultLinksMeasure]", joinedLinksDataObjects);
 
     }
 }
@@ -631,10 +635,14 @@ const updateLinksData = async (e) => {
     const primaryMeasureId = parseInt(e.target.dataset.primaryMeasureId);
     const secondaryMeasureId = parseInt(e.target.dataset.secondaryMeasureId);
 
-    // call filterSecondaryIndicatorMeasure, which creates joinedDataLinksObjects,
+    // call createJoinedLinksData, which creates joinedLinksDataObjects,
     //  primaryMeasureMetadata, secondaryMeasureMetadata
 
-    await filterSecondaryIndicatorMeasure(primaryMeasureId, secondaryMeasureId)
+    let aqJoinedLinksDataObjects = await createJoinedLinksData(primaryMeasureId, secondaryMeasureId)
+    
+    joinedLinksDataObjects = aqJoinedLinksDataObjects.objects()
+
+    // console.log(">> joinedLinksDataObjects [updateLinksData]", joinedLinksDataObjects);
 
 
     // ----- get metatadata for selected measure -------------------------------------------------- //
@@ -686,7 +694,7 @@ const updateLinksData = async (e) => {
     // ----- render the chart -------------------------------------------------- //
 
     renderLinksChart(
-        joinedDataLinksObjects,
+        joinedLinksDataObjects,
         primaryMeasureMetadata,
         secondaryMeasureMetadata,
         primaryIndicatorName,
@@ -1000,11 +1008,11 @@ const renderMeasures = async () => {
 
                     dropdownLinksMeasures.innerHTML +=
                         `<button class="dropdown-item linksbutton pl-3"
-                        data-primary-measure-id="${measureId}"
-                        data-measure-id="${measure.MeasureID}"
-                        data-secondary-measure-id="${link.MeasureID}">
-                        ${linksSecondaryMeasure[0].MeasureName}
-                    </button>`;
+                            data-primary-measure-id="${measureId}"
+                            data-measure-id="${measure.MeasureID}"
+                            data-secondary-measure-id="${link.MeasureID}">
+                            ${linksSecondaryMeasure[0].MeasureName}
+                        </button>`;
 
                 });
             }
@@ -1083,7 +1091,7 @@ const renderMeasures = async () => {
     setDefaultMapMeasure(mapMeasures);
     setDefaultTrendMeasure(trendMeasures);
 
-    // set default measure for links; also calls (and waits for) filterSecondaryIndicatorMeasure, which creates the joined data
+    // set default measure for links; also calls (and waits for) createJoinedLinksData, which creates the joined data
 
     await setDefaultLinksMeasure(linksMeasures);
 
@@ -1138,6 +1146,8 @@ const renderMeasures = async () => {
     // ===== map ================================================== //
 
     showMap = (e) => {
+
+        console.log("* showMap");
 
         // ----- handle tab selection -------------------------------------------------- //
 
@@ -1681,6 +1691,8 @@ const renderMeasures = async () => {
 
     showLinks = (e) => {
 
+        console.log("* showLinks");
+
         // ----- handle tab selection -------------------------------------------------- //
 
         // set hash to links
@@ -1694,6 +1706,10 @@ const renderMeasures = async () => {
         tabMap.setAttribute('aria-selected', false);
         tabTrend.setAttribute('aria-selected', false);
         tabLinks.setAttribute('aria-selected', true);
+
+        // make sure the "Link to" button is enabled
+        $("#dropdownLinksMeasures").removeClass("disabled");
+        $("#dropdownLinksMeasures").attr('aria-disabled', false);
 
 
         // ----- allow chart to persist when changing tabs -------------------------------------------------- //
@@ -1709,9 +1725,38 @@ const renderMeasures = async () => {
 
             // switch on/off the disparities button
 
-            // const disparities =
-            //     defaultLinksMetadata[0].VisOptions[0].Trend &&
-            //     defaultLinksMetadata[0].VisOptions[0].Trend[0]?.Disparities;
+            const disparities =
+                defaultLinksMetadata[0].VisOptions[0].Trend &&
+                defaultLinksMetadata[0].VisOptions[0].Trend[0]?.Disparities;
+
+            // hide or how disparities button
+
+            if (disparities == 0) {
+
+                // if disparities is disabled, hide the button
+
+                btnToggleDisparities.style.display = "none";
+
+                // remove click listeners to button that calls renderDisparities
+
+                // $(btnToggleDisparities).off()
+
+            } else if (disparities == 1) {
+
+                // remove event listener added when/if button was clicked
+
+                // btnToggleDisparities.innerText = "Show Disparities";
+                // $(btnToggleDisparities).off()
+
+                // make sure that the "links" button is active by default
+                $("#show-links").addClass("active");
+                $("#show-disparities").removeClass("active");
+
+                // if disparities is enabled, show the button
+                btnToggleDisparities.style.display = "inline";
+
+
+            }
 
             // ----- get metatadata for default measure -------------------------------------------------- //
 
@@ -1772,10 +1817,10 @@ const renderMeasures = async () => {
 
             // ----- render the chart -------------------------------------------------- //
 
-            // joined data and metadata created in filterSecondaryIndicatorMeasure called fron setDefaultLinksMeasure
+            // joined data and metadata created in createJoinedLinksData called fron setDefaultLinksMeasure
 
             renderLinksChart(
-                joinedDataLinksObjects,
+                joinedLinksDataObjects,
                 primaryMeasureMetadata,
                 secondaryMeasureMetadata,
                 primaryIndicatorName,
@@ -1810,7 +1855,7 @@ const renderMeasures = async () => {
             // ----- render the chart -------------------------------------------------- //
 
             renderLinksChart(
-                joinedDataLinksObjects,
+                joinedLinksDataObjects,
                 primaryMeasureMetadata,
                 secondaryMeasureMetadata,
                 primaryIndicatorName,
@@ -1819,6 +1864,27 @@ const renderMeasures = async () => {
 
             updateChartPlotSize();
         }
+
+
+        // add click listener to button that calls renderDisparities
+
+        $(btnToggleDisparities).off()
+
+        $(btnToggleDisparities).on("click", (e) => {
+
+            console.log("** btnToggleDisparities **", e);
+
+            if (e.target && e.target.matches("#show-disparities") && !e.target.classList.contains("active")) {
+
+                renderDisparities(defaultLinksMetadata, 221)
+
+            } else if (e.target && e.target.matches("#show-links") && !e.target.classList.contains("active")) {
+
+                showLinks();
+
+            }
+
+        });
 
     };
 
