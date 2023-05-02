@@ -85,7 +85,7 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
                 
                 let dispData = data
                     .derive({ PovRank: d => (d.Value_2 > 30 ? 4 : (d.Value_2 > 20 ? 3 : ( d.Value_2 > 10 ? 2 : 1))) })
-                    .derive({ PovCat: d => (d.PovRank == 4 ? 'Very high (> 30%)' : (d.PovRank == 3  ? 'High (20-30%)' : ( d.PovRank == 2  ? 'Moderate (10-20%)' : 'Low (0-10%)'))) })
+                    .derive({ PovCat: d => (d.PovRank == 4 ? 'Very high (> 30%)' : (d.PovRank == 3  ? 'High (20-30%)' : ( d.PovRank == 2  ? 'Medium (10-20%)' : 'Low (0-10%)'))) })
                     .derive({ randomOffsetX: aq.escape(d => d.PovRank + (myrng()*2 - 1)) })
                 
                 console.log("dispData");
@@ -245,7 +245,7 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
                         "field": "PovRank", // Changed
                         "type": "ordinal",
                         "axis": {
-                            "labelExpr": "(datum.value == 4 ? 'Very high (over 30%)' : (datum.value == 3  ? 'High (20 - 29.9%)' : ( datum.value == 2  ? 'Moderate (10 - 19.9%)' : 'Low (0 - 9.9%)')))",
+                            "labelExpr": "(datum.value == 4 ? 'Very high (over 30%)' : (datum.value == 3  ? 'High (20 - 29.9%)' : ( datum.value == 2  ? 'Medium (10 - 19.9%)' : 'Low (0 - 9.9%)')))",
                             "labelAlign": "center",
                             "labelAngle": 0
                         }
