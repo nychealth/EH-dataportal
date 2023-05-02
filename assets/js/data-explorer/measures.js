@@ -1147,6 +1147,8 @@ const renderMeasures = async () => {
 
     showMap = (e) => {
 
+        console.log("* showMap");
+
         // ----- handle tab selection -------------------------------------------------- //
 
         // set hash to map
@@ -1689,6 +1691,8 @@ const renderMeasures = async () => {
 
     showLinks = (e) => {
 
+        console.log("* showLinks");
+
         // ----- handle tab selection -------------------------------------------------- //
 
         // set hash to links
@@ -1702,6 +1706,10 @@ const renderMeasures = async () => {
         tabMap.setAttribute('aria-selected', false);
         tabTrend.setAttribute('aria-selected', false);
         tabLinks.setAttribute('aria-selected', true);
+
+        // make sure the "Link to" button is enabled
+        $("#dropdownLinksMeasures").removeClass("disabled");
+        $("#dropdownLinksMeasures").attr('aria-disabled', false);
 
 
         // ----- allow chart to persist when changing tabs -------------------------------------------------- //
@@ -1727,26 +1735,26 @@ const renderMeasures = async () => {
 
                 // if disparities is disabled, hide the button
 
-                btnShowDisparities.style.display = "none";
+                btnToggleDisparities.style.display = "none";
 
                 // remove click listeners to button that calls renderDisparities
 
-                $(btnShowDisparities).off()
+                // $(btnToggleDisparities).off()
 
             } else if (disparities == 1) {
 
                 // remove event listener added when/if button was clicked
 
-                btnShowDisparities.innerText = "Show Disparities";
-                $(btnShowDisparities).off()
+                // btnToggleDisparities.innerText = "Show Disparities";
+                // $(btnToggleDisparities).off()
+
+                // make sure that the "links" button is active by default
+                $("#show-links").addClass("active");
+                $("#show-disparities").removeClass("active");
 
                 // if disparities is enabled, show the button
+                btnToggleDisparities.style.display = "inline";
 
-                btnShowDisparities.style.display = "inline";
-
-                // add click listener to button that calls renderDisparities
-
-                $(btnShowDisparities).on("click", () => renderDisparities(defaultLinksMetadata, 221));
 
             }
 
@@ -1856,6 +1864,27 @@ const renderMeasures = async () => {
 
             updateChartPlotSize();
         }
+
+
+        // add click listener to button that calls renderDisparities
+
+        $(btnToggleDisparities).off()
+
+        $(btnToggleDisparities).on("click", (e) => {
+
+            console.log("** btnToggleDisparities **", e);
+
+            if (e.target && e.target.matches("#show-disparities") && !e.target.classList.contains("active")) {
+
+                renderDisparities(defaultLinksMetadata, 221)
+
+            } else if (e.target && e.target.matches("#show-links") && !e.target.classList.contains("active")) {
+
+                showLinks();
+
+            }
+
+        });
 
     };
 

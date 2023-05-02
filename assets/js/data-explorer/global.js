@@ -113,7 +113,7 @@ let state;
 // modifying the measure dropdown innerHTML removes the event listeners from the dropdown list. So, i added it to the HTML, and we can remove it when we call renderTrendChart, if necessary
 
 // get disparities button dom element, so it can be removed and appended as needed
-let btnShowDisparities = document.querySelector('.btn-show-disparities');
+let btnToggleDisparities = document.querySelector('.btn-toggle-disparities');
 
 // get comparisons button dom element, so it can be removed and appended as needed
 let btnShowComparisons = document.querySelector('.btn-comparisons');

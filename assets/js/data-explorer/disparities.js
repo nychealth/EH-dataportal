@@ -2,9 +2,9 @@
 // disparities.js
 // ======================================================================= //
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 // function to render the disparities chart
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 
 // this function is called when the "Show Disparities" button is clicked. it
 //  in turn calls "loaddisparityData".
@@ -17,33 +17,9 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
     // toggle button
     // ----------------------------------------------------------------------- //
 
-    let btnLinksMeasures = $("#dropdownLinksMeasures")
-
     // disable links measures dropdown
-    $(btnLinksMeasures).addClass("disabled");
-    $(btnLinksMeasures).attr('aria-disabled', true);
-
-    // switch button text
-    btnShowDisparities.innerText = "Show Links";
-
-    // remove disparities event listeners
-    $(btnShowDisparities).off()
-
-    // add links event listener
-    $(btnShowDisparities).on("click", e => {
-
-        showLinks(e)
-        // reenable links measures dropdown
-        $(btnLinksMeasures).removeClass("disabled");
-        $(btnLinksMeasures).attr('aria-disabled', false);
-
-        // switch button text
-        btnShowDisparities.innerText = "Show Disparities";
-
-        $(btnShowDisparities).on("click", () => renderDisparities(primaryMetadata, disparityMeasureId))
-
-    });
-
+    $("#dropdownLinksMeasures").addClass("disabled");
+    $("#dropdownLinksMeasures").attr('aria-disabled', true);
 
     // ----------------------------------------------------------------------- //
     // extract primary metadata
@@ -86,30 +62,47 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
 
 
     // ----------------------------------------------------------------------- //
-    // load disparities measure data (creates `disparityData`)
+    // if disparity chart not already shown, create dataset again
     // ----------------------------------------------------------------------- //
-    
-    // use a seeded RNG to add a random offset to the categorical x-axis. Using
-    //  primaryMeasureId as the seed means that the disparity chart for this measure
-    //  will be the same every time
 
-    const myrng = new Math.seedrandom(primaryMeasureId)
+    if (!selectedDisparity) {
 
-    // await loaddisparityData(disparityMetadata, disparityIndicatorId)
-    let aqDisparityData = await createJoinedLinksData(primaryMeasureId, disparityMeasureId)
-        .then(data => {
+        console.log(">>> no selected disparity");
+        
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+        // load disparities measure data (creates `disparityData`)
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+        
+        // use a seeded RNG to add a random offset to the categorical x-axis. Using
+        //  primaryMeasureId as the seed means that the disparity chart for this measure
+        //  will be the same every time
+        
+        const myrng = new Math.seedrandom(primaryMeasureId)
+        
+        // await loaddisparityData(disparityMetadata, disparityIndicatorId)
+        let aqDisparityData = await createJoinedLinksData(primaryMeasureId, disparityMeasureId)
+            .then(data => {
+                
+                let dispData = data
+                    .derive({ PovRank: d => (d.Value_2 > 30 ? 4 : (d.Value_2 > 20 ? 3 : ( d.Value_2 > 10 ? 2 : 1))) })
+                    .derive({ PovCat: d => (d.PovRank == 4 ? 'Very high (> 30%)' : (d.PovRank == 3  ? 'High (20-30%)' : ( d.PovRank == 2  ? 'Medium (10-20%)' : 'Low (0-10%)'))) })
+                    .derive({ randomOffsetX: aq.escape(d => d.PovRank + (myrng()*2 - 1)) })
+                
+                console.log("dispData");
+                dispData.print()
+                
+                return dispData;
+            })
+        
+        disparityData = aqDisparityData.objects()
+        
+    } else {
+        console.log(">>> selected disparity");
+    }
 
-            let dispData = data
-                .derive({ PovRank: d => (d.Value_2 > 30 ? 4 : (d.Value_2 > 20 ? 3 : ( d.Value_2 > 10 ? 2 : 1))) })
-                .derive({ randomOffsetX: aq.escape(d => d.PovRank + (myrng()*2 - 1)) })
+    // set this to true
 
-            // console.log("dispData");
-            // dispData.print()
-
-            return dispData;
-        })
-
-    disparityData = aqDisparityData.objects()
+    selectedDisparity = true;
 
     console.log(">> disparityData [renderDisparities]", disparityData);
 
@@ -126,6 +119,23 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
     // let aqData = aq.from(disparityData);
     // let median = aqData.array("median");
     // let medianMin = Math.min.apply(null, median);
+
+    // ----------------------------------------------------------------------- //
+    // get unique unreliability notes (dropping empty)
+    // ----------------------------------------------------------------------- //
+
+    const comb_unreliability = disparityData.map(d => d.Note_1).concat(disparityData.map(d => d.Note_2))
+    const disp_unreliability = [...new Set(comb_unreliability)].filter(d => !d == "");
+
+    // console.log("disp_unreliability", disp_unreliability);
+
+    document.querySelector("#links-unreliability").innerHTML = ""; // blank to start
+
+    disp_unreliability.forEach(element => {
+
+        document.querySelector("#links-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>";
+
+    });
 
 
     // ----------------------------------------------------------------------- //
@@ -154,24 +164,6 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
     
     let bubbleSize = window.innerWidth < 576 ? 100 : 200;
     let height = window.innerWidth < 576 ? 350 : 500;
-
-
-    // ----------------------------------------------------------------------- //
-    // get unique unreliability notes (dropping empty)
-    // ----------------------------------------------------------------------- //
-
-    const comb_unreliability = disparityData.map(d => d.Note_1).concat(disparityData.map(d => d.Note_2))
-    const disp_unreliability = [...new Set(comb_unreliability)].filter(d => !d == "");
-
-    // console.log("disp_unreliability", disp_unreliability);
-
-    document.querySelector("#links-unreliability").innerHTML = ""; // blank to start
-
-    disp_unreliability.forEach(element => {
-
-        document.querySelector("#links-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>";
-
-    });
 
     // ----------------------------------------------------------------------- //
     // define spec
@@ -224,12 +216,6 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
             "data": {
                 "values": disparityData
             },
-            "transform": [
-            {
-                "calculate": "(datum.Value_2 > 30 ? 'Very high (> 30%)' : (datum.Value_2 > 20  ? 'High (20-30%)' : ( datum.Value_2 > 2  ? 'Moderate (10-20%)' : 'Low (0-10%)')))",
-                "as": "PovCat"
-            } // gives us labels
-            ],
             "layer": [
             {
                 "mark": {
@@ -255,11 +241,11 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
                         },
                     },
                     "x": {
-                        "title": [`${disparityIndicatorName && `${disparityIndicatorName}`}`, `${disparityMeasurementType} ${disparityDisplay && `(${disparityDisplay})`} (${disparityTime})`],
+                        "title": [`${disparityIndicatorName && `${disparityIndicatorName}`}`, `(${disparityTime})`],
                         "field": "PovRank", // Changed
                         "type": "ordinal",
-                        "axis": { // added
-                            "labelExpr": "(datum.label == 4 ? 'Very high (> 30%)' : (datum.label == 3  ? 'High (20-30%)' : ( datum.label == 2  ? 'Moderate (10-20%)' : 'Low (0-10%)')))",
+                        "axis": {
+                            "labelExpr": "(datum.value == 4 ? 'Very high (over 30%)' : (datum.value == 3  ? 'High (20 - 29.9%)' : ( datum.value == 2  ? 'Medium (10 - 19.9%)' : 'Low (0 - 9.9%)')))",
                             "labelAlign": "center",
                             "labelAngle": 0
                         }
