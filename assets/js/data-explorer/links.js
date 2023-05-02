@@ -164,11 +164,11 @@ const renderLinksChart = (
             "view": { "stroke": "transparent" },
             "range": {
                 "category": [
-                    "#1696d2", 
-                    "#ffa500", 
-                    "#ec008b", 
-                    "#55b748", 
-                    "#f29214"
+                    "#1696d296", 
+                    "#f2921496", 
+                    "#ec008b96", 
+                    "#55b74896", 
+                    "#80008096"
                 ]
             },
             "text": {
