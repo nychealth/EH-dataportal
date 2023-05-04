@@ -1872,7 +1872,7 @@ const renderMeasures = async () => {
 
         $(btnToggleDisparities).on("click", (e) => {
 
-            console.log("** btnToggleDisparities **", e);
+            // console.log("** btnToggleDisparities **", e);
 
             if (e.target && e.target.matches("#show-disparities") && !e.target.classList.contains("active")) {
 
