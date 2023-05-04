@@ -292,10 +292,10 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
                         "legend": null,
                         "scale": {
                             "range": [
-                                "#1696d2", 
-                                "#ffa500", 
-                                "#ec008b", 
-                                "#55b748"
+                                "#81DBE6", 
+                                "#ADDB6B", 
+                                "#E6CF27", 
+                                "#DE5A3C"
                             ]
                         },
                     },
