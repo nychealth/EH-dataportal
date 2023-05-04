@@ -55,7 +55,7 @@ const fetch_comparisons = async () => {
             
             comparisons = data;
             
-            console.log("comparisons:", comparisons);
+            // console.log("comparisons:", comparisons);
             
         })
         .catch(error => console.log(error));
@@ -82,11 +82,11 @@ const createComparisonData = async (comps) => {
         d => indicatorComparisonId.includes(d.ComparisonID)
     )
         
-    console.log("comparisonsMetadata [createComparisonData]:", comparisonsMetadata);
+    // console.log("comparisonsMetadata [createComparisonData]:", comparisonsMetadata);
 
     // merged metadata
     
-    console.log("aqComparisonsMetadata:");
+    // console.log("aqComparisonsMetadata:");
 
     aqComparisonsMetadata = aq.from(comparisonsMetadata)
         .unroll("Indicators")
@@ -96,7 +96,7 @@ const createComparisonData = async (comps) => {
         })
         .unroll("MeasureID")
         .select(aq.not("Indicators"))
-        .print()
+        // .print()
 
     // console.log("aqUniqueIndicatorMeasure:");
 
@@ -118,7 +118,7 @@ const createComparisonData = async (comps) => {
     )
     // console.log("comparisonsIndicatorsMetadata:", comparisonsIndicatorsMetadata);
 
-    console.log("aqComparisonsIndicatorsMetadata:");
+    // console.log("aqComparisonsIndicatorsMetadata:");
 
     aqComparisonsIndicatorsMetadata = aq.from(comparisonsIndicatorsMetadata)
         .select("IndicatorID", "IndicatorName", "IndicatorLabel", "Measures")
@@ -134,17 +134,17 @@ const createComparisonData = async (comps) => {
         .derive({IndicatorMeasure: d => d.IndicatorLabel + ": " + d.MeasurementType})
         .select(aq.not("Measures"))
         .filter(aq.escape(d => comparisonsMeasureIDs.includes(d.MeasureID)))
-        .print()
+        // .print()
 
 
 
     // join comparisons metadata tables
 
-    console.log("aqCombinedComparisonsMetadata:");
+    // console.log("aqCombinedComparisonsMetadata:");
 
     aqCombinedComparisonsMetadata = aqComparisonsMetadata
         .join(aqComparisonsIndicatorsMetadata, [["MeasureID", "IndicatorID"], ["MeasureID", "IndicatorID"]])
-        .print()
+        // .print()
 
 
     // Promise.all takes the array of promises returned by map, and then the `then` callback executes after they've all resolved
@@ -174,7 +174,7 @@ const createComparisonData = async (comps) => {
 
     .then(async dataArray => {
 
-        console.log("dataArray", dataArray);
+        // console.log("dataArray", dataArray);
 
         aqComparisonsIndicatorData = await dataArray.flatMap(d => d).reduce((a, b) => a.concat(b))
 
@@ -183,8 +183,8 @@ const createComparisonData = async (comps) => {
             .filter(d => d.GeoID == 1)
             .reify()
 
-        console.log("aqComparisonsIndicatorData:");
-        aqComparisonsIndicatorData.print();
+        // console.log("aqComparisonsIndicatorData:");
+        // aqComparisonsIndicatorData.print();
 
     })
 }
@@ -424,7 +424,7 @@ const joinData = () => {
         .orderby(aq.desc('end_period'), aq.desc('GeoRank'))
         .reify()
 
-    joinedAqData.print()
+    // joinedAqData.print()
 
     // data for summary table
 
