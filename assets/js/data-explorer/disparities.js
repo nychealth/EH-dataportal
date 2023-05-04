@@ -67,7 +67,7 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
 
     if (!selectedDisparity) {
 
-        console.log(">>> no selected disparity");
+        // console.log(">>> no selected disparity");
         
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         // load disparities measure data (creates `disparityData`)
@@ -88,8 +88,8 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
                     .derive({ PovCat: d => (d.PovRank == 4 ? 'Very high (> 30%)' : (d.PovRank == 3  ? 'High (20-30%)' : ( d.PovRank == 2  ? 'Medium (10-20%)' : 'Low (0-10%)'))) })
                     .derive({ randomOffsetX: aq.escape(d => d.PovRank + (myrng()*2 - 1)) })
                 
-                console.log("dispData");
-                dispData.print()
+                // console.log("dispData");
+                // dispData.print()
                 
                 return dispData;
             })
@@ -97,14 +97,14 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
         disparityData = aqDisparityData.objects()
         
     } else {
-        console.log(">>> selected disparity");
+        // console.log(">>> selected disparity");
     }
 
     // set this to true
 
     selectedDisparity = true;
 
-    console.log(">> disparityData [renderDisparities]", disparityData);
+    // console.log(">> disparityData [renderDisparities]", disparityData);
 
     // debugger;
 
