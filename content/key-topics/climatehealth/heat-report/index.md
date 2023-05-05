@@ -49,7 +49,7 @@ The Health Department examined heat-stress deaths occurring during the warm seas
 
 There were 68 heat-stress deaths among NYC residents over the 10-year period, and an average of 7 deaths per year. The largest number of annual deaths occurring earlier in the period as a result of a severe 2013 heat wave. Most deaths occurred in July (68%), followed by June (13%), August (12%), September (4%), and May (3%). As of January 2023, there were 8 heat-stress deaths in 2022, although that number is provisional and subject to change because mortality records are not finalized.&nbsp;&nbsp;
 
-\*\*Figure 1: Heat-stress deaths and maximum heat index by year, NYC residents, 2012-2021 \*\*
+**Figure 1: Heat-stress deaths and maximum heat index by year, NYC residents, 2012-2021**&nbsp;
 
 <iframe title="[ Insert title here ]" aria-label="Interactive line chart" id="datawrapper-chart-NWjVm" src="https://datawrapper.dwcdn.net/NWjVm/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="336" data-external="1"></iframe>
 
