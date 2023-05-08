@@ -124,8 +124,6 @@ To describe the impact of climate change, we examined how the number of hot days
 
 * Estimated heat-attributable deaths occurred most frequently in July (37%), followed by August (28%), June (18%), September (10%), and May (7%) for 2016-2020.
 
-![alt text goes here](/key-topics/climatehealth/heat-report/MicrosoftTeams-image.png)
-
 \[insert Figure 3 and Figure 4\]
 
 ![Figure 3](Figure3_EHE_and_tmax_CRR_trend_5yr_window_1971_2020.jpg) ![Figure 4](Figure4_CRR_TMAX_2016-2020.jpg)
@@ -140,8 +138,6 @@ Given the consistently high and increasing proportion of hot days in July and Au
 \[Insert Figure 5, Figure 6, and Figure 7\]
 
 ![Figure 5](Figure5_5yr_Ndays_EHE_nonEHE_1971_2020.jpg) ![Figure 6](Figure6_5yr_mean_temp_1971_2020.jpg) ![Figure 7](revFigure7_AC_prev_1970_2020_ns_fit.jpg)
-
-![](/key-topics/2023-nyc-heat-related-mortality-report/revised-figure6-ehe-and-tmax-crr-trend-5yr-window-2000-2020.jpg)\[VIS EMBED\]![](/key-topics/2022-nyc-heat-related-mortality-report/revised-figure6-ehe-and-tmax-crr-trend-5yr-window-2000-2020.jpg)
 
 \[VIS EMBED\]
 
