@@ -41,7 +41,7 @@ Once in the bloodstream, PM2.5 can cause health problems to the respiratory and 
 
 ## Health impacts of PM2.5 in New York City 
 
-In New York City, current overall PM2.5 levels from all sources contribute to 2,300 deaths and 6,300 emergency department visits and hospitalizations for respiratory and cardiovascular disease each year. 
+In New York City, current overall PM2.5 levels from all sources contribute to 2,000 deaths and 5,150 emergency department visits and hospitalizations for respiratory and cardiovascular disease each year. 
 
 </div>
 <div class="wide my-4">
