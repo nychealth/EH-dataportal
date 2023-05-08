@@ -51,7 +51,7 @@ There were 68 heat-stress deaths among NYC residents over the 10-year period, an
 
 **Figure 1: Heat-stress deaths and maximum heat index by year, NYC residents, 2012-2021**&nbsp;
 
-![Figure 1](/Users/emilyh.torem/Documents/GitHub/EH-dataportal/content/key-topics/climatehealth/heat-report/Figure_1_2012_2022_w_legend_noHInumbers.jpg) 
+![Figure 1](Figure_1_2012_2022_w_legend_noHInumbers.jpg)
 
 The number of heat-stress deaths for 2021 is provisional. If additional deaths are certified as caused by heat stress, the Department will update the number in future reports. Weather data are from the National Weather Service LaGuardia airport station. Heat index is a measure of air temperature and humidity. The largest number of annual deaths occurred in 2013 as a result of a severe heat wave.
 
