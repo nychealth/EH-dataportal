@@ -124,8 +124,6 @@ To describe the impact of climate change, we examined how the number of hot days
 
 * Estimated heat-attributable deaths occurred most frequently in July (37%), followed by August (28%), June (18%), September (10%), and May (7%) for 2016-2020.
 
-\[insert Figure 3 and Figure 4\]
-
 ![Figure 3](Figure3_EHE_and_tmax_CRR_trend_5yr_window_1971_2020.jpg) ![Figure 4](Figure4_CRR_TMAX_2016-2020.jpg)
 
 *Hotter Summers*\*:\* There are many more days every summer that are hot but not extremely hot (i.e., daily maximum temperature at or above 82°F to single days of 95°F) compared to extreme heat event days. These days are also associated with increased risk of heat-related death (Figure 4). Due to climate change, the numbers of extreme heat events and non-extreme hot days are increasing, which contributes to an increase in heat-exacerbated deaths.
@@ -136,8 +134,6 @@ To describe the impact of climate change, we examined how the number of hot days
 Given the consistently high and increasing proportion of hot days in July and August, heat-risk mitigation planning needs to emphasize non-emergency interventions, such as access to air conditioning. According to US Census Bureau’s [American Housing Survey](https://www.census.gov/programs-surveys/ahs.html) and [Housing and Vacancy Survey](https://www.census.gov/programs-surveys/nychvs.html) conducted in New York City, air conditioning (AC) prevalence increased from ~40% in 1970 to over 80% by mid-2000 (Figure 7), likely explaining the reduction in estimated heat-exacerbated deaths in the corresponding period (Figure 3). However, the rate of increase in AC prevalence appears to have slowed since mid-2000 (Figure 7), as the number of hot days continued to increase, highlighting the urgency of achieving equitable cooling in the very near future. &nbsp; &nbsp;&nbsp;&nbsp;
 
 ![Figure 5](Figure5_5yr_Ndays_EHE_nonEHE_1971_2020.jpg) ![Figure 6](Figure6_5yr_mean_temp_1971_2020.jpg) ![Figure 7](revFigure7_AC_prev_1970_2020_ns_fit.jpg)
-
-\[VIS EMBED\]
 
 ## Community Level Impacts
 
