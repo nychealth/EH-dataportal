@@ -137,7 +137,7 @@ Given the consistently high and increasing proportion of hot days in July and Au
 
 \[Insert Figure 5, Figure 6, and Figure 7\]
 
-![Figure 5](Figure5_5yr_Ndays_EHE_nonEHE_1971_2020.jpg) ![Figure 6](Figure6_5yr_mean_temp_1971_2020.jpg) ![Figure 7](revFigure7_AC_prev_1970_2020_ns_fit.jpg)
+![Figure 5](Figure5_5yr_Ndays_EHE_nonEHE_1971_2020.jpg) ![Figure 6](Figure6_5yr_mean_temp_1971_2020.jpg) ![Figure 7](revFigure7_AC_prev_1970_2020_ns_fit.jpg
 
 \[VIS EMBED\]
 
