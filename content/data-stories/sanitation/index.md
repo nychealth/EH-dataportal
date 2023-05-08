@@ -186,7 +186,6 @@ Sanitation is a long-standing issue in East Harlem, and there's a history of com
 
 Today, New York can help improve sanitation: 
 
-* Call your [local elected officials](https://council.nyc.gov/districts/) and tell them you need more trash service in the neighborhood. They often do listen to calls and concerns from their constituents. 
 * Attend Community Board meetings — discuss your complaints with your neighbors and encourage the Community Board to take action. 
 * File a request on 311. You can [report rat sightings](https://portal.311.nyc.gov/article/?kanumber=KA-01107) or [missed trash service collection](https://portal.311.nyc.gov/article/?kanumber=KA-01788). These 311 reports generate complaint data that can help improve conditions in your neighborhood. 
 
