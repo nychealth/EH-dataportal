@@ -23,7 +23,7 @@ layout: report
 
 * Each summer, on average, **an estimated 350 New Yorkers die prematurely because of hot weather** in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September. Of the deaths:
   * There were an average of 7 **heat-stress deaths** annually (caused directly by heat) from 2012-2021.
-  * There were an average of about345 **heat-exacerbated deaths** (caused indirectly by heat aggravating an underlying illness) from 2016-2020.
+  * There were an average of about 345 **heat-exacerbated deaths** (caused indirectly by heat aggravating an underlying illness) from 2016-2020.
 * **Heat-exacerbated deaths have been increasing in the past decade**, mainly due to an increase in the number of non-extreme hot days. &nbsp;
 * **Non-Hispanic Black New Yorkers are more likely to die from heat stress**, with death rates two times higher than White New Yorkers. This inequity is due to past and current structural racism that creates economic, health care, housing, energy, and other systems that benefit White people and disadvantage people of color. &nbsp;
 * **Lack of access to home air conditioning (AC) is an important risk factor for heat-stress death**. Among those who died from heat stress, the place of death was most often an un-air-conditioned home.
@@ -54,7 +54,7 @@ There were 68 heat-stress deaths among NYC residents over the 10-year period, an
 <iframe title="[ Insert title here ]" aria-label="Interactive line chart" id="datawrapper-chart-NWjVm" src="https://datawrapper.dwcdn.net/NWjVm/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="336" data-external="1"></iframe>
 
 <script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
-</script>![Figure 1](Figure_1_2012_2022_w_legend_noHInumbers.jpg)
+</script>!\[Figure 1\](Figure\_1\_2012\_2022\_w\_legend\_noHInumbers.jpg)
 
 The number of heat-stress deaths for 2021 is provisional. If additional deaths are certified as caused by heat stress, the Department will update the number in future reports. Weather data are from the National Weather Service LaGuardia airport station. Heat index is a measure of air temperature and humidity. The largest number of annual deaths occurred in 2013 as a result of a severe heat wave.
 
@@ -124,6 +124,8 @@ To describe the impact of climate change, we examined how the number of hot days
 
 * Estimated heat-attributable deaths occurred most frequently in July (37%), followed by August (28%), June (18%), September (10%), and May (7%) for 2016-2020.
 
+![alt text goes here](/key-topics/climatehealth/heat-report/MicrosoftTeams-image.png)
+
 \[insert Figure 3 and Figure 4\]
 
 ![Figure 3](Figure3_EHE_and_tmax_CRR_trend_5yr_window_1971_2020.jpg) ![Figure 4](Figure4_CRR_TMAX_2016-2020.jpg)
@@ -138,6 +140,8 @@ Given the consistently high and increasing proportion of hot days in July and Au
 \[Insert Figure 5, Figure 6, and Figure 7\]
 
 ![Figure 5](Figure5_5yr_Ndays_EHE_nonEHE_1971_2020.jpg) ![Figure 6](Figure6_5yr_mean_temp_1971_2020.jpg) ![Figure 7](revFigure7_AC_prev_1970_2020_ns_fit.jpg)
+
+![](/key-topics/2023-nyc-heat-related-mortality-report/revised-figure6-ehe-and-tmax-crr-trend-5yr-window-2000-2020.jpg)\[VIS EMBED\]![](/key-topics/2022-nyc-heat-related-mortality-report/revised-figure6-ehe-and-tmax-crr-trend-5yr-window-2000-2020.jpg)
 
 \[VIS EMBED\]
 
