@@ -46,10 +46,10 @@ In New York City, current overall PM2.5 levels from all sources contribute to 2,
 </div>
 <div class="wide my-4">
     <div class="row">
-        <div class="col-md-6 mt-2" ><h3 class="mb-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 31 cardiovascular hospitalizations</h3><img src= "1 in 31.svg" alt="1 out 31 cardiovascular hospitalizations in NYC are caused by PM2.5"/></div>
-        <div class="col-md-6 mt-2" ><h3 class="mb-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 31 respiratory hospital visits<h3><img src= "1 in 31.svg" alt="1 out of 31 respiratory hospital visits in NYC are caused by PM2.5"/></div>
-        <div class="col-md-6 mt-2"><h3 class="my-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 17 asthma emergency room visits</h3><img src= "1 in 17 cropped.svg" alt="1 out of 17 asthma emergency room visits in NYC are caused by PM2.5"/></div>
-        <div class="col-md-6 mt-2" ><h3 class="my-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 20 deaths</h3><img src = "1 in 20 cropped.svg" alt="1 out of 20 deaths are caused by PM2.5"/></div>
+        <div class="col-md-6 mt-2" ><h3 class="mb-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 140 cardiovascular hospitalizations</h3><img src= "1 in 140C.svg" alt="1 out 140 cardiovascular hospitalizations in NYC are caused by PM2.5"/></div>
+        <div class="col-md-6 mt-2" ><h3 class="mb-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 68 respiratory hospital visits<h3><img src= "1 in 68C.svg" alt="1 out of 68 respiratory hospital visits in NYC are caused by PM2.5"/></div>
+        <div class="col-md-6 mt-2"><h3 class="my-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 28 asthma emergency room visits</h3><img src= "1 in 28C.svg" alt="1 out of 28 asthma emergency room visits in NYC are caused by PM2.5"/></div>
+        <div class="col-md-6 mt-2" ><h3 class="my-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 25 deaths</h3><img src = "1 in 25C.svg" alt="1 out of 25 deaths are caused by PM2.5"/></div>
     </div>
 </div>
 <div class="narrow">
