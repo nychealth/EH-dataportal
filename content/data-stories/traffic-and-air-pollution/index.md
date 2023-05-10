@@ -41,15 +41,15 @@ Once in the bloodstream, PM2.5 can cause health problems to the respiratory and 
 
 ## Health impacts of PM2.5 in New York City 
 
-In New York City, current overall PM2.5 levels from all sources contribute to 2,300 deaths and 6,300 emergency department visits and hospitalizations for respiratory and cardiovascular disease each year. 
+In New York City, current overall PM2.5 levels from all sources contribute to 2,000 deaths and 5,150 emergency department visits and hospitalizations for respiratory and cardiovascular disease each year. 
 
 </div>
 <div class="wide my-4">
     <div class="row">
-        <div class="col-md-6 mt-2" ><h3 class="mb-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 31 cardiovascular hospitalizations</h3><img src= "1 in 31.svg" alt="1 out 31 cardiovascular hospitalizations in NYC are caused by PM2.5"/></div>
-        <div class="col-md-6 mt-2" ><h3 class="mb-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 31 respiratory hospital visits<h3><img src= "1 in 31.svg" alt="1 out of 31 respiratory hospital visits in NYC are caused by PM2.5"/></div>
-        <div class="col-md-6 mt-2"><h3 class="my-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 17 asthma emergency room visits</h3><img src= "1 in 17 cropped.svg" alt="1 out of 17 asthma emergency room visits in NYC are caused by PM2.5"/></div>
-        <div class="col-md-6 mt-2" ><h3 class="my-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 20 deaths</h3><img src = "1 in 20 cropped.svg" alt="1 out of 20 deaths are caused by PM2.5"/></div>
+        <div class="col-md-6 mt-2" ><h3 class="mb-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 140 cardiovascular hospitalizations</h3><img src= "1 in 140C.svg" alt="1 out 140 cardiovascular hospitalizations in NYC are caused by PM2.5"/></div>
+        <div class="col-md-6 mt-2" ><h3 class="mb-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 68 respiratory hospital visits<h3><img src= "1 in 68C.svg" alt="1 out of 68 respiratory hospital visits in NYC are caused by PM2.5"/></div>
+        <div class="col-md-6 mt-2"><h3 class="my-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 28 asthma emergency room visits</h3><img src= "1 in 28C.svg" alt="1 out of 28 asthma emergency room visits in NYC are caused by PM2.5"/></div>
+        <div class="col-md-6 mt-2" ><h3 class="my-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 25 deaths</h3><img src = "1 in 25C.svg" alt="1 out of 25 deaths are caused by PM2.5"/></div>
     </div>
 </div>
 <div class="narrow">
@@ -59,7 +59,7 @@ In New York City, current overall PM2.5 levels from all sources contribute to 2,
 
 PM2.5 in NYC comes from inside and outside the city from all kinds of combustion activity. This includes the burning of fuel in vehicles, buildings, power plants, and construction equipment, as well as commercial cooking and industrial activities. PM2.5 can either come directly from these sources or be formed in the atmosphere from other pollutants. 
 
-<iframe title="17% of PM2.5 comes from traffic" aria-label="Donut Chart" id="datawrapper-chart-8VqIl" src="https://datawrapper.dwcdn.net/8VqIl/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="459" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<iframe title="17% of PM2.5 comes from traffic" aria-label="Donut Chart" id="datawrapper-chart-8VqIl" src="https://datawrapper.dwcdn.net/8VqIl/7/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="450" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
 
 17% of the PM2.5 emitted from NYC activities comes from everyday car, bus, and truck traffic. With the prevalence of people getting more deliveries, traffic patterns are changing.  
