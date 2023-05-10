@@ -225,7 +225,7 @@ photocredit: "Mayoral Photography Office"
             <div class="border-top border-dark">
                 <ul class="extensible-list horizontal text-muted mt-3">
                     <li>
-                        <a class="text-muted" href="mailto:trackingportal@health.nyc.gov" title="Share through email">
+                        <a class="text-muted" href="mailto:ehdp@health.nyc.gov" title="Share through email">
                             <span class="fa fa-envelope"></span> Questions about this data story? Ideas for another one? Email us.</a>
                     </li>
                 </ul>
