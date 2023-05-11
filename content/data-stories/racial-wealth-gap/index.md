@@ -16,8 +16,9 @@ To do:
 - Fill out front matter
 - Replace header image
 - Link to visual abstract as thumbnail/expand
-- Add accordion
-- Add glossary
+- Add accordion / open and close narrow divs
+- Simplify text further
+
 
 Throughout history, the distribution of wealth in the U.S. has, and continues to be, largely unequal. This unequal distribution appears among socially identified racial groups, a concept called the Racial Wealth Gap. There is a particularly wide divide between wealth held by White families and Black families. The Racial Wealth Gap has major implications for public health, as a large and growing body of research reveals that wealth is consistently correlated with health outcomes. Effective solutions to racial inequities in wealth and health must address challenges at the individual, household, community, and systems levels.  
 
@@ -42,7 +43,49 @@ While net worth is found to be a protective factor against poor health, assets s
 
 White households are more likely than Black and Hispanic households to hold all asset types. Ultimately, the median White household has assets more than four times the value of those held by the median Black household, underscoring that the racial wealth gap is primarily driven by differences in asset holdings. 
 
+</div>
 **Accordion glossary box**
+
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Accordion Item #1
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Accordion Item #2
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Accordion Item #3
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="narrow">
 
 ### Black-White health inequities have not improved over time 
 
@@ -80,12 +123,47 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
 
 * <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/redlining/" target="_blank"> Read our data story: A brief history of redlining.</a>
 
-* Check out the visual abstract here (link when it’s live):  
-
 ### Glossary
 
-* Insert glossary here 
-
-
-
-[def]: racial-wealth-gap-report-final-visualization.png
+<table class="table table-striped" id="glossary">
+  <thead>
+    <tr class="table-dark">
+      <th scope="col">Term</th>
+      <th scope="col">Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Wealth</th>
+      <td>Wealth is the difference between the value of assets owned and the amount owed in debts. It is critically tied positive health outcomes.</td>
+    </tr>
+    <tr>
+      <th scope="row">Income</th>
+      <td>A flow of resources received on a regular basis, generally from earnings, investments, sale of an item, or transfers</td>
+    </tr>
+    <tr>
+      <th scope="row">Redlining</th>
+      <td colspan="2">A discriminatory practice by which firms such as banks and insurance companies refused or limited loans, mortgages, and/or insurance coverage within specific geographic areas with primarily Black, immigrant and low-income residents.</td>
+    </tr>
+    <tr>
+      <th scope="row">Asset</th>
+      <td colspan="2">A resource owned with market or economic value. An asset can be a potential source of future income to meet debts, facilitate additional accumulation of resources, or meet other commitments.</td>
+    </tr>
+    <tr>
+      <th scope="row">Debt</th>
+      <td colspan="2">Money owed or due to another party.</td>
+    </tr>
+    <tr>
+      <th scope="row">Health equity</th>
+      <td colspan="2">Fair and just opportunity for each person to be as healthy as possible, and no one is disadvantaged from achieving this potential due to social position or socially determined circumstances.</td>
+    </tr>
+    <tr>
+      <th scope="row">Racial Wealth Gap</th>
+      <td colspan="2">The difference in net worth between socially identified racial groups</td>
+    </tr>
+    <tr>
+      <th scope="row">Systemic Racism, or Structural Racism</th>
+      <td colspan="2">The totality of ways in which societies foster racial discrimination, via mutually reinforcing inequitable systems (for example, in housing, education, employment, earnings, benefits, credit, media, health care, criminal justice, etc.) that in turn reinforce discriminatory beliefs, values, and distribution of resources, reflected in history, culture, and interconnected institutions.</td>
+    </tr>
+  </tbody>
+</table>
