@@ -81,7 +81,7 @@ In NYC, most homicide deaths among young and middle-aged adults occur with guns.
 
 Hanging is the leading mechanism of suicides among young and middle-aged New Yorkers, whereas guns are the leading mechanism of suicides nationwide. Guns are responsible for relatively few suicides among adults age 15 to 44 in NYC. 
 
-NYC has opportunities to prevent deaths among young and middle-aged adults by limiting access to the leading mechanisms of homicide and suicide. 
+Suicide and homicide don't just affect the immediate victims. The impacts radiate, potentially widening disparities and additionally causing stress, trauma, and other negative health effects for victims’ friends, neighbors, colleagues and family members. [In communities where New Yorkers are more likely to experience either homicide or suicide, violence is both a personal and public health concern](/data-stories/violence). 
 
 </div>
 <div class="wide my-4">
@@ -90,13 +90,13 @@ NYC has opportunities to prevent deaths among young and middle-aged adults by li
 </div>
 <div class="narrow">
 
-This concept, also known as means reduction, is a key part of a comprehensive suicide prevention strategy. Many people who attempt suicide do so during a short-term crisis, and therefore spend relatively little time thinking about the attempt before taking action ([according to one study of suicide attempt survivors, nearly half spent less than 10 minutes](https://www.hsph.harvard.edu/means-matter/means-matter/duration/)). For these people especially, access to means of self-harm can be the difference between thinking about suicide and actually going through with it.  
+Means reduction is a key part of a comprehensive suicide prevention strategy. Many people who attempt suicide do so during a short-term crisis, and therefore spend relatively little time thinking about the attempt before taking action ([according to one study of suicide attempt survivors, nearly half spent less than 10 minutes](https://www.hsph.harvard.edu/means-matter/means-matter/duration/)). For these people especially, access to means of self-harm can be the difference between thinking about suicide and actually going through with it.  
 
 The means reduction approach can be applied to homicides, too. [Data shows that where there are more guns, there is more homicide](https://www.hsph.harvard.edu/hicrc/firearms-research/guns-and-death/). So if there are fewer guns, we can expect to see fewer homicide deaths.  
 
-Suicide and homicide don't just affect the immediate victims. The impacts radiate, potentially widening disparities and additionally causing stress, trauma, and other negative health effects for victims’ friends, neighbors, colleagues and family members. [In communities where New Yorkers are more likely to experience either homicide or suicide, violence is both a personal and public health concern](/data-stories/violence). 
+Each of these deaths is a tragedy—but by limiting access to the leading mechanisms of homicide and suicide, NYC has opportunities to prevent deaths among young and middle-aged adults. 
 
-Explore the data fully in the chart below: hover over the bubbles for the tooltips, or click on an age-group to get more detailed data.
+Explore more data here:
 
 </div>
 <div class="wide my-4">
