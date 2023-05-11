@@ -15,7 +15,7 @@ To do:
 
 - Fill out front matter
 - Replace header image
-- Link to visual abstract
+- Link to visual abstract as thumbnail/expand
 - Add accordion
 - Add glossary
 
@@ -68,7 +68,7 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
 
 5. <strong>Reparations:</strong> A reparations program, such as federally paid cash to Black descendants of enslaved people, would eliminate the Black-White wealth gap, if the payment amounts were predicated on the average difference in Black and White wealth.
 
-![visual abstract](racial wealth gap report final visualization.png)
+![Visual abstract](rwg_visual_abstract.png)
 
 ### Resources
 
@@ -86,3 +86,6 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
 
 * Insert glossary here 
 
+
+
+[def]: racial-wealth-gap-report-final-visualization.png
