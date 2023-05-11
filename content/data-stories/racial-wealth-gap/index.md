@@ -44,7 +44,7 @@ While net worth is found to be a protective factor against poor health, assets s
 White households are more likely than Black and Hispanic households to hold all asset types. Ultimately, the median White household has assets more than four times the value of those held by the median Black household, underscoring that the racial wealth gap is primarily driven by differences in asset holdings. 
 
 </div>
-**Accordion glossary box**
+**Accordion glossary box: Explore how wealth translates to health**
 
 <div class="accordion" id="accordionExample">
   <div class="accordion-item">
@@ -99,7 +99,7 @@ Experts from the nonprofit, research, policy, and government sectors were invite
 
 Effective solutions to racial inequities in wealth and health must simultaneously address challenges at the individual household, and community level, and the inequitable systems that produce wealth and health gaps.  
 
-### Policy measures
+### Five ways to reduce the racial wealth gap
 
 1. <strong>Universal health care:</strong> By providing low-cost health care to all Americans, universal health care would help prevent individuals from acquiring medical debt and its subsequent deleterious effects on health and financial security. 
 
