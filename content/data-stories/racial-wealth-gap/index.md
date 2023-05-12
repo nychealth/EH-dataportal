@@ -148,9 +148,12 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
 
 5. <strong>Reparations:</strong> A reparations program, such as federally paid cash to Black descendants of enslaved people, would eliminate the Black-White wealth gap, if the payment amounts were predicated on the average difference in Black and White wealth.
 
-<div class="my-4">
+<hr class="my-2">
 
-![Visual abstract](rwg_visual_abstract.png)
+<div class="float-right p-2 border shadow-sm" style="width:50%">
+  <img src="rwg_visual_abstract.png">
+  <em class="fs-sm"><a href="rwg_visual_abstract.png" target="_blank">Full-size visual abstract for this report</a>.</em>
+</div>
 
 <div class="my-4">
 
@@ -164,7 +167,7 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
 
 * <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/redlining/" target="_blank"> Read our data story: A brief history of redlining.</a>
 
-<div class="my-4">
+<div style="clear:both"></div>
 
 ### Glossary
 
@@ -202,7 +205,7 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
     </tr>
     <tr>
       <th scope="row">Racial Wealth Gap</th>
-      <td colspan="2">The difference in net worth between socially identified racial groups</td>
+      <td colspan="2">The difference in net worth between socially identified racial groups.</td>
     </tr>
     <tr>
       <th scope="row">Systemic Racism, or Structural Racism</th>
