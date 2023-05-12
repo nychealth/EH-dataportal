@@ -60,7 +60,18 @@ As part of our investigations, we work to get these products off NYC store shelv
 
 We buy products from NYC stores and send them to a lab for testing. Between 2017 and 2021:  
 
-** big numbers viz ** -- do table method like in PM2.5, adjust font size, get rid of lines. 
+</div>
+<div class="wide my-4">
+    <div class="row">
+        <div class="col-md-6 mt-2" ><h3 class="mb-3 fs-lg">We tested around...</h3></div>
+        <div class="col-md-6 mt-2" ><h3 class="mb-3 fs-lg">...and found that over<h3></div>
+        <div class="col-md-6 mt-2"><h3 class="my-3 fs-lg" style="font-size:50px">4,000</h3></div>
+        <div class="col-md-6 mt-2" ><h3 class="my-3 fs-lg" style="font-size:50px">1,800</h3></div>
+        <div class="col-md-6 mt-2" ><h3 class="my-3 fs-lg">products</h3></div>
+        <div class="col-md-6 mt-2" ><h3 class="my-3 fs-lg">had detectable levels of lead</h3></div>
+    </div>
+</div>
+<div class="narrow">
 
 When we identify a product that has more lead than the allowable limits, we take enforcement actions to protect New Yorkers. We order the shops to stop selling the contaminated products and require them to post warning signs to inform their customers about the dangers of these products.  
 
