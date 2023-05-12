@@ -59,11 +59,11 @@ White households are more likely than Black and Hispanic households to hold all 
 <!-- .card (end of first accordion, repeat as needed) -->
 
   <div class="card">
-      <a class="card-header h4 collapse collapsed" id="acc-button-02" data-toggle="collapse" href="#panel-acc-button-01"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-02">
+      <a class="card-header h4 collapse collapsed" id="acc-button-02" data-toggle="collapse" href="#panel-acc-button-02"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-02">
         <span class="title" role="heading" aria-level="3">…and to live in health-promoting neighborhoods</span>
       </a>
 
-<div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
+<div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02" data-parent="#accordion-01">
     <div class="card-body">
 <p>
  Greater wealth allows people to live in neighborhoods with fewer environmental hazards, such as lead exposure and air pollution, fewer fast-food outlets, and more parks and green spaces for people to exercise.   
@@ -75,11 +75,11 @@ White households are more likely than Black and Hispanic households to hold all 
 </div>
 
   <div class="card">
-      <a class="card-header h4 collapse collapsed" id="acc-button-03" data-toggle="collapse" href="#panel-acc-button-03"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
+      <a class="card-header h4 collapse collapsed" id="acc-button-03" data-toggle="collapse" href="#panel-acc-button-03"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-03">
         <span class="title" role="heading" aria-level="3">Wealth can reduce stress from financial challenges</span>
       </a>
 
-<div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
+<div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
     <div class="card-body">
 <p>
    Wealth can protect families from the negative consequences of financial hardship, including job loss, homelessness or housing insecurity, food insecurity, and the negative psychological effects associated with financial hardship. Intergenerational wealth passed down through inheritance can provide educational and social opportunities that can benefit health in the long run. 
@@ -90,11 +90,11 @@ White households are more likely than Black and Hispanic households to hold all 
 </div>
 
   <div class="card">
-      <a class="card-header h4 collapse collapsed" id="acc-button-04" data-toggle="collapse" href="#panel-acc-button-03"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
+      <a class="card-header h4 collapse collapsed" id="acc-button-04" data-toggle="collapse" href="#panel-acc-button-04"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-04">
         <span class="title" role="heading" aria-level="3">Debt and tight budgets lead to reduced spending on medical care and preventative lifestyle habits</span>
       </a>
 
-<div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
+<div class="collapse" id="panel-acc-button-04" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
     <div class="card-body">
 <p>
  Conversely, research shows that when household budgets are constrained, families tend to reduce spending on medical care, groceries, and other health-related goods. Households with limited liquid assets may be less able to afford health-promoting opportunities (for example, quality medical care, physical activity, etc.) and more likely to forgo preventative or emergency medical treatments. Financial hardship is consistently correlated with poorer self-rated health, more chronic diseases, and depressive symptoms in children and adults. 
@@ -105,11 +105,11 @@ White households are more likely than Black and Hispanic households to hold all 
 </div>
 
   <div class="card">
-      <a class="card-header h4 collapse collapsed" id="acc-button-05" data-toggle="collapse" href="#panel-acc-button-03"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
+      <a class="card-header h4 collapse collapsed" id="acc-button-05" data-toggle="collapse" href="#panel-acc-button-05"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-05">
         <span class="title" role="heading" aria-level="3">Debt and lower incomes impact socioemotional well-being in negative ways </span>
       </a>
 
-<div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
+<div class="collapse" id="panel-acc-button-05" role="tabpanel" aria-labelledby="acc-button-05" data-parent="#accordion-01">
     <div class="card-body">
 <p>
   Debt type plays an important role in health and well-being in both positive and negative ways. For instance, higher levels of home and student loan debt are associated with greater socioemotional well-being for children, whereas higher levels of and increases in unsecured debt (for example, credit card debt) are associated with lower levels of and declines in child socioemotional well-being, respectively.  
