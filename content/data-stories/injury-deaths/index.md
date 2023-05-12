@@ -6,7 +6,7 @@ seo_title: "Injury deaths in NYC adults: how homicide and suicide contribute"
 seo_description: "A data story on deaths due to injury - and ways we can prevent them."
 tags: 
 categories: ["healthoutcomes","social"]
-keywords: []
+keywords: ["injuries","deaths","mortality","suicide","homicide","unintentional injury","accidents","means reduction"]
 image: ds-sanitation-trucks.jpg
 photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
@@ -95,6 +95,8 @@ Means reduction is a key part of a comprehensive suicide prevention strategy. Ma
 The means reduction approach can be applied to homicides, too. [Data shows that where there are more guns, there is more homicide](https://www.hsph.harvard.edu/hicrc/firearms-research/guns-and-death/). So if there are fewer guns, we can expect to see fewer homicide deaths.  
 
 Each of these deaths is a tragedy—but by limiting access to the leading mechanisms of homicide and suicide, NYC has opportunities to prevent deaths among young and middle-aged adults. 
+
+<hr class="my-2">
 
 Explore more data here:
 
