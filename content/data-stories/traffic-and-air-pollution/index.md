@@ -52,8 +52,9 @@ In New York City, current overall PM2.5 levels from all sources contribute to 2,
         <div class="col-md-6 mt-2" ><h3 class="my-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 25 deaths</h3><img src = "1 in 25C.svg" alt="1 out of 25 deaths are caused by PM2.5"/></div>
     </div>
 </div>
-<div class="narrow">
 
+
+<div class="narrow my-4">
 
 ## Traffic is a major source of PM2.5 in NYC
 
@@ -99,13 +100,14 @@ Some neighborhoods in New York City experience higher concentrations of PM2.5 fr
         <div class="col-12">
         </div>
     </div>
+    <em class="fs-sm">Traffic-related PM2.5 is estimated from air quality models.</em>
 </div>
 <div class="narrow mt-4">
 
 
 ## PM2.5 pollution from traffic contributes to adverse health effects 
  
-PM2.5 pollution from traffic in NYC contributes to about 320 premature deaths and 870 emergency department (ED) visits and hospitalizations each year. 
+PM2.5 pollution from traffic in NYC contributes to an estimated 320 premature deaths and 870 emergency department (ED) visits and hospitalizations each year. 
 
 </div>
 <div class="wide my-4">
@@ -115,9 +117,10 @@ PM2.5 pollution from traffic in NYC contributes to about 320 premature deaths an
 
 ## PM2.5-related health problems from traffic are highest in the poorest neighborhoods 
 
-PM2.5 levels from all traffic sources are about 50% higher in high poverty neighborhoods than in low poverty neighborhoods. PM2.5 levels from trucks and buses are about 70% higher in high poverty neighborhoods than low poverty neighborhoods. The number of hospitalizations and ED visits related to pollution from traffic are highest in the poorest neighborhoods.
+PM2.5 levels from all traffic sources are about 50% higher in high poverty neighborhoods than in low poverty neighborhoods. PM2.5 levels from trucks and buses are also higher in high poverty neighborhoods than low poverty neighborhoods. The number of hospitalizations and ED visits related to pollution from traffic are highest in the poorest neighborhoods.
 
-<iframe title="PM2.5 from traffic is highest in the poorest neighborhoods" aria-label="Interactive line chart" id="datawrapper-chart-rVmD7" src="https://datawrapper.dwcdn.net/rVmD7/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="510" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<iframe title="PM2.5 from traffic is highest in the poorest neighborhoods." class="my-4" aria-label="Split Bars" id="datawrapper-chart-9jmEo" src="https://datawrapper.dwcdn.net/9jmEo/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="153" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
 
 <br></br>
 
@@ -127,7 +130,7 @@ PM2.5 levels from all traffic sources are about 50% higher in high poverty neigh
 
 ## How is your neighborhood affected?
 
-You can find out the mortality rate, hospitalizations for respiratory and cardiovascular illness rates, and emergency department visits for asthma rate for any neighborhood by entering it into the table below. You can compare these rates with poverty level to see how health impacts from traffic-related PM2.5 are differently distributed based upon income in a given neighborhood. 
+You can find out the estimated mortality rate, hospitalizations for respiratory and cardiovascular illness rates, and emergency department visits for asthma rate for any neighborhood by entering it into the table below. You can compare these rates with poverty level to see how health impacts from traffic-related PM2.5 are differently distributed based upon income in a given neighborhood. 
 
 </div>
 <div class="wide my-4">
