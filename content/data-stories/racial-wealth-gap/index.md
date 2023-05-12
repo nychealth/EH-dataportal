@@ -46,44 +46,138 @@ White households are more likely than Black and Hispanic households to hold all 
 </div>
 **Accordion glossary box: Explore how wealth translates to health**
 
-<div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        Accordion Item #1
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
+<div class="wide my-4 fs-sm">
+    <div class="accordion-group my-3" role="tablist" id="accordion-01">
+        <div class="row fs-sm">
+            <div class="col-md-6">
+                <div class="card">
+                    <a class="card-header collapse collapsed font-weight-bold" id="acc-button-01"
+                        data-toggle="collapse" href="#panel-acc-button-01" role="tab"
+                        aria-expanded="false" aria-controls="panel-acc-button-01">
+                        <span class="title" role="heading" aria-level="3">Tree canopy
+                            coverage</span>
+                    </a>
+                    <div class="collapse" id="panel-acc-button-01" role="tabpanel"
+                        aria-labelledby="acc-button-01" data-parent="#accordion-01">
+                        <div class="card-body">
+                            <p>
+                                <strong>Total tree canopy coverage</strong> is the percent of the sidewalk in the right of way of the monitored street that is shaded by trees. Trees provide shade and prevent the ground from heating up. They also can cool the air through evapotranspiration. Evapotranspiration happens when the sun’s rays hit plants, causing water to evaporate from the leaves. This change from liquid to vapor cools the plants – just as sweating cools our bodies – and uses energy, thereby reducing the amount of energy left to warm the air.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- .collapse -->
+                </div>
+                <!-- .card (end of first accordion, repeat as needed) -->
+                <div class="card">
+                    <a class="card-header collapse collapsed font-weight-bold" id="acc-button-03"
+                        data-toggle="collapse" href="#panel-acc-button-03" role="tab"
+                        aria-expanded="false" aria-controls="panel-acc-button-03">
+                        <span class="title" role="heading" aria-level="3">Grass and
+                            shrubs</span>
+                    </a>
+                    <div class="collapse" id="panel-acc-button-03" role="tabpanel"
+                        aria-labelledby="acc-button-03" data-parent="#accordion-01">
+                        <div class="card-body">
+                            <p>
+                                The percent of <strong>grass and shrubs</strong> in front of buildings on the
+                                monitored street. Grass and shrubs cool the air through
+                                shading and evapotranspiration. Evapotranspiration
+                                happens when the sun’s rays hit plants, causing water to
+                                evaporate from the leaves. This change from liquid to
+                                vapor
+                                cools the plants – just as sweating cools our bodies –
+                                and
+                                uses energy, thereby reducing the amount of energy left
+                                to
+                                warm the air.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- .collapse -->
+                </div>
+                <!-- .card (end of first accordion, repeat as needed) -->
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <a class="card-header collapse collapsed font-weight-bold" id="acc-button-02"
+                        data-toggle="collapse" href="#panel-acc-button-02" role="tab"
+                        aria-expanded="false" aria-controls="panel-acc-button-02">
+                        <span class="title" role="heading" aria-level="3">Building
+                            height</span>
+                    </a>
+                    <div class="collapse" id="panel-acc-button-02" role="tabpanel"
+                        aria-labelledby="acc-button-02" data-parent="#accordion-01">
+                        <div class="card-body">
+                            <p>
+                                Our model looks at the <strong>median building
+                                    height</strong> (the middle of the
+                                range of sorted heights) of buildings on the block.
+                                Taller buildings can absorb and reflect more heat
+                                (increasing the street's temperature), but at about 3 or more floors, begin to cool the street by shading it. 
+                            </p>
+                        </div>
+                    </div>
+                    <!-- .collapse -->
+                </div>
+                <!-- .card (end of first accordion, repeat as needed) -->
+                <div class="card">
+                    <a class="card-header collapse collapsed font-weight-bold" id="acc-button-04"
+                        data-toggle="collapse" href="#panel-acc-button-04" role="tab"
+                        aria-expanded="false" aria-controls="panel-acc-button-04">
+                        <span class="title" role="heading" aria-level="3">Impervious
+                            surfaces</span>
+                    </a>
+                    <div class="collapse" id="panel-acc-button-04" role="tabpanel"
+                        aria-labelledby="acc-button-04" data-parent="#accordion-01">
+                        <div class="card-body">
+                            <p>
+                                <strong>Impervious surfaces</strong> are made from
+                                asphalt,
+                                concrete,
+                                astroturf, and even hard-packed dirt. These surfaces absorb
+                                sunlight,
+                                and reflect and retain heat. They increase the
+                                temperature
+                                of the surrounding area.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- .collapse -->
+                </div>
+                <!-- .card (end of first accordion, repeat as needed) -->
+            </div>
+            <div class="col-md-6 mt-1">
+                <div class="card">
+                    <a class="card-header collapse collapsed font-weight-bold" id="acc-button-06"
+                        data-toggle="collapse" href="#panel-acc-button-06" role="tab"
+                        aria-expanded="false" aria-controls="panel-acc-button-06">
+                        <span class="title" role="heading" aria-level="3">Other
+                            factors</span>
+                    </a>
+                    <div class="collapse" id="panel-acc-button-06" role="tabpanel"
+                        aria-labelledby="acc-button-06" data-parent="#accordion-01">
+                        <div class="card-body">
+                            <p>
+                                <strong>Other factors</strong>, like the orientation of
+                                the
+                                street
+                                (North/South or East/West), how close the area is to the
+                                ocean, the elevation
+                                of the area, daily wind speed and weather patterns, can
+                                also
+                                influence how hot a block is.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- .collapse -->
+                </div>
+                <!-- .card (end of first accordion, repeat as needed) -->
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        Accordion Item #2
-      </button>
-    </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingThree">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        Accordion Item #3
-      </button>
-    </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
-    </div>
-  </div>
 </div>
+
+
 
 <div class="narrow">
 
@@ -111,7 +205,13 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
 
 5. <strong>Reparations:</strong> A reparations program, such as federally paid cash to Black descendants of enslaved people, would eliminate the Black-White wealth gap, if the payment amounts were predicated on the average difference in Black and White wealth.
 
-![Visual abstract](rwg_visual_abstract.png)
+<hr class="my-2">
+
+
+<div class="float-right p-2 border shadow-sm" style="width:50%">
+  <img src="rwg_visual_abstract.png">
+  <em class="fs-sm"><a href="rwg_visual_abstract.png" target="_blank">Full-size visual abstract for this report</a>.</em>
+</div>
 
 ### Resources
 
@@ -122,6 +222,8 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
 * <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/block-by-block/" target="_blank"> Read our data story: A walk through history.</a>
 
 * <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/redlining/" target="_blank"> Read our data story: A brief history of redlining.</a>
+
+<div style="clear:both"></div>
 
 ### Glossary
 
@@ -159,7 +261,7 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
     </tr>
     <tr>
       <th scope="row">Racial Wealth Gap</th>
-      <td colspan="2">The difference in net worth between socially identified racial groups</td>
+      <td colspan="2">The difference in net worth between socially identified racial groups.</td>
     </tr>
     <tr>
       <th scope="row">Systemic Racism, or Structural Racism</th>
