@@ -52,8 +52,9 @@ In New York City, current overall PM2.5 levels from all sources contribute to 2,
         <div class="col-md-6 mt-2" ><h3 class="my-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 25 deaths</h3><img src = "1 in 25C.svg" alt="1 out of 25 deaths are caused by PM2.5"/></div>
     </div>
 </div>
-<div class="narrow">
+<em class="fs-sm">These air pollution and health impacts are estimates generated from modeling and not measured directly.</em>
 
+<div class="narrow my-4">
 
 ## Traffic is a major source of PM2.5 in NYC
 
