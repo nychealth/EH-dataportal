@@ -1,7 +1,7 @@
 ---
 title: "How congestion pricing can improve health"
-date: 2022-07-13T13:11:44-04:00
-draft: true
+date: 2023-05-12T13:11:44-04:00
+draft: false
 seo_title: "Congestion pricing, transit, climate change, and public health"
 seo_description: "A data story on what we stand to gain from congestion pricing."
 tags: 
@@ -13,22 +13,20 @@ photocredit: "Michael Appleton/Mayoral Photography Office"
 
 **NB: Links to internal topics not yet inserted below.**
 
-In Fall 2021, the Metropolitan Transportation Authority started work on [a Central Business District Tolling Program](https://new.mta.info/project/CBDTP), also known as congestion pricing. Through this plan, cars and trucks that enter Manhattan below 60th street - the central business district - would be charged a toll. By law, the toll money would fund important improvements to New York City’s transit system of subways, buses, and railroads. ([Read the law here](https://www.nysenate.gov/legislation/laws/VAT/T8A44-C).)  
+In Fall 2021, the Metropolitan Transportation Authority started work on [a Central Business District Tolling Program](https://new.mta.info/project/CBDTP), also known as congestion pricing. Through this plan, cars and trucks that enter Manhattan below 60th street&mdash;the central business district&mdash;would be charged a toll. By law, the toll money would fund important improvements to New York City’s transit system of subways, buses, and railroads. ([Read the law here](https://www.nysenate.gov/legislation/laws/VAT/T8A44-C).)  
 
 Traffic is a huge part of our environment in New York City, and it imposes a cost on every New Yorker. It affects our quality of life, our air quality, and the safety of walking, cycling, and other ways New Yorkers get around our city.  
 
-{{< rawhtml >}}
-<div style="background-color:#f9f9f9; margin: 25px; border-left: 5px solid darkgray;" class="p-2 fs-sm">
-<em>Quick facts from <a href="https://new.mta.info/project/CBDTP/why-NYC-needs-central-business-district-tolling">mta.info</a>: 
-<ul>
-<li>Congestion in the New York City region will cost the city $100 billion over the next five years. 
-<li>Every year, each New Yorker loses an average of 133 hours due to traffic - and nearly $1,900 in lost productivity and other costs. 
-</ul>
-</em>
-</div>
-{{< /rawhtml >}}
 
-By decreasing traffic density, congestion pricing could change our environment and improve our health. But its biggest promise lies in funding transit - modernizing our buses, subways, and trains. A strong transit system is the backbone of our city and contributes to our public health. Congestion pricing would fund more capacity, reliability, and accessibility, and expand the transit system into parts of NYC that are not currently served - providing a revolutionary investment in our city.  
+<div style="background-color:#f9f9f9; border-left: 5px solid darkgray;" class="p-2 fs-sm my-2">
+
+Congestion in the New York City region will cost the city $100 billion over the next five years. 
+<hr class="my-2">
+Every year, each New Yorker loses an average of 133 hours due to traffic&mdash;and nearly $1,900 in lost productivity and other costs.  <em>-<a href="https://new.mta.info/project/CBDTP/why-NYC-needs-central-business-district-tolling">From mta.info</a></em>
+</div>
+
+
+By decreasing traffic density, congestion pricing could change our environment and improve our health. But its biggest promise lies in funding transit&mdash;modernizing our buses, subways, and trains. A strong transit system is the backbone of our city and contributes to our public health. Congestion pricing would fund more capacity, reliability, and accessibility, and expand the transit system into parts of NYC that are not currently served&mdash;providing a revolutionary investment in our city.  
 
 ## How can congestion pricing affect health? 
 Though a minority of New Yorkers travel by car, car traffic is everywhere: a 2016 estimate found that in NYC, each square kilometer sees an average of 21.7 million miles of vehicular travel per year. Car travel is highest in Manhattan, with a borough average of 46,700,000 miles per square kilometer - that’s more than 110 million miles traveled per square mile. [Explore more data on traffic density]().  
