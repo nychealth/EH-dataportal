@@ -29,6 +29,8 @@ Income and wealth are two different concepts. Income is measured by earnings, wh
 
 The Federal Reserve Board’s 2019 Survey of Consumer Finances (SCF) shows that, nationally, the average White family holds nearly eight times the wealth of the average Black family and over five times the wealth of the average Hispanic family. 
 
+<div class="my-4">
+
 <iframe title="Mean and median net worth for  White, Black, and  Hispanic people in the US" aria-label="Grouped Column Chart" id="datawrapper-chart-nqi4y" src="https://datawrapper.dwcdn.net/nqi4y/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="481" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
 ### Racist and discriminatory policies have prevented Black families from accruing assets, financial security, and wealth 
