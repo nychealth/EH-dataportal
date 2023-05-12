@@ -6,7 +6,7 @@ seo_title: "Injury deaths in NYC adults: how homicide and suicide contribute"
 seo_description: "A data story on deaths due to injury - and ways we can prevent them."
 tags: 
 categories: ["healthoutcomes","social"]
-keywords: ["injuries","deaths","mortality","suicide","homicide","unintentional injury","accidents","means reduction"]
+keywords: ["injuries","deaths","mortality","suicide","homicide","unintentional injury","accidents","means reduction","violence"]
 image: ds-sanitation-trucks.jpg
 photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
