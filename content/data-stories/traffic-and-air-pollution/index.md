@@ -135,8 +135,8 @@ You can find out the estimated mortality rate, hospitalizations for respiratory 
 </div>
 <div class="wide my-4">
 
-<iframe title="Health impacts due to PM2.5 from traffic" aria-label="Table" id="datawrapper-chart-vd4T9" src="https://datawrapper.dwcdn.net/vd4T9/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="733" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
-</div>
-<div class="narrow">
+<iframe title="Health impacts due to PM2.5 from traffic" aria-label="Table" id="datawrapper-chart-atWCN" src="https://datawrapper.dwcdn.net/atWCN/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1120" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
 <a href="https://ehjournal.biomedcentral.com/articles/10.1186/s12940-016-0172-6"> Read the full report on how PM2.5 from traffic contributes to negative health effects in New York City.</a>
+
+</div>
