@@ -173,21 +173,17 @@ The estimated number of heat-exacerbated deaths from May-September for all hot d
 
 The number of extreme heat event days each year has stayed about the same (approximately 10 days/year) in the past decade. However, the number of non-extreme hot days is increasing (e.g., 45 days with daily maximum temperature of 83-94°F for 1971-1980 vs. 63 days for 2011-2020). The daily low temperature (usually nighttime temperature) is a good measure of (UHI) the urban heat island  effect, because it measures the heat retained after the sun has set. The daily low temperature is also increasing (Figure 4), highlighting the importance of in-home cooling. Cities like NYC experience a UHI effect, with hotter temperatures than surrounding suburbs and more rural areas, because they have large amounts of concrete and other building materials that trap heat. 
 
-[INSERT FIG 3]
+<img src="2021-fig-3.jpg" class="border-top border-bottom px-6">
 
-[INSERT FIG 4]
+<img src="2021-fig-4.jpg" class="border-top border-bottom px-6">
 
 ### Community-level impacts 
 
-The HVI shows differences in community-level heat impacts during and shortly after extreme heat events.4  Unlike many social vulnerability indices, the HVI is validated against NYC mortality data – meaning that neighborhoods with elevated risk identified by the index are those areas with elevated heat-exacerbated deaths during extreme heat events.  
+[The HVI shows differences in community-level heat impacts during and shortly after extreme heat events](../hvi). Unlike many social vulnerability indices, the HVI is validated against NYC mortality data – meaning that neighborhoods with elevated risk identified by the index are those areas with elevated heat-exacerbated deaths during extreme heat events.  
 
 While there are high risk Neighborhood Tabulation Areas (NTA; defined as an HVI score of 4 or 5) in every borough of the city, the thread connecting them all is that they have more residents who are Black or low-income. Risk factors for heat tend to overlap in these neighborhoods due to persistent structural racism, which have positioned economic, educational, healthcare, housing, and other systems to benefit white people and put at a disadvantage Black, Indigenous and other people of color. The relative heat mortality risk of each NTA can be explored here. Read more about how structural racism affects housing and public health and the history of redlining and how it impacts public health in NYC.   
 
 The best indicator of neighborhood-level heat impacts is the HVI, which shows neighborhood differences in heat-exacerbated mortality risk. The number of heat stress deaths by NTA should be interpreted with caution. The NTAs are small and the number of deaths at this level is also small and unreliable, so it is difficult to conclude whether tell differences between areas are due to random fluctuation or represent a real difference in risk. 
-
-[INSERT HVI MAP]
-
-[INSERT COUNT OF HEAT STRESS DEATHS MAP]
 
 ## Conclusions 
 
