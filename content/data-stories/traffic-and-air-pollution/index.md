@@ -20,7 +20,7 @@ seo_description: "The public health impacts of PM2.5 from traffic air pollution 
 
 PM2.5—or fine particulate matter—are tiny particles that pollute the air and result from everyday urban activities like driving. PM2.5 can be solid or liquid in form when it is airborne. PM2.5 is the most harmful air pollution for humans to breathe in because the particles are small enough to enter the bloodstream through the lungs. Each PM2.5 particle is less than 2.5 microns in diameter. That is small enough to fit inside a red blood cell. 
 
- <img src = "PM2.5 particle_final.svg" alt="A PM2.5 particle is smaller than a red blood cell" class="px-6 my-4">
+ <img src = "PM2.5 particle_final.svg" alt="A PM2.5 particle is smaller than a red blood cell" class="px-6 m-4">
 
 ## The public health impacts of PM2.5
 
@@ -60,7 +60,7 @@ In New York City, current overall PM2.5 levels from all sources contribute to 2,
 
 PM2.5 in NYC comes from inside and outside the city from all kinds of combustion activity. This includes the burning of fuel in vehicles, buildings, power plants, and construction equipment, as well as commercial cooking and industrial activities. PM2.5 can either come directly from these sources or be formed in the atmosphere from other pollutants. 
 
-<iframe title="14% of PM2.5 comes from traffic" aria-label="Donut Chart" id="datawrapper-chart-8VqIl" src="https://datawrapper.dwcdn.net/8VqIl/11/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="450" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<iframe title="14% of PM2.5 comes from traffic" aria-label="Donut Chart" class="my-4 "id="datawrapper-chart-8VqIl" src="https://datawrapper.dwcdn.net/8VqIl/11/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="450" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
 
 14% of the PM2.5 emitted from NYC activities comes from everyday car, bus, and truck traffic. With the prevalence of people getting more deliveries, traffic patterns are changing.  
@@ -122,11 +122,7 @@ PM2.5 levels from all traffic sources are about 50% higher in high poverty neigh
 <iframe title="PM2.5 from traffic is highest in the poorest neighborhoods." class="my-4" aria-label="Split Bars" id="datawrapper-chart-9jmEo" src="https://datawrapper.dwcdn.net/9jmEo/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="153" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 
-<br></br>
-
- <img src = "trucks_final.svg" alt="PM2.5 levels from trucks and buses are about 70% higher in high poverty neighborhoods"/>
-
- <br></br>
+ <img src = "trucks_final.svg" alt="PM2.5 levels from trucks and buses are about 70% higher in high poverty neighborhoods" class="my-4">
 
 ## How is your neighborhood affected?
 
@@ -135,8 +131,10 @@ You can find out the estimated mortality rate, hospitalizations for respiratory 
 </div>
 <div class="wide my-4">
 
-<iframe title="Health impacts due to PM2.5 from traffic" aria-label="Table" id="datawrapper-chart-atWCN" src="https://datawrapper.dwcdn.net/atWCN/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1120" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<iframe title="Health impacts due to PM2.5 from traffic" class="my-4" aria-label="Table" id="datawrapper-chart-atWCN" src="https://datawrapper.dwcdn.net/atWCN/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1120" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
 <a href="https://ehjournal.biomedcentral.com/articles/10.1186/s12940-016-0172-6"> Read the full report on how PM2.5 from traffic contributes to negative health effects in New York City.</a>
 
 </div>
+
+<div class="narrow">
