@@ -63,7 +63,7 @@ PM2.5 in NYC comes from inside and outside the city from all kinds of combustion
 <iframe title="14% of PM2.5 comes from traffic" aria-label="Donut Chart" id="datawrapper-chart-8VqIl" src="https://datawrapper.dwcdn.net/8VqIl/11/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="450" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
 
-17% of the PM2.5 emitted from NYC activities comes from everyday car, bus, and truck traffic. With the prevalence of people getting more deliveries, traffic patterns are changing.  
+14% of the PM2.5 emitted from NYC activities comes from everyday car, bus, and truck traffic. With the prevalence of people getting more deliveries, traffic patterns are changing.  
 
 However, the health impacts of PM2.5 from traffic are still felt more acutely in less wealthy neighborhoods. 
 
