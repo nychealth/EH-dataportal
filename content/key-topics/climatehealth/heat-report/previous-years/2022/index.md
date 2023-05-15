@@ -47,7 +47,7 @@ The Health Department examined heat-stress deaths occurring during the warm seas
 Among NYC residents, there were 96 heat-stress deaths over the 10-year period. There was an average of 10 deaths per year, with the largest yearly numbers of deaths occurring earlier in the period as a result of severe heat waves. Most deaths occurred in July (75%) and August (13%), followed by June (8%), May (2%) and September (2%). As of March 2022, there were 4 heat-stress deaths in 2021, though that number is provisional and subject to change because mortality records are not finalized.  
 
 **Figure 1: Heat-stress deaths and maximum heat index by year, NYC residents, 2011-2020**
-<img src="../2022_figure_1.png">
+<img src="2022_figure_1.png">
 
 Notes: The number of heat-stress deaths for 2020 is provisional. If additional deaths are certified as caused by heat stress the Department will update the number in future reports. Weather data is from the National Weather Service LaGuardia airport station. Heat index is a measure of air temperature and humidity.
 
@@ -59,7 +59,7 @@ Notes: The number of heat-stress deaths for 2020 is provisional. If additional d
 - About two thirds of heat stress-deaths occurred among men. 
 
 **Age-adjusted heat-stress deaths by race and ethnicity, 2011-2020**
-<img src="../2022-by-race.jpeg">
+<img src="2022-by-race.jpeg">
 
 Deaths are grouped into these five race and ethnicity categories due to the small sample size of deaths and the availability of denominator data. However, these categories represent an oversimplification of the ethnically and racially diverse population found in NYC. People identified as two or more races or races/ethnicities not listed here are included in the other or unknown category, and the Hispanic/Latino category includes people of any race. Differences in mortality rates among racial and ethnic groups are due to long-term structural racism, not biological or personal traits. Structural racism — centuries of racist policies and discriminatory practices across institutions, including government agencies, and society — prevents communities of color from accessing vital resources (such as health care and healthy housing) and opportunities (such as employment and education), and negatively affects overall health and well-being. See Appendix Methods and Supplemental Data for more information on numbers and percentages by race and ethnicity.
 
@@ -90,7 +90,7 @@ Area-based poverty groups based on neighborhood tabulation area (NTA).
 
 **Average annual rates of heat-stress by age group, 2011-2020**
 
-<img src="../2022-by-age.jpeg">
+<img src="2022-by-age.jpeg">
 
 **Sex of heat-stress decedents, 2011-2020**
 
@@ -128,7 +128,7 @@ More than a quarter (n=16, 28%) of decedents had an electric fan present and on,
 
 Previous Health Department studies have found that air conditioning access differs across race and class. Black New Yorkers and low-income New Yorkers are less likely to own or use an AC during hot weather, and the main reason is cost.3 While more than 90% of NYC households have air conditioning, access is also lower in neighborhoods where more people are living with limited financial resources.
 
-<img src="../2022_ac.jpeg">
+<img src="2022_ac.jpeg">
 
 ## Heat-exacerbated deaths
 Deaths from chronic conditions that are not recognized as heat-related on death certificates can be estimated using statistical models. There are more of these deaths than those from heat stress and they are called “excess deaths” or “heat-exacerbated deaths.” Unlike heat stress deaths, which can be identified and investigated, excess deaths can only be estimated as aggregate counts. However, estimating heat-exacerbated deaths – or “mortality” – better captures how many people are dying of the heat.
@@ -146,9 +146,9 @@ Heat attributable deaths occurred most frequently in July (40%), followed by Aug
 
 *Hotter Summers*: The proportion of summer days reaching hot temperatures has substantially increased in the latest decade compared to the earliest of the past five decades (Figure 4). More than 20% of late June through mid-August dates during 2011-2020 had daily maximum temperatures of 90°F or higher. More than 30% of Mid-July dates experienced daily maximum temperatures of 90°F or higher. Given the consistently high and increasing proportion of hot days between late June through mid-August, heat-risk mitigation planning needs to emphasize non-emergency planning, such as access to air-conditioning.
 
-<img src="../2022-fig-3.jpeg">
+<img src="2022-fig-3.jpeg">
 
-<img src="../2022-fig-4.jpeg">
+<img src="2022-fig-4.jpeg">
 
 <br>
 
@@ -180,8 +180,3 @@ Heat contributes to the deaths of 370 New Yorkers on average each year during th
 Note on years of data included:
 
 For heat-stress, data for 2020 and 2021 are considered preliminary because death data are still being compiled by the Bureau of Vital Statistics. These numbers may be updated in future reports as final data become available. 2020 heat-stress numbers are less likely to change. All heat-stress tables are based on heat-stress deaths from 2011-2020. The heat-exacerbated mortality analysis requires complete daily counts to produce accurate estimates, making 2019 the most recent available year of data.
-
-
-
-
-
