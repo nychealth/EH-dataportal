@@ -6,8 +6,8 @@
 // top scope variables
 // ----------------------------------------------------------------------- //
 
-let selectedSummaryYears = [];
-let selectedSummaryGeography = [];
+let selectedTableYears = [];
+let selectedTableGeography = [];
 let aboutMeasures;
 let dataSources;
 
@@ -17,24 +17,34 @@ let geoTable;
 let unreliabilityNotes;
 let aqData;
 let joinedAqData;
+let aqMeasureIdTimes;
 
-let fullDataTableObjects;
-let fullDataMapObjects;
-let fullDataTrendObjects;
-let fullDataLinksObjects;
-let joinedDataLinksObjects;
-let disparitiyData; // used by disparities.js
+let tableData;
+let mapData;
+let trendData;
+let linksData;
+let joinedLinksDataObjects;
+let disparityData; // used by disparities.js
 
 let indicator;
 let indicatorName;
 let indicatorDesc;
+let indicatorLabel;
 let indicatorShortName;
 let indicatorMeasures;
 let indicatorId;
 let primaryIndicatorName;
 let secondaryIndicatorName;
 
+let indicatorComparisonId;
+let comparisons;
+let comparisonsMetadata;
+let aqComparisonsMetadata;
+let aqComparisonsIndicatorsMetadata;
+let aqComparisonsIndicatorData;
+
 let defaultTrendMetadata = [];
+let aqDefaultTrendMetadata;
 let defaultTrendAbout;
 let defaultTrendSources;
 let defaultMapMetadata = [];
@@ -46,14 +56,28 @@ let defaultLinksAbout;
 let defaultLinksSources;
 
 let selectedMapMeasure;
+let selectedMapTime;
+let selectedMapGeo;
 let selectedTrendMeasure;
 let selectedLinksMeasure;
+let selectedComparison;
+let showingNormalTrend;
+
 let selectedMapAbout;
 let selectedMapSources;
+let selectedMapMetadata;
+
 let selectedTrendAbout;
 let selectedTrendSources;
+let aqSelectedTrendMetadata;
+
+let selectedComparisonAbout = "";
+let selectedComparisonSources = "";
+let selectedComparisonMetadata;
+
 let selectedLinksAbout;
 let selectedLinksSources;
+let selectedLinksMetadata;
 let selectedlinksSecondaryMeasureTime;
 
 let primaryMeasureMetadata;
@@ -61,6 +85,10 @@ let secondaryMeasureMetadata;
 
 let filteredMapData;
 let filteredTrendData;
+let aqFilteredTrendData;
+let aqFilteredComparisonsData;
+let aqFilteredComparisonsMetadata;
+let aqCombinedComparisonsMetadata;
 
 let mapMeasures = [];
 let trendMeasures = [];
@@ -74,6 +102,8 @@ let tabLinks;
 let showTable;
 let showMap;
 let showTrend;
+let showNormalTrend;
+let showTrendComparisons;
 let showLinks;
 
 // store hash, so display knows where it just was
@@ -82,11 +112,11 @@ let state;
 
 // modifying the measure dropdown innerHTML removes the event listeners from the dropdown list. So, i added it to the HTML, and we can remove it when we call renderTrendChart, if necessary
 
-// get trend dropdown element; disparities button will be removed or appended
-let tabTrendDropDown = document.querySelector('#tab-trend .dropdown');
-
 // get disparities button dom element, so it can be removed and appended as needed
-let btnShowDisparities = document.querySelector('.btn-show-disparities');
+let btnToggleDisparities = document.querySelector('.btn-toggle-disparities');
+
+// get comparisons button dom element, so it can be removed and appended as needed
+let btnShowComparisons = document.querySelector('.btn-comparisons');
 
 const url = new URL(window.location);
 
@@ -119,11 +149,11 @@ const assignGeoRank = (GeoType) => {
         case 'CD':
             return 6;
         case 'CDTA2020':
-            return 6;
+            return 7;
         case 'NTA2010':
-            return 7;
+            return 8;
         case 'NTA2020':
-            return 7;
+            return 9;
     }
 }
 

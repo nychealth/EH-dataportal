@@ -8,12 +8,13 @@ tags:
 categories: ["housing","pests"]
 keywords: ["mice","rats","rodents","pests","housing"]
 indicators:
-- header: Asthma triggers
+- header: null
   IndicatorID:
   - 2394
   - 2105
   - 24
   - 48
+  - 2416
 ---
 
 Rats and mice are common, but preventable. In NYC, rats tend to be seen on streets and sidewalks, and in backyards and basements, while mice are almost always found inside homes.

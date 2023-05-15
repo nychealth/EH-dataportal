@@ -1,4 +1,4 @@
-# The NYC Environment and Health Data Dortal website
+# The NYC Environment and Health Data Portal website
 
 This repository contains source code for the Environment and Health Data Portal. You can view a staged development version [here](https://nychealth.github.io/EH-dataportal/) and the live production version [here](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/). 
 
@@ -146,8 +146,8 @@ We use a variety of environment-specific code to produce:
 - Different analytics for staging and production
 - ...and possibly other stuff. 
 
-### Generating subtopic_indicators.json
-`data-index.html`, on site build, assembles a json file of topics and indicators. It ranges over DE topic frontmatter and produces a cross-reference of topics and indicators ([file](https://github.com/nychealth/EH-dataportal/blob/prod-deploy/IndicatorData/subtopic_indicators.json). This is used on `data-index.html` as well as on the Neighborhood Reports: when an indicator is clicked, it runs `getURL()` to find the parent topic for the indicator, generates a URL, and produces the Get The Dataset button. 
+### Generating topic_indicators.json
+`data-index.html`, on site build, assembles a json file of topics and indicators. It ranges over DE topic frontmatter and produces a cross-reference of topics and indicators ([file](https://github.com/nychealth/EH-dataportal/blob/prod-deploy/IndicatorData/topic_indicators.json). This is used on `data-index.html` as well as on the Neighborhood Reports: when an indicator is clicked, it runs `getURL()` to find the parent topic for the indicator, generates a URL, and produces the Get The Dataset button. 
 
 ### Cloudcannon integration
 The repo includes some files to integrate with Cloudcannon, an online CMS provider. Specifically:

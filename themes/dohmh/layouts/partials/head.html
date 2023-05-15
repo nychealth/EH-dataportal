@@ -13,7 +13,7 @@
 <meta name="robots" content="all" />
 
 
-{{ else if eq hugo.Environment "development"}}
+{{ else if eq hugo.Environment "development" }}
 
 <!-- Google won't index this page or follow links -->
 <meta name="robots" content="noindex. nofollow">
@@ -58,127 +58,191 @@
 {{- end -}}
 
 <!-- jQuery (full, compressed version) -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+{{- $jquery := resources.Get "node_modules/jquery/dist/jquery.min.js" | resources.Fingerprint "sha512" -}}
+
+<script src="{{ $jquery.RelPermalink }}" integrity="{{ $jquery.Data.Integrity }}" crossorigin="anonymous"></script>
 
 <!-- favicon -->
 <!-- https://www.iconfinder.com/icons/7618350/heatmap_business_analytics_statistics_icon -->
 <!-- https://lucianojung.de/ -->
 <link rel="icon" href="{{ site.BaseURL }}7618350_heatmap_business_analytics_statistics_icon-gpr.ico">
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="{{ site.BaseURL }}fontawesome/css/all.min.css">
+{{/*  Font Awesome  */}}
+
+{{/*  CSS  */}}
+
+{{- $fontawesome_CSS := resources.Get "node_modules/@fortawesome/fontawesome-free/css/all.min.css" -}}
+
+<link rel="stylesheet" href="{{ $fontawesome_CSS.RelPermalink }}" />
+
+{{/*  JS  */}}
+
+{{- $fontawesome := resources.Get "node_modules/@fortawesome/fontawesome-free/js/all.min.js" | resources.Fingerprint "sha512" -}}
+
+<script src="{{ $fontawesome.RelPermalink }}" integrity="{{ $fontawesome.Data.Integrity }}" crossorigin="anonymous"></script>
+
+{{/*  webfonts  */}}
+
+{{- $fa_woff := resources.Match "node_modules/@fortawesome/fontawesome-free/webfonts/**.woff2" -}}
+
+{{- range $woff := $fa_woff}}
+
+    {{- $woff_got := resources.Get $woff.RelPermalink -}}
+
+{{- end }}
 
 <!-- main CSS -->
 {{- $sass := resources.Get "scss/theme.scss" -}}
-{{- $style := $sass | resources.ToCSS -}}
-<link rel="stylesheet" href="{{ $style.RelPermalink }}" />
+{{- $style := $sass | resources.ToCSS | resources.Fingerprint "sha512" -}}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" />
 
 <!-- Vega. To call, have vega: true in a page's frontmatter -->
 {{- if .Params.vega -}}
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+    {{/*  VegaLite  */}}
+
+    {{- $vega := resources.Get "node_modules/vega/build/vega.min.js" -}}
+    {{- $vegaLite := resources.Get "node_modules/vega-lite/build/vega-lite.min.js" -}}
+    {{- $vegaEmbed := resources.Get "node_modules/vega-embed/build/vega-embed.min.js" -}}
+
+    {{- $vegaBundleJS := slice $vega $vegaLite $vegaEmbed | resources.Concat "js/vegaBundle.js" | resources.Fingerprint "sha512" -}}
+
+    <script src="{{ $vegaBundleJS.RelPermalink }}" integrity="{{ $vegaBundleJS.Data.Integrity }}"></script>
+
+    {{/*  D3  */}}
+
+    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | resources.Fingerprint "sha512" -}}
+
+    <script src="{{ $d3.RelPermalink }}" integrity="{{ $d3.Data.Integrity }}"></script>
+
 {{- end -}}
 
-<!-- sanitizing html strings -->
-<script src="https://cdn.jsdelivr.net/npm/dompurify@2.3.10/dist/purify.min.js"
-    integrity="sha256-keaR/uWEpEmmUnoJ6BemH9gp9Ng8u/YplhVwdmmquNY="
-    crossorigin="anonymous"></script>
+
+{{/*  sanitizing html strings with dompurify  */}}
+
+{{- $dompurify := resources.Get "node_modules/dompurify/dist/purify.min.js" | resources.Fingerprint "sha512" -}}
+
+<script src="{{ $dompurify.RelPermalink }}" integrity="{{ $dompurify.Data.Integrity }}"></script>
 
 <!--Other data libraries. To call, have datatables: true in a page's frontmatter-->
+
 {{- if .Params.datatables -}}
-    <!--D3-->
-    <script src="https://d3js.org/d3.v5.min.js"></script>
 
-    <!--DataTables CSS-->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
+    {{/*  D3  */}}
 
-    <!--DataTables JS-->
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
-    {{/*  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"
-        integrity="sha512-oaT4uVdyleJGVHZqklOx2Bb8WhOTBW3iCXRtgk3+YutYmFx0jSs97UR3/+r1vh1Isyb3GOGjFonLbS6LFiiEVA=="
-        crossorigin="anonymous"></script>  */}}
-    {{/*  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"
-        integrity="sha512-guWTt6syHB4T9gdPdw8W1iQUGqqricRt5VRjnjgMPpOhUhwOsxmXpk2SImqfcPgsiroK00z/loICebflVeJvqg=="
-        crossorigin="anonymous"></script>  */}}
-    {{/*  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"
-        integrity="sha512-vv3EN6dNaQeEWDcxrKPFYSFba/kgm//IUnvLPMPadaUf5+ylZyx4cKxuc4HdBf0PPAlM7560DV63ZcolRJFPqA=="
-        crossorigin="anonymous"></script>  */}}
-    <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
-    <script src="https://cdn.datatables.net/rowgroup/1.1.4/js/dataTables.rowGroup.min.js"></script>
+    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | resources.Fingerprint "sha512" -}}
+
+    <script src="{{ $d3.RelPermalink }}" integrity="{{ $d3.Data.Integrity }}"></script>
+
+     {{/*  DataTables  */}}
+
+     {{/*  CSS  */}}
+
+    {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" -}}
+    {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" -}}
+    {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" -}}
+
+    <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}" >
+
+    {{/*  JS  */}}
+
+    {{- $dataTables := resources.Get "node_modules/datatables.net/js/jquery.dataTables.min.js" -}}
+    {{- $dataTablesButtons := resources.Get "node_modules/datatables.net-buttons/js/dataTables.buttons.min.js" -}}
+    {{- $dataTablesButtonsHtml5 := resources.Get "node_modules/datatables.net-buttons/js/buttons.html5.min.js" -}}
+    {{- $dataTablesButtonsPrint := resources.Get "node_modules/datatables.net-buttons/js/buttons.print.min.js" -}}
+    {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" -}}
+    
+    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" | resources.Fingerprint "sha512" -}}
+
+    <script src="{{ $dataTablesBundleJS.RelPermalink }}" integrity="{{ $dataTablesBundleJS.Data.Integrity }}"></script>
+
 {{- end -}}
 
 <!-- Arquero -->
 {{- if .Params.arquero -}}
-    <script src="https://cdn.jsdelivr.net/npm/arquero@5.0.0/dist/arquero.min.js"
-        integrity="sha256-/zlNWswLuC4RosePYPfLgXO2UB9ZnEFd5yERf44WeMU="
-        crossorigin="anonymous"></script>
+
+    {{/*  Arquero  */}}
+
+    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" -}}
+
+    <script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
+
 {{- end -}}
 
 <!-- Leaflet -->
+
 {{- if .Params.leaflet -}}
 
     <!-- leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-        crossorigin="" />
+
+    {{- $leaflet_CSS := resources.Get "node_modules/leaflet/dist/leaflet.css" -}}
+
+    <link rel="stylesheet" href="{{ $leaflet_CSS.RelPermalink }}" />
 
     <!-- leaflet source -->
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-        crossorigin=""></script>
 
-    <!-- easybutton -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2.4.0/src/easy-button.css"
-        integrity="sha256-ceeoylCL0ld4NwOaXf4vG0Z8pEknXXuzJ5ZV0Ir6ft4="
-        crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2.4.0/src/easy-button.js"
-        integrity="sha256-46nnM+JNAhwyXw6N+fnaZzFa9R20dVa8v0mdBgE9Nn8="
-        crossorigin="anonymous"></script>
+    {{- $leaflet := resources.Get "node_modules/leaflet/dist/leaflet.js" | resources.Fingerprint "sha512" -}}
+
+    <script src="{{ $leaflet.RelPermalink }}" integrity="{{ $leaflet.Data.Integrity }}"></script>
+
+
+    <!-- leaflet easybutton CSS -->
+
+    {{- $easybutton_CSS := resources.Get "node_modules/leaflet-easybutton/src/easy-button.css" -}}
+
+    <link rel="stylesheet" href="{{ $easybutton_CSS.RelPermalink }}" />
+
+    <!-- leaflet easybutton source -->
+
+    {{- $easybutton := resources.Get "node_modules/leaflet-easybutton/src/easy-button.js" | resources.Fingerprint "sha512" -}}
+
+    <script src="{{ $easybutton.RelPermalink }}" integrity="{{ $easybutton.Data.Integrity }}"></script>
 
     <!-- Leaflet.colorIcon -->
     <!-- https://github.com/shevekk/Leaflet.ColorIcon -->
-    {{ $colorIcon := resources.Get "js/L.colorIcon.js" }} <!-- need to use Hugo Pipes to get file from assets dir -->
-    <script src="{{ $colorIcon.RelPermalink }}"></script>
 
+    {{ $colorIcon := resources.Get "js/L.colorIcon.js" | resources.Fingerprint "sha512" }} <!-- need to use Hugo Pipes to get file from assets dir -->
+
+    <script src="{{ $colorIcon.RelPermalink }}" integrity="{{ $colorIcon.Data.Integrity }}"></script>
 
 {{- end -}}
 
 <!--Other data libraries. To call, have data: true in a page's frontmatter-->
 {{- if .Params.datalibraries -}}
-  <!--D3-->
-  <script src="https://d3js.org/d3.v5.min.js"></script>
 
-  <!--DataTables CSS-->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
+    {{/*  D3  */}}
 
-  <!--DataTables JS-->
-  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
-  {{/*  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"
-    integrity="sha512-oaT4uVdyleJGVHZqklOx2Bb8WhOTBW3iCXRtgk3+YutYmFx0jSs97UR3/+r1vh1Isyb3GOGjFonLbS6LFiiEVA=="
-    crossorigin="anonymous"></script>  */}}
-  {{/*  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"
-    integrity="sha512-guWTt6syHB4T9gdPdw8W1iQUGqqricRt5VRjnjgMPpOhUhwOsxmXpk2SImqfcPgsiroK00z/loICebflVeJvqg=="
-    crossorigin="anonymous"></script>  */}}
-  {{/*  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"
-    integrity="sha512-vv3EN6dNaQeEWDcxrKPFYSFba/kgm//IUnvLPMPadaUf5+ylZyx4cKxuc4HdBf0PPAlM7560DV63ZcolRJFPqA=="
-    crossorigin="anonymous"></script>  */}}
-  <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
-  <script src="https://cdn.datatables.net/rowgroup/1.1.4/js/dataTables.rowGroup.min.js"></script>
+    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | resources.Fingerprint "sha512" -}}
 
-  <!--Arquero-->
-  <script src="https://cdn.jsdelivr.net/npm/arquero@5.0.0/dist/arquero.min.js"
-    integrity="sha256-/zlNWswLuC4RosePYPfLgXO2UB9ZnEFd5yERf44WeMU="
-    crossorigin="anonymous"></script>
+    <script src="{{ $d3.RelPermalink }}" integrity="{{ $d3.Data.Integrity }}"></script>
+
+     {{/*  DataTables  */}}
+
+     {{/*  CSS  */}}
+
+    {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" -}}
+    {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" -}}
+    {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" -}}
+
+    <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}" >
+
+    {{/*  JS  */}}
+
+    {{- $dataTables := resources.Get "node_modules/datatables.net/js/jquery.dataTables.min.js" -}}
+    {{- $dataTablesButtons := resources.Get "node_modules/datatables.net-buttons/js/dataTables.buttons.min.js" -}}
+    {{- $dataTablesButtonsHtml5 := resources.Get "node_modules/datatables.net-buttons/js/buttons.html5.min.js" -}}
+    {{- $dataTablesButtonsPrint := resources.Get "node_modules/datatables.net-buttons/js/buttons.print.min.js" -}}
+    {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" -}}
+    
+    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" | resources.Fingerprint "sha512" -}}
+
+    <script src="{{ $dataTablesBundleJS.RelPermalink }}" integrity="{{ $dataTablesBundleJS.Data.Integrity }}"></script>
+
+    {{/*  Arquero  */}}
+
+    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" -}}
+
+    <script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
 
 {{- end -}}
 

@@ -9,6 +9,8 @@ const renderMap = (
 
         console.log("** renderMap");
 
+        // console.log("data [renderMap]", data);
+
         // ----------------------------------------------------------------------- //
         // get unique time in data
         // ----------------------------------------------------------------------- //
@@ -18,9 +20,9 @@ const renderMap = (
         // console.log("mapYears [map.js]", mapYears);
 
         let mapGeoType            = data[0].GeoType;
+        let geoTypeShortDesc      = data[0].GeoTypeShortDesc;
         let mapMeasurementType    = metadata[0].MeasurementType;
         let displayType           = metadata[0].DisplayType;
-        console.log('displayType: ' + displayType)
         let mapGeoTypeDescription = 
             metadata[0].AvailableGeographyTypes.filter(
                 gt => gt.GeoType === mapGeoType
@@ -29,6 +31,17 @@ const renderMap = (
         let mapTime = mapYears[0];
         let topoFile = '';
 
+        var color = 'purplered'
+        var rankReverse = defaultMapMetadata[0].VisOptions[0].Map[0].RankReverse
+        if (rankReverse === 0) {
+            color = 'purplered'
+        } else if (rankReverse === 1) {
+            color = 'blues'
+        }
+
+        // console.log('rank reverse?', rankReverse)
+        // console.log('color', color)
+
 
         // ----------------------------------------------------------------------- //
         // get unique unreliability notes (dropping empty)
@@ -36,21 +49,19 @@ const renderMap = (
 
         const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
 
-        // console.log("map_unreliability", map_unreliability);
-
         document.querySelector("#map-unreliability").innerHTML = ""; // blank to start
 
-        for (let i = 0; i < map_unreliability.length; i++) {
+        map_unreliability.forEach(element => {
+
+            document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
             
-            document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + map_unreliability[i] + "</div>" ;
-            
-        }
+        });
 
         // ----------------------------------------------------------------------- //
         // set geo file based on geo type
         // ----------------------------------------------------------------------- //
 
-        console.log("mapGeoType [renderMap]", mapGeoType);
+        // console.log("mapGeoType [renderMap]", mapGeoType);
 
         if (mapGeoType === "NTA2010") {
             topoFile = 'NTA_2010.topo.json';
@@ -72,6 +83,8 @@ const renderMap = (
             topoFile = 'NYCKids_2017.topo.json';
         } else if (mapGeoType === "NYCKIDS2019") {
             topoFile = 'NYCKids_2019.topo.json';
+        } else if (mapGeoType === "Borough") {
+            topoFile = 'borough.topo.json';
         }
 
         // ----------------------------------------------------------------------- //
@@ -81,8 +94,15 @@ const renderMap = (
         mapspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": {
-                "text": `By ${mapGeoTypeDescription}, ${mapTime}`,
-                "subtitlePadding": 10
+                "text": indicatorName,
+                "subtitlePadding": 10,
+                "fontWeight": "normal",
+                "anchor": "start", 
+                "fontSize": 18, 
+                "font": "sans-serif",
+                "baseline": "top",
+                "subtitle": `${mapMeasurementType}${displayType && ` (${displayType})`}, by ${mapGeoTypeDescription} (${mapTime})`,
+                "subtitleFontSize": 13
             },
             "data": {
                 "values": data,
@@ -96,13 +116,6 @@ const renderMap = (
                 "concat": {"spacing": 20}, 
                 "view": {"stroke": "transparent"},
                 "axisY": {"domain": false,"ticks": false},
-                "title": {
-                    "fontWeight": "normal"
-                  },
-                "legend": {
-                    "offset": -25,
-                    "titleFontWeight": "normal",
-                }
             },
             "projection": {"type": "mercator"},
             "vconcat": [
@@ -153,7 +166,7 @@ const renderMap = (
                                         "bin": false,
                                         "field": "Value",
                                         "type": "quantitative",
-                                        "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}}
+                                        "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}}
                                     },
                                     "value": "#808080"
                                 },
@@ -171,7 +184,10 @@ const renderMap = (
                                     "value": 0
                                 },
                                 "tooltip": [
-                                    {"field": "Geography", "title": "Neighborhood"},
+                                    {
+                                        "field": "Geography", 
+                                        "title": geoTypeShortDesc
+                                    },
                                     {
                                         "field": "DisplayValue",
                                         "title": mapMeasurementType
@@ -202,12 +218,13 @@ const renderMap = (
                             "axis": {
                                 "labelAngle": 0,
                                 "labelFontSize": 11,
+                                "tickCount": 3
                             }
                         },
                         "tooltip": [
                             {
                                 "field": "Geography", 
-                                "title": "Neighborhood"
+                                "title": geoTypeShortDesc
                             },
                             {
                                 "field": "DisplayValue", 
@@ -219,8 +236,14 @@ const renderMap = (
                             "bin": false,
                             "field": "Value",
                             "type": "quantitative",
-                            "scale": {"scheme": {"name": "purples", "extent": [0.25, 1]}},
-                            "legend": {"direction": "horizontal","orient": "top-left","title": `${mapMeasurementType} ${displayType && `(${displayType})`}`}
+                            "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}},
+                            "legend": {
+                                "direction": "horizontal", 
+                                "orient": "top-left",
+                                "title": null,
+                                "offset": -30,
+                                "padding": 10,
+                            }
                         },
                         "stroke": {
                             "condition": [{"param": "highlight", "empty": false, "value": "orange"}],

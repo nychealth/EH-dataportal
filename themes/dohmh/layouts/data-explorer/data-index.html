@@ -18,10 +18,10 @@
         <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
         {{- .Content -}}
 
-        <!-- Generate JSON object with subtopic pages and keys, and internal_ids in arrays -->
+        <!-- Generate JSON object with topic pages and keys, and internal_ids in arrays -->
 
-        {{- $subtopic_indicators_dict := newScratch -}}
-        {{- $subtopic_indicators_map := newScratch -}}
+        {{- $topic_indicators_dict := newScratch -}}
+        {{- $topic_indicators_map := newScratch -}}
         
         {{/*  create a slice for an array of all internal_ids  */}}
 
@@ -34,7 +34,7 @@
             {{/*  create a new "slice" (i.e., an array)  */}}
             
             {{- $indicators := slice -}}
-            {{- $subtopic_name := slice -}}
+            {{- $topic_name := slice -}}
             
             {{/*  only process if it's a data explorer page */}}
             
@@ -42,11 +42,11 @@
                 
                 {{/*  turn params into strings  */}}
                 
-                {{- $subtopic := .RelPermalink | path.Base | string -}}
+                {{- $topic := .RelPermalink | path.Base | string -}}
 
-                {{/*  subtopic names  */}}
+                {{/*  topic names  */}}
                 
-                {{- $subtopic_title := .Title -}}
+                {{- $topic_title := .Title -}}
 
                 {{/*  get internal_ids  */}}
                 
@@ -58,10 +58,10 @@
 
                 {{- end -}}
                 
-                {{/*  create a map with subtopic as key and array of internal_ids as value */}}
+                {{/*  create a map with topic as key and array of internal_ids as value */}}
                 
-                {{- $subtopic_indicators_dict := dict "subtopic_name" $subtopic_title "IndicatorID" $indicators -}}
-                {{- $subtopic_indicators_map.SetInMap "subtopic_indicators" $subtopic ($subtopic_indicators_dict) -}}
+                {{- $topic_indicators_dict := dict "topic_name" $topic_title "IndicatorID" $indicators -}}
+                {{- $topic_indicators_map.SetInMap "topic_indicators" $topic ($topic_indicators_dict) -}}
 
             {{- end -}}
 
@@ -71,38 +71,38 @@
 
         {{-  $all_unique_indicator_ids := $all_indicator_ids | uniq | sort  -}}
 
-        {{-  warnf "all_unique_indicator_ids >>>> " $all_unique_indicator_ids  -}}
+        {{/*  {{-  warnf "all_unique_indicator_ids >>>> " $all_unique_indicator_ids  -}}  */}}
         
         {{- $all_unique_indicator_ids_json := $all_unique_indicator_ids | jsonify | resources.FromString "/IndicatorData/all_unique_indicator_ids.json" -}}
         
         {{-  warnf ">>>> all_unique_indicator_ids_json.RelPermalink >>>> " $all_unique_indicator_ids_json.RelPermalink  -}}
         
-        <p class="sr-only">This produces a list of subtopics and IndicatorIDs, stored in the variable <code>$subtopic_indicators</code>, 
+        <p class="sr-only">This produces a list of topics and IndicatorIDs, stored in the variable <code>$topic_indicators</code>, 
             and printed to the console as a JavaScript variable, and then as an Arquero table.</p>
             
             <script>
 
-                var subtopic_indicators = {{ $subtopic_indicators_map.Get "subtopic_indicators" }};
+                var topic_indicators = {{ $topic_indicators_map.Get "topic_indicators" }};
 
-                var arqTable = aq.from(subtopic_indicators)
-                .rename({key: "subtopic"})
+                var arqTable = aq.from(topic_indicators)
+                .rename({key: "topic"})
                 .derive({
                     IndicatorID: d => d.value.IndicatorID,
-                    subtopic_name: d => d.value.subtopic_name
+                    topic_name: d => d.value.topic_name
                 })
                 .select(aq.not("value"))
                 .unroll("IndicatorID");
                 
-                var subtopicIndicatorsTable = arqTable.objects();
+                var topicIndicatorsTable = arqTable.objects();
                 
                 
             </script>
             
-            <p class="sr-only">Also outputting a JSON version of the list to <code><a href="{{ .Site.BaseURL }}IndicatorData/subtopic_indicators.json">/IndicatorData/subtopic_indicators.json</code></a> 
+            <p class="sr-only">Also outputting a JSON version of the list to <code><a href="{{ .Site.BaseURL }}IndicatorData/topic_indicators.json">/IndicatorData/topic_indicators.json</code></a> 
                 (which on build will be put into <code>/docs/IndicatorData/</code>)</strong>
                 
-                {{- $si_json_output_path := "/IndicatorData/subtopic_indicators.json" -}}
-                {{- $si_resource := $subtopic_indicators_map.Get "subtopic_indicators" | jsonify (dict "indent" "  ") | resources.FromString $si_json_output_path -}}
+                {{- $si_json_output_path := "/IndicatorData/topic_indicators.json" -}}
+                {{- $si_resource := $topic_indicators_map.Get "topic_indicators" | jsonify (dict "indent" "  ") | resources.FromString $si_json_output_path -}}
                 
                 <script>
                     // console.log("$si_json_output_path", {{$si_json_output_path }})
@@ -113,7 +113,7 @@
                     <thead>
                         <tr>
                             <th class="tablehead">Indicator</th>
-                            <th class="tablehead">Subtopics</th>
+                            <th class="tablehead">Topics</th>
                             <th class="tablehead">Measurements</th>
                             <th class="tablehead">Geographies</th>
                             <th class="tablehead">Most recent data</th>
@@ -161,22 +161,22 @@
                 
                 for (let i = 0; i < indicators.length; i++) {  // change the 1 to indicators.length to get back to normal
                     
-                    // get all subtopics for this indicator
-                    let subtopics = subtopicIndicatorsTable.filter(element => element.IndicatorID == indicators[i].IndicatorID);
+                    // get all topics for this indicator
+                    let topics = topicIndicatorsTable.filter(element => element.IndicatorID == indicators[i].IndicatorID);
 
                     // console.log("indicators[i].IndicatorID", indicators[i].IndicatorID);
-                    // console.log("subtopics", subtopics);
+                    // console.log("topics", topics);
                     
                     // indicators
                     
                     let row_i = document.createElement('tr'); // create row
                     let cell_1 = document.createElement('td') // create cell
                     
-                    // if there's a subtopic, link; if not, just name
+                    // if there's a topic, link; if not, just name
                     
-                    if (subtopics.length > 0) {
+                    if (topics.length > 0) {
 
-                        cell_1.innerHTML = "<a href='" + {{ .Site.BaseURL }} + "data-explorer/" + subtopics[0].subtopic + "/" + "?id=" + indicators[i].IndicatorID + "'>" + indicators[i].IndicatorName + "</a>"
+                        cell_1.innerHTML = "<a href='" + {{ .Site.BaseURL }} + "data-explorer/" + topics[0].topic + "/" + "?id=" + indicators[i].IndicatorID + "'>" + indicators[i].IndicatorName + "</a>"
 
                     } else {
 
@@ -193,7 +193,7 @@
                     let maxTime;
                     let sources = [];
                     
-                    // subtopics
+                    // topics
                     
                     let cell_2 = document.createElement('td')
                     
@@ -201,11 +201,11 @@
                     st_li.classList.add('no-bullets')
                     cell_2.appendChild(st_li);
                     
-                    // create links for subtopics
-                    for (st = 0; st < subtopics.length; st++) {
+                    // create links for topics
+                    for (st = 0; st < topics.length; st++) {
 
                         let li = document.createElement('li');
-                        li.innerHTML = "<a href='" + {{ .Site.BaseURL }} + "/data-explorer/" + subtopics[st].subtopic + "/'>" + subtopics[st].subtopic_name + "</a>"
+                        li.innerHTML = "<a href='" + {{ .Site.BaseURL }} + "data-explorer/" + topics[st].topic + "/'>" + topics[st].topic_name + "</a>"
                         // can eventually add an anchor or other deep-linking method
         
                         st_li.appendChild(li)
