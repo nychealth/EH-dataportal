@@ -1,7 +1,7 @@
 ---
 _schema: default
 title: 2022 NYC Heat-Related Mortality Report
-draft: true
+draft: false
 date: 2021-09-08T11:14:56-04:00
 categories:
   - climatehealth
@@ -17,9 +17,11 @@ keywords:
   - mortality
 seo_title: Annual Report on heat mortality in NYC.
 seo_description: Data and findings on the impact of heat in NYC.
-layout: archive-report
+layout: report
 ---
+
 ## Summary
+
 - Each summer, an estimated 370 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May - September. Of the 370 deaths:
   - From 2011-2020, there was an average of 10 heat-stress deaths (caused directly by heat).
   - From 2011-2019, there was an average of about 360 heat-exacerbated deaths (caused indirectly by heat aggravating an underlying illness).
