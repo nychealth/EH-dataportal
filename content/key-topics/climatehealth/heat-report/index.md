@@ -106,3 +106,4 @@ There were 68 heat-stress deaths among NYC residents over the 10-year period, an
 
 ## Previous reports
 - [2022 Heat Mortality Report](../2022-heat-report)
+- [2021 Heat Mortality Report](../2021-heat-report)

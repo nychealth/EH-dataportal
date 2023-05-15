@@ -180,3 +180,14 @@ Heat contributes to the deaths of 370 New Yorkers on average each year during th
 Note on years of data included:
 
 For heat-stress, data for 2020 and 2021 are considered preliminary because death data are still being compiled by the Bureau of Vital Statistics. These numbers may be updated in future reports as final data become available. 2020 heat-stress numbers are less likely to change. All heat-stress tables are based on heat-stress deaths from 2011-2020. The heat-exacerbated mortality analysis requires complete daily counts to produce accurate estimates, making 2019 the most recent available year of data.
+
+<style>
+thead, th, td {
+  padding: 2px 25px;
+  border-bottom: 1px solid lightgray;
+}
+
+h2, h3 {
+  margin-top: 40px;
+}
+</style>
