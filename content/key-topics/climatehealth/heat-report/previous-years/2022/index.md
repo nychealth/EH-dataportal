@@ -1,7 +1,7 @@
 ---
 _schema: default
 title: 2022 NYC Heat-Related Mortality Report
-draft: false
+draft: true
 date: 2021-09-08T11:14:56-04:00
 categories:
   - climatehealth
