@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>temperature on Environment &amp; Health Data Portal</title>
+    <link>https://stgbespweb600/IndicatorPublic/beta/keywords/temperature/</link>
+    <description>Recent content in temperature on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Sep 2021 11:14:56 -0400</lastBuildDate><atom:link href="https://stgbespweb600/IndicatorPublic/beta/keywords/temperature/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2022 NYC Heat-Related Mortality Report</title>
+      <link>https://stgbespweb600/IndicatorPublic/beta/key-topics/climatehealth/heat-report/</link>
+      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
+      
+      <guid>https://stgbespweb600/IndicatorPublic/beta/key-topics/climatehealth/heat-report/</guid>
+      <description>Each summer, an estimated 370 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May - September.
+Every year, the Health Department publishes a report on heat-related mortality. Click here to read the 2022 New York City Heat-Related Mortality Report.</description>
+    </item>
+    
+    <item>
+      <title>The urban heat island effect in NYC</title>
+      <link>https://stgbespweb600/IndicatorPublic/beta/data-stories/localtemp/</link>
+      <pubDate>Fri, 20 Aug 2021 12:52:43 -0400</pubDate>
+      
+      <guid>https://stgbespweb600/IndicatorPublic/beta/data-stories/localtemp/</guid>
+      <description>In New York City and across the country, more people die from extreme heat than from all other natural disasters combined. To understand how to keep New Yorkers safe from extreme heat, we studied neighborhood factors that affect temperature, and found that grass, shrubs, and trees can play a major role. Let’s take a look.
+At 6.00 PM on June 30, 2018, the air temperature at the LaGuardia Airport Weather Station was 89° Fahrenheit (F).</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>Real-time heat-related illness in NYC. &#x7c; Environment &amp; Health Data Portal</title>
+
+
+<meta name="description" content="Explore data on how environments shape health in New York City&#39;s neighborhoods.">
+<link rel="canonical" href="https://stgbespweb600/IndicatorPublic/beta/key-topics/climatehealth/syndromic/" />
+<meta name="geo.region" content="" />
+<meta name="geo.placename" content="Environment &amp; Health Data Portal" />
+
+
+<meta property="fb:profile_id" content="0" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_us" />
+<meta property="og:url" content="https://stgbespweb600/IndicatorPublic/beta/key-topics/climatehealth/syndromic/" />
+<meta property="og:title" content="Real-time heat-related illness in NYC. &ndash; Environment &amp; Health Data Portal" />
+<meta property="og:description" content="Explore this summer&#39;s high temps and health effects." />
+<meta property="og:site_name" content="Environment &amp; Health Data Portal" />
+<meta property="og:image" content="https://stgbespweb600/IndicatorPublic/beta/images/report_bottom_background_hu55023dbc37de342337a21cf33dcc5889_222582_2400x1260_fill_q95_mitchellnetravali_smart1.jpg"><meta property="og:see_also" content="https://twitter.com/nycHealthy" />
+<meta name="twitter:title" content="Real-time heat-related illness in NYC. &ndash; Environment &amp; Health Data Portal">
+<meta name="twitter:description" content="Explore this summer&#39;s high temps and health effects.">
+<meta name="twitter:image" content="/images/report_bottom_background.jpg">
+<meta name="twitter:site" content="@nycHealthy">
+<meta name="twitter:creator" content="@nycHealthy"><script src="https://stgbespweb600/IndicatorPublic/beta/node_modules/jquery/dist/jquery.min.de027062931edd07b01842eff24fc15fdbdcaa1af245dcd133155faba9e0c965f0a34dc6144ce3b149bc43b4597073c792cb6dabbfc6168c63095523923bcf77.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous"></script>
+
+
+
+
+<link rel="icon" href="https://stgbespweb600/IndicatorPublic/beta/7618350_heatmap_business_analytics_statistics_icon-gpr.ico">
+
+
+
+<link rel="stylesheet" href="https://stgbespweb600/IndicatorPublic/beta/node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
+
+<script src="https://stgbespweb600/IndicatorPublic/beta/node_modules/@fortawesome/fontawesome-free/js/all.min.7c3f432396d9c10c4e8bb3216169e734f96f5dda7fd8f8f75d24d1ac5b391506b89a2cf218b9c970deadbaf512e8b6e680dd6eb7e5c648004abe33741fa028a3.js" integrity="sha512-fD9DI5bZwQxOi7MhYWnnNPlvXdp/2Pj3XSTRrFs5FQa4mizyGLnJcN6tuvUS6LbmgN1ut&#43;XGSABKvjN0H6Aoow==" crossorigin="anonymous"></script>
+
+
+
+<link rel="stylesheet" href="https://stgbespweb600/IndicatorPublic/beta/scss/theme.acc56a5ab0734e70b9fedcba168f694584723efcfae3740c5e3c5427c0b722f01a6e10b64a553056dd34469fba2101d3a7826bde88f5f34e09e0538161077c7f.css" integrity="sha512-rMVqWrBzTnC5/ty6Fo9pRYRyPvz643QMXjxUJ8C3IvAabhC2SlUwVt00Rp&#43;6IQHTp4Jr3oj1804J4FOBYQd8fw==" />
+
+<script src="https://stgbespweb600/IndicatorPublic/beta/node_modules/dompurify/dist/purify.min.4c19a7633ea4042a5c19b0f9e4aedfe0b67eca49f7a30aae8c59d489348712da3a84c03b695e16ed50cfbe5a838d0226bd930ac6847474d6398a7ca1c5f65b98.js" integrity="sha512-TBmnYz6kBCpcGbD55K7f4LZ&#43;ykn3owqujFnUiTSHEto6hMA7aV4W7VDPvlqDjQImvZMKxoR0dNY5inyhxfZbmA=="></script>
+
+<script>
+    let sitepath = "\/EH-dataportal";
+    let baseURL = "https:\/\/stgbespweb600\/IndicatorPublic\/beta\/";
+    let data_repo = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/";
+    let data_branch = "production";
+</script>
+  </head>
+<body>
+  
+  
+<a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
+
+<header id="global-header" role="banner">
+
+    <div class="bg-black text-white" id="nyc-top-header">
+
+        <div class="container-fluid wide">
+
+            <div class="row py-1 align-items-center justify-content-between">
+
+                <div class="col-auto">
+                    <p class="d-none d-md-flex fs-md">
+                        <a class="text-reset" href="https://www1.nyc.gov/">
+                            <strong>nyc.gov</strong>
+                        </a>
+                        <span class="mx-1" aria-hidden="true">></span>
+                        <a class="text-reset" href="https://www1.nyc.gov/">
+                            Health
+                        </a>
+                        <span class="mx-1" aria-hidden="true">></span>
+                        <a class="text-reset" href="https://stgbespweb600/IndicatorPublic/beta/">
+                        EH Data Portal
+                        </a>
+                    </p>
+                </div>
+                
+
+                <div class="col-auto">
+
+                    <ul class="extensible-list horizontal fs-md">
+                        <li>
+                            <a class="text-reset" href="https://www1.nyc.gov/">
+                                <strong>
+                                    311
+                                </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-reset" href="https://www1.nyc.gov/home/search/index.page">
+                                <strong>
+                                    Search all NYC.gov
+                                </strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
+                                <img class="d-block" src="https://stgbespweb600/IndicatorPublic/beta/images/nyc-bubble-logo.svg" width="45" alt="NYC Logo">
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+                
+
+            </div>
+            
+
+        </div>
+        
+
+    </div>
+    
+    <div class="site-header bg-primary" style="background-image: url(https://stgbespweb600/IndicatorPublic/beta/images/header_background.jpg)">
+    
+        <div class="wrap-header">
+
+            <div class="container-fluid wide">
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg py-2 pl-md-5">
+
+                        <div class="d-flex justify-content-center justify-content-lg-start">
+
+                            <p class="text-white">
+                                <span class="site-title title-hover"><a href="https://stgbespweb600/IndicatorPublic/beta/" class="link-no-dec">Environment and Health Data Portal</span>
+                                <span class="site-subtitle">Understand how environments shape health in New York City</a></span>
+                            </p>
+
+
+                        </div>
+                        
+
+                    </div>
+                    
+
+                    <div class="col-lg-auto border-top border-lg-0">
+
+                        <div class="row no-gutters justify-content-between py-2">
+
+                            
+                            <div class="col-auto d-flex d-lg-none">
+
+                                <button class="no-btn-style" type="button" data-toggle="collapse"
+                                    data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
+                                    aria-label="Toggle navigation">
+                                    <span class="fas fa-bars fa-lg"></span>
+                                </button>
+
+                            </div>
+                            
+
+                            <div class="col-auto justify-content-end">
+
+                                <ul class="extensible-list horizontal justify-content-end">
+                                    <li>
+                                        <button class="no-btn-style" type="button" title="Language"
+                                            data-toggle="collapse" data-target="#global-language"
+                                            aria-controls="global-language" aria-expanded="false">
+                                            <span class="sr-only">Language</span>
+                                            <span class="fas fa-language fa-2x"></span>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="btn nav-item-search d-lg-none" type="button" title="Search" 
+                                        data-toggle="collapse" data-target="#global-search" 
+                                        aria-controls="global-search" aria-expanded="false">
+                                        
+                                        <span class="sr-only">Search</span>
+                                        <i class="fa fa-magnifying-glass fa-lg"></i>
+                                        
+                                    </button>
+                                </li>
+
+                                </ul>
+
+                                <a class="btn-sm text-white font-weight-bold mr-2" style="border: 1px solid lightgray; border-radius: 3px;" href="https://stgbespweb600/IndicatorPublic/beta/about/about">About us</a>
+
+                            </div>
+                            
+
+                        </div>
+                        
+
+                    </div>
+                    
+
+                </div>
+                
+
+            </div>
+            
+
+        </div>
+        
+
+        <div class="container-fluid border-top collapse" id="global-language">
+            <div class="narrow py-2">
+                <div id="google_translate_element"></div>
+            </div>
+        </div>
+
+        
+                    
+                        
+                    
+
+        </div>
+        <div class="container-fluid collapse d-lg-block px-0 border-lg-top" id="nav-primary">
+            
+            <div class="wide"> 
+                
+                <nav class="nav nav-pills border-bottom border-right justify-content-center" role="navigation"><span id="File.Path" style="display: none">key-topics/climatehealth/syndromic/index.md</span>
+                <span id="FirstSection.RelPermalink" style="display: none">/key-topics/</span>
+
+                <div class="nav-item-search border-right">
+                    <a class="nav-link" id="nav-item-01" href="https://stgbespweb600/IndicatorPublic/beta/">
+                    <span class='text-primary'><i class='fa fa-home' aria-hidden='true'></i><span class="sr-only">Home</span></span> 
+                    </a>
+                </div><div class="nav-item active">
+                        
+                        <a class="nav-link" href="https://stgbespweb600/IndicatorPublic/beta/key-topics/" id="nav-item-05"><span class='text-primary'><i class='fas fa-star' aria-hidden='true'></i></span> Key Topics</a>
+                        
+                    </div><div class="nav-item">
+                        
+                        <a class="nav-link" href="https://stgbespweb600/IndicatorPublic/beta/data-stories/" id="nav-item-02"><span class='text-primary'><i class='fas fa-passport' aria-hidden='true'></i></span> Data Stories</a>
+                        
+                    </div><div class="nav-item">
+                        
+                        <a class="nav-link" href="https://stgbespweb600/IndicatorPublic/beta/neighborhood-reports/" id="nav-item-04"><span class='text-primary'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span> Neighborhood Reports</a>
+                        
+                    </div><div class="nav-item">
+                        
+                        <a class="nav-link" href="https://stgbespweb600/IndicatorPublic/beta/data-explorer/" id="nav-item-03"><span class='text-primary'><i class='fas fa-chart-line' aria-hidden='true'></i></span> Data Explorer</a>
+                        
+                    </div><button class="btn nav-item-search d-none d-lg-block" type="button" title="Search" 
+                            data-toggle="collapse" data-target="#global-search" 
+                            aria-controls="global-search" aria-expanded="false">
+                            
+                        <span class="sr-only">Search</span>
+                        <i class="fa fa-magnifying-glass fa-lg"></i>
+                    
+                    </button></nav>
+                    
+            </div>
+                
+        </div>
+        
+        <div class="container-fluid-lg border-top collapse" id="global-search">
+            
+            <form class="narrow py-2" aria-label="Search" role="search">
+                
+                <div class="input-group">
+                    
+                    <label class="sr-only" for="global-search-bar">Search</label>
+                    
+                    <input class="form-control form-control-lg" id="global-search-bar" placeholder="Search">
+                    
+                    <div class="input-group-btn">
+                        
+                        <button class="btn btn-primary btn-lg" type="button" title="Search">
+                            
+                            <span class="sr-only">Search</span>
+                            <span class="fas fa-arrow-right"></span>
+                            
+                        </button>
+                        
+                    </div>
+
+                </div>
+
+            </form>
+            
+            
+            
+            
+    </div>
+        
+</header>
+<main id="skip-header-target" role="main"><article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-4 pl-0">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="https://stgbespweb600/IndicatorPublic/beta/key-topics/">Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href="https://stgbespweb600/IndicatorPublic/beta/key-topics/climatehealth/">Climate and Health</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Real-time heat-related illness</li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-2 mr-auto"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7 col-sm-12 ml-auto">
+            <div class="row">
+                <h1><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
+                    Real-time heat-related illness</h1><p>Extreme heat is dangerous. It can cause illness, make chronic conditions worse, and even kill. Heat-related illnesses happen when the body cannot cool down enough. These include:</p>
+<ul>
+<li>Heat exhaustion</li>
+<li>Muscle cramps</li>
+<li>Fainting</li>
+<li>Heat stroke, the most serious form of heat-related illness</li>
+</ul>
+<p>Heat can also exacerbate chronic conditions, such as cardiovascular diseases or kidney conditions. These conditions may not be recognized or labeled as heat-related in a medical record but can be assessed using statistical models and are another a negative health outcome related to heat.</p>
+<p><strong>Predicting and tracking heat-related illness</strong></p>
+<p>The weather forecast is the best way to predict heat-related health outcomes.</p>
+<p>We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat, not the full burden of heat-related health impacts.</p>
+<p>We track these outcomes citywide by using a system called <a href="#syndromicmodal" data-toggle="modal" class="badge badge-pill badge-warning">syndromic surveillance</a> which lets us know how many people who visit the emergency room (ED) are being affected by certain health conditions in real time. This is achieved by asking patients that visit the ED (about 10,000 per day in NYC) how they feel during their examination. These findings are then recorded and sent to the Health Department. The Health Department then searches the records for diagnostic codes (when available) and words describing why patients are at the ED to track specific health conditions in near real-time and understand trends throughout the city. <p></p>
+
+                <p>Below are data on the number of <a href="#heatmodal" data-toggle="modal" class="badge badge-pill badge-warning">heat syndrome</a> visits to emergency departments, and the daily maximum temperature. <a href="#whatmodal" data-toggle="modal" class="badge badge-pill badge-warning">What do we use these data for</a>?</p></p>
+               
+            </div>
+        </div>
+
+        <div class="col-md-4 mr-auto text-right">
+            <div class="mt-4" style="border-radius: 5px;">
+                
+                <a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us" data-label_1="NEW YORK CITY" data-label_2="WEATHER" data-theme="original" >NEW YORK CITY WEATHER</a>
+                <script>
+                !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                </script>
+
+                <div class="mt-2" style="background-color: #dcdcdc; padding: 7px 7px; border-radius: 5px;">
+                    <p>In NYC, an <strong>extreme heat event</strong> is two or more days with a heat index reaching 95 °F, or one or more days reaching 100 °F.</div>
+                     
+                     <div class="mt-2" style="background-color: #dcdcdc; padding: 7px 7px; border-radius: 5px;">
+                      To learn more about heat and health, visit <a href="https://www1.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page">Extreme Heat and Health</a>. To stay safe in the heat, visit <a href="https://www1.nyc.gov/assets/em/html/beat-the-heat/beattheheat.html">Beat the Heat</a>.</p>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-2" >
+        <div class="col-11 mx-auto pl-0">
+            <h3 style="background-color:#f1f1f1; padding: 10px; border-radius: 5px;">Daily data</h3>
+            <div class="row mt-2 pl-2">
+              <iframe title="2022 Max temperatures" aria-label="Interactive line chart" id="datawrapper-chart-wNxZ0" src="https://datawrapper.dwcdn.net/wNxZ0/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="300" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+              </script>
+                <iframe title="2022 Heat ED Visits" aria-label="Interactive line chart" id="datawrapper-chart-NI4ny" class="mt-4" src="https://datawrapper.dwcdn.net/NI4ny/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="300" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+                </script>
+
+            </div>
+
+            <div class="row mt-4" style="background-color:#f1f1f1; padding: 10px; border-radius: 5px;">
+                <H4>Data since 2017</H4>
+            </div>
+            
+            <div class="row my-2 fs-sm">
+              <iframe title="Heat-related ED visits: 2017 to 2021" aria-label="Scatter Plot" id="datawrapper-chart-ECKxz" src="https://datawrapper.dwcdn.net/ECKxz/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+              </script>
+            </div>
+            
+            <div class="row my-4" style="background-color: #f1f1f1; padding: 10px; border-radius: 5px;">
+                <a href="https://github.com/nychealth/EHDP-data/tree/production/key-topics/heat-syndrome">To download data and for additional documentation, please see our Github repository</a>.
+                </div>
+        </div>
+    </div>
+
+<script>
+
+    function udata(x) {
+        document.getElementById('if2021').style.display = "none";
+        document.getElementById('if2020').style.display = "none";
+        document.getElementById('if2019').style.display = "none";
+        document.getElementById('if2018').style.display = "none";
+        document.getElementById('if2017').style.display = "none";
+
+        if (x == 2017) {
+            document.getElementById('if2017').style.display = "block";
+        } else if (x==2018) {
+            document.getElementById('if2018').style.display = "block";
+        } else if (x==2019) {
+            document.getElementById('if2019').style.display = "block";
+        } else if (x==2020) {
+            document.getElementById('if2020').style.display = "block";
+        } else if (x==2021) {
+            document.getElementById('if2021').style.display = "block";
+        } else {
+        }
+
+    }
+
+</script>
+      
+  <div class="modal fade" id="syndromicmodal" tabindex="-1" role="dialog" aria-labelledby="syndromicmodaltitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="privacymodallongtitle">Syndromic surveillance</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p>The Centers for Disease Control and Prevention (CDC) defines surveillance as "the ongoing, systematic collection, analysis, and interpretation of health-related data essential to planning, implementation, and evaluation of public health practice, closely integrated with the timely dissemination of these data to those responsible for prevention and control." A syndrome is a group of signs (something a health care provider can observe, like a rash, or body temperature) and symptoms (something a patient feels - like pain, or fatigue) that are often associated with a particular disease or condition.
+            </p>
+            <p>Heat syndrome is identified in surveillance data by looking for diagnostic codes for heat-related illness and by searching chief complaints (descriptions of why patients are at the ED) for words related to heat exposure and heat-related illness, such as overheating, sunstroke, and similar terms.
+            </p>
+            <p>Syndrome data are inherently non-specific and are not based on diagnostic testing. While the NYC syndromic surveillance system captures data on 100% of ED visits in the city (as of 5/1/16), the data are not comprehensive because some residents seek care outside the city. These data are not exact measures and should be used to understand trends, rather than to count cases. In addition, recent data are not final and are subject to change. In addition, heat-related illness cases in syndromic surveillance data provide a useful indicator of the lethal impacts of extreme heat events, but the number of HRI cases does not reflect the full burden of health impacts, such as increases in death or hospital visits for heat-sensitive chronic conditions, which are not available in near-real time.
+                </p>
+                <p>For more syndromes tracked by the Health Department, visit <a href="https://a816-health.nyc.gov/hdi/epiquery/visualizations?PageType=ps&PopulationSource=Syndromic">EpiQuery</a>.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      
+      <div class="modal fade" id="heatmodal" tabindex="-1" role="dialog" aria-labelledby="heatmodaltitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="heatmodallongtitle">Heat syndrome</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <p>A heat syndrome is identified in surveillance data by looking for diagnostic codes for heat-related illness and by searching chief complaints (descriptions of why patients are at the ED) for words related to heat, such as overheating, sunstroke, and similar terms.                </p>
+                <p>Syndromic data are inherently non-specific and are not based on diagnostic testing. They represent suspected rather than confirmed illness. While the NYC syndromic surveillance system captures data on 100% of ED visits in the city (as of 5/1/16), the data are not comprehensive because some residents seek care outside the city. These data are not exact measures and should be used to understand trends, rather than to count cases. Recent data are not final and are subject to change. In addition, heat-related illness cases in syndromic surveillance data provide a useful indicator of the lethal impacts of extreme heat events, but the number of HRI cases does not reflect the full burden of health impacts, such as increases in death or hospital visits for heat-sensitive chronic conditions, which are not available in near-real time.
+                </p>
+                <p>For more information, see the Council of State and Territorial Epidemiologists' <a href="https://cdn.ymaws.com/www.cste.org/resource/resmgr/pdfs/pdfs2/CSTE_Heat_Syndrome_Case_Defi.pdf">heat syndrome case definition</a>.</p>
+                </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    
+    <div class="modal fade" id="whatmodal" tabindex="-1" role="dialog" aria-labelledby="whatmodaltitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="whatmodallongtitle">What do we use these data for?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Tracking heat-related illness (HRI) in near-real time can help provide situational awareness, supplementing the weather forecast as an indicator of public health risk. HRI detected in emergency department syndromic surveillance data are strongly associated with hot weather and highly correlated with daily counts of HRI hospital discharge data. However, HRI counts detected in the ED syndromic surveillance data represent suspected rather than confirmed illness, and are most useful to track trends. For example, some records may be counted as cases when they are not HRI, while other HRI cases may go undetected due to differences in hospital coding practices or because of what patients say when they describe what is bothering them.  </p>
+            </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</article><ul id="results"></ul>
+  </main>
+  
+  <style>
+    .modal-backdrop.show {
+        opacity: 0.70;
+        background-color: #424242
+    }
+</style><footer class="bg-black" id="global-footer" role="contentinfo">
+
+  <h2 class="sr-only">
+      Page Footer
+  </h2>
+
+  <div class="bg-opacity-black-25 text-white" id="nyc-footer">
+
+      <div class="container py-3 d-none" id="languages">
+
+          <div class="row fs-md">
+
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+                  </ul>
+              </div>
+              <div class="col-6 col-md-4 col-lg">
+                  <ul class="extensible-list">
+                      <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+                      <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+                  </ul>
+              </div>
+          </div>
+
+      </div>
+      
+
+      <div class="container py-3" id="languages">
+
+          <ul class="fs-md" role="list">
+              <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+              <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+          </ul>
+
+      </div>
+      
+
+      <hr class="opacity-10" aria-hidden="true">
+
+      <div class="container py-3">
+          <div class="row">
+              <div class="col-md-6 col-lg-8 mb-3 mb-lg-0">
+                  <nav class="row fs-md" role="navigation">
+                      <div class="col-lg mb-3 mb-lg-0">
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/nyc-resources/agencies.page">
+                                      <strong>Directory of City Agencies</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://a858-nycnotify.nyc.gov/notifynyc/">
+                                      <strong>Notify NYC</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://www1.nyc.gov/connect/mobile-applications.page">
+                                      <strong>NYC Mobile Apps</strong>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                      
+
+                      <div class="col-lg mb-3 mb-lg-0">
+
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/home/contact-us.page">
+                                      <strong>Contact NYC Government</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://a856-citystore.nyc.gov/">
+                                      <strong>CityStore</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://www.nyc.gov/nyc-resources/nyc-maps.page">
+                                      <strong>Maps</strong>
+                                  </a>
+                              </li>
+                          </ul>
+
+                      </div>
+                      
+
+                      <div class="col-lg mb-3 mb-lg-0">
+
+                          <ul class="extensible-list">
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://a127-ess.nyc.gov/psp/prdess/?cmd=login&languageCd=ENG&">
+                                      <strong>City Employees</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset" href="https://www1.nyc.gov/connect/social-media.page">
+                                      <strong>Stay Connected</strong>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="text-reset"
+                                      href="https://www1.nyc.gov/nyc-resources/resident-toolkit.page">
+                                      <strong>Resident Toolkit</strong>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                      
+
+                  </nav>
+              </div>
+              
+
+              <div class="col-md-6 col-lg-4">
+
+                  <a class="mb-2" href="https://www1.nyc.gov" title="Go to nyc.gov" target="_blank">
+                      
+                      <img class="mb-2" src="https://stgbespweb600/IndicatorPublic/beta/images/nyc-bubble-logo.svg" width="90" alt="NYC Logo">
+                      <span class="sr-only">(opens in a new tab)</span>
+                  </a>
+                  <p class="fs-sm">© City of New York. 2022 All Rights Reserved,<br>NYC is a trademark and service mark of the City of New
+                    York.</p>
+
+                  <ul class="extensible-list horizontal fs-sm">
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/home/privacy-policy.page">Privacy
+                              Policy</a>
+                      </li>
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/home/terms-of-use.page">Terms
+                              of Use</a>
+                      </li>
+                      <li>
+                          <a class="text-reset" href="https://www1.nyc.gov/site/mopd/index.page"
+                              title="Mayor's Office for People with Disabilities">
+                              <span class="sr-only">Learn more about Digital Accessibility
+                                from the Mayor's Office for People with Disabilities.</span>
+                              <span class="fab fa-lg fa-accessible-icon"></span>
+                          </a>
+                      </li>
+                  </ul>
+
+              </div>
+              
+
+          </div>
+          
+
+      </div>
+      
+
+  </div>
+  
+
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+
+<script>
+  function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+          pageLanguage: 'en'
+      }, 'google_translate_element');
+
+      
+      document.querySelectorAll("div[class^=VI] svg").forEach(e => e.outerHTML = "");
+  }
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+
+
+
+<script type="text/javascript" src="https://stgbespweb600/IndicatorPublic/beta/node_modules/lunr/lunr.min.e31525fdde83e931eb0275c0c066a35e4a1669e30dc0428ae2235fab90e8b446cb3c07e4e854b148fdf274dc6a0e00b0d5cff4675260e8bf21da3fbefbd0599a.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j&#43;&#43;&#43;9BZmg=="></script>
+
+<script type="text/javascript" 
+    src="https://stgbespweb600/IndicatorPublic/beta/js/main.552c9e0eb5b9f567a863809d88dfdb9dfc2e5062f1aa7ae313abbdf21a346fd773ae265f5ff618d8322e2b96b95be1b319c681eb0ea7b818a3c6485a84b6ad5a.js" 
+    integrity="sha512-VSyeDrW59WeoY4CdiN/bnfwuUGLxqnrjE6u98ho0b9dzriZfX/YY2DIuK5a5W&#43;GzGcaB6w6nuBijxkhahLatWg=="></script><script type="text/javascript" 
+    src="https://stgbespweb600/IndicatorPublic/beta/js/search.5332590626a6aa935d122347c2c99089e9a328a8e08882b46a430570150c8d2f238b3758b581c006ee488c927a70aac5a8f53761d32d922e08ad7172db6b3abf.js" 
+    integrity="sha512-UzJZBiamqpNdEiNHwsmQiemjKKjgiIK0akMFcBUMjS8jizdYtYHABu5IjJJ6cKrFqPU3YdMtki4IrXFy22s6vw=="></script>
+</body>
+</html>
