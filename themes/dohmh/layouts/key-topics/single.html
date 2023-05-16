@@ -44,6 +44,36 @@
 
         </div>
 
+        {{- if where ( where .Site.RegularPages "Section" "key-topics") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
+        <div class="row mt-4">
+            <div class="col-lg-10 col-md-12 mx-auto">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="greenfill fs-lg"><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>{{ .Title }} Data Features: reports and interactives</h3>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <!-- Range through-->
+                    {{- range where ( where .Site.RegularPages "Section" "key-topics") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card content-card my-2 h-100">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <p><a class="text-primary fs-md font-weight-bold" href="{{ .RelPermalink }}">{{ .Title }}</a></p>
+                                    <p class="fs-sm text-align-right h-100 mb-1"> {{ .Content | plainify | truncate 175 | htmlUnescape }} </p>
+                              </div>
+                            </div>
+                          </div> 
+
+                    </div>
+                    {{- end -}}
+
+                </div>
+            </div>
+        </div>
+        {{- end -}}
+
 
         <div class="row mt-4">
             <div class="col-lg-10 col-md-12 mx-auto">
@@ -60,31 +90,13 @@
                               </div>
                             </div>
                           </div>   
-
-                          {{- if where ( where .Site.RegularPages "Section" "key-topics") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
-                          <h3 class="greenfill fs-lg"><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Data Features</h3>
-                          <span class="home-label">Reports and interactives</span>
-  
-                          <div class="card content-card mt-2 mb-4">
-                              <div class="card-content">
-                                  <div class="card-body">
-                                      {{- partial "related" (dict "section" "key-topics" "layout" "button" "content" . ) -}}     
-                                </div>
-                              </div>
-                            </div>
-                      {{- end -}}
   
                       {{- if where ( where .Site.RegularPages "Section" "neighborhood-reports") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
                       <h3 class="greenfill fs-lg"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
                       <span class="home-label ">Get data for your neighborhood on:</span>
-  
-                      <div class="card content-card mt-2 mb-4">
-                          <div class="card-content">
-                              <div class="card-body">
-                                  {{- partial "related" (dict "section" "neighborhood-reports" "layout" "button" "content" . ) -}}
-                              </div>
+                          <div class="mt-2">
+                            {{- partial "related" (dict "section" "neighborhood-reports" "layout" "button" "content" . ) -}}
                           </div>
-                        </div>
                   {{- end -}}
 
 
@@ -93,7 +105,7 @@
 
                     <div class="col-md-6 col-sm-12">
                         {{- if where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
-                            <h3 class="fs-lg mt-2 text-info border-bottom"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Related Data Stories</h3>
+                            <h3 class="greenfill fs-lg"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories</h3>
 
 
                             {{- range where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
