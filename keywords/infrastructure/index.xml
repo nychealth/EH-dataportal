@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>infrastructure on Environment &amp; Health Data Portal</title>
-    <link>https://stgbespweb600/IndicatorPublic/beta/keywords/infrastructure/</link>
+    <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/beta/keywords/infrastructure/</link>
     <description>Recent content in infrastructure on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 Sep 2021 07:58:01 -0400</lastBuildDate><atom:link href="https://stgbespweb600/IndicatorPublic/beta/keywords/infrastructure/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 30 Sep 2021 07:58:01 -0400</lastBuildDate><atom:link href="https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/beta/keywords/infrastructure/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Active design, public space, and transportation</title>
-      <link>https://stgbespweb600/IndicatorPublic/beta/key-topics/transportation/</link>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/beta/key-topics/transportation/</link>
       <pubDate>Thu, 30 Sep 2021 07:58:01 -0400</pubDate>
       
-      <guid>https://stgbespweb600/IndicatorPublic/beta/key-topics/transportation/</guid>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/beta/key-topics/transportation/</guid>
       <description>Physical activity and healthy eating rank among the leading ways to get and stay healthy.
 Active design is an applied, evidence-informed approach to improve physical, mental and social health outcomes through the design of the built environment. Active design leverages the expertise of architects, planners, developers, community members, designers, and other stakeholders.
 Designing to increase access to high quality parks, pedestrian plazas, sidewalks, quiet spaces, trees and other greenery, secure bicycle storage, gathering spaces, and stairways can have a measurable effect on people’s ability to safely maintain their physical, mental, and social health.</description>
@@ -20,10 +20,10 @@ Designing to increase access to high quality parks, pedestrian plazas, sidewalks
     
     <item>
       <title>Active design</title>
-      <link>https://stgbespweb600/IndicatorPublic/beta/data-explorer/active-design/</link>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/beta/data-explorer/active-design/</link>
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
-      <guid>https://stgbespweb600/IndicatorPublic/beta/data-explorer/active-design/</guid>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/beta/data-explorer/active-design/</guid>
       <description>Physical activity and healthy eating are among the leading ways to get and stay healthy.
 Active design is an applied, evidence-informed approach to improve physical, mental and social health outcomes through the design of the built environment.
 To improve health, we can:
@@ -32,10 +32,10 @@ Increase access to public parks and recreation Create pedestrian plazas, and mai
     
     <item>
       <title>Walking, driving, and cycling</title>
-      <link>https://stgbespweb600/IndicatorPublic/beta/data-explorer/walking-driving-and-cycling/</link>
+      <link>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/beta/data-explorer/walking-driving-and-cycling/</link>
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
-      <guid>https://stgbespweb600/IndicatorPublic/beta/data-explorer/walking-driving-and-cycling/</guid>
+      <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/beta/data-explorer/walking-driving-and-cycling/</guid>
       <description>People get around New York City in many ways - public transit, walking, cycling, driving, and other modes too. When these individual behaviors are added up, they shape our city and our health.
 Our built environment influences these behaviors. The design of our streets and presence of infrastructure like bicycle lanes, well maintained sidewalks, safe street crossings, dedicated bus lanes and convenient access to the subway have the potential to increase both the usage and safety of these forms of transportation.</description>
     </item>
