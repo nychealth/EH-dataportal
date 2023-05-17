@@ -49,7 +49,9 @@
             <div class="col-lg-10 col-md-12 mx-auto">
                 <div class="row">
                     <div class="col">
-                        <h3 class="greenfill fs-lg"><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Data Features: reports and interactives</h3>
+                        <div class="greenfill">
+                            <span class="h3 fs-lg"><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Data Features:</span> <span class="home-label">Reports and interactives</span>
+                        </div>
                     </div>
                 </div>
 
@@ -78,9 +80,10 @@
             <div class="col-lg-10 col-md-12 mx-auto">
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
-
-                        <h3 class="greenfill fs-lg"><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Data Sets</h3>
-                        <span class="home-label">Use our Data Explorer to get table, maps, and trends </span>
+                        <div class="greenfill">
+                            <span class="h3 fs-lg"><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>Data Sets:</span>
+                            <span class="home-label">Get tables, maps, and trends </span>
+                        </div>
                         <div class="card content-card mt-2 mb-4">
                             <div class="card-content">
                                 <div class="card-body">
@@ -91,8 +94,10 @@
                           </div>   
   
                       {{- if where ( where .Site.RegularPages "Section" "neighborhood-reports") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
-                      <h3 class="greenfill fs-lg"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
-                      <span class="home-label ">Get data for your neighborhood on:</span>
+                      <div class="greenfill">
+                        <span class="h3 fs-lg"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports:</span>
+                        <span class="home-label ">Get data for your neighborhood on</span>
+                      </div>
                           <div class="mt-2">
                             {{- partial "related" (dict "section" "neighborhood-reports" "layout" "button" "content" . ) -}}
                           </div>
@@ -104,7 +109,11 @@
 
                     <div class="col-md-6 col-sm-12">
                         {{- if where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
-                            <h3 class="greenfill fs-lg"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories</h3>
+                        <div class="greenfill">
+                            <span class="h3 fs-lg"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories:</span>
+                            <span class="home-label ">Narratives and explainers</span>
+
+                        </div>    
 
 
                             {{- range where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
