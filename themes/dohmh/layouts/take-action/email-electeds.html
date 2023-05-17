@@ -70,11 +70,12 @@
               </tr>
               <tr id="bcRow">
                 <td>Community Board</td>
-                <td><span id=""></span></td>
-                <td><span id=""></span></td>
-                <td><span id=""></span></td>
-                <td><span id=""></span></td>
-                <td><span id=""></span></td>
+                <td><span id="cbName"></span></td>
+                <td><span id="cbWebsite"></span></td>
+                <td><span id="cbPhone"></span></td>
+                <td><span id="cbEmail"></span></td>
+                <td><span id="cbEmailBox" class="text-align-right"><input type="checkbox" id="CBemail" name="emailCheckbox" value="cb" class="text-align-center" checked>
+                  <label for="CBemail"></label></span></td>
               </tr>
               <tr id="paRow">
                 <td>Public Advocate</td>
@@ -269,6 +270,9 @@
 var councilTable = [];
 var district;
 var yourDistrict; 
+var cbTable = [];
+var cbInfo = [];
+var yourCB;
 var districtInfo;
 var lastname;
 var setLoc;
@@ -308,6 +312,11 @@ d3.csv(sitepath+'/take-action/council.csv').then(function(data) {
   councilTable = data;
 })
 
+// Loads Community Board list
+d3.csv(sitepath+'/take-action/communityBoardContacts.csv').then(function(data) {
+  cbTable = data
+})
+
 // Add event listener on entry form
 document.getElementById('map-search').addEventListener("change", getData)
 
@@ -325,6 +334,9 @@ function getData() {
 
     setLoc = map.location.name
     yourDistrict = map.location.data.cityCouncilDistrict
+    yourCB = map.location.data.communityDistrict
+    console.log('Community Board - bbc:')
+    console.log(yourCB)
 
     // get info from councilTable
     for (let i = 0; i < councilTable.length; i ++) {
@@ -338,6 +350,21 @@ function getData() {
     document.getElementById('cmWebsite').innerHTML = `<a href="https://council.nyc.gov/district-${districtInfo.District}">Website</a>`
     document.getElementById('cmPhone').innerHTML = 'n/a'
     document.getElementById('cmEmail').innerHTML = districtInfo.Email
+
+    // get info from cbTable
+    for (let i = 0; i < cbTable.length; i ++) {
+      if (Number(cbTable[i].bbc) === Number(yourCB)) {
+        cbInfo = cbTable[i]
+      } else {}
+    }
+
+    // send CB info to page
+    document.getElementById('cbName').innerHTML = cbInfo.Borough + " CB" + cbInfo.CB
+    document.getElementById('cbWebsite').innerHTML =  `<a href="${cbInfo.Website}">Website</a>`
+    document.getElementById('cbPhone').innerHTML = cbInfo.Phone
+    document.getElementById('cbEmail').innerHTML = cbInfo.Email
+
+
     
     var recipient = {};
     recipient.name = districtInfo.CouncilMember
