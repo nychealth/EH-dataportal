@@ -57,14 +57,13 @@
                     <!-- Range through-->
                     {{- range where ( where .Site.RegularPages "Section" "key-topics") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
                     <div class="col-md-4 col-sm-12">
-                        <div class="card content-card my-2 h-100">
-                            <div class="card-content">
+                        <a class="text-primary fs-md font-weight-bold" href="{{ .RelPermalink }}">
+                        <div class="card border my-2">
                                 <div class="card-body">
-                                    <p><a class="text-primary fs-md font-weight-bold" href="{{ .RelPermalink }}">{{ .Title }}</a></p>
-                                    <p class="fs-sm text-align-right h-100 mb-1"> {{ .Content | plainify | truncate 175 | htmlUnescape }} </p>
+                                    <p>{{ .Title }}</p>
+                                    <p class="fs-xs text-align-right h-100 mb-1 font-weight-normal" style="color:black;"> {{ .Content | plainify | truncate 175 | htmlUnescape }} </p>
                               </div>
-                            </div>
-                          </div> 
+                          </div></a>
 
                     </div>
                     {{- end -}}
