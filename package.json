@@ -1,7 +1,7 @@
 {
   "name": "EH-dataportal",
   "version": "1.0.0",
-  "description": "This repository contains a prototype of the Environment and Health Data Portal. You can view a staged development version [here](https://nychealth.github.io/EH-dataportal/). We are in the process of fully developing this. If you're interested in helping, you can [email us](mailto:trackingportal@health.nyc.gov) - we are always looking for people interested in user testing and co-design work.",
+  "description": "This repository contains a prototype of the Environment and Health Data Portal. You can view a staged development version [here](https://nychealth.github.io/EH-dataportal/). We are in the process of fully developing this. If you're interested in helping, you can [email us](mailto:ehdp@health.nyc.gov) - we are always looking for people interested in user testing and co-design work.",
   "main": "Gruntfile.js",
   "directories": {
     "doc": "docs"
@@ -25,6 +25,7 @@
     "leaflet-easybutton": "^2.4.0",
     "lunr": "^2.3.9",
     "pdfmake": "^0.2.7",
+    "seedrandom": "^3.0.5",
     "string": "^3.3.3",
     "url": "^0.11.0",
     "vega": "^5.22.1",

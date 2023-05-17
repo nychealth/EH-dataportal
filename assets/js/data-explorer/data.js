@@ -14,7 +14,7 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
     .then(response => response.json())
     .then(async data => {
 
-        console.log("** fetch indicators.json");
+        // console.log("** fetch indicators.json");
 
         indicators = data;
 
@@ -215,8 +215,8 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     $(".indicator-dropdown-item").removeClass("active");
     $(".indicator-dropdown-item").attr('aria-selected', false);
 
-    // get the list element for this indicator
-    const thisIndicatorEl = document.querySelector(`button[data-indicator-id='${indicatorId}']`)
+    // get the list element for this indicator (in buttons and dropdowns)
+    const thisIndicatorEl = document.querySelectorAll(`button[data-indicator-id='${indicatorId}']`)
 
     // set this element as active & selected
     $(thisIndicatorEl).addClass("active");
@@ -238,8 +238,11 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     // reset selected measure flags
 
     selectedMapMeasure = false;
+    selectedMapTime = false;
+    selectedMapGeo = false;
     selectedTrendMeasure = false;
     selectedLinksMeasure = false;
+    selectedDisparity = false;
     selectedComparison = false;
     showingNormalTrend = false;
 
@@ -402,6 +405,7 @@ const joinData = () => {
             "GeoID",
             "GeoType",
             "GeoTypeDesc",
+            "GeoTypeShortDesc",
             "GeoRank",
             "Geography",
             "MeasureID",
@@ -435,7 +439,11 @@ const joinData = () => {
     // data for map
 
     mapData = joinedAqData
-        .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
+        // remove Citywide
+        .filter(
+            d => !op.match(d.GeoType, /Citywide/),
+            d => !op.match(d.Geography, /Harborwide/)
+        ) 
         // .impute({ Value: () => NaN })
         .objects()
 
@@ -464,7 +472,9 @@ const joinData = () => {
 
 // WHAT'S THE MOST RECENT YEAR WHERE PRIMARY AND SECONDARY SHARE A GEOGRAPHY?
 
-const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasureId) => {
+const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
+
+    let ret;
 
     // console.log("primaryMeasureId", primaryMeasureId);
     // console.log("secondaryMeasureId", secondaryMeasureId);
@@ -530,12 +540,17 @@ const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasur
 
     const sharedGeos = secondaryMeasureGeos.filter(g => primaryMeasureGeos.includes(g));
 
+    // console.log("sharedGeos", sharedGeos);
+
     // ==== times ==== //
 
     // get available time periods for secondary measure
 
     const secondaryMeasureTimes   = secondaryMeasureMetadata[0].AvailableTimes;
     const aqSecondaryMeasureTimes = aq.from(secondaryMeasureTimes);
+
+    // console.log("aqSecondaryMeasureTimes");
+    // aqSecondaryMeasureTimes.print(50)
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // primary measure data
@@ -564,6 +579,10 @@ const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasur
     // convert to arquero table
 
     const aqFilteredPrimaryMeasureTimesData = aq.from(filteredPrimaryMeasureTimesData);
+
+    // console.log("aqFilteredPrimaryMeasureTimesData");
+    // aqFilteredPrimaryMeasureTimesData.groupby("MeasureID", "GeoType", "Time").count().print(50)
+    // aqFilteredPrimaryMeasureTimesData.print(10)
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -602,6 +621,10 @@ const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasur
                     ["Time", "TimeDescription"]
                 )
                 .select(aq.not("TimeDescription"))
+            
+            // console.log("aqFilteredSecondaryMeasureData");
+            // aqFilteredSecondaryMeasureData.groupby("MeasureID", "GeoType", "Time").count().print(50)
+            // aqFilteredSecondaryMeasureData.print(10)
 
             // convert to JS object
 
@@ -617,6 +640,8 @@ const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasur
                 return (Math.abs(curr.end_period - mostRecentPrimaryMeasureEndTime) < Math.abs(prev.end_period - mostRecentPrimaryMeasureEndTime) ? curr : prev);
 
             });
+
+            // console.log("closestSecondaryTime", closestSecondaryTime);
 
 
             // use end time to get closest secondary data
@@ -637,6 +662,16 @@ const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasur
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
             // join primary and secondary measure data
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+            // console.log("filteredPrimaryMeasureData", filteredPrimaryMeasureData);
+            
+            // console.log("aqFilteredPrimaryMeasureTimesData");
+            // aqFilteredPrimaryMeasureTimesData.groupby("MeasureID", "GeoType", "Time").count().print(50)
+            // aqFilteredPrimaryMeasureTimesData.print(10)
+            
+            // console.log("aqClosestSecondaryData");
+            // aqClosestSecondaryData.groupby("MeasureID", "GeoType", "Time").count().print(50)
+            // aqClosestSecondaryData.print(10)
             
             const aqJoinedPrimarySecondaryData = aqFilteredPrimaryMeasureTimesData
                 .join(
@@ -644,9 +679,14 @@ const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasur
                     [["GeoID", "GeoType"], ["GeoID", "GeoType"]]
                 )
 
-            // set the value of joinedDataLinksObjects, and make sure to wait for it
+            // set the value of joinedLinksDataObjects, and make sure to wait for it
 
-            joinedDataLinksObjects = await aqJoinedPrimarySecondaryData.objects();
+            ret = await aqJoinedPrimarySecondaryData;
 
-        })
+        }
+        )
+
+    // console.log("*** ret", ret);
+
+    return ret;
 }

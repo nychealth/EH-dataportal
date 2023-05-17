@@ -30,6 +30,7 @@ const renderLinksChart = (
     const primaryMeasureName     = primaryMetadata[0].MeasureName;
     const primaryDisplay         = primaryMetadata[0].DisplayType;
     const primaryTime            = data[0].Time_1;
+    const geoTypeShortDesc       = data[0].GeoTypeShortDesc_1;
 
     const secondaryMeasurementType = secondaryMetadata[0].MeasurementType
     const secondaryMeasureName     = secondaryMetadata[0].MeasureName
@@ -99,7 +100,7 @@ const renderLinksChart = (
     let columns = window.innerWidth < 576 ? 3 : 6;
     let height = window.innerWidth < 576 ? 350 : 500;
 
-    
+
     // ----------------------------------------------------------------------- //
     // get unique unreliability notes (dropping empty)
     // ----------------------------------------------------------------------- //
@@ -163,12 +164,11 @@ const renderLinksChart = (
             "view": { "stroke": "transparent" },
             "range": {
                 "category": [
-                    // "#000000", 
-                    "#1696d2", 
-                    "#ffa500", 
-                    "#ec008b", 
-                    "#55b748", 
-                    "#f29214"
+                    "#1696d296", 
+                    "#f2921496", 
+                    "#ec008b96", 
+                    "#55b74896", 
+                    "#80008096"
                 ]
             },
             "text": {
@@ -224,7 +224,7 @@ const renderLinksChart = (
                             "type": "nominal"
                         },
                         {
-                            "title": "Neighborhood",
+                            "title": geoTypeShortDesc,
                             "field": "Geography_1",
                             "type": "nominal"
                         },

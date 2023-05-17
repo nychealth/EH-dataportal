@@ -4,7 +4,7 @@
 
     {{ $src := .Resources.GetMatch .Params.image }}
     {{ $image := $src.Resize "1920x"}}
-    <div id="datastoryheader" style="background-image: URL({{ $image.Permalink }}); background-position: 50% 25%">
+    <div id="datastoryheader" style="background-image: URL({{$image.Permalink}}); background-position: 50% 25%">
 
         <div class="medium my-auto">
             <h1 class="titleheader py-2 px-4">
@@ -328,6 +328,21 @@
                         <p class="txt">The Second Avenue Subway is completed with plans to extend the line to East Harlem in the coming years. <a href="/data-explorer/active-design/?id=2391#display=summary">Get data on subway access</a>.</p>
                     </div>
 
+                    <div class="alt-event transpo">
+                        <p class="date">2017</p>
+                        <p class="txt"><a href="https://www.youtube.com/watch?v=JTq9nRLL2J4" target="_blank"> El Barrio Bikes</a> a community-based organization, is formed with Harlem Neighborhood of Health Partners <a href="https://muse.jhu.edu/pub/1/article/842150" target="_blank">to promote inclusivity and eliminate obstacles to biking in East and Central Harlem</a>.</p>
+                    </div>
+
+                    <div class="alt-event health right">
+                        <p class="date">2020</p>
+                        <p class="txt">The onset of the COVID-19 pandemic makes it abundantly clear that equitable access to outdoor space in East Harlem is key to support mental health, social, and other benefits while reducing transmission rates.</p>
+                    </div>
+
+                    <div class="alt-event dis">
+                        <p class="date">2022</p>
+                        <p class="txt">Announcements are made by NYC DOT and NYC Parks that work is set to take place to <a href="https://edc.nyc/project/harlem-river-greenway" target="_blank"> develop the 125th street Greenways</a> connecting safe, active-friendly routes to everyday destinations for East Harlem residents, pedestrians and cyclists. </p>
+                    </div>
+
                   </div>
 
             </div>
@@ -338,7 +353,7 @@
             <div class="border-top border-dark">
                 <ul class="extensible-list text-muted mt-3">
                     <li>
-                        <a class="text-muted" href="mailto:trackingportal@health.nyc.gov"
+                        <a class="text-muted" href="mailto:ehdp@health.nyc.gov"
                             title="Share through email">
                             <span class="fa fa-envelope mr-1"></span> Questions about this data story? Ideas
                             for another one? Email us.</a>
