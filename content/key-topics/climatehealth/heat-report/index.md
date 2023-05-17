@@ -116,7 +116,24 @@ To describe the impact of climate change, we examined how the number of hot days
     
 *   Estimated heat-attributable deaths occurred most frequently in July (37%), followed by August (28%), June (18%), September (10%), and May (7%) for 2016-2020.
 
-<div class="narrow my-4"><p><img alt="Figure 3" src="Figure3_EHE_and_tmax_CRR_trend_5yr_window_1971_2020.jpg" /> <img alt="Figure 4" src="Figure4_CRR_TMAX_2016-2020.jpg" /></p></div>
+<div class="row my-4">
+  <div class="col-6 border">
+      <a href="Figure3_EHE_and_tmax_CRR_trend_5yr_window_1971_2020.jpg" target="_blank">
+    <img alt="Figure 3" src="Figure3_EHE_and_tmax_CRR_trend_5yr_window_1971_2020.jpg" class="p-2"></a>
+  </div>
+
+  <div class="col-6 border">
+      <a href="Figure4_CRR_TMAX_2016-2020.jpg" target="_blank">
+    <img alt="Figure 4" src="Figure4_CRR_TMAX_2016-2020.jpg" class="p-2">
+    </a>
+  </div>
+</div>
+
+
+
+
+
+
 
 *Hotter Summers*: There are many more days every summer that are hot but not extremely hot (i.e., daily maximum temperature at or above 82°F to single days of 95°F) compared to extreme heat event days. These days are also associated with increased risk of heat-related death (Figure 4). Due to climate change, the numbers of extreme heat events and non-extreme hot days are increasing, which contributes to an increase in heat-exacerbated deaths.
 
@@ -125,7 +142,20 @@ To describe the impact of climate change, we examined how the number of hot days
 
 Given the consistently high and increasing proportion of hot days in July and August, heat-risk mitigation planning needs to emphasize non-emergency interventions, such as access to air conditioning. According to US Census Bureau’s [American Housing Survey](https://www.census.gov/programs-surveys/ahs.html) and [Housing and Vacancy Survey](https://www.census.gov/programs-surveys/nychvs.html) conducted in New York City, air conditioning (AC) prevalence increased from ~40% in 1970 to over 80% by mid-2000 (Figure 7), likely explaining the reduction in estimated heat-exacerbated deaths in the corresponding period (Figure 3). However, the rate of increase in AC prevalence appears to have slowed since mid-2000 (Figure 7), as the number of hot days continued to increase, highlighting the urgency of achieving equitable cooling in the very near future.
 
-<div class="narrow my-4"><p><img alt="Figure 5" src="Figure5_5yr_Ndays_EHE_nonEHE_1971_2020.jpg" /> <img alt="Figure 6" src="Figure6_5yr_mean_temp_1971_2020.jpg" /> <img alt="Figure 7" src="revFigure7_AC_prev_1970_2020_ns_fit.jpg" /></p></div>
+<div class="narrow my-4">
+<strong>Figure 5: Average number of extreme heat events and non-extreme hot days (daily maximum temperature above 82°F but excluding EHE days) in 5-year time windows, 1971-2020</strong>
+<iframe title="Non-extreme hot days" aria-label="Interactive line chart" id="datawrapper-chart-UxOqX" src="https://datawrapper.dwcdn.net/UxOqX/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="450" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+
+<iframe title="Extreme heat events" aria-label="Interactive line chart" id="datawrapper-chart-VFDRo" src="https://datawrapper.dwcdn.net/VFDRo/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="300" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+
+<hr class="my-4">
+<strong>Figure 6: Monthly average daily maximum temperature (°F), measured from LaGuardia Airport (5-year moving windows)</strong>
+<iframe title="Figure 6: Monthly average daily maximum temperature (°F), measured from LaGuardia Airport (5-year moving windows)" aria-label="Interactive line chart" id="datawrapper-chart-zqk7k" src="https://datawrapper.dwcdn.net/zqk7k/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+
+</div>
 
 ## Community Level Impacts
 
