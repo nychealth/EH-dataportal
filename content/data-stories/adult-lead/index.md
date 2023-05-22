@@ -62,7 +62,8 @@ As part of our investigations, we work to get these products off NYC store shelv
 
 * Taking action when we find hazardous products for sale 
 
-** ANONYMOUS SHOPPING PIC **
+<img src="Anon_lead_shopping.png" style="width:48%; height=auto" class="px-1">
+<img src="Anon_lead_shopping 2.png" style="width:48%; height=auto" class="px-1">
 
 <div style="font-size: 12px" class="mb-2"> Source: Hore, Paromita PhD, MPH; Alex-Oni, Kolapo MPH; Sedlar, Slavenka MA; Nagin, Deborah MPH. A Spoonful of Lead: A 10-Year Look at Spices as a Potential Source of Lead Exposure. Journal of Public Health Management and Practice: January/February 2019 - Volume 25 - Issue - p S63-S70 doi: 10.1097/PHH.0000000000000876 </div>
 
@@ -86,7 +87,7 @@ Since 2010, we’ve surveyed over 1,800 businesses and removed over 30,000 hazar
 
 ### One type of product that’s more likely to contain lead are spices purchased abroad
 
-We recommend that New Yorkers buy their spices locally in New York City, even if the spices are imported, rather than purchasing them abroad. 
+We recommend that New Yorkers <a href="https://jphmpdirect.com/2018/12/06/infographic-a-spoonful-of-lead/" target="blank">buy their spices locally in New York City, even if the spices are imported, rather than purchasing them abroad.</a>
 
 A NYC Health Department study on spices collected during investigations between 2008 and 2017, including nearly 1,500 samples of spices from 41 countries, found that more than half of spice samples had detectable lead concentrations. About one-third of the samples had a lead level higher than 2 parts per million (ppm), the permissible limit in the U.S. for lead in food additives. 
 
