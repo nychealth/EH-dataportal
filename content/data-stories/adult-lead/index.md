@@ -52,7 +52,7 @@ This helps us protect New Yorkers with elevated blood lead levels and learn how 
 
 In NYC, the most common source of lead exposure among non-pregnant adults is from construction-related jobs. Workers can breathe in or ingest lead dust or fumes during renovations, repairs and demolitions that disturb old lead-based paint. Work or hobbies related to metalwork, antique restoration, firearms or crafts involving materials with lead can also put adults at risk.  
 
-Consumer products can also expose people to lead. During our investigations, we pay special attention to consumer products from other countries: certain health remedies, foods and spices, cultural powders and traditional cook ware. Lead is sometimes added to these products, either accidentally or intentionally. However, lead is typically not listed on the label, so it’s hard to tell the difference between safe and dangerous products. (For more information, visit www.nyc.gov/hazardousproducts.) 
+Consumer products can also expose people to lead. During our investigations, we pay special attention to consumer products from other countries: certain health remedies, foods and spices, cultural powders and traditional cook ware. Lead is sometimes added to these products, either accidentally or intentionally. However, lead is typically not listed on the label, so it’s hard to tell the difference between safe and dangerous products. (For more information, visit www.nyc.gov/hazardousproducts). 
 
 As part of our investigations, we work to get these products off NYC store shelves before they endanger people by:  
 
