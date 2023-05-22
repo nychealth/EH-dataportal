@@ -63,10 +63,14 @@ As part of our investigations, we work to get these products off NYC store shelv
 
 * Taking action when we find hazardous products for sale 
 
-<img src="Anon_lead_shopping.png" style="width:48%; height=auto" class="px-1">
-<img src="Anon_lead_shopping 2.png" style="width:48%; height=auto" class="px-1">
+</div>
+<div class="wide my-4">
 
-<div style="font-size: 12px" class="mb-2"> Source: Hore, Paromita PhD, MPH; Alex-Oni, Kolapo MPH; Sedlar, Slavenka MA; Nagin, Deborah MPH. A Spoonful of Lead: A 10-Year Look at Spices as a Potential Source of Lead Exposure. Journal of Public Health Management and Practice: January/February 2019 - Volume 25 - Issue - p S63-S70 doi: 10.1097/PHH.0000000000000876 </div>
+<img src="Anon_lead_shopping.png" alt="An investigator looking at potentially-contaminated products." style="width:48%; height:auto" class="px-1">
+<img src="Anon_lead_shopping 2.png" alt="An investigator looking at potentially-contaminated products." style="width:48%; height:auto" class="px-1">
+<p class="fs-sm pl-1"><em>An investigator looking at potentially-contaminated products.</em></p>
+</div>
+<div class="narrow">
 
 We buy products from NYC stores and send them to a lab for testing. Between 2017 and 2021:  
 
@@ -136,3 +140,6 @@ If you do construction, metal work, antique restoration or other work or hobbies
 If you think you or your family members are at risk for lead poisoning, <strong>ask your doctor for a blood lead test.</strong> Remind your provider to test your child for lead poisoning at ages 1 and 2 and ask about testing older children. If you need help finding a doctor, call 311.  
 
 <a href="https://www.nyc.gov/lead">Visit nyc.gov/lead for more information</a>. 
+
+<hr class="my-4">
+<div style="font-size: 12px" class="mb-2"> Source: <a href="https://pubmed.ncbi.nlm.nih.gov/30507772/">Hore, Paromita PhD, MPH; Alex-Oni, Kolapo MPH; Sedlar, Slavenka MA; Nagin, Deborah MPH. A Spoonful of Lead: A 10-Year Look at Spices as a Potential Source of Lead Exposure. Journal of Public Health Management and Practice: January/February 2019 - Volume 25 - Issue - p S63-S70 doi: 10.1097/PHH.0000000000000876</a></div>
