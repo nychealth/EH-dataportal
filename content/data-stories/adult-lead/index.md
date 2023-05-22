@@ -7,10 +7,11 @@ seo_description: "The products that put people at risk of elevated blood lead le
 tags: 
 categories: ["healthoutcomes","social"]
 keywords: ["lead", "lead poisoning","employment","workers","worker health","elevated blood lead levels"]
-image: ds-codesign.jpg
+image: spice4.jpg
 menu:
     main:
         identifier: '02'
+photocredit: Yoon-Sung Nam
 ---
 ### Lead poisoning affects adults, too 
 
