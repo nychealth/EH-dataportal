@@ -1,5 +1,5 @@
 ---
-title: "Injury deaths among young and middle-aged adults in New York City"
+title: "Intentional injury deaths among young and middle-aged adults in New York City"
 date: 2023-03-20T13:11:44-04:00
 draft: false
 seo_title: "Injury deaths in NYC adults: how homicide and suicide contribute"
@@ -11,9 +11,9 @@ image: ds-sanitation-trucks.jpg
 photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 
-## How homicide and suicide contribute to deaths among young and middle-aged New Yorkers.
+## How homicide and suicide contribute to deaths among young and middle-aged New Yorkers
  
-Young and middle-aged adults don’t typically die from the natural causes that kill older adults. Injuries, both intentional and unintentional, dominate as the cause of death ([See glossary below](#glossary)). When compared with other age groups, homicide and suicide rank higher as causes of death in New York City from age 15 to 44.  Deaths at these ages from these causes are tragic, unnecessary and preventable.  
+Young and middle-aged adults don’t typically die from the natural causes that kill older adults. Injuries, both intentional and unintentional, dominate as the cause of death ([See glossary below](#glossary)). When compared with other age groups, homicide and suicide rank higher as causes of death in New York City from age 15 to 44.  Deaths at these ages from these causes are tragic, unnecessary and preventable; they occur disproportionately among young men of color.  
 
 <div style="border-left: 5px solid lightgray; padding: 5px; font-size: 14px;">
 <em><i class="fas fa-hands-helping text-center mr-1"></i>New Yorkers seeking support with their mental health can connect to trained counselors, for free and in over 200 languages, through NYC Well. For 24/7 support, call 888-NYC-WELL, text “WELL” to 65173 or chat online at <a href="nyc.gov/nycwell">nyc.gov/nycwell</a>. If you or someone you know is at immediate risk of hurting themselves, or in immediate danger, call 911.</em></div>
@@ -44,7 +44,7 @@ Within this age group, we also see disparities in homicide rates across boroughs
 
 Borough differences in homicides likely reflect a history of disinvestment in New York City that varies by neighborhood. Distribution of homicide by place offers a window into the broader physical, social, and economic context – namely, housing and park quality and availability, and access to schools, jobs, opportunities, healthcare, and more.  
 
-Suicide rates among New Yorkers age 15 to 24 are similar across race/ethnicity and across boroughs, with the exception of Staten Island, which has a suicide rate less than half that of other boroughs. 
+Among New Yorkers aged 15 to 24, suicide rates are similar across race/ethnicity and across boroughs, with the exception of Staten Island, which has a suicide rate less than half that of other boroughs. 
 
 Both homicide and suicide among people age 15 to 24 are much more common among young men than young women. Teens and men in this age group have homicide rates that are six times the rate of their female counterparts and suicide rates that are three times the rate of their female counterparts. 
 
@@ -59,7 +59,7 @@ Staten Island has a low rate of suicide among people age 15 to 24, but its suici
 
 Within this age group, the suicide rate is highest among Black non-Hispanic New Yorkers, though not dramatically so. Latinos in this age group have the lowest suicide rate across racial/ethnic groups. 
 
-Homicides are the third leading cause of death in this age group. Racial/ethnic, geographic, and sex disparities in homicide rates look similar in adults ages 25 to 34 as they do in those ages 15 to 24. 
+In this age group, homicides are the third leading cause of death. Racial/ethnic, geographic, and sex disparities in homicide rates look similar in adults ages 25 to 34 as they do in those ages 15 to 24. 
 
 <iframe title="Suicide rates age 25-34" class="my-4" aria-label="Split Bars" id="datawrapper-chart-7rrVq" src="https://datawrapper.dwcdn.net/7rrVq/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="191" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
@@ -77,11 +77,9 @@ Homicides are less prevalent within this age group.
 
 **By understanding what mechanisms (or weapons) people use for homicides and suicides, we can take steps to prevent these deaths.**
 
-In NYC, most homicide deaths among young and middle-aged adults occur with guns. [Nationwide, guns account for about 8 out of every 10 homicide deaths](https://www.pewresearch.org/short-reads/2023/04/26/what-the-data-says-about-gun-deaths-in-the-u-s/). Stabbing was the second most common mechanism of homicide deaths in NYC. 
+In NYC, most homicide deaths among young and middle-aged adults occur with guns. Stabbing was the second most common mechanism of homicide deaths in NYC. 
 
 Hanging is the leading mechanism of suicides among young and middle-aged New Yorkers, whereas guns are the leading mechanism of suicides nationwide. Guns are responsible for relatively few suicides among adults age 15 to 44 in NYC. 
-
-Suicide and homicide don't just affect the immediate victims. The impacts radiate, potentially widening disparities and additionally causing stress, trauma, and other negative health effects for victims’ friends, neighbors, colleagues and family members. [In communities where New Yorkers are more likely to experience either homicide or suicide, violence is both a personal and public health concern](/data-stories/violence). 
 
 </div>
 <div class="wide my-4">
@@ -90,9 +88,13 @@ Suicide and homicide don't just affect the immediate victims. The impacts radiat
 </div>
 <div class="narrow">
 
-Means reduction is a key part of a comprehensive suicide prevention strategy. Many people who attempt suicide do so during a short-term crisis, and therefore spend relatively little time thinking about the attempt before taking action ([according to one study of suicide attempt survivors, nearly half spent less than 10 minutes](https://www.hsph.harvard.edu/means-matter/means-matter/duration/)). For these people especially, access to means of self-harm can be the difference between thinking about suicide and actually going through with it.  
+Means reduction is a key part of a comprehensive suicide prevention strategy. Many people who attempt suicide do so during a short-term crisis, and therefore spend relatively little time thinking about the attempt before taking action ([according to one study of suicide attempt survivors, nearly half spent less than 10 minutes](https://www.hsph.harvard.edu/means-matter/means-matter/duration/). For these people especially, access to means of self-harm can be the difference between thinking about suicide and actually going through with it.  
 
 The means reduction approach can be applied to homicides, too. [Data shows that where there are more guns, there is more homicide](https://www.hsph.harvard.edu/hicrc/firearms-research/guns-and-death/). So if there are fewer guns, we can expect to see fewer homicide deaths.  
+
+Prevention’s greatest impacts will come when integrating multiple approaches. Means reduction approaches should be combined with examining and remediating the upstream drivers of homicide and suicide—such as housing and park quality and availability, and access to schools, jobs, opportunities, healthcare, and more. 
+
+Suicide and homicide don't just affect the immediate victims. The impacts radiate, potentially widening disparities and additionally causing stress, trauma, and other negative health effects for victims’ friends, neighbors, colleagues and family members. [In communities where New Yorkers are more likely to experience either homicide or suicide, violence is both a personal and public health concern](/data-stories/violence). 
 
 Each of these deaths is a tragedy—but by limiting access to the leading mechanisms of homicide and suicide, NYC has opportunities to prevent deaths among young and middle-aged adults. 
 
