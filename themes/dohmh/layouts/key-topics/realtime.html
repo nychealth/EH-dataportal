@@ -149,9 +149,17 @@
 
     <div class="row">
         <div class="col-12">
-            <div style="background-color:#f2f2f275; border-left: 2px solid darkgray;" class="p-1">
+            <div style="background-color:#f2f2f275; border-left: 2px solid darkgray;" class="p-1 hide" id="averageBox">
+                <p class="fs-sm">Over the last 24 hours, the average PM2.5 at this location is <span id="locAverage" style="font-weight:bold;" class="badge badge-primary">XX</span>. This is <span id="aboveBelow" style="font-weight:bold;">XX</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">National Ambient Air Quality Standard</a> of <span style="color:red">35 μg/m<sup>3</sup> over a 24-hour period</span>.</span></p>
+            </div>
+
+            <div style="background-color:#f2f2f275; border-left: 2px solid darkgray;" class="p-1 hide mt-1" id="decInfo">
                 <p class="fs-sm">Note: "DEC Monitor Average" is the average value of 11 roof-top monitors throughout the city, designed and placed for regulatory reporting. DOHMH street-level monitors are designed to measure ground-level exposures.</p>
             </div>
+
+
+
+
             <!-- last 24-hour info box -->
             <div class="infobox" id="locInfoBox" style="display:none">
                 <div id="locInfoDesc">

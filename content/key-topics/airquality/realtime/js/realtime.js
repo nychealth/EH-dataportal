@@ -102,7 +102,7 @@ function getSpec() {
 
         // get floor date and filter by floor date:
         filter = `datum.starttime > ${floorDate}`
-        current_spec.transform[0] = {"filter": filter}
+        current_spec.layer[0].transform[0] = {"filter": filter}
         drawChart(current_spec)
     });
 }
@@ -119,7 +119,7 @@ function getColors() {
         colors.push(activeMonitors[i].Color)
     }
     // colors.push('darkgray') // if DEC_Avg is present.
-    current_spec.encoding.color.scale.range = colors
+    current_spec.layer[0].encoding.color.scale.range = colors
 }
 
 
@@ -154,11 +154,21 @@ function listenButtons() {
 // ---- UPDATE DATA FUNCTION TO DEVELOP: takes loc_col as an argument ---- // 
 var opacity;
 var stroke; 
+var loc;
+var locData = [];
+
 function updateData(x) {
     // document to console:
     console.log('Showing data for: ' + x)
 
-    // /remove active classes, and highilght selected
+    getRecentAverage(x)
+
+
+
+
+
+
+    // /remove active classes, and highlight selected
     btns.forEach(x => {
         x.classList.remove('active') // remove from all 
     })
@@ -171,8 +181,12 @@ function updateData(x) {
         // zoom to the corresponding leaflet marker
         map.setView(monitors[index].getLatLng(), 13);
 
+        document.getElementById('decInfo').classList.add('hide')
+
+
     } else {
-        resetZoom()
+        resetZoom();
+        document.getElementById('decInfo').classList.remove('hide')
     }
 
 
@@ -193,10 +207,10 @@ function updateData(x) {
           "value": 1
         }
 
-    current_spec.encoding.opacity = opacity
-    current_spec.encoding.opacity.condition.test = `datum['SiteName'] === '${x}'`
-    current_spec.encoding.strokeWidth = stroke
-    current_spec.encoding.strokeWidth.condition.test = `datum['SiteName'] === '${x}'`
+    current_spec.layer[0].encoding.opacity = opacity
+    current_spec.layer[0].encoding.opacity.condition.test = `datum['SiteName'] === '${x}'`
+    current_spec.layer[0].encoding.strokeWidth = stroke
+    current_spec.layer[0].encoding.strokeWidth.condition.test = `datum['SiteName'] === '${x}'`
     vegaEmbed('#vis2', current_spec)
 
 
@@ -208,6 +222,45 @@ function getIndex(x) {
             return i
         }
     } 
+}
+
+function getRecentAverage(x) {
+    // Averaging recent values
+    loc = x; // retrieve location
+    locData = fullTable.filter(records => records.SiteName == x) // create array of location data
+    
+    // slice location data array to last 24 hours
+    var length = locData.length; 
+    var start = length - 24;
+    locData = locData.slice(start, length)
+
+    // average the last 24 hours
+    var average;
+    var sum = []
+    for (let i = 0; i < locData.length; i ++ ) {
+        sum.push(locData[i].Value)
+    }
+
+    let totals = 0
+    for (let i = 0; i < sum.length; i ++ ) {
+        totals += sum[i]
+    }
+
+    average = totals / 24
+    average = Math.round(average * 100) / 100
+
+    console.log('average for this location over the last 24 hours: ' + average)
+
+    // show box
+    document.getElementById('averageBox').classList.remove('hide')
+
+    // send values to page
+    document.getElementById('locAverage').innerHTML = average + ' μg/m<sup>3</sup>'
+    average > 35 ? document.getElementById('aboveBelow').innerHTML = 'above' : document.getElementById('aboveBelow').innerHTML = 'below'
+    average > 35 ? document.getElementById('aboveBelow').classList.add('badge') : document.getElementById('aboveBelow').classList.add('badge')
+    average > 35 ? document.getElementById('aboveBelow').classList.add('badge-warning') : document.getElementById('aboveBelow').classList.add('badge-success')
+
+
 }
 
 
@@ -357,7 +410,7 @@ function updateTime(x) {
 
     // send date filter to spec and re-draw Chart
     filter = `datum.starttime > ${filterTo}`
-    current_spec.transform[0] = {"filter": filter}
+    current_spec.layer[0].transform[0] = {"filter": filter}
     // console.log(current_spec)
     drawChart(current_spec)
 }
