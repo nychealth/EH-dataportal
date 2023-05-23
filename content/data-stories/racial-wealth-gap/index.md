@@ -7,8 +7,8 @@ seo_description: "A data story about how the racial wealth gap affects health"
 tags: 
 categories: ["social"]
 keywords: ["racial wealth gap","health equity","inequalities","inequities"]
-image: ds-povasthma.jpg
-photocredit: "Michael Appleton/Mayoral Photography Office"
+image: CrownHeights_JulienneSchaer-065.JPG
+photocredit: "Julienne Schaer/Mayoral Photography Office"
 ---
 
 Throughout history, the distribution of wealth in the U.S. has, and continues to be, largely unequal. This unequal distribution appears among socially identified racial groups, a concept called the racial wealth gap. There is a particularly wide divide between wealth held by White families and Black families. The racial wealth gap has major implications for public health, as a large and growing body of research reveals that wealth is consistently correlated with health outcomes. Effective solutions to racial inequities in wealth and health must address challenges at the individual, household, community, and systems levels.  
@@ -19,13 +19,13 @@ Income and wealth are two different concepts. Income is measured by earnings, wh
 
 The Federal Reserve Board’s 2019 Survey of Consumer Finances (SCF) shows that, nationally, the average White family holds nearly eight times the wealth of the average Black family and over five times the wealth of the average Hispanic family. 
 
-<iframe title="Mean and median net worth for  White, Black, and  Hispanic people in the US" aria-label="Grouped Column Chart" id="datawrapper-chart-nqi4y" class="border-top border-bottom py-2 my-2" src="https://datawrapper.dwcdn.net/nqi4y/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="481" data-external="1" class="my-4"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<iframe title="Mean and median net worth for  White, Black, and  Hispanic people in the US" aria-label="Grouped Column Chart" id="datawrapper-chart-nqi4y" src="https://datawrapper.dwcdn.net/nqi4y/7/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="481" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
 ### Racist and discriminatory policies have prevented Black families from accruing assets, financial security, and wealth 
 
 For much of American history, there has been a record of systematic policies implemented by the federal government that helped build wealth for White households while suppressing wealth accumulation for other groups, including Black and Hispanic households.  
 
-The Black-White wealth disparity, in particular, has been created and reinforced by systematic policies and practices including racial segregation laws, redlining, the discriminatory implementation of the New Deal and the G.I. Bill, and more. 
+The Black-White wealth disparity, in particular, has been created and reinforced by systematic policies and practices including racial segregation laws, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/redlining/" target="_blank">redlining,</a> the discriminatory implementation of the New Deal and the G.I. Bill, and more. 
 
 ### Greater wealth translates to better health 
 
@@ -63,7 +63,7 @@ White households are more likely than Black and Hispanic households to hold all 
 <div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02" data-parent="#accordion-01">
     <div class="card-body fs-sm">
 <p>
- Greater wealth allows people to live in neighborhoods with fewer environmental hazards, such as lead exposure and air pollution, fewer fast-food outlets, and more parks and green spaces for people to exercise.   
+ Greater wealth allows people to live in neighborhoods with fewer environmental hazards, such as lead and air pollution, fewer fast-food outlets, and more parks and green spaces for people to exercise.   
                 </p>
             </div>
 </div>
