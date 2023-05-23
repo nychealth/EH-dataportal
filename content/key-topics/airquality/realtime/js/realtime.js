@@ -19,12 +19,14 @@ var fullTable;
 var locSelect = "No location"
 var res;
 var floorDate;
+var maxTime;
+var maxTimeMinusDay;
 
 
 // ---- INITIAL: ingest data feed ---- // 
 aq.loadCSV(
-   // "data/nyccas_realtime_DEC.csv" // temporary local placeholder
-     "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv" // actual live data feed. Also update this in spec json.
+    "data/nyccas_realtime_DEC.csv" // temporary local placeholder
+   //  "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv" // actual live data feed. Also update this in spec json.
 
 ).then(data => {
 
@@ -36,6 +38,12 @@ aq.loadCSV(
     floorDate = new Date(fullTable[0].starttime) // creates earliest date in 7-day feed - used for time filter
     console.log('Showing data since: ' + floorDate)
     floorDate = Date.parse(floorDate) // converting to milliseconds
+
+    // get most recent time
+    var ftl = fullTable.length - 1
+    maxTime = fullTable[ftl].starttime
+    maxTime = Date.parse(maxTime)
+    maxTimeMinusDay = maxTime - 604800000
     
     // console.log("fullTable:", fullTable);
     getStationsFromData();
