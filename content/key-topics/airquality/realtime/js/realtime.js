@@ -102,7 +102,7 @@ function getSpec() {
 
         // get floor date and filter by floor date:
         filter = `datum.starttime > ${floorDate}`
-        current_spec.transform[0] = {"filter": filter}
+        current_spec.layer[0].transform[0] = {"filter": filter}
         drawChart(current_spec)
     });
 }
@@ -119,7 +119,7 @@ function getColors() {
         colors.push(activeMonitors[i].Color)
     }
     // colors.push('darkgray') // if DEC_Avg is present.
-    current_spec.encoding.color.scale.range = colors
+    current_spec.layer[0].encoding.color.scale.range = colors
 }
 
 
@@ -207,10 +207,10 @@ function updateData(x) {
           "value": 1
         }
 
-    current_spec.encoding.opacity = opacity
-    current_spec.encoding.opacity.condition.test = `datum['SiteName'] === '${x}'`
-    current_spec.encoding.strokeWidth = stroke
-    current_spec.encoding.strokeWidth.condition.test = `datum['SiteName'] === '${x}'`
+    current_spec.layer[0].encoding.opacity = opacity
+    current_spec.layer[0].encoding.opacity.condition.test = `datum['SiteName'] === '${x}'`
+    current_spec.layer[0].encoding.strokeWidth = stroke
+    current_spec.layer[0].encoding.strokeWidth.condition.test = `datum['SiteName'] === '${x}'`
     vegaEmbed('#vis2', current_spec)
 
 
@@ -410,7 +410,7 @@ function updateTime(x) {
 
     // send date filter to spec and re-draw Chart
     filter = `datum.starttime > ${filterTo}`
-    current_spec.transform[0] = {"filter": filter}
+    current_spec.layer[0].transform[0] = {"filter": filter}
     // console.log(current_spec)
     drawChart(current_spec)
 }
