@@ -25,7 +25,7 @@ The Federal Reserve Board’s 2019 Survey of Consumer Finances (SCF) shows that,
 
 For much of American history, there has been a record of systematic policies implemented by the federal government that helped build wealth for White households while suppressing wealth accumulation for other groups, including Black and Hispanic households.  
 
-The Black-White wealth disparity, in particular, has been created and reinforced by systematic policies and practices including racial segregation laws, redlining, the discriminatory implementation of the New Deal and the G.I. Bill, and more. 
+The Black-White wealth disparity, in particular, has been created and reinforced by systematic policies and practices including racial segregation laws, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/redlining/" target="_blank">redlining,</a> the discriminatory implementation of the New Deal and the G.I. Bill, and more. 
 
 ### Greater wealth translates to better health 
 
@@ -63,7 +63,7 @@ White households are more likely than Black and Hispanic households to hold all 
 <div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02" data-parent="#accordion-01">
     <div class="card-body fs-sm">
 <p>
- Greater wealth allows people to live in neighborhoods with fewer environmental hazards, such as lead exposure and air pollution, fewer fast-food outlets, and more parks and green spaces for people to exercise.   
+ Greater wealth allows people to live in neighborhoods with fewer environmental hazards, such as lead and air pollution, fewer fast-food outlets, and more parks and green spaces for people to exercise.   
                 </p>
             </div>
 </div>
