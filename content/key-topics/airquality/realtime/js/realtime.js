@@ -43,7 +43,9 @@ aq.loadCSV(
     var ftl = fullTable.length - 1
     maxTime = fullTable[ftl].starttime
     maxTime = Date.parse(maxTime)
-    maxTimeMinusDay = maxTime - 604800000
+    maxTimeMinusDay = maxTime - 86400000
+
+
     
     // console.log("fullTable:", fullTable);
     getStationsFromData();
@@ -111,6 +113,7 @@ function getSpec() {
         // get floor date and filter by floor date:
         filter = `datum.starttime > ${floorDate}`
         current_spec.layer[0].transform[0] = {"filter": filter}
+        current_spec.layer[2].encoding.x2.datum = maxTimeMinusDay
         drawChart(current_spec)
     });
 }
@@ -299,7 +302,7 @@ function drawMap() {
         
         var this_monitor = 
             L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
-            .bindTooltip(monitor.Location, {permanent: true, opacity: 0.85, interactive: true})
+            // .bindTooltip(monitor.Location, {permanent: true, opacity: 0.85, interactive: true})
             .addTo(monitors_group)
         
         // create group without the DEC Monitor, which we'll use to set the center and bounds
@@ -394,6 +397,8 @@ function restore() {
     })
     getSpec();
     document.getElementById('inputNum').value = 7
+
+    document.getElementById('averageBox').classList.add('hide')
 
 }
 

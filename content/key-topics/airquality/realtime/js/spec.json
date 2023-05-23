@@ -117,30 +117,11 @@
       },
       {
         "mark": "rect",
-        "color": "cyan",
-        "data": {
-          "values": [
-            {
-              "start": 1684432800000,
-              "end": {"aggregate": "max", "field": "starttime"}
-            }
-          ]
-        },
-      "encoding": {
-        "x": {
-          "field": "start",
-            "timeUnit": "hours",
-            "type": "temporal"
-        },
-        "x2": {
-          "field": "end",
-            "timeUnit": "hours",
-            "type": "temporal"
-        },
-        "y": {"aggregate": "max", "field": "Value"},
-        "y2": {"datum": 35},
-        "opacity": {"value": 0.2}
-      }
+        "encoding": {
+          "x": {"aggregate": "max", "field": "starttime", "type": "temporal"},
+          "x2": {"datum": 1684252800000, "type": "temporal"},
+          "opacity": {"value": 0.1}
+        }
       }
     ]
   }
