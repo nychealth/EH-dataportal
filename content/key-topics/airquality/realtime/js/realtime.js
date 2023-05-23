@@ -154,11 +154,21 @@ function listenButtons() {
 // ---- UPDATE DATA FUNCTION TO DEVELOP: takes loc_col as an argument ---- // 
 var opacity;
 var stroke; 
+var loc;
+var locData = [];
+
 function updateData(x) {
     // document to console:
     console.log('Showing data for: ' + x)
 
-    // /remove active classes, and highilght selected
+    getRecentAverage(x)
+
+
+
+
+
+
+    // /remove active classes, and highlight selected
     btns.forEach(x => {
         x.classList.remove('active') // remove from all 
     })
@@ -212,6 +222,45 @@ function getIndex(x) {
             return i
         }
     } 
+}
+
+function getRecentAverage(x) {
+    // Averaging recent values
+    loc = x; // retrieve location
+    locData = fullTable.filter(records => records.SiteName == x) // create array of location data
+    
+    // slice location data array to last 24 hours
+    var length = locData.length; 
+    var start = length - 24;
+    locData = locData.slice(start, length)
+
+    // average the last 24 hours
+    var average;
+    var sum = []
+    for (let i = 0; i < locData.length; i ++ ) {
+        sum.push(locData[i].Value)
+    }
+
+    let totals = 0
+    for (let i = 0; i < sum.length; i ++ ) {
+        totals += sum[i]
+    }
+
+    average = totals / 24
+    average = Math.round(average * 100) / 100
+
+    console.log('average for this location over the last 24 hours: ' + average)
+
+    // show box
+    document.getElementById('averageBox').classList.remove('hide')
+
+    // send values to page
+    document.getElementById('locAverage').innerHTML = average + ' μg/m<sup>3</sup>'
+    average > 35 ? document.getElementById('aboveBelow').innerHTML = 'above' : document.getElementById('aboveBelow').innerHTML = 'below'
+    average > 35 ? document.getElementById('aboveBelow').classList.add('badge') : document.getElementById('aboveBelow').classList.add('badge')
+    average > 35 ? document.getElementById('aboveBelow').classList.add('badge-warning') : document.getElementById('aboveBelow').classList.add('badge-success')
+
+
 }
 
 
