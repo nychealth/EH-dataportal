@@ -132,7 +132,7 @@ Between 2019 and 2021, the U.S. experienced a widening of its life expectancy ga
 
 
 ### Reducing the racial wealth gap
-In 2021 and 2022, the Federal Reserve Bank of New York, in partnership with the NYC Health Department, convened experts from the nonprofit, research, policy, and government sectors in a series of roundtable discussions to share their thoughts on the solutions, policies, and tools that should be considered to meaningfully address racial wealth and health gaps in the U.S.. Experts noted that bold public policy, better data collection, and increased community ownership are needed.  
+In 2021 and 2022, the Federal Reserve Bank of New York, in partnership with the NYC Health Department, convened experts from the nonprofit, research, policy, and government sectors in a series of roundtable discussions to share their thoughts on the solutions, policies, and tools that should be considered to meaningfully address racial wealth and health gaps in the U.S. Experts noted that bold public policy, better data collection, and increased community ownership are needed.  
 
 Policies like universal health care, medical debt cancellation, and increasing community ownership can help improve health and address health-related financial inequities—while policies like reparations can directly address the racial wealth gap.
 
