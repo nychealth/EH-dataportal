@@ -26,7 +26,7 @@ var maxTimeMinusDay;
 // ---- INITIAL: ingest data feed ---- // 
 aq.loadCSV(
    // "data/nyccas_realtime_DEC.csv" // temporary local placeholder
-     "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv" // actual live data feed. Also update this in spec json.
+   "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv" // actual live data feed. Also update this in spec json.
 
 ).then(data => {
 
@@ -113,7 +113,7 @@ function getSpec() {
         // get floor date and filter by floor date:
         filter = `datum.starttime > ${floorDate}`
         current_spec.layer[0].transform[0] = {"filter": filter}
-        current_spec.layer[2].encoding.x2.datum = maxTimeMinusDay
+        // current_spec.layer[2].encoding.x2.datum = maxTimeMinusDay
         drawChart(current_spec)
     });
 }
@@ -174,11 +174,6 @@ function updateData(x) {
 
     getRecentAverage(x)
 
-
-
-
-
-
     // /remove active classes, and highlight selected
     btns.forEach(x => {
         x.classList.remove('active') // remove from all 
@@ -222,6 +217,11 @@ function updateData(x) {
     current_spec.layer[0].encoding.opacity.condition.test = `datum['SiteName'] === '${x}'`
     current_spec.layer[0].encoding.strokeWidth = stroke
     current_spec.layer[0].encoding.strokeWidth.condition.test = `datum['SiteName'] === '${x}'`
+    
+    current_spec.layer[2].encoding.x2.datum = maxTimeMinusDay
+    current_spec.layer[2].encoding.opacity.value = 0.1
+
+
     vegaEmbed('#vis2', current_spec)
 
 
@@ -399,6 +399,8 @@ function restore() {
     document.getElementById('inputNum').value = 7
 
     document.getElementById('averageBox').classList.add('hide')
+    current_spec.layer[2].encoding.opacity.value = 0.0
+    vegaEmbed('#vis2', current_spec)
 
 }
 
