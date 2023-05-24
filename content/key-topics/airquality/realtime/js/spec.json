@@ -114,6 +114,14 @@
           "size": {"value": 2},
           "strokeDash" : {"value": [2,2]}
         }
+      },
+      {
+        "mark": "rect",
+        "encoding": {
+          "x": {"aggregate": "max", "field": "starttime", "type": "temporal"},
+          "x2": {"datum": 1684252800000, "type": "temporal"},
+          "opacity": {"value": 0.0}
+        }
       }
     ]
   }

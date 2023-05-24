@@ -109,7 +109,7 @@ function getSpec() {
         // get floor date and filter by floor date:
         filter = `datum.starttime > ${floorDate}`
         current_spec.layer[0].transform[0] = {"filter": filter}
-        // current_spec.layer[2].encoding.x2.datum = maxTimeMinusDay
+        current_spec.layer[2].encoding.x2.datum = maxTimeMinusDay
         drawChart(current_spec)
     });
 }
@@ -214,8 +214,8 @@ function updateData(x) {
     current_spec.layer[0].encoding.strokeWidth = stroke
     current_spec.layer[0].encoding.strokeWidth.condition.test = `datum['SiteName'] === '${x}'`
     
-    // current_spec.layer[2].encoding.x2.datum = maxTimeMinusDay
-    // current_spec.layer[2].encoding.opacity.value = 0.1
+    current_spec.layer[2].encoding.x2.datum = maxTimeMinusDay
+    current_spec.layer[2].encoding.opacity.value = 0.1
 
 
     vegaEmbed('#vis2', current_spec)
@@ -395,7 +395,7 @@ function restore() {
     document.getElementById('inputNum').value = 7
 
     document.getElementById('averageBox').classList.add('hide')
-    // current_spec.layer[2].encoding.opacity.value = 0.0
+    current_spec.layer[2].encoding.opacity.value = 0.0
     vegaEmbed('#vis2', current_spec)
 
 }
@@ -426,16 +426,3 @@ function updateTime(x) {
     drawChart(current_spec)
 }
 
-/*
-Layer[2] can be added as follows, but it breaks the time-selection.
-
-      {
-        "mark": "rect",
-        "encoding": {
-          "x": {"aggregate": "max", "field": "starttime", "type": "temporal"},
-          "x2": {"datum": 1684252800000, "type": "temporal"},
-          "opacity": {"value": 0.0}
-        }
-      }
-
-*/
