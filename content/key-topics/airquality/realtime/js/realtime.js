@@ -21,8 +21,8 @@ var maxTimeMinusDay;
 
 // ---- INITIAL: ingest data feed ---- // 
 aq.loadCSV(
-    "data/nyccas_realtime_DEC.csv" // temporary local placeholder
-   // "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv" // actual live data feed. Also update this in spec json.
+   // "data/nyccas_realtime_DEC.csv" // temporary local placeholder
+    "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv" // actual live data feed. Also update this in spec json.
 
 ).then(data => {
 
