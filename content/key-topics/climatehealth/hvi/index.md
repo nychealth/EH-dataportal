@@ -12,3 +12,4 @@ accessibleAutocomplete: /js/accessible-autocomplete.min.js
 vega: true
 ---
 
+Use this Heat Vulnerability Explorer to look up your the heat vulnerability of your neighborhood, and the neighborhood characteristics that affect it.

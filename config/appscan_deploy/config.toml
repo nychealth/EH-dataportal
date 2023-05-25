@@ -1,0 +1,8 @@
+baseURL = "https://stgbespweb600/IndicatorPublic/beta/"
+[params]
+    data_branch = "production"
+
+[caches]
+    [caches.getresource]
+      dir = ':cacheDir/:project'
+      maxAge = 0

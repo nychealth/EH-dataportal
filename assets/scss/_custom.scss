@@ -4,11 +4,11 @@ table {
       background-color: #F0F0F0;
       color: #669DB1;
       font-weight: bold;
-      
+
 
       &::before {
         @extend %fa-icon;
-      }      
+      }
 
       &:not(.hidden)::before {
         content: "\f068";
@@ -23,5 +23,23 @@ table {
         cursor: pointer;
       }
     }
+  }
+}
+
+.print-only {
+  display: none;
+}
+
+@media print {
+  .print-only {
+    display: flex;
+  }
+  .reports {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  .p-mt-sm {
+    margin-top: .75rem !important;
   }
 }

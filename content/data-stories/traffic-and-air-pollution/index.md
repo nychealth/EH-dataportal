@@ -1,7 +1,7 @@
 ---
 title: The Public Health Impacts of PM2.5 from Traffic Air Pollution
 draft: false
-date: 2023-04-05T08:49:22-04:00
+date: 2021-02-05T08:49:22-04:00
 image: ESB_sunrise_JulienneSchaer-066.JPG
 photocredit: Julienne Schaer/Mayoral Photography Office
 categories: 
@@ -20,7 +20,7 @@ seo_description: "The public health impacts of PM2.5 from traffic air pollution 
 
 PM2.5—or fine particulate matter—are tiny particles that pollute the air and result from everyday urban activities like driving. PM2.5 can be solid or liquid in form when it is airborne. PM2.5 is the most harmful air pollution for humans to breathe in because the particles are small enough to enter the bloodstream through the lungs. Each PM2.5 particle is less than 2.5 microns in diameter. That is small enough to fit inside a red blood cell. 
 
- <img src = "PM2.5 particle_final.svg" alt="A PM2.5 particle is smaller than a red blood cell" class="px-6 my-4">
+ <img src = "PM2.5 particle_final.svg" alt="A PM2.5 particle is smaller than a red blood cell" class="px-6 m-4">
 
 ## The public health impacts of PM2.5
 
@@ -41,28 +41,29 @@ Once in the bloodstream, PM2.5 can cause health problems to the respiratory and 
 
 ## Health impacts of PM2.5 in New York City 
 
-In New York City, current overall PM2.5 levels from all sources contribute to 2,300 deaths and 6,300 emergency department visits and hospitalizations for respiratory and cardiovascular disease each year. 
+In New York City, current overall PM2.5 levels from all sources contribute to 2,000 deaths and 5,150 emergency department visits and hospitalizations for respiratory and cardiovascular disease each year. 
 
 </div>
 <div class="wide my-4">
     <div class="row">
-        <div class="col-md-6 mt-2" ><h3 class="mb-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 31 cardiovascular hospitalizations</h3><img src= "1 in 31.svg" alt="1 out 31 cardiovascular hospitalizations in NYC are caused by PM2.5"/></div>
-        <div class="col-md-6 mt-2" ><h3 class="mb-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 31 respiratory hospital visits<h3><img src= "1 in 31.svg" alt="1 out of 31 respiratory hospital visits in NYC are caused by PM2.5"/></div>
-        <div class="col-md-6 mt-2"><h3 class="my-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 17 asthma emergency room visits</h3><img src= "1 in 17 cropped.svg" alt="1 out of 17 asthma emergency room visits in NYC are caused by PM2.5"/></div>
-        <div class="col-md-6 mt-2" ><h3 class="my-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 20 deaths</h3><img src = "1 in 20 cropped.svg" alt="1 out of 20 deaths are caused by PM2.5"/></div>
+        <div class="col-md-6 mt-2" ><h3 class="mb-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 140 cardiovascular hospitalizations</h3><img src= "1 in 140C.svg" alt="1 out 140 cardiovascular hospitalizations in NYC are caused by PM2.5"/></div>
+        <div class="col-md-6 mt-2" ><h3 class="mb-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 68 respiratory hospital visits<h3><img src= "1 in 68C.svg" alt="1 out of 68 respiratory hospital visits in NYC are caused by PM2.5"/></div>
+        <div class="col-md-6 mt-2"><h3 class="my-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 28 asthma emergency room visits</h3><img src= "1 in 28C.svg" alt="1 out of 28 asthma emergency room visits in NYC are caused by PM2.5"/></div>
+        <div class="col-md-6 mt-2" ><h3 class="my-3 fs-lg"><img src="hospital.svg" style="width:8%; height:auto" class="mr-1">1 in 25 deaths</h3><img src = "1 in 25C.svg" alt="1 out of 25 deaths are caused by PM2.5"/></div>
     </div>
 </div>
-<div class="narrow">
 
+
+<div class="narrow my-4">
 
 ## Traffic is a major source of PM2.5 in NYC
 
 PM2.5 in NYC comes from inside and outside the city from all kinds of combustion activity. This includes the burning of fuel in vehicles, buildings, power plants, and construction equipment, as well as commercial cooking and industrial activities. PM2.5 can either come directly from these sources or be formed in the atmosphere from other pollutants. 
 
-<iframe title="17% of PM2.5 comes from traffic" aria-label="Donut Chart" id="datawrapper-chart-8VqIl" src="https://datawrapper.dwcdn.net/8VqIl/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="459" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<iframe title="14% of PM2.5 comes from traffic" aria-label="Donut Chart" class="my-4 "id="datawrapper-chart-8VqIl" src="https://datawrapper.dwcdn.net/8VqIl/11/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="450" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
 
-17% of the PM2.5 emitted from NYC activities comes from everyday car, bus, and truck traffic. With the prevalence of people getting more deliveries, traffic patterns are changing.  
+14% of the PM2.5 emitted from NYC activities comes from everyday car, bus, and truck traffic. With the prevalence of people getting more deliveries, traffic patterns are changing.  
 
 However, the health impacts of PM2.5 from traffic are still felt more acutely in less wealthy neighborhoods. 
 
@@ -99,13 +100,14 @@ Some neighborhoods in New York City experience higher concentrations of PM2.5 fr
         <div class="col-12">
         </div>
     </div>
+    <em class="fs-sm">Traffic-related PM2.5 is estimated from air quality models.</em>
 </div>
 <div class="narrow mt-4">
 
 
 ## PM2.5 pollution from traffic contributes to adverse health effects 
  
-PM2.5 pollution from traffic in NYC contributes to about 320 premature deaths and 870 emergency department (ED) visits and hospitalizations each year. 
+PM2.5 pollution from traffic in NYC contributes to an estimated 320 premature deaths and 870 emergency department (ED) visits and hospitalizations each year. 
 
 </div>
 <div class="wide my-4">
@@ -115,25 +117,24 @@ PM2.5 pollution from traffic in NYC contributes to about 320 premature deaths an
 
 ## PM2.5-related health problems from traffic are highest in the poorest neighborhoods 
 
-PM2.5 levels from all traffic sources are about 50% higher in high poverty neighborhoods than in low poverty neighborhoods. PM2.5 levels from trucks and buses are about 70% higher in high poverty neighborhoods than low poverty neighborhoods. The number of hospitalizations and ED visits related to pollution from traffic are highest in the poorest neighborhoods.
+PM2.5 levels from all traffic sources are about 50% higher in high poverty neighborhoods than in low poverty neighborhoods. PM2.5 levels from trucks and buses are also higher in high poverty neighborhoods than low poverty neighborhoods. The number of hospitalizations and ED visits related to pollution from traffic are highest in the poorest neighborhoods.
 
-<iframe title="PM2.5 from traffic is highest in the poorest neighborhoods" aria-label="Interactive line chart" id="datawrapper-chart-rVmD7" src="https://datawrapper.dwcdn.net/rVmD7/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="510" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<iframe title="PM2.5 from traffic is highest in the poorest neighborhoods." class="my-4" aria-label="Split Bars" id="datawrapper-chart-9jmEo" src="https://datawrapper.dwcdn.net/9jmEo/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="153" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
 
-<br></br>
-
- <img src = "trucks_final.svg" alt="PM2.5 levels from trucks and buses are about 70% higher in high poverty neighborhoods"/>
-
- <br></br>
+ <img src = "trucks_final.svg" alt="PM2.5 levels from trucks and buses are about 70% higher in high poverty neighborhoods" class="my-4">
 
 ## How is your neighborhood affected?
 
-You can find out the mortality rate, hospitalizations for respiratory and cardiovascular illness rates, and emergency department visits for asthma rate for any neighborhood by entering it into the table below. You can compare these rates with poverty level to see how health impacts from traffic-related PM2.5 are differently distributed based upon income in a given neighborhood. 
+You can find out the estimated mortality rate, hospitalizations for respiratory and cardiovascular illness rates, and emergency department visits for asthma rate for any neighborhood by entering it into the table below. You can compare these rates with poverty level to see how health impacts from traffic-related PM2.5 are differently distributed based upon income in a given neighborhood. 
 
 </div>
 <div class="wide my-4">
 
-<iframe title="Health impacts due to PM2.5 from traffic" aria-label="Table" id="datawrapper-chart-vd4T9" src="https://datawrapper.dwcdn.net/vd4T9/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="733" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
-</div>
-<div class="narrow">
+<iframe title="Health impacts due to PM2.5 from traffic" class="my-4" aria-label="Table" id="datawrapper-chart-atWCN" src="https://datawrapper.dwcdn.net/atWCN/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1120" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
 <a href="https://ehjournal.biomedcentral.com/articles/10.1186/s12940-016-0172-6"> Read the full report on how PM2.5 from traffic contributes to negative health effects in New York City.</a>
+
+</div>
+
+<div class="narrow">

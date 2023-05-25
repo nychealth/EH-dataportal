@@ -8,6 +8,10 @@ featured_text: "Findings from over a decade of our comprehensive, city-wide air 
 featured_link: "/key-topics/airquality/nyccas"
 featured_image: nyccas.png
 recently_updated:
+- Name: Average Citi Bike availability
+  Link: /data-explorer/active-design/?id=2425#display=summary
+- Name: Citi Bike stations
+  Link: /data-explorer/active-design/?id=2426#display=summary
 - Name: Commuting modes
   Link: /data-explorer/walking-driving-and-cycling/?id=2415#display=summary
 - Name: Tobacco retailers

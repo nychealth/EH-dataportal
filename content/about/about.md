@@ -10,7 +10,7 @@ The NYC Environment & Health Data Portal shows how environments affect health, b
 
 The Environment & Health Data Portal is a project by the NYC Department of Health and Mental Hygiene's Bureau of Environmental Surveillance and Policy. Our bureau works to analyze data on environmental health and translate it to Health Department and Citywide policies that protect New Yorkers, improve our environment, and maintain our health. [Check out open positions in our bureau](/about/jobs/).
 
-{{< rawhtml >}}<i class="fas fa-envelope mr-1"></i>{{< /rawhtml >}} [Email us with thoughts, questions, or concerns](mailto:trackingportal@health.nyc.gov).
+{{< rawhtml >}}<i class="fas fa-envelope mr-1"></i>{{< /rawhtml >}} [Email us with thoughts, questions, or concerns](mailto:ehdp@health.nyc.gov).
 
 {{< rawhtml >}}<i class="fas fa-question-circle mr-1"></i>{{< /rawhtml >}} [Questions about the data? Visit our Github repo for info or to file an issue](https://www.github.com/nychealth/EH-dataportal).
 
