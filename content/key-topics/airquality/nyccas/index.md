@@ -99,7 +99,7 @@ moreInfo: >-
     <ul><li><a target="_blank" rel="noopener noreferrer" 
     href="Appendix1.pdf">Appendix
     1 (PDF) </a>: Sampling Methodology and Data Sources for Emissions
-    Indicators.</li><li><a target="_blank" rel="noopener noreferrer" rel="noopener noreferrer"
+    Indicators.</li><li><a target="_blank" rel="noopener noreferrer"
     href="Appendix2.pdf">Appendix 2 (PDF) </a>: Seasonal Average Pollutant
     Maps.</li><li><a
     href="Appendix3.pdf">Appendix
