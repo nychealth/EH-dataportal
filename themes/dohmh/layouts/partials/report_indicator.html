@@ -40,13 +40,12 @@
         <div class="col-5 border-left">
             <div class="comparison">
                 <div class="row">
-                    <div class="col">{{ .location }}: {{ .ind.data_value_geo_entity }}</div>
-                </div>
-                <div class="row">
-                    <div class="col">{{ .borough }}: {{ .ind.data_value_borough }}</div>
-                </div>
-                <div class="row">
-                    <div class="col">New York City: {{ .ind.data_value_nyc }}</div>
+                    <div class="col">
+                        {{ .location }}: <span class="float-right">{{ .ind.data_value_geo_entity }}</span><br>
+                        {{ .borough }}: <span class="float-right">{{ .ind.data_value_borough }}</span><br>
+                        New York City: <span class="float-right">{{ .ind.data_value_nyc }}</span>
+                     </div>
+
                 </div>
             </div>
             <p style="font-size: 12px;"><em>{{ .ind.measurement_type }} {{ .ind.units }}</em></p>
