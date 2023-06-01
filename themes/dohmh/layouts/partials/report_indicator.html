@@ -111,8 +111,8 @@
             <!-- .modal-body -->
             <div class="flex-column p-2">
                 {{- if isset .ind "source_description" -}}<p class="fs-sm mb-4"><em>Source: {{ htmlUnescape .ind.source_description }}</em></p>{{- end -}}
-                <a id="{{ $dataname }}" href="/data-explorer/TOPIC/?id={{ $indID }}" style="display:none">
-                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the dataset</button></a>
+                <a id="{{ $dataname }}" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
                 <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
             </div>
         </div>
