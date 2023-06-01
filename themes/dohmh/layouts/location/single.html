@@ -49,11 +49,11 @@
     let summarySpec;
 
     d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/summarySpec.json").then(data => {
-        
+
         summarySpec = data;
-        
+
         // highlight current neighborhood
-        
+
         summarySpec.encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
 
     })
@@ -63,18 +63,18 @@
     let mapSpec;
 
     d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/mapSpec.json").then(data => {
-        
+
         mapSpec = data;
-        
+
         // highlight current neighborhood
-    
+
         mapSpec.layer[2].encoding.stroke.condition.test = "datum.neighborhood == '" + NeighborhoodName + "'";
 
         // set data branch for geo files
-        
+
         mapSpec.transform[0].from['data'].url = "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/geography/UHF42.topo.json"
         mapSpec.layer[0].data.url = "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/geography/borough.topo.json"
-        
+
     });
 
     // ---- trend ---- //
@@ -82,13 +82,13 @@
     let trendSpec;
 
     d3.json("{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/spec/trendSpec.json").then(data => {
-        
+
         trendSpec = data;
-        
+
         // highlight current neighborhood
-    
+
         trendSpec.layer[1].encoding.color.condition.test = "datum.neighborhood=='" + NeighborhoodName + "'";
-        
+
     });
 
 </script>
@@ -97,7 +97,7 @@
 {{- $.Scratch.Set "neighborhoodDir" .Parent.File.Dir -}}
 {{- $.Scratch.Set "reportFile" .File.BaseFileName -}}
 
-<div class="d-flex flex-column report-header">
+<div class="d-flex flex-column report-header d-print-none">
 
     <!-- Toggle #sidebar-nav on mobile -->
     <div class="container-fluid p-0 d-lg-none">
@@ -163,9 +163,11 @@
                         </div>
                     </div>
                 </form>
-                <hr class="mt-4 mb-1">
-                
-                <button onclick="downloadData()" class="btn btn-sm btn-block btn-report" target="_blank" rel="noopener noreferrer"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>
+
+                <button onclick="downloadData()" class="btn btn-sm btn-block btn-report mt-4" target="_blank"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>
+
+                <button onclick="window.print()" class="btn btn-sm btn-block btn-report" target="_blank"><i class="fas fa-print mr-1"></i>Print Report</button>
+
 
             </div>
             <!-- .sticky-top -->
@@ -181,7 +183,7 @@
             var downloadLoc = "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/data/" + data_download_loc
 
             // loading report-level CSV data
-            
+
             aq.loadCSV(
                 downloadLoc,
                 { autoMax: 10000,  parse: { time: String } }
@@ -194,14 +196,14 @@
             // set data download location
             var reportData;
             var download;
-            
+
             // create an element, create the CSV, and download it
             function downloadData() {
 
                 download = arqTable
                     .select(aq.not('report_id','indicator_id','data_field_name','start_date','end_date')) // drop unnecessary columns
                     .filter(d => d.neighborhood == '{{ .geo_entity_name }}')
-                
+
                 let downloadTableCSV = download.toCSV(); // format as CSV
                 // Data URI
                 let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
@@ -210,7 +212,7 @@
                 hiddenElement.target = '_blank';
                 hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - {{ .geo_entity_name }}.csv";
                 hiddenElement.click();
-                
+
                 gtag('event', 'file_download', {
                     'file_name': hiddenElement.download,
                     'file_extension': '.csv',
@@ -221,9 +223,9 @@
 
         </script>
 
-        <div class="col-12 col-lg-9 overflow-hidden" id="primary-content">
-            <div class="my-5">
-                <div class="px-lg-6 my-4">
+        <div class="col-12 col-lg-9 overflow-hidden reports" id="primary-content">
+            <div class="my-5 p-mt-sm">
+                <div class="px-lg-6 my-4 p-mt-sm">
                     <h1 class="report-title">{{ $.Params.title }} in<br>
                         <span class="sub-title">{{ $.Params.neighborhood }}</span>
                     </h1>
@@ -232,7 +234,7 @@
                     <p><strong style="color:#00923E">{{ .geo_entity_name }}</strong> includes ZIP Codes: <span
                               class="home-label">{{ .zip_code }}</span>.</p>
 
-                    <hr class="mt-4">
+                    <hr class="mt-4 d-print-none">
 
                     <div>
 
@@ -251,23 +253,36 @@
                             </div>
 
                             <div class="container-fluid px-0 mb-4">
-                                <div class="row indicator-headings mb-2">
+                                <!-- Hide on print -->
+                                <div class="row indicator-headings mb-2 d-print-none">
                                     <div class="col-6 col-md-5 pl-3">
                                         Topic
                                     </div>
                                     <div class="col-6 col-md-4">
 
                                         <div class="position-relative">
-                                            Comparison<br>
-                                            <span class="meta"> to NYC average</span></a>
-                                            <a href="#" data-toggle="modal" data-target="#modal-rank"
-                                               class="info-modal"><i class="fas fa-question-circle fs-rg"></i></a>
+                                            <span class="meta">Compared to other neighborhoods<a href="#" data-toggle="modal" data-target="#modal-rank"
+                                                class="info-modal meta"><i class="fas fa-question-circle fs-rg ml-1"></i> </span></a>
+
                                         </div>
 
                                     </div>
                                     <div class="d-none d-md-inline col-md-3">
-                                        Rank<br>
-                                        <span class="meta"> out of the 42 neighborhoods</span>
+                                        <span class="meta">All neighborhoods</span>
+                                    </div>
+                                </div>
+
+                                <!-- Only show on pring -->
+                                <div class="row indicator-headings mb-2 print-only">
+                                    <div class="col-4 font-weight-bold">
+                                        Topic
+                                    </div>
+                                    <div class="col-8">
+
+                                        <div class="position-relative">
+                                            <span class="meta">Compared to other neighborhoods</span>
+                                        </div>
+
                                     </div>
                                 </div>
 
@@ -299,7 +314,7 @@
 
 {{/* Variable to load the the data file from the content_yml frontmatter */}}
 {{- $content := index $.Site.Data.globals.report_content $.Params.content_yml -}}
-<section class="related-reading">
+<section class="related-reading d-print-none">
     <div class="container">
         <div class="row">
 
