@@ -1,5 +1,5 @@
 ---
-title: The racial wealth gap has big implications for public health 
+title: The racial wealth gap has big implications for public health and health equity
 date: 2023-05-12T13:11:44-04:00
 draft: false
 seo_title: "How the racial wealth gap affects health"
@@ -121,9 +121,9 @@ White households are more likely than Black and Hispanic households to hold all 
 
 <div class="narrow my-4">
 
-### Black-White health inequities haven't improved
+### Black-White racial health inequities haven't improved
 
-Data shows that Black-White health inequities have not narrowed over time. For example, Black-White ratios of mortality from coronary heart disease, cancer, diabetes, cirrhosis of the liver, and infant mortality were larger in the late 1990s than in 1950.  
+Data shows that Black-White racial health inequities have not narrowed over time. For example, Black-White ratios of mortality from coronary heart disease, cancer, diabetes, cirrhosis of the liver, and infant mortality were larger in the late 1990s than in 1950.  
 
 Between 2019 and 2021, the U.S. experienced a widening of its life expectancy gap during the COVID-19 pandemic with Hispanic and non-Hispanic Black populations experiencing larger declines in life expectancy over the two-year period than non-Hispanic White populations. 
 
