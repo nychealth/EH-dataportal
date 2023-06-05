@@ -3,7 +3,7 @@
 <article class="container-fluid" id="skip-header-target">
     
     <div class="row">
-        <div class="col-md-11 mx-auto mt-4 pl-0">
+        <div class="col-md-11 mx-auto mt-4">
             <nav aria-label="breadcrumb" class="mb-4">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -18,13 +18,164 @@
     </div>
     
     <div class="row">
-        <div class="col-md-11 mx-auto pl-0">
+        <div class="col-md-11 mx-auto">
                     <h2>{{ .Title }}</h2>
                     <p>{{ .Content }}</p>
         </div>
         
     </div>
+
+    <div class="row mb-4">
+        <div class="col-md-5 ml-auto">
+            <div id="map" class="border">
+            </div>
+        </div>
+
+        <div class="col-md-6 mr-auto">
+            <div class="row border-top mb-2">
+                <div class="col-12"><strong>Inspection data:</strong></div>
+
+                <div class="col-6">
+                    <p><span class="home-label">Zone:</span><br>
+                        <span id="zoneName" class="fwm"></span></p>
+                </div>
+
+                <div class="col-6">
+                    <p><span class="home-label">Total Inspections:</span><br>
+                        <span id="totalInspections" class="fwm"></span></p>
+        
+                </div>
+            </div>
+
+            <div class="row border-top my-2">
+                <div class="col-6">
+                    <p><span class="home-label">City Agency Referral:</span><br>
+                        <span id="agency" class="fwm"></span></p>
+                </div>
+                <div class="col-6">
+                    <p><span class="home-label">Private Property COTA:</span><br>
+                        <span id="cota" class="fwm"></span></p>
+                </div>
+
+            </div>
+
+            <div class="row border-top my-2">
+                <div class="col-6">
+                    <p><span class="home-label">Failed compliance inspection:</span><br>
+                        <span id="failed" class="fwm"></span></p>
+                </div>
+
+                <div class="col-6">
+                    <p><span class="home-label">Passed compliance inspection:</span><br>
+                        <span id="passed" class="fwm"></span></p>
+                </div>
+            </div>
+
+            <div class="row border-top my-2">
+                <div class="col-6">
+                    <p><span class="home-label">Visits by DOHMH exterminator:</span><br>
+                        <span id="exterminator" class="fwm"></span></p>
+                </div>
+
+                <div class="col-6">
+                    <p><span class="home-label">Visits with bait applied:</span><br>
+                        <span id="bait" class="fwm"></span></p>
+                </div>
+            </div>
+
+            <div class="row border-top mt-6 my-2">
+                <div class="col-12"><strong>Complaints for:</strong></div>
+                <div class="col-4">
+                    <p><span class="home-label">Rodent conditions:</span><br>
+                        <span id="attracting" class="fwm"></span></p>
+                </div>
+                <div class="col-4">
+                    <p><span class="home-label">Mouse sighting:</span><br>
+                        <span id="mouse" class="fwm"></span></p>
+                </div>
+                <div class="col-4">
+                    <p><span class="home-label">Rat sighting:</span><br>
+                        <span id="rat" class="fwm"></span></p>
+                </div>
+                <div class="col-4">
+                    <p><span class="home-label">Rodent bite:</span><br>
+                        <span id="bite" class="fwm"></span></p>
+                </div>
+                <div class="col-4">
+                    <p><span class="home-label">Rodent signs:</span><br>
+                        <span id="signs" class="fwm"></span></p>
+                </div>
+
+            </div>
+
+
+            <!--
+            <table>
+                <colgroup>
+                    <col span="1" style="width: 40%;">
+                    <col span="1" style="width: 60%;">
+                  </colgroup>
+                <thead>
+                  <tr>
+                    <th>Prompt</th>
+                    <th>Value<br></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Zone:</td>
+                    <td><span id="zn"></span></td>
+                  </tr>
+                  <tr>
+                    <td>Total inspections</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Inspections resulting in City Agency Referral</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Private Property inspections resulting in Commissioner's Order to Abate</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Failed compliance inspection</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Passed compliance inspection</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Visits by DOHMH exterminator</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>Visits resulting in bait application</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+                </table>
+            -->
+        </div>
+
+    </div>
+
+<style>
+    #map {
+        height: 600px;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .fwm {
+        font-weight: 600
+    }
+</style>
     
 </article>
+
+<!--bring in realtime JS -->
+<script type="text/javascript" src="rmz.js"></script>
 
 {{- end -}}

@@ -8,6 +8,9 @@ tags:
 categories: [pests]
 keywords: 
 layout: rmz
+vega: true
+arquero: true
+leaflet: true
 ---
 
 RMZ Content
