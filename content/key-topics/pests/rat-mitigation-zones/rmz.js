@@ -62,7 +62,6 @@ function onEachFeature(feature, layer) {
     });
 }
 
-
 // HIGHLIGHT, SELECT, ZOOM, HOVER
 function resetHighlight(e) {
     geog.resetStyle(e.target);
@@ -70,7 +69,6 @@ function resetHighlight(e) {
 
 function zoomToFeature(e) {
     map.fitBounds(e.target.getBounds());
-    // console.log('ObjectID: ' + e.target.feature.properties.OBJECTID)
     id = e.target.feature.properties.OBJECTID
     console.log('Name: ' + e.target.feature.properties.Label) 
     name = e.target.feature.properties.Label
@@ -81,17 +79,14 @@ function zoomToFeature(e) {
 // Highlght feature
 function highlightFeature(e) {
     const layer = e.target;
-
-layer.setStyle({ // Styles for hover-highlight
-    weight: 1,
-    color: 'white',
-    dashArray: '3',
-    fillOpacity: 0.7
-});
+    layer.setStyle({ // Styles for hover-highlight
+        weight: 2,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    });
 
 layer.bringToFront();
-
-// console.log(layer.feature.properties.GEOCODE)
 
 }
 
