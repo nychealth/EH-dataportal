@@ -9,6 +9,8 @@ const renderMap = (
 
         console.log("** renderMap");
 
+        // console.log("data [renderMap]", data);
+
         // ----------------------------------------------------------------------- //
         // get unique time in data
         // ----------------------------------------------------------------------- //
@@ -20,6 +22,7 @@ const renderMap = (
         // console.log("mapYears [map.js]", mapYears);
 
         let mapGeoType            = data[0].GeoType;
+        let geoTypeShortDesc      = data[0].GeoTypeShortDesc;
         let mapMeasurementType    = metadata[0].MeasurementType;
         let displayType           = metadata[0].DisplayType;
         let mapGeoTypeDescription = 
@@ -60,7 +63,7 @@ const renderMap = (
         // set geo file based on geo type
         // ----------------------------------------------------------------------- //
 
-        console.log("mapGeoType [renderMap]", mapGeoType);
+        // console.log("mapGeoType [renderMap]", mapGeoType);
 
         if (mapGeoType === "NTA2010") {
             topoFile = 'NTA_2010.topo.json';
@@ -82,8 +85,8 @@ const renderMap = (
             topoFile = 'NYCKids_2017.topo.json';
         } else if (mapGeoType === "NYCKIDS2019") {
             topoFile = 'NYCKids_2019.topo.json';
-        } else if (mapGeoType === "NYCKIDS2021") {
-            topoFile = 'NYCKids_2021.topo.json';
+        } else if (mapGeoType === "Borough") {
+            topoFile = 'borough.topo.json';
         }
 
         // ----------------------------------------------------------------------- //
@@ -183,7 +186,10 @@ const renderMap = (
                                     "value": 0
                                 },
                                 "tooltip": [
-                                    {"field": "Geography", "title": "Neighborhood"},
+                                    {
+                                        "field": "Geography", 
+                                        "title": geoTypeShortDesc
+                                    },
                                     {
                                         "field": "DisplayValue",
                                         "title": mapMeasurementType
@@ -220,7 +226,7 @@ const renderMap = (
                         "tooltip": [
                             {
                                 "field": "Geography", 
-                                "title": "Neighborhood"
+                                "title": geoTypeShortDesc
                             },
                             {
                                 "field": "DisplayValue", 
