@@ -32,56 +32,59 @@
         </div>
 
         <div class="col-md-6 mr-auto">
-            <div class="row border-top mb-2">
-                <div class="col-12"><strong>Inspection data:</strong></div>
-
-                <div class="col-6">
-                    <p><span class="home-label">Zone:</span><br>
-                        <span id="zoneName" class="fwm"></span></p>
+                <div class="row border-top mb-2">
+                    <div class="col-12"><strong>Inspection data:</strong></div>
+    
+                    <div class="col-6">
+                        <p><span class="home-label">Zone:</span><br>
+                            <span id="zoneName" class="fwm"></span></p>
+                    </div>
+    
+                    <div class="col-6">
+                        <p><span class="home-label">Total Inspections:</span><br>
+                            <span id="totalInspections" class="fwm"></span></p>
+            
+                    </div>
                 </div>
 
-                <div class="col-6">
-                    <p><span class="home-label">Total Inspections:</span><br>
-                        <span id="totalInspections" class="fwm"></span></p>
-        
+                <div class="row border-top my-2">
+                    <div class="col-6">
+                        <p><span class="home-label">City agency referral:</span><br>
+                            <span id="agency" class="fwm"></span></p>
+                    </div>
+                    <div class="col-6">
+                        <p><span class="home-label">Abatement orders (private property):</span><br>
+                            <span id="cota" class="fwm"></span></p>
+                    </div>
+    
                 </div>
-            </div>
+    
+                <div class="row border-top my-2">
+                    <div class="col-6">
+                        <p><span class="home-label">Failed compliance inspection:</span><br>
+                            <span id="failed" class="fwm"></span></p>
+                    </div>
+    
+                    <div class="col-6">
+                        <p><span class="home-label">Passed compliance inspection:</span><br>
+                            <span id="passed" class="fwm"></span></p>
+                    </div>
+                </div>
+    
+                <div class="row border-top my-2">
+                    <div class="col-6">
+                        <p><span class="home-label">Visits by DOHMH exterminator:</span><br>
+                            <span id="exterminator" class="fwm"></span></p>
+                    </div>
+    
+                    <div class="col-6">
+                        <p><span class="home-label">Visits with bait applied:</span><br>
+                            <span id="bait" class="fwm"></span></p>
+                    </div>
+                </div>
 
-            <div class="row border-top my-2">
-                <div class="col-6">
-                    <p><span class="home-label">City agency referral:</span><br>
-                        <span id="agency" class="fwm"></span></p>
-                </div>
-                <div class="col-6">
-                    <p><span class="home-label">Abatement orders (private property):</span><br>
-                        <span id="cota" class="fwm"></span></p>
-                </div>
 
-            </div>
 
-            <div class="row border-top my-2">
-                <div class="col-6">
-                    <p><span class="home-label">Failed compliance inspection:</span><br>
-                        <span id="failed" class="fwm"></span></p>
-                </div>
-
-                <div class="col-6">
-                    <p><span class="home-label">Passed compliance inspection:</span><br>
-                        <span id="passed" class="fwm"></span></p>
-                </div>
-            </div>
-
-            <div class="row border-top my-2">
-                <div class="col-6">
-                    <p><span class="home-label">Visits by DOHMH exterminator:</span><br>
-                        <span id="exterminator" class="fwm"></span></p>
-                </div>
-
-                <div class="col-6">
-                    <p><span class="home-label">Visits with bait applied:</span><br>
-                        <span id="bait" class="fwm"></span></p>
-                </div>
-            </div>
 
             <div class="row border-top mt-6 my-2">
                 <div class="col-12"><strong>Complaints for:</strong></div>
@@ -170,12 +173,21 @@
     <div class="row my-4">
         <div class="col-md-11 mx-auto">
             <h4>Are you in a Rat Mitigation Zone? Here's what you need to know.</h4>
-            <p><strong>Residents:</strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus felis vel sapien laoreet sagittis. Fusce velit tortor, vestibulum eget risus id, sollicitudin finibus enim. Cras convallis diam nec purus mollis rutrum. Morbi purus turpis, cursus sed orci sed, rutrum pellentesque ligula.
+            <p><strong>Residents:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus felis vel sapien laoreet sagittis. Fusce velit tortor, vestibulum eget risus id, sollicitudin finibus enim. Cras convallis diam nec purus mollis rutrum. Morbi purus turpis, cursus sed orci sed, rutrum pellentesque ligula.
             </p>
             <p><strong>Landlords:</strong> Nam facilisis, ipsum congue imperdiet dapibus, erat sem cursus sem, blandit ullamcorper magna arcu sed augue. Vivamus id erat vel quam porttitor mollis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin nec egestas lacus.</p>
             <p><strong>Property owners:</strong> Fusce velit tortor, vestibulum eget risus id, sollicitudin finibus enim. Cras convallis diam nec purus mollis rutrum. Morbi purus turpis, cursus sed orci sed, rutrum pellentesque ligula.</p>
             <p><strong>Business owners:</strong> Lorem ipsum congue imperdiet dapibus, erat sem cursus sem, blandit ullamcorper magna arcu sed augue. Vivamus id erat vel quam porttitor mollis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin nec egestas lacus</p>
+            <h4>Inspection data:</h4>
+            <iframe title="2022 RMZ data" aria-label="Table" id="datawrapper-chart-5uPau" src="https://datawrapper.dwcdn.net/5uPau/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="271" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+            </script>
+
+            <h4 class="mt-4">Complaint data</h4>
+            <iframe title="2022 rodent-related complaint data" aria-label="Table" id="datawrapper-chart-KQXDt" src="https://datawrapper.dwcdn.net/KQXDt/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="290" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+            </script>
         </div>
+
+
 
     </div>
 
@@ -190,6 +202,11 @@
 
     .fwm {
         font-weight: 600
+    }
+
+    .misc-holder {
+    border-left: 5px solid lightgray;
+    padding-left: 5px;
     }
 </style>
     
