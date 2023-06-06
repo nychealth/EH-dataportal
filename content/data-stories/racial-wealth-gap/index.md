@@ -11,7 +11,7 @@ image: CrownHeights_JulienneSchaer-065.JPG
 photocredit: "Julienne Schaer/Mayoral Photography Office"
 ---
 
-Throughout history, the distribution of wealth in the U.S. has, and continues to be, largely unequal. This unequal distribution appears among socially identified racial groups, a concept called the racial wealth gap. There is a particularly wide divide between wealth held by White families and Black families. The racial wealth gap has major implications for public health, as a large and growing body of research reveals that wealth is consistently correlated with health outcomes. Effective solutions to racial inequities in wealth and health must address challenges at the individual, household, community, and systems levels.  
+Throughout history, the distribution of wealth in the U.S. has, and continues to be, largely unequal between racial groups. This concept is referred to as the <strong>racial wealth gap.</strong> There is a particularly wide divide between wealth held by White families and Black families. The severity of the Black-White wealth gap is due to settler colonialism and enslavement, and was established and upheld by racist practices and policies. The racial wealth gap has major implications for public health. This is because a large and growing body of research reveals that having good health is connected to having wealth. Effective solutions to racial inequities in wealth and health must address challenges at the individual, household, community, and systems levels.  
 
 ### White families hold nearly eight times the wealth of the average Black family
 
@@ -23,9 +23,9 @@ The Federal Reserve Board’s 2019 Survey of Consumer Finances (SCF) shows that,
 
 ### Racist and discriminatory policies have prevented Black families from accruing assets, financial security, and wealth 
 
-For much of American history, there has been a record of systematic policies implemented by the federal government that helped build wealth for White households while suppressing wealth accumulation for other groups, including Black and Hispanic households.  
+For much of American history, there has been a record of racist systematic policies implemented by the federal government that helped build wealth for White households while suppressing wealth accumulation for other groups, including Black and Hispanic households.  
 
-The Black-White wealth disparity, in particular, has been created and reinforced by systematic policies and practices including racial segregation laws, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/redlining/" target="_blank">redlining,</a> the discriminatory implementation of the New Deal and the G.I. Bill, and more. 
+The Black-White wealth disparity, in particular, has been created and reinforced by systematic policies and practices including racial segregation laws, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/redlining/" target="_blank">redlining,</a> the discriminatory implementation of the New Deal and the G.I. Bill, and more. The intergenerational impacts of the enslavement of Black people have broad impacts on the wealth and health inequities observed today.
 
 ### Greater wealth translates to better health 
 
