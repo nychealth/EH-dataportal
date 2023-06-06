@@ -183,10 +183,35 @@
       </div>
 
     
-    <div class="row my-4 hide" id="contactContainer">
+    <div class="row my-4 sr-only">
       <div class="col-md-4 mx-auto">
-        <button class="btn btn-block btn-outline-primary glow py-2" onclick="printEmails()" href="#tips">Click to write an email to your elected officials</button>
+
+        <button class="btn btn-block btn-outline-primary glow py-2 sr-only" onclick="printEmails()" href="#tips">Click to write an email to your elected officials</button>
+
         <button class="btn btn-block btn-sm btn-outline-info" onclick="startOver()">Start over</button>
+
+      </div>
+    </div>
+
+    <div class="row my-4 hide" id="contactContainer">
+      <div class="col-6 mx-auto">
+        <h3 id="tips">Email tips</h3>
+        <p>Here are some tips for writing an effective email, or script for a phone call.</p>
+        <hr class="my-2">
+        <p><strong>Identify yourself as a constituent:</strong> tell them where you live and that they are your elected representative. For example: <em>"I live on Hunts Point Ave in the Bronx, in your district."</em></p>
+        <p><strong>State your concerns.</strong> For example: <em>"Our neighborhood's rates of childhood asthma are among the highest in the city."</em></p>
+
+        <p><strong>Tell your story:</strong> Offer some brief detail on how you see this environmental health issue affecting you and the people you know. For example: <em>"Last year, my daughter was diagnosed with asthma, and this issue is a challenge for our whole family."</em></p>
+        
+        <p><strong>Cite data:</strong> For example: <em>"According to data on housing conditions, 75% of renters' households in our neighborhood have maintenance problems that threaten health. (NYC Environment and Health Data Portal: https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-explorer/housing-maintenance/?id=2399#display=map)" </em></p>
+
+        <p><strong>Make a request:</strong> You can ask them where they stand on the issue, what they're doing to improve it, or what services are available to help their constituents.</p>
+        <hr class="my-2">
+        <em>We can't find email addresses for some elected officials, but you can always call their offices to share your concerns, and use your email as a script when you speak to a staffer.</em>
+
+        <div class="p-3 my-2" style="background-color: #f1f1f1; border-left: 2px solid darkgray;">
+          <p>You can contact these elected officials whether you are registered to vote, or not. If you're not, <a href="https://voterreg.dmv.ny.gov/motorvoter/">click here to register to vote</a>.</a></p>
+        </div>
 
       </div>
     </div>
@@ -246,7 +271,7 @@
     </div>
 
     <div class="row my-4 hide" id="register">
-      <div class="col p-3 mx-4" style="background-color: #f1f1f1; border-left: 2px solid darkgray;">
+      <div class="col p-3 mx-4 sr-only" style="background-color: #f1f1f1; border-left: 2px solid darkgray;">
         <p>You can contact these elected officials whether you are registered to vote, or not. If you're not, <a href="https://voterreg.dmv.ny.gov/motorvoter/">click here to register to vote</a>.</a></p>
       </div>
     </div>
