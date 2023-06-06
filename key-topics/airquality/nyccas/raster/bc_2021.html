@@ -4160,14 +4160,14 @@ function asArray(value) {
 					options: {
 						attribution:
 							'{attribution.OpenStreetMap}, ' +
-							'Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> ' +
+							'Tiles style by <a href="https://www.hotosm.org/" target="_blank" rel="noopener noreferrer">Humanitarian OpenStreetMap Team</a> ' +
 							'hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
 					}
 				},
 				BZH: {
 					url: '//tile.openstreetmap.bzh/br/{z}/{x}/{y}.png',
 					options: {
-						attribution: '{attribution.OpenStreetMap}, Tiles courtesy of <a href="http://www.openstreetmap.bzh/" target="_blank">Breton OpenStreetMap Team</a>',
+						attribution: '{attribution.OpenStreetMap}, Tiles courtesy of <a href="http://www.openstreetmap.bzh/" target="_blank" rel="noopener noreferrer">Breton OpenStreetMap Team</a>',
 						bounds: [[46.2, -5.5], [50, 0.7]]
 					}
 				}
@@ -4302,7 +4302,7 @@ function asArray(value) {
 			options: {
 				maxZoom: 18,
 				variant: 'full',
-				attribution: 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> &mdash; Map data {attribution.OpenStreetMap}'
+				attribution: 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank" rel="noopener noreferrer">OpenStreetMap Sweden</a> &mdash; Map data {attribution.OpenStreetMap}'
 			},
 			variants: {
 				Full: 'full',
@@ -4314,9 +4314,9 @@ function asArray(value) {
 			url: 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}{r}.png?access_token={accessToken}',
 			options: {
 				attribution:
-					'<a href="https://www.mapbox.com/about/maps/" target="_blank">&copy; Mapbox</a> ' +
+					'<a href="https://www.mapbox.com/about/maps/" target="_blank" rel="noopener noreferrer">&copy; Mapbox</a> ' +
 					'{attribution.OpenStreetMap} ' +
-					'<a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a>',
+					'<a href="https://www.mapbox.com/map-feedback/" target="_blank" rel="noopener noreferrer">Improve this map</a>',
 				subdomains: 'abcd',
 				id: 'mapbox.streets',
 				accessToken: '<insert your access token here>',
@@ -4395,7 +4395,7 @@ function asArray(value) {
 				variant: 'basic',
 				maxZoom: 22,
 				attribution:
-					'<a href="https://tomtom.com" target="_blank">&copy;  1992 - ' + new Date().getFullYear() + ' TomTom.</a> ',
+					'<a href="https://tomtom.com" target="_blank" rel="noopener noreferrer">&copy;  1992 - ' + new Date().getFullYear() + ' TomTom.</a> ',
 				subdomains: 'abcd',
 				style: 'main',
 				ext: 'png',
@@ -4848,7 +4848,7 @@ function asArray(value) {
 		GeoportailFrance: {
 			url: 'https://wxs.ign.fr/{apikey}/geoportail/wmts?REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&STYLE={style}&TILEMATRIXSET=PM&FORMAT={format}&LAYER={variant}&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}',
 			options: {
-				attribution: '<a target="_blank" href="https://www.geoportail.gouv.fr/">Geoportail France</a>',
+				attribution: '<a target="_blank" rel="noopener noreferrer" href="https://www.geoportail.gouv.fr/">Geoportail France</a>',
 				bounds: [[-75, -180], [81, 180]],
 				minZoom: 2,
 				maxZoom: 18,

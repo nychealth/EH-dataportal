@@ -9452,7 +9452,7 @@ input[type=range]:focus::-ms-fill-upper {
   padding-bottom: 5px; }
 
 .greenfill {
-  border-bottom: 5px solid #841972;
+  border-top: 5px solid #841972;
   padding: 5px;
   color: #841972;
   border-radius: 3px;
@@ -9778,6 +9778,19 @@ table .group td {
   table .group td:hover {
     cursor: pointer; }
 
+.print-only {
+  display: none; }
+
+@media print {
+  .print-only {
+    display: flex; }
+  .reports {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important; }
+  .p-mt-sm {
+    margin-top: .75rem !important; } }
+
 a {
   color: #00923E; }
   a:hover {
@@ -9812,6 +9825,11 @@ h1 {
   @media (min-width: 720px) {
     .site-title {
       font-size: 2.625rem; } }
+@media print {
+  .site-title {
+    font-size: 1.25rem;
+    text-align: center; } }
+
 .site-subtitle {
   display: block;
   font-weight: 700;
@@ -9824,6 +9842,10 @@ h1 {
   background-image: url("../images/header_background.jpg");
   background-repeat: no-repeat;
   background-size: cover; }
+
+@media print {
+  .site-header {
+    border-bottom: 1px solid #E8E6E1; } }
 
 .nav-item:hover, .nav-item.active {
   background-color: #EFFAF4;
@@ -10029,6 +10051,11 @@ h1.report-title {
     @media (min-width: 720px) {
       h1.report-title .sub-title {
         font-size: 2rem; } }
+@media print {
+  h1.report-title,
+  h1.report-title .sub-title {
+    font-size: 22px; } }
+
 p.report-description {
   font-size: 1rem;
   line-height: 1.5rem; }
@@ -10084,6 +10111,11 @@ h2.report-info {
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18), 0 3px 10px 0 rgba(0, 0, 0, 0.17);
       padding: 30px;
       margin-bottom: 60px; } }
+@media print {
+  .report-topic {
+    padding: 15px 0 1px 0;
+    margin-bottom: 0px; } }
+
 .topic-header {
   padding-bottom: 1.875rem;
   margin-bottom: 1rem;
@@ -10096,6 +10128,11 @@ h2.report-info {
   .topic-header p {
     font-size: 1rem;
     line-height: 1.375rem; }
+
+@media print {
+  .topic-header {
+    padding-bottom: 10px;
+    margin-bottom: 10px; } }
 
 .indicator-headings {
   line-height: 1.5rem; }
@@ -10138,6 +10175,11 @@ h2.report-info {
       color: #00923E;
       text-decoration: underline; }
 
+@media print {
+  .indicator-anchor .indicator-short-name {
+    font-size: 16px;
+    line-height: 20px; } }
+
 .viz {
   width: 135px;
   height: 30px;
@@ -10151,8 +10193,6 @@ h2.report-info {
 
 .info-modal {
   position: absolute;
-  left: 7rem;
-  top: 30%;
   color: #A513B6; }
 
 @media (max-width: 719.98px) {
@@ -10193,6 +10233,16 @@ h2.report-info {
         margin-top: -.625rem;
         font-size: 3.75rem;
         font-weight: 700; } }
+@media print {
+  .comparison {
+    font-weight: 600;
+    margin-bottom: 0;
+    font-size: 12px; }
+    .comparison .indicator-value {
+      font-size: 12px; }
+  .my-5.p-no-margin {
+    margin-top: 0 !important; } }
+
 .report-modal .modal-header {
   background-color: #00923E;
   color: #fff;

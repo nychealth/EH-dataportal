@@ -23,7 +23,7 @@ Help inform PlaNYC, the City’s sustainability plan Track changes in air qualit
       <pubDate>Tue, 22 Mar 2022 19:30:55 -0400</pubDate>
       
       <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/beta/key-topics/airquality/realtime/</guid>
-      <description>NYC&amp;rsquo;s air quality is generally good and has been improving over time. But hour to hour, there&amp;rsquo;s large variation in our air quality - even in neighborhoods with the cleanest air. That means that for short periods, some New Yorkers are exposed to high levels of pollutants.
+      <description>The air quality in NYC is generally good and has been improving over time. But hour to hour, there is large variation in our air quality - even in neighborhoods with the cleanest air. That means that for short periods, some New Yorkers are exposed to high levels of pollutants.
 Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure to PM2.5 contributes to an estimated 2,300 excess deaths from lung and heart disease each year in NYC (1 out of every 20 deaths in NYC), and short-term exposure contributes to asthma incidents severe enough to require a trip to the emergency department, as well as other health threats.</description>
     </item>
     
@@ -43,7 +43,7 @@ Air quality varies from neighborhood to neighborhood, based on local levels of e
       <pubDate>Tue, 24 Aug 2021 12:04:44 -0400</pubDate>
       
       <guid>https://stgbespweb600.health.dohmh.nycnet/IndicatorPublic/beta/key-topics/airquality/aqe/</guid>
-      <description>We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes one neighborhood&amp;rsquo;s air quality different from another&amp;rsquo;s. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.
+      <description>We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.
 If we don&amp;rsquo;t have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods.</description>
     </item>
     
