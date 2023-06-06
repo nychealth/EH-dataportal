@@ -6,10 +6,11 @@
 
 <button data-toggle="modal" data-target="#modal-{{ .ind.indicator_data_name }}-{{ .count }}" onclick='getURL({{ $indID }}, "{{ $dataname }}")' class="indicator-anchor">
 
-    <!-- Table row -->
-    <div class="row align-items-center">
+    <!-- Table row - Screen only -->
+    <div class="row align-items-center d-print-none">
         <div class="col-6 col-md-5">
             <span class="indicator-short-name">{{ .ind.indicator_short_name }}</span>
+            <div class="print-only">{{- .ind.indicator_name -}}</div>
         </div>
         <div class="col-6 col-md-4 topic-list">
             <img src="{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/images/{{ .ind.summary_bar_svg }}" alt="Visualization showing neighborhood rank of {{ .ind.indicator_neighborhood_rank }} out of 42." width="100%" class="viz d-md-none mb-1">
@@ -22,6 +23,35 @@
             <img src="{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/images/{{ .ind.summary_bar_svg }}" alt="Visualization showing neighborhood rank of {{ .ind.indicator_neighborhood_rank }} out of 42." class="viz">
         </div>
     </div>
+
+    <!-- Table row - Print only -->
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">{{ .ind.indicator_short_name }}</span>
+            <div style="font-size: 12px;">{{- .ind.indicator_name -}}</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/images/{{ .ind.summary_bar_svg }}" alt="Visualization showing neighborhood rank of {{ .ind.indicator_neighborhood_rank }} out of 42." width="100%" class="viz d-md-none mb-1">
+            {{- if eq (string .ind.data_value_rank) "1" -}}<span class="worse">Worse</span>
+            {{- else if eq (string .ind.data_value_rank) "2" -}}<span class="middle">Middle</span>
+            {{- else -}}<span class="better">Better</span>
+            {{- end -}}
+        </div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        {{ .location }}: <span class="float-right">{{ .ind.data_value_geo_entity }}</span><br>
+                        {{ .borough }}: <span class="float-right">{{ .ind.data_value_borough }}</span><br>
+                        New York City: <span class="float-right">{{ .ind.data_value_nyc }}</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>{{ .ind.measurement_type }} {{ .ind.units }}</em></p>
+        </div>
+    </div>
+
 </button>
 
 <!-- Indicator modal -->
@@ -48,41 +78,41 @@
                     <div class="col-sm-4">New York City <span class="indicator-value">{{ .ind.data_value_nyc }}</span></div>
                 </div>
                 <p><em>{{ .ind.measurement_type }} {{ .ind.units }}</em></p>
-                
+
                 {{- if isset .ind "nabe_data_note" -}}
                 <div class="data-note">{{ .ind.nabe_data_note }}</div>
                 {{- end -}}
-                
+
             </div>
             <hr>
             <div class="modal-body">
                 <h3>{{- .ind.indicator_name -}}</h3>
                 <p>  <em>{{ .ind.measurement_type }} {{ .ind.units }}</em></p>
-                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-{{ .ind.indicator_data_name }}-{{ .count }}"></div> 
-                
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-{{ .ind.indicator_data_name }}-{{ .count }}"></div>
+
             </div>
             <hr>
             <div class="modal-body">
-                
+
                 <h3>Trends Over Time</h3>
                 <p><em>{{ .ind.measurement_type }} {{ .ind.units }}</em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-{{ .ind.indicator_data_name }}-{{ .count }}"></div> 
-                
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-{{ .ind.indicator_data_name }}-{{ .count }}"></div>
+
             </div>
             <hr>
             <div class="modal-body">
-                
+
                 <h3>By Neighborhood</h3>
                 <p><em>{{ .ind.measurement_type }} {{ .ind.units }}</em></p>
                 <div style="width:100%; height:60vmin; z-index:10000;" id="map-{{ .ind.indicator_data_name }}-{{ .count }}"></div>
-                
+
             </div>
 
             <!-- .modal-body -->
             <div class="flex-column p-2">
                 {{- if isset .ind "source_description" -}}<p class="fs-sm mb-4"><em>Source: {{ htmlUnescape .ind.source_description }}</em></p>{{- end -}}
-                <a id="{{ $dataname }}" href="/data-explorer/TOPIC/?id={{ $indID }}" style="display:none">
-                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the dataset</button></a>
+                <a id="{{ $dataname }}" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
                 <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -94,14 +124,14 @@
 <script type="text/javascript">
 
     $( "#modal-{{ .ind.indicator_data_name }}-{{ .count }}" ).on('shown.bs.modal', function() {
-        
+
         var opt = {"renderer": "svg"};
 
             // ---- summary ---- //
 
             // get most recent data for each neighborhood
-            
-            var summaryData = 
+
+            var summaryData =
                 arqTable
                 .filter(d => d.data_field_name == {{ .ind.indicator_data_name }})
                 .select("geo_join_id", "neighborhood", "data_value", "message", "end_date")
@@ -115,17 +145,17 @@
                 .select(aq.not("end_date"))
                 .objects()
 
-            
+
             vegaEmbed(
-                "#summary-{{ .ind.indicator_data_name }}-{{ .count }}", 
-                summarySpec, 
+                "#summary-{{ .ind.indicator_data_name }}-{{ .count }}",
+                summarySpec,
                 opt
             ).then((res) => {
-                
+
                 res.view.insert("summaryData", summaryData).run()
 
             }).catch(console.error);;
-            
+
 
             // ---- map ---- //
 
@@ -133,41 +163,40 @@
 
             var mapData = summaryData;
 
-            
+
             vegaEmbed(
-                "#map-{{ .ind.indicator_data_name }}-{{ .count }}", 
+                "#map-{{ .ind.indicator_data_name }}-{{ .count }}",
                 mapSpec,
                 opt
             ).then((res) => {
-                
+
                 res.view.insert("mapData", mapData).run()
-                
+
             }).catch(console.error);
-            
-        
+
+
             // ---- trend ---- //
 
             // get all data points for this indicator
-            
-            var trendData = 
+
+            var trendData =
                 arqTable
                 .filter(d => d.data_field_name == {{ .ind.indicator_data_name }})
                 .select("start_date", "time", "geo_join_id", "neighborhood", "data_value", "message")
                 .dedupe()
                 .objects()
-            
-            
+
+
             vegaEmbed(
-                "#trend-{{ .ind.indicator_data_name }}-{{ .count }}", 
-                trendSpec, 
+                "#trend-{{ .ind.indicator_data_name }}-{{ .count }}",
+                trendSpec,
                 opt
             ).then((res) => {
-                
+
                 res.view.insert("trendData", trendData).run()
-                
+
             }).catch(console.error);;
-        
+
     });
-        
+
     </script>
-    

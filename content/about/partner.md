@@ -61,6 +61,6 @@ While a lot of our partnerships are internal, we do collaborate with people outs
 - Partner on projects to explore environmental health issues 
 - Access and use data
 
-...then [send us an email](mailto:ehdp@health.nyc.gov). We'd love to hear from you.
+...then send us an email at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;">&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;</a>. We'd love to hear from you.
 
 
