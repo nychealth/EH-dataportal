@@ -37,7 +37,7 @@
             <h1><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
 
             <div style="border-left: 3px solid darkgray; border-radius: 0px!important" class="aboutbox">
-                Smoke from wildfires in Canada is currently affecting NYC's air.  <a href="https://www.dec.ny.gov/press/127831.html">New York State DEC has issued a health advisory that is in effect until 11:59PM on Wednesday, June 7, 2023</a>.  Conditions will vary throughout the day. Monitor air quality here.
+                Smoke from wildfires in Canada is currently affecting NYC's air.  <a href="https://www.dec.ny.gov/press/127831.html">New York State DEC has issued a health advisory that is in effect until 11:59PM on Thursday, June 8, 2023</a>.  Conditions will vary throughout the day. Monitor air quality here.
             </div>
 
         </div>
@@ -111,7 +111,7 @@
     <!-- map element -->
     <div class="row align-self-center">
         <div class="col-md-4 mt-2 pt-0">
-            <div id="map">
+            <div id="map" class="d-none d-md-block">
             </div>
         </div>
         
@@ -177,12 +177,33 @@
             <strong>About the Data</strong>
             <p>Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>).</p>
 
-            <p>Data come from: NYCCAS near-real-time street-level monitors, and from roof-top air quality sensors operated by the <i class="fas fa-square mr-1" style="color:darkgray"></i>NYS Department of Environmental Conservation as required by the Federal Clean Air Act. External factors can sometimes affect monitor functioning; these data are preliminary and subject to change. <!--<a href="https://github.com/nychealth/EHDP-data/tree/production/key-topics/real-time-air-quality" target="_blank" rel="noopener noreferrer">Download these data on Github</a>.--></p>
+            <p>Data come from: NYCCAS near-real-time street-level monitors, and from roof-top air quality sensors operated by the <i class="fas fa-square mr-1" style="color:darkgray"></i>NYS Department of Environmental Conservation as required by the Federal Clean Air Act. External factors can sometimes affect monitor functioning; NYCCAS monitors have recently been deployed and may over- or under- estimate PM2.5 while we adjust their performance for NYC's climate.
+
+                these data are preliminary and subject to change.</p>
         </div>
 
         <div class="aboutbox fs-sm mt-1">Or, see <a href="../aqe">your neighborhood air quality</a>.</div>
 
+
+
+
          </div>
+    </div>
+
+    <div class="row my-4 border py-2 mx-2">
+        <div class="col-11 mx-auto">
+            <iframe class="my-2 float-right" title="Example 1" height="340" width="230" src="https://widget.airnow.gov/aq-dial-widget/?city=NewYorkCity&state=NYC&country=USA&transparent=true" style="border: none; border-radius: 25px;"></iframe>
+            <h3>The Air Quality Index</h3>
+            <p><a href="https://www.airnow.gov/aqi/aqi-basics/">The Air Quality Index is the US Environmental Protection Agency's way of reporting air quality</a>. It reports whether any of five major pollutants (ground-level ozone, PM2.5, carbon monoxide, sulfur dioxide and nitrogen dioxide) are at levels that can harm health.             <a href="https://www.airnow.gov/sites/default/files/2023-03/air-quality-guide-for-particle-pollution_0.pdf">More information about the Air Quality Index, including what to do at different levels</a>.</p>
+
+                <span style="background-color:#00E400; padding: 0px 5px; border-radius: 2px;">Good (0-50)</span> Air pollution poses little or no risk.<br>
+                <span style="background-color:yellow; padding: 0px 5px; border-radius: 2px;">Moderate (51-100)</span> There may be some risk to people who are unusally sensitive to air pollution.<br>
+                <span style="background-color:#E17E00 ; padding: 0px 5px; border-radius: 2px; color:white;">Unhealthy for sensitive groups (101-150)</span> People with heart or lung problems may experience health effects.<br>
+                <span style="background-color:red; padding: 0px 5px; border-radius: 2px;color:white;">Unhealthy (151-200)</span> Members of the general public may experience health effects.<br>
+                <span style="background-color:#8F3F97 ; padding: 0px 5px; border-radius: 2px;color:white;">Very unhealthy (201-300)</span> The risk of health effects is increased for everyone.<br>
+                <span style="background-color:#7E0023 ; padding: 0px 5px; border-radius: 2px;color:white;">Hazardous (300+)</span> Health warning of emergency conditions.
+        </p>
+        </div>
     </div>
 
     <div class="row my-4">
