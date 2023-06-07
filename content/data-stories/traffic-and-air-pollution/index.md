@@ -33,7 +33,7 @@ Once in the bloodstream, PM2.5 can cause health problems to the respiratory and 
                 <img src = "anatomy with annotation.svg" alt="A person breathing in PM2.5 and it entering the bloodstream and lungs"/>
             </div>
             <div class="col-md-6">
-                <img src = "sources2.svg" alt="Industrial activity, a grill, a truck, and a building demonstrate common sources of PM2.5"/>
+                <img src = "sources2.svg" alt="Industrial activity, a grill, a truck, and a building demonstrate common sources of PM2.5" width="650"/>
             </div>
         </div>
     </div>
