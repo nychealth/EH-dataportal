@@ -19,10 +19,9 @@ seo_title: Annual Report on heat mortality in NYC.
 seo_description: Data and findings on the impact of heat in NYC.
 layout: report
 ---
-
 ## Summary
 
-* Each summer, on average, **an estimated 350 New Yorkers die prematurely because of hot weather** in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September. Of the deaths:
+* Each summer, on average, **an estimated 350 New Yorkers die prematurely because of hot weather** in New York City (NYC). These heat-related deaths account for about 2% of all deaths over the warm season months of May through September.&nbsp;
   * Of the 350 deaths:
     * From 2012-2021, there were an average of 7 **heat-stress deaths** (caused directly by heat).
     * From 2016-2020, there were an average of about 345 **heat-exacerbated deaths** (caused indirectly by heat aggravating an underlying illness).
@@ -49,7 +48,7 @@ Starting this year, we report estimated heat-exacerbated deaths for the current 
 
 ## Heat Stress Deaths
 
-The Health Department examined heat-stress deaths occurring during the warm season months of May through September from 2012-2021. We reviewed death certificates and medical examiner investigation reports in cases where heat was recognized as a cause of death. A more detailed description of methods and data sources can be found in the <a href="Heat Mortality Methods 2023.pdf" target="blank">Appendix Methods and Supplemental Data</a>
+The Health Department examined heat-stress deaths occurring during the warm season months of May through September from 2012-2021. We reviewed death certificates and medical examiner investigation reports in cases where heat was recognized as a cause of death. A more detailed description of methods and data sources can be found in the <a href="" target="blank">Appendix Methods and Supplemental Data</a>
 
 Among NYC residents, there were 68 heat-stress deaths over the 10-year period. There was an average of 7 deaths per year, with the largest yearly numbers of deaths occurring earlier in the period as a result of a severe heat wave in 2013. Most deaths occurred in July (68%), followed by June (13%), August (12%), September (4%), and May (3%). As of January 2023, there were 8 heat-stress deaths in 2022, though that number is provisional and subject to change because mortality records are not finalized.&nbsp;&nbsp;
 
@@ -57,7 +56,7 @@ Among NYC residents, there were 68 heat-stress deaths over the 10-year period. T
 
 <div class="narrow my-4"><iframe src="Fig_1_interactive.html" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none; height:400px;"></iframe></div>
 
-Notes: The number of heat-stress deaths for 2021 is provisional. If additional deaths are certified as caused by heat stress, the number will be updated in future reports. Weather data &nbsp;are from the National Weather Service LaGuardia airport station. Heat index is a measure of air temperature and humidity.
+Notes: The number of heat-stress deaths for 2021 is provisional. If additional deaths are certified as caused by heat stress, the number will be updated in future reports. Weather data are from the National Weather Service LaGuardia airport station. Heat index is a measure of air temperature and humidity.
 
 ## Demographics
 
@@ -69,14 +68,14 @@ Notes: The number of heat-stress deaths for 2021 is provisional. If additional d
 
 <div class="narrow my-4"><p><strong>Figure 2:</strong> Demographic characteristics of heat-stress decedents (2012-2021)</p><iframe title="Demographic characteristics of heat stress decedents, 2012-2012" aria-label="Bar Chart" id="datawrapper-chart-Spd0s" src="https://datawrapper.dwcdn.net/Spd0s/5/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="765" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script></div>
 
-<div class="fs-sm px-2 py-1 mb-2"><strong>Note on race and ethnicity:&nbsp;</strong>Deaths are grouped into five race and ethnicity categories due to the small sample size of deaths and the availability of denominator data. However, these categories represent an oversimplification of the ethnically and racially diverse population found in NYC. People identified as two or more races or races and ethnicities not listed here are included in the other or unknown category. The Hispanic category includes people of any race. Differences in mortality rates among racial and ethnic groups are due to long-term structural racism, not biological or personal traits. Structural racism — centuries of racist policies and discriminatory practices across institutions, including government agencies, and society — prevents communities of color from accessing vital resources (such as health care and healthy housing) and opportunities (such as employment and education), and negatively affects overall health and well-being. See <a href="Heat Mortality Methods 2023.pdf" target="blank">Appendix Methods and Supplemental Data</a> for more information on numbers and percentages by race and ethnicity.</div>
+<div class="fs-sm px-2 py-1 mb-2"><strong>Note on race and ethnicity:&nbsp;</strong>Deaths are grouped into five race and ethnicity categories due to the small sample size of deaths and the availability of denominator data. However, these categories represent an oversimplification of the ethnically and racially diverse population found in NYC. People identified as two or more races or races and ethnicities not listed here are included in the other or unknown category. The Hispanic category includes people of any race. Differences in mortality rates among racial and ethnic groups are due to long-term structural racism, not biological or personal traits. Structural racism — centuries of racist policies and discriminatory practices across institutions, including government agencies, and society — prevents communities of color from accessing vital resources (such as health care and healthy housing) and opportunities (such as employment and education), and negatively affects overall health and well-being. See <a href="" target="blank">Appendix Methods and Supplemental Data</a> for more information on numbers and percentages by race and ethnicity.</div>
 
 ##
 
 ## Health Risk Factors
 
 * Among decedents with detailed medical examiner records available, 90% had at least one chronic health condition.
-* Common chronic conditions included cardiovascular disease, substance or alcohol use, serious mental health or cognitive conditions, and having a history of diabetes.
+* Common chronic conditions included cardiovascular disease, substance or alcohol use, serious mental health or cognitive conditions, and a history of diabetes.
 
 <div class="narrow my-4"><p><strong>Table 1:</strong> Medical characteristics among subset with review of health conditions in medical examiner records (n=59) (2012-2021)</p><iframe title="Health conditions table" aria-label="Table" id="datawrapper-chart-zAvcP" src="https://datawrapper.dwcdn.net/zAvcP/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="387" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
 </script></div>
@@ -101,7 +100,7 @@ In the previous two annual reports, we estimated heat-exacerbated mortality risk
 * an indicator (yes/no) for extreme heat event days defined by the National Weather Service’s heat advisory threshold for NYC. Based on the Health Department’s previous analysis of heat-exacerbated mortality, heat advisories are for at least 2 consecutive days with 95°F or higher daily maximum heat index (HI) or any day with a maximum HI of 100°F or higher.
 * a range of hot daily maximum temperatures that includes both extreme heat event days and other hot days. We estimated heat-exacerbated deaths for days ranging from the median maximum daily temperature of 82°F through the highest temperature during the period.
 
-These models were run in 5-year rolling time windows between 1971 and 2020. We included deaths occurring on the date of exposure to hot weather and over the following 3 days because previous Health Department studies have shown that heat-exacerbated deaths can occur up to 3 days after the initial hot weather \[4\]. Detailed methods used to estimate risks and attributable deaths can be found in the <a href="Heat Mortality Methods 2023.pdf" target="blank">Appendix Methods and Supplemental Data</a>
+These models were run in 5-year rolling time windows between 1971 and 2020. We included deaths occurring on the date of exposure to hot weather and over the following 3 days because previous Health Department studies have shown that heat-exacerbated deaths can occur up to 3 days after the initial hot weather \[4\]. Detailed methods used to estimate risks and attributable deaths can be found in the <a href="" target="blank">Appendix Methods and Supplemental Data</a>
 
 To describe the impact of climate change, we examined how the number of hot days during warm months changed over the past five decades (1971-2020) in rolling 5-year time windows. We also computed the average of daily maximum temperature for each month between May and September to examine if changes in temperature varied by month. &nbsp;
 
@@ -115,9 +114,9 @@ To describe the impact of climate change, we examined how the number of hot days
 
 * Heat-attributable deaths occurred most frequently in July (37%), followed by August (28%), June (18%), September (10%), and May (7%) for 2016-2020.
 
-<div class="row my-4"><div class="col-8 mx-auto border"><strong>Figure 3:</strong> annual average heat-exacerbated deaths for <span style="color:red">Extreme Heat Event</span> days, and <span style="color:orange;">days at or above 82°F</span> in 5-year moving time windows (1971-2020) <img alt="Figure 3" src="rev-fig-3.jpeg" class="p-2" /></div></div>
+<div class="row my-4"><div class="col-8 mx-auto border"><strong>Figure 3:</strong> annual average heat-exacerbated deaths for <span>Extreme Heat Event</span> days, and <span>days at or above 82°F</span> in 5-year moving time windows (1971-2020) <img alt="Figure 3" src="" class="p-2" /></div></div>
 
-<div class="row my-4"><div class="col-8 mx-auto border"><strong>Figure 4:</strong> <span style="color:red;">cumulative relative risk</span> and <span style="color:darkgray">95% confidence intervals</span> of heat-exacerbated deaths for daily maximum temperature over same-day and 3 previous days, May-September (2011-2020)  <img alt="Figure 4" src="rev-fig-4.jpeg" class="p-2" /><p class="fs-sm"><em>Ticks represent days at each temperature</em></p></div></div>
+<div class="row my-4"><div class="col-8 mx-auto border"><strong>Figure 4:</strong>&nbsp;C<span>umulative relative risk</span> and <span>95% confidence intervals</span> of heat-exacerbated deaths for daily maximum temperature over same-day and 3 previous days, May-September (2011-2020) <img alt="Figure 4" src="" class="p-2" /><p class="fs-sm"><em>Ticks represent days at each temperature</em></p></div></div>
 
 <u><em>Hotter Summers</em></u>\: There are many more days every summer that are hot but not extremely hot (i.e., daily maximum temperature at or above 82°F to single days of 95°F) compared to extreme heat event days. These days are also associated with increased risk of heat-related death (Figure 4). Due to climate change, the numbers of extreme heat events and non-extreme hot days are increasing, which contributes to an increase in heat-exacerbated deaths.
 
@@ -131,9 +130,9 @@ Given the consistently high and increasing proportion of hot days in July and Au
 </script><hr class="my-4" /> <strong>Figure 6:</strong> Monthly average daily maximum temperature (°F), measured from LaGuardia Airport (5-year moving windows)<iframe title="Figure 6: Monthly average daily maximum temperature (°F), measured from LaGuardia Airport (5-year moving windows)" aria-label="Interactive line chart" id="datawrapper-chart-zqk7k" src="https://datawrapper.dwcdn.net/zqk7k/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script></div>
 
-<div class="row my-4"><div class="col-10 mx-auto border"><strong>Figure 7:</strong> Air conditioning (AC) Prevalence estimated from three surveys between 1970 and 2017: <span style="color:green;font-weight: normal;">American Housing Survey</span>; <span style="color:orange;font-weight: normal;">New York City Community Health Survey</span>; and <span style="color:blue;font-weight: normal;">Housing and Vacancy Survey</span>.   
+<div class="row my-4"><div class="col-10 mx-auto border"><strong>Figure 7:</strong> Air conditioning (AC) Prevalence estimated from three surveys between 1970 and 2017: <span>American Housing Survey</span>; <span>New York City Community Health Survey</span>; and <span>Housing and Vacancy Survey</span>.<p><img alt="Figure 7" src="" class="p-2" /></p><p class="fs-sm"><em>The line is fitted using natural cubic splines with 3 degrees of freedom. AHS and HVS surveys were weighted to households, whereas CHS data were weighted to individuals in the census</em></p></div></div>
 
-<img alt="Figure 7" src="rev-fig-7.jpeg" class="p-2" /><p class="fs-sm"><em>The line is fitted using natural cubic splines with 3 degrees of freedom. AHS and HVS surveys were weighted to households, whereas CHS data were weighted to individuals in the census</em></p></div></div>
+
 
 ## Community-Level Impacts
 
@@ -143,14 +142,11 @@ Unlike many social vulnerability indices, the HVI is derived from NYC mortality 
 
 Including race in the HVI analysis is critical to understanding the impact of heat: structural racism has resulted in neighborhood disinvestment, racist housing policies, fewer job opportunities and lower pay, and limited access to high-quality education and health care, all of which are associated with health risks including those related to heat. Read more about how structural racism affects&nbsp;[housing and public health](http://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/housing/index.html)&nbsp;and the&nbsp;[history of redlining and how it impacts public health in NYC](http://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/redlining/index.html).
 
-We updated data for three HVI variables for which new data were available – race, income, and surface temperature – and conducted an analysis to re-examine associations between the updated HVI and heat-exacerbated mortality (see&nbsp;<a href="Heat Mortality Methods 2023.pdf" target="blank">Appendix Methods and Supplemental Data</a>&nbsp;for more information).
+We updated data for three HVI variables for which new data were available – race, income, and surface temperature – and conducted an analysis to re-examine associations between the updated HVI and heat-exacerbated mortality (see&nbsp;<a href="" target="blank">Appendix Methods and Supplemental Data</a>&nbsp;for more information).
 
 The updated HVI continues to be associated with heat-exacerbated mortality during extreme heat and on non-extreme hot days. The odds of dying during hot weather was higher in census tracts with higher HVI scores (see Figure 8). Among the HVI components, air conditioning, race, and income had the strongest associations with heat-exacerbated mortality (see [Appendix Methods and Supplemental Data]()). While green space had a weak protective association compared to the other factors in the HVI, it is a critical factor in addressing the [Urban Heat Island](https://www.epa.gov/green-infrastructure/reduce-urban-heat-island-effect) effect by lowering surface and outdoor air temperatures, providing relief from the heat through shade, and supporting a range of public health benefits beyond heat-related mortality.
 
-<div class="narrow my-4">
-<strong>Figure 8:</strong> Relative odds and 95% confidence intervals of dying on days reaching 82°F and higher, by quintile of HVI.
-
-<iframe title="Figure 8: Relative odds and 95% confidence intervals of dying on days reaching 82°F and higher, by quintile of HVI" aria-label="Scatter Plot" id="datawrapper-chart-FOJlT" src="https://datawrapper.dwcdn.net/FOJlT/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="557" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+<div class="narrow my-4"><strong>Figure 8:</strong> Relative odds and 95% confidence intervals of dying on days reaching 82°F and higher, by quintile of HVI.<iframe title="Figure 8: Relative odds and 95% confidence intervals of dying on days reaching 82°F and higher, by quintile of HVI" aria-label="Scatter Plot" id="datawrapper-chart-FOJlT" src="https://datawrapper.dwcdn.net/FOJlT/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="557" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script></div>
 
 The best indicator of&nbsp;[neighborhood-level heat impacts is the HVI](http://a816-dohbesp.nyc.gov/IndicatorPublic/HeatHub/hvi.html) (see map 1), which shows differences in heat-exacerbated mortality risk. The number of heat stress deaths by NTA (map 2) should be interpreted with caution. The NTAs are small and the number of deaths at this level is also small and unreliable, so it is difficult to tell whether differences between areas are due to random fluctuation or because there is a difference in risk.
