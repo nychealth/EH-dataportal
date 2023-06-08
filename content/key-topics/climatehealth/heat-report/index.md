@@ -113,7 +113,7 @@ To describe the impact of climate change, we examined how the number of hot days
 
 * Heat-attributable deaths occurred most frequently in July (37%), followed by August (28%), June (18%), September (10%), and May (7%) for 2016-2020.
 
-<div class="row my-4"><div class="col-8 mx-auto border"><strong>Figure 3:</strong> annual average heat-exacerbated deaths for <span>Extreme Heat Event</span> days, and <span>days at or above 82°F</span> in 5-year moving time windows (1971-2020) <img alt="Figure 3" src="rev-fig-3.jpg" class="p-2" /></div></div>
+<div class="row my-4"><div class="col-8 mx-auto border"><strong>Figure 3:</strong> annual average heat-exacerbated deaths for <span>Extreme Heat Event</span> days, and <span>days at or above 82°F</span> in 5-year moving time windows (1971-2020) <img alt="Figure 3" src="rev-fig-3.jpeg" class="p-2" /></div></div>
 
 <div class="row my-4"><div class="col-8 mx-auto border"><strong>Figure 4:</strong>&nbsp;C<span>umulative relative risk</span> and <span>95% confidence intervals</span> of heat-exacerbated deaths for daily maximum temperature over same-day and 3 previous days, May-September (2011-2020) <img alt="Figure 4" src="rev-fig-4.jpeg" class="p-2" /><p class="fs-sm"><em>Ticks represent days at each temperature</em></p></div></div>
 
