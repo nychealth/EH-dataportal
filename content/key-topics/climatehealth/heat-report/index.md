@@ -41,7 +41,7 @@ We track heat-related deaths in three ways:
 * **Heat-exacerbated deaths** happen when heat worsens existing chronic conditions, such as heart disease. These deaths are caused indirectly by heat and are estimated using statistical models. They are also often called “excess” mortality.
 * **Neighborhood impacts** are tracked by looking at community-level differences in risk of heat-related death and are described using the NYC Health Department’s Heat Vulnerability Index (HVI). HVI data inputs for income, race, and surface temperature were updated for this analysis. Data for neighborhood air conditioning prevalence and green space remains the same as last year’s report because updated data were not available.
 
-Starting this year, we report estimated heat-exacerbated deaths for the current and past 20 years in five-year rolling time windows to look at trends. For heat-stress deaths (caused directly by heat), we report counts and the annual average for the past ten years. <a href="#previous-reports">Previous years' reports are available here.</a>​
+Starting this year, we report estimated heat-exacerbated deaths for the current and past 20 years in five-year rolling time windows to look at trends. For heat-stress deaths (caused directly by heat), we report counts and the annual average for the past ten years. [Previous years' reports are available here.](#previous-reports)​
 
 <hr class="my-4" />
 
@@ -113,9 +113,9 @@ To describe the impact of climate change, we examined how the number of hot days
 
 * Heat-attributable deaths occurred most frequently in July (37%), followed by August (28%), June (18%), September (10%), and May (7%) for 2016-2020.
 
-<div class="row my-4"><div class="col-8 mx-auto border"><strong>Figure 3:</strong> annual average heat-exacerbated deaths for <span>Extreme Heat Event</span> days, and <span>days at or above 82°F</span> in 5-year moving time windows (1971-2020) <img alt="Figure 3" src="rev-fig-3.jpeg" class="p-2" /></div></div>
+<div class="row my-4"><div class="col-8 mx-auto border"><strong>Figure 3:</strong> annual average heat-exacerbated deaths for <span>Extreme Heat Event</span> days, and <span>days at or above 82°F</span> in 5-year moving time windows (1971-2020) <img alt="Figure 3" src="" class="p-2" /></div></div>
 
-<div class="row my-4"><div class="col-8 mx-auto border"><strong>Figure 4:</strong>&nbsp;C<span>umulative relative risk</span> and <span>95% confidence intervals</span> of heat-exacerbated deaths for daily maximum temperature over same-day and 3 previous days, May-September (2011-2020) <img alt="Figure 4" src="rev-fig-4.jpeg" class="p-2" /><p class="fs-sm"><em>Ticks represent days at each temperature</em></p></div></div>
+<div class="row my-4"><div class="col-8 mx-auto border"><strong>Figure 4:</strong>&nbsp;C<span>umulative relative risk</span> and <span>95% confidence intervals</span> of heat-exacerbated deaths for daily maximum temperature over same-day and 3 previous days, May-September (2011-2020) <img alt="Figure 4" src="" class="p-2" /><p class="fs-sm"><em>Ticks represent days at each temperature</em></p></div></div>
 
 <u><em>Hotter Summers</em></u>\: There are many more days every summer that are hot but not extremely hot (i.e., daily maximum temperature at or above 82°F to single days of 95°F) compared to extreme heat event days. These days are also associated with increased risk of heat-related death (Figure 4). Due to climate change, the numbers of extreme heat events and non-extreme hot days are increasing, which contributes to an increase in heat-exacerbated deaths.
 
@@ -129,9 +129,7 @@ Given the consistently high and increasing proportion of hot days in July and Au
 </script><hr class="my-4" /> <strong>Figure 6:</strong> Monthly average daily maximum temperature (°F), measured from LaGuardia Airport (5-year moving windows)<iframe title="Figure 6: Monthly average daily maximum temperature (°F), measured from LaGuardia Airport (5-year moving windows)" aria-label="Interactive line chart" id="datawrapper-chart-zqk7k" src="https://datawrapper.dwcdn.net/zqk7k/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script></div>
 
-<div class="row my-4"><div class="col-10 mx-auto border"><strong>Figure 7:</strong> Air conditioning (AC) Prevalence estimated from three surveys between 1970 and 2017: <span>American Housing Survey</span>; <span>New York City Community Health Survey</span>; and <span>Housing and Vacancy Survey</span>.<p><img alt="Figure 7" src="rev-fig-7.jpeg" class="p-2" /></p><p class="fs-sm"><em>The line is fitted using natural cubic splines with 3 degrees of freedom. AHS and HVS surveys were weighted to households, whereas CHS data were weighted to individuals in the census</em></p></div></div>
-
-
+<div class="row my-4"><div class="col-10 mx-auto border"><strong>Figure 7:</strong> Air conditioning (AC) Prevalence estimated from three surveys between 1970 and 2017: <span>American Housing Survey</span>; <span>New York City Community Health Survey</span>; and <span>Housing and Vacancy Survey</span>.<p><img alt="Figure 7" src="" class="p-2" /></p><p class="fs-sm"><em>The line is fitted using natural cubic splines with 3 degrees of freedom. AHS and HVS surveys were weighted to households, whereas CHS data were weighted to individuals in the census</em></p></div></div>
 
 ## Community-Level Impacts
 
@@ -174,7 +172,7 @@ To prepare for a hotter future and prevent heat-related deaths, the City needs l
   * Implementing green infrastructure projects, especially in high HVI neighborhoods, including planting trees and other greenery and expanding cool roofs.&nbsp;
   * Support community-based organizations (CBO) working to reduce the health impacts of climate change.
   * Include CBOs and residents in decision-making about and investments in community infrastructure and public space.
-  * Fund and provide technical assistance for programs—such as the Health Department’s Be a Buddy—that support CBOs to build community resilience through social cohesion and access to physical and mental health resources that can help people stay safe in the heat.&nbsp;
+  * Fund and provide technical assistance for programs — such as the Health Department’s Be a Buddy — that support CBOs to build community resilience through social cohesion and access to physical and mental health resources that can help people stay safe in the heat.&nbsp;
   * Continue to strengthen emergency response during extreme heat, such as opening cooling centers and issuing heat-health warnings, prioritizing people and communities with the greatest need.
 
 More data and information about heat, climate, and health is available on the Health Department’s&nbsp;[Climate and Health Hub.](http://a816-dohbesp.nyc.gov/IndicatorPublic/HeatHub/index.html) Learn more about what the City is doing to mitigate the effects of heat as part of [PlaNYC: Getting Sustainability Done](https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/).&nbsp;
