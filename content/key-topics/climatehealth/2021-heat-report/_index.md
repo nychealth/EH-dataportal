@@ -51,7 +51,7 @@ The Health Department examined heat stress deaths occurring during the months of
 
 Among NYC residents, there were 102 heat stress deaths during the warm season from 2010 to 2019. There were an average of 10 deaths per year, with a minimum of 0 deaths in 2014, the coolest year, and a maximum of 33 in 2011, which had one of the hottest heat waves during the time period examined. Most deaths occurred in July (73%) and August (15%) as shown in Figure 1. In 2020, there were 4 heat stress deaths, though that number is provisional and subject to change because mortality records are not finalized. 
 
-<img src="2021-fig-1.jpeg" class="border-top border-bottom px-6">
+<img src="2021-fig-1.jpeg" class="border-top border-bottom px-6" alt="Figure 1: percent of heat stress deaths by month among NYC residents, 2010 to 2019. Heat stress deaths are highest in July.">
 
 |       Year  	|     n (deaths)  	|     %  	|     n, extreme heat days  	|     Maximum heat index reached, degrees F  	|     Length of longest extreme heat event, days   	|
 |-------------	|:---------------:	|:------:	|:-------------------------:	|:------------------------------------------:	|:------------------------------------------------:	|
@@ -120,7 +120,7 @@ Demographics
 
 ### Age of heat stress decedents, 2010-2019 
 
-<img src="2021-by-age.jpeg" class="border-top border-bottom px-6">
+<img src="2021-by-age.jpeg" class="border-top border-bottom px-6" alt="Age of heat stress decedents. Older people die at higher rates.">
 
 ### Health and other risk factors  
 
@@ -153,7 +153,7 @@ More than a quarter (n=16, 26%) of decedents had an electric fan present and on,
 
 Previous Health Department studies have found that air conditioning access differs across race and class. New Yorkers who are Black and low-income New Yorkers are less likely to own or use an AC during hot weather, and cost is the main reason why.2 While more than 90% of NYC households have air conditioning, access is also lower in neighborhoods where more people are living with limited financial resources. 
 
-<img src="2021-fig-2.jpeg" class="border-top border-bottom px-6">
+<img src="2021-fig-2.jpeg" class="border-top border-bottom px-6" alt="Air conditioning presence among people exposed to heat at home.">
 
 ### Heat-exacerbated deaths  
 
@@ -183,7 +183,11 @@ The number of extreme heat event days each year has stayed about the same (appro
 
 While there are high risk Neighborhood Tabulation Areas (NTA; defined as an HVI score of 4 or 5) in every borough of the city, the thread connecting them all is that they have more residents who are Black or low-income. Risk factors for heat tend to overlap in these neighborhoods due to persistent structural racism, which have positioned economic, educational, healthcare, housing, and other systems to benefit white people and put at a disadvantage Black, Indigenous and other people of color. The relative heat mortality risk of each NTA can be explored here. Read more about how structural racism affects housing and public health and the history of redlining and how it impacts public health in NYC.   
 
+<iframe aria-label="Map" class="my-2 p-4 border-top border-bottom" frameborder="0" height="800" id="datawrapper-chart-0wHq0" scrolling="no" src="https://datawrapper.dwcdn.net/16xAz/4/" style="width: 0; min-width: 100% !important; border: none;" title="2018 Heat Vulnerability Index"></iframe>
+
 The best indicator of neighborhood-level heat impacts is the HVI, which shows neighborhood differences in heat-exacerbated mortality risk. The number of heat stress deaths by NTA should be interpreted with caution. The NTAs are small and the number of deaths at this level is also small and unreliable, so it is difficult to conclude whether tell differences between areas are due to random fluctuation or represent a real difference in risk. 
+
+<iframe aria-label="Map" class="my-2 p-4 border-top border-bottom" frameborder="0" height="800" id="datawrapper-chart-0wHq0" scrolling="no" src="https://datawrapper.dwcdn.net/0wHq0/5/" style="width: 0; min-width: 100% !important; border: none;" title="Count of heat stress deaths"></iframe>
 
 ## Conclusions 
 
