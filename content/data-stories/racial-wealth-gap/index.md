@@ -142,7 +142,7 @@ Policies like universal health care, medical debt cancellation, and increasing c
 
 <strong>Student debt cancellation:</strong> According to the 2019 SCF, Black Americans hold the most student loan debt — $44,880 on average — compared to other races and ethnicities.  
 
-<strong>Baby bonds:</strong> Baby bonds are an innovative policy that provide children with publicly funded investment accounts that can be accessed beginning at the age of 18 for specific uses including education, homeownership, small business, and retirement. Any baby bonds proposal should allocate the most resources to Black, Latinx and indigenous children. 
+<strong>Baby bonds:</strong> Baby bonds are an innovative policy that provide children with publicly funded investment accounts that can be accessed beginning at the age of 18 for specific uses including education, homeownership, small business, and retirement. Any baby bonds proposal should allocate the most resources to Black, Hispanic, and indigenous children. 
 
 <strong>Reparations:</strong> A reparations program, such as federally paid cash to Black descendants of enslaved people, would eliminate the Black-White wealth gap, if the payment amounts were predicated on the average difference in Black and White wealth.
 
