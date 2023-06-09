@@ -36,9 +36,11 @@
         <div class="col-11 mx-auto mb-2">
             <h1><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
 
-            <div style="border-left: 3px solid darkgray; border-radius: 0px!important" class="aboutbox">
-                Smoke from wildfires in Canada is currently affecting NYC's air.  <a href="https://www.dec.ny.gov/press/127831.html">New York State DEC has issued a health advisory that is in effect until 11:59PM on Thursday, June 8, 2023</a>.  Conditions will vary throughout the day. Monitor air quality here.
+            <div style="border-left: 3px solid darkgray; border-radius: 0px!important" class="aboutbox my-2">
+                Smoke from wildfires in Canada is currently affecting NYC's air.  <a href="https://www.dec.ny.gov/press/127857.html">New York State DEC has issued a health advisory that is in effect until 11:59PM on Friday, June 9, 2023</a>. Conditions will vary throughout the day. Monitor air quality here.
             </div>
+
+            <p>This page shows near-real-time data on PM2.5, one of the most harmful pollutants. These data come from the NYC Community Air Survey's street-level monitors, and rooftop monitors of the NY State Department of Environmental Conservation (DEC). Our street-level monitors measure ground-level exposures; DEC rooftop monitors collect data for the Federal Clean Air Act. We apply a calibration factor to make our data comparable to DEC data and historical EPA data.</p> 
 
         </div>
 
@@ -147,7 +149,7 @@
             </div>
 
             <div style="background-color:#f2f2f275; border-left: 2px solid darkgray;" class="p-1 hide mt-1" id="decInfo">
-                <p class="fs-sm">Note: "DEC Monitor Average" is the average value of 11 roof-top monitors throughout the city, designed and placed for regulatory reporting. DOHMH street-level monitors are designed to measure ground-level exposures.</p>
+                <p class="fs-sm">Note: "DEC Monitor Average" is the average value of 11 roof-top monitors operated by the New York State Department of Environmental Conservation.</p>
             </div>
 
 
@@ -177,10 +179,11 @@
             <strong>About the Data</strong>
             <p>Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>).</p>
 
-            <p>Data come from: NYCCAS near-real-time street-level monitors, and from roof-top air quality sensors operated by the <i class="fas fa-square mr-1" style="color:darkgray"></i>NYS Department of Environmental Conservation as required by the Federal Clean Air Act. External factors can sometimes affect monitor functioning. NYCCAS monitors have recently been deployed and may overestimate or underestimate PM2.5 while we adjust their performance for NYC's climate. These data are preliminary and subject to change.</p>
+            <p>External factors can sometimes affect monitor functioning. Data are preliminary and subject to change.</p>
+
+            <p><strong>Friday, June 9:</strong> We applied a calibration algorithm to past and future real-time air quality data to make our data comparable to DEC and EPA.</p>
         </div>
 
-        <div class="aboutbox fs-sm mt-1">Or, see <a href="../aqe">your neighborhood air quality</a>.</div>
          </div>
     </div>
 
