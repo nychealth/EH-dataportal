@@ -1,16 +1,12 @@
-/*
-// ---- REALTIME AQ ---- //
-If a monitor is in the datafeed, it needs an entry in monitor_locations.csv.
-loc_col needs to equal SiteName in the datafeed.
+/* // ---- REALTIME AQ ---- //
+If a monitor is in the datafeed, it needs an entry in monitor_locations.csv. loc_col needs to equal SiteName in the datafeed.
 
 This app excludes DEC_Avg from conventional functionality: 
 - monitors_group_noDEC sets the map bounds without the DEC Average monitor - which is given an abitrary off-coast lat/long
 - if (x != 'DEC_Avg') changes what happens to the map zoom on button click - just zooming to the initial extent if somebody selects the DEC_Avg option.
 
 Because of CORS restrictions to localhost1313, test by copying the contents of the azure feed to data/nyccas_realtime_DEC.csv, and replace the locations both in the initial ingestion (below) and in spec.json.
-
 */
-
 
 // initialize variables (other variables are initialized closer to their prime use)
 var current_spec;
@@ -19,12 +15,14 @@ var fullTable;
 var locSelect = "No location"
 var res;
 var floorDate;
+var maxTime;
+var maxTimeMinusDay;
 
 
 // ---- INITIAL: ingest data feed ---- // 
 aq.loadCSV(
    // "data/nyccas_realtime_DEC.csv" // temporary local placeholder
-     "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv" // actual live data feed. Also update this in spec json.
+    "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv" // actual live data feed. Also update this in spec json.
 
 ).then(data => {
 
@@ -36,6 +34,14 @@ aq.loadCSV(
     floorDate = new Date(fullTable[0].starttime) // creates earliest date in 7-day feed - used for time filter
     console.log('Showing data since: ' + floorDate)
     floorDate = Date.parse(floorDate) // converting to milliseconds
+
+    // get most recent time
+    var ftl = fullTable.length - 1
+    maxTime = fullTable[ftl].starttime
+    maxTime = Date.parse(maxTime)
+    maxTimeMinusDay = maxTime - 86400000
+
+
     
     // console.log("fullTable:", fullTable);
     getStationsFromData();
@@ -102,7 +108,8 @@ function getSpec() {
 
         // get floor date and filter by floor date:
         filter = `datum.starttime > ${floorDate}`
-        current_spec.transform[0] = {"filter": filter}
+        current_spec.layer[0].transform[0] = {"filter": filter}
+        current_spec.layer[2].encoding.x2.datum = maxTimeMinusDay
         drawChart(current_spec)
     });
 }
@@ -119,7 +126,7 @@ function getColors() {
         colors.push(activeMonitors[i].Color)
     }
     // colors.push('darkgray') // if DEC_Avg is present.
-    current_spec.encoding.color.scale.range = colors
+    current_spec.layer[0].encoding.color.scale.range = colors
 }
 
 
@@ -154,11 +161,16 @@ function listenButtons() {
 // ---- UPDATE DATA FUNCTION TO DEVELOP: takes loc_col as an argument ---- // 
 var opacity;
 var stroke; 
+var loc;
+var locData = [];
+
 function updateData(x) {
     // document to console:
     console.log('Showing data for: ' + x)
 
-    // /remove active classes, and highilght selected
+    getRecentAverage(x)
+
+    // /remove active classes, and highlight selected
     btns.forEach(x => {
         x.classList.remove('active') // remove from all 
     })
@@ -171,8 +183,12 @@ function updateData(x) {
         // zoom to the corresponding leaflet marker
         map.setView(monitors[index].getLatLng(), 13);
 
+        document.getElementById('decInfo').classList.add('hide')
+
+
     } else {
-        resetZoom()
+        resetZoom();
+        document.getElementById('decInfo').classList.remove('hide')
     }
 
 
@@ -193,10 +209,15 @@ function updateData(x) {
           "value": 1
         }
 
-    current_spec.encoding.opacity = opacity
-    current_spec.encoding.opacity.condition.test = `datum['SiteName'] === '${x}'`
-    current_spec.encoding.strokeWidth = stroke
-    current_spec.encoding.strokeWidth.condition.test = `datum['SiteName'] === '${x}'`
+    current_spec.layer[0].encoding.opacity = opacity
+    current_spec.layer[0].encoding.opacity.condition.test = `datum['SiteName'] === '${x}'`
+    current_spec.layer[0].encoding.strokeWidth = stroke
+    current_spec.layer[0].encoding.strokeWidth.condition.test = `datum['SiteName'] === '${x}'`
+    
+    current_spec.layer[2].encoding.x2.datum = maxTimeMinusDay
+    current_spec.layer[2].encoding.opacity.value = 0.1
+
+
     vegaEmbed('#vis2', current_spec)
 
 
@@ -208,6 +229,45 @@ function getIndex(x) {
             return i
         }
     } 
+}
+
+function getRecentAverage(x) {
+    // Averaging recent values
+    loc = x; // retrieve location
+    locData = fullTable.filter(records => records.SiteName == x) // create array of location data
+    
+    // slice location data array to last 24 hours
+    var length = locData.length; 
+    var start = length - 24;
+    locData = locData.slice(start, length)
+
+    // average the last 24 hours
+    var average;
+    var sum = []
+    for (let i = 0; i < locData.length; i ++ ) {
+        sum.push(locData[i].Value)
+    }
+
+    let totals = 0
+    for (let i = 0; i < sum.length; i ++ ) {
+        totals += sum[i]
+    }
+
+    average = totals / 24
+    average = Math.round(average * 100) / 100
+
+    console.log('average for this location over the last 24 hours: ' + average)
+
+    // show box
+    document.getElementById('averageBox').classList.remove('hide')
+
+    // send values to page
+    document.getElementById('locAverage').innerHTML = average + ' μg/m<sup>3</sup>'
+    average > 35 ? document.getElementById('aboveBelow').innerHTML = 'above' : document.getElementById('aboveBelow').innerHTML = 'below'
+    average > 35 ? document.getElementById('aboveBelow').classList.add('badge') : document.getElementById('aboveBelow').classList.add('badge')
+    average > 35 ? document.getElementById('aboveBelow').classList.add('badge-warning') : document.getElementById('aboveBelow').classList.add('badge-success')
+
+
 }
 
 
@@ -238,7 +298,7 @@ function drawMap() {
         
         var this_monitor = 
             L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
-            .bindTooltip(monitor.Location, {permanent: true, opacity: 0.85, interactive: true})
+            // .bindTooltip(monitor.Location, {permanent: true, opacity: 0.85, interactive: true})
             .addTo(monitors_group)
         
         // create group without the DEC Monitor, which we'll use to set the center and bounds
@@ -334,6 +394,10 @@ function restore() {
     getSpec();
     document.getElementById('inputNum').value = 7
 
+    document.getElementById('averageBox').classList.add('hide')
+    current_spec.layer[2].encoding.opacity.value = 0.0
+    vegaEmbed('#vis2', current_spec)
+
 }
 
 // ---- TIME FILTER ---- //
@@ -357,7 +421,8 @@ function updateTime(x) {
 
     // send date filter to spec and re-draw Chart
     filter = `datum.starttime > ${filterTo}`
-    current_spec.transform[0] = {"filter": filter}
+    current_spec.layer[0].transform[0] = {"filter": filter}
     // console.log(current_spec)
     drawChart(current_spec)
 }
+

@@ -3,10 +3,10 @@ title: "The Environment and Health Data Portal: Home page"
 draft: false
 seo_title: "Explore data on how environments shape health in New York City's neighborhoods."
 seo_description: "A project by the NYC Health Department."
-featured_title: "New York City Community Air Survey"
-featured_text: "Findings from over a decade of our comprehensive, city-wide air quality monitoring."
-featured_link: "/key-topics/airquality/nyccas"
-featured_image: nyccas.png
+featured_title: "Real-time heat-related illness"
+featured_text: "Tracking the effects of heat through near real-time emergency department visit data."
+featured_link: "/key-topics/climatehealth/syndromic"
+featured_image: syndromic.png
 recently_updated:
 - Name: Average Citi Bike availability
   Link: /data-explorer/active-design/?id=2425#display=summary
