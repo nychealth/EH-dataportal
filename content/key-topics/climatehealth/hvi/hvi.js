@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 
 // Create and initialize variables
 
@@ -11,69 +11,111 @@ var selectedName = '';
 
 var selectEl = document.querySelector('#last-neighborhood')
 
-accessibleAutocomplete.enhanceSelectElement({
-    autoselect: true,
-    confirmOnBlur: true,
-    defaultValue: "",
-    minLength: 2,
-    selectElement: selectEl
-})
+// accessibleAutocomplete.enhanceSelectElement({
+//     autoselect: true,
+//     confirmOnBlur: true,
+//     defaultValue: "",
+//     minLength: 2,
+//     selectElement: selectEl
+// })
 
 
 // This puts an event listener on the form, gets the neighborhood value, and dumps it into initial readout
 
-var neighborhoodName;
-var ntaForm = document.getElementById('nta-form');
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// function to load flexdatalist
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-ntaForm.addEventListener('submit', function (event) {
-    
-    event.preventDefault();                                   // prevent page re-load
-    selectedName = event.target[0].value;                 // gives you full neighborhood name
-    selectedNeighborhood = event.target[0].value.slice(0, 4); // gives you NTA code
+const load_flexdatalist = async () => {
 
-    dataChange();
+    console.log("** load_flexdatalist");
+
+    // get NTA with associated zipcodes
+
+    let nta_zip_collapsed;
+
+    await fetch(`nta_zip_collapsed.json`)
+        .then(response => response.json())
+        .then(data => {
+            nta_zip_collapsed = data;
+            console.log("nta_zip_collapsed", nta_zip_collapsed);
+        })
     
-});
+    // init flexdatalist
+
+    let $input = $('.flexdatalist').flexdatalist({
+        minLength: 0,
+        valueProperty: ["NTACode", "NTAName"],
+        textProperty: "{NTACode}: {NTAName}",
+        selectionRequired: false,
+        focusFirstResult: true,
+        visibleProperties: ["NTACode", "NTAName", "zipcode"],
+        searchIn: ["NTACode", "NTAName", "zipcode"],
+        searchContain: true,
+        searchByWord: true,
+        redoSearchOnFocus: true,
+        cache: false,
+        data: nta_zip_collapsed
+    });
+
+
+    // console.log("$input [load_flexdatalist]:", $input);
+        
+    $input.on('select:flexdatalist', (e, set) => {
+
+        console.log(">> select:flexdatalist");
+
+        console.log("set", set);
+
+        selectedName = set.NTAName;
+
+        dataChange(set.NTACode);
+
+    })
+}
+
 
 // interactive variables
 
 var nCD = "";
 var nGREENSPACE = "";
 
-var nHRI_HOSP_RATE = "";
+// var nHRI_HOSP_RATE = "";
 var nHVI_RANK = "";
 var nNTACode = "";
 var nNTAName = "";
 var nPCT_BLACK_POP = "";
 var nPCT_HOUSEHOLDS_AC = "";
-var nPOV_PCT = "";
-var nSURFACETEMP = "";
+var nMEDIAN_INCOME = "";
+var nSURFACE_TEMP = "";
 
 // path variables
 
 // 'data_repo' and 'data_branch' are created from Hugo variables in the aqe.html template
 
-var hvi_path   = data_repo + data_branch + "/key-topics/heat-vulnerability-index";
-var hvi_url    = hvi_path + "/hvi-nta.csv";
+// var hvi_path   = data_repo + data_branch + "/key-topics/heat-vulnerability-index";
+// var hvi_path   = data_repo + data_branch + "/key-topics/heat-vulnerability-index";
+// var hvi_url    = hvi_path + "/hvi-nta-2020.csv";
+var hvi_url    = "hvi-nta-2020.csv";
 var HVImapSpec = "HVIMapSpec.vg.json";
 
 // path to topo json, will be loaded by vega
 
-var nta_topojson = data_repo + data_branch + "/geography/NTA_2010.topo.json"; 
+var nta_topojson = data_repo + data_branch + "/geography/NTA_2020.topo.json"; 
 
 // copy establishing variables for tertiles
 
-var nPOV_PCTTERT = "";
-var nGREENSPACETERT = "";
-var nPCT_HOUSEHOLDS_ACTERT = "";
-var nSURFACETEMPTERT = "";
+var nINCOME_TERT= "";
+var nGREENSPACE_TERT = "";
+var nAC_TERT = "";
+var nSURFACE_TEMP_TERT = "";
 
 // these variables hold the ids of the divs to hold the small circle graphs
 
 var scLocTemp = "#tempTertile";
 var scLocGreen = "#greenTertile";
 var scLocAC = "#acTertile";
-var scLocPov = "#povTertile";
+var scLocInc = "#incTertile";
 var scLocBPop = "#bpopTertile";
 
 //var SCM_spec = {};
@@ -87,12 +129,17 @@ var embed_opt = {
 
 d3.csv(hvi_url, d3.autoType).then(data => {
     hvidata = data;
+    console.log("hvidata", hvidata);
 }); 
+
+function round(x, d = 1) {
+  return Number.parseFloat(x).toFixed(d);
+}
 
 
 // dataChange function updates selected neighborhood, then filter hvi data and get new neighborhood data, then adds to DOM
 
-function dataChange() {
+function dataChange(selectedNeighborhood) {
 
     neighborhoodData = hvidata.filter(sf => {
         
@@ -103,36 +150,36 @@ function dataChange() {
     });
 
 
-    nSURFACETEMP = neighborhoodData[0].SURFACETEMP;  // temp  *
-    nGREENSPACE = neighborhoodData[0].GREENSPACE;  // green  *
+    nSURFACE_TEMP = round(neighborhoodData[0].SURFACE_TEMP);  // temp  *
+    nGREENSPACE = round(neighborhoodData[0].GREENSPACE);  // green  *
     nHVI_RANK = neighborhoodData[0].HVI_RANK; // hvi  **
     nPCT_BLACK_POP = neighborhoodData[0].PCT_BLACK_POP;  // bpop  *
-    nPCT_HOUSEHOLDS_AC = neighborhoodData[0].PCT_HOUSEHOLDS_AC; // ac  *
-    nPOV_PCT = neighborhoodData[0].POV_PCT;  // pov  *
+    nPCT_HOUSEHOLDS_AC = round(neighborhoodData[0].PCT_HOUSEHOLDS_AC); // ac  *
+    nMEDIAN_INCOME = neighborhoodData[0].MEDIAN_INCOME_chr;  // inc  *
 
     // copy this but for our tertiles
 
-    nSURFACETEMPTERT = neighborhoodData[0].SURFACETEMP_TERT;
-    nGREENSPACETERT = neighborhoodData[0].GREENSPACE_TERT; // GREENSPACETERTILE
-    nPOV_PCTTERT = neighborhoodData[0].POV_TERT;
-    nPCT_HOUSEHOLDS_ACTERT = neighborhoodData[0].AC_TERT;
+    nSURFACE_TEMP_TERT = neighborhoodData[0].SURFACE_TEMP_TERT;
+    nGREENSPACE_TERT = neighborhoodData[0].GREENSPACE_TERT; // GREENSPACE_TERTILE
+    nINCOME_TERT= neighborhoodData[0].POV_TERT;
+    nAC_TERT = neighborhoodData[0].AC_TERT;
 
     // fill html elements
 
     document.querySelector("#NTA").innerHTML = '<h4>' + DOMPurify.sanitize(selectedName) + '</h4>';
-    document.querySelector("#tempVal").innerHTML = nSURFACETEMP + '° F';
+    document.querySelector("#tempVal").innerHTML = nSURFACE_TEMP + '° F';
     document.querySelector("#greenVal").innerHTML = nGREENSPACE + '%';
     document.querySelector("#hviVal").innerHTML = '<h4>' + nHVI_RANK + ' out of 5</h4>';
     document.querySelector("#bpopVal").innerHTML = nPCT_BLACK_POP + '%';
     document.querySelector("#acVal").innerHTML = nPCT_HOUSEHOLDS_AC + '%';
-    document.querySelector("#povVal").innerHTML = nPOV_PCT + '%';
+    document.querySelector("#incVal").innerHTML = "$" + nMEDIAN_INCOME;
 
     // adding tertile delivery
 
-    document.querySelector("#tempTert").innerHTML = nSURFACETEMPTERT;
-    document.querySelector("#greenTert").innerHTML = nGREENSPACETERT;
-    document.querySelector("#povTert").innerHTML = nPOV_PCTTERT;
-    document.querySelector("#acTert").innerHTML = nPCT_HOUSEHOLDS_ACTERT;
+    document.querySelector("#tempTert").innerHTML = tertileTranslate2(nSURFACE_TEMP_TERT);
+    document.querySelector("#greenTert").innerHTML = tertileTranslate2(nGREENSPACE_TERT);
+    document.querySelector("#incTert").innerHTML = tertileTranslate2(nINCOME_TERT);
+    document.querySelector("#acTert").innerHTML = tertileTranslate2(nAC_TERT);
 
     // rebuild map
 
@@ -185,6 +232,8 @@ function tertileTranslate2(tertileVal) {
 // function to build maps
 
 function buildMap(div, spec, csv, topo, nbr) {
+
+    console.log("nbr", nbr);
     
     d3.json(spec).then(spec => {
             
@@ -221,6 +270,8 @@ function buildMap(div, spec, csv, topo, nbr) {
 $( window ).on( "load", function() {
 
     // load the map
+
+    load_flexdatalist()
     
     buildMap('#mapvis', HVImapSpec, hvidata, nta_topojson, selectedNeighborhood);
 
