@@ -4,7 +4,7 @@
 
 var hvidata = {};
 var neighborhoodData;
-var selectedNeighborhood = [''];
+// var GEOCODE = [''];
 var selectedName = '';
 
 // This script runs style/highlighting
@@ -45,12 +45,12 @@ const load_flexdatalist = async () => {
 
     let $input = $('.flexdatalist').flexdatalist({
         minLength: 0,
-        valueProperty: ["NTACode", "NTAName"],
-        textProperty: "{NTACode}: {NTAName}",
+        valueProperty: ["GEOCODE", "GEONAME"],
+        textProperty: "{NTACode}: {GEONAME}",
         selectionRequired: false,
         focusFirstResult: true,
-        visibleProperties: ["NTACode", "NTAName", "zipcode"],
-        searchIn: ["NTACode", "NTAName", "zipcode"],
+        visibleProperties: ["NTACode", "GEONAME", "zipcode"],
+        searchIn: ["NTACode", "GEONAME", "zipcode"],
         searchContain: true,
         searchByWord: true,
         redoSearchOnFocus: true,
@@ -67,9 +67,9 @@ const load_flexdatalist = async () => {
 
         console.log("set", set);
 
-        selectedName = set.NTAName;
+        selectedName = set.GEONAME;
 
-        dataChange(set.NTACode);
+        dataChange(set.GEOCODE);
 
     })
 }
@@ -83,7 +83,7 @@ var nGREENSPACE = "";
 // var nHRI_HOSP_RATE = "";
 var nHVI_RANK = "";
 var nNTACode = "";
-var nNTAName = "";
+var nGEONAME = "";
 var nPCT_BLACK_POP = "";
 var nPCT_HOUSEHOLDS_AC = "";
 var nMEDIAN_INCOME = "";
@@ -102,6 +102,8 @@ var HVImapSpec = "HVIMapSpec.vg.json";
 // path to topo json, will be loaded by vega
 
 var nta_topojson = data_repo + data_branch + "/geography/NTA_2020.topo.json"; 
+
+console.log("nta_topojson", nta_topojson);
 
 // copy establishing variables for tertiles
 
@@ -139,13 +141,13 @@ function round(x, d = 1) {
 
 // dataChange function updates selected neighborhood, then filter hvi data and get new neighborhood data, then adds to DOM
 
-function dataChange(selectedNeighborhood) {
+function dataChange(GEOCODE) {
 
-    neighborhoodData = hvidata.filter(sf => {
+    neighborhoodData = hvidata.filter(hvi => {
         
         // geo code used in hvi.html is the character NTACode, so using that here instead of numeric GEOCODE
 
-        return sf.NTACode === selectedNeighborhood;
+        return hvi.GEOCODE == GEOCODE;
 
     });
 
@@ -183,7 +185,7 @@ function dataChange(selectedNeighborhood) {
 
     // rebuild map
 
-    buildMap('#mapvis', HVImapSpec, hvidata, nta_topojson, selectedNeighborhood);
+    buildMap('#mapvis', HVImapSpec, hvidata, nta_topojson, GEOCODE);
 
 } 
 
@@ -251,7 +253,7 @@ function buildMap(div, spec, csv, topo, nbr) {
 
                 var res_view = 
                     await res.view
-                        .signal("selectNTA", nbr)
+                        .signal("selectedNTA", nbr)
                         .insert("hviData", csv)
                         .logLevel(vega.Info)
                         .runAsync();
@@ -273,7 +275,7 @@ $( window ).on( "load", function() {
 
     load_flexdatalist()
     
-    buildMap('#mapvis', HVImapSpec, hvidata, nta_topojson, selectedNeighborhood);
+    buildMap('#mapvis', HVImapSpec, hvidata, nta_topojson, "");
 
 });
 

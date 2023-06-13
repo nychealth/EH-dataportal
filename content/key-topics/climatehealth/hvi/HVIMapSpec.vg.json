@@ -99,7 +99,7 @@
       ]
     },
     {
-      "name": "selectNTA",
+      "name": "selectedNTA",
       "value": ""
     }
   ],
@@ -129,7 +129,7 @@
         "update": {
           "stroke": [
             {
-              "test": "datum.properties.GEOCODE==selectNTA",
+              "test": "datum.properties.GEOCODE==selectedNTA",
               "value": "#00d2ff"
             },
             {"value": "white"}
@@ -142,7 +142,7 @@
             "test": "(vlSelectionTest(\"highlight_store\", datum))",
             "value": 2
             },{
-              "test": "datum.properties.GEOCODE==selectNTA",
+              "test": "datum.properties.GEOCODE==selectedNTA",
               "value": 4
             },
             {"value": 0.5}
