@@ -1,0 +1,44 @@
+{{- define "main" -}}
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-4">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href="/key-topics/climatehealth/">Climate and Health</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-2 mr-auto"></div>
+    </div>
+
+    <div class="row">
+              <div class="col-md-11 col-sm-12 mx-auto">
+                <h1><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
+                {{- .Content  -}}
+        </div>
+
+
+    </div>
+
+    <div class="row mt-2" >
+        <div class="col-11 mx-auto">
+            <h3 style="background-color:#f1f1f1; padding: 10px; border-radius: 5px;">Daily data</h3>
+            <div class="row mt-2 pl-2">
+              <iframe title="Asthma syndrome ED visits (Copy) - NOTE: no 2019" aria-label="Interactive line chart" id="datawrapper-chart-1wA4m" src="https://datawrapper.dwcdn.net/1wA4m/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+              </script>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+</article>
+
+{{- end -}}
