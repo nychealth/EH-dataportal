@@ -170,23 +170,29 @@
     </div>
 
     <div class="row mt-4">
-        <div class="col-md-7 col-sm-12 ml-auto">
-            {{- .Content  -}}
+        <div class="col-11 mx-auto">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 ml-auto">
+                    <h4>About PM2.5 air pollution</h4>
+                    {{- .Content  -}}
+                </div>
+        
+                <div class="col-md-6 mr-auto">
+                    <h4>About the data</h4>
+                    <p>Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>). External factors can sometimes affect monitor functioning. Data are preliminary and subject to change.</p>
+
+                    <strong>Street-level monitors</strong>
+                    <p>Data come from the <a href="../nyccas">NYC Community Air Survey</a>'s street-level monitors, which measure ground-level exposures. We apply a calibration factor to make our data comparable to DEC data and historical EPA data.</p>
+                    
+                    <strong>DEC rooftop monitors</strong>
+                    <p>We show the average readings from 11 rooftop monitors from the <a href="https://www.dec.ny.gov/index.html">NY State Department of Environmental Conservation (DEC)</a>, which collects data for the Federal Clean Air Act.</p> 
+        
+                    <p></p>
+        
+                 </div>
+            </div>
         </div>
 
-        <div class="col-md-4 mr-auto">
-        <div class="aboutbox fs-sm">
-            <strong>About the Data</strong>
-            <p>Data come from the NYC Community Air Survey's street-level monitors, and rooftop monitors of the NY State Department of Environmental Conservation (DEC). Our street-level monitors measure ground-level exposures; DEC rooftop monitors collect data for the Federal Clean Air Act. We apply a calibration factor to make our data comparable to DEC data and historical EPA data.</p>
-
-            <p>Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>).</p>
-
-            <p>External factors can sometimes affect monitor functioning. Data are preliminary and subject to change.</p>
-
-            <p><strong>Friday, June 9:</strong> We applied a calibration algorithm to past and future real-time air quality data to make our data comparable to DEC and EPA.</p>
-        </div>
-
-         </div>
     </div>
 
     
