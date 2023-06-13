@@ -36,9 +36,11 @@
         <div class="col-11 mx-auto mb-2">
             <h1><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
 
+            <!--
             <div style="border-left: 3px solid darkgray; border-radius: 0px!important" class="aboutbox my-2">
                 Smoke from wildfires in Canada is currently affecting NYC's air.  <a href="https://www.dec.ny.gov/press/127857.html">New York State DEC has issued a health advisory that is in effect until 11:59PM on Friday, June 9, 2023</a>. Conditions will vary throughout the day. Monitor air quality here.
             </div>
+            -->
 
             <p>This page shows near-real-time data on PM2.5, one of the most harmful pollutants. These data come from the NYC Community Air Survey's street-level monitors, and rooftop monitors of the NY State Department of Environmental Conservation (DEC). Our street-level monitors measure ground-level exposures; DEC rooftop monitors collect data for the Federal Clean Air Act. We apply a calibration factor to make our data comparable to DEC data and historical EPA data.</p> 
 
@@ -190,9 +192,9 @@
     
     <div class="row my-4 border py-2 mx-2">
         <div class="col-11 mx-auto">
-            <iframe class="my-2 float-right" title="Example 1" height="340" width="230" src="https://widget.airnow.gov/aq-dial-widget/?city=NewYorkCity&state=NYC&country=USA&transparent=true" style="border: none; border-radius: 25px;"></iframe>
+            <iframe class="my-2 float-right" title="Example 1" height="340" width="230" src="https://widget.airnow.gov/aq-dial-widget/?city=New%20York%20City&state=NY&country=USA&transparent=true" style="border: none; border-radius: 25px;"></iframe>
             <h3>The Air Quality Index</h3>
-            <p><a href="https://www.airnow.gov/aqi/aqi-basics/">The Air Quality Index is the US Environmental Protection Agency's way of reporting air quality</a>. It reports whether any of five major pollutants (ground-level ozone, PM2.5, carbon monoxide, sulfur dioxide and nitrogen dioxide) are at levels that can harm health.             <a href="https://www.airnow.gov/sites/default/files/2023-03/air-quality-guide-for-particle-pollution_0.pdf">More information about the Air Quality Index, including what to do at different levels</a>.</p>
+            <p><a href="https://www.airnow.gov/aqi/aqi-basics/">The Air Quality Index is the US Environmental Protection Agency's way of reporting air quality</a>. It reports whether any of five major pollutants (ground-level ozone, fine particles, carbon monoxide, sulfur dioxide and nitrogen dioxide) are at levels that can harm health.             <a href="https://www.airnow.gov/sites/default/files/2023-03/air-quality-guide-for-particle-pollution_0.pdf">More information about the Air Quality Index, including what to do at different levels</a>.</p>
 
                 <span style="background-color:#00E400; padding: 0px 5px; border-radius: 2px;">Good (0-50)</span> Air pollution poses little or no risk.<br>
                 <span style="background-color:yellow; padding: 0px 5px; border-radius: 2px;">Moderate (51-100)</span> There may be some risk to people who are unusally sensitive to air pollution.<br>
