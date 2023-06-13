@@ -1,307 +1,321 @@
-// "use strict";
+// ======================================================================= //
+// hvi.js
+// ======================================================================= //
 
-// Create and initialize variables
+// ----------------------------------------------------------------------- //
+// load the charts after the page loads
+// ----------------------------------------------------------------------- //
 
-var hvidata = {};
-var neighborhoodData;
-// var GEOCODE = [''];
-var selectedName = '';
+// $(function() {
 
-// This script runs style/highlighting
-
-var selectEl = document.querySelector('#last-neighborhood')
-
-// accessibleAutocomplete.enhanceSelectElement({
-//     autoselect: true,
-//     confirmOnBlur: true,
-//     defaultValue: "",
-//     minLength: 2,
-//     selectElement: selectEl
-// })
-
-
-// This puts an event listener on the form, gets the neighborhood value, and dumps it into initial readout
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-// function to load flexdatalist
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-const load_flexdatalist = async () => {
-
-    console.log("** load_flexdatalist");
-
-    // get NTA with associated zipcodes
-
-    let nta_zip_collapsed;
-
-    await fetch(`nta_zip_collapsed.json`)
-        .then(response => response.json())
-        .then(data => {
-            nta_zip_collapsed = data;
-            console.log("nta_zip_collapsed", nta_zip_collapsed);
-        })
+//     // load flexdatalist
     
-    // init flexdatalist
+//     load_flexdatalist()
+    
+//     // load the map (with no selected neighborhood)
+    
+//     buildMap('#mapvis', HVImapSpec, hvidata, nta_topojson, "");
+    
+// });
 
-    let $input = $('.flexdatalist').flexdatalist({
-        minLength: 0,
-        valueProperty: ["GEOCODE", "GEONAME"],
-        textProperty: "{NTACode}: {GEONAME}",
-        selectionRequired: false,
-        focusFirstResult: true,
-        visibleProperties: ["NTACode", "GEONAME", "zipcode"],
-        searchIn: ["NTACode", "GEONAME", "zipcode"],
-        searchContain: true,
-        searchByWord: true,
-        redoSearchOnFocus: true,
-        cache: false,
-        data: nta_zip_collapsed
-    });
+// ----------------------------------------------------------------------- //
+// setting up
+// ----------------------------------------------------------------------- //
 
-
-    // console.log("$input [load_flexdatalist]:", $input);
-        
-    $input.on('select:flexdatalist', (e, set) => {
-
-        console.log(">> select:flexdatalist");
-
-        console.log("set", set);
-
-        selectedName = set.GEONAME;
-
-        dataChange(set.GEOCODE);
-
-    })
-}
-
-
-// interactive variables
-
-var nCD = "";
-var nGREENSPACE = "";
-
-// var nHRI_HOSP_RATE = "";
-var nHVI_RANK = "";
-var nNTACode = "";
-var nGEONAME = "";
-var nPCT_BLACK_POP = "";
-var nPCT_HOUSEHOLDS_AC = "";
-var nMEDIAN_INCOME = "";
-var nSURFACE_TEMP = "";
-
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // path variables
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 // 'data_repo' and 'data_branch' are created from Hugo variables in the aqe.html template
 
-// var hvi_path   = data_repo + data_branch + "/key-topics/heat-vulnerability-index";
-// var hvi_path   = data_repo + data_branch + "/key-topics/heat-vulnerability-index";
-// var hvi_url    = hvi_path + "/hvi-nta-2020.csv";
-var hvi_url    = "hvi-nta-2020.csv";
-var HVImapSpec = "HVIMapSpec.vg.json";
+// let hvi_path   = data_repo + data_branch + "/key-topics/heat-vulnerability-index";
+// let hvi_path   = data_repo + data_branch + "/key-topics/heat-vulnerability-index";
+// let hvi_url    = hvi_path + "/hvi-nta-2020.csv";
+let hvi_url    = "hvi-nta-2020.csv";
+let HVImapSpec = "HVIMapSpec.vg.json";
 
 // path to topo json, will be loaded by vega
 
-var nta_topojson = data_repo + data_branch + "/geography/NTA_2020.topo.json"; 
+let nta_topojson = data_repo + data_branch + "/geography/NTA_2020.topo.json"; 
 
-console.log("nta_topojson", nta_topojson);
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// functions
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-// copy establishing variables for tertiles
+// ===== round ================================================== //
 
-var nINCOME_TERT= "";
-var nGREENSPACE_TERT = "";
-var nAC_TERT = "";
-var nSURFACE_TEMP_TERT = "";
+function round(x, d = 1) {
+    return Number.parseFloat(x).toFixed(d);
+}
 
-// these variables hold the ids of the divs to hold the small circle graphs
+// ===== load flexdatalist ================================================== //
 
-var scLocTemp = "#tempTertile";
-var scLocGreen = "#greenTertile";
-var scLocAC = "#acTertile";
-var scLocInc = "#incTertile";
-var scLocBPop = "#bpopTertile";
+const load_flexdatalist = async () => {
 
-//var SCM_spec = {};
+    // ----- get NTA with associated zipcodes -------------------------------------------------- //
+    
+    await fetch(`nta_zip_collapsed.json`)
+        .then(response => response.json())
+        .then(data => {
 
-var embed_opt = {
-    actions: false
-};
+            let nta_zip_collapsed = data;
+            console.log("nta_zip_collapsed", nta_zip_collapsed);
+            
+            // ----- init flexdatalist -------------------------------------------------- //
+            
+            let $input = $('.flexdatalist').flexdatalist({
+                minLength: 0,
+                valueProperty: ["GEOCODE", "GEONAME"],
+                textProperty: "{GEONAME}",
+                selectionRequired: false,
+                focusFirstResult: true,
+                visibleProperties: ["NTACode", "GEONAME", "zipcode"],
+                searchIn: ["GEONAME", "zipcode"],
+                searchContain: true,
+                searchByWord: true,
+                redoSearchOnFocus: true,
+                toggleSelected: true,
+                cache: false,
+                data: nta_zip_collapsed
+            });
 
+            console.log("$input", $input);
+            
+            // ----- add flexdatalist select handler -------------------------------------------------- //
+
+            $input.on('select:flexdatalist', (e, set) => {
+                
+                console.log("set", set);
+
+                // set neighborhood name on page
+                
+                document.querySelector("#NTA").innerHTML = '<h4>' + DOMPurify.sanitize(set.GEONAME) + '</h4>';
+                
+                // call dataChange
+
+                dataChange(set.GEOCODE);
+                
+            })
+
+            // ----- add clear button handler -------------------------------------------------- //
+
+            $("#clear").on("click", (e) => {
+
+                console.log("e [clear click]", e);
+
+                $($input).find("~input").val("").trigger( "focus" )
+                
+            })
+
+        })
+}
+
+// ----- call loader function -------------------------------------------------- //
+
+load_flexdatalist()
+
+// ----------------------------------------------------------------------- //
+// main functionality
+// ----------------------------------------------------------------------- //
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// loading data
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 // the d3 code below loads the data from a CSV file and dumps it into global javascript object variable.
 
+let hvidata;
+
 d3.csv(hvi_url, d3.autoType).then(data => {
+
     hvidata = data;
-    console.log("hvidata", hvidata);
+
+    // load the map (with no selected neighborhood)
+    
+    buildMap('#mapvis', HVImapSpec, hvidata, nta_topojson, "");
+
+    // console.log("hvidata", hvidata);
 }); 
 
-function round(x, d = 1) {
-  return Number.parseFloat(x).toFixed(d);
-}
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// change neighborhood data
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 // dataChange function updates selected neighborhood, then filter hvi data and get new neighborhood data, then adds to DOM
 
 function dataChange(GEOCODE) {
-
-    neighborhoodData = hvidata.filter(hvi => {
+    
+    let neighborhoodData = hvidata.filter(hvi => {
         
-        // geo code used in hvi.html is the character NTACode, so using that here instead of numeric GEOCODE
-
+        // using numeric version of the NTACode for operations
+        
         return hvi.GEOCODE == GEOCODE;
-
+        
     });
-
-
-    nSURFACE_TEMP = round(neighborhoodData[0].SURFACE_TEMP);  // temp  *
-    nGREENSPACE = round(neighborhoodData[0].GREENSPACE);  // green  *
-    nHVI_RANK = neighborhoodData[0].HVI_RANK; // hvi  **
-    nPCT_BLACK_POP = neighborhoodData[0].PCT_BLACK_POP;  // bpop  *
-    nPCT_HOUSEHOLDS_AC = round(neighborhoodData[0].PCT_HOUSEHOLDS_AC); // ac  *
-    nMEDIAN_INCOME = neighborhoodData[0].MEDIAN_INCOME_chr;  // inc  *
-
-    // copy this but for our tertiles
-
-    nSURFACE_TEMP_TERT = neighborhoodData[0].SURFACE_TEMP_TERT;
-    nGREENSPACE_TERT = neighborhoodData[0].GREENSPACE_TERT; // GREENSPACE_TERTILE
-    nINCOME_TERT= neighborhoodData[0].POV_TERT;
-    nAC_TERT = neighborhoodData[0].AC_TERT;
-
+    
+    console.log("neighborhoodData", neighborhoodData);
+    
+    // get values from CSV
+    
+    let nHVI_RANK = neighborhoodData[0].HVI_RANK;
+    
+    let nSURFACE_TEMP      = round(neighborhoodData[0].SURFACE_TEMP);
+    let nGREENSPACE        = round(neighborhoodData[0].GREENSPACE);
+    let nPCT_HOUSEHOLDS_AC = round(neighborhoodData[0].PCT_HOUSEHOLDS_AC);
+    let nMEDIAN_INCOME     = neighborhoodData[0].MEDIAN_INCOME_chr;
+    
+    // get tertiles from CSV
+    
+    let nSURFACE_TEMP_TERT = neighborhoodData[0].SURFACE_TEMP_TERT;
+    let nGREENSPACE_TERT   = neighborhoodData[0].GREENSPACE_TERT;
+    let nAC_TERT           = neighborhoodData[0].AC_TERT;
+    let nINCOME_TERT       = neighborhoodData[0].INCOME_TERT;
+    
     // fill html elements
-
-    document.querySelector("#NTA").innerHTML = '<h4>' + DOMPurify.sanitize(selectedName) + '</h4>';
+    
+    document.querySelector("#hviVal").innerHTML = '<h4>' + nHVI_RANK + ' out of 5</h4>';
+    
     document.querySelector("#tempVal").innerHTML = nSURFACE_TEMP + '° F';
     document.querySelector("#greenVal").innerHTML = nGREENSPACE + '%';
-    document.querySelector("#hviVal").innerHTML = '<h4>' + nHVI_RANK + ' out of 5</h4>';
-    document.querySelector("#bpopVal").innerHTML = nPCT_BLACK_POP + '%';
     document.querySelector("#acVal").innerHTML = nPCT_HOUSEHOLDS_AC + '%';
     document.querySelector("#incVal").innerHTML = "$" + nMEDIAN_INCOME;
-
-    // adding tertile delivery
-
-    document.querySelector("#tempTert").innerHTML = tertileTranslate2(nSURFACE_TEMP_TERT);
-    document.querySelector("#greenTert").innerHTML = tertileTranslate2(nGREENSPACE_TERT);
-    document.querySelector("#incTert").innerHTML = tertileTranslate2(nINCOME_TERT);
-    document.querySelector("#acTert").innerHTML = tertileTranslate2(nAC_TERT);
-
-    // rebuild map
-
-    buildMap('#mapvis', HVImapSpec, hvidata, nta_topojson, GEOCODE);
-
-} 
-
-
-// rounding function lets us round all numbers the same
-
-function numRound(x) {
-    return Number.parseFloat(x).toFixed(1);
-} 
-
-
-// Returns block-level badges for the tabs
-
-function tertileTranslate(tertileVal) {
     
-    if (tertileVal == 3) {
-        return '<span class="badge badge-worse btn-block">high</span>';
+    // adding tertile badge html
+    
+    document.querySelector("#tempTert").innerHTML = tertileTranslate(nSURFACE_TEMP_TERT, "tempTert");
+    document.querySelector("#greenTert").innerHTML = tertileTranslate(nGREENSPACE_TERT, "greenTert");
+    document.querySelector("#acTert").innerHTML = tertileTranslate(nAC_TERT, "acTert");
+    document.querySelector("#incTert").innerHTML = tertileTranslate(nINCOME_TERT, "incTert");
+    
+    // rebuild map
+    
+    buildMap('#mapvis', HVImapSpec, hvidata, nta_topojson, GEOCODE);
+    
+} 
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// set comparison badge text and styles
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+function tertileTranslate(tertileVal, category) {
+    
+    if (category == "tempTert") {
         
-    } else if (tertileVal == 2) {
-        return '<span class="badge badge-medium btn-block">medium</span>';
+        if (tertileVal == 3) {
+            return '<span class="badge badge-warning">Higher than most NYC neighborhoods</span>';
+            
+        } else if (tertileVal == 2) {
+            return '<span class="badge badge-light">In the middle of NYC neighborhoods</span>';
+            
+        } else {
+            return '<span class="badge badge-success">Lower than most NYC neighborhoods</span>';
+        }
         
-    } else {
-        return '<span class="badge badge-better btn-block">low</span>';
+    } else if (category == "acTert") {
+        
+        if (tertileVal == 3) {
+            return '<span class="badge badge-success">More than most NYC neighborhoods</span>';
+            
+        } else if (tertileVal == 2) {
+            return '<span class="badge badge-light">In the middle of NYC neighborhoods</span>';
+            
+        } else {
+            return '<span class="badge badge-warning">Less than most NYC neighborhoods</span>';
+        }
+        
+    } else if (category == "greenTert") {
+        
+        if (tertileVal == 3) {
+            return '<span class="badge badge-success">More than most NYC neighborhoods</span>';
+            
+        } else if (tertileVal == 2) {
+            return '<span class="badge badge-light">In the middle of NYC neighborhoods</span>';
+            
+        } else {
+            return '<span class="badge badge-warning">Less than most NYC neighborhoods</span>';
+        }
+        
+    } else if (category == "incTert") {
+        
+        if (tertileVal == 3) {
+            return '<span class="badge badge-success">Higher than most NYC neighborhoods</span>';
+            
+        } else if (tertileVal == 2) {
+            return '<span class="badge badge-light">In the middle of NYC neighborhoods</span>';
+            
+        } else {
+            return '<span class="badge badge-warning">Lower than most NYC neighborhoods</span>';
+        }
         
     }
+    
 }
 
 
-// Returns in-line badges for text
-
-function tertileTranslate2(tertileVal) {
-    
-    if (tertileVal == 3) {
-        return '<span class="badge badge-worse">high</span>';
-        
-    } else if (tertileVal == 2) {
-        return '<span class="badge badge-medium">medium</span>';
-        
-    } else {
-        return '<span class="badge badge-better">low</span>';
-        
-    }
-} 
-
-
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // function to build maps
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 function buildMap(div, spec, csv, topo, nbr) {
-
-    console.log("nbr", nbr);
+    
+    // console.log("nbr", nbr);
     
     d3.json(spec).then(spec => {
-            
+        
         // get data object whose url is "topo"
         
-        var topo_url = spec.data.filter(data => {return data.url === "topo"})[0];
+        let topo_url = spec.data.filter(data => {return data.url === "topo"})[0];
         
         // update url element of this data array (which updates the spec), because
         //  top_url is a shallow copy / reference to the spec
         
         topo_url.url = topo;
         
-        vegaEmbed(div, spec, embed_opt)
-            .then(async res => {
-
-                var res_view = 
-                    await res.view
-                        .signal("selectedNTA", nbr)
-                        .insert("hviData", csv)
-                        .logLevel(vega.Info)
-                        .runAsync();
-
-                // console.log("getState", res_view.getState());
+        vegaEmbed(div, spec, {actions: true}).then(async res => {
                 
-            })
-            .catch(console.error);
-
+            let res_view = await res.view
+                .signal("selectedNTA", nbr)
+                .insert("hviData", csv)
+                .logLevel(vega.Info)
+                .runAsync();
+            
+            // console.log("getState", res_view.getState());
+            
+        })
+        .catch(console.error);
+        
     });
 }
 
 
-// load the charts after the page loads
-
-$( window ).on( "load", function() {
-
-    // load the map
-
-    load_flexdatalist()
-    
-    buildMap('#mapvis', HVImapSpec, hvidata, nta_topojson, "");
-
-});
-
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// not sure what this does
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 // Source: https://github.com/jserz/js_piece/blob/master/DOM/ParentNode/append()/append().md
 
-(function (arr) {
-    arr.forEach(function (item) {
-        if (item.hasOwnProperty('append')) {
-            return;
-        }
-        Object.defineProperty(item, 'append', {
-            configurable: true,
-            enumerable: true,
-            writable: true,
-            value: function append() {
-                var argArr = Array.prototype.slice.call(arguments),
-                    docFrag = document.createDocumentFragment();
-
-                argArr.forEach(function (argItem) {
-                    var isNode = argItem instanceof Node;
-                    docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
-                });
-
-                this.appendChild(docFrag);
-            }
-        });
-    });
-})([Element.prototype, Document.prototype, DocumentFragment.prototype]);
+// (function (arr) {
+//     arr.forEach(function (item) {
+//         if (item.hasOwnProperty('append')) {
+//             return;
+//         }
+//         Object.defineProperty(item, 'append', {
+//             configurable: true,
+//             enumerable: true,
+//             writable: true,
+//             value: function append() {
+//                 let argArr = Array.prototype.slice.call(arguments),
+//                 docFrag = document.createDocumentFragment();
+                
+//                 argArr.forEach(function (argItem) {
+//                     let isNode = argItem instanceof Node;
+//                     docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
+//                 });
+                
+//                 this.appendChild(docFrag);
+//             }
+//         });
+//     });
+// })([Element.prototype, Document.prototype, DocumentFragment.prototype]);

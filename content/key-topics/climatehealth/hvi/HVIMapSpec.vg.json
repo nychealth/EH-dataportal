@@ -26,20 +26,23 @@
           "from": "data_1",
           "key": "GEOCODE",
           "fields": ["properties.GEOCODE"],
-          "values": ["GEOCODE", "GEONAME", "HVI_RANK"],
-          "default": "Parks/Cemeteries/Airports (unpopulated)"
-        }
+          "values": ["NTACode", "GEOCODE", "GEONAME", "HVI_RANK"]
+        },
+        {"type": "filter", "expr": "isValid(datum['GEOCODE'])"}
       ]
     },
     {
-      "name": "NTAexclude","values": [{"excludeList":"MN99"},{"excludeList":"QN98"},{"excludeList":"BK99"},{"excludeList":"QN99"},{"excludeList":"BX99"},{"excludeList":"SI99"}]
+      "name": "source_1",
+      "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/borough.topo.json",
+      "format": {"type": "topojson", "feature": "collection"},
+      "transform": [{"type": "identifier", "as": "_vgsid_"}]
     }
   ],
   "projections": [
     {
       "name": "projection",
       "size": {"signal": "[width, height]"},
-      "fit": {"signal": "[data('data_0'), data('source_0')]"}
+      "fit": {"signal": "[data('data_0'), data('source_0'), data('source_1')]"}
     }
   ],
   "signals": [
@@ -72,14 +75,14 @@
     },
     {
       "name": "highlight",
-      "update": "vlSelectionResolve(\"highlight_store\", \"union\")"
+      "update": "vlSelectionResolve('highlight_store', 'union')"
     },
     {
       "name": "highlight_tuple",
       "on": [
         {
           "events": [{"source": "scope", "type": "mouseover"}],
-          "update": "datum && item().mark.marktype !== 'group' ? {unit: \"layer_1\", fields: highlight_tuple_fields, values: [(item().isVoronoi ? datum.datum : datum)[\"_vgsid_\"]]} : null",
+          "update": "datum && item().mark.marktype !== 'group' ? {unit: 'layer_2', fields: highlight_tuple_fields, values: [(item().isVoronoi ? datum.datum : datum)['_vgsid_']]} : null",
           "force": true
         },
         {"events": [{"source": "scope", "type": "dblclick"}], "update": "null"}
@@ -94,7 +97,7 @@
       "on": [
         {
           "events": {"signal": "highlight_tuple"},
-          "update": "modify(\"highlight_store\", highlight_tuple, true)"
+          "update": "modify('highlight_store', highlight_tuple, true)"
         }
       ]
     },
@@ -108,12 +111,13 @@
       "name": "layer_0_marks",
       "type": "shape",
       "style": ["geoshape"],
-      "interactive": false,
-      "from": {"data": "data_0"},
+      "interactive": true,
+      "from": {"data": "source_1"},
       "encode": {
         "update": {
-          "fill": {"value": "#bdbdbd"},
-          "stroke": {"value": "#ffffff"},
+          "fill": {"value": "#C5C5C5"},
+          "stroke": {"value": "#fafafa"},
+          "strokeWidth": {"value": 0.5},
           "ariaRoleDescription": {"value": "geoshape"}
         }
       },
@@ -123,36 +127,68 @@
       "name": "layer_1_marks",
       "type": "shape",
       "style": ["geoshape"],
+      "interactive": false,
+      "from": {"data": "data_0"},
+      "encode": {
+        "update": {
+          "fill": {"value": "#bdbdbd"},
+          "stroke": {"value": "#d2d2d2"},
+          "ariaRoleDescription": {"value": "geoshape"}
+        }
+      },
+      "transform": [{"type": "geoshape", "projection": "projection"}]
+    },
+    {
+      "name": "layer_2_marks",
+      "type": "shape",
+      "style": ["geoshape"],
       "interactive": true,
       "from": {"data": "data_0"},
       "encode": {
         "update": {
           "stroke": [
             {
-              "test": "datum.properties.GEOCODE==selectedNTA",
-              "value": "#00d2ff"
+              "test": "(vlSelectionTest('highlight_store', datum))",
+              "value": "#ffffff"
             },
-            {"value": "white"}
+            {
+              "test": "datum.properties.GEOCODE==selectedNTA",
+              "value": "#00ff7f"
+            },
+            {"value": "#d2d2d2"}
           ],
           "fill": [
-            {"scale": "color", "field": "HVI_RANK"}
+            {
+              "test": "isValid(datum.HVI_RANK)",
+              "scale": "color",
+              "field": "HVI_RANK"
+            },
+            {"value": "#808080"}
           ],
-        "strokeWidth": [
-          {
-            "test": "(vlSelectionTest(\"highlight_store\", datum))",
-            "value": 2
-            },{
+          "strokeWidth": [
+            {
+              "test": "(vlSelectionTest('highlight_store', datum))",
+              "value": 2
+            },
+            {
               "test": "datum.properties.GEOCODE==selectedNTA",
-              "value": 4
+              "value": 2
             },
             {"value": 0.5}
           ],
+          "zindex": [
+            {
+              "test": "(vlSelectionTest('highlight_store', datum) || datum.properties.GEOCODE==selectedNTA)",
+              "value": 1
+            },
+            {"value": 0}
+          ],
           "tooltip": {
-            "signal": "{\"Neighborhood\": isValid(datum[\"GEONAME\"]) ? datum[\"GEONAME\"] : \"\"+datum[\"GEONAME\"], \"HVI score\": format(datum[\"HVI_RANK\"], \"\")}"
+            "signal": "{'NTA Code': datum['NTACode'], 'Neighborhood': isValid(datum['GEONAME']) ? datum['GEONAME'] : ''+datum['GEONAME'], 'HVI score': format(datum['HVI_RANK'], '')}"
           },
           "ariaRoleDescription": {"value": "geoshape"},
           "description": {
-            "signal": "\"HVI_RANK\" + \": \" + (isValid(datum[\"HVI_RANK\"]) ? datum[\"HVI_RANK\"] : \"\"+datum[\"HVI_RANK\"]) + \"; \" + \"Neighborhood\" + \": \" + (isValid(datum[\"GEONAME\"]) ? datum[\"GEONAME\"] : \"\"+datum[\"GEONAME\"]) + \"; \" + \"HVI score:\" + \": \" + (format(datum[\"HVI_RANK\"], \"\"))"
+            "signal": "'HVI_RANK' + ': ' + (isValid(datum['HVI_RANK']) ? datum['HVI_RANK'] : ''+datum['HVI_RANK']) + '; ' + 'Neighborhood' + ': ' + (isValid(datum['GEONAME']) ? datum['GEONAME'] : ''+datum['GEONAME']) + '; ' + 'HVI score:' + ': ' + (format(datum['HVI_RANK'], ''))"
           }
         }
       },

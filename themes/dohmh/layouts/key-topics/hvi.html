@@ -41,14 +41,18 @@
             
             <div class="col-md-5 col-sm-12 mr-auto">
 
-                <input 
-                    id="flex_search"
-                    type='text'
-                    class='flexdatalist form-control'
-                    name='indicator_name_suggestion'
-                />
+                <div class="btn-group" role="group">
 
-                <button id="clear" class="btn btn-md btn-warning">Clear</button>
+                    <input 
+                        id="flex_search"
+                        type='text'
+                        class='flexdatalist form-control'
+                        name='indicator_name_suggestion'
+                    />
+
+                    <button id="clear" class="btn btn-md btn-warning">Clear</button>
+
+                </div>
 
                 
                 <div class="fs-md mt-3 pb-1"><strong>Your neighborhood:</strong></div>
@@ -103,7 +107,7 @@
                 
                 <div class="row no-gutters py-1 mr-2">
                     <div class="col-12 mb-3">
-                        <p><i class="far fa-question-circle"></i>&nbsp;<a href="/data-explorer/climate/?id=2141">Daytime summer surface temperature</a> is different from air temperature, and varies more by neighborhood: some neighborhoods are hotter than others. A higher surface temperature is associated with a higher risk of death from heat waves. <span class="badge badge-light">Citywide average: 98.6° F</span>
+                        <p><i class="far fa-question-circle"></i>&nbsp;<a href="/data-explorer/climate/?id=2141">Daytime summer surface temperature</a> is different from air temperature, and varies more by neighborhood: some neighborhoods are hotter than others. A higher surface temperature is associated with a higher risk of death from heat waves. <span class="badge badge-light">Average neighborhood: 86.8° F</span>
                         </p>
                     </div>
                 </div>
@@ -126,7 +130,7 @@
                 
                 <div class="row no-gutters py-1 mr-2">
                     <div class="col mb-3">
-                        <p><i class="far fa-question-circle"></i>&nbsp;Green space is <a href="/data-explorer/active-design/?id=2157">tree</a>, <a href="/data-explorer/active-design/?id=2143">grass, or shrub cover</a>. Green space helps cool a neighborhood, address <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/localtemp/" target="_blank">UHI</a>, and create a resilient city. It also has a small association with heat mortality, weaker than other components in the index. <span class="badge badge-light">Citywide average: 38%</span>
+                        <p><i class="far fa-question-circle"></i>&nbsp;Green space is <a href="/data-explorer/active-design/?id=2157">tree</a>, <a href="/data-explorer/active-design/?id=2143">grass, or shrub cover</a>. Green space helps cool a neighborhood, address <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/localtemp/" target="_blank">UHI</a>, and create a resilient city. It also has a small association with heat mortality, weaker than other components in the index. <span class="badge badge-light">Average neighborhood: 27.8%</span>
                         </p>
                     </div>
                 </div>
@@ -151,7 +155,7 @@
                 
                 <div class="row no-gutters py-1 mr-2">
                     <div class="col mb-3">
-                        <p><i class="far fa-question-circle"></i>&nbsp;Air conditioning is as necessary during extreme heat as heating is in winter. A neighborhood with a high percentage of <a href="/data-explorer/climate/?id=2104">households with air conditioners</a> means that more of its residents can be protected from extreme heat. <span class="badge badge-light">Citywide average: 91%</span></p>
+                        <p><i class="far fa-question-circle"></i>&nbsp;Air conditioning is as necessary during extreme heat as heating is in winter. A neighborhood with a high percentage of <a href="/data-explorer/climate/?id=2104">households with air conditioners</a> means that more of its residents can be protected from extreme heat. <span class="badge badge-light">Average neighborhood: 90.6%</span></p>
                     </div>
                 </div>
                 <!--END SECTION-->
@@ -173,7 +177,7 @@
                 
                 <div class="row no-gutters py-1 mr-2">
                     <div class="col mb-3">
-                        <p><i class="far fa-question-circle"></i>&nbsp;<a href="/data-explorer/economic-conditions/?id=103">Median income</a> is a social factor that places people at risk of death during heat waves for many reasons.  One reason is that people with limited financial resources may be less likely to afford owning or using an air conditioner during heat waves. <span class="badge badge-light">Citywide average: 19.6%</span>
+                        <p><i class="far fa-question-circle"></i>&nbsp;Low income is a social factor that places people at risk of death during heat waves for many reasons. One reason is that people with limited financial resources may be less likely to afford owning or using an air conditioner during heat waves. <span class="badge badge-light">Average neighborhood: $69,854</span>
                         </p>
                     </div>
                 </div>
@@ -190,9 +194,6 @@
                 <p>Overall, these systems limit access to resources that protect health. While many factors affect a neighborhood’s heat risk, Black New Yorkers are subjected to higher rates of poverty and lower access to air conditioning, green space, and neighborhood cooling resources. 
                 </p>
                 
-                <div class="border-bottom py-2 d-none">
-                    <strong>Your neighborhood's Black population</strong>:  <span id="bpopVal" class="badge badge-primary">XX%</span>
-                </div>
             </div>
             <div class="col-md-6 col-sm-12 mr-auto">
                 <iframe title="Heat-related deaths in NYC" aria-label="chart" id="datawrapper-chart-kuXB4" src="https://datawrapper.dwcdn.net/kuXB4/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="376"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
