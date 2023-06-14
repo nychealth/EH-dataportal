@@ -1,5 +1,5 @@
 ---
-title: The racial wealth gap has big implications for public health 
+title: The racial wealth gap has big implications for public health and health equity
 date: 2023-05-12T13:11:44-04:00
 draft: false
 seo_title: "How the racial wealth gap affects health"
@@ -11,7 +11,7 @@ image: CrownHeights_JulienneSchaer-065.JPG
 photocredit: "Julienne Schaer/Mayoral Photography Office"
 ---
 
-Throughout history, the distribution of wealth in the U.S. has, and continues to be, largely unequal. This unequal distribution appears among socially identified racial groups, a concept called the racial wealth gap. There is a particularly wide divide between wealth held by White families and Black families. The racial wealth gap has major implications for public health, as a large and growing body of research reveals that wealth is consistently correlated with health outcomes. Effective solutions to racial inequities in wealth and health must address challenges at the individual, household, community, and systems levels.  
+Throughout history, the distribution of wealth in the U.S. has, and continues to be, largely unequal between racial groups. This concept is referred to as the <strong>racial wealth gap</strong> and it has its roots in settler colonialism and enslavement. There is an especially big wealth disparity between White families and Black families, which was established and upheld by racist historical policies and practices. The racial wealth gap has major implications for public health. This is because a large and growing body of research reveals that having good health is connected to having wealth. Effective solutions to racial inequities in wealth and health must address challenges at the individual, household, community, and systems levels.  
 
 ### White families hold nearly eight times the wealth of the average Black family
 
@@ -23,9 +23,9 @@ The Federal Reserve Board’s 2019 Survey of Consumer Finances (SCF) shows that,
 
 ### Racist and discriminatory policies have prevented Black families from accruing assets, financial security, and wealth 
 
-For much of American history, there has been a record of systematic policies implemented by the federal government that helped build wealth for White households while suppressing wealth accumulation for other groups, including Black and Hispanic households.  
+For much of American history, there has been a record of racist systematic policies implemented by the federal government that helped build wealth for White households while suppressing wealth accumulation for other groups, including Black and Hispanic households.  
 
-The Black-White wealth disparity, in particular, has been created and reinforced by systematic policies and practices including racial segregation laws, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/redlining/" target="_blank">redlining,</a> the discriminatory implementation of the New Deal and the G.I. Bill, and more. 
+The Black-White wealth disparity, in particular, has been created and reinforced by systematic policies and practices including racial segregation laws, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/redlining/" target="_blank">redlining,</a> the discriminatory implementation of the New Deal and the G.I. Bill, and more. The inter-generational impacts of the enslavement of Black people have broad impacts on the wealth and health inequities observed today.
 
 ### Greater wealth translates to better health 
 
@@ -63,7 +63,7 @@ White households are more likely than Black and Hispanic households to hold all 
 <div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02" data-parent="#accordion-01">
     <div class="card-body fs-sm">
 <p>
- Greater wealth allows people to live in neighborhoods with fewer environmental hazards, such as lead and air pollution, fewer fast-food outlets, and more parks and green spaces for people to exercise.   
+Greater wealth allows people to live in neighborhoods with fewer environmental hazards and more resources, like healthier housing.
                 </p>
             </div>
 </div>
@@ -121,9 +121,9 @@ White households are more likely than Black and Hispanic households to hold all 
 
 <div class="narrow my-4">
 
-### Black-White health inequities haven't improved
+### Black-White racial health inequities haven't improved
 
-Data shows that Black-White health inequities have not narrowed over time. For example, Black-White ratios of mortality from coronary heart disease, cancer, diabetes, cirrhosis of the liver, and infant mortality were larger in the late 1990s than in 1950.  
+Data shows that Black-White racial health inequities have not narrowed over time. For example, Black-White ratios of mortality from coronary heart disease, cancer, diabetes, cirrhosis of the liver, and infant mortality were larger in the late 1990s than in 1950.  
 
 Between 2019 and 2021, the U.S. experienced a widening of its life expectancy gap during the COVID-19 pandemic with Hispanic and non-Hispanic Black populations experiencing larger declines in life expectancy over the two-year period than non-Hispanic White populations. 
 
@@ -132,9 +132,9 @@ Between 2019 and 2021, the U.S. experienced a widening of its life expectancy ga
 
 
 ### Reducing the racial wealth gap
-In 2021 and 2022, the Federal Reserve Bank of New York, in partnership with the NYC Health Department, convened experts from the nonprofit, research, policy, and government sectors in a series of roundtable discussions to share their thoughts on the solutions, policies, and tools that should be considered to meaningfully address racial wealth and health gaps in the U.S. Experts noted that bold public policy, better data collection, and increased community ownership are needed.  
+In 2021 and 2022, the Federal Reserve Bank of New York, in partnership with the NYC Health Department, convened experts from the nonprofit, research, policy, and government sectors in a series of roundtable discussions to share their thoughts on the solutions, policies, and tools that should be considered to meaningfully address racial wealth and health gaps in the U.S. These experts noted that bold public policy, better data collection, and increased community ownership are needed.  
 
-Policies like universal health care, medical debt cancellation, and increasing community ownership can help improve health and address health-related financial inequities—while policies like reparations can directly address the racial wealth gap.
+From the convening, it was noted that policies like universal health care, medical debt cancellation, and increasing community ownership can help improve health and address health-related financial inequities—while policies like reparations can directly address the racial wealth gap.
 
 <strong>Universal health care:</strong> By providing low-cost health care to all Americans, universal health care would help prevent individuals from acquiring medical debt and its subsequent deleterious effects on health and financial security. 
 
@@ -142,7 +142,7 @@ Policies like universal health care, medical debt cancellation, and increasing c
 
 <strong>Student debt cancellation:</strong> According to the 2019 SCF, Black Americans hold the most student loan debt — $44,880 on average — compared to other races and ethnicities.  
 
-<strong>Baby bonds:</strong> Baby bonds are an innovative policy that provide children with publicly funded investment accounts that can be accessed beginning at the age of 18 for specific uses including education, homeownership, small business, and retirement. Any baby bonds proposal should allocate the most resources to Black, Latinx and indigenous children. 
+<strong>Baby bonds:</strong> Baby bonds are an innovative policy that provide children with publicly funded investment accounts that can be accessed beginning at the age of 18 for specific uses including education, homeownership, small business, and retirement. Any baby bonds proposal should allocate the most resources to Black, Hispanic, and indigenous children. 
 
 <strong>Reparations:</strong> A reparations program, such as federally paid cash to Black descendants of enslaved people, would eliminate the Black-White wealth gap, if the payment amounts were predicated on the average difference in Black and White wealth.
 
