@@ -27,13 +27,13 @@ PM2.5—or fine particulate matter—are tiny particles that pollute the air and
 Once in the bloodstream, PM2.5 can cause health problems to the respiratory and circulatory systems, and even lower life expectancy. Health outcomes caused or worsened by PM2.5 include asthma, cancer, stroke, lung disease and reduced lung function, and cardiovascular disease. 
 
 </div>
-    <div class="wide my-4">
+    <div class="medium my-4">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-6">
                 <img src = "anatomy with annotation.svg" alt="A person breathing in PM2.5 and it entering the bloodstream and lungs"/>
             </div>
-            <div class="col-md-6">
-                <img src = "sources.svg" alt="Industrial activity, a grill, a truck, and a building demonstrate common sources of PM2.5"/>
+            <div class="col-6">
+                <img src = "sources2.svg" alt="Industrial activity, a grill, a truck, and a building demonstrate common sources of PM2.5" style="width:100%;">
             </div>
         </div>
     </div>
