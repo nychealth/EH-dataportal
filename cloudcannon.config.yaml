@@ -117,6 +117,14 @@ _inputs:
     options:
       values: _select_data.categories
       allow_create: true
+  pollutantMaps:
+    type: textarea
+  pollutantTrends:
+    type: textarea
+  conclusion:
+    type: textarea
+  moreInfo:
+    type: textarea
 _select_data:
   categories:
     - housing
@@ -130,6 +138,7 @@ _select_data:
     - pests
   indicators:
     comment: Select an indicator
+
 
 _enabled_editors:
   - content

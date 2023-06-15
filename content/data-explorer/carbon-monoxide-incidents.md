@@ -17,9 +17,6 @@ indicators:
   - 2405
   - 2406
   - 2398
-menu:
-    main:
-        identifier: '03'
 ---
 
 Carbon monoxide (CO) is a poisonous gas that forms when fuel or other materials are burned.  It is invisible and has no odor.  

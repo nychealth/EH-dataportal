@@ -13,9 +13,6 @@ indicators:
   - 2169
   - 2170
   - 2171
-menu:
-    main:
-        identifier: '03'
 ---
 
 Health impact text here

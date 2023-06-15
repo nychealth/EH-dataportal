@@ -8,16 +8,9 @@ tags:
 categories: ["transportation","airquality"]
 keywords: ["air quality","traffic","transportation","air pollution", "lungs","breathing","pm2.5","fine particles","fine particulate matter","health impacts","ZAPPA","modelling","data science","computer modelling","model","policies","policy","health impacts","health impact assessment"]
 image: ds-road-traffic.jpg
-menu:
-    main:
-        identifier: '02'
 photocredit: "Ed Reed/Mayoral Photography Office"
 ---
-<style>
-td {
-    padding-right: 15px;
-}
-</style>
+
 
 ## How do we know what air quality policies will have the biggest effect?  
 
@@ -44,6 +37,12 @@ Generating electricity releases pollutants like nitrogen oxides and sulfur dioxi
 ZAPPA shows us that if we closed all the city’s power plants, we would see a fairly small reduction in average PM2.5 across the city: citywide PM2.5 would go down by 0.12 µg/m3. This would prevent only 5 deaths per million people aged 30 and older and avoid only 9 asthma emergency department visits per million people.
 
 <div class="medium my-4">
+
+<style>
+td {
+    padding-right: 15px;
+}
+</style>
 
 |**Reductions in:**| Value |
 |-------------|----------------|
@@ -96,7 +95,7 @@ Compared to Midtown, the South Bronx has a smaller average reduction in PM2.5 bu
 
 ### Key takeaways 
 
-ZAPPA—a new, free online tool created by the NYC Health Department with Institute for the Environment at UNC-Chapel Hill–-can help New Yorkers understand the health outcomes of proposed emission-reduction policies. ZAPPA uses fine-grained, ZIP-Code level data to produce precise, reliable estiamtes. It lets us compare outcomes by neighborhood, and provides data that can inform air quality policy development, program planning, and advocacy, and enable users to center equity and public health in environmental measures. 
+ZAPPA—a new, free online tool created by the NYC Health Department with Institute for the Environment at UNC-Chapel Hill–-can help New Yorkers understand the health outcomes of proposed emission-reduction policies. ZAPPA uses fine-grained, ZIP-Code level data to produce precise, reliable estimates. It lets us compare outcomes by neighborhood, and provides data that can inform air quality policy development, program planning, and advocacy, and enable users to center equity and public health in environmental measures. 
 
 ---
 <br>

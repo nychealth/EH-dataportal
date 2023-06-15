@@ -8,9 +8,6 @@ tags:
 categories: [healthoutcomes]
 keyTopic: healthoutcomes
 keywords: ["health","public health","health outcomes"]
-menu:
-    main:
-        identifier: '05'
 layout: single
 image: medgar-evers.jpg
 ---

@@ -9,9 +9,6 @@ tags:
 categories: ["climatehealth","housing"]
 keywords: ["climate","winter","cold","weather","safety","housing","transportation","injuries","snow","ice"]
 image: winter-weather.png
-menu:
-    main:
-        identifier: '02'
 photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 

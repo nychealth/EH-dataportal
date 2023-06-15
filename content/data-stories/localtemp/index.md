@@ -8,9 +8,6 @@ tags:
 categories: ["climatehealth","neighborhoods"]
 keywords: ["heat","hot weather","weather","climate","temperature","summer","greenspace","parks","green space","heat island","urban heat island","cooling","air conditioning","building","housing","global warming"]
 image: ds-localtemp.jpeg
-menu:
-    main:
-        identifier: '02'
 photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 
@@ -441,7 +438,7 @@ A block covered in trees, grass, and shrubs might have an average summertime eve
 
 Cooling a block by 2° may not sound like much, but small differences in temperature - especially at peak summer temperatures - really matter. For example, the average temperature at Central Park increased 3.4° from 1900 to 2013. Cooling blocks by just a few degrees can help offset the effects of climate change at the local level.
 
-As the climate changes, NYC faces rising average temperatures and heat waves that place New Yorkers at risk. Already more than 100 New Yorkers die each year due to extreme heat. Even modest cooling can save lives, and cooling neighborhoods with trees and other vegetation is a critical step we can take to protect people from hot weather. Even modest cooling can save lives.
+As the climate changes, NYC faces rising average temperatures and heat waves that place New Yorkers at risk. Already more than 100 New Yorkers die each year due to extreme heat. Even modest cooling can save lives, and cooling neighborhoods with trees and other vegetation is a critical step we can take to protect people from hot weather.
 
 {{< rawhtml >}}
 </div>

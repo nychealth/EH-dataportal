@@ -7,9 +7,6 @@ seo_description: "Data on NYC's rat inspections. "
 tags: 
 categories: [pests]
 keywords: 
-menu:
-    main:
-        identifier: '05'
 layout: ratportal
 ---
 

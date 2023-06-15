@@ -13,13 +13,21 @@
       new google.translate.TranslateElement({
           pageLanguage: 'en'
       }, 'google_translate_element');
+
+      // obliterate all google translate SVGs, which are constantly recalulating styles but are never shown
+      document.querySelectorAll("div[class^=VI] svg").forEach(e => e.outerHTML = "");
   }
 </script>
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<script src="https://unpkg.com/lunr/lunr.js"></script>
 
-<!-- NYC template JS (RTL, search and language toggle, back to top)  -->
+
+{{ $lunr := resources.Get "node_modules/lunr/lunr.min.js" }}
+{{ $lunr_secureJS := $lunr | resources.Fingerprint "sha512" }}
+
+<script type="text/javascript" src="{{ $lunr_secureJS.RelPermalink }}" integrity="{{ $lunr_secureJS.Data.Integrity }}"></script>
+
+{{/*  NYC template JS (RTL, search and language toggle, back to top)  */}}
 
 {{- $js := resources.Get "js/main.js" -}}
 {{- $secureJS := $js | resources.Fingerprint "sha512" -}}

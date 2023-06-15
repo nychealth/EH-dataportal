@@ -7,9 +7,6 @@ seo_title: "Annual Report on heat mortality in NYC."
 seo_description: "Data and findings on the impact of heat in NYC."
 categories: [climatehealth]
 keywords: ["heat","report","climate","temperature","summer","disparities","mortality"]
-menu:
-    main:
-        identifier: '05'
 layout: report
 ---
 

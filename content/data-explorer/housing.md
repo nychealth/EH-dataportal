@@ -41,9 +41,6 @@ indicators:
 - header: null
   IndicatorID: 
   - 2003
-menu:
-    main:
-        identifier: '03'
 ---
 
 No family should have to choose between affordable and healthy housing. **All tenants are entitled to safe, decent and sanitary housing, which prevents disease and injury.**

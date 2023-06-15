@@ -32,9 +32,6 @@ indicators:
   - 2369
   - 2374
   - 2370
-menu:
-    main:
-        identifier: '03'
 ---
 
 Pesticides are chemicals applied to kill or control insects, rats and mice, undesirable plants and weeds, or fungi (e.g., mold). Pesticides are often categorized by type of use (e.g., rodenticide, insecticide) or chemical class (e.g., organophosphate, pyrethroid).

@@ -70,6 +70,7 @@
 
     .dropdown-title {
         padding: 0.25rem 1.5rem;
+        font-size: 1.04rem;
         white-space: nowrap;
     }
 
@@ -79,10 +80,6 @@
 
     .dropdown-menu {
         z-index: 2000;
-    }
-
-    div[aria-labelledby="dropdownMapMeasures"].show {
-        display: flex !important;
     }
 
     /* info text boxes */
@@ -148,7 +145,22 @@
     .checkbox-geo.disabled > input {
         accent-color: #656565;
     }
-    
+
+    /* make a larger checkbox */
+
+    .largerCheckbox {
+        margin-right: 0.3rem;
+        vertical-align: middle;
+        width: 1.125rem;
+        height: 1.125rem;
+    }
+
+    /* disabled comparisons button */
+
+    .btn-comparisons.disabled {
+        color: #656565;
+    }
+
     /* SCROLLBAR */
 
     /* width */
@@ -331,27 +343,27 @@
 
                 <div class="tab-pane fade show active py-2" id="tab-table" aria-labelledby="tab-btn-table" role="tabpanel">
                     <div class="dropdown">
-                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
-                                id="dropdownTableYear" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Year </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownTableYear">
+                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
+                                id="dropdownTableTimes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Time </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownTableTimes">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
                     </div>
             
                     <div class="dropdown">
-                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle" type="button"
-                                id="dropdownTableGeo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Geography </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownTableGeo">
+                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
+                                id="dropdownTableGeos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Geography </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownTableGeos">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
                     </div>
             
-                    <span id="summaryTitle" class="home-label border-bottom"></span>
+                    <span id="tableTitle" class="home-label border-bottom"></span>
                     <div id="summary-table" class="" style="height:550px!important">
                         <!-- INSERT SUMMARY TABLE HERE -->
                     </div>
 
-                    <div id="summary-unreliability" class="pt-2">
+                    <div id="table-unreliability" class="pt-2">
                         <!-- INSERT UNRELIABILITY FLAGS HERE -->
                     </div>
 
@@ -361,15 +373,35 @@
                 <!-- MAP TAB -->
 
                 <div class="tab-pane fade py-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
+
                     <div class="dropdown">
-                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
-                                id="dropdownMapMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Measure </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMapMeasures">
+                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
+                            id="dropdownMapTimes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Time </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMapTimes">
+                            <!-- INSERT MENU ITEMS HERE -->
+                        </div>
+
+                    </div>
+
+
+                    <div class="dropdown">
+                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
+                                id="dropdownMapGeos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Geography </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMapGeos">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
                     </div>
+
+                    <div class="dropdown">
+                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
+                            id="dropdownMapMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Measure </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMapMeasures">
+                            <!-- INSERT MENU ITEMS HERE -->
+                        </div>
+
+                    </div>
                 
-                    <span id="mapTitle" class="home-label  border-bottom"></span>
+                    <span id="mapTitle" class="home-label border-bottom"></span>
                     <div id="map" class="vis-bucket"></div>
 
                     <div id="map-unreliability" class="pt-3">
@@ -382,19 +414,20 @@
                 <!-- TREND TAB -->
 
                 <div class="tab-pane fade py-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
-                    <div class="dropdown float-right">
-                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
-                                id="dropdownTrendMeasures" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false"> Measure </button>
-                        <!-- disparities button - display style changed to show or hide (currently hidden full time due to glitch on percents-->
-                        <button class="btn btn-sm mr-1 float-right btn-outline-secondary btn-show-disparities d-none"
-                                style="display:inline"> Dispartites </button>
-            
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownTrendMeasures">
+
+                    <div class="dropdown dropdownTrendComparisons">
+
+                        <!-- comparisons button -->
+                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle btn-comparisons mb-1" type="button"
+                                id="dropdownTrendComparisons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Compare by </button>
+                        
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownTrendComparisons">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
+            
                     </div>
-                    <span id="trendTitle" class="home-label  border-bottom"></span>
+
+                    <span id="trendTitle" class="home-label border-bottom"></span>
                     <!-- INSERT TREND CHART HERE -->
                     <div id="trend" class="vis-bucket"></div>
 
@@ -408,14 +441,31 @@
                 <!-- LINKS TAB -->
 
                 <div class="tab-pane fade py-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
-                    <div class="dropdown float-right">
-                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle" type="button"
-                                id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Select link </button>
+                    <div class="dropdown">
+                        <button class="btn btn-sm float-right btn-outline-secondary dropdown-toggle mb-1" type="button"
+                                id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Link to </button>
+
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownLinksMeasures">
                             <!-- INSERT MENU ITEMS HERE -->
                         </div>
+
+                        <!-- disparities button - display style changed to show or hide (currently hidden full time due to glitch on percents-->
+
+                        <div class="btn-group btn-group-toggle btn-toggle-disparities" data-toggle="buttons" style="display:inline">
+
+                            <label class="btn btn-sm mr-1 float-right btn-outline-secondary" id="show-disparities">
+                                <input type="radio" name="options" id="disparities-btn" autocomplete="off"> Disparities
+                            </label>
+                            <label class="btn btn-sm float-right btn-outline-secondary active" id="show-links">
+                                <input type="radio" name="options" id="links-btn" autocomplete="off" checked> Links
+                            </label>
+
+                            <span class="float-right mr-1">Show:</span>
+
+                        </div>
+                        
                     </div>
-                    <span id="linksTitle" class="home-label border-bottom">Explore correlation</span>
+                    <span id="linksTitle" class="home-label border-bottom"></span>
                     <!-- INSERT LINKS CHART HERE -->
                     <div id="links" class="vis-bucket"></div>
 
@@ -592,8 +642,8 @@
      {{/*  CSS  */}}
 
     {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" -}}
-    {{- $dataTablesBurronsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" -}}
-    {{- $dtCSS := slice $dataTablesCSS $dataTablesBurronsCSS | resources.Concat "css/dtCSS.css" -}}
+    {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" -}}
+    {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" -}}
 
     <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}">
 
@@ -605,8 +655,8 @@
     {{- $dataTablesButtonsPrint := resources.Get "node_modules/datatables.net-buttons/js/buttons.print.min.js" -}}
     {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" -}}
     
-    {{- $dataTablesBundelJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" -}}
-    {{- $DT_secureJS := $dataTablesBundelJS | resources.Fingerprint "sha512" -}}
+    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" -}}
+    {{- $DT_secureJS := $dataTablesBundleJS | resources.Fingerprint "sha512" -}}
 
     <script type="text/javascript" src="{{ $DT_secureJS.RelPermalink }}" integrity="{{ $DT_secureJS.Data.Integrity }}"></script>
 
@@ -634,8 +684,8 @@
     {{- $vegaLite := resources.Get "node_modules/vega-lite/build/vega-lite.min.js" -}}
     {{- $vegaEmbed := resources.Get "node_modules/vega-embed/build/vega-embed.min.js" -}}
 
-    {{- $vegaBundelJS := slice $vega $vegaLite $vegaEmbed | resources.Concat "js/vegaBundle.js" -}}
-    {{- $vega_secureJS := $vegaBundelJS | resources.Fingerprint "sha512" -}}
+    {{- $vegaBundleJS := slice $vega $vegaLite $vegaEmbed | resources.Concat "js/vegaBundle.js" -}}
+    {{- $vega_secureJS := $vegaBundleJS | resources.Fingerprint "sha512" -}}
 
     <script type="text/javascript" src="{{ $vega_secureJS.RelPermalink }}" integrity="{{ $vega_secureJS.Data.Integrity }}"></script>
 
@@ -652,6 +702,13 @@
     {{- $naturalSort_secureJS := $naturalSort | resources.Fingerprint "sha512" -}}
 
     <script type="text/javascript" src="{{ $naturalSort_secureJS.RelPermalink }}" integrity="{{ $naturalSort_secureJS.Data.Integrity }}"></script>
+
+    {{/*  seedrandom  */}}
+
+    {{- $seedrandom := resources.Get "node_modules/seedrandom/seedrandom.min.js" -}}
+    {{- $seedrandom_secureJS := $seedrandom | resources.Fingerprint "sha512" -}}
+
+    <script type="text/javascript" src="{{ $seedrandom_secureJS.RelPermalink }}" integrity="{{ $seedrandom_secureJS.Data.Integrity }}"></script>
 
 
     {{/*  Data Explorer JS  */}}
@@ -683,7 +740,7 @@
 
                     indicator = indicators.find(indicator => indicator.IndicatorID === {{ $id }});
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator({{ $id }})' data-indicator-id={{ $id }}>" + this_indicatorName + "</button>";
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator({{ $id }})' data-indicator-id='{{ $id }}'>" + this_indicatorName + "</button>";
 
                 {{- end -}}
             {{- end -}}
@@ -709,7 +766,7 @@
 
                     indicator = indicators.find(indicator => indicator.IndicatorID === {{ $id }});
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-light text-primary text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator({{ $id }})' data-indicator-id={{ $id }}>" + this_indicatorName + "</button>";
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-primary text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator({{ $id }})' data-indicator-id='{{ $id }}'>" + this_indicatorName + "</button>";
                     
                 {{- end -}}
             {{- end -}}
@@ -758,15 +815,15 @@
 
     {{- $global := resources.Get "js/data-explorer/global.js" -}}
     {{- $data := resources.Get "js/data-explorer/data.js" -}}
-    {{- $renderMeasures := resources.Get "js/data-explorer/renderMeasures.js" -}}
-    {{- $summary := resources.Get "js/data-explorer/summary.js" -}}
+    {{- $renderMeasures := resources.Get "js/data-explorer/measures.js" -}}
+    {{- $table := resources.Get "js/data-explorer/table.js" -}}
     {{- $map := resources.Get "js/data-explorer/map.js" -}}
-    {{- $trend := resources.Get "js/data-explorer/trend.js" -}}
     {{- $links := resources.Get "js/data-explorer/links.js" -}}
     {{- $disparities := resources.Get "js/data-explorer/disparities.js" -}}
+    {{- $comparisons := resources.Get "js/data-explorer/comparisons.js" -}}
     {{- $app := resources.Get "js/data-explorer/app.js" -}}
     
-    {{- $dataExplorerJS := slice $global $data $renderMeasures $summary $map $trend $links $disparities $app | resources.Concat "js/dataExplorer.js" -}}
+    {{- $dataExplorerJS := slice $global $data $renderMeasures $table $map $links $disparities $comparisons $app | resources.Concat "js/dataExplorer.js" -}}
     {{- $DE_secureJS := $dataExplorerJS | resources.Fingerprint "sha512" -}}
 
     <script type="text/javascript" src="{{ $DE_secureJS.RelPermalink }}" integrity="{{ $DE_secureJS.Data.Integrity }}"></script>
