@@ -27,7 +27,7 @@
     <div class="row mt-2" >
         <div class="col-11 mx-auto">
 
-            <button class="active btn btn-outline-primary btn-sm" onclick="time(`dayofyear`)" id="dayBtn">Daily</button> 
+            <button class="btn btn-primary btn-sm" onclick="time(`dayofyear`)" id="dayBtn">Daily</button> 
             <button class="btn btn-outline-primary btn-sm" onclick="time(`month`)" id="monthBtn">Monthly</button> 
             <button class="btn btn-outline-primary btn-sm" id="smoothBtn" onclick="smooth(1)">7-day average</button> 
             <button class="btn btn-outline-primary btn-sm float-right" onclick="toggle(1)" id="toggle">Hide previous years</button><br>
@@ -36,6 +36,19 @@
             <em class="pl-2 fs-sm" style="clear:both">Emergency department visits for asthma</em>
 
             <div id="vis1" class="chartdest" style="width:100%;"></div>
+
+            <button class="btn btn-sm" disabled>Highlight:</button> 
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2016btn" onclick="changeYear(2016)">2016</button> 
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2017btn" onclick="changeYear(2017)">2017</button> 
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2018btn" onclick="changeYear(2018)">2018</button> 
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2019btn" onclick="changeYear(2019)">2019</button> 
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2020btn" onclick="changeYear(2020)">2020</button> 
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2021btn" onclick="changeYear(2021)">2021</button> 
+            <button class="btn btn-outline-secondary btn-sm yearbtn" id="2022btn" onclick="changeYear(2022)">2022</button> 
+            <button class="btn btn-secondary btn-sm yearbtn" id="2023btn" onclick="changeYear(2023)">2023</button> 
+
+
+
 
         </div>
     </div>
@@ -134,7 +147,7 @@
               "type": "nominal",
               "legend": null,
               "scale": {
-                "range":["grey","grey","grey","grey","grey","grey","grey","blue"]
+                "range":["grey","grey","grey","grey","grey","grey","grey","#12135b"]
               }
             },
             "opacity": {
@@ -142,7 +155,7 @@
                       "test": "datum.year === 2023",
                       "value": 1
                     },
-                  "value": 0.3
+                  "value": 0.25
                 }
           }
         }
@@ -210,22 +223,52 @@
           count = count + x
           if (count % 2 == 0) {
             // changeSpec.transform[2].filter = `datum.Date > 1451624400000`;
-            changeSpec.encoding.color.scale.range = ["grey","grey","grey","grey","grey","grey","grey","blue"]
+            changeSpec.encoding.color.scale.range = ["grey","grey","grey","grey","grey","grey","grey","#12135b"]
             document.getElementById('toggle').innerHTML = 'Hide previous years'
         
           } else {
             document.getElementById('toggle').innerHTML = 'Show previous years'
-            changeSpec.encoding.color.scale.range = ["#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","blue"]
+            changeSpec.encoding.color.scale.range = ["#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#12135b"]
 
             // changeSpec.transform[2].filter = `datum.Date > 1672549200000`
           };
           console.log(changeSpec)
           vegaEmbed("#vis1", changeSpec);
         }
+
+      function changeYear(x) {
+        var chosenYear = x
+        var indexPos = x - 2016
+        var colors = ["grey","grey","grey","grey","grey","grey","grey","grey"]
+        colors[indexPos] = "#12135b"
+        changeSpec.encoding.color.scale.range = colors
+        changeSpec.encoding.opacity.condition.test = `datum.year === ${x}`
+        vegaEmbed("#vis1", changeSpec);
+
+        var yearButtons = document.getElementsByClassName('yearbtn')
+        for (var i = 0; i < yearButtons.length; i++) {
+          yearButtons[i].classList.remove('btn-secondary')
+          yearButtons[i].classList.add('btn-outline-secondary')
+        }
+
+        var buttonIndex = 0 - indexPos
+        yearButtons[indexPos].classList.remove('btn-outline-secondary')
+        yearButtons[indexPos].classList.add('btn-secondary')
+      }
         
         
         </script>
 
+<!--
+var myFunction = function() {
+    var attribute = this.getAttribute("data-myattribute");
+    alert(attribute);
+};
+
+for (var i = 0; i < elements.length; i++) {
+    elements[i].addEventListener('click', myFunction, false);
+}
+-->
 
 
 </article>
