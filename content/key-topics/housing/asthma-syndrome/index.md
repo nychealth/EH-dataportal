@@ -1,5 +1,5 @@
 ---
-title: "Asthma syndrome"
+title: "Real-time asthma emergency department visits"
 date: 2021-10-02T07:56:00-04:00
 draft: false
 seo_title: "Daily asthma ED visits"
@@ -10,9 +10,15 @@ keyTopic: housing
 keywords: ["housing","gentrification","displacement","justice","equity"]
 image: nyc-children-playing.jpg
 layout: asthma-syndrome
+vega: true
 ---
 
-Asthma syndrome copy
+Asthma is a common disease that makes breathing difficult, causing coughing, wheezing, and shortness of breath. It's a leading cause of emergency department visits, hospitalizations, and missed school days. 
+
+Things in our environment can trigger asthma or make symptoms worse - like air pollution (like fine particulates, ozone, or diesel exhaust); unhealthy housing conditions (dust mites, cockroaches, mold); or things like pollen, pets, or tobacco smoke. 
+
+
+
 
 
 

@@ -19,7 +19,6 @@
     <div class="row">
               <div class="col-md-11 col-sm-12 mx-auto">
                 <h1><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
-                {{- .Content  -}}
         </div>
 
 
@@ -27,15 +26,200 @@
 
     <div class="row mt-2" >
         <div class="col-11 mx-auto">
-            <h3 style="background-color:#f1f1f1; padding: 10px; border-radius: 5px;">Daily data</h3>
-            <div class="row mt-2 pl-2">
-              <iframe title="Asthma syndrome ED visits (Copy) - NOTE: no 2019" aria-label="Interactive line chart" id="datawrapper-chart-1wA4m" src="https://datawrapper.dwcdn.net/1wA4m/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
-              </script>
 
-            </div>
+            <button class="active btn btn-outline-primary btn-sm" onclick="time(`dayofyear`)" id="dayBtn">Daily</button> 
+            <button class="btn btn-outline-primary btn-sm" onclick="time(`month`)" id="monthBtn">Monthly</button> 
+            <button class="btn btn-outline-primary btn-sm" id="smoothBtn" onclick="smooth(1)">7-day average</button> 
+            <button class="btn btn-outline-primary btn-sm float-right" onclick="toggle(1)" id="toggle">Hide previous years</button><br>
+        
+        
+            <em class="pl-2 fs-sm" style="clear:both">Emergency department visits for asthma</em>
+
+            <div id="vis1" class="chartdest" style="width:100%;"></div>
 
         </div>
     </div>
+
+    <div class="row my-4">
+        <div class="col-11 mx-auto">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="border p-2">
+                        <strong>About the data</strong>
+                        <p>Asthma syndrome is identified in emergency department visit data by looking for chief complaints (descriptions of why patients are at the ED) that mention mention of asthma, wheezing, airway, or chronic obstructive pulmonary disorder (COPD).</p>
+                        <p>A syndromes is a group of signs (something a health care provider can observe) and symptoms (something a patient feels) that are often associated with a particular disease or condition. It's not the same as a medical diagnosis.</p>
+                    </div>
+
+
+                </div>
+
+                <div class="col-md-6">
+                    <div class="border p-2">
+                        <strong>About asthma</strong>
+                        {{ .Content }}
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row my-4">
+                <div class="col">
+                    <h3>What we see in real-time emergency department data</h3>
+                    <p><strong>Seasonal patterns</strong>: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec cursus ultricies velit at rutrum. In mattis ligula et dolor aliquam, feugiat vehicula ante pellentesque. Proin ullamcorper, eros non dictum tincidunt, metus ligula egestas diam, vel dapibus erat nisl vel arcu. Morbi rutrum ligula ac interdum tempor. </p>
+                    <p><strong>Annual changes</strong>: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec cursus ultricies velit at rutrum. In mattis ligula et dolor aliquam, feugiat vehicula ante pellentesque. Proin ullamcorper, eros non dictum tincidunt, metus ligula egestas diam, vel dapibus erat nisl vel arcu. Morbi rutrum ligula ac interdum tempor. </p>
+                    <p><strong>Short-term spikes</strong>: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec cursus ultricies velit at rutrum. In mattis ligula et dolor aliquam, feugiat vehicula ante pellentesque. Proin ullamcorper, eros non dictum tincidunt, metus ligula egestas diam, vel dapibus erat nisl vel arcu. Morbi rutrum ligula ac interdum tempor. </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+
+        const spec = {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "width": "container",
+          "height": 400,
+          "description": "Google's stock price over time.",
+          "config": {
+            "background": "#FFFFFF",
+            "axisX": {
+                "labelAngle": 0,
+                "labelOverlap": "parity",
+                "labelFontSize": 11,
+                "titleFontSize": 13,
+                "titleFont": "sans-serif",
+                "titlePadding": 10,
+                "grid": false
+            },
+            
+            "axisY": {
+                "labelAngle": 0,
+                "labelFontSize": 11
+            },
+            "view": {"stroke": "transparent"},
+            "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
+            
+            "point": {"filled": true},
+            "text": {
+                "color": "#1696d2",
+                "fontSize": 11,
+                "fontWeight": 400,
+                "size": 11
+            }
+        },
+          "data": {
+            "url": "asthma-syndrome-counts.csv"
+            // "url": "https://gist.githubusercontent.com/mmontesanonyc/cc5c74d6c0c208daa867f3bcd3914a8c/raw/3e1ff605ad5aa7420ed8aedcbc198c5b394057a6/asthma-counts-working.csv"
+          },
+        "transform":[
+            {"calculate": "year(datum.Date)", "as": "year"},
+            {"window": [{"field": "Count", "op": "mean", "as": "rollingAverage"}], "frame": [0, 6]},
+            {"filter": "datum.Date > 1451624399000"}
+        ],
+          "mark": {"type": "line", "tooltip": true, "interpolate": "monotone"},
+          "encoding": {
+            "x": {
+              "timeUnit": "dayofyear",
+              "field": "Date",
+              "type":"temporal",
+              "title": null,
+              "axis": {"labelExpr": "[timeFormat(datum.value, '%-b %-d')]"}
+              },
+            "y": {"aggregate": "sum", "field": "Count","type":"quantitative","title": ""},
+            "color": {
+              "field": "year",
+              "type": "nominal",
+              "legend": null,
+              "scale": {
+                "range":["grey","grey","grey","grey","grey","grey","grey","blue"]
+              }
+            },
+            "opacity": {
+                "condition": {
+                      "test": "datum.year === 2023",
+                      "value": 1
+                    },
+                  "value": 0.3
+                }
+          }
+        }
+        
+        var changeSpec = spec
+        
+        
+        
+        vegaEmbed("#vis1", spec);
+
+        var smoothCount = 0
+        function smooth(x) {
+            changeSpec = spec
+            smoothCount = smoothCount + 1
+            if (smoothCount % 2 == 0) {
+                changeSpec.encoding.y.field = 'Count'
+                document.getElementById('smoothBtn').classList.remove('btn-primary')
+                document.getElementById('smoothBtn').classList.add('btn-outline-primary')
+
+            } else {
+                changeSpec.encoding.y.field = 'rollingAverage'
+                document.getElementById('smoothBtn').classList.add('btn-primary')
+                document.getElementById('smoothBtn').classList.remove('btn-outline-primary')
+            }
+            vegaEmbed("#vis1", changeSpec);
+        }
+        
+        function smoothed(x) {
+          changeSpec = spec
+          changeSpec.encoding.y.field = x
+          vegaEmbed("#vis1", changeSpec);
+        
+          if (x == 'Count') {
+            document.getElementById('countBtn').classList.add('active')
+            document.getElementById('raBtn').classList.remove('active')
+          } else {
+            document.getElementById('countBtn').classList.remove('active')
+            document.getElementById('raBtn').classList.add('active')
+          }
+        }
+        
+        function time(y) {
+          changeSpec.encoding.x.timeUnit = y
+          vegaEmbed("#vis1", changeSpec);
+        
+          if (y == 'dayofyear') {
+            document.getElementById('dayBtn').classList.add('active')
+            document.getElementById('monthBtn').classList.remove('active')
+            document.getElementById('smoothBtn').classList.remove('hide')
+            document.getElementById('smoothBtn').classList.remove('btn-primary')
+            document.getElementById('smoothBtn').classList.add('btn-outline-primary')
+          } else {
+            changeSpec.encoding.y.field = 'Count'
+            document.getElementById('dayBtn').classList.remove('active')
+            document.getElementById('monthBtn').classList.add('active')
+            document.getElementById('smoothBtn').classList.add('hide')
+
+          }
+        }
+        
+        var count = 0        
+        function toggle(x) {
+          count = count + x
+          if (count % 2 == 0) {
+            changeSpec.transform[2].filter = `datum.Date > 1451624400000`;
+            document.getElementById('toggle').innerHTML = 'Hide previous years'
+        
+          } else {
+            document.getElementById('toggle').innerHTML = 'Show previous years'
+            changeSpec.transform[2].filter = `datum.Date > 1672549200000`
+          };
+          console.log(changeSpec)
+          vegaEmbed("#vis1", changeSpec);
+        }
+        
+        
+        </script>
 
 
 
