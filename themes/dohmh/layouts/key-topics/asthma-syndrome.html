@@ -203,16 +203,21 @@
           }
         }
         
+// #00FFFFFF
+
         var count = 0        
         function toggle(x) {
           count = count + x
           if (count % 2 == 0) {
-            changeSpec.transform[2].filter = `datum.Date > 1451624400000`;
+            // changeSpec.transform[2].filter = `datum.Date > 1451624400000`;
+            changeSpec.encoding.color.scale.range = ["grey","grey","grey","grey","grey","grey","grey","blue"]
             document.getElementById('toggle').innerHTML = 'Hide previous years'
         
           } else {
             document.getElementById('toggle').innerHTML = 'Show previous years'
-            changeSpec.transform[2].filter = `datum.Date > 1672549200000`
+            changeSpec.encoding.color.scale.range = ["#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","#FFFFFF00","blue"]
+
+            // changeSpec.transform[2].filter = `datum.Date > 1672549200000`
           };
           console.log(changeSpec)
           vegaEmbed("#vis1", changeSpec);
