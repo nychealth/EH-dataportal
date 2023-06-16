@@ -26,17 +26,17 @@
 
     <div class="row mt-2" >
         <div class="col-11 mx-auto">
-
+          <div class="row" style="background-color:#f3f3f3; border-radius: 5px; padding: 5px;">
+            <div class="col-6">
             <button class="btn btn-primary btn-sm" onclick="time(`dayofyear`)" id="dayBtn">Daily</button> 
-            <button class="btn btn-outline-primary btn-sm" onclick="time(`month`)" id="monthBtn">Monthly</button> 
-            <button class="btn btn-outline-primary btn-sm" id="smoothBtn" onclick="smooth(1)">7-day average</button> 
+            <button class="btn btn-outline-primary btn-sm" onclick="time(`month`)" id="monthBtn">Monthly</button> <br>
+            <button class="btn btn-outline-primary btn-sm mt-1" id="smoothBtn" onclick="smooth(1)">7-day average</button> 
+
+
+            </div>
+            <div class="col-6 ml-auto">
             <button class="btn btn-outline-primary btn-sm float-right" onclick="toggle(1)" id="toggle">Hide previous years</button><br>
-        
-        
-            <em class="pl-2 fs-sm" style="clear:both">Emergency department visits for asthma</em>
-
-            <div id="vis1" class="chartdest" style="width:100%;"></div>
-
+            <div class="float-right mt-1" id="prevYears">
             <button class="btn btn-sm" disabled>Highlight:</button> 
             <button class="btn btn-outline-secondary btn-sm yearbtn" id="2016btn" onclick="changeYear(2016)">2016</button> 
             <button class="btn btn-outline-secondary btn-sm yearbtn" id="2017btn" onclick="changeYear(2017)">2017</button> 
@@ -46,6 +46,22 @@
             <button class="btn btn-outline-secondary btn-sm yearbtn" id="2021btn" onclick="changeYear(2021)">2021</button> 
             <button class="btn btn-outline-secondary btn-sm yearbtn" id="2022btn" onclick="changeYear(2022)">2022</button> 
             <button class="btn btn-secondary btn-sm yearbtn" id="2023btn" onclick="changeYear(2023)">2023</button> 
+            </div>
+            </div>
+
+          </div>
+
+
+
+
+
+        
+        
+            <em class="pl-2 fs-sm" style="clear:both">Emergency department visits for asthma</em>
+
+            <div id="vis1" class="chartdest" style="width:100%;"></div>
+
+
 
 
 
@@ -202,15 +218,16 @@
           vegaEmbed("#vis1", changeSpec);
         
           if (y == 'dayofyear') {
-            document.getElementById('dayBtn').classList.add('active')
-            document.getElementById('monthBtn').classList.remove('active')
+            document.getElementById('dayBtn').classList.add('btn-primary')
+            document.getElementById('dayBtn').classList.remove('btn-outline-primary')
+            document.getElementById('monthBtn').classList.remove('btn-primary')
             document.getElementById('smoothBtn').classList.remove('hide')
             document.getElementById('smoothBtn').classList.remove('btn-primary')
             document.getElementById('smoothBtn').classList.add('btn-outline-primary')
           } else {
             changeSpec.encoding.y.field = 'Count'
-            document.getElementById('dayBtn').classList.remove('active')
-            document.getElementById('monthBtn').classList.add('active')
+            document.getElementById('dayBtn').classList.remove('btn-primary')
+            document.getElementById('monthBtn').classList.add('btn-primary')
             document.getElementById('smoothBtn').classList.add('hide')
 
           }
