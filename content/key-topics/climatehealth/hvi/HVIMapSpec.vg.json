@@ -153,7 +153,7 @@
             },
             {
               "test": "datum.properties.GEOCODE==selectedNTA",
-              "value": "#00ff7f"
+              "value": "#00ffff"
             },
             {"value": "#d2d2d2"}
           ],
