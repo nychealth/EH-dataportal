@@ -41,11 +41,13 @@
             
             <div class="col-md-5 col-sm-12 mr-auto">
 
+                <div style="font-size: 1rem;" class="pb-1">Enter a neighborhood to get data:</div>
+
                 <div class="btn-group" role="group">
 
                     <input 
                         id="flex_search"
-                        type='text'
+                        type='search'
                         class='flexdatalist form-control'
                         name='indicator_name_suggestion'
                     />
@@ -70,7 +72,7 @@
                 <h3>The Heat Vulnerability Index</h3>
                 <p>The Heat Vulnerability Index (HVI) shows neighborhoods whose residents are more at risk for dying during and immediately following extreme heat. It uses a statistical model to summarize the most important social and environmental factors that contribute to neighborhood heat risk. The factors included in the HVI are surface temperature, green space, access to home air conditioning, and the percentage of residents who are low-income or non-Latinx Black. <a href="#disparities">Differences in these risk factors across neighborhoods are rooted in past and present racism</a>.</p>
                 
-                <p>Neighborhoods are scored from <span style="font-weight: bold; color:#D18954"><i class="fas fa-square"></i>&nbsp;1 (lowest risk)</span> to <span style="font-weight: bold;color: #260929"><i class="fas fa-square"></i>&nbsp;5 (highest risk)</span>.  The neighborhood you selected is <span style="font-weight: bold; color: #007bff">outlined in blue</span>. Hover over the map to see each neighborhood's heat vulnerability score.</p>
+                <p>Neighborhoods are scored from <span style="font-weight: bold; color:#f0875e"><i class="fas fa-square"></i>&nbsp;1 (lowest risk)</span> to <span style="font-weight: bold;color: #261057"><i class="fas fa-square"></i>&nbsp;5 (highest risk)</span>.  The neighborhood you selected is <span class="badge bg-info" style="font-size: 1rem; font-weight: bold; color: #00ffff">outlined in blue</span>. Hover over the map to see each neighborhood's heat vulnerability score.</p>
                 
                 <p>Remember, all neighborhoods have residents at risk for heat illness and death.  A neighborhood with low vulnerability does not mean no risk.
                 </p>
@@ -107,7 +109,7 @@
                 
                 <div class="row no-gutters py-1 mr-2">
                     <div class="col-12 mb-3">
-                        <p><i class="far fa-question-circle"></i>&nbsp;<a href="/data-explorer/climate/?id=2141">Daytime summer surface temperature</a> is different from air temperature, and varies more by neighborhood: some neighborhoods are hotter than others. A higher surface temperature is associated with a higher risk of death from heat waves. <span class="badge badge-light">Average neighborhood: 86.8° F</span>
+                        <p><i class="far fa-question-circle"></i>&nbsp;<a href="/data-explorer/climate/?id=2141">Daytime summer surface temperature</a> is different from air temperature, and varies more by neighborhood: some neighborhoods are hotter than others. A higher surface temperature is associated with a higher risk of death from heat waves. <span class="badge badge-light">Citywide: 86.9° F</span>
                         </p>
                     </div>
                 </div>
@@ -130,7 +132,7 @@
                 
                 <div class="row no-gutters py-1 mr-2">
                     <div class="col mb-3">
-                        <p><i class="far fa-question-circle"></i>&nbsp;Green space is <a href="/data-explorer/active-design/?id=2157">tree</a>, <a href="/data-explorer/active-design/?id=2143">grass, or shrub cover</a>. Green space helps cool a neighborhood, address <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/localtemp/" target="_blank">UHI</a>, and create a resilient city. It also has a small association with heat mortality, weaker than other components in the index. <span class="badge badge-light">Average neighborhood: 27.8%</span>
+                        <p><i class="far fa-question-circle"></i>&nbsp;Green space is <a href="/data-explorer/active-design/?id=2157">tree</a>, <a href="/data-explorer/active-design/?id=2143">grass, or shrub cover</a>. Green space helps cool a neighborhood, address <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/localtemp/" target="_blank">UHI</a>, and create a resilient city. It also has a small association with heat mortality, weaker than other components in the index. <span class="badge badge-light">Citywide: 38.0%</span>
                         </p>
                     </div>
                 </div>
@@ -155,7 +157,7 @@
                 
                 <div class="row no-gutters py-1 mr-2">
                     <div class="col mb-3">
-                        <p><i class="far fa-question-circle"></i>&nbsp;Air conditioning is as necessary during extreme heat as heating is in winter. A neighborhood with a high percentage of <a href="/data-explorer/climate/?id=2104">households with air conditioners</a> means that more of its residents can be protected from extreme heat. <span class="badge badge-light">Average neighborhood: 90.6%</span></p>
+                        <p><i class="far fa-question-circle"></i>&nbsp;Air conditioning is as necessary during extreme heat as heating is in winter. A neighborhood with a high percentage of <a href="/data-explorer/climate/?id=2104">households with air conditioners</a> means that more of its residents can be protected from extreme heat. <span class="badge badge-light">Citywide: 91.0%</span></p>
                     </div>
                 </div>
                 <!--END SECTION-->
@@ -177,7 +179,7 @@
                 
                 <div class="row no-gutters py-1 mr-2">
                     <div class="col mb-3">
-                        <p><i class="far fa-question-circle"></i>&nbsp;Low income is a social factor that places people at risk of death during heat waves for many reasons. One reason is that people with limited financial resources may be less likely to afford owning or using an air conditioner during heat waves. <span class="badge badge-light">Average neighborhood: $69,854</span>
+                        <p><i class="far fa-question-circle"></i>&nbsp;Low income is a social factor that places people at risk of death during heat waves for many reasons. One reason is that people with limited financial resources may be less likely to afford owning or using an air conditioner during heat waves. <span class="badge badge-light">Citywide: $67,046</span>
                         </p>
                     </div>
                 </div>
@@ -196,7 +198,7 @@
                 
             </div>
             <div class="col-md-6 col-sm-12 mr-auto">
-                <iframe title="Heat-related deaths in NYC" aria-label="chart" id="datawrapper-chart-kuXB4" src="https://datawrapper.dwcdn.net/kuXB4/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="376"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
+                <iframe title="Heat-related deaths in NYC" aria-label="chart" id="datawrapper-chart-kuXB4" src="https://datawrapper.dwcdn.net/kuXB4/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="376"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
                 </script> 
             </div>
         </div>
