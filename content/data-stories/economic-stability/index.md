@@ -63,7 +63,11 @@ Low-income New Yorkers also have to make tradeoffs when it comes to food. <stron
 
 Our health is shaped not just by having enough food to eat but also by having the right foods to eat. NYC is known for its bodegas, but they don’t always offer healthy staples. For foods that make up a healthy diet, New Yorkers need grocery stores. But most high-poverty neighborhoods in NYC have more bodegas than grocery stores – making healthier food harder to access than unhealthy food. 
 
+</div>
+<div class="wide my-4">
 <iframe title="Neighborhoods with higher poverty have less access to healthy foods - a higher ratio of bodegas to supermarkets" aria-label="Scatter Plot" id="datawrapper-chart-we5Yo" src="https://datawrapper.dwcdn.net/we5Yo/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="600" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+</div>
+<div class="narrow">
 
 <a href="https://www.nyc.gov/site/doh/health/neighborhood-health/shop-health.page">The City’s Shop Healthy NYC!</a> initiative encourages residents to talk to their bodega owners about offering more healthy options. 
 
@@ -71,7 +75,11 @@ Our health is shaped not just by having enough food to eat but also by having th
 
 Residents living in high-poverty neighborhoods are more likely to postpone health care. By going without these services, diseases can be more difficult to prevent, catch early, and treat, leading to more serious and costly health conditions.   
 
+</div>
+<div class="wide my-4">
 <iframe title="Households in higher-poverty neighborhoods are more likely to postpone medical care" aria-label="Dot Plot" id="datawrapper-chart-W8Je1" src="https://datawrapper.dwcdn.net/W8Je1/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="523" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+</div>
+<div class="narrow">
 
 Getting essential health care can mean the difference between staying afloat and winding up in medical debt.   
 
@@ -91,11 +99,19 @@ Racism shapes who experiences poverty—and its health effects—in NYC.
 
 In NYC, as in most places in the United States, there are more Black and Latino residents living in poverty than residents of other races. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/housing/">This is a product of racism</a> and a history of policies that deprive people of color of access to home ownership, education and jobs, and other opportunities to build wealth and economic stability.   
 
+</div>
+<div class="wide my-4">
 <iframe title="Poverty rates in segregated NYC neighborhoods" aria-label="Scatter Plot" id="datawrapper-chart-qBcx4" src="https://datawrapper.dwcdn.net/qBcx4/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="703" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+</div>
+<div class="narrow">
 
 This <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/racial-wealth-gap/">racial wealth gap</a> persists across the United States, and results in health inequities. White New Yorkers are much less likely than New Yorkers of color to report their health as fair or poor.   
 
+</div>
+<div class="wide my-4">
 <iframe title="[ Insert title here ]" aria-label="Split Bars" id="datawrapper-chart-26GS0" src="https://datawrapper.dwcdn.net/26GS0/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="291" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+</div>
+<div class="narrow">
 
 New Yorkers who participated in community conversations describe ways to decrease poverty and improve health 
 
