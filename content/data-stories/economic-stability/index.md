@@ -113,7 +113,7 @@ This <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/rac
 </div>
 <div class="narrow">
 
-New Yorkers who participated in community conversations describe ways to decrease poverty and improve health 
+### New Yorkers who participated in community conversations describe ways to decrease poverty and improve health 
 
 <strong>Increasing job opportunities:</strong>
 
