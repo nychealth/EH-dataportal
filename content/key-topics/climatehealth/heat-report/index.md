@@ -33,7 +33,7 @@ layout: report
 
 ## Introduction
 
-Hot weather is dangerous to health, sometimes resulting in death. Heat-related deaths are preventable. In this third annual report on heat-related mortality, the Health Department examined data from 2012-2021.
+Hot weather is dangerous to health, sometimes resulting in death. Heat-related deaths are preventable. In this third annual report on heat-related mortality, the NYC Health Department examined data from 2012-2021.
 
 We track heat-related deaths in three ways:
 
@@ -47,7 +47,7 @@ Starting this year, we report estimated heat-exacerbated deaths for the current 
 
 ## Heat Stress Deaths
 
-The Health Department examined heat-stress deaths occurring during the warm season months of May through September from 2012-2021. We reviewed death certificates and medical examiner investigation reports in cases where heat was recognized as a cause of death. A more detailed description of methods and data sources can be found in the <a href="" target="blank">Appendix Methods and Supplemental Data</a>
+The NYC Health Department examined heat-stress deaths occurring during the warm season months of May through September from 2012-2021. We reviewed death certificates and medical examiner investigation reports in cases where heat was recognized as a cause of death. A more detailed description of methods and data sources can be found in the <a href="" target="blank">Appendix Methods and Supplemental Data</a>
 
 Among NYC residents, there were 68 heat-stress deaths over the 10-year period. There was an average of 7 deaths per year, with the largest yearly numbers of deaths occurring earlier in the period as a result of a severe heat wave in 2013. Most deaths occurred in July (68%), followed by June (13%), August (12%), September (4%), and May (3%). As of January 2023, there were 8 heat-stress deaths in 2022, though that number is provisional and subject to change because mortality records are not finalized.&nbsp;&nbsp;
 
@@ -88,7 +88,7 @@ People who died from heat stress were most often exposed to dangerous heat in ho
 
 About a third (n=12, 34%) of people who were exposed to dangerous heat at home had an electric fan present and on, indicating that using an electric fan without an AC cannot always prevent death during extreme heat for people who are at highest heat risk.
 
-Previous Health Department studies have found that air conditioning access differs across race and class. Black New Yorkers and low-income New Yorkers are less likely to own or use an AC during hot weather, and the main reason is cost [\[3\]](https://nyccas.cityofnewyork.us/nyccas2022/report/1#References). While more than 90% of NYC households currently have air conditioning, access can be as low as 76% in neighborhoods where more people are living with limited financial resources.
+Previous NYC Health Department studies have found that air conditioning access differs across race and class. Black New Yorkers and low-income New Yorkers are less likely to own or use an AC during hot weather, and the main reason is cost [\[3\]](https://nyccas.cityofnewyork.us/nyccas2022/report/1#References). While more than 90% of NYC households currently have air conditioning, access can be as low as 76% in neighborhoods where more people are living with limited financial resources.
 
 ## Heat Exacerbated Deaths
 
@@ -96,10 +96,10 @@ Deaths from chronic conditions that are not recognized as heat-related on death 
 
 In the previous two annual reports, we estimated heat-exacerbated mortality risk and number of deaths for a 9-year period (e.g., 2011-2019 for the 2022 report) using weather and natural cause death data for May-September in NYC. Starting this year, we report estimated heat-exacerbated deaths for the current and historical data in five-year rolling time windows to characterize trends. The average natural death count per year was about 18,000 for May through September for the most recent 5-year period (2016-2020). We used time-series statistical models to compare deaths on hot days with those on cooler days. We estimated heat-exacerbated deaths using:
 
-* an indicator (yes/no) for extreme heat event days defined by the National Weather Service’s heat advisory threshold for NYC. Based on the Health Department’s previous analysis of heat-exacerbated mortality, heat advisories are for at least 2 consecutive days with 95°F or higher daily maximum heat index (HI) or any day with a maximum HI of 100°F or higher.
+* an indicator (yes/no) for extreme heat event days defined by the National Weather Service’s heat advisory threshold for NYC. Based on the NYC Health Department’s previous analysis of heat-exacerbated mortality, heat advisories are for at least 2 consecutive days with 95°F or higher daily maximum heat index (HI) or any day with a maximum HI of 100°F or higher.
 * a range of hot daily maximum temperatures that includes both extreme heat event days and other hot days. We estimated heat-exacerbated deaths for days ranging from the median maximum daily temperature of 82°F through the highest temperature during the period.
 
-These models were run in 5-year rolling time windows between 1971 and 2020. We included deaths occurring on the date of exposure to hot weather and over the following 3 days because previous Health Department studies have shown that heat-exacerbated deaths can occur up to 3 days after the initial hot weather \[4\]. Detailed methods used to estimate risks and attributable deaths can be found in the <a href="" target="blank">Appendix Methods and Supplemental Data</a>
+These models were run in 5-year rolling time windows between 1971 and 2020. We included deaths occurring on the date of exposure to hot weather and over the following 3 days because previous NYC Health Department studies have shown that heat-exacerbated deaths can occur up to 3 days after the initial hot weather \[4\]. Detailed methods used to estimate risks and attributable deaths can be found in the <a href="" target="blank">Appendix Methods and Supplemental Data</a>
 
 To describe the impact of climate change, we examined how the number of hot days during warm months changed over the past five decades (1971-2020) in rolling 5-year time windows. We also computed the average of daily maximum temperature for each month between May and September to examine if changes in temperature varied by month. &nbsp;
 
@@ -172,10 +172,10 @@ To prepare for a hotter future and prevent heat-related deaths, the City needs l
   * Implementing green infrastructure projects, especially in high HVI neighborhoods, including planting trees and other greenery and expanding cool roofs.&nbsp;
   * Support community-based organizations (CBO) working to reduce the health impacts of climate change.
   * Include CBOs and residents in decision-making about and investments in community infrastructure and public space.
-  * Fund and provide technical assistance for programs — such as the Health Department’s Be a Buddy — that support CBOs to build community resilience through social cohesion and access to physical and mental health resources that can help people stay safe in the heat.&nbsp;
+  * Fund and provide technical assistance for programs — such as the NYC Health Department’s Be a Buddy — that support CBOs to build community resilience through social cohesion and access to physical and mental health resources that can help people stay safe in the heat.&nbsp;
   * Continue to strengthen emergency response during extreme heat, such as opening cooling centers and issuing heat-health warnings, prioritizing people and communities with the greatest need.
 
-More data and information about heat, climate, and health is available on the Health Department’s&nbsp;[Climate and Health Hub.](http://a816-dohbesp.nyc.gov/IndicatorPublic/HeatHub/index.html) Learn more about what the City is doing to mitigate the effects of heat as part of [PlaNYC: Getting Sustainability Done](https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/).&nbsp;
+More data and information about heat, climate, and health is available on the NYC Health Department’s&nbsp;[Climate and Health Hub.](http://a816-dohbesp.nyc.gov/IndicatorPublic/HeatHub/index.html) Learn more about what the City is doing to mitigate the effects of heat as part of [PlaNYC: Getting Sustainability Done](https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/).&nbsp;
 
 <div class="fs-sm px-2 py-1 mb-2"><strong>Note on years of data included:</strong> For heat-stress, data for 2021 and 2022 are considered preliminary because death data are still being compiled by the Bureau of Vital Statistics. These numbers may be updated in future reports as final data become available; 2021 heat-stress numbers are less likely to change. All heat-stress tables are based on heat-stress deaths from 2012-2021. The heat-exacerbated mortality analysis requires complete daily death counts to produce accurate estimates, making 2020 the most recent available year of data.</div>
 
