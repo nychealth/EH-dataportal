@@ -1,253 +1,114 @@
 ---
-title: The racial wealth gap has big implications for public health and health equity
+title: Economic stability creates health
 date: 2023-06-16T09:01:00-04:00
 draft: true
-seo_title: "How the racial wealth gap affects health"
-seo_description: "A data story about how the racial wealth gap affects health"
+seo_title: "How economic stability creates health "
+seo_description: "A data story about how economic stability creates health"
 tags: 
 categories: ["social"]
-keywords: ["racial wealth gap","health equity","inequalities","inequities"]
+keywords: ["health equity","inequalities","inequities"]
 image: CrownHeights_JulienneSchaer-065.JPG
-photocredit: "Julienne Schaer/Mayoral Photography Office"
+photocredit:
+
+To do: 
+
+- Not sure where map is
 ---
 
-Throughout history, the distribution of wealth in the U.S. has, and continues to be, largely unequal between racial groups. This concept is referred to as the <strong>racial wealth gap</strong> and it has its roots in settler colonialism and enslavement. There is an especially big wealth disparity between White families and Black families, which was established and upheld by racist historical policies and practices. The racial wealth gap has major implications for public health. This is because a large and growing body of research reveals that having good health is connected to having wealth. Effective solutions to racial inequities in wealth and health must address challenges at the individual, household, community, and systems levels.  
+<i>In 2020, the NYC Health Department held a series of Community Conversations with residents and local stakeholders across 26 neighborhoods in the city. In these conversations New Yorkers share the personal stories that illuminate priorities for public health, healthy neighborhoods, and more from the people that they impact most. This is one part of a three-part series on how economic stability, public space, and housing create health.</i>
 
-### White families hold nearly eight times the wealth of the average Black family
+<i>To hear more from New Yorkers about how they view economic stability and health, <a href="https://make.headliner.app/download/48f94852-0370-4737-b5bf-5a8dafae62da">listen to recordings from the community conversations.</a></i>
 
-Income and wealth are two different concepts. Income is measured by earnings, while wealth is the difference between the value of assets owned and the amount owed in debts. Since wealth incorporates the value of assets accumulated over time, and can be passed down over generations, it provides a more comprehensive representation of one’s economic resources. 
+<strong>“It’s a constant struggle of like, that anxiety and stress and depression and all of those other mental health issues that happen because of how and where they’re living.”</strong>  
 
-The Federal Reserve Board’s 2019 Survey of Consumer Finances (SCF) shows that, nationally, the average White family holds nearly eight times the wealth of the average Black family and over five times the wealth of the average Hispanic family. 
+<i>—NYC community conversation participant</i>
 
-<iframe title="Mean and median net worth for  White, Black, and  Hispanic people in the US" aria-label="Grouped Column Chart" id="datawrapper-chart-nqi4y" src="https://datawrapper.dwcdn.net/nqi4y/7/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="481" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<strong>17 percent of New Yorkers, or about 1,400,000 people, live in poverty.</strong> Living in poverty impacts health in many ways. These include: 
 
-### Racist and discriminatory policies have prevented Black families from accruing assets, financial security, and wealth 
+* Financial and emotional stress: medical debt and making difficult choices between rent, food, medical care, and bills. 
 
-For much of American history, there has been a record of racist systematic policies implemented by the federal government that helped build wealth for White households while suppressing wealth accumulation for other groups, including Black and Hispanic households.  
+* Unhealthy and unstable housing conditions: illness from increased exposure to weather-related illnesses from not being able to afford air conditioning or heat.  
 
-The Black-White wealth disparity, in particular, has been created and reinforced by systematic policies and practices including racial segregation laws, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/redlining/" target="_blank">redlining,</a> the discriminatory implementation of the New Deal and the G.I. Bill, and more. The inter-generational impacts of the enslavement of Black people have broad impacts on the wealth and health inequities observed today.
+* Food insecurity: lack of access to fresh food or enough food. 
 
-### Greater wealth translates to better health 
+The combined effects of poverty are increased sickness and death.  
 
-While net worth is found to be a protective factor against poor health, assets such as savings, stock ownership, or homeownership, are found to consistently improve health, and debts such as student loans, credit card debt, or medical debt are associated with worse health, even after adjusting for total net worth. 
+### Premature deaths rates are twice as high in poor neighborhoods as in wealthier ones
 
-White households are more likely than Black and Hispanic households to hold all asset types. Ultimately, the median White household has assets more than four times the value of those held by the median Black household, underscoring that the racial wealth gap is primarily driven by differences in asset holdings. 
+[Figure 1]
 
-**Explore how wealth translates to health:**
+### Poverty forces people to do without necessities that keep them healthy, like food and medical care. 
 
-</div>
+“[…] Adequate, decent, and fair housing...it gives folks the opportunity to think about something other than those basic needs.”  
 
-<div class="accordion-group my-3" role="tablist" id="accordion-01">
-  <div class="card">
-    <a class="card-header collapse collapsed font-weight-bold" id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
-      <span class="title" role="heading" aria-level="3">Wealth allows families to access better medical care…</span>
-    </a>
+<i>—NYC community conversation participant</i>
 
-  <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
-    <div class="card-body card-white fs-sm">
-    <p>
-    Wealth is strongly correlated with individual and population health in more ways than one. Wealth allows families to afford better medical care, higher quality insurance, and goods and services that promote physical and mental wellbeing. Liquid assets, like savings and stocks, allow households to more readily pay for basic needs, preventative and routine medical care, and weather financial shocks. 
-    </p>
-    </div>
-  </div>
-  <!-- .collapse -->
-  </div>
+<strong>Nearly one-third of renting households in the City experience severe rent burden</strong>—spending at least half their income on rent.  
 
-  <!-- .card (end of first accordion, repeat as needed) -->
+We see severe rent burden among New Yorkers of all income levels—but low-income people feel these effects more. Severe rent burden impacts nearly half (44%) of households that earn between $25,000 and $50,000, and 85% of households that earn less than $25,000. People who are rent burdened must make difficult choices between housing and health. For example, they may choose not to use an air conditioner because of the electricity bill <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/heat/">despite this increasing their risk for heat-related illness and death.</a>
 
-  <div class="card">
-      <a class="card-header collapse collapsed font-weight-bold" id="acc-button-02" data-toggle="collapse" href="#panel-acc-button-02"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-02">
-        <span class="title" role="heading" aria-level="3">…and to live in health-promoting neighborhoods.</span>
-      </a>
+### One out of every 10 New Yorkers experiences food insecurity.
 
-<div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02" data-parent="#accordion-01">
-    <div class="card-body fs-sm">
-<p>
-Greater wealth allows people to live in neighborhoods with fewer environmental hazards and more resources, like healthier housing.
-                </p>
-            </div>
-</div>
-<!-- .collapse -->
+“I have to make sure that my children eat, I cannot see a starving child. I will go without food. If anything, I will go without a meal. But my children, I can’t see them without food. I just can’t.” 
+
+<a href="https://www.nyc.gov/assets/opportunity/pdf/evidence/nycgov-povertymeasure-enhancedstudy.pdf"><i>—Participant in the Qualitative Study to Enhance the NYCgov Poverty Measure</i></a>
 
 </div>
-
-  <div class="card">
-      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-03" data-toggle="collapse" href="#panel-acc-button-03"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-03">
-        <span class="title" role="heading" aria-level="3">Wealth can reduce stress from financial challenges.</span>
-      </a>
-
-<div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
-    <div class="card-body fs-sm">
-<p>
-   Wealth can protect families from the negative consequences of financial hardship, including job loss, homelessness or housing insecurity, food insecurity, and the negative psychological effects associated with financial hardship. Intergenerational wealth passed down through inheritance can provide educational and social opportunities that can benefit health in the long run. 
-                </p>
-            </div>
-</div>
-<!-- .collapse -->
-</div>
-
-  <div class="card">
-      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-04" data-toggle="collapse" href="#panel-acc-button-04"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-04">
-        <span class="title" role="heading" aria-level="3">Debt and tight budgets lead to reduced spending on medical care and preventative lifestyle habits.</span>
-      </a>
-
-<div class="collapse" id="panel-acc-button-04" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
-    <div class="card-body fs-sm">
-<p>
- Conversely, research shows that when household budgets are constrained, families tend to reduce spending on medical care, groceries, and other health-related goods. Households with limited liquid assets may be less able to afford health-promoting opportunities (for example, quality medical care, physical activity, etc.) and more likely to forgo preventative or emergency medical treatments. Financial hardship is consistently correlated with poorer self-rated health, more chronic diseases, and depressive symptoms in children and adults. 
-                </p>
-            </div>
-</div>
-<!-- .collapse -->
-</div>
-
-  <div class="card">
-      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-05" data-toggle="collapse" href="#panel-acc-button-05"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-05">
-        <span class="title" role="heading" aria-level="3">Debt and lower incomes impact socioemotional well-being in negative ways.</span>
-      </a>
-
-<div class="collapse" id="panel-acc-button-05" role="tabpanel" aria-labelledby="acc-button-05" data-parent="#accordion-01">
-    <div class="card-body fs-sm">
-<p>
-  Debt type plays an important role in health and well-being in both positive and negative ways. For instance, higher levels of home and student loan debt are associated with greater socioemotional well-being for children, whereas higher levels of and increases in unsecured debt (for example, credit card debt) are associated with lower levels of and declines in child socioemotional well-being, respectively.  
-  
-  At the household level, high debts or low assets can increase anxiety, frustration, and hopelessness, and can also lead to health deterioration due to stress. When looking at young adults with student debt, those with high levels of debt stress reported feeling more tense and anxious, troubled by physical problems, and had greater difficulty getting to sleep than students with low levels of debt stress. 
-                </p>
-            </div>
-</div>
-<!-- .collapse -->
-</div>
-</div>
-
-<div class="narrow my-4">
-
-### Black-White racial health inequities haven't improved
-
-Data shows that Black-White racial health inequities have not narrowed over time. For example, Black-White ratios of mortality from coronary heart disease, cancer, diabetes, cirrhosis of the liver, and infant mortality were larger in the late 1990s than in 1950.  
-
-Between 2019 and 2021, the U.S. experienced a widening of its life expectancy gap during the COVID-19 pandemic with Hispanic and non-Hispanic Black populations experiencing larger declines in life expectancy over the two-year period than non-Hispanic White populations. 
-
-<iframe title="Health inequities have not improved over time" class="my-2 py-2 border-top border-bottom" aria-label="Interactive line chart" id="datawrapper-chart-AbBga" src="https://datawrapper.dwcdn.net/AbBga/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
-</script>
-
-
-### Reducing the racial wealth gap
-In 2021 and 2022, the Federal Reserve Bank of New York, in partnership with the NYC Health Department, convened experts from the nonprofit, research, policy, and government sectors in a series of roundtable discussions to share their thoughts on the solutions, policies, and tools that should be considered to meaningfully address racial wealth and health gaps in the U.S. These experts noted that bold public policy, better data collection, and increased community ownership are needed.  
-
-From the convening, it was noted that policies like universal health care, medical debt cancellation, and increasing community ownership can help improve health and address health-related financial inequities—while policies like reparations can directly address the racial wealth gap.
-
-<strong>Universal health care:</strong> By providing low-cost health care to all Americans, universal health care would help prevent individuals from acquiring medical debt and its subsequent deleterious effects on health and financial security. 
-
-<strong>Medical debt cancellation:</strong> Medical debt, or medical costs people are unable to pay upfront or when they received care, unequally impacts racial and ethnic communities. Estimates by the U.S. Census Bureau show that 28 percent of Black households carry medical debt, compared with 17 percent of White households. 
-
-<strong>Student debt cancellation:</strong> According to the 2019 SCF, Black Americans hold the most student loan debt — $44,880 on average — compared to other races and ethnicities.  
-
-<strong>Baby bonds:</strong> Baby bonds are an innovative policy that provide children with publicly funded investment accounts that can be accessed beginning at the age of 18 for specific uses including education, homeownership, small business, and retirement. Any baby bonds proposal should allocate the most resources to Black, Hispanic, and indigenous children. 
-
-<strong>Reparations:</strong> A reparations program, such as federally paid cash to Black descendants of enslaved people, would eliminate the Black-White wealth gap, if the payment amounts were predicated on the average difference in Black and White wealth.
-
-Effective solutions to racial inequities in wealth and health must simultaneously address challenges at the individual household and community levels, and the inequitable systems that produce wealth and health gaps.
-
-<hr class="my-2">
-
-
-
-</div>
-
 <div class="wide my-4">
-
-
-### Resources
-
-<div class="row">
-  <div class="col-md-7 col-xs-12">
-  <a class="btn btn-block btn-outline-primary mt-1" href="racial-wealth-gap-health-equity.pdf" target="_blank">
-  <i class="fas fa-file-pdf mr-1"></i>
-  Analyzing the Racial Wealth Gap and Implications for Health Equity (full report).</a> 
-  <a class="btn btn-block btn-outline-primary mt-1"  href="https://www.youtube.com/watch?v=yDgGR-r2xdc" target="_blank"> <i class="fas fa-play-circle mr-1"></i> Reimagining Public Health: A Discussion on the Racial Wealth Gap and Health Equity</a> 
-  <button type="button" class="btn btn-block btn-outline-primary mt-1" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-book-open mr-1"></i>Glossary</button>
-
-  </div>
-    <div class="col-md-5 col-xs-12">
-    <div class="p-2 border shadow-sm">
-      <img src="rwg_visual_abstract.png">
-      <em class="fs-sm"><a href="rwg_visual_abstract.png" target="_blank">Full-size visual abstract for this report</a>.</em>
-    </div>
-  </div>
+<iframe title="Food insecurity in NYC" aria-label="Donut Chart" id="datawrapper-chart-XiHSE" src="https://datawrapper.dwcdn.net/XiHSE/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="398" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
+<div class="narrow">
 
+Low-income New Yorkers also have to make tradeoffs when it comes to food. <strong>Food insecurity</strong> (not always having enough food) became even worse during the COVID-19 pandemic.   
 
+Our health is shaped not just by having enough food to eat but also by having the right foods to eat. NYC is known for its bodegas, but they don’t always offer healthy staples. For foods that make up a healthy diet, New Yorkers need grocery stores. But most high-poverty neighborhoods in NYC have more bodegas than grocery stores – making healthier food harder to access than unhealthy food. 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Glossary</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <table class="table table-striped" id="glossary">
-  <thead>
-    <tr class="table-dark">
-      <th scope="col">Term</th>
-      <th scope="col">Definition</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">Wealth</th>
-      <td>Wealth is the difference between the value of assets owned and the amount owed in debts. It is critically tied positive health outcomes.</td>
-    </tr>
-    <tr>
-      <th scope="row">Income</th>
-      <td>A flow of resources received on a regular basis, generally from earnings, investments, sale of an item, or transfers</td>
-    </tr>
-    <tr>
-      <th scope="row">Redlining</th>
-      <td colspan="2">A discriminatory practice by which firms such as banks and insurance companies refused or limited loans, mortgages, and/or insurance coverage within specific geographic areas with primarily Black, immigrant and low-income residents.</td>
-    </tr>
-    <tr>
-      <th scope="row">Asset</th>
-      <td colspan="2">A resource owned with market or economic value. An asset can be a potential source of future income to meet debts, facilitate additional accumulation of resources, or meet other commitments.</td>
-    </tr>
-    <tr>
-      <th scope="row">Debt</th>
-      <td colspan="2">Money owed or due to another party.</td>
-    </tr>
-    <tr>
-      <th scope="row">Health equity</th>
-      <td colspan="2">Fair and just opportunity for each person to be as healthy as possible, and no one is disadvantaged from achieving this potential due to social position or socially determined circumstances.</td>
-    </tr>
-    <tr>
-      <th scope="row">Racial wealth gap</th>
-      <td colspan="2">The difference in net worth between socially identified racial groups.</td>
-    </tr>
-    <tr>
-      <th scope="row">Systemic Racism, or Structural Racism</th>
-      <td colspan="2">The totality of ways in which societies foster racial discrimination, via mutually reinforcing inequitable systems (for example, in housing, education, employment, earnings, benefits, credit, media, health care, criminal justice, etc.) that in turn reinforce discriminatory beliefs, values, and distribution of resources, reflected in history, culture, and interconnected institutions.</td>
-    </tr>
-  </tbody>
-</table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+<iframe title="Neighborhoods with higher poverty have less access to healthy foods - a higher ratio of bodegas to supermarkets" aria-label="Scatter Plot" id="datawrapper-chart-we5Yo" src="https://datawrapper.dwcdn.net/we5Yo/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="600" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
-<style>
-.card-body {
-  background-color: #fafafa!important;
-  border: 1px solid lightgray;
-}
+<a href="https://www.nyc.gov/site/doh/health/neighborhood-health/shop-health.page">The City’s Shop Healthy NYC!</a> initiative encourages residents to talk to their bodega owners about offering more healthy options. 
 
-.card-header {
-  background-color: #e1e1e1!important;
-  border: 1px solid lightgray;
-}
-</style>
+### With no money to spare after rent and food, many New Yorkers go without the health care or medicines they need. 
 
+Residents living in high-poverty neighborhoods are more likely to postpone health care. By going without these services, diseases can be more difficult to prevent, catch early, and treat, leading to more serious and costly health conditions.   
+
+<iframe title="Households in higher-poverty neighborhoods are more likely to postpone medical care" aria-label="Dot Plot" id="datawrapper-chart-W8Je1" src="https://datawrapper.dwcdn.net/W8Je1/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="523" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+
+Getting essential health care can mean the difference between staying afloat and winding up in medical debt.   
+
+“You go to some of these facilities and they tell they don’t take your insurance. I’m with my [11-year-old] child and even then, [it’s], ‘no, we don’t take that insurance.’ It’s like, oh my God, what world am I in? Where do I go?” 
+
+<i>—NYC community conversation participant</i> 
+
+Getting care for a medical issue can be costly, even with insurance. Medical debt occurs when people can’t pay bills. If the bills go unpaid long enough, they get sent to collection agencies, which can impact credit scores. 
+
+### Medical debt creates stress and disproportionately affects people of color.  
+
+Six percent of all New Yorkers—about 1 in 20 people—have medical debt in collections. People living in communities of color tend to experience a higher rate of, and owe more money in, medical debt than people living in White communities. In Brooklyn, for example, <a href="https://apps.urban.org/features/debt-interactive-map/?type=medical&variable=medcoll&state=36&county=36047">communities of color have double the amount of residents with medical debt in collections.</a> 
+
+Chronic stress related to finances can be debilitating because the factors causing it are difficult to resolve, and many worsen over time. Long-term stress increases the risk of mental health issues and other health problems.  
+
+Racism shapes who experiences poverty—and its health effects—in NYC.  
+
+In NYC, as in most places in the United States, there are more Black and Latino residents living in poverty than residents of other races. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/housing/">This is a product of racism</a> and a history of policies that deprive people of color of access to home ownership, education and jobs, and other opportunities to build wealth and economic stability.   
+
+<iframe title="Poverty rates in segregated NYC neighborhoods" aria-label="Scatter Plot" id="datawrapper-chart-qBcx4" src="https://datawrapper.dwcdn.net/qBcx4/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="703" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+
+This <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/racial-wealth-gap/">racial wealth gap</a> persists across the United States, and results in health inequities. White New Yorkers are much less likely than New Yorkers of color to report their health as fair or poor.   
+
+<iframe title="[ Insert title here ]" aria-label="Split Bars" id="datawrapper-chart-26GS0" src="https://datawrapper.dwcdn.net/26GS0/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="291" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+
+New Yorkers who participated in community conversations describe ways to decrease poverty and improve health 
+
+<strong>Increasing job opportunities:</strong>
+
+“We need businesses to come here. We need jobs to come here. We need somewhere where kids can get work, have a little money in their pocket and make it less stressful on their families.” <i>—NYC community conversation participant</i>  
+
+<strong>Educating (and, potentially, regulating) employers:</strong>   
+
+“I think there needs to be legal organizations that need to be involved and that educate employers and employees on labor laws and rights…”<i>—NYC community conversation participant</i>
+
+<strong>Providing public services:</strong>  
+
+“...What’s the right bundle of services that someone needs in order to succeed and to progress?” <i>—NYC community conversation participant</i>  
+
+Public health is about searching for and addressing the root causes of different health outcomes. The data are clear, and so are the personal stories that were shared: increasing economic stability would greatly improve health for New Yorkers.  
