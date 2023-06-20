@@ -19,6 +19,8 @@ Goal: Improve the quality of our waterways to increase opportunities for recreat
 
 New York State sets water quality standards, and NYC monitors New York Harbor water quality on an annual basis through the Harbor Survey. The survey uses 36 stations located throughout the open waters of the harbor and 19 stations located in smaller tributaries within the city. These stations take water samples every month and test for a number of contaminants. Average dissolved oxygen concentration and fecal coliform levels are two of the most commonly-accepted indicators of harbor health.
 
+For information on current beach water quality, please visit DOHMH's [beach water quality map](https://a816-dohbesp.nyc.gov/IndicatorPublic/Beaches/).
+
 ### Dissolved Oxygen
 
 Sufficient concentrations of dissolved oxygen in the water column are critical for the respiration of most aquatic life forms, including fish and invertebrates such as crabs, clams, and zooplankton. Dissolved oxygen concentration is, therefore, one of the most universal indicators of overall water quality and the condition of habitats and ecosystems.   
@@ -34,5 +36,3 @@ Enterococci are a subgroup within the fecal streptococcus group and are distingu
 Since the 1990s, harbor-wide surface water fecal coliform levels have been below the state standard for fishing and boating (monthly geometric mean less than or equal to 2,000 cells/100mL from 5 or more samples), as well as the state standard for bathing and other recreational use (monthly geometric mean less than or equal to 200 cells/100mL from 5 or more samples). Since the NYC DEP began monitoring enterococci in the early 2000s, enterococci levels have remained well below the state bathing standard (monthly geometric mean less than or equal to 35 cells/100mL, or a single-sample maximum of 104 cells/100mL).
 
 However, short-term spikes may occur after heavy rain. The city is committed to addressing these spikes to increase opportunities for recreation.
-
-For information on current beach water quality, please visit DOHMH's [beach water quality map](https://a816-dohbesp.nyc.gov/IndicatorPublic/Beaches/).
