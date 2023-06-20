@@ -25,8 +25,12 @@ Sufficient concentrations of dissolved oxygen in the water column are critical f
   
 We report the average levels of dissolved oxygen harbor-wide, from surface and bottom water, on an annual basis. Rising dissolved oxygen levels, and levels above the state standard (5.0 mg/L) indicate a harbor suitable to most aquatic life forms. Since the 1990s, surface and bottom water dissolved oxygen levels have been above New York State standards for fishing and boating (4.0 mg/L) as well as for bathing and other recreational use (5.0 mg/L), and are continuing to improve.
 
-### Fecal Coliforms
+### Bacteria
 
 Fecal coliforms are a group of bacteria primarily found in human and animal intestines, and their concentration in water is considered an accurate indication of sewage-related pollution. Though most fecal coliform bacteria do not cause disease, their concentrations are a good indicator of the presence of pathogenic (disease-producing) bacteria.  
+
+Enterococci are a subgroup within the fecal streptococcus group and are distinguished by their ability to survive in salt water.
   
-Since the 1990s, harbor-wide surface water fecal coliform levels have been below the state standard for fishing and boating (monthly geometric mean less than or equal to 2,000 cells/100mL from 5 or more samples), as well as the state standard for bathing and other recreational use (monthly geometric mean less than or equal to 200 cells/100mL from 5 or more samples). However, short-term spikes may occur after heavy rain. The city is committed to addressing these spikes to increase opportunities for recreation.
+Since the 1990s, harbor-wide surface water fecal coliform levels have been below the state standard for fishing and boating (monthly geometric mean less than or equal to 2,000 cells/100mL from 5 or more samples), as well as the state standard for bathing and other recreational use (monthly geometric mean less than or equal to 200 cells/100mL from 5 or more samples). Since the NYC DEP began monitoring enterococci in the early 2000s, enterococci levels have remained well below the state bathing standard (monthly geometric mean less than or equal to 35 cells/100mL, or a single-sample maximum of 104 cells/100mL).
+
+However, short-term spikes may occur after heavy rain. The city is committed to addressing these spikes to increase opportunities for recreation.
