@@ -20,10 +20,14 @@ To do:
 <i>To hear more from New Yorkers about how they view economic stability and health, <a href="https://make.headliner.app/download/48f94852-0370-4737-b5bf-5a8dafae62da">listen to recordings from the community conversations.</a></i>
 
 <div class="pullquote">
-<p><strong>“It’s a constant struggle of like, that anxiety and stress and depression and all of those other mental health issues that happen because of how and where they’re living.”</strong></p>
-
-<p><em>—NYC community conversation participant</em></p>
-
+<figure class="my-2">
+    <figcaption>“It’s a constant struggle of like, that anxiety and stress and depression and all of those other mental health issues that happen because of how and where they’re living.”</figcaption>
+    <audio controls src="" style="width:100%;">
+            <a href="">
+                Download audio
+            </a>
+    </audio>
+</figure>
 </div>
 
 
@@ -43,9 +47,16 @@ The combined effects of poverty are increased sickness and death.
 
 ### Poverty forces people to do without necessities that keep them healthy, like food and medical care. 
 
-“[…] Adequate, decent, and fair housing...it gives folks the opportunity to think about something other than those basic needs.”  
-
-<i>—NYC community conversation participant</i>
+<div class="pullquote">
+<figure class="my-2">
+    <figcaption>“[…] Adequate, decent, and fair housing...it gives folks the opportunity to think about something other than those basic needs.” </figcaption>
+    <audio controls src="" style="width:100%;">
+            <a href="">
+                Download audio
+            </a>
+    </audio>
+</figure>
+</div>
 
 <strong>Nearly one-third of renting households in the City experience severe rent burden</strong>—spending at least half their income on rent.  
 
@@ -53,9 +64,14 @@ We see severe rent burden among New Yorkers of all income levels—but low-incom
 
 ### One out of every 10 New Yorkers experiences food insecurity.
 
-“I have to make sure that my children eat, I cannot see a starving child. I will go without food. If anything, I will go without a meal. But my children, I can’t see them without food. I just can’t.” 
+<div class="pullquote">
+<p>“I have to make sure that my children eat, I cannot see a starving child. I will go without food. If anything, I will go without a meal. But my children, I can’t see them without food. I just can’t.” <p>
 
-<a href="https://www.nyc.gov/assets/opportunity/pdf/evidence/nycgov-povertymeasure-enhancedstudy.pdf"><i>—Participant in the Qualitative Study to Enhance the NYCgov Poverty Measure</i></a>
+<p>—Participant in the <a href="https://www.nyc.gov/assets/opportunity/pdf/evidence/nycgov-povertymeasure-enhancedstudy.pdf"><i>Qualitative Study to Enhance the NYCgov Poverty Measure</i></a></p>
+</div>
+
+
+
 
 </div>
 <div class="wide my-4">
@@ -85,11 +101,18 @@ Residents living in high-poverty neighborhoods are more likely to postpone healt
 </div>
 <div class="narrow">
 
-Getting essential health care can mean the difference between staying afloat and winding up in medical debt.   
+Getting essential health care can mean the difference between staying afloat and winding up in medical debt.  
 
-“You go to some of these facilities and they tell they don’t take your insurance. I’m with my [11-year-old] child and even then, [it’s], ‘no, we don’t take that insurance.’ It’s like, oh my God, what world am I in? Where do I go?” 
-
-<i>—NYC community conversation participant</i> 
+<div class="pullquote">
+<figure class="my-2">
+    <figcaption>“You go to some of these facilities and they tell they don’t take your insurance. I’m with my [11-year-old] child and even then, [it’s], ‘no, we don’t take that insurance.’ It’s like, oh my God, what world am I in? Where do I go?” </figcaption>
+    <audio controls src="" style="width:100%;">
+            <a href="">
+                Download audio
+            </a>
+    </audio>
+</figure>
+</div>
 
 Getting care for a medical issue can be costly, even with insurance. Medical debt occurs when people can’t pay bills. If the bills go unpaid long enough, they get sent to collection agencies, which can impact credit scores. 
 
@@ -122,7 +145,8 @@ This <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/rac
 <br>
 <strong>Increasing job opportunities:</strong>
 
-<figure style="width:100%;" class="border p-2">
+<div class="pullquote">
+<figure style="width:100%;" class="my-2">
     <figcaption>“We need businesses to come here. We need jobs to come here. We need somewhere where kids can get work, have a little money in their pocket and make it less stressful on their families.”</figcaption>
     <audio controls src="clip-we-need-businesses.mp3" style="width:100%;">
             <a href="clip-we-need-businesses.mp3">
@@ -130,11 +154,12 @@ This <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/rac
             </a>
     </audio>
 </figure>
+</div>
 
 <br>
-<strong>Educating (and, potentially, regulating) employers:</strong>   
-
-<figure style="width:100%;" class="border p-2">
+<strong>Educating (and, potentially, regulating) employers:</strong> 
+<div class="pullquote">
+<figure class="my-2">
     <figcaption>“I think there needs to be legal organizations that need to be involved and that educate employers and employees on labor laws and rights…”</figcaption>
     <audio controls src="clip-we-need-legal.mp3" style="width:100%;">
             <a href="clip-we-need-legal.mp3">
@@ -142,10 +167,23 @@ This <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/rac
             </a>
     </audio>
 </figure>
+</div>  
 
+
+<br>
 <strong>Providing public services:</strong>  
 
-“...What’s the right bundle of services that someone needs in order to succeed and to progress?” <i>—NYC community conversation participant</i>  
+<div class="pullquote">
+<figure class="my-2">
+    <figcaption>“...What’s the right bundle of services that someone needs in order to succeed and to progress?” </figcaption>
+    <audio controls src="" style="width:100%;">
+            <a href="">
+                Download audio
+            </a>
+    </audio>
+</figure>
+</div>
+
 
 Public health is about searching for and addressing the root causes of different health outcomes. The data are clear, and so are the personal stories that were shared: increasing economic stability would greatly improve health for New Yorkers.  
 
