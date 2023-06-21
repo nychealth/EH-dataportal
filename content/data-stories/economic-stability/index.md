@@ -1,7 +1,7 @@
 ---
 title: Economic stability creates health
 date: 2023-06-16T09:01:00-04:00
-draft: true
+draft: false
 seo_title: "How economic stability creates health "
 seo_description: "A data story about how economic stability creates health"
 tags: 
@@ -19,9 +19,13 @@ To do:
 
 <i>To hear more from New Yorkers about how they view economic stability and health, <a href="https://make.headliner.app/download/48f94852-0370-4737-b5bf-5a8dafae62da">listen to recordings from the community conversations.</a></i>
 
-<strong>“It’s a constant struggle of like, that anxiety and stress and depression and all of those other mental health issues that happen because of how and where they’re living.”</strong>  
+<div class="pullquote">
+<p><strong>“It’s a constant struggle of like, that anxiety and stress and depression and all of those other mental health issues that happen because of how and where they’re living.”</strong></p>
 
-<i>—NYC community conversation participant</i>
+<p><em>—NYC community conversation participant</em></p>
+
+</div>
+
 
 <strong>17 percent of New Yorkers, or about 1,400,000 people, live in poverty.</strong> Living in poverty impacts health in many ways. These include: 
 
@@ -115,16 +119,41 @@ This <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/rac
 
 ### New Yorkers who participated in community conversations describe ways to decrease poverty and improve health 
 
+<br>
 <strong>Increasing job opportunities:</strong>
 
-“We need businesses to come here. We need jobs to come here. We need somewhere where kids can get work, have a little money in their pocket and make it less stressful on their families.” <i>—NYC community conversation participant</i>  
+<figure style="width:100%;" class="border p-2">
+    <figcaption>“We need businesses to come here. We need jobs to come here. We need somewhere where kids can get work, have a little money in their pocket and make it less stressful on their families.”</figcaption>
+    <audio controls src="clip-we-need-businesses.mp3" style="width:100%;">
+            <a href="clip-we-need-businesses.mp3">
+                Download audio
+            </a>
+    </audio>
+</figure>
 
+<br>
 <strong>Educating (and, potentially, regulating) employers:</strong>   
 
-“I think there needs to be legal organizations that need to be involved and that educate employers and employees on labor laws and rights…”<i>—NYC community conversation participant</i>
+<figure style="width:100%;" class="border p-2">
+    <figcaption>“I think there needs to be legal organizations that need to be involved and that educate employers and employees on labor laws and rights…”</figcaption>
+    <audio controls src="clip-we-need-legal.mp3" style="width:100%;">
+            <a href="clip-we-need-legal.mp3">
+                Download audio
+            </a>
+    </audio>
+</figure>
 
 <strong>Providing public services:</strong>  
 
 “...What’s the right bundle of services that someone needs in order to succeed and to progress?” <i>—NYC community conversation participant</i>  
 
 Public health is about searching for and addressing the root causes of different health outcomes. The data are clear, and so are the personal stories that were shared: increasing economic stability would greatly improve health for New Yorkers.  
+
+<figure style="width:100%;" class="my-4 border p-2">
+    <figcaption>Listen to this 3-minute medley from the community conversations:</figcaption>
+    <audio controls src="economic-stability-audio-medley.mp3" style="width:100%;">
+            <a href="economic-stability-audio-medley.mp3">
+                Download audio
+            </a>
+    </audio>
+</figure>
