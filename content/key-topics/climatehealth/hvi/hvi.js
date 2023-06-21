@@ -12,8 +12,6 @@
 
 // 'data_repo' and 'data_branch' are created from Hugo variables in the aqe.html template
 
-// let hvi_path   = data_repo + data_branch + "/key-topics/heat-vulnerability-index";
-// let hvi_url    = hvi_path + "/hvi-nta-2020.csv";
 let hvi_url    = "hvi-nta-2020.csv";
 let HVImapSpec = "HVIMapSpec.vg.json";
 
