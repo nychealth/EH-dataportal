@@ -13,9 +13,13 @@ layout: asthma-syndrome
 vega: true
 ---
 
-Asthma is a common disease that makes breathing difficult, causing coughing, wheezing, and shortness of breath. It's a leading cause of emergency department visits, hospitalizations, and missed school days. 
+Asthma is a common disease that makes breathing difficult, causing coughing, wheezing, and shortness of breath.
 
 Things in our environment can trigger asthma or make symptoms worse - like air pollution (like fine particulates, ozone, or diesel exhaust); unhealthy housing conditions (dust mites, cockroaches, mold); or things like pollen, pets, or tobacco smoke. 
+
+Asthma is a leading cause of emergency department visits, hospitalizations, and missed school days. <a href="/data-explorer/asthma/?id=2384#display=map">Emergency department visits for asthma are concentrated in higher-poverty neighborhoods</a>, as poor housing quality and less access to preventive health care create barriers to managing asthma.
+
+
 
 
 
