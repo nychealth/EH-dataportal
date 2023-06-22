@@ -19,8 +19,17 @@
     
     <div class="row">
         <div class="col-md-11 mx-auto pl-0">
-            <h2>{{ .Title }}</h2>
-            <p>View rat inspection and action data collected by the NYC Health Department.</p>
+            <div class="row mb-4">
+                <div class="col-md-7">
+                    <h2>{{ .Title }}</h2>
+                    <p>{{ .Content }}</p>
+                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/rats/" class="button btn btn-lg btn-primary" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link mr-1"></i>Launch the Rat Information Portal</a>
+                </div>
+                <div class="col-md-5">
+                    <img src="ratportal-screenshot.png" class="mb-4">
+                </div>
+
+            </div>
         </div>
         
     </div>

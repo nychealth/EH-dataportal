@@ -10,9 +10,7 @@ keywords:
 layout: ratportal
 ---
 
-## How to use the Rat Information Portal
-
-Welcome to New York City’s Rat Information Portal. This is a web-based mapping application that allows you to view rat inspection and action data collected by the NYC Health Department.
+New York City’s Rat Information Portal is a web map application that lets you view rat inspection and action data collected by the NYC Health Department.
 
 ### Basic search
 To get started, enter an address, zip code, neighborhood or Borough Block and Lot (BBL) in the search bar. You can also search by or zoom to a community board by turning on the toggle switch and selecting a Community Board from the drop-down menu. The map will re-center and zoom to that location.
