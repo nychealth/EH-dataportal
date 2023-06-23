@@ -7,4 +7,4 @@ baseURL = "http://gcappbesp307/IndicatorPublic/beta/"
 [caches]
     [caches.getresource]
       dir = ':cacheDir/:project'
-      maxAge = 0
+      maxAge = -1

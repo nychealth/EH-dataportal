@@ -90,13 +90,12 @@ const createComparisonData = async (comps) => {
 
     aqComparisonsMetadata = aq.from(comparisonsMetadata)
         .unroll("Indicators")
-        // .derive({
-        //     IndicatorID: d => d.Indicators.IndicatorID,
-        //     MeasureID:   d => d.Indicators.Measures,
-        //     GeoTypeID:   d => d.Indicators.GeoTypeID,
-        //     GeoEntityID: d => d.Indicators.GeoEntityID
-        // })
-        // .unroll("MeasureID")
+        .derive({
+            IndicatorID: d => d.Indicators.IndicatorID,
+            MeasureID:   d => d.Indicators.MeasureID,
+            GeoTypeName: d => d.Indicators.GeoTypeName,
+            GeoEntityID: d => d.Indicators.GeoEntityID
+        })
         .select(aq.not("Indicators"))
         .print()
 
@@ -160,19 +159,25 @@ const createComparisonData = async (comps) => {
             return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
                 .then(async data => {
 
+                    console.log("@@ data:");
+                    await data.print()
+
                     // console.log("*** aq.loadJSON");
                     console.log("** comp_data:");
 
                     let comp_data = data
                         .derive({IndicatorID: aq.escape(ind[0])})
+                        // .print()
                         .semijoin(
                             aqCombinedComparisonsMetadata, 
-                            [
-                                ["IndicatorID", "IndicatorID"], 
-                                ["MeasureID", "MeasureID"], 
-                                ["GeoID", "GeoTypeID"]
-                            ]
+                            (a, b) => (op.equal(a.MeasureID, b.MeasureID) && op.equal(a.GeoType, b.GeoTypeName) && op.equal(a.GeoID, b.GeoEntityID))
+                            // [
+                            //     ["MeasureID", "MeasureID"],
+                            //     // ["GeoType", "GeoTypeName"],
+                            //     ["GeoID", "GeoEntityID"]
+                            // ]
                         )
+                        // .print()
                         // .filter(
                         //     aq.escape(d => measures.includes(d.MeasureID))
                         //     // d => op.match(d.GeoType, /Citywide/) // keep only Citywide
@@ -191,7 +196,7 @@ const createComparisonData = async (comps) => {
         aqComparisonsIndicatorData = await dataArray.flatMap(d => d).reduce((a, b) => a.concat(b))
 
         aqComparisonsIndicatorData = aqComparisonsIndicatorData
-            .filter(d => op.match(d.GeoType, /Citywide/))
+            // .filter(d => op.match(d.GeoType, /Citywide/))
             .reify()
 
         console.log("aqComparisonsIndicatorData:");
