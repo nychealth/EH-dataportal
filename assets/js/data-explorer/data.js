@@ -55,7 +55,7 @@ const fetch_comparisons = async () => {
             
             comparisons = data;
             
-            // console.log("comparisons:", comparisons);
+            console.log("comparisons:", comparisons);
             
         })
         .catch(error => console.log(error));
@@ -74,7 +74,7 @@ const createComparisonData = async (comps) => {
     
     console.log("** createComparisonData");
     
-    // console.log("comps [createComparisonData]:", comps);
+    console.log("comps [createComparisonData]:", comps);
 
     // will be used by renderMeasures to create dropdown
     
@@ -82,29 +82,32 @@ const createComparisonData = async (comps) => {
         d => indicatorComparisonId.includes(d.ComparisonID)
     )
         
-    // console.log("comparisonsMetadata [createComparisonData]:", comparisonsMetadata);
+    console.log("comparisonsMetadata [createComparisonData]:", comparisonsMetadata);
 
     // merged metadata
     
-    // console.log("aqComparisonsMetadata:");
+    console.log("aqComparisonsMetadata:");
 
     aqComparisonsMetadata = aq.from(comparisonsMetadata)
         .unroll("Indicators")
-        .derive({
-            IndicatorID: d => d.Indicators.IndicatorID,
-            MeasureID: d => d.Indicators.Measures
-        })
-        .unroll("MeasureID")
+        // .derive({
+        //     IndicatorID: d => d.Indicators.IndicatorID,
+        //     MeasureID:   d => d.Indicators.Measures,
+        //     GeoTypeID:   d => d.Indicators.GeoTypeID,
+        //     GeoEntityID: d => d.Indicators.GeoEntityID
+        // })
+        // .unroll("MeasureID")
         .select(aq.not("Indicators"))
-        // .print()
+        .print()
 
-    // console.log("aqUniqueIndicatorMeasure:");
+    console.log("aqUniqueIndicatorMeasure:");
 
     // get unique combinations of indicators and measures
 
     let aqUniqueIndicatorMeasure = aqComparisonsMetadata
         .select("IndicatorID", "MeasureID")
         .dedupe()
+        .print()
 
     let uniqueIndicatorMeasure = aqUniqueIndicatorMeasure
         .groupby("IndicatorID")
@@ -116,9 +119,9 @@ const createComparisonData = async (comps) => {
     let comparisonsIndicatorsMetadata = indicators.filter(
         ind => comparisonsIndicatorIDs.includes(ind.IndicatorID)
     )
-    // console.log("comparisonsIndicatorsMetadata:", comparisonsIndicatorsMetadata);
+    console.log("comparisonsIndicatorsMetadata:", comparisonsIndicatorsMetadata);
 
-    // console.log("aqComparisonsIndicatorsMetadata:");
+    console.log("aqComparisonsIndicatorsMetadata:");
 
     aqComparisonsIndicatorsMetadata = aq.from(comparisonsIndicatorsMetadata)
         .select("IndicatorID", "IndicatorName", "IndicatorLabel", "Measures")
@@ -134,43 +137,54 @@ const createComparisonData = async (comps) => {
         .derive({IndicatorMeasure: d => d.IndicatorLabel + ": " + d.MeasurementType})
         .select(aq.not("Measures"))
         .filter(aq.escape(d => comparisonsMeasureIDs.includes(d.MeasureID)))
-        // .print()
+        .print()
 
 
 
     // join comparisons metadata tables
 
-    // console.log("aqCombinedComparisonsMetadata:");
+    console.log("aqCombinedComparisonsMetadata:");
 
     aqCombinedComparisonsMetadata = aqComparisonsMetadata
         .join(aqComparisonsIndicatorsMetadata, [["MeasureID", "IndicatorID"], ["MeasureID", "IndicatorID"]])
-        // .print()
+        .print()
 
-
+    // for each indicator, get all measures
     // Promise.all takes the array of promises returned by map, and then the `then` callback executes after they've all resolved
 
-    Promise.all(uniqueIndicatorMeasure.map(async ind => {
+    Promise.all(
+        uniqueIndicatorMeasure.map(async ind => {
 
-        let measures = ind[1].flatMap(m => Object.values(m));
-        
-        return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
-            .then(async data => {
-
-                // console.log("*** aq.loadJSON");
-
-                let comp_data = data
-                    .derive({IndicatorID: aq.escape(ind[0])})
-                    .filter(
-                        aq.escape(d => measures.includes(d.MeasureID)), 
-                        d => op.match(d.GeoType, /Citywide/) // keep only Citywide
-                    )
-                    .reify()
-                
-                return comp_data;
+            let measures = ind[1].flatMap(m => Object.values(m));
             
-            })
+            return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
+                .then(async data => {
 
-    }))
+                    // console.log("*** aq.loadJSON");
+                    console.log("** comp_data:");
+
+                    let comp_data = data
+                        .derive({IndicatorID: aq.escape(ind[0])})
+                        .semijoin(
+                            aqCombinedComparisonsMetadata, 
+                            [
+                                ["IndicatorID", "IndicatorID"], 
+                                ["MeasureID", "MeasureID"], 
+                                ["GeoID", "GeoTypeID"]
+                            ]
+                        )
+                        // .filter(
+                        //     aq.escape(d => measures.includes(d.MeasureID))
+                        //     // d => op.match(d.GeoType, /Citywide/) // keep only Citywide
+                        // )
+                        .reify()
+                        .print()
+                    
+                    return comp_data;
+                
+                })
+        })
+    )
 
     .then(async dataArray => {
 
@@ -180,8 +194,8 @@ const createComparisonData = async (comps) => {
             .filter(d => op.match(d.GeoType, /Citywide/))
             .reify()
 
-        // console.log("aqComparisonsIndicatorData:");
-        // aqComparisonsIndicatorData.print();
+        console.log("aqComparisonsIndicatorData:");
+        aqComparisonsIndicatorData.print();
 
     })
 }
