@@ -17,7 +17,7 @@ indicators:
 
 Goal: Improve the quality of our waterways to increase opportunities for recreation and to restore coastal ecosystems.
 
-New York State sets water quality standards, and NYC monitors New York Harbor water quality on an annual basis through the Harbor Survey. The survey uses 36 stations located throughout the open waters of the harbor and 19 stations located in smaller tributaries within the city. These stations take water samples every month and test for a number of contaminants. Average dissolved oxygen concentration and fecal coliform levels are two of the most commonly-accepted indicators of harbor health.
+New York State sets water quality standards, and NYC DEP monitors New York Harbor water quality on an annual basis through the Harbor Survey. The survey uses 36 stations located throughout the open waters of the harbor and 19 stations located in smaller tributaries within the city. These stations take water samples every month and test for a number of contaminants. Average dissolved oxygen concentration and fecal coliform levels are two of the most commonly-accepted indicators of harbor health.
 
 For information on current beach water quality, please visit DOHMH's [beach water quality map](https://a816-dohbesp.nyc.gov/IndicatorPublic/Beaches/).
 
@@ -25,7 +25,7 @@ For information on current beach water quality, please visit DOHMH's [beach wate
 
 Sufficient concentrations of dissolved oxygen in the water column are critical for the respiration of most aquatic life forms, including fish and invertebrates such as crabs, clams, and zooplankton. Dissolved oxygen concentration is, therefore, one of the most universal indicators of overall water quality and the condition of habitats and ecosystems.   
   
-We report the average levels of dissolved oxygen harbor-wide, from surface and bottom water, on an annual basis. Rising dissolved oxygen levels, and levels above the state standard (5.0 mg/L) indicate a harbor suitable to most aquatic life forms. Since the 1990s, surface and bottom water dissolved oxygen levels have been above New York State standards for fishing and boating (4.0 mg/L) as well as for bathing and other recreational use (5.0 mg/L), and are continuing to improve.
+NYC DEP reports the average levels of dissolved oxygen harbor-wide, from surface and bottom water, on an annual basis. Rising dissolved oxygen levels, and levels above the state standard (5.0 mg/L) indicate a harbor suitable to most aquatic life forms. Since the 1990s, surface and bottom water dissolved oxygen levels have been above New York State standards for fishing and boating (4.0 mg/L) as well as for bathing and other recreational use (5.0 mg/L), and are continuing to improve.
 
 ### Bacteria
 
