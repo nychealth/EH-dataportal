@@ -1,3 +1,8 @@
 baseURL = "https://nychealth.github.io/EH-dataportal/"
 [params]
     data_branch = "production"
+
+[caches]
+    [caches.getresource]
+      dir = ':cacheDir/:project'
+      maxAge = 0
