@@ -1,4 +1,3 @@
-baseURL = "http://gcappbesp307/dev-test/beta/"
+baseURL = "https://gcappbesp307.health.dohmh.nycnet/dev-test/beta/"
 [params]
-    # sitepath = "/EH-dataportal"
     data_branch = "staging"
