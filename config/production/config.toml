@@ -1,6 +1,5 @@
 baseURL = "https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/"
 [params]
-    # sitepath = "/EH-dataportal"
     data_branch = "production"
 
 [caches]

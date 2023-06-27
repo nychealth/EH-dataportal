@@ -59,7 +59,7 @@ The `/config` folder includes subfolders with environment-specific configuration
 
 Some key uses of environment-specific variables in the `config` are:
 - Setting the BaseURL
-- Setting the variable `sitepath` (inserted into the templates to fix path issues)
+- Setting the variable `baseURL` (inserted into the templates to fix path issues)
 - Setting the variable `data_repo`, which tells the site to read data from `staging` or `production` branches of [EHDP-data](https://www.github.com/nychealth/EHDP-data).
 
 To deploy to a new environment, update the baseURL in `config.toml`. Update the path, if necessary, in the environment-specific `config.toml` file. And, you may need to update paths in other files, like `search-results.js`. Crtl-F is your friend.
