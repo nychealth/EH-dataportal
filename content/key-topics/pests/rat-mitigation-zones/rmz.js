@@ -36,6 +36,7 @@ var geog = L.geoJson(rmz,{
     onEachFeature
 }).addTo(map);
 
+
 // When style is run in const geojson, it returns these - default styles
 function style(feature) {
     return {
