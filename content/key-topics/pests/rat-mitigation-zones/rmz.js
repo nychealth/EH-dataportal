@@ -7,8 +7,11 @@ var id;
 var ratData = [];
 
 var map = L.map('map').setView([40.7722226,-73.9638235],11); // [Lat,Long],Zoom
-L.tileLayer('https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=dwIJ8hO2KsTMegUfEpYE',{
-    attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+	subdomains: 'abcd',
+	maxZoom: 15,
+    minZoom: 11
 }).addTo(map);
 
 L.control.scale({
@@ -24,7 +27,7 @@ function style(feature) {
         opacity: 1,
         color: 'black',
         dashArray: '1',
-        fillOpacity: 0.3,
+        fillOpacity: 0.2,
         fillColor: 'black'
     };
 }
@@ -36,19 +39,6 @@ var geog = L.geoJson(rmz,{
     onEachFeature
 }).addTo(map);
 
-
-// When style is run in const geojson, it returns these - default styles
-function style(feature) {
-    return {
-        weight: 1,
-        opacity: 1,
-        color: 'black',
-        dashArray: '1',
-        fillOpacity: 0.3,
-        fillColor: 'black'
-    };
-}
-
 d3.csv("2022-rat-data.csv").then(data => {
     ratData = data;
     console.log(ratData)
@@ -58,8 +48,8 @@ d3.csv("2022-rat-data.csv").then(data => {
 function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
-        mouseout: resetHighlight,
-        click: zoomToFeature // let's replace this with... something else!
+        // mouseout: resetHighlight,
+        click: zoomToFeature // Zooms on click.
     });
 }
 
@@ -69,21 +59,38 @@ function resetHighlight(e) {
 }
 
 function zoomToFeature(e) {
+    geog.resetStyle()
     map.fitBounds(e.target.getBounds());
     id = e.target.feature.properties.OBJECTID
     console.log('Name: ' + e.target.feature.properties.Label) 
     name = e.target.feature.properties.Label
     printToPage(id);
     // The above gets id and name, puts them into global variables, for other selection display
+
+    // this sets style on click (but it won't stick)
+
+    const layer = e.target;
+    layer.setStyle({ // Styles for hover-highlight
+        weight: 5,
+        color: 'white',
+        dashArray: '5',
+        fillOpacity: 0.7
+    });
+
+    layer.bringToFront();
+
 }
 
 // Highlght feature
 function highlightFeature(e) {
+    geog.resetStyle()
+    console.log('highlight feature:')
+    console.log(e)
     const layer = e.target;
     layer.setStyle({ // Styles for hover-highlight
-        weight: 2,
+        weight: 5,
         color: 'white',
-        dashArray: '3',
+        dashArray: '5',
         fillOpacity: 0.7
     });
 
