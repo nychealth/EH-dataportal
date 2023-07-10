@@ -71,8 +71,8 @@ function zoomToFeature(e) {
 
     const layer = e.target;
     layer.setStyle({ // Styles for hover-highlight
-        weight: 5,
-        color: 'white',
+        weight: 3,
+        color: 'black',
         dashArray: '5',
         fillOpacity: 0.7
     });
@@ -88,8 +88,8 @@ function highlightFeature(e) {
     console.log(e)
     const layer = e.target;
     layer.setStyle({ // Styles for hover-highlight
-        weight: 5,
-        color: 'white',
+        weight: 3,
+        color: 'black',
         dashArray: '5',
         fillOpacity: 0.7
     });
