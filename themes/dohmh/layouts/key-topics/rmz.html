@@ -34,89 +34,97 @@
         <div class="col-md-6 mr-auto">
                 <div class="row border-top mb-2">    
                     <div class="col-6">
-                        <p><span class="home-label">Zone:</span><br>
-                            <span id="zoneName" class="fwm">&nbsp;</span></p>
+                        <p><span class="home-label">Zone:</span> <br>
+                            <span id="zoneName" class="fwm fs-xl">&nbsp;</span></p>
                     </div>
-    
+
                     <div class="col-6">
-                        <p><a href="#top" onclick="showInfo(0)"><i class="fas fa-question-circle mr-1 mt-1 text-info"></i></a><span class="home-label">Total Inspections (2022):</span><br>
-                            <span id="totalInspections" class="fwm">&nbsp;</span></p>
-            
+                        <p><span class="home-label fwm">Data for:</span><br>
+                            <span style="font-weight:bold">Calendar year 2022</span>
+                        </p>
                     </div>
                 </div>
 
-                <div class="row border-top my-2">
+                <div class="row mb-2">  
+                    <div class="col-12">
+                        <p><span class="home-label fwm">Complaints for:</span></p>
+                    </div> 
                     <div class="col-6">
-                        <p><a href="#top" onclick="showInfo(1)"><i class="fas fa-question-circle mr-1 mt-1 text-info"></i></a><span class="home-label">City agency referral:</span><br>
+                       <p>
+                            <span class="home-label">Rodent conditions:</span>
+                                <span id="attracting" class="fwm"></span><br>
+                            <span class="home-label">Mouse sighting:</span>
+                                <span id="mouse" class="fwm"></span></p>
+                    </div>
+
+                    <div class="col-6">
+                        <p>
+                            <span class="home-label">Rat sighting:</span>
+                                <span id="rat" class="fwm"></span><br>
+                            <span class="home-label">Rodent signs:</span>
+                                <span id="signs" class="fwm"></span></p>
+                    </div>
+                </div>
+
+                <div class="row border-top mb-2">    
+    
+                    <div class="col-6">
+                        <p><a href="#map" onclick="showInfo(0)"class="question-hover"><i class="fas fa-question-circle mr-1 mt-1 text-info"></i></a><span class="home-label">Total Inspections:</span><br>
+                            <span id="totalInspections" class="fwm  fs-xl">&nbsp;</span></p>
+
+                    </div>
+
+                    <div class="col-6">
+                        <p><a href="#map" onclick="showInfo(1)"><i class="fas fa-question-circle mr-1 mt-1 text-info"></i></a><span class="home-label">Resulting in agency referrals:</span><br>
                             <span id="agency" class="fwm">&nbsp;</span></p>
                     </div>
-                    <div class="col-6">
-                        <p><a href="#top" onclick="showInfo(2)"><i class="fas fa-question-circle mr-1 mt-1 text-info"></i></a><span class="home-label">Abatement order:</span><br>
+
+                    <div class="col-6 ml-auto mt-2">
+                        <p><a href="#map" onclick="showInfo(2)"><i class="fas fa-question-circle mr-1 mt-1 text-info"></i></a><span class="home-label">Resulting in abatement orders:</span><br>
                             <span id="cota" class="fwm">&nbsp;</span></p>
                     </div>
-    
+
+
                 </div>
     
                 <div class="row border-top my-2">
                     <div class="col-6">
-                        <p><a href="#top" onclick="showInfo(3)"><i class="fas fa-question-circle mr-1 mt-1 text-info"></i></a><span class="home-label">Failed compliance inspection:</span><br>
+                        <p><a href="#map" onclick="showInfo(3)"><i class="fas fa-question-circle mr-1 mt-1 text-info"></i></a><span class="home-label">Compliance inspections:</span><br>
+                            <span id="comp" class="fwm  fs-xl">&nbsp;</span></p>
+                    </div>
+
+                    <div class="col-6">
+                        <p><span class="home-label">Failed:</span><br>
                             <span id="failed" class="fwm">&nbsp;</span></p>
                     </div>
     
-                    <div class="col-6">
-                        <p><a href="#top" onclick="showInfo(3)"><i class="fas fa-question-circle mr-1 mt-1 text-info"></i></a><span class="home-label">Passed compliance inspection:</span><br>
+                    <div class="col-6 ml-auto mt-2">
+                        <p><span class="home-label">Passed:</span><br>
                             <span id="passed" class="fwm">&nbsp;</span></p>
                     </div>
                 </div>
     
                 <div class="row border-top my-2">
                     <div class="col-6">
-                        <p><a href="#top" onclick="showInfo(5)"><i class="fas fa-question-circle mr-1 mt-1 text-info"></i></a><span class="home-label">Visits by DOHMH exterminator:</span><br>
-                            <span id="exterminator" class="fwm">&nbsp;</span></p>
+                        <p><a href="#map" onclick="showInfo(5)"><i class="fas fa-question-circle mr-1 mt-1 text-info"></i></a><span class="home-label">Visits by DOHMH exterminator:</span><br>
+                            <span id="exterminator" class="fwm  fs-xl">&nbsp;</span></p>
                     </div>
     
                     <div class="col-6">
-                        <p><a href="#top" onclick="showInfo(6)"><i class="fas fa-question-circle mr-1 mt-1 text-info"></i></a><span class="home-label">Visits with bait applied:</span><br>
+                        <p><span class="home-label">Visits with bait applied:</span><br>
                             <span id="bait" class="fwm">&nbsp;</span></p>
                     </div>
                 </div>
-
-            <div class="row border-top border-bottom mt-4 mb-2">
-                <div class="col-12">
-                    <strong>Complaints:</strong>
-                </div>
-                <div class="col-6">
-                    <p><span class="home-label">Rodent conditions:</span>
-                        <span id="attracting" class="fwm"></span></p>
-                </div>
-                <div class="col-6">
-                    <p><span class="home-label">Mouse sighting:</span>
-                        <span id="mouse" class="fwm"></span></p>
-                </div>
-                <div class="col-6">
-                    <p><span class="home-label">Rat sighting:</span>
-                        <span id="rat" class="fwm"></span></p>
-                </div>
-                <div class="col-6">
-                    <p><span class="home-label">Rodent bite:</span>
-                        <span id="bite" class="fwm"></span></p>
-                </div>
-                <div class="col-6">
-                    <p><span class="home-label">Rodent signs:</span>
-                        <span id="signs" class="fwm"></span></p>
-                </div>
-
-            </div>
-
-            <div class="row mt-4">
-                <div class="col-12 px-1" id="info" style="border-left: 8px solid #841972 !important;">
-
-                </div>
-            </div>
-
         </div>
-
     </div>
+
+    <div class="row my-1">
+        <div class="col-md-11 mx-auto">
+            <div id="info" class="hide py-2 px-1" style="border-left: 8px solid #841972 !important; background-color: #fafafa"></div>
+        </div>
+    </div>
+
+
 
     <div class="row my-4">
         <div class="col-md-11 mx-auto">
@@ -124,9 +132,9 @@
                 <div class="col-md-6">
                     <div class="border p-2">
                         <h4>Rat Mitigation Zones</h4>
-                        <p>New York City has a robust approach to rat control. Areas with high levels of rat activity are designated as Rat Mitigation Zones (RMZs) allowing the City to focus a data-driven, coordinated, multiagency effort there to address rats and the conditions that cause them.</p>
-    
-                        <p>In Rat Mitigation Zones, The Health Department and several other City agencies work together to improve neighborhood sanitation by eliminating the food, water and habitat that rats need to survive. The goal is to address the underlying conditions that support rat colonies, while also employing traditional rat control measures. By dramatically reducing the available habitats and food sources in targeted areas, the numbers of rats will decline.</p>
+                        <p>New York City has a robust approach to rat control and uses different approaches depending on the level of rat activity in a neighborhood.</p>
+                        <p>Areas with high levels of rat activity are considered RMZs, and the City focuses a data-driven, coordinated, multiagency effort to address rats and the conditions that cause them. The Departments of Health, Parks, Sanitation, NYC Public Schools, and the NYC Housing Authority work together to improve neighborhood sanitation by eliminating the food, water and habitat that rats need to survive. The goal is to address the underlying conditions that support rat colonies, while also exterminating rats. By dramatically reducing the available habitats and food sources in targeted areas, the numbers of rats will decline.</p>
+
                     </div>
 
                 
@@ -135,8 +143,14 @@
                 <div class="col-md-6">
                     <div class="border p-2">
                         <h4>Are you in an RMZ? Here's what you need to know.</h4>
-                        <p>If you live or work in an RMZ, you can expect more frequent inspections for rats and the conditions that attract them. The Health Department will worki with the Departments of Parks, Education and the NYC Housing Authority to address rat conditions on city owned property.  Visit  <a href="https://www.nyc.gov/rats">www.nyc.gov/rats</a> for information and resources on how to address rats at your home or business, or to <a href="https://www.nyc.gov/site/doh/services/rats-control-training.page">sign up for a free Rat Academy training</a>.</p>
+                        <p>If you live or work in an RMZ, you can expect more frequent inspections for rats and the conditions that attract them. The Health Department will work with the Departments of Parks, Education and the NYC Housing Authority to address rat conditions on city-owned property. </p>
+                        <p></p>
+
+
+                        <p>The Health Department also works to control rats in areas that are not RMZs.   Visit <a href="https://www.nyc.gov/rats">www.nyc.gov/rats</a> for information and resources on how to address rats in your neighborhood, or to <a href="https://www.nyc.gov/site/doh/services/rats-control-training.page">sign up for a free Rat Academy training</a>.</p>
                     </div>
+
+                    <a class="btn btn-outline-primary btn-block mt-1" href="../rat-information-portal">For individual property inspection results, visit the Rat Information Portal</a>
                 </div>
             </div>
 
@@ -182,28 +196,5 @@
 
 <!--bring in rmz JS -->
 <script type="text/javascript" src="rmz.js"></script>
-
-<script>
-function showInfo(x) {
-    var content;
-    
-    if (x == 0) {
-        content = '<strong>Inspections:</strong> Inspections may be initiated by the Health Department, or in response to a 311 complaint about rat activity or conditions.'
-    } else  if (x == 1) {
-        content = '<strong>City agency referral:</strong> When property owned by a city, state, or federal entity fails an inspection for rat activity or conditions conducive to rats, the Health Department sends a letter informing them of conditions and asking them to take action to remediate the conditions.'
-    } else if (x == 2) {
-        content = `<strong>Abatement orders:</strong> When private property fails an inspection, the Health Department sends the owner a notice that they are in violation of the Health Code and orders them to address the conditions. The letter details the findings and includes guidance on how to fix problems.`
-    } else if (x == 3) {
-        content = `<strong>Compliance inspections</strong> are done at properties that fail initial inspections, approximately 2 to 3 weeks after the abatement order is mailed to the owner (owners can request additional time to remediate the conditions). If a property fails a compliance inspection, the owner is issued a summons.`
-    } else if (x==5) {
-        content = `The Health Department may send <strong>exterminators</strong> to a property when an owner fails a compliance inspection. The property owner is billed for this work.`
-    } else if (x==6) {
-        content = `Exterminators may treat the property with <strong>bait</strong>, rodenticides, or monitor the property to see if remediation treatments are working.`
-    }
-
-    document.getElementById('info').innerHTML = content
-
-}
-</script>
 
 {{- end -}}
