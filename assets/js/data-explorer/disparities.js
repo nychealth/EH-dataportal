@@ -175,7 +175,7 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "description": `${primaryIndicatorName} ${primaryMeasurementType} and poverty scatterplot`,
             "title": {
-                "text": [`${primaryIndicatorName && `${primaryIndicatorName}`}`, `${primaryMeasurementType && `${primaryMeasurementType}`} ${primaryDisplay && `${primaryDisplay}`} (${primaryTime})`],
+                "text": [`${primaryIndicatorName && `${primaryIndicatorName}`}`],
                 "align": "left", 
                 "anchor": "start", 
                 "fontSize": 15, 
@@ -183,7 +183,9 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
                 "font": "sans-serif",
                 "baseline": "top",
                 "dy": -10,
-                "limit": 1000
+                "limit": 1000,
+                "subtitle": `${primaryMeasurementType && `${primaryMeasurementType}`} ${primaryDisplay && `${primaryDisplay}`} (${primaryTime})`,
+                "subtitleFontSize": 13
             },
             "width": "container",
             "height": height,
