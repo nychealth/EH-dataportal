@@ -113,14 +113,12 @@
                                         </button>
                                     </li>
                                     <li>
-                                        <button class="btn nav-item-search d-lg-none" type="button" title="Search"
-                                        data-toggle="collapse" data-target="#global-search"
-                                        aria-controls="global-search" aria-expanded="false">
+                                        <a href="/pagefind/" class="btn nav-item-search d-lg-none" type="button" title="Search">
 
                                         <span class="sr-only">Search</span>
                                         <i class="fa fa-magnifying-glass fa-lg"></i>
 
-                                    </button>
+                                    </a>
                                 </li>
 
                                 </ul>
@@ -196,14 +194,12 @@
 
                     {{- else -}}
 
-                    <button class="btn nav-item-search d-none d-lg-block" type="button" title="Search"
-                            data-toggle="collapse" data-target="#global-search"
-                            aria-controls="global-search" aria-expanded="false">
+                    <a href="/pagefind/" class="btn nav-item-search d-none d-lg-block" type="button" title="Search">
 
                         <span class="sr-only">Search</span>
                         <i class="fa fa-magnifying-glass fa-lg"></i>
 
-                    </button>
+                    </a>
 
                     {{- end -}}
 
@@ -218,7 +214,13 @@
 
         <div class="container-fluid-lg border-top collapse" id="global-search">
 
-            <form class="narrow py-2" aria-label="Search" role="search">
+            <div class="row">
+                <div class="col-md-7 mx-auto py-5">
+
+                </div>
+            </div>
+
+            <form class="narrow py-2 hide" aria-label="Search" role="search">
 
                 <div class="input-group">
 

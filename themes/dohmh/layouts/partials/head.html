@@ -5,13 +5,12 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    
+
     gtag('config', 'G-64BWDRHRGB');
 </script>
 
 <!-- Google will index this page -->
 <meta name="robots" content="all" />
-
 
 {{ else if eq hugo.Environment "development" }}
 
@@ -24,7 +23,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    
+
     gtag('config', 'G-PB98MPZ31B');
 </script>
 
@@ -34,6 +33,7 @@
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta data-pagefind-filter="section[content]" content="Data Stories">
 
 <!-- Corrects IE Compatibility Mode -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -151,7 +151,7 @@
     {{- $dataTablesButtonsHtml5 := resources.Get "node_modules/datatables.net-buttons/js/buttons.html5.min.js" -}}
     {{- $dataTablesButtonsPrint := resources.Get "node_modules/datatables.net-buttons/js/buttons.print.min.js" -}}
     {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" -}}
-    
+
     {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" | resources.Fingerprint "sha512" -}}
 
     <script src="{{ $dataTablesBundleJS.RelPermalink }}" integrity="{{ $dataTablesBundleJS.Data.Integrity }}"></script>
@@ -233,7 +233,7 @@
     {{- $dataTablesButtonsHtml5 := resources.Get "node_modules/datatables.net-buttons/js/buttons.html5.min.js" -}}
     {{- $dataTablesButtonsPrint := resources.Get "node_modules/datatables.net-buttons/js/buttons.print.min.js" -}}
     {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" -}}
-    
+
     {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" | resources.Fingerprint "sha512" -}}
 
     <script src="{{ $dataTablesBundleJS.RelPermalink }}" integrity="{{ $dataTablesBundleJS.Data.Integrity }}"></script>
@@ -245,6 +245,18 @@
     <script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
 
 {{- end -}}
+
+{{- if (eq .Section "data-stories") -}}
+<meta data-pagefind-filter="section[content]" content="Data Stories">
+{{ end }}
+
+{{- if (eq .Section "neighborhood-reports") -}}
+<meta data-pagefind-filter="section[content]" content="Neighborhood Reports">
+{{ end }}
+
+{{- if (eq .Section "data-explorer") -}}
+<meta data-pagefind-filter="section[content]" content="Data Explorer">
+{{ end }}
 
 <script>
     let baseURL = "{{ $.Site.BaseURL }}";
