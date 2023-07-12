@@ -178,7 +178,7 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
                 "text": [`${primaryIndicatorName && `${primaryIndicatorName}`}`],
                 "align": "left", 
                 "anchor": "start", 
-                "fontSize": 15, 
+                "fontSize": 18, 
                 "fontWeight": "normal",
                 "font": "sans-serif",
                 "baseline": "top",
