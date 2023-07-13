@@ -1,5 +1,5 @@
 ---
-title: "Lead poisoning affects adults, too"
+title: "Lead poisoning affects adults too"
 date: 2023-05-23T08:29:34-04:00
 draft: false
 seo_title: "Lead poisoning affects adults, too."
