@@ -1,6 +1,6 @@
 ---
 title: "Lead poisoning affects adults too"
-date: 2023-05-23T08:29:34-04:00
+date: 2023-07-13T08:29:34-04:00
 draft: false
 seo_title: "Lead poisoning affects adults, too."
 seo_description: "The products that put people at risk of elevated blood lead levels."
