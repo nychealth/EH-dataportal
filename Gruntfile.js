@@ -1,12 +1,14 @@
-
 // this sits at the top level of the local dir, so "content" and "docs" are folders at the top level
 // in GHA it sits in GITHUB_WORKSPACE
 
 const YAML = require('yamljs');
 const S = require("string");
 const { pathToFileURL } = require('url');
-// const path = require("path");
+const aq = require('arquero');
 
+let content_dir;
+let build_dir;
+let static_dir;
 
 // check to see if this is running on GHA
 
@@ -16,25 +18,17 @@ if (typeof process.env.GITHUB_WORKSPACE != "undefined") {
     
     // these are hard-coded for now, but GHA vars would allow us to change them dynamically
     
-    var content_dir = process.env.GITHUB_WORKSPACE + "/content";
-    var build_dir   = process.env.GITHUB_WORKSPACE + "/docs";
-    
-    // site_root variable, constructed from repo name and github organization
-    
-    // var repo_name  = process.env.GITHUB_REPOSITORY;         // nychealth/EH-dataportal
-    // var repo_owner = process.env.GITHUB_REPOSITORY_OWNER;   // nychealth
-    // var site_root  = S(repo_name).chompLeft(repo_owner).s + "/";  // EH-dataportal
+    content_dir  = process.env.GITHUB_WORKSPACE + "/content";
+    build_dir    = process.env.GITHUB_WORKSPACE + "/docs";
+    static_dir   = process.env.GITHUB_WORKSPACE + "/static";
     
 } else {
 
     // if not, set vars relative to local dir
     
-    var content_dir = "content";
-    var build_dir   = "docs";
-    
-    // site_root variable, constructed from repo name and github organization
-    
-    // var site_root  = ""; 
+    content_dir  = "content";
+    build_dir    = "docs";
+    static_dir   = "static";
     
 }
 
@@ -51,11 +45,17 @@ module.exports = function(grunt) {
             var mdPagesIndex = [];
             var htmlPagesIndex = [];
             var pagesIndex = [];
-            
 
-            //--------------------------------------------------------------------------------//
+            // this is convoluted but necessary to get an arquero table with the right structure
+            var de_indicator_names  = aq.from(aq.from(grunt.file.readJSON(build_dir + "/IndicatorData/indicator_names.json")).array("value"));
+            var nr_indicator_names  = grunt.file.readJSON(build_dir + "/IndicatorData/nr_indicator_names.json");
+            var topic_indicators = grunt.file.readJSON(build_dir + "/IndicatorData/topic_indicators.json");
+            
+            // grunt.log.writeln(de_indicator_names.array("value"))
+
+            // ------------------------------------------------------------------------------- //
             // running `processFile` on all HTML files on gh-pages branch
-            //--------------------------------------------------------------------------------//
+            // ------------------------------------------------------------------------------- //
 
             // ([rootdir, subdir] are necessary in the function call, or else grunt throws an error, so we need them, even though they don't do anything)
             
@@ -76,7 +76,7 @@ module.exports = function(grunt) {
                 
                 if (S(filename).endsWith(".html")) {
                     
-                    pageObj = processFile(abspath, rootdir, subdir, filename);
+                    pageObj = processFile(abspath, rootdir, subdir, filename, de_indicator_names);
 
                     // put the pageObj data into the index, labeled with pageObj.href
                     htmlPagesIndex[pageObj.href] = pageObj;
@@ -84,15 +84,16 @@ module.exports = function(grunt) {
             });
             
 
-            //--------------------------------------------------------------------------------//
+            // ------------------------------------------------------------------------------- //
             // running `processFile` on all MD files in "content"
-            //--------------------------------------------------------------------------------//
+            // ------------------------------------------------------------------------------- //
             
             grunt.file.recurse(content_dir, function(abspath, rootdir, subdir, filename) {
+
                 
                 if (S(filename).endsWith(".md")) {
                     
-                    pageObj = processFile(abspath, rootdir, subdir, filename);
+                    pageObj = processFile(abspath, rootdir, subdir, filename, de_indicator_names, nr_indicator_names);
 
                     if (pageObj === "draft") {
                         // grunt.log.writeln([">>> draft", abspath]);
@@ -105,16 +106,50 @@ module.exports = function(grunt) {
                     mdPagesIndex[pageObj.href] = pageObj;
                 }
             });
+
+            // ------------------------------------------------------------------------------- //
+            // creating separate entries in the index for indicators
+            // ------------------------------------------------------------------------------- //
+
+            // unique indicators, only 1 subtopic per indicator
+            
+            let aq_topic_indicators = aq.from(topic_indicators)
+                .rename({key: "subtopic"})
+                .derive({
+                    IndicatorID: d => d.value.IndicatorID,
+                    subtopic_name: d => d.value.subtopic_name
+                })
+                .select(aq.not("value"))
+                .unroll("IndicatorID")
+                .dedupe("IndicatorID")
+                .join(de_indicator_names, "IndicatorID")
+                
+
+            // add each row to the index
+
+            for (const row of aq_topic_indicators) {
+
+                pageObj = {
+                    title: row.name,
+                    displayTitle: row.name,
+                    indicator_descriptions: row.description,
+                    indicator_ids: row.IndicatorID,
+                    href: 'data-explorer/' + row.subtopic + "/?id=" + row.IndicatorID
+                };
+
+                pagesIndex.push(pageObj);
+
+            }
             
 
-            //--------------------------------------------------------------------------------//
+            // ------------------------------------------------------------------------------- //
             // adding page's HTML content to its MD index
-            //--------------------------------------------------------------------------------//
+            // ------------------------------------------------------------------------------- //
             
             mdPagesIndex.forEach(function(page){
 
                 // add html content to md content
-                
+
                 pageObj = {
                     content: htmlPagesIndex[page.href].content,
                     keywords: page.keywords 
@@ -128,12 +163,12 @@ module.exports = function(grunt) {
         };
         
 
-        //--------------------------------------------------------------------------------//
+        // ------------------------------------------------------------------------------- //
         //  defining general `processFile` function, which calls type-specific functions
-        //--------------------------------------------------------------------------------//
+        // ------------------------------------------------------------------------------- //
         
-        var processFile = function(abspath, rootdir, subdir, filename) {
-            
+        var processFile = function(abspath, rootdir, subdir, filename, de_indicator_names, nr_indicator_names) {
+
             var pageIndex;
             
             if (filename !== '.DS_Store') {
@@ -141,10 +176,10 @@ module.exports = function(grunt) {
                 if (S(filename).endsWith(".html")) {
                     
                     pageIndex = processHTMLFile(abspath, rootdir, subdir, filename);
-                    
+
                 } else if (S(filename).endsWith(".md")) {
                     
-                    pageIndex = processMDFile(abspath, rootdir, subdir, filename);
+                    pageIndex = processMDFile(abspath, rootdir, subdir, filename, de_indicator_names, nr_indicator_names);
                     
                 }
                 
@@ -154,14 +189,14 @@ module.exports = function(grunt) {
         };
         
 
-        //--------------------------------------------------------------------------------//
+        // ------------------------------------------------------------------------------- //
         // defining HTML-specific function
-        //--------------------------------------------------------------------------------//
+        // ------------------------------------------------------------------------------- //
 
         // this only processes files from "build_dir"
         
         var processHTMLFile = function(abspath, rootdir, subdir, filename) {
-            
+
             var content = grunt.file.read(abspath);
             
             // replace all file extensions, i.e. everything after a period
@@ -170,13 +205,11 @@ module.exports = function(grunt) {
             
             href = subdir + "/" + pageName;
 
-            // console.log("href [HTML]:", href);
             // grunt.log.writeln([">>> ", href, " - content: ", S(content[2]).s]);
 
             let contentParsed = S(content[2])
                 .stripTags()
                 .replace(/(<!--)(.|[\r\n])*?(-->)/gm, "")
-                // .replace(/(\{\{<.*rawhtml.*>\}\})(.|[\r\n])*?(\{\{<.*\/rawhtml.*>\}\})/gm, "")
                 .replace(/[!\"#\＄%&\'\(\)\*\+,-\./:;<=>\?@\[\\\]\^`{\|}~]/g, "")
                 .replace(/\s-\s/g, " ")
                 .replace(/\s+/g, " ")
@@ -184,23 +217,31 @@ module.exports = function(grunt) {
                 .s
 
             return {
-                title: pageName,
-                // href: site_root + S(href).dasherize().s.toLowerCase(),
+                searchTitle: pageName,
+                displayTitle: pageName,
                 href: S(href).dasherize().s.toLowerCase(),
                 content: contentParsed
             };
         };
         
         
-        //--------------------------------------------------------------------------------//
+        // ------------------------------------------------------------------------------- //
         //  defining MD-specific function
-        //--------------------------------------------------------------------------------//
+        // ------------------------------------------------------------------------------- //
         
-        var processMDFile = function(abspath, rootdir, subdir, filename) {
-            
+        var processMDFile = function(abspath, rootdir, subdir, filename, de_indicator_names, nr_indicator_names) {
+
             var content = grunt.file.read(abspath);
             var pageIndex;
-            
+            let indicator_ids;
+            let indicator_names;
+            let indicator_descriptions;
+            let searchTitle;
+            let seo_title;
+
+            // grunt.log.writeln("de_indicator_names", de_indicator_names);
+            // grunt.log.writeln("nr_indicator_names", nr_indicator_names);
+
             // First separate the Front Matter from the content and parse it
             
             content = content.split("---");
@@ -216,10 +257,77 @@ module.exports = function(grunt) {
             // if this is draft content, stop processing
 
             if (frontMatter.draft == true) {
-                // grunt.log.writeln([">>> draft", abspath]);
                 return "draft";
             }
+
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+            // data explorer indicator names
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+            if (abspath.match(/data-explorer/) && typeof frontMatter.indicators != 'undefined') {
+
+                indicator_ids = [...new Set(frontMatter.indicators.flatMap(x => x.IndicatorID))];
+
+                // grunt.log.writeln(filename, ":", grunt.log.wordlist(indicator_ids));
+
+                let indicator_details = de_indicator_names
+                    .filter(aq.escape(d => indicator_ids.includes(d.IndicatorID)))
+                
+                indicator_names = indicator_details
+                    .array("name")
+                    .join("##")
+                
+                indicator_descriptions = indicator_details
+                    .array("description")
+                    .join("##")
+                
+                // grunt.log.writeln("indicator_names", indicator_names);
+                // grunt.log.writeln("indicator_descriptions", indicator_descriptions);
+
+            }
             
+
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+            // neighborhood reports indicator names
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+            if (abspath.match(/neighborhood-reports/)) {
+
+                if (filename.match("activedesign.md\.md|asthma\.md|climateandhealth\.md|housing\.md|outdoorair\.md")) {
+
+                    let title = S(frontMatter.title).replace(/\s+/g, "_").replace(/,/g, "")
+                    
+                    // grunt.log.writeln(filename, ":", title.s);
+                    
+                    // add these fields to NR topic landing pages
+                    
+                    searchTitle = frontMatter.title;
+                    displayTitle = frontMatter.title;
+                    seo_title = frontMatter.seo_title;
+                    summary = frontMatter.summary;
+
+                    indicator_names = [...new Set(nr_indicator_names.filter(d => d.title == title)[0].indicator_names)].join(" ")
+                    indicator_descriptions = [...new Set(nr_indicator_names.filter(d => d.title == title)[0].indicator_descriptions)].join(" ")
+                    
+                    // grunt.log.writeln(filename, ":", indicator_names);
+                    // grunt.log.writeln(filename, ":", grunt.log.wordlist(indicator_names));
+
+                } else {
+                    // only add displayTitle for NR neighborhood pages, i.e. searchTitle = undefined
+                    // we don't want every neighborhood to show up in topic searches
+                    displayTitle = frontMatter.seo_title;
+                }
+
+            } else {
+
+                // add these fields for all non-NR pages
+
+                searchTitle = frontMatter.title;
+                displayTitle = frontMatter.title;
+                seo_title = frontMatter.seo_title;
+                summary = frontMatter.summary;
+
+            }
             
             // replace all file extensions, i.e. everything after a period
 
@@ -272,29 +380,36 @@ module.exports = function(grunt) {
             // Build Lunr index for this page (keeping "-" in content)
 
             pageIndex = {
-                title: frontMatter.title,
-                tags: frontMatter.tags,
+                title: searchTitle,
+                displayTitle: displayTitle,
+                indicator_names: indicator_names,
+                indicator_descriptions: indicator_descriptions,
+                summary: summary,
+                // tags: frontMatter.tags,
                 categories: frontMatter.categories,
                 keywords: frontMatter.keywords,
-                indicators: frontMatter.indicators,
+                indicator_ids: indicator_ids,
                 neighborhood: frontMatter.neighborhood,
-                summary: frontMatter.summary,
-                data_json: frontMatter.data_json,
-                content_yml: frontMatter.content_yml,
-                type: frontMatter.type,
-                seo_title: frontMatter.seo_title,
-                seo_description: frontMatter.seo_description,
-                seo_image: frontMatter.seo_image,
-                // href: site_root + S(href).trim().s.toLowerCase(),
-                href: S(href).trim().s.toLowerCase(),
-                content: contentParsed
+                // data_json: frontMatter.data_json,
+                // content_yml: frontMatter.content_yml,
+                // type: frontMatter.type,
+                seo_title: seo_title,
+                // seo_description: frontMatter.seo_description,
+                // seo_image: frontMatter.seo_image,
+                content: contentParsed,
+                href: S(href).trim().s.toLowerCase()
             };
             
             return pageIndex;
         };
-
-        grunt.file.write(build_dir + "/js/lunr/PagesIndex.json", JSON.stringify(indexPages(), replacer = null, space = 4));
-        grunt.log.ok("Index built");
+        
+        // save to docs
+        grunt.file.write(`${build_dir}/js/lunr/PagesIndex.json`, JSON.stringify(indexPages(), replacer = null, space = 4));
+        grunt.log.ok("Index built to docs");
+        
+        // copy to static (for local serving)
+        grunt.file.copy(`${build_dir}/js/lunr/PagesIndex.json`, `${static_dir}/js/lunr/PagesIndex.json`);
+        grunt.log.ok("Index copied to static");
 
     });
 };

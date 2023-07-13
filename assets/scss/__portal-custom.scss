@@ -1,3 +1,27 @@
+// Title hover effect
+.title-hover {
+    position: relative;
+}
+
+.title-hover::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    border-radius: 4px;
+    background-color: white;
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .3s ease-in-out;
+}
+
+.title-hover:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
 // Index page styles
 .bg-lightgray {
     background-color: #fbfbfb !important;
@@ -653,7 +677,7 @@ height: 200px;}
 
 
     .greenfill {
-        border-bottom: 5px solid $info;
+        border-top: 5px solid $info;
         padding: 5px;
         color: $info;
         border-radius: 3px;
@@ -854,8 +878,8 @@ height: 200px;}
     .share-btn.reddit:hover      { background: #e54e00; }
     .share-btn.email:hover       { background: #363636; }
 
-// Revises header styles within subtopic pages
-.subtopiccontainer h3 {
+// Revises header styles within topic pages
+.topiccontainer h3 {
     font-size: 18px;
     color: #656565;
 }
@@ -949,6 +973,18 @@ height: 200px;}
     color: white;
     background-color: crimson;
     border-color: crimson;
+}
+
+.CDTA {
+    color: black;
+    background-color: #dc141464;
+    border-color: #dc1414;
+}
+
+.CDTA:hover, .CDTA.active  {
+    color: white;
+    background-color: #dc1414;
+    border-color: #dc1414;
 }
 
 
@@ -1048,4 +1084,8 @@ height: 200px;}
     box-shadow: 2px 5px 3px #bebebe; 
     border: 1px solid #bebebe; 
     border-radius: 5px;
+}
+
+.nav-item-search:hover {
+    background-color: #EFFAF4
 }

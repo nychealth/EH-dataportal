@@ -8,9 +8,6 @@ type: location
 seo_title: "Housing and Health in Gramercy Park - Murray Hill"
 seo_description: "Housing and Health data profile for the Gramercy Park - Murray Hill neighborhood of NYC."
 seo_image: "images/nyc_health_report_housing_and_health.jpg"
-menu:
-    main:
-        identifier: '04'
 vega: true
 arquero: true
 ---

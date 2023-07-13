@@ -9,6 +9,10 @@ on:
     types:
       - closed
 
+  # effectively turning this off, but keeping it in the repo
+  # schedule:
+  #   - cron: 0 0 1 1 * 
+
 jobs:
   deploy:
     name: Build & Deploy w/ Hugo
@@ -18,7 +22,7 @@ jobs:
 
     if: github.event_name == 'push' || github.event.pull_request.merged == true
 
-    # don't run two of these jobs at the same time
+    # wait for other triggered jobs to finish before running this
 
     concurrency: # don't run two of these jobs at the same time
       group: ${{ github.workflow }}-${{ github.ref_name }} # ref name is branch name, so only one job on a branch will run at a time
@@ -45,7 +49,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: lts/*
           cache: "npm"
 
       - name: Installing npm

@@ -1,52 +1,34 @@
 ---
-title: "We're Hiring"
+title: "We're Hiring!"
 date: 2021-11-24T13:30:21-05:00
 draft: false
 seo_title: "Our bureau is hiring"
 seo_description: "Join our team at the NYC Department of Health."
 ---
 
-We're hiring! See below for open positions in our bureau.
+Join our team! See below for open positions in our bureau.
 
 ---
 <br>
 
-## Jobs on our team:
+**Environmental Operations Data Scientist**
 
-**Health Content Manager** 
-
-We're looking for somebody to join the team that develops the Environment & Health Data Portal - this site! We're looking for a health communicator who's interested in how information works to contribute to user centered research, design, and site development. If you're a public health professional with interest in writing, user research, content strategy, design, or development, then we want to hear from you. 
-- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for Job ID 556725.
+We are hiring research scientist who will conduct analytic work and will take a lead role in food safety inspectional program support as NYC continues to lift restrictions on restaurants, mobile food vendors, and other food service establishments during recovery from the Covid-19 pandemic. The analyst also will support improvements to inspectional databases and update reporting systems and conduct rapid reporting for DOHMH and other City Agency leadership while continuing to support the launch of the MFV grading program which is currently resuming.
+- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job ID 590135.
 
 ---
 <br>
 
-## Jobs in our bureau:
+**Director of Data Management**
 
-**Executive Director of Environmental Health Policy**
-
-We are looking for an experienced- high-level professional well-versed in applying research to policy and program, who will oversee our growing work in climate health and health equity in planning.
-- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search - it will be posted soon.
+We're hiring somebody to work with the Division of Information Technology (DIT) to create and manage data integration processes, oversee and manage analytic databases and attendant governance policies, create views and stored procedures, and manage the reporting server. 
+- Visit  [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 566828.
 
 ---
 <br>
 
-**Senior Planning and Policy Analyst**
-We're looking for an urban planning or environmental policy expert who works at the intersection of environment and health equity.
-- Visit  [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 528335.
+**Division Counsel**
 
----
-<br>
+We're hiring a lawyer to support the Bureau of Child Care on all legal matters, represent the Department in hearings before the OATH Hearings Division, and assist the Bureau of Child Care on enforcing all applicable laws and regulations. 
+- Visit  [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 580733.
 
-**Director of Climate Health Programs**
-We're looking for a leader experienced in applying research to program design and implementation to manage our team overseeing Be A Buddy and other community resiliency programs.
-- Visit  [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 552896.
-
----
-
-<br>
-
-**Division Counsel/Appeals Officer**
-
-Support the Bureau of Child Care on all legal matters regarding the implementation of Comprehensive Background Checks, including serving as an Appeals Officer.
-- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 558051.

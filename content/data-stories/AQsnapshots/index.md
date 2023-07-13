@@ -9,9 +9,6 @@ image: ds-AQsnapshots.jpg
 tags: 
 categories: ["transportation","airquality"]
 keywords: ["air quality","traffic","transportation","air pollution", "lungs","breathing","environmental justice","justice"]
-menu:
-    main:
-        identifier: '02'
 photocredit: "Mayoral Photography Office"
 ---
 
@@ -221,15 +218,15 @@ photocredit: "Mayoral Photography Office"
 </div>
 <!--end color panel-->
     <div class="narrow">
-        <p>For more information about NYCCAS and our findings over 10 years of air quality monitoring, <a href="/key-topics/airquality">visit the Air Quality Hub</a>.</p>
+        <p>For more information about NYCCAS and our findings over 10 years of air quality monitoring, <a href="/key-topics/airquality/">visit the Air Quality Hub</a>.</p>
         </div>
         <!-- .narrow -->
         <footer class="narrow my-4" id="article-footer">
             <div class="border-top border-dark">
                 <ul class="extensible-list horizontal text-muted mt-3">
                     <li>
-                        <a class="text-muted" href="mailto:trackingportal@health.nyc.gov" title="Share through email">
-                            <span class="fa fa-envelope"></span> Questions about this data story? Ideas for another one? Email us.</a>
+                        <p class="text-muted">
+                            <span class="fa fa-envelope"></span> Questions about this data story? Ideas for another one? Email us at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;">&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;</a></p>
                     </li>
                 </ul>
             </div>

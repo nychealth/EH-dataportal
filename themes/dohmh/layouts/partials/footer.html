@@ -8,7 +8,7 @@
 
       <div class="container py-3 d-none" id="languages">
 
-          <div class="row fs-md">
+          <div class="row fs-md d-print-none">
 
               <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
                   <ul class="extensible-list">
@@ -45,7 +45,7 @@
       </div>
       <!-- #languages -->
 
-      <div class="container py-3" id="languages">
+      <div class="container py-3 d-print-none" id="languages">
 
           <ul class="fs-md" role="list">
               <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
@@ -68,12 +68,12 @@
       <div class="container py-3">
           <div class="row">
               <div class="col-md-6 col-lg-8 mb-3 mb-lg-0">
-                  <nav class="row fs-md" role="navigation">
+                  <nav class="row fs-md d-print-none" role="navigation">
                       <div class="col-lg mb-3 mb-lg-0">
                           <ul class="extensible-list">
                               <li>
                                   <a class="text-reset" href="https://www1.nyc.gov/nyc-resources/agencies.page">
-                                      <strong>City Agencies</strong>
+                                      <strong>Directory of City Agencies</strong>
                                   </a>
                               </li>
                               <li>
@@ -105,7 +105,7 @@
                                   </a>
                               </li>
                               <li>
-                                  <a class="text-reset" href="https://maps.nyc.gov/doitt/nycitymap/">
+                                  <a class="text-reset" href="https://www.nyc.gov/nyc-resources/nyc-maps.page">
                                       <strong>Maps</strong>
                                   </a>
                               </li>
@@ -144,15 +144,15 @@
 
               <div class="col-md-6 col-lg-4">
 
-                  <a class="mb-2" href="https://www1.nyc.gov" title="Go to nyc.gov" target="_blank">
+                  <a class="mb-2" href="https://www1.nyc.gov" title="Go to nyc.gov" target="_blank" rel="noopener noreferrer">
                       {{ $logo := resources.Get "images/nyc-bubble-logo.svg" }}
                       <img class="mb-2" src="{{ $logo.RelPermalink }}" width="90" alt="NYC Logo">
                       <span class="sr-only">(opens in a new tab)</span>
                   </a>
-                  <p class="fs-sm">City of New York - 2019 All Rights Reserved. NYC is a trademark and service
-                      mark of the City of New York.</p>
+                  <p class="fs-sm">© City of New York. 2022 All Rights Reserved,<br>NYC is a trademark and service mark of the City of New
+                    York.</p>
 
-                  <ul class="extensible-list horizontal fs-sm">
+                  <ul class="extensible-list horizontal fs-sm d-print-none">
                       <li>
                           <a class="text-reset" href="https://www1.nyc.gov/home/privacy-policy.page">Privacy
                               Policy</a>
@@ -164,7 +164,8 @@
                       <li>
                           <a class="text-reset" href="https://www1.nyc.gov/site/mopd/index.page"
                               title="Mayor's Office for People with Disabilities">
-                              <span class="sr-only">Mayor's Office for People with Disabilities</span>
+                              <span class="sr-only">Learn more about Digital Accessibility
+                                from the Mayor's Office for People with Disabilities.</span>
                               <span class="fab fa-lg fa-accessible-icon"></span>
                           </a>
                       </li>

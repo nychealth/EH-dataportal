@@ -9,20 +9,25 @@ categories: ["transportation","neighborhoods","airquality","climate"]
 keyTopic: transportation
 keywords: ["active design","infrastructure","transportation","physical activity","health"]
 indicators:
-- header: null
+- header: Walking distance to amenities
   IndicatorID:
-  - 2390
+  - 2133
+  - 2388
   - 2181
+  - 2416
+  - 2389
+- header: Transit coverage
+  IndicatorID: 
   - 2158
+  - 2391
+  - 2390
+  - 2426
+  - 2425
+- header: Greenery coverage
+  IndicatorID: 
   - 2157
   - 2143
-  - 2388
-  - 2391
-  - 2389
-  - 2133
-menu:
-    main:
-        identifier: '03'
+  
 ---
 
 Physical activity and healthy eating are among the leading ways to get and stay healthy. 

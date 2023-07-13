@@ -14,9 +14,6 @@ indicators:
   - 15
   - 17
   - 2336
-menu:
-    main:
-        identifier: '03'
 ---
 
 Most people spend most of their time in their home. That makes the home a crucial environment that can affect one's health.

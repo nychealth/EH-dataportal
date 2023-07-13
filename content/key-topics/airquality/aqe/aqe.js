@@ -63,7 +63,7 @@ var embed_opt = {
 
 // path to topo json, will be loaded by vega
 
-var nta_topojson = data_repo + data_branch + "/geography/NTA.topo.json"; 
+var nta_topojson = data_repo + data_branch + "/geography/NTA_2010.topo.json"; 
 
 // the d3 code below loads the data from a CSV file and dumps it into global javascript object variable.
 
@@ -136,14 +136,14 @@ const changeFactor = (
         "layer": [
           {
             "data": {
-              "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/NTA.topo.json",
+              "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/" + data_branch + "/geography/NTA_2010.topo.json",
               "format": {"type": "topojson", "feature": "collection"}
             },
             "mark": {"type": "geoshape", "stroke": "#ffffff", "fill": "lightgray"}
           },
           {
             "data": {
-              "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/NTA.topo.json",
+              "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/" + data_branch + "/geography/NTA_2010.topo.json",
               "format": {"type": "topojson", "feature": "collection"}
             },
             "transform": [
@@ -151,7 +151,7 @@ const changeFactor = (
                 "lookup": "properties.NTACode",
                 "from": {
                   "data": {
-                    "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/air-quality-explorer/aqe-nta.csv"
+                    "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/" + data_branch + "/key-topics/air-quality-explorer/aqe-nta.csv"
                   },
                   "key": "NTACode",
                   "fields": [

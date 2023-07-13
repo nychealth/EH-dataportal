@@ -8,9 +8,6 @@ tags:
 categories: []
 keywords: ["waste","garbage"]
 indicators: 
-menu:
-    main:
-        identifier: '03'
 ---
 
 

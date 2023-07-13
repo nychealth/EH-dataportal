@@ -8,9 +8,6 @@ tags:
 categories: ["social", "healthoutcomes", "climatehealth"]
 keywords: ["asthma", "weather", "mortality", "death", "cooling", "air conditioning", "built environment"]
 image: title7.jpg
-menu:
-    main:
-        identifier: '02'
 photocredit: "Benjamin Kanter/Mayoral Photography Office"
 ---
 

@@ -23,9 +23,6 @@ indicators:
   - 2104
   - 2185
   - 2377
-menu:
-    main:
-        identifier: '03'
 ---
 
 A region's climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events like heat waves, droughts, and hurricanes.

@@ -6,12 +6,9 @@ seo_title: "Neighborhood boundaries in health data"
 seo_description: "A data story on different ways to map health data."
 tags: 
 categories: ["internal","neighborhoods"]
-keywords: ["geography","maps","neighborhoods","health data","methods","geographic"]
+keywords: ["geography","maps","neighborhoods","health data","methods","geographic","how we work"]
 image: ds-geographies.jpg
 layout: single
-menu:
-    main:
-        identifier: '02'
 vega: true
 photocredit: "Edwin J. Torres/Mayoral Photography Office"
 ---
@@ -105,7 +102,7 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
 
     let cd_topo   = repo_branch + "/" + "geography" + "/" + "CD.topo.json"
     let puma_topo = repo_branch + "/" + "geography" + "/" + "PUMA_or_Subborough.topo.json"
-    let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA.topo.json"    
+    let nta_topo  = repo_branch + "/" + "geography" + "/" + "NTA_2010.topo.json"    
 
     // this code listens to the form with map chooser; must run after DOM loads
     window.onload = main_radio_listener;
