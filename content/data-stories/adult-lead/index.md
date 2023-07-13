@@ -66,8 +66,8 @@ As part of our investigations, we work to get these products off NYC store shelv
 </div>
 <div class="wide my-4">
 
-<img src="Anon_lead_shopping.png" alt="An investigator looking at potentially-contaminated products." style="width:48%; height:auto" class="px-1">
-<img src="Anon_lead_shopping 2.png" alt="An investigator looking at potentially-contaminated products." style="width:48%; height:auto" class="px-1">
+<img src="anon lead picture 1.png" alt="An investigator looking at potentially-contaminated products." style="width:48%; height:auto" class="px-1">
+<img src="anon lead picture 2.png" alt="An investigator looking at potentially-contaminated products." style="width:48%; height:auto" class="px-1">
 <p class="fs-sm pl-1"><em>An investigator looking at potentially contaminated products.</em></p>
 </div>
 <div class="narrow">
