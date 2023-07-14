@@ -1,0 +1,23 @@
+---
+title: "NYC Rat Mitigation Zones"
+date: 2023-06-01T11:14:56-04:00
+draft: false
+seo_title: "Data on rat inspections"
+seo_description: "Data on NYC's rat inspections. "
+tags: 
+categories: [pests]
+keywords: 
+layout: rmz
+vega: true
+arquero: true
+leaflet: true
+---
+
+Rats can contaminate food, spread disease and reduce our quality of life. Rat Mitigation Zones (RMZ) are areas with high levels of rat activity, where City agencies focus resources to address rats and the conditions that support them.
+
+Choose an RMZ on the map below to view data on complaints and Health Department rat control activity. 
+
+
+
+
+
