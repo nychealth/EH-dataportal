@@ -16,6 +16,9 @@ indicators:
     - 2132
     - 2317
     - 2073 
+    - 2328 
+    - 2329 
+    - 2330 
   - header: Housing 
     IndicatorID:
     - 17
