@@ -1,2 +1,3 @@
 # pagefind.yml
 source: docs
+bundle_dir: pagefind
