@@ -7,8 +7,11 @@ var id;
 var ratData = [];
 
 var map = L.map('map').setView([40.7722226,-73.9638235],11); // [Lat,Long],Zoom
-L.tileLayer('https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=dwIJ8hO2KsTMegUfEpYE',{
-    attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+	subdomains: 'abcd',
+	maxZoom: 15,
+    minZoom: 11
 }).addTo(map);
 
 L.control.scale({
@@ -24,7 +27,7 @@ function style(feature) {
         opacity: 1,
         color: 'black',
         dashArray: '1',
-        fillOpacity: 0.3,
+        fillOpacity: 0.2,
         fillColor: 'black'
     };
 }
@@ -36,19 +39,6 @@ var geog = L.geoJson(rmz,{
     onEachFeature
 }).addTo(map);
 
-
-// When style is run in const geojson, it returns these - default styles
-function style(feature) {
-    return {
-        weight: 1,
-        opacity: 1,
-        color: 'black',
-        dashArray: '1',
-        fillOpacity: 0.3,
-        fillColor: 'black'
-    };
-}
-
 d3.csv("2022-rat-data.csv").then(data => {
     ratData = data;
     console.log(ratData)
@@ -58,8 +48,8 @@ d3.csv("2022-rat-data.csv").then(data => {
 function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
-        mouseout: resetHighlight,
-        click: zoomToFeature // let's replace this with... something else!
+        // mouseout: resetHighlight,
+        click: zoomToFeature // Zooms on click.
     });
 }
 
@@ -69,21 +59,38 @@ function resetHighlight(e) {
 }
 
 function zoomToFeature(e) {
+    geog.resetStyle()
     map.fitBounds(e.target.getBounds());
     id = e.target.feature.properties.OBJECTID
     console.log('Name: ' + e.target.feature.properties.Label) 
     name = e.target.feature.properties.Label
     printToPage(id);
     // The above gets id and name, puts them into global variables, for other selection display
+
+    // this sets style on click (but it won't stick)
+
+    const layer = e.target;
+    layer.setStyle({ // Styles for hover-highlight
+        weight: 3,
+        color: 'black',
+        dashArray: '5',
+        fillOpacity: 0.7
+    });
+
+    layer.bringToFront();
+
 }
 
 // Highlght feature
 function highlightFeature(e) {
+    geog.resetStyle()
+    console.log('highlight feature:')
+    console.log(e)
     const layer = e.target;
     layer.setStyle({ // Styles for hover-highlight
-        weight: 2,
-        color: 'white',
-        dashArray: '3',
+        weight: 3,
+        color: 'black',
+        dashArray: '5',
         fillOpacity: 0.7
     });
 
@@ -99,23 +106,45 @@ function printToPage(x) {
     const zoneData = ratData.filter(zone => zone.ID == x)
     console.log(zoneData)
     document.getElementById('totalInspections').innerHTML = Number(zoneData[0].Inspections).toLocaleString()
-    document.getElementById('agency').innerHTML = Number(zoneData[0].cityAgencyReferral).toLocaleString() + ' (' + (100 * Number(zoneData[0].cityAgencyReferral) / Number(zoneData[0].Inspections)).toFixed(1) + '%)'
-    document.getElementById('cota').innerHTML = Number(zoneData[0].privatePropertyCOTA).toLocaleString() + ' (' + (100 * Number(zoneData[0].privatePropertyCOTA) / Number(zoneData[0].Inspections)).toFixed(1) + '%)'
+    document.getElementById('agency').innerHTML = Number(zoneData[0].cityAgencyReferral).toLocaleString() + ' (' + (100 * Number(zoneData[0].cityAgencyReferral) / Number(zoneData[0].Inspections)).toFixed(1) + '% of inspections)'
+    document.getElementById('cota').innerHTML = Number(zoneData[0].privatePropertyCOTA).toLocaleString() + ' (' + (100 * Number(zoneData[0].privatePropertyCOTA) / Number(zoneData[0].Inspections)).toFixed(1) + '% of inspections)'
 
     var totalCI = Number(zoneData[0].failedComplianceInspections) + Number(zoneData[0].passedComplianceInspection)
+    document.getElementById('comp').innerHTML = Number(totalCI).toLocaleString();
     console.log(totalCI)
-    document.getElementById('failed').innerHTML = Number(zoneData[0].failedComplianceInspections).toLocaleString() + ' (' + ((100 * zoneData[0].failedComplianceInspections) / totalCI).toFixed(1)  + '%)'
-    document.getElementById('passed').innerHTML = Number(zoneData[0].passedComplianceInspection).toLocaleString() + ' (' + ((100 * zoneData[0].passedComplianceInspection) / totalCI).toFixed(1)  + '%)'
+    document.getElementById('failed').innerHTML = Number(zoneData[0].failedComplianceInspections).toLocaleString() + ' (' + ((100 * zoneData[0].failedComplianceInspections) / totalCI).toFixed(1)  + '% of compliance inspections)'
+    document.getElementById('passed').innerHTML = Number(zoneData[0].passedComplianceInspection).toLocaleString() + ' (' + ((100 * zoneData[0].passedComplianceInspection) / totalCI).toFixed(1)  + '% of compliance inspections)'
 
 
     
     document.getElementById('exterminator').innerHTML = Number(zoneData[0].visitsByDOHMH).toLocaleString()
-    document.getElementById('bait').innerHTML = Number(zoneData[0].visitsWithBait).toLocaleString() + ' (' + ((100 * Number(zoneData[0].visitsWithBait)) / Number(zoneData[0].visitsByDOHMH)).toFixed(1) + '%)'
+    document.getElementById('bait').innerHTML = Number(zoneData[0].visitsWithBait).toLocaleString() + ' (' + ((100 * Number(zoneData[0].visitsWithBait)) / Number(zoneData[0].visitsByDOHMH)).toFixed(1) + '% of exterminator visits)'
 
     document.getElementById('attracting').innerHTML = Number(zoneData[0].attractingRodents).toLocaleString()
     document.getElementById('mouse').innerHTML = Number(zoneData[0].mouseSighting).toLocaleString()
     document.getElementById('rat').innerHTML = Number(zoneData[0].ratSighting).toLocaleString()
-    document.getElementById('bite').innerHTML = Number(zoneData[0].rodentBite).toLocaleString()
     document.getElementById('signs').innerHTML = Number(zoneData[0].signsOfRodents).toLocaleString()
+
+}
+
+
+
+function showInfo(x) {
+    var content;
+    document.getElementById('info').classList.remove('hide')
+    
+    if (x == 0) {
+        content = '<strong>Inspections:</strong> Inspections may be initiated by the Health Department, or in response to a 311 complaint about rat activity or conditions.'
+    } else  if (x == 1) {
+        content = '<strong>City agency referral:</strong> When property owned by a city, state, or federal entity fails an inspection for rat activity or conditions conducive to rats, the Health Department sends a letter informing them of conditions and asking them to take action to remediate the conditions.'
+    } else if (x == 2) {
+        content = `<strong>Abatement orders:</strong> When private property fails an inspection, the Health Department sends the owner a notice that they are in violation of the Health Code and orders them to address the conditions. The letter details the findings and includes guidance on how to fix problems.`
+    } else if (x == 3) {
+        content = `<strong>Compliance inspections</strong> are done at properties that fail initial inspections, approximately 2 to 3 weeks after the abatement order is mailed to the owner (owners can request additional time to remediate the conditions). If a property fails a compliance inspection, the owner is issued a summons.`
+    } else if (x==5) {
+        content = `The Health Department may send <strong>exterminators</strong> to a property when an owner fails a compliance inspection. The property owner is billed for this work. Exterminators may treat the property with <strong>bait</strong>, rodenticides, or monitor the property to see if remediation treatments are working.`
+    } 
+
+    document.getElementById('info').innerHTML = content
 
 }

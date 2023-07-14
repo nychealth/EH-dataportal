@@ -125,14 +125,16 @@ const renderLinksChart = (
     let linkspec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "title": {
-            "text": [`${yIndicatorName && `${yIndicatorName}`}`, `${yMeasure && `${yMeasure}`} ${yDisplay && `${yDisplay}`} (${yTime})`],
+            "text": [`${yIndicatorName && `${yIndicatorName}`}`],
             "align": "left", 
             "anchor": "start", 
-            "fontSize": 15, 
+            "fontSize": 18, 
             "fontWeight": "normal",
             "font": "sans-serif",
             "baseline": "top",
             "dy": -10,
+            "subtitle": `${yMeasure && `${yMeasure}`} ${yDisplay && `${yDisplay}`} (${yTime})`,
+            "subtitleFontSize": 13,
             "limit": 1000
         },
         "width": "container",
