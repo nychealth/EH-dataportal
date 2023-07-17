@@ -39,7 +39,7 @@ For example, New York State law requires that health care providers check pregna
 
 ### Even with improvements, adult lead poisoning remains a persistent issue
 
-Between 2016 and 2018, about 1,750 New Yorkers aged 16 or older (a rate of 15 people per 100,000) had blood lead levels of 10 micrograms per deciliter or higher—the level the Centers for Disease Control and Prevention uses to define an elevated blood lead level for adults.
+Between 2016 and 2018, about 1,750 New Yorkers age 16 or older (a rate of 15 people per 100,000) had blood lead levels of 10 micrograms per deciliter or higher — the level the Centers for Disease Control and Prevention uses to define an elevated blood lead level for adults.
 
 </div>
 
@@ -51,9 +51,9 @@ When somebody is tested for lead in the blood, the New York City Department of H
 
 This helps us protect New Yorkers with elevated blood lead levels and learn how New Yorkers are exposed to lead. Here’s what we have found: 
 
-In NYC, the most common source of lead exposure among non-pregnant adults is from construction-related jobs. Workers can breathe in or ingest lead dust or fumes during renovations, repairs and demolitions that disturb old lead-based paint. Work or hobbies related to metalwork, antique restoration, firearms or crafts involving materials with lead can also put adults at risk. <a href="https://www.nyc.gov/assets/doh/downloads/pdf/lead/adult-lead-safety-brochure.pdf">Read more about what adults should know about lead poisoning here.</a>
+In NYC, the most common source of lead exposure among nonpregnant adults is from construction-related jobs. Workers can breathe in or ingest lead dust or fumes during renovations, repairs and demolitions that disturb old lead-based paint. Work or hobbies related to metalwork, antique restoration, firearms or crafts involving materials with lead can also put adults at risk. <a href="https://www.nyc.gov/assets/doh/downloads/pdf/lead/adult-lead-safety-brochure.pdf">Read more about what adults should know about lead poisoning here.</a>
 
-Consumer products can also expose people to lead. During our investigations, we pay special attention to consumer products from other countries: certain health remedies, foods and spices, cultural powders and traditional cook ware. Lead is sometimes added to these products, either accidentally or intentionally. However, lead is typically not listed on the label, so it is hard to tell the difference between safe and dangerous products. (For more information, visit nyc.gov/hazardousproducts). 
+Consumer products can also expose people to lead. During our investigations, we pay special attention to consumer products from other countries: certain health remedies, foods and spices, cultural powders and traditional cookware. Lead is sometimes added to these products, either accidentally or intentionally. However, lead is typically not listed on the label, so it is hard to tell the difference between safe and dangerous products. For more information, visit <a href="https://www.nyc.gov/site/doh/health/health-topics/lead-poisoning-hazardous-consumer-products.page"> nyc.gov/hazardousproducts </a>.
 
 As part of our investigations, we work to get these products off NYC store shelves before they endanger people by:  
 
@@ -96,7 +96,7 @@ We recommend that New Yorkers <a href="https://jphmpdirect.com/2018/12/06/infogr
 
 A NYC Health Department study on spices collected during investigations between 2008 and 2017, including nearly 1,500 samples of spices from 41 countries, found that more than half of spice samples had detectable lead concentrations. About one-third of the samples had a lead level higher than two parts per million (ppm), the permissible limit in the U.S. for lead in food additives. 
 
-Spices purchased abroad are more than three times as likely to exceed the permissible amount compared with spices purchased at stores in the US. Spices sold in stores in the US are subject to regulatory oversight, such as border control checks and surveillance by state and federal agencies, which likely decreases the chance of lead contamination in those products.  
+Spices purchased abroad are more than three times as likely to exceed the permissible amount compared with spices purchased at stores in the U.S. Spices sold in stores in the U.S. are subject to regulatory oversight, such as border control checks and surveillance by state and federal agencies, which likely decreases the chance of lead contamination in those products.  
 
 </div>
 
@@ -111,7 +111,7 @@ We have also investigated numerous cases of lead poisoning in children and adult
 </div>
   <div class="wide row my-4 fs-sm">
     <div class="col-sm-4 col-xs-12">
-      <a href="https://ajph.aphapublications.org/doi/10.2105/AJPH.2022.306906"><i>Traditional health remedies</i></a> including certain Ayurvedic medications prescribed or purchased over‐the‐counter in the U.S. or abroad. 
+      <a href="https://ajph.aphapublications.org/doi/10.2105/AJPH.2022.306906"><i>Traditional health remedies</i></a> including certain Ayurvedic medications prescribed or purchased over the counter in the U.S. or abroad. 
     </div>
     <div class="col-sm-4 col-xs-12">
       <a href="https://www.cdc.gov/mmwr/volumes/71/wr/mm7122a3.htm"><i>Traditional or handmade ceramic and metal dishware</i></a> that may contain lead at levels thousands of times higher than regulatory limits. Lead in dishware can transfer to the food or drinks that are prepared, stored or served in these products.  
@@ -130,14 +130,14 @@ Certain immigrant communities in NYC are at higher risk of lead exposure. For ex
 If you do construction, metal work, antique restoration or other work or hobbies that might bring you into contact with lead: 
 
 * Use protective clothing and a proper respirator, and follow all safety protocols  
-* Wash your hands and face before eating, drinking, or smoking  
+* Wash your hands and face before eating, drinking or smoking  
 * Avoid eating, drinking or smoking in the work area 
 * Wash your work clothing separately from household laundry 
 
-<strong>Avoid consumer products that may contain lead.</strong> For more information, visit <a href="https://www.nyc.gov/site/doh/health/health-topics/lead-poisoning-hazardous-consumer-products.page">www.nyc.gov/hazardousproducts. </a>
+<strong>Avoid consumer products that may contain lead.</strong> For more information, visit <a href="https://www.nyc.gov/site/doh/health/health-topics/lead-poisoning-hazardous-consumer-products.page">nyc.gov/hazardousproducts. </a>
 
 
-If you think you or your family members are at risk for lead poisoning, <strong>ask your health care provider for a blood lead test.</strong> Remind your provider to test your child for lead poisoning at ages 1 and 2 and ask about testing older children. If you need help finding a provider for no-cost or low-cost care, regardless of immigration status, insurance, or ability to pay, call 311 or NYC Health + Hospitals at 844-NYC-4NYC (844-692-4692) for information.
+If you think you or your family members are at risk for lead poisoning, <strong>ask your health care provider for a blood lead test.</strong> Remind your provider to test your child for lead poisoning at ages 1 and 2 and ask about testing older children. If you need help finding a provider for no-cost or low-cost care, regardless of immigration status, insurance or ability to pay, call 311 or NYC Health + Hospitals at 844-NYC-4NYC (844-692-4692) for information.
 
 <a href="https://www.nyc.gov/lead">Visit nyc.gov/lead or call 311 for more information</a>. 
 
