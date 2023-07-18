@@ -113,7 +113,10 @@ To describe the impact of climate change, we examined how the number of hot days
 
 * Heat-attributable deaths occurred most frequently in July (37%), followed by August (28%), June (18%), September (10%), and May (7%) for 2016-2020.
 
-<div class="row my-4"><div class="col-8 mx-auto border"><strong>Figure 3:</strong> annual average heat-exacerbated deaths for <span style="color:red">Extreme Heat Event</span> days, and <span style="color:orange;">days at or above 82°F</span> in 5-year moving time windows (1971-2020) <img alt="Figure 3" src="rev-fig-3.jpeg" class="p-2" /></div></div>
+<div class="row my-4"><div class="col-8 mx-auto border">
+<iframe title="2023 Heat Mortality Report Figure 3" aria-label="Scatter Plot" id="datawrapper-chart-qoldt" src="https://datawrapper.dwcdn.net/qoldt/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="702" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+</div></div>
 
 <div class="row my-4"><div class="col-8 mx-auto border"><strong>Figure 4:</strong> <span style="color:red;">cumulative relative risk</span> and <span style="color:darkgray">95% confidence intervals</span> of heat-exacerbated deaths for daily maximum temperature over same-day and 3 previous days, May-September (2011-2020)  <img alt="Figure 4" src="rev-fig-4.jpeg" class="p-2" /><p class="fs-sm"><em>Ticks represent days at each temperature</em></p></div></div>
 
@@ -177,7 +180,7 @@ To prepare for a hotter future and prevent heat-related deaths, the City needs l
   * Fund and provide technical assistance for programs — such as the NYC Health Department’s Be a Buddy — that support CBOs to build community resilience through social cohesion and access to physical and mental health resources that can help people stay safe in the heat.&nbsp;
   * Continue to strengthen emergency response during extreme heat, such as opening cooling centers and issuing heat-health warnings, prioritizing people and communities with the greatest need.
 
-More data and information about heat, climate, and health is available on the NYC Health Department’s&nbsp;[Climate and Health Hub.](http://a816-dohbesp.nyc.gov/IndicatorPublic/HeatHub/index.html) Learn more about what the City is doing to mitigate the effects of heat as part of [PlaNYC: Getting Sustainability Done](https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/).&nbsp;
+More data and information about heat, climate, and health is available on the NYC Health Department’s&nbsp;[Climate and Health page.](..) Learn more about what the City is doing to mitigate the effects of heat as part of [PlaNYC: Getting Sustainability Done](https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/).&nbsp;
 
 <div class="fs-sm px-2 py-1 mb-2"><strong>Note on years of data included:</strong> For heat-stress, data for 2021 and 2022 are considered preliminary because death data are still being compiled by the Bureau of Vital Statistics. These numbers may be updated in future reports as final data become available; 2021 heat-stress numbers are less likely to change. All heat-stress tables are based on heat-stress deaths from 2012-2021. The heat-exacerbated mortality analysis requires complete daily death counts to produce accurate estimates, making 2020 the most recent available year of data.</div>
 
