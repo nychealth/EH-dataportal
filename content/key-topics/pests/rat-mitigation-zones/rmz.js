@@ -19,6 +19,24 @@ L.control.scale({
     position: 'bottomleft'
 }).addTo(map)
 
+L.easyButton({
+    position: "bottomleft",
+    states: [{
+        title: "Zoom to fit",
+        icon: "fas fa-undo",
+        
+        onClick: function() {
+            
+            resetZoom();
+        }
+    }]
+}).addTo(map);     
+
+function resetZoom() {
+    console.log('reset zoom 3')
+    window.location.hash = '#top'
+    location.reload()
+}
 
 // When style is run in const geojson, it returns these - default styles
 function style(feature) {
@@ -142,7 +160,7 @@ function showInfo(x) {
     } else if (x == 3) {
         content = `<strong>Compliance inspections</strong> are done at properties that fail initial inspections, approximately 2 to 3 weeks after the abatement order is mailed to the owner (owners can request additional time to remediate the conditions). If a property fails a compliance inspection, the owner is issued a summons.`
     } else if (x==5) {
-        content = `The Health Department may send <strong>exterminators</strong> to a property when an owner fails a compliance inspection. The property owner is billed for this work. Exterminators may treat the property with <strong>bait</strong>, rodenticides, or monitor the property to see if remediation treatments are working.`
+        content = `The Health Department may send <strong>exterminators</strong> to a property when an owner fails a compliance inspection. The property owner is billed for this work. Exterminators may treat the property with <strong>bait</strong> (rodenticides), or monitor the property to see if remediation treatments are working.`
     } 
 
     document.getElementById('info').innerHTML = content
