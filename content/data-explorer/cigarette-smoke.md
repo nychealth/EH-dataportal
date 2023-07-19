@@ -10,19 +10,18 @@ keywords: ["smoking","cigarettes","cancer","secondhand","smoke","work","home", "
 indicators:
 - header: null
   IndicatorID:
-  - 2338
-  - 2020
-  - 2017
   - 2421
 - header: Smoking
   IndicatorID:
   - 2019
   - 2021
-  - 2422
 - header: Asthma triggers
   IndicatorID: 
-  - 25
+  - 2338
   - 2404
+  - 2422
+  - 2020
+  - 2017
 ---
 
 Smoking causes over a dozen cancers, heart disease, stroke, type 2 diabetes and many other diseases; it remains a leading cause of death in New York City (NYC). On average, people who do not smoke live about 10 years longer than people who do.
