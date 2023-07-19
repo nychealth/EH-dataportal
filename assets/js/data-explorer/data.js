@@ -66,6 +66,22 @@ const fetch_comparisons = async () => {
 
 }
 
+// ======================================================================= //
+//  fetch and load 311 Crosswalk into global object
+// ======================================================================= //
+
+var crosswalk
+function fetch311() {
+
+    d3.csv(baseURL + '/311/311-crosswalk.csv').then(data => {
+        crosswalk = data;
+    });
+        
+    // Then, function to draw buttons - draw311buttons - is called from loadData()
+};
+fetch311();
+
+
 // ----------------------------------------------------------------------- //
 // function to create data and metadata for comparisons chart
 // ----------------------------------------------------------------------- //
@@ -295,6 +311,30 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
 }
 
+// ----------------------------------------------------------------------- //
+// function to draw 311 buttons
+// ----------------------------------------------------------------------- //
+
+var filteredCrosswalk = [];
+function draw311Buttons(x) {
+    document.getElementById('311').innerHTML = ''
+    console.log('filtered crosswalk:')
+    filteredCrosswalk = crosswalk.filter(indicator => indicator.IndicatorID == x )
+    // console.table(filteredCrosswalk)
+
+    // Creates label if there are 311 links
+    if (filteredCrosswalk.length > 0) {
+        document.getElementById('311label').innerHTML = 'Contact 311 for help with:'
+    } else {};
+
+    // draws 311 buttons
+    for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
+        var title = filteredCrosswalk[i].topic
+        var destination = filteredCrosswalk[i].kaLink
+        var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="btn btn-sm btn-outline-primary mr-1 mb-1">${title}</a>`
+        document.getElementById('311').innerHTML += btn
+    }
+}
 
 // ----------------------------------------------------------------------- //
 // function to Load indicator data and create Arquero data frame
@@ -323,6 +363,9 @@ const loadData = (this_indicatorId) => {
             .groupby("Time", "GeoType", "GeoID")
             .orderby(aq.desc('Time'), 'GeoRank')
     })
+
+    draw311Buttons(this_indicatorId)
+
 }
 
 // ----------------------------------------------------------------------- //
