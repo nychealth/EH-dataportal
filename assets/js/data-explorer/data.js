@@ -10,6 +10,8 @@
 // full indicator metadata
 // ----------------------------------------------------------------------- //
 
+var globalID
+
 fetch(data_repo + data_branch + '/indicators/indicators.json')
     .then(response => response.json())
     .then(async data => {
@@ -28,6 +30,9 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
         
         if (paramId) {
             loadIndicator(paramId)
+            // console.log('param id is set')
+            globalID = paramId
+
             // fetch311(paramId)
         } else {
             // console.log('no param', url.searchParams.get('id'));
@@ -37,18 +42,15 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
     })
     .catch(error => console.log(error));
 
-
 // ======================================================================= //
 //  fetch and load 311 Crosswalk into global object
 // ======================================================================= //
 
 var crosswalk
 d3.csv(baseURL + '/311/311-crosswalk.csv').then(data => {
-        crosswalk = data;
-    });
-        
-    // Then, function to draw buttons is in loadData();
-
+    crosswalk = data;
+    draw311Buttons(globalID);
+});
 
 // ======================================================================= //
 //  fetch and load comparison chart data into global object
@@ -316,9 +318,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 var filteredCrosswalk = [];
 function draw311Buttons(x) {
     document.getElementById('311').innerHTML = ''
-    console.log('filtered crosswalk:')
     filteredCrosswalk = crosswalk.filter(indicator => indicator.IndicatorID == x )
-    // console.table(filteredCrosswalk)
 
     // Creates label if there are 311 links
     if (filteredCrosswalk.length > 0) {
