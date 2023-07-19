@@ -1,9 +1,9 @@
 ---
-title: "NYC Rat Mitigation Zones"
+title: "Rat Mitigation Zones"
 date: 2023-06-01T11:14:56-04:00
 draft: false
 seo_title: "Data on rat inspections"
-seo_description: "Data on NYC's rat inspections. "
+seo_description: "Data on NYC's rat mitigation zones. "
 tags: 
 categories: [pests]
 keywords: 
