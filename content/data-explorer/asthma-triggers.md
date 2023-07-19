@@ -10,14 +10,14 @@ keywords: ["built environments","neighborhoods","social","housing","maintenance"
 indicators:
 - header: Asthma triggers
   IndicatorID:
-  - 2101
-  - 2430
   - 2338
   - 2404
+  - 2101
+  - 2430
   - 48
-  - 2393
   - 2394
   - 107
+  - 2393
 ---
 
 Housing conditions can trigger asthma. In New York City, childhood asthma is a significant health threat that affects thousands of children per year. 
