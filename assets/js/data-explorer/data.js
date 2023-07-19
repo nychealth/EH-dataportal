@@ -28,6 +28,7 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
         
         if (paramId) {
             loadIndicator(paramId)
+            fetch311(paramId)
         } else {
             // console.log('no param', url.searchParams.get('id'));
             loadIndicator()
@@ -35,6 +36,18 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
         
     })
     .catch(error => console.log(error));
+
+
+// ======================================================================= //
+//  fetch and load 311 Crosswalk into global object
+// ======================================================================= //
+
+var crosswalk
+d3.csv(baseURL + '/311/311-crosswalk.csv').then(data => {
+        crosswalk = data;
+    });
+        
+    // Then, function to draw buttons is in loadData();
 
 
 // ======================================================================= //
@@ -65,21 +78,6 @@ const fetch_comparisons = async () => {
     createComparisonData(comparisons);
 
 }
-
-// ======================================================================= //
-//  fetch and load 311 Crosswalk into global object
-// ======================================================================= //
-
-var crosswalk
-function fetch311() {
-
-    d3.csv(baseURL + '/311/311-crosswalk.csv').then(data => {
-        crosswalk = data;
-    });
-        
-    // Then, function to draw buttons - draw311buttons - is called from loadData()
-};
-fetch311();
 
 
 // ----------------------------------------------------------------------- //
@@ -325,7 +323,9 @@ function draw311Buttons(x) {
     // Creates label if there are 311 links
     if (filteredCrosswalk.length > 0) {
         document.getElementById('311label').innerHTML = 'Contact 311 for help with:'
-    } else {};
+    } else {
+        document.getElementById('311label').innerHTML = ''
+    };
 
     // draws 311 buttons
     for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
