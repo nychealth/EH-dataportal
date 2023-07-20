@@ -10,15 +10,17 @@ keywords: ["social","social justice","justice","injustice","social conditions","
 indicators:
   - header: null
     IndicatorID:
-    - 103 
+    - 103
     - 2176
     - 2337
     - 2132
     - 2317
-    - 2073 
-    - 2328 
-    - 2329 
-    - 2330 
+    - 2073
+    - 2328
+    - 2329
+    - 2330
+    - 2326
+    - 2327
   - header: Housing 
     IndicatorID:
     - 17
