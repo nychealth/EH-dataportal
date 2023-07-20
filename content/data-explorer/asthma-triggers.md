@@ -12,6 +12,7 @@ indicators:
   IndicatorID:
   - 2338
   - 2404
+  - 2422
   - 2101
   - 2430
   - 48
