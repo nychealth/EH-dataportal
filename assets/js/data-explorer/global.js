@@ -194,6 +194,9 @@ const prettifyGeoType = (GeoType) => {
         case 'NYCKIDS2019':
         return 'NYCKIDS';
         
+        case 'NYCKIDS2021':
+        return 'NYCKIDS';
+        
         case 'CDTA2020':
         return 'CDTA';
         

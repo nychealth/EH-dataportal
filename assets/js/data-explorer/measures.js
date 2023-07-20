@@ -272,7 +272,7 @@ const updateMapData = (e) => {
     
     if (typeof e.target.dataset.geo != 'undefined') {
         
-        // console.log("geo", e.target.dataset);
+        // console.log("geo [updateMapData]", e.target.dataset);
 
         // get selected geo
         
@@ -298,7 +298,7 @@ const updateMapData = (e) => {
 
     if (typeof e.target.dataset.time != 'undefined') {
         
-        // console.log("time", e.target.dataset);
+        // console.log("time [updateMapData]", e.target.dataset);
 
         // get selected time
         
@@ -1270,6 +1270,8 @@ const renderMeasures = async () => {
 
                 let maxGeoRank = Math.max(filteredMapData[0].GeoRank);
 
+                // console.log("maxGeoRank [showMap]", maxGeoRank);
+
                 filteredMapData = filteredMapData.filter(
                     obj => obj.GeoRank === maxGeoRank
                 );
@@ -1279,8 +1281,8 @@ const renderMeasures = async () => {
 
                 // console.log("filteredMapData [no selectedMapGeo]", filteredMapData);
 
-                // console.log("maxGeo", maxGeo);
-                // console.log("maxGeoPretty", maxGeoPretty);
+                // console.log("maxGeo [showMap]", maxGeo);
+                // console.log("maxGeoPretty [showMap]", maxGeoPretty);
 
             // }
 
