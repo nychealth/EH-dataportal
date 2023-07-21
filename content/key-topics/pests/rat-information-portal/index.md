@@ -1,5 +1,5 @@
 ---
-title: "NYC Rat Information Portal"
+title: "Rat Information Portal"
 date: 2021-09-08T11:14:56-04:00
 draft: false
 draft: false
