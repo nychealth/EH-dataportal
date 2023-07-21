@@ -53,10 +53,13 @@ const renderComparisonsChart = (
     // extract measure metadata for chart text
     // ----------------------------------------------------------------------- //
     
-    let compName =            [... new Set(metadata.array("ComparisonName"))];
-    let compIndicatorLabel =  [... new Set(metadata.array("IndicatorLabel"))];
+    let compName            = [... new Set(metadata.array("ComparisonName"))];
+    let compIndicatorLabel  = [... new Set(metadata.array("IndicatorLabel"))];
     let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
-    let compDisplayTypes =    [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
+    let compDisplayTypes    = [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
+    let compGeoEntityIDs    = [... new Set(metadata.array("GeoEntityID"))];
+
+    console.log(">>>> compGeoEntityIDs", compGeoEntityIDs);
 
 
     // ----------------------------------------------------------------------- //
@@ -85,6 +88,41 @@ const renderComparisonsChart = (
         plotTitle = indicatorName;
         plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? " by Borough" : "");
         comp_group_col = "Geography"
+
+
+    } else if (compGeoEntityIDs.length > 1) {
+
+        // ----- by measure: 1 indicator, 2+ measures, 1 citywide -------------------------------------------------- //
+
+        // console.log(">1 geos");
+        
+        let compId = [... new Set(metadata.array("ComparisonID"))][0];
+        let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
+        let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))]
+
+        // console.log("compId", compId);
+        
+        plotTitle = compName;
+
+        // suppress subtitle "by" part
+
+        if (suppressSubtitleBy.includes(compId)) {
+
+            // console.log(">>> SUPPRESS by", compId);
+
+            plotSubtitle = compY_axis_title;
+
+        } else {
+
+            plotSubtitle = compY_axis_title + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+
+        }
+
+
+        // if there's only 1 indicator label, use measurement type to label the groups
+
+        compGroupLabel = compMeasurementType;
+        comp_group_col = "MeasurementType"
 
 
     } else if (compIndicatorLabel.length == 1) {
