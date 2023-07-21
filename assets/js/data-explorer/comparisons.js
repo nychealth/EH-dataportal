@@ -9,11 +9,11 @@ const renderComparisonsChart = (
 
     console.log("** renderComparisonsChart");
 
-    // console.log(">>> comp metadata");
-    // metadata.print()
+    console.log(">>> comp metadata");
+    metadata.print()
     
-    // console.log(">>> comp data:");
-    // data.print(100)
+    console.log(">>> comp data:");
+    data.print(20)
 
     // ----------------------------------------------------------------------- //
     // get unique unreliability notes (dropping empty)
