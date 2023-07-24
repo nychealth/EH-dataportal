@@ -67,6 +67,8 @@ const renderMap = (
             topoFile = 'NTA_2010.topo.json';
         } else if (mapGeoType === "NTA2020") {
             topoFile = 'NTA_2020.topo.json';
+        } else if (mapGeoType === "NYHarbor") {
+            topoFile = 'ny_harbor.topo.json';
         } else if (mapGeoType === "CD") {
             topoFile = 'CD.topo.json';
         } else if (mapGeoType === "CDTA2020") {
@@ -83,6 +85,8 @@ const renderMap = (
             topoFile = 'NYCKids_2017.topo.json';
         } else if (mapGeoType === "NYCKIDS2019") {
             topoFile = 'NYCKids_2019.topo.json';
+        } else if (mapGeoType === "NYCKIDS2021") {
+            topoFile = 'NYCKids_2021.topo.json';
         } else if (mapGeoType === "Borough") {
             topoFile = 'borough.topo.json';
         }
