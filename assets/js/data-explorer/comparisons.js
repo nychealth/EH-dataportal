@@ -92,9 +92,9 @@ const renderComparisonsChart = (
 
     } else if (compGeoEntityIDs.length > 1) {
 
-        // ----- by measure: 1 indicator, 2+ measures, 1 citywide -------------------------------------------------- //
+        // ----- by geography (+ measure): 1+ indicators, 1+ measures, 2+ geographies -------------------------------------------------- //
 
-        // console.log(">1 geos");
+        console.log(">1 geos");
         
         let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
@@ -118,11 +118,39 @@ const renderComparisonsChart = (
 
         }
 
+        // conditional labels, based on number of measures
 
-        // if there's only 1 indicator label, use measurement type to label the groups
+        if (compMeasurementType.length > 1) {
 
-        compGroupLabel = compMeasurementType;
-        comp_group_col = "MeasurementType"
+            // if there are also multiple measures, create combined column for line / group names
+
+            metadata = metadata
+                .select("IndicatorID", "MeasurementType")
+                .reify()
+            
+            console.log("@@@ data:");
+
+            data = data
+                // .join_left(metadata, "IndicatorID")
+                // .print()
+                .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
+                .print()
+                .rename({'Name': 'Geography'})
+                .print()
+                .derive({"GeographyMeasure": d => d.Geography + ", " + d.MeasurementType})
+                .print()
+
+            compGroupLabel = [... new Set(data.array("GeographyMeasure"))];
+            comp_group_col = "GeographyMeasure"
+
+        } else {
+            
+            // if there are only multiple geographies, use the geography name for line / group names
+
+            compGroupLabel = [... new Set(data.array("Geography"))];
+            comp_group_col = "Geography"
+
+        }
 
 
     } else if (compIndicatorLabel.length == 1) {
