@@ -134,9 +134,9 @@ const createComparisonData = async (comps) => {
     let comparisonsIndicatorsMetadata = indicators.filter(
         ind => comparisonsIndicatorIDs.includes(ind.IndicatorID)
     )
-    console.log("comparisonsIndicatorsMetadata:", comparisonsIndicatorsMetadata);
+    // console.log("comparisonsIndicatorsMetadata:", comparisonsIndicatorsMetadata);
 
-    console.log("aqComparisonsIndicatorsMetadata:");
+    // console.log("aqComparisonsIndicatorsMetadata:");
 
     aqComparisonsIndicatorsMetadata = aq.from(comparisonsIndicatorsMetadata)
         .select("IndicatorID", "IndicatorName", "IndicatorLabel", "Measures")
@@ -152,17 +152,17 @@ const createComparisonData = async (comps) => {
         .derive({IndicatorMeasure: d => d.IndicatorLabel + ": " + d.MeasurementType})
         .select(aq.not("Measures"))
         .filter(aq.escape(d => comparisonsMeasureIDs.includes(d.MeasureID)))
-        .print()
+        // .print()
 
 
 
     // join comparisons metadata tables
 
-    console.log("aqCombinedComparisonsMetadata:");
+    // console.log("aqCombinedComparisonsMetadata:");
 
     aqCombinedComparisonsMetadata = aqComparisonsMetadata
         .join(aqComparisonsIndicatorsMetadata, [["MeasureID", "IndicatorID"], ["MeasureID", "IndicatorID"]])
-        .print()
+        // .print()
 
     // for each indicator, get all measures
     // Promise.all takes the array of promises returned by map, and then the `then` callback executes after they've all resolved
@@ -403,6 +403,9 @@ const loadGeo = () => {
         .then(data => {
 
             geoTable = data.select(aq.not('Lat', 'Long'));
+            
+            // console.log("@@ geoTable");
+            // geoTable.print()
 
             // call the data-to-geo joining function
 
