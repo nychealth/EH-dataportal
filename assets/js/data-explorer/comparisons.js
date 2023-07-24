@@ -131,17 +131,17 @@ const renderComparisonsChart = (
             console.log("@@@ data:");
 
             data = data
-                // .join_left(metadata, "IndicatorID")
-                // .print()
                 .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
-                .print()
                 .rename({'Name': 'Geography'})
-                .print()
                 .derive({"GeographyMeasure": d => d.Geography + ", " + d.MeasurementType})
                 .print()
 
             compGroupLabel = [... new Set(data.array("GeographyMeasure"))];
             comp_group_col = "GeographyMeasure"
+
+            // reset column count based on number of lines
+
+            columns = compGroupLabel.length > 3 ? 3 : columns;
 
         } else {
             
@@ -187,6 +187,10 @@ const renderComparisonsChart = (
         compGroupLabel = compMeasurementType;
         comp_group_col = "MeasurementType"
 
+        // reset column count based on number of lines
+
+        columns = compGroupLabel.length > 3 ? 3 : columns;
+
 
     } else if (compMeasurementType.length == 1) {
 
@@ -219,6 +223,10 @@ const renderComparisonsChart = (
 
         compGroupLabel = compIndicatorLabel;
         comp_group_col = "IndicatorLabel"
+
+        // reset column count based on number of lines
+
+        columns = compGroupLabel.length > 3 ? 3 : columns;
 
 
     } else if (compMeasurementType.length > 1 && compIndicatorLabel.length > 1) {
@@ -253,6 +261,11 @@ const renderComparisonsChart = (
 
         compGroupLabel = [... new Set(metadata.array("IndicatorMeasure"))];
         comp_group_col = "IndicatorMeasure"
+
+        // reset column count based on number of lines
+
+        columns = compGroupLabel.length > 3 ? 3 : columns;
+
 
     }
 
