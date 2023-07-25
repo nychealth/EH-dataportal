@@ -333,12 +333,12 @@ function startOver() {
 }
 
 // Loads  City Council list
-d3.csv(sitepath+'/take-action/council.csv').then(function(data) {
+d3.csv(baseURL+'/take-action/council.csv').then(function(data) {
   councilTable = data;
 })
 
 // Loads Community Board list
-d3.csv(sitepath+'/take-action/communityBoardContacts.csv').then(function(data) {
+d3.csv(baseURL+'/take-action/communityBoardContacts.csv').then(function(data) {
   cbTable = data
 })
 
@@ -358,6 +358,7 @@ function getData() {
   setTimeout(() => {
 
     setLoc = map.location.name
+
     yourDistrict = map.location.data.cityCouncilDistrict
     yourCB = map.location.data.communityDistrict
     console.log('Community Board - bbc:')
@@ -389,8 +390,6 @@ function getData() {
     document.getElementById('cbPhone').innerHTML = cbInfo.Phone
     document.getElementById('cbEmail').innerHTML = cbInfo.Email
 
-
-    
     var recipient = {};
     recipient.name = districtInfo.CouncilMember
     recipient.area = 'District ' + districtInfo.District
@@ -400,7 +399,7 @@ function getData() {
     // NEXT STEP: send map.location.name to Google Api
     getFromAPI(setLoc)
 
-  }, 1500); // set a delay that ensures that we have setLoc
+  }, 5000); // set a delay that ensures that we have setLoc
 }
 
 
