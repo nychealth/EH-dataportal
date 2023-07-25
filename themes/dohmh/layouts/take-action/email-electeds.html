@@ -310,6 +310,33 @@ var publicAdvocate = {};
 var stateReps = {}
 var congressReps = {}
 
+// function to wait for global variable
+
+// window.checkNested = function(obj, args) {
+const checkNested = function(obj, args) {
+  for (var i = 0; i < args.length; i++) {
+    if (!obj || !obj.hasOwnProperty(args[i])) {
+      return false;
+    }
+    obj = obj[args[i]];
+  }
+  return true;
+}
+
+// window.waitForGlobal = function(keyPath, callback) {
+const waitForGlobal = function(keyPath, callback) {
+  var args = keyPath.split('.');
+  // if (window.checkNested(window, args)) {
+  if (checkNested(window, args)) {
+    callback();
+  } else {
+    setTimeout(function() {
+      // window.waitForGlobal(keyPath, callback);
+      waitForGlobal(keyPath, callback);
+    }, 100);
+  }
+}
+
 // Loads and draws map
 var map;
 function drawMap() {
@@ -320,12 +347,14 @@ function drawMap() {
   map = new nyc.ol.FrameworkMap({
     mapTarget: '#mapLocator',
     searchTarget: '#map-search',
+    // searchTarget: true,
     // startAt: '125 Worth Street',
     geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example'
     // Developer portal app_key and id don't work, though the nycLib example works
     //geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=cfed478bf47829a2951bc5a3bbc26422&app_id=2d2a1b38'
     });
 }
+
 drawMap()
 
 function startOver() {
@@ -347,23 +376,35 @@ document.getElementById('map-search').addEventListener("change", getData)
 
 
 // ********** INITIAL FUNCTION gets data when event listener (above) detects map change: ********** // 
-function getData() {
-  document.getElementById('startOverHolder').innerHTML = `<button class="btn btn-block btn-sm btn-outline-info" onclick="startOver()">Start over</button>
-  `
+
+async function getData() {
+
+  console.log(">> getData");
+
+  document.getElementById('startOverHolder').innerHTML = `<button class="btn btn-block btn-sm btn-outline-info" onclick="startOver()">Start over</button>`
   document.getElementById('repRow').classList.remove('hide')
   document.getElementById('officials').scrollIntoView({behavior: "smooth", block: "start"})
   console.log('The map has changed')
 
   // on a timeout, gets council data and then passes location in to the Civic Info API
-  setTimeout(() => {
+  // wait for map.location.name to exist
+
+  console.log("map.location.name [pre]", map.location.name);
+
+  waitForGlobal("map.location.name", function() {
 
     setLoc = map.location.name
+
+    console.log("map.location.name [post]", setLoc);
 
     yourDistrict = map.location.data.cityCouncilDistrict
     yourCB = map.location.data.communityDistrict
     console.log('Community Board - bbc:')
     console.log(yourCB)
 
+    // NEXT STEP: send map.location.name to Google Api
+    getFromAPI(setLoc)
+    
     // get info from councilTable
     for (let i = 0; i < councilTable.length; i ++) {
       if (Number(councilTable[i].District) === Number(yourDistrict)) {
@@ -396,10 +437,7 @@ function getData() {
     recipient.email = districtInfo.Email
     peopleToEmail.push(recipient)
 
-    // NEXT STEP: send map.location.name to Google Api
-    getFromAPI(setLoc)
-
-  }, 5000); // set a delay that ensures that we have setLoc
+  });
 }
 
 
@@ -413,6 +451,7 @@ function getFromAPI(address) {
     .then (res => res.json())
     .then(data => {
       boroPres = data
+      console.log("boroPres", boroPres);
       printInfoFromApi('bp', boroPres.officials[0])
     })
 
@@ -421,6 +460,7 @@ function getFromAPI(address) {
   .then (res => res.json())
   .then(data => {
     publicAdvocate = data
+    console.log("publicAdvocate", publicAdvocate);
     printInfoFromApi('pa', publicAdvocate.officials[1])
 
   })
@@ -430,6 +470,7 @@ function getFromAPI(address) {
   .then (res => res.json())
   .then(data => {
     stateReps = data;
+    console.log("stateReps", stateReps);
     printInfoFromApi('ss', stateReps.officials[0]);
     printInfoFromApi('sa', stateReps.officials[1]);
   })
@@ -439,6 +480,7 @@ function getFromAPI(address) {
   .then (res => res.json())
   .then(data => {
     congressReps = data;
+    console.log("congressReps", congressReps);
     printInfoFromApi('sen1',congressReps.officials[0])
     printInfoFromApi('sen2',congressReps.officials[1])
     printInfoFromApi('rep',congressReps.officials[2])
@@ -455,6 +497,10 @@ function getFromAPI(address) {
 
 // print info from API calls into table
 function printInfoFromApi(prefix, info) {
+
+  console.log("prefix", prefix);
+  console.log("info", info);
+
   document.getElementById(prefix+"Name").innerHTML = info.name
   document.getElementById(prefix+"Website").innerHTML = `<a href="${info.urls[0]}">Website</a>`
   document.getElementById(prefix+"Phone").innerHTML = info.phones[0]
