@@ -1,7 +1,7 @@
 ---
 title: "Mobile food vending map"
 date: 2023-07-08T11:14:56-04:00
-draft: false
+draft: true
 seo_title: "Mobile Food Vending Map"
 seo_description: "Search for the inspection letter grade of your favorite restaurant."
 tags: 

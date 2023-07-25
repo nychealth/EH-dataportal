@@ -1,0 +1,97 @@
+{{- define "main" -}}
+
+<article class="container-fluid" id="skip-header-target">
+    
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-4">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href="..">
+                        {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
+                        <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-11 mx-auto mb-4">
+                    <h2>{{ .Title }}</h2>
+                    <p>{{ .Content }}</p>
+
+                    <div class="row">
+                        <div class="col-5 ml-auto border" style="height: 450px;">
+                            <input type="range" min="2011" max="2021" value="2011" class="slider" id="input">
+                            Map with slider over time</div>
+                        <div class="col-5 mr-auto">
+                            Year: <span id="yearOutput">2011</span><br>
+                            Citywide average: <span id="citywide">XX %</span>
+                        </div>
+                    </div>
+
+        </div>
+        
+    </div>
+
+    <script>
+        var slider = document.getElementById('input')
+        slider.addEventListener("input",function() {
+            document.getElementById('yearOutput').innerHTML = slider.value
+        })
+    </script>
+
+    <style>
+        
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 5px;
+            background: #ffffff;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+          }
+          
+          .slider:hover {
+            opacity: 1;
+          }
+          
+          .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #04AA6D;
+            cursor: pointer;
+          }
+          
+          .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: #04AA6D;
+            cursor: pointer;
+          }
+        </style>
+
+
+    <div class="row my-4">
+        <div class="col-11 mx-auto">
+            <div class="row">
+                <div class="col-6">
+                    <a href="https://a816-health.nyc.gov/ABCEatsRestaurants/#!/Search" class="button btn btn-lg btn-block btn-outline-primary mb-4" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link mr-1"></i>ABCEats: Restaurants</a>
+                </div>
+                <div class="col-6">
+                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/mobilefoodvending/" class="button btn btn-lg btn-block btn-outline-primary mb-4" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link mr-1"></i>Mobile Food Vending Map</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</article>
+
+{{- end -}}
