@@ -118,9 +118,9 @@ const createComparisonData = async (comps) => {
     let comparisonsIndicatorsMetadata = indicators.filter(
         ind => comparisonsIndicatorIDs.includes(ind.IndicatorID)
     )
-    console.log("comparisonsIndicatorsMetadata:", comparisonsIndicatorsMetadata);
+    // console.log("comparisonsIndicatorsMetadata:", comparisonsIndicatorsMetadata);
 
-    console.log("aqComparisonsIndicatorsMetadata:");
+    // console.log("aqComparisonsIndicatorsMetadata:");
 
     aqComparisonsIndicatorsMetadata = aq.from(comparisonsIndicatorsMetadata)
         .select("IndicatorID", "IndicatorName", "IndicatorLabel", "Measures")
@@ -136,17 +136,17 @@ const createComparisonData = async (comps) => {
         .derive({IndicatorMeasure: d => d.IndicatorLabel + ": " + d.MeasurementType})
         .select(aq.not("Measures"))
         .filter(aq.escape(d => comparisonsMeasureIDs.includes(d.MeasureID)))
-        .print()
+        // .print()
 
 
 
     // join comparisons metadata tables
 
-    console.log("aqCombinedComparisonsMetadata:");
+    // console.log("aqCombinedComparisonsMetadata:");
 
     aqCombinedComparisonsMetadata = aqComparisonsMetadata
         .join(aqComparisonsIndicatorsMetadata, [["MeasureID", "IndicatorID"], ["MeasureID", "IndicatorID"]])
-        .print()
+        // .print()
 
     // for each indicator, get all measures
     // Promise.all takes the array of promises returned by map, and then the `then` callback executes after they've all resolved
@@ -316,6 +316,32 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
 }
 
+// ----------------------------------------------------------------------- //
+// function to draw 311 buttons
+// ----------------------------------------------------------------------- //
+
+var filteredCrosswalk = [];
+function draw311Buttons(x) {
+    document.getElementById('311').innerHTML = ''
+    filteredCrosswalk = crosswalk.filter(indicator => indicator.IndicatorID == x )
+
+    // Creates label if there are 311 links
+    if (filteredCrosswalk.length > 0) {
+        document.getElementById('311label').innerHTML = 'Contact 311 for help with:'
+        document.getElementById('311').classList.remove('hide')
+    } else {
+        document.getElementById('311label').innerHTML = ''
+        document.getElementById('311').classList.add('hide')
+    };
+
+    // draws 311 buttons
+    for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
+        var title = filteredCrosswalk[i].topic
+        var destination = filteredCrosswalk[i].kaLink
+        var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="btn btn-sm btn-outline-primary mr-1 mb-1" target="_blank" rel=”noopener noreferrer”><i class="fas fa-external-link-alt mr-1"></i>${title}</a>`
+        document.getElementById('311').innerHTML += btn
+    }
+}
 
 // ----------------------------------------------------------------------- //
 // function to Load indicator data and create Arquero data frame
@@ -360,6 +386,9 @@ const loadGeo = () => {
         .then(data => {
 
             geoTable = data.select(aq.not('Lat', 'Long'));
+            
+            // console.log("@@ geoTable");
+            // geoTable.print()
 
             // call the data-to-geo joining function
 

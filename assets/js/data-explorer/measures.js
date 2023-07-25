@@ -563,8 +563,8 @@ const updateTrendComparisonsData = (e) => {
         .filter(aq.escape(d => d.ComparisonID == comparisonId))
         .join(aqComparisonsIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
 
-    // console.log("aqFilteredComparisonsMetadata:");
-    // aqFilteredComparisonsMetadata.print()
+    console.log("aqFilteredComparisonsMetadata:");
+    aqFilteredComparisonsMetadata.print()
     
     // use filtered metadata to filter data
 
@@ -2051,7 +2051,8 @@ const renderMeasures = async () => {
     })
 
     trendMeasuresLinks.forEach(link => {
-        link.addEventListener('click', updateTrendData);
+        // link.addEventListener('click', updateTrendData);
+        link.addEventListener('click', updateTrendComparisonsData);
     })
 
     trendComparisonsLinks.forEach(link => {

@@ -69,6 +69,8 @@ const renderMap = (
             topoFile = 'NTA_2010.topo.json';
         } else if (mapGeoType === "NTA2020") {
             topoFile = 'NTA_2020.topo.json';
+        } else if (mapGeoType === "NYHarbor") {
+            topoFile = 'ny_harbor.topo.json';
         } else if (mapGeoType === "CD") {
             topoFile = 'CD.topo.json';
         } else if (mapGeoType === "CDTA2020") {

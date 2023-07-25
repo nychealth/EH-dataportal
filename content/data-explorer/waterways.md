@@ -20,8 +20,6 @@ Goal: Improve the quality of our waterways to increase opportunities for recreat
 
 New York State sets water quality standards, and NYC DEP monitors New York Harbor water quality on an annual basis through the Harbor Survey. The survey uses 36 stations located throughout the open waters of the harbor and 19 stations located in smaller tributaries within the city. These stations take water samples every month and test for a number of contaminants. Average dissolved oxygen concentration and fecal coliform levels are two of the most commonly-accepted indicators of harbor health.
 
-For information on current beach water quality, please visit DOHMH's [beach water quality map](https://a816-dohbesp.nyc.gov/IndicatorPublic/Beaches/).
-
 ### Dissolved Oxygen
 
 Sufficient concentrations of dissolved oxygen in the water column are critical for the respiration of most aquatic life forms, including fish and invertebrates such as crabs, clams, and zooplankton. Dissolved oxygen concentration is, therefore, one of the most universal indicators of overall water quality and the condition of habitats and ecosystems.   

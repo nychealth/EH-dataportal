@@ -9,11 +9,11 @@ const renderComparisonsChart = (
 
     console.log("** renderComparisonsChart");
 
-    // console.log(">>> comp metadata");
-    // metadata.print()
+    console.log(">>> comp metadata");
+    metadata.print()
     
-    // console.log(">>> comp data:");
-    // data.print(100)
+    console.log(">>> comp data:");
+    data.print(20)
 
     // ----------------------------------------------------------------------- //
     // get unique unreliability notes (dropping empty)
@@ -53,10 +53,13 @@ const renderComparisonsChart = (
     // extract measure metadata for chart text
     // ----------------------------------------------------------------------- //
     
-    let compName =            [... new Set(metadata.array("ComparisonName"))];
-    let compIndicatorLabel =  [... new Set(metadata.array("IndicatorLabel"))];
+    let compName            = [... new Set(metadata.array("ComparisonName"))];
+    let compIndicatorLabel  = [... new Set(metadata.array("IndicatorLabel"))];
     let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
-    let compDisplayTypes =    [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
+    let compDisplayTypes    = [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
+    let compGeoEntityIDs    = [... new Set(metadata.array("GeoEntityID"))];
+
+    console.log(">>>> compGeoEntityIDs", compGeoEntityIDs);
 
 
     // ----------------------------------------------------------------------- //
@@ -85,6 +88,69 @@ const renderComparisonsChart = (
         plotTitle = indicatorName;
         plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? " by Borough" : "");
         comp_group_col = "Geography"
+
+
+    } else if (compGeoEntityIDs.length > 1) {
+
+        // ----- by geography (+ measure): 1+ indicators, 1+ measures, 2+ geographies -------------------------------------------------- //
+
+        console.log(">1 geos");
+        
+        let compId = [... new Set(metadata.array("ComparisonID"))][0];
+        let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
+        let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))]
+
+        // console.log("compId", compId);
+        
+        plotTitle = compName;
+
+        // suppress subtitle "by" part
+
+        if (suppressSubtitleBy.includes(compId)) {
+
+            // console.log(">>> SUPPRESS by", compId);
+
+            plotSubtitle = compY_axis_title;
+
+        } else {
+
+            plotSubtitle = compY_axis_title + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + " by " + compLegendTitle;
+
+        }
+
+        // conditional labels, based on number of measures
+
+        if (compMeasurementType.length > 1) {
+
+            // if there are also multiple measures, create combined column for line / group names
+
+            metadata = metadata
+                .select("IndicatorID", "MeasurementType")
+                .reify()
+            
+            console.log("@@@ data:");
+
+            data = data
+                .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
+                .rename({'Name': 'Geography'})
+                .derive({"GeographyMeasure": d => d.Geography + ", " + d.MeasurementType})
+                .print()
+
+            compGroupLabel = [... new Set(data.array("GeographyMeasure"))];
+            comp_group_col = "GeographyMeasure"
+
+            // reset column count based on number of lines
+
+            columns = compGroupLabel.length > 3 ? 3 : columns;
+
+        } else {
+            
+            // if there are only multiple geographies, use the geography name for line / group names
+
+            compGroupLabel = [... new Set(data.array("Geography"))];
+            comp_group_col = "Geography"
+
+        }
 
 
     } else if (compIndicatorLabel.length == 1) {
@@ -121,6 +187,10 @@ const renderComparisonsChart = (
         compGroupLabel = compMeasurementType;
         comp_group_col = "MeasurementType"
 
+        // reset column count based on number of lines
+
+        columns = compGroupLabel.length > 3 ? 3 : columns;
+
 
     } else if (compMeasurementType.length == 1) {
 
@@ -153,6 +223,10 @@ const renderComparisonsChart = (
 
         compGroupLabel = compIndicatorLabel;
         comp_group_col = "IndicatorLabel"
+
+        // reset column count based on number of lines
+
+        columns = compGroupLabel.length > 3 ? 3 : columns;
 
 
     } else if (compMeasurementType.length > 1 && compIndicatorLabel.length > 1) {
@@ -187,6 +261,11 @@ const renderComparisonsChart = (
 
         compGroupLabel = [... new Set(metadata.array("IndicatorMeasure"))];
         comp_group_col = "IndicatorMeasure"
+
+        // reset column count based on number of lines
+
+        columns = compGroupLabel.length > 3 ? 3 : columns;
+
 
     }
 
