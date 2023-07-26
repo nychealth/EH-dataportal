@@ -238,6 +238,8 @@ const setDefaultLinksMeasure = async (visArray) => {
 
 const updateMapData = (e) => {
 
+    console.log("* updateMapData");
+
     // ----- handle selection -------------------------------------------------- //
 
     let measureId;
@@ -878,8 +880,9 @@ const renderMeasures = async () => {
     const mapGeoTypes = [...new Set(mapData.map(item => prettifyGeoType(item.GeoType)))];
     const dropdownMapGeoTypes = geoTypes.filter(g => mapGeoTypes.includes(g))
 
-    // console.log("geoTypes:", geoTypes);
-    // console.log("dropdownMapGeoTypes:", dropdownMapGeoTypes);
+    console.log("geoTypes:", geoTypes);
+    console.log("mapGeoTypes:", mapGeoTypes);
+    console.log("dropdownMapGeoTypes:", dropdownMapGeoTypes);
 
     dropdownMapGeoTypes.forEach(geo => {
 
@@ -1190,11 +1193,11 @@ const renderMeasures = async () => {
                     obj => obj.MeasureID === defaultMapMeasureId
                 );
 
-            // console.log("filteredMapData [showMap]", filteredMapData);
+            console.log("filteredMapData [showMap]", filteredMapData);
 
             // ----- allow map to persist when changing tabs -------------------------------------------------- //
 
-            // if (!selectedMapMeasure) {
+            if (!selectedMapMeasure) {
 
                 // console.log(">> no selectedMapMeasure");
 
@@ -1241,10 +1244,10 @@ const renderMeasures = async () => {
 
                 // console.log("filteredMapData [no selectedMapMeasure]", filteredMapData);
 
-            // }
+            }
 
 
-            // if (!selectedMapTime) {
+            if (!selectedMapTime) {
 
                 // console.log(">> no selectedMapTime");
 
@@ -1260,9 +1263,9 @@ const renderMeasures = async () => {
 
                 // console.log("filteredMapData [no selectedMapTime]", filteredMapData);
 
-            // }
+            }
 
-            // if (!selectedMapGeo) {
+            if (!selectedMapGeo) {
 
                 // console.log(">> no selectedMapGeo [showMap]");
 
@@ -1282,7 +1285,7 @@ const renderMeasures = async () => {
                 // console.log("maxGeo", maxGeo);
                 // console.log("maxGeoPretty", maxGeoPretty);
 
-            // }
+            }
 
             // ----- render the map -------------------------------------------------- //
 

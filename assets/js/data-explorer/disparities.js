@@ -9,7 +9,10 @@
 // this function is called when the "Show Disparities" button is clicked. it
 //  in turn calls "loaddisparityData".
 
-const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
+const renderDisparities = async (
+    primaryMetadata, 
+    disparityMeasureId
+) => {
 
     console.log("** renderDisparities");
 
