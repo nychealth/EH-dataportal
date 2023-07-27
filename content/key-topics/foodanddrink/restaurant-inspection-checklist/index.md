@@ -21,4 +21,4 @@ Violations found during inspections carry point values, and a restaurant’s sco
 
 **See below for the conditions that health inspectors look for, and the point deductions they carry.**
 
-<div style="min-height:1305px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/ASvZx/embed.js?v=2" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/ASvZx/full.png" alt="" /></noscript></div>
+<div style="min-height:1305px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/ASvZx/embed.js?v=4" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/ASvZx/full.png" alt="" /></noscript></div>
