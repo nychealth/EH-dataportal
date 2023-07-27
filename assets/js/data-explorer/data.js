@@ -10,6 +10,8 @@
 // full indicator metadata
 // ----------------------------------------------------------------------- //
 
+var globalID
+
 fetch(data_repo + data_branch + '/indicators/indicators.json')
     .then(response => response.json())
     .then(async data => {
@@ -28,6 +30,10 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
         
         if (paramId) {
             loadIndicator(paramId)
+            // console.log('param id is set')
+            globalID = paramId
+
+            // fetch311(paramId)
         } else {
             // console.log('no param', url.searchParams.get('id'));
             loadIndicator()
@@ -36,6 +42,15 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
     })
     .catch(error => console.log(error));
 
+// ======================================================================= //
+//  fetch and load 311 Crosswalk into global object
+// ======================================================================= //
+
+var crosswalk
+d3.csv(baseURL + '/311/311-crosswalk.csv').then(data => {
+    crosswalk = data;
+    draw311Buttons(globalID);
+});
 
 // ======================================================================= //
 //  fetch and load comparison chart data into global object
@@ -65,6 +80,7 @@ const fetch_comparisons = async () => {
     createComparisonData(comparisons);
 
 }
+
 
 // ----------------------------------------------------------------------- //
 // function to create data and metadata for comparisons chart
@@ -295,6 +311,32 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
 }
 
+// ----------------------------------------------------------------------- //
+// function to draw 311 buttons
+// ----------------------------------------------------------------------- //
+
+var filteredCrosswalk = [];
+function draw311Buttons(x) {
+    document.getElementById('311').innerHTML = ''
+    filteredCrosswalk = crosswalk.filter(indicator => indicator.IndicatorID == x )
+
+    // Creates label if there are 311 links
+    if (filteredCrosswalk.length > 0) {
+        document.getElementById('311label').innerHTML = 'Contact 311 for help with:'
+        document.getElementById('311').classList.remove('hide')
+    } else {
+        document.getElementById('311label').innerHTML = ''
+        document.getElementById('311').classList.add('hide')
+    };
+
+    // draws 311 buttons
+    for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
+        var title = filteredCrosswalk[i].topic
+        var destination = filteredCrosswalk[i].kaLink
+        var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="btn btn-sm btn-outline-primary mr-1 mb-1" target="_blank" rel=”noopener noreferrer”><i class="fas fa-external-link-alt mr-1"></i>${title}</a>`
+        document.getElementById('311').innerHTML += btn
+    }
+}
 
 // ----------------------------------------------------------------------- //
 // function to Load indicator data and create Arquero data frame
@@ -323,6 +365,9 @@ const loadData = (this_indicatorId) => {
             .groupby("Time", "GeoType", "GeoID")
             .orderby(aq.desc('Time'), 'GeoRank')
     })
+
+    draw311Buttons(this_indicatorId)
+
 }
 
 // ----------------------------------------------------------------------- //
