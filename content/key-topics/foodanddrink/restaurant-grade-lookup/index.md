@@ -8,6 +8,7 @@ tags:
 categories: [foodanddrink]
 keywords: ["food","food safety","restaurant","health inspections","health inspector","food poisoning","health and safety","inspections"]
 layout: restaurant-grades
+vega: true
 ---
 
 The Health Department inspects the approximately 27,000 restaurants in New York City to monitor their compliance with food safety regulations. Inspectors observe how food is prepared, served and stored and whether restaurant workers are practicing good hygiene. They check food temperatures, equipment maintenance and pest control measures.
