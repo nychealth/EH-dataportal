@@ -2049,8 +2049,7 @@ const renderMeasures = async () => {
     })
 
     trendMeasuresLinks.forEach(link => {
-        // link.addEventListener('click', updateTrendData);
-        link.addEventListener('click', updateTrendComparisonsData);
+        link.addEventListener('click', updateTrendData);
     })
 
     trendComparisonsLinks.forEach(link => {

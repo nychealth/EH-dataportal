@@ -110,7 +110,7 @@ const createComparisonData = async (comps) => {
             IndicatorID: d => d.Indicators.IndicatorID,
             MeasureID:   d => d.Indicators.MeasureID,
             GeoTypeName: d => d.Indicators.GeoTypeName,
-            GeoEntityID: d => d.Indicators.GeoEntityID
+            GeoID:       d => d.Indicators.GeoID
         })
         .select(aq.not("Indicators"))
         .print()
@@ -186,18 +186,8 @@ const createComparisonData = async (comps) => {
                         // .print()
                         .semijoin(
                             aqCombinedComparisonsMetadata, 
-                            (a, b) => (op.equal(a.MeasureID, b.MeasureID) && op.equal(a.GeoType, b.GeoTypeName) && op.equal(a.GeoID, b.GeoEntityID))
-                            // [
-                            //     ["MeasureID", "MeasureID"],
-                            //     // ["GeoType", "GeoTypeName"],
-                            //     ["GeoID", "GeoEntityID"]
-                            // ]
+                            (a, b) => (op.equal(a.MeasureID, b.MeasureID) && op.equal(a.GeoType, b.GeoTypeName) && op.equal(a.GeoID, b.GeoID))
                         )
-                        // .print()
-                        // .filter(
-                        //     aq.escape(d => measures.includes(d.MeasureID))
-                        //     // d => op.match(d.GeoType, /Citywide/) // keep only Citywide
-                        // )
                         .reify()
                         .print()
                     
