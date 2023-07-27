@@ -57,9 +57,9 @@ const renderComparisonsChart = (
     let compIndicatorLabel  = [... new Set(metadata.array("IndicatorLabel"))];
     let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
     let compDisplayTypes    = [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
-    let compGeoEntityIDs    = [... new Set(metadata.array("GeoEntityID"))];
+    let compGeoIDs          = metadata.objects()[0].GeoID ? [... new Set(metadata.array("GeoID"))] : null;
 
-    console.log(">>>> compGeoEntityIDs", compGeoEntityIDs);
+    console.log(">>>> compGeoIDs", compGeoIDs);
 
 
     // ----------------------------------------------------------------------- //
@@ -90,7 +90,7 @@ const renderComparisonsChart = (
         comp_group_col = "Geography"
 
 
-    } else if (compGeoEntityIDs.length > 1) {
+    } else if (compGeoIDs.length > 1) {
 
         // ----- by geography (+ measure): 1+ indicators, 1+ measures, 2+ geographies -------------------------------------------------- //
 
