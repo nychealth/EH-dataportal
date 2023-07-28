@@ -22,22 +22,53 @@
                     <h2>{{ .Title }}</h2>
                     <p>{{ .Content }}</p>
 
-                    <div class="row">
-                        <div class="col-5 ml-auto border">
-                            <input type="range" min="2011" max="2021" value="2011" class="slider" id="input">
+                    <div class="row mt-4">
+                      <div class="col-6">
+                        <div class="row">
+                          <div class="col-12">
+                            <h2 class="home-label border-bottom">Click the slider to change years</h2>
+                          </div>
+                        </div>
+
+                        <div class="row no-gutters">
+                          <div class="col-1 ml-auto">
+                            <i class="fas fa-arrow-circle-left float-right h3 mr-1 pt-1"></i>
+                          </div>
+                          <div class="col-8">
+                            <input type="range" min="2011" max="2020" value="2011" class="slider pt-1" id="input">
+                          </div>
+                          <div class="col-1 mr-auto">
+                            <i class="fas fa-arrow-circle-right h3 ml-1 pt-1"></i>
+                          </div>
+                        </div>
+
+                        <div class="row mt-4">
+                          <div class="col-12 fs-lg">
+
+                            <h2 class="home-label border-bottom">Summary data</h2>
+
+                            In <span id="yearOutput" class="font-weight-bold">2011</span>, <span id="citywide" class="font-weight-bold">XX %</span> of restaurants in NYC received A grades. The median value was <span id="median" class="font-weight-bold">YY%</span>. The neighborhood with the lowest was <span id="lowest" class="font-weight-bold">Neighborhood (ZZ%)</span>, and the neighborhood with the highest was <span id="lowest" class="font-weight-bold">Neighborhood (QQ%)</span>.
+
+                            <h2 class="home-label border-bottom mt-4">What does it mean?</h2>
+                            Over time, more restaurants have achieved A grades. This means that the grading system has helped restaurants become cleaner, safer, healthier places to eat. That's good news for all New Yorkers. 
+
+                            <h2 class="home-label border-bottom mt-4">Get inspection results for your favorite restaurant</h2>
+
+                            <a href="https://a816-health.nyc.gov/ABCEatsRestaurants/#!/Search" class="button btn btn-lg btn-block btn-outline-primary mb-4" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link mr-1"></i>ABCEats: Restaurants</a>
+                            
+                          </div>
+                        </div>
+                      </div>
+
+                        <div class="col-6" style="height: 900px;">
                     
+                        <h2 class="home-label border-bottom">Percent of restaurants with A grades (YEAR)</h2>
+
                         <div id="map"></div>
 
                         </div>
 
-                        <div class="col-5 mr-auto">
-                            Year: <span id="yearOutput">2011</span><br>
-                            Citywide average: <span id="citywide">XX %</span>
 
-                            <div class="border" style="height: 300px; width: 100%;">
-                                Bar chart that also increases
-                            </div>
-                        </div>
                     </div>
 
         </div>
@@ -45,74 +76,109 @@
     </div>
 
     <script>
+        
+        // Event listener gets year value from slider
+        var year = '2011' // set as default
+
         var slider = document.getElementById('input')
         slider.addEventListener("input",function() {
             document.getElementById('yearOutput').innerHTML = slider.value
+            year = slider.value
+            spec.transform[0].filter = `datum.Time == ${year}` // update spec with chosen year
+            vegaEmbed("#map", spec) // re-run map
         })
 
-        // Ingest full file using d3.csv
-        var fullData;
-
-        // read value from event listener; filter object to selected year
-
-        // deliver citywide value to page, too
-
-        // send data object to spec.
-
-        // calculate extent based on min and max values in object. 
-
         var spec = {
-            "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-            "width": "container",
-            "height": "container",
-            "autosize": {"type": "fit", "contains": "padding"},
-            "config": {"view": {"stroke": "transparent"}},
-            "layer": [
-              {
-                "data": {
-                  "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/UHF42.topo.json",
-                  "format": {"type": "topojson", "feature": "collection"}
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "width": "container",
+          "data": {
+            "url": "https://gist.githubusercontent.com/mmontesanonyc/388af4b42df220855c275cf3797ceb60/raw/5bf9fd4da826003ba571fc3588c887b2300cacf5/restaurant-data.csv",
+            "format": {
+              "type": "csv",
+              "parse": {
+                "Value": "number"
+              }
+            }
+          },
+          "transform": [
+            {"filter": `datum.Time == ${year}`}
+          ],
+          "params": [
+            {"name": "highlight", "select": {"type": "point", "on": "mouseover"}}
+          ],
+          "projection": {"type": "mercator"},
+          "vconcat": [
+            {
+              "height": 450,
+              "width": "container",
+              "mark": {"type": "geoshape", "stroke": "#000000"},
+              "encoding": {
+                "shape": {"field": "geo", "type": "geojson"},
+                "color": {
+                  "bin": false,
+                  "field": "Percent",
+                  "type": "quantitative",
+                  "scale": {
+                    "domain": [60, 100],  // Hardcoded domain values for 0%, 60%, and 100%
+                    "range": ["#bed8ec", "#105c94"]  // Corresponding colors for 60% and 100%
+                  },
+                  "legend": {
+                    "orient": "top",
+                    "title": ""
+                  }
                 },
-                "mark": {"type": "geoshape", "stroke": "#ffffff", "fill": "lightgray"}
+                "strokeWidth": {
+                  "condition": [{"param": "highlight", "empty": false, "value": 2}],
+                  "value": 0.5
+                },
+                "tooltip": [
+                  {"field": "Geography", "type": "nominal", "title": "Neighborhood"},
+                  {"field": "Percent", "type": "quantitative", "title": "Percent of restaurants with A grades"},
+                  {"field": "Time", "type": "quantitative", "title": "Year"}
+                ]
               },
-              {
-                "data": {
-                  "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/UHF42.topo.json",
-                  "format": {"type": "topojson", "feature": "collection"}
-                },
-                "transform": [
-                  {
-                    "lookup": "properties.GEOCODE",
-                    "from": {
-                      "data": {"url": "https://gist.githubusercontent.com/mmontesanonyc/388af4b42df220855c275cf3797ceb60/raw/5bf9fd4da826003ba571fc3588c887b2300cacf5/restaurant-data.csv"},
-                      "key": "GeoID",
-                      "fields": ["GeoID", "Geography", "Percent","Note","Time"]
+              "transform": [
+                {
+                  "lookup": "GeoID",
+                  "from": {
+                    "data": {
+                      "url": "https://raw.githubusercontent.com/nycehs/NYC_geography/master/UHF42.topo.json",
+                      "format": {"type": "topojson", "feature": "collection"}
                     },
-                    "default": "no data"
+                    "key": "properties.GEOCODE"
                   },
-                  { "filter": "datum.Time == 2011"}
+                  "as": "geo"
+                }
+              ]
+            },
+                {
+              "height": 150,
+              "width": "container",
+              "mark": {"type": "bar", "tooltip": true, "stroke": "#000000"},
+              "encoding": {
+                "y": {"field": "Percent", "type": "quantitative", "title": null,"scale": {"domain": [0, 100]}},
+                "tooltip": [
+                  {"field": "Geography", "type": "nominal", "title": "Neighborhood"},
+                  {"field": "Percent", "type": "quantitative", "title": "Percent of restaurants with A grades"},
+                  {"field": "Time", "type": "quantitative", "title": "Year"}
                 ],
-                "mark": {"type": "geoshape", "stroke": "#ffffff"},
-                "encoding": {
-                  "color": {
-                    "bin": false,
-                    "field": "Percent",
-                    "type": "quantitative",
-                    "legend": null,
-                    "scale": {"scheme": {"name": "blues", "extent": [0.25, 0.75]}}
-                  },
-                  "strokeWidth": {"condition": [], "value": 0.5},
-                  "tooltip": [
-                    {"field": "Geography", "type": "nominal", "title": "Neighborhood"},
-                    {"field": "Percent", "type": "quantitative", "title": "Percent of restaurants with A grades"},
-                    {"field": "Time", "type": "quantitative", "title": "Year"}
-                  ]
+                "x": {"field": "GeoID", "sort": "y", "axis": null},
+                "color": {
+                  "bin": false,
+                  "field": "Percent",
+                  "type": "quantitative"
+                },
+                "strokeWidth": {
+                  "condition": [{"param": "highlight", "empty": false, "value": 2}],
+                  "value": 0.5
                 }
               }
-            ]
-          }
+            }
+          ]
+        }
 
-          vegaEmbed("#map",spec)
+          vegaEmbed("#map", spec)
+
     </script>
 
     <style>
@@ -153,20 +219,6 @@
             cursor: pointer;
           }
         </style>
-
-
-    <div class="row my-4">
-        <div class="col-11 mx-auto">
-            <div class="row">
-                <div class="col-6">
-                    <a href="https://a816-health.nyc.gov/ABCEatsRestaurants/#!/Search" class="button btn btn-lg btn-block btn-outline-primary mb-4" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link mr-1"></i>ABCEats: Restaurants</a>
-                </div>
-                <div class="col-6">
-                </div>
-            </div>
-        </div>
-    </div>
-    
     
 </article>
 
