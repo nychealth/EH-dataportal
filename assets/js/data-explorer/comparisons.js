@@ -300,8 +300,29 @@ const renderComparisonsChart = (
                                 "size": 40, 
                                 "strokeWidth": 2.5
                             }
-                        }
-                        
+                        },
+                        "params": [
+                            {
+                                "name": "comp_group",
+                                "select": {
+                                    "type": "line",
+                                    "fields": [comp_group_col],
+                                    "nearest": true,
+                                    "on": "click"
+                                },
+                                "bind": "legend"
+                            },
+                        ],
+                        "encoding": {
+                            "opacity": {
+                                "condition": {
+                                    "param": "comp_group",
+                                    "value": 0.3,
+                                    "empty": false
+                                },
+                                "value": 0
+                            },
+                        },
                     },
                     {
                         "transform": [
@@ -357,7 +378,7 @@ const renderComparisonsChart = (
                             "on": "mouseover",
                             "clear": "mouseout"
                         }
-                    }
+                    },
                 ]
             }
         ]
