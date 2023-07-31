@@ -20,11 +20,13 @@
     <div class="row">
         <div class="col-md-11 mx-auto mb-4">
                     <h2>{{ .Title }}</h2>
-                    <p>{{ .Content }}</p>
+                    <img src="ds-foodletter.jpg" style="width:20%" class="float-right">
+                    <p class="">{{ .Content }}</p>
 
 
 
-                    <div class="row mt-4">
+
+                    <div class="row mt-4" style="clear:both">
                       <div class="col-6">
 
                         <div class="row mb-4">
@@ -88,8 +90,10 @@
                               </div>
                             </div>                            
                           
-                            <h2 class="home-label border-bottom mt-4">What does it mean?</h2>
-                            Over time, more restaurants have achieved A grades. This means that the grading system has helped restaurants become cleaner, safer, healthier places to eat. That's good news for all New Yorkers. 
+                            <h2 class="home-label mt-4">Full dataset</h2>
+
+                            <a href="../../../data-explorer/restaurant-food-safety/" class="button btn btn-lg btn-block btn-outline-primary mb-4"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Restaurants with A grades</a>
+
 
                             <h2 class="home-label mt-4">Get inspection results for your favorite restaurant</h2>
 
@@ -98,6 +102,8 @@
                             <h2 class="home-label mt-4">See what health inspectors look for</h2>
 
                             <a href="../restaurant-inspection-checklist/" class="button btn btn-lg btn-block btn-outline-primary mb-4">Restaurant inspection checklist</a>
+
+
                             
                           </div>
                         </div>
@@ -130,9 +136,11 @@
 
           if (year < 2011) {
             year = 2011
+          } else if (year == 2011) {
             document.getElementById('downButton').disabled = true
           } else if (year > 2020) {
             year = 2020
+          } else if (year == 2020) {
             document.getElementById('upButton').disabled = true
           } else {
             document.getElementById('downButton').disabled = false
@@ -238,8 +246,8 @@
                   "field": "Percent",
                   "type": "quantitative",
                   "scale": {
-                    "domain": [60, 100],  // Hardcoded domain values for 0%, 60%, and 100%
-                    "range": ["#d8e7f3", "#230798"]  // Corresponding colors for 60% and 100%
+                    "domain": [61.9, 98],  // Hardcoded domain values 
+                    "range": ["#d8e7f3", "#230798"]  // Corresponding colors 
                   },
                   "legend": {
                     "orient": "top",
@@ -251,7 +259,7 @@
                   "value": 0.5
                 },
                 "tooltip": [
-                  {"field": "Geography", "type": "nominal", "title": "Neighborhood"},
+                  {"field": "Geography", "type": "nominal", "title": "Neighborhood (UHF42)"},
                   {"field": "Percent", "type": "quantitative", "title": "Percent of restaurants with A grades"},
                   {"field": "Time", "type": "quantitative", "title": "Year"}
                 ]
@@ -277,7 +285,7 @@
               "encoding": {
                 "y": {"field": "Percent", "type": "quantitative", "title": null,"scale": {"domain": [0, 100]}},
                 "tooltip": [
-                  {"field": "Geography", "type": "nominal", "title": "Neighborhood"},
+                  {"field": "Geography", "type": "nominal", "title": "Neighborhood (UHF42)"},
                   {"field": "Percent", "type": "quantitative", "title": "Percent of restaurants with A grades"},
                   {"field": "Time", "type": "quantitative", "title": "Year"}
                 ],
@@ -348,6 +356,10 @@
             height: 25px;
             background: #04AA6D;
             cursor: pointer;
+          }
+
+          #vg-tooltip-element {
+            width: 300px;
           }
         </style>
     
