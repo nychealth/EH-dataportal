@@ -274,6 +274,13 @@
                     </div>
                 </div>
             </div>
+
+            <!-- hiding 311 links until publication-->
+            <div class="hide">
+            <!-- 311 Links -->
+            <span id="311label" class="home-label"></span>
+            <div id="311" style="border-left: 8px solid #00923E50;" class="p-1"></div>
+            </div>
     
             <!-- Keywords partial -->
             <div class="d-none d-lg-block p-2 borderbox mt-2 mb-2">
@@ -786,7 +793,7 @@
             today = mm + '/' + dd + '/' + yyyy;
 
             // Create citation
-            let citation = "New York City Department of Health, Environment & Health Data Portal. "  + `{{ .Title }}` + " data. " + indicatorName + '. Accessed at ' + `{{ .Permalink}}` + ' on ' + today + "."
+            let citation = "New York City Department of Health, Environment & Health Data Portal. "  + "{{ .Title }}" + " data. " + indicatorName + '. Accessed at ' + "{{ .Permalink }}" + ' on ' + today + "."
 
             // Add to form
             document.getElementById('citeText').setAttribute('value', citation);
