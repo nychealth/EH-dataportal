@@ -22,8 +22,29 @@
                     <h2>{{ .Title }}</h2>
                     <p>{{ .Content }}</p>
 
+
+
                     <div class="row mt-4">
                       <div class="col-6">
+
+                        <div class="row mb-4">
+                          <div class="col-12">
+                            <h2 class="home-label border-bottom">Select a year</h2><br>
+                          </div>
+    
+                          <div class="col-4">
+                            <button type="button" class="btn btn-outline-secondary btn-block float-right" onclick="changeYear(-1)" id="downButton" disabled><i class="fas fa-arrow-circle-left h3 mx-2 pt-1"></i></button>
+                          </div>
+                          <div class="col">
+                            <h3 id="year" class="text-center pt-1 font-weight-bold" style="font-size:2.5rem">2011</h3>
+                          </div>
+                          <div class="col-4">
+                            <button type="button" class="btn btn-outline-secondary btn-block" onclick="changeYear(1)" id="upButton"><i class="fas fa-arrow-circle-right h3 mx-2 pt-1"></i></button>
+                          </div>
+                        </div>
+
+
+                        <!--
                         <div class="row">
                           <div class="col-12">
                             <h2 class="home-label border-bottom">Click the slider to change years</h2>
@@ -41,20 +62,42 @@
                             <i class="fas fa-arrow-circle-right h3 ml-1 pt-1"></i>
                           </div>
                         </div>
+                         -->
 
                         <div class="row mt-4">
                           <div class="col-12 fs-lg">
 
                             <h2 class="home-label border-bottom">Summary data</h2>
 
-                            In <span id="yearOutput" class="font-weight-bold">2011</span>, <span id="citywide" class="font-weight-bold">XX %</span> of restaurants in NYC received A grades. The median value was <span id="median" class="font-weight-bold">YY%</span>. The neighborhood with the lowest was <span id="lowest" class="font-weight-bold">Neighborhood (ZZ%)</span>, and the neighborhood with the highest was <span id="lowest" class="font-weight-bold">Neighborhood (QQ%)</span>.
+                          Overall, <span id="citywide" class="font-weight-bold">XX %</span> of restaurants in NYC received A grades in <span id="year3" class="font-weight-bold">2011</span>.
 
+                            <div class="row my-2">
+                              <div class="col-4">
+                                <span class="home-label border-bottom">Lowest:</span><br>
+                                <span id="lowest">XX%</span>
+                              </div>
+
+                              <div class="col-4">
+                                <span class="home-label border-bottom">Median:</span><br>
+                                <span id="median">YY%</span>
+                              </div>
+
+                              <div class="col-4">
+                                <span class="home-label border-bottom">Highest:</span><br>
+                                <span id="highest">ZZ%</span>
+                              </div>
+                            </div>                            
+                          
                             <h2 class="home-label border-bottom mt-4">What does it mean?</h2>
                             Over time, more restaurants have achieved A grades. This means that the grading system has helped restaurants become cleaner, safer, healthier places to eat. That's good news for all New Yorkers. 
 
-                            <h2 class="home-label border-bottom mt-4">Get inspection results for your favorite restaurant</h2>
+                            <h2 class="home-label mt-4">Get inspection results for your favorite restaurant</h2>
 
                             <a href="https://a816-health.nyc.gov/ABCEatsRestaurants/#!/Search" class="button btn btn-lg btn-block btn-outline-primary mb-4" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link mr-1"></i>ABCEats: Restaurants</a>
+
+                            <h2 class="home-label mt-4">See what health inspectors look for</h2>
+
+                            <a href="../restaurant-inspection-checklist/" class="button btn btn-lg btn-block btn-outline-primary mb-4">Restaurant inspection checklist</a>
                             
                           </div>
                         </div>
@@ -62,7 +105,7 @@
 
                         <div class="col-6" style="height: 900px;">
                     
-                        <h2 class="home-label border-bottom">Percent of restaurants with A grades (YEAR)</h2>
+                        <h2 class="home-label border-bottom">Percent of restaurants with A grades (<span id="year2">2011</span>)</h2>
 
                         <div id="map"></div>
 
@@ -77,22 +120,97 @@
 
     <script>
         
-        // Event listener gets year value from slider
-        var year = '2011' // set as default
+        // set year default
+        var year = '2011' 
 
-        var slider = document.getElementById('input')
-        slider.addEventListener("input",function() {
-            document.getElementById('yearOutput').innerHTML = slider.value
-            year = slider.value
-            spec.transform[0].filter = `datum.Time == ${year}` // update spec with chosen year
-            vegaEmbed("#map", spec) // re-run map
+        // changeYear runs on button click
+        function changeYear(x) {
+          year = Number(year);
+          year = year + x
+
+          if (year < 2011) {
+            year = 2011
+            document.getElementById('downButton').disabled = true
+          } else if (year > 2020) {
+            year = 2020
+            document.getElementById('upButton').disabled = true
+          } else {
+            document.getElementById('downButton').disabled = false
+            document.getElementById('upButton').disabled = false
+          }
+          console.log('year is:' + year)
+          document.getElementById('year').innerHTML = year
+          document.getElementById('year2').innerHTML = year
+          document.getElementById('year3').innerHTML = year
+          year = year.toString()
+          spec.transform[0].filter = `datum.Time == ${year}` // update spec with chosen year
+          vegaEmbed("#map", spec) // re-run map
+          updateValues(year)
+        }
+
+        // ingest data for filtering and page printing
+        var fullData = [];
+        var partData = [];
+        var uhfData = [];
+        var cityValue = [];
+        d3.csv('resto-data-full.csv').then(data => {
+          fullData = data;
+          console.log(fullData)
+          updateValues(year)
         })
 
+        // updateValues runs on button click, and updates page-printed values
+        function updateValues(x) {
+          console.log('to filter for:' + x)
+          partData = fullData.filter(row => row.Time == year)
+          console.log(partData)
+
+          // get Citywide Value
+          cityValue = partData.filter(row => row.GeoTypeDesc == 'Citywide')
+          document.getElementById('citywide').innerHTML = cityValue[0].Percent + '%'
+
+          // get lowest value
+          const lowValue = partData.reduce(
+            (acc, loc) =>
+              acc.Percent < loc.Percent
+              ? acc
+              : loc
+          )
+          document.getElementById('lowest').innerHTML = lowValue.Percent + "%"
+
+          // get highest value
+          const highValue = partData.reduce(
+            (acc, loc) => 
+              acc.Percent > loc.Percent
+              ? acc
+              : loc
+          )
+          document.getElementById('highest').innerHTML = highValue.Percent + "%"
+
+          // get median
+          uhfData = partData.filter(row => row.GeoTypeDesc == 'UHF 42')
+          console.log('uhf data:')
+          console.log(uhfData)
+          var valuesArray = [];
+          for (let i = 0; i < uhfData.length; i++) {
+            valuesArray.push(uhfData[i].Percent);
+          }
+
+          valuesArray.sort(function(a,b) {
+            return a - b;
+          })
+          console.log(valuesArray)
+          valuesArray.splice(0,20) // remove first 21 values
+          document.getElementById('median').innerHTML = valuesArray[0] + '%'
+        }
+
+
+        // initial chart spec, updated and re-printed on year change
         var spec = {
           "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
           "width": "container",
           "data": {
-            "url": "https://gist.githubusercontent.com/mmontesanonyc/388af4b42df220855c275cf3797ceb60/raw/5bf9fd4da826003ba571fc3588c887b2300cacf5/restaurant-data.csv",
+            "url": "resto-data-full.csv",
             "format": {
               "type": "csv",
               "parse": {
@@ -101,7 +219,8 @@
             }
           },
           "transform": [
-            {"filter": `datum.Time == ${year}`}
+            {"filter": `datum.Time == ${year}`},
+            {"filter": "datum.GeoTypeDesc === 'UHF 42'"}
           ],
           "params": [
             {"name": "highlight", "select": {"type": "point", "on": "mouseover"}}
@@ -120,7 +239,7 @@
                   "type": "quantitative",
                   "scale": {
                     "domain": [60, 100],  // Hardcoded domain values for 0%, 60%, and 100%
-                    "range": ["#bed8ec", "#105c94"]  // Corresponding colors for 60% and 100%
+                    "range": ["#d8e7f3", "#230798"]  // Corresponding colors for 60% and 100%
                   },
                   "legend": {
                     "orient": "top",
@@ -177,7 +296,19 @@
           ]
         }
 
-          vegaEmbed("#map", spec)
+        // initial embedding of the map
+        vegaEmbed("#map", spec)
+
+        /*
+        // Event listener for the slider
+        var slider = document.getElementById('input')
+        slider.addEventListener("input",function() {
+            document.getElementById('yearOutput').innerHTML = slider.value
+            year = slider.value
+            spec.transform[0].filter = `datum.Time == ${year}` // update spec with chosen year
+            vegaEmbed("#map", spec) // re-run map
+        })
+        */
 
     </script>
 
