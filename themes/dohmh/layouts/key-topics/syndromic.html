@@ -56,7 +56,7 @@
           <h3>Daily data: <span id="yearHeader">2023</span></h3>
 
           <div class="float-right ml-auto">
-            <button class="btn btn-sm btn-secondary mr-1 yearButtons" id="2023button" onclick="changeYear(2023)">2023</button>
+            <button class="btn btn-sm btn-outline-secondary btn-secondary mr-1 yearButtons" id="2023button" onclick="changeYear(2023)">2023</button>
             <button class="btn btn-sm btn-outline-secondary mr-1 yearButtons" id="2022button" onclick="changeYear(2022)">2022</button>
             <button class="btn btn-sm btn-outline-secondary yearButtons" id="2021button" onclick="changeYear(2021)">2021</button>
 
@@ -176,9 +176,12 @@
       "legend": {
         "orient": "right",
         "title": null,
-        "labelFontSize": 18
+        "labelFontSize": 16
       },
-      "background": "#FFFFFF"
+      "background": "#FFFFFF",
+      "range": {
+        "category": ['#ffffd4','#fee391','#fec44f','#fe9929','#d95f0e','#993404']
+    },
     },
     "view": {"stroke": "transparent"},
     "data": {
@@ -187,10 +190,14 @@
     "transform": [
       {"calculate": "year(datum.END_DATE)",
       "as": "Year"
+      },
+      {
+        "filter": "datum.HEAT_ED_VISIT_COUNT > 0"
       }
     ],
     "mark": {
-      "type": "circle",
+      "type": "point",
+      "shape": "circle",
       "filled": true,
       "opacity": 0.2
       },
@@ -234,23 +241,31 @@
           "empty": true,
           "value": 1
         },
-        "value": 0.1
+        "value": 0.01
       },
       "stroke": {
         "condition": {
           "param": "hover",
           "empty": false,
-          "value": "#7C7C7C"
+          "value": "#3e3e3e"
         },
-        "value": null
+        "value": "#7C7C7C"
+      },
+      "strokeWidth": {
+        "condition": {
+          "param": "hover",
+          "empty": false,
+          "value": 3
+        },
+        "value": 1
       },
       "size": {
         "condition": {
           "param": "hover",
           "empty": false,
-          "value": 200
+          "value": 250
         },
-        "value": 100
+        "value": 150
       },
       "tooltip": [
         {"field": "END_DATE", "type": "temporal","title": "Date"},
@@ -269,18 +284,27 @@
       document.getElementById('2023button').classList.add('btn-secondary')
       document.getElementById('2022button').classList.remove('btn-secondary')
       document.getElementById('2021button').classList.remove('btn-secondary')
+      document.getElementById('2023button').classList.remove('btn-outline-secondary')
+      document.getElementById('2022button').classList.add('btn-outline-secondary')
+      document.getElementById('2021button').classList.add('btn-outline-secondary')
     } else if (x == 2022) {
       spec.data.url = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat2022_live.csv'
       vegaEmbed('#vis1', spec);
       document.getElementById('2023button').classList.remove('btn-secondary')
       document.getElementById('2022button').classList.add('btn-secondary')
       document.getElementById('2021button').classList.remove('btn-secondary')
+      document.getElementById('2023button').classList.add('btn-outline-secondary')
+      document.getElementById('2022button').classList.remove('btn-outline-secondary')
+      document.getElementById('2021button').classList.add('btn-outline-secondary')
     } else if (x == 2021) {
       spec.data.url = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat2021_live.csv'
       vegaEmbed('#vis1', spec);
       document.getElementById('2023button').classList.remove('btn-secondary')
       document.getElementById('2022button').classList.remove('btn-secondary')
       document.getElementById('2021button').classList.add('btn-secondary')
+      document.getElementById('2023button').classList.add('btn-outline-secondary')
+      document.getElementById('2022button').classList.add('btn-outline-secondary')
+      document.getElementById('2021button').classList.remove('btn-outline-secondary')
     } else {};
     document.getElementById('yearHeader').innerHTML = x
   }
