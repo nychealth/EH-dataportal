@@ -87,8 +87,8 @@
 
   var spec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "description": "Tick chart",
-    "title": "Maximum daily temperature",
+    "description": "Line chart of maximum daily temperature, and heat-related ED visits",
+    "title": "",
     "width": "container",
     "config": {
       "bar": {"continuousBandSize": 1},
@@ -120,40 +120,62 @@
     "vconcat": [
       {
         "width": "container",
-        "height": 150,
-        "mark": {"type": "line", "tooltip": true,"interpolate": "monotone","point":true},
+        "height": 250,
+        "mark": {
+          "type": "line", 
+          "tooltip": true,"interpolate": "monotone","point":true},
         "selection": {"brush": {"type": "interval", "encodings": ["x"]}},
         "encoding": {
           "y": {
             "field": "MAX_DAILY_TEMP",
             "type": "quantitative",
-            "title": "Degrees (F)",
-            "scale": {"domain": [50, 120]}
+            "title": "Max daily temp",
+            "scale": {"domain": [50, 110]},
+            "axis": {
+              "tickCount": 4,
+              "labelExpr": "datum.value + '°F'"
+            }
           },
           "x": {"field": "END_DATE", "type": "temporal", "title": ""},
           "color": {"value": "orange"},
           "tooltip": [
             {"field": "END_DATE", "title": "Date", "type": "temporal"},
-            {"field": "MAX_DAILY_TEMP", "title": "Max daily temp (F)"}
+            {"field": "MAX_DAILY_TEMP", "title": "Max daily temp (F)"},
+            {"field": "HEAT_ED_VISIT_COUNT", "title": "Heat-related ED visits"}
           ]
         }
       },
       {
         "height": 250,
         "width": "container",
-        "mark": {"type": "line", "tooltip": true, "strokeWidth":3,"interpolate": "monotone","point": true},
+        "mark": {
+          "type": "line", 
+          "tooltip": true, 
+          "strokeWidth":3,
+          "interpolate": "monotone",
+          "point": true},
         "encoding": {
-          "y": {"field": "HEAT_ED_VISIT_COUNT", "type": "quantitative", "title": "Heat ED visits"},
+          "y": {
+            "field": "HEAT_ED_VISIT_COUNT",
+            "type": "quantitative", 
+            "title": "Heat ED visits",
+            "axis": {
+              "tickCount": 4
+            }
+          },
           "x": {
             "field": "END_DATE",
             "type": "temporal",
             "title": "",
-            "scale": {"domain": {"selection": "brush"}}
+            "scale": {
+              "domain": {"selection": "brush"}
+            }
           },
           "color": {"value": "darkred"},
           "tooltip": [
             {"field": "END_DATE", "title": "Date", "type": "temporal"},
-            {"field": "HEAT_ED_VISIT_COUNT", "title": "Heat-related ED visits"}
+            {"field": "HEAT_ED_VISIT_COUNT", "title": "Heat-related ED visits"},
+            {"field": "MAX_DAILY_TEMP", "title": "Max daily temp (F)"}
           ]
         }
       }
