@@ -244,8 +244,11 @@
         "field": "MAX_DAILY_TEMP",
         "type": "quantitative",
         "scale": {"zero": false},
-        "title": "Maximum daily temperature (degrees F)",
-        "axis": {"grid": false}
+        "title": "Maximum daily temperature",
+        "axis": {
+          "grid": false,
+          "labelExpr": "datum.value + '°F'"
+        }
       },
       "y": {
         "field": "HEAT_ED_VISIT_COUNT",
