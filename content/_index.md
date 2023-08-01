@@ -3,10 +3,10 @@ title: "The Environment and Health Data Portal: Home page"
 draft: false
 seo_title: "Explore data on how environments shape health in New York City's neighborhoods."
 seo_description: "A project by the NYC Health Department."
-featured_title: "Heat Vulnerability Index"
-featured_text: "Look up your neighborhood's heat vulnerability, and factors that affect risk of death during hot weather."
-featured_link: "/key-topics/climatehealth/hvi"
-featured_image: hvi.png
+featured_title: "Rat Mitigation Zones"
+featured_text: "Get data on neighborhoods with enhanced rat prevention efforts."
+featured_link: "/key-topics/pests/rat-mitigation-zones"
+featured_image: rmz-2.png
 recently_updated:
 - Name: Heat vulnerability index
   Link: /data-explorer/weather-related-illness/?id=2191#display=summary
