@@ -11,6 +11,7 @@ var upper = 1309492800000 // 2011.5; one year: 31536000000; 1/2 year: 1576800000
 function changeYear(x) {
     year = Number(year);
     year = year + x
+    document.getElementById('2020note').innerHTML = ''
 
     // run interactions
     if (year < 2011) {
