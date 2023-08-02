@@ -2,7 +2,7 @@
 title: "Restaurant grades"
 date: 2023-07-08T11:14:56-04:00
 draft: false
-seo_title: "NYC restaurant grades"
+seo_title: "Restaurant grades"
 seo_description: "See where restaurant grades have been improving."
 tags: 
 categories: [foodanddrink]
