@@ -251,7 +251,8 @@
                   },
                   "legend": {
                     "orient": "top",
-                    "title": ""
+                    "title": "",
+                    "labelExpr": "datum.value + '%'"
                   }
                 },
                 "strokeWidth": {
@@ -283,7 +284,17 @@
               "width": "container",
               "mark": {"type": "bar", "tooltip": true, "stroke": "#000000"},
               "encoding": {
-                "y": {"field": "Percent", "type": "quantitative", "title": null,"scale": {"domain": [0, 100]}},
+                "y": {
+                  "field": "Percent", 
+                  "type": "quantitative", 
+                  "title": null,
+                  "axis": {
+                    "grid": true,
+                    "tickCount": 3,
+                    "labelExpr": "datum.value + '%'"
+                  },
+                  "scale": {"domain": [0, 100]}
+                },
                 "tooltip": [
                   {"field": "Geography", "type": "nominal", "title": "Neighborhood (UHF42)"},
                   {"field": "Percent", "type": "quantitative", "title": "Percent of restaurants with A grades"},
