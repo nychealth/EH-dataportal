@@ -8,6 +8,7 @@ categories: [climatehealth]
 keywords: ["interactive","heat","weather","hot weather","extreme heat","heat mortality","heat-related illness","emergency room","emergency department","ED visit"]
 layout: syndromic
 vega: true
+js: heatsyndrome.js 
 ---
 
 Extreme heat is dangerous. It can cause illness, make chronic conditions worse, and even kill. Heat-related illnesses happen when the body cannot cool down enough. These include:

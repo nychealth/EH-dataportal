@@ -35,11 +35,11 @@
             !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
             </script>
 
-            <div class="mt-2" style="background-color: #dcdcdc; padding: 7px 7px; border-radius: 5px;">
+            <div class="mt-2 basic-callout p-2">
                 <p>In NYC, an <strong>extreme heat event</strong> is two or more days with a heat index reaching 95 °F, or one or more days reaching 100 °F.</div>
                  <!--
                  <div class="mt-2" style="background-color: #dcdcdc; padding: 7px 7px; border-radius: 5px;">Get a <strong>weather forecast</strong> from the National Weather Service for your area at <a href="https://www.weather.gov/">weather.gov</a>.</div>-->
-                 <div class="mt-2" style="background-color: #dcdcdc; padding: 7px 7px; border-radius: 5px;">
+              <div class="mt-2 basic-callout p-2">
                   To learn more about heat and health, visit <a href="https://www1.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page">Extreme Heat and Health</a>. To stay safe in the heat, visit <a href="https://www1.nyc.gov/assets/em/html/beat-the-heat/beattheheat.html">Beat the Heat</a>.</p>
              </div>
         </div>
@@ -83,261 +83,10 @@
       </div>
     </div>
 
-<script>
 
-  var spec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "description": "Line chart of maximum daily temperature, and heat-related ED visits",
-    "title": "",
-    "width": "container",
-    "config": {
-      "bar": {"continuousBandSize": 1},
-      "background": "#FFFFFF",
-      "axisX": {
-        "domain": true,
-        "labels": true,
-        "grid": false,
-        "labelFontSize": 8,
-        "tickColor": "#000000",
-        "tickSize": 2,
-        "titleFontSize": 12
-      },
-      "axisY": {
-        "domain": false,
-        "labelFlush": true,
-        "labels": true,
-        "grid": true,
-        "ticks": false,
-        "titleAngle": 0,
-        "titleX": 20,
-        "titleY": -10
-      },
-      "view": {"stroke": "transparent"}
-    },
-    "data": {
-      "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat2023_live.csv"
-    },
-    "vconcat": [
-      {
-        "width": "container",
-        "height": 250,
-        "mark": {
-          "type": "line", 
-          "tooltip": true,"interpolate": "monotone","point":true},
-        "selection": {"brush": {"type": "interval", "encodings": ["x"]}},
-        "encoding": {
-          "y": {
-            "field": "MAX_DAILY_TEMP",
-            "type": "quantitative",
-            "title": "Max daily temp",
-            "scale": {"domain": [50, 110]},
-            "axis": {
-              "tickCount": 4,
-              "labelExpr": "datum.value + '°F'"
-            }
-          },
-          "x": {"field": "END_DATE", "type": "temporal", "title": ""},
-          "color": {"value": "orange"},
-          "tooltip": [
-            {"field": "END_DATE", "title": "Date", "type": "temporal"},
-            {"field": "MAX_DAILY_TEMP", "title": "Max daily temp (F)"},
-            {"field": "HEAT_ED_VISIT_COUNT", "title": "Heat-related ED visits"}
-          ]
-        }
-      },
-      {
-        "height": 250,
-        "width": "container",
-        "mark": {
-          "type": "line", 
-          "tooltip": true, 
-          "strokeWidth":3,
-          "interpolate": "monotone",
-          "point": true},
-        "encoding": {
-          "y": {
-            "field": "HEAT_ED_VISIT_COUNT",
-            "type": "quantitative", 
-            "title": "Heat ED visits",
-            "axis": {
-              "tickCount": 4
-            }
-          },
-          "x": {
-            "field": "END_DATE",
-            "type": "temporal",
-            "title": "",
-            "scale": {
-              "domain": {"selection": "brush"}
-            }
-          },
-          "color": {"value": "darkred"},
-          "tooltip": [
-            {"field": "END_DATE", "title": "Date", "type": "temporal"},
-            {"field": "HEAT_ED_VISIT_COUNT", "title": "Heat-related ED visits"},
-            {"field": "MAX_DAILY_TEMP", "title": "Max daily temp (F)"}
-          ]
-        }
-      }
-    ]
-  }
-
-  vegaEmbed('#vis1',spec)
-
-  var scatterplot = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": {
-      "text": "Heat-related ED visits",
-      "fontSize": 12,
-      "align": "left",
-      "anchor": "start"
-    },
-    "width": "container",
-    "height": 500,
-    "config": {
-      "legend": {
-        "orient": "right",
-        "title": null,
-        "labelFontSize": 16
-      },
-      "background": "#FFFFFF",
-      "range": {
-        "category": ['#ffffd4','#fee391','#fec44f','#fe9929','#d95f0e','#993404']
-    },
-    },
-    "view": {"stroke": "transparent"},
-    "data": {
-      "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/previous_years.csv"
-    },
-    "transform": [
-      {"calculate": "year(datum.END_DATE)",
-      "as": "Year"
-      },
-      {
-        "filter": "datum.HEAT_ED_VISIT_COUNT > 0"
-      }
-    ],
-    "mark": {
-      "type": "point",
-      "shape": "circle",
-      "filled": true,
-      "opacity": 0.2
-      },
-    "params": [
-      {
-        "name": "year",
-        "select": {
-          "type": "point",
-          "fields": ["Year"],
-          "on": "click"
-        },
-        "bind": "legend"
-      },
-      {
-        "name": "hover",
-        "value": "#7C7C7C",
-        "select": { "type": "point", "on": "mouseover"}
-      }
-    ],
-    "encoding": {
-      "x": {
-        "field": "MAX_DAILY_TEMP",
-        "type": "quantitative",
-        "scale": {"zero": false},
-        "title": "Maximum daily temperature",
-        "axis": {
-          "grid": false,
-          "labelExpr": "datum.value + '°F'"
-        }
-      },
-      "y": {
-        "field": "HEAT_ED_VISIT_COUNT",
-        "type": "quantitative",
-        "scale": {"zero": false},
-        "title": "",
-        "axis": {
-          "tickCount": 5
-        }
-      },
-      "color": {"field": "Year", "type": "nominal"},
-      "opacity": {
-        "condition": {
-          "param": "year",
-          "empty": true,
-          "value": 1
-        },
-        "value": 0.01
-      },
-      "stroke": {
-        "condition": {
-          "param": "hover",
-          "empty": false,
-          "value": "#3e3e3e"
-        },
-        "value": "#7C7C7C"
-      },
-      "strokeWidth": {
-        "condition": {
-          "param": "hover",
-          "empty": false,
-          "value": 3
-        },
-        "value": 1
-      },
-      "size": {
-        "condition": {
-          "param": "hover",
-          "empty": false,
-          "value": 250
-        },
-        "value": 150
-      },
-      "tooltip": [
-        {"field": "END_DATE", "type": "temporal","title": "Date"},
-        {"field": "MAX_DAILY_TEMP", "type": "quantitative","title": "Maximum daily temperature"},
-        {"field": "HEAT_ED_VISIT_COUNT", "type": "quantitative","title": "Number of heat-related ED visits"}    
-      ]  
-      }
-  }
-
-  vegaEmbed('#vis2', scatterplot)
-
-  function changeYear(x) {
-    if (x == 2023) {
-      spec.data.url = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat2023_live.csv'
-      vegaEmbed('#vis1', spec);
-      document.getElementById('2023button').classList.add('btn-secondary')
-      document.getElementById('2022button').classList.remove('btn-secondary')
-      document.getElementById('2021button').classList.remove('btn-secondary')
-      document.getElementById('2023button').classList.remove('btn-outline-secondary')
-      document.getElementById('2022button').classList.add('btn-outline-secondary')
-      document.getElementById('2021button').classList.add('btn-outline-secondary')
-    } else if (x == 2022) {
-      spec.data.url = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat2022_live.csv'
-      vegaEmbed('#vis1', spec);
-      document.getElementById('2023button').classList.remove('btn-secondary')
-      document.getElementById('2022button').classList.add('btn-secondary')
-      document.getElementById('2021button').classList.remove('btn-secondary')
-      document.getElementById('2023button').classList.add('btn-outline-secondary')
-      document.getElementById('2022button').classList.remove('btn-outline-secondary')
-      document.getElementById('2021button').classList.add('btn-outline-secondary')
-    } else if (x == 2021) {
-      spec.data.url = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat2021_live.csv'
-      vegaEmbed('#vis1', spec);
-      document.getElementById('2023button').classList.remove('btn-secondary')
-      document.getElementById('2022button').classList.remove('btn-secondary')
-      document.getElementById('2021button').classList.add('btn-secondary')
-      document.getElementById('2023button').classList.add('btn-outline-secondary')
-      document.getElementById('2022button').classList.add('btn-outline-secondary')
-      document.getElementById('2021button').classList.remove('btn-outline-secondary')
-    } else {};
-    document.getElementById('yearHeader').innerHTML = x
-  }
-
-</script>
-      <!-- Syndromic modal -->
+  <!-- Syndromic modal -->
   <div class="modal fade" id="syndromicmodal" tabindex="-1" role="dialog" aria-labelledby="syndromicmodaltitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="privacymodallongtitle">Syndromic surveillance</h5>
@@ -363,7 +112,7 @@
 
       <!-- Heat syndrome modal -->
       <div class="modal fade" id="heatmodal" tabindex="-1" role="dialog" aria-labelledby="heatmodaltitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="heatmodallongtitle">Heat syndrome</h5>
@@ -387,7 +136,7 @@
 
     <!-- What modal -->
     <div class="modal fade" id="whatmodal" tabindex="-1" role="dialog" aria-labelledby="whatmodaltitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="whatmodallongtitle">What do we use these data for?</h5>
@@ -407,5 +156,8 @@
       </div>
 
 </article>
+
+<!--bring in JS -->
+<script type="text/javascript" src="heatsyndrome.js"></script>
 
 {{- end -}}
