@@ -27,8 +27,9 @@
 
 
                     <div class="row mt-4" style="clear:both">
+                      
+                      <!-- Control and output column --> 
                       <div class="col-6">
-
                         <div class="row mb-4">
                           <div class="col-12">
                             <h2 class="home-label border-bottom">Select a year</h2><br>
@@ -45,78 +46,41 @@
                           </div>
                         </div>
 
-
-                        <!--
-                        <div class="row">
-                          <div class="col-12">
-                            <h2 class="home-label border-bottom">Click the slider to change years</h2>
-                          </div>
-                        </div>
-
-                        <div class="row no-gutters">
-                          <div class="col-1 ml-auto">
-                            <i class="fas fa-arrow-circle-left float-right h3 mr-1 pt-1"></i>
-                          </div>
-                          <div class="col-8">
-                            <input type="range" min="2011" max="2020" value="2011" class="slider pt-1" id="input">
-                          </div>
-                          <div class="col-1 mr-auto">
-                            <i class="fas fa-arrow-circle-right h3 ml-1 pt-1"></i>
-                          </div>
-                        </div>
-                         -->
-
                         <div class="row mt-4">
                           <div class="col-12 fs-lg">
 
-                            <h2 class="home-label border-bottom">Summary data</h2>
-
-                          Overall, <span id="citywide" class="font-weight-bold">XX %</span> of restaurants in NYC received A grades in <span id="year3" class="font-weight-bold">2011</span>.
-
                             <div class="row my-2">
-                              <div class="col-4">
-                                <span class="home-label border-bottom">Lowest:</span><br>
-                                <span id="lowest">XX%</span>
+                              <div id="lineVis" style="width:100%;height:200px;" class="px-1">
+
                               </div>
 
-                              <div class="col-4">
-                                <span class="home-label border-bottom">Median:</span><br>
-                                <span id="median">YY%</span>
-                              </div>
+                            </div>
 
-                              <div class="col-4">
-                                <span class="home-label border-bottom">Highest:</span><br>
-                                <span id="highest">ZZ%</span>
-                              </div>
-                            </div>                            
-                          
-                            <h2 class="home-label mt-4">Full dataset</h2>
+                          <p>Overall, <span id="citywide" class="font-weight-bold">XX %</span> of restaurants in NYC received A grades in <span id="year3" class="font-weight-bold">2011</span>. The lowest neighborhood had <span id="lowest" class="font-weight-bold">XX%</span> get A grades, and the highest had <span id="highest" class="font-weight-bold">ZZ%</span> get A grades.</p>
 
-                            <a href="../../../data-explorer/restaurant-food-safety/" class="button btn btn-lg btn-block btn-outline-primary mb-4"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Restaurants with A grades</a>
+                          <p class="fs-md"><em><span id="2020note"></span></em></p>
 
+                          <hr class="my-2">
 
-                            <h2 class="home-label mt-4">Get inspection results for your favorite restaurant</h2>
+                          <a href="../../../data-explorer/restaurant-food-safety/" class="button btn btn-md btn-block btn-outline-primary"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a>
 
-                            <a href="https://a816-health.nyc.gov/ABCEatsRestaurants/#!/Search" class="button btn btn-lg btn-block btn-outline-primary mb-4" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link mr-1"></i>ABCEats: Restaurants</a>
+                          <a href="https://a816-health.nyc.gov/ABCEatsRestaurants/#!/Search" class="button btn btn-md btn-block btn-outline-primary" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link mr-1"></i>Restaurant inspection results</a>
 
-                            <h2 class="home-label mt-4">See what health inspectors look for</h2>
-
-                            <a href="../restaurant-inspection-checklist/" class="button btn btn-lg btn-block btn-outline-primary mb-4">Restaurant inspection checklist</a>
-
-
+                          <a href="../restaurant-inspection-checklist/" class="button btn btn-md btn-block btn-outline-primary mb-4">Restaurant inspection checklist</a>
+                        
                             
                           </div>
                         </div>
                       </div>
 
-                        <div class="col-6" style="height: 900px;">
+                        <!-- map and bar column -->
+                        <div class="col-6" style="max-height: 850px;">
                     
                         <h2 class="home-label border-bottom">Percent of restaurants with A grades (<span id="year2">2011</span>)</h2>
 
                         <div id="map"></div>
 
                         </div>
-
 
                     </div>
 
@@ -129,11 +93,17 @@
         // set year default
         var year = '2011' 
 
+        // set gray overlay defaults:
+        var lower = 1277956800000 // 2010.5
+        var mid = 1293840000000 // value for 2011
+        var upper = 1309492800000 // 2011.5; one year: 31536000000; 1/2 year: 15768000000
+
         // changeYear runs on button click
         function changeYear(x) {
           year = Number(year);
           year = year + x
 
+          // run interactions
           if (year < 2011) {
             year = 2011
           } else if (year == 2011) {
@@ -142,6 +112,7 @@
             year = 2020
           } else if (year == 2020) {
             document.getElementById('upButton').disabled = true
+            document.getElementById('2020note').innerHTML = 'Data for 2020 are through 3/31/2020 only.'
           } else {
             document.getElementById('downButton').disabled = false
             document.getElementById('upButton').disabled = false
@@ -154,6 +125,17 @@
           spec.transform[0].filter = `datum.Time == ${year}` // update spec with chosen year
           vegaEmbed("#map", spec) // re-run map
           updateValues(year)
+
+          // get date for overlay
+          var date = year + '/01/01'
+          date = Math.floor(new Date(date).getTime())
+          console.log(date)
+          lower = date - 15768000000
+          upper = date + 15768000000
+          line.layer[1].encoding.x.datum = lower;
+          line.layer[1].encoding.x2.datum = upper;
+          vegaEmbed('#lineVis', line)
+
         }
 
         // ingest data for filtering and page printing
@@ -163,15 +145,15 @@
         var cityValue = [];
         d3.csv('resto-data-full.csv').then(data => {
           fullData = data;
-          console.log(fullData)
+          // console.log(fullData)
           updateValues(year)
         })
 
         // updateValues runs on button click, and updates page-printed values
         function updateValues(x) {
-          console.log('to filter for:' + x)
+          // console.log('to filter for:' + x)
           partData = fullData.filter(row => row.Time == year)
-          console.log(partData)
+          // console.log(partData)
 
           // get Citywide Value
           cityValue = partData.filter(row => row.GeoTypeDesc == 'Citywide')
@@ -197,8 +179,8 @@
 
           // get median
           uhfData = partData.filter(row => row.GeoTypeDesc == 'UHF 42')
-          console.log('uhf data:')
-          console.log(uhfData)
+          // console.log('uhf data:')
+          // console.log(uhfData)
           var valuesArray = [];
           for (let i = 0; i < uhfData.length; i++) {
             valuesArray.push(uhfData[i].Percent);
@@ -207,9 +189,9 @@
           valuesArray.sort(function(a,b) {
             return a - b;
           })
-          console.log(valuesArray)
+          // console.log(valuesArray)
           valuesArray.splice(0,20) // remove first 21 values
-          document.getElementById('median').innerHTML = valuesArray[0] + '%'
+          // document.getElementById('median').innerHTML = valuesArray[0] + '%'
         }
 
 
@@ -328,6 +310,99 @@
             vegaEmbed("#map", spec) // re-run map
         })
         */
+
+        // Line vis
+        var line = {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "height": 150,
+          "width": "container",
+          "title": {
+            "text": "Percent of restaurants with A grades",
+            "fontSize": 12,
+            "align": "left",
+            "anchor": "start"
+          },
+          "config": {
+          "bar": {"continuousBandSize": 1},
+          "background": "#FFFFFF",
+          "axisX": {
+            "domain": true,
+            "labels": true,
+            "grid": false,
+            "labelFontSize": 8,
+            "tickColor": "#000000",
+            "tickSize": 2,
+            "titleFontSize": 12
+          },
+          "axisY": {
+            "domain": false,
+            "labelFlush": true,
+            "labels": true,
+            "grid": true,
+            "ticks": false,
+            "titleAngle": 0,
+            "titleX": 20,
+            "titleY": -10
+          },
+          "view": {"stroke": "transparent"}
+        },
+          "data": {
+            "url": "resto-data-full.csv",
+            "format": {
+              "type": "csv", 
+              "parse": {
+                "Value": "number"}
+              }
+          },
+          "transform": [
+            {"filter": "datum.GeoTypeDesc === 'Citywide'"}
+          ],
+          "layer": [
+            {
+                "mark": {
+            "type": "line", 
+            "tooltip": true,
+            "strokeWidth": 3,
+            "interpolate": "monotone",
+            "point": {"filled": false, "fill": "white"}
+            },
+          "encoding": {
+            "y": {
+              "field": "Percent",
+              "type": "quantitative",
+              "title": "",
+              "axis": {
+                "grid": true,
+                "tickCount": 3,
+                "labelExpr": "datum.value + '%'"
+              },
+              "scale": {"domain": [60, 100]}
+            },
+            "x": {
+              "field": "Time", 
+              "type": "temporal",
+              "title": "",
+              "scale": {"domain": [1262322000000, 1609477200000]}
+
+              },
+              "tooltip": [
+                {"field": "Percent", "type": "quantitative", "title": "Percent of restaurants with A grades"}
+              ]
+          }
+            },
+            {
+                "mark": "rect",
+                "encoding": {
+                  "x": {"datum": `${lower}`, "type": "temporal"},
+                  "x2": {"datum": `${upper}`, "type": "temporal"},
+                  "opacity": {"value": 0.02},
+                  "color": {"value": "gray"}
+                }
+              }
+          ]
+        }
+
+        vegaEmbed('#lineVis', line)
 
     </script>
 
