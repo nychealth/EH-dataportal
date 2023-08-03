@@ -1,0 +1,144 @@
+{{- define "main" -}}
+
+<article class="container-fluid" id="skip-header-target">
+
+  <div class="row">
+      <div class="col-md-11 mx-auto mt-4">
+          <nav aria-label="breadcrumb" class="mb-4">
+              <ul class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
+                  <li class="breadcrumb-item"><a href="/key-topics/climatehealth/">Climate and Health</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+              </ul>
+          </nav>
+      </div>
+      <div class="col-md-2 mr-auto"></div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-md-11 col-sm-12 mx-auto">
+        <h1><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
+        {{- .Content  -}}
+
+        <p class="fs-sm"><em>We won't save any information you enter into this website.</em></p>
+
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <h2 class="border-bottom h3">What neighborhood do you live in?</h2>
+
+            <div class="border" style="width:100%; height: 50px;">
+              <span class="home-label">Enter your neighborhood</span>
+            </div>
+            <div class="my-2">
+              <span class="font-weight-bold">Your neighborhood: Somethingtown / New York Heights</span><br>
+              <span class="font-weight-bold">Heat vulnerability: X out of 5</span>
+            </div>
+            <p class="mt-2">The <a href="">Heat Vulnerability Index</a> shows neighborhoods whose residents are more at risk for dying during and immediately following extreme heat, based on the most important social and environmental factors that affect risk. </p>
+            <p>If you're in a neighborhood with high vulnerability, you may be at greater risk. But even if you're in a neighborhood with lower heat vulnerability, it doesn't mean you're not at risk. Keep that in mind.</p>
+          </div>
+
+          <div class="col-md-6" style="height: 350px">
+            <h2 class="border-bottom h3">Today's weather</h2>
+            <div class="border p-2" style="width:100%; height: 50px;">
+              <span class="home-label">Temperature</span>
+            </div>
+
+            <div class="border my-2 p-2" style="width:100%; height: 50px;">
+              <span class="home-label">Air Quality Index</span>
+            </div>
+            
+            <p>It's <span style="color:red; font-weight:bold">very hot</span> and the AQI is <span style="color: rgb(225, 126, 0); font-weight:bold">unhealthy for sensitive groups</span>. Keep that in mind as you learn ways to protect yourself, below - it's more important on a day like today.</p>
+
+          </div>
+
+          <div class="col-6 my-4 mx-auto">
+            <button type="button" class="btn btn-sm btn-outline-primary btn-block" onclick="start()">Start the quiz</button>
+          </div>
+        </div>
+
+        <div class="row my-4 hide" id="startquiz">
+          <div class="col-7 mx-auto">
+            <h2 class="border-bottom h3" id="symptoms">Are you currently experiencing any of the following?</h2>
+
+        <p>
+          <a class="btn btn-sm btn-outline-danger mb-1" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">Difficulty breathing</a>
+          <a class="btn btn-sm btn-outline-danger mb-1" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">Light-headedness</a>
+          <a class="btn btn-sm btn-outline-danger mb-1" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">Fatigue</a>
+          <a class="btn btn-sm btn-outline-danger mb-1" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">Headache</a>
+          <a class="btn btn-sm btn-outline-danger mb-1" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">Loss of appetite</a>
+          <a class="btn btn-sm btn-outline-danger mb-1" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">Nausea or vomiting</a>
+          <a class="btn btn-sm btn-outline-danger mb-1" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">Rapid pulse</a>
+          <a class="btn btn-sm btn-outline-danger mb-1" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">Hot, dry skin</a>
+          <a class="btn btn-sm btn-outline-danger mb-1" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">Heavy sweating</a>
+          <a class="btn btn-sm btn-outline-danger mb-1" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">Confusion or hallucination</a>
+          <a class="btn btn-sm btn-outline-danger mb-1" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">Muscle cramps</a>
+          <a class="btn btn-sm btn-outline-danger mb-1" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">Excessive thirst</a>
+
+          <button type="button" class="btn btn-sm btn-outline-primary mb-1" onclick="next(1)">None of these</button>
+          <button type="button" class="btn btn-sm btn-primary mb-1 float-right" onclick="next(1)">Next question</button>
+
+
+        </p>
+        <div class="collapse" id="collapse1">
+          <div class="card card-body cardshadow aboutbox">
+            <p>This sounds serious. Maybe you should see a doctor or go to Urgent Care.</p>
+          </div>
+        </div>
+
+        <div class="hide mt-4" id="hide1">
+          <h2>Do any of these describe you?</h2>
+          <p>
+            <a class="btn btn-sm btn-outline-secondary mb-1" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse1">Heart disease</a>
+            <a class="btn btn-sm btn-outline-secondary mb-1" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse1">Asthma or other breathing condition</a>
+            <a class="btn btn-sm btn-outline-secondary mb-1" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse1">Over age 65</a>
+            <a class="btn btn-sm btn-outline-secondary mb-1" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse1">Immunocompromised</a>
+            <a class="btn btn-sm btn-outline-secondary mb-1" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse1">Pregnant</a>
+            <a class="btn btn-sm btn-outline-secondary mb-1" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse1">Diabetic</a>
+            <a class="btn btn-sm btn-outline-secondary mb-1" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse1">Limited mobility</a>
+            <a class="btn btn-sm btn-outline-secondary mb-1" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse1">Socially isolated</a>
+            <button type="button" class="btn btn-sm btn-outline-primary mb-1" onclick="next(2)">None of these</button>
+            <button type="button" class="btn btn-sm btn-primary mb-1 float-right" onclick="next(2)">Next question</button>
+
+
+          </p>
+
+          <div class="collapse" id="collapse2">
+            <div class="card card-body cardshadow aboutbox">
+              <p>Your may be more vulnerable to the harmful effects of extreme heat and bad air quality. Monitor yourself closely, and make a plan to stay safe given the air and temperature conditions.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hide mt-4" id="hide2">
+          <h2>Next question</h2>
+        </div>
+          </div>
+        </div>
+
+        
+    </div>
+  </div>
+
+</article>
+
+<script>
+  function start() {
+    document.getElementById('startquiz').classList.remove('hide')
+    document.querySelector(`#symptoms`).scrollIntoView({
+      behavior: 'smooth'
+  });
+  }
+
+  function next(x) {
+    var hide = 'hide' + x
+
+    document.getElementById(`${hide}`).classList.remove('hide')
+    document.querySelector(`#${hide}`).scrollIntoView({
+      behavior: 'smooth'
+  });
+  }
+
+</script>
+
+{{- end -}}
