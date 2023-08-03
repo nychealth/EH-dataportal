@@ -42,8 +42,8 @@ function changeYear(x) {
     console.log(date)
     lower = date - 15768000000
     upper = date + 15768000000
-    line.layer[1].encoding.x.datum = lower;
-    line.layer[1].encoding.x2.datum = upper;
+    line.layer[0].encoding.x.datum = lower;
+    line.layer[0].encoding.x2.datum = upper;
     vegaEmbed('#lineVis', line)
 
 }
