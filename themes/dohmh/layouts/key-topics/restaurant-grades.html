@@ -29,21 +29,20 @@
                     <div class="row mt-4" style="clear:both">
                       
                       <!-- Control and output column --> 
-                      <div class="col-6">
+                      <div class="col-md-6">
                         <div class="row mb-4">
                           <div class="col-12">
                             <h2 class="home-label border-bottom">Select a year</h2><br>
                           </div>
     
-                          <div class="col-4">
-                            <button type="button" class="btn btn-outline-secondary btn-block float-right" onclick="changeYear(-1)" id="downButton" disabled><i class="fas fa-arrow-circle-left h3 mx-2 pt-1"></i></button>
+
+                          <div class="col mx-auto">
+                            <button type="button" class="btn  btn-lg btn-outline-secondary" onclick="changeYear(-1)" id="downButton" disabled><i class="fas fa-arrow-circle-left h3 pt-1 mx-2"></i></button>
+                            <button type="button" class="btn btn-lg btn-outline-dark p-2" disabled><span id="year" class="h1 mx-4 py-2">2011</span></button>
+                            <button type="button" class="btn btn-lg  btn-outline-secondary" onclick="changeYear(1)" id="upButton"><i class="fas fa-arrow-circle-right h3 pt-1 mx-2"></i></button>
+
                           </div>
-                          <div class="col">
-                            <h3 id="year" class="text-center pt-1 font-weight-bold" style="font-size:2.5rem">2011</h3>
-                          </div>
-                          <div class="col-4">
-                            <button type="button" class="btn btn-outline-secondary btn-block" onclick="changeYear(1)" id="upButton"><i class="fas fa-arrow-circle-right h3 mx-2 pt-1"></i></button>
-                          </div>
+
                         </div>
 
                         <div class="row mt-4">
@@ -74,7 +73,7 @@
                       </div>
 
                         <!-- map and bar column -->
-                        <div class="col-6" style="max-height: 850px;">
+                        <div class="col-md-6" style="max-height: 850px;">
                     
                         <h2 class="home-label border-bottom">Percent of restaurants with A grades (<span id="year2">2011</span>)</h2>
 
