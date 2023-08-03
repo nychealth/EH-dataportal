@@ -268,6 +268,15 @@ var line = {
     {"filter": "datum.GeoTypeDesc === 'Citywide'"}
     ],
     "layer": [
+        {
+            "mark": "rect",
+            "encoding": {
+                "x": {"datum": `${lower}`, "type": "temporal"},
+                "x2": {"datum": `${upper}`, "type": "temporal"},
+                "opacity": {"value": 0.02},
+                "color": {"value": "gray"}
+            }
+        },
     {
         "mark": {
     "type": "line", 
@@ -299,16 +308,7 @@ var line = {
         {"field": "Percent", "type": "quantitative", "title": "Percent of restaurants with A grades"}
         ]
     }
-    },
-    {
-        "mark": "rect",
-        "encoding": {
-            "x": {"datum": `${lower}`, "type": "temporal"},
-            "x2": {"datum": `${upper}`, "type": "temporal"},
-            "opacity": {"value": 0.02},
-            "color": {"value": "gray"}
-        }
-        }
+    }
     ]
 }
 
