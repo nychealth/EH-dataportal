@@ -15,7 +15,11 @@
                   element: "#search",
                   showImages: false,
                   baseUrl: baseURL,
-                  showEmptyFilters: true
+                  showEmptyFilters: true,
+                  processResult: function (result) {
+                    console.log("result", result);
+                    return result;
+                  }
               });
           });
       </script>
