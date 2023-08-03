@@ -116,15 +116,131 @@
         </div>
 
         <div class="hide mt-4 p-2 leftbar" id="hide2">
-          <h2>Next question</h2>
+          <p>The best way to stay safe in hot weather is with air conditioning. <strong>Does your home have air conditioning?</strong></p>
+
+          <button class="btn btn-sm btn-outline-secondary mb-1" onclick="next(3)">
+            Yes
+          </button>
+
+          <button class="btn btn-sm btn-outline-secondary mb-1" data-toggle="collapse" data-target="#collapseNo" aria-expanded="false" aria-controls="collapseNo">
+            No
+          </button>
+
+
+        <div id="accordion">
+          <div class="card">
+            <div id="collapseNo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body aboutbox fs-md">
+                <p>An AC is the most effective way to protect yourself from heat. Right now, we'll look for ways to keep you cool in your apartment, but if those don't work, you can <a href="">get a free AC from the City</a> or <a href="">find a cooling center near you</a>.</p>  
+                <p><button type="button" class="btn btn-sm btn-primary mb-1 float-right" onclick="">Next question</button></p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="hide mt-4 p-2 leftbar" id="hide3"></div>
-          <!-- empty hider shell -->
         </div>
 
-        <div class="hide mt-4 p-2 leftbar" id="hide4"></div>
-        <!-- empty hider shell -->
+        <div class="hide mt-4 p-2 leftbar" id="hide3">
+          <p>Great! You have an air conditioner. What kind of AC do you have?</p>
+          <div class="row">
+            <div class="col-4">
+              <a class="btn btn-sm btn-outline-secondary btn-block mb-1" data-toggle="collapse" href="#collapseCentral" role="button" aria-expanded="false" aria-controls="collapseCentral">Central air</a> 
+            </div>
+            <div class="col-4">
+              <a class="btn btn-sm btn-outline-secondary btn-block mb-1" data-toggle="collapse" href="#collapseWindow" role="button" aria-expanded="false" aria-controls="collapseWindow">Window unit</a>
+            </div>
+            <div class="col-4">
+              <a class="btn btn-sm btn-outline-secondary btn-block mb-1" data-toggle="collapse" href="#collapsePortable" role="button" aria-expanded="false" aria-controls="collapsePortable">Portable AC</a>
+            </div>
+            <div class="col-12">
+              <div id="ACaccordion">
+                  <div class="card">
+                      <div id="collapseCentral" class="collapse" aria-labelledby="headingOne" data-parent="#ACaccordion">
+                        <div class="card-body aboutbox fs-md">
+                          Great! Stay inside.
+                          <button type="button" class="btn btn-sm btn-primary mb-1 float-right" onclick="next(5)">Next question</button>
+                        </div>
+                      </div>
+                    </div>
+            
+                    <div class="card">
+                      <div id="collapseWindow" class="collapse" aria-labelledby="headingTwo" data-parent="#ACaccordion">
+                        <div class="card-body aboutbox fs-md">
+                          Great! Stay inside. If your AC has a "recirculation mode," turn it on. This will prevent it from pulling in polluted air from outside.
+                          <button type="button" class="btn btn-sm btn-primary mb-1 float-right" onclick="next(4)">Next question</button>
+                        </div>
+                      </div>
+                    </div>
+      
+                    <div class="card">
+                      <div id="collapsePortable" class="collapse" aria-labelledby="headingTwo" data-parent="#ACaccordion">
+                        <div class="card-body aboutbox fs-md">
+                          Portable.
+                          <button type="button" class="btn btn-sm btn-primary mb-1 float-right" onclick="next(4)">Next question</button>
+                        </div>
+                      </div>
+                    </div>
+      
+              </div>
+            </div>
+          </div>
+          
+    
+        </div>
+
+        <div class="hide mt-4 p-2 leftbar" id="hide4">
+          <p>How many rooms are you trying to cool?</p>
+          <div class="row">
+            <div class="col-4">
+              <a class="btn btn-sm btn-outline-secondary btn-block mb-1" data-toggle="collapse" href="#collapseOneRoom" role="button" aria-expanded="false" aria-controls="collapseOneRoom">One room</a> 
+            </div>
+            <div class="col-4">
+              <a class="btn btn-sm btn-outline-secondary btn-block mb-1" data-toggle="collapse" href="#collapseTwoRooms" role="button" aria-expanded="false" aria-controls="collapseTwoRooms">Two rooms</a>
+            </div>
+            <div class="col-4">
+              <a class="btn btn-sm btn-outline-secondary btn-block mb-1" data-toggle="collapse" href="#collapseThreeRooms" role="button" aria-expanded="false" aria-controls="collapseThreeRooms">My whole apartment</a>
+            </div>
+
+            <div class="col-12" id="roomAccordion">
+              <div class="card">
+                <div id="collapseOneRoom" class="collapse" aria-labelledby="headingOne" data-parent="#roomAccordion">
+                  <div class="card-body aboutbox fs-md">
+                    <p>How many BTUs is your air conditioner? BTU is a measure of how powerful your air conditioner is. Look for a small label somewhere on your air conditioner.</p>
+                    <p>A 5,000 BTU air conditioner can effectively cool a room about 100 to 150 square feet - about the size of a small bedroom.</p>
+                    <button type="button" class="btn btn-sm btn-primary mb-1 float-right" onclick="next()">Next question</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div id="collapseTwoRooms" class="collapse" aria-labelledby="headingOne" data-parent="#roomAccordion">
+                  <div class="card-body aboutbox fs-md">
+                    <p>How many BTUs is your air conditioner? BTU is a measure of how powerful your air conditioner is. Look for a small label somewhere on your air conditioner.</p>
+                    <p>A 5,000 BTU air conditioner can effectively cool a room about 100 to 150 square feet - about the size of a small bedroom. Every additional 100 square feet requires 1,000 more BTUs.</p>
+                    <p>If you're trying to cool several rooms, make sure your air conditioner is powerful enough.</p>
+                    <button type="button" class="btn btn-sm btn-primary mb-1 float-right" onclick="next()">Next question</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div id="collapseThreeRooms" class="collapse" aria-labelledby="headingOne" data-parent="#roomAccordion">
+                  <div class="card-body aboutbox fs-md">
+                    <p>How many BTUs is your air conditioner? BTU is a measure of how powerful your air conditioner is. Look for a small label somewhere on your air conditioner.</p>
+                    <p>A 5,000 BTU air conditioner can effectively cool a room about 100 to 150 square feet - about the size of a small bedroom. Every additional 100 square feet requires 1,000 more BTUs.</p>
+                    <p>If you're trying to cool your whole apartment, you'll probably need several air conditioners to cool down your whole home. If you don't have strong enough air conditioners, you can try to just cool down one room - and spend most of your time there.</p>
+                    <button type="button" class="btn btn-sm btn-primary mb-1 float-right" onclick="next()">Next question</button>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+
+
+
         </div>
 
         </div>
