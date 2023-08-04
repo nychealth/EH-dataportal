@@ -26,15 +26,8 @@
 
             <div class="leftbar px-2">
               <P><strong>First, let's look at today's weather.</strong></P>
-                <ul>
-                  <li><span class="home-label" style="width:200px">Current temp:</span> <span id="currentTemp">XX</span>
-                  </li>
-                  <li><span class="home-label" style="width:200px">Forecast max:</span> <span id="maxTemp">YY</span>
-                  </li>
-                  <li><span class="home-label" style="width:200px">AQI:</span> <span id="aqi">ZZ</span>
-                  </li>
-                </ul>
-                <p>It's <span id="hot" class="font-weight-bold">warm</span> and the AQI is <span id="aqimeaning" style="color: rgb(225, 126, 0); font-weight:bold">unhealthy for sensitive groups</span>.</p>
+              <p>Today's weather is <span id="hot" class="font-weight-bold p-1">warm</span>: right now, it's <span id="currentTemp" class="font-weight-bold">XX</span>, and the forecast says that today's high will be <span id="maxTemp" class="font-weight-bold">YY</span>. The air quality is <span id="aqimeaning" class="font-weight-bold p-1">AQI interpretation</span>.</p>
+
             </div>
 
             <div class="leftbar p-2 mt-4">
@@ -354,17 +347,40 @@ fetch('https://api.weatherapi.com/v1/forecast.json?key=7699a631589048cd83d131617
     apiData = data
     document.getElementById('currentTemp').innerHTML = apiData.current.temp_f + '° F'
     document.getElementById('maxTemp').innerHTML = apiData.forecast.forecastday[0].day.maxtemp_f  + '° F'
-    // document.getElementById('aqi').innerHTML = apiData.current.air_quality // AQI not yet included
+     // document.getElementById('aqi').innerHTML = apiData.forecast.forecastday[0].day.air_quality["us-epa-index"]
 
+  
     if (apiData.forecast.forecastday[0].day.maxtemp_f > 80 & apiData.forecast.forecastday[0].day.maxtemp_f < 85) {
       document.getElementById('hot').innerHTML = 'warm'
-      document.getElementById('hot').style.color = "orange"
+      document.getElementById('hot').style['background-color'] = "orange"
     } else if (apiData.forecast.forecastday[0].day.maxtemp_f > 85 & apiData.forecast.forecastday[0].day.maxtemp_f < 90) {
       document.getElementById('hot').innerHTML = 'hot'
-      document.getElementById('hot').style.color = "red"
+      document.getElementById('hot').style['background-color'] = "red"
     } else if (apiData.forecast.forecastday[0].day.maxtemp_f > 90 ) {
       document.getElementById('hot').innerHTML = 'very hot'
-      document.getElementById('hot').style.color = "darkred"
+      document.getElementById('hot').style['background-color'] = "darkred"
+      document.getElementById('hot').style.color = 'white'
+    }
+
+    var aqi = apiData.forecast.forecastday[0].day.air_quality["us-epa-index"]
+
+    if (aqi == '1') {
+      document.getElementById('aqimeaning').innerHTML = 'Good'
+      document.getElementById('aqimeaning').style['background-color'] = '#00E400'
+    } else if (aqi == '2') {
+      document.getElementById('aqimeaning').innerHTML = 'Moderate'
+      document.getElementById('aqimeaning').style['background-color'] = '#FFFF00'
+    } else if (aqi == '3') {
+      document.getElementById('aqimeaning').innerHTML = 'Unhealthy for sensitive groups'
+      document.getElementById('aqimeaning').style['background-color'] = '#FF7E00'
+    } else if (aqi == '4') {
+      document.getElementById('aqimeaning').innerHTML = 'Unhealthy'
+      document.getElementById('aqimeaning').style['background-color'] = '#FF0000'
+      document.getElementById('aqimeaning').style.color = 'white'
+    } else if (aqi == '5') {
+      document.getElementById('aqimeaning').innerHTML = 'Very unhealthy'
+      document.getElementById('aqimeaning').style['background-color'] = '#7E0023'
+      document.getElementById('aqimeaning').style.color = 'white'
     }
 
   })
