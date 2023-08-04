@@ -337,6 +337,9 @@
   });
   }
 
+// API documentation: https://www.weatherapi.com/docs/
+// Sample returns: https://www.weatherapi.com/api-explorer.aspx#forecast
+
 var apiData;
 fetch('https://api.weatherapi.com/v1/forecast.json?key=7699a631589048cd83d131617230408&q=New York City&days=1&aqi=yes&alerts=no')
     .then(response => {
