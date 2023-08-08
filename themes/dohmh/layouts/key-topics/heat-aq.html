@@ -358,7 +358,8 @@ fetch('https://api.weatherapi.com/v1/forecast.json?key=7699a631589048cd83d131617
       document.getElementById('hot').style['background-color'] = "orange"
     } else if (apiData.forecast.forecastday[0].day.maxtemp_f > 85 & apiData.forecast.forecastday[0].day.maxtemp_f < 90) {
       document.getElementById('hot').innerHTML = 'hot'
-      document.getElementById('hot').style['background-color'] = "red"
+      document.getElementById('hot').style['background-color'] = "red";
+      document.getElementById('hot').style.color = 'white'
     } else if (apiData.forecast.forecastday[0].day.maxtemp_f > 90 ) {
       document.getElementById('hot').innerHTML = 'very hot'
       document.getElementById('hot').style['background-color'] = "darkred"
