@@ -17,7 +17,7 @@ Violations found during inspections carry point values, and a restaurant’s sco
 - "B" grade: 14 to 27 points for sanitary violations
 - "C" grade: 28 or more points for sanitary violations
 
-**See below for the conditions that health inspectors look for, and the point deductions they carry.**
+**See below for the conditions that health inspectors look for, and the violation points they carry.**
 
 <div style="min-height:1305px" class="my-4"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/ASvZx/embed.js?v=4" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/ASvZx/full.png" alt="" /></noscript></div>
 
