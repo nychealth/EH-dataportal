@@ -2,6 +2,7 @@
 {{- $page_link := $.content.RelPermalink -}}
 {{- $cats := $.content.Params.categories -}}
 {{- $layout := .layout -}}
+{{- $extraClass := .extraClass -}}
 
 {{- range (where $.content.Site.RegularPages "Section" .section) -}}
     {{- $page := . }}
@@ -10,7 +11,7 @@
 
             {{- if eq $layout "button" -}}
 
-            <a class="btn btn-outline-primary btn-md has-icon disperse mb-1" href="{{ .RelPermalink }}">
+            <a class="{{ $extraClass }} btn btn-outline-primary btn-md has-icon disperse mb-1" href="{{ .RelPermalink }}">
             <span class="fas fa-angle-right" aria-hidden="true"></span>
             <span class="title">{{ .Title }}</span>
             </a>
