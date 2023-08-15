@@ -13,26 +13,30 @@ indicators:
   - 2008
 ---
 
-[OneNYC](http://www1.nyc.gov/html/onenyc/index.html) is a comprehensive sustainability plan for New York City's future.
+## Harbor water quality
 
-Goal: Improve the quality of our waterways to increase opportunities for recreation and to restore coastal ecosystems.
+Measuring the quality of NYC harbor water tells us about the health of our water. Healthy waterways are important for both aquatic life and humans who want to fish and swim.
 
-New York State sets water quality standards, and NYC DEP monitors New York Harbor water quality on an annual basis through the Harbor Survey. The survey uses 36 stations located throughout the open waters of the harbor and 19 stations located in smaller tributaries within the city. These stations take water samples every month and test for a number of contaminants. Average dissolved oxygen concentration and fecal coliform levels are two of the most commonly-accepted indicators of harbor health.
+We measure the quality of harbor water through two key indicators:
 
-For information on current beach water quality, please visit DOHMH's [beach water quality map](https://a816-dohbesp.nyc.gov/IndicatorPublic/Beaches/).
+- **Dissolved oxygen** is essential for most aquatic life. This includes fish, invertebrates, crabs, clams, and zooplankton. Coastal habitats and ecosystems thrive in environments with high concentrations of dissolved oxygen.
 
-### Dissolved Oxygen
+- **Fecal coliform bacteria**, specifically *enterococci. Enterococci* is a type of fecal coliform bacteria that can survive in saltwater (harbor water is a mix of fresh and saltwater). Higher levels of these bacteria can mean there is sewage-related water pollution. Though most fecal coliform bacteria do not cause disease, their concentrations are a good indicator of the presence of pathogenic (disease-producing) bacteria.
 
-Sufficient concentrations of dissolved oxygen in the water column are critical for the respiration of most aquatic life forms, including fish and invertebrates such as crabs, clams, and zooplankton. Dissolved oxygen concentration is, therefore, one of the most universal indicators of overall water quality and the condition of habitats and ecosystems.   
-  
-NYC DEP reports the average levels of dissolved oxygen harbor-wide, from surface and bottom water, on an annual basis. Rising dissolved oxygen levels, and levels above the state standard (5.0 mg/L) indicate a harbor suitable to most aquatic life forms. Since the 1990s, surface and bottom water dissolved oxygen levels have been above New York State standards for fishing and boating (4.0 mg/L) as well as for bathing and other recreational use (5.0 mg/L), and are continuing to improve.
+### How we monitor harbor water quality
 
-### Bacteria
+Water quality standards are set by New York State and monitored by the NYC Department of Environmental Protection (DEP) annually through the Harbor Survey. The Harbor Survey Program has grown to include 85 sites throughout New York waters. These sites are sampled on a weekly basis during the summer season (May - October) and monthly during the winter season (November - April).
 
-Fecal coliforms are a group of bacteria primarily found in human and animal intestines, and their concentration in water is considered an accurate indication of sewage-related pollution. Though most fecal coliform bacteria do not cause disease, their concentrations are a good indicator of the presence of pathogenic (disease-producing) bacteria.  
+### New York's harbor water quality today
 
-Enterococci are a subgroup within the fecal streptococcus group and are distinguished by their ability to survive in salt water.
-  
-Since the 1990s, harbor-wide surface water fecal coliform levels have been below the state standard for fishing and boating (monthly geometric mean less than or equal to 2,000 cells/100mL from 5 or more samples), as well as the state standard for bathing and other recreational use (monthly geometric mean less than or equal to 200 cells/100mL from 5 or more samples). Since the NYC DEP began monitoring enterococci in the early 2000s, enterococci levels have remained well below the state bathing standard (monthly geometric mean less than or equal to 35 cells/100mL, or a single-sample maximum of 104 cells/100mL).
+*Bacteria levels show that water exceeds minimum standards*
 
-However, short-term spikes may occur after heavy rain. The city is committed to addressing these spikes to increase opportunities for recreation.
+Since the 1990s, harbor-wide surface water fecal coliform levels have been below the state standard for fishing and boating (2,000 cells per 100mL, from 5+ samples) and bathing and other recreation (200 cells per 100 mL from 5+ samples).
+
+Since the NYC DEP began monitoring enterococci in the early 2000s, enterococci levels have remained better than the state bathing standard. This means the average (geometric mean) is 35 or less cells/100mL, and no single sample exceeds 104 cells/100 mL. Short-term spikes in bacteria may occur after heavy rain.
+
+*Dissolved oxygen levels show that water exceeds minimum standards*
+
+NYC DEP reports the average levels of dissolved oxygen harbor-wide, from surface and bottom water, on an annual basis. Levels above the state standard (5.0 mg/L) indicate a harbor suitable to most aquatic life forms. Since the 1990s, surface and bottom water dissolved oxygen levels have been above New York State standards for fishing and boating (4.0 mg/L) as well as for bathing and other recreational use (5.0 mg/L). Levels continue to improve.
+
+For more information on harbor quality, [please visit the most recent report from the NYC DEP Harbor Survey Report](https://www.nyc.gov/site/dep/water/harbor-water-quality.page). For information on current beach water quality, [please visit DOHMH's beach water quality map](https://a816-dohbesp.nyc.gov/IndicatorPublic/Beaches/).
