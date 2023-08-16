@@ -10,10 +10,11 @@ keywords: ["water","harbor","pollution", "climate", "climatehealth"]
 indicators:
 - header: null
   IndicatorID: 
-  - 2008
+  - 2427
+  - 2428
 ---
 
-## Harbor water quality
+### Harbor water quality
 
 Measuring the quality of NYC harbor water tells us about the health of our water. Healthy waterways are important for both aquatic life and humans who want to fish and swim.
 
@@ -23,11 +24,11 @@ We measure the quality of harbor water through two key indicators:
 
 - **Fecal coliform bacteria**, specifically *enterococci. Enterococci* is a type of fecal coliform bacteria that can survive in saltwater (harbor water is a mix of fresh and saltwater). Higher levels of these bacteria can mean there is sewage-related water pollution. Though most fecal coliform bacteria do not cause disease, their concentrations are a good indicator of the presence of pathogenic (disease-producing) bacteria.
 
-### How we monitor harbor water quality
+#### How we monitor harbor water quality
 
 Water quality standards are set by New York State and monitored by the NYC Department of Environmental Protection (DEP) annually through the Harbor Survey. The Harbor Survey Program has grown to include 85 sites throughout New York waters. These sites are sampled on a weekly basis during the summer season (May - October) and monthly during the winter season (November - April).
 
-### New York's harbor water quality today
+#### New York's harbor water quality today
 
 *Bacteria levels show that water exceeds minimum standards*
 
