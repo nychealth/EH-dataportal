@@ -14,8 +14,6 @@ indicators:
   - 2428
 ---
 
-## Harbor water quality
-
 Measuring the quality of NYC harbor water tells us about the health of our water. Healthy waterways are important for both aquatic life and humans who want to fish and swim.
 
 We measure the quality of harbor water through two key indicators:
