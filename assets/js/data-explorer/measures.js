@@ -563,14 +563,14 @@ const updateTrendComparisonsData = (e) => {
         .filter(aq.escape(d => d.ComparisonID == comparisonId))
         .join(aqComparisonsIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
 
-    console.log("aqFilteredComparisonsMetadata:");
-    aqFilteredComparisonsMetadata.print()
+    // console.log("aqFilteredComparisonsMetadata:");
+    // aqFilteredComparisonsMetadata.print()
     
     // use filtered metadata to filter data
 
     aqFilteredComparisonsData = aqFilteredComparisonsMetadata
-        .select("IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure")
-        .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
+        .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
+        .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
 
         // put host indicator first, so it gets the black line
         .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
@@ -718,6 +718,8 @@ const updateLinksData = async (e) => {
 
 // ===== year ================================================== //
 
+// ----- add listener on each dropdown item -------------------------------------------------- //
+
 const handleYearFilter = (el) => {
 
     el.addEventListener('change', (e) => {
@@ -821,6 +823,11 @@ const renderMeasures = async () => {
 
 
     // ----- create dropdowns for table ================================================== //
+
+    // ----- select all -------------------------------------------------- //
+
+    dropdownTableTimes.innerHTML +=
+        `<label class="dropdown-item checkbox-year-all"><input class="largerCheckbox" type="checkbox" name="year" value="all" /> Select all </label>`
 
     // ----- years -------------------------------------------------- //
 
@@ -1616,19 +1623,19 @@ const renderMeasures = async () => {
                 .join(aqComparisonsIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
 
             // console.log("aqFilteredComparisonsMetadata:");
-            // aqFilteredComparisonsMetadata.print()
+            // aqFilteredComparisonsMetadata.print({limit: Infinity})
             
             // data
 
             aqFilteredComparisonsData = aqFilteredComparisonsMetadata
-                .select("IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure")
-                .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
+                .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
+                .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
 
                 // put host indicator first, so it gets the black line
                 .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
 
             // console.log(">>>> aqFilteredComparisonsData:");
-            // aqFilteredComparisonsData.print()
+            // aqFilteredComparisonsData.print({limit: Infinity})
 
             // show only last 3 years of DWQ measures with quarterly data
 
@@ -2066,14 +2073,58 @@ const renderMeasures = async () => {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     const checkboxYear = document.querySelectorAll('.checkbox-year');
+    const checkboxYearAll = document.querySelectorAll('.checkbox-year-all');
     const checkboxGeo = document.querySelectorAll('.checkbox-geo');
 
     checkboxYear.forEach(checkbox => {
         handleYearFilter(checkbox);
     })
+
+    checkboxYearAll[0].addEventListener('change', (e) => {
+
+        if (!e.target.checked) {
+
+            // console.log("not checked");
+
+            checkboxYear.forEach(checkbox => {
+
+                // console.log("checkbox", checkbox);
+
+                $(checkbox).find("input").prop("checked", false)
+                selectedTableYears = []
+
+            })
+
+            // console.log("selectedTableYears [not checked]", selectedTableYears);
+
+        } else if (e.target.checked) {
+
+            // console.log("checked");
+
+            checkboxYear.forEach(checkbox => {
+
+                // console.log("checkbox", checkbox);
+
+                $(checkbox).find("input").prop("checked", true)
+                selectedTableYears.push($(checkbox).find("input").val())
+
+            })
+
+            // console.log("selectedTableYears [checked]", selectedTableYears);
+
+
+        }
+
+        renderTable()
+
+    })
+
+
     checkboxGeo.forEach(checkbox => {
         handleGeoFilter(checkbox);
     })
+
+
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
