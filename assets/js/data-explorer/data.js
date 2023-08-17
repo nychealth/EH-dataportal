@@ -74,7 +74,7 @@ const createComparisonData = async (comps) => {
     
     console.log("** createComparisonData");
     
-    console.log("comps [createComparisonData]:", comps);
+    // console.log("comps [createComparisonData]:", comps);
 
     // will be used by renderMeasures to create dropdown
     
@@ -82,11 +82,11 @@ const createComparisonData = async (comps) => {
         d => indicatorComparisonId.includes(d.ComparisonID)
     )
         
-    console.log("comparisonsMetadata [createComparisonData]:", comparisonsMetadata);
+    // console.log("comparisonsMetadata [createComparisonData]:", comparisonsMetadata);
 
     // merged metadata
     
-    console.log("aqComparisonsMetadata:");
+    // console.log("aqComparisonsMetadata:");
 
     aqComparisonsMetadata = aq.from(comparisonsMetadata)
         .unroll("Indicators")
@@ -97,16 +97,16 @@ const createComparisonData = async (comps) => {
             GeoID:       d => d.Indicators.GeoID
         })
         .select(aq.not("Indicators"))
-        .print()
+        // .print({limit: Infinity})
 
-    console.log("aqUniqueIndicatorMeasure:");
+    // console.log("aqUniqueIndicatorMeasure:");
 
     // get unique combinations of indicators and measures
 
     let aqUniqueIndicatorMeasure = aqComparisonsMetadata
         .select("IndicatorID", "MeasureID")
         .dedupe()
-        .print()
+        // .print({limit: Infinity})
 
     let uniqueIndicatorMeasure = aqUniqueIndicatorMeasure
         .groupby("IndicatorID")
@@ -191,8 +191,8 @@ const createComparisonData = async (comps) => {
             // .filter(d => op.match(d.GeoType, /Citywide/))
             .reify()
 
-        console.log("aqComparisonsIndicatorData:");
-        aqComparisonsIndicatorData.print();
+        // console.log("aqComparisonsIndicatorData:");
+        // aqComparisonsIndicatorData.print({limit: Infinity});
 
     })
 }

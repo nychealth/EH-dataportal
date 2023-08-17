@@ -78,7 +78,7 @@ const renderComparisonsChart = (
 
         // ----- by boros: 1 indicator, 1 measure, 5 boros -------------------------------------------------- //
 
-        // console.log("boros");
+        console.log("boros");
 
         // if this is a boro comparison, tweak some things
 
@@ -157,7 +157,7 @@ const renderComparisonsChart = (
 
         // ----- by measure: 1 indicator, 2+ measures, 1 citywide -------------------------------------------------- //
 
-        // console.log("1 indicator");
+        console.log("1 indicator");
         
         let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
@@ -196,7 +196,7 @@ const renderComparisonsChart = (
 
         // ----- by indicator: 2+ indicators, 1 measure, 1 citywide -------------------------------------------------- //
 
-        // console.log("1 measure");
+        console.log("1 measure");
 
         let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
@@ -233,7 +233,7 @@ const renderComparisonsChart = (
         
         // ----- by combo: 2+ indicators, 2+ measures, 1 citywide -------------------------------------------------- //
 
-        // console.log("> 1 measure & indicator");
+        console.log("> 1 measure & indicator");
 
         let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
