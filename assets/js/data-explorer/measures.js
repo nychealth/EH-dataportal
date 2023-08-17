@@ -563,14 +563,14 @@ const updateTrendComparisonsData = (e) => {
         .filter(aq.escape(d => d.ComparisonID == comparisonId))
         .join(aqComparisonsIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
 
-    console.log("aqFilteredComparisonsMetadata:");
-    aqFilteredComparisonsMetadata.print()
+    // console.log("aqFilteredComparisonsMetadata:");
+    // aqFilteredComparisonsMetadata.print()
     
     // use filtered metadata to filter data
 
     aqFilteredComparisonsData = aqFilteredComparisonsMetadata
-        .select("IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure")
-        .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
+        .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
+        .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
 
         // put host indicator first, so it gets the black line
         .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
@@ -1623,19 +1623,19 @@ const renderMeasures = async () => {
                 .join(aqComparisonsIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
 
             // console.log("aqFilteredComparisonsMetadata:");
-            // aqFilteredComparisonsMetadata.print()
+            // aqFilteredComparisonsMetadata.print({limit: Infinity})
             
             // data
 
             aqFilteredComparisonsData = aqFilteredComparisonsMetadata
-                .select("IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure")
-                .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
+                .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
+                .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
 
                 // put host indicator first, so it gets the black line
                 .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
 
             // console.log(">>>> aqFilteredComparisonsData:");
-            // aqFilteredComparisonsData.print()
+            // aqFilteredComparisonsData.print({limit: Infinity})
 
             // show only last 3 years of DWQ measures with quarterly data
 
