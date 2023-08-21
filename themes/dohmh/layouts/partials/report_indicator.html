@@ -125,6 +125,10 @@
 
     $( "#modal-{{ .ind.indicator_data_name }}-{{ .count }}" ).on('shown.bs.modal', function() {
 
+        gtag('event', 'click_modal', {
+            'modal_name': '{{ .ind.indicator_short_name }}'
+        });
+
         var opt = {"renderer": "svg"};
 
             // ---- summary ---- //
