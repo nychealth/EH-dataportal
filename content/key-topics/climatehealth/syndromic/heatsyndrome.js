@@ -122,7 +122,14 @@ var scatterplot = {
     },
     "background": "#FFFFFF",
     "range": {
-      "category": ['#ffffd4','#fee391','#fec44f','#fe9929','#d95f0e','#993404']
+      "category": [
+        "#7fc97f",
+        "#beaed4",
+        "#fdc086",
+        "#ffff99",
+        "#386cb0",
+        "#f0027f"
+      ]
   },
   },
   "view": {"stroke": "transparent"},
@@ -140,8 +147,7 @@ var scatterplot = {
   "mark": {
     "type": "point",
     "shape": "circle",
-    "filled": true,
-    "opacity": 0.2
+    "filled": true
     },
   "params": [
     {
@@ -149,7 +155,7 @@ var scatterplot = {
       "select": {
         "type": "point",
         "fields": ["Year"],
-        "on": "click"
+        "on": "mouseover"
       },
       "bind": "legend"
     },
@@ -188,7 +194,7 @@ var scatterplot = {
         "empty": true,
         "value": 1
       },
-      "value": 0.01
+      "value": 0.2
     },
     "stroke": {
       "condition": {
@@ -257,4 +263,103 @@ function changeYear(x) {
     document.getElementById('2021button').classList.remove('btn-outline-secondary')
   } else {};
   document.getElementById('yearHeader').innerHTML = x
+}
+
+
+
+var scatterplorTwo = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Max daily temperature",
+    "fontSize": 12,
+    "align": "left",
+    "anchor": "start"
+  },
+  "width": 700,
+  "height": 500,
+  "config": {
+    "legend": {"orient": "right", "title": null, "labelFontSize": 16},
+    "background": "#FFFFFF",
+    "range": {
+      "category": [
+        "#7fc97f",
+        "#beaed4",
+        "#fdc086",
+        "#ffff99",
+        "#386cb0",
+        "#f0027f"
+      ]
+    }
+  },
+  "view": {"stroke": "transparent"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/previous_years.csv"
+  },
+  "transform": [
+    {"calculate": "year(datum.END_DATE)", "as": "Year"},
+    {"calculate": "dayofyear(datum.END_DATE)", "as": "Day"},
+    {"filter": "datum.HEAT_ED_VISIT_COUNT > 0"}
+  ],
+  "mark": {"type": "point", "shape": "circle", "filled": true, "opacity": 0.2},
+  "params": [
+    {
+      "name": "year",
+      "select": {"type": "point", "fields": ["Year"], "on": "click"},
+      "bind": "legend"
+    },
+    {
+      "name": "hover",
+      "value": "#7C7C7C",
+      "select": {"type": "point", "on": "mouseover"}
+    }
+  ],
+  "encoding": {
+    "size": {
+      "title": "Heat ED visits",
+      "field": "HEAT_ED_VISIT_COUNT",
+      "type": "quantitative",
+      "legend": {"symbolFillColor": "white", "values": [10, 50, 100]},
+      "scale": {"range": [10, 1500]}
+    },
+    "x": {
+      "field": "END_DATE",
+      "timeUnit": "dayofyear",
+      "type": "temporal",
+      "title": "Date",
+      "axis": {"labelExpr": "[timeFormat(datum.value, '%-b %-d')]"}
+    },
+    "y": {
+      "field": "MAX_DAILY_TEMP",
+      "type": "quantitative",
+      "scale": {"zero": false},
+      "title": "",
+      "axis": {"tickCount": 5, "labelExpr": "datum.value + '°F'"}
+    },
+    "color": {"field": "Year", "title": "Year", "type": "nominal"},
+    "opacity": {
+      "condition": {"param": "year", "empty": true, "value": 1},
+      "value": 0.01
+    },
+    "stroke": {
+      "condition": {"param": "hover", "empty": false, "value": "#3e3e3e"},
+      "value": "#7C7C7C"
+    },
+    "strokeWidth": {
+      "condition": {"param": "hover", "empty": false, "value": 3},
+      "value": 1
+    },
+    "tooltip": [
+      {"field": "END_DATE", "type": "temporal", "title": "Date"},
+      {
+        "field": "MAX_DAILY_TEMP",
+        "type": "quantitative",
+        "title": "Maximum daily temperature"
+      },
+      {
+        "field": "HEAT_ED_VISIT_COUNT",
+        "type": "quantitative",
+        "title": "Number of heat-related ED visits"
+      }
+    ]
+  }
 }
