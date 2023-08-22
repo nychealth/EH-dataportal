@@ -322,7 +322,7 @@ function draw311Buttons(x) {
 
     // Creates label if there are 311 links
     if (filteredCrosswalk.length > 0) {
-        document.getElementById('311label').innerHTML = 'Contact 311 for help with:'
+        document.getElementById('311label').innerHTML = 'Contact 311 about:'
         document.getElementById('311').classList.remove('hide')
     } else {
         document.getElementById('311label').innerHTML = ''
