@@ -1,6 +1,6 @@
 ---
 title: The racial wealth gap has big implications for public health and health equity
-date: 2023-05-12T13:11:44-04:00
+date: 2023-06-16T09:01:00-04:00
 draft: false
 seo_title: "How the racial wealth gap affects health"
 seo_description: "A data story about how the racial wealth gap affects health"
@@ -19,7 +19,9 @@ Income and wealth are two different concepts. Income is measured by earnings, wh
 
 The Federal Reserve Board’s 2019 Survey of Consumer Finances (SCF) shows that, nationally, the average White family holds nearly eight times the wealth of the average Black family and over five times the wealth of the average Hispanic family. 
 
+<div class="mb-4">
 <iframe title="Mean and median net worth for  White, Black, and  Hispanic people in the US" aria-label="Grouped Column Chart" id="datawrapper-chart-nqi4y" src="https://datawrapper.dwcdn.net/nqi4y/7/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="481" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+</div>
 
 ### Racist and discriminatory policies have prevented Black families from accruing assets, financial security, and wealth 
 
@@ -44,7 +46,7 @@ White households are more likely than Black and Hispanic households to hold all 
     </a>
 
   <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
-    <div class="card-body card-white fs-sm">
+    <div class="card-body card-white fs-md">
     <p>
     Wealth is strongly correlated with individual and population health in more ways than one. Wealth allows families to afford better medical care, higher quality insurance, and goods and services that promote physical and mental wellbeing. Liquid assets, like savings and stocks, allow households to more readily pay for basic needs, preventative and routine medical care, and weather financial shocks. 
     </p>
@@ -61,7 +63,7 @@ White households are more likely than Black and Hispanic households to hold all 
       </a>
 
 <div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02" data-parent="#accordion-01">
-    <div class="card-body fs-sm">
+    <div class="card-body fs-md">
 <p>
 Greater wealth allows people to live in neighborhoods with fewer environmental hazards and more resources, like healthier housing.
                 </p>
@@ -77,7 +79,7 @@ Greater wealth allows people to live in neighborhoods with fewer environmental h
       </a>
 
 <div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
-    <div class="card-body fs-sm">
+    <div class="card-body fs-md">
 <p>
    Wealth can protect families from the negative consequences of financial hardship, including job loss, homelessness or housing insecurity, food insecurity, and the negative psychological effects associated with financial hardship. Intergenerational wealth passed down through inheritance can provide educational and social opportunities that can benefit health in the long run. 
                 </p>
@@ -92,7 +94,7 @@ Greater wealth allows people to live in neighborhoods with fewer environmental h
       </a>
 
 <div class="collapse" id="panel-acc-button-04" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
-    <div class="card-body fs-sm">
+    <div class="card-body  fs-md">
 <p>
  Conversely, research shows that when household budgets are constrained, families tend to reduce spending on medical care, groceries, and other health-related goods. Households with limited liquid assets may be less able to afford health-promoting opportunities (for example, quality medical care, physical activity, etc.) and more likely to forgo preventative or emergency medical treatments. Financial hardship is consistently correlated with poorer self-rated health, more chronic diseases, and depressive symptoms in children and adults. 
                 </p>
@@ -107,7 +109,7 @@ Greater wealth allows people to live in neighborhoods with fewer environmental h
       </a>
 
 <div class="collapse" id="panel-acc-button-05" role="tabpanel" aria-labelledby="acc-button-05" data-parent="#accordion-01">
-    <div class="card-body fs-sm">
+    <div class="card-body  fs-md">
 <p>
   Debt type plays an important role in health and well-being in both positive and negative ways. For instance, higher levels of home and student loan debt are associated with greater socioemotional well-being for children, whereas higher levels of and increases in unsecured debt (for example, credit card debt) are associated with lower levels of and declines in child socioemotional well-being, respectively.  
   
@@ -127,8 +129,10 @@ Data shows that Black-White racial health inequities have not narrowed over time
 
 Between 2019 and 2021, the U.S. experienced a widening of its life expectancy gap during the COVID-19 pandemic with Hispanic and non-Hispanic Black populations experiencing larger declines in life expectancy over the two-year period than non-Hispanic White populations. 
 
+<div class="mb-4">
 <iframe title="Health inequities have not improved over time" class="my-2 py-2 border-top border-bottom" aria-label="Interactive line chart" id="datawrapper-chart-AbBga" src="https://datawrapper.dwcdn.net/AbBga/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
+</div>
 
 
 ### Reducing the racial wealth gap
