@@ -273,14 +273,6 @@
                 </div>
             </div>
 
-            <!-- Keywords partial -->
-            <div class="d-none d-lg-block my-2 l-green-border">
-                {{- partial "keywords" . -}}
-    
-            </div>
-
-            <hr class="my-2">
-
             <div class="l-green-border mb-4 px-1">
                 <span class="home-label font-weight-bold">Concerned? Take Action</span>
                 <!-- Take Action link --> 
@@ -298,10 +290,17 @@
                 <!-- socialshare -->
                 <div class="">
                     <span class="home-label">Share with a friend:</span>
-                    {{ partial "socialshare" }}
+                    {{- partial "socialshare" . -}}
 
                 </div>
             </div>
+
+            <!-- Keywords partial -->
+            <div class="d-none d-lg-block my-2 l-green-border">
+                {{- partial "keywords" . -}}
+    
+            </div>
+            
 
     
 
