@@ -11,18 +11,6 @@ vega: true
 js: heatsyndrome.js 
 ---
 
-Extreme heat is dangerous. It can cause illness, make chronic conditions worse, and even kill. Heat-related illnesses happen when the body cannot cool down enough. These include:
-
- - Heat exhaustion 
- - Muscle cramps 
- - Fainting 
- - Heat stroke, the most serious form of heat-related illness
-
-
-Heat can also exacerbate chronic conditions, such as cardiovascular diseases or kidney conditions. These conditions may not be recognized or labeled as heat-related in a medical record but can be assessed using statistical models and are another a negative health outcome related to heat.  
-
-**Predicting and tracking heat-related illness**  
-
 The weather forecast is the best way to predict heat-related health outcomes.  
 
 We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat, not the full burden of heat-related health impacts.  
