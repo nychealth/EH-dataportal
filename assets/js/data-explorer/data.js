@@ -90,7 +90,7 @@ const createComparisonData = async (comps) => {
     
     console.log("** createComparisonData");
     
-    // console.log("comps [createComparisonData]:", comps);
+    console.log("comps [createComparisonData]:", comps);
 
     // will be used by renderMeasures to create dropdown
     
@@ -98,11 +98,11 @@ const createComparisonData = async (comps) => {
         d => indicatorComparisonId.includes(d.ComparisonID)
     )
         
-    // console.log("comparisonsMetadata [createComparisonData]:", comparisonsMetadata);
+    console.log("comparisonsMetadata [createComparisonData]:", comparisonsMetadata);
 
     // merged metadata
     
-    // console.log("aqComparisonsMetadata:");
+    console.log("aqComparisonsMetadata:");
 
     aqComparisonsMetadata = aq.from(comparisonsMetadata)
         .unroll("Indicators")
@@ -112,7 +112,7 @@ const createComparisonData = async (comps) => {
         })
         .unroll("MeasureID")
         .select(aq.not("Indicators"))
-        // .print()
+        .print()
 
     // console.log("aqUniqueIndicatorMeasure:");
 
@@ -549,7 +549,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     // if no secondary measure ID is given, set it to the first in the primary measure's links list
 
     if (typeof secondaryMeasureId == "undefined") {
-        secondaryMeasureId = primaryMeasureMetadata[0].VisOptions[0].Links[0].MeasureID;
+        secondaryMeasureId = primaryMeasureMetadata[0].VisOptions[0].Links[0].Measures[0].MeasureID;
     }
 
     // get the indicator element for the selected secondary measure

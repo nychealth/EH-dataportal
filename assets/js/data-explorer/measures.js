@@ -211,7 +211,7 @@ const setDefaultLinksMeasure = async (visArray) => {
         defaultLinkMeasureTimes = defaultArray[0].AvailableTime;
 
         const defaultPrimaryMeasureId = defaultArray[0].MeasureID;
-        const defaultSecondaryMeasureId = defaultArray[0].VisOptions[0].Links[0].MeasureID;
+        const defaultSecondaryMeasureId = defaultArray[0].VisOptions[0].Links[0].Measures[0].MeasureID;
 
         // assigning to global object
         defaultLinksMetadata = defaultArray;
@@ -783,9 +783,9 @@ const renderMeasures = async () => {
     linksMeasures.length = 0
 
     const contentTable = document.querySelector('#tab-table');
-    const contentMap     = document.querySelector('#tab-map')
-    const contentTrend   = document.querySelector('#tab-trend');
-    const contentLinks   = document.querySelector('#tab-links');
+    const contentMap   = document.querySelector('#tab-map')
+    const contentTrend = document.querySelector('#tab-trend');
+    const contentLinks = document.querySelector('#tab-links');
 
     // console.log("contentTrend", contentTrend);
 
@@ -925,12 +925,12 @@ const renderMeasures = async () => {
     indicatorMeasures.map((measure, index) => {
 
         // console.log("index", index);
-        // console.log("measure", measure);
+        console.log("measure", measure);
 
         const type = measure?.MeasurementType;
-        const links = measure?.VisOptions[0].Links && measure?.VisOptions[0]?.Links[0];
-        const map = measure?.VisOptions[0].Map && measure?.VisOptions[0].Map[0]?.On;
-        const trend = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0]?.On;
+        const map = measure?.VisOptions[0].Map && measure?.VisOptions[0].Map[0]?.TimeDescription;
+        const trend = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0]?.TimeDescription;
+        const links = measure?.VisOptions[0].Links && measure?.VisOptions[0]?.Links[0].Measures[0];
         const measureId = measure.MeasureID;
 
         // console.log("type", type, "links", links, "map", map, "trend", trend);
@@ -938,7 +938,7 @@ const renderMeasures = async () => {
 
         // ----- handle map measures -------------------------------------------------- //
 
-        if (map === 1) {
+        if (map) {
             
             mapMeasures.push(measure)
             
@@ -952,7 +952,7 @@ const renderMeasures = async () => {
 
         // ----- handle trend measures -------------------------------------------------- //
 
-        if (trend === 1) {
+        if (trend) {
 
             // console.log(">>>> trend");
 
@@ -1001,7 +1001,7 @@ const renderMeasures = async () => {
                 dropdownLinksMeasures.innerHTML +=
                     `<div class="dropdown-title pl-2"><strong> ${type}</strong></div>`;
 
-                measure.VisOptions[0].Links.map(link => {
+                measure.VisOptions[0].Links[0].Measures.map(link => {
 
                     const linksSecondaryIndicator = indicators.filter(indicator =>
                         indicator.Measures.some(m =>
@@ -1189,15 +1189,22 @@ const renderMeasures = async () => {
 
             let defaultMapMeasureId = defaultMapMetadata[0].MeasureID;
 
+            let mapTimes = defaultMapMetadata[0].VisOptions[0].Map[0].TimeDescription
+            let mapGeos = defaultMapMetadata[0].VisOptions[0].Map[0].GeoType
+
             // ----- create dataset -------------------------------------------------- //
 
             // filter map data using default measure
 
             filteredMapData = mapData.filter(
-                    obj => obj.MeasureID === defaultMapMeasureId
+                    obj => (
+                        obj.MeasureID === defaultMapMeasureId &&
+                        mapTimes.includes(obj.Time) &&
+                        mapGeos.includes(obj.GeoType)
+                    )
                 );
 
-            // console.log("filteredMapData [showMap]", filteredMapData);
+            console.log("filteredMapData [showMap]", filteredMapData);
 
             // ----- allow map to persist when changing tabs -------------------------------------------------- //
 
@@ -1733,8 +1740,8 @@ const renderMeasures = async () => {
             // switch on/off the disparities button
 
             const disparities =
-                defaultLinksMetadata[0].VisOptions[0].Trend &&
-                defaultLinksMetadata[0].VisOptions[0].Trend[0]?.Disparities;
+                defaultLinksMetadata[0].VisOptions[0].Links &&
+                defaultLinksMetadata[0].VisOptions[0].Links[0]?.Disparities;
 
             // hide or how disparities button
 
@@ -1769,7 +1776,7 @@ const renderMeasures = async () => {
 
             // get first linked measure by default
 
-            const secondaryMeasureId = defaultLinksMetadata[0]?.VisOptions[0].Links[0].MeasureID;
+            const secondaryMeasureId = defaultLinksMetadata[0]?.VisOptions[0].Links[0].Measures[0].MeasureID;
 
             // get linked indicator's metadata
 

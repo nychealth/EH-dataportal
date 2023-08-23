@@ -2,6 +2,8 @@
 // map.js
 // ======================================================================= //
 
+// how do we make sure that users can't see the times and geos we don't want to show?
+
 const renderMap = (
     data,
     metadata

@@ -39,7 +39,7 @@ const renderLinksChart = (
     const secondaryTime            = data[0].Time_2;
 
     const SecondaryAxis = 
-        primaryMetadata[0].VisOptions[0].Links.filter(
+        primaryMetadata[0].VisOptions[0].Links[0].Measures.filter(
             l => l.MeasureID === secondaryMeasureId
         )[0].SecondaryAxis;
 
