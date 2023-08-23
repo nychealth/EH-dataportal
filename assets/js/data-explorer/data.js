@@ -333,7 +333,7 @@ function draw311Buttons(x) {
     for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
         var title = filteredCrosswalk[i].topic
         var destination = filteredCrosswalk[i].kaLink
-        var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="badge badge-pill badge-primary" target="_blank" rel=”noopener noreferrer”><i class="fas fa-external-link-alt mr-1"></i>${title}</a>`
+        var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="badge badge-pill badge-primary mr-1" target="_blank" rel=”noopener noreferrer”><i class="fas fa-external-link-alt mr-1"></i>${title}</a>`
         document.getElementById('311').innerHTML += btn
     }
 }
