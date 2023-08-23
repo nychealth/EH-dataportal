@@ -32,6 +32,10 @@ var spec = {
   "data": {
     "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat2023_live.csv"
   },
+  "transform": [
+    {"calculate": "year(datum.END_DATE)", "as": "Year"},
+    {"filter": "datum.Year == 2023"}
+  ],
   "vconcat": [
     {
       "width": "container",
@@ -187,14 +191,14 @@ var scatterplot = {
         "tickCount": 5
       }
     },
-    "color": {"field": "Year", "type": "nominal"},
+    "color": {"field": "Year", "title": "Year", "type": "nominal"},
     "opacity": {
       "condition": {
         "param": "year",
         "empty": true,
         "value": 1
       },
-      "value": 0.2
+      "value": 0.15
     },
     "stroke": {
       "condition": {
@@ -234,40 +238,48 @@ vegaEmbed('#vis2', scatterplot)
 
 // Year change function powered by year buttons
 function changeYear(x) {
+  spec.transform[1].filter = `datum.Year == ${x}`;
   if (x == 2023) {
     spec.data.url = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat2023_live.csv'
-    vegaEmbed('#vis1', spec);
-    document.getElementById('2023button').classList.add('btn-secondary')
-    document.getElementById('2022button').classList.remove('btn-secondary')
-    document.getElementById('2021button').classList.remove('btn-secondary')
-    document.getElementById('2023button').classList.remove('btn-outline-secondary')
-    document.getElementById('2022button').classList.add('btn-outline-secondary')
-    document.getElementById('2021button').classList.add('btn-outline-secondary')
-  } else if (x == 2022) {
-    spec.data.url = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat2022_live.csv'
-    vegaEmbed('#vis1', spec);
-    document.getElementById('2023button').classList.remove('btn-secondary')
-    document.getElementById('2022button').classList.add('btn-secondary')
-    document.getElementById('2021button').classList.remove('btn-secondary')
-    document.getElementById('2023button').classList.add('btn-outline-secondary')
-    document.getElementById('2022button').classList.remove('btn-outline-secondary')
-    document.getElementById('2021button').classList.add('btn-outline-secondary')
-  } else if (x == 2021) {
-    spec.data.url = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat2021_live.csv'
-    vegaEmbed('#vis1', spec);
-    document.getElementById('2023button').classList.remove('btn-secondary')
-    document.getElementById('2022button').classList.remove('btn-secondary')
-    document.getElementById('2021button').classList.add('btn-secondary')
-    document.getElementById('2023button').classList.add('btn-outline-secondary')
-    document.getElementById('2022button').classList.add('btn-outline-secondary')
-    document.getElementById('2021button').classList.remove('btn-outline-secondary')
-  } else {};
-  document.getElementById('yearHeader').innerHTML = x
+  } else {
+    spec.data.url = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/previous_years.csv'
+  }
+  document.getElementById('yearHeader').innerHTML = x;
+  vegaEmbed('#vis1',spec);
+
+  var buttons = document.querySelectorAll('.yearButtons')
+  console.log(buttons)
+  for (let i = 0; i < buttons.length; i ++ ) {
+    buttons[i].classList.remove('btn-secondary')
+    buttons[i].classList.add('btn-outline-secondary')
+  }
+
+  var buttonName = x + 'button'
+  document.getElementById(buttonName).classList.add('btn-secondary')
+  document.getElementById(buttonName).classList.remove('btn-outline-secondary')
+
+
+}
+
+var scatterCount = 0
+function toggleScatter(x) {
+  scatterCount = Number(scatterCount + 1)
+  console.log(scatterCount)
+  if ( scatterCount % 2 == 0) {
+    console.log('even')
+    document.getElementById('scattertoggle').innerHTML = 'Show time'
+    vegaEmbed('#vis2', scatterplot)
+  } else {
+    console.log('odd')
+    document.getElementById('scattertoggle').innerHTML = 'Show scatter'
+    vegaEmbed('#vis2', scatterplotTwo)
+
+  }
 }
 
 
 
-var scatterplorTwo = {
+var scatterplotTwo = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Max daily temperature",
@@ -275,10 +287,14 @@ var scatterplorTwo = {
     "align": "left",
     "anchor": "start"
   },
-  "width": 700,
+  "width": "container",
   "height": 500,
   "config": {
-    "legend": {"orient": "right", "title": null, "labelFontSize": 16},
+    "legend": {
+      "orient": "right", 
+      "title": null, 
+      "labelFontSize": 16
+    },
     "background": "#FFFFFF",
     "range": {
       "category": [
@@ -300,11 +316,16 @@ var scatterplorTwo = {
     {"calculate": "dayofyear(datum.END_DATE)", "as": "Day"},
     {"filter": "datum.HEAT_ED_VISIT_COUNT > 0"}
   ],
-  "mark": {"type": "point", "shape": "circle", "filled": true, "opacity": 0.2},
+  "mark": {
+    "type": "point", 
+    "shape": "circle", 
+    "filled": true,
+    "opacity": 1
+  },
   "params": [
     {
       "name": "year",
-      "select": {"type": "point", "fields": ["Year"], "on": "click"},
+      "select": {"type": "point", "fields": ["Year"], "on": "mouseover"},
       "bind": "legend"
     },
     {
@@ -315,7 +336,7 @@ var scatterplorTwo = {
   ],
   "encoding": {
     "size": {
-      "title": "Heat ED visits",
+      "title": "Heat-related ED visits",
       "field": "HEAT_ED_VISIT_COUNT",
       "type": "quantitative",
       "legend": {"symbolFillColor": "white", "values": [10, 50, 100]},
@@ -338,7 +359,7 @@ var scatterplorTwo = {
     "color": {"field": "Year", "title": "Year", "type": "nominal"},
     "opacity": {
       "condition": {"param": "year", "empty": true, "value": 1},
-      "value": 0.01
+      "value": 0.15
     },
     "stroke": {
       "condition": {"param": "hover", "empty": false, "value": "#3e3e3e"},
