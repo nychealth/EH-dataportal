@@ -116,7 +116,7 @@
                                         <a href="/pagefind/" class="btn nav-item-search d-lg-none" type="button" title="Search">
 
                                         <span class="sr-only">Search</span>
-                                        <i class="fa fa-magnifying-glass fa-lg"></i>
+                                        <i class="fa fa-magnifying-glass fa-md"></i>
 
                                     </a>
                                 </li>
@@ -194,12 +194,16 @@
 
                     {{- else -}}
 
-                    <a href="/pagefind/" class="btn nav-item-search d-none d-lg-block" type="button" title="Search">
+                    <button class="btn nav-item-search d-none d-lg-block" type="button" title="Search">
 
-                        <span class="sr-only">Search</span>
-                        <i class="fa fa-magnifying-glass fa-lg"></i>
+                        <a href="/pagefind/">
 
-                    </a>
+                            <span class="sr-only">Search</span>
+                            <i class="fa fa-magnifying-glass fa-lg text-body"></i>
+
+                        </a>
+
+                    </button>
 
                     {{- end -}}
 
