@@ -113,10 +113,10 @@
                                         </button>
                                     </li>
                                     <li>
-                                        <a href="/pagefind/" class="btn nav-item-search d-lg-none" type="button" title="Search">
+                                        <a href="/pagefind/" class="btn nav-item-search d-lg-none" title="Search">
 
-                                        <span class="sr-only">Search</span>
-                                        <i class="fa fa-magnifying-glass fa-md"></i>
+                                            <span class="sr-only">Search</span>
+                                            <i class="fa fa-magnifying-glass fa-lg text-body"></i>
 
                                     </a>
                                 </li>
@@ -194,16 +194,16 @@
 
                     {{- else -}}
 
-                    <button class="btn nav-item-search d-none d-lg-block" type="button" title="Search">
+                    {{/*  <button class="btn nav-item-search d-none d-lg-block" type="button" title="Search">  */}}
 
-                        <a href="/pagefind/">
+                        <a href="/pagefind/" class="btn nav-item-search d-none d-lg-block" title="Search">
 
                             <span class="sr-only">Search</span>
-                            <i class="fa fa-magnifying-glass fa-lg text-body"></i>
+                            <i class="fa fa-magnifying-glass fa-lg text-body mt-1"></i>
 
                         </a>
 
-                    </button>
+                    {{/*  </button>  */}}
 
                     {{- end -}}
 
