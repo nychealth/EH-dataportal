@@ -7,6 +7,15 @@
 
   <section class="social-share">
     <ul class="share-icons">
+
+      <!-- Email -->
+      <li>
+        <a href="mailto:?subject={{ .Site.Title }} - {{ $title }}.&amp;body={{ $body }}" target="_blank" rel="noopener noreferrer" class="share-btn email">
+          <i class="fas fa-envelope fs-xl"></i>
+          <p>Email</p>
+        </a>
+      </li> 
+
       <!-- Twitter -->
       <li>
         <a href="https://twitter.com/intent/tweet?&amp;url={{ .Permalink }}&amp;text={{ .Title }}" target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter" class="share-btn twitter">
@@ -31,12 +40,6 @@
           </a>
       </li>
 
-      <!-- Email -->
-      <li>
-        <a href="mailto:?subject={{ .Site.Title }} - {{ $title }}.&amp;body={{ $body }}" target="_blank" rel="noopener noreferrer" class="share-btn email">
-          <i class="fas fa-envelope fs-xl"></i>
-          <p>Email</p>
-        </a>
-      </li> 
+
     </ul>
   </section>
