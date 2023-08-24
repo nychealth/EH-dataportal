@@ -36,7 +36,7 @@ const renderMap = (
         var color = 'purplered'
         var rankReverse = defaultMapMetadata[0].VisOptions[0].Map[0].RankReverse
         if (rankReverse === 0) {
-            color = 'purplered'
+            color = 'reds'
         } else if (rankReverse === 1) {
             color = 'blues'
         }
@@ -168,7 +168,7 @@ const renderMap = (
                                         "bin": false,
                                         "field": "Value",
                                         "type": "quantitative",
-                                        "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}}
+                                        "scale": {"scheme": {"name": color, "extent": [0.125, 1.125]}}
                                     },
                                     "value": "#808080"
                                 },
