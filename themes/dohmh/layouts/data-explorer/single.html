@@ -229,6 +229,21 @@
 
 {{/*  URL  */}}
 
+{{- if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (eq (path.Base .RelPermalink) "asthma")) -}}
+
+    <h2 
+        id="IndicatorID-18"
+        class="d-none"
+        href="{{ .Page.RelPermalink }}/?id=18"
+    >Adults with asthma (past 12 months)</h2>
+
+    <h2 
+        id="IndicatorID-2048"
+        class="d-none"
+        href="{{ .Page.RelPermalink }}/?id=2048"
+    >Asthma emergency department visits (age 4 and under)</h2>
+
+{{- end -}}
 {{/*  <div 
     id="IndicatorID-18"
     data-pagefind-meta="url[href],title[title],description[description]"
@@ -247,21 +262,14 @@
     data-pagefind-index-attrs="title,description"
 ></div>  */}}
 
-<div 
-    id="IndicatorID-18"
-    title="Adults with asthma (past 12 months)"
-    description="Asthma is a common disease characterized by breathing difficulty. Poor air quality and housing issues increase risk of developing and triggering asthma."
-    href="{{ .Page.RelPermalink }}/?id=18"
-    data-pagefind-index-attrs="title,description"
-></div>
 
-<div 
+{{/*  <div 
     id="IndicatorID-2048"
     title="Asthma emergency department visits (age 4 and under)"
     description="Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma."
     href="{{ .Page.RelPermalink }}/?id=2048"
     data-pagefind-index-attrs="title,description"
-></div>
+></div>  */}}
 
 {{/*  <div 
     data-pagefind-meta="name[name],description[description]"
@@ -308,7 +316,7 @@
     
             <div class="d-none d-lg-block">
             <!-- Indicator buttons (hidden on mobile)-->
-            <span class='home-label d-none d-md-block border-bottom mb-1 font-weight-bold'><div class="home-label h1" style="display: inline-block;">{{ .Title }}</div> datasets:</span>
+            <span class='home-label d-none d-md-block border-bottom mb-1 font-weight-bold'><h1 class="home-label h1" style="display: inline-block;">{{ .Title }}</h1> datasets:</span>
             <div style="border-left: 8px solid #00923E50; border-bottom: 2px dashed #00923E50">
             <div id="indicatorButtons" class="pb-0 overflow-fade-ind mb-0">
                     <!--Rendered via renderIndicatorButtons function -->
@@ -632,7 +640,7 @@
     <!-- Topic Selection Modal -->
 
     <div class="modal fade" id="topicModal" tabindex="-1" role="dialog" aria-labelledby="topicModalLabel"
-         aria-hidden="true">
+         aria-hidden="true" data-pagefind-ignore="all">
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content mb-2 border-light shadow">
                 <div class="modal-header">
