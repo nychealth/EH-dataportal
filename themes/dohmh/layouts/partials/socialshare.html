@@ -3,14 +3,14 @@
 
   {{- $title := .Title -}}
   {{- $url := printf "%s" .Permalink -}}
-  {{- $body := print $title ", by " .Site.Title "\n" .Params.description "\n\n" $url "\n" -}}
+  {{- $body := print $title ", by " .Site.Title "\n" .Params.seo_description "\n\n" $url "\n" -}}
 
   <section class="social-share">
     <ul class="share-icons">
 
       <!-- Email -->
       <li>
-        <a href="mailto:?subject={{ .Site.Title }} - {{ $title }}.&amp;body={{ $body }}" target="_blank" rel="noopener noreferrer" class="share-btn email">
+        <a href="mailto:?subject={{ .Site.Title }} - {{ $title }}&amp;body={{ $body }}" target="_blank" rel="noopener noreferrer" class="share-btn email">
           <i class="fas fa-envelope fs-xl"></i>
           <p>Email</p>
         </a>
