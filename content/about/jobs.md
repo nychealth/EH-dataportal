@@ -11,6 +11,14 @@ Join our team! See below for open positions in our bureau.
 ---
 <br>
 
+**Senior Evaluator**
+
+We are hiring an experienced evaluator who will develop and implement of an evaluation strategy for the agency's community climate resiliency program portfolio, and oversee and implement analytic plans for program evaluation projects.
+- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job ID 600823.
+
+---
+<br>
+
 **Environmental Operations Data Scientist**
 
 We are hiring research scientist who will conduct analytic work and will take a lead role in food safety inspectional program support as NYC continues to lift restrictions on restaurants, mobile food vendors, and other food service establishments during recovery from the Covid-19 pandemic. The analyst also will support improvements to inspectional databases and update reporting systems and conduct rapid reporting for DOHMH and other City Agency leadership while continuing to support the launch of the MFV grading program which is currently resuming.
