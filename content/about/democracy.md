@@ -1,5 +1,5 @@
 ---
-title: "Democracy is a public health intervention"
+title: "Democracy and public health"
 date: 2023-8-27T09:34:06-05:00
 draft: false
 seo_title: "Ways to change the system."
