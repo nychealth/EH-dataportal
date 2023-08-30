@@ -89,7 +89,7 @@
 
           <rule name="User testing redirect" stopProcessing="true">
 
-            <match url="nope" />
+            <match url="/?test/?" />
 
             <conditions logicalGrouping="MatchAll" trackAllCaptures="false" />
 
