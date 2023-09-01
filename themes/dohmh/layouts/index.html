@@ -175,7 +175,7 @@
             <div class="card-body">
               <h5 class="card-title text-muted fs-sm">About us</h5>
               <p class="fs-sm">Learn more about the Environment & Health Data Portal, and the Health Department team behind it.</p>
-              {{- with .Site.GetPage "about/about.md" -}}
+              {{- with .Site.GetPage "about/_index.md" -}}
               <a href="{{ .RelPermalink }}" class="btn btn-outline-gray btn-block btn-sm mt-2">About
                 Us<i class="fas fa-chevron-circle-right ml-1" aria-hidden="true"></i></a>
                 {{- end -}}
