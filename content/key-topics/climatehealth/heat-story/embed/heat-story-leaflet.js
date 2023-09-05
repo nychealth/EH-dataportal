@@ -13,6 +13,8 @@ var layerGroup = L.layerGroup();
 var layerMouseOver = null;
 var featureMouseOver = null;
 var legendControl = null;
+var legendPropertiesByLayer = {};
+var layersExclusive = new Set();
 
 function init() {
     addLayerButtons();
@@ -20,6 +22,7 @@ function init() {
     setupMap();
     addListeners();
     createLegend();
+    //$('[data-toggle="tooltip"]').tooltip();
 }
 
 function setupMap() {
@@ -30,6 +33,16 @@ function setupMap() {
 
     layerGroup.addTo(map);
 
+    const url = window.BaseURL + "geojson/neighborhoods.geojson";
+    fetch(url).then(response => {
+      if (!response.ok) {
+          return null;
+      }
+      return response.json();
+    }).then(data => {
+      const neighborhoodsLayer = L.geoJSON(data, { style: { color: 'black', fillOpacity: 0, weight: 1 }});
+      neighborhoodsLayer.addTo(map);
+    });
     /*
      *
      * Sample code for pulling from mapbox
@@ -42,7 +55,8 @@ function setupMap() {
     */
 }
 
-var holderButtons = document.getElementById('buttonHolder')
+var buttonHolderBase = document.getElementById('buttonHolderBase')
+var buttonHolderAdditional = document.getElementById('buttonHolderAdditional')
 function addLayerButtons() {
     const layers = config.layers;
     for (let i = 0; i < layers.length; i++) {
@@ -55,7 +69,12 @@ function addLayerButtons() {
                 </span>
                 ${layer.property.name}
             </button>`
-        holderButtons.innerHTML += button;
+        if (layer.property?.exclusive === true) {
+            buttonHolderBase.innerHTML += button;
+            layersExclusive.add(layer.property.id);
+        } else {
+            buttonHolderAdditional.innerHTML += button;
+        }
     };
 }
 
@@ -88,8 +107,11 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
         return null;
     }
     const data = await response.json();
+    const values = data.features.map(f => f.properties[args.colorFeatureProperty])
+        .filter(x => x != null && !isNaN(x));
+    const colorChroma = chroma.scale([args?.minColor ?? '#fff', args?.maxColor ?? '#000'])
+        .domain([Math.min(...values), Math.max(...values)]);;
     const onStyle = (feature) => {
-        const colorChroma = chroma.scale([args?.minColor ?? '#fff', args?.maxColor ?? '#000']);
         const fillColor = args.colorFeatureProperty != null
             ? colorChroma(feature.properties[args.colorFeatureProperty])
             : args?.fillColor;
@@ -104,30 +126,12 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
             ...colors,
         };
     }
-    const legendFunc = () => {
-        if (!args?.fillColor && !args?.color && !args?.minColor && !args?.maxColor) {
-            return '';
-        }
-
-        const background = args?.fillColor ? `background: ${args?.fillColor};` : '';
-        const borderColor = args?.color ? `border-width: 2px; border-color: ${args?.color}; border-style: solid;` : '';
-        const backgroundCss = (args.colorFeatureProperty != null
-                && args?.minColor != null && args?.maxColor != null)
-            ? `background-image: linear-gradient(to right, ${args.minColor}, ${args?.maxColor});`
-            : ('' + background + borderColor);
-        const legend = '<span style="'
-            + backgroundCss
-            + 'height: 20px; width: 100%;'
-            + 'display: block; background-repeat: no-repeat;'
-            + '"></span>' + name;
-        return legend;
-    }
     const layer = L.geoJSON(
         data,
         {
             style: onStyle,
             onEachFeature: function(feature, layer) {
-                layer.bindPopup("Hello popup", {});
+                //layer.bindPopup("Hello popup", {});
                 layer.on('mouseover', function(event) {
                     layerMouseOver = layer;
                     featureMouseOver = feature;
@@ -144,8 +148,45 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
             _custom_id: id,
             displayProperties,
             name,
-          legendFunc,
         });
+
+    const legendFunc = () => {
+        if (!args?.fillColor && !args?.color && !args?.minColor && !args?.maxColor) {
+            return '';
+        }
+
+        const background = args?.fillColor
+            ? `background: ${args.fillColor};`
+            : args?.legendColor
+            ? `background: ${args.legendColor};`
+            : '';
+        const borderColor = args?.color ? `border-width: 2px; border-color: ${args?.color}; border-style: solid;` : '';
+        const backgroundCss = (args.colorFeatureProperty != null
+                && args?.minColor != null && args?.maxColor != null)
+            ? `background-image: linear-gradient(to right, ${args.minColor}, ${args?.maxColor});`
+            : ('' + background + borderColor);
+        var legend = name + '<span style="'
+            + backgroundCss
+            + 'height: 20px; width: 100%;'
+            + 'display: block; background-repeat: no-repeat;'
+            + '"></span>'
+        if (args.colorFeatureProperty) {
+            const values = layer.getLayers()
+                .map(x => x.feature.properties[args.colorFeatureProperty])
+                .filter(x => x != null && !isNaN(x));
+            legend += '<div style="display: block; width: 100%;">'
+                + `<div style="float: left;">${Math.min(...values)}</div>`
+                + `<div style="float: right;">${Math.max(...values)}</div></div>`;
+        }
+        if (args.legendDescription) {
+            const collapseId = `${id}LegendCollapse`;
+          legend += `<br /><div style="display: block; width: 100%; max-width: 250px;"><a data-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More Info About ${name}</a>`
+            + `<div class="collapse" id="${collapseId}">${args.legendDescription}</div></div>`;
+        }
+        return legend;
+    }
+
+    layer.options.legendFunc = legendFunc;
     return layer;
 }
 
@@ -163,11 +204,13 @@ async function createGeotiffLayer({ url, args, name }) {
     const legendFunc = () => {
         const colorStart = args?.colorStart || '#0f0';
         const colorStop = args?.colorStop || '#f00';
-        const legend = '<span style="'
+        const legend = name + '<span style="'
             + `background-image: linear-gradient(to right, ${colorStart}, ${colorStop});`
             + 'height: 20px; width: 100%;'
             + 'display: block; background-repeat: no-repeat;'
-            + '"></span>' + name;
+            + '"></span>'
+            + '<span style="position: absolute, left: 0, font-size: 11px, bottom: 3px">0</span>'
+            + '<span style="position: absolute, right: 0, font-size: 11px, bottom: 3px">5</span>';
         return legend;
     }
     const layer = new GeoRasterLayer({
@@ -222,8 +265,18 @@ async function getOrCreateLayer(layerId) {
 async function addLayerToMap(layerId) {
     const layer = await getOrCreateLayer(layerId);
     if (layer != null && !map.hasLayer(layer)) {
-        //layer.addTo(map);
         layerGroup.addLayer(layer);
+
+        // only one active one at a time
+        if ( layersExclusive.has(layerId) ) {
+            for (_layerId in layersVisible) {
+                const isVisible = layersVisible[_layerId];
+                if ( isVisible === true && _layerId !== layerId ) {
+                    removeLayerFromMap(_layerId);
+                }
+            }
+        }
+
         layersVisible[layerId] = true;
         const button = document.querySelector(`#${layerId}`)
         if (button != null) {
@@ -385,7 +438,13 @@ function updatePopup({ lat, lng }) {
               return;
           }
 
-          const intersection = leafletPip.pointInLayer({ lat, lng }, _layer);
+          let intersection = [];
+          try {
+            intersection = leafletPip.pointInLayer({ lat, lng }, _layer);
+          } catch(err) {
+            console.log(err);
+            //intersections 
+          }
           if (intersection.length > 0) {
               features.push({feature: intersection[0].feature, layer: _layer});
           }
@@ -436,7 +495,8 @@ L.Control.Legend = L.Control.extend({
 
         var div = L.DomUtil.create('div', 'info legend');
         L.DomUtil.addClass(div, 'leaflet-control-layers-expanded');
-        div.innerHTML = '<fieldset><h4>Legend</h4>' + htmls.join('<br>') + '</fieldset>';
+        const innerHtml = '<fieldset><h4>Legend</h4><table>' + htmls.join('<br />') + '</table></fieldset>';
+        div.innerHTML = innerHtml;
         return div;
     }
 });

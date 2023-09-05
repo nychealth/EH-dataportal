@@ -1,35 +1,84 @@
+/*
+ * This is the configuration used to setup the entire mapping application.
+ * The configuration is split into three sections: initialMapState, layers and stories
+ *
+ * initialMapState
+ *   lat: starting map latitude
+ *   lng: starting map longitude
+ *   zoom: starting map zoom
+ *   layers: list of layers to show when starting the map
+ *
+ *  layers:
+ *    property:
+ *      id: unique id for the layer
+ *      name: human readable name of the layer
+ *      type: layer type for rendering. can be raster or geojson
+ *      url: file location for the layer
+ *      exclusive: if true, then this is an exclusive layer. only one exclusive layer can be done at a time
+ *      args:
+ *        colorFeatureProperty: data property to use for setting the layer color
+ *        minColor / maxColor: color is linearly interpolated. These are the starting and ending colors
+ *        null: some datasets have a special null value, which can be set here.
+ *        fillColor: if the minColor / maxColor is not set, then the fill color can be used for a constant color
+ *        color: border color for the polygons
+ *        fillOpacity: opacity of the layer. between 0 and 1
+ *        legendColor: can be used to set the legend color
+ *        legendDescription: the description to use in the legend when expanding the more info button
+ *      displayProperties: properties for hover
+ *        missingDisplay": string to use for missing properties
+ *        displayPropertyArgs: list of arguments
+ *          id: id of the property to display
+ *          displayName: name to use for the tooltip
+ *          type: can be used to show special types. optional. can be percentage or currency
+ *
+ *  stories: list of user stories
+ *    id: unique id of the story
+ *    title: title to use to display the story
+ *    content: html blob for the story
+ *    mapState: map state to use for showing the story
+ *      lat: latitide for the story
+ *      lng: longitude for the story
+ *      zoom: zoom level for the story
+ *      layers: layers to use to display the story
+ */
+
 config = {
     "initialMapState":{
        "lat":40.763862,
        "lng":-74.05,
        "zoom":12,
        "layers":[
-          "njNycHiAfternoon"
+          "nycAfternoon"
        ]
     },
     "layers":[
        {
           "property":{
-             "id":"njNycHiMorning",
+             "id":"nycHiMorning",
              "name":"Morning Heat Index",
              "type":"raster",
-             "url":"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/nj-nyc-hi-morning.tiff"
+             "url": window.BaseURL + "tiff/nyc-hi-morning.tiff",
+             "exclusive": true
           }
        },
        {
           "property":{
-             "id":"njNycHiAfternoon",
+             "id":"nycAfternoon",
              "name":"Afternoon Heat Index",
              "type":"raster",
-             "url":"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/nj-nyc-hi-afternoon.tiff"
+             "url": window.BaseURL + "tiff/nyc-hi-afternoon.tiff",
+             "exclusive": true
+
           }
        },
        {
           "property":{
-             "id":"njNycHiEvening",
+             "id":"nycHiEvening",
              "name":"Evening Heat Index",
              "type":"raster",
-             "url":"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/nj-nyc-hi-evening.tiff"
+             "url": window.BaseURL + "tiff/nyc-hi-evening.tiff",
+             "exclusive": true
+
           }
        },
        {
@@ -37,13 +86,14 @@ config = {
              "id":"heatAndDemographics",
              "name":"Heat and Demographics",
              "type":"geojson",
-             "url":"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/heatAndDemographics.geojson",
+             "url": window.BaseURL + "geojson/heat_and_demographics.geojson",
              "args":{
                 "colorFeatureProperty":"afternoonMaxHeatIndex",
                 "minColor":"white",
                 "maxColor":"red",
                 "null":-9999,
-                "fillColor":"black"
+                "fillColor":"black",
+                "legendDescription": "This is a sample of a legend description. It can be long, it can be short, it can include <a href=\"#\">links</a>. It can do things like <b>bold</b>."
              },
              "displayProperties":{
                 "displayPropertyArgs":[
@@ -82,7 +132,7 @@ config = {
              "id":"redline",
              "name":"Redlined Areas",
              "type":"geojson",
-             "url":"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/overlappedRedline.geojson",
+             "url": window.BaseURL + "geojson/redlined.geojson",
              "args":{
                 "colorFeatureProperty":"grade",
                 "minColor":"darkred",
@@ -118,10 +168,12 @@ config = {
              "id":"greenspace",
              "name": "Greenspace",
              "type": "geojson",
-             "url": "https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/greenspacesNdvi.geojson",
+             "url": window.BaseURL + "geojson/greenspace.geojson",
              "args":{
                 "color":"green",
-                "fillOpacity": 0
+                "fillColor":"green",
+                "fillOpacity": 0,
+                "legendColor": "green"
              },
              "displayProperties":{
                 "missingDisplay":"No name found",
@@ -168,7 +220,7 @@ config = {
              "id":"heatProstration",
              "name":"Heat Prostration",
              "type":"geojson",
-             "url":"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/heat-prostration.geojson",
+             "url": window.BaseURL + "geojson/heat-prostration.geojson",
              "ignoreOpacity":true,
              "displayProperties":{
                 "displayPropertyArgs":[
@@ -197,7 +249,7 @@ config = {
              "id":"bruckner",
              "name":"Bruckner Boulevard",
              "type":"geojson",
-             "url":"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/melissa-barber/bruckner.geojson",
+             "url": window.BaseURL + "geojson/bruckner.geojson",
              "ignoreOpacity":true,
              "displayProperties":{
                 "displayPropertyArgs":[
@@ -214,12 +266,13 @@ config = {
              "id":"air_quality",
              "name": "Air Quality",
              "type": "geojson",
-             "url":"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/air-quality.geojson",
+             "url": window.BaseURL + "geojson/air-quality.geojson",
              "args":{
-                "minColor":"darkgrey",
-                "maxColor":"white",
-                "color": "darkgrey",
-                "fillOpacity": 0.7
+                "colorFeatureProperty":"Black Carbon - Mean",
+                "minColor":"red",
+                "maxColor":"green",
+                "color": "black",
+                "opacity": 1.0
              },
              "displayProperties":{
                 "missingDisplay":"N/A",
@@ -231,10 +284,6 @@ config = {
                    {
                       "id":"Fine Particulate Matter (PM2.5) - Mean",
                       "displayName":"Fine Particulate Matter (PM2.5) - Mean"
-                   },
-                   {
-                      "id":"Black Carbon - 90th Percentile",
-                      "displayName":"Black Carbon - 90th Percentile"
                    },
                    {
                       "id":"Black Carbon - Mean",
@@ -249,12 +298,13 @@ config = {
             "id":"heat_stress",
             "name": "Heat Stress",
             "type": "geojson",
-            "url":"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/heat-stress.geojson",
+            "url": window.BaseURL + "geojson/heat-stress.geojson",
             "args":{
-                "minColor":"grey",
-                "maxColor":"red",
-                "color": "darkgrey",
-                "fillOpacity": 0.7
+                "colorFeatureProperty": "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate",
+                "minColor":"red",
+                "maxColor":"green",
+                "color": "black",
+                "opacity": 0.5
 
             },
             "displayProperties":{
@@ -290,17 +340,18 @@ config = {
     },
     {
         "property": {
-            "id":"health_impacts_of_air_pollution",
-            "name": "Health Impacts Of Air Pollution",
-            "type": "geojson",
-            "url":"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/health-impacts-of-air-pollution.geojson",
-            "args":{
-                "minColor":"green",
-                "maxColor":"yellow",
-                "color": "darkgrey",
-                "fillOpacity": 0.7
-            },
-            "displayProperties":{
+          "id":"health_impacts_of_air_pollution",
+          "name": "Health Impacts Of Air Pollution",
+          "type": "geojson",
+          "url": window.BaseURL + "geojson/health-impacts-of-air-pollution.geojson",
+          "args":{
+              "colorFeatureProperty":"PM2.5-Attributable Respiratory Hospitalizations (Adults 20 Yrs and Older) - Estimated Annual Rate",
+              "minColor":"white",
+              "maxColor":"black",
+              "color": "darkgrey",
+              "opacity": 0.7
+          },
+          "displayProperties":{
             "missingDisplay":"N/A",
             "displayPropertyArgs":[
                 {
@@ -352,20 +403,20 @@ config = {
             "id":"social_economic",
             "name": "Social and Economic",
             "type": "geojson",
-            "url":"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/social-economic.geojson",
+            "url": window.BaseURL + "geojson/social-economic.geojson",
             "args":{
+              "colorFeatureProperty": "Poverty - Percent",
                 "minColor":"black",
                 "maxColor":"green",
                 "color": "darkgrey",
-                "fillOpacity": 0.7
-
+                "opacity": 0.7
             },
             "displayProperties":{
             "missingDisplay":"N/A",
             "displayPropertyArgs":[
                 {
                     "id":"Poverty - Number",
-                    "displayName":"Poverty - Number"
+                    "displayName":"Poverty"
                 },
                 {
                     "id":"Older Adults Living Alone - Number",
@@ -373,7 +424,8 @@ config = {
                 },
                 {
                     "id":"Older Adults Living Alone - Percent",
-                    "displayName":"Older Adults Living Alone - Percent"
+                    "displayName":"Older Adults Living Alone",
+                    "format": "percent"
                 },
                 {
                     "id":"Unemployment - Number",
@@ -403,7 +455,7 @@ config = {
              "lng":-73.925476,
              "zoom":16,
              "layers":[
-                "njNycHiEvening",
+                "nycHiEvening",
                 "bruckner"
              ]
           }
@@ -416,7 +468,7 @@ config = {
              "lat":40.844771,
              "lng":-73.937088,
              "zoom":15,
-             "layers":[ "njNycHiAfternoon" ]
+             "layers":[ "nycAfternoon" ]
           }
        },
        {
@@ -429,7 +481,7 @@ config = {
              "zoom":13,
              "layers":[
                 "heatProstration",
-                "njNycHiEvening"
+                "nycHiEvening"
              ]
           }
        },
@@ -441,7 +493,7 @@ config = {
              "lat":40.731967,
              "lng":-74.046526,
              "zoom":14,
-             "layers":[ "njNycHiAfternoon" ]
+             "layers":[ "nycAfternoon" ]
           }
        },
        {
@@ -467,7 +519,11 @@ config = {
             "lat": 40.7256087,
             "lng": -74.1529999,
             "zoom":14,
-            "layers":[ "njNycHiAfternoon" ]
+            "layers":[ "nycAfternoon" ],
+            "marker": {
+              "lat": 40.7256087,
+              "lng": -74.1529999,
+            }
          }
       },
       {
@@ -478,7 +534,7 @@ config = {
            "lat": 40.8082044,
            "lng": -73.9232586,
            "zoom": 15,
-           "layers":[ "njNycHiAfternoon", "greenspace", "heat_stress" ]
+           "layers":[ "nycAfternoon", "greenspace", "heat_stress" ]
         }
       }
     ]
