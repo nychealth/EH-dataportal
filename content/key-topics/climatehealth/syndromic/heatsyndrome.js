@@ -111,7 +111,7 @@ vegaEmbed('#vis1',spec)
 var scatterplot = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Max daily temperature",
+    "text": "Heat-related ED visits",
     "fontSize": 12,
     "align": "left",
     "anchor": "start"
@@ -119,11 +119,7 @@ var scatterplot = {
   "width": "container",
   "height": 500,
   "config": {
-    "legend": {
-      "orient": "right",
-      "title": null,
-      "labelFontSize": 16
-    },
+    "legend": {"orient": "right", "title": null, "labelFontSize": 16},
     "background": "#FFFFFF",
     "range": {
       "category": [
@@ -134,102 +130,75 @@ var scatterplot = {
         "#386cb0",
         "#f0027f"
       ]
-  },
+    }
   },
   "view": {"stroke": "transparent"},
   "data": {
     "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/previous_years.csv"
   },
   "transform": [
-    {"calculate": "year(datum.END_DATE)",
-    "as": "Year"
-    },
-    {
-      "filter": "datum.HEAT_ED_VISIT_COUNT > 0"
-    }
+    {"calculate": "year(datum.END_DATE)", "as": "Year"},
+    {"filter": "datum.HEAT_ED_VISIT_COUNT > 0"}
   ],
-  "mark": {
-    "type": "point",
-    "shape": "circle",
-    "filled": true
-    },
+  "mark": {"type": "point", "shape": "circle", "filled": true},
   "params": [
     {
       "name": "year",
-      "select": {
-        "type": "point",
-        "fields": ["Year"],
-        "on": "mouseover"
-      },
+      "select": {"type": "point", "fields": ["Year"], "on": "mouseover"},
       "bind": "legend"
     },
     {
       "name": "hover",
       "value": "#7C7C7C",
-      "select": { "type": "point", "on": "mouseover"}
+      "select": {"type": "point", "on": "mouseover"}
     }
   ],
   "encoding": {
-    "y": {
+    "x": {
       "field": "MAX_DAILY_TEMP",
       "type": "quantitative",
       "scale": {"zero": false},
-      "title": "",
-      "axis": {
-        "grid": true,
-        "tickCount": 5,
-        "labelExpr": "datum.value + '°F'"
-      }
+      "title": "Max daily temperature",
+      "axis": {"grid": true, "tickCount": 5, "labelExpr": "datum.value + '°F'"}
     },
-    "x": {
+    "y": {
       "field": "HEAT_ED_VISIT_COUNT",
       "type": "quantitative",
       "scale": {"zero": false},
-      "title": "Heat-related ED visits",
-      "axis": {
-        "grid": false,
-        "tickCount": 5
-      }
+      "title": "",
+      "axis": {"grid": false, "tickCount": 5}
     },
     "color": {"field": "Year", "title": "Year", "type": "nominal"},
     "opacity": {
-      "condition": {
-        "param": "year",
-        "empty": true,
-        "value": 1
-      },
+      "condition": {"param": "year", "empty": true, "value": 1},
       "value": 0.15
     },
     "stroke": {
-      "condition": {
-        "param": "hover",
-        "empty": false,
-        "value": "#3e3e3e"
-      },
+      "condition": {"param": "hover", "empty": false, "value": "#3e3e3e"},
       "value": "#7C7C7C"
     },
     "strokeWidth": {
-      "condition": {
-        "param": "hover",
-        "empty": false,
-        "value": 3
-      },
+      "condition": {"param": "hover", "empty": false, "value": 3},
       "value": 1
     },
     "size": {
-      "condition": {
-        "param": "hover",
-        "empty": false,
-        "value": 250
-      },
+      "condition": {"param": "hover", "empty": false, "value": 250},
       "value": 150
     },
     "tooltip": [
-      {"field": "END_DATE", "type": "temporal","title": "Date"},
-      {"field": "MAX_DAILY_TEMP", "type": "quantitative","title": "Maximum daily temperature"},
-      {"field": "HEAT_ED_VISIT_COUNT", "type": "quantitative","title": "Number of heat-related ED visits"}    
-    ]  
-    }
+      {"field": "END_DATE", "type": "temporal", "title": "Date"},
+      {
+        "field": "MAX_DAILY_TEMP",
+        "type": "quantitative",
+        "title": "Maximum daily temperature"
+      },
+      {
+        "field": "HEAT_ED_VISIT_COUNT",
+        "type": "quantitative",
+        "title": "Number of heat-related ED visits"
+      }
+    ]
+  }
 }
 
 // Initial embed of scatterplot
