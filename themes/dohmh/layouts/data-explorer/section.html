@@ -3,74 +3,91 @@
 <article class="container-fluid" id="skip-header-target">
 
     <div class="col-lg-10 col-md-12 mx-auto my-4">
-        <h1 class="de-accent"><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
-        {{- .Content -}}
-
-
-
         <div class="row">
-            <div class="col-md-6 p-2 pl-0 ml-auto">
+            <div class="col-12">
+                <h1 class="de-accent"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>{{ .Title }}</h1>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-md-7 col-sm-12">
+                {{- .Content -}}
+
+
                 <p class="text-info font-weight-bold">Select a topic to view data:</p>
-                 {{ partial "de-chooser-accordion.html" . }}
+                {{ partial "de-chooser-accordion.html" . }}
 
-             </div>
 
-             <div class="col-md-4 p-2 mr-auto">
-                <div class="mt-4">
-                    {{ partial "featured-data.html" . }}
 
-                </div>
-                </div>
+
 
             </div>
 
-        <div class="row">
-            <div class="col-10 mx-auto">
-                <p class="mt-2 fs-sm"><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em> <a class="text-info font-weight-bold" href='{{ ref . "/content/data-explorer/all-data.md" }}'>Browse an index of all our datasets</a>.
-                </p>
-            </div>
-        </div>
+            <div class="col-md-5 col-sm-12">
 
-            <div class="row mt-6">
-                <hr class="my-2">
-                <div class="col-12">
-                    <h2 class="text-muted fs-lg">About the Data Explorer</h2>
-                    <p class="fs-sm">Our site's data explorer contains hundreds of datasets. Choose a topic to browse available datasets. View data by neighborhood on ways that environments affect health. 
-Get maps, trends, and more - on ways that your neighborhood shapes your health. </p>
-                </div>
-            </div>
-
-
-            <div class="row mt-4">
-                <div class="col-md-4 card content-card">
-                    <div class="card-content">
-                        <div class="card-body">
-                            <img class="card-img-top" src="{{ .Site.BaseURL }}images/trend-chart-4.png" alt="Card image cap">
-                        </div>
-                      </div>
-
+                <div class="card-content mb-4">
+                    <img class="card-img-top cardshadow" src="/images/home-sample-image-DE-5.png">
                 </div>
 
-                <div class="col-md-4 card content-card">
-                    <div class="card-content">
-                        <div class="card-body">
-                            <img class="card-img-top" src="{{ .Site.BaseURL }}images/data-map-5.png" alt="Card image cap">
-                        </div>
-                      </div>
-
+                <div class="l-green-border p-1">
+                    <!-- Recently updated data -->
+                    <p class="home-label"><i class="fas fa-table mr-1" aria-hidden="true"></i>Recently updated datasets:</p>
+                    {{ range .Site.Data.recently_updated_data.featured}}
+                    <a href="{{ .link }}" class="btn btn-outline-primary mr-1 mb-1 btn-sm">{{ .copy }}</a> 
+                    {{ end }}
                 </div>
 
-                <div class="col-md-4 card content-card">
-                    <div class="card-content">
-                        <div class="card-body">
-                            <img class="card-img-top" src="{{ .Site.BaseURL }}images/links-chart-4.png" alt="Card image cap">
-                        </div>
-                      </div>
-
+                <div class="l-green-border mt-2 p-1">
+                    <!-- Index link -->
+                    <p class="fs-sm"><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em> <a class="text-info font-weight-bold" href='{{ ref . "/content/data-explorer/all-data.md" }}'>Browse an index of all our datasets</a>.
+                    </p>
                 </div>
-    
+
+
+
             </div>
         </div>
+
+
+
+
+    </div>
+
+
+    <!--
+    <div class="col-lg-10 col-sm-12 my-4">
+
+        <div class="row mt-4">
+            <div class="col-md-4 card content-card">
+                <div class="card-content">
+                    <div class="card-body">
+                        <img class="card-img-top" src="{{ .Site.BaseURL }}images/trend-chart-4.png" alt="Card image cap">
+                    </div>
+                    </div>
+
+            </div>
+
+            <div class="col-md-4 card content-card">
+                <div class="card-content">
+                    <div class="card-body">
+                        <img class="card-img-top" src="{{ .Site.BaseURL }}images/data-map-5.png" alt="Card image cap">
+                    </div>
+                    </div>
+
+            </div>
+
+            <div class="col-md-4 card content-card">
+                <div class="card-content">
+                    <div class="card-body">
+                        <img class="card-img-top" src="{{ .Site.BaseURL }}images/links-chart-4.png" alt="Card image cap">
+                    </div>
+                    </div>
+
+            </div>
+
+        </div>
+    </div>
+    -->
 
 
 
