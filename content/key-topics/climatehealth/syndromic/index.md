@@ -13,7 +13,7 @@ js: heatsyndrome.js
 
 The weather forecast is the best way to predict heat-related health outcomes.  
 
-We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat, not the full burden of heat-related health impacts.  
+We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC. These data include illnesses directly attributed to heat (including heat exhaustion, muscle cramps, fainting and heat stroke), not the full burden of heat-related health impacts.  
 
 
 

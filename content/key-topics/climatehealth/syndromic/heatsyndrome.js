@@ -24,44 +24,50 @@ var spec = {
       "grid": true,
       "ticks": false,
       "titleAngle": 0,
-      "titleX": 20,
-      "titleY": -10
+      "titleAlign": "left",
+      "titleY": -8
     },
     "view": {"stroke": "transparent"}
   },
   "data": {
-    "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat2023_live.csv"
+    "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/edheat2023_live.csv",
+  "format": {"type":"csv", "parse":{"END_DATE": "date:'%Y-%m-%d'", "MAX_DAILY_TEMP":"number","HEAT_ED_VISIT_COUNT":"number"}} //format.parse -> END_DATE resolves UTC time issues
+
   },
   "transform": [
     {"calculate": "year(datum.END_DATE)", "as": "Year"},
     {"filter": "datum.Year == 2023"}
-  ],
+    ],
   "vconcat": [
     {
       "width": "container",
       "height": 250,
       "mark": {
-        "type": "line", 
-        "tooltip": true,"interpolate": "monotone","point": {"filled": false, "fill": "white"}
-    },
+        "type": "line",
+        "tooltip": true,
+        "interpolate": "monotone",
+        "point": {"filled": false, "fill": "white"}
+      },
       "selection": {"brush": {"type": "interval", "encodings": ["x"]}},
       "encoding": {
         "y": {
           "field": "MAX_DAILY_TEMP",
           "type": "quantitative",
-          "title": "Max daily temp",
+          "title": "Maximum daily temp or heat index",
           "scale": {"domain": [50, 110]},
-          "axis": {
-            "tickCount": 4,
-            "labelExpr": "datum.value + '°F'"
-          }
+          "axis": {"tickCount": 4, "labelExpr": "datum.value + '°F'"}
         },
-        "x": {"field": "END_DATE", "type": "temporal", "title": ""},
+        "x": {
+          "field": "END_DATE", 
+          "type": "temporal", 
+          "title": "",
+          "format": "%m-%d"
+          },
         "color": {"value": "orange"},
         "tooltip": [
-          {"field": "END_DATE", "title": "Date", "type": "temporal"},
+          {"field": "END_DATE","title": "Date", "type": "temporal"},
           {"field": "MAX_DAILY_TEMP", "title": "Max daily temp (F)"},
-          {"field": "HEAT_ED_VISIT_COUNT", "title": "Heat-related ED visits"}
+          {"field": "HEAT_ED_VISIT_COUNT", "title": "Heat-related illness ED visits"}
         ]
       }
     },
@@ -69,33 +75,31 @@ var spec = {
       "height": 250,
       "width": "container",
       "mark": {
-        "type": "line", 
-        "tooltip": true, 
-        "strokeWidth":3,
+        "type": "line",
+        "tooltip": true,
+        "strokeWidth": 3,
         "interpolate": "monotone",
         "point": {"filled": false, "fill": "white"}
-        },
+      },
       "encoding": {
         "y": {
           "field": "HEAT_ED_VISIT_COUNT",
-          "type": "quantitative", 
-          "title": "Heat ED visits",
-          "axis": {
-            "tickCount": 3
-          }
+          "type": "quantitative",
+          "title": "Heat-related illness ED visits",
+          "axis": {"tickCount": 3}
         },
         "x": {
           "field": "END_DATE",
           "type": "temporal",
           "title": "",
           "scale": {
-            "domain": {"selection": "brush"}
-          }
+            "type": "utc",
+            "domain": {"selection": "brush"}}
         },
         "color": {"value": "darkred"},
         "tooltip": [
-          {"field": "END_DATE", "title": "Date", "type": "temporal"},
-          {"field": "HEAT_ED_VISIT_COUNT", "title": "Heat-related ED visits"},
+          {"field": "END_DATE","title": "Date", "type": "temporal"},
+          {"field": "HEAT_ED_VISIT_COUNT", "title": "Heat-related illness ED visits"},
           {"field": "MAX_DAILY_TEMP", "title": "Max daily temp (F)"}
         ]
       }
@@ -111,7 +115,7 @@ vegaEmbed('#vis1',spec)
 var scatterplot = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Heat-related ED visits",
+    "text": "Heat-related illness ED visits",
     "fontSize": 12,
     "align": "left",
     "anchor": "start"
@@ -158,7 +162,7 @@ var scatterplot = {
       "field": "MAX_DAILY_TEMP",
       "type": "quantitative",
       "scale": {"zero": false},
-      "title": "Max daily temperature",
+      "title": "Maximum daily temp or heat index",
       "axis": {"grid": true, "tickCount": 5, "labelExpr": "datum.value + '°F'"}
     },
     "y": {
@@ -195,7 +199,7 @@ var scatterplot = {
       {
         "field": "HEAT_ED_VISIT_COUNT",
         "type": "quantitative",
-        "title": "Number of heat-related ED visits"
+        "title": "Heat-related illness ED visits"
       }
     ]
   }
@@ -251,7 +255,7 @@ function toggleScatter(x) {
 var scatterplotTwo = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Max daily temperature",
+    "text": "Maximum daily temp or heat index",
     "fontSize": 12,
     "align": "left",
     "anchor": "start"
@@ -305,7 +309,7 @@ var scatterplotTwo = {
   ],
   "encoding": {
     "size": {
-      "title": "Heat-related ED visits",
+      "title": "Heat-related illness ED visits",
       "field": "HEAT_ED_VISIT_COUNT",
       "type": "quantitative",
       "legend": {"symbolFillColor": "white", "values": [10, 50, 100]},
@@ -348,7 +352,7 @@ var scatterplotTwo = {
       {
         "field": "HEAT_ED_VISIT_COUNT",
         "type": "quantitative",
-        "title": "Number of heat-related ED visits"
+        "title": "Heat-related illness ED visits"
       }
     ]
   }
