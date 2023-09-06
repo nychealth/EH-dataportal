@@ -1,21 +1,22 @@
-name: Hugo Build to `prod-deploy` branch
+name: Hugo Build to prod-deploy and data-staging
 
 # run action on a merged PR on "production"
 
 on:
-  # pull_request:
-  #   branches:
-  #     - production
-  #   types:
-  #     - closed
+  pull_request:
+    branches:
+      - production
+    types:
+      - closed
   
-  # effectively turning this off, but keeping it in the repo
-  schedule:
-    - cron: 0 0 1 1 * 
-
 jobs:
-  deploy:
-    name: Build & Deploy w/ Hugo
+
+  # ------------------
+  # build to prod-deploy
+  # ------------------
+
+  prod-deploy:
+    name: Build & Deploy to prod-deploy
     runs-on: ubuntu-20.04
 
     # only run on PR that is also merged
