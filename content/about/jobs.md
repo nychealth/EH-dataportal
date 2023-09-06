@@ -16,11 +16,6 @@ Join our team! See below for open positions in our bureau - or, [search cityjobs
 ---
 <br>
 
-[**Environmental Operations Data Scientist**](https://cityjobs.nyc.gov/job/environmental-operations-data-scientist-bureau-of-environmental-surveillance-and-policy-in-manhattan-jid-13176): We are hiring research scientist who will conduct analytic work and will take a lead role in food safety inspectional program support as NYC continues to lift restrictions on restaurants, mobile food vendors, and other food service establishments during recovery from the Covid-19 pandemic. The analyst also will support improvements to inspectional databases and update reporting systems and conduct rapid reporting for DOHMH and other City Agency leadership while continuing to support the launch of the MFV grading program which is currently resuming.
-
----
-<br>
-
 [**Director of Data Management**](https://cityjobs.nyc.gov/job/director-data-management-bureau-of-environmental-surveillance-and-policy-in-manhattan-jid-12559): We're hiring somebody to work with the Division of Information Technology (DIT) to create and manage data integration processes, oversee and manage analytic databases and attendant governance policies, create views and stored procedures, and manage the reporting server. 
 
 ---
