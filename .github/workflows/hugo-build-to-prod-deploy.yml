@@ -1,4 +1,4 @@
-name: Hugo Build to prod-deploy and data-staging
+name: Hugo Build to prod-deploy
 
 # run action on a merged PR on "production"
 
