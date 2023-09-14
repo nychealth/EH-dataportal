@@ -273,25 +273,16 @@
                 </div>
             </div>
 
+            <!-- Take Action partial -->
+            <div class="d-none d-lg-block l-green-border mb-2 px-1">
+                {{- partial "takeaction" . -}}
+            </div>
+
             <!-- Keywords partial -->
             <div class="d-none d-lg-block my-2 l-green-border">
                 {{- partial "keywords" . -}}
-    
             </div>
-
-            <hr class="my-2">
-
-
-            <!-- 311 Links -->
-            <span id="311label" class="home-label"></span>
-            <div id="311"></div>
-
-            <!-- Take Action link --> 
-            <div class="mt-2 mb-4">
-            <span class="home-label">Concerned? Take action:</span>
-            <p><a href="../../take-action/email-electeds" class="btn btn-sm btn-block btn-outline-primary"><i class="fas fa-envelope-open-text mr-1"></i>Email your elected officials about this.</a>
-            </p>
-            </div>
+            
 
     
 
@@ -574,6 +565,13 @@
             sit amet, hendrerit
             blandit libero. Cras sit amet luctus nunc, nec mattis leo. </p>
             
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+        <!-- Take Action partial -->
+        <div class="d-none d-sm-block d-md-block d-lg-none l-green-border mb-2 px-1">
+            {{- partial "takeaction" . -}}
         </div>
     </div>
 </div>

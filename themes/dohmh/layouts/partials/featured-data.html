@@ -1,12 +1,12 @@
-<div class="row">
-    <p class="home-label"><i class="fas fa-table mr-1" aria-hidden="true"></i>Featured datasets:</p>
+<div class="row mb-1">
+    <p class="home-label"><i class="fas fa-table mr-1" aria-hidden="true"></i>Recently updated datasets:</p>
 
 </div>
 
 <div class="row">
     {{ range .Site.Data.featured_data.featured}}
 
-    <a href="{{ .link }}" class="btn btn-outline-primary btn-block btn-sm">{{ .copy }}</a>
+    <a href="{{ .link }}" class="btn btn-outline-primary mr-1 mb-1 btn-sm">{{ .copy }}</a>
 
     {{ end }}
   

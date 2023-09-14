@@ -3,11 +3,15 @@ name: Hugo Build to prod-deploy and data-staging
 # run action on a merged PR on "production"
 
 on:
-  pull_request:
-    branches:
-      - production
-    types:
-      - closed
+  # pull_request:
+  #   branches:
+  #     - production
+  #   types:
+  #     - closed
+  
+  # effectively turning this off, but keeping it in the repo
+  schedule:
+    - cron: 0 0 1 1 * 
 
 jobs:
 

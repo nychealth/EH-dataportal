@@ -115,7 +115,7 @@
       "from": {"data": "source_1"},
       "encode": {
         "update": {
-          "fill": {"value": "#C5C5C5"},
+          "fill": {"value": "#dfdfdf"},
           "stroke": {"value": "#fafafa"},
           "strokeWidth": {"value": 0.5},
           "ariaRoleDescription": {"value": "geoshape"}
@@ -155,7 +155,7 @@
               "test": "datum.properties.GEOCODE==selectedNTA",
               "value": "#00ffff"
             },
-            {"value": "#d2d2d2"}
+            {"value": "#c8c8c8"}
           ],
           "fill": [
             {
@@ -200,8 +200,8 @@
       "name": "color",
       "type": "ordinal",
       "domain": [5, 4, 3, 2, 1],
-      "range": {"scheme": "magma", "extent": [0, 0.9]},
-      "interpolate": "hcl"
+      "range": {"scheme": "darkred", "extent": [0.00, 1.00]},
+      "interpolate": "rgb"
     }
   ]
 }
