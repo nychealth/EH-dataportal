@@ -331,7 +331,7 @@ function draw311Buttons(x) {
 
     // Creates label if there are 311 links
     if (filteredCrosswalk.length > 0) {
-        document.getElementById('311label').innerHTML = 'Contact 311 for help with:'
+        document.getElementById('311label').innerHTML = 'Contact 311 about:'
         document.getElementById('311').classList.remove('hide')
     } else {
         document.getElementById('311label').innerHTML = ''
@@ -342,7 +342,7 @@ function draw311Buttons(x) {
     for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
         var title = filteredCrosswalk[i].topic
         var destination = filteredCrosswalk[i].kaLink
-        var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="btn btn-sm btn-outline-primary mr-1 mb-1" target="_blank" rel=”noopener noreferrer”><i class="fas fa-external-link-alt mr-1"></i>${title}</a>`
+        var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="badge badge-pill badge-primary mr-1" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt mr-1"></i>${title}</a>`
         document.getElementById('311').innerHTML += btn
     }
 }
@@ -478,7 +478,7 @@ const joinData = () => {
         .orderby(aq.desc('end_period'), aq.desc('GeoRank'))
         .reify()
 
-    // joinedAqData.print()
+    joinedAqData.print()
 
     // data for summary table
 
@@ -503,6 +503,8 @@ const joinData = () => {
         ) 
         // .impute({ Value: () => NaN })
         .objects()
+    
+    console.log("mapData", mapData);
 
     // map for trend chart
 
