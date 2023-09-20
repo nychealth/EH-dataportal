@@ -80,6 +80,8 @@ const renderComparisonsChart = (
 
         console.log("boros");
 
+        console.log("indicatorName", indicatorName);
+
         // if this is a boro comparison, tweak some things
 
         compGroupLabel = [... new Set(data.array("Geography"))];
@@ -99,6 +101,8 @@ const renderComparisonsChart = (
         let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
         let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))]
+
+        console.log("indicatorName", indicatorName);
 
         // console.log("compId", compId);
         
@@ -158,6 +162,8 @@ const renderComparisonsChart = (
         // ----- by measure: 1 indicator, 2+ measures, 1 citywide -------------------------------------------------- //
 
         console.log("1 indicator");
+
+        console.log("indicatorName", indicatorName);
         
         let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
@@ -198,6 +204,8 @@ const renderComparisonsChart = (
 
         console.log("1 measure");
 
+        console.log("indicatorName", indicatorName);
+
         let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
 
@@ -234,6 +242,8 @@ const renderComparisonsChart = (
         // ----- by combo: 2+ indicators, 2+ measures, 1 citywide -------------------------------------------------- //
 
         console.log("> 1 measure & indicator");
+
+        console.log("indicatorName", indicatorName);
 
         let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
