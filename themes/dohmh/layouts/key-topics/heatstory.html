@@ -1,139 +1,228 @@
 {{- define "main" -}}
 <head>
-    <title></title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/nychealth/EH-dataportal/prod-deploy/scss/theme.css">
+  <title></title>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://raw.githubusercontent.com/nychealth/EH-dataportal/prod-deploy/scss/theme.css"
+  />
 
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+    integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+    crossorigin=""
+  />
+  <script
+    src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+    integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+    crossorigin=""
+  ></script>
+  <script src="https://unpkg.com/leaflet.vectorgrid@latest/dist/Leaflet.VectorGrid.bundled.js"></script>
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
-    <script src="https://unpkg.com/leaflet.vectorgrid@latest/dist/Leaflet.VectorGrid.bundled.js"></script>
-
-
-    <!--D3-->
-    <script src="https://d3js.org/d3.v5.min.js"></script>
+  <!--D3-->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
 </head>
 
 <style>
-    #map {
-        width: 100%;
-        height: 60vh;
-    }
-    .accordion-group {
-        max-height: 40vh;
-        overflow-y: auto;
-
-    }
-    .accordion-group .card {
-        background-color: #f2f2f2;
-        margin: 0px;
-    }
-
+  #map {
+    width: 60%;
+    height: 60vh;
+  }
+  .accordion-group {
+    max-height: 40vh;
+    overflow-y: auto;
+  }
+  .accordion-group .card {
+    background-color: #f2f2f2;
+    margin: 0px;
+  }
 </style>
 
 <article class="container-fluid" id="skip-header-target">
-
-    <div class="row">
-        <div class="col-md-11 mx-auto mt-4">
-            <nav aria-label="breadcrumb" class="mb-4">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
-                    <li class="breadcrumb-item"><a href="/key-topics/climatehealth/">Climate and Health</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
-                </ul>
-            </nav>
-        </div>
-        <div class="col-md-2 mr-auto"></div>
+  <div class="row">
+    <div class="col-md-11 mx-auto mt-4">
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
+          <li class="breadcrumb-item">
+            <a href="/key-topics/climatehealth/">Climate and Health</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            {{ .Title }}
+          </li>
+        </ul>
+      </nav>
     </div>
+    <div class="col-md-2 mr-auto"></div>
+  </div>
 
-    <div class="row">
-        <div class="col-11  mx-auto">
-            <h1><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
-              {{- .Content  -}}
-        </div>
+  <div class="row">
+    <div class="col-11 mx-auto">
+      <h1>
+        <i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i
+        >{{ .Title }}
+      </h1>
+    
+      {{- .Content -}}
     </div>
+  </div>
 
-    <div class="container-fluid mt-2">
+  <div class="container-fluid mt-2">
+    <div class="row mx-auto">
+      <div class="col-4 mt-4 pt-0">
+        <div
+          class="accordion-group my-3"
+          style=""
+          role="tablist"
+          id="story-accordion"
+        ></div>
+      </div>
+      <div class="col-4">
+        <div id="baseLayerButtons">
+          <h4>Base Layers (only one at a time)</h4>
+          <div id="buttonHolderBase" style="display: inline-block"></div>
+        </div>
+        <div id="baseLayerButtons">
+          <h4>Additional Layers</h4>
+          <div id="buttonHolderAdditional" style="display: inline-block"></div>
+        </div>
+        <div id="map"></div>
+      </div>
+    </div>
+    </div>
+<div class="row mt-4 align-self-center">
+    <div class="col-11 mx-auto">
         <div class="row">
-            <div class="col-4">
-              <div class="accordion-group my-3" style="" role="tablist" id="story-accordion"></div>
-            </div>
-            <div class="col-8">
-                <div id="baseLayerButtons">
-                  <h4>Base Layers (only one at a time)</h4>
-                  <div id="buttonHolderBase" style="display:inline-block;"> </div>
+          <div class="col-6 md-6 mr-auto text-justify-center">
+            <div class="card content-card mb-4">
+                <div class="card bottom-border-none"></div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <h4 class="card-title"> Introduction</h4>
+                        <p> As climate change worsens, extreme heat is a recurring issue that is
+                            increasing in frequency and intensity. <p>Extreme heat can harm
+                            people's health and in the United States, more people die each year
+                            from heat than from all other weather-related disasters combined,
+                            demonstrating the significant morbidity and mortality burden extreme
+                            heat carries.</p>
+                        <h4 class="card-title"> How to use the story map </h4>
+                        <strong> How does heat affect your life? </strong>
+                        <p> It may affect your home, neighborhood, your commute, your daily
+                            routines—and your health. Tell your story: click here to submit
+                            your own story about how extreme heat has affected your life.
+                            Use the map to explore your neighbors' stories about
+                            how heat affects them. The map combines the results of an urban
+                            heat island mapping campaign with personal stories about heat. By
+                            observing the location of these events in the context of
+                            historical and demographic data, the aim of this project is to
+                            make visible the relationship between the disproportionate impacts
+                            of extreme heat, social inequities, and health.</p>
+                        <h4 class="card-title"> About the project </h4>
+                        <p> This story map can be used to visualize the firsthand experiences of
+                            New Yorkers with heat events in their neighborhoods, on their
+                            commutes, and during their daily routines. Click on the map markers
+                            to view the stories from New Yorkers in that area. The map combines
+                            the results of an urban heat island mapping campaign with personal
+                            stories about heat. By observing the location of these events in the
+                            context of historical and demographic data, the aim of this project
+                            is to make visible the relationship between the disproportionate
+                            impacts of extreme heat and social inequities. To toggle between
+                            map layers select the geographical data you’d like to see.
+                            You can select multiple layers at once to see for example daytime
+                            surface
+                        </p>
+                    </div>
                 </div>
-                <div id="baseLayerButtons">
-                  <h4>Additional Layers</h4>
-                  <div id="buttonHolderAdditional" style="display:inline-block;"> </div>
+            </div>
+            
+           
+          </div>
+          <div class="col-6 md-6 mr-auto">
+            <div class="card content-card mb-4">
+                <div class="card bottom-border-none"></div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <h4 class="card-title"> Community science and data collection </h4>
+                        <p> Using a community science approach, the data collection process was
+                            led by residents living in areas most affected by heat. On Saturday
+                            July 24, 2021, these community scientists traversed along 10
+                            different one-hour long routes with heat sensors on their cars or
+                            bicycles. These Type T Thermocouples sensors fired off every second
+                            and captured block-by-block differences in heat and humidity while
+                            using GPS to track geospatial data. Data collection took place
+                            during three windows: morning (6am–7am), afternoon (3pm–4pm), and
+                            evening (7pm–8pm) in northern Manhattan and the South Bronx. Local
+                            organizations South Bronx Unite, WE ACT for Environmental Justice,
+                            and Community Boards 9–12 in northern Manhattan worked together to
+                            design the routes around areas of concern to residents. These
+                            included intersections, bus stops, common corridors of activity, as
+                            well as public housing.</p>
+                        <h4 class="card title">How do the methods and results differ from other projects?</h4>
+                        <p><ul>
+                            <li><strong>Measures ambient temperature:</strong> Previous models have been based on
+                        satellite data, which record the temperature of the ground itself.
+                        This project measured air temperatures and humidity close to the
+                        ground, which is the heat people actually feel. </li>
+                            <li><strong>Finer spatial resolution: </strong>
+                        These map outputs are in higher resolution (one meter–10
+                        meters), meaning a finer spatial resolution than most public
+                        satellite products related to land surface temperature and air
+                        temperature. These more granular maps are more conducive to
+                        designing targeted local mitigation efforts. </li>
+                            <li><strong>Mobile data collection:</strong>
+                        Data was collected in real time across several different
+                        locations, while most existing air temperature data is collected in
+                        one stationary location. </li>
+                        <li><strong>Captures variance throughout the day:</strong> Data
+                        collection occurred multiple times in the day (morning, afternoon,
+                        and evening) to capture how heat may vary throughout the day.</li>
+                    </ul></p>
+                    </div>
                 </div>
-                <div id="map"></div>
             </div>
-            <div class="col-4 mx-auto my-5">
-              <h3>How to use the story map</h3>
-              <p>
-                  This story map can be used to visualize the firsthand experiences of
-                  New Yorkers with heat events in their neighborhoods, on their
-                  commutes, and during their daily routines. Click on the map
-                  markers to view the stories from New Yorkers in that area.
+          </div>
 
-                  The map combines the results of an urban heat island mapping
-                  campaign with personal stories about heat. By observing the
-                  location of these events in the context of historical and
-                  demographic data, the aim of this project is to make visible the
-                  relationship between the disproportionate impacts of extreme heat
-                  and social inequities.
+<div class="row pt-5">
+    <div class="col-6 justify-content-start mt-3">
+        <h4>Project credits</h4>
 
-                  To toggle between [maps / map layers] select the geographical
-                  data you’d like to see. You can [select multiple layers at once to
-                  see for example daytime surface
-              </p>
-              <p>
-                  This story map can be used to visualize the firsthand experiences of
-                  New Yorkers with heat events in their neighborhoods, on their
-                  commutes, and during their daily routines. Click on the map
-                  markers to view the stories from New Yorkers in that area.
-
-                  The map combines the results of an urban heat island mapping
-                  campaign with personal stories about heat. By observing the
-                  location of these events in the context of historical and
-                  demographic data, the aim of this project is to make visible the
-                  relationship between the disproportionate impacts of extreme heat
-                  and social inequities.
-
-                  To toggle between [maps / map layers] select the geographical
-                  data you’d like to see. You can [select multiple layers at once to
-                  see for example daytime surface
-              </p>
-
-            </div>
-            <div class="col-4 my-5 mx-auto">
-              <h5> Project credits </h5>
-
-              <p> The project team is: </p>
-              <p> Liv Yoon, Principal Investigator </p>
-              <p> Christian Braneon, Co-Investigator </p>
-              <p> Jolie Villegas, Research Assistant </p>
-              <p> Kemuning Adiputri, Student Consultant </p>
-              <p> Melissa Barber, Founding Member and Advisory Board Member </p>
-              <p> Mychal Johnson, Founding Member and Advisory Board Member </p>
-              <p> Arif Ullah, Executive Director </p>
-              <p> Jason Biegel, Software Engineer </p>
-              <p> Tom Zinckgraf, Software Engineer </p>
-              <p> Other partners: </p>
-              <p> CAPA Strategies </p>
-              <p> SBU </p>
-              <p> WE ACT </p>
-              <p> Community Boards 9-12 </p>
-              <p> About the project </p>
-              <p> Community science </p>
-            </div>
-        </div>
+        <p>The project team is:</p>
+    <ul>
+        <li>Liv Yoon, Principal Investigator</li>
+        <p>Christian Braneon, Co-Investigator</p>
+        <p>Jolie Villegas, Research Assistant</p>
+        <p>Kemuning Adiputri, Student Consultant</p>
+        <p>Melissa Barber, Founding Member and Advisory Board Member</p>
+        <p>Mychal Johnson, Founding Member and Advisory Board Member</p>
+        <p>Arif Ullah, Executive Director</p>
+        <p>Jason Biegel, Software Engineer</p>
+        <p>Tom Zinckgraf, Software Engineer</p>
+        <p>Other partners:</p>
+        <p>CAPA Strategies</p>
+        <p>SBU</p>
+        <p>WE ACT</p>
+        <p>Community Boards 9-12</p>
+        <p>About the project</p>
+        <p>Community science</p>
+</ul>
+      </div>
     </div>
-
+  </div>
+</div>
 </article>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js" integrity="sha512-zInFF17qBFVvvvFpIfeBzo7Tj7+rQxLeTJDmbxjBz5/zIr89YVbTNelNhdTT+/DCrxoVzBeUPVFJsczKbB7sew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js"
+  integrity="sha512-zInFF17qBFVvvvFpIfeBzo7Tj7+rQxLeTJDmbxjBz5/zIr89YVbTNelNhdTT+/DCrxoVzBeUPVFJsczKbB7sew=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
 <script>
   window.BaseURL = {{ site.BaseURL }};
 </script>
@@ -144,5 +233,67 @@
 <script src="https://unpkg.com/georaster"></script>
 <script src="https://unpkg.com/georaster-layer-for-leaflet/dist/georaster-layer-for-leaflet.min.js"></script>
 
-
 {{- end -}}
+
+
+<!-- text in non-card form / other not-used code
+            <h4>About the project</h4>
+            <p>
+            This story map can be used to visualize the firsthand experiences of
+            New Yorkers with heat events in their neighborhoods, on their
+            commutes, and during their daily routines. Click on the map markers
+            to view the stories from New Yorkers in that area. The map combines
+            the results of an urban heat island mapping campaign with personal
+            stories about heat. By observing the location of these events in the
+            context of historical and demographic data, the aim of this project
+            is to make visible the relationship between the disproportionate
+            impacts of extreme heat and social inequities. To toggle between
+            [maps / map layers] select the geographical data you’d like to see.
+            You can select multiple layers at once to see for example daytime
+            surface </p>
+          </div>
+          
+          <div class="col-6">
+            <h4>Community science and data collection</h4>
+            <p>
+            Using a community science approach, the data collection process was
+            led by residents living in areas most affected by heat. On Saturday
+            July 24, 2021, these community scientists traversed along 10
+            different one-hour long routes with heat sensors on their cars or
+            bicycles. These Type T Thermocouples sensors fired off every second
+            and captured block-by-block differences in heat and humidity while
+            using GPS to track geospatial data. Data collection took place
+            during three windows: morning (6am–7am), afternoon (3pm–4pm), and
+            evening (7pm–8pm) in northern Manhattan and the South Bronx. Local
+            organizations South Bronx Unite, WE ACT for Environmental Justice,
+            and Community Boards 9–12 in northern Manhattan worked together to
+            design the routes around areas of concern to residents. These
+            included intersections, bus stops, common corridors of activity, as
+            well as public housing. </p>
+          </div>
+          <div class="col-6">
+            <h4>How do the methods and results differ from other projects?</h4>
+            <p>
+                <ul>
+                <li><strong>Measures ambient temperature:</strong> Previous models have been based on
+            satellite data, which record the temperature of the ground itself.
+            This project measured air temperatures and humidity close to the
+            ground, which is the heat people actually feel. </li>
+                <li><strong>Finer spatial resolution: </strong>
+            These map outputs are in higher resolution (one meter–10
+            meters), meaning a finer spatial resolution than most public
+            satellite products related to land surface temperature and air
+            temperature. These more granular maps are more conducive to
+            designing targeted local mitigation efforts. </li>
+                <li><strong>Mobile data collection:</strong>
+            Data was collected in real time across several different
+            locations, while most existing air temperature data is collected in
+            one stationary location. </li>
+            <li><strong>Captures variance throughout the day:</strong> Data
+            collection occurred multiple times in the day (morning, afternoon,
+            and evening) to capture how heat may vary throughout the day.</li></ul></p>
+          </div>
+        </div>
+      </div>
+    </div>
+test -->

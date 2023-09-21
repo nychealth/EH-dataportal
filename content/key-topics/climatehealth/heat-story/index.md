@@ -11,4 +11,3 @@ vega: true
 leaflet: true
 ---
 
-Heat story content here
