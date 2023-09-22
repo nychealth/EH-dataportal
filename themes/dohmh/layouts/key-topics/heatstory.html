@@ -32,7 +32,7 @@
 <style>
   #map {
     width: 60%;
-    height: 60vh;
+    height: 40vh;
   }
   .accordion-group {
     max-height: 40vh;
@@ -74,9 +74,10 @@
     </div>
   </div>
 
-  <div class="container-fluid mt-2">
-    <div class="row mx-auto">
-      <div class="col-4 mt-4 pt-0">
+<!-- commenting out first container to test
+  <div class="container-fluid mt-2"> -->
+    <div class="row">
+      <div class="col-6 mt-2 pt-0">
         <div
           class="accordion-group my-3"
           style=""
@@ -84,7 +85,7 @@
           id="story-accordion"
         ></div>
       </div>
-      <div class="col-4">
+      <div class="col-6">
         <div id="baseLayerButtons">
           <h4>Base Layers (only one at a time)</h4>
           <div id="buttonHolderBase" style="display: inline-block"></div>
@@ -96,7 +97,7 @@
         <div id="map"></div>
       </div>
     </div>
-    </div>
+  </div>
 <div class="row mt-4 align-self-center">
     <div class="col-11 mx-auto">
         <div class="row">
@@ -105,7 +106,7 @@
                 <div class="card bottom-border-none"></div>
                 <div class="card-content">
                     <div class="card-body">
-                        <h4 class="card-title"> Introduction</h4>
+                        <h4 class="card-title"> Introduction </h4>
                         <p> As climate change worsens, extreme heat is a recurring issue that is
                             increasing in frequency and intensity. <p>Extreme heat can <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/heat/">harm
                             people's health</a> and in the United States, more people die each year
@@ -191,45 +192,53 @@
                     </div>
                 </div>
             </div>
-          </div>
-
-<div class="row pt-5">
-    <div class="col-6 off-set-md-*4 justify-content-start mt-3">
-        <h4>Project credits</h4>
-<!-- collapse element test for project credits 
-<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            Button with data-bs-target
-          </button>
-        </p>
-        <div class="collapse" id="collapseExample">
-          <div class="card card-body">
-            Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-</div>
--->
-        </div>
-        <p>The project team is:</p>
-    <ul>
-        <li>Liv Yoon, Principal Investigator</li>
-        <p>Christian Braneon, Co-Investigator</p>
-        <p>Jolie Villegas, Research Assistant</p>
-        <p>Kemuning Adiputri, Student Consultant</p>
-        <p>Melissa Barber, Founding Member and Advisory Board Member</p>
-        <p>Mychal Johnson, Founding Member and Advisory Board Member</p>
-        <p>Arif Ullah, Executive Director</p>
-        <p>Jason Biegel, Software Engineer</p>
-        <p>Tom Zinckgraf, Software Engineer</p>
-        <p>Other partners:</p>
-        <p>CAPA Strategies</p>
-        <p>SBU</p>
-        <p>WE ACT</p>
-        <p>Community Boards 9-12</p>
-        <p>About the project</p>
-        <p>Community science</p>
-</ul>
+        </div>       
       </div>
     </div>
   </div>
+          
+      
+  </div>
+<div class="row pt-5">
+    <div class="col-6 off-set-md-*4 justify-content-start mt-3">
+      <p>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+              Toggle width collapse
+            </button>
+      </p>
+          <div style="min-height: 120px;">
+            <div class="collapse collapse-horizontal" id="collapseWidthExample">
+              <div class="card card-body" style="width: 300px;">
+                This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered.
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+        <h4>Project credits</h4>
+        <p>The project team is:</p>
+    <ul>
+        <li>Liv Yoon, Principal Investigator</li>
+        <li>Christian Braneon, Co-Investigator</li>
+        <li>Jolie Villegas, Research Assistant</li>
+        <li>Kemuning Adiputri, Student Consultant</li>
+        <li>Melissa Barber, Founding Member and Advisory Board Member</li>
+        <li>Mychal Johnson, Founding Member and Advisory Board Member</li>
+        <li>Arif Ullah, Executive Director</li>
+        <li>Jason Biegel, Software Engineer</li>
+        <li>Tom Zinckgraf, Software Engineer</li>
+        <li>Other partners:</li>
+        <li>CAPA Strategies</li>
+        <li>SBU</li>
+        <li>WE ACT</li>
+        <li>Community Boards 9-12</li>
+        <li>About the project</li>
+        <li>Community science</li>
+    </ul>
 </div>
+    </div>
+  </div>
+
 </article>
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js"
@@ -248,66 +257,3 @@
 <script src="https://unpkg.com/georaster-layer-for-leaflet/dist/georaster-layer-for-leaflet.min.js"></script>
 
 {{- end -}}
-
-
-<!-- text in non-card form / other not-used code
-            <h4>About the project</h4>
-            <p>
-            This story map can be used to visualize the firsthand experiences of
-            New Yorkers with heat events in their neighborhoods, on their
-            commutes, and during their daily routines. Click on the map markers
-            to view the stories from New Yorkers in that area. The map combines
-            the results of an urban heat island mapping campaign with personal
-            stories about heat. By observing the location of these events in the
-            context of historical and demographic data, the aim of this project
-            is to make visible the relationship between the disproportionate
-            impacts of extreme heat and social inequities. To toggle between
-            [maps / map layers] select the geographical data you’d like to see.
-            You can select multiple layers at once to see for example daytime
-            surface </p>
-          </div>
-          
-          <div class="col-6">
-            <h4>Community science and data collection</h4>
-            <p>
-            Using a community science approach, the data collection process was
-            led by residents living in areas most affected by heat. On Saturday
-            July 24, 2021, these community scientists traversed along 10
-            different one-hour long routes with heat sensors on their cars or
-            bicycles. These Type T Thermocouples sensors fired off every second
-            and captured block-by-block differences in heat and humidity while
-            using GPS to track geospatial data. Data collection took place
-            during three windows: morning (6am–7am), afternoon (3pm–4pm), and
-            evening (7pm–8pm) in northern Manhattan and the South Bronx. Local
-            organizations South Bronx Unite, WE ACT for Environmental Justice,
-            and Community Boards 9–12 in northern Manhattan worked together to
-            design the routes around areas of concern to residents. These
-            included intersections, bus stops, common corridors of activity, as
-            well as public housing. </p>
-          </div>
-          <div class="col-6">
-            <h4>How do the methods and results differ from other projects?</h4>
-            <p>
-                <ul>
-                <li><strong>Measures ambient temperature:</strong> Previous models have been based on
-            satellite data, which record the temperature of the ground itself.
-            This project measured air temperatures and humidity close to the
-            ground, which is the heat people actually feel. </li>
-                <li><strong>Finer spatial resolution: </strong>
-            These map outputs are in higher resolution (one meter–10
-            meters), meaning a finer spatial resolution than most public
-            satellite products related to land surface temperature and air
-            temperature. These more granular maps are more conducive to
-            designing targeted local mitigation efforts. </li>
-                <li><strong>Mobile data collection:</strong>
-            Data was collected in real time across several different
-            locations, while most existing air temperature data is collected in
-            one stationary location. </li>
-            <li><strong>Captures variance throughout the day:</strong> Data
-            collection occurred multiple times in the day (morning, afternoon,
-            and evening) to capture how heat may vary throughout the day.</li></ul></p>
-          </div>
-        </div>
-      </div>
-    </div>
-test -->
