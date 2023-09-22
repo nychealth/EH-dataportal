@@ -74,10 +74,24 @@
     </div>
   </div>
 
+<!-- testing out adding a card with an img on another top line row - to eventually replace accordion as story selector-->
+  <div class="row">
+    <div class="col-6 mt-2 pt-0">
+      <div class="card" style="width: 24rem;">
+        <img src="https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/no-shade-trees/1.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title"> Brutal even for the young and healthy</h5>
+          <p class="card-text">I endured two hot summers in Washington Heights before installing an air conditioner. I was young and healthy, but it was still brutal. Cooking made the heat worse, and I worked at a bakery where no amount of air conditioning could keep up with the oven.</p>
+          <div class="card-footer"> Washington Heights, Manhattan </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
 <!-- commenting out first container to test
   <div class="container-fluid mt-2"> -->
-    <div class="row">
-      <div class="col-6 mt-2 pt-0">
+    <div class="row align-self-center">
+      <div class="col-6 mx-auto">
         <div
           class="accordion-group my-3"
           style=""
@@ -85,7 +99,7 @@
           id="story-accordion"
         ></div>
       </div>
-      <div class="col-6">
+      <div class="col-6 mt-2 pt-0">
         <div id="baseLayerButtons">
           <h4>Base Layers (only one at a time)</h4>
           <div id="buttonHolderBase" style="display: inline-block"></div>
@@ -116,10 +130,10 @@
                         <h4 class="card-title"> How to use the story map </h4>
                         <strong> How does heat affect your life? </strong>
                         <p> It may affect your home, neighborhood, your commute, your daily
-                            routines—and your health. 
-                        <strong>Tell your story:</strong> 
-                            <p>Click here to submit
-                            your own story about how extreme heat has affected your life.
+                            routines—and your health.</p> 
+                        <p><strong>Tell your story:</strong></p>
+                            <p>Click here to <a href="https://docs.google.com/forms/d/e/1FAIpQLSdwGh2hb4LeLsQxH-w9awMAF2qc_UgOsD_bBYhRVa3ECxM8Bg/viewform">submit
+                            your own story</a> about how extreme heat has affected your life.
                             Use the map to explore your neighbors' stories about
                             how heat affects them.</p>
                             <p>The map combines the results of an urban
@@ -170,7 +184,7 @@
                             included intersections, bus stops, common corridors of activity, as
                             well as public housing.</p>
                         <h4 class="card title">How do the methods and results differ from other projects?</h4>
-                        <p><ul>
+                        <ul>
                             <li><strong>Measures ambient temperature:</strong> Previous models have been based on
                         satellite data, which record the temperature of the ground itself.
                         This project measured air temperatures and humidity close to the
@@ -188,7 +202,7 @@
                         <li><strong>Captures variance throughout the day:</strong> Data
                         collection occurred multiple times in the day (morning, afternoon,
                         and evening) to capture how heat may vary throughout the day.</li>
-                    </ul></p>
+                    </ul>
                     </div>
                 </div>
             </div>
@@ -201,19 +215,67 @@
   </div>
 <div class="row pt-5">
     <div class="col-6 off-set-md-*4 justify-content-start mt-3">
+<!-- collapsible element - don't need it to navigate to the top of page but it works -->
+      <div class="btn-toggle">
+        <button class="btn btn-block btn-md btn-secondary text-white" data-toggle="collapse" data-target="#toggle-target" aria-expanded="false" aria-controls="toggle-target">
+            <span class="title">Project credits</span>
+        </button>
+    </div>
+
+    <nav class="collapse bg-light p-2" id="toggle-target" role="navigation">
+      <ul class="extensible-list">
+          </li>
+          <li>Liv Yoon, Principal Investigator</li>
+            <li>Christian Braneon, Co-Investigator</li>
+            <li>Jolie Villegas, Research Assistant</li>
+            <li>Kemuning Adiputri, Student Consultant</li>
+            <li>Melissa Barber, Founding Member and Advisory Board Member</li>
+            <li>Mychal Johnson, Founding Member and Advisory Board Member</li>
+            <li>Arif Ullah, Executive Director</li>
+            <li>Jason Biegel, Software Engineer</li>
+            <li>Tom Zinckgraf, Software Engineer</li>
+            <li><strong>Other partners:</strong></li>
+            <li><a href="https://www.capastrategies.com/" target="_blank">CAPA Strategies</li>
+            <li><a href="https://www.southbronxunite.org/" target="_blank">South Bronx Unite</a></li>
+            <li><a href="https://www.weact.org/" target="_blank">WE ACT for Environmental Justice</a></li>
+            <li>Community Boards 9-12</li>
+      </ul>
+  </nav>
+
+
+
+<!-- commenting out non-functional collapse toggle
       <p>
-            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-              Toggle width collapse
-            </button>
+        <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+          Project credits
+        </button>
       </p>
-          <div style="min-height: 120px;">
-            <div class="collapse collapse-horizontal" id="collapseWidthExample">
-              <div class="card card-body" style="width: 300px;">
-                This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered.
-              </div>
-            </div>
+      <div style="min-height: 120px;">
+        <div class="collapse collapse-horizontal" id="collapseWidthExample">
+          <div class="card card-body" style="width: 300px;">
+            <p>The project team is:</p>
+     <ul>
+        <li>Liv Yoon, Principal Investigator</li>
+        <li>Christian Braneon, Co-Investigator</li>
+        <li>Jolie Villegas, Research Assistant</li>
+        <li>Kemuning Adiputri, Student Consultant</li>
+        <li>Melissa Barber, Founding Member and Advisory Board Member</li>
+        <li>Mychal Johnson, Founding Member and Advisory Board Member</li>
+        <li>Arif Ullah, Executive Director</li>
+        <li>Jason Biegel, Software Engineer</li>
+        <li>Tom Zinckgraf, Software Engineer</li>
+        <li>Other partners:</li>
+        <li>CAPA Strategies</li>
+        <li>SBU</li>
+        <li>WE ACT</li>
+        <li>Community Boards 9-12</li>
+        <li>About the project</li>
+        <li>Community science</li>
+    </ul> -->
           </div>
-      </div>
+        </div>
+      </div> 
+<!-- commenting out project team - try with collapse buttons
     </div>
         <h4>Project credits</h4>
         <p>The project team is:</p>
@@ -234,10 +296,11 @@
         <li>Community Boards 9-12</li>
         <li>About the project</li>
         <li>Community science</li>
-    </ul>
-</div>
+    </ul> -->
+      </div> 
     </div>
   </div>
+<div class="row pt-5"></div>
 
 </article>
 <script
