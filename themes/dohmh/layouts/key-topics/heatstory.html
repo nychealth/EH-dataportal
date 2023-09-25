@@ -74,10 +74,46 @@
     </div>
   </div>
 
-<!-- testing out adding a card with an img on another top line row - to eventually replace accordion as story selector-->
+<!-- testing out adding button row across top -->
+<div class="row no-padding mt-4 mb-0">
+  <div class="col-12 ml-auto;">
+    <div id="buttonholdertest" style="display: inline-block;">
+      <h4>Base layer test</h4>
+      <button class="btn btn-outline-primary btn-sm btn-info m-2" type="button">
+        <span class="title">HVI</span>
+      <button class="btn btn-outline-secondary btn-sm btn-primary m-2 has-icon" type="button">
+          <span class="fab fa-plus" ></span>
+          <span class="title">Redlined areas</span>
+      <button class="btn btn-outline-info btn-sm btn-info m-2" type="button">
+        <span class="title">ED-related heat stress visits</span>
+      <button class="btn btn-outline-info btn-sm btn-info m-2" type="button">
+          <span class="title">Poverty</span>
+      <button class="btn btn-outline-info btn-sm btn-info m-2" type="button">
+        <span class="title">Evening heat index</span>
+      <button class="btn btn-outline-info btn-sm btn-info m-2" type="button">
+        <span class="title">ED-related heat stress visits</span>
+      <button class="btn btn-outline-info btn-sm btn-info m-2" type="button">
+        <span class="title">Greenspace</span>
+    </button>
+  </div>
+</div>  
+<!-- secondary button layer test -->
+  <div class="row no-padding mt-4 mb-0">
+      <div class="col-12 ml-auto;">
+        <div id="buttonholdertest2" style="display: inline-block;">
+        <h4> Secondary layers test</h4>
+          <button class="btn btn-outline-primary btn-sm btn-info m-2" type="button">
+            <span class="title">HVI 2</span>
+        </div>
+      </div>  
+  </div> 
+
+
+<!-- testing out adding a card with an img on another top line row - to eventually replace accordion as story selector if possible-->
+<div class="row no-padding mt-4 mb-0">
   <div class="row">
-    <div class="col-6 mt-2 pt-0">
-      <div class="card" style="width: 24rem;">
+    <div class="col-6 ml-1 pt-3">
+      <div class="card border-secondary" style="width: 24rem;">
         <img src="https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/no-shade-trees/1.jpg" class="card-img-top" alt="...">
         <div class="card-body">
         <h5 class="card-title"> Brutal even for the young and healthy</h5>
@@ -87,7 +123,8 @@
       </div>
     </div>
   </div>
-    
+</div>
+</div>
 <!-- commenting out first container to test
   <div class="container-fluid mt-2"> -->
     <div class="row align-self-center">
@@ -143,18 +180,10 @@
                             make visible the relationship between the disproportionate impacts
                             of extreme heat, social inequities, and health.</p>
                         <h4 class="card-title"> About the project </h4>
-                        <p> This story map can be used to visualize the firsthand experiences of
-                            New Yorkers with heat events in their neighborhoods, on their
-                            commutes, and during their daily routines. Click on the map markers
-                            to view the stories from New Yorkers in that area. The map combines
-                            the results of an urban heat island mapping campaign with personal
-                            stories about heat. By observing the location of these events in the
-                            context of historical and demographic data, the aim of this project
-                            is to make visible the relationship between the disproportionate
-                            impacts of extreme heat and social inequities. To toggle between
-                            map layers select the geographical data you’d like to see.
-                            You can select multiple layers at once to see for example daytime
-                            surface
+                        <p> This project was originally titled <strong>"Addressing the Urban Heat Island Effect through an Equity Lens: A Community Science Project,”</strong> and combines community science with interviews to create a way to look at heat vulnerability that focuses on the intersections of extreme heat, health, and social inequities.
+
+                        <p>This project was part of a nationwide campaign from the NIHHIS (National Integrated Heat Health Information System) and jointly developed by NOAA (National Oceanic and Atmospheric Administration) and the CDC (Centers for Disease Control and Prevention). The NYC campaign partnered with South Bronx Unite and was funded by NOAA and Columbia University’s Earth Frontiers Grant. Data collection and analysis were the result of a partnership with CAPA Strategies.</p>
+                          
                         </p>
                     </div>
                 </div>
@@ -214,7 +243,7 @@
       
   </div>
 <div class="row pt-5">
-    <div class="col-6 off-set-md-*4 justify-content-start mt-3">
+    <div class="col-6 justify-content-start ml-5 mt-3">
 <!-- collapsible element - don't need it to navigate to the top of page but it works -->
       <div class="btn-toggle">
         <button class="btn btn-block btn-md btn-secondary text-white" data-toggle="collapse" data-target="#toggle-target" aria-expanded="false" aria-controls="toggle-target">
@@ -243,38 +272,6 @@
   </nav>
 
 
-
-<!-- commenting out non-functional collapse toggle
-      <p>
-        <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-          Project credits
-        </button>
-      </p>
-      <div style="min-height: 120px;">
-        <div class="collapse collapse-horizontal" id="collapseWidthExample">
-          <div class="card card-body" style="width: 300px;">
-            <p>The project team is:</p>
-     <ul>
-        <li>Liv Yoon, Principal Investigator</li>
-        <li>Christian Braneon, Co-Investigator</li>
-        <li>Jolie Villegas, Research Assistant</li>
-        <li>Kemuning Adiputri, Student Consultant</li>
-        <li>Melissa Barber, Founding Member and Advisory Board Member</li>
-        <li>Mychal Johnson, Founding Member and Advisory Board Member</li>
-        <li>Arif Ullah, Executive Director</li>
-        <li>Jason Biegel, Software Engineer</li>
-        <li>Tom Zinckgraf, Software Engineer</li>
-        <li>Other partners:</li>
-        <li>CAPA Strategies</li>
-        <li>SBU</li>
-        <li>WE ACT</li>
-        <li>Community Boards 9-12</li>
-        <li>About the project</li>
-        <li>Community science</li>
-    </ul> -->
-          </div>
-        </div>
-      </div> 
 <!-- commenting out project team - try with collapse buttons
     </div>
         <h4>Project credits</h4>
