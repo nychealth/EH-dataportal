@@ -110,7 +110,8 @@ const createComparisonData = async (comps) => {
             IndicatorID: d => d.Indicators.IndicatorID,
             MeasureID:   d => d.Indicators.MeasureID,
             GeoTypeName: d => d.Indicators.GeoTypeName,
-            GeoID:       d => d.Indicators.GeoID
+            GeoID:       d => d.Indicators.GeoID,
+            Geography:   d => d.Indicators.Geography
         })
         .select(aq.not("Indicators"))
         // .print({limit: Infinity})
@@ -162,7 +163,7 @@ const createComparisonData = async (comps) => {
 
     aqCombinedComparisonsMetadata = aqComparisonsMetadata
         .join(aqComparisonsIndicatorsMetadata, [["MeasureID", "IndicatorID"], ["MeasureID", "IndicatorID"]])
-        // .print()
+        // .print(30)
 
     // for each indicator, get all measures
     // Promise.all takes the array of promises returned by map, and then the `then` callback executes after they've all resolved

@@ -1049,21 +1049,35 @@ const renderMeasures = async () => {
                 
                 let compGroup = titleGroup.filter(aq.escape(d => d.ComparisonID == comp))
                 
-                let compIndicatorLabel = [... new Set(compGroup.array("IndicatorLabel"))];
-                let compMeasurementType = [... new Set(compGroup.array("MeasurementType"))];
-                let compY_axis_title = [... new Set(compGroup.array("Y_axis_title"))];
-                let compIndicatorMeasure = [... new Set(compGroup.array("IndicatorMeasure"))];
-                let compName = [... new Set(compGroup.array("ComparisonName"))];
+                let compIndicatorLabel   = [... new Set(compGroup.array("IndicatorLabel"))];
+                let compMeasurementType  = [... new Set(compGroup.array("MeasurementType"))];
+                let compY_axis_title     = [... new Set(compGroup.array("Y_axis_title"))];
+                // let compIndicatorMeasure = [... new Set(compGroup.array("IndicatorMeasure"))];
+                let compGeoTypeName      = [... new Set(compGroup.array("GeoTypeName"))];
+                let compGeography        = [... new Set(compGroup.array("Geography"))];
+                let compName             = [... new Set(compGroup.array("ComparisonName"))];
+
+                console.log("compGeography", compGeography);
                 
                 if (compIndicatorLabel.length == 1) {
 
                     // console.log("1 indicator [Y_axis_title]");
                     // console.log(compY_axis_title);
 
+                    if (compGeoTypeName[0] == "Citywide") {
+
                     dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
                         data-comparison-id="${comp}">
                         ${compY_axis_title}
                         </button>`;
+
+                    } else {
+                        // I am very unhappy with this kludge
+                        dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
+                            data-comparison-id="${comp}">
+                            ${compGeography[compGeography.length - 1]} 
+                            </button>`;
+                    }
                     
                 } else if (compMeasurementType.length == 1) {
 
