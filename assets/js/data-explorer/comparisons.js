@@ -57,9 +57,14 @@ const renderComparisonsChart = (
     let compIndicatorLabel  = [... new Set(metadata.array("IndicatorLabel"))];
     let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
     let compDisplayTypes    = [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
+    let compGeoTypeNames    = [... new Set(metadata.array("GeoTypeName"))];
     let compGeoIDs          = metadata.objects()[0].GeoID ? [... new Set(metadata.array("GeoID"))] : null;
 
     console.log(">>>> compGeoIDs", compGeoIDs);
+
+    console.log(">> compName", compName);
+    console.log(">> compIndicatorLabel", compIndicatorLabel);
+    console.log(">> compMeasurementType", compMeasurementType);
 
 
     // ----------------------------------------------------------------------- //
@@ -70,7 +75,7 @@ const renderComparisonsChart = (
     let plotSubtitle;
     let plotTitle;
 
-    let suppressSubtitleBy = [564, 565, 566, 704, 715];
+    let suppressSubtitleBy = [564, 565, 566, 704, 715, 716, 717, 718, 719, 720, 721, 722, 723, 724, 725, 726, 727, 728, 729, 730];
 
     // comparison group label is either measure, indicator, or combo. can include geo eventually
 
@@ -80,6 +85,8 @@ const renderComparisonsChart = (
 
         console.log("boros");
 
+        console.log("indicatorName", indicatorName);
+
         // if this is a boro comparison, tweak some things
 
         compGroupLabel = [... new Set(data.array("Geography"))];
@@ -88,6 +95,10 @@ const renderComparisonsChart = (
         plotTitle = indicatorName;
         plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? " by Borough" : "");
         comp_group_col = "Geography"
+
+        console.log(">> compGroupLabel", compGroupLabel);
+        console.log(">> plotTitle", plotTitle);
+        console.log(">> plotSubtitle", plotSubtitle);
 
 
     } else if (compGeoIDs.length > 1) {
@@ -99,6 +110,8 @@ const renderComparisonsChart = (
         let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
         let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))]
+
+        console.log("indicatorName", indicatorName);
 
         // console.log("compId", compId);
         
@@ -136,12 +149,19 @@ const renderComparisonsChart = (
                 .derive({"GeographyMeasure": d => d.Geography + ", " + d.MeasurementType})
                 .print()
 
-            compGroupLabel = [... new Set(data.array("GeographyMeasure"))];
-            comp_group_col = "GeographyMeasure"
+            // compGroupLabel = [... new Set(data.array("GeographyMeasure"))];
+            // comp_group_col = "GeographyMeasure"
+
+            compGroupLabel = [... new Set(data.array("MeasurementType"))];
+            comp_group_col = "MeasurementType"
 
             // reset column count based on number of lines
 
             columns = compGroupLabel.length > 3 ? 3 : columns;
+
+            console.log(">> compGroupLabel", compGroupLabel);
+            console.log(">> plotTitle", plotTitle);
+            console.log(">> plotSubtitle", plotSubtitle);
 
         } else {
             
@@ -149,6 +169,10 @@ const renderComparisonsChart = (
 
             compGroupLabel = [... new Set(data.array("Geography"))];
             comp_group_col = "Geography"
+
+            console.log(">> compGroupLabel", compGroupLabel);
+            console.log(">> plotTitle", plotTitle);
+            console.log(">> plotSubtitle", plotSubtitle);
 
         }
 
@@ -158,6 +182,8 @@ const renderComparisonsChart = (
         // ----- by measure: 1 indicator, 2+ measures, 1 citywide -------------------------------------------------- //
 
         console.log("1 indicator");
+
+        console.log("indicatorName", indicatorName);
         
         let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
@@ -191,12 +217,17 @@ const renderComparisonsChart = (
 
         columns = compGroupLabel.length > 3 ? 3 : columns;
 
+        console.log(">> compGroupLabel", compGroupLabel);
+        console.log(">> plotTitle", plotTitle);
+        console.log(">> plotSubtitle", plotSubtitle);
 
     } else if (compMeasurementType.length == 1) {
 
         // ----- by indicator: 2+ indicators, 1 measure, 1 citywide -------------------------------------------------- //
 
         console.log("1 measure");
+
+        console.log("indicatorName", indicatorName);
 
         let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
@@ -228,12 +259,17 @@ const renderComparisonsChart = (
 
         columns = compGroupLabel.length > 3 ? 3 : columns;
 
+        console.log(">> compGroupLabel", compGroupLabel);
+        console.log(">> plotTitle", plotTitle);
+        console.log(">> plotSubtitle", plotSubtitle);
 
     } else if (compMeasurementType.length > 1 && compIndicatorLabel.length > 1) {
         
         // ----- by combo: 2+ indicators, 2+ measures, 1 citywide -------------------------------------------------- //
 
         console.log("> 1 measure & indicator");
+
+        console.log("indicatorName", indicatorName);
 
         let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
@@ -266,6 +302,9 @@ const renderComparisonsChart = (
 
         columns = compGroupLabel.length > 3 ? 3 : columns;
 
+        console.log(">> compGroupLabel", compGroupLabel);
+        console.log(">> plotTitle", plotTitle);
+        console.log(">> plotSubtitle", plotSubtitle);
 
     }
 
