@@ -123,7 +123,7 @@ const renderComparisonsChart = (
 
             // console.log(">>> SUPPRESS by", compId);
 
-            plotSubtitle = compY_axis_title;
+            plotSubtitle = compY_axis_title + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "");
 
         } else {
 
@@ -199,7 +199,7 @@ const renderComparisonsChart = (
 
             // console.log(">>> SUPPRESS by", compId);
 
-            plotSubtitle = compY_axis_title;
+            plotSubtitle = compY_axis_title + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "");
 
         } else {
 
@@ -242,7 +242,7 @@ const renderComparisonsChart = (
 
             // console.log(">>> SUPPRESS by", compId);
 
-            plotSubtitle = compMeasurementType;
+            plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "");
 
         } else {
 
@@ -285,7 +285,7 @@ const renderComparisonsChart = (
 
             // console.log(">>> SUPPRESS by", compId);
 
-            plotSubtitle = compY_axis_title;
+            plotSubtitle = compY_axis_title + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "");
 
         } else {
 
