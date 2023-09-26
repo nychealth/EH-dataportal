@@ -1638,8 +1638,8 @@ const renderMeasures = async () => {
                 .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
                 .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
 
-                // put host indicator first, so it gets the black line
-                .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
+                // put host indicator first (then measure), so it gets the black line
+                .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)), d => d.MeasureID)
 
             // console.log(">>>> aqFilteredComparisonsData:");
             // aqFilteredComparisonsData.print({limit: Infinity})
