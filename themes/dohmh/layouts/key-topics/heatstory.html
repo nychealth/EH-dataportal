@@ -1,33 +1,4 @@
 {{- define "main" -}}
-<head>
-  <title></title>
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-    crossorigin="anonymous"
-  />
-  <link
-    rel="stylesheet"
-    href="https://raw.githubusercontent.com/nychealth/EH-dataportal/prod-deploy/scss/theme.css"
-  />
-
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
-    integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
-    crossorigin=""
-  />
-  <script
-    src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
-    integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
-    crossorigin=""
-  ></script>
-  <script src="https://unpkg.com/leaflet.vectorgrid@latest/dist/Leaflet.VectorGrid.bundled.js"></script>
-
-  <!--D3-->
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-</head>
 
 <style>
   #map {
@@ -42,6 +13,7 @@
     background-color: #f2f2f2;
     margin: 0px;
   }
+
 </style>
 
 <article class="container-fluid" id="skip-header-target">
@@ -74,83 +46,57 @@
     </div>
   </div>
 
-<!-- testing out adding button row across top -->
-<div class="row no-padding mt-4 mb-0">
-  <div class="col-12 ml-auto;">
-    <div id="buttonholdertest" style="display: inline-block;">
-      <h4>Base layer test</h4>
-      <button class="btn btn-outline-primary btn-sm btn-info m-2" type="button">
-        <span class="title">HVI</span>
-      <button class="btn btn-outline-secondary btn-sm btn-primary m-2 has-icon" type="button">
-          <span class="fab fa-plus" ></span>
-          <span class="title">Redlined areas</span>
-      <button class="btn btn-outline-info btn-sm btn-info m-2" type="button">
-        <span class="title">ED-related heat stress visits</span>
-      <button class="btn btn-outline-info btn-sm btn-info m-2" type="button">
-          <span class="title">Poverty</span>
-      <button class="btn btn-outline-info btn-sm btn-info m-2" type="button">
-        <span class="title">Evening heat index</span>
-      <button class="btn btn-outline-info btn-sm btn-info m-2" type="button">
-        <span class="title">ED-related heat stress visits</span>
-      <button class="btn btn-outline-info btn-sm btn-info m-2" type="button">
-        <span class="title">Greenspace</span>
-    </button>
-    </div>
-  </div>
-</div>  
-<!-- secondary button layer test -->
-  <div class="row no-padding mt-4 mb-0">
-      <div class="col-12 ml-auto;">
-        <div id="buttonholdertest2" style="display: inline-block;">
-        <h4> Secondary layers test</h4>
-          <button class="btn btn-outline-primary btn-sm btn-info m-2" type="button">
-            <span class="title">HVI 2</span>
-        </div>
-      </div>  
-  </div> 
-
-
+  <div class="row no-padding mt-4 mb-0"></div>
 <!-- testing out adding a card with an img on another top line row - to eventually replace accordion as story selector if possible-->
-<div class="row no-padding mt-4 mb-0">
-  <div class="row">
-    <div class="col-6 ml-4 pt-1">
-      <div class="card border-secondary" style="width: 24rem;">
-        <img src="https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/no-shade-trees/1.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
+<div class="row">
+  <div class="col-6">
+    <div class="card content-card" style="width: 28rem;">
+    <div class="card-content">
+      <img src="https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/no-shade-trees/1.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
         <h5 class="card-title"> Brutal even for the young and healthy</h5>
-          <p class="card-text">I endured two hot summers in Washington Heights before installing an air conditioner. I was young and healthy, but it was still brutal. Cooking made the heat worse, and I worked at a bakery where no amount of air conditioning could keep up with the oven.</p>
-          <div class="card-footer"> Washington Heights, Manhattan </div>
-        </div>
+        <blockquote class="blockquote mb-0">
+        <p class="card-text">I endured two hot summers in Washington Heights before installing an air conditioner. I was young and healthy, but it was still brutal. Cooking made the heat worse, and I worked at a bakery where no amount of air conditioning could keep up with the oven.</p>
+        <footer class="blockquote-footer">Person Name <cite title="Source Title">
+      </blockquote>
+        <footer class="card-footer text-muted"> Washington Heights, Manhattan </div>
       </div>
-    </div>
+      </div>
   </div>
 </div>
-</div>
+
 <!-- commenting out first container to test
   <div class="container-fluid mt-2"> -->
-    <div class="row align-self-center">
-      <div class="col-6 mx-auto">
-        <div
-          class="accordion-group my-3"
-          style=""
-          role="tablist"
-          id="story-accordion"
-        ></div>
-      </div>
-      <div class="col-6 mt-2 pt-0">
-        <div id="baseLayerButtons">
-          <h4>Base Layers (only one at a time)</h4>
-          <div id="buttonHolderBase" style="display: inline-block"></div>
-        </div>
-        <div id="baseLayerButtons">
-          <h4>Additional Layers</h4>
-          <div id="buttonHolderAdditional" style="display: inline-block"></div>
-        </div>
-        <div id="map"></div>
-      </div>
+<div class="row">
+  <div class="col-11 mt-2 pt-0">
+    <div id="baseLayerButtons">
+        <h4>Base Layers (only one at a time)</h4>
+        <div id="buttonHolderBase" style="display: inline-block"></div>
     </div>
+    <div id="baseLayerButtons">
+        <h4>Additional Layers</h4>
+        <div id="buttonHolderAdditional" style="display: inline-block"></div>
+    </div>
+        
   </div>
-<div class="row mt-4 align-self-center">
+</div>
+<div class="row my-3">
+  <div class="col-4 mx-auto">
+    <div
+      class="accordion-group"
+      style=""
+      role="tablist"
+      id="story-accordion">
+    </div>  
+  </div>
+  <div class="col-8 mx-auto">
+    <div id="map"></div>
+    </div>
+</div>
+
+
+    
+<div class="row mt-4">
     <div class="col-11 mx-auto">
         <div class="row">
           <div class="col-6 md-6 mr-auto text-justify-center">
@@ -244,10 +190,9 @@
       
   </div>
 <div class="row pt-5">
-    <div class="col-6 justify-content-start ml-5 mt-3">
-<!-- collapsible element - don't need it to navigate to the top of page but it works -->
+    <div class="col-6 justify-content-start ml-5 mt-1">
       <div class="btn-toggle">
-        <button class="btn btn-block btn-md btn-secondary text-white" data-toggle="collapse" data-target="#toggle-target" aria-expanded="false" aria-controls="toggle-target">
+        <button class="btn btn-block btn-md btn-info text-white" data-toggle="collapse" data-target="#toggle-target" aria-expanded="false" aria-controls="toggle-target">
             <span class="title">Project credits</span>
         </button>
     </div>
@@ -272,29 +217,6 @@
       </ul>
   </nav>
 
-
-<!-- commenting out project team - try with collapse buttons
-    </div>
-        <h4>Project credits</h4>
-        <p>The project team is:</p>
-    <ul>
-        <li>Liv Yoon, Principal Investigator</li>
-        <li>Christian Braneon, Co-Investigator</li>
-        <li>Jolie Villegas, Research Assistant</li>
-        <li>Kemuning Adiputri, Student Consultant</li>
-        <li>Melissa Barber, Founding Member and Advisory Board Member</li>
-        <li>Mychal Johnson, Founding Member and Advisory Board Member</li>
-        <li>Arif Ullah, Executive Director</li>
-        <li>Jason Biegel, Software Engineer</li>
-        <li>Tom Zinckgraf, Software Engineer</li>
-        <li>Other partners:</li>
-        <li>CAPA Strategies</li>
-        <li>SBU</li>
-        <li>WE ACT</li>
-        <li>Community Boards 9-12</li>
-        <li>About the project</li>
-        <li>Community science</li>
-    </ul> -->
       </div> 
     </div>
   </div>
