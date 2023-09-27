@@ -113,12 +113,10 @@
                                         </button>
                                     </li>
                                     <li>
-                                        <a href="/pagefind/" class="btn nav-item-search d-lg-none" title="Search">
-
+                                        <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-lg-none" title="Search">
                                             <span class="sr-only">Search</span>
                                             <i class="fa fa-magnifying-glass fa-lg text-body"></i>
-
-                                    </a>
+                                        </button>
                                 </li>
 
                                 </ul>
@@ -194,14 +192,16 @@
 
                     {{- else -}}
 
-                    {{/*  <button class="btn nav-item-search d-none d-lg-block" type="button" title="Search">  */}}
+                    {{/*  <button class="btn nav-item-search d-none d-lg-block" type="button" title="Search"
+                            data-toggle="collapse" data-target="#global-search"
+                            aria-controls="global-search" aria-expanded="false">  */}}
 
-                        <a href="/pagefind/" class="btn nav-item-search d-none d-lg-block" title="Search">
+                        <button type="button" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-none d-lg-block" title="Search">
 
                             <span class="sr-only">Search</span>
                             <i class="fa fa-magnifying-glass fa-lg text-body mt-1"></i>
 
-                        </a>
+                        </button>
 
                     {{/*  </button>  */}}
 
@@ -218,13 +218,7 @@
 
         <div class="container-fluid-lg border-top collapse" id="global-search">
 
-            <div class="row">
-                <div class="col-md-7 mx-auto py-5">
-
-                </div>
-            </div>
-
-            <form class="narrow py-2 hide" aria-label="Search" role="search">
+            <form class="narrow py-2" aria-label="Search" role="search">
 
                 <div class="input-group">
 
