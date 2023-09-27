@@ -2,7 +2,7 @@
 # don't track resources folder (temp files for serve)
 resources/_gen/
 
-# don't track mac file 
+# don't track mac file
 .DS_Store
 .DS_Store?
 
@@ -44,3 +44,10 @@ reports_data.json
 links data columns.js
 content/key-topics/climatehealth/hvi/de_map_spec.vg.json
 content/key-topics/climatehealth/hvi/hvi-nta.csv
+static/pagefind
+
+# local data
+static/IndicatorData/data/
+static/IndicatorData/comparisons.json
+static/IndicatorData/indicators_pretty.json
+static/IndicatorData/indicators.json

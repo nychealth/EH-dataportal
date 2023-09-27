@@ -1,0 +1,32 @@
+{{- define "main" -}}
+
+<article class="container-fluid overflow-hidden" id="primary-content">
+
+  <div class="row my-4">
+    <div class="col-md-8 col-sm-12 mx-auto">
+    <h1>Search</h1>
+      <!--start main column-->
+      <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+      <script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+      <div id="search"></div>
+      <script>
+          window.addEventListener('DOMContentLoaded', (event) => {
+              new PagefindUI({
+                  element: "#search",
+                  showImages: false,
+                  baseUrl: baseURL,
+                  showEmptyFilters: true,
+                  processResult: function (result) {
+                    console.log("result", result);
+                    return result;
+                  }
+              });
+          });
+      </script>
+
+    </div>
+    <!--end main column-->
+  </div>
+
+</article>
+{{- end -}}

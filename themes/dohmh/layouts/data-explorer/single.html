@@ -222,7 +222,70 @@
 
 {{- $indicator_names_json := $indicators_scratch.Get "details" | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorData/indicator_names.json" -}}
 
+{{/*  {{- warnf ">>>> indicator_names_json >>>> " ($indicators_scratch.Get "details") -}}  */}}
 {{- warnf ">>>> indicator_names_json.RelPermalink >>>> " $indicator_names_json.RelPermalink -}}
+
+{{/*  add indicator names and descriptions in page code for pagefind to index  */}}
+
+{{/*  URL  */}}
+
+{{- if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (eq (path.Base .RelPermalink) "asthma")) -}}
+
+    <h2 
+        id="IndicatorID-18"
+        class="d-none"
+        href="{{ .Page.RelPermalink }}/?id=18"
+    >Adults with asthma (past 12 months)</h2>
+
+    <h2 
+        id="IndicatorID-2048"
+        class="d-none"
+        href="{{ .Page.RelPermalink }}/?id=2048"
+    >Asthma emergency department visits (age 4 and under)</h2>
+
+{{- end -}}
+{{/*  <div 
+    id="IndicatorID-18"
+    data-pagefind-meta="url[href],title[title],description[description]"
+    title="Adults with asthma (past 12 months)"
+    description="Asthma is a common disease characterized by breathing difficulty. Poor air quality and housing issues increase risk of developing and triggering asthma."
+    href="{{ .Page.RelPermalink }}/?id=18"
+    data-pagefind-index-attrs="title,description"
+></div>
+
+<div 
+    id="IndicatorID-2048"
+    data-pagefind-meta="url[href],title[title],description[description]"
+    title="Asthma emergency department visits (age 4 and under)"
+    description="Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma."
+    href="{{ .Page.RelPermalink }}/?id=2048"
+    data-pagefind-index-attrs="title,description"
+></div>  */}}
+
+
+{{/*  <div 
+    id="IndicatorID-2048"
+    title="Asthma emergency department visits (age 4 and under)"
+    description="Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma."
+    href="{{ .Page.RelPermalink }}/?id=2048"
+    data-pagefind-index-attrs="title,description"
+></div>  */}}
+
+{{/*  <div 
+    data-pagefind-meta="name[name],description[description]"
+    name="Adults with asthma (past 12 months)"
+    description="Asthma is a common disease characterized by breathing difficulty. Poor air quality and housing issues increase risk of developing and triggering asthma."
+    data-pagefind-index-attrs="name,description"
+></div>
+
+<div 
+    data-pagefind-meta="name[name],description[description]"
+    name="Asthma emergency department visits (age 4 and under)"
+    description="Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma."
+    data-pagefind-index-attrs="name,description"
+></div>  */}}
+
+{{/*  main content  */}}
 
 <article class="container-fluid" id="skip-header-target">
     <div class="row">
@@ -281,13 +344,8 @@
             <!-- Keywords partial -->
             <div class="d-none d-lg-block my-2 l-green-border">
                 {{- partial "keywords" . -}}
-            </div>
-            
-
     
-
-
-
+            </div>
         </div>
         
         <div class="col-lg-7 mx-auto col-md-12">
@@ -583,11 +641,11 @@
     <!-- Topic Selection Modal -->
 
     <div class="modal fade" id="topicModal" tabindex="-1" role="dialog" aria-labelledby="topicModalLabel"
-         aria-hidden="true">
+         aria-hidden="true" data-pagefind-ignore="all">
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content mb-2 border-light shadow">
                 <div class="modal-header">
-                    <h5 class="de-modal-title" id="topicModalLabel">Change topic</h5>
+                    <div class="de-modal-title h5" id="topicModalLabel">Change topic</div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -606,7 +664,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="aboutModalLabel">About {{ .Title }}</h5>
+                    <div class="modal-title h5" id="aboutModalLabel">About {{ .Title }}</div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
