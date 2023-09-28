@@ -258,6 +258,10 @@
 <meta data-pagefind-filter="section[content]" content="Data Explorer">
 {{ end }}
 
+{{- if (eq .Section "key-topics") -}}
+<meta data-pagefind-filter="section[content]" content="Key Topics">
+{{ end }}
+
 <script>
     let baseURL = "{{ $.Site.BaseURL }}";
     let data_repo = "{{ $.Site.Params.data_repo }}";
