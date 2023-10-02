@@ -43,3 +43,17 @@ table {
     margin-top: .75rem !important;
   }
 }
+
+
+#searchModal .modal-dialog{
+  overflow-y: initial !important;
+}
+#searchModal .modal-body{
+  height: 75vh;
+  overflow-y: auto;
+}
+
+#searchModal .pagefind-ui__filter-block {
+  position: sticky;
+  top: 0;
+}

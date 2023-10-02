@@ -30,7 +30,7 @@
                       </div>
                     </div>
                     <div class="col-4">
-                      <button type="submit" class="btn-primary btn btn-block">Get Report</button> 
+                      <button type="submit" class="btn-primary btn btn-block">Get Report</button>
                     </div>
                   </div>
                 </form>
@@ -69,7 +69,7 @@
 {{/* ====  save indicator names as a resource  ==== */}}
 
 {{- /* ----  get indicators.json from data repo, and transform into a Hugo object  ---- */ -}}
-  
+
   {{- $nr_indicator_names := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/nr_indicator_names.json")) | transform.Unmarshal -}}
 
   {{- $nr_indicator_names_json := $nr_indicator_names | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorData/nr_indicator_names.json" -}}
@@ -92,24 +92,24 @@
   <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
 
-<script type="text/javascript"> 
+<script type="text/javascript">
     // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
     function PopulateDropDownList() {
           //Build an array containing Neighborhood records.
           //UHFList.js contains a variable 'neighborhoods' with names zips and ids
-          
+
            var ddlNeighborhoods = document.getElementById("last-neighborhood");
-          
+
            //Add the Options to the DropDownList.
            for (var i = 0; i < neighborhoods.length; i++) {
                var option = document.createElement("OPTION");
-  
+
                //Set Neighborhood Name in Text part.
                option.innerHTML = neighborhoods[i].namezip;
-  
+
                //Set Neighborhood Id in Value part.
                option.value = neighborhoods[i].page_name;
-  
+
                //Add the Option element to DropDownList.
                ddlNeighborhoods.options.add(option);
            }
@@ -125,7 +125,7 @@
        minLength: 2,
        selectElement: selectEl
      })
-  
+
     // this takes the AA form and on submit, sends page to a new location.
     var searchForm = document.getElementById('last-neighborhood-select') // this isn't all-data, but all-data-select because of changes applied by the AA JS.
     document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
