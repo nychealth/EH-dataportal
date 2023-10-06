@@ -368,5 +368,15 @@ const renderComparisonsChart = (
     // ----------------------------------------------------------------------- //
     
     vegaEmbed("#trend", compspec);
+
+    data.print()
+
+    /*
+    trendData = aq.from(compspec.data.values)
+        .select(aq.not("GeoType","GeoTypeDesc","GeoTypeShortDesc","GeoRank","ban_summary_flag"))
+        .print()
+    */
+
+    CSVforDownload = data.toCSV()
     
 }
