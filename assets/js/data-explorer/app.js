@@ -131,43 +131,45 @@ $('#tab-btn-links').on('click', e => {
 // export functions
 // ----------------------------------------------------------------------- //
 
-// export current table view (uses Data Tables methods)
-
-$("#thisView").on("click", (e) => {
-
-    let summaryTable = $('#tableID').DataTable();
-    summaryTable.button("thisView:name").trigger();
-
-    gtag('event', 'file_download', {
-        'file_name': 'NYC EH Data Portal - ' + indicatorName + " (filtered)" + '.csv',
-        'file_extension': '.csv',
-        'link_text': 'Current table view'
-    });
-
-    e.stopPropagation();
-
-});
-
-// export chart view
+// export current table or chart view
 $("#chartView").on("click", (e) => {
 
-    // download data
-    let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(CSVforDownload);
-    let hiddenElement = document.createElement('a');
+    // if it's summary table... (uses DataTables.net methods)
+    if (window.location.hash == '#display=summary') {
+        console.log('we are on summary table')
+        let summaryTable = $('#tableID').DataTable();
+        summaryTable.button("thisView:name").trigger();
+    
+        gtag('event', 'file_download', {
+            'file_name': 'NYC EH Data Portal - ' + indicatorName + " (filtered)" + '.csv',
+            'file_extension': '.csv',
+            'link_text': 'Current table view'
+        });
+    
+        e.stopPropagation();
+    
+    } else {
+        // else, for chart view downloads: 
+        let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(CSVforDownload);
+        let hiddenElement = document.createElement('a');
 
-    hiddenElement.href = csvData;
-    hiddenElement.target = '_blank';
-    hiddenElement.download = 'NYC EH Data Portal - '  + indicatorName + " (filtered)" + '.csv',
-    hiddenElement.click();
+        hiddenElement.href = csvData;
+        hiddenElement.target = '_blank';
+        hiddenElement.download = 'NYC EH Data Portal - '  + indicatorName + " (filtered)" + '.csv',
+        hiddenElement.click();
 
-    // trigger GA event
-    gtag('event', 'file_download', {
-        'file_name': hiddenElement.download,
-        'file_extension': '.csv',
-        'link_text': 'Download chart data'
-    });
+        // trigger GA event
+        gtag('event', 'file_download', {
+            'file_name': hiddenElement.download,
+            'file_extension': '.csv',
+            'link_text': 'Download chart data'
+        });
 
-    e.stopPropagation();
+        e.stopPropagation();
+    }
+
+
+
 
 })
 
