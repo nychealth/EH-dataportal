@@ -20,7 +20,7 @@ We measure the quality of harbor water through two key indicators:
 
 - **Dissolved oxygen** is essential for most aquatic life. This includes fish, invertebrates, crabs, clams, and zooplankton. Coastal habitats and ecosystems thrive in environments with high concentrations of dissolved oxygen.
 
-- **Concentrations of fecal coliform bacteria and Enterococci**. *Fecal coliform bacteria are found in human and animal intestines*. Higher levels of these bacteria can mean there is sewage-related water pollution. Though most fecal coliform bacteria do not cause disease, their concentrations are a good indicator of the presence of pathogenic (disease-producing) bacteria. **Enterococci** can survive in saltwater (harbor water is a mix of fresh and saltwater). Department of environmental protection scientists measure the concentrations of both groups of bacteria in both salt and fresh water.
+- **Concentrations of fecal coliform bacteria and Enterococci**. Fecal coliform bacteria are found in human and animal intestines. Higher levels of these bacteria can mean there is sewage-related water pollution. Though most fecal coliform bacteria do not cause disease, their concentrations are a good indicator of the presence of pathogenic (disease-producing) bacteria. Enterococci can survive in saltwater (harbor water is a mix of fresh and saltwater). Department of environmental protection scientists measure the concentrations of both groups of bacteria in both salt and fresh water.
 
 ### How we monitor harbor water quality
 
