@@ -150,9 +150,6 @@ $("#thisView").on("click", (e) => {
 
 // export chart view
 $("#chartView").on("click", (e) => {
-    // download the variable CSVforDownload
-    console.log('download initiated:')
-    console.log(CSVforDownload)
 
     // download data
     let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(CSVforDownload);
