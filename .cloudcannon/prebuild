@@ -2,4 +2,4 @@
 
 npm install
 npm install pagefind
-hugo --environment production --quiet --cleanDestinationDir --ignoreCache
+# hugo --environment production --quiet --cleanDestinationDir --ignoreCache
