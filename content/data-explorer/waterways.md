@@ -24,11 +24,11 @@ We measure the quality of harbor water through two key indicators:
 
 ### How we monitor harbor water quality
 
-Water quality standards are set by New York State and monitored by the NYC Department of Environmental Protection (DEP) annually through the Harbor Survey. The Harbor Survey Program has grown to include 85 sites throughout New York waters. These sites are sampled on a weekly basis during the summer season (May - October) and monthly during the winter season (November - April).
+Water quality standards are set by New York State and monitored by the NYC Department of Environmental Protection (DEP) annually through the Harbor Survey. The Harbor Survey Program has grown to include 40 sites throughout New York waters. These sites are sampled on a weekly basis during the summer season (May - October) and monthly during the winter season (November - April).
 
 ### New York's harbor water quality today
 
-*Bacteria levels show that water exceeds minimum standards*
+*Bacteria levels show that water meets minimum standards*
 
 Since the 1990s, harbor-wide surface water fecal coliform levels have been well below the state standard for fishing and boating (2,000 cells per 100mL, from 5+ samples) and bathing and other recreation (200 cells per 100 mL from 5+ samples).
 
