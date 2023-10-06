@@ -406,7 +406,13 @@ function restore() {
 document.getElementById('inputNum').addEventListener('change', function (event) {
     event.preventDefault();
     inputNum = document.getElementById('inputNum').value;
-    updateTime(inputNum)
+    if (inputNum > 7) {
+        console.log('too large');
+        $("#sevenModal").modal()
+    } else {
+        updateTime(inputNum)
+    }
+
 });
 
 // Time update function - uses transform[0].filter
