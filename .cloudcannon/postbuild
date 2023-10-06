@@ -1,3 +1,3 @@
 #!/bin/bash
 
-npm_config_yes=true npx pagefind --site "docs" --output-subdir static/pagefind
+npm_config_yes=true npx pagefind --site "docs" --output-subdir pagefind
