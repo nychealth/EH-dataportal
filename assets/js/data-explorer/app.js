@@ -131,7 +131,7 @@ $('#tab-btn-links').on('click', e => {
 // export functions
 // ----------------------------------------------------------------------- //
 
-// export current table view
+// export current table view (uses Data Tables methods)
 
 $("#thisView").on("click", (e) => {
 
@@ -147,6 +147,32 @@ $("#thisView").on("click", (e) => {
     e.stopPropagation();
 
 });
+
+// export chart view
+$("#chartView").on("click", (e) => {
+    // download the variable CSVforDownload
+    console.log('download initiated:')
+    console.log(CSVforDownload)
+
+    // download data
+    let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(CSVforDownload);
+    let hiddenElement = document.createElement('a');
+
+    hiddenElement.href = csvData;
+    hiddenElement.target = '_blank';
+    hiddenElement.download = 'NYC EH Data Portal - '  + indicatorName + " (filtered)" + '.csv',
+    hiddenElement.click();
+
+    // trigger GA event
+    gtag('event', 'file_download', {
+        'file_name': hiddenElement.download,
+        'file_extension': '.csv',
+        'link_text': 'Download chart data'
+    });
+
+    e.stopPropagation();
+
+})
 
 // export full table data (i.e., original view)
 
