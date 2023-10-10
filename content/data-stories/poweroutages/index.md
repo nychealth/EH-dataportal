@@ -53,8 +53,6 @@ The health impacts were not limited to just hospitalizations. In fact, the power
     <P>In the chart below, you can clearly see that <span style="font-weight: bold; color: red">observed deaths</span> generally bounce around the level of <span style="font-weight: bold; color: rgb(83, 83, 83)">predicted deaths</span>, staying within the <span style="background-color:lightgray; padding-left: 4px; padding-right: 4px;"> prediction range</span>. But on and after the power outage, observed deaths spiked: more people died during and immediately after the power outage.</P>
 {{< /rawhtml >}}
 
-In the chart below, you can clearly see that observed deaths generally bounce around the level of predicted deaths, staying within the prediction range. But on and after the power outage, observed deaths spiked: more people died during and immediately after the power outage.
-
 <!-- CHART 3 -->
 {{< datawrapper title="...and a spike in deaths in NYC." src="Y2D7s/1/" height="400">}}
 
