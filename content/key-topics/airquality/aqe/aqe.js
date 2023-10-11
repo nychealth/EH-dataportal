@@ -22,7 +22,7 @@ ntaForm.addEventListener('submit', function (event) {
     selectedNeighborhood = event.target[0].value.slice(0, 4); // gives you NTA code
     console.log('selectedNeighborhood: ' + selectedNeighborhood)
 
-    document.getElementById('NTA').innerHTML = 'Your neighborhood: <h3><span style="font-weight:bold;color:#15607a">' + DOMPurify.sanitize(selectedName) + '</span></h3>';
+    document.getElementById('NTA').innerHTML =  DOMPurify.sanitize(selectedName);
     document.getElementById('yourneighb').style.display = "block";
     document.getElementById('outputContent').style.display = "block";
     

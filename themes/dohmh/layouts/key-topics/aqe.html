@@ -34,15 +34,13 @@
                     <p>If we don't have an air quality monitor in one neighborhood, but we know its building density, its
                         industrial area, and its traffic, then we can model (estimate or predict) its air quality - based on
                         monitored air quality in similar neighborhoods.</p>
-
-                    <div class="aboutbox fs-sm">Or, see <a href="../realtime">realtime air quality</a>.</div>
                 </div>
             </div>
 
             <hr class="my-2">
 
             <div class="row no-gutters">
-                <div class="col-md-6 pr-2">
+                <div class="col-md-6 mx-auto">
                     <form id="nta-form">
                         <label for="last-neighborhood"><strong>Choose a neighborhood to get data:</strong></label>
                         <div class="autocomplete-wrapper" style="display:inline-block;width:79%;">
@@ -250,17 +248,15 @@
                         <button class="submissionButton btn-primary btn-md" style="height: 39px; width: 20%;" type="submit">Get
                             Data</button>
                     </form>
-                </div>
 
-                <div class="col-md-6 pl-2">
                     <div id="yourneighb" style="display:none;">
-                    <div  style="margin-top: 25px; background-color: #fafafa; border-left: 15px solid gray; padding: 10px;"
-                    class="card mb-3">
-                    <p id="NTA"></p>
-                </div>
-                <em class="fs-sm">This is a Neighborhood Tabulation Area (NTA). <a
-                    href="/data-stories/geographies">Read about NTAs
-                    and other geographies.</a></em> 
+                    <div class="basic-callout p-2 my-2">
+                                <p class="h3" style="font-weight:normal!important;">Your neighborhood: <span class="h3" style="font-weight:bold;color:#15607a;" id="NTA"></span></p>
+                                <p><em class="fs-sm"><a
+                                    href="/data-stories/geographies">Read about Neighborhood Tabulation Areas.</a></em> </p>
+
+                    </div>
+
                 </div>
             </div>
 
@@ -268,19 +264,172 @@
         </div>
     </div>
 
+    <!-- new Layout -->
+    <div class="row my-4">
+        <div class="col-md-10 mx-auto">
+            <h3><i class="fas fa-smog mr-1"></i>Air quality in your neighborhood </h3>
+            <div class="row mt-2">
+                <div class="col-12 my-2">
+                    <h4>PM2.5 (fine particles)</h4>
+                    <p class="fs-sm"><b>PM2.5</b> worsens lung and heart diseases and are linked to cancer and
+                        premature death. NYC meets the EPA's annual average standard (measured in micrograms per cubic
+                        meter, or μg/m<sup>3</sup>), but short-term concentrations sometimes exceed this threshold.</p>
+
+                </div>
+                <div class="col-sm-7 col-xs-12" style="border: 1px solid green; height: 150px">Chart</div>
+                <div class="col-sm-5 col-xs-12">
+                    <p><span class="home-label">Your neighborhood:</span> <span class="h5">XXX</span></p>
+                    <p><span class="home-label">NYC average:</span> <span class="h5">7.0 μg/m<sup>3</sup></span></p>
+                    <p><span class="home-label">EPA standard:</span> <span class="h5">12 μg/m<sup>3</sup></span></p>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-12 my-2">
+                    <h4>Nitrogen dioxide</h4>
+                    <p class="fs-sm"><b>Nitrogen dioxide</b> is linked to asthma hospitalizations and other respiratory conditions.
+                        NYC meets the EPA's annual standard (measured in parts per billion, or ppb), but short-term
+                        concentrations sometimes exceed this threshold.</p>
+                </div>
+
+                <div class="col-sm-7 col-xs-12" style="border: 1px solid green; height:150px;">Chart</div>
+                <div class="col-sm-5 col-xs-12">
+                   <p><span class="home-label">Your neighborhood:</span> <span class="h5">XXX</span></p> 
+                   <p><span class="home-label">NYC average:</span> <span class="h5">17 ppb</span></p> 
+                   <p><span class="home-label">EPA standard:</span> <span class="h5">53 ppb</span></p> 
+                </div>
+            </div>
+
+            <hr class="mt-4 mb-2">
+            <h3><i class="fa fa-question-circle mr-1"></i>What affects air quality in your neighborhood?</h3>
+
+            <div class="row">
+                <div class="col-sm-7 col-xs-12" style="border: 1px solid green; height: 450px">
+                    
+                    <span id="mapTitle">Building emissions</span><br>
+                    <div class="fs-sm mt-1">
+                        <span class="badge badge-better">1 (Low)</span>
+                        <span class="badge badge-medium">2 (Medium)</span>
+                        <span class="badge badge-worse">3 (High)</span>
+                    </div>
+                </div>
+
+                <div class="col-sm-5 col-xs-12">
+                    <div class="sourceBox sourceBox-active" id="sourceBox1" onclick="changeSource(1)">
+                        <h3 class="fs-md">Buliding emissions: <span class="badge badge-worse">Worse</span></h3>
+                        <p class="fs-sm">Like vehicles, buildings burn fuel: their boilers run on oil or gas to produce heat and hot water. These boilers emit pollutants that affect your neighborhood's air quality.
+                        </p>
+                    </div>
+
+                    <div class="sourceBox" id="sourceBox2" onclick="changeSource(2)">
+                        <h3 class="fs-md">Buliding density: <span class="badge badge-worse">Worse</span></h3>
+                        <p class="fs-sm">Buildings emit pollutants, so a neighborhood's building density can help predict its air quality. Building density is a factor of popluation density: with over 26,000 people per square mile, New York City is the densest American city.
+                        </p>
+                    </div>
+
+                    <div class="sourceBox" id="sourceBox3" onclick="changeSource(3)">
+                        <h3 class="fs-md">Industrial area: <span class="badge badge-worse">Worse</span></h3>
+                        <p class="fs-sm">Manufacturing can emit pollutants, construction can kick up particulate matter, and increased truck traffic can produce more emissions.
+                        </p>
+                    </div>
+
+                    <div class="sourceBox" id="sourceBox4" onclick="changeSource(4)">
+                        <h3 class="fs-md">Traffic density: <span class="badge badge-worse">Worse</span></h3>
+                        <p class="fs-sm">Traffic produces "tailpipe emissions" like PM2.5, NOx and carbon monoxide (CO), and tire wear and braking release additional particulate matter into the air.
+                        </p>
+    
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr class="my-4">
+
+    <div class="row mb-2">
+        <div class="col-md-8 mx-auto">
+            <h4>More resources</h4>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-4 ml-auto">
+            <div class="card content-card">
+                <div class="card-content px-1 py-1">
+                    <h5>NYCCAS Annual Report</h5>
+                    <p class="fs-md">Key findings from NYC's comprehensive air quality monitoring program, including pollutant trends and local sources.</p>
+
+                    <p class="fs-md"><a href="/key-topics/airquality/nyccas/">Read more ></a> </p>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="col-md-4 mr-auto">
+            <div class="card content-card">
+                <div class="card-content px-1 py-1">
+                    <h5>Real-Time Air Quality</h5>
+                    <p class="fs-md">Get hourly PM2.5 readings from real-time air quality monitors in strategic spots around the city.</p>
+                    <p class="fs-md"><a href="../realtime">Get the data ></a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function changeSource(x) {
+            console.log(x)
+
+            // get all class sourceBox and remove active
+            var sourceBoxes = document.querySelectorAll(".sourceBox")
+            for (let i = 0; i < sourceBoxes.length; i++) {
+                sourceBoxes[i].classList.remove('sourceBox-active')
+            }
+
+            // highlight what you clicked on
+            var thisBox = 'sourceBox' + x
+            document.getElementById(thisBox).classList.add('sourceBox-active')
+
+            // change map
+            var title;
+
+            if (x==1) {
+                title = 'Building emissions'
+            } else if (x==2) {
+                title = "Building density"
+            } else if (x==3) {
+                title = "Industrial area"
+            } else if (x==4) {
+                title = "Traffic density"
+            }
+
+            document.getElementById('mapTitle').innerHTML = title
+        }
+    </script>
 
     <style>
-        .badge-worse {
-        background-color:#8077b6; }
-
-        .badge-medium {
-            background-color: #bcbcdc;
+        .sourceBox {
+            padding: 10px;
         }
 
-        .badge-better {
-            background-color:#f5f1f8;
+        .sourceBox:hover {
+            background-color: #f1f1f1;
+            cursor: pointer
+        }
+
+        .sourceBox-active {
+            background-color: #f1f1f1;
         }
     </style>
+
+    <!-- old functionality -->
+
+
 
     <div id="outputContent" style="display:none"> <!--change to none-->
 
