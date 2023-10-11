@@ -315,7 +315,81 @@ function buildChart(div, spec, csv, nbr) {
 
 
 
+// flexdatalist initial:
+
+// ===== load flexdatalist ================================================== //
+
+const load_flexdatalist = async () => {
+
+  // ----- get NTA with associated zipcodes -------------------------------------------------- //
+  
+  await fetch(`nta_zip_collapsed.json`)
+      .then(response => response.json())
+      .then(data => {
+
+          let nta_zip_collapsed = data;
+          // console.log("nta_zip_collapsed", nta_zip_collapsed);
+          
+          // ----- init flexdatalist -------------------------------------------------- //
+          
+          let $input = $('.flexdatalist').flexdatalist({
+              minLength: 0,
+              valueProperty: ["GEOCODE", "GEONAME"],
+              textProperty: "{GEONAME}",
+              selectionRequired: false,
+              focusFirstResult: true,
+              visibleProperties: ["NTACode", "GEONAME", "zipcode"],
+              searchIn: ["GEONAME", "zipcode"],
+              searchContain: true,
+              searchByWord: true,
+              redoSearchOnFocus: true,
+              toggleSelected: true,
+              cache: false,
+              data: nta_zip_collapsed
+          });
+
+          console.log("$input", $input);
+          
+          // ----- add flexdatalist select handler -------------------------------------------------- //
+
+          $input.on('select:flexdatalist', (e, set) => {
+              
+              console.log("set", set);
+
+              // set neighborhood name on page
+              
+                // document.querySelector("#NTA").innerHTML = '<h4>' + DOMPurify.sanitize(set.GEONAME) + '</h4>';
+              
+              // call dataChange
+
+              // dataChange(set.GEOCODE);
+
+              // call tester Function
+              testFunction(set.GEOCODE, set.GEONAME)
+              
+          })
+
+          // ----- add clear button handler -------------------------------------------------- //
+
+          $("#clear").on("click", (e) => {
+
+              console.log("e [clear click]", e);
+
+              $($input).find("~input").val("").trigger( "focus" )
+              
+          })
+
+      })
+}
+
+// ----- call loader function -------------------------------------------------- //
+
+load_flexdatalist()
 
 
+function testFunction(x, y) {
+  console.log(x)
+  console.log(y)
+  document.getElementById('NTA2').innerHTML = y
 
-
+}

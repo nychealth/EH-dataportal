@@ -39,7 +39,8 @@
 
             <hr class="my-2">
 
-            <div class="row no-gutters">
+            <!-- Hiding old neighborhood selector -->
+            <div class="row no-gutters" style="display:none">
                 <div class="col-md-6 mx-auto">
                     <form id="nta-form">
                         <label for="last-neighborhood"><strong>Choose a neighborhood to get data:</strong></label>
@@ -250,17 +251,50 @@
                     </form>
 
                     <div id="yourneighb" style="display:none;">
-                    <div class="basic-callout p-2 my-2">
-                                <p class="h3" style="font-weight:normal!important;">Your neighborhood: <span class="h3" style="font-weight:bold;color:#15607a;" id="NTA"></span></p>
-                                <p><em class="fs-sm"><a
-                                    href="/data-stories/geographies">Read about Neighborhood Tabulation Areas.</a></em> </p>
+                        <div class="basic-callout p-2 my-2">
+                                    <p class="h3" style="font-weight:normal!important;">Your neighborhood: <span class="h3" style="font-weight:bold;color:#15607a;" id="NTA"></span></p>
+                                    <p><em class="fs-sm"><a
+                                        href="/data-stories/geographies">Read about Neighborhood Tabulation Areas.</a></em> </p>
 
-                    </div>
+                        </div>
 
                 </div>
             </div>
 
+
+
             </div>
+
+            <!-- new neighborhood selector with flexdatalist -->
+            <div class="row no-gutters">
+                <div class="col-md-6 mx-auto">
+                    <div class="fs-sm pb-1">Enter a neighborhood to get data:</div>
+
+                    <div class="btn-group" role="group" style="width:100%;">
+    
+                        <input 
+                            id="flex_search"
+                            type='search'
+                            class='flexdatalist form-control'
+                            name='indicator_name_suggestion'
+                        />
+    
+                        <button id="clear" class="btn btn-md btn-warning">Clear</button>
+    
+                    </div>
+
+                    <div class="basic-callout p-2 my-2">
+                        <p class="h3" style="font-weight:normal!important;">Your neighborhood: <span class="h3" style="font-weight:bold;color:#15607a;" id="NTA2"></span></p>
+                        <p><em class="fs-sm"><a
+                            href="/data-stories/geographies">Read about Neighborhood Tabulation Areas.</a></em> </p>
+
+                     </div>
+
+
+
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -555,5 +589,13 @@
 <script type="text/javascript" src="{{ .Params.accessibleAutocomplete }}"></script>
 
 <script type="text/javascript" src="{{ .Params.customJS }}"></script>
+
+<!-- flexdatalist -->
+
+{{- $flexdatalist_css := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css" -}}
+<link rel="stylesheet" href="{{ $flexdatalist_css.RelPermalink }}"/>
+
+{{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" -}}
+<script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}"></script>
 
 {{- end -}}
