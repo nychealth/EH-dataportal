@@ -148,8 +148,8 @@
             var indicatorIndex = []
             
             
-            // First, load Indicators.json
-            d3.json('{{ site.Params.data_repo }}{{ site.Params.data_branch }}/indicators/indicators.json').then(function (data) {
+            // First, load metadata.json
+            d3.json('{{ site.Params.data_repo }}{{ site.Params.data_branch }}/indicators/metadata.json').then(function (data) {
                 indicators = data;
                 loopThroughIndicators() // run loops.
                 

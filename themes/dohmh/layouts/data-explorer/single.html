@@ -205,11 +205,11 @@
 
 {{/* ====  save indicator names as a resource  ==== */}}
 
-{{- /* ----  get indicators.json from data repo, and transform into a Hugo object  ---- */ -}}
+{{- /* ----  get metadata.json from data repo, and transform into a Hugo object  ---- */ -}}
 
-{{- $indicators_json_resource := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/indicators/indicators.json")) | transform.Unmarshal -}}
+{{- $indicators_json_resource := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/indicators/metadata.json")) | transform.Unmarshal -}}
 
-{{- /* ----  get names from indicators.json, using scratch  ---- */ -}}
+{{- /* ----  get names from metadata.json, using scratch  ---- */ -}}
 
 {{- $indicators_scratch := newScratch -}}
 {{- $indicators_map := dict -}}

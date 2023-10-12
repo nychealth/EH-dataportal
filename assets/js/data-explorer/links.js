@@ -4,8 +4,8 @@
 
 const renderLinksChart = (
     data,
-    primaryMetadata,   // indicators.json for primary indicator
-    secondaryMetadata, // indciators.json for secondary indicator
+    primaryMetadata,   // metadata.json for primary indicator
+    secondaryMetadata, // metadata.json for secondary indicator
     primaryIndicatorName,
     secondaryIndicatorName,
 ) => {

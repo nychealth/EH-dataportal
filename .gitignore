@@ -49,4 +49,4 @@ content/key-topics/climatehealth/hvi/hvi-nta.csv
 static/IndicatorData/data/
 static/IndicatorData/comparisons.json
 static/IndicatorData/indicators_pretty.json
-static/IndicatorData/indicators.json
+static/IndicatorData/metadata.json

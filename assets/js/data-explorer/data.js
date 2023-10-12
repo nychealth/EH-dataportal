@@ -12,11 +12,11 @@
 
 var globalID
 
-fetch(data_repo + data_branch + '/indicators/indicators.json')
+fetch(data_repo + data_branch + '/indicators/metadata.json')
     .then(response => response.json())
     .then(async data => {
 
-        // console.log("** fetch indicators.json");
+        // console.log("** fetch metadata.json");
 
         indicators = data;
 

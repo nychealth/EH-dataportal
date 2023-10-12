@@ -68,7 +68,7 @@
 
 {{/* ====  save indicator names as a resource  ==== */}}
 
-{{- /* ----  get indicators.json from data repo, and transform into a Hugo object  ---- */ -}}
+{{- /* ----  get metadata.json from data repo, and transform into a Hugo object  ---- */ -}}
   
   {{- $nr_indicator_names := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/nr_indicator_names.json")) | transform.Unmarshal -}}
 
