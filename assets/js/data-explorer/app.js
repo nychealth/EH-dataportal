@@ -141,7 +141,7 @@ $("#chartView").on("click", (e) => {
         summaryTable.button("thisView:name").trigger();
     
         gtag('event', 'file_download', {
-            'file_name': 'NYC EH Data Portal - ' + indicatorName + " (filtered)" + '.csv',
+            'file_name': 'NYC EH Data Portal - ' + indicatorName + " (filtered table)" + '.csv',
             'file_extension': '.csv',
             'link_text': 'Current table view'
         });
@@ -153,9 +153,19 @@ $("#chartView").on("click", (e) => {
         let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(CSVforDownload);
         let hiddenElement = document.createElement('a');
 
+        // set view to send to file name
+        var view;
+        if (window.location.hash == '#display=trend') {
+            view = 'trend'
+        } else if (window.location.hash == '#display=map') {
+            view = 'map'
+        } else {
+            view = 'links'
+        }
+
         hiddenElement.href = csvData;
         hiddenElement.target = '_blank';
-        hiddenElement.download = 'NYC EH Data Portal - '  + indicatorName + " (filtered)" + '.csv',
+        hiddenElement.download = 'NYC EH Data Portal - '  + indicatorName + ` (${view} view)` + '.csv',
         hiddenElement.click();
 
         // trigger GA event
@@ -192,7 +202,7 @@ $("#allData").on("click", (e) => {
 
     hiddenElement.href = csvData;
     hiddenElement.target = '_blank';
-    hiddenElement.download = 'NYC EH Data Portal - ' + indicatorName + " (full)" + '.csv';
+    hiddenElement.download = 'NYC EH Data Portal - ' + indicatorName + " (full table)" + '.csv';
     hiddenElement.click();
 
     gtag('event', 'file_download', {
