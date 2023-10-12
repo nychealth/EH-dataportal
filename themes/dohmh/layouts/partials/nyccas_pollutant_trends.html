@@ -1,0 +1,219 @@
+<div id="pollutantTrendsEmbed">
+  <div class="row">
+      <div class="col-12">
+              <div class="">
+                  <button type="button" class="btn trpolbtn btn-outline-dark active" value="BC">BC</button>
+                  <button type="button" class="btn trpolbtn btn-outline-dark" value="NO">NO</button>
+                  <button type="button" class="btn trpolbtn btn-outline-dark" value="NO2">NO<sub>2</sub></button>
+                  <button type="button" class="btn trpolbtn  btn-outline-dark" value="O3">O<sub>3</sub></button>
+                  <button type="button" class="btn trpolbtn btn-outline-dark" value="PM2.5">PM<sub>2.5</sub></button>
+                  <button type="button" class="btn trpolbtn btn-outline-dark" value="SO3">SO<sub>2</sub></button>
+              </div>
+      </div>
+
+      <div class="col-12">
+          <div id="subCont" class="mt-1 mb-2"></div>
+      </div>
+  </div>
+
+  <div class="row mt-1">
+      <div class="col-12">
+          <p><span class="fs-lg" style="font-weight: bold;"><span id='polPrint' class="">Pollutant</span> by <span id='sourcePrint'>Source</span></span><br>
+          <em><span id="unitPrint" class="fs-sm"></span></em>
+          </p>
+          <div id="vis" style="width: 100%;"></div>
+      </div>
+  </div>
+  <hr>
+
+  <style>
+      .srcbtn {
+      cursor: pointer;}
+      .border {
+          background-color:#6c7287;
+          color: white;
+      }
+  </style>
+
+  <script>
+        var trendPollutant
+        var source
+        var view; // ssn (season) or ttl (tertile)
+        var sources = [];
+        var units
+        var trendPollutantName
+        
+        // arrays of pollutant-specific sources
+        var bcSources = ['Commercial Cooking', 'Industrial Areas', 'Traffic Density'];
+        var noSources = ['Boiler Density','Traffic NOx Emissions'];
+        var no2Sources = ['Traffic Density', 'Building Density'];
+        var o3Sources = ['Traffic Density'];
+        var pmSources = ['Commercial Cooking','Traffic Density','Boiler PM2.5 Emissions'];
+        var so2Sources = ['Boilers Using Residual Oil','Night-Time Population Density'];
+
+        // SET DEFAULTS
+        trendPollutant = 'BC'
+        trendPollutantName = 'Black Carbon'
+        units = 'micrograms per cubic meter'
+        sources = bcSources 
+        source = sources[0]
+        createSourceButtons()
+
+
+        // GET POLLUTANT AND OTHER VARIABLES ON INITIAL BUTTON CLICK
+        const trbtns = document.querySelectorAll(".trpolbtn")
+        for (var i = 0; i < trbtns.length; i++) {
+            trbtns[i].addEventListener("click", function() {
+              for (let button of document.querySelectorAll('.trpolbtn')) button.classList.remove('active');
+              this.className += " active";
+              trendPollutant = this.value
+
+              // declare sources and units for selected pollutant
+                if (trendPollutant === 'BC') {
+                    sources = bcSources
+                    units = 'micrograms per cubic meter'
+                    trendPollutantName = 'Black Carbon'
+                } else if (trendPollutant === 'NO') {
+                    sources = noSources
+                    units = 'parts per billion'
+                    trendPollutantName = 'Nitric Oxide'
+                } else if (trendPollutant === 'NO2') {
+                    sources = no2Sources
+                    units = 'parts per billion'
+                    trendPollutantName = 'Nitrogen Dioxide'
+                } else if (trendPollutant === 'O3') {
+                    sources = o3Sources
+                    units = 'parts per billion'
+                    trendPollutantName = 'Ozone'
+                } else if (trendPollutant === 'PM2.5') {
+                    sources = pmSources
+                    units = 'micrograms per cubic meter'
+                    trendPollutantName = 'Fine Particles'
+                } else if (trendPollutant = 'SO2') {
+                    sources = so2Sources
+                    units = 'parts per billion'
+                    trendPollutantName = 'Sulfur Dioxide'
+                }
+                source = sources[0]
+                // logMetadata();
+
+                // create buttons for the pollutant's sources
+                createSourceButtons()
+                drawChart();
+
+            });
+          }
+
+        function createSourceButtons() {
+            // loop through Sources and create buttons
+            document.getElementById('subCont').innerHTML = '';
+            for (let i = 0; i < sources.length; i++) {
+                var thisSource = sources[i]
+                var newButton = `<span class="badge srcbtn badge-light mr-1">${thisSource}</span>`
+                document.getElementById('subCont').innerHTML += newButton
+            };
+
+            // loop through newly-added buttons, get first, apply Active state
+            var srcBtns = document.querySelectorAll('.srcbtn')
+            srcBtns[0].classList.add('border')
+
+            // put listener on source buttons
+            for (let x = 0; x < srcBtns.length; x++) {
+                srcBtns[x].addEventListener("click", function() {
+                // remove "active" from classnames
+                var activeSource = document.querySelectorAll('.srcbtn.border')
+                activeSource[0].classList.remove('border')
+                // apply Active to selected source button
+                this.className += " border";
+                source = this.innerHTML;
+                drawChart();
+                })
+            }
+        }
+
+        // re-draw chart on window re-sizing
+        window.onresize = function(event) {
+            drawChart();
+        };
+
+        var chartSpec = {};
+        function drawChart() {
+            document.getElementById('polPrint').innerHTML = trendPollutantName
+            document.getElementById('sourcePrint').innerHTML = source
+            document.getElementById('unitPrint').innerHTML = units
+            let width = document.getElementById('vis').offsetWidth / 2.25
+
+            chartSpec = {
+                "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+                "title": null,
+                "width": width,
+                "description": "NYCCAS data by season, source, and pollutant",
+                "data": {
+                  "url": "embed/pollutant-trends-data.csv"
+                },
+                "config": {
+                    "title": {"anchor": "start", "fontSize": 14},
+                    "axisY": {"title": null},
+                    "axisX": {"title": "Year","grid": false},
+                    "style": {
+                      "cell": {"stroke": "transparent"},
+                      "line": {"stroke": "#1696d2", "strokeWidth": 3},
+                      "text": {"fontSize": 11, "fontWeight": "bold", "size": 11,"align": "left"},
+                      "group-title": {"fontWeight": "normal"}
+                    },
+                    "range": {
+                        "category": [
+                          "#810f7c",
+                          "#b3cde3",
+                          "#8c96c6"
+
+                        ]
+                      },
+                      "legend": {"orient": "bottom"}
+                  },
+                "columns": 2,
+                "transform": [
+                  {
+                    "filter": `datum.Pollutant === '${trendPollutant}' && datum.Source === '${source}'`
+                  }
+                ],
+                "mark": {"type": "line", "point": true},
+                "encoding": {
+                  "facet": {
+                    "field": "Season",
+                    "type": "nominal",
+                    "columns": 2,
+                    "title": null,
+                    "sort": ["Winter", "Spring", "Summer", "Fall"],
+                    "header": {"labelFontSize": 15,"labelAlign":"left","labelAnchor": "start"}
+                  },
+                  "x": {"timeUnit": "utcyear", "field": "Time"},
+                  "y": {"field": "Value", "type": "quantitative"},
+                  "tooltip": [
+                    {"field": "Value", "title": "Value", "format": ",.1~f"},
+                    {"field": "Tertile", "title": "Tertile"}
+                  ],
+                  "color": {
+                    "field": "Tertile", 
+                    "type": "nominal"
+                  }
+                }
+              };
+
+        vegaEmbed('#vis', chartSpec);
+        }
+
+
+
+        function logMetadata() {
+            console.log('*****METADATA*****')
+            console.log('pollutant: ' + trendPollutant)
+            console.log('sources: ' + sources)
+            console.log('source: ' + source)
+            console.log('units: ' + units)
+        }
+
+
+        drawChart();
+    </script>
+</div>
