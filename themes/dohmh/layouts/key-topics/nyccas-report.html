@@ -62,7 +62,7 @@
                 <div class="col-sm-6 col-xs-12">
                     <div class="greenleftborder">
                         <h3>Methods</h3>
-                        {{ .Params.methods | safeHTML }}
+                        {{ .Params.methods | markdownify }}
                     </div>
                 </div>
 
@@ -145,7 +145,7 @@
                     <div class="greenleftborder">
                         <h3>NYCCAS Sites</h3>
 
-                        {{ .Params.nyccasSites | safeHTML }}
+                        {{ .Params.nyccasSites | markdownify }}
 
                     </div>
                 </div>
@@ -167,7 +167,8 @@
     <div class="row">
         <div class="col-md-8 col-sm-12 mx-auto">
             <h2>Pollutant Maps</h2>
-            {{ .Params.pollutantMaps | safeHTML }}
+            <img src="NyccasInstall_red.jpg" alt="NYCCAS installation" align="right" style="width:50%;" class="my-2 pl-2"> 
+            {{ .Params.pollutantMaps | markdownify }}
 
             {{ partial "nyccas_pollutant_maps" . }}
 

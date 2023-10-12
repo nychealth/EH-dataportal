@@ -15,55 +15,26 @@ keywords:
     - pollutants
 seo_title: NYC Community Air Survey Annual Report
 seo_description: Data, findings, and more from NYC's citywide air quality monitoring program.
-methods: >-
-    <p>The Health Department designed NYCCAS to understand how average air pollution levels vary from place to place within New York City. NYCCAS staff mount samplers on street light poles 10 to 12 feet off the ground along residential and commercial streets and in parks. The monitors use a small battery-powered pump and filters to collect air samples. Our air samplers are deployed at each NYCCAS site once each season and collect data for a two-week period. Samples are collected in all seasons for NO, NO<sub>2</sub>, PM<sub>2.5</sub> and BC; in the summer for O<sub>3</sub>; and in the winter for SO<sub>2</sub>. For more details on sample collection methods, see <a href="Appendix1.pdf">Appendix 1 (PDF)</a>.</p>
-    <p>The New York State Department of Environmental Conservation also has a network of 19 air quality monitors in New York City that are required by the Federal government, but they are mounted on building roofs. We placed our air samplers at street level to measure pollution where people spend time, and where traffic-related pollution levels are usually higher.</p>
-    <p>NYCCAS has also deployed a limited number of monitors that can measure PM<sub>2.5</sub> levels in real time. These monitors allow us to monitor air pollution as it changes based on the time of day, weather or due to local pollution sources, such as heavy-duty trucks. The data from these monitors is available here: <a href="../realtime/">Real-Time Air Quality</a>.</p>
-nyccasSites: >-
-    <p>The monitoring locations represent a wide variety of New York City environments – sidewalks, busy streets, parks and quiet neighborhood roads. Most of the sites (80%) were chosen by the Health Department to ensure representation in all types of neighborhoods, including residential, commercial and industrial areas. The locations vary in how many trees they have and in the density of traffic and buildings. The remaining sites were selected because they are near potentially high-emission locations that were not captured in the initial assignment. These include Times Square, the Port Authority Bus Terminal and the entrance to the Holland Tunnel. The number of sites has changed over the years as we have learned about air quality in our city. In 2021, we monitored 78 routine locations and an additional 15 sites in low-income neighborhoods that would benefit from additional monitoring to understand potential sources of emissions. We refer to these as <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/AQsnapshots/Index.html#section5">Environmental Justice Sites</a>, in <span style="font-weight:bold; color:green">green</span> on the map.</p>
-pollutantMaps: >-
-    <img src="NyccasInstall_red.jpg" alt="NYCCAS installation" align="right"
-    style="width:50%;" class="my-2 pl-2"> <p>Since it is impossible to sample
-    the air in every location in New York City, we monitor representative sites
-    to determine how pollution levels vary in relation to traffic, buildings,
-    trees and other neighborhood factors. We use NYCCAS monitoring data along
-    with data on land use, traffic, building emissions and other neighborhood
-    factors around the monitors to build a land-use regression (LUR) model. We
-    then use the associations from these models to estimate the seasonal average
-    air pollution levels at locations across the city, including places where no
-    NYCCAS measurements were collected. For more details on emission source
-    data, see <a href="Appendix1.pdf">Appendix 1 (PDF)</a>. For more details on
-    the analysis methods, see <a
-    href="https://www1.nyc.gov/site/doh/data/data-publications/air-quality-nyc-community-air-survey.page#nyccas-pubs">NYCCAS
-    Scientific Publications</a>.</p> <p>In the maps below, you can select a
-    pollutant to see how air pollution is distributed throughout the city and
-    how it has changed over time. The city’s air quality has changed
-    significantly since NYCCAS began monitoring, as can be seen in the maps
-    below. The levels of BC, NO<sub>2</sub>, NO, SO<sub>2</sub> and
-    PM<sub>2.5</sub> have been significantly reduced citywide. The areas where
-    we see the highest levels of these pollutants has also shifted.</p> <p>Over
-    time, there are better data available for us to understand the relationships
-    between land use and pollution, and the air pollution patterns have shifted as
-    the city changes. Although industrial land use has been a primary
-    indicator of BC, NO, NO<sub>2</sub> and PM<sub>2.5</sub> pollution in the
-    past, in the most recent years of data we see evidence that the density of
-    warehouses with loading docks better explains the difference in pollution
-    levels between neighborhoods.  Areas with a higher density of warehouses,
-    such as Newtown Creek area in Queens and Brooklyn, near JFK airport, Sunset
-    Park in Brooklyn and Hunts Point in the Bronx, have higher levels of
-    pollution.</p> <p>
+methods: |
+    The Health Department designed NYCCAS to understand how average air pollution levels vary from place to place within New York City. NYCCAS staff mount samplers on street light poles 10 to 12 feet off the ground along residential and commercial streets and in parks. The monitors use a small battery-powered pump and filters to collect air samples. Our air samplers are deployed at each NYCCAS site once each season and collect data for a two-week period. Samples are collected in all seasons for NO, NO<sub>2</sub>, PM<sub>2.5</sub> and BC; in the summer for O<sub>3</sub>; and in the winter for SO<sub>2</sub>. For more details on sample collection methods, see [Appendix 1 (PDF)](Appendix1.pdf).
 
-    There have been too few sites with SO<sub>2</sub> values above the detection
-    limit for us to include data after winter 2017-2018 in these maps and
-    charts. SO<sub>2</sub> levels have gone down dramatically since  <a
-    href="https://www1.nyc.gov/assets/dep/downloads/pdf/air/local-law-43-biodiesel-fuel-requirement.pdf">Local
-    Law 43 of 2010 prohibited the burning of heavy fuel oil (No. 6) in New York
-    City buildings (PDF)</a>. Historical maps for SO<sub>2</sub> and other
-    pollutants are available by clicking on the “All years” button below.</p>
+    The New York State Department of Environmental Conservation also has a network of 19 air quality monitors in New York City that are required by the Federal government, but they are mounted on building roofs. We placed our air samplers at street level to measure pollution where people spend time, and where traffic-related pollution levels are usually higher.
+    
+    NYCCAS has also deployed a limited number of monitors that can measure PM<sub>2.5</sub> levels in real time. These monitors allow us to monitor air pollution as it changes based on the time of day, weather or due to local pollution sources, such as heavy-duty trucks. [Get data on real-time air quality](../realtime/).
 
-    <p>Winter and summer average maps for BC, NO<sub>2</sub>, NO and
-    PM<sub>2.5</sub> are available in <a href="Appendix2.pdf">Appendix 2
-    (PDF)</a>.</p>
+nyccasSites: |
+    The monitoring locations represent a wide variety of New York City environments – sidewalks, busy streets, parks and quiet neighborhood roads. Most of the sites (80%) were chosen by the Health Department to ensure representation in all types of neighborhoods, including residential, commercial and industrial areas. The locations vary in how many trees they have and in the density of traffic and buildings. The remaining sites were selected because they are near potentially high-emission locations that were not captured in the initial assignment. These include Times Square, the Port Authority Bus Terminal and the entrance to the Holland Tunnel. The number of sites has changed over the years as we have learned about air quality in our city. In 2021, we monitored 78 routine locations and an additional 15 sites in low-income neighborhoods that would benefit from additional monitoring to understand potential sources of emissions. We refer to these as Environmental Justice Sites, in <span style="font-weight:bold; color:green">green</span> on the map. [More about monitoring at Environmental Justice Sites](../../../data-stories/AQsnapshots/).
+
+pollutantMaps: |
+    Since it is impossible to sample the air in every location in New York City, we monitor representative sites to determine how pollution levels vary in relation to traffic, buildings, trees and other neighborhood factors. We use NYCCAS monitoring data along with data on land use, traffic, building emissions and other neighborhood factors around the monitors to build a land-use regression (LUR) model. We
+    then use the associations from these models to estimate the seasonal average air pollution levels at locations across the city, including places where no NYCCAS measurements were collected. For more details on emission source data, see [Appendix 1 (PDF)](Appendix1.pdf). For more details on the analysis methods, see []NYCCAS
+    Scientific Publications](https://www1.nyc.gov/site/doh/data/data-publications/air-quality-nyc-community-air-survey.page#nyccas-pubs).
+    
+    In the maps below, you can select a pollutant to see how air pollution is distributed throughout the city and how it has changed over time. The city’s air quality has changed significantly since NYCCAS began monitoring, as can be seen in the maps below. The levels of BC, NO<sub>2</sub>, NO, SO<sub>2</sub> and PM<sub>2.5</sub> have been significantly reduced citywide. The areas where we see the highest levels of these pollutants has also shifted.</p> <p>Over time, there are better data available for us to understand the relationships between land use and pollution, and the air pollution patterns have shifted as the city changes. Although industrial land use has been a primary indicator of BC, NO, NO<sub>2</sub> and PM<sub>2.5</sub> pollution in the past, in the most recent years of data we see evidence that density of warehouses with loading docks better explains the difference in pollution levels between neighborhoods.  Areas with a density of warehouses, such as Newtown Creek area in Queens and Brooklyn, near JFK airport, Sunset Park in Brooklyn and Hunts Point in the Bronx, higher levels of pollution.
+
+    There have been too few sites with SO<sub>2</sub> values above the detection limit for us to include data after winter 2017-2018 in these maps and charts. SO<sub>2</sub> levels have gone down dramatically since  [Local Law 43 of 2010 prohibited the burning of heavy fuel oil (No. 6) in New York City buildings (PDF)](https://www1.nyc.gov/assets/dep/downloads/pdf/air/local-law-43-biodiesel-fuel-requirement.pdf). Historical maps for SO<sub>2</sub> and other pollutants are available by clicking on the “All years” button below.
+
+    Winter and summer average maps for BC, NO<sub>2</sub>, NO and PM<sub>2.5</sub> are available in [Appendix 2 (PDF)](Appendix2.pdf).
 pollutantTrends: >-
     <p>Since monitoring began in winter 2008-2009 in New York City, we have seen
     a decrease in most of the air pollutants we measure. However, the
