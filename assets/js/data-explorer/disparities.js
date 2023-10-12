@@ -2,112 +2,36 @@
 // disparities.js
 // ======================================================================= //
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-// function to create the dataset for the disparities chart
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-// need to filter for relevant disparities geo (current = GeoType, future += GeoEntity)
-
-const loadDisparitiyData = async (disparityMetadata, disparityIndicatorId) => {
-
-    // extract disparity metadata
-
-    const disparityMeasureId      = disparityMetadata[0].MeasureID
-    const aqDisparityMeasureTimes = aq.from(disparityMetadata[0].AvailableTimes)
-
-    // create primary data
-
-    const aqPrimaryData = 
-        aq.from(linksData) // trendData is created by the joinData function
-        .select("GeoType", "GeoRank", "GeoID", "Time", "end_period", "Value", "DisplayValue")
-        .reify()
-
-    // aqPrimaryData.print()
-
-    let maxGeoRank = Math.max(aqPrimaryData.objects()[0].GeoRank);
-    // console.log("maxGeoRank", maxGeoRank);
-    let filteredPrimaryData = aqPrimaryData.filter(`obj => obj.GeoRank == ${maxGeoRank}`)
-
-    // filteredPrimaryData.print({limit: Infinity})
-    
-    // get disparity data
-    
-    await fetch(`${data_repo}${data_branch}/indicators/data/${disparityIndicatorId}.json`)
-        .then(response => response.json())
-        .then(data => {
-
-            // create disparities data
-            
-            const aqDisparityData = aq.from(data)
-
-                // filter for disparity measure
-
-                .filter(`d => d.MeasureID === ${disparityMeasureId}`)
-
-                // join with disparity measure times
-
-                .join(aqDisparityMeasureTimes, ["Time", "TimeDescription"])
-
-                // create tertile column
-
-                .derive({
-                    bin: aq.bin('Value', { maxbins: 3 }),
-                })
-                .derive({
-                    Tertile: aq.escape( d => d.bin === 0 && 'low' || d.bin === 20 && 'med' || d.bin === 40 && 'hi')
-                })
-
-                // pare down columns
-
-                .select("GeoType", "GeoID", "Time", "end_period", "bin", "Tertile")
-                .reify()
-            
-            
-            // (inner) join with primary data
-
-            disparitiyData = 
-                filteredPrimaryData
-                .join(aqDisparityData, [["GeoType", "GeoID", "end_period"], ["GeoType", "GeoID", "end_period"]])
-
-                // summarize by  grouping
-                .groupby("Time_1", "Tertile", "GeoType")
-                .rollup({median: d => op.median(d.Value)})
-
-                // turn into JavaScript object
-
-                .objects()
-            
-        })
-}
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 // function to render the disparities chart
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// ----------------------------------------------------------------------- //
 
 // this function is called when the "Show Disparities" button is clicked. it
-//  in turn calls "loadDisparitiyData".
+//  in turn calls "loaddisparityData".
 
 const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
 
     console.log("** renderDisparities");
-    
-    // remove disparities event listeners
-    $(btnShowDisparities).off()
 
-    // add trend event listener
-    $(btnShowDisparities).on("click", e => showTrend(e));
+    // ----------------------------------------------------------------------- //
+    // toggle button
+    // ----------------------------------------------------------------------- //
 
-    // switch button text
-    btnShowDisparities.innerText = "Show Trend";
+    // disable links measures dropdown
+    $("#dropdownLinksMeasures").addClass("disabled");
+    $("#dropdownLinksMeasures").attr('aria-disabled', true);
 
-
+    // ----------------------------------------------------------------------- //
     // extract primary metadata
+    // ----------------------------------------------------------------------- //
 
-    let primaryIndicatorName   = indicatorName
-    let primaryMeasurementType = primaryMetadata[0].MeasurementType;
-    let primaryDisplay         = primaryMetadata[0].DisplayType;
-    let primaryAbout           = primaryMetadata[0]?.how_calculated;
-    let primarySources         = primaryMetadata[0].Sources;
+    const primaryIndicatorName   = indicatorName
+    const primaryMeasurementType = primaryMetadata[0].MeasurementType;
+    const primaryMeasureId       = primaryMetadata[0].MeasureID;
+    const primaryMeasureName     = primaryMetadata[0].MeasureName;
+    const primaryAbout           = primaryMetadata[0]?.how_calculated;
+    const primarySources         = primaryMetadata[0].Sources;
+    const primaryDisplay         = primaryMetadata[0].DisplayType;
 
     // get disparities poverty indicator metadata - "indicators" is a global object created by loadIndicator
 
@@ -121,33 +45,110 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
         m => m.MeasureID === disparityMeasureId
     );
 
+    // ----------------------------------------------------------------------- //
     // put metadata into fields
+    // ----------------------------------------------------------------------- //
 
     const disparityIndicatorId     = disparityIndicator[0].IndicatorID
     const disparityIndicatorName   = disparityIndicator[0].IndicatorName
+
     const disparityMeasurementType = disparityMetadata[0].MeasurementType
+    const disparityMeasureName     = disparityMetadata[0].MeasureName
+    // const disparityMeasureId       = disparityMetadata[0].MeasureID
+    const disparityDisplay         = disparityMetadata[0].DisplayType;
+
     const disparitySources         = disparityMetadata[0].Sources
     const disparitysAbout          = disparityMetadata[0].how_calculated
 
-    // load disparities measure data (creates `disparitiyData`)
 
-    await loadDisparitiyData(disparityMetadata, disparityIndicatorId)
-    
+    // ----------------------------------------------------------------------- //
+    // if disparity chart not already shown, create dataset again
+    // ----------------------------------------------------------------------- //
+
+    if (!selectedDisparity) {
+
+        // console.log(">>> no selected disparity");
+        
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+        // load disparities measure data (creates `disparityData`)
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+        
+        // use a seeded RNG to add a random offset to the categorical x-axis. Using
+        //  primaryMeasureId as the seed means that the disparity chart for this measure
+        //  will be the same every time
+        
+        const myrng = new Math.seedrandom(primaryMeasureId)
+        
+        // await loaddisparityData(disparityMetadata, disparityIndicatorId)
+        let aqDisparityData = await createJoinedLinksData(primaryMeasureId, disparityMeasureId)
+            .then(data => {
+                
+                let dispData = data
+                    .derive({ PovRank: d => (d.Value_2 > 30 ? 4 : (d.Value_2 > 20 ? 3 : ( d.Value_2 > 10 ? 2 : 1))) })
+                    .derive({ PovCat: d => (d.PovRank == 4 ? 'Very high (> 30%)' : (d.PovRank == 3  ? 'High (20-30%)' : ( d.PovRank == 2  ? 'Medium (10-20%)' : 'Low (0-10%)'))) })
+                    .derive({ randomOffsetX: aq.escape(d => d.PovRank + (myrng()*2 - 1)) })
+                
+                // console.log("dispData");
+                // dispData.print()
+                
+                return dispData;
+            })
+        
+        disparityData = aqDisparityData.objects()
+        
+    } else {
+        // console.log(">>> selected disparity");
+    }
+
+    // set this to true
+
+    selectedDisparity = true;
+
+    // console.log(">> disparityData [renderDisparities]", disparityData);
+
+    // debugger;
+
+    const primaryTime   = disparityData[0].Time_1;
+    const disparityTime = disparityData[0].Time_2;
+    const geoTypeShortDesc = disparityData[0].GeoTypeShortDesc_1;
+
+    // ----------------------------------------------------------------------- //
     // get min value for adjusting axis
-    
-    let aqData = aq.from(disparitiyData);
-    let median = aqData.array("median");
-    let medianMin = Math.min.apply(null, median);
+    // ----------------------------------------------------------------------- //
 
+    // let aqData = aq.from(disparityData);
+    // let median = aqData.array("median");
+    // let medianMin = Math.min.apply(null, median);
+
+    // ----------------------------------------------------------------------- //
+    // get unique unreliability notes (dropping empty)
+    // ----------------------------------------------------------------------- //
+
+    const comb_unreliability = disparityData.map(d => d.Note_1).concat(disparityData.map(d => d.Note_2))
+    const disp_unreliability = [...new Set(comb_unreliability)].filter(d => !d == "");
+
+    // console.log("disp_unreliability", disp_unreliability);
+
+    document.querySelector("#links-unreliability").innerHTML = ""; // blank to start
+
+    disp_unreliability.forEach(element => {
+
+        document.querySelector("#links-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>";
+
+    });
+
+
+    // ----------------------------------------------------------------------- //
     // created combined about and sources info
+    // ----------------------------------------------------------------------- //
 
-    const combinedAbout = 
+    const combinedAbout =
         `<h6>${primaryIndicatorName} - ${primaryMeasurementType}</h6>
         <p>${primaryAbout}</p>
         <h6>${disparityIndicatorName} - ${disparityMeasurementType}</h6>
         <p>${disparitysAbout}</p>`;
 
-    const combinedSources = 
+    const combinedSources =
         `<h6>${primaryIndicatorName} - ${primaryMeasurementType}</h6>
         <p>${primarySources}</p>
         <h6>${disparityIndicatorName} - ${disparityMeasurementType}</h6>
@@ -157,197 +158,163 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
 
     renderAboutSources(combinedAbout, combinedSources);
 
+    // ----------------------------------------------------------------------- //
+    // set chart properties
+    // ----------------------------------------------------------------------- //
     
-    // get unique unreliability notes (dropping empty)
+    let bubbleSize = window.innerWidth < 576 ? 100 : 200;
+    let height = window.innerWidth < 576 ? 350 : 500;
 
-    const comb_unreliability = data.map(d => d.Note_1).concat(data.map(d => d.Note_2))
-    const disp_unreliability = [...new Set(comb_unreliability)].filter(d => !d == "");
-
-    // console.log("disp_unreliability", disp_unreliability);
-
-    document.querySelector("#trend-unreliability").innerHTML = ""; // blank to start
-
-    for (let i = 0; i < disp_unreliability.length; i++) {
-        
-        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + disp_unreliability[i] + "</div>" ;
-        
-    }
-    
-    
+    // ----------------------------------------------------------------------- //
     // define spec
-    
+    // ----------------------------------------------------------------------- //
+
     setTimeout(() => {
-        
+
         let disspec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "description": `${primaryIndicatorName} ${primaryMeasurementType} and poverty scatterplot`,
+            "title": {
+                "text": [`${primaryIndicatorName && `${primaryIndicatorName}`}`],
+                "align": "left", 
+                "anchor": "start", 
+                "fontSize": 18, 
+                "fontWeight": "normal",
+                "font": "sans-serif",
+                "baseline": "top",
+                "dy": -10,
+                "limit": 1000,
+                "subtitle": `${primaryMeasurementType && `${primaryMeasurementType}`} ${primaryDisplay && `${primaryDisplay}`} (${primaryTime})`,
+                "subtitleFontSize": 13
+            },
+            "width": "container",
+            "height": height,
             "config": {
                 "background": "#FFFFFF",
                 "axisX": {
-                    "labelAngle": 0,
-                    "labelOverlap": "parity",
                     "labelFontSize": 11,
-                    "titleFontSize": 13,
-                    "titleFont": "sans-serif"
+                    "titleFontSize": 15,
+                    "titleFont": "sans-serif",
+                    "titlePadding": 10,
+                    "titleFontWeight": "normal"
                 },
-                
                 "axisY": {
-                    "labelAngle": 0,
                     "labelFontSize": 11,
-                    "titleFontSize": 13
+                    "titleFontSize": 0, // to turn off axis title
+                    "labelAngle": 0,
+                    "titlePadding": 10,
+                    "titleFont": "sans-serif",
+                    "tickMinStep": 1
                 },
-                "legend": {
-                    "labelFontSize": 14,
-                    "titleFontSize": 14,
-                    "symbolSize": 140,
-                    "titlePadding": 10
-                },
-                "lineBreak": "\n",
-                
                 "view": { "stroke": "transparent" },
-                
-                "range": {
-                    "category": [
-                        "#FFC425",
-                        "#21918c",
-                        "#440154"
-                    ]
-                },
-                
-                "line": { "color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 3 },
-                
-                
-                "point": { "filled": true },
                 "text": {
                     "color": "#1696d2",
                     "fontSize": 11,
+                    "align": "center",
                     "fontWeight": 400,
                     "size": 11
                 }
             },
             "data": {
-                "values": disparitiyData,
-            },
-            "width": "container",
-            "height": 500,
-            "title": { 
-                "anchor": "start", 
-                "fontSize": 13, 
-                "font": "sans-serif",
-                "baseline": "top",
-                "text": `${primaryMeasurementType} ${primaryDisplay && `(${primaryDisplay})`}`,
-                "dy": -10
-            },
-            "encoding": {
-                "x": {
-                    "field": "Time_1",
-                    "type": "nominal",
-                    "title": null
-                }
+                "values": disparityData
             },
             "layer": [
-                {
-                    "encoding": {
-                        "color": {
-                            "field": "Tertile",
-                            "type": "nominal",
-                            "legend": {
-                                "orient": "right",
-                                // "title": `${disparityIndicatorName}, ${disparityMeasurementType}`
-                                "title": "Neighborhood \n poverty level",
-                                "values": ["hi", "med", "low"]
-                            }
-                        },
-                        "y": {
-                            "field": "median",
-                            "type": "quantitative",
-                            "title": null,
-                            "scale": {"domainMin": medianMin, "nice": true}
-                        }
-                    },
-                    "layer": [
-                        {
-                            "mark": {
-                                "type": "line",
-                                "point": { "filled": false, "fill": "white" }
-                            }
-                            
-                        },
-                        {
-                            "transform": [
-                                {
-                                    "filter": {
-                                        "param": "hover",
-                                        "empty": false
-                                    }
-                                }
-                            ],
-                            "mark": "point"
-                        }
-                    ]
+            {
+                "mark": {
+                    "type": "circle",
+                    "filled": true,
+                    "size": bubbleSize,
+                    "stroke": "#7C7C7C",
+                    "strokeWidth": 2
                 },
+                "params": [
                 {
-                    "transform": [
-                        {
-                            "pivot": "Tertile",
-                            "value": "median",
-                            "groupby": [
-                                "Time_1"
-                            ]
-                        }
-                    ],
-                    "mark": "rule",
-                    "encoding": {
-                        "opacity": {
-                            "condition": {
-                                "value": 0.3,
-                                "param": "hover",
-                                "empty": false
-                            },
-                            "value": 0
-                        },
-                        "tooltip": [
-                            {
-                                "title": "Time",
-                                "field": "Time_1",
-                                "type": "nominal"
-                            },
-                            {
-                                "field": "hi",
-                                "type": "quantitative",
-                                "format": ",.1f"
-                            },
-                            {
-                                "field": "med",
-                                "type": "quantitative",
-                                "format": ",.1f"
-                            },
-                            {
-                                "field": "low",
-                                "type": "quantitative",
-                                "format": ",.1f"
-                            },
-                        ]
-                    },
-                    "params": [
-                        {
-                            "name": "hover",
-                            "select": {
-                                "type": "point",
-                                "fields": [
-                                    "Time_1"
-                                ],
-                                "nearest": true,
-                                "on": "mouseover",
-                                "clear": "mouseout"
-                            }
-                        }
-                    ]
+                    "name": "hover",
+                    "value": "#7C7C7C",
+                    "select": {"type": "point", "on": "mouseover"}
                 }
+                ],
+                "encoding": {
+                    "y": {
+                        "field": "Value_1",
+                        "type": "quantitative",
+                        "axis": {
+                            "tickCount": 4
+                        },
+                    },
+                    "x": {
+                        "title": [`${disparityIndicatorName && `${disparityIndicatorName}`}`, `(${disparityTime})`],
+                        "field": "PovRank", // Changed
+                        "type": "ordinal",
+                        "axis": {
+                            "labelExpr": "(datum.value == 4 ? 'Very high (over 30%)' : (datum.value == 3  ? 'High (20 - 29.9%)' : ( datum.value == 2  ? 'Medium (10 - 19.9%)' : 'Low (0 - 9.9%)')))",
+                            "labelAlign": "center",
+                            "labelAngle": 0
+                        }
+                    },
+                    "xOffset": {"field": "randomOffsetX", "type": "quantitative"}, // Jitter
+                    "tooltip": [
+                    {
+                        "title": "Borough", 
+                        "field": "Borough", 
+                        "type": "nominal"
+                    },
+                    {
+                        "title": geoTypeShortDesc, 
+                        "field": "Geography_1", 
+                        "type": "nominal"
+                    },
+                    {
+                        "title": "Time", 
+                        "field": "Time_2", 
+                        "type": "nominal"
+                    },
+                    {
+                        "title": primaryMeasureName,
+                        "field": "Value_1",
+                        "type": "quantitative",
+                        "format": ",.1~f"
+                    },
+                    {
+                        "title": disparityMeasureName,
+                        "field": "Value_2",
+                        "type": "quantitative",
+                        "format": ",.1~f"
+                    },
+                    {
+                        "title": disparityIndicatorName,
+                        "field": "PovCat",
+                        "type": "nominal"
+                    }
+                    ],
+                    "fill": {
+                        "title": "PovCat", 
+                        "field": "PovRank", 
+                        "type": "nominal", 
+                        "legend": null,
+                        "scale": {
+                            "range": [
+                                "#1696d2", 
+                                "#ffa500", 
+                                "#ec008b", 
+                                "#55b748"
+                            ]
+                        },
+                    },
+                    "stroke": {
+                        "condition": {
+                            "param": "hover", 
+                            "empty": false, 
+                            "value": "#7C7C7C"
+                        },
+                        "value": null
+                    }
+                }
+            }
             ]
         }
-        
-        vegaEmbed("#trend", disspec);
-        
+        vegaEmbed("#links", disspec);
+
     }, 300)
 
 }

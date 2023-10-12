@@ -10,6 +10,8 @@
 // full indicator metadata
 // ----------------------------------------------------------------------- //
 
+var globalID
+
 fetch(data_repo + data_branch + '/indicators/indicators.json')
     .then(response => response.json())
     .then(async data => {
@@ -28,6 +30,10 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
         
         if (paramId) {
             loadIndicator(paramId)
+            // console.log('param id is set')
+            globalID = paramId
+
+            // fetch311(paramId)
         } else {
             // console.log('no param', url.searchParams.get('id'));
             loadIndicator()
@@ -36,6 +42,15 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
     })
     .catch(error => console.log(error));
 
+// ======================================================================= //
+//  fetch and load 311 Crosswalk into global object
+// ======================================================================= //
+
+var crosswalk
+d3.csv(baseURL + '/311/311-crosswalk.csv').then(data => {
+    crosswalk = data;
+    draw311Buttons(globalID);
+});
 
 // ======================================================================= //
 //  fetch and load comparison chart data into global object
@@ -65,6 +80,7 @@ const fetch_comparisons = async () => {
     createComparisonData(comparisons);
 
 }
+
 
 // ----------------------------------------------------------------------- //
 // function to create data and metadata for comparisons chart
@@ -215,8 +231,8 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     $(".indicator-dropdown-item").removeClass("active");
     $(".indicator-dropdown-item").attr('aria-selected', false);
 
-    // get the list element for this indicator
-    const thisIndicatorEl = document.querySelector(`button[data-indicator-id='${indicatorId}']`)
+    // get the list element for this indicator (in buttons and dropdowns)
+    const thisIndicatorEl = document.querySelectorAll(`button[data-indicator-id='${indicatorId}']`)
 
     // set this element as active & selected
     $(thisIndicatorEl).addClass("active");
@@ -242,6 +258,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     selectedMapGeo = false;
     selectedTrendMeasure = false;
     selectedLinksMeasure = false;
+    selectedDisparity = false;
     selectedComparison = false;
     showingNormalTrend = false;
 
@@ -294,6 +311,32 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
 }
 
+// ----------------------------------------------------------------------- //
+// function to draw 311 buttons
+// ----------------------------------------------------------------------- //
+
+var filteredCrosswalk = [];
+function draw311Buttons(x) {
+    document.getElementById('311').innerHTML = ''
+    filteredCrosswalk = crosswalk.filter(indicator => indicator.IndicatorID == x )
+
+    // Creates label if there are 311 links
+    if (filteredCrosswalk.length > 0) {
+        document.getElementById('311label').innerHTML = 'Contact 311 about:'
+        document.getElementById('311').classList.remove('hide')
+    } else {
+        document.getElementById('311label').innerHTML = ''
+        document.getElementById('311').classList.add('hide')
+    };
+
+    // draws 311 buttons
+    for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
+        var title = filteredCrosswalk[i].topic
+        var destination = filteredCrosswalk[i].kaLink
+        var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="badge badge-pill badge-primary mr-1" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt mr-1"></i>${title}</a>`
+        document.getElementById('311').innerHTML += btn
+    }
+}
 
 // ----------------------------------------------------------------------- //
 // function to Load indicator data and create Arquero data frame
@@ -322,6 +365,9 @@ const loadData = (this_indicatorId) => {
             .groupby("Time", "GeoType", "GeoID")
             .orderby(aq.desc('Time'), 'GeoRank')
     })
+
+    draw311Buttons(this_indicatorId)
+
 }
 
 // ----------------------------------------------------------------------- //
@@ -404,6 +450,7 @@ const joinData = () => {
             "GeoID",
             "GeoType",
             "GeoTypeDesc",
+            "GeoTypeShortDesc",
             "GeoRank",
             "Geography",
             "MeasureID",
@@ -419,7 +466,7 @@ const joinData = () => {
         .orderby(aq.desc('end_period'), aq.desc('GeoRank'))
         .reify()
 
-    // joinedAqData.print()
+    joinedAqData.print()
 
     // data for summary table
 
@@ -444,6 +491,8 @@ const joinData = () => {
         ) 
         // .impute({ Value: () => NaN })
         .objects()
+    
+    console.log("mapData", mapData);
 
     // map for trend chart
 
@@ -470,7 +519,9 @@ const joinData = () => {
 
 // WHAT'S THE MOST RECENT YEAR WHERE PRIMARY AND SECONDARY SHARE A GEOGRAPHY?
 
-const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasureId) => {
+const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
+
+    let ret;
 
     // console.log("primaryMeasureId", primaryMeasureId);
     // console.log("secondaryMeasureId", secondaryMeasureId);
@@ -536,12 +587,17 @@ const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasur
 
     const sharedGeos = secondaryMeasureGeos.filter(g => primaryMeasureGeos.includes(g));
 
+    // console.log("sharedGeos", sharedGeos);
+
     // ==== times ==== //
 
     // get available time periods for secondary measure
 
     const secondaryMeasureTimes   = secondaryMeasureMetadata[0].AvailableTimes;
     const aqSecondaryMeasureTimes = aq.from(secondaryMeasureTimes);
+
+    // console.log("aqSecondaryMeasureTimes");
+    // aqSecondaryMeasureTimes.print(50)
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // primary measure data
@@ -570,6 +626,10 @@ const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasur
     // convert to arquero table
 
     const aqFilteredPrimaryMeasureTimesData = aq.from(filteredPrimaryMeasureTimesData);
+
+    // console.log("aqFilteredPrimaryMeasureTimesData");
+    // aqFilteredPrimaryMeasureTimesData.groupby("MeasureID", "GeoType", "Time").count().print(50)
+    // aqFilteredPrimaryMeasureTimesData.print(10)
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -608,6 +668,10 @@ const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasur
                     ["Time", "TimeDescription"]
                 )
                 .select(aq.not("TimeDescription"))
+            
+            // console.log("aqFilteredSecondaryMeasureData");
+            // aqFilteredSecondaryMeasureData.groupby("MeasureID", "GeoType", "Time").count().print(50)
+            // aqFilteredSecondaryMeasureData.print(10)
 
             // convert to JS object
 
@@ -623,6 +687,8 @@ const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasur
                 return (Math.abs(curr.end_period - mostRecentPrimaryMeasureEndTime) < Math.abs(prev.end_period - mostRecentPrimaryMeasureEndTime) ? curr : prev);
 
             });
+
+            // console.log("closestSecondaryTime", closestSecondaryTime);
 
 
             // use end time to get closest secondary data
@@ -643,6 +709,16 @@ const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasur
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
             // join primary and secondary measure data
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+            // console.log("filteredPrimaryMeasureData", filteredPrimaryMeasureData);
+            
+            // console.log("aqFilteredPrimaryMeasureTimesData");
+            // aqFilteredPrimaryMeasureTimesData.groupby("MeasureID", "GeoType", "Time").count().print(50)
+            // aqFilteredPrimaryMeasureTimesData.print(10)
+            
+            // console.log("aqClosestSecondaryData");
+            // aqClosestSecondaryData.groupby("MeasureID", "GeoType", "Time").count().print(50)
+            // aqClosestSecondaryData.print(10)
             
             const aqJoinedPrimarySecondaryData = aqFilteredPrimaryMeasureTimesData
                 .join(
@@ -650,9 +726,14 @@ const filterSecondaryIndicatorMeasure = async (primaryMeasureId, secondaryMeasur
                     [["GeoID", "GeoType"], ["GeoID", "GeoType"]]
                 )
 
-            // set the value of joinedDataLinksObjects, and make sure to wait for it
+            // set the value of joinedLinksDataObjects, and make sure to wait for it
 
-            joinedDataLinksObjects = await aqJoinedPrimarySecondaryData.objects();
+            ret = await aqJoinedPrimarySecondaryData;
 
-        })
+        }
+        )
+
+    // console.log("*** ret", ret);
+
+    return ret;
 }

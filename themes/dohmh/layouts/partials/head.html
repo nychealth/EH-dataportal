@@ -16,7 +16,7 @@
 {{ else if eq hugo.Environment "development" }}
 
 <!-- Google won't index this page or follow links -->
-<meta name="robots" content="noindex. nofollow">
+<meta name="robots" content="noindex, nofollow">
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PB98MPZ31B"></script>
@@ -247,7 +247,6 @@
 {{- end -}}
 
 <script>
-    let sitepath = "{{ $.Site.Params.sitepath }}";
     let baseURL = "{{ $.Site.BaseURL }}";
     let data_repo = "{{ $.Site.Params.data_repo }}";
     let data_branch = "{{ $.Site.Params.data_branch }}";

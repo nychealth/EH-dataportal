@@ -216,9 +216,13 @@ const setDefaultLinksMeasure = async (visArray) => {
         // assigning to global object
         defaultLinksMetadata = defaultArray;
 
-        // using await here because filterSecondaryIndicatorMeasure calls fetch, and we need that data
+        // using await here because createJoinedLinksData calls fetch, and we need that data
 
-        await filterSecondaryIndicatorMeasure(defaultPrimaryMeasureId, defaultSecondaryMeasureId)
+        let aqJoinedLinksDataObjects = await createJoinedLinksData(defaultPrimaryMeasureId, defaultSecondaryMeasureId)
+
+        joinedLinksDataObjects = aqJoinedLinksDataObjects.objects()
+
+        // console.log(">> joinedLinksDataObjects [setDefaultLinksMeasure]", joinedLinksDataObjects);
 
     }
 }
@@ -631,10 +635,14 @@ const updateLinksData = async (e) => {
     const primaryMeasureId = parseInt(e.target.dataset.primaryMeasureId);
     const secondaryMeasureId = parseInt(e.target.dataset.secondaryMeasureId);
 
-    // call filterSecondaryIndicatorMeasure, which creates joinedDataLinksObjects,
+    // call createJoinedLinksData, which creates joinedLinksDataObjects,
     //  primaryMeasureMetadata, secondaryMeasureMetadata
 
-    await filterSecondaryIndicatorMeasure(primaryMeasureId, secondaryMeasureId)
+    let aqJoinedLinksDataObjects = await createJoinedLinksData(primaryMeasureId, secondaryMeasureId)
+    
+    joinedLinksDataObjects = aqJoinedLinksDataObjects.objects()
+
+    // console.log(">> joinedLinksDataObjects [updateLinksData]", joinedLinksDataObjects);
 
 
     // ----- get metatadata for selected measure -------------------------------------------------- //
@@ -686,7 +694,7 @@ const updateLinksData = async (e) => {
     // ----- render the chart -------------------------------------------------- //
 
     renderLinksChart(
-        joinedDataLinksObjects,
+        joinedLinksDataObjects,
         primaryMeasureMetadata,
         secondaryMeasureMetadata,
         primaryIndicatorName,
@@ -709,6 +717,8 @@ const updateLinksData = async (e) => {
 // need to be defined before `renderMeasures`, where they're added as listener callbacks
 
 // ===== year ================================================== //
+
+// ----- add listener on each dropdown item -------------------------------------------------- //
 
 const handleYearFilter = (el) => {
 
@@ -813,6 +823,11 @@ const renderMeasures = async () => {
 
 
     // ----- create dropdowns for table ================================================== //
+
+    // ----- select all -------------------------------------------------- //
+
+    dropdownTableTimes.innerHTML +=
+        `<label class="dropdown-item checkbox-year-all"><input class="largerCheckbox" type="checkbox" name="year" value="all" /> Select all </label>`
 
     // ----- years -------------------------------------------------- //
 
@@ -1000,11 +1015,11 @@ const renderMeasures = async () => {
 
                     dropdownLinksMeasures.innerHTML +=
                         `<button class="dropdown-item linksbutton pl-3"
-                        data-primary-measure-id="${measureId}"
-                        data-measure-id="${measure.MeasureID}"
-                        data-secondary-measure-id="${link.MeasureID}">
-                        ${linksSecondaryMeasure[0].MeasureName}
-                    </button>`;
+                            data-primary-measure-id="${measureId}"
+                            data-measure-id="${measure.MeasureID}"
+                            data-secondary-measure-id="${link.MeasureID}">
+                            ${linksSecondaryMeasure[0].MeasureName}
+                        </button>`;
 
                 });
             }
@@ -1083,7 +1098,7 @@ const renderMeasures = async () => {
     setDefaultMapMeasure(mapMeasures);
     setDefaultTrendMeasure(trendMeasures);
 
-    // set default measure for links; also calls (and waits for) filterSecondaryIndicatorMeasure, which creates the joined data
+    // set default measure for links; also calls (and waits for) createJoinedLinksData, which creates the joined data
 
     await setDefaultLinksMeasure(linksMeasures);
 
@@ -1138,6 +1153,8 @@ const renderMeasures = async () => {
     // ===== map ================================================== //
 
     showMap = (e) => {
+
+        console.log("* showMap");
 
         // ----- handle tab selection -------------------------------------------------- //
 
@@ -1681,6 +1698,8 @@ const renderMeasures = async () => {
 
     showLinks = (e) => {
 
+        console.log("* showLinks");
+
         // ----- handle tab selection -------------------------------------------------- //
 
         // set hash to links
@@ -1694,6 +1713,10 @@ const renderMeasures = async () => {
         tabMap.setAttribute('aria-selected', false);
         tabTrend.setAttribute('aria-selected', false);
         tabLinks.setAttribute('aria-selected', true);
+
+        // make sure the "Link to" button is enabled
+        $("#dropdownLinksMeasures").removeClass("disabled");
+        $("#dropdownLinksMeasures").attr('aria-disabled', false);
 
 
         // ----- allow chart to persist when changing tabs -------------------------------------------------- //
@@ -1709,9 +1732,38 @@ const renderMeasures = async () => {
 
             // switch on/off the disparities button
 
-            // const disparities =
-            //     defaultLinksMetadata[0].VisOptions[0].Trend &&
-            //     defaultLinksMetadata[0].VisOptions[0].Trend[0]?.Disparities;
+            const disparities =
+                defaultLinksMetadata[0].VisOptions[0].Trend &&
+                defaultLinksMetadata[0].VisOptions[0].Trend[0]?.Disparities;
+
+            // hide or how disparities button
+
+            if (disparities == 0) {
+
+                // if disparities is disabled, hide the button
+
+                btnToggleDisparities.style.display = "none";
+
+                // remove click listeners to button that calls renderDisparities
+
+                // $(btnToggleDisparities).off()
+
+            } else if (disparities == 1) {
+
+                // remove event listener added when/if button was clicked
+
+                // btnToggleDisparities.innerText = "Show Disparities";
+                // $(btnToggleDisparities).off()
+
+                // make sure that the "links" button is active by default
+                $("#show-links").addClass("active");
+                $("#show-disparities").removeClass("active");
+
+                // if disparities is enabled, show the button
+                btnToggleDisparities.style.display = "inline";
+
+
+            }
 
             // ----- get metatadata for default measure -------------------------------------------------- //
 
@@ -1772,10 +1824,10 @@ const renderMeasures = async () => {
 
             // ----- render the chart -------------------------------------------------- //
 
-            // joined data and metadata created in filterSecondaryIndicatorMeasure called fron setDefaultLinksMeasure
+            // joined data and metadata created in createJoinedLinksData called fron setDefaultLinksMeasure
 
             renderLinksChart(
-                joinedDataLinksObjects,
+                joinedLinksDataObjects,
                 primaryMeasureMetadata,
                 secondaryMeasureMetadata,
                 primaryIndicatorName,
@@ -1810,7 +1862,7 @@ const renderMeasures = async () => {
             // ----- render the chart -------------------------------------------------- //
 
             renderLinksChart(
-                joinedDataLinksObjects,
+                joinedLinksDataObjects,
                 primaryMeasureMetadata,
                 secondaryMeasureMetadata,
                 primaryIndicatorName,
@@ -1819,6 +1871,27 @@ const renderMeasures = async () => {
 
             updateChartPlotSize();
         }
+
+
+        // add click listener to button that calls renderDisparities
+
+        $(btnToggleDisparities).off()
+
+        $(btnToggleDisparities).on("click", (e) => {
+
+            // console.log("** btnToggleDisparities **", e);
+
+            if (e.target && e.target.matches("#show-disparities") && !e.target.classList.contains("active")) {
+
+                renderDisparities(defaultLinksMetadata, 221)
+
+            } else if (e.target && e.target.matches("#show-links") && !e.target.classList.contains("active")) {
+
+                showLinks();
+
+            }
+
+        });
 
     };
 
@@ -2000,14 +2073,58 @@ const renderMeasures = async () => {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     const checkboxYear = document.querySelectorAll('.checkbox-year');
+    const checkboxYearAll = document.querySelectorAll('.checkbox-year-all');
     const checkboxGeo = document.querySelectorAll('.checkbox-geo');
 
     checkboxYear.forEach(checkbox => {
         handleYearFilter(checkbox);
     })
+
+    checkboxYearAll[0].addEventListener('change', (e) => {
+
+        if (!e.target.checked) {
+
+            // console.log("not checked");
+
+            checkboxYear.forEach(checkbox => {
+
+                // console.log("checkbox", checkbox);
+
+                $(checkbox).find("input").prop("checked", false)
+                selectedTableYears = []
+
+            })
+
+            // console.log("selectedTableYears [not checked]", selectedTableYears);
+
+        } else if (e.target.checked) {
+
+            // console.log("checked");
+
+            checkboxYear.forEach(checkbox => {
+
+                // console.log("checkbox", checkbox);
+
+                $(checkbox).find("input").prop("checked", true)
+                selectedTableYears.push($(checkbox).find("input").val())
+
+            })
+
+            // console.log("selectedTableYears [checked]", selectedTableYears);
+
+
+        }
+
+        renderTable()
+
+    })
+
+
     checkboxGeo.forEach(checkbox => {
         handleGeoFilter(checkbox);
     })
+
+
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
