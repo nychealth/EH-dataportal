@@ -1967,7 +1967,7 @@ const renderMeasures = async () => {
 
     // if there's no trend data or only 1 time period, don't show the tab
 
-    const onlyOneTime = trendMeasures.every(m => m.AvailableTimes.length <= 1) // <<<<<<<<<<
+    const onlyOneTime = trendMeasures.every(m => m.AvailableTimePeriodIDs.length <= 1) // <<<<<<<<<<
 
     // debugger;
 

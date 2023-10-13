@@ -332,14 +332,14 @@ const loadData = async (this_indicatorId) => {
     .then(response => response.json())
     .then(async data => {
 
-        // console.log("data [loadData]", data);
+        console.log("data [loadData]", data);
 
         // add GeoRank
 
         aqIndicatorData = aq.from(data)
             .derive({ "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
-            .groupby("TimePeriod", "GeoType", "GeoID")
-            .orderby(aq.desc('TimePeriod'), 'GeoRank')
+            .groupby("TimePeriodID", "GeoType", "GeoID")
+            .orderby(aq.desc('TimePeriodID'), 'GeoRank')
 
         // call the geo file and time file loading functions
 
@@ -572,7 +572,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     // get available geos for primary measure (excluding citywide and boro)
 
-    const primaryMeasureGeos = primaryMeasureMetadata[0].AvailableGeographyTypes
+    const primaryMeasureGeos = primaryMeasureMetadata[0].AvailableGeoTypes
         .map(g => g.GeoType)
         .filter(g => !/Citywide|Borough/.test(g))
 
@@ -611,7 +611,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     // get avilable geos for secondary measure (excluding citywide and boro)
 
-    const secondaryMeasureGeos = secondaryMeasureMetadata[0].AvailableGeographyTypes
+    const secondaryMeasureGeos = secondaryMeasureMetadata[0].AvailableGeoTypes
         .map(g => g.GeoType)
         .filter(g => !/Citywide|Borough/.test(g))
 
@@ -626,7 +626,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     // get available time periods for secondary measure
 
-    const secondaryMeasureTimes   = secondaryMeasureMetadata[0].AvailableTimes; // <<<<<<<<<<
+    const secondaryMeasureTimes   = secondaryMeasureMetadata[0].AvailableTimePeriodIDs; // <<<<<<<<<<
     const aqSecondaryMeasureTimes = aq.from(secondaryMeasureTimes);
 
     // console.log("aqSecondaryMeasureTimes");
@@ -688,6 +688,10 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
                     geoTable,
                     [["GeoID", "GeoType"], ["GeoID", "GeoType"]]
                 )
+                .join(
+                    timeTable,
+                    "TimePeriodID"
+                )
 
                 // get same geotypes as primary data (no citywide or boro)
                 .filter(aq.escape(d => sharedGeos.includes(d.GeoType)))
@@ -696,6 +700,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
                 .rename({'Name': 'Geography'})
 
                 // get end periods
+
                 .join(
                     aqSecondaryMeasureTimes,
                     ["TimePeriodID", "TimePeriodID"]

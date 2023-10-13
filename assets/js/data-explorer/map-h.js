@@ -14,7 +14,7 @@ const renderMap = (
         let mapGeoType            = data[0].GeoType;
         let mapMeasurementType    = metadata[0].MeasurementType;
         let mapGeoTypeDescription = 
-            metadata[0].AvailableGeographyTypes.filter(
+            metadata[0].AvailableGeoTypes.filter(
                 gt => gt.GeoType === mapGeoType
             )[0].GeoTypeDescription;
 
