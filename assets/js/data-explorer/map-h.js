@@ -7,7 +7,7 @@ const renderMap = (
 
         // get unique time in data
 
-        const mapYears =  [...new Set(data.map(item => item.Time))];
+        const mapYears =  [...new Set(data.map(item => item.TimePeriod))];
 
         // console.log("mapYears [map.js]", mapYears);
 

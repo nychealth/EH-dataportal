@@ -50,3 +50,4 @@ static/IndicatorData/data/
 static/IndicatorData/comparisons.json
 static/IndicatorData/indicators_pretty.json
 static/IndicatorData/metadata.json
+assets/js/data-explorer/some notes on refactoring.txt

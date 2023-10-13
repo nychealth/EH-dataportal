@@ -155,9 +155,9 @@ $("#allData").on("click", (e) => {
     // pivot the full dataset
 
     let allData = aq.from(tableData)
-        .groupby("Time", "GeoType", "GeoID", "GeoRank", "Geography")
+        .groupby("TimePeriod", "GeoType", "GeoID", "GeoRank", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI")
-        .relocate(["Time", "GeoType", "GeoID", "GeoRank"], { before: 0 })
+        .relocate(["TimePeriod", "GeoType", "GeoID", "GeoRank"], { before: 0 })
 
     let downloadTableCSV = allData.toCSV();
 
@@ -184,7 +184,7 @@ $("#allData").on("click", (e) => {
 
 $("#rawData").on("click", (e) => {
 
-    let dataURL = data_repo + data_branch + '/indicators/data/' + indicatorId + '.json'
+    let dataURL = `${data_repo}${data_branch}/indicators/data/${indicatorId}.json`
 
     // console.log('Data are at: ' + dataURL)
 

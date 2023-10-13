@@ -14,8 +14,9 @@ let dataSources;
 let measureAbout = `N/A`;
 let measureSources = `N/A`;
 let geoTable;
+let timeTable;
 let unreliabilityNotes;
-let aqData;
+let aqIndicatorData;
 let joinedAqData;
 let aqMeasureIdTimes;
 

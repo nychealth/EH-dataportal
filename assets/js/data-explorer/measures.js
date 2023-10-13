@@ -208,7 +208,7 @@ const setDefaultLinksMeasure = async (visArray) => {
 
         }
 
-        defaultLinkMeasureTimes = defaultArray[0].AvailableTime;
+        defaultLinkMeasureTimes = defaultArray[0].AvailableTime; // <<<<<<<<<<
 
         const defaultPrimaryMeasureId = defaultArray[0].MeasureID;
         const defaultSecondaryMeasureId = defaultArray[0].VisOptions[0].Links[0].Measures[0].MeasureID;
@@ -367,7 +367,7 @@ const updateMapData = (e) => {
     filteredMapData =
         mapData.filter(
             obj => obj.MeasureID == measureId &&
-            obj.Time == time &&
+            obj.TimePeriod == time &&
             prettifyGeoType(obj.GeoType) == geo
         );
 
@@ -423,7 +423,7 @@ const updateTrendData = (e) => {
     const measurementType = selectedTrendMetadata[0].MeasurementType;
     const about           = selectedTrendMetadata[0].how_calculated;
     const sources         = selectedTrendMetadata[0].Sources;
-    const times           = selectedTrendMetadata[0].VisOptions[0].Trend[0]?.TimeDescription;
+    const times           = selectedTrendMetadata[0].VisOptions[0].Trend[0]?.TimePeriodID;
 
     aqSelectedTrendMetadata = aq.from(selectedTrendMetadata)
         .derive({
@@ -452,7 +452,7 @@ const updateTrendData = (e) => {
 
     filteredTrendData = trendData
         .filter(m => m.MeasureID === measureId)
-        .filter(m => times.includes(m.Time));
+        .filter(m => times.includes(m.TimePeriod));
 
     console.log("filteredTrendData [updateTrendData]", filteredTrendData);
 
@@ -474,7 +474,7 @@ const updateTrendData = (e) => {
 
     if (measureIdsAnnualAvg.includes(measureId)) {
 
-        const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.Time.startsWith('Annual Average'));
+        const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.TimePeriod.startsWith('Annual Average'));
 
         let aqFilteredTrendDataAnnualAvg = aq.from(filteredTrendDataAnnualAvg);
 
@@ -484,7 +484,7 @@ const updateTrendData = (e) => {
 
     } else if (measureIdsSummer.includes(measureId)) {
 
-        const filteredTrendDataSummer = filteredTrendData.filter(d => d.Time.startsWith('Summer'));
+        const filteredTrendDataSummer = filteredTrendData.filter(d => d.TimePeriod.startsWith('Summer'));
 
         let aqFilteredTrendDataSummer = aq.from(filteredTrendDataSummer);
 
@@ -592,10 +592,10 @@ const updateTrendComparisonsData = (e) => {
         // console.log(">>>> aqFilteredComparisonsData [quarters]:");
 
         aqFilteredComparisonsData = aqFilteredComparisonsData
-            .join(aqMeasureIdTimes, [["MeasureID", "Time"], ["MeasureID", "TimeDescription"]])
+            .join(aqMeasureIdTimes, [["MeasureID", "TimePeriodID"], ["MeasureID", "TimePeriodID"]])
             .derive({"year": d => op.year(d.end_period)})
             .filter(d => d.year > op.max(d.year) - 3)
-            .select(aq.not("TimeDescription", "year"))
+            .select(aq.not("TimePeriodID", "year"))
             // .print(20)
 
     }
@@ -836,7 +836,7 @@ const renderMeasures = async () => {
 
     // ----- years -------------------------------------------------- //
 
-    const tableYears = [...new Set(tableData.map(item => item.Time))];
+    const tableYears = [...new Set(tableData.map(item => item.TimePeriod))];
 
     // console.log("tableYears", tableYears);
 
@@ -910,8 +910,8 @@ const renderMeasures = async () => {
 
     // ----- times -------------------------------------------------- //
 
-    // const mapTimes = [...new Set(mapData.map(item => item.Time))];
-    const mapTimes = measure?.VisOptions[0].Map[0]?.TimeDescription;
+    // const mapTimes = [...new Set(mapData.map(item => item.TimePeriod))];
+    const mapTimes = measure?.VisOptions[0].Map[0]?.TimePeriodID;
 
     // console.log("mapTimes", mapTimes);
 
@@ -934,10 +934,10 @@ const renderMeasures = async () => {
         // console.log("index", index);
         console.log("measure", measure);
 
-        const type = measure?.MeasurementType;
-        const map = measure?.VisOptions[0].Map && measure?.VisOptions[0].Map[0]?.TimeDescription;
-        const trend = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0]?.TimeDescription;
-        const links = measure?.VisOptions[0].Links && measure?.VisOptions[0]?.Links[0].Measures[0];
+        const type  = measure?.MeasurementType;
+        const map   = measure?.VisOptions[0].Map   && measure?.VisOptions[0].Map[0]?.TimePeriod;
+        const trend = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0]?.TimePeriod;
+        const links = measure?.VisOptions[0].Links && measure?.VisOptions[0].Links[0]?.Measures[0];
         const measureId = measure.MeasureID;
 
         // console.log("type", type, "links", links, "map", map, "trend", trend);
@@ -1210,7 +1210,7 @@ const renderMeasures = async () => {
 
             let defaultMapMeasureId = defaultMapMetadata[0].MeasureID;
 
-            let mapTimes = defaultMapMetadata[0].VisOptions[0].Map[0].TimeDescription
+            let mapTimes = defaultMapMetadata[0].VisOptions[0].Map[0].TimePeriodID
             let mapGeos = defaultMapMetadata[0].VisOptions[0].Map[0].GeoType
 
             // ----- create dataset -------------------------------------------------- //
@@ -1220,7 +1220,7 @@ const renderMeasures = async () => {
             filteredMapData = mapData.filter(
                     obj => (
                         obj.MeasureID === defaultMapMeasureId &&
-                        mapTimes.includes(obj.Time) &&
+                        mapTimes.includes(obj.TimePeriodID) &&
                         mapGeos.includes(obj.GeoType)
                     )
                 );
@@ -1291,7 +1291,7 @@ const renderMeasures = async () => {
                         obj => obj.end_period === latest_end_period
                     );
 
-                latest_time = filteredMapData[0].Time
+                latest_time = filteredMapData[0].TimePeriod
 
                 console.log("filteredMapData [no selectedMapTime]", filteredMapData);
 
@@ -1467,7 +1467,7 @@ const renderMeasures = async () => {
             const about   = defaultTrendMetadata[0]?.how_calculated;
             const sources = defaultTrendMetadata[0].Sources;
             const measure = defaultTrendMetadata[0].MeasurementType;
-            const times   = defaultTrendMetadata[0].VisOptions[0].Trend[0]?.TimeDescription;
+            const times   = defaultTrendMetadata[0].VisOptions[0].Trend[0]?.TimePeriod;
 
             aqDefaultTrendMetadata = aq.from(defaultTrendMetadata)
                 .derive({
@@ -1499,7 +1499,7 @@ const renderMeasures = async () => {
 
             filteredTrendData = trendData
                 .filter(m => m.MeasureID === defaultTrendMeasureId)
-                .filter(m => times.includes(m.Time));
+                .filter(m => times.includes(m.TimePeriod));
 
             console.log("filteredTrendData [showNormalTrend]", filteredTrendData);
 
@@ -1512,7 +1512,7 @@ const renderMeasures = async () => {
 
                 // console.log("measureIdsAnnualAvg.includes(defaultTrendMeasureId)");
                 
-                const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.Time.startsWith('Annual Average'));
+                const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.TimePeriod.startsWith('Annual Average'));
                 aqFilteredTrendData = aq.from(filteredTrendDataAnnualAvg);
                 
                 renderComparisonsChart(aqFilteredTrendData, aqDefaultTrendMetadata);
@@ -1522,7 +1522,7 @@ const renderMeasures = async () => {
 
                 // console.log("measureIdsSummer.includes(defaultTrendMeasureId)");
                 
-                const filteredTrendDataSummer = filteredTrendData.filter(d => d.Time.startsWith('Summer'));
+                const filteredTrendDataSummer = filteredTrendData.filter(d => d.TimePeriod.startsWith('Summer'));
                 aqFilteredTrendData = aq.from(filteredTrendDataSummer);
                 
                 renderComparisonsChart(aqFilteredTrendData, aqDefaultTrendMetadata);
@@ -1600,7 +1600,7 @@ const renderMeasures = async () => {
             // get first comparisonId
 
             const comparisonId = parseInt(comparisonsMetadata[0].ComparisonID);
-            const times        = defaultTrendMetadata[0].VisOptions[0].Trend[0]?.TimeDescription;
+            const times        = defaultTrendMetadata[0].VisOptions[0].Trend[0]?.TimePeriod;
 
             // console.log("comparisonId", comparisonId);
 
@@ -1673,10 +1673,10 @@ const renderMeasures = async () => {
                 // console.log(">>>> aqFilteredComparisonsData [quarters]:");
 
                 aqFilteredComparisonsData = aqFilteredComparisonsData
-                    .join(aqMeasureIdTimes, [["MeasureID", "Time"], ["MeasureID", "TimeDescription"]])
+                    .join(aqMeasureIdTimes, [["MeasureID", "TimePeriodID"], ["MeasureID", "TimePeriodID"]])
                     .derive({"year": d => op.year(d.end_period)})
                     .filter(d => d.year > op.max(d.year) - 3)
-                    .select(aq.not("TimeDescription", "year"))
+                    .select(aq.not("TimePeriod", "year"))
                     // .print(20)
 
             }
@@ -1967,7 +1967,7 @@ const renderMeasures = async () => {
 
     // if there's no trend data or only 1 time period, don't show the tab
 
-    const onlyOneTime = trendMeasures.every(m => m.AvailableTimes.length <= 1)
+    const onlyOneTime = trendMeasures.every(m => m.AvailableTimes.length <= 1) // <<<<<<<<<<
 
     // debugger;
 
@@ -2174,4 +2174,4 @@ const renderMeasures = async () => {
 
     renderAboutSources(measureAbout, measureSources);
 
-    }
+}

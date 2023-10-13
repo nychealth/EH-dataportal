@@ -265,7 +265,7 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
                         "type": "nominal"
                     },
                     {
-                        "title": "Time", 
+                        "title": "TimePeriod", 
                         "field": "Time_2", 
                         "type": "nominal"
                     },

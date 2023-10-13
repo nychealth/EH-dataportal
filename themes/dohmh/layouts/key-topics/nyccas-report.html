@@ -501,13 +501,13 @@
                           // put listener on source buttons
                           for (let x = 0; x < srcBtns.length; x++) {
                               srcBtns[x].addEventListener("click", function() {
-                              // remove "active" from classnames
-                              var activeSource = document.querySelectorAll('.srcbtn.border')
-                              activeSource[0].classList.remove('border')
-                              // apply Active to selected source button
-                              this.className += " border";
-                              source = this.innerHTML;
-                              drawChart();
+                                // remove "active" from classnames
+                                var activeSource = document.querySelectorAll('.srcbtn.border')
+                                activeSource[0].classList.remove('border')
+                                // apply Active to selected source button
+                                this.className += " border";
+                                source = this.innerHTML;
+                                drawChart();
                               })
                           }
                       }

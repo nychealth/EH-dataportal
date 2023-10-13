@@ -12,7 +12,7 @@ const renderTable = () => {
 
     // console.log("tableData", tableData);
 
-    const filteredTableYearData = tableData.filter(d => selectedTableYears.includes(d.Time))
+    const filteredTableYearData = tableData.filter(d => selectedTableYears.includes(d.TimePeriod))
 
     // ----------------------------------------------------------------------- //
     // format geography dropdown checkboxes
@@ -126,14 +126,14 @@ const renderTable = () => {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     const filteredTableAqData = aq.from(filteredTableData)
-        .groupby("Time", "GeoTypeDesc", "GeoID", "GeoRank", "Geography")
+        .groupby("TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI")
     
         // need to put this down here because the data might be missing one of the measures, which will be undefined after the pivot
         // .impute(measureImputeObj) 
         
         // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
-        .relocate(["Time", "GeoTypeDesc", "GeoID", "GeoRank"], { before: 0 }) 
+        .relocate(["TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank"], { before: 0 }) 
     
     // console.log("filteredTableAqData [renderTable]");
     // filteredTableAqData.print({limit: 40})

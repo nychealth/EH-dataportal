@@ -109,9 +109,9 @@ const renderComparisonsChart = (
 
         console.log("indicatorName", indicatorName);
         
-        let compId = [... new Set(metadata.array("ComparisonID"))][0];
-        let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
-        let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))]
+        let compId           = [... new Set(metadata.array("ComparisonID"))][0];
+        let compLegendTitle  = [... new Set(metadata.array("LegendTitle"))];
+        let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))];
 
         // console.log("compId", compId);
         
@@ -300,7 +300,7 @@ const renderComparisonsChart = (
         },
         "encoding": {
             "x": {
-                "field": "Time",
+                "field": "TimePeriod",
                 "type": "nominal",
                 "title": null
             }
@@ -364,7 +364,7 @@ const renderComparisonsChart = (
                         "pivot": comp_group_col,
                         "value": "Value",
                         "groupby": [
-                            "Time"
+                            "TimePeriod"
                         ]
                     }
                 ],
@@ -381,7 +381,7 @@ const renderComparisonsChart = (
                     "tooltip": [
                         {
                             "title": "Year",
-                            "field": "Time",
+                            "field": "TimePeriod",
                             "type": "nominal"
                         },
                         ...compTooltips,
@@ -393,7 +393,7 @@ const renderComparisonsChart = (
                         "select": {
                             "type": "point",
                             "fields": [
-                                "Time"
+                                "TimePeriod"
                             ],
                             "nearest": true,
                             "on": "mouseover",

@@ -12,7 +12,7 @@
 
 var globalID
 
-fetch(data_repo + data_branch + '/indicators/metadata.json')
+fetch(`${data_repo}${data_branch}/indicators/metadata.json`)
     .then(response => response.json())
     .then(async data => {
 
@@ -46,8 +46,8 @@ fetch(data_repo + data_branch + '/indicators/metadata.json')
 //  fetch and load 311 Crosswalk into global object
 // ======================================================================= //
 
-var crosswalk
-d3.csv(baseURL + '/311/311-crosswalk.csv').then(data => {
+var crosswalk;
+d3.csv(`${baseURL}/311/311-crosswalk.csv`).then(data => {
     crosswalk = data;
     draw311Buttons(globalID);
 });
@@ -64,7 +64,7 @@ const fetch_comparisons = async () => {
     
     console.log("** fetch_comparisons.json");
 
-    await fetch(data_repo + data_branch + '/indicators/comparisons.json')
+    await fetch(`${data_repo}${data_branch}/indicators/comparisons.json`)
         .then(response => response.json())
         .then(async data => {
             
@@ -142,12 +142,12 @@ const createComparisonData = async (comps) => {
         .select("IndicatorID", "IndicatorName", "IndicatorLabel", "Measures")
         .unroll("Measures")
         .derive({
-            MeasureID: d => d.Measures.MeasureID,
-            MeasureName: d => d.Measures.MeasureName,
+            MeasureID:       d => d.Measures.MeasureID,
+            MeasureName:     d => d.Measures.MeasureName,
             MeasurementType: d => d.Measures.MeasurementType,
-            Sources: d => d.Measures.Sources,
-            how_calculated: d => d.Measures.how_calculated,
-            DisplayType: d => d.Measures.DisplayType
+            Sources:         d => d.Measures.Sources,
+            how_calculated:  d => d.Measures.how_calculated,
+            DisplayType:     d => d.Measures.DisplayType
         })
         .derive({IndicatorMeasure: d => d.IndicatorLabel + ": " + d.MeasurementType})
         .select(aq.not("Measures"))
@@ -321,58 +321,38 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 }
 
 // ----------------------------------------------------------------------- //
-// function to draw 311 buttons
-// ----------------------------------------------------------------------- //
-
-var filteredCrosswalk = [];
-function draw311Buttons(x) {
-    document.getElementById('311').innerHTML = ''
-    filteredCrosswalk = crosswalk.filter(indicator => indicator.IndicatorID == x )
-
-    // Creates label if there are 311 links
-    if (filteredCrosswalk.length > 0) {
-        document.getElementById('311label').innerHTML = 'Contact 311 about:'
-        document.getElementById('311').classList.remove('hide')
-    } else {
-        document.getElementById('311label').innerHTML = ''
-        document.getElementById('311').classList.add('hide')
-    };
-
-    // draws 311 buttons
-    for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
-        var title = filteredCrosswalk[i].topic
-        var destination = filteredCrosswalk[i].kaLink
-        var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="badge badge-pill badge-primary mr-1" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt mr-1"></i>${title}</a>`
-        document.getElementById('311').innerHTML += btn
-    }
-}
-
-// ----------------------------------------------------------------------- //
 // function to Load indicator data and create Arquero data frame
 // ----------------------------------------------------------------------- //
 
-const loadData = (this_indicatorId) => {
+const loadData = async (this_indicatorId) => {
 
     console.log("** loadData");
 
-    fetch(data_repo + data_branch + `/indicators/data/${this_indicatorId}.json`)
+    fetch(`${data_repo}${data_branch}/indicators/data/${this_indicatorId}.json`)
     .then(response => response.json())
     .then(async data => {
 
         // console.log("data [loadData]", data);
 
-        // call the geo file loading function
+        // add GeoRank
 
-        loadGeo();
-
-        ful = aq.from(data)
+        aqIndicatorData = aq.from(data)
             .derive({ "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
-            .groupby("Time", "GeoType", "GeoID", "GeoRank")
+            .groupby("TimePeriod", "GeoType", "GeoID")
+            .orderby(aq.desc('TimePeriod'), 'GeoRank')
 
+        // call the geo file and time file loading functions
 
-        aqData = ful
-            .groupby("Time", "GeoType", "GeoID")
-            .orderby(aq.desc('Time'), 'GeoRank')
+        await Promise.all([
+            loadTime(),
+            loadGeo()
+        ])
+
+        // call the data-to-geo joining function
+
+        joinData();
+
+        
     })
 
     draw311Buttons(this_indicatorId)
@@ -387,19 +367,39 @@ const loadGeo = () => {
 
     console.log("** loadGeo");
 
-    const geoUrl = data_repo + data_branch + `/geography/GeoLookup.csv`; // col named "GeoType"
+    const geoUrl = `${data_repo}${data_branch}/geography/GeoLookup.csv`; // col named "GeoType"
 
     aq.loadCSV(geoUrl)
         .then(data => {
 
             geoTable = data.select(aq.not('Lat', 'Long'));
 
-            // call the data-to-geo joining function
+    });
+}
 
-            joinData();
+// ----------------------------------------------------------------------- //
+// function to load time period data
+// ----------------------------------------------------------------------- //
+
+// how do i integrate this in?
+
+const loadTime = () => {
+
+    console.log("** loadTime");
+
+    const timeUrl = `${data_repo}${data_branch}/indicators/TimePeriods.json`;
+
+    aq.loadJSON(timeUrl)
+        .then(data => {
+
+            timeTable = data;
+
+            console.log("timeTable [loadTime]");
+            timeTable.print()
 
     });
 }
+
 
 // ----------------------------------------------------------------------- //
 // function to join indicator data and geo data
@@ -409,27 +409,21 @@ const joinData = () => {
 
     console.log("** joinData");
 
+    console.log("indicators [joinData]", indicators);
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // get metadata fields
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-    // flatten MeasureID + TimeDescription
-
-    let availableTimes = [];
 
     // create table column header with display type
 
     let measurementDisplay = [];
 
-    indicatorMeasures.map(
+    indicatorMeasures.forEach(
 
-        measure => {
+        (measure, i) => {
 
-            let aqAvailableTimes =
-                aq.from(measure.AvailableTimes)
-                .derive({MeasureID: `${measure.MeasureID}`})
-
-            availableTimes.push(aqAvailableTimes);
+            console.log(">> 1-", i);
 
             let aqMeasurementDisplay =
                 aq.table(
@@ -443,18 +437,52 @@ const joinData = () => {
 
         }
     )
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // getting time periods for each viz for each measure
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // flatten MeasureID + TimePeriodID
+
+    let tableTimes = [];
+    let mapTimes = [];
+    let comparisonTimes = [];
+
+    indicatorMeasures.map(
+
+        (measure, i) => {
+
+            console.log(">> 2-", i);
+
+            // table -----------
+
+            let aqTableTimes = 
+                aq.from(measure.VisOptions[0].Table[0]?.TimePeriodID)
+                .derive({MeasureID: `${measure.MeasureID}`})
+
+            tableTimes.push(aqTableTimes);
+
+            // table -----------
+
+        }
+    )
+    
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // joining
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     
     // bind rows of Arquero tables in arrays
 
-    aqMeasureIdTimes     = availableTimes.reduce((a, b) => a.concat(b))
+    aqMeasureIdTimes         = availableTimes.reduce((a, b) => a.concat(b))
     let aqMeasurementDisplay = measurementDisplay.reduce((a, b) => a.concat(b))
 
-    // foundational joined dataset
+    // foundational joined dataset ----------
 
-    joinedAqData = aqData
+    joinedAqData = aqIndicatorData
         .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
         .rename({'Name': 'Geography'})
-        .join(aqMeasureIdTimes, [["MeasureID", "Time"], ["MeasureID", "TimeDescription"]])
+        .join(timeTable, "TimePeriodID")
         .select(
             "GeoID",
             "GeoType",
@@ -463,24 +491,22 @@ const joinData = () => {
             "GeoRank",
             "Geography",
             "MeasureID",
-            "Time",
+            "TimePeriod",
             "Value",
             "DisplayValue",
             "CI",
             "Note",
             "start_period",
-            "end_period",
-            "ban_summary_flag"
+            "end_period"
         )
         .orderby(aq.desc('end_period'), aq.desc('GeoRank'))
         .reify()
 
     joinedAqData.print()
 
-    // data for summary table
+    // data for summary table ----------
 
     tableData = joinedAqData
-        .filter(d => d.ban_summary_flag == 0)
         .join_left(aqMeasurementDisplay, "MeasureID")
         .derive({
             MeasurementDisplay: d => op.trim(op.join([d.MeasurementType, d.DisplayType], " ")),
@@ -490,7 +516,7 @@ const joinData = () => {
         .select(aq.not("start_period", "end_period"))
         .objects()
 
-    // data for map
+    // data for map ----------
 
     mapData = joinedAqData
         // remove Citywide
@@ -501,16 +527,14 @@ const joinData = () => {
         // .impute({ Value: () => NaN })
         .objects()
     
-    console.log("mapData", mapData);
-
-    // map for trend chart
+    // map for trend chart ----------
 
     trendData = joinedAqData
         .filter(d => op.match(d.GeoType, /Citywide|Borough/)) // keep only Citywide and Boro
         .orderby("GeoRank", "GeoID")
         .objects()
 
-    // data for links & disparities chart
+    // data for links & disparities chart ----------
 
     linksData = joinedAqData
         .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
@@ -602,7 +626,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     // get available time periods for secondary measure
 
-    const secondaryMeasureTimes   = secondaryMeasureMetadata[0].AvailableTimes;
+    const secondaryMeasureTimes   = secondaryMeasureMetadata[0].AvailableTimes; // <<<<<<<<<<
     const aqSecondaryMeasureTimes = aq.from(secondaryMeasureTimes);
 
     // console.log("aqSecondaryMeasureTimes");
@@ -637,7 +661,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     const aqFilteredPrimaryMeasureTimesData = aq.from(filteredPrimaryMeasureTimesData);
 
     // console.log("aqFilteredPrimaryMeasureTimesData");
-    // aqFilteredPrimaryMeasureTimesData.groupby("MeasureID", "GeoType", "Time").count().print(50)
+    // aqFilteredPrimaryMeasureTimesData.groupby("MeasureID", "GeoType", "TimePeriod").count().print(50)
     // aqFilteredPrimaryMeasureTimesData.print(10)
 
 
@@ -674,12 +698,12 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
                 // get end periods
                 .join(
                     aqSecondaryMeasureTimes,
-                    ["Time", "TimeDescription"]
+                    ["TimePeriodID", "TimePeriodID"]
                 )
-                .select(aq.not("TimeDescription"))
+                .select(aq.not("TimePeriodID"))
             
             // console.log("aqFilteredSecondaryMeasureData");
-            // aqFilteredSecondaryMeasureData.groupby("MeasureID", "GeoType", "Time").count().print(50)
+            // aqFilteredSecondaryMeasureData.groupby("MeasureID", "GeoType", "TimePeriod").count().print(50)
             // aqFilteredSecondaryMeasureData.print(10)
 
             // convert to JS object
@@ -722,11 +746,11 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
             // console.log("filteredPrimaryMeasureData", filteredPrimaryMeasureData);
             
             // console.log("aqFilteredPrimaryMeasureTimesData");
-            // aqFilteredPrimaryMeasureTimesData.groupby("MeasureID", "GeoType", "Time").count().print(50)
+            // aqFilteredPrimaryMeasureTimesData.groupby("MeasureID", "GeoType", "TimePeriod").count().print(50)
             // aqFilteredPrimaryMeasureTimesData.print(10)
             
             // console.log("aqClosestSecondaryData");
-            // aqClosestSecondaryData.groupby("MeasureID", "GeoType", "Time").count().print(50)
+            // aqClosestSecondaryData.groupby("MeasureID", "GeoType", "TimePeriod").count().print(50)
             // aqClosestSecondaryData.print(10)
             
             const aqJoinedPrimarySecondaryData = aqFilteredPrimaryMeasureTimesData
@@ -745,4 +769,31 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     // console.log("*** ret", ret);
 
     return ret;
+}
+
+// ----------------------------------------------------------------------- //
+// function to draw 311 buttons
+// ----------------------------------------------------------------------- //
+
+var filteredCrosswalk = [];
+function draw311Buttons(x) {
+    document.getElementById('311').innerHTML = ''
+    filteredCrosswalk = crosswalk.filter(indicator => indicator.IndicatorID == x )
+
+    // Creates label if there are 311 links
+    if (filteredCrosswalk.length > 0) {
+        document.getElementById('311label').innerHTML = 'Contact 311 about:'
+        document.getElementById('311').classList.remove('hide')
+    } else {
+        document.getElementById('311label').innerHTML = ''
+        document.getElementById('311').classList.add('hide')
+    };
+
+    // draws 311 buttons
+    for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
+        var title = filteredCrosswalk[i].topic
+        var destination = filteredCrosswalk[i].kaLink
+        var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="badge badge-pill badge-primary mr-1" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt mr-1"></i>${title}</a>`
+        document.getElementById('311').innerHTML += btn
+    }
 }

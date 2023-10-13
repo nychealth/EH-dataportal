@@ -231,7 +231,7 @@ const renderLinksChart = (
                             "type": "nominal"
                         },
                         {
-                            "title": "Time",
+                            "title": "TimePeriod",
                             "field": "Time_2",
                             "type": "nominal"
                         },
