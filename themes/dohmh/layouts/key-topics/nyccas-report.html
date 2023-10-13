@@ -70,70 +70,24 @@
                     <h3>Pollutants Measured</h3>
 
                     <div class="accordion-group mt-2 mb-3" role="tablist" id="accordion-01">
+
+                        {{- range .Params.pollutantsMeasured -}}
+
                         <div class="card accordion-item border">
-                            <a class="card-header font-weight-bold collapse" id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01" role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
-                                <span class="title" role="heading" aria-level="3">Fine Particles</span>
+                            <a class="card-header font-weight-bold collapse" id="acc-button-{{ .number }}" data-toggle="collapse" href="#panel-acc-button-{{ .number }}" role="tab" aria-expanded="false" aria-controls="panel-acc-button-{{ .number }}">
+                                <span class="title" role="heading" aria-level="3">
+                                    {{ .name }}
+                                </span>
                             </a>
-                            <div class="collapse show" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
+                            <div class="collapse" id="panel-acc-button-{{ .number }}" role="tabpanel" aria-labelledby="acc-button-{{ .number }}" data-parent="#accordion-01">
                                 <div class="card-body bg-white text-black">
-                                    <p>
-                                        Fine particles (PM<sub>2.5</sub>) are tiny airborne solid and liquid particles less than 2.5 microns in diameter. PM<sub>2.5</sub> is the most harmful urban air pollutant. It is small enough to penetrate deep into the lungs and enter the bloodstream, which can worsen lung and heart disease and lead to hospital admissions and premature deaths. PM<sub>2.5</sub> can either be directly emitted or formed in the atmosphere from other pollutants. Fuel combustion in vehicles, boilers in buildings, power plants, construction equipment, marine vessels and commercial cooking are all common sources of PM<sub>2.5</sub>. Between 20% and 30% of the PM<sub>2.5</sub> in New York City's air comes from sources in areas upwind from the city, such as coal-burning power plants in the Midwest.
-                                    </p>
+                                    {{ .copy | markdownify }}
                                 </div>
                             </div>
                         </div>
 
-                        <div class="card accordion-item border">
-                            <a class="card-header font-weight-bold collapse collapsed" id="acc-button-02" data-toggle="collapse" href="#panel-acc-button-02" role="tab" aria-expanded="false" aria-controls="panel-acc-button-02">
-                                <span class="title" role="heading" aria-level="3">Black Carbon</span>
-                            </a>
-                            <div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02" data-parent="#accordion-01">
-                                <div class="card-body bg-white text-black">
-                                    <p>
-                                        Black carbon (BC) is one type of PM<sub>2.5</sub> and is the sooty black material emitted from gas and diesel engines, coal-fired power plants and other sources that burn fossil fuels. It comprises up to 20% of fine particulate matter in New York City. Unlike other fine particles, BC is primarily from local sources. Inhalation of BC is associated with health problems, including respiratory and cardiovascular disease, cancer and birth defects. BC also contributes to climate change by altering the patterns of rain and clouds.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        {{- end -}}
 
-                        <div class="card accordion-item border">
-                            <a class="card-header font-weight-bold collapse collapsed" id="acc-button-03" data-toggle="collapse" href="#panel-acc-button-03" role="tab" aria-expanded="false" aria-controls="panel-acc-button-03">
-                                <span class="title" role="heading" aria-level="3">Nitrogen Dioxide and Nitric Oxide</span>
-                            </a>
-                            <div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-03" data-parent="#accordion-01">
-                                <div class="card-body bg-white text-black">
-                                    <p>
-                                        Nitrogen dioxide (NO<sub>2</sub>) and nitric oxide (NO) are part of a group of pollutants called "oxides of nitrogen" (NO<sub>X</sub>). Exposures to NO<sub>X</sub> are linked to increased emergency department visits and hospitalizations for respiratory conditions, particularly asthma. NO<sub>X</sub> also reacts with other compounds in the atmosphere to form PM<sub>2.5</sub> and ozone. A variety of combustion sources produce NO<sub>X</sub> in New York City, including motor vehicles, buildings, marine vessels and construction equipment.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card accordion-item border">
-                            <a class="card-header font-weight-bold collapse collapsed" id="acc-button-04" data-toggle="collapse" href="#panel-acc-button-04" role="tab" aria-expanded="false" aria-controls="panel-acc-button-04">
-                                <span class="title" role="heading" aria-level="3">Ozone</span>
-                            </a>
-                            <div class="collapse" id="panel-acc-button-04" role="tabpanel" aria-labelledby="acc-button-04" data-parent="#accordion-01">
-                                <div class="card-body bg-white text-black">
-                                    <p>
-                                        Ozone (O<sub>3</sub>) forms at ground level when NO<sub>X</sub> emissions combine with sunlight and other airborne pollutants. Measured O<sub>3</sub> concentrations are often highest in the summer and downwind from areas with high NO<sub>X</sub> emissions, such as places with high traffic density. In areas with heavy traffic, NO<sub>X</sub> reacts with any ground-level O<sub>3</sub> to reduce O<sub>3</sub> concentrations. As a result, NYCCAS has measured lower O<sub>3</sub> levels near roadways, in city centers and in other areas of high NO<sub>X</sub> emissions density. Higher levels of O<sub>3</sub> are seen in areas away from dense traffic and building emissions.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card accordion-item border">
-                            <a class="card-header font-weight-bold collapse collapsed" id="acc-button-05" data-toggle="collapse" href="#panel-acc-button-05" role="tab" aria-expanded="false" aria-controls="panel-acc-button-05">
-                                <span class="title" role="heading" aria-level="3">Sulfur Dioxide</span>
-                            </a>
-                            <div class="collapse" id="panel-acc-button-05" role="tabpanel" aria-labelledby="acc-button-05" data-parent="#accordion-01">
-                                <div class="card-body bg-white text-black">
-                                    <p>
-                                        Sulfur dioxide (SO<sub>2</sub>) is produced mainly by burning oils with high sulfur content, such as No. 4 and No. 6 oil (also known as residual fuel oil), or high-sulfur No. 2 oil. The primary use of fuel oil in NYC is to heat buildings and water, which is why we only monitor it in the winter. Some high-sulfur oil is also used to generate electricity and power marine vessels. SO<sub>2</sub> exposures can worsen lung diseases, causing hospitalizations and emergency department visits for asthma and other respiratory conditions. SO<sub>2</sub> also contributes to the formation of PM<sub>2.5</sub> in the atmosphere, resulting in PM<sub>2.5</sub> exposures downwind of SO<sub>2</sub> emissions.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -180,7 +134,7 @@
     <div class="row mt-4">
         <div class="col-md-8 col-sm-12 mx-auto">
             <h2>Pollutant Trends</h2>
-            {{ .Params.pollutantTrends | safeHTML }}
+            {{ .Params.pollutantTrends | markdownify }}
             <hr>
 
             {{ partial "nyccas_pollutant_trends" . }}
@@ -194,7 +148,7 @@
     <div class="row mt-4">
         <div class="col-md-8 col-sm-12 mx-auto">
             <h2>Pollutant Predictors</h2>
-            {{ .Params.pollutantPredictors | safeHTML }}
+            {{ .Params.pollutantPredictors | markdownify }}
 
             <hr>
 
@@ -207,11 +161,11 @@
     <div class="row my-2">
         <div class="col-sm-8 mx-auto col-xs-12">
             <h2>Conclusion</h2>
-            {{ .Params.conclusion | safeHTML }}
+            {{ .Params.conclusion | markdownify }}
             <hr>
             <div class="greenleftborder mb-4">
                 <strong>More information</strong>
-                {{ .Params.moreInfo | safeHTML }}
+                {{ .Params.moreInfo | markdownify }}
                 </div>
 
         </div>
