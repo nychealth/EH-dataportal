@@ -131,6 +131,16 @@ _inputs:
     type: textarea
   moreInfo:
     type: textarea
+  mapTextBC:
+    type: textarea
+  mapTextNO:
+    type: textarea
+  mapTextNO2:
+    type: textarea
+  mapTextO3:
+    type: textarea
+  mapTextPM:
+    type: textarea
 _select_data:
   categories:
     - housing
