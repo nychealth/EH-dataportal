@@ -1,6 +1,6 @@
 {{- define "main" -}}
 
-<article class="container overflow-hidden" id="primary-content">
+<article class="container-fluid overflow-hidden" id="primary-content">
   
   <style>
     .selectedOption {
@@ -8,39 +8,54 @@
     }
   </style>
 
-  <div class="col-md-10 mx-auto mt-4">
-    <h1 class="nr-accent"><i class="fas fa-map-marked-alt" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
-    <p>{{- .Content -}}</p>
+  <div class="row">
+    <div class="col-md-10 mx-auto mt-4">
+      <nav aria-label="breadcrumb" class="mb-2">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active"><a href="/neighborhood-reports/">{{ .Title }}</a></li>
+        </ul>
+      </nav>
+  
+      <h1 class="nr-accent"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>{{ .Title }}</h1>
+      <p>{{- .Content -}}</p>
+    </div>
   </div>
 
   <div class="row my-4">
-    <div class="col-md-6">
+    <div class="col-5 mx-auto">
+      <button class="btn btn-primary">Asthma</button>
+      <button class="btn btn-outline-primary">Active design</button>
+      <button class="btn btn-outline-primary">Climate</button>
+      <button class="btn btn-outline-primary">Housing</button>
+      <button class="btn btn-outline-primary">Outdoor Air</button>
+
+      {{- partial "clickable-uhf" . -}}
+
+    </div>
+  </div>
+
+
+  <div class="row my-4">
+    <div class="col-md-5 ml-auto">
       <h3>1. Choose report</h3>
       <select class="form-control form-control-lg" id="report" name="report" required size="5" style="overflow-y:hidden;">
-          <option value="Asthma" class="topic-list-option" id="AsthmaOption">Asthma and the environment</option>
+        <option value="Active" class="topic-list-option" id="ActiveOption">Active design, physical activity, and health</option>
+        <option value="Asthma" class="topic-list-option" id="AsthmaOption">Asthma and the environment</option>
           <option value="Climate" class="topic-list-option" id="ClimateOption">Climate and health</option>
           <option value="Housing" class="topic-list-option" id="HousingOption">Housing and health</option>
           <option value="Outdoor" class="topic-list-option" id="OutdoorOption">Outdoor air and health</option>
-          <option value="Active" class="topic-list-option" id="ActiveOption">Active design, physical activity, and health</option>
 
       </select>
     <br>
 
-      <div id="Asthma" class="tab-container"> <h4>Asthma and the environment</h4>
-          <p>Asthma is a leading cause of hospitalizations for children. It can be made worse by housing and neighborhood characteristics. There are powerful inequities that drive racial disparities in asthma in NYC.</p></div>
-      <div id="Climate" class="tab-container"> <h4>Climate and health</h4>
-          <p>As the climate changes, we track New York City's risk for extreme heat, storms and flooding, and episodes of elevated ozone. These have important public health impacts: already, heat kills more people than all other natural disasters.</p></div>
-      <div id="Housing" class="tab-container"> <h4>Housing and health</h4>
-          <p>Housing conditions can drive health outcomes like asthma, lead poisoning, and carbon monoxide poisoning. We track housing neighborhood characteristics that can put people at risk - and special populations that are vulnernerable.</p></div>
-      <div id="Outdoor" class="tab-container">  <h4>Outdoor air and health</h4>
-          <p>Air pollution is one of the most important environmental threats to people who live in urban areas. Exposures are linked to respiratory and heart diseases, cancers, and premature deaths. Meanwhile, emissions, levels of exposure, and population vulnerability vary across neighborhoods. </p></div>
-      <div id="Active" class="tab-container"> <h4>Active design, physical activity, and health</h4>
-          <p>The design and condition of buildings, streets, public transportation, and parks influence how much physical activity people get, how much they use active transportation, and how much other healthy behavior they do. A neighborhood built environment can also affect the safety of its residents. </p></div>
-    </div>
 
-    <div class="col-md-6">
+    
       <h3>2. Choose Neighborhood</h3>
-      <div class="bg-active p-2 p-md-4 mb-4">
+
+      {{- partial "clickable-uhf" . -}}
+
+      <div class="mb-4">
         <form action="/neighborhood-reports" method="get" class="autocomplete-form">
           <div class="row no-gutters">
             <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">What NYC neighborhood are you interested in?</label>
@@ -54,7 +69,7 @@
             <div class="col-4">
               <button type="submit" id="submitbutton" class="btn-primary btn btn-block" disabled>3. Get Report!</button> 
             </div>
-            <div class="fs-sm"><em>Enter a neighborhood or ZIP Code</em></div>
+            <div class="fs-sm"><em>Click the map, or enter a ZIP Code</em></div>
           </div>
         </form>
       </div>
@@ -67,9 +82,25 @@
           </a>.
         </div>
       </div>
+    
+    
+    </div>
 
+    <div class="col-md-5 mr-auto pt-3">
+      <div id="Asthma" class="tab-container">
+        <p>Asthma is a leading cause of hospitalizations for children. It can be made worse by housing and neighborhood characteristics. There are powerful inequities that drive racial disparities in asthma in NYC.</p></div>
+    <div id="Climate" class="tab-container"> 
+        <p>As the climate changes, we track New York City's risk for extreme heat, storms and flooding, and episodes of elevated ozone. These have important public health impacts: already, heat kills more people than all other natural disasters.</p></div>
+    <div id="Housing" class="tab-container"> 
+        <p>Housing conditions can drive health outcomes like asthma, lead poisoning, and carbon monoxide poisoning. We track housing neighborhood characteristics that can put people at risk - and special populations that are vulnernerable.</p></div>
+    <div id="Outdoor" class="tab-container"> 
+        <p>Air pollution is one of the most important environmental threats to people who live in urban areas. Exposures are linked to respiratory and heart diseases, cancers, and premature deaths. Meanwhile, emissions, levels of exposure, and population vulnerability vary across neighborhoods. </p></div>
+    <div id="Active" class="tab-container"> 
+        <p>The design and condition of buildings, streets, public transportation, and parks influence how much physical activity people get, how much they use active transportation, and how much other healthy behavior they do. A neighborhood built environment can also affect the safety of its residents. </p></div>
     </div>
   </div>
+
+
 
   <div class="row my-5">
     <div class="col-md-6 ml-auto">
@@ -209,22 +240,23 @@ function changeDescription(x) {
     selectElement: selectEl
   });
 
-    // this takes the form and on submit, sends page to a new location.
-    var searchForm = document.getElementById('last-neighborhood-select') // this is last-neighborhood-select because of changes applied by the AA JS.
+  // this takes the form and on submit, sends page to a new location.
+  var searchForm = document.getElementById('last-neighborhood-select') // this is last-neighborhood-select because of changes applied by the AA JS.
 
-    document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
+  document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
 
-    e.preventDefault(); // prevent page re-load
+  e.preventDefault(); // prevent page re-load
 
-    var locVal = searchForm.options[searchForm.selectedIndex].value
+  var locVal = searchForm.options[searchForm.selectedIndex].value
+    console.log('locVal: ', locVal)
 
-    if (locVal) {
-      //window.location = baseURL + 'neighborhood-reports/'+ DOMPurify.sanitize(locVal) + reportURL
-      window.location = '{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(locVal) + reportURL
-    } else {
-      document.getElementById('warning').style.display = "block" // this is our error handling
-    }
-    });
+  if (locVal) {
+    //window.location = baseURL + 'neighborhood-reports/'+ DOMPurify.sanitize(locVal) + reportURL
+    window.location = '{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(locVal) + reportURL
+  } else {
+    document.getElementById('warning').style.display = "block" // this is our error handling
+  }
+  });
   </script>
 
 {{- end -}}
