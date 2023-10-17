@@ -135,9 +135,9 @@
             <div class="mt-5">
                 <a class="sr-only sr-only-focusable skip-menu" href="#primary-content">Skip Nav</a>
 
-                <h2>Change Report</h2>
+                <p class="home-label font-weight-bold border-bottom">Change Report</p>
                 <nav role="navigation">
-                    <div class="list-group custom-active">
+                    <div class="">
                         {{- $neighborhood := $.Scratch.Get "neighborhoodDir" -}}
                         {{- $report := $.Scratch.Get "reportFile" -}}
                         {{- partial "location_sub_nav" (dict  "neighborhood" $neighborhood "report" $report) -}}
@@ -146,7 +146,14 @@
 
                 <hr class="mt-2">
 
-                <h2 class="mt-4">Change Neighborhood</h2>
+                <p class="mt-4 home-label font-weight-bold border-bottom">Change Neighborhood</p>
+
+                <div style="height: 350px">
+                {{- partial "nr-clickable-uhf" . -}}
+
+
+                </div>
+
                 <form action="/neighborhood-reports" method="get" class="autocomplete-form">
                     <div class="row no-gutters">
                         <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">What NYC
@@ -477,6 +484,11 @@
     // get report path relative to section starting with "neighborhood-reports" - makes it agnostic w/r/t server
     var thisURL = window.location.pathname.match(/neighborhood-reports.*/)
     var report = thisURL[0].split("/")[2];
+    reportURL = '/' + report
+
+    // highlight single neighborhood in partial nr-clickable-uhf
+    var thisNeighb = thisURL[0].split("/")[1];
+    highlightNeighborhood(thisNeighb)
 
     // check report and declare report
 

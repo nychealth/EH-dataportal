@@ -2,8 +2,24 @@
 
 <div class="py-5">
   <div class="container medium">
-    <h1 class="mb-4">{{ .Params.title }}</h1>
-      <div class="row">
+
+    <nav aria-label="breadcrumb" class="mb-2">
+      <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="/neighborhood-reports/">Neighborhood Reports</a></li>
+          <li class="breadcrumb-item active"><a href="/{{ .RelPermalink }}">{{ .Title }}</a></li>
+      </ul>
+    </nav>
+
+      <div class="row mt-4">
+
+        <div class="col-sm-6 col-md-4 mb-4">
+          <h1 class="mb-2 border-bottom">{{ .Params.title }}</h1>
+          <p class="fs-md mb-2">ZIP Codes: <span id="zips"></span></p>
+
+          {{- partial "nr-map-highlight" . -}}
+
+        </div>
         
         {{- range .Pages -}}
         
@@ -18,9 +34,9 @@
               {{- end -}}
               
               <div class="card-body">
-                <h2 class="card-title"><a href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h5>
-                <p class="card-text">{{ .Summary }}</p>
-                <p class="card-link"><a href="{{ .RelPermalink }}">See Report ></a></p>
+                <h2 class="card-title fs-lg"><a href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h5>
+                <p class="card-text fs-md">{{ .Summary }}</p>
+                <p class=""><a href="{{ .RelPermalink }}">See Report ></a></p>
               </div>
             </div>
           </div>
@@ -30,5 +46,9 @@
       </div>
   </div>
 </div>
+
+<script type="text/javascript">
+
+</script>
 
 {{- end -}}
