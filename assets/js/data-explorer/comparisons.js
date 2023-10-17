@@ -7,13 +7,13 @@ const renderComparisonsChart = (
     metadata
 ) => {
 
-    console.log("** renderComparisonsChart");
+    console.log("*** renderComparisonsChart");
 
-    console.log(">>> comp metadata");
-    metadata.print()
+    // console.log(">>> comp metadata");
+    // metadata.print()
     
-    console.log(">>> comp data:");
-    data.print(20)
+    // console.log(">>> comp data:");
+    // data.print(20)
 
     // ----------------------------------------------------------------------- //
     // get unique unreliability notes (dropping empty)
@@ -60,11 +60,11 @@ const renderComparisonsChart = (
     let compGeoTypeNames    = [... new Set(metadata.array("GeoTypeName"))];
     let compGeoIDs          = metadata.objects()[0].GeoID ? [... new Set(metadata.array("GeoID"))] : null;
 
-    console.log(">>>> compGeoIDs", compGeoIDs);
+    // console.log(">>>> compGeoIDs", compGeoIDs);
 
-    console.log(">> compName", compName);
-    console.log(">> compIndicatorLabel", compIndicatorLabel);
-    console.log(">> compMeasurementType", compMeasurementType);
+    // console.log(">> compName", compName);
+    // console.log(">> compIndicatorLabel", compIndicatorLabel);
+    // console.log(">> compMeasurementType", compMeasurementType);
 
 
     // ----------------------------------------------------------------------- //
@@ -83,9 +83,9 @@ const renderComparisonsChart = (
 
         // ----- by boros: 1 indicator, 1 measure, 5 boros -------------------------------------------------- //
 
-        console.log("boros");
+        // console.log("boros");
 
-        console.log("indicatorName", indicatorName);
+        // console.log("indicatorName", indicatorName);
 
         // if this is a boro comparison, tweak some things
 
@@ -96,18 +96,18 @@ const renderComparisonsChart = (
         plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? " by Borough" : "");
         comp_group_col = "Geography"
 
-        console.log(">> compGroupLabel", compGroupLabel);
-        console.log(">> plotTitle", plotTitle);
-        console.log(">> plotSubtitle", plotSubtitle);
+        // console.log(">> compGroupLabel", compGroupLabel);
+        // console.log(">> plotTitle", plotTitle);
+        // console.log(">> plotSubtitle", plotSubtitle);
 
 
     } else if (compIndicatorLabel.length == 1) {
 
         // ----- by measure: 1 indicator, 2+ measures, 1 citywide -------------------------------------------------- //
 
-        console.log("1 indicator");
+        // console.log("1 indicator");
 
-        console.log("indicatorName", indicatorName);
+        // console.log("indicatorName", indicatorName);
         
         let compId           = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle  = [... new Set(metadata.array("LegendTitle"))];
@@ -141,17 +141,17 @@ const renderComparisonsChart = (
 
         columns = compGroupLabel.length > 3 ? 3 : columns;
 
-        console.log(">> compGroupLabel", compGroupLabel);
-        console.log(">> plotTitle", plotTitle);
-        console.log(">> plotSubtitle", plotSubtitle);
+        // console.log(">> compGroupLabel", compGroupLabel);
+        // console.log(">> plotTitle", plotTitle);
+        // console.log(">> plotSubtitle", plotSubtitle);
 
     } else if (compMeasurementType.length == 1) {
 
         // ----- by indicator: 2+ indicators, 1 measure, 1 citywide -------------------------------------------------- //
 
-        console.log("1 measure");
+        // console.log("1 measure");
 
-        console.log("indicatorName", indicatorName);
+        // console.log("indicatorName", indicatorName);
 
         let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
@@ -183,17 +183,17 @@ const renderComparisonsChart = (
 
         columns = compGroupLabel.length > 3 ? 3 : columns;
 
-        console.log(">> compGroupLabel", compGroupLabel);
-        console.log(">> plotTitle", plotTitle);
-        console.log(">> plotSubtitle", plotSubtitle);
+        // console.log(">> compGroupLabel", compGroupLabel);
+        // console.log(">> plotTitle", plotTitle);
+        // console.log(">> plotSubtitle", plotSubtitle);
 
     } else if (compMeasurementType.length > 1 && compIndicatorLabel.length > 1) {
         
         // ----- by combo: 2+ indicators, 2+ measures, 1 citywide -------------------------------------------------- //
 
-        console.log("> 1 measure & indicator");
+        // console.log("> 1 measure & indicator");
 
-        console.log("indicatorName", indicatorName);
+        // console.log("indicatorName", indicatorName);
 
         let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
@@ -226,9 +226,9 @@ const renderComparisonsChart = (
 
         columns = compGroupLabel.length > 3 ? 3 : columns;
 
-        console.log(">> compGroupLabel", compGroupLabel);
-        console.log(">> plotTitle", plotTitle);
-        console.log(">> plotSubtitle", plotSubtitle);
+        // console.log(">> compGroupLabel", compGroupLabel);
+        // console.log(">> plotTitle", plotTitle);
+        // console.log(">> plotSubtitle", plotSubtitle);
 
     }
 

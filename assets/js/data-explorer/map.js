@@ -15,26 +15,26 @@ const renderMap = (
         // get unique time in data
         // ----------------------------------------------------------------------- //
         
-        const mapYears =  [...new Set(data.map(item => item.TimePeriod))];
+        const mapTimes =  [...new Set(data.map(item => item.TimePeriod))];
 
         // debugger;
 
-        // console.log("mapYears [map.js]", mapYears);
+        // console.log("mapTimes [map.js]", mapTimes);
 
-        let mapGeoType            = data[0].GeoType;
-        let geoTypeShortDesc      = data[0].GeoTypeShortDesc;
-        let mapMeasurementType    = metadata[0].MeasurementType;
-        let displayType           = metadata[0].DisplayType;
+        let mapGeoType            = data[0]?.GeoType;
+        let geoTypeShortDesc      = data[0]?.GeoTypeShortDesc;
+        let mapMeasurementType    = metadata[0]?.MeasurementType;
+        let displayType           = metadata[0]?.DisplayType;
         let mapGeoTypeDescription = 
-            metadata[0].AvailableGeoTypes.filter(
+            metadata[0].AvailableGeoTypes?.filter(
                 gt => gt.GeoType === mapGeoType
             )[0].GeoTypeDescription;
 
-        let mapTime = mapYears[0];
+        let mapTime = mapTimes[0];
         let topoFile = '';
 
         var color = 'purplered'
-        var rankReverse = defaultMapMetadata[0].VisOptions[0].Map[0].RankReverse
+        var rankReverse = defaultMapMetadata[0].VisOptions[0].Map[0]?.RankReverse
         if (rankReverse === 0) {
             color = 'reds'
         } else if (rankReverse === 1) {

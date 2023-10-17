@@ -208,10 +208,10 @@ const setDefaultLinksMeasure = async (visArray) => {
 
         }
 
-        defaultLinkMeasureTimes = defaultArray[0].AvailableTime; // <<<<<<<<<<
+        // defaultLinkMeasureTimes = defaultArray[0].AvailableTime; // <<<<<<<<<<
 
         const defaultPrimaryMeasureId = defaultArray[0].MeasureID;
-        const defaultSecondaryMeasureId = defaultArray[0].VisOptions[0].Links[0].Measures[0].MeasureID;
+        const defaultSecondaryMeasureId = defaultArray[0].VisOptions[0].Links[0].Measures[0]?.MeasureID;
 
         // assigning to global object
         defaultLinksMetadata = defaultArray;
@@ -423,7 +423,7 @@ const updateTrendData = (e) => {
     const measurementType = selectedTrendMetadata[0].MeasurementType;
     const about           = selectedTrendMetadata[0].how_calculated;
     const sources         = selectedTrendMetadata[0].Sources;
-    const times           = selectedTrendMetadata[0].VisOptions[0].Trend[0]?.TimePeriodID;
+    // const times           = selectedTrendMetadata[0].VisOptions[0].Trend[0]?.TimePeriodID;
 
     aqSelectedTrendMetadata = aq.from(selectedTrendMetadata)
         .derive({
@@ -452,9 +452,9 @@ const updateTrendData = (e) => {
 
     filteredTrendData = trendData
         .filter(m => m.MeasureID === measureId)
-        .filter(m => times.includes(m.TimePeriod));
+        // .filter(m => times.includes(m.TimePeriod));
 
-    console.log("filteredTrendData [updateTrendData]", filteredTrendData);
+    // console.log("filteredTrendData [updateTrendData]", filteredTrendData);
 
 
     // ----- render the chart -------------------------------------------------- //
@@ -580,7 +580,7 @@ const updateTrendComparisonsData = (e) => {
         // put host indicator first, so it gets the black line
         .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
     
-    // console.log(">>>> aqFilteredComparisonsData:");
+    // console.log(">>>> aqFilteredComparisonsData [updateTrendComparisonsData]");
     // aqFilteredComparisonsData.print()
 
     // show only last 3 years of DWQ measures with quarterly data
@@ -721,11 +721,11 @@ const updateLinksData = async (e) => {
 
 // need to be defined before `renderMeasures`, where they're added as listener callbacks
 
-// ===== year ================================================== //
+// ===== time ================================================== //
 
 // ----- add listener on each dropdown item -------------------------------------------------- //
 
-const handleYearFilter = (el) => {
+const handleTimeFilter = (el) => {
 
     el.addEventListener('change', (e) => {
 
@@ -733,17 +733,17 @@ const handleYearFilter = (el) => {
 
         if (e.target.checked) {
 
-            // selectedTableYears = [e.target.value]
-            selectedTableYears.push(e.target.value)
+            // selectedTableTimes = [e.target.value]
+            selectedTableTimes.push(e.target.value)
 
         } else {
 
-            // if the selected element is not checked, remove it from table years
+            // if the selected element is not checked, remove it from table times
 
-            let index = selectedTableYears.indexOf(e.target.value);
+            let index = selectedTableTimes.indexOf(e.target.value);
 
             if (index !== -1) {
-                selectedTableYears.splice(index, 1);
+                selectedTableTimes.splice(index, 1);
             }
         }
         renderTable()
@@ -780,9 +780,9 @@ const handleGeoFilter = (el) => {
 
 const renderMeasures = async () => {
 
-    console.log("** renderMeasures");
+    console.log("* renderMeasures");
 
-    selectedTableYears = [];
+    selectedTableTimes = [];
     selectedTableGeography = [];
 
     linksMeasures.length = 0
@@ -832,29 +832,29 @@ const renderMeasures = async () => {
     // ----- select all -------------------------------------------------- //
 
     dropdownTableTimes.innerHTML +=
-        `<label class="dropdown-item checkbox-year-all"><input class="largerCheckbox" type="checkbox" name="year" value="all" /> Select all </label>`
+        `<label class="dropdown-item checkbox-time-all"><input class="largerCheckbox" type="checkbox" name="time" value="all" /> Select all </label>`
 
-    // ----- years -------------------------------------------------- //
+    // ----- times -------------------------------------------------- //
 
-    const tableYears = [...new Set(tableData.map(item => item.TimePeriod))];
+    const tableTimes = [...new Set(aqTableTimes.array("TimePeriod"))];
 
-    // console.log("tableYears", tableYears);
+    // console.log("tableTimes", tableTimes);
 
-    tableYears.forEach((year, index) => {
+    tableTimes.forEach((time, index) => {
 
         if (index === 0) {
 
-            // default to most recent year
+            // default to most recent time
 
-            selectedTableYears = [year];
+            selectedTableTimes = [time];
 
             dropdownTableTimes.innerHTML +=
-                `<label class="dropdown-item checkbox-year"><input class="largerCheckbox" type="checkbox" name="year" value="${year}" checked /> ${year}</label>`;
+                `<label class="dropdown-item checkbox-time"><input class="largerCheckbox" type="checkbox" name="time" value="${time}" checked /> ${time}</label>`;
 
         } else {
 
             dropdownTableTimes.innerHTML +=
-                `<label class="dropdown-item checkbox-year"><input class="largerCheckbox" type="checkbox" name="year" value="${year}" /> ${year}</label>`;
+                `<label class="dropdown-item checkbox-time"><input class="largerCheckbox" type="checkbox" name="time" value="${time}" /> ${time}</label>`;
         }
 
     });
@@ -864,7 +864,8 @@ const renderMeasures = async () => {
 
     // create geo dropdown for table (using pretty geotypes, keeping georank order)
 
-    const tableGeoTypes = [...new Set(tableData.map(item => prettifyGeoType(item.GeoType)))];
+    // const tableGeoTypes = [...new Set(tableData.map(item => prettifyGeoType(item.GeoType)))];
+    const tableGeoTypes = [... new Set(aqTableGeos.array("GeoType").map(gt => prettifyGeoType(gt)))]
     const dropdownTableGeoTypes = geoTypes.filter(g => tableGeoTypes.includes(g))
 
     // console.log("geoTypes:", geoTypes);
@@ -887,8 +888,7 @@ const renderMeasures = async () => {
 
     // create geo dropdown for table (using pretty geotypes, keeping georank order)
 
-    const mapGeoTypes = [...new Set(measure?.VisOptions[0].Map[0]?.GeoType.map(gt => prettifyGeoType(gt)))];
-    // const mapGeoTypes = measure?.VisOptions[0].Map[0]?.GeoType
+    const mapGeoTypes = [... new Set(aqMapGeos.array("GeoType").map(gt => prettifyGeoType(gt)))]
     const dropdownMapGeoTypes = geoTypes.filter(g => mapGeoTypes.includes(g))
 
     // console.log("geoTypes:", geoTypes);
@@ -910,8 +910,7 @@ const renderMeasures = async () => {
 
     // ----- times -------------------------------------------------- //
 
-    // const mapTimes = [...new Set(mapData.map(item => item.TimePeriod))];
-    const mapTimes = measure?.VisOptions[0].Map[0]?.TimePeriodID;
+    const mapTimes = [... new Set(aqMapTimes.array("TimePeriod"))]
 
     // console.log("mapTimes", mapTimes);
 
@@ -925,19 +924,22 @@ const renderMeasures = async () => {
     });
 
 
-    // ----- handle measures for this indicator ================================================== //
+    // ===== handle measures for this indicator ================================================== //
 
     let header = "";
 
     indicatorMeasures.map((measure, index) => {
 
         // console.log("index", index);
-        console.log("measure", measure);
+        // console.log("measure", measure);
 
+        // check to see if the different viz types exist for this measure
+
+        const map   = measure?.VisOptions[0].Map   && measure?.VisOptions[0].Map[0].TimePeriodID[0];
+        const trend = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0].TimePeriod;
+        const links = measure?.VisOptions[0].Links && measure?.VisOptions[0].Links[0].Measures[0].MeasureID;
+        
         const type  = measure?.MeasurementType;
-        const map   = measure?.VisOptions[0].Map   && measure?.VisOptions[0].Map[0]?.TimePeriod;
-        const trend = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0]?.TimePeriod;
-        const links = measure?.VisOptions[0].Links && measure?.VisOptions[0].Links[0]?.Measures[0];
         const measureId = measure.MeasureID;
 
         // console.log("type", type, "links", links, "map", map, "trend", trend);
@@ -1008,7 +1010,9 @@ const renderMeasures = async () => {
                 dropdownLinksMeasures.innerHTML +=
                     `<div class="dropdown-title pl-2"><strong> ${type}</strong></div>`;
 
-                measure.VisOptions[0].Links[0].Measures.map(link => {
+                measure?.VisOptions[0].Links[0].Measures?.map(link => {
+
+                    // console.log("link", link);
 
                     const linksSecondaryIndicator = indicators.filter(indicator =>
                         indicator.Measures.some(m =>
@@ -1016,16 +1020,18 @@ const renderMeasures = async () => {
                         )
                     );
 
-                    const linksSecondaryMeasure = linksSecondaryIndicator[0].Measures.filter(m =>
+                    const linksSecondaryMeasure = linksSecondaryIndicator[0]?.Measures?.filter(m =>
                         m.MeasureID === link.MeasureID
                     );
+
+                    // console.log("linksSecondaryMeasure", linksSecondaryMeasure);
 
                     dropdownLinksMeasures.innerHTML +=
                         `<button class="dropdown-item linksbutton pl-3"
                             data-primary-measure-id="${measureId}"
                             data-measure-id="${measure.MeasureID}"
                             data-secondary-measure-id="${link.MeasureID}">
-                            ${linksSecondaryMeasure[0].MeasureName}
+                            ${linksSecondaryMeasure[0]?.MeasureName}
                         </button>`;
 
                 });
@@ -1034,7 +1040,7 @@ const renderMeasures = async () => {
     });
 
 
-    // ----- handle comparisons viz -------------------------------------------------- //
+    // ===== handle comparisons viz ================================================== //
 
     if (indicatorComparisonId !== null) {
 
@@ -1064,7 +1070,7 @@ const renderMeasures = async () => {
                 let compGeography        = [... new Set(compGroup.array("Geography"))];
                 let compName             = [... new Set(compGroup.array("ComparisonName"))];
 
-                console.log("compGeography", compGeography);
+                // console.log("compGeography", compGeography);
                 
                 if (compIndicatorLabel.length == 1) {
 
@@ -1225,13 +1231,13 @@ const renderMeasures = async () => {
                     )
                 );
 
-            console.log("filteredMapData [showMap]", filteredMapData);
+            // console.log("filteredMapData [showMap]", filteredMapData);
 
             // ----- allow map to persist when changing tabs -------------------------------------------------- //
 
             if (!selectedMapMeasure) {
 
-                console.log(">> no selectedMapMeasure");
+                // console.log(">> no selectedMapMeasure");
 
                 // this is all inside the conditional, because if a user clicks on this tab again
                 //  after selecting a measure, we don't want to recompute everything. We'll use the
@@ -1274,14 +1280,14 @@ const renderMeasures = async () => {
                         obj => obj.MeasureID === defaultMapMeasureId
                     );
 
-                console.log("filteredMapData [no selectedMapMeasure]", filteredMapData);
+                // console.log("filteredMapData [no selectedMapMeasure]", filteredMapData);
 
             }
 
 
             if (!selectedMapTime) {
 
-                console.log(">> no selectedMapTime");
+                // console.log(">> no selectedMapTime");
 
                 // get the latest end_period
 
@@ -1293,13 +1299,13 @@ const renderMeasures = async () => {
 
                 latest_time = filteredMapData[0].TimePeriod
 
-                console.log("filteredMapData [no selectedMapTime]", filteredMapData);
+                // console.log("filteredMapData [no selectedMapTime]", filteredMapData);
 
             }
 
             if (!selectedMapGeo) {
 
-                console.log(">> no selectedMapGeo [showMap]");
+                // console.log(">> no selectedMapGeo [showMap]");
 
                 // get the highest GeoRank for this measure and end_period
 
@@ -1312,10 +1318,10 @@ const renderMeasures = async () => {
                 let maxGeo = filteredMapData[0].GeoType
                 maxGeoPretty = prettifyGeoType(maxGeo)
 
-                console.log("filteredMapData [no selectedMapGeo]", filteredMapData);
+                // console.log("filteredMapData [no selectedMapGeo]", filteredMapData);
 
-                console.log("maxGeo", maxGeo);
-                console.log("maxGeoPretty", maxGeoPretty);
+                // console.log("maxGeo", maxGeo);
+                // console.log("maxGeoPretty", maxGeoPretty);
 
             }
 
@@ -1359,7 +1365,7 @@ const renderMeasures = async () => {
 
         } else {
 
-            console.log("else [showMap]");
+            // console.log("else [showMap]");
 
             // if there was a map already, restore it
 
@@ -1436,7 +1442,7 @@ const renderMeasures = async () => {
 
     showNormalTrend = (e) => {
 
-        console.log("* showNormalTrend");
+        console.log("** showNormalTrend");
 
         // chart only the annual average for the following measureIds:
         // 365 - PM2.5 (Fine particles), Mean
@@ -1467,7 +1473,7 @@ const renderMeasures = async () => {
             const about   = defaultTrendMetadata[0]?.how_calculated;
             const sources = defaultTrendMetadata[0].Sources;
             const measure = defaultTrendMetadata[0].MeasurementType;
-            const times   = defaultTrendMetadata[0].VisOptions[0].Trend[0]?.TimePeriod;
+            // const times   = defaultTrendMetadata[0].VisOptions[0].Trend[0]?.TimePeriod;
 
             aqDefaultTrendMetadata = aq.from(defaultTrendMetadata)
                 .derive({
@@ -1499,9 +1505,9 @@ const renderMeasures = async () => {
 
             filteredTrendData = trendData
                 .filter(m => m.MeasureID === defaultTrendMeasureId)
-                .filter(m => times.includes(m.TimePeriod));
+                // .filter(m => times.includes(m.TimePeriod));
 
-            console.log("filteredTrendData [showNormalTrend]", filteredTrendData);
+            // console.log("filteredTrendData [showNormalTrend]", filteredTrendData);
 
             // ----- render the chart -------------------------------------------------- //
 
@@ -1588,7 +1594,7 @@ const renderMeasures = async () => {
 
     showTrendComparisons = (e) => {
 
-        console.log("* showTrendComparisons");
+        console.log("** showTrendComparisons");
         // console.log("selectedComparison", selectedComparison);
 
         // ----- allow chart to persist when changing tabs -------------------------------------------------- //
@@ -1600,7 +1606,7 @@ const renderMeasures = async () => {
             // get first comparisonId
 
             const comparisonId = parseInt(comparisonsMetadata[0].ComparisonID);
-            const times        = defaultTrendMetadata[0].VisOptions[0].Trend[0]?.TimePeriod;
+            // const times        = defaultTrendMetadata[0].VisOptions[0].Trend[0]?.TimePeriod;
 
             // console.log("comparisonId", comparisonId);
 
@@ -1661,7 +1667,7 @@ const renderMeasures = async () => {
                 // put host indicator first (then measure), so it gets the black line
                 .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)), d => d.MeasureID)
 
-            // console.log(">>>> aqFilteredComparisonsData:");
+            // console.log(">>>> aqFilteredComparisonsData [showTrendComparisons]");
             // aqFilteredComparisonsData.print()
 
             // show only last 3 years of DWQ measures with quarterly data
@@ -1808,22 +1814,22 @@ const renderMeasures = async () => {
 
             // use linked indicator's metadata to get linked measure's metadata
 
-            const linksSecondaryMeasure = linksSecondaryIndicator[0].Measures.filter(m =>
+            const linksSecondaryMeasure = linksSecondaryIndicator[0]?.Measures?.filter(m =>
                 m.MeasureID === secondaryMeasureId
             )
 
             primaryIndicatorName   = indicatorName;
-            secondaryIndicatorName = linksSecondaryIndicator[0].IndicatorName;
+            secondaryIndicatorName = linksSecondaryIndicator[0]?.IndicatorName;
 
             // get measure metadata
 
-            const primaryMeasure         = defaultLinksMetadata[0].MeasurementType;
-            const primaryAbout           = defaultLinksMetadata[0].how_calculated;
-            const primarySources         = defaultLinksMetadata[0].Sources;
+            const primaryMeasure         = defaultLinksMetadata[0]?.MeasurementType;
+            const primaryAbout           = defaultLinksMetadata[0]?.how_calculated;
+            const primarySources         = defaultLinksMetadata[0]?.Sources;
 
-            const secondaryMeasure       = linksSecondaryMeasure[0].MeasurementType;
-            const secondaryAbout         = linksSecondaryMeasure[0].how_calculated;
-            const secondarySources       = linksSecondaryMeasure[0].Sources;
+            const secondaryMeasure       = linksSecondaryMeasure[0]?.MeasurementType;
+            const secondaryAbout         = linksSecondaryMeasure[0]?.how_calculated;
+            const secondarySources       = linksSecondaryMeasure[0]?.Sources;
 
 
             // ----- set measure info boxes -------------------------------------------------- //
@@ -1906,7 +1912,7 @@ const renderMeasures = async () => {
 
         $(btnToggleDisparities).on("click", (e) => {
 
-            // console.log("** btnToggleDisparities **", e);
+            // console.log("btnToggleDisparities", e);
 
             if (e.target && e.target.matches("#show-disparities") && !e.target.classList.contains("active")) {
 
@@ -1965,9 +1971,9 @@ const renderMeasures = async () => {
         enableTab(tabMap);
     }
 
-    // if there's no trend data or only 1 time period, don't show the tab
+    // if there's no trend data or only 1 time period in all of the measures, don't show the tab
 
-    const onlyOneTime = trendMeasures.every(m => m.AvailableTimePeriodIDs.length <= 1) // <<<<<<<<<<
+    const onlyOneTime = trendMeasures.every(m => m.VisOptions[0].Trend[0]?.TimePeriodID.length <= 1) // <<<<<<<<<<
 
     // debugger;
 
@@ -2099,45 +2105,45 @@ const renderMeasures = async () => {
     // add event handler functions to summary tab checkboxes
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    const checkboxYear = document.querySelectorAll('.checkbox-year');
-    const checkboxYearAll = document.querySelectorAll('.checkbox-year-all');
+    const checkboxTime = document.querySelectorAll('.checkbox-time');
+    const checkboxTimeAll = document.querySelectorAll('.checkbox-time-all');
     const checkboxGeo = document.querySelectorAll('.checkbox-geo');
 
-    checkboxYear.forEach(checkbox => {
-        handleYearFilter(checkbox);
+    checkboxTime.forEach(checkbox => {
+        handleTimeFilter(checkbox);
     })
 
-    checkboxYearAll[0].addEventListener('change', (e) => {
+    checkboxTimeAll[0].addEventListener('change', (e) => {
 
         if (!e.target.checked) {
 
             // console.log("not checked");
 
-            checkboxYear.forEach(checkbox => {
+            checkboxTime.forEach(checkbox => {
 
                 // console.log("checkbox", checkbox);
 
                 $(checkbox).find("input").prop("checked", false)
-                selectedTableYears = []
+                selectedTableTimes = []
 
             })
 
-            // console.log("selectedTableYears [not checked]", selectedTableYears);
+            // console.log("selectedTableTimes [not checked]", selectedTableTimes);
 
         } else if (e.target.checked) {
 
             // console.log("checked");
 
-            checkboxYear.forEach(checkbox => {
+            checkboxTime.forEach(checkbox => {
 
                 // console.log("checkbox", checkbox);
 
                 $(checkbox).find("input").prop("checked", true)
-                selectedTableYears.push($(checkbox).find("input").val())
+                selectedTableTimes.push($(checkbox).find("input").val())
 
             })
 
-            // console.log("selectedTableYears [checked]", selectedTableYears);
+            // console.log("selectedTableTimes [checked]", selectedTableTimes);
 
 
         }
