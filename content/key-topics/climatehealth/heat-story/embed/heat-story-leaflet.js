@@ -15,6 +15,68 @@ var featureMouseOver = null;
 var legendControl = null;
 var legendPropertiesByLayer = {};
 var layersExclusive = new Set();
+var indicators = [];
+
+const assignGeoRank = (GeoType) => {
+    switch (GeoType) {
+        case 'Citywide':
+            return 0;
+        case 'Borough':
+            return 1;
+        case 'NYCKIDS2017':
+            return 2;
+        case 'NYCKIDS2019':
+            return 2;
+        case 'UHF34':
+            return 3;
+        case 'UHF42':
+            return 4;
+        case 'Subboro':
+            return 5;
+        case 'CD':
+            return 6;
+        case 'CDTA2020':
+            return 7;
+        case 'NTA2010':
+            return 8;
+        case 'NTA2020':
+            return 9;
+    }
+}
+
+// array of (pretty) geotypes in georank order
+
+const geoTypes = [
+    "Citywide",
+    "Borough",
+    "NYCKIDS",
+    "UHF34",
+    "UHF42",
+    "Subboro",
+    "CD",
+    "CDTA",
+    "NTA"
+]
+
+L.TopoJSON = L.GeoJSON.extend({
+    addData: function (data) {
+      var geojson, key;
+      if (data.type === "Topology") {
+        for (key in data.objects) {
+          if (data.objects.hasOwnProperty(key)) {
+            geojson = topojson.feature(data, data.objects[key]);
+            L.GeoJSON.prototype.addData.call(this, geojson);
+          }
+        }
+        return this;
+      }
+      L.GeoJSON.prototype.addData.call(this, data);
+      return this;
+    }
+  });
+  L.topoJson = function (data, options) {
+    return new L.TopoJSON(data, options);
+};
 
 function init() {
     addLayerButtons();
@@ -22,6 +84,7 @@ function init() {
     setupMap();
     addListeners();
     createLegend();
+    loadIndicators().catch(console.log);
     //$('[data-toggle="tooltip"]').tooltip();
 }
 
@@ -40,8 +103,20 @@ function setupMap() {
       }
       return response.json();
     }).then(data => {
-      const neighborhoodsLayer = L.geoJSON(data, { style: { color: 'black', fillOpacity: 0, weight: 1 }});
-      neighborhoodsLayer.addTo(map);
+      const neighborhoodsLayer = L.geoJSON(
+        data,
+        {
+          name: "Neighborhood",
+          style: { color: 'black', fillOpacity: 0, weight: 1 },
+          displayProperties: {
+            displayPropertyArgs: [{
+                "id": "NTAName",
+                "displayName": "Neightborhood"
+            }]
+          }
+        });
+      //neighborhoodsLayer.addTo(map);
+      layerGroup.addLayer(neighborhoodsLayer);
     });
     /*
      *
@@ -102,6 +177,227 @@ function drawAccordion() {
 }
 
 async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
+    const response = await fetch(url);
+    if (!response.ok) {
+        return null;
+    }
+    const data = await response.json();
+    let colorChrome = null;
+    if (args?.colorFeatureProperty != null) {
+      const values = data.features.map(f => f.properties[args.colorFeatureProperty])
+          .filter(x => x != null && !isNaN(x));
+      colorChroma = chroma.scale([args?.minColor ?? '#fff', args?.maxColor ?? '#000'])
+        .domain([Math.min(...values), Math.max(...values)]);;
+    }
+    const onStyle = (feature) => {
+        const fillColor = args?.colorFeatureProperty != null
+            ? colorChroma(feature.properties[args.colorFeatureProperty])
+            : args?.fillColor;
+
+        const colors = ({
+            ...(fillColor != null && { fillColor: fillColor }),
+            ...(args?.color != null && { color: args.color }),
+            ...(args?.opacity != null && { opacity: args.opacity }),
+            ...(args?.opacity != null && fillColor != null && { fillOpacity: args.opacity * args.opacity }),
+        });
+        return {
+            ...colors,
+        };
+    }
+    const layer = L.geoJSON(
+        data,
+        {
+            style: onStyle,
+            onEachFeature: function(feature, layer) {
+                //layer.bindPopup("Hello popup", {});
+                layer.on('mouseover', function(event) {
+                    layerMouseOver = layer;
+                    featureMouseOver = feature;
+                    layerMouseOver[layer.options._custom_id] = true;
+                    updatePopup(event.latlng);
+                });
+                layer.on('mouseout', function() {
+                    if (layer.options._custom_id == layerMouseOver.options._custom_id) {
+                        layerMouseOver = null;
+                        featureMouseOver = null;
+                    }
+                });
+            },
+            _custom_id: id,
+            displayProperties,
+            name,
+        });
+
+    const legendFunc = () => {
+        if (!args?.fillColor && !args?.color && !args?.minColor && !args?.maxColor) {
+            return '';
+        }
+
+        const background = args?.fillColor
+            ? `background: ${args.fillColor};`
+            : args?.legendColor
+            ? `background: ${args.legendColor};`
+            : '';
+        const borderColor = args?.color ? `border-width: 2px; border-color: ${args?.color}; border-style: solid;` : '';
+        const backgroundCss = (args.colorFeatureProperty != null
+                && args?.minColor != null && args?.maxColor != null)
+            ? `background-image: linear-gradient(to right, ${args.minColor}, ${args?.maxColor});`
+            : ('' + background + borderColor);
+        var legend = name + '<span style="'
+            + backgroundCss
+            + 'height: 20px; width: 100%;'
+            + 'display: block; background-repeat: no-repeat;'
+            + '"></span>'
+        if (args?.colorFeatureProperty) {
+            const values = layer.getLayers()
+                .map(x => x.feature.properties[args.colorFeatureProperty])
+                .filter(x => x != null && !isNaN(x));
+            legend += '<div style="display: block; width: 100%;">'
+                + `<div style="float: left;">${Math.min(...values)}</div>`
+                + `<div style="float: right;">${Math.max(...values)}</div></div>`;
+        }
+        if (args?.legendDescription) {
+            const collapseId = `${id}LegendCollapse`;
+          legend += `<br /><div style="display: block; width: 100%; max-width: 250px;"><a data-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More Info About ${name}</a>`
+            + `<div class="collapse" id="${collapseId}">${args.legendDescription}</div></div>`;
+        }
+        return legend;
+    }
+
+    layer.options.legendFunc = legendFunc;
+    return layer;
+}
+
+/*
+ * Create a layer based on the measures data from DoH
+ */
+async function createMeasuresLayer({ id, name, measureInfo, args, displayProperties }) {
+    const { indicatorName, measureName, geoType, time } = measureInfo;
+    const data = await loadIndicator(indicatorName, measureName, geoType, time);
+
+    const values = data.features.map(f => f.properties.Value)
+        .filter(x => x != null && !isNaN(x));
+    const colorChroma = chroma.scale([args?.minColor ?? '#fff', args?.maxColor ?? '#000'])
+        .domain([Math.min(...values), Math.max(...values)]);;
+    const onStyle = (feature) => {
+        const fillColor = colorChroma(feature.properties.Value);
+
+        const colors = ({
+            ...(fillColor != null && { fillColor: fillColor }),
+            ...(args?.color != null && { color: args.color }),
+            ...(args?.opacity != null && { opacity: args.opacity }),
+            ...(args?.opacity != null && fillColor != null && { fillOpacity: args.opacity * args.opacity }),
+        });
+        return {
+            ...colors,
+        };
+    }
+    const updatedDisplayProperties = {...displayProperties, 
+      displayPropertyArgs: [{
+        "id": "Value",
+        "displayName": measureName,
+      }]
+    };
+    const layer = L.geoJSON(
+        data,
+        {
+            style: onStyle,
+            onEachFeature: function(feature, layer) {
+                //layer.bindPopup("Hello popup", {});
+                layer.on('mouseover', function(event) {
+                    layerMouseOver = layer;
+                    featureMouseOver = feature;
+                    layerMouseOver[layer.options._custom_id] = true;
+                    updatePopup(event.latlng);
+                });
+                layer.on('mouseout', function() {
+                    if (layer.options._custom_id == layerMouseOver.options._custom_id) {
+                        layerMouseOver = null;
+                        featureMouseOver = null;
+                    }
+                });
+            },
+            _custom_id: id,
+            displayProperties: updatedDisplayProperties,
+            name,
+        });
+
+    const legendFunc = () => {
+        if (!args?.fillColor && !args?.color && !args?.minColor && !args?.maxColor) {
+            return '';
+        }
+
+        const background = args?.fillColor
+            ? `background: ${args.fillColor};`
+            : args?.legendColor
+            ? `background: ${args.legendColor};`
+            : '';
+        const borderColor = args?.color ? `border-width: 2px; border-color: ${args?.color}; border-style: solid;` : '';
+        const backgroundCss = (args.colorFeatureProperty != null
+                && args?.minColor != null && args?.maxColor != null)
+            ? `background-image: linear-gradient(to right, ${args.minColor}, ${args?.maxColor});`
+            : ('' + background + borderColor);
+        var legend = name + '<span style="'
+            + backgroundCss
+            + 'height: 20px; width: 100%;'
+            + 'display: block; background-repeat: no-repeat;'
+            + '"></span>'
+        if (args.colorFeatureProperty) {
+            const values = layer.getLayers()
+                .map(x => x.feature.properties.Value)
+                .filter(x => x != null && !isNaN(x));
+            legend += '<div style="display: block; width: 100%;">'
+                + `<div style="float: left;">${Math.min(...values)}</div>`
+                + `<div style="float: right;">${Math.max(...values)}</div></div>`;
+        }
+        if (args.legendDescription) {
+            const collapseId = `${id}LegendCollapse`;
+          legend += `<br /><div style="display: block; width: 100%; max-width: 250px;"><a data-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More Info About ${name}</a>`
+            + `<div class="collapse" id="${collapseId}">${args.legendDescription}</div></div>`;
+        }
+        return legend;
+    }
+
+    layer.options.legendFunc = legendFunc;
+    return layer;
+}
+
+async function createGeotiffLayer({ url, args, name }) {
+    const response = await fetch(url);
+    if (!response.ok) {
+        return null;
+    }
+    const arrayBuffer = await response.arrayBuffer();
+    data = await parseGeoraster(arrayBuffer);
+
+    const colorStart = args?.colorStart || '#0f0';
+    const colorStop = args?.colorStop || '#f00';
+    const colorChroma = chroma.scale([colorStart, colorStop]).domain([data.mins[0], data.maxs[0]]);
+    const legendFunc = () => {
+        const colorStart = args?.colorStart || '#0f0';
+        const colorStop = args?.colorStop || '#f00';
+        const legend = name + '<span style="'
+            + `background-image: linear-gradient(to right, ${colorStart}, ${colorStop});`
+            + 'height: 20px; width: 100%;'
+            + 'display: block; background-repeat: no-repeat;'
+            + '"></span>'
+            + '<span style="position: absolute, left: 0, font-size: 11px, bottom: 3px">0</span>'
+            + '<span style="position: absolute, right: 0, font-size: 11px, bottom: 3px">5</span>';
+        return legend;
+    }
+    const layer = new GeoRasterLayer({
+          georaster: data,
+          opacity: 0.7,
+          resolution: args?.resolution || 64,
+          pixelValuesToColorFn: values => {
+              return values[0] > 0.0001 ? colorChroma(values[0]) : null;
+          },
+          legendFunc,
+      });
+    return layer;
+}
+
+async function createTopoJsonLayer({ id, name, url, args, displayProperties }) {
     const response = await fetch(url);
     if (!response.ok) {
         return null;
@@ -190,41 +486,6 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
     return layer;
 }
 
-async function createGeotiffLayer({ url, args, name }) {
-    const response = await fetch(url);
-    if (!response.ok) {
-        return null;
-    }
-    const arrayBuffer = await response.arrayBuffer();
-    data = await parseGeoraster(arrayBuffer);
-
-    const colorStart = args?.colorStart || '#0f0';
-    const colorStop = args?.colorStop || '#f00';
-    const colorChroma = chroma.scale([colorStart, colorStop]).domain([data.mins[0], data.maxs[0]]);
-    const legendFunc = () => {
-        const colorStart = args?.colorStart || '#0f0';
-        const colorStop = args?.colorStop || '#f00';
-        const legend = name + '<span style="'
-            + `background-image: linear-gradient(to right, ${colorStart}, ${colorStop});`
-            + 'height: 20px; width: 100%;'
-            + 'display: block; background-repeat: no-repeat;'
-            + '"></span>'
-            + '<span style="position: absolute, left: 0, font-size: 11px, bottom: 3px">0</span>'
-            + '<span style="position: absolute, right: 0, font-size: 11px, bottom: 3px">5</span>';
-        return legend;
-    }
-    const layer = new GeoRasterLayer({
-          georaster: data,
-          opacity: 0.7,
-          resolution: args?.resolution || 64,
-          pixelValuesToColorFn: values => {
-              return values[0] > 0.0001 ? colorChroma(values[0]) : null;
-          },
-          legendFunc,
-      });
-    return layer;
-}
-
 let layers = {};
 async function createLayer(layerId) {
     const layerConfig = config.layers.find(l => l.property.id == layerId);
@@ -238,6 +499,9 @@ async function createLayer(layerId) {
     switch (properties.type) {
         case 'geojson':
             layer = await createGeoJsonLayer(properties);
+            break;
+        case 'measureData':
+            layer = await createMeasuresLayer(properties);
             break;
         case 'raster':
             layer = await createGeotiffLayer(properties);
@@ -398,7 +662,7 @@ function featureInfoToHtml(feature, layer) {
 
     if (!featureTable.length || !featureTable.length) {
         return missingDisplay != null
-            ? `<h3>${value['name']}</h3>${missingDisplay}`
+            ? `<h3>${layer.options.name}</h3>${missingDisplay}`
             : '';
     }
     return `<h3>${layer.options.name}</h3><table>${featureTable.join('')}</table>`;
@@ -406,6 +670,7 @@ function featureInfoToHtml(feature, layer) {
 
 function formatPopup(features) {
     const updates = features
+        //.sort((a, b) => (a.sortOrder ?? 999) - (b.sortOrder ?? 999))
         .map(({ feature, layer }) => featureInfoToHtml(feature, layer))
         .filter(x => x != "")
         .join("<br />");
@@ -563,5 +828,478 @@ function addListeners() {
         updatePopup(event.latlng);
     });
 }
+
+async function loadIndicators() {
+  const response = await fetch(data_repo + data_branch + '/indicators/indicators.json');
+  indicators = await response.json();
+  console.log(indicators);
+}
+
+async function loadIndicator(indicatorName, measureName, geoType, time) {
+  //const indicator = data[0];
+  // indicators have measures. we want to search both
+  /*
+  const sampleIndicatorName = "Black carbon";
+  const sampleMeasureName = "Black carbon, Mean";
+  const geoType = 'UHF42';
+  const time = 'Summer 2021';
+  */
+  const indicator = indicators.filter(x => x.IndicatorName == indicatorName)[0];
+  const measure = indicator.Measures.filter(x => x.MeasureName == measureName)[0]; 
+
+  const data = await loadData(indicator);
+  const filteredData = data.filter(d => d.MeasureID == measure.MeasureID && d.GeoType == geoType && d.Time == time);
+  const filteredDataMap = filteredData.reduce((x, y) => {x[y.GeoID] = y; return x}, {})
+  const renderedMap = renderMap(filteredData, measure);
+  const responseTopo = await fetch(renderedMap.url);
+  const topoData = await responseTopo.json();
+  const geoJsonData = topojson.feature(topoData, topoData.objects.collection)
+  geoJsonData.features = geoJsonData.features.map(feature => {
+    const properties = {...feature.properties, ...(filteredDataMap[feature.properties.GEOCODE] ?? {})};
+    return {...feature, properties};
+  });
+  
+  console.log(renderedMap);
+  console.log("** fetch indicators.json");
+
+        /*
+        indicators = data;
+
+        const paramId = url.searchParams.get('id') !== null ? parseInt(url.searchParams.get('id')) : false;
+        
+        renderIndicatorDropdown()
+        renderIndicatorButtons()
+
+        // calling loadIndicator calls loadData, etc, and eventually renderMeasures. Because all 
+        //  of this depends on the global "indicator" object, we call loadIndicator here
+        
+        if (paramId) {
+            loadIndicator(paramId)
+            // console.log('param id is set')
+            globalID = paramId
+
+            // fetch311(paramId)
+        } else {
+            // console.log('no param', url.searchParams.get('id'));
+            loadIndicator()
+        }
+        */
+  return geoJsonData;
+}
+
+const loadData = async (indicator) => {
+
+    console.log("** loadData");
+
+    const response = await fetch(data_repo + data_branch + `/indicators/data/${indicator.IndicatorID}.json`)
+    const data = await response.json()
+    console.log("data [loadData]", data);
+
+    // call the geo file loading function
+
+    await loadGeo(indicator.Measures);
+
+    ful = aq.from(data)
+        .derive({ "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
+        .groupby("Time", "GeoType", "GeoID", "GeoRank")
+
+    aqData = ful
+        .groupby("Time", "GeoType", "GeoID")
+        .orderby(aq.desc('Time'), 'GeoRank')
+    console.log(data);
+    return data;
+}
+
+// ----------------------------------------------------------------------- //
+// function to load geographic data
+// ----------------------------------------------------------------------- //
+
+const loadGeo = async (indicatorMeasures) => {
+
+    console.log("** loadGeo");
+
+    const geoUrl = data_repo + data_branch + `/geography/GeoLookup.csv`; // col named "GeoType"
+
+    const response = await fetch(geoUrl);
+    aq.loadCSV(geoUrl)
+        .then(data => {
+
+            geoTable = data.select(aq.not('Lat', 'Long'));
+
+            // call the data-to-geo joining function
+
+            joinData(indicatorMeasures);
+
+    });
+}
+
+const joinData = (indicatorMeasures) => {
+
+    console.log("** joinData");
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // get metadata fields
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // flatten MeasureID + TimeDescription
+
+    let availableTimes = [];
+
+    // create table column header with display type
+
+    let measurementDisplay = [];
+
+    indicatorMeasures.map(
+
+        measure => {
+
+            let aqAvailableTimes =
+                aq.from(measure.AvailableTimes)
+                .derive({MeasureID: `${measure.MeasureID}`})
+
+            availableTimes.push(aqAvailableTimes);
+
+            let aqMeasurementDisplay =
+                aq.table(
+                {
+                    MeasureID: [measure.MeasureID],
+                    MeasurementType: [measure.MeasurementType],
+                    DisplayType: [measure.DisplayType]
+                })
+
+            measurementDisplay.push(aqMeasurementDisplay);
+
+        }
+    )
+    
+    // bind rows of Arquero tables in arrays
+
+    aqMeasureIdTimes = availableTimes.reduce((a, b) => a.concat(b))
+    let aqMeasurementDisplay = measurementDisplay.reduce((a, b) => a.concat(b))
+
+    // foundational joined dataset
+
+    joinedAqData = aqData
+        .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
+        .rename({'Name': 'Geography'})
+        .join(aqMeasureIdTimes, [["MeasureID", "Time"], ["MeasureID", "TimeDescription"]])
+        .select(
+            "GeoID",
+            "GeoType",
+            "GeoTypeDesc",
+            "GeoTypeShortDesc",
+            "GeoRank",
+            "Geography",
+            "MeasureID",
+            "Time",
+            "Value",
+            "DisplayValue",
+            "CI",
+            "Note",
+            "start_period",
+            "end_period",
+            "ban_summary_flag"
+        )
+        .orderby(aq.desc('end_period'), aq.desc('GeoRank'))
+        .reify()
+
+    // joinedAqData.print()
+
+    // data for summary table
+
+    tableData = joinedAqData
+        .filter(d => d.ban_summary_flag == 0)
+        .join_left(aqMeasurementDisplay, "MeasureID")
+        .derive({
+            MeasurementDisplay: d => op.trim(op.join([d.MeasurementType, d.DisplayType], " ")),
+            DisplayCI: d => op.trim(op.join([d.DisplayValue, d.CI], " "))
+        })
+        .derive({ DisplayCI: d => op.replace(d.DisplayCI, /^$/, "-") }) // replace missing with "-"
+        .select(aq.not("start_period", "end_period"))
+        .objects()
+
+    // data for map
+
+    mapData = joinedAqData
+        // remove Citywide
+        .filter(
+            d => !op.match(d.GeoType, /Citywide/),
+            d => !op.match(d.Geography, /Harborwide/)
+        ) 
+        // .impute({ Value: () => NaN })
+        .objects()
+
+    console.log(mapData);
+}
+
+const renderMap = (
+    data,
+    metadata
+    ) => {
+
+        console.log("** renderMap");
+
+        // console.log("data [renderMap]", data);
+
+        // ----------------------------------------------------------------------- //
+        // get unique time in data
+        // ----------------------------------------------------------------------- //
+        
+        const mapYears =  [...new Set(data.map(item => item.Time))];
+
+        // console.log("mapYears [map.js]", mapYears);
+
+        let mapGeoType            = data[0].GeoType;
+        let geoTypeShortDesc      = data[0].GeoTypeShortDesc;
+        let mapMeasurementType    = metadata.MeasurementType;
+        let displayType           = metadata.DisplayType;
+        let mapGeoTypeDescription = 
+            metadata.AvailableGeographyTypes.filter(
+                gt => gt.GeoType === mapGeoType
+            )[0].GeoTypeDescription;
+
+        let mapTime = mapYears[0];
+        let topoFile = '';
+
+        var color = 'purplered'
+        /*
+        var rankReverse = defaultMapMetadata[0].VisOptions[0].Map[0].RankReverse
+        if (rankReverse === 0) {
+            color = 'purplered'
+        } else if (rankReverse === 1) {
+            color = 'blues'
+        }
+        */
+
+        // console.log('rank reverse?', rankReverse)
+        // console.log('color', color)
+
+
+        // ----------------------------------------------------------------------- //
+        // get unique unreliability notes (dropping empty)
+        // ----------------------------------------------------------------------- //
+
+        /*
+        const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
+
+        document.querySelector("#map-unreliability").innerHTML = ""; // blank to start
+
+        map_unreliability.forEach(element => {
+
+            document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
+            
+        });
+        */
+
+        // ----------------------------------------------------------------------- //
+        // set geo file based on geo type
+        // ----------------------------------------------------------------------- //
+
+        // console.log("mapGeoType [renderMap]", mapGeoType);
+
+        if (mapGeoType === "NTA2010") {
+            topoFile = 'NTA_2010.topo.json';
+        } else if (mapGeoType === "NTA2020") {
+            topoFile = 'NTA_2020.topo.json';
+        } else if (mapGeoType === "CD") {
+            topoFile = 'CD.topo.json';
+        } else if (mapGeoType === "CDTA2020") {
+            topoFile = 'CDTA_2020.topo.json';
+        } else if (mapGeoType === "PUMA") {
+            topoFile = 'PUMA_or_Subborough.topo.json';
+        } else if (mapGeoType === "Subboro") {
+            topoFile = 'PUMA_or_Subborough.topo.json';
+        } else if (mapGeoType === "UHF42") {
+            topoFile = 'UHF42.topo.json';
+        } else if (mapGeoType === "UHF34") {
+            topoFile = 'UHF34.topo.json';
+        } else if (mapGeoType === "NYCKIDS2017") {
+            topoFile = 'NYCKids_2017.topo.json';
+        } else if (mapGeoType === "NYCKIDS2019") {
+            topoFile = 'NYCKids_2019.topo.json';
+        } else if (mapGeoType === "Borough") {
+            topoFile = 'borough.topo.json';
+        }
+
+        // ----------------------------------------------------------------------- //
+        // define spec
+        // ----------------------------------------------------------------------- //
+        
+        const indicatorName = 'test';
+        mapspec = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "title": {
+                "text": indicatorName,
+                "subtitlePadding": 10,
+                "fontWeight": "normal",
+                "anchor": "start", 
+                "fontSize": 18, 
+                "font": "sans-serif",
+                "baseline": "top",
+                "subtitle": `${mapMeasurementType}${displayType && ` (${displayType})`}, by ${mapGeoTypeDescription} (${mapTime})`,
+                "subtitleFontSize": 13
+            },
+            "data": {
+                "values": data,
+                "format": {
+                    "parse": {
+                        "Value": "number"
+                    }
+                }
+            },
+            "config": {
+                "concat": {"spacing": 20}, 
+                "view": {"stroke": "transparent"},
+                "axisY": {"domain": false,"ticks": false},
+            },
+            "projection": {"type": "mercator"},
+            "vconcat": [
+                {
+                    "layer": [
+                        {
+                            "height": 500,
+                            "width": "container",
+                            "data": {
+                                "url": `${data_repo}${data_branch}/geography/borough.topo.json`,
+                                "format": {
+                                    "type": "topojson",
+                                    "feature": "collection"
+                                }
+                            },
+                            "mark": {
+                                "type": "geoshape",
+                                "stroke": "#fafafa",
+                                "fill": "#C5C5C5",
+                                "strokeWidth": 0.5
+                            }
+                        },
+                        {
+                            "height": 500,
+                            "width": "container",
+                            "mark": {"type": "geoshape", "invalid": null},
+                            "params": [
+                                {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
+                            ],
+                            "transform": [
+                                {
+                                    "lookup": "GeoID",
+                                    "from": {
+                                        "data": {
+                                            "url": `${data_repo}${data_branch}/geography/${topoFile}`,
+                                            "format": {"type": "topojson", "feature": "collection"}
+                                        },
+                                        "key": "properties.GEOCODE"
+                                    },
+                                    "as": "geo"
+                                }
+                            ],
+                            "encoding": {
+                                "shape": {"field": "geo", "type": "geojson"},
+                                "color": {
+                                    "condition": {
+                                        "test": "isValid(datum.Value)",
+                                        "bin": false,
+                                        "field": "Value",
+                                        "type": "quantitative",
+                                        "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}}
+                                    },
+                                    "value": "#808080"
+                                },
+                                "stroke": {
+                                    "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
+                                    // "value": "#161616"
+                                    "value": "#dadada"
+                                },
+                                "strokeWidth": {
+                                    "condition": [{"param": "highlight", "empty": false, "value": 1.25}],
+                                    "value": 0.5
+                                },
+                                "order": {
+                                    "condition": [{"param": "highlight", "empty": false, "value": 1}],
+                                    "value": 0
+                                },
+                                "tooltip": [
+                                    {
+                                        "field": "Geography", 
+                                        "title": geoTypeShortDesc
+                                    },
+                                    {
+                                        "field": "DisplayValue",
+                                        "title": mapMeasurementType
+                                    },
+                                ],
+                            },
+                        }
+                    ]
+                },
+                {
+                    "height": 150,
+                    "width": "container",
+                    "config": {
+                        "axisY": {
+                            "labelAngle": 0,
+                            "labelFontSize": 13,
+                        }
+                    },
+                    "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+                    "params": [
+                        {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
+                    ],
+                    "encoding": {
+                        "y": {
+                            "field": "Value", 
+                            "type": "quantitative", 
+                            "title": null,
+                            "axis": {
+                                "labelAngle": 0,
+                                "labelFontSize": 11,
+                                "tickCount": 3
+                            }
+                        },
+                        "tooltip": [
+                            {
+                                "field": "Geography", 
+                                "title": geoTypeShortDesc
+                            },
+                            {
+                                "field": "DisplayValue", 
+                                "title": mapMeasurementType
+                            },
+                        ],
+                        "x": {"field": "GeoID", "sort": "y", "axis": null},
+                        "color": {
+                            "bin": false,
+                            "field": "Value",
+                            "type": "quantitative",
+                            "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}},
+                            "legend": {
+                                "direction": "horizontal", 
+                                "orient": "top-left",
+                                "title": null,
+                                "offset": -30,
+                                "padding": 10,
+                            }
+                        },
+                        "stroke": {
+                            "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
+                            "value": "white"
+                        },
+                        "strokeWidth": {
+                            "condition": [{"param": "highlight", "empty": false, "value": 3}],
+                            "value": 0
+                        }
+                    }
+                }
+            ]
+        }
+        
+        // ----------------------------------------------------------------------- //
+        // render chart
+        // ----------------------------------------------------------------------- //
+
+        //vegaEmbed("#map", mapspec);
+        console.log(mapspec);
+        return {url: `${data_repo}${data_branch}/geography/${topoFile}`,}
+    }
 
 init();
