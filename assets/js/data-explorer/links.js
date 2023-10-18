@@ -302,4 +302,15 @@ const renderLinksChart = (
 
     vegaEmbed("#links", linkspec);
 
+    // Deliver data for download
+    let dataForDownload = [...linkspec.data.values]
+
+    var dltable = aq.from(dataForDownload)
+        .select(aq.not("GeoType","GeoTypeShortDesc_1","GeoTypeShortDesc_2","GeoRank_1","GeoRank_2","start_period_1","end_period_1","ban_summary_flag_1","ban_summary_flag_2","BoroID","DisplayValue_1","DisplayValue_2","GeoTypeDesc_2","Geography_2","start_period_2","end_period_2","MeasureID_1","MeasureID_2"))
+        .derive({ Value_1_Indicator: `'${yIndicatorName} - ${yMeasure && `${yMeasure}`} ${yDisplay && `${yDisplay}`}'`})
+        .derive({ Value_2_Indicator: `'${xIndicatorName} - ${xMeasure} ${xDisplay && `(${xDisplay})`} '`})
+        .print()
+
+    CSVforDownload = dltable.toCSV()
+
 }

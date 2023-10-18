@@ -106,6 +106,10 @@ let showNormalTrend;
 let showTrendComparisons;
 let showLinks;
 
+var CSVforDownload; 
+var downloadedIndicator;
+var downloadedIndicatorMeasurement;
+
 // store hash, so display knows where it just was
 let currentHash;
 let state;
