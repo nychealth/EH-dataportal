@@ -166,7 +166,7 @@ function drawAccordion() {
                   <span class="title" role="heading" aria-level="3">${story.title}</span>
               </a>
               <div class="collapse" id="panel-acc-button-${i}" role="tabpanel"
-                  aria-labelledby="acc-button-01" data-parent="#accordion-01">
+                  aria-labelledby="acc-button-01">
                   <div class="card-body">
                       <p>${story.content}</p>
                   </div>
@@ -858,55 +858,13 @@ async function loadIndicator(indicatorName, measureName, geoType, time) {
     const properties = {...feature.properties, ...(filteredDataMap[feature.properties.GEOCODE] ?? {})};
     return {...feature, properties};
   });
-  
-  console.log(renderedMap);
-  console.log("** fetch indicators.json");
 
-        /*
-        indicators = data;
-
-        const paramId = url.searchParams.get('id') !== null ? parseInt(url.searchParams.get('id')) : false;
-        
-        renderIndicatorDropdown()
-        renderIndicatorButtons()
-
-        // calling loadIndicator calls loadData, etc, and eventually renderMeasures. Because all 
-        //  of this depends on the global "indicator" object, we call loadIndicator here
-        
-        if (paramId) {
-            loadIndicator(paramId)
-            // console.log('param id is set')
-            globalID = paramId
-
-            // fetch311(paramId)
-        } else {
-            // console.log('no param', url.searchParams.get('id'));
-            loadIndicator()
-        }
-        */
   return geoJsonData;
 }
 
 const loadData = async (indicator) => {
-
-    console.log("** loadData");
-
     const response = await fetch(data_repo + data_branch + `/indicators/data/${indicator.IndicatorID}.json`)
     const data = await response.json()
-    console.log("data [loadData]", data);
-
-    // call the geo file loading function
-
-    await loadGeo(indicator.Measures);
-
-    ful = aq.from(data)
-        .derive({ "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
-        .groupby("Time", "GeoType", "GeoID", "GeoRank")
-
-    aqData = ful
-        .groupby("Time", "GeoType", "GeoID")
-        .orderby(aq.desc('Time'), 'GeoRank')
-    console.log(data);
     return data;
 }
 
@@ -914,182 +872,16 @@ const loadData = async (indicator) => {
 // function to load geographic data
 // ----------------------------------------------------------------------- //
 
-const loadGeo = async (indicatorMeasures) => {
-
-    console.log("** loadGeo");
-
-    const geoUrl = data_repo + data_branch + `/geography/GeoLookup.csv`; // col named "GeoType"
-
-    const response = await fetch(geoUrl);
-    aq.loadCSV(geoUrl)
-        .then(data => {
-
-            geoTable = data.select(aq.not('Lat', 'Long'));
-
-            // call the data-to-geo joining function
-
-            joinData(indicatorMeasures);
-
-    });
-}
-
-const joinData = (indicatorMeasures) => {
-
-    console.log("** joinData");
-
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // get metadata fields
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-    // flatten MeasureID + TimeDescription
-
-    let availableTimes = [];
-
-    // create table column header with display type
-
-    let measurementDisplay = [];
-
-    indicatorMeasures.map(
-
-        measure => {
-
-            let aqAvailableTimes =
-                aq.from(measure.AvailableTimes)
-                .derive({MeasureID: `${measure.MeasureID}`})
-
-            availableTimes.push(aqAvailableTimes);
-
-            let aqMeasurementDisplay =
-                aq.table(
-                {
-                    MeasureID: [measure.MeasureID],
-                    MeasurementType: [measure.MeasurementType],
-                    DisplayType: [measure.DisplayType]
-                })
-
-            measurementDisplay.push(aqMeasurementDisplay);
-
-        }
-    )
-    
-    // bind rows of Arquero tables in arrays
-
-    aqMeasureIdTimes = availableTimes.reduce((a, b) => a.concat(b))
-    let aqMeasurementDisplay = measurementDisplay.reduce((a, b) => a.concat(b))
-
-    // foundational joined dataset
-
-    joinedAqData = aqData
-        .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
-        .rename({'Name': 'Geography'})
-        .join(aqMeasureIdTimes, [["MeasureID", "Time"], ["MeasureID", "TimeDescription"]])
-        .select(
-            "GeoID",
-            "GeoType",
-            "GeoTypeDesc",
-            "GeoTypeShortDesc",
-            "GeoRank",
-            "Geography",
-            "MeasureID",
-            "Time",
-            "Value",
-            "DisplayValue",
-            "CI",
-            "Note",
-            "start_period",
-            "end_period",
-            "ban_summary_flag"
-        )
-        .orderby(aq.desc('end_period'), aq.desc('GeoRank'))
-        .reify()
-
-    // joinedAqData.print()
-
-    // data for summary table
-
-    tableData = joinedAqData
-        .filter(d => d.ban_summary_flag == 0)
-        .join_left(aqMeasurementDisplay, "MeasureID")
-        .derive({
-            MeasurementDisplay: d => op.trim(op.join([d.MeasurementType, d.DisplayType], " ")),
-            DisplayCI: d => op.trim(op.join([d.DisplayValue, d.CI], " "))
-        })
-        .derive({ DisplayCI: d => op.replace(d.DisplayCI, /^$/, "-") }) // replace missing with "-"
-        .select(aq.not("start_period", "end_period"))
-        .objects()
-
-    // data for map
-
-    mapData = joinedAqData
-        // remove Citywide
-        .filter(
-            d => !op.match(d.GeoType, /Citywide/),
-            d => !op.match(d.Geography, /Harborwide/)
-        ) 
-        // .impute({ Value: () => NaN })
-        .objects()
-
-    console.log(mapData);
-}
-
 const renderMap = (
     data,
     metadata
     ) => {
-
-        console.log("** renderMap");
-
-        // console.log("data [renderMap]", data);
-
-        // ----------------------------------------------------------------------- //
-        // get unique time in data
-        // ----------------------------------------------------------------------- //
-        
-        const mapYears =  [...new Set(data.map(item => item.Time))];
-
-        // console.log("mapYears [map.js]", mapYears);
-
         let mapGeoType            = data[0].GeoType;
-        let geoTypeShortDesc      = data[0].GeoTypeShortDesc;
-        let mapMeasurementType    = metadata.MeasurementType;
-        let displayType           = metadata.DisplayType;
-        let mapGeoTypeDescription = 
             metadata.AvailableGeographyTypes.filter(
                 gt => gt.GeoType === mapGeoType
             )[0].GeoTypeDescription;
 
-        let mapTime = mapYears[0];
         let topoFile = '';
-
-        var color = 'purplered'
-        /*
-        var rankReverse = defaultMapMetadata[0].VisOptions[0].Map[0].RankReverse
-        if (rankReverse === 0) {
-            color = 'purplered'
-        } else if (rankReverse === 1) {
-            color = 'blues'
-        }
-        */
-
-        // console.log('rank reverse?', rankReverse)
-        // console.log('color', color)
-
-
-        // ----------------------------------------------------------------------- //
-        // get unique unreliability notes (dropping empty)
-        // ----------------------------------------------------------------------- //
-
-        /*
-        const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
-
-        document.querySelector("#map-unreliability").innerHTML = ""; // blank to start
-
-        map_unreliability.forEach(element => {
-
-            document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
-            
-        });
-        */
 
         // ----------------------------------------------------------------------- //
         // set geo file based on geo type
@@ -1120,185 +912,6 @@ const renderMap = (
         } else if (mapGeoType === "Borough") {
             topoFile = 'borough.topo.json';
         }
-
-        // ----------------------------------------------------------------------- //
-        // define spec
-        // ----------------------------------------------------------------------- //
-        
-        const indicatorName = 'test';
-        mapspec = {
-            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "title": {
-                "text": indicatorName,
-                "subtitlePadding": 10,
-                "fontWeight": "normal",
-                "anchor": "start", 
-                "fontSize": 18, 
-                "font": "sans-serif",
-                "baseline": "top",
-                "subtitle": `${mapMeasurementType}${displayType && ` (${displayType})`}, by ${mapGeoTypeDescription} (${mapTime})`,
-                "subtitleFontSize": 13
-            },
-            "data": {
-                "values": data,
-                "format": {
-                    "parse": {
-                        "Value": "number"
-                    }
-                }
-            },
-            "config": {
-                "concat": {"spacing": 20}, 
-                "view": {"stroke": "transparent"},
-                "axisY": {"domain": false,"ticks": false},
-            },
-            "projection": {"type": "mercator"},
-            "vconcat": [
-                {
-                    "layer": [
-                        {
-                            "height": 500,
-                            "width": "container",
-                            "data": {
-                                "url": `${data_repo}${data_branch}/geography/borough.topo.json`,
-                                "format": {
-                                    "type": "topojson",
-                                    "feature": "collection"
-                                }
-                            },
-                            "mark": {
-                                "type": "geoshape",
-                                "stroke": "#fafafa",
-                                "fill": "#C5C5C5",
-                                "strokeWidth": 0.5
-                            }
-                        },
-                        {
-                            "height": 500,
-                            "width": "container",
-                            "mark": {"type": "geoshape", "invalid": null},
-                            "params": [
-                                {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
-                            ],
-                            "transform": [
-                                {
-                                    "lookup": "GeoID",
-                                    "from": {
-                                        "data": {
-                                            "url": `${data_repo}${data_branch}/geography/${topoFile}`,
-                                            "format": {"type": "topojson", "feature": "collection"}
-                                        },
-                                        "key": "properties.GEOCODE"
-                                    },
-                                    "as": "geo"
-                                }
-                            ],
-                            "encoding": {
-                                "shape": {"field": "geo", "type": "geojson"},
-                                "color": {
-                                    "condition": {
-                                        "test": "isValid(datum.Value)",
-                                        "bin": false,
-                                        "field": "Value",
-                                        "type": "quantitative",
-                                        "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}}
-                                    },
-                                    "value": "#808080"
-                                },
-                                "stroke": {
-                                    "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
-                                    // "value": "#161616"
-                                    "value": "#dadada"
-                                },
-                                "strokeWidth": {
-                                    "condition": [{"param": "highlight", "empty": false, "value": 1.25}],
-                                    "value": 0.5
-                                },
-                                "order": {
-                                    "condition": [{"param": "highlight", "empty": false, "value": 1}],
-                                    "value": 0
-                                },
-                                "tooltip": [
-                                    {
-                                        "field": "Geography", 
-                                        "title": geoTypeShortDesc
-                                    },
-                                    {
-                                        "field": "DisplayValue",
-                                        "title": mapMeasurementType
-                                    },
-                                ],
-                            },
-                        }
-                    ]
-                },
-                {
-                    "height": 150,
-                    "width": "container",
-                    "config": {
-                        "axisY": {
-                            "labelAngle": 0,
-                            "labelFontSize": 13,
-                        }
-                    },
-                    "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
-                    "params": [
-                        {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
-                    ],
-                    "encoding": {
-                        "y": {
-                            "field": "Value", 
-                            "type": "quantitative", 
-                            "title": null,
-                            "axis": {
-                                "labelAngle": 0,
-                                "labelFontSize": 11,
-                                "tickCount": 3
-                            }
-                        },
-                        "tooltip": [
-                            {
-                                "field": "Geography", 
-                                "title": geoTypeShortDesc
-                            },
-                            {
-                                "field": "DisplayValue", 
-                                "title": mapMeasurementType
-                            },
-                        ],
-                        "x": {"field": "GeoID", "sort": "y", "axis": null},
-                        "color": {
-                            "bin": false,
-                            "field": "Value",
-                            "type": "quantitative",
-                            "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}},
-                            "legend": {
-                                "direction": "horizontal", 
-                                "orient": "top-left",
-                                "title": null,
-                                "offset": -30,
-                                "padding": 10,
-                            }
-                        },
-                        "stroke": {
-                            "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
-                            "value": "white"
-                        },
-                        "strokeWidth": {
-                            "condition": [{"param": "highlight", "empty": false, "value": 3}],
-                            "value": 0
-                        }
-                    }
-                }
-            ]
-        }
-        
-        // ----------------------------------------------------------------------- //
-        // render chart
-        // ----------------------------------------------------------------------- //
-
-        //vegaEmbed("#map", mapspec);
-        console.log(mapspec);
         return {url: `${data_repo}${data_branch}/geography/${topoFile}`,}
     }
 

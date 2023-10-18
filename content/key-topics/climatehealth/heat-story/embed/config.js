@@ -13,6 +13,11 @@
  *      id: unique id for the layer
  *      name: human readable name of the layer
  *      type: layer type for rendering. can be raster or geojson
+ *      measureInfo: this is used if you are using another data explorer data setting
+ *        indicatorName: name of the indicator from the explorer data
+ *        measureName: name of the measure from the explorer data
+ *        geoType: the geotype of the data set in the explorer. usually UHF42 or borough
+ *        time: the time for the data set. the datasets usually have a time field.
  *      url: file location for the layer
  *      exclusive: if true, then this is an exclusive layer. only one exclusive layer can be done at a time
  *      args:
