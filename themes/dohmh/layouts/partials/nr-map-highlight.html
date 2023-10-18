@@ -1,5 +1,12 @@
 <div id="vis1" class="chartdest" style="width: 100%; height: 300px;"></div>
 
+<style>
+
+  .marks:hover {
+    cursor: pointer
+  }
+</style>
+
 <script type="text/javascript">
     var spec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -78,28 +85,71 @@
       var neighborhoods = [];
       var neighb = [];
       var neighbName;
+
+      var parts
     
       // load UHF42.csv to get Geoname, etc - to power neighborhood highlight for nonclickable map.
       d3.csv(baseURL + '/UHF42.csv').then(data => {
         neighborhoods = data;
         console.table(neighborhoods)
-    
-        var parts = window.location.href.split('/'); // get URL Path
-        neighbName = parts[parts.length - 2];
+
+        parts = window.location.href.split('/'); // get URL Path
+
+        if (parts.length == 7) {
+          neighbName = parts[parts.length - 2]; // if it's a Neighborhood Landing Page
+        } else if (parts.length == 8) {
+          neighbName = parts[parts.length - 3]; // if it's a Neighborhood Report
+        } else {
+          console.log('could not get neighbName')
+        }
+        
         neighb = neighborhoods.filter(x => x.GEONAME == neighbName) // get neighborhood data
         var geocode = neighb[0].GEOCODE // get GEOCODE
-        document.getElementById('zips').innerHTML = neighb[0].ZIPS // get ZIPS
-    
+
         drawChart(geocode)
+
+        // print ZIPS on neighborhood page
+        var ZIPS = document.getElementById('zips')
+        if (typeof zips !== 'undefined') {
+          zips.innerHTML = neighb[0].ZIPS
+        } else {}
+
+        // send name to breadcrumbs, for output page
+        var link = document.getElementById('neighbLink')
+        var dest = baseURL + 'neighborhood-reports/' + neighb[0].GEONAME
+
+        if (typeof link !== 'undefined') {
+          link.setAttribute("href",dest) 
+        } else {}
+
+        
+
+    
       })
     
       // redraws map with highlighted neighborhood 
       function drawChart(x) {
         spec.layer[1].encoding.stroke.condition.test = `datum['GEOCODE'] == '${x}'`
         spec.layer[1].encoding.strokeWidth.condition.test = `datum['GEOCODE'] == '${x}'`
-        vegaEmbed('#vis1', spec, {"actions": false}).catch(console.warn);
+        vegaEmbed('#vis1', spec, {"actions": false}).then(result => {
+          result.view.addEventListener('click', function(event, item) {
+             console.log('CLICK', event, item);
+            // console.log(item.datum)
+
+            // send to new page
+            window.location = '{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(item.datum.GEONAME)
+          });
+          }).catch(console.warn);
       }
 
-      vegaEmbed('#vis1', spec, {"actions": false}).catch(console.warn);
+      vegaEmbed('#vis1', spec, {"actions": false}).then(result => {
+        result.view.addEventListener('click', function(event, item) {
+           console.log('CLICK', event, item);
+          // console.log(item.datum)
+
+          // send to new page
+          window.location = '{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(item.datum.GEONAME)
+        });
+        }).catch(console.warn);
 
 </script>

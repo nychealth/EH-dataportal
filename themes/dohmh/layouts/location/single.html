@@ -128,121 +128,50 @@
     var data_download_loc = "{{ .data_download_loc }}"
 </script>
 
-<section class="container-fluid pl-lg-6" id="skip-header-target">
-    <div class="row">
+<section class="container-fluid" id="skip-header-target">
 
-        <div class="col-lg-3 collapse d-lg-block sidebar-report d-print-none" id="sidebar-nav">
-            <div class="mt-5">
-                <a class="sr-only sr-only-focusable skip-menu" href="#primary-content">Skip Nav</a>
-
-                <p class="home-label font-weight-bold border-bottom">Change Report</p>
-                <nav role="navigation">
-                    <div class="">
-                        {{- $neighborhood := $.Scratch.Get "neighborhoodDir" -}}
-                        {{- $report := $.Scratch.Get "reportFile" -}}
-                        {{- partial "location_sub_nav" (dict  "neighborhood" $neighborhood "report" $report) -}}
-                    </div>
-                </nav>
-
-                <hr class="mt-2">
-
-                <p class="mt-4 home-label font-weight-bold border-bottom">Change Neighborhood</p>
-
-                <div style="height: 350px">
-                {{- partial "nr-clickable-uhf" . -}}
+    <div class="row mt-4">
+        <div class="col-lg-9 mx-auto col-12">
+            <nav aria-label="breadcrumb" class="mb-2">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/neighborhood-reports/">Neighborhood Reports</a></li>
+                    <li class="breadcrumb-item"><a href="" id="neighbLink">{{ $.Params.neighborhood }}</a></li>
+                    <li class="breadcrumb-item active"><a href="{{ .RelPermalink }}">{{ $.Params.title }}</a></li>
 
 
-                </div>
+                </ul>
+            </nav>
 
-                <form action="/neighborhood-reports" method="get" class="autocomplete-form">
-                    <div class="row no-gutters">
-                        <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">What NYC
-                            neighborhood are you interested in?</label>
-                        <div class="col-9">
-                            <div class="autocomplete-wrapper">
-                                <select name="last-neighborhood" id="last-neighborhood">
-                                    <option value="">Select a neighborhood</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <button type="submit" class="btn-primary btn btn-block fs-sm">Go</button>
-                        </div>
-                    </div>
-                </form>
+            <h1 class="report-title">{{ $.Params.title }} in 
+                <span class="sub-title">{{ $.Params.neighborhood }}</span>
+            </h1>
 
-                <button onclick="downloadData()" class="btn btn-sm btn-block btn-report mt-4" target="_blank"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>
-
-                <button onclick="window.print()" class="btn btn-sm btn-block btn-report" target="_blank"><i class="fas fa-print mr-1"></i>Print Report</button>
-
-
-            </div>
-            <!-- .sticky-top -->
-
-        </div>
-        <!-- .col -->
-
-        <script>
-
-            // loading report CSV data here, so it only loads once per location
-
-            var arqTable;
-            var downloadLoc = "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/data/" + data_download_loc
-
-            // loading report-level CSV data
-
-            aq.loadCSV(
-                downloadLoc,
-                { autoMax: 10000,  parse: { time: String } }
-            )
-            .then(data => { arqTable = data })
-
-            {{/*  console.log("arqTable", arqTable);  */}}
-
-
-            // set data download location
-            var reportData;
-            var download;
-
-            // create an element, create the CSV, and download it
-            function downloadData() {
-
-                download = arqTable
-                    .select(aq.not('report_id','indicator_id','data_field_name','start_date','end_date')) // drop unnecessary columns
-                    .filter(d => d.neighborhood == '{{ .geo_entity_name }}')
-
-                let downloadTableCSV = download.toCSV(); // format as CSV
-                // Data URI
-                let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
-                let hiddenElement = document.createElement('a');
-                hiddenElement.href = csvData;
-                hiddenElement.target = '_blank';
-                hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - {{ .geo_entity_name }}.csv";
-                hiddenElement.click();
-
-                gtag('event', 'file_download', {
-                    'file_name': hiddenElement.download,
-                    'file_extension': '.csv',
-                    'link_text': 'Download Report Data'
-                });
-
-            };
-
-        </script>
-
-        <div class="col-12 col-lg-9 overflow-hidden reports" id="primary-content">
-            <div class="my-5 p-mt-sm">
-                <div class="px-lg-6 my-4 p-mt-sm">
-                    <h1 class="report-title">{{ $.Params.title }} in<br>
-                        <span class="sub-title">{{ $.Params.neighborhood }}</span>
-                    </h1>
-                    <p class="report-description">{{ .report_description }}</p>
-
+            <div class="row">
+                <div class="col-md-7 h-100">
+                    <p class="report-description fs-md">{{ .report_description }}</p>
+    
                     <p><strong style="color:#00923E">{{ .geo_entity_name }}</strong> includes ZIP Codes: <span
-                              class="home-label">{{ .zip_code }}</span>.</p>
+                              class="home-label font-weight-bold">{{ .zip_code }}</span>.</p>
 
-                    <hr class="mt-4 d-print-none">
+                    <nav role="navigation">
+                        <div class="">
+                            {{- $neighborhood := $.Scratch.Get "neighborhoodDir" -}}
+                            {{- $report := $.Scratch.Get "reportFile" -}}
+                            {{- partial "location_sub_nav" (dict  "neighborhood" $neighborhood "report" $report) -}}
+                        </div>
+                    </nav>
+                </div>
+    
+                <div class="col-md-5 h-100">
+                    <div class="border" style="height: 100%">
+                        {{- partial "nr-map-highlight" . -}}
+                    </div>
+                </div>
+            </div>
 
+            <div class="row mt-4">
+                <div class="col-12">
                     <div>
 
                         {{- range $index, $content := .report_content -}}
@@ -308,12 +237,75 @@
                         {{- end -}}
 
                     </div>
+
+
                 </div>
-                <!-- .narrow -->
             </div>
+
+            <div class="row mt-2 mb-4">
+                <div class="col-sm-6">
+                    <button onclick="window.print()" class="btn btn-sm btn-block btn-report" target="_blank"><i class="fas fa-print mr-1"></i>Print Report</button>
+                </div>
+        
+                <div class="col-sm-6">
+                    <button onclick="downloadData()" class="btn btn-sm btn-block btn-report" target="_blank"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>
+                </div>
+            </div>
+
+
         </div>
+
+
+
     </div>
-    <!-- .row -->
+
+    <script>
+
+        // loading report CSV data here, so it only loads once per location
+
+        var arqTable;
+        var downloadLoc = "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/data/" + data_download_loc
+
+        // loading report-level CSV data
+
+        aq.loadCSV(
+            downloadLoc,
+            { autoMax: 10000,  parse: { time: String } }
+        )
+        .then(data => { arqTable = data })
+
+        {{/*  console.log("arqTable", arqTable);  */}}
+
+
+        // set data download location
+        var reportData;
+        var download;
+
+        // create an element, create the CSV, and download it
+        function downloadData() {
+
+            download = arqTable
+                .select(aq.not('report_id','indicator_id','data_field_name','start_date','end_date')) // drop unnecessary columns
+                .filter(d => d.neighborhood == '{{ .geo_entity_name }}')
+
+            let downloadTableCSV = download.toCSV(); // format as CSV
+            // Data URI
+            let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
+            let hiddenElement = document.createElement('a');
+            hiddenElement.href = csvData;
+            hiddenElement.target = '_blank';
+            hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - {{ .geo_entity_name }}.csv";
+            hiddenElement.click();
+
+            gtag('event', 'file_download', {
+                'file_name': hiddenElement.download,
+                'file_extension': '.csv',
+                'link_text': 'Download Report Data'
+            });
+
+        };
+
+    </script>
 
 </section>
 {{/* Make sure we know what report content to load and that content_yml is set. If not we dont display the content */}}
@@ -431,77 +423,16 @@
 
 {{- end -}}
 
-
-{{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
-{{ $secureJS := $js | resources.Fingerprint "sha512" }}
-<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
-
-{{/* {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
-{{ $secureJS := $js | resources.Fingerprint "sha512" }}
-<script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
-*/}}
-
 {{- $js := resources.Get "js/uhflist.js" -}}
 {{ $secureJS := $js | resources.Fingerprint "sha512" }}
 <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-
 <script type="text/javascript">
-    // https://www.aspsnippets.com/Articles/Populate-DropDownList-from-JSON-Array-using-JavaScript.aspx
-    function PopulateDropDownList() {
-        //Build an array containing Neighborhood records.
-        //UHFList.js contains a variable 'neighborhoods' with names zips and ids
-
-        var ddlNeighborhoods = document.getElementById("last-neighborhood");
-
-        //Add the Options to the DropDownList.
-        for (var i = 0; i < neighborhoods.length; i++) {
-            var option = document.createElement("OPTION");
-
-            //Set Neighborhood Name in Text part.
-            option.innerHTML = neighborhoods[i].namezip;
-
-            //Set Neighborhood Id in Value part.
-            option.value = neighborhoods[i].page_name;
-
-            //Add the Option element to DropDownList.
-            ddlNeighborhoods.options.add(option);
-        }
-    }
-</script>
-
-<script type="text/javascript">
-    PopulateDropDownList();
-    var selectEl = document.querySelector('#last-neighborhood')
-    accessibleAutocomplete.enhanceSelectElement({
-        autoselect: true,
-        confirmOnBlur: true,
-        defaultValue: "",
-        minLength: 2,
-        selectElement: selectEl
-    })
-
-    // get report path relative to section starting with "neighborhood-reports" - makes it agnostic w/r/t server
+    // get report path relative to section starting with "neighborhood-reports"
     var thisURL = window.location.pathname.match(/neighborhood-reports.*/)
-    var report = thisURL[0].split("/")[2];
-    reportURL = '/' + report
-
-    // highlight single neighborhood in partial nr-clickable-uhf
-    var thisNeighb = thisURL[0].split("/")[1];
-    highlightNeighborhood(thisNeighb)
-
-    // check report and declare report
-
-    // this takes the form and on submit, sends page to a new location.
-    var searchForm = document.getElementById('last-neighborhood-select') // this is last-neighborhood-select because of changes applied by the AA JS.
-
-    document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
-        e.preventDefault(); // prevent page re-load
-        var locVal = searchForm.options[searchForm.selectedIndex].value;
-        console.log("locVal", locVal);
-        // window.location = baseURL + 'neighborhood-reports/'+ DOMPurify.sanitize(locVal) + "/" + report;
-        window.location = '{{ site.BaseURL }}neighborhood-reports/' + DOMPurify.sanitize(locVal) + "/" + report;
-    });
+    var thisNeighb = thisURL[0].split("/")[1]; // get this neighborhood
+    var report = thisURL[0].split("/")[2]; // get this report
+    reportURL = '/' + report // get URL extension
 
 </script>
 

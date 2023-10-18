@@ -90,16 +90,7 @@
         ]
       }
 
-      /*
-        RE-DO EMBED FUNCTIONS:
-        - Add function that identifies whether this is on a NEIGHBORHOOD page; if it is, get the GEOCODE, pass it in to the initial draw function.
-        - Pass in a 0/1 about whether or not we want this clickable when it's drawn. (call this after the partial?)
-
-      */
-
-
-
-      // draw map
+      // draw map, with event listener to power clickability
       function drawMap() {
         console.log('map drawn.')
         vegaEmbed('#vis1', spec, {"actions": false}).then(result => {
@@ -107,48 +98,12 @@
              console.log('CLICK', event, item);
             // console.log(item.datum)
 
-             loadPage(item.datum.GEONAME) // clicks to new page.
-
+            // send to new page
+            window.location = '{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(item.datum.GEONAME) + reportURL
           });
           }).catch(console.warn);
       }
 
-      // runs the click -> new page
-      function loadPage(x) {
-        window.location = '{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(x) + reportURL
-      }
-
-      // draw on page load
-      drawMap()
-
-      // are we on a NR output page? Runs from neighborhood report output pages, passing in Geocode
-      function highlightNeighborhood(x) {
-        console.log('highlight neighborhood running')
-        console.log(x)
-
-        // then run d3.csv to ingest UHF42, filter by neighborhood name path, and get GeoCode - then re-draw map, add event listener.
-        d3.csv(baseURL + '/UHF42.csv').then(data => {
-          neighborhoods = data;
-          // console.table(neighborhoods)
-      
-          var thisNeighb = neighborhoods.filter(y => y.GEONAME == x) // get neighborhood data
-          // console.table(thisNeighb)
-          var geocode = thisNeighb[0].GEOCODE // get GEOCODE
-      
-          // change Spec prior to drawing chart - with highlights applied
-          changeSpec(geocode)
-
-        })
-      }
-
-      // changes Spec, re-draws map.
-      function changeSpec(x) {
-        spec.layer[1].encoding.stroke.condition.test = `datum['GEOCODE'] == '${x}'`
-        spec.layer[1].encoding.strokeWidth.condition.test = `datum['GEOCODE'] == '${x}'`
-        console.log('spec changed - neighborhood highlight, ' + x)
-        // run drawMap
-        drawMap()
-      }
-
+      drawMap() // on page load
 
 </script>
