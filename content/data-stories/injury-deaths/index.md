@@ -57,9 +57,9 @@ Among 15- to 24-year-olds from 2017 to 2019, we also see disparities in homicide
 
 Although somewhat broad, we hypothesize that borough differences in homicides may signal unique histories of the neighborhoods that make up each borough. We know there is a history of disinvestment and investment that varies by NYC neighborhood, creating different resources and opportunities. Distribution of homicide by place offers a glimpse into the broader physical, social and economic context — namely, housing and park quality and availability, access to schools, jobs, opportunities and health care. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-explorer/violence/?id=2375#display=summary">To learn more about differences in injuries from violence, refer to the 2016 community-district level data.</a>
 
-Among New Yorkers aged 15 to 24, suicide rates are similar across race/ethnicity and across boroughs. However, within this age group of young adults, Staten Island has a lower suicide rate (less than half) than the other boroughs.
+Among New Yorkers ages 15 to 24, suicide rates are similar across race/ethnicity and across boroughs. However, within this age group of young adults, Staten Island has a lower suicide rate (less than half) than the other boroughs.
 
-Both homicide and suicide among people aged 15 to 24 are much more common among young males than young females. Males in this age group have homicide rates that are six times the rate of females and suicide rates that are three times the rate of females.
+Both homicide and suicide among people ages 15 to 24 are much more common among young males than young females. Males in this age group have homicide rates that are six times the rate of females and suicide rates that are three times the rate of females.
 
 #### Ages 24 to 34: More suicides than any other age group.
 
@@ -93,13 +93,6 @@ Among New Yorkers ages 35 to 44, the suicide rate among men is more than double 
 In NYC, most homicide deaths among young and middle-aged adults occur with guns. <a href="https://www.pewresearch.org/short-reads/2023/04/26/what-the-data-says-about-gun-deaths-in-the-u-s/"> Nationwide, guns account for about 8 out of every 10 homicide deaths. Stabbing was the second most common mechanism of homicide deaths in NYC.</a>
 
 Hanging is the leading mechanism of suicides among young and middle-aged New Yorkers, whereas guns are the leading mechanism of suicides nationwide. Guns are responsible for relatively few suicides among adults ages 15 to 44 in NYC.
-
-</div>
-<div class="wide my-4">
-<img src="comprehensive-approach-to-suicide-prevention.png" style="width:100%">
-<em><a href="https://sprc.org/effective-prevention/comprehensive-approach">From the Suicide Prevention Resource Center</a></em>.
-</div>
-<div class="narrow">
 
 Access to means is a key risk factor for suicide, and how easily and how often certain suicide means are used are shaped by our environments. Means reduction— removing access to ways people can attempt suicide — is a key part of a comprehensive suicide prevention strategy. Many people who attempt suicide do so during a short-term crisis and, therefore, spend relatively little time thinking about the attempt before taking action. <a href="https://www.hsph.harvard.edu/means-matter/means-matter/duration/"> (According to one study of suicide attempt survivors, nearly half spent less than 10 minutes) </a>. For these people especially, the availability of lethal means (for example, access to a firearm or jumping from a building) can be the difference between thinking about suicide and making an attempt. The more lethal the means, the more likely a person will not survive an attempt.
 
