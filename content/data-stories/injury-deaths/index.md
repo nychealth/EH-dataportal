@@ -41,7 +41,7 @@ Suicide and homicide do not just affect the immediate victims. The impacts radia
 
 For each subgroup within young and middle-aged New Yorkers — ages 15 to 24, 25 to 34, and 35 to 44 — the homicide and suicide patterns look slightly different.
 
-#### Age 15 to 24: Homicides and suicides are the second- and third-leading causes of death.
+#### Ages 15 to 24: Homicides and suicides are the second- and third-leading causes of death.
 
 From 2017 to 2019, Black New Yorkers between the ages of 15 to 24 died by homicide at a higher rate than people of other racial and ethnic groups of the same age. White and Asian people this age had a homicide rate of close to zero.
 
