@@ -117,37 +117,6 @@ Explore more data here:
 </div>
 <div class="narrow">
 
-<table class="table table-striped" id="glossary">
-  <thead>
-    <tr class="table-dark">
-      <th scope="col">Term</th>
-      <th scope="col">Definition</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">Unintentional</th>
-      <td>Injury death that occurred without intent to cause harm, also known as “accident.”</td>
-    </tr>
-    <tr>
-      <th scope="row">Intentional</th>
-      <td>Injury death that occurred with the intent to cause harm. Intentional deaths are further classified as homicides or suicides.</td>
-    </tr>
-    <tr>
-      <th scope="row">Homicide</th>
-      <td colspan="2">Intentional death resulting from injuries inflicted by another person.</td>
-    </tr>
-    <tr>
-      <th scope="row">Suicide</th>
-      <td colspan="2">ntentional injury death resulting from self-harm. </td>
-    </tr>
-    <tr>
-      <th scope="row">Undetermined</th>
-      <td colspan="2">Injury death for which the intent cannot be determined.</td>
-    </tr>
-  </tbody>
-</table>
-
 <hr class="my-2">
 
 <div style="border-left: 5px solid lightgray; padding: 5px; font-size: 14px;">
