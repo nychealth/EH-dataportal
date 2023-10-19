@@ -18,8 +18,8 @@ keywords:
     "means reduction",
     "violence",
   ]
-image: ds-sanitation-trucks.jpg
-photocredit: "Michael Appleton/Mayoral Photography Office"
+image: ds-injury.jpeg
+photocredit: "Ed Reed/Mayoral Photography Office"
 ---
 
 ## Injury deaths among young and middle-aged adults in New York City: with a focus on homicide and suicide
