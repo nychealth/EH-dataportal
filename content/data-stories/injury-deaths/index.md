@@ -1,6 +1,6 @@
 ---
 title: "Intentional injury deaths among young and middle-aged adults in New York City"
-date: 2023-03-20T13:11:44-04:00
+date: 2023-10-18T13:11:44-04:00
 draft: false
 seo_title: "Injury deaths in NYC adults: how homicide and suicide contribute"
 seo_description: "A data story on deaths due to injury - and ways we can prevent them."
@@ -28,7 +28,7 @@ Young and middle-aged adults (aged 15 to 44) do not typically die from the natur
 
 Below we focus on homicide and suicide, reflecting areas of focus in the NYC Health Department’s recently released HealthyNYC, which identifies the major drivers of decreasing life expectancy and health equity in our city and identifies strategies to reduce each driver’s impact.
 
-Suicide and homicide do not just affect the immediate victims. The impacts radiate, potentially widening disparities and causing stress, trauma and other negative health effects for victims’ friends, neighbors, colleagues and family members. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/violence/"> In communities where New Yorkers are more likely to experience either homicide or suicide, violence is both a personal and public health concern. Below we focus on homicide and suicide.</a>
+Suicide and homicide do not just affect the immediate victims. The impacts radiate, potentially widening disparities and causing stress, trauma and other negative health effects for victims’ friends, neighbors, colleagues and family members. [In communities where New Yorkers are more likely to experience either homicide or suicide, violence is both a personal and public health concern](../violence/). Below we focus on homicide and suicide.
 
 <div style="border-left: 5px solid lightgray; padding: 5px; font-size: 14px;">
 <em><i class="fas fa-hands-helping text-center mr-1"></i>New Yorkers seeking support with their mental health can connect to trained counselors, for free and in over 200 languages, through 988. For 24/7 support, call or text 988. If you or someone you know is at immediate risk of hurting themselves, or in immediate danger, call 911. If you or someone you know is at immediate risk of hurting themselves, or in immediate danger, call 911.</em></div>
@@ -45,7 +45,7 @@ For each subgroup within young and middle-aged New Yorkers — ages 15 to 24, 25
 
 From 2017 to 2019, Black New Yorkers between the ages of 15 to 24 died by homicide at a higher rate than people of other racial and ethnic groups of the same age. White and Asian people this age had a homicide rate of close to zero.
 
-Racial disparities signal historical and structural origins that have and continue to deny resources to people of color. These include things like social structures that limit access to basic needs (such as health care) which are perpetuated by racism, residential segregation — like <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/redlining/"> redlining </a> — and systematic disinvestment in neighborhoods. Disinvestment can be things like denying people access to loans to buy homes, housing neglect, underfunded schools, fewer job opportunities and lower-paying jobs, emphasis on policing over pro-social resources, and others. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-explorer/violence/?id=2375#display=summary"> Over time, disinvestment puts residents in high-poverty neighborhoods at a greater risk of experiencing violence.</a>
+Racial disparities signal historical and structural origins that have and continue to deny resources to people of color. These include things like social structures that limit access to basic needs (such as health care) which are perpetuated by racism, residential segregation — like <a href="../redlining/"> redlining </a> — and systematic disinvestment in neighborhoods. Disinvestment can be things like denying people access to loans to buy homes, housing neglect, underfunded schools, fewer job opportunities and lower-paying jobs, emphasis on policing over pro-social resources, and others. <a href="../../data-explorer/violence/?id=2375#display=summary"> Over time, disinvestment puts residents in high-poverty neighborhoods at a greater risk of experiencing violence.</a>
 
 <iframe title="Homicide death rate, by race/ethnicity" class="my-4" aria-label="Split Bars" id="datawrapper-chart-XMN9V" src="https://datawrapper.dwcdn.net/XMN9V/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="191" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
