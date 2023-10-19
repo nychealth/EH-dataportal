@@ -35,9 +35,7 @@ Suicide and homicide do not just affect the immediate victims. The impacts radia
 
 </div>
 <div class="wide my-4">
-<iframe title="Preventable injuries
-like Homicide and Suicide are top causes of death in NYC - especially age 15 to 44" aria-label="Scatter Plot" id="datawrapper-chart-7m9V4" src="https://datawrapper.dwcdn.net/7m9V4/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="720" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
-</script>
+<iframe title=" Homicide and Suicideare among top causes of death from  ages 15 to 44" aria-label="Scatter Plot" id="datawrapper-chart-jtm6b" src="https://datawrapper.dwcdn.net/jtm6b/6/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="720" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 <div class="narrow">
 
