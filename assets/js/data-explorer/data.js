@@ -663,7 +663,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
                 // get secondary measure data
 
-                .filter(d => d.MeasureID === `${secondaryMeasureId}`)
+                .filter(`d => d.MeasureID === ${secondaryMeasureId}`)
 
                 .join(
                     geoTable,
