@@ -57,8 +57,7 @@ const renderComparisonsChart = (
     let compIndicatorLabel  = [... new Set(metadata.array("IndicatorLabel"))];
     let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
     let compDisplayTypes    = [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
-    let compGeoTypeNames    = [... new Set(metadata.array("GeoTypeName"))];
-    let compGeoIDs          = metadata.objects()[0].GeoID ? [... new Set(metadata.array("GeoID"))] : null;
+    // let compGeoIDs          = metadata.objects()[0].GeoID ? [... new Set(metadata.array("GeoID"))] : null;
 
     // console.log(">>>> compGeoIDs", compGeoIDs);
 
