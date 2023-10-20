@@ -369,14 +369,14 @@ const renderComparisonsChart = (
     
     vegaEmbed("#trend", compspec);
 
-    data.print()
+    let dataForDownload = [...compspec.data.values] // create a copy
+    // console.log(dataForDownload===mapspec.data.values) 
 
-    /*
-    trendData = aq.from(compspec.data.values)
-        .select(aq.not("GeoType","GeoTypeDesc","GeoTypeShortDesc","GeoRank","ban_summary_flag"))
+    let downloadTable = aq.from(dataForDownload)
+        .derive({Indicator: `'${indicatorName}: ${plotTitle} ${plotSubtitle}'`}) // add indicator name and type column
+        .select(aq.not("GeoType","GeoTypeDesc","GeoTypeShortDesc","GeoRank","MeasureID","ban_summary_flag","DisplayValue","start_period","end_period"))
         .print()
-    */
 
-    CSVforDownload = data.toCSV()
+    CSVforDownload = downloadTable.toCSV()
     
 }
