@@ -10,12 +10,17 @@ const renderMap = (
         console.log("** renderMap");
 
         // console.log("data [renderMap]", data);
+        // console.log("metadata [renderMap]", metadata);
 
         // ----------------------------------------------------------------------- //
         // get unique time in data
         // ----------------------------------------------------------------------- //
-        
+
         const mapYears =  [...new Set(data.map(item => item.Time))];
+
+        // ----------------------------------------------------------------------- //
+        // pull metadata
+        // ----------------------------------------------------------------------- //
 
         // debugger;
 
