@@ -569,8 +569,8 @@ const updateTrendComparisonsData = (e) => {
     // use filtered metadata to filter data
 
     aqFilteredComparisonsData = aqFilteredComparisonsMetadata
-        .select("IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure")
-        .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
+        .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
+        .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
 
         // put host indicator first, so it gets the black line
         .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
@@ -1049,21 +1049,35 @@ const renderMeasures = async () => {
                 
                 let compGroup = titleGroup.filter(aq.escape(d => d.ComparisonID == comp))
                 
-                let compIndicatorLabel = [... new Set(compGroup.array("IndicatorLabel"))];
-                let compMeasurementType = [... new Set(compGroup.array("MeasurementType"))];
-                let compY_axis_title = [... new Set(compGroup.array("Y_axis_title"))];
-                let compIndicatorMeasure = [... new Set(compGroup.array("IndicatorMeasure"))];
-                let compName = [... new Set(compGroup.array("ComparisonName"))];
+                let compIndicatorLabel   = [... new Set(compGroup.array("IndicatorLabel"))];
+                let compMeasurementType  = [... new Set(compGroup.array("MeasurementType"))];
+                let compY_axis_title     = [... new Set(compGroup.array("Y_axis_title"))];
+                // let compIndicatorMeasure = [... new Set(compGroup.array("IndicatorMeasure"))];
+                let compGeoTypeName      = [... new Set(compGroup.array("GeoTypeName"))];
+                let compGeography        = [... new Set(compGroup.array("Geography"))];
+                let compName             = [... new Set(compGroup.array("ComparisonName"))];
+
+                console.log("compGeography", compGeography);
                 
                 if (compIndicatorLabel.length == 1) {
 
                     // console.log("1 indicator [Y_axis_title]");
                     // console.log(compY_axis_title);
 
+                    if (compGeoTypeName[0] == "Citywide") {
+
                     dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
                         data-comparison-id="${comp}">
                         ${compY_axis_title}
                         </button>`;
+
+                    } else {
+                        // I am very unhappy with this kludge
+                        dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
+                            data-comparison-id="${comp}">
+                            ${compGeography[compGeography.length - 1]} 
+                            </button>`;
+                    }
                     
                 } else if (compMeasurementType.length == 1) {
 
@@ -1197,13 +1211,13 @@ const renderMeasures = async () => {
                     obj => obj.MeasureID === defaultMapMeasureId
                 );
 
-            // console.log("filteredMapData [showMap]", filteredMapData);
+            console.log("filteredMapData [showMap]", filteredMapData);
 
             // ----- allow map to persist when changing tabs -------------------------------------------------- //
 
-            // if (!selectedMapMeasure) {
+            if (!selectedMapMeasure) {
 
-                // console.log(">> no selectedMapMeasure");
+                console.log(">> no selectedMapMeasure");
 
                 // this is all inside the conditional, because if a user clicks on this tab again
                 //  after selecting a measure, we don't want to recompute everything. We'll use the
@@ -1213,7 +1227,7 @@ const renderMeasures = async () => {
 
                 // get default measure id
 
-                // defaultMapMeasureId = defaultMapMetadata[0].MeasureID;
+                defaultMapMeasureId = defaultMapMetadata[0].MeasureID;
 
                 // extract metadata for info boxes
 
@@ -1246,14 +1260,14 @@ const renderMeasures = async () => {
                         obj => obj.MeasureID === defaultMapMeasureId
                     );
 
-                // console.log("filteredMapData [no selectedMapMeasure]", filteredMapData);
+                console.log("filteredMapData [no selectedMapMeasure]", filteredMapData);
 
-            // }
+            }
 
 
-            // if (!selectedMapTime) {
+            if (!selectedMapTime) {
 
-                // console.log(">> no selectedMapTime");
+                console.log(">> no selectedMapTime");
 
                 // get the latest end_period
 
@@ -1265,13 +1279,13 @@ const renderMeasures = async () => {
 
                 latest_time = filteredMapData[0].Time
 
-                // console.log("filteredMapData [no selectedMapTime]", filteredMapData);
+                console.log("filteredMapData [no selectedMapTime]", filteredMapData);
 
-            // }
+            }
 
-            // if (!selectedMapGeo) {
+            if (!selectedMapGeo) {
 
-                // console.log(">> no selectedMapGeo [showMap]");
+                console.log(">> no selectedMapGeo [showMap]");
 
                 // get the highest GeoRank for this measure and end_period
 
@@ -1284,12 +1298,12 @@ const renderMeasures = async () => {
                 let maxGeo = filteredMapData[0].GeoType
                 maxGeoPretty = prettifyGeoType(maxGeo)
 
-                // console.log("filteredMapData [no selectedMapGeo]", filteredMapData);
+                console.log("filteredMapData [no selectedMapGeo]", filteredMapData);
 
-                // console.log("maxGeo", maxGeo);
-                // console.log("maxGeoPretty", maxGeoPretty);
+                console.log("maxGeo", maxGeo);
+                console.log("maxGeoPretty", maxGeoPretty);
 
-            // }
+            }
 
             // ----- render the map -------------------------------------------------- //
 
@@ -1331,7 +1345,7 @@ const renderMeasures = async () => {
 
         } else {
 
-            // console.log("else [showMap]");
+            console.log("else [showMap]");
 
             // if there was a map already, restore it
 
@@ -1587,13 +1601,6 @@ const renderMeasures = async () => {
             $(trendMeasureEl).addClass("active");
             $(trendMeasureEl).attr('aria-selected', true);
 
-            // ----- get metatadata for selected measure -------------------------------------------------- //
-
-            // aqCombinedComparisonsMetadata
-            // aqComparisonsIndicatorData
-
-            // extract metadata for about & sources boxes
-
 
             // ----- set measure info boxes -------------------------------------------------- //
 
@@ -1623,19 +1630,19 @@ const renderMeasures = async () => {
                 .join(aqComparisonsIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
 
             // console.log("aqFilteredComparisonsMetadata:");
-            // aqFilteredComparisonsMetadata.print()
+            // aqFilteredComparisonsMetadata.print({limit: Infinity})
             
             // data
 
             aqFilteredComparisonsData = aqFilteredComparisonsMetadata
-                .select("IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure")
-                .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
+                .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
+                .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
 
-                // put host indicator first, so it gets the black line
-                .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
+                // put host indicator first (then measure), so it gets the black line
+                .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)), d => d.MeasureID)
 
             // console.log(">>>> aqFilteredComparisonsData:");
-            // aqFilteredComparisonsData.print()
+            // aqFilteredComparisonsData.print({limit: Infinity})
 
             // show only last 3 years of DWQ measures with quarterly data
 

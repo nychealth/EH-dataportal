@@ -70,7 +70,7 @@ const fetch_comparisons = async () => {
             
             comparisons = data;
             
-            // console.log("comparisons:", comparisons);
+            console.log("comparisons:", comparisons);
             
         })
         .catch(error => console.log(error));
@@ -108,11 +108,13 @@ const createComparisonData = async (comps) => {
         .unroll("Indicators")
         .derive({
             IndicatorID: d => d.Indicators.IndicatorID,
-            MeasureID: d => d.Indicators.Measures
+            MeasureID:   d => d.Indicators.MeasureID,
+            GeoTypeName: d => d.Indicators.GeoTypeName,
+            GeoID:       d => d.Indicators.GeoID,
+            Geography:   d => d.Indicators.Geography
         })
-        .unroll("MeasureID")
         .select(aq.not("Indicators"))
-        // .print()
+        // .print({limit: Infinity})
 
     // console.log("aqUniqueIndicatorMeasure:");
 
@@ -121,6 +123,7 @@ const createComparisonData = async (comps) => {
     let aqUniqueIndicatorMeasure = aqComparisonsMetadata
         .select("IndicatorID", "MeasureID")
         .dedupe()
+        // .print({limit: Infinity})
 
     let uniqueIndicatorMeasure = aqUniqueIndicatorMeasure
         .groupby("IndicatorID")
@@ -160,44 +163,51 @@ const createComparisonData = async (comps) => {
 
     aqCombinedComparisonsMetadata = aqComparisonsMetadata
         .join(aqComparisonsIndicatorsMetadata, [["MeasureID", "IndicatorID"], ["MeasureID", "IndicatorID"]])
-        // .print()
+        // .print(30)
 
-
+    // for each indicator, get all measures
     // Promise.all takes the array of promises returned by map, and then the `then` callback executes after they've all resolved
 
-    Promise.all(uniqueIndicatorMeasure.map(async ind => {
+    Promise.all(
+        uniqueIndicatorMeasure.map(async ind => {
 
-        let measures = ind[1].flatMap(m => Object.values(m));
-        
-        return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
-            .then(async data => {
-
-                // console.log("*** aq.loadJSON");
-
-                let comp_data = data
-                    .derive({IndicatorID: aq.escape(ind[0])})
-                    .filter(
-                        aq.escape(d => measures.includes(d.MeasureID)), 
-                        d => op.match(d.GeoType, /Citywide/) // keep only Citywide
-                    )
-                    .reify()
-                
-                return comp_data;
+            let measures = ind[1].flatMap(m => Object.values(m));
             
-            })
+            return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
+                .then(async data => {
 
-    }))
+                    console.log("@@ data:");
+                    await data.print()
+
+                    // console.log("*** aq.loadJSON");
+                    console.log("** comp_data:");
+
+                    let comp_data = data
+                        .derive({IndicatorID: aq.escape(ind[0])})
+                        // .print()
+                        .semijoin(
+                            aqCombinedComparisonsMetadata, 
+                            (a, b) => (op.equal(a.MeasureID, b.MeasureID) && op.equal(a.GeoType, b.GeoTypeName) && op.equal(a.GeoID, b.GeoID))
+                        )
+                        .reify()
+                        .print()
+                    
+                    return comp_data;
+                
+                })
+        })
+    )
 
     .then(async dataArray => {
 
         aqComparisonsIndicatorData = await dataArray.flatMap(d => d).reduce((a, b) => a.concat(b))
 
         aqComparisonsIndicatorData = aqComparisonsIndicatorData
-            .filter(d => op.match(d.GeoType, /Citywide/))
+            // .filter(d => op.match(d.GeoType, /Citywide/))
             .reify()
 
         // console.log("aqComparisonsIndicatorData:");
-        // aqComparisonsIndicatorData.print();
+        // aqComparisonsIndicatorData.print({limit: Infinity});
 
     })
 }
@@ -384,6 +394,9 @@ const loadGeo = () => {
         .then(data => {
 
             geoTable = data.select(aq.not('Lat', 'Long'));
+            
+            // console.log("@@ geoTable");
+            // geoTable.print()
 
             // call the data-to-geo joining function
 

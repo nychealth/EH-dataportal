@@ -1,8 +1,9 @@
 baseURL = "https://gcappbesp307.health.dohmh.nycnet/IndicatorPublic/beta/"
 [params]
-    data_branch = "staging"
+    # data_branch = "staging"
+    data_branch = "feature-add-geos-to-comparisons"
 
 [caches]
     [caches.getresource]
       dir = ':cacheDir/:project'
-      maxAge = 0
+      maxAge = -1
