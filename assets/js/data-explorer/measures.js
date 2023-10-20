@@ -502,6 +502,7 @@ const updateTrendData = (e) => {
     selectedTrendMeasure = true;
     selectedComparison = false;
     showingNormalTrend = true;
+    showingComparisonsTrend = false;
 
 }
 
@@ -610,6 +611,7 @@ const updateTrendComparisonsData = (e) => {
     selectedComparison = true;
     selectedTrendMeasure = false;
     showingNormalTrend = false;
+    showingComparisonsTrend = true;
 
 }
 
@@ -1384,18 +1386,17 @@ const renderMeasures = async () => {
 
         }
 
-        // if (trendMeasures.length === 0 || onlyOneTime || showingNormalTrend) {
-        if (comparisonsMetadata.length === 0 || showingNormalTrend) {
-            
-            // if there's not a comparisons trend available, show the normal trend
+        if (trendMeasures.length === 0 || showingComparisonsTrend) {
 
-            showNormalTrend()
-
-        } else {
-
-            // If there is a comparisons trend available, show comparisons
+            // if there's not a normal trend availbale, or we we're looking at a comparisons chart, show comparisons
 
             showTrendComparisons()
+
+        } else {
+            
+            // otherwise, show the normal trend
+
+            showNormalTrend()
 
         }
 
@@ -1544,6 +1545,7 @@ const renderMeasures = async () => {
         }
 
         showingNormalTrend = true;
+        showingComparisonsTrend = false;
 
     };
     
@@ -1685,6 +1687,7 @@ const renderMeasures = async () => {
         }
         
         showingNormalTrend = false;
+        showingComparisonsTrend = true;
         
     }
 
