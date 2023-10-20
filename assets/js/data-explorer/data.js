@@ -347,24 +347,24 @@ const loadData = (this_indicatorId) => {
     console.log("** loadData");
 
     fetch(data_repo + data_branch + `/indicators/data/${this_indicatorId}.json`)
-    .then(response => response.json())
-    .then(async data => {
+        .then(response => response.json())
+        .then(async data => {
 
-        // console.log("data [loadData]", data);
+            // console.log("data [loadData]", data);
 
-        // call the geo file loading function
+            // call the geo file loading function
 
-        loadGeo();
+            loadGeo();
 
-        ful = aq.from(data)
-            .derive({ "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
-            .groupby("Time", "GeoType", "GeoID", "GeoRank")
+            ful = aq.table(data)
+                .derive({ "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
+                .groupby("Time", "GeoType", "GeoID", "GeoRank")
 
 
-        aqData = ful
-            .groupby("Time", "GeoType", "GeoID")
-            .orderby(aq.desc('Time'), 'GeoRank')
-    })
+            aqData = ful
+                .groupby("Time", "GeoType", "GeoID")
+                .orderby(aq.desc('Time'), 'GeoRank')
+        })
 
     draw311Buttons(this_indicatorId)
 
@@ -644,13 +644,14 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
         .then(response => response.json())
         .then(async data => {
 
-            // get secondary measure data
-
-            const secondaryMeasureData = data.filter(d => d.MeasureID === secondaryMeasureId)
-
             // join with geotable and times, keep only geos in primary data
 
-            const aqFilteredSecondaryMeasureData = aq.from(secondaryMeasureData)
+            const aqFilteredSecondaryMeasureData = aq.table(data)
+
+                // get secondary measure data
+
+                .filter(d => d.MeasureID === `${secondaryMeasureId}`)
+
                 .join(
                     geoTable,
                     [["GeoID", "GeoType"], ["GeoID", "GeoType"]]
