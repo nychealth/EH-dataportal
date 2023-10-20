@@ -1174,11 +1174,8 @@ const renderMeasures = async () => {
 
         if (!selectedMapGeo && !selectedMapTime && !selectedMapMeasure) {
 
-            // console.log(">> no selected [showMap]");
+            console.log(">> no selected [showMap]");
 
-            // let mapMeasureData;
-            // let mapTimeData;
-            // let defaultMapMeasureId;
             let latest_time;
             let maxGeoPretty;
 
@@ -1201,9 +1198,9 @@ const renderMeasures = async () => {
 
             // ----- allow map to persist when changing tabs -------------------------------------------------- //
 
-            // if (!selectedMapMeasure) {
+            if (!selectedMapMeasure) {
 
-                // console.log(">> no selectedMapMeasure");
+                console.log(">> no selectedMapMeasure");
 
                 // this is all inside the conditional, because if a user clicks on this tab again
                 //  after selecting a measure, we don't want to recompute everything. We'll use the
@@ -1213,7 +1210,7 @@ const renderMeasures = async () => {
 
                 // get default measure id
 
-                // defaultMapMeasureId = defaultMapMetadata[0].MeasureID;
+                defaultMapMeasureId = defaultMapMetadata[0].MeasureID;
 
                 // extract metadata for info boxes
 
@@ -1248,12 +1245,12 @@ const renderMeasures = async () => {
 
                 // console.log("filteredMapData [no selectedMapMeasure]", filteredMapData);
 
-            // }
+            }
 
 
-            // if (!selectedMapTime) {
+            if (!selectedMapTime) {
 
-                // console.log(">> no selectedMapTime");
+                console.log(">> no selectedMapTime");
 
                 // get the latest end_period
 
@@ -1267,11 +1264,11 @@ const renderMeasures = async () => {
 
                 // console.log("filteredMapData [no selectedMapTime]", filteredMapData);
 
-            // }
+            }
 
-            // if (!selectedMapGeo) {
+            if (!selectedMapGeo) {
 
-                // console.log(">> no selectedMapGeo [showMap]");
+                console.log(">> no selectedMapGeo [showMap]");
 
                 // get the highest GeoRank for this measure and end_period
 
@@ -1284,12 +1281,12 @@ const renderMeasures = async () => {
                 let maxGeo = filteredMapData[0].GeoType
                 maxGeoPretty = prettifyGeoType(maxGeo)
 
-                // console.log("filteredMapData [no selectedMapGeo]", filteredMapData);
+                console.log("filteredMapData [no selectedMapGeo]", filteredMapData);
 
                 // console.log("maxGeo", maxGeo);
                 // console.log("maxGeoPretty", maxGeoPretty);
 
-            // }
+            }
 
             // ----- render the map -------------------------------------------------- //
 
@@ -1331,7 +1328,7 @@ const renderMeasures = async () => {
 
         } else {
 
-            // console.log("else [showMap]");
+            console.log("else [showMap]");
 
             // if there was a map already, restore it
 
