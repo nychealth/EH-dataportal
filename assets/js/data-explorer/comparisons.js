@@ -225,7 +225,7 @@ const renderComparisonsChart = (
             "legend": {
                 "columns": columns,
                 // "columns": 3,
-                "labelFontSize": 14,
+                "labelFontSize": 12,
                 "symbolSize": 140
             },
             "view": {"stroke": "transparent"},
@@ -261,34 +261,33 @@ const renderComparisonsChart = (
                 "field": "Time",
                 "type": "nominal",
                 "title": null
+            },
+            "color": {
+                "field": comp_group_col, // this is combo of indicator + measure or geo
+                "type": "nominal",
+                "scale": {
+                    "range": colors
+                },
+                "sort": null,
+                "legend": {
+                    "orient": "bottom",
+                    "title": null,
+                    "labelLimit": 1000
+                }
+            },
+            "y": {
+                "field": "Value",
+                "type": "quantitative",
+                "title": null,
+                "axis": {
+                    "tickCount": 4
+                },
+                "scale": {"domainMin": 0, "nice": true} // change domainMin to valueMin to scale with data
             }
         },
         "layer": [
             {
-                "encoding": {
-                    "color": {
-                        "field": comp_group_col, // this is combo of indicator + measure or geo
-                        "type": "nominal",
-                        "scale": {
-                            "range": colors
-                        },
-                        "sort": null,
-                        "legend": {
-                            "orient": "bottom",
-                            "title": null,
-                            "labelLimit": 1000
-                        }
-                    },
-                    "y": {
-                        "field": "Value",
-                        "type": "quantitative",
-                        "title": null,
-                        "axis": {
-                            "tickCount": 4
-                        },
-                        "scale": {"domainMin": 0, "nice": true} // change domainMin to valueMin to scale with data
-                    }
-                },
+
                 "layer": [
                     {
                         "mark": {
@@ -316,6 +315,23 @@ const renderComparisonsChart = (
                     }
                 ]
             },
+
+            {
+            "encoding": {
+                "x": {"aggregate": "max", "field": "Time"}, // this gets our max date
+                "y": {"aggregate": {"argmax": "Time"}, "field": "Value"} // and our price at it
+                },
+                // adding layers at this point
+            "layer": [
+              {"mark": {"type": "circle"}}, // for the dot
+              {
+                "mark": {"type": "text", "align": "right", "dx": 10,"dy": -15, "fontWeight": "bold"},
+                "encoding": {"text": {"field": comp_group_col, "type": "nominal"}} // and  text
+              }
+                ],
+            },
+
+
             {
                 "transform": [
                     {
