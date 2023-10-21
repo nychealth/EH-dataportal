@@ -6,7 +6,8 @@
 // top scope variables
 // ----------------------------------------------------------------------- //
 
-let selectedTableYears = [];
+// let globalID;
+
 let selectedTableGeography = [];
 let aboutMeasures;
 let dataSources;

@@ -10,13 +10,11 @@
 // full indicator metadata
 // ----------------------------------------------------------------------- //
 
-var globalID
-
-fetch(data_repo + data_branch + '/indicators/indicators.json')
+fetch(`${data_repo}${data_branch}/indicators/indicators.json`)
     .then(response => response.json())
     .then(async data => {
 
-        // console.log("** fetch indicators.json");
+        // console.log("* fetch indicators.json");
 
         indicators = data;
 
@@ -31,26 +29,16 @@ fetch(data_repo + data_branch + '/indicators/indicators.json')
         if (paramId) {
             loadIndicator(paramId)
             // console.log('param id is set')
-            globalID = paramId
+            // globalID = paramId
 
             // fetch311(paramId)
         } else {
             // console.log('no param', url.searchParams.get('id'));
             loadIndicator()
         }
-        
+
     })
     .catch(error => console.log(error));
-
-// ======================================================================= //
-//  fetch and load 311 Crosswalk into global object
-// ======================================================================= //
-
-var crosswalk
-d3.csv(baseURL + '/311/311-crosswalk.csv').then(data => {
-    crosswalk = data;
-    draw311Buttons(globalID);
-});
 
 // ======================================================================= //
 //  fetch and load comparison chart data into global object
@@ -62,9 +50,9 @@ d3.csv(baseURL + '/311/311-crosswalk.csv').then(data => {
 
 const fetch_comparisons = async () => {
     
-    console.log("** fetch_comparisons.json");
+    console.log("* fetch_comparisons.json");
 
-    await fetch(data_repo + data_branch + '/indicators/comparisons.json')
+    await fetch(`${data_repo}${data_branch}/indicators/comparisons.json`)
         .then(response => response.json())
         .then(async data => {
             
@@ -88,7 +76,7 @@ const fetch_comparisons = async () => {
 
 const createComparisonData = async (comps) => {
     
-    console.log("** createComparisonData");
+    console.log("* createComparisonData");
     
     // console.log("comps [createComparisonData]:", comps);
 
@@ -102,7 +90,6 @@ const createComparisonData = async (comps) => {
 
     // merged metadata
     
-    // console.log("aqComparisonsMetadata:");
 
     aqComparisonsMetadata = aq.from(comparisonsMetadata)
         .unroll("Indicators")
@@ -112,9 +99,10 @@ const createComparisonData = async (comps) => {
         })
         .unroll("MeasureID")
         .select(aq.not("Indicators"))
-        // .print()
 
-    // console.log("aqUniqueIndicatorMeasure:");
+    // console.log("aqComparisonsMetadata [createComparisonData]");
+    // aqComparisonsMetadata.print()
+
 
     // get unique combinations of indicators and measures
 
@@ -132,47 +120,60 @@ const createComparisonData = async (comps) => {
     let comparisonsIndicatorsMetadata = indicators.filter(
         ind => comparisonsIndicatorIDs.includes(ind.IndicatorID)
     )
+
     // console.log("comparisonsIndicatorsMetadata:", comparisonsIndicatorsMetadata);
 
-    // console.log("aqComparisonsIndicatorsMetadata:");
 
     aqComparisonsIndicatorsMetadata = aq.from(comparisonsIndicatorsMetadata)
         .select("IndicatorID", "IndicatorName", "IndicatorLabel", "Measures")
         .unroll("Measures")
         .derive({
-            MeasureID: d => d.Measures.MeasureID,
-            MeasureName: d => d.Measures.MeasureName,
+            MeasureID:       d => d.Measures.MeasureID,
+            MeasureName:     d => d.Measures.MeasureName,
             MeasurementType: d => d.Measures.MeasurementType,
-            Sources: d => d.Measures.Sources,
-            how_calculated: d => d.Measures.how_calculated,
-            DisplayType: d => d.Measures.DisplayType
+            Sources:         d => d.Measures.Sources,
+            how_calculated:  d => d.Measures.how_calculated,
+            DisplayType:     d => d.Measures.DisplayType
         })
         .derive({IndicatorMeasure: d => d.IndicatorLabel + ": " + d.MeasurementType})
         .select(aq.not("Measures"))
         .filter(aq.escape(d => comparisonsMeasureIDs.includes(d.MeasureID)))
-        // .print()
-
+    
+    // console.log("aqComparisonsIndicatorsMetadata [createComparisonData]");
+    // aqComparisonsIndicatorsMetadata.print()
 
 
     // join comparisons metadata tables
 
-    // console.log("aqCombinedComparisonsMetadata:");
-
     aqCombinedComparisonsMetadata = aqComparisonsMetadata
         .join(aqComparisonsIndicatorsMetadata, [["MeasureID", "IndicatorID"], ["MeasureID", "IndicatorID"]])
-        // .print()
+
+    // console.log("aqCombinedComparisonsMetadata [createComparisonData]");
+    // aqCombinedComparisonsMetadata.print()
 
 
     // Promise.all takes the array of promises returned by map, and then the `then` callback executes after they've all resolved
 
-    Promise.all(uniqueIndicatorMeasure.map(async ind => {
+    Promise.all(
 
-        let measures = ind[1].flatMap(m => Object.values(m));
-        
-        return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
-            .then(async data => {
+        // map over indeicators, which have separate data files
 
-                // console.log("*** aq.loadJSON");
+        uniqueIndicatorMeasure.map(async ind => {
+
+            // let measures = ind[1].flatMap(m => Object.values(m));
+
+            // get data for an indicator
+            
+            return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
+                .then(async data => {
+
+                    // console.log("@@ data:");
+                    // await data.print()
+
+                    // console.log("** aq.loadJSON");
+                    // console.log("comp_data [createComparisonData]");
+
+                    // filter data to keep only measures and geos in the comparison chart, using semijoin with comparison metadata
 
                 let comp_data = data
                     .derive({IndicatorID: aq.escape(ind[0])})
@@ -190,7 +191,17 @@ const createComparisonData = async (comps) => {
 
     .then(async dataArray => {
 
+        // console.log("dataArray [createComparisonData]", dataArray);
+
+        // take array of arquero tables and combine them into 1 arquero table - like bind_rows in dplyr
+
+
         aqComparisonsIndicatorData = await dataArray.flatMap(d => d).reduce((a, b) => a.concat(b))
+
+        // console.log("aqComparisonsIndicatorData [createComparisonData]");
+        // aqComparisonsIndicatorData.print()
+        
+        // console.log("loadTime [createComparisonData]");
 
         aqComparisonsIndicatorData = aqComparisonsIndicatorData
             .filter(d => op.match(d.GeoType, /Citywide/))
@@ -216,7 +227,7 @@ const createComparisonData = async (comps) => {
 
 const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
 
-    console.log("** loadIndicator");
+    console.log("* loadIndicator");
 
     currentHash = window.location.hash;
 
@@ -246,6 +257,8 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     indicatorShortName = indicator?.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
     indicatorComparisonId = indicator?.Comparisons;
     indicatorMeasures = indicator?.Measures;
+
+    // console.log("indicatorMeasures [loadIndicator]", indicatorMeasures);
 
     // create Citation
 
@@ -304,51 +317,26 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     comparisonsMetadata = [];
 
     if (indicatorComparisonId !== null) {
-        await fetch_comparisons();
+        fetch_comparisons();
     }
+
+    // draw311Buttons(globalID);
 
     loadData(indicatorId);
 
 }
 
 // ----------------------------------------------------------------------- //
-// function to draw 311 buttons
-// ----------------------------------------------------------------------- //
-
-var filteredCrosswalk = [];
-function draw311Buttons(x) {
-    document.getElementById('311').innerHTML = ''
-    filteredCrosswalk = crosswalk.filter(indicator => indicator.IndicatorID == x )
-
-    // Creates label if there are 311 links
-    if (filteredCrosswalk.length > 0) {
-        document.getElementById('311label').innerHTML = 'Contact 311 about:'
-        document.getElementById('311').classList.remove('hide')
-    } else {
-        document.getElementById('311label').innerHTML = ''
-        document.getElementById('311').classList.add('hide')
-    };
-
-    // draws 311 buttons
-    for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
-        var title = filteredCrosswalk[i].topic
-        var destination = filteredCrosswalk[i].kaLink
-        var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="badge badge-pill badge-primary mr-1" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt mr-1"></i>${title}</a>`
-        document.getElementById('311').innerHTML += btn
-    }
-}
-
-// ----------------------------------------------------------------------- //
 // function to Load indicator data and create Arquero data frame
 // ----------------------------------------------------------------------- //
 
-const loadData = (this_indicatorId) => {
+const loadData = async (this_indicatorId) => {
 
-    console.log("** loadData");
+    console.log("* loadData");
 
-    fetch(data_repo + data_branch + `/indicators/data/${this_indicatorId}.json`)
-    .then(response => response.json())
-    .then(async data => {
+    fetch(`${data_repo}${data_branch}/indicators/data/${this_indicatorId}.json`)
+        .then(response => response.json())
+        .then(async data => {
 
         // console.log("data [loadData]", data);
 
@@ -374,20 +362,23 @@ const loadData = (this_indicatorId) => {
 // function to load geographic data
 // ----------------------------------------------------------------------- //
 
-const loadGeo = () => {
+const loadGeo = async () => {
 
-    console.log("** loadGeo");
+    console.log("* loadGeo");
 
-    const geoUrl = data_repo + data_branch + `/geography/GeoLookup.csv`; // col named "GeoType"
+    const geoUrl = `${data_repo}${data_branch}/geography/GeoLookup.csv`; // col named "GeoType"
 
-    aq.loadCSV(geoUrl)
-        .then(data => {
+    await aq.loadCSV(geoUrl)
+        .then(async (data) => {
 
-            geoTable = data.select(aq.not('Lat', 'Long'));
+            geoTable = await data.select(aq.not('Lat', 'Long'));
 
-            // call the data-to-geo joining function
+            // console.log("geoTable [loadGeo]");
+            // geoTable.print()
 
-            joinData();
+    });
+}
+
 
     });
 }
@@ -398,7 +389,10 @@ const loadGeo = () => {
 
 const joinData = () => {
 
-    console.log("** joinData");
+    console.log("* joinData");
+
+    // console.log("indicators [joinData]", indicators);
+    // console.log("indicatorMeasures [joinData]", indicatorMeasures);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // get metadata fields
@@ -611,6 +605,8 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
         // get shared geos
         .filter(d => sharedGeos.includes(d.GeoType))
 
+    // console.log("filteredPrimaryMeasureData", filteredPrimaryMeasureData);
+
 
     // get most recent time period for primary measure
     //  (at shared geo level, which is why we're using the data, and not the metadata)
@@ -646,11 +642,12 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
             // get secondary measure data
 
-            const secondaryMeasureData = data.filter(d => d.MeasureID === secondaryMeasureId)
+            const aqFilteredSecondaryMeasureData = aq.table(data)
 
-            // join with geotable and times, keep only geos in primary data
+                // get secondary measure data
 
-            const aqFilteredSecondaryMeasureData = aq.from(secondaryMeasureData)
+                .filter(`d => d.MeasureID === ${secondaryMeasureId}`)
+                
                 .join(
                     geoTable,
                     [["GeoID", "GeoType"], ["GeoID", "GeoType"]]
@@ -730,10 +727,56 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
             ret = await aqJoinedPrimarySecondaryData;
 
-        }
-        )
+        })
 
-    // console.log("*** ret", ret);
+    // console.log(">> ret");
+    // ret.print()
 
     return ret;
+}
+
+
+// ======================================================================= //
+//  fetch and load 311 Crosswalk into global object
+// ======================================================================= //
+
+// ----------------------------------------------------------------------- //
+// function to draw 311 buttons
+// ----------------------------------------------------------------------- //
+
+function draw311Buttons(indicator_id) {
+
+    console.log("* draw311Buttons");
+
+    let crosswalk;
+    let filteredCrosswalk = [];
+
+    d3.csv(`${baseURL}/311/311-crosswalk.csv`)
+        .then(async data => {
+
+            console.log(">>> 311-crosswalk");
+            return data;
+        })
+        .then((crosswalk) => {
+
+            document.getElementById('311').innerHTML = ''
+            filteredCrosswalk = crosswalk.filter(indicator => indicator.IndicatorID == indicator_id )
+
+            // Creates label if there are 311 links
+            if (filteredCrosswalk.length > 0) {
+                document.getElementById('311label').innerHTML = 'Contact 311 about:'
+                document.getElementById('311').classList.remove('hide')
+            } else {
+                document.getElementById('311label').innerHTML = ''
+                document.getElementById('311').classList.add('hide')
+            };
+
+            // draws 311 buttons
+            for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
+                var title = filteredCrosswalk[i].topic
+                var destination = filteredCrosswalk[i].kaLink
+                var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="badge badge-pill badge-primary mr-1" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt mr-1"></i>${title}</a>`
+                document.getElementById('311').innerHTML += btn
+            }
+    })
 }
