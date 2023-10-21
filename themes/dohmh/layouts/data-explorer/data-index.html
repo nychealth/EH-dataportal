@@ -148,8 +148,8 @@
             var indicatorIndex = []
             
             
-            // First, load Indicators.json
-            d3.json('{{ site.Params.data_repo }}{{ site.Params.data_branch }}/indicators/indicators.json').then(function (data) {
+            // First, load metadata.json
+            d3.json('{{ site.Params.data_repo }}{{ site.Params.data_branch }}/indicators/metadata.json').then(function (data) {
                 indicators = data;
                 loopThroughIndicators() // run loops.
                 
@@ -227,16 +227,16 @@
                         
                         // loop through Available Geographies
                         // var finestGeography = [];
-                        for (let y = 0; y < indicators[i].Measures[n].AvailableGeographyTypes.length; y++) {
-                            geographies.push(indicators[i].Measures[n].AvailableGeographyTypes[y].GeoType)
+                        for (let y = 0; y < indicators[i].Measures[n].AvailableGeoTypes.length; y++) {
+                            geographies.push(indicators[i].Measures[n].AvailableGeoTypes[y].GeoType)
                             // here, can embed a loop through geographies to find the finest.
                         }
                         
                         //loop through times
                         
-                        for (let z = 0; z < indicators[i].Measures[n].AvailableTimes.length; z++) {
+                        for (let z = 0; z < indicators[i].Measures[n].AvailableTimePeriodIDs.length; z++) {
                             
-                            times.push(new Date(indicators[i].Measures[n].AvailableTimes[z].end_period));
+                            times.push(new Date(indicators[i].Measures[n].AvailableTimePeriodIDs[z].end_period));
                             
                         }
                         

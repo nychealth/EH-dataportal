@@ -7,25 +7,25 @@ const renderMap = (
 
         // get unique time in data
 
-        const mapYears =  [...new Set(data.map(item => item.Time))];
+        const mapTimes =  [...new Set(data.map(item => item.TimePeriod))];
 
-        // console.log("mapYears [map.js]", mapYears);
+        // console.log("mapTimes [map.js]", mapTimes);
 
         let mapGeoType            = data[0].GeoType;
         let mapMeasurementType    = metadata[0].MeasurementType;
         let mapGeoTypeDescription = 
-            metadata[0].AvailableGeographyTypes.filter(
+            metadata[0].AvailableGeoTypes.filter(
                 gt => gt.GeoType === mapGeoType
             )[0].GeoTypeDescription;
 
         
         let mapDisplay = metadata[0].DisplayType;
-        let mapTime = mapYears[0];
+        let mapTime = mapTimes[0];
         let topoFile = '';
 
         // console.log("testData [map.js]", testData);
         
-        // can add year to this
+        // can add time to this
 
         // console.log("mapGeoType [renderMap]", mapGeoType);
 

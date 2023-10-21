@@ -26,12 +26,12 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
     // ----------------------------------------------------------------------- //
 
     const primaryIndicatorName   = indicatorName
-    const primaryMeasurementType = primaryMetadata[0].MeasurementType;
-    const primaryMeasureId       = primaryMetadata[0].MeasureID;
-    const primaryMeasureName     = primaryMetadata[0].MeasureName;
+    const primaryMeasurementType = primaryMetadata[0]?.MeasurementType;
+    const primaryMeasureId       = primaryMetadata[0]?.MeasureID;
+    const primaryMeasureName     = primaryMetadata[0]?.MeasureName;
     const primaryAbout           = primaryMetadata[0]?.how_calculated;
-    const primarySources         = primaryMetadata[0].Sources;
-    const primaryDisplay         = primaryMetadata[0].DisplayType;
+    const primarySources         = primaryMetadata[0]?.Sources;
+    const primaryDisplay         = primaryMetadata[0]?.DisplayType;
 
     // get disparities poverty indicator metadata - "indicators" is a global object created by loadIndicator
 
@@ -41,7 +41,7 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
         )
     );
 
-    const disparityMetadata = disparityIndicator[0].Measures.filter(
+    const disparityMetadata = disparityIndicator[0]?.Measures.filter(
         m => m.MeasureID === disparityMeasureId
     );
 
@@ -49,16 +49,16 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
     // put metadata into fields
     // ----------------------------------------------------------------------- //
 
-    const disparityIndicatorId     = disparityIndicator[0].IndicatorID
-    const disparityIndicatorName   = disparityIndicator[0].IndicatorName
+    const disparityIndicatorId     = disparityIndicator[0]?.IndicatorID
+    const disparityIndicatorName   = disparityIndicator[0]?.IndicatorName
 
-    const disparityMeasurementType = disparityMetadata[0].MeasurementType
-    const disparityMeasureName     = disparityMetadata[0].MeasureName
-    // const disparityMeasureId       = disparityMetadata[0].MeasureID
-    const disparityDisplay         = disparityMetadata[0].DisplayType;
+    const disparityMeasurementType = disparityMetadata[0]?.MeasurementType
+    const disparityMeasureName     = disparityMetadata[0]?.MeasureName
+    // const disparityMeasureId       = disparityMetadata[0]?.MeasureID
+    const disparityDisplay         = disparityMetadata[0]?.DisplayType;
 
-    const disparitySources         = disparityMetadata[0].Sources
-    const disparitysAbout          = disparityMetadata[0].how_calculated
+    const disparitySources         = disparityMetadata[0]?.Sources
+    const disparitysAbout          = disparityMetadata[0]?.how_calculated
 
 
     // ----------------------------------------------------------------------- //
@@ -82,14 +82,11 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
         // await loaddisparityData(disparityMetadata, disparityIndicatorId)
         let aqDisparityData = await createJoinedLinksData(primaryMeasureId, disparityMeasureId)
             .then(data => {
-                
+
                 let dispData = data
                     .derive({ PovRank: d => (d.Value_2 > 30 ? 4 : (d.Value_2 > 20 ? 3 : ( d.Value_2 > 10 ? 2 : 1))) })
                     .derive({ PovCat: d => (d.PovRank == 4 ? 'Very high (> 30%)' : (d.PovRank == 3  ? 'High (20-30%)' : ( d.PovRank == 2  ? 'Medium (10-20%)' : 'Low (0-10%)'))) })
                     .derive({ randomOffsetX: aq.escape(d => d.PovRank + (myrng()*2 - 1)) })
-                
-                // console.log("dispData");
-                // dispData.print()
                 
                 return dispData;
             })
@@ -108,9 +105,12 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
 
     // debugger;
 
-    const primaryTime   = disparityData[0].Time_1;
-    const disparityTime = disparityData[0].Time_2;
-    const geoTypeShortDesc = disparityData[0].GeoTypeShortDesc_1;
+    const primaryTime   = disparityData[0]?.TimePeriod_1;
+    const disparityTime = disparityData[0]?.TimePeriod_2;
+    const geoTypeShortDesc = disparityData[0]?.GeoTypeShortDesc_1;
+
+    // console.log("primaryTime", primaryTime);
+    // console.log("disparityTime", disparityTime);
 
     // ----------------------------------------------------------------------- //
     // get min value for adjusting axis
@@ -265,8 +265,8 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
                         "type": "nominal"
                     },
                     {
-                        "title": "Time", 
-                        "field": "Time_2", 
+                        "title": "Time Period", 
+                        "field": "TimePeriod_2", 
                         "type": "nominal"
                     },
                     {

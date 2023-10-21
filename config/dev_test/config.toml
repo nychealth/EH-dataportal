@@ -1,6 +1,6 @@
 baseURL = "https://gcappbesp307.health.dohmh.nycnet/dev-test/beta/"
 [params]
-    data_branch = "feature-restructured-data"
+    data_branch = "feature-charts-and-data-structure"
 
 [caches]
     [caches.getresource]
