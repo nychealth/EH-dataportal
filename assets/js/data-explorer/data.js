@@ -350,7 +350,7 @@ const loadData = async (this_indicatorId) => {
 
             // add GeoRank
 
-            aqIndicatorData = aq.from(data)
+            aqIndicatorData = aq.table(data)
                 .derive({ "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
                 .groupby("TimePeriodID", "GeoType", "GeoID")
                 .orderby(aq.desc('TimePeriodID'), 'GeoRank')
