@@ -108,18 +108,29 @@
 
     /* dropdown list items - active styles based on if they're related to a primary or secondary button style */
 
+    .dropdown-item {
+        text-decoration: none;
+    }
+
     .btn-outline-primary ~ .dropdown-menu .dropdown-item.active,
     .btn-outline-primary ~ .dropdown-menu .dropdown-item:active {
         color: #ffffff;
-        text-decoration: none;
+        /*text-decoration: none;*/
         background-color: #841972;
     }
 
     .btn-outline-secondary ~ .dropdown-menu .dropdown-item.active,
     .btn-outline-secondary ~ .dropdown-menu .dropdown-item:active {
         color: #ffffff;
-        text-decoration: none;
+        /*text-decoration: none;*/
         background-color: #181A7B;
+    }
+
+    /* strikethrough if unavailable */
+
+    .dropdown-menu .dropdown-item.unavailable {
+        text-decoration: line-through;
+        text-decoration-thickness: 0.15rem;
     }
 
     /* topic selection modal */
@@ -201,6 +212,10 @@
         width:100%; 
         max-height: 75vmin; 
     }
+
+        .buttons-csv {
+            cursor: pointer;
+        }
     </style>
 
 {{/* ====  save indicator names as a resource  ==== */}}
@@ -501,15 +516,16 @@
         </button>
         <div class="dropdown-menu dropdown-menu-right" 
         aria-labelledby="downloadDD">
-        <a class="dropdown-item buttons-csv btn-outline-info" id="thisView">Current table view</a>
-        <a class="dropdown-item buttons-csv btn-outline-info" id="allData">Full table for this indicator</a>
-        <a class="dropdown-item buttons-csv btn-outline-info" id="rawData">Raw data for this indicator</a>
+        <a class="dropdown-item buttons-csv btn-outline-info" id="chartView">This view</a>
+        <a class="dropdown-item buttons-csv btn-outline-info" id="allData">Full table</a>
+        <!--<a class="dropdown-item buttons-csv btn-outline-info" id="thisView">Current table view</a>-->        
+        <!--<a class="dropdown-item buttons-csv btn-outline-info" id="rawData">Raw data for this indicator</a>-->
     </div>
 </div>
 </div>
 
 <div class="col-md-4 col-sm-12">
-    <a href="https://github.com/nychealth/EHDP-data/tree/production/indicators"><button class="btn btn-sm btn-block btn-outline-light text-secondary mb-1">
+    <a href="https://github.com/nychealth/EHDP-data/tree/production/indicators" targe="_blank"><button class="btn btn-sm btn-block btn-outline-light text-secondary mb-1">
         <i class="fas fa-external-link-alt mr-1"></i>Full data Github repo
     </button></a>
 </div>
