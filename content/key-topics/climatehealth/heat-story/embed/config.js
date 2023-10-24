@@ -13,6 +13,11 @@
  *      id: unique id for the layer
  *      name: human readable name of the layer
  *      type: layer type for rendering. can be raster or geojson
+ *      measureInfo: this is used if you are using another data explorer data setting
+ *        indicatorName: name of the indicator from the explorer data
+ *        measureName: name of the measure from the explorer data
+ *        geoType: the geotype of the data set in the explorer. usually UHF42 or borough
+ *        time: the time for the data set. the datasets usually have a time field.
  *      url: file location for the layer
  *      exclusive: if true, then this is an exclusive layer. only one exclusive layer can be done at a time
  *      args:
@@ -265,26 +270,23 @@ config = {
           "property": {
              "id":"air_quality",
              "name": "Air Quality",
-             "type": "geojson",
-             "url": window.BaseURL + "geojson/air-quality.geojson",
+             "type": "measureData",
+             "measureInfo": {
+                "indicatorName": "Black carbon",
+                "measureName": "Black carbon, Mean",
+                "geoType": "UHF42",
+                "time": "Summer 2021",
+              },
              "args":{
                 "colorFeatureProperty":"Black Carbon - Mean",
                 "minColor":"red",
                 "maxColor":"green",
                 "color": "black",
-                "opacity": 1.0
+                "opacity": 0.8
              },
              "displayProperties":{
                 "missingDisplay":"N/A",
                 "displayPropertyArgs":[
-                   {
-                      "id":"Fine Particulate Matter (PM2.5) - 90th Percentile",
-                      "displayName":"Fine Particulate Matter (PM2.5) - 90th Percentile"
-                   },
-                   {
-                      "id":"Fine Particulate Matter (PM2.5) - Mean",
-                      "displayName":"Fine Particulate Matter (PM2.5) - Mean"
-                   },
                    {
                       "id":"Black Carbon - Mean",
                       "displayName":"Black Carbon - Mean"
