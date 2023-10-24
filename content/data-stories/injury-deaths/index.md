@@ -18,7 +18,7 @@ keywords:
     "means reduction",
     "violence",
   ]
-image: ds-injury.jpeg
+image: ds-aqcovid.jpeg
 photocredit: "Ed Reed/Mayoral Photography Office"
 ---
 
