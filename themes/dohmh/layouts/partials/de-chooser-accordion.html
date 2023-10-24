@@ -324,75 +324,38 @@
 
 <!-- Generate JSON object with topic pages and keys, and internal_ids in arrays -->
         
-{{- $topic_indicators_dict := newScratch -}}
-{{- $topic_indicators_map := newScratch -}}
+{{ with partial "indicator-names.html" . }}
 
-{{/*  iterate over all pages on the site  */}}
+    {{/*  context doesn't *contain* topic_indicators_map; it *is* topic_indicators_map */}}
 
-{{- range .Site.Pages -}}
-    
-    {{/*  create a new "slice" (i.e., an array)  */}}
-    
-    {{- $indicators := slice -}}
-    {{- $topic_name := slice -}}
-    
-    {{/*  only process if it's a data explorer page */}}
-    
-    {{- if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (ne (path.Base .RelPermalink) "all-data")) -}}
-        
-        {{/*  turn params into strings  */}}
-        
-        {{- $topic := .RelPermalink | path.Base | string -}}
+    {{ $topic_indicators_map := . -}}
 
-        {{/*  topic names  */}}
-        
-        {{- $topic_title := .Title -}}
+    <script>
+        var topic_indicators = {{ $topic_indicators_map.Get "topic_indicators" }};
+        // console.log(topic_indicators)
 
-        {{/*  get internal_ids  */}}
-        
-        {{- range .Params.indicators -}}
-            
-            {{/*  create an array of internal_ids  */}}
-            
-            {{- $indicators = $indicators | append .IndicatorID -}}
-        
-        {{- end -}}
-        
-        {{/*  create a map with topic as key and array of internal_ids as value */}}
-        
-        {{- $topic_indicators_dict := dict "topic_name" $topic_title "IndicatorID" $indicators -}}
-        {{- $topic_indicators_map.SetInMap "topic_indicators" $topic ($topic_indicators_dict) -}}
+        var destination = document.getElementById('indicatorNames')    
 
-    {{- end -}}
-    
-{{- end -}}
+        function changeKT(x) {
+            console.log(x)
+            const all = document.querySelectorAll('.dumps')
+            all.forEach((dump) => {
+                dump.classList.remove('show')
+                dump.classList.add('hide')
+            });
+            const chosen = 'output'+x
+            console.log('chosen: ' + chosen)
+            document.getElementById(chosen).classList.remove('hide')
 
+            const KTs = document.querySelectorAll('.kt')
+            KTs.forEach((kt) => {
+                kt.classList.remove('active')
+            });
 
+            const link = 'kt'+x
+            document.getElementById(link).classList.add('active')
+        }
 
-<script>
-    var topic_indicators = {{ $topic_indicators_map.Get "topic_indicators" }};
-    // console.log(topic_indicators)
+    </script>
 
-    var destination = document.getElementById('indicatorNames')    
-
-    function changeKT(x) {
-        console.log(x)
-        const all = document.querySelectorAll('.dumps')
-        all.forEach((dump) => {
-            dump.classList.remove('show')
-            dump.classList.add('hide')
-        });
-        const chosen = 'output'+x
-        console.log('chosen: ' + chosen)
-        document.getElementById(chosen).classList.remove('hide')
-
-        const KTs = document.querySelectorAll('.kt')
-        KTs.forEach((kt) => {
-            kt.classList.remove('active')
-        });
-
-        const link = 'kt'+x
-        document.getElementById(link).classList.add('active')
-    }
-
-</script>
+{{- end }}

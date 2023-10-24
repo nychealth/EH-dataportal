@@ -171,7 +171,7 @@
 
                     {{- $currentPage := . -}}
 
-                <span id="File.Path" style="display: none">{{ $currentPage.File.Path }}</span>
+                <span id="File.Path" style="display: none">{{- with $currentPage.File }}{{ .Path }}{{ end -}}</span>
                 <span id="FirstSection.RelPermalink" style="display: none">{{ $currentPage.FirstSection.RelPermalink }}</span>
 
                 <div class="nav-item-search border-right">

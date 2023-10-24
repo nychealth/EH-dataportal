@@ -237,7 +237,26 @@
 
 {{- $indicator_names_json := $indicators_scratch.Get "details" | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorData/indicator_names.json" -}}
 
-{{- warnf ">>>> indicator_names_json.RelPermalink >>>> " $indicator_names_json.RelPermalink -}}
+{{- warnf (print "indicator_names_json.RelPermalink: " $indicator_names_json.RelPermalink ) -}}
+
+
+{{/*  add indicator names and descriptions in page code for pagefind to index  */}}
+
+{{/*  URL  */}}
+
+{{- if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (eq (path.Base .RelPermalink) "asthma")) -}}
+
+    <h2 
+        id="IndicatorID-2048"
+        class="d-none"
+        href="{{ .Page.RelPermalink }}/?id=2048">
+
+        Asthma emergency department visits (age 4 and under)
+
+    </h2>
+
+{{- end -}}
+
 
 <article class="container-fluid" id="skip-header-target">
     <div class="row">

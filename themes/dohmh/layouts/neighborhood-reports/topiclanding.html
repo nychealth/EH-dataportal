@@ -74,7 +74,7 @@
 
   {{- $nr_indicator_names_json := $nr_indicator_names | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorData/nr_indicator_names.json" -}}
 
-  {{ warnf ">>>>" $nr_indicator_names_json.RelPermalink }}
+  {{ warnf (print "nr_indicator_names_json.RelPermalink: >>> " $nr_indicator_names_json.RelPermalink " <<<") }}
 
 
 {{/*  remove  */}}
