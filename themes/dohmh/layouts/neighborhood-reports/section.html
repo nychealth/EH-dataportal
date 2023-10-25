@@ -15,7 +15,7 @@
 
   <div class="row my-4">
     <div class="col-md-6">
-      <h3>1. Choose report</h3>
+      <div class="h3">1. Choose report</div>
       <select class="form-control form-control-lg" id="report" name="report" required size="5" style="overflow-y:hidden;">
           <option value="Asthma" class="topic-list-option" id="AsthmaOption">Asthma and the environment</option>
           <option value="Climate" class="topic-list-option" id="ClimateOption">Climate and health</option>
@@ -26,20 +26,20 @@
       </select>
     <br>
 
-      <div id="Asthma" class="tab-container"> <h4>Asthma and the environment</h4>
+      <div id="Asthma" class="tab-container"> <div class="h4">Asthma and the environment</div>
           <p>Asthma is a leading cause of hospitalizations for children. It can be made worse by housing and neighborhood characteristics. There are powerful inequities that drive racial disparities in asthma in NYC.</p></div>
-      <div id="Climate" class="tab-container"> <h4>Climate and health</h4>
+      <div id="Climate" class="tab-container"> <div class="h4">Climate and health</div>
           <p>As the climate changes, we track New York City's risk for extreme heat, storms and flooding, and episodes of elevated ozone. These have important public health impacts: already, heat kills more people than all other natural disasters.</p></div>
-      <div id="Housing" class="tab-container"> <h4>Housing and health</h4>
+      <div id="Housing" class="tab-container"> <div class="h4">Housing and health</div>
           <p>Housing conditions can drive health outcomes like asthma, lead poisoning, and carbon monoxide poisoning. We track housing neighborhood characteristics that can put people at risk - and special populations that are vulnernerable.</p></div>
-      <div id="Outdoor" class="tab-container">  <h4>Outdoor air and health</h4>
+      <div id="Outdoor" class="tab-container">  <div class="h4">Outdoor air and health</div>
           <p>Air pollution is one of the most important environmental threats to people who live in urban areas. Exposures are linked to respiratory and heart diseases, cancers, and premature deaths. Meanwhile, emissions, levels of exposure, and population vulnerability vary across neighborhoods. </p></div>
-      <div id="Active" class="tab-container"> <h4>Active design, physical activity, and health</h4>
+      <div id="Active" class="tab-container"> <div class="h4">Active design, physical activity, and health</div>
           <p>The design and condition of buildings, streets, public transportation, and parks influence how much physical activity people get, how much they use active transportation, and how much other healthy behavior they do. A neighborhood built environment can also affect the safety of its residents. </p></div>
     </div>
 
     <div class="col-md-6">
-      <h3>2. Choose Neighborhood</h3>
+      <div class="h3">2. Choose Neighborhood</div>
       <div class="bg-active p-2 p-md-4 mb-4">
         <form action="/neighborhood-reports" method="get" class="autocomplete-form">
           <div class="row no-gutters">
@@ -61,7 +61,7 @@
 
       <div id="warning" style="display: none;">
         <div class="py-2 px-2" style="background: #f1f1f1;">
-          <h4 style="color:purple;"><i class="fas fa-exclamation-triangle mr-2" aria-hidden="true" ></i>Oops!</h4>
+          <div class="h4" style="color:purple;"><i class="fas fa-exclamation-triangle mr-2" aria-hidden="true" ></i>Oops!</div>
           Make sure to choose both a report and a neighborhood. Not sure what neighborhood to choose?   <a data-toggle="collapse" href="#neighborhoodCollapse" role="button" aria-expanded="false" aria-controls="neighborhoodCollapse">
             List all neighborhoods
           </a>.
@@ -75,7 +75,7 @@
     <div class="col-md-6 ml-auto">
 
       <div class="collapse" id="neighborhoodCollapse">
-        <h2 class="h2 h4">Neighborhood List</h2>
+        <div class="h2">Neighborhood List</div>
 
         <ul class="list-unstyled">
           <!-- Ranges through content/neighborhood-reports/NEIGHBORHOOD/*.md -->          

@@ -128,14 +128,14 @@
     var data_download_loc = "{{ .data_download_loc }}"
 </script>
 
-<section class="container-fluid pl-lg-6" id="skip-header-target" data-pagefind-ignore>
+<section class="container-fluid pl-lg-6" id="skip-header-target">
     <div class="row">
 
         <div class="col-lg-3 collapse d-lg-block sidebar-report d-print-none" id="sidebar-nav">
             <div class="mt-5">
                 <a class="sr-only sr-only-focusable skip-menu" href="#primary-content">Skip Nav</a>
 
-                <h2>Change Report</h2>
+                <div class="h2">Change Report</div>
                 <nav role="navigation">
                     <div class="list-group custom-active">
                         {{- $neighborhood := $.Scratch.Get "neighborhoodDir" -}}
@@ -146,34 +146,34 @@
 
                 <hr class="mt-2">
 
-                <h2 class="mt-4">Change Neighborhood</h2>
-                <form action="/neighborhood-reports" method="get" class="autocomplete-form">
-                    <div class="row no-gutters">
-                        <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">What NYC
-                            neighborhood are you interested in?</label>
-                        <div class="col-9">
-                            <div class="autocomplete-wrapper">
-                                <select name="last-neighborhood" id="last-neighborhood">
-                                    <option value="">Select a neighborhood</option>
-                                </select>
+                <div class="mt-4 h2">Change Neighborhood</div>
+                    <form action="/neighborhood-reports" method="get" class="autocomplete-form">
+                        <div class="row no-gutters">
+                            <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-3 sr-only">What NYC
+                                neighborhood are you interested in?</label>
+                            <div class="col-9">
+                                <div class="autocomplete-wrapper">
+                                    <select name="last-neighborhood" id="last-neighborhood">
+                                        <option value="">Select a neighborhood</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <button type="submit" class="btn-primary btn btn-block fs-sm">Go</button>
                             </div>
                         </div>
-                        <div class="col-3">
-                            <button type="submit" class="btn-primary btn btn-block fs-sm">Go</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
 
-                <button onclick="downloadData()" class="btn btn-sm btn-block btn-report mt-4" target="_blank"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>
+                    <button onclick="downloadData()" class="btn btn-sm btn-block btn-report mt-4" target="_blank"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>
 
-                <button onclick="window.print()" class="btn btn-sm btn-block btn-report" target="_blank"><i class="fas fa-print mr-1"></i>Print Report</button>
+                    <button onclick="window.print()" class="btn btn-sm btn-block btn-report" target="_blank"><i class="fas fa-print mr-1"></i>Print Report</button>
 
+
+                </div>
+                <!-- .sticky-top -->
 
             </div>
-            <!-- .sticky-top -->
-
-        </div>
-        <!-- .col -->
+            <!-- .col -->
 
         <script>
 
@@ -375,7 +375,7 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-4 overflow-hidden">
                     <div class="narrow">
-                        <h2>More Information</h2>
+                        <div class="h2">More Information</div>
                         <p>{{ .report_footer }}</p>
                     </div>
                 </div>
@@ -390,7 +390,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Indicator ranking</h4>
+                <div class="modal-title h4" id="exampleModalLabel">Indicator ranking</div>
                 <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
