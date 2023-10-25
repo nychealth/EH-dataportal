@@ -128,7 +128,13 @@
     var data_download_loc = "{{ .data_download_loc }}"
 </script>
 
-<section class="container-fluid pl-lg-6" id="skip-header-target">
+<meta 
+    neighborhood="{{ .geo_entity_name }}"
+    data-pagefind-index-attrs="neighborhood"
+/>
+
+<section class="container-fluid pl-lg-6" id="skip-header-target" data-pagefind-ignore="all">
+{{/*  <section class="container-fluid pl-lg-6" id="skip-header-target">  */}}
     <div class="row">
 
         <div class="col-lg-3 collapse d-lg-block sidebar-report d-print-none" id="sidebar-nav">
@@ -223,7 +229,8 @@
 
         </script>
 
-        <div class="col-12 col-lg-9 overflow-hidden reports" id="primary-content">
+        <div class="col-12 col-lg-9 overflow-hidden reports" id="primary-content" data-pagefind-ignore="all">
+        {{/*  <div class="col-12 col-lg-9 overflow-hidden reports" id="primary-content">  */}}
             <div class="my-5 p-mt-sm">
                 <div class="px-lg-6 my-4 p-mt-sm">
                     <h1 class="report-title">{{ $.Params.title }} in<br>
