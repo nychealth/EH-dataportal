@@ -213,86 +213,9 @@
         max-height: 75vmin; 
     }
 
-        .buttons-csv {
-            cursor: pointer;
-        }
-    </style>
-
-{{/* ====  save indicator names as a resource  ==== */}}
-
-{{- /* ----  get indicators.json from data repo, and transform into a Hugo object  ---- */ -}}
-
-{{- $indicators_json_resource := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/indicators/indicators.json")) | transform.Unmarshal -}}
-
-{{- /* ----  get names from indicators.json, using scratch  ---- */ -}}
-
-{{- $indicators_scratch := newScratch -}}
-{{- $indicators_map := dict -}}
-
-{{- range $indicators_json_resource -}}
-
-    {{- $indicators_scratch.SetInMap "details" (string .IndicatorID) (dict "IndicatorID" .IndicatorID "name" .IndicatorName "description" .IndicatorDescription) -}}
-
-{{- end -}}
-
-{{ $indicator_names := $indicators_scratch.Get "details" }}
-{{/*  {{- warnf (print "@@@@ indicator_names: " $indicator_names ) -}}  */}}
-
-{{- /* ----  save resource  ---- */ -}}
-
-{{- $indicator_names_json := $indicator_names | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorData/indicator_names.json" -}}
-
-{{- warnf (print "indicator_names_json.RelPermalink: " $indicator_names_json.RelPermalink ) -}}
-
-
-{{/*  add indicator names and descriptions in page code for pagefind to index  */}}
-
-{{/*  URL  */}}
-
-{{- $indicators := slice -}}
-
-{{- if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (ne (path.Base .RelPermalink) "all-data")) -}}
-
-    {{ $permalink := .Page.RelPermalink }}
-
-    {{/*  {{ warnf (print (println "\\") (println "#---------------") (println "# " $permalink) (println "#---------------")) }}  */}}
-
-    {{/*  {{- warnf (print "> "  .Params.Indicators | string) -}}  */}}
-
-    {{- range .Params.Indicators }}
-
-        {{- $indicators = $indicators | append .IndicatorID -}}
-            
-    {{ end }}
-
-    {{/*  {{- warnf (print "> " $indicators) -}}  */}}
-
-    {{ range $index, $id := $indicators }}
-
-        {{/*  {{- warnf (print ">>> " $id) -}}  */}}
-
-        {{ $indicator := (index $indicator_names (string $id)) }}
-        
-        {{/*  {{- warnf (print $indicator.name ) -}}  */}}
-        {{/*  {{- warnf (print "indicator description: " $indicator.description ) -}}  */}}
-
-        <h2 
-            id="IndicatorID-{{ $id }}"
-            indicator-id="{{ $id }}"
-            indicator-description="{{ $indicator.description }}"
-            data-pagefind-index-attrs="indicator-id, indicator-description"
-            href="{{ $permalink }}?id={{ $id }}"
-            url="{{ $permalink }}?id={{ $id }}"
-            class="d-none"
-        > 
-            {{ $indicator.name }} 
-        </h2>
-
-    
-    {{ end }}
-
-{{- end -}}
-
+    .buttons-csv {
+        cursor: pointer;
+    }
 
 <article class="container-fluid" id="skip-header-target">
     <div class="row">
@@ -353,10 +276,6 @@
                 {{- partial "keywords" . -}}
             </div>
             
-
-    
-
-
 
         </div>
         
@@ -595,6 +514,8 @@
 </div>
 
 <!-- About and sources -->
+
+<!-- Insert from `How_Calculated' -->
 <div class="row mb-2">
     <div class="col-md-6 col-xs-12">
         <div class="btn-toggle">
@@ -606,16 +527,11 @@
     </div>
     
     <div class="collapse p-2 border" id="toggle-target" role="navigation">
-        <p class="fs-sm indicator-measures">Insert from `How_Calculated.` Vivamus consequat id
-            nibh et tempor. Cras
-            augue enim, iaculis quis purus sit amet, interdum accumsan neque. In blandit varius
-            blandit. Praesent
-            vel leo ac urna dapibus faucibus. Donec sed luctus neque. Nulla porta finibus elit,
-            luctus eleifend
-            felis ornare vitae. Ut consequat laoreet libero eu venenatis.</p>
+        <p class="fs-sm indicator-measures"></p>
             
         </div>
     </div>
+    
     <div class="col-md-6 col-xs-12">
         <div class="btn-toggle">
             <button class="btn btn-block btn-md btn-outline-light text-secondary mb-1"
@@ -625,16 +541,9 @@
         </button>
     </div>
     
+    <!-- Insert from `Sources' -->
     <div class="collapse p-2 border" id="toggle-target-2" role="navigation">
-        <p class="fs-sm indicator-sources">Insert from `Sources.` Pellentesque blandit ante vel
-            augue mattis, lacinia
-            tincidunt velit feugiat. Class aptent taciti sociosqu ad litora torquent per conubia
-            nostra, per inceptos
-            himenaeos. Donec nulla nisl, sollicitudin et volutpat at, finibus ac quam.
-            Pellentesque faucibus turpis
-            egestas tellus luctus, nec porttitor diam bibendum. Sed mauris augue, tempus id urna
-            sit amet, hendrerit
-            blandit libero. Cras sit amet luctus nunc, nec mattis leo. </p>
+        <p class="fs-sm indicator-sources"></p>
             
         </div>
     </div>
@@ -694,6 +603,75 @@
 
 </article>
 
+
+
+{{/* ====  save indicator names as a resource  ==== */}}
+
+{{- /* ----  get indicators.json from data repo, and transform into a Hugo object  ---- */ -}}
+
+{{- $indicators_json_resource := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/indicators/indicators.json")) | transform.Unmarshal -}}
+
+{{- /* ----  get names from indicators.json, using scratch  ---- */ -}}
+
+{{- $indicators_scratch := newScratch -}}
+{{- $indicators_map := dict -}}
+
+{{- range $indicators_json_resource -}}
+
+    {{- $indicators_scratch.SetInMap "details" (string .IndicatorID) (dict "IndicatorID" .IndicatorID "name" .IndicatorName "description" .IndicatorDescription) -}}
+
+{{- end -}}
+
+{{ $indicator_names := $indicators_scratch.Get "details" }}
+{{/*  {{- warnf (print "@@@@ indicator_names: " $indicator_names ) -}}  */}}
+
+{{- /* ----  save resource  ---- */ -}}
+
+{{- $indicator_names_json := $indicator_names | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorData/indicator_names.json" -}}
+
+{{- warnf (print "indicator_names_json.RelPermalink: " $indicator_names_json.RelPermalink ) -}}
+
+
+{{/*  add indicator names and descriptions in page code for pagefind to index  */}}
+
+{{/*  URL  */}}
+
+{{- $indicators := slice -}}
+
+{{- if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (ne (path.Base .RelPermalink) "all-data")) -}}
+
+    {{ $permalink := .Page.RelPermalink }}
+
+    {{/*  {{ warnf (print (println "\\") (println "#---------------") (println "# " $permalink) (println "#---------------")) }}  */}}
+
+    {{- range .Params.Indicators }}
+
+        {{- $indicators = $indicators | append .IndicatorID -}}
+            
+    {{ end }}
+
+    {{ range $index, $id := $indicators }}
+
+        {{ $indicator := (index $indicator_names (string $id)) }}
+        
+        {{/*  indicator-id="{{ $id }}"
+        data-pagefind-index-attrs="indicator-id"  */}}
+
+        <h1 
+            id="IndicatorID-{{ $id }}" 
+            class="d-none"> 
+            {{ $indicator.name }}
+        </h1>
+        <h2>
+            {{ $indicator.description }}
+        </h2>
+
+    
+    {{ end }}
+
+{{- end -}}
+
+
 <!-- RELATED FOOTER -->
 {{- partial "related-footer-2" . -}}
 
@@ -709,11 +687,6 @@
     {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
 
     <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
-
-    {{/*  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
-    {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
-
-    <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>  */}}
 
     {{/*  Arquero  */}}
 
@@ -750,17 +723,7 @@
     {{- $jszip := resources.Get "node_modules/jszip/dist/jszip.min.js" -}}
     {{- $jszip_secureJS := $jszip | resources.Fingerprint "sha512" -}}
 
-    {{/*  {{- $pdfmake := resources.Get "node_modules/pdfmake/build/pdfmake.min.js" -}}  */}}
-    {{/*  {{- $pdfmake_secureJS := $pdfmake | resources.Fingerprint "sha512" -}}  */}}
-
-    {{/*  {{- $pdfmakeVfsFonts := resources.Get "node_modules/pdfmake/build/vfs_fonts.js" -}}  */}}
-    {{/*  {{- $pdfmakeVfsFonts_secureJS := $pdfmakeVfsFonts | resources.Fingerprint "sha512" -}}  */}}
-
     <script type="text/javascript" src="{{ $jszip_secureJS.RelPermalink }}" integrity="{{ $jszip_secureJS.Data.Integrity }}"></script>
-    {{/*  <script type="text/javascript" src="{{ $pdfmake_secureJS.RelPermalink }}" integrity="{{ $pdfmake_secureJS.Data.Integrity }}"></script>  */}}
-    {{/*  <script type="text/javascript" src="{{ $pdfmake.RelPermalink }}"></script>  */}}
-    {{/*  <script type="text/javascript" src="{{ $pdfmakeVfsFonts_secureJS.RelPermalink }}" integrity="{{ $pdfmakeVfsFonts_secureJS.Data.Integrity }}"></script>  */}}
-    {{/*  <script type="text/javascript" src="{{ $pdfmakeVfsFonts.RelPermalink }}"></script>  */}}
 
     {{/*  VegaLite  */}}
 
