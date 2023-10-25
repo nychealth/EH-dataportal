@@ -34,6 +34,7 @@ Housing quality impacts health directly and indirectly. Housing maintenance defi
 * Other health problems such as mental distress
 
 ### To reduce health risks
+
 Owners and landlords must:
 * Provide homes and buildings free of pests, and employ pest control that uses preventive measures — not just pesticides.
 * Install and maintain smoke and carbon monoxide detectors in residential units. 
