@@ -18,7 +18,7 @@
             <h1>{{ .Title }}</h1>
             <p>{{- .Content -}}</p>
             <p>Get a neighborhood report by searching for your neighborhood:</p>
-            <div class="bg-active p-2 p-md-4 mb-4">
+            <div class="bg-active p-2 p-md-4 mb-4" data-pagefind-ignore="all">
                 <form action="/neighborhood-reports" method="get" class="autocomplete-form">
                   <div class="row no-gutters">
                     <label for="last-neighborhood" class="block col-sm-12 font-weight-bold h4 mb-3">What NYC neighborhood are you interested in?</label>
