@@ -230,12 +230,17 @@
 {{- $indicators_map := dict -}}
 
 {{- range $indicators_json_resource -}}
+
     {{- $indicators_scratch.SetInMap "details" (string .IndicatorID) (dict "IndicatorID" .IndicatorID "name" .IndicatorName "description" .IndicatorDescription) -}}
+
 {{- end -}}
+
+{{ $indicator_names := $indicators_scratch.Get "details" }}
+{{/*  {{- warnf (print "@@@@ indicator_names: " $indicator_names ) -}}  */}}
 
 {{- /* ----  save resource  ---- */ -}}
 
-{{- $indicator_names_json := $indicators_scratch.Get "details" | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorData/indicator_names.json" -}}
+{{- $indicator_names_json := $indicator_names | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorData/indicator_names.json" -}}
 
 {{- warnf (print "indicator_names_json.RelPermalink: " $indicator_names_json.RelPermalink ) -}}
 
@@ -244,16 +249,47 @@
 
 {{/*  URL  */}}
 
-{{- if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (eq (path.Base .RelPermalink) "asthma")) -}}
+{{- $indicators := slice -}}
 
-    <h2 
-        id="IndicatorID-2048"
-        class="d-none"
-        href="{{ .Page.RelPermalink }}/?id=2048">
+{{- if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (ne (path.Base .RelPermalink) "all-data")) -}}
 
-        Asthma emergency department visits (age 4 and under)
+    {{ $permalink := .Page.RelPermalink }}
 
-    </h2>
+    {{/*  {{ warnf (print (println "\\") (println "#---------------") (println "# " $permalink) (println "#---------------")) }}  */}}
+
+    {{/*  {{- warnf (print "> "  .Params.Indicators | string) -}}  */}}
+
+    {{- range .Params.Indicators }}
+
+        {{- $indicators = $indicators | append .IndicatorID -}}
+            
+    {{ end }}
+
+    {{/*  {{- warnf (print "> " $indicators) -}}  */}}
+
+    {{ range $index, $id := $indicators }}
+
+        {{/*  {{- warnf (print ">>> " $id) -}}  */}}
+
+        {{ $indicator := (index $indicator_names (string $id)) }}
+        
+        {{/*  {{- warnf (print $indicator.name ) -}}  */}}
+        {{/*  {{- warnf (print "indicator description: " $indicator.description ) -}}  */}}
+
+        <h2 
+            id="IndicatorID-{{ $id }}"
+            indicator-id="{{ $id }}"
+            indicator-description="{{ $indicator.description }}"
+            data-pagefind-index-attrs="indicator-id, indicator-description"
+            href="{{ $permalink }}?id={{ $id }}"
+            url="{{ $permalink }}?id={{ $id }}"
+            class="d-none"
+        > 
+            {{ $indicator.name }} 
+        </h2>
+
+    
+    {{ end }}
 
 {{- end -}}
 
