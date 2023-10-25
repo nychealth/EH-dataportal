@@ -59,19 +59,19 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
-                <h2 class="modal-title fs-xl" id="exampleModalLabel">{{ .ind.indicator_short_name }}</h2>
+                <div class="modal-title fs-xl h2" id="exampleModalLabel">{{ .ind.indicator_short_name }}</div>
                 <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
             <div class="modal-body">
-                <h2 class="fs-xl">{{ .ind.indicator_name }}</h2>
+                <div class="fs-xl h2">{{ .ind.indicator_name }}</div>
                 <p>In <strong>{{ .location }}</strong>, the {{ lower .ind.indicator_name }} is {{ if eq (string .ind.data_value_rank) "1" }}<span class="worse">Worse</span>{{- else if eq (string .ind.data_value_rank) "2" -}}<span class="middle">Middle</span>{{- else -}}<span class="better">Better</span>{{- end -}} compared to the NYC average.</p>
                 {{- .ind.indicator_description | safeHTML -}}
             </div>
             <hr>
             <div class="modal-body">
-                <h3>Neighborhood Comparison</h3>
+                <div class="h3">Neighborhood Comparison</div>
                 <div class="row comparison">
                     <div class="col-sm-4 text-primary">{{ .location }} <span class="indicator-value">{{ .ind.data_value_geo_entity }}</span></div>
                     <div class="col-sm-4">{{ .borough }} <span class="indicator-value">{{ .ind.data_value_borough }}</span></div>
@@ -86,7 +86,7 @@
             </div>
             <hr>
             <div class="modal-body">
-                <h3>{{- .ind.indicator_name -}}</h3>
+                <div class="h3">{{- .ind.indicator_name -}}</div>
                 <p>  <em>{{ .ind.measurement_type }} {{ .ind.units }}</em></p>
                 <div style="width:100%; height:30vmin; z-index:10000;" id="summary-{{ .ind.indicator_data_name }}-{{ .count }}"></div>
 
@@ -94,7 +94,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>Trends Over Time</h3>
+                <div class="h3">Trends Over Time</div>
                 <p><em>{{ .ind.measurement_type }} {{ .ind.units }}</em></p>
                 <div style="width:100%; height:50vmin; z-index:10000;" id="trend-{{ .ind.indicator_data_name }}-{{ .count }}"></div>
 
@@ -102,7 +102,7 @@
             <hr>
             <div class="modal-body">
 
-                <h3>By Neighborhood</h3>
+                <div class="h3">By Neighborhood</div>
                 <p><em>{{ .ind.measurement_type }} {{ .ind.units }}</em></p>
                 <div style="width:100%; height:60vmin; z-index:10000;" id="map-{{ .ind.indicator_data_name }}-{{ .count }}"></div>
 
