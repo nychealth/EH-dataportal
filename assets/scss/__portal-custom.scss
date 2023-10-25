@@ -653,11 +653,13 @@ height: 200px;}
         background-color: #fffcfd;
     }
     
-    .crossing-header-red h2 {
+    .crossing-header-red h2, 
+    .crossing-header-red.h2 {
         color: #991e39;
     }
     
-    .crossing-header-red h3 {
+    .crossing-header-red h3, 
+    .crossing-header-red.h3 {
         color: #991e39;
     }
     
@@ -794,7 +796,8 @@ height: 200px;}
         width: 2em;
     }
      
-    .social-share-nav .share-btn h3{
+    .social-share-nav .share-btn h3,
+    .social-share-nav .share-btn .h3 {
         color: #ffffff;
     }
     
@@ -879,7 +882,8 @@ height: 200px;}
     .share-btn.email:hover       { background: #363636; }
 
 // Revises header styles within topic pages
-.topiccontainer h3 {
+.topiccontainer h3,
+.topiccontainer .h3 {
     font-size: 18px;
     color: #656565;
 }
