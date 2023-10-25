@@ -203,12 +203,22 @@
                 window.addEventListener('DOMContentLoaded', (event) => {
                     new PagefindUI({
                         element: "#search",
+                        showSubResults: true,
                         showImages: false,
                         baseUrl: baseURL,
                         showEmptyFilters: true,
                         processResult: function (result) {
-                          console.log("result", result);
-                          return result;
+
+                            result.sub_results.forEach(sub => { 
+
+                                sub.url = sub.url.replace("#IndicatorID-", "?id=");
+
+                            });
+
+                            console.log("@ result:", result);
+
+                            result.sub_results.forEach(r => console.log("<> sub url:", r.url));
+
                         }
                     });
                 });
