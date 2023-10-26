@@ -7,7 +7,7 @@ const renderComparisonsChart = (
     metadata
 ) => {
 
-    console.log("** renderComparisonsChart");
+    console.log("*** renderComparisonsChart");
 
     // console.log(">>> comp metadata");
     // metadata.print()
@@ -93,9 +93,9 @@ const renderComparisonsChart = (
 
         // console.log("1 indicator");
         
-        let compId = [... new Set(metadata.array("ComparisonID"))][0];
-        let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
-        let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))]
+        let compId           = [... new Set(metadata.array("ComparisonID"))][0];
+        let compLegendTitle  = [... new Set(metadata.array("LegendTitle"))];
+        let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))];
 
         // console.log("compId", compId);
         

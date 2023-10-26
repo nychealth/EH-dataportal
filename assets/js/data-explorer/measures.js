@@ -860,7 +860,7 @@ const handleMapGeoDropdown = (MeasureID, Time) => {
 
 const renderMeasures = async () => {
 
-    console.log("** renderMeasures");
+    console.log("* renderMeasures");
 
     selectedTableYears = [];
     selectedTableGeography = [];
@@ -868,9 +868,9 @@ const renderMeasures = async () => {
     linksMeasures.length = 0
 
     const contentTable = document.querySelector('#tab-table');
-    const contentMap     = document.querySelector('#tab-map')
-    const contentTrend   = document.querySelector('#tab-trend');
-    const contentLinks   = document.querySelector('#tab-links');
+    const contentMap   = document.querySelector('#tab-map')
+    const contentTrend = document.querySelector('#tab-trend');
+    const contentLinks = document.querySelector('#tab-links');
 
     // console.log("contentTrend", contentTrend);
 
@@ -1112,7 +1112,7 @@ const renderMeasures = async () => {
     });
 
 
-    // ----- handle comparisons viz -------------------------------------------------- //
+    // ===== handle comparisons viz ================================================== //
 
     if (indicatorComparisonId !== null) {
 
@@ -1516,7 +1516,7 @@ const renderMeasures = async () => {
 
     showNormalTrend = (e) => {
 
-        console.log("* showNormalTrend");
+        console.log("** showNormalTrend");
 
         // chart only the annual average for the following measureIds:
         // 365 - PM2.5 (Fine particles), Mean
@@ -1664,7 +1664,7 @@ const renderMeasures = async () => {
 
     showTrendComparisons = (e) => {
 
-        console.log("* showTrendComparisons");
+        console.log("** showTrendComparisons");
         // console.log("selectedComparison", selectedComparison);
 
         // ----- allow chart to persist when changing tabs -------------------------------------------------- //
@@ -1989,7 +1989,7 @@ const renderMeasures = async () => {
 
         $(btnToggleDisparities).on("click", (e) => {
 
-            // console.log("** btnToggleDisparities **", e);
+            // console.log("btnToggleDisparities", e);
 
             if (e.target && e.target.matches("#show-disparities") && !e.target.classList.contains("active")) {
 
