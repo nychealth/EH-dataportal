@@ -1,5 +1,5 @@
 ---
-title: "Intentional injury deaths among young and middle-aged adults in New York City"
+title: "Injury deaths in NYC"
 date: 2023-10-18T13:11:44-04:00
 draft: false
 seo_title: "Injury deaths in NYC adults: how homicide and suicide contribute"
@@ -18,7 +18,7 @@ keywords:
     "means reduction",
     "violence",
   ]
-image: ds-injury.jpeg
+image: ds-aqcovid.jpeg
 photocredit: "Ed Reed/Mayoral Photography Office"
 ---
 
