@@ -29,7 +29,6 @@ fetch(`${data_repo}${data_branch}/indicators/indicators.json`)
         if (paramId) {
             loadIndicator(paramId)
             // console.log('param id is set')
-            // globalID = paramId
 
             // fetch311(paramId)
         } else {
@@ -157,44 +156,44 @@ const createComparisonData = async (comps) => {
     Promise.all(
 
         // map over indeicators, which have separate data files
-
+        
         uniqueIndicatorMeasure.map(async ind => {
 
-            // let measures = ind[1].flatMap(m => Object.values(m));
-
-            // get data for an indicator
+            let measures = ind[1].flatMap(m => Object.values(m));
             
+            // get data for an indicator
+
             return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
                 .then(async data => {
 
-                    // console.log("@@ data:");
+                        // console.log("@@ data:");
                     // await data.print()
 
                     // console.log("** aq.loadJSON");
+
+                    // filter data to keep only measures and geos in the comparison chart, using semijoin with comparison metadata
                     // console.log("comp_data [createComparisonData]");
 
                     // filter data to keep only measures and geos in the comparison chart, using semijoin with comparison metadata
 
-                let comp_data = data
-                    .derive({IndicatorID: aq.escape(ind[0])})
-                    .filter(
-                        aq.escape(d => measures.includes(d.MeasureID)), 
-                        d => op.match(d.GeoType, /Citywide/) // keep only Citywide
-                    )
-                    .reify()
+                    let comp_data = data
+                        .derive({IndicatorID: aq.escape(ind[0])})
+                        .filter(
+                            aq.escape(d => measures.includes(d.MeasureID)), 
+                            d => op.match(d.GeoType, /Citywide/) // keep only Citywide
+                        )
+                        .reify()
+                    
+                    return comp_data;
                 
-                return comp_data;
-            
-            })
+                })
 
-    }))
+        })
+    )
 
     .then(async dataArray => {
 
-        // console.log("dataArray [createComparisonData]", dataArray);
-
         // take array of arquero tables and combine them into 1 arquero table - like bind_rows in dplyr
-
 
         aqComparisonsIndicatorData = await dataArray.flatMap(d => d).reduce((a, b) => a.concat(b))
 
@@ -320,8 +319,6 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
         fetch_comparisons();
     }
 
-    // draw311Buttons(globalID);
-
     loadData(indicatorId);
 
 }
@@ -338,21 +335,21 @@ const loadData = async (this_indicatorId) => {
         .then(response => response.json())
         .then(async data => {
 
-        // console.log("data [loadData]", data);
+            // console.log("data [loadData]", data);
 
-        // call the geo file loading function
+            // call the geo file loading function
 
-        loadGeo();
+            loadGeo();
 
-        ful = aq.from(data)
-            .derive({ "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
-            .groupby("Time", "GeoType", "GeoID", "GeoRank")
+            ful = aq.from(data)
+                .derive({ "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
+                .groupby("Time", "GeoType", "GeoID", "GeoRank")
 
 
-        aqData = ful
-            .groupby("Time", "GeoType", "GeoID")
-            .orderby(aq.desc('Time'), 'GeoRank')
-    })
+            aqData = ful
+                .groupby("Time", "GeoType", "GeoID")
+                .orderby(aq.desc('Time'), 'GeoRank')
+        })
 
     draw311Buttons(this_indicatorId)
 
@@ -362,23 +359,20 @@ const loadData = async (this_indicatorId) => {
 // function to load geographic data
 // ----------------------------------------------------------------------- //
 
-const loadGeo = async () => {
+const loadGeo = () => {
 
     console.log("* loadGeo");
 
     const geoUrl = `${data_repo}${data_branch}/geography/GeoLookup.csv`; // col named "GeoType"
 
-    await aq.loadCSV(geoUrl)
-        .then(async (data) => {
+    aq.loadCSV(geoUrl)
+        .then(data => {
 
-            geoTable = await data.select(aq.not('Lat', 'Long'));
+            geoTable = data.select(aq.not('Lat', 'Long'));
 
-            // console.log("geoTable [loadGeo]");
-            // geoTable.print()
+            // call the data-to-geo joining function
 
-    });
-}
-
+            joinData();
 
     });
 }
@@ -642,7 +636,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
             // get secondary measure data
 
-            const aqFilteredSecondaryMeasureData = aq.table(data)
+            const aqFilteredSecondaryMeasureData = aq.from(data)
 
                 // get secondary measure data
 
@@ -748,7 +742,6 @@ function draw311Buttons(indicator_id) {
 
     console.log("* draw311Buttons");
 
-    let crosswalk;
     let filteredCrosswalk = [];
 
     d3.csv(`${baseURL}/311/311-crosswalk.csv`)
