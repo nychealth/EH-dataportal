@@ -131,7 +131,7 @@
 <section class="container-fluid" id="skip-header-target">
 
     <div class="row mt-4">
-        <div class="col-lg-9 mx-auto col-12">
+        <div class="col-lg-10 mx-auto col-12">
             <nav aria-label="breadcrumb" class="mb-2">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -143,16 +143,101 @@
                 </ul>
             </nav>
 
-            <h1 class="report-title">{{ $.Params.title }} in 
+            <h1 class="report-title border-bottom mt-4">{{ $.Params.title }} in 
                 <span class="sub-title">{{ $.Params.neighborhood }}</span>
             </h1>
 
+            <p class="report-description fs-lg mt-2 mb-4">{{ .report_description }}</p>
+
+
             <div class="row">
-                <div class="col-md-7 h-100">
-                    <p class="report-description fs-md">{{ .report_description }}</p>
+                <div class="col-md-9 h-100">
     
-                    <p><strong style="color:#00923E">{{ .geo_entity_name }}</strong> includes ZIP Codes: <span
-                              class="home-label font-weight-bold">{{ .zip_code }}</span>.</p>
+                <!-- REPORT CONTENT  -->
+                <div class="row">
+                    <div class="col-12">
+                        <div>
+    
+                            {{- range $index, $content := .report_content -}}
+                            {{- $count :=add $index 1 -}}
+                            {{- $.Scratch.Set "location" .geo_entity_name -}}
+                            {{- $.Scratch.Set "borough" .borough_name -}}
+    
+                            <div class="report-topic">
+    
+                                <div class="topic-header">
+                                    <h2>{{ .report_topic }}</h2>
+                                    <p>
+                                        {{- .report_topic_description -}}
+                                    </p>
+                                </div>
+    
+                                <div class="container-fluid px-0 mb-4">
+                                    <!-- Hide on print -->
+                                    <div class="row indicator-headings mb-2 d-print-none">
+                                        <div class="col-6 col-md-5 pl-3">
+                                            Topic
+                                        </div>
+                                        <div class="col-6 col-md-4">
+    
+                                            <div class="position-relative">
+                                                <span class="meta">Compared to other neighborhoods<a href="#" data-toggle="modal" data-target="#modal-rank"
+                                                    class="info-modal meta"><i class="fas fa-question-circle fs-rg ml-1"></i> </span></a>
+    
+                                            </div>
+    
+                                        </div>
+                                        <div class="d-none d-md-inline col-md-3">
+                                            <span class="meta">All neighborhoods</span>
+                                        </div>
+                                    </div>
+    
+                                    <!-- Only show on pring -->
+                                    <div class="row indicator-headings mb-2 print-only">
+                                        <div class="col-4 font-weight-bold">
+                                            Topic
+                                        </div>
+                                        <div class="col-8">
+    
+                                            <div class="position-relative">
+                                                <span class="meta">Compared to other neighborhoods</span>
+                                            </div>
+    
+                                        </div>
+                                    </div>
+    
+                                    {{- with .report_topic_data -}}
+                                    {{- range sort . "data_value_rank" "desc" -}}
+                                    {{- $location := $.Scratch.Get "location" -}}
+                                    {{- $borough := $.Scratch.Get "borough" -}}
+                                    {{- partial "report_indicator.html" (dict "location" $location "borough" $borough "ind" . "count" $count) -}}
+                                    {{- end -}}
+                                    {{- end -}}
+                                </div>
+                                <!-- .container -->
+    
+                            </div>
+                            <!-- .report-topic -->
+                            {{- end -}}
+    
+                        </div>
+    
+    
+                    </div>
+                </div>
+
+                </div>
+    
+                <!-- NAV RIGHT SIDEBAR -->
+                <div class="col-md-3 h-100">
+                    <div class="border mb-2" style="height: 100%">
+                        <div class="p-1">
+                            <p><strong style="color:#00923E">{{ .geo_entity_name }}</strong> includes ZIP Codes: <span
+                                class="home-label font-weight-bold">{{ .zip_code }}</span>.</p>
+                        </div>
+
+                        {{- partial "nr-map-highlight" . -}}
+                    </div>
 
                     <nav role="navigation">
                         <div class="">
@@ -161,97 +246,16 @@
                             {{- partial "location_sub_nav" (dict  "neighborhood" $neighborhood "report" $report) -}}
                         </div>
                     </nav>
-                </div>
-    
-                <div class="col-md-5 h-100">
-                    <div class="border" style="height: 100%">
-                        {{- partial "nr-map-highlight" . -}}
-                    </div>
-                </div>
-            </div>
 
-            <div class="row mt-4">
-                <div class="col-12">
-                    <div>
+                    <hr class="my-2">
+                    <button onclick="window.print()" class="btn btn-sm btn-block btn-report mt-2" target="_blank"><i class="fas fa-print mr-1"></i>Print Report</button>
 
-                        {{- range $index, $content := .report_content -}}
-                        {{- $count :=add $index 1 -}}
-                        {{- $.Scratch.Set "location" .geo_entity_name -}}
-                        {{- $.Scratch.Set "borough" .borough_name -}}
+                    <button onclick="downloadData()" class="btn btn-sm btn-block btn-report mt-2" target="_blank"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>
 
-                        <div class="report-topic">
-
-                            <div class="topic-header">
-                                <h2>{{ .report_topic }}</h2>
-                                <p>
-                                    {{- .report_topic_description -}}
-                                </p>
-                            </div>
-
-                            <div class="container-fluid px-0 mb-4">
-                                <!-- Hide on print -->
-                                <div class="row indicator-headings mb-2 d-print-none">
-                                    <div class="col-6 col-md-5 pl-3">
-                                        Topic
-                                    </div>
-                                    <div class="col-6 col-md-4">
-
-                                        <div class="position-relative">
-                                            <span class="meta">Compared to other neighborhoods<a href="#" data-toggle="modal" data-target="#modal-rank"
-                                                class="info-modal meta"><i class="fas fa-question-circle fs-rg ml-1"></i> </span></a>
-
-                                        </div>
-
-                                    </div>
-                                    <div class="d-none d-md-inline col-md-3">
-                                        <span class="meta">All neighborhoods</span>
-                                    </div>
-                                </div>
-
-                                <!-- Only show on pring -->
-                                <div class="row indicator-headings mb-2 print-only">
-                                    <div class="col-4 font-weight-bold">
-                                        Topic
-                                    </div>
-                                    <div class="col-8">
-
-                                        <div class="position-relative">
-                                            <span class="meta">Compared to other neighborhoods</span>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                {{- with .report_topic_data -}}
-                                {{- range sort . "data_value_rank" "desc" -}}
-                                {{- $location := $.Scratch.Get "location" -}}
-                                {{- $borough := $.Scratch.Get "borough" -}}
-                                {{- partial "report_indicator.html" (dict "location" $location "borough" $borough "ind" . "count" $count) -}}
-                                {{- end -}}
-                                {{- end -}}
-                            </div>
-                            <!-- .container -->
-
-                        </div>
-                        <!-- .report-topic -->
-                        {{- end -}}
-
-                    </div>
 
 
                 </div>
             </div>
-
-            <div class="row mt-2 mb-4">
-                <div class="col-sm-6">
-                    <button onclick="window.print()" class="btn btn-sm btn-block btn-report" target="_blank"><i class="fas fa-print mr-1"></i>Print Report</button>
-                </div>
-        
-                <div class="col-sm-6">
-                    <button onclick="downloadData()" class="btn btn-sm btn-block btn-report" target="_blank"><i class="fa fa-download mr-1"></i>Download Report Data <span class="sr-only">(opens in a new tab)</span></button>
-                </div>
-            </div>
-
 
         </div>
 
