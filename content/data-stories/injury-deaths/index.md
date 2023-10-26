@@ -18,7 +18,7 @@ keywords:
     "means reduction",
     "violence",
   ]
-image: ds-sanitation-trucks.jpg
+image: ds-aqcovid.jpeg
 photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 
