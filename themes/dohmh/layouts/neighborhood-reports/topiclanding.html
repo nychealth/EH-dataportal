@@ -66,15 +66,56 @@
 </article>
 
 
-{{/* ====  save indicator names as a resource  ==== */}}
+{{- /* ====  save indicator names as a resource  ==== */ -}}
 
 {{- /* ----  get indicators.json from data repo, and transform into a Hugo object  ---- */ -}}
 
-  {{- $nr_indicator_names := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/nr_indicator_names.json")) | transform.Unmarshal -}}
+{{- $nr_indicator_names := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/nr_indicator_names.json")) | transform.Unmarshal -}}
 
-  {{- $nr_indicator_names_json := $nr_indicator_names | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorData/nr_indicator_names.json" -}}
+{{/*  {{ warnf ">>>> " $nr_indicator_names }}  */}}
 
-  {{ warnf (print "nr_indicator_names_json.RelPermalink: >>> " $nr_indicator_names_json.RelPermalink " <<<") }}
+{{/*  add indicator names and descriptions in page code for pagefind to index  */}}
+
+{{/*  URL  */}}
+
+
+{{ $report_title := ( replace ( replace .Params.title " " "_" ) "," "" ) }}
+
+{{/*  {{ warnf (print (println "\\") (println "~~~~~ report_title ~~~~~") (println (jsonify $report_title)) (println "-----------------------------------------------")) }}  */}}
+
+{{ $report_indicators := where $nr_indicator_names "title" $report_title }}
+
+{{/*  {{ warnf (print (println "\\") (println ">>>> report_indicators >>>>") (println (jsonify $report_indicators)) (println "-----------------------------------------------")) }}  */}}
+
+{{ $indicator_names        := ( index (index $report_indicators 0) "indicator_names" ) }}
+{{ $indicator_descriptions := ( index (index $report_indicators 0) "indicator_descriptions" ) }}
+
+{{/*  {{ warnf (print (println "\\") (println " $$$$$ indicator_names $$$$$ ") (println (jsonify $indicator_names)) (println "-----------------------------------------------")) }}  */}}
+
+
+
+<div 
+    id="{{ $report_title }}_indicator_names" 
+    indicator-names="{{ $indicator_names }}"
+    data-pagefind-index-attrs="indicator-names"
+    data-pagefind-weight="5.0"
+    class="d-none"
+></div>
+<div 
+    id="{{ $report_title }}_indicator_descriptions" 
+    indicator-descriptions="{{ $indicator_descriptions }}"
+    data-pagefind-index-attrs="indicator-descriptions"
+    data-pagefind-weight="4.0"
+    class="d-none"
+></div>
+
+
+
+{{/*  probably won't need to save this as JSON  */}}
+
+{{/*  {{- $nr_indicator_names_json := $nr_indicator_names | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorData/nr_indicator_names.json" -}}  */}}
+
+{{/*  {{ warnf (print "nr_indicator_names_json.RelPermalink: >>> " $nr_indicator_names_json.RelPermalink " <<<") }}  */}}
 
 
 {{/*  remove  */}}
