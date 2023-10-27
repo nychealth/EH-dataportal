@@ -22,6 +22,14 @@
     transform: scaleX(1);
 }
 
+// ==== pagefind modal styles ==== //
+
+// checked filter name
+
+.pagefind-ui__filter-value--checked .pagefind-ui__filter-label {
+    font-weight: bold !important;
+}
+
 // Index page styles
 .bg-lightgray {
     background-color: #fbfbfb !important;
