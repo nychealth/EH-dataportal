@@ -20,7 +20,16 @@
       <h1 class="nr-accent mt-4 border-bottom"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>{{ .Title }}</h1>
       <p>{{- .Content -}}</p>
 
-      <div class="row">
+      <!-- Hidden, accessible list of clickable neighborhoods: rendered by JavaScript -->
+      <div class="row sr-only">
+        <h2>Select neighborhood</h2>
+        <ul id="neighborhoodList">
+
+        </ul>
+      </div>
+
+      <!-- Visible, interactive neighborhood/report selector -->
+      <div class="row" aria-hidden="true">
         <div class="col-sm-5">
           <p class="home-label border-bottom font-weight-bold">Choose report:</p>
           <button class="btn btn-lg btn-block btn-outline-primary active" onclick="buttonChange('Asthma')" id="Asthma">Asthma</button>
@@ -28,17 +37,28 @@
           <button class="btn btn-lg  btn-block btn-outline-primary" onclick="buttonChange('Climate')" id="Climate">Climate</button>
           <button class="btn btn-lg btn-block btn-outline-primary" onclick="buttonChange('Housing')" id="Housing">Housing</button>
           <button class="btn btn-lg btn-block btn-outline-primary" onclick="buttonChange('Outdoor')" id="Outdoor">Outdoor Air</button>
+
+          <div class="l-green-border px-1 mb-2">
+            <p class="mt-2" id="descr"></p>
+          </div>
     
         </div>
     
         <div class="col-sm-7">
           <p class="home-label border-bottom font-weight-bold">Choose neighborhood</p>
 
-          <div class="border" style="height:550px">
+          <div class="border-bottom" style="height:550px" aria-hidden="true">
             {{- partial "nr-clickable-uhf" . -}}
 
           </div>
-    
+          <button class="btn btn-sm float-right btn-outline-primary mt-1" onclick="showNeighborhoods()">Show neighborhood list</button>
+          <div class="hide mt-2" id="showNeighbs">
+            <h3>All neighborhoods:</h3>
+            <ul id="neighborhoodList2">
+
+            </ul>
+          </div>
+
         </div>
     
       </div>
@@ -46,6 +66,29 @@
       
     </div>
   </div>
+
+<div class="hide" id="AsthmaDescr">
+  Asthma is a leading cause of hospitalizations for children. It can be made worse by housing and neighborhood characteristics. There are powerful inequities that drive racial disparities in asthma in NYC.
+</div>
+
+<div class="hide" id="ClimateDescr">
+  As the climate changes, we track New York City's risk for extreme heat, storms and flooding, and episodes of elevated ozone. These have important public health impacts: already, heat kills more people than all other natural disasters.
+</div>
+
+<div class="hide" id="ActiveDescr">
+  The design and condition of buildings, streets, public transportation, and parks influence how much physical activity people get, how much they use active transportation, and how much other healthy behavior they do. A neighborhood built environment can also affect the safety of its residents.
+</div>
+
+<div class="hide" id="HousingDescr">
+  Housing conditions can drive health outcomes like asthma, lead poisoning, and carbon monoxide poisoning. We track housing neighborhood characteristics that can put people at risk - and special populations that are vulnernerable.
+</div>
+
+<div class="hide" id="OutdoorDescr">
+  Air pollution is one of the most important environmental threats to people who live in urban areas. Exposures are linked to respiratory and heart diseases, cancers, and premature deaths. Meanwhile, emissions, levels of exposure, and population vulnerability vary across neighborhoods.
+</div>
+
+
+
 
 
 
@@ -76,6 +119,11 @@ function buttonChange(x) {
   report = x
   window.location.hash = report + "report"; // changing hash - we'll use this later. 
 
+  var copyHolder = x + 'Descr'
+  var copy = document.getElementById(copyHolder).innerHTML
+  console.log(copy)
+  document.getElementById('descr').innerHTML = copy
+
   // this checks
   if (report=="Asthma") {
     reportURL = '/asthma_and_the_environment/'
@@ -100,6 +148,23 @@ function buttonChange(x) {
 
 // run initial
 buttonChange('Asthma')
+
+// populate accessible neighborhood-selection
+var ul = document.getElementById("neighborhoodList");
+var ul2 = document.getElementById("neighborhoodList2");
+
+neighborhoods.forEach(function (neighborhood) {
+  var li = document.createElement("li");
+  li.innerHTML = `<a href="${neighborhood.page_name}">${neighborhood.UHF_name}</a>: ${neighborhood.Zipcodes}`;
+  ul.appendChild(li);
+  ul2.appendChild(li)
+});
+
+function showNeighborhoods() {
+  console.log('showing neighborhoods...')
+  document.getElementById('showNeighbs').classList.remove('hide')
+  document.getElementById('showNeighbs').classList.add('show')
+  }
 
 
 
