@@ -108,18 +108,29 @@
 
     /* dropdown list items - active styles based on if they're related to a primary or secondary button style */
 
+    .dropdown-item {
+        text-decoration: none;
+    }
+
     .btn-outline-primary ~ .dropdown-menu .dropdown-item.active,
     .btn-outline-primary ~ .dropdown-menu .dropdown-item:active {
         color: #ffffff;
-        text-decoration: none;
+        /*text-decoration: none;*/
         background-color: #841972;
     }
 
     .btn-outline-secondary ~ .dropdown-menu .dropdown-item.active,
     .btn-outline-secondary ~ .dropdown-menu .dropdown-item:active {
         color: #ffffff;
-        text-decoration: none;
+        /*text-decoration: none;*/
         background-color: #181A7B;
+    }
+
+    /* strikethrough if unavailable */
+
+    .dropdown-menu .dropdown-item.unavailable {
+        text-decoration: line-through;
+        text-decoration-thickness: 0.15rem;
     }
 
     /* topic selection modal */

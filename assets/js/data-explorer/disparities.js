@@ -26,12 +26,12 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
     // ----------------------------------------------------------------------- //
 
     const primaryIndicatorName   = indicatorName
-    const primaryMeasurementType = primaryMetadata[0].MeasurementType;
-    const primaryMeasureId       = primaryMetadata[0].MeasureID;
-    const primaryMeasureName     = primaryMetadata[0].MeasureName;
+    const primaryMeasurementType = primaryMetadata[0]?.MeasurementType;
+    const primaryMeasureId       = primaryMetadata[0]?.MeasureID;
+    const primaryMeasureName     = primaryMetadata[0]?.MeasureName;
     const primaryAbout           = primaryMetadata[0]?.how_calculated;
-    const primarySources         = primaryMetadata[0].Sources;
-    const primaryDisplay         = primaryMetadata[0].DisplayType;
+    const primarySources         = primaryMetadata[0]?.Sources;
+    const primaryDisplay         = primaryMetadata[0]?.DisplayType;
 
     // get disparities poverty indicator metadata - "indicators" is a global object created by loadIndicator
 

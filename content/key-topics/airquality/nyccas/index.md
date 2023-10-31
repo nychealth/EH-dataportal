@@ -104,7 +104,7 @@ moreInfo: >-
     Maps.</li><li><a
     href="Appendix3.pdf">Appendix
     3 (PDF)</a> : Community District Average Pollution Levels</li><li><a
-    href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Traffic/index.html">The
+    href="../../../data-stories/traffic-and-air-pollution">The
     Public Health Impacts of PM<sub>2.5</sub> from Traffic Air Pollution data
     story.</a></li><li><a
     href="https://data.cityofnewyork.us/Environment/NYCCAS-Air-Pollution-Rasters/q68s-8qxv">NYC
@@ -122,7 +122,7 @@ In 2007, the New York City Department of Health and Mental Hygiene (Health Depar
 * Help inform PlaNYC, the City’s sustainability plan
 * Track changes in air quality over time
 * Estimate exposures for health research
-* Inform the public about local topics, such as&nbsp;[recent air quality improvements](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/breatheeasy/), [car-free zones](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aqts/), [changes in the sources of air pollution](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq-cooking/), [unique air quality studies conducted in New York City](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aqsnapshots/), [efforts to reduce health impacts](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/hia/) and [differences in air quality and related health impacts across NYC neighborhoods](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq2/).
+* Inform the public about local topics, such as&nbsp;[recent air quality improvements](./../../data-stories/breatheeasy/), [car-free zones](./../../data-stories/aqts/), [changes in the sources of air pollution](./../../data-stories/aq-cooking/), [unique air quality studies conducted in New York City](./../../data-stories/aqsnapshots/), [efforts to reduce health impacts](./../../data-stories/hia/) and [differences in air quality and related health impacts across NYC neighborhoods](./../../data-stories/aq2/).
 
 This report:
 

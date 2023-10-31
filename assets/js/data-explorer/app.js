@@ -219,7 +219,7 @@ $("#allData").on("click", (e) => {
 
 $("#rawData").on("click", (e) => {
 
-    let dataURL = data_repo + data_branch + '/indicators/data/' + indicatorId + '.json'
+    let dataURL = `${data_repo}${data_branch}/indicators/data/${indicatorId}.json`
 
     // console.log('Data are at: ' + dataURL)
 
