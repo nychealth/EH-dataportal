@@ -85,7 +85,7 @@
       var neighborhoods = [];
       var neighb = [];
       var neighbName;
-
+      var rpt;
       var parts
     
       // load UHF42.csv to get Geoname, etc - to power neighborhood highlight for nonclickable map.
@@ -99,6 +99,8 @@
           neighbName = parts[parts.length - 2]; // if it's a Neighborhood Landing Page
         } else if (parts.length == 8) {
           neighbName = parts[parts.length - 3]; // if it's a Neighborhood Report
+          rpt = parts[parts.length - 2]
+          console.log(rpt)
         } else {
           console.log('could not get neighbName')
         }
@@ -137,7 +139,7 @@
             // console.log(item.datum)
 
             // send to new page
-            window.location = '{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(item.datum.GEONAME)
+            window.location = '{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(item.datum.GEONAME) + '/' + rpt
           });
           }).catch(console.warn);
       }
