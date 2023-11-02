@@ -18,7 +18,7 @@ Healthy waterways are important for both aquatic life and humans who use the wat
 
 We measure the quality of harbor water through two key indicators:
 
-- **Dissolved oxygen** is essential for most aquatic life. Coastal habitats and ecosystems thrive in environments with high concentrations of dissolved oxygen.
+- **Dissolved oxygen** is critical for most aquatic life. Coastal habitats and ecosystems thrive in environments with high concentrations of dissolved oxygen.
 
 - **Concentrations of fecal coliform bacteria and Enterococci bacteria**. Higher levels of these bacteria can mean there is sewage-related water pollution. Though most of these bacteria do not cause disease, higher concentrations can indicate the presence of pathogenic (disease-producing) bacteria.
 
