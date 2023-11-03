@@ -27,7 +27,7 @@ In these conversations New Yorkers share the personal stories that illuminate pr
 <div class="pullquote">
 <figure class="my-2">
     <figcaption>“When someone has a decent house with security…they can lock their door at night, they can sleep at night, know their children are safe. That can create a better frame of mind of how you’re living your life.” -—NYC community conversation participant </figcaption>
-    <audio controls src="clip-constant-struggle.wav" style="width:100%;">
+    <audio controls src="" style="width:100%;">
             <a href="clip-constant-struggle.wav">
                 Download audio
             </a>
@@ -44,7 +44,7 @@ The impacts of poor housing build up over the course of people’s lives. And th
 <div class="pullquote">
 <figure class="my-2">
     <figcaption>“Many people have moved to the neighborhood with different and higher incomes that may skew the definition of affordable housing, thereby creating a gap of income and services.”  —NYC community conversation participant   </figcaption>
-    <audio controls src="clip-constant-struggle.wav" style="width:100%;">
+    <audio controls src="" style="width:100%;">
             <a href="clip-constant-struggle.wav">
                 Download audio
             </a>
@@ -56,14 +56,14 @@ Household income is increasing at a much slower rate than rent and residents are
 
 Across New York, half of all households are rent-burdened, leaving less money for food and basic health care. People are considered rent-burdened when more than 30% of their household income goes to rent. <a href="src"> Learn more about the health implications of experiencing rent burden in How economic stability creates health.</a>
 
-- viz \*
+<iframe title="Percent of households that are rent-burdened by neighborhood (NTA)" aria-label="Map" id="datawrapper-chart-L4j3j" src="https://datawrapper.dwcdn.net/L4j3j/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="756" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
 A high rent burden is often accompanied by other housing issues like overcrowding (defined as more than one person per room). Overcrowding occurs much more often in high-poverty areas, and can compound the spread of disease.
 
 <div class="pullquote">
 <figure class="my-2">
     <figcaption> “A lot of the young people I work with openly share that maybe they’re sharing a bed with several siblings.” —NYC community conversation participant   </figcaption>
-    <audio controls src="clip-constant-struggle.wav" style="width:100%;">
+    <audio controls src="" style="width:100%;">
             <a href="clip-constant-struggle.wav">
                 Download audio
             </a>
@@ -80,7 +80,7 @@ When housing is unaffordable, options become limited and people often end up in 
 <div class="pullquote">
 <figure class="my-2">
     <figcaption> “We didn’t have any heat for last year up until the middle of December. And then we didn’t have any air conditioning through the middle of August.” - NYC community conversation participant  </figcaption>
-    <audio controls src="clip-constant-struggle.wav" style="width:100%;">
+    <audio controls src="" style="width:100%;">
             <a href="clip-constant-struggle.wav">
                 Download audio
             </a>
@@ -113,7 +113,7 @@ A lack of affordable and healthy housing often leads to unstable housing. Most e
 <div class="pullquote">
 <figure class="my-2">
     <figcaption> “Children whose families are homeless, and they're being shuffled from place to place—they need to have stability. I think that needs to be addressed. Because it also affects their schooling, their mental health, their medical, you know, needs for both parents and the children. And I think the children are impacted most.” -- NYC Community Conversation Participant  </figcaption>
-    <audio controls src="clip-constant-struggle.wav" style="width:100%;">
+    <audio controls src="" style="width:100%;">
             <a href="clip-constant-struggle.wav">
                 Download audio
             </a>
@@ -129,7 +129,7 @@ Eviction is associated with many poor health outcomes. These include babies that
 <figure class="my-2">
     <figcaption> "… like many people I choose between paying my internet or food…” -- Jackson Heights, NYC Community Conversation Participant
  </figcaption>
-    <audio controls src="clip-constant-struggle.wav" style="width:100%;">
+    <audio controls src="" style="width:100%;">
             <a href="clip-constant-struggle.wav">
                 Download audio
             </a>
