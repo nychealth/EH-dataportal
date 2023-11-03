@@ -26,7 +26,7 @@ photocredit: "Ed Reed/Mayoral Photography Office"
 
 Young and middle-aged adults (aged 15 to 44) do not typically die from the natural causes that kill older adults. Injuries, both intentional — violence or suicide — and unintentional, dominate as causes of death. These premature deaths are tragic, unnecessary and preventable.
 
-Below we focus on homicide and suicide, reflecting areas of focus in the NYC Health Department’s recently released HealthyNYC, which identifies the major drivers of decreasing life expectancy and health equity in our city and identifies strategies to reduce each driver’s impact.
+Below we focus on homicide and suicide, reflecting areas of focus in the NYC Health Department’s recently released [HealthyNYC](https://www.nyc.gov/site/doh/about/about-doh/healthynyc.page) which identifies the major drivers of decreasing life expectancy and health equity in our city and identifies strategies to reduce each driver’s impact.
 
 Suicide and homicide do not just affect the immediate victims. The impacts radiate, potentially widening disparities and causing stress, trauma and other negative health effects for victims’ friends, neighbors, colleagues and family members. [In communities where New Yorkers are more likely to experience either homicide or suicide, violence is both a personal and public health concern](../violence/). Below we focus on homicide and suicide.
 
