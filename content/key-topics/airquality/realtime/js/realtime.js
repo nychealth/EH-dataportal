@@ -120,13 +120,27 @@ function drawChart(spec) {
 }
 
 // ---- Create array of colors based on colors in activeMonitors. This gets sent to the json spec ---- //
-var colors = [];
+var colors
 function getColors() {
+    colors = [];
     for (let i = 0; i < activeMonitors.length; i++) {
         colors.push(activeMonitors[i].Color)
     }
     // colors.push('darkgray') // if DEC_Avg is present.
     current_spec.layer[0].encoding.color.scale.range = colors
+
+    // use activeMonitors to send color conditional to spec
+    console.log('activeMonitors:', activeMonitors)
+    var siteColors = [];
+    for (let i = 0; i < activeMonitors.length; i ++) {
+        var condition = {"test": `datum.SiteName === '${activeMonitors[i].loc_col}'`,"value": `${activeMonitors[i].Color}`}
+        siteColors.push(condition)
+    }
+
+    current_spec.layer[0].encoding.color.condition = siteColors
+
+    console.log('siteColors:',siteColors)
+
 }
 
 
@@ -428,6 +442,11 @@ function updateTime(x) {
     // send date filter to spec and re-draw Chart
     filter = `datum.starttime > ${filterTo}`
     current_spec.layer[0].transform[0] = {"filter": filter}
+
+    // use filter to filter data file; update activeMonitors
+    // use new activeMonitors to get updated colors array
+    // send updated colors array to spec
+
     // console.log(current_spec)
     drawChart(current_spec)
 }
