@@ -56,7 +56,11 @@ Household income is increasing at a much slower rate than rent and residents are
 
 Across New York, half of all households are rent-burdened, leaving less money for food and basic health care. People are considered rent-burdened when more than 30% of their household income goes to rent. <a href="src"> Learn more about the health implications of experiencing rent burden in How economic stability creates health.</a>
 
+</div>
+
 <iframe title="Percent of households that are rent-burdened by neighborhood (NTA)" aria-label="Map" id="datawrapper-chart-L4j3j" src="https://datawrapper.dwcdn.net/L4j3j/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="756" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+
+<div class="narrow">
 
 A high rent burden is often accompanied by other housing issues like overcrowding (defined as more than one person per room). Overcrowding occurs much more often in high-poverty areas, and can compound the spread of disease.
 
@@ -139,7 +143,11 @@ Eviction is associated with many poor health outcomes. These include babies that
 
 When COVID-19 hit, New York paused evictions, recognizing the twin threats of serious financial hardship and health risks created and made worse through experiencing homelessness. This was an effort to keep people housed—but also to keep people out of shelters, where the spread of COVID was hard to contain.
 
+</div>
+
 <iframe title="Evictions plummeted in 2020" aria-label="Interactive line chart" id="datawrapper-chart-xy1ku" src="https://datawrapper.dwcdn.net/xy1ku/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="423" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+
+<div class="narrow">
 
 When the eviction pause ended in 2021, homelessness in NYC began to rise at a staggering rate, with Black and Latino residents affected more than other racial groups. This happened amid a backdrop of steadily increasing rates of homelessness over the past two decades, with roots that extend beyond the pandemic.
 
