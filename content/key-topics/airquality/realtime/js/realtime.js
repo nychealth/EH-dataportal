@@ -120,13 +120,27 @@ function drawChart(spec) {
 }
 
 // ---- Create array of colors based on colors in activeMonitors. This gets sent to the json spec ---- //
-var colors = [];
+var colors
 function getColors() {
+    colors = [];
     for (let i = 0; i < activeMonitors.length; i++) {
         colors.push(activeMonitors[i].Color)
     }
     // colors.push('darkgray') // if DEC_Avg is present.
     current_spec.layer[0].encoding.color.scale.range = colors
+
+    // use activeMonitors to send color conditional to spec
+    console.log('activeMonitors:', activeMonitors)
+    var siteColors = [];
+    for (let i = 0; i < activeMonitors.length; i ++) {
+        var condition = {"test": `datum.SiteName === '${activeMonitors[i].loc_col}'`,"value": `${activeMonitors[i].Color}`}
+        siteColors.push(condition)
+    }
+
+    current_spec.layer[0].encoding.color.condition = siteColors
+
+    console.log('siteColors:',siteColors)
+
 }
 
 
@@ -231,41 +245,83 @@ function getIndex(x) {
     } 
 }
 
+var recentAverageData = [];
 function getRecentAverage(x) {
-    // Averaging recent values
-    loc = x; // retrieve location
-    locData = fullTable.filter(records => records.SiteName == x) // create array of location data
+
+    // first, creating convertData that has starttime in milliseconds 
+    var convertData = []
+    for (let i = 0; i < fullTable.length; i++) {
+        convertData.push(fullTable[i])
+        const date = new Date(convertData[i].starttime)
+        let dateInMsec = Date.parse(date)
+        convertData[i].starttime = dateInMsec
+    }
+
+    console.log('convertData', convertData)
+
+    // then, get the largest one
+    var mostRecentTime = convertData[convertData.length - 1].starttime
+    console.log('mrt', mostRecentTime)
+
+    var startingTime = mostRecentTime - 86400000
+    console.log('st:',startingTime)
+
+    // then, filter everything over largest one minus 24 hours of milliseconds
+    var last24HoursData = []
+    for (let i = 0; i < convertData.length; i++) {
+        if (convertData[i].starttime > startingTime) {
+            last24HoursData.push(convertData[i])
+        } else {}
+    }
+
+    console.log('last 24 hours:', last24HoursData)
+
+
+    // see if location is in there
+    var thisLast24 = [];
+
+    for (let i = 0; i < last24HoursData.length; i++) {
+        if (last24HoursData[i].SiteName === x) {
+            thisLast24.push(last24HoursData[i])
+        } else {}
+    }
+
+    console.log('thisLast', thisLast24)
     
-    // slice location data array to last 24 hours
-    var length = locData.length; 
-    var start = length - 24;
-    locData = locData.slice(start, length)
+    loc = x
 
-    // average the last 24 hours
-    var average;
-    var sum = []
-    for (let i = 0; i < locData.length; i ++ ) {
-        sum.push(locData[i].Value)
+    // if there's more than 16 hours of readings...
+    if (thisLast24.length > 17) {
+        // show box
+        document.getElementById('averageBox').classList.remove('hide')
+
+        // average the readings
+        var average;
+        var sum = []
+        for (let i = 0; i < thisLast24.length; i ++ ) {
+            sum.push(thisLast24[i].Value)
+        }
+
+        let totals = 0
+        for (let i = 0; i < sum.length; i ++ ) {
+            totals += sum[i]
+        }
+
+        average = totals / 24
+        average = Math.round(average * 100) / 100
+
+        console.log('average for this location over the last 24 hours: ' + average)
+
+        // send values to page
+        document.getElementById('locAverage').innerHTML = average + ' μg/m<sup>3</sup>'
+        average > 35 ? document.getElementById('aboveBelow').innerHTML = 'above' : document.getElementById('aboveBelow').innerHTML = 'below'
+        average > 35 ? document.getElementById('aboveBelow').classList.add('badge') : document.getElementById('aboveBelow').classList.add('badge')
+        average > 35 ? document.getElementById('aboveBelow').classList.add('badge-warning') : document.getElementById('aboveBelow').classList.add('badge-success')
+
+    } else {
+        // Do nothing...
+        document.getElementById('averageBox').classList.add('hide')
     }
-
-    let totals = 0
-    for (let i = 0; i < sum.length; i ++ ) {
-        totals += sum[i]
-    }
-
-    average = totals / 24
-    average = Math.round(average * 100) / 100
-
-    console.log('average for this location over the last 24 hours: ' + average)
-
-    // show box
-    document.getElementById('averageBox').classList.remove('hide')
-
-    // send values to page
-    document.getElementById('locAverage').innerHTML = average + ' μg/m<sup>3</sup>'
-    average > 35 ? document.getElementById('aboveBelow').innerHTML = 'above' : document.getElementById('aboveBelow').innerHTML = 'below'
-    average > 35 ? document.getElementById('aboveBelow').classList.add('badge') : document.getElementById('aboveBelow').classList.add('badge')
-    average > 35 ? document.getElementById('aboveBelow').classList.add('badge-warning') : document.getElementById('aboveBelow').classList.add('badge-success')
 
 
 }
@@ -428,6 +484,11 @@ function updateTime(x) {
     // send date filter to spec and re-draw Chart
     filter = `datum.starttime > ${filterTo}`
     current_spec.layer[0].transform[0] = {"filter": filter}
+
+    // use filter to filter data file; update activeMonitors
+    // use new activeMonitors to get updated colors array
+    // send updated colors array to spec
+
     // console.log(current_spec)
     drawChart(current_spec)
 }
