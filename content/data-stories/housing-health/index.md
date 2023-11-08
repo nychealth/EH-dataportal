@@ -112,7 +112,11 @@ The consequences of these disparities can be dangerous. For example, people whos
 
 A lack of affordable and healthy housing often leads to unstable housing. Most evictions occur because people can’t pay rent. The resulting impacts of moving frequently, eviction, and homelessness all threaten health both in the short term and over time. New Yorkers living in high-poverty neighborhoods experience eviction at more than four times the rate of those living in low-poverty neighborhoods.
 
-<!-- viz - court-ordered evictions disparities rebuild -->
+</div>
+
+<iframe title="Evictions are more common in higher poverty neighborhoods" aria-label="Scatter Plot" id="datawrapper-chart-DEEg2" src="https://datawrapper.dwcdn.net/DEEg2/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="550" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+
+<div class="narrow">
 
 <div class="pullquote">
 <figure class="my-2">
