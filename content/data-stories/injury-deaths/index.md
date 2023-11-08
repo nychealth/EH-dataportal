@@ -72,7 +72,7 @@ From 2017 to 2019, there were over 110 suicides each year among these young adul
 
 Within this age group of 25-to-34-year-olds, the suicide rate is highest among Black non-Hispanic New Yorkers and lowest among Latinos.
 
-Among 24- to 34-year-olds, homicides are the fourth-leading cause of death. Racial/ethnic, geographic, and sex disparities in homicide rates for adults ages 25 to 34 mirror those for ages 15 to 24, with the highest rates among Black males.
+Among 25- to 34-year-olds, homicides are the fourth-leading cause of death. Racial/ethnic, geographic, and sex disparities in homicide rates for adults ages 25 to 34 mirror those for ages 15 to 24, with the highest rates among Black males.
 
 <iframe title="Suicide rates age 25-34" class="my-4" aria-label="Split Bars" id="datawrapper-chart-7rrVq" src="https://datawrapper.dwcdn.net/7rrVq/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="191" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
