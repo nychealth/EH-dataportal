@@ -19,10 +19,10 @@ In these conversations New Yorkers share the personal stories that illuminate pr
 
 <i>To hear more from New Yorkers about how they view economic stability and health, <a href="https://make.headliner.app/download/48f94852-0370-4737-b5bf-5a8dafae62da">listen to recordings from the community conversations.</a></i>
 
-<div class="pullquote">
-<figure class="my-2">
-    <figcaption figcaption class="mb-2">“When someone has a decent house with security…they can lock their door at night, they can sleep at night, know their children are safe. That can create a better frame of mind of how you’re living your life.” —NYC community conversation participant </figcaption>
-    <audio controls src="frame-of-mind.mp3" style="width:100%;">
+<div class="pullquote l-green-border px-1 my-2">
+<figure class="">
+    <figcaption>“When someone has a decent house with security…they can lock their door at night, they can sleep at night, know their children are safe. That can create a better frame of mind of how you’re living your life.” —NYC community conversation participant </figcaption>
+    <audio controls src="frame-of-mind.mp3" style="width:100%;" class="mt-2">
             <a href="frame-of-mind.mp3">
                 Download audio
             </a>
@@ -53,7 +53,7 @@ Across New York, half of all households are rent-burdened, leaving less money fo
 
 </div>
 
-<iframe title="Percent of households that are rent-burdened by neighborhood (NTA)" aria-label="Map" id="datawrapper-chart-L4j3j" src="https://datawrapper.dwcdn.net/L4j3j/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="756" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<iframe class="my-2 py-1 border-top border-bottom" title="Percent of households that are rent-burdened by neighborhood (NTA)" aria-label="Map" id="datawrapper-chart-L4j3j" src="https://datawrapper.dwcdn.net/L4j3j/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="756" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
 <div class="narrow">
 
@@ -69,6 +69,44 @@ A high rent burden is often accompanied by other housing issues like overcrowdin
     </audio>
 </figure>
 </div>
+
+
+<button class="borobtn btn btn-sm btn-outline-secondary active" onclick="changeBoro(1)" id="btn1">Bronx</button>
+<button class="borobtn btn btn-sm btn-outline-secondary " onclick="changeBoro(2)" id="btn2">Brooklyn</button>
+<button class="borobtn btn btn-sm btn-outline-secondary " onclick="changeBoro(3)" id="btn3">Manhattan</button>
+<button class="borobtn btn btn-sm btn-outline-secondary " onclick="changeBoro(4)" id="btn4">Queens</button>
+<button class="borobtn btn btn-sm btn-outline-secondary " onclick="changeBoro(5)" id="btn5">Staten Island</button>
+
+<div class="borocontainer" id="container1">
+    [add bronx vix]
+</div>
+<div class="hide borocontainer" id="container2">
+    [add brooklyn vis]
+</div>
+<div class="hide borocontainer" id="container3">Manhattan</div>
+<div class="hide borocontainer" id="container4">Queens</div>
+<div class="hide borocontainer" id="container5">Staten Island</div>
+
+<script>
+function changeBoro(x) {
+    // get all buttons and remove the active class
+    var btns = document.querySelectorAll('.borobtn')
+    btns.forEach(btn => btn.classList.remove('active'));
+
+    // get the button you clicked on and apply the active class
+    var btn = 'btn'+x
+    document.getElementById(btn).classList.add('active')
+
+    // hide all containers
+    var containers = document.querySelectorAll('.borocontainer')
+    containers.forEach(container => container.classList.add('hide'))
+
+    // get the one you want to show, and show it
+    var cont = 'container'+x
+    document.getElementById(cont).classList.remove('hide')
+}
+</script>
+
 
 <iframe title="Overcrowding tends to occur in areas with high poverty" class="my-4" aria-label="Split Bars" id="datawrapper-chart-gxuVI" src="https://datawrapper.dwcdn.net/gxuVI/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1632" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
