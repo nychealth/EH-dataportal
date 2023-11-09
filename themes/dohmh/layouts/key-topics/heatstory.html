@@ -13,7 +13,20 @@
     background-color: #f2f2f2;
     margin: 0px;
   }
+  
+  .story-card-content {
+    height: 300px;
+    overflow-y: auto;
+  }
 
+  .story-card {
+    padding-bottom: 25px;
+  }
+
+  .story-card-button {
+    width: 100%;
+    margin-bottom: 25px;
+  }
 </style>
 
 <article class="container-fluid" id="skip-header-target">
@@ -48,54 +61,40 @@
 
   <div class="row no-padding mt-4 mb-0"></div>
 <!-- testing out adding a card with an img on another top line row - to eventually replace accordion as story selector if possible-->
-<div class="row">
-  <div class="col-6">
-    <div class="card content-card" style="width: 28rem;">
-    <div class="card-content">
-      <img src="https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/no-shade-trees/1.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title"> Brutal even for the young and healthy</h5>
-        <blockquote class="blockquote mb-0">
-        <p class="card-text">I endured two hot summers in Washington Heights before installing an air conditioner. I was young and healthy, but it was still brutal. Cooking made the heat worse, and I worked at a bakery where no amount of air conditioning could keep up with the oven.</p>
-        <footer class="blockquote-footer">Person Name <cite title="Source Title">
-      </blockquote>
-        <footer class="card-footer text-muted"> Washington Heights, Manhattan </div>
-      </div>
-      </div>
-  </div>
-</div>
+<div class="row gx-5 gy-5 card-container" id="story-cards"> </div>
 
 <!-- commenting out first container to test
   <div class="container-fluid mt-2"> -->
-<div class="row">
-  <div class="col-11 mt-2 pt-0">
-    <div id="baseLayerButtons">
-        <h4>Base Layers (only one at a time)</h4>
-        <div id="buttonHolderBase" style="display: inline-block"></div>
+<div id="wholeMap">
+  <div class="row">
+    <div class="col-11 mt-2 pt-0">
+      <div id="baseLayerButtons">
+          <h4>Base Layers (only one at a time)</h4>
+          <div id="buttonHolderBase" style="display: inline-block"></div>
+      </div>
+      <div id="baseLayerButtons">
+          <h4>Additional Layers</h4>
+          <div id="buttonHolderAdditional" style="display: inline-block"></div>
+      </div>
+          
     </div>
-    <div id="baseLayerButtons">
-        <h4>Additional Layers</h4>
-        <div id="buttonHolderAdditional" style="display: inline-block"></div>
-    </div>
-        
   </div>
-</div>
-<div class="row my-3">
-  <div class="col-4 mx-auto">
-    <div
-      class="accordion-group"
-      style=""
-      role="tablist"
-      id="story-accordion">
-    </div>  
-  </div>
-  <div class="col-8 mx-auto">
-    <div id="map"></div>
+  <div class="row my-3">
+    <div class="col-4 mx-auto">
+      <div
+        class="accordion-group"
+        style=""
+        role="tablist"
+        id="story-accordion">
+      </div>  
     </div>
+    <div class="col-8 mx-auto">
+      <div id="map"></div>
+      </div>
+  </div>
 </div>
 
 
-    
 <div class="row mt-4">
     <div class="col-11 mx-auto">
         <div class="row">

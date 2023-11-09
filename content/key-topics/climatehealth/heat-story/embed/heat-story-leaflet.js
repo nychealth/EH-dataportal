@@ -16,6 +16,7 @@ var legendControl = null;
 var legendPropertiesByLayer = {};
 var layersExclusive = new Set();
 var indicators = [];
+var mapElement = document.getElementById("wholeMap")
 
 const assignGeoRank = (GeoType) => {
     switch (GeoType) {
@@ -154,7 +155,7 @@ function addLayerButtons() {
 }
 
 function drawAccordion() {
-    const holderAccordian = document.getElementById('story-accordion')
+    const holderAccordion = document.getElementById('story-accordion')
     const stories = config.stories;
     for (let i = 0; i < stories.length; i++) {
         const story = stories[i];
@@ -171,8 +172,32 @@ function drawAccordion() {
                       <p>${story.content}</p>
                   </div>
               </div>
-          </div>`
-      holderAccordian.innerHTML += storyCard;
+          </div>`;
+        holderAccordion.innerHTML += storyCard;
+    }
+
+    const storyCards = document.getElementById('story-cards')
+    for (let i = 0; i < stories.length; i++) {
+      const story = stories[i];
+      // we can put an image in the story definition
+      const storyCard = `
+        <div class="col-4 story-card" id="story-card-${i}">
+          <div class="card content-card" style="width: 28rem;">
+          <div class="card-content">
+            <img src="https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/no-shade-trees/1.jpg" class="card-img-top" alt="...">
+            <div class="card-body story-card-content">
+              <button class="story-card-button" value=${story.id}>Show On Map</button>
+              <h5 class="card-title">${story.title}</h5>
+              <blockquote class="blockquote mb-0">
+              <p class="card-text">${story.content}</p>
+              <footer class="blockquote-footer">Person Name <cite title="Source Title">
+            </blockquote>
+              <footer class="card-footer text-muted"> Washington Heights, Manhattan </div>
+            </div>
+            </div>
+        </div>
+      `;
+      storyCards.innerHTML += storyCard;
     }
 }
 
@@ -821,7 +846,15 @@ function addListeners() {
           } else {
               await resetMapState();
           }
-        })
+        });
+    });
+
+    const storyCards = document.querySelectorAll('.story-card-button')
+    storyCards.forEach(s => {
+        s.addEventListener('click', async () => {
+          mapElement.scrollIntoView({ behavior: "smooth" });
+          await updateMapState(s.value);
+        });
     });
 
     map.addEventListener('mousemove', (event) => {
