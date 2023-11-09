@@ -11,11 +11,6 @@ image: ds-heat.jpg
 photocredit: "Michael Appleton/Mayoral Photography Office"
 ---
 
-To do:
-
-- replace all text
-- replace all audio clips
-
 ---
 
 <i>Health is determined by many factors, including social and economic conditions. People tend to be healthier when they have access to economic and financial stability, higher education, access to good health care, and safe, connected communities. In 2020, the NYC Health Department held a series of Community Conversations with residents and local stakeholders across 26 neighborhoods in the city.
@@ -26,7 +21,7 @@ In these conversations New Yorkers share the personal stories that illuminate pr
 
 <div class="pullquote">
 <figure class="my-2">
-    <figcaption>“When someone has a decent house with security…they can lock their door at night, they can sleep at night, know their children are safe. That can create a better frame of mind of how you’re living your life.” —NYC community conversation participant </figcaption>
+    <figcaption figcaption class="mb-2">“When someone has a decent house with security…they can lock their door at night, they can sleep at night, know their children are safe. That can create a better frame of mind of how you’re living your life.” —NYC community conversation participant </figcaption>
     <audio controls src="frame-of-mind.mp3" style="width:100%;">
             <a href="frame-of-mind.mp3">
                 Download audio
@@ -43,7 +38,7 @@ The impacts of poor housing build up over the course of people’s lives. And th
 
 <div class="pullquote">
 <figure class="my-2">
-    <figcaption>“Many people have moved to the neighborhood with different and higher incomes that may skew the definition of affordable housing, thereby creating a gap of income and services.”  —NYC community conversation participant   </figcaption>
+    <figcaption figcaption class="mb-2">“Many people have moved to the neighborhood with different and higher incomes that may skew the definition of affordable housing, thereby creating a gap of income and services.”  —NYC community conversation participant   </figcaption>
     <audio controls src="clip-gap-of-services.mp3" style="width:100%;">
             <a href="clip-gap-of-services.mp3">
                 Download audio
@@ -66,7 +61,7 @@ A high rent burden is often accompanied by other housing issues like overcrowdin
 
 <div class="pullquote">
 <figure class="my-2">
-    <figcaption> “A lot of the young people I work with openly share that maybe they’re sharing a bed with several siblings.” —NYC community conversation participant   </figcaption>
+    <figcaption figcaption class="mb-2"> “A lot of the young people I work with openly share that maybe they’re sharing a bed with several siblings.” —NYC community conversation participant   </figcaption>
     <audio controls src="clip-sharing-space.mp3" style="width:100%;">
             <a href="clip-sharing-space.mp3">
                 Download audio
@@ -75,7 +70,7 @@ A high rent burden is often accompanied by other housing issues like overcrowdin
 </figure>
 </div>
 
-<iframe title="Overcrowding tends to occur in areas with high poverty" aria-label="Split Bars" id="datawrapper-chart-gxuVI" src="https://datawrapper.dwcdn.net/gxuVI/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1632" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<iframe title="Overcrowding tends to occur in areas with high poverty" class="my-4" aria-label="Split Bars" id="datawrapper-chart-gxuVI" src="https://datawrapper.dwcdn.net/gxuVI/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1632" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
 ### Housing quality: More than half of renter-occupied homes in NYC have health-related maintenance problems.
 
@@ -83,7 +78,7 @@ When housing is unaffordable, options become limited and people often end up in 
 
 <div class="pullquote">
 <figure class="my-2">
-    <figcaption> “We didn’t have any heat for last year up until the middle of December. And then we didn’t have any air conditioning through the middle of August.” - NYC community conversation participant  </figcaption>
+    <figcaption figcaption class="mb-2"> “We didn’t have any heat for last year up until the middle of December. And then we didn’t have any air conditioning through the middle of August.” - NYC community conversation participant  </figcaption>
     <audio controls src="clip-ac-and-heat.mp3" style="width:100%;">
             <a href="clip-ac-and-heat.mp3">
                 Download audio
@@ -104,7 +99,7 @@ Without proper maintenance, these homes fail to address or develop health hazard
 
 <a href="https://www.nyc.gov/assets/doh/downloads/pdf/survey/asthma-housing-2021.pdf">Home maintenance issues are more common in high-poverty neighborhoods and in public housing than in wealthier neighborhoods or privately-owned apartments.</a>
 
-<iframe title="Poverty x Maintenance deficiencies " aria-label="Table" id="datawrapper-chart-dVQCs" src="https://datawrapper.dwcdn.net/dVQCs/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="550" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<iframe title="Poverty x Maintenance deficiencies " class="my-4" aria-label="Table" id="datawrapper-chart-dVQCs" src="https://datawrapper.dwcdn.net/dVQCs/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="550" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
 The consequences of these disparities can be dangerous. For example, people whose homes lack adequate heating might use space heaters, which are a fire risk. In January 2022, a malfunctioning space heater sparked a fire that killed 17 people in a high-rise building in the Bronx.
 
@@ -114,13 +109,13 @@ A lack of affordable and healthy housing often leads to unstable housing. Most e
 
 </div>
 
-<iframe title="Evictions are more common in higher poverty neighborhoods" aria-label="Scatter Plot" id="datawrapper-chart-DEEg2" src="https://datawrapper.dwcdn.net/DEEg2/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="550" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<iframe title="Evictions are more common in higher poverty neighborhoods" class="my-4" aria-label="Scatter Plot" id="datawrapper-chart-DEEg2" src="https://datawrapper.dwcdn.net/DEEg2/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="550" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
 <div class="narrow">
 
 <div class="pullquote">
-<figure class="my-2">
-    <figcaption> “Children whose families are homeless, and they're being shuffled from place to place—they need to have stability. I think that needs to be addressed. Because it also affects their schooling, their mental health, their medical, you know, needs for both parents and the children. And I think the children are impacted most.” -- NYC Community Conversation Participant  </figcaption>
+<figure class="my-2 mb-3">
+    <figcaption figcaption class="mb-2"> “Children whose families are homeless, and they're being shuffled from place to place—they need to have stability. I think that needs to be addressed. Because it also affects their schooling, their mental health, their medical, you know, needs for both parents and the children. And I think the children are impacted most.” <br><strong><em>- NYC Community Conversation Participant</strong></em>  </figcaption>
     <audio controls src="clip-place-to-place.mp3" style="width:100%;">
             <a href="clip-place-to-place.mp3">
                 Download audio
@@ -135,7 +130,7 @@ Eviction is associated with many poor health outcomes. These include babies that
 
 <div class="pullquote">
 <figure class="my-2">
-    <figcaption> "… like many people I choose between paying my internet or food…” -- Jackson Heights, NYC Community Conversation Participant
+    <figcaption figcaption class="mb-2"> "… like many people I choose between paying my internet or food…” -- Jackson Heights, NYC Community Conversation Participant
  </figcaption>
     <audio controls src="clip-internet-or-food.mp3" style="width:100%;">
             <a href="clip-internet-or-food.mp3">
@@ -149,7 +144,7 @@ When COVID-19 hit, New York paused evictions, recognizing the twin threats of se
 
 </div>
 
-<iframe title="Evictions plummeted in 2020" aria-label="Interactive line chart" id="datawrapper-chart-xy1ku" src="https://datawrapper.dwcdn.net/xy1ku/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="423" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<iframe title="Evictions plummeted in 2020" class="my-4" aria-label="Interactive line chart" id="datawrapper-chart-xy1ku" src="https://datawrapper.dwcdn.net/xy1ku/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="423" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
 <div class="narrow">
 
