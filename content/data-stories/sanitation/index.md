@@ -205,7 +205,7 @@ Today, New York can help improve sanitation:
 - Attend Community Board meetings — discuss your complaints with your neighbors and encourage the Community Board to take action.
 - File a request on 311. You can [report rat sightings](https://portal.311.nyc.gov/article/?kanumber=KA-01107) or [missed trash service collection](https://portal.311.nyc.gov/article/?kanumber=KA-01788). These 311 reports generate complaint data that can help improve conditions in your neighborhood.
 
-Check the Rat Information Portal [www.nyc.gov/rats](www.nyc.gov/rats) for rat inspection data or [Rat Indexing](https://www.nyc.gov/site/doh/health/health-topics/rat-maps-and-data-rat-indexing.page) for more comprehensive data.
+Check the Rat Information Portal [www.nyc.gov/rats](https://www.nyc.gov/site/doh/health/health-topics/rats.page) for rat inspection data or [Rat Indexing](https://www.nyc.gov/site/doh/health/health-topics/rat-maps-and-data-rat-indexing.page) for more comprehensive data.
 
 ---
 
