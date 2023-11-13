@@ -41,3 +41,14 @@ assets/js/testing stop words.js
 static/images/home-sample-image-DE.R
 EH-dataportal.Rproj
 reports_data.json
+links data columns.js
+content/key-topics/climatehealth/hvi/de_map_spec.vg.json
+content/key-topics/climatehealth/hvi/hvi-nta.csv
+fooling around with gh.sh
+# local data
+static/IndicatorData/data/
+static/IndicatorData/comparisons.json
+static/IndicatorData/indicators_pretty.json
+static/IndicatorData/metadata.json
+assets/js/data-explorer/some notes on refactoring.txt
+hugo-help.txt

@@ -1,16 +1,12 @@
-/*
-// ---- REALTIME AQ ---- //
-If a monitor is in the datafeed, it needs an entry in monitor_locations.csv.
-loc_col needs to equal SiteName in the datafeed.
+/* // ---- REALTIME AQ ---- //
+If a monitor is in the datafeed, it needs an entry in monitor_locations.csv. loc_col needs to equal SiteName in the datafeed.
 
 This app excludes DEC_Avg from conventional functionality: 
 - monitors_group_noDEC sets the map bounds without the DEC Average monitor - which is given an abitrary off-coast lat/long
 - if (x != 'DEC_Avg') changes what happens to the map zoom on button click - just zooming to the initial extent if somebody selects the DEC_Avg option.
 
 Because of CORS restrictions to localhost1313, test by copying the contents of the azure feed to data/nyccas_realtime_DEC.csv, and replace the locations both in the initial ingestion (below) and in spec.json.
-
 */
-
 
 // initialize variables (other variables are initialized closer to their prime use)
 var current_spec;
@@ -19,11 +15,13 @@ var fullTable;
 var locSelect = "No location"
 var res;
 var floorDate;
+var maxTime;
+var maxTimeMinusDay;
 
 
 // ---- INITIAL: ingest data feed ---- // 
 aq.loadCSV(
-     // "data/nyccas_realtime_DEC.csv" // temporary local placeholder
+   // "data/nyccas_realtime_DEC.csv" // temporary local placeholder
     "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv" // actual live data feed. Also update this in spec json.
 
 ).then(data => {
@@ -36,6 +34,14 @@ aq.loadCSV(
     floorDate = new Date(fullTable[0].starttime) // creates earliest date in 7-day feed - used for time filter
     console.log('Showing data since: ' + floorDate)
     floorDate = Date.parse(floorDate) // converting to milliseconds
+
+    // get most recent time
+    var ftl = fullTable.length - 1
+    maxTime = fullTable[ftl].starttime
+    maxTime = Date.parse(maxTime)
+    maxTimeMinusDay = maxTime - 86400000
+
+
     
     // console.log("fullTable:", fullTable);
     getStationsFromData();
@@ -69,7 +75,7 @@ function loadMonitorLocations() {
             }
         }
         // alphabetize activeMonitors for color coordination
-        activeMonitors.sort(GetSortOrder("Location"))
+        activeMonitors.sort(GetSortOrder("loc_col"))
 
         // Draws map, buttons, listener, and retrieves chart spec
         drawMap()
@@ -102,7 +108,8 @@ function getSpec() {
 
         // get floor date and filter by floor date:
         filter = `datum.starttime > ${floorDate}`
-        current_spec.transform[0] = {"filter": filter}
+        current_spec.layer[0].transform[0] = {"filter": filter}
+        current_spec.layer[2].encoding.x2.datum = maxTimeMinusDay
         drawChart(current_spec)
     });
 }
@@ -113,13 +120,27 @@ function drawChart(spec) {
 }
 
 // ---- Create array of colors based on colors in activeMonitors. This gets sent to the json spec ---- //
-var colors = [];
+var colors
 function getColors() {
+    colors = [];
     for (let i = 0; i < activeMonitors.length; i++) {
         colors.push(activeMonitors[i].Color)
     }
-    colors.push('darkgray')
-    current_spec.encoding.color.scale.range = colors
+    // colors.push('darkgray') // if DEC_Avg is present.
+    current_spec.layer[0].encoding.color.scale.range = colors
+
+    // use activeMonitors to send color conditional to spec
+    console.log('activeMonitors:', activeMonitors)
+    var siteColors = [];
+    for (let i = 0; i < activeMonitors.length; i ++) {
+        var condition = {"test": `datum.SiteName === '${activeMonitors[i].loc_col}'`,"value": `${activeMonitors[i].Color}`}
+        siteColors.push(condition)
+    }
+
+    current_spec.layer[0].encoding.color.condition = siteColors
+
+    console.log('siteColors:',siteColors)
+
 }
 
 
@@ -154,11 +175,16 @@ function listenButtons() {
 // ---- UPDATE DATA FUNCTION TO DEVELOP: takes loc_col as an argument ---- // 
 var opacity;
 var stroke; 
+var loc;
+var locData = [];
+
 function updateData(x) {
     // document to console:
     console.log('Showing data for: ' + x)
 
-    // /remove active classes, and highilght selected
+    getRecentAverage(x)
+
+    // /remove active classes, and highlight selected
     btns.forEach(x => {
         x.classList.remove('active') // remove from all 
     })
@@ -171,8 +197,12 @@ function updateData(x) {
         // zoom to the corresponding leaflet marker
         map.setView(monitors[index].getLatLng(), 13);
 
+        document.getElementById('decInfo').classList.add('hide')
+
+
     } else {
-        resetZoom()
+        resetZoom();
+        document.getElementById('decInfo').classList.remove('hide')
     }
 
 
@@ -193,10 +223,15 @@ function updateData(x) {
           "value": 1
         }
 
-    current_spec.encoding.opacity = opacity
-    current_spec.encoding.opacity.condition.test = `datum['SiteName'] === '${x}'`
-    current_spec.encoding.strokeWidth = stroke
-    current_spec.encoding.strokeWidth.condition.test = `datum['SiteName'] === '${x}'`
+    current_spec.layer[0].encoding.opacity = opacity
+    current_spec.layer[0].encoding.opacity.condition.test = `datum['SiteName'] === '${x}'`
+    current_spec.layer[0].encoding.strokeWidth = stroke
+    current_spec.layer[0].encoding.strokeWidth.condition.test = `datum['SiteName'] === '${x}'`
+    
+    current_spec.layer[2].encoding.x2.datum = maxTimeMinusDay
+    current_spec.layer[2].encoding.opacity.value = 0.1
+
+
     vegaEmbed('#vis2', current_spec)
 
 
@@ -208,6 +243,87 @@ function getIndex(x) {
             return i
         }
     } 
+}
+
+var recentAverageData = [];
+function getRecentAverage(x) {
+
+    // first, creating convertData that has starttime in milliseconds 
+    var convertData = []
+    for (let i = 0; i < fullTable.length; i++) {
+        convertData.push(fullTable[i])
+        const date = new Date(convertData[i].starttime)
+        let dateInMsec = Date.parse(date)
+        convertData[i].starttime = dateInMsec
+    }
+
+    console.log('convertData', convertData)
+
+    // then, get the largest one
+    var mostRecentTime = convertData[convertData.length - 1].starttime
+    console.log('mrt', mostRecentTime)
+
+    var startingTime = mostRecentTime - 86400000
+    console.log('st:',startingTime)
+
+    // then, filter everything over largest one minus 24 hours of milliseconds
+    var last24HoursData = []
+    for (let i = 0; i < convertData.length; i++) {
+        if (convertData[i].starttime > startingTime) {
+            last24HoursData.push(convertData[i])
+        } else {}
+    }
+
+    console.log('last 24 hours:', last24HoursData)
+
+
+    // see if location is in there
+    var thisLast24 = [];
+
+    for (let i = 0; i < last24HoursData.length; i++) {
+        if (last24HoursData[i].SiteName === x) {
+            thisLast24.push(last24HoursData[i])
+        } else {}
+    }
+
+    console.log('thisLast', thisLast24)
+    
+    loc = x
+
+    // if there's more than 16 hours of readings...
+    if (thisLast24.length > 17) {
+        // show box
+        document.getElementById('averageBox').classList.remove('hide')
+
+        // average the readings
+        var average;
+        var sum = []
+        for (let i = 0; i < thisLast24.length; i ++ ) {
+            sum.push(thisLast24[i].Value)
+        }
+
+        let totals = 0
+        for (let i = 0; i < sum.length; i ++ ) {
+            totals += sum[i]
+        }
+
+        average = totals / 24
+        average = Math.round(average * 100) / 100
+
+        console.log('average for this location over the last 24 hours: ' + average)
+
+        // send values to page
+        document.getElementById('locAverage').innerHTML = average + ' μg/m<sup>3</sup>'
+        average > 35 ? document.getElementById('aboveBelow').innerHTML = 'above' : document.getElementById('aboveBelow').innerHTML = 'below'
+        average > 35 ? document.getElementById('aboveBelow').classList.add('badge') : document.getElementById('aboveBelow').classList.add('badge')
+        average > 35 ? document.getElementById('aboveBelow').classList.add('badge-warning') : document.getElementById('aboveBelow').classList.add('badge-success')
+
+    } else {
+        // Do nothing...
+        document.getElementById('averageBox').classList.add('hide')
+    }
+
+
 }
 
 
@@ -238,7 +354,7 @@ function drawMap() {
         
         var this_monitor = 
             L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
-            .bindTooltip(monitor.Location, {permanent: true, opacity: 0.85, interactive: true})
+            // .bindTooltip(monitor.Location, {permanent: true, opacity: 0.85, interactive: true})
             .addTo(monitors_group)
         
         // create group without the DEC Monitor, which we'll use to set the center and bounds
@@ -334,6 +450,10 @@ function restore() {
     getSpec();
     document.getElementById('inputNum').value = 7
 
+    document.getElementById('averageBox').classList.add('hide')
+    current_spec.layer[2].encoding.opacity.value = 0.0
+    vegaEmbed('#vis2', current_spec)
+
 }
 
 // ---- TIME FILTER ---- //
@@ -342,7 +462,13 @@ function restore() {
 document.getElementById('inputNum').addEventListener('change', function (event) {
     event.preventDefault();
     inputNum = document.getElementById('inputNum').value;
-    updateTime(inputNum)
+    if (inputNum > 7) {
+        console.log('too large');
+        $("#sevenModal").modal()
+    } else {
+        updateTime(inputNum)
+    }
+
 });
 
 // Time update function - uses transform[0].filter
@@ -357,7 +483,13 @@ function updateTime(x) {
 
     // send date filter to spec and re-draw Chart
     filter = `datum.starttime > ${filterTo}`
-    current_spec.transform[0] = {"filter": filter}
+    current_spec.layer[0].transform[0] = {"filter": filter}
+
+    // use filter to filter data file; update activeMonitors
+    // use new activeMonitors to get updated colors array
+    // send updated colors array to spec
+
     // console.log(current_spec)
     drawChart(current_spec)
 }
+

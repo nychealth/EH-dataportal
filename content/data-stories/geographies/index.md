@@ -6,7 +6,7 @@ seo_title: "Neighborhood boundaries in health data"
 seo_description: "A data story on different ways to map health data."
 tags: 
 categories: ["internal","neighborhoods"]
-keywords: ["geography","maps","neighborhoods","health data","methods","geographic"]
+keywords: ["geography","maps","neighborhoods","health data","methods","geographic","how we work"]
 image: ds-geographies.jpg
 layout: single
 vega: true

@@ -21,6 +21,7 @@ indicators:
   - 2382
   - 2387
   - 84
+  - 2385
   - 2381
   - 2386
 - header: Prevalence
@@ -31,6 +32,7 @@ indicators:
   - 2149
   - 2339
   - 2414
+  - 2429
 ---
 
 Asthma is a **common disease in which the lungs become swollen, making breathing difficult**. Symptoms include wheezing, coughing, shortness of breath and tightness in the chest. The exact causes of asthma are not known. **Asthma cannot be cured, but it can be controlled**.

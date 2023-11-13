@@ -23,8 +23,8 @@ let tableData;
 let mapData;
 let trendData;
 let linksData;
-let joinedDataLinksObjects;
-let disparitiyData; // used by disparities.js
+let joinedLinksDataObjects;
+let disparityData; // used by disparities.js
 
 let indicator;
 let indicatorName;
@@ -56,10 +56,13 @@ let defaultLinksAbout;
 let defaultLinksSources;
 
 let selectedMapMeasure;
+let selectedMapTime;
+let selectedMapGeo;
 let selectedTrendMeasure;
 let selectedLinksMeasure;
 let selectedComparison;
 let showingNormalTrend;
+let showingComparisonsTrend;
 
 let selectedMapAbout;
 let selectedMapSources;
@@ -104,17 +107,18 @@ let showNormalTrend;
 let showTrendComparisons;
 let showLinks;
 
+var CSVforDownload; 
+var downloadedIndicator;
+var downloadedIndicatorMeasurement;
+
 // store hash, so display knows where it just was
 let currentHash;
 let state;
 
 // modifying the measure dropdown innerHTML removes the event listeners from the dropdown list. So, i added it to the HTML, and we can remove it when we call renderTrendChart, if necessary
 
-// get trend dropdown element; disparities button will be removed or appended
-let tabTrendDropDown = document.querySelector('#tab-trend .dropdown');
-
 // get disparities button dom element, so it can be removed and appended as needed
-// let btnShowDisparities = document.querySelector('.btn-show-disparities');
+let btnToggleDisparities = document.querySelector('.btn-toggle-disparities');
 
 // get comparisons button dom element, so it can be removed and appended as needed
 let btnShowComparisons = document.querySelector('.btn-comparisons');
@@ -140,6 +144,8 @@ const assignGeoRank = (GeoType) => {
         case 'NYCKIDS2017':
             return 2;
         case 'NYCKIDS2019':
+            return 2;
+        case 'NYCKIDS2021':
             return 2;
         case 'UHF34':
             return 3;

@@ -62,7 +62,7 @@ h1 {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18), 0 3px 10px 0 rgba(0, 0, 0, 0.17);
 }
 
-// Website Header 
+// Website Header
 
 .link-no-dec {
     color: white!important;
@@ -74,8 +74,15 @@ h1 {
     font-size: 2rem;
     line-height: 2.375rem;
     font-weight: 700;
-    @include media-breakpoint-up(md){ 
+    @include media-breakpoint-up(md){
         font-size: 2.625rem;
+    }
+}
+
+@media print {
+    .site-title {
+        font-size: 1.25rem;
+        text-align: center;
     }
 }
 
@@ -84,7 +91,7 @@ h1 {
     font-weight: 700;
     font-size: 1rem;
     line-height: 1.375rem;
-    @include media-breakpoint-up(md){ 
+    @include media-breakpoint-up(md){
         font-size: 1.25rem;
     }
 }
@@ -93,6 +100,12 @@ h1 {
     background-image: url("../images/header_background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+@media print {
+    .site-header {
+        border-bottom: 1px solid #E8E6E1;
+    }
 }
 
 .nav-item {
@@ -254,7 +267,7 @@ h1 {
 
 
 .autocomplete-form {
-    
+
     label {
       display: block;
     }
@@ -288,7 +301,7 @@ h1 {
       @include media-breakpoint-down(sm) {
         padding: 0;
         line-height: 1rem;
-      } 
+      }
     }
 
     .submitted--hidden {
@@ -315,13 +328,13 @@ h1 {
                 color: $info;
                 font-size: 1.1875rem;
                 font-weight: 700;
-            }   
+            }
         }
     }
 }
 
 // Report Title
-    
+
 h1.report-title {
     font-size: 1.5rem;
     line-height: 2rem;
@@ -339,6 +352,14 @@ h1.report-title {
     }
 
 }
+
+@media print {
+    h1.report-title,
+    h1.report-title .sub-title {
+        font-size: 22px;
+    }
+}
+
 p.report-description {
     font-size: 1rem;
     line-height: 1.5rem;
@@ -361,18 +382,18 @@ p.report-description {
         border: none;
         padding: 20px 14px;
         border-bottom: 2px solid $light;
-        
+
         &:last-child {
             border: none;
-        }    
+        }
     }
-    
+
     .list-group-item-action:hover, .list-group-item-action:focus {
         z-index: 0;
         color: $primary;
         background-color: $light-green;
     }
-    
+
     .list-group-item.active {
     color: $info;
     border-bottom: 2px solid $light;
@@ -381,18 +402,18 @@ p.report-description {
             border: none;
         }
     }
-    
+
     .list-group.custom-active {
-        
+
         a.active{
-            
+
             background-color: $light-green;
             color: $primary;
             font-weight: 500;
-    
+
         }
     }
-} 
+}
 
 // Report Content
 .btn-report {
@@ -412,7 +433,7 @@ h2.report-info {
 
 // Report Topic
 .report-topic {
-    
+
     border-top: 8px solid $primary;
     padding: 30px 0;
 
@@ -420,6 +441,13 @@ h2.report-info {
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18), 0 3px 10px 0 rgba(0, 0, 0, 0.17);
         padding: 30px;
         margin-bottom: 60px;
+    }
+}
+
+@media print {
+    .report-topic {
+        padding: 15px 0 1px 0;
+        margin-bottom: 0px;
     }
 }
 
@@ -436,6 +464,13 @@ h2.report-info {
     p {
         font-size: 1rem;
         line-height: 1.375rem;
+    }
+}
+
+@media print {
+    .topic-header {
+        padding-bottom: 10px;
+        margin-bottom: 10px;
     }
 }
 
@@ -459,7 +494,7 @@ h2.report-info {
     text-align: left;
 
     width: 100%;
-    
+
     text-decoration: none;
     color: $black;
     font-size: 1.1875rem;
@@ -470,7 +505,7 @@ h2.report-info {
         font-weight: 700;
         font-size: 1.25rem;
         line-height: 1.75rem;
-        @include media-breakpoint-up(md){ 
+        @include media-breakpoint-up(md){
             font-size: 1.25rem;
         }
     }
@@ -482,6 +517,13 @@ h2.report-info {
             color: $primary;
             text-decoration: underline;
         }
+    }
+}
+
+@media print {
+    .indicator-anchor .indicator-short-name {
+        font-size: 16px;
+        line-height: 20px;
     }
 }
 
@@ -502,8 +544,8 @@ h2.report-info {
 
 .info-modal {
     position: absolute;
-    left: 7rem;
-    top: 30%;
+    // left: 7rem;
+    // top: 30%;
     color: #A513B6;
 }
 
@@ -560,6 +602,20 @@ h2.report-info {
     }
 }
 
+@media print {
+    .comparison {
+        font-weight: 600;
+        margin-bottom: 0;
+        font-size: 12px;
+        .indicator-value {
+            font-size: 12px;
+        }
+    }
+    .my-5.p-no-margin {
+        margin-top: 0 !important;
+    }
+}
+
 // Report Modal
 
 .report-modal {
@@ -569,7 +625,7 @@ h2.report-info {
         text-align: center;
         display: inline;
         position: relative;
-        
+
         h2 {
             font-size: 1.5rem;
             line-height: 2rem;
@@ -654,7 +710,6 @@ span.th-sub {
         font-weight: 500;
     }
 }
-
 
 // Section styles
 

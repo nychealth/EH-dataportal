@@ -7,10 +7,10 @@ const renderComparisonsChart = (
     metadata
 ) => {
 
-    console.log("** renderComparisonsChart");
+    console.log("*** renderComparisonsChart");
 
-    console.log(">>> comp metadata");
-    metadata.print()
+    // console.log(">>> comp metadata");
+    // metadata.print()
     
     // console.log(">>> comp data:");
     // data.print(100)
@@ -75,7 +75,7 @@ const renderComparisonsChart = (
 
         // ----- by boros: 1 indicator, 1 measure, 5 boros -------------------------------------------------- //
 
-        console.log("boros");
+        // console.log("boros");
 
         // if this is a boro comparison, tweak some things
 
@@ -93,11 +93,11 @@ const renderComparisonsChart = (
 
         // console.log("1 indicator");
         
-        let compId = [... new Set(metadata.array("ComparisonID"))][0];
-        let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
-        let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))]
+        let compId           = [... new Set(metadata.array("ComparisonID"))][0];
+        let compLegendTitle  = [... new Set(metadata.array("LegendTitle"))];
+        let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))];
 
-        console.log("compId", compId);
+        // console.log("compId", compId);
         
         plotTitle = compName;
 
@@ -105,7 +105,7 @@ const renderComparisonsChart = (
 
         if (suppressSubtitleBy.includes(compId)) {
 
-            console.log(">>> SUPPRESS by", compId);
+            // console.log(">>> SUPPRESS by", compId);
 
             plotSubtitle = compY_axis_title;
 
@@ -131,7 +131,7 @@ const renderComparisonsChart = (
         let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
 
-        console.log("compId", compId);
+        // console.log("compId", compId);
 
         plotTitle = compName;
 
@@ -139,7 +139,7 @@ const renderComparisonsChart = (
 
         if (suppressSubtitleBy.includes(compId)) {
 
-            console.log(">>> SUPPRESS by", compId);
+            // console.log(">>> SUPPRESS by", compId);
 
             plotSubtitle = compMeasurementType;
 
@@ -165,7 +165,7 @@ const renderComparisonsChart = (
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
         let compY_axis_title = [... new Set(metadata.array("Y_axis_title"))]
 
-        console.log("compId", compId);
+        // console.log("compId", compId);
 
         plotTitle = compName;
 
@@ -173,7 +173,7 @@ const renderComparisonsChart = (
 
         if (suppressSubtitleBy.includes(compId)) {
 
-            console.log(">>> SUPPRESS by", compId);
+            // console.log(">>> SUPPRESS by", compId);
 
             plotSubtitle = compY_axis_title;
 
@@ -293,7 +293,7 @@ const renderComparisonsChart = (
                     {
                         "mark": {
                             "type": "line",
-                            "interpolate": "monotone",
+                            "interpolate": "linear",
                             "point": { 
                                 "filled": false, 
                                 "fill": "white", 
@@ -368,5 +368,15 @@ const renderComparisonsChart = (
     // ----------------------------------------------------------------------- //
     
     vegaEmbed("#trend", compspec);
+
+    let dataForDownload = [...compspec.data.values] // create a copy
+    // console.log(dataForDownload===mapspec.data.values) 
+
+    let downloadTable = aq.from(dataForDownload)
+        .derive({Indicator: `'${indicatorName}: ${plotTitle} ${plotSubtitle}'`}) // add indicator name and type column
+        .select(aq.not("GeoType","GeoTypeDesc","GeoTypeShortDesc","GeoRank","MeasureID","ban_summary_flag","DisplayValue","start_period","end_period"))
+        .print()
+
+    CSVforDownload = downloadTable.toCSV()
     
 }

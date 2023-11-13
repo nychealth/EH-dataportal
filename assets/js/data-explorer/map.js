@@ -9,15 +9,25 @@ const renderMap = (
 
         console.log("** renderMap");
 
+        // console.log("data [renderMap]", data);
+        // console.log("metadata [renderMap]", metadata);
+
         // ----------------------------------------------------------------------- //
         // get unique time in data
         // ----------------------------------------------------------------------- //
-        
+
         const mapYears =  [...new Set(data.map(item => item.Time))];
+
+        // ----------------------------------------------------------------------- //
+        // pull metadata
+        // ----------------------------------------------------------------------- //
+
+        // debugger;
 
         // console.log("mapYears [map.js]", mapYears);
 
         let mapGeoType            = data[0].GeoType;
+        let geoTypeShortDesc      = data[0].GeoTypeShortDesc;
         let mapMeasurementType    = metadata[0].MeasurementType;
         let displayType           = metadata[0].DisplayType;
         let mapGeoTypeDescription = 
@@ -31,7 +41,7 @@ const renderMap = (
         var color = 'purplered'
         var rankReverse = defaultMapMetadata[0].VisOptions[0].Map[0].RankReverse
         if (rankReverse === 0) {
-            color = 'purplered'
+            color = 'reds'
         } else if (rankReverse === 1) {
             color = 'blues'
         }
@@ -58,7 +68,7 @@ const renderMap = (
         // set geo file based on geo type
         // ----------------------------------------------------------------------- //
 
-        console.log("mapGeoType [renderMap]", mapGeoType);
+        // console.log("mapGeoType [renderMap]", mapGeoType);
 
         if (mapGeoType === "NTA2010") {
             topoFile = 'NTA_2010.topo.json';
@@ -80,6 +90,8 @@ const renderMap = (
             topoFile = 'NYCKids_2017.topo.json';
         } else if (mapGeoType === "NYCKIDS2019") {
             topoFile = 'NYCKids_2019.topo.json';
+        } else if (mapGeoType === "Borough") {
+            topoFile = 'borough.topo.json';
         }
 
         // ----------------------------------------------------------------------- //
@@ -161,12 +173,12 @@ const renderMap = (
                                         "bin": false,
                                         "field": "Value",
                                         "type": "quantitative",
-                                        "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}}
+                                        "scale": {"scheme": {"name": color, "extent": [0.125, 1.125]}}
                                     },
                                     "value": "#808080"
                                 },
                                 "stroke": {
-                                    "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
+                                    "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
                                     // "value": "#161616"
                                     "value": "#dadada"
                                 },
@@ -179,7 +191,10 @@ const renderMap = (
                                     "value": 0
                                 },
                                 "tooltip": [
-                                    {"field": "Geography", "title": "Neighborhood"},
+                                    {
+                                        "field": "Geography", 
+                                        "title": geoTypeShortDesc
+                                    },
                                     {
                                         "field": "DisplayValue",
                                         "title": mapMeasurementType
@@ -216,7 +231,7 @@ const renderMap = (
                         "tooltip": [
                             {
                                 "field": "Geography", 
-                                "title": "Neighborhood"
+                                "title": geoTypeShortDesc
                             },
                             {
                                 "field": "DisplayValue", 
@@ -238,7 +253,7 @@ const renderMap = (
                             }
                         },
                         "stroke": {
-                            "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
+                            "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
                             "value": "white"
                         },
                         "strokeWidth": {
@@ -255,4 +270,19 @@ const renderMap = (
         // ----------------------------------------------------------------------- //
 
         vegaEmbed("#map", mapspec);
+
+        // ----------------------------------------------------------------------- //
+        // Send chart data to download
+        // ----------------------------------------------------------------------- //
+
+        let dataForDownload = [...mapspec.data.values] // create a copy
+        // console.log(dataForDownload===mapspec.data.values) 
+
+        let downloadTable = aq.from(dataForDownload)
+            .derive({Indicator: `'${indicatorName}: ${mapMeasurementType}${displayType && ` (${displayType})`}'`}) // add indicator name and type column
+            .select(aq.not('GeoRank',"end_period","start_period","ban_summary_flag","GeoTypeShortDesc","MeasureID","DisplayValue")) // remove excess columns
+            // .print()
+
+        CSVforDownload = downloadTable.toCSV()
+
     }
