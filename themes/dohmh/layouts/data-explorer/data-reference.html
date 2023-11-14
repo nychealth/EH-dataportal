@@ -83,6 +83,17 @@
             <script>
 
                 var topic_indicators = {{ $topic_indicators_map.Get "topic_indicators" }};
+
+                var arqTable = aq.from(topic_indicators)
+                .rename({key: "topic"})
+                .derive({
+                    IndicatorID: d => d.value.IndicatorID,
+                    topic_name: d => d.value.topic_name
+                })
+                .select(aq.not("value"))
+                .unroll("IndicatorID");
+                
+                var topicIndicatorsTable = arqTable.objects();
   
             </script>
             
@@ -101,65 +112,36 @@
                     </div>
 
                     <div class="col-md-6 border-top">
-                        <table class="table">
-                            <colgroup>
-                                <col style="width:25%">
-                                <col style="width:75%">
-                              </colgroup>  
-                            <tbody>
-                                <tr>
-                                    <th scope="row"><span class="home-label">Name (ID)</span></th>
-                                    <th ><span id="indName">Indicator Name</span> (<span id="indID">XX</span>)</th>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><span class="home-label">Description</span></th>
-                                    <th id="indDesc">Lorem ipsum dolor pasquale</th>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><span class="home-label">Measures (ID)</span></th>
-                                    <th>
-                                        <ul id="measureList">
-                                        </ul>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <span class="home-label">Download as</span>
-                                    </th>
-                                    <th>
-                                        <button class="btn btn-sm btn-primary"><i class="fas fa-file-download mr-1"></i>JSON</button>
-                                        <button class="btn btn-sm btn-primary"><i class="fas fa-file-download mr-1"></i>CSV</button>
+                        <p><span class="home-label font-weight-bold">Name (ID)</span><br>
+                        <span id="indName">Indicator Name</span> (<span id="indID">XX</span>)</p>
+                        <hr>
+                        <p>
+                            <span class="home-label font-weight-bold">Description</span><br>
+                            <span id="indDesc">Lorem ipsum dolor pasquale</span>
+                        </p>
+                        <hr>
+                        <p>
+                            <span class="home-label font-weight-bold">Measures (ID)</span><br>
+                            <ul id="measureList">
+                            </ul>
+                        </p>
+                        <hr>
+                        <p>
+                            <span class="home-label font-weight-bold">Download as</span><br>
+                            <button class="btn btn-sm btn-primary"><i class="fas fa-file-download mr-1"></i>JSON</button>
+                            <button class="btn btn-sm btn-primary"><i class="fas fa-file-download mr-1"></i>CSV</button>
+                            <button class="ml-3 btn btn-sm btn-outline-primary"><i class="fas fa-external-link-square-alt mr-1"></i>Repo</button>
+                        </p>
+                        <hr>
+                        <p>
+                            <span class="home-label font-weight-bold">Parent topics:</span><br>
+                            <ul id="topicList">
+                            </ul>
+                        </p>
 
-                                        <button class="ml-3 btn btn-sm btn-outline-primary"><i class="fas fa-external-link-square-alt mr-1"></i>Repo</button>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><span class="home-label">Part of:</span></th>
-                                    <th>
-                                        <ul>
-                                            <li>Topic 0</li>
-                                            <li>Topic 1</li>
-                                            <li>Topic 2</li>
-                                        </ul>
-                                    </th>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
 
                 </div>
-
-
-                <hr class="my-2">
-                <p><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em> Try these other Health Department resources:
-                <ul>
-                  <li><a href="https://a816-health.nyc.gov/hdi/epiquery/">EpiQuery</a>: Analyze and visualize NYC health data from surveys, disease reports and vital records by sex, race/ethnicity, age and other stratifications.
-                  </li>
-                  <li><a href="https://a816-health.nyc.gov/hdi/profiles/">Community Health Profiles</a>: Learn about the social, economic and health conditions and outcomes of New Yorkers, neighborhood-by-neighborhood.
-                  </li>
-                </ul>
-                <a href="https://www1.nyc.gov/site/doh/data/data-home.page">Browse all Health Department data resources here</a>.
-                </p>
                 
             </div>
             
@@ -173,27 +155,27 @@
                 console.log('printed to page:')
                 console.log(x)
 
+                document.getElementById('measureList').innerHTML = ''
                 for (let i = 0; i < x.Measures.length; i ++) {
-                    console.log(x.Measures[i].MeasureName)
+                    // console.log(x.Measures[i].MeasureName)
                     var li = document.createElement('li')
                     li.innerHTML = x.Measures[i].MeasureName + ' (' + x.Measures[i].MeasureID + ')'
                     document.getElementById('measureList').appendChild(li)
                 }
+
+                // console.log(topicIndicatorsTable)
+                const result = topicIndicatorsTable.filter((ind) => ind.IndicatorID === x.IndicatorID);
+                console.log(result)
+
+                document.getElementById('topicList').innerHTML = ''
+                for (let i = 0; i < result.length; i++) {
+                    // console.log(result[i].topic)
+                    var li = document.createElement('li')
+                    li.innerHTML = `<a href="${baseURL}data-explorer/${result[i].topic}/?id=${x.IndicatorID}">` + result[i].topic_name + '</a>'
+                    document.getElementById('topicList').appendChild(li)
+                }
             }
 
-            var topicArray = []
-            for (const topic in topic_indicators) {
-                topicArray.push(`${topic}`)
-            }
-
-            /*
-            for (let i = 0; i < topicArray.length; i++) {
-                console.log(topic_indicators.topicArray[i])
-            }
-            */
-            
-
-            
         </script>
         
     {{- end -}}
