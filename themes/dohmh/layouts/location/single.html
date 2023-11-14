@@ -227,8 +227,9 @@
                     <p class="report-description">{{ $.Params.title }}</p> 
                     
                         {{/*
-                            this ranges over topics, which have the "rows" in them. this should instead range 
-                            over topics in a YAML file in data. topics have names and descriptions, and have 
+                            old structure: in each JSON, ranges over topics, which have the "rows" in them. 
+                            
+                            new structure: ranges over topics in a YAML file in data. topics have names and descriptions, and have 
                             indicator IDs nested underneath. the indicator IDs are used to subset the data file.
                         */}}
 
