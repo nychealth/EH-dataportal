@@ -16,30 +16,9 @@ image: ratportal-screenshot.png
 <div class="container-fluid">
 
 <div class="row">
-<div class="col-lg-10 col-md-12">
+    <div class="col-lg-10 col-md-12">
     Intro text
-    <div class="col-6"> test
-    </div>
-
-  <div class="col-4">
-    <div class="list-group" id="list-tab" role="tablist">
-      <a class="list-group-item list-group-item-action active" style="background-color: blue;" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">Home</a>
-      <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="list-profile">Profile</a>
-      <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="list-messages">Messages</a>
-      <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">Settings</a>
-    </div>
-  </div>
-  <div class="col-8">
-    <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">Report peeling paint to your landlord. If the problem is not fixed or if you think repair work is being done unsafely, call 311 to request a free inspection. <br>
-      <br>Remind your provider to test your child for lead poisoning at ages 1 and 2 and ask about testing older children if you have peeling paint. Call 311 to find a provider. 
- </div>
-      <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list"> profile </div>
-      <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
-      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
-    </div>
-  </div>
-
+    
 <br>
 <!-- Other format -->
 
@@ -98,7 +77,7 @@ image: ratportal-screenshot.png
     </div>
   </div>
     </div>
-</div>
+    </div>
 </div>
 
 <br>
