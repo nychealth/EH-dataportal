@@ -17,7 +17,7 @@ image: ratportal-screenshot.png
 
 <div class="row">
     <div class="col-lg-10 col-md-12">
-    Intro text
+    The image below contains common health hazards that are found in the home. You can learn more about what to look for, what to do about it, and how to find out more information on prevention through the interactive image and information pane below. 
     
 <br>
 <!-- Other format 
