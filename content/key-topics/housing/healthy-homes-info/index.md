@@ -11,6 +11,13 @@ layout: single
 image: ratportal-screenshot.png
 ---
 
+<!-- to do:
+
+- Add rest of Hazards in Ai
+- Button menu could be bigger / have different colors? Feels like too much white space.
+- How to get rid of rat screenshot without breaking template?
+-->
+
 <!-- need js to enable tab selection. May need to move this to html file-->
 </div>
 <div class="container-fluid">
