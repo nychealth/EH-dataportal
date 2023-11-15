@@ -26,6 +26,28 @@
   .story-card-button {
     width: 100%;
     margin-bottom: 25px;
+    margin-top: 10px;
+    padding: 10px;
+  }
+
+  .story-card-button-container {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  #refreshButton {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    z-index: 999;
+    visibility: hidden;
+  }
+
+  .legend {
+    height: 100px;
+    margin-bottom: 10px;
+    overflow-y: auto;
   }
 </style>
 
@@ -89,7 +111,9 @@
       </div>  
     </div>
     <div class="col-8 mx-auto">
-      <div id="map"></div>
+      <div id="map">
+        <button id="refreshButton">Reset</button>
+      </div>
       </div>
   </div>
 </div>

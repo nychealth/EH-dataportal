@@ -502,6 +502,10 @@ config = {
           "id": "no-green-in-green-space",
           "title":"No green in our 'green space'",
           "content":"How good is a 'green' space when there is little to no green to be found? That's the situation we face in the South Bronx. So-called 'parks' and 'playgrounds' designated as 'green space' by the City are often concrete slabs with very little tree canopy. See below for examples of what some of these spaces look like.<h4>Carlos Lozada</h4><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/bronx-greenspace/carlos-lozada.jpg\"></div><h4>Clark Playground</h4><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/bronx-greenspace/clark-playground.jpg\"></div><h4>Graham Triangle 138th St side</h4><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/bronx-greenspace/graham-triangle.jpg\"></div><h4>Pulaski</h4><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/bronx-greenspace/pulaski.jpg\"></div><h4>Ranaqua</h4><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/bronx-greenspace/ranaqua.jpg\"></div><h4>Willis Playground 140 extension</h4><div><img src=\"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/bronx-greenspace/willis-playground.jpg\"></div>",
+          "marker": {
+             "lat":40.8124376119,
+             "lng":-73.9186380,
+          },
           "mapState":{
              "lat":40.8124376119,
              "lng":-73.9186380,
@@ -532,6 +536,10 @@ config = {
         "id": "open-hydrants",
         "title":"Open Hydrants Have Repercussions",
         "content":"Mid-80s open hydrants meant top floor apt. dwellers lost water pressure. My neighbors had to walk down 5 flights and carry buckets back upstairs.<br><br>*Additions from the storymap team:<br>Are you struggling from similar issues with fire hydrants in your area? You can get a spray cap from your local fire station and access an outreach program that can teach you how to use it - <a href=\"https://www1.nyc.gov/html/dep/html/press_releases/14-062pr.shtml#.Yvw7t3bMK73\" target=\"_blank\">more info here</a>. For a long-standing issue, you can file a complaint <a href=\"https://portal.311.nyc.gov/article/?kanumber=KA-01034\" target=\"_blank\">here</a>.<br>In case of interest: <a href=\"https://www.atlasobscura.com/articles/new-yorkers-have-been-illicitly-cracking-open-fire-hydrants-for-centuries\" target=\"_blank\">A historical dive into fire hydrant cracking in NYC</a>.",
+        "marker": {
+           "lat": 40.8082044,
+           "lng": -73.9232586,
+        },
         "mapState":{
            "lat": 40.8082044,
            "lng": -73.9232586,

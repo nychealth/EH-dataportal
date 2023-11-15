@@ -10,6 +10,7 @@ var lastMapState = {
 var popup = null;
 var popupContent = "";
 var layerGroup = L.layerGroup();
+var storyMarkerLayerGroup = L.layerGroup();
 var layerMouseOver = null;
 var featureMouseOver = null;
 var legendControl = null;
@@ -119,16 +120,17 @@ function setupMap() {
       //neighborhoodsLayer.addTo(map);
       layerGroup.addLayer(neighborhoodsLayer);
     });
-    /*
-     *
-     * Sample code for pulling from mapbox
-    L.vectorGrid.protobuf('https://api.mapbox.com/v4/{tilesetId}/{z}/{x}/{y}.vector.pbf?access_token={accessToken}', {
-        vectorTileLayerStyles: {  },
-        tilesetId: 'tzinckgraf.7im6noz1',
-        accessToken: mapboxAccessToken,
-        maxNativeZoom: 14
-    }).addTo(map);
-    */
+    // add the markers to the story
+    const stories = config.stories;
+    for (let i = 0; i < stories.length; i++) {
+        const story = stories[i];
+        if (!story.marker) {
+            continue;
+        }
+        const marker = L.marker([story.marker.lat, story.marker.lng]);
+        storyMarkerLayerGroup.addLayer(marker);
+    }
+    storyMarkerLayerGroup.addTo(map);
 }
 
 var buttonHolderBase = document.getElementById('buttonHolderBase')
@@ -185,8 +187,10 @@ function drawAccordion() {
           <div class="card content-card" style="width: 28rem;">
           <div class="card-content">
             <img src="https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/no-shade-trees/1.jpg" class="card-img-top" alt="...">
-            <div class="card-body story-card-content">
+            <div class="story-card-button-container">
               <button class="story-card-button" value=${story.id}>Show On Map</button>
+            </div>
+            <div class="card-body story-card-content">
               <h5 class="card-title">${story.title}</h5>
               <blockquote class="blockquote mb-0">
               <p class="card-text">${story.content}</p>
@@ -387,7 +391,7 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
     return layer;
 }
 
-async function createGeotiffLayer({ url, args, name }) {
+async function createGeotiffLayer({ id, url, args, name }) {
     const response = await fetch(url);
     if (!response.ok) {
         return null;
@@ -406,8 +410,10 @@ async function createGeotiffLayer({ url, args, name }) {
             + 'height: 20px; width: 100%;'
             + 'display: block; background-repeat: no-repeat;'
             + '"></span>'
-            + '<span style="position: absolute, left: 0, font-size: 11px, bottom: 3px">0</span>'
-            + '<span style="position: absolute, right: 0, font-size: 11px, bottom: 3px">5</span>';
+            + '<div style="display: block; width: 100%;">'
+            + ((data.mins && data.mins[0]) ? `<div style="float: left">${data.mins[0].toFixed(1)}</div>` : '')
+            + ((data.maxs && data.maxs[0]) ? `<div style="float: right">${data.maxs[0].toFixed(1)}</div>` : '')
+            + '</div>';
         return legend;
     }
     const layer = new GeoRasterLayer({
@@ -418,6 +424,7 @@ async function createGeotiffLayer({ url, args, name }) {
               return values[0] > 0.0001 ? colorChroma(values[0]) : null;
           },
           legendFunc,
+          _custom_id: id,
       });
     return layer;
 }
@@ -559,6 +566,10 @@ async function addLayerToMap(layerId) {
         // only one active one at a time
         if ( layersExclusive.has(layerId) ) {
             for (_layerId in layersVisible) {
+                // this only applies to exclusive layers
+                if (!layersExclusive.has(_layerId)) {
+                    continue;
+                }
                 const isVisible = layersVisible[_layerId];
                 if ( isVisible === true && _layerId !== layerId ) {
                     removeLayerFromMap(_layerId);
@@ -601,7 +612,6 @@ async function toggleLayerOnMap(layerId, button) {
     } finally {
       button.disabled = false;
     }
-    createLegend();
 }
 
 function saveCurrentMapState() {
@@ -610,9 +620,18 @@ function saveCurrentMapState() {
     lastMapState.lat = lat;
     lastMapState.lng = lng;
     lastMapState.zoom = zoom;
+
+    var layersVisible = []
+    layerGroup.eachLayer(l => layersVisible.push(l.options._custom_id));
+    lastMapState.layers = layersVisible.filter(x => x);
 }
 
-async function updateMapState(storyId) {
+/**
+ * Update the map state to show a story.
+ * @param {*} storyId 
+ * @returns 
+ */
+async function updateMapStateForStory(storyId) {
     const storyConfig = config.stories.find(s => s.id == storyId);
     if (storyConfig == null) {
         console.log(`Could not find story ${storyId} in config`);
@@ -626,21 +645,22 @@ async function updateMapState(storyId) {
         map.flyTo([lat, lng], zoom);
     }
 
-    // FIXME use layergroup
+    const layers = mapState.layers;
+
     var layersVisible = []
     layerGroup.eachLayer(l => layersVisible.push(l.options._custom_id));
-    lastMapState.layers = layersVisible;
-
-    const layers = mapState.layers;
     // add the layers that are not in the visible layer
     layers.filter(l => !(l in layersVisible)).forEach(async l => {
         await addLayerToMap(l);
     });
-
     // remove
     layersVisible.filter(l => !(l in layers)).forEach(async l => {
         removeLayerFromMap(l)
     });
+
+    // clear out the layer markers
+    map.removeLayer(storyMarkerLayerGroup);
+    $("#refreshButton").css("visibility", "visible");
 }
 
 function formatValue(value, type) {
@@ -828,6 +848,9 @@ async function resetMapState() {
         zoom: null,
         layers: [ ]
     };
+
+    map.addLayer(storyMarkerLayerGroup);
+    $("#refreshButton").css("visibility", "hidden");
 }
 
 function addListeners() {
@@ -842,7 +865,7 @@ function addListeners() {
     accordions.forEach(a => {
         a.addEventListener('click', async () => {
           if (a.classList.contains("collapsed")) {
-              await updateMapState(a.id);
+              await updateMapStateForStory(a.id);
           } else {
               await resetMapState();
           }
@@ -853,13 +876,20 @@ function addListeners() {
     storyCards.forEach(s => {
         s.addEventListener('click', async () => {
           mapElement.scrollIntoView({ behavior: "smooth" });
-          await updateMapState(s.value);
+          await updateMapStateForStory(s.value);
         });
     });
 
     map.addEventListener('mousemove', (event) => {
         updatePopup(event.latlng);
     });
+
+    document.querySelector('#refreshButton').addEventListener('click', async () => {
+        await resetMapState();
+    });
+
+    map.on('layeradd', createLegend);
+    map.on('layerremove', createLegend);
 }
 
 async function loadIndicators() {
