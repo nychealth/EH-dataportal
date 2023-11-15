@@ -55,7 +55,7 @@ image: ratportal-screenshot.png
 <h3> Click on the health hazard to learn more </h3>
 <br>
     <div class="row">
-        <div class="col-8"> <img class="img-responsive" src="11.27-mockup.png"style="width:100%">
+        <div class="col-8"> <img class="img-responsive" src="11.15-mockup.png"style="width:100%">
         </div>
         <div class="col-4">
             <div class="list-group my-2" id="list-tab" role="tablist" style="font-weight:bold;">
