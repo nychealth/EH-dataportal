@@ -1,6 +1,6 @@
 {{- define "main" -}}
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container" id="skip-header-target">
     <div class="col-md-11 col-sm-12 mx-auto my-4">
         
         <div class="row no-gutters mb-2">
@@ -18,126 +18,42 @@
         <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
         {{- .Content -}}
 
-        <!-- Generate JSON object with topic pages and keys, and internal_ids in arrays -->
-
-        {{- $topic_indicators_dict := newScratch -}}
-        {{- $topic_indicators_map := newScratch -}}
-        
-        {{/*  create a slice for an array of all internal_ids  */}}
-
-        {{- $all_indicator_ids := slice -}}
-        
-        {{/*  iterate over all pages on the site  */}}
-
-        {{- range .Site.Pages -}}
-            
-            {{/*  create a new "slice" (i.e., an array)  */}}
-            
-            {{- $indicators := slice -}}
-            {{- $topic_name := slice -}}
-            
-            {{/*  only process if it's a data explorer page */}}
-            
-            {{- if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (ne (path.Base .RelPermalink) "all-data")) -}}
-                
-                {{/*  turn params into strings  */}}
-                
-                {{- $topic := .RelPermalink | path.Base | string -}}
-
-                {{/*  topic names  */}}
-                
-                {{- $topic_title := .Title -}}
-
-                {{/*  get internal_ids  */}}
-                
-                {{- range .Params.indicators -}}
-                    
-                    {{/*  create an array of internal_ids  */}}
-                    
-                    {{- $indicators = $indicators | append .IndicatorID -}}
-
-                {{- end -}}
-                
-                {{/*  create a map with topic as key and array of internal_ids as value */}}
-                
-                {{- $topic_indicators_dict := dict "topic_name" $topic_title "IndicatorID" $indicators -}}
-                {{- $topic_indicators_map.SetInMap "topic_indicators" $topic ($topic_indicators_dict) -}}
-
-            {{- end -}}
-
-            {{- $all_indicator_ids = $all_indicator_ids | append $indicators -}}
-            
-        {{- end -}}
-
-        {{-  $all_unique_indicator_ids := $all_indicator_ids | uniq | sort  -}}
-
-        {{/*  {{-  warnf "all_unique_indicator_ids >>>> " $all_unique_indicator_ids  -}}  */}}
-        
-        {{- $all_unique_indicator_ids_json := $all_unique_indicator_ids | jsonify | resources.FromString "/IndicatorData/all_unique_indicator_ids.json" -}}
-        
-        {{-  warnf ">>>> all_unique_indicator_ids_json.RelPermalink >>>> " $all_unique_indicator_ids_json.RelPermalink  -}}
-        
-        <p class="sr-only">This produces a list of topics and IndicatorIDs, stored in the variable <code>$topic_indicators</code>, 
-            and printed to the console as a JavaScript variable, and then as an Arquero table.</p>
-            
-            <script>
-
-                var topic_indicators = {{ $topic_indicators_map.Get "topic_indicators" }};
-
-                var arqTable = aq.from(topic_indicators)
-                .rename({key: "topic"})
-                .derive({
-                    IndicatorID: d => d.value.IndicatorID,
-                    topic_name: d => d.value.topic_name
-                })
-                .select(aq.not("value"))
-                .unroll("IndicatorID");
-                
-                var topicIndicatorsTable = arqTable.objects();
-  
-            </script>
-            
-            <p class="sr-only">Also outputting a JSON version of the list to <code><a href="{{ .Site.BaseURL }}IndicatorData/topic_indicators.json">/IndicatorData/topic_indicators.json</code></a> 
-                (which on build will be put into <code>/docs/IndicatorData/</code>)</strong>
-                
-                {{- $si_json_output_path := "/IndicatorData/topic_indicators.json" -}}
-                {{- $si_resource := $topic_indicators_map.Get "topic_indicators" | jsonify (dict "indent" "  ") | resources.FromString $si_json_output_path -}}
-                
-
+        {{- partial "de-topic-indicators.html" . -}}
 
 
                 <div class="row">
-                    <div class="col-md-6">
+
+                    <div class="col-12 my-4">
+                        <span class="home-label">Search for an indicator:</span>
                         {{partial "de-text-search" . }}
                     </div>
 
-                    <div class="col-md-6 border-top">
-                        <p><span class="home-label font-weight-bold">Name (ID)</span><br>
-                        <span id="indName">Indicator Name</span> (<span id="indID">XX</span>)</p>
-                        <hr>
+                    <div class="col-md-6">
+                        <p><span class="home-label font-weight-bold">Indicator Name [ID]</span></p>
+                        <p class="fs-xl"><span id="indName">Indicator Name</span> <span class="badge badge-pill badge-light ml-2">Indicator <span id="indID">XX</span></span></p>
+                        <p class="fs-md"><span id="indDesc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in neque nisl. Vestibulum magna leo, fermentum non feugiat et, porta id nibh. Vivamus quis nisl nunc.</span></p>
+                            <hr>
+                            <p> <span class="home-label font-weight-bold">Measures [ID]</span></p>
+                                <div id="measureList"></div>
+                            </p>
+
+                    </div>
+
+                    <div class="col-md-6">
                         <p>
-                            <span class="home-label font-weight-bold">Description</span><br>
-                            <span id="indDesc">Lorem ipsum dolor pasquale</span>
+                            <span class="home-label font-weight-bold">Parent topics</span><br>
+                            <div id="topicList"></div>
                         </p>
                         <hr>
                         <p>
-                            <span class="home-label font-weight-bold">Measures (ID)</span><br>
-                            <ul id="measureList">
-                            </ul>
+                            <span class="home-label font-weight-bold">Data sources</span><br>
+                            <div id="sourceList"></div>
                         </p>
-                        <hr>
-                        <p>
-                            <span class="home-label font-weight-bold">Download as</span><br>
-                            <button class="btn btn-sm btn-primary"><i class="fas fa-file-download mr-1"></i>JSON</button>
-                            <button class="btn btn-sm btn-primary"><i class="fas fa-file-download mr-1"></i>CSV</button>
-                            <button class="ml-3 btn btn-sm btn-outline-primary"><i class="fas fa-external-link-square-alt mr-1"></i>Repo</button>
-                        </p>
-                        <hr>
-                        <p>
-                            <span class="home-label font-weight-bold">Parent topics:</span><br>
-                            <ul id="topicList">
-                            </ul>
-                        </p>
+
+                        
+                        <div id="repoLink"></div>
+
+                        
 
                     </div>
 
@@ -148,31 +64,40 @@
         </article>
         
         <script>
+            // This function is called from de-text-search.html 
             function printToPage(x) {
                 document.getElementById('indName').innerHTML = x.IndicatorName
                 document.getElementById('indID').innerHTML = x.IndicatorID
                 document.getElementById('indDesc').innerHTML = x.IndicatorDescription
-                console.log('printed to page:')
-                console.log(x)
+                // console.log('printed to page:')
+                // console.log(x)
 
+                
+
+                document.getElementById('repoLink').innerHTML = `<a href="https://github.com/nychealth/EHDP-data/tree/production/indicators/data/${x.IndicatorID}.json"><button class="btn btn-sm btn-block btn-outline-primary"><i class="fas fa-external-link-square-alt mr-1"></i>Download JSON from repo</button></a>`
+
+                // Print measures to page
                 document.getElementById('measureList').innerHTML = ''
+                document.getElementById('sourceList').innerHTML = ''
                 for (let i = 0; i < x.Measures.length; i ++) {
                     // console.log(x.Measures[i].MeasureName)
-                    var li = document.createElement('li')
-                    li.innerHTML = x.Measures[i].MeasureName + ' (' + x.Measures[i].MeasureID + ')'
-                    document.getElementById('measureList').appendChild(li)
+                    var measure = `<p class="fs-sm">${x.Measures[i].MeasureName} <span class="badge badge-pill badge-light">${x.Measures[i].MeasureID}</span></span><br>`
+                    document.getElementById('measureList').innerHTML += measure
+                    var source = `<p class="fs-sm">${x.Measures[i].Sources}</p>`
+                    document.getElementById('sourceList').innerHTML += source
                 }
 
+
+                // Print topics to page
                 // console.log(topicIndicatorsTable)
-                const result = topicIndicatorsTable.filter((ind) => ind.IndicatorID === x.IndicatorID);
-                console.log(result)
+                const topics = topicIndicatorsTable.filter((ind) => ind.IndicatorID === x.IndicatorID);
+                console.log(topics)
 
                 document.getElementById('topicList').innerHTML = ''
-                for (let i = 0; i < result.length; i++) {
-                    // console.log(result[i].topic)
-                    var li = document.createElement('li')
-                    li.innerHTML = `<a href="${baseURL}data-explorer/${result[i].topic}/?id=${x.IndicatorID}">` + result[i].topic_name + '</a>'
-                    document.getElementById('topicList').appendChild(li)
+                for (let i = 0; i < topics.length; i++) {
+                    // console.log(topics[i].topic)
+                    var datatopic = `<a class="btn btn-sm btn-outline-primary mb-1 mr-1" href="${baseURL}data-explorer/${topics[i].topic}/?id=${x.IndicatorID}">${topics[i].topic_name}</a>`
+                    document.getElementById('topicList').innerHTML += datatopic
                 }
             }
 

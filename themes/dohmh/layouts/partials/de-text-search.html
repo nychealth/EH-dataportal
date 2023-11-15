@@ -1,4 +1,3 @@
-
 <div class="row no-gutters">
     <div class="col-12">
         <div class="btn-group" role="group" style="width:100%!important;">
@@ -18,10 +17,6 @@
 </div>
 
 
-
-
-
-
 <!-- flexdatalist -->
 
 {{- $flexdatalist_css := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css" -}}
@@ -33,7 +28,6 @@
 
 <script>
 // ===== load flexdatalist ================================================== //
-var chosenIndicator;
 
 const load_flexdatalist = async () => {
 
@@ -70,17 +64,16 @@ const load_flexdatalist = async () => {
             // ----- add flexdatalist select handler -------------------------------------------------- //
             $input.on('select:flexdatalist', (e, set) => {
                 
-                console.log("set", set);
-                                
-                // selected indicator:
-                console.log("selected:")
-                console.log(set)
-                chosenIndicator = set
+                // log selected indicator:
 
+                console.log("Selected indicator:", set);
+                                
                 // run page print (for data reference)
                 if (typeof printToPage === "function") {
-                    printToPage(set)
-                } else {}
+                    printToPage(set) // on data-reference.html
+                } else {
+                    sendToIndicator(set) // for section.html
+                }
                 
                 
             })
@@ -103,8 +96,16 @@ const load_flexdatalist = async () => {
 
 load_flexdatalist()
 
-// ----- iterate over topic_indicators ----------------------------------------- //
+// ----- send to DE output page ----------------------------------------- //
 
+function sendToIndicator(x) {
 
+    var id = x.IndicatorID
+
+    const topics = topicIndicatorsTable.filter((ind) => ind.IndicatorID === x.IndicatorID);
+    console.log('Selected indicator parent topics:')
+    console.log(topics)
+    window.location.href = baseURL + 'data-explorer/' + topics[0].topic + '/?id=' + x.IndicatorID 
+}
 
 </script>
