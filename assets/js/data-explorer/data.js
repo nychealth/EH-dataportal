@@ -754,6 +754,7 @@ function draw311Buttons(indicator_id) {
 
             document.getElementById('311').innerHTML = ''
 
+            // since we bring the takeaction partial in 2x on the DE page, we need to do this based on a class instead of an ID.
             var dest = document.querySelectorAll('.destination311')
             dest.forEach(element => element.innerHTML = '')
 
@@ -773,11 +774,7 @@ function draw311Buttons(indicator_id) {
                 var title = filteredCrosswalk[i].topic
                 var destination = filteredCrosswalk[i].kaLink
                 var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="badge badge-pill badge-primary mr-1" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt mr-1"></i>${title}</a>`
-                // document.getElementById('311').innerHTML += btn
-
                 dest.forEach(element => element.innerHTML += btn)
-                //document.getElementsByClassName('destination311').forEach(x => x.innerHTML = btn)
-
             }
     })
 }
