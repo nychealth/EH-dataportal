@@ -25,14 +25,14 @@
           </div>
       </div>
 
-        <div class="col-md-8" aria-hidden="true">
+        <div class="col-md-8 mb-4" aria-hidden="true">
 
           <h3 class="fs-rg mb-2">Choose a neighborhood to get a neighborhood report:</h3>
           <hr class="mb-2">
 
           <div class="row">
             <div class="col-12">
-              <div class="btn-group" role="group">
+              <div class="btn-group" role="group" style="width:100%!important;">
   
                 <input 
                     id="flex_search"
@@ -121,9 +121,7 @@
   }
   
   .flex_search-flexdatalist {
-    min-width: 50px;
-    width: 40vw;
-    max-width: 100vw;
+
   }
   .flex_search-flexdatalist input:placeholder-shown {
     background-color: white;
@@ -231,7 +229,7 @@ function loadList() {
 
     console.log('chosen neighb:')
     console.log(set.page_name);
-    window.location.href = set.page_name + reportURL 
+    window.location.href = baseURL + 'neighborhood-reports/' + set.page_name + reportURL 
     
 })
 
