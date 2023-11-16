@@ -10,10 +10,10 @@ keywords: ["food","drink","water","housing"]
 indicators:
 - header: null
   IndicatorID:
-  - 2044
-  - 2041
   - 2207
   - 2043
+  - 2041
+  - 2044
 ---
 
 All NYC residences **receive drinking water from a public water system.** Most water is gravity fed from a network of reservoirs and lakes in protected watersheds, up to 125 miles from the city.
