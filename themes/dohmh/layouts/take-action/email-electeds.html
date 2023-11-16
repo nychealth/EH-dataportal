@@ -422,7 +422,7 @@ async function getData() {
     document.getElementById('cmName').innerHTML = districtInfo.CouncilMember
     document.getElementById('cmWebsite').innerHTML = `<a href="https://council.nyc.gov/district-${districtInfo.District}">Website</a>`
     document.getElementById('cmPhone').innerHTML = 'n/a'
-    document.getElementById('cmEmail').innerHTML = districtInfo.Email
+    document.getElementById('cmEmail').innerHTML = `<a href="mailto:${districtInfo.Email}">${districtInfo.Email}</a>`
 
     // get info from cbTable
     for (let i = 0; i < cbTable.length; i ++) {
@@ -435,12 +435,12 @@ async function getData() {
     document.getElementById('cbName').innerHTML = cbInfo.Borough + " CB" + cbInfo.CB
     document.getElementById('cbWebsite').innerHTML =  `<a href="${cbInfo.Website}">Website</a>`
     document.getElementById('cbPhone').innerHTML = cbInfo.Phone
-    document.getElementById('cbEmail').innerHTML = cbInfo.Email
+    document.getElementById('cbEmail').innerHTML = `<a href="mailto:${cbInfo.Email}">${cbInfo.Email}</a>`     
 
     var recipient = {};
     recipient.name = districtInfo.CouncilMember
     recipient.area = 'District ' + districtInfo.District
-    recipient.email = districtInfo.Email
+    recipient.email = `<a href="mailto:${districtInfo.Email}">${districtInfo.Email}</a>`            
     peopleToEmail.push(recipient)
 
   });
@@ -512,7 +512,7 @@ function printInfoFromApi(prefix, info) {
   document.getElementById(prefix+"Phone").innerHTML = info.phones[0]
 
   if (info.emails) {
-    document.getElementById(prefix+"Email").innerHTML = info.emails[0]
+    document.getElementById(prefix+"Email").innerHTML = `<a href="mailto:${info.emails[0]}">${info.emails[0]}</a>`          
   } else {
     document.getElementById(prefix+"Email").innerHTML = `<em>No email address found</em>`
   }
