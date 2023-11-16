@@ -1,10 +1,10 @@
 <!-- Get indicator ID -->
 {{- $indID := .ind.IndicatorID -}}
-{{- $dataname := .ind.data_field_name -}}
+{{- $dataname := .ind.indicator_data_name -}}
 
 <!--Modal button also fires getURL() -->
 
-<button data-toggle="modal" data-target="#modal-{{ .ind.data_field_name }}-{{ .count }}" onclick='getURL({{ $indID }}, "{{ $dataname }}")' class="indicator-anchor">
+<button data-toggle="modal" data-target="#modal-{{ .ind.indicator_data_name }}-{{ .count }}" onclick='getURL({{ $indID }}, "{{ $dataname }}")' class="indicator-anchor">
 
     <!-- Table row - Screen only -->
     <div class="row align-items-center d-print-none">
@@ -55,7 +55,7 @@
 </button>
 
 <!-- Indicator modal -->
-<div class="modal fade report-modal" id="modal-{{ .ind.data_field_name }}-{{ .count }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-{{ .ind.indicator_data_name }}-{{ .count }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -88,7 +88,7 @@
             <div class="modal-body">
                 <h3>{{- .ind.indicator_long_name -}}</h3>
                 <p>  <em>{{ .ind.measurement_type }} {{ .ind.units }}</em></p>
-                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-{{ .ind.data_field_name }}-{{ .count }}"></div>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-{{ .ind.indicator_data_name }}-{{ .count }}"></div>
 
             </div>
             <hr>
@@ -96,7 +96,7 @@
 
                 <h3>Trends Over Time</h3>
                 <p><em>{{ .ind.measurement_type }} {{ .ind.units }}</em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-{{ .ind.data_field_name }}-{{ .count }}"></div>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-{{ .ind.indicator_data_name }}-{{ .count }}"></div>
 
             </div>
             <hr>
@@ -104,7 +104,7 @@
 
                 <h3>By Neighborhood</h3>
                 <p><em>{{ .ind.measurement_type }} {{ .ind.units }}</em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-{{ .ind.data_field_name }}-{{ .count }}"></div>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-{{ .ind.indicator_data_name }}-{{ .count }}"></div>
 
             </div>
 
@@ -123,7 +123,7 @@
 
 <script type="text/javascript">
 
-    $( "#modal-{{ .ind.data_field_name }}-{{ .count }}" ).on('shown.bs.modal', function() {
+    $( "#modal-{{ .ind.indicator_data_name }}-{{ .count }}" ).on('shown.bs.modal', function() {
 
         {{/*  gtag('event', 'click_modal', {
             'modal_name': '{{ .ind.indicator_short_name }}'
@@ -137,7 +137,7 @@
 
             var summaryData =
                 arqTable
-                .filter(d => d.indicator_data_name == {{ .ind.data_field_name }})
+                .filter(d => d.indicator_data_name == {{ .ind.indicator_data_name }})
                 .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
                 .dedupe()
                 .groupby("neighborhood")
@@ -151,7 +151,7 @@
 
 
             vegaEmbed(
-                "#summary-{{ .ind.data_field_name }}-{{ .count }}",
+                "#summary-{{ .ind.indicator_data_name }}-{{ .count }}",
                 summarySpec,
                 opt
             ).then((res) => {
@@ -169,7 +169,7 @@
 
 
             vegaEmbed(
-                "#map-{{ .ind.data_field_name }}-{{ .count }}",
+                "#map-{{ .ind.indicator_data_name }}-{{ .count }}",
                 mapSpec,
                 opt
             ).then((res) => {
@@ -185,14 +185,14 @@
 
             var trendData =
                 arqTable
-                .filter(d => d.indicator_data_name == {{ .ind.data_field_name }})
+                .filter(d => d.indicator_data_name == {{ .ind.indicator_data_name }})
                 .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
                 .dedupe()
                 .objects()
 
 
             vegaEmbed(
-                "#trend-{{ .ind.data_field_name }}-{{ .count }}",
+                "#trend-{{ .ind.indicator_data_name }}-{{ .count }}",
                 trendSpec,
                 opt
             ).then((res) => {

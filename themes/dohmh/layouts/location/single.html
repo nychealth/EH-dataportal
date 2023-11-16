@@ -196,7 +196,7 @@
             function downloadData() {
 
                 download = arqTable
-                    .select(aq.not('report_id','indicator_id','data_field_name','start_date','end_date')) // drop unnecessary columns
+                    .select(aq.not('report_id','indicator_id','indicator_data_name','start_date','end_date')) // drop unnecessary columns
                     .filter(d => d.neighborhood == '{{ $.Params.neighborhood }}')
 
                 let downloadTableCSV = download.toCSV(); // format as CSV
