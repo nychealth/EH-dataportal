@@ -92,6 +92,7 @@ config = {
              "name":"Heat and Demographics",
              "type":"geojson",
              "url": window.BaseURL + "geojson/heat_and_demographics.geojson",
+             "exclusive": true,
              "args":{
                 "colorFeatureProperty":"afternoonMaxHeatIndex",
                 "minColor":"white",
@@ -116,10 +117,12 @@ config = {
                       "type":"currency",
                       "displayName":"Median Household Income:"
                    },
+                   /*
                    {
                       "id":"morningMaxHeatIndex",
                       "displayName":"Morning Max Heat Index:"
                    },
+                   */
                    {
                       "id":"afternoonMaxHeatIndex",
                       "displayName":"Afternoon Max Heat Index:"

@@ -1,4 +1,4 @@
-var map = L.map('map').setView([40.715554,-74.0026642],10); // [Lat,Long],Zoom
+var map = L.map('map').setView([40.715554,-74.0026642],11); // [Lat,Long],Zoom
 var lastMapState = {
     lat: null,
     lng: null,
