@@ -10,7 +10,7 @@
         <h1 class="fs-lg text-info"><i class="fas fa-star mr-1" aria-hidden="true"></i>Featured:</h1>
         <a href="{{ .Params.featured_link }}">
         <div class="card-content">
-          <div style="height: 400px; width: 100%; background-image: url({{ .Site.BaseURL }}/images/{{ .Params.featured_image }}); background-position: center;"></div>
+          <div style="height: 400px; width: 100%; background-image: url({{ .Site.BaseURL }}/images/{{ .Params.featured_image }}); background-position: center; background-size: cover;"></div>
 
           <!--
               <img class="card-img-top" src="/images/{{ .Params.featured_image }}">
