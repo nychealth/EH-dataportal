@@ -753,15 +753,19 @@ function draw311Buttons(indicator_id) {
         .then((crosswalk) => {
 
             document.getElementById('311').innerHTML = ''
+
+            var dest = document.querySelectorAll('.destination311')
+            dest.forEach(element => element.innerHTML = '')
+
             filteredCrosswalk = crosswalk.filter(indicator => indicator.IndicatorID == indicator_id )
 
             // Creates label if there are 311 links
             if (filteredCrosswalk.length > 0) {
                 document.getElementById('311label').innerHTML = 'Contact 311 about:'
-                document.getElementById('311').classList.remove('hide')
+                dest.forEach(element => element.classList.remove('hide'))
             } else {
                 document.getElementById('311label').innerHTML = ''
-                document.getElementById('311').classList.add('hide')
+                dest.forEach(element => element.classList.add('hide'))
             };
 
             // draws 311 buttons
@@ -769,7 +773,11 @@ function draw311Buttons(indicator_id) {
                 var title = filteredCrosswalk[i].topic
                 var destination = filteredCrosswalk[i].kaLink
                 var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="badge badge-pill badge-primary mr-1" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt mr-1"></i>${title}</a>`
-                document.getElementById('311').innerHTML += btn
+                // document.getElementById('311').innerHTML += btn
+
+                dest.forEach(element => element.innerHTML += btn)
+                //document.getElementsByClassName('destination311').forEach(x => x.innerHTML = btn)
+
             }
     })
 }
