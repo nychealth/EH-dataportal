@@ -1,6 +1,3 @@
-// API documentation: https://www.weatherapi.com/docs/
-// Sample returns: https://www.weatherapi.com/api-explorer.aspx#forecast
-
 // set up variables
 var needsHelp;
 var sensitiveGroup;
@@ -13,6 +10,10 @@ var hasWindow;
 // ----------------------------------------------------------------- //
 // ---------- First, ingest weather API and print to page ---------- //
 // ----------------------------------------------------------------- //
+
+// API documentation: https://www.weatherapi.com/docs/
+// Sample returns: https://www.weatherapi.com/api-explorer.aspx#forecast
+
 var apiData;
 fetch('http://api.weatherapi.com/v1/forecast.json?key=0d4a042ad8ec468da7b135156231711&q=NYC&days=1&aqi=yes&alerts=no')
     .then(response => {return response.json()})
@@ -97,7 +98,7 @@ function runQuestions() {
     // Draw answer buttons
     question.options.forEach(option => {
 
-      var btn = `<button class="btn-${question.id} btn btn-sm btn-outline-secondary px-2 mr-1" id="btn-${question.id}-${option.optionID}" onclick="answer(${question.id}, ${option.optionID}, ${option.goTo})">${option.copy}</button>`
+      var btn = `<button class="btn-${question.id} btn btn-sm btn-outline-secondary px-2 mr-1" id="btn-${question.id}-${option.optionID}" onclick="answer(${question.id}, ${option.optionID}, ${option.goTo});${option.setVariable}">${option.copy}</button>`
       questionBlock.innerHTML += btn
 
     })
@@ -177,55 +178,47 @@ function answer(question, answer, next) {
     // Need to figure out how to turn off Active if somebody changes their ansewr !!!!!!
   }
 
-
-
-  // This section applies specific stuff
-  (resp === '1-1') ? help(1) : '';
-  (resp === '1-2') ? help(2) : '';
-  (resp === '2-1') ? sensitive(1) : '';
-  (resp === '2-2') ? sensitive(2) : '';
-  (resp === '3-1') ? ac(1) : '';
-  (resp === '3-2') ? ac(2) : '';
-
 }
 
+// -------------------------------------------------------------------------- //
+// ---------- These functions set variables; they're set in config ---------- //
+// -------------------------------------------------------------------------- //
+
 function help(x) {
-  if (x === 1) {
-    needsHelp = "Yes"
-  } else {
-    needsHelp = "No"
-  }
+  needsHelp = x
   document.getElementById('needsHelp').innerHTML = needsHelp
 }
 
 function sensitive(x) {
-  if (x === 1) {
-    sensitiveGroup = "Yes"
-  } else {
-    sensitiveGroup = "No"
-  }
+  sensitiveGroup = x
   document.getElementById('sensitiveGroup').innerHTML = sensitiveGroup
 }
 
 function ac(x) {
-  if (x === 1) {
-    hasAC = "Yes"
-  } else {
-    hasAC = "No"
-  }
+  hasAC = x
   document.getElementById('hasAC').innerHTML = hasAC
+}
+
+function fan(x) {
+  hasFan = x
+  document.getElementById('hasFan').innerHTML = hasFan
 }
 
 
 /*
 To do:
-- Refine "message" functionality.
+- Refine "message" functionality - needs better placement/visibility.
 - Lines 147 to 152 - don't go down this road. There's got to be a better way.
 - Use config to change variables, and run scripts on variable change.
 */
 
+
 /*
+var variableOne = 2
 function changeVariable(variable, value) {
   variable = value
 }
+
+changeVariable('variableOne',1)
 */
+

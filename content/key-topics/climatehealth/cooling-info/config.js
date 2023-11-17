@@ -10,11 +10,14 @@ var content = [
                 "optionID": 1,
                 "copy": "Yes",
                 "message": "You may need medical help.",
+                "setVariable": "help('Yes')",
                 "goTo": 2
             },
             {   
                 "optionID": 2,
                 "copy": "No",
+                "message": "Great, let's move on.",
+                "setVariable": "help('No')",
                 "goTo": 2
             }
         ]
@@ -28,12 +31,15 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
+                "setVariable": "sensitive('Yes')",
                 "message": "Certain health conditions and life situations can make you more vulnerable to extreme heat and bad air quality.",
                 "goTo": 3
             },
             {
                 "optionID": 2,
                 "copy": "No",
+                "setVariable": "sensitive('No')",
+                "message": "Good. Let's take a look at ways to stay cool when it's hot.",
                 "goTo": 3
             }
         ]
@@ -46,73 +52,58 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Central air",
+                "setVariable": "ac('Central')",
                 "message": "Stay cool!",
                 "goTo": 4
             },
             {
                 "optionID": 2,
                 "copy": "Window/wall unit",
+                "setVariable": "ac('Window/wall')",
                 "message": "Only cool one room!",
                 "goTo": 4
             },
             {
-                "optionID": 2,
+                "optionID": 3,
                 "copy": "Portable unit",
+                "setVariable": "ac('Portable')",
                 "message": "Is it strong enough?",
                 "goTo": 4
             },
             {
-                "optionID": 2,
+                "optionID": 4,
                 "copy": "I don't have AC",
+                "setVariable": "ac('None')",
                 "message": "OK let's find another way to keep you cool.",
-                "goTo": 5
+                "goTo": 4
             }
         ]
     },
     {
         "id": 4,
-        "text": "What kind of AC do you have?",
-        "prompt": "Using AC at home is the best way to stay safe when it is hot outside. When that is not possible, seeking air conditioned refuge somewhere else is the next best option. Let's think about other ways you can protect yourself in the meantime. On a hot day, the inside of an apartment without AC can be up to 10 degrees hotter than outside and heat can stay in the building for days after the outside temperatures are cooler. Among New Yorkers who died after becoming dangerously hot at home, and for whom there was information about the presence or absence of an AC, 19% had an AC that was either not working or not in use. If you are concerned about affording your utility bill, check out HEAP, ConEd's Energy Affordability program, and EnergyShare.",
-        "options": [
-            {
-                "optionID": 1,
-                "copy": "Central air",
-                "goTo": 5
-            },
-            {
-                "optionID": 2,
-                "copy": "Window or wall unit",
-                "goTo": 5
-            }
-            ,
-            {
-                "optionID": 3,
-                "copy": "Portable AC",
-                "goTo": 5
-            }
-        ]
-    },
-    {
-        "id": 5,
         "text": "Do you have a fan?",
         "prompt": "A fan can help.",
         "options": [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "goTo": 4
+                "message": "Pro fan",
+                "setVariable": "fan('Yes')",
+                "goTo": 99
             },
             {
                 "optionID": 2,
                 "copy": "No",
-                "goTo": 5
+                "message": "Oh no!",
+                "setVariable": "fan('No')",
+                "goTo": 99
             }
         ]
     },
     {
         "id": 99,
-        "text": "You may need medical help.",
-        "prompt": "[How to make this message dependent on the heat and AQI values?]",
+        "text": "So let's figure out how to stay cool.",
+        "prompt": "Stay cool message...",
         "options": []
     }
 ]
