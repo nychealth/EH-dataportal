@@ -6,7 +6,9 @@ seo_title: "Protect yourself during hot weather and bad air quality."
 seo_description: "Tips to stay safe."
 categories: [climatehealth, airquality]
 keywords: ["interactive","heat","weather","hot weather","extreme heat","heat mortality","heat-related illness","emergency room","emergency department","ED visit","aqi","airquality"]
-layout: heat-aq
+layout: cooling-info
+customJS: cooling-info.js
+config: config.js
 ---
 
 Extreme heat and bad air quality can harm your health. When the air outside is unhealthy, how can you stay safe? 
