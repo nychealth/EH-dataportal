@@ -150,6 +150,10 @@ function answer(question, answer, next) {
   (resp === '2-2') ? sensitive(2) : '';
   (resp === '3-1') ? ac(1) : '';
   (resp === '3-2') ? ac(2) : '';
+
+  /* 
+    This whole section shouldn't exist - should be handled somehow with config and variables.
+  */
 }
 
 function help(x) {
