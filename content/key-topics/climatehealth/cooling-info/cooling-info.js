@@ -155,12 +155,13 @@ function answer(question, answer, next) {
   clickedBtn.classList.add('active')
 
 
-  /// Everything below needs to be fixed/changed
+/*
+!!!!!!!!!!!!!!!!!!!!!! Everything below needs to be changed !!!!!!!!!!!!!!!!!!!!!!
+*/
 
+// Based on config - does an answer change a variable?
+// Then, run a Recommendation() function - does a changed variable trigger a recommendation? 
 
-
-
-  
   var resp = question + "-" + answer
   console.log('question/answer: ', resp)
 
@@ -222,3 +223,7 @@ To do:
 - Lines 147 to 152 - don't go down this road. There's got to be a better way.
 - Use config to change variables, and run scripts on variable change.
 */
+
+function changeVariable(variable, value) {
+  variable = value
+}
