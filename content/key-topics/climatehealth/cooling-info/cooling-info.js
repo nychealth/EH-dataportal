@@ -224,6 +224,8 @@ To do:
 - Use config to change variables, and run scripts on variable change.
 */
 
+/*
 function changeVariable(variable, value) {
   variable = value
 }
+*/
