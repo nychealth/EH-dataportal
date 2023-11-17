@@ -61,7 +61,7 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Central air",
-                "goTo": 4
+                "goTo": 5
             },
             {
                 "optionID": 2,

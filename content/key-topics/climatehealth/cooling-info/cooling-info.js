@@ -1,6 +1,15 @@
 // API documentation: https://www.weatherapi.com/docs/
 // Sample returns: https://www.weatherapi.com/api-explorer.aspx#forecast
 
+// set up variables
+var needsHelp;
+var sensitiveGroup;
+var over80F;
+var aqiInterpretation;
+var hasAC;
+var hasFan;
+var hasWindow;
+
 // ----------------------------------------------------------------- //
 // ---------- First, ingest weather API and print to page ---------- //
 // ----------------------------------------------------------------- //
@@ -26,7 +35,8 @@ fetch('http://api.weatherapi.com/v1/forecast.json?key=0d4a042ad8ec468da7b1351562
 
     if (maxTemp > 80 & maxTemp < 85) {
         hotText.innerHTML = 'warm'
-        hotText.style['background-color'] = "orange"
+        hotText.style['background-color'] = "orange";
+        over80F = 'Yes'
     } else if (maxTemp > 85 & maxTemp < 90) {
         hotText.innerHTML = 'hot'
         hotText.style['background-color'] = "red";
@@ -38,28 +48,34 @@ fetch('http://api.weatherapi.com/v1/forecast.json?key=0d4a042ad8ec468da7b1351562
     } else {
         hotText.innerHTML = 'mild'
         hotText.style['background-color'] = "blue"
-        hotText.style.color = 'white'
+        hotText.style.color = 'white';
+        over80F = 'No'
     }
+
+    document.getElementById('over80F').innerHTML = over80F
+
 
     var aqiMeaning = document.getElementById('aqimeaning')
     if (aqi == '1') {
-      aqiMeaning.innerHTML = 'Good'
+      aqiInterpretation = 'Good'
       aqiMeaning.style['background-color'] = '#00E400'
     } else if (aqi == '2') {
-      aqiMeaning.innerHTML = 'Moderate'
+      aqiInterpretation = 'Moderate'
       aqiMeaning.style['background-color'] = '#FFFF00'
     } else if (aqi == '3') {
-      aqiMeaning.innerHTML = 'Unhealthy for sensitive groups'
+      aqiInterpretation = 'Unhealthy for sensitive groups'
       aqiMeaning.style['background-color'] = '#FF7E00'
     } else if (aqi == '4') {
-      aqiMeaning.innerHTML = 'Unhealthy'
+      aqiInterpretation = 'Unhealthy'
       aqiMeaning.style['background-color'] = '#FF0000'
       aqiMeaning.style.color = 'white'
     } else if (aqi == '5') {
-      aqiMeaning.innerHTML = 'Very unhealthy'
+      aqiInterpretation = 'Very unhealthy'
       aqiMeaning.style['background-color'] = '#7E0023'
       aqiMeaning.style.color = 'white'
     }
+    aqiMeaning.innerHTML = aqiInterpretation
+    document.getElementById('aqiNum').innerHTML = aqi
   })
 
 // -------------------------------------------------------------------------- //
@@ -96,13 +112,7 @@ document.getElementById('question-1').classList.remove('hide')
 
 runQuestions();
 
-// set up variables
-var needsHelp;
-var sensitiveGroup;
-var dangerousTemp;
-var hasAC;
-var hasFan;
-var hasWindow;
+
 
 
 function answer(question, answer, next) {
@@ -131,6 +141,40 @@ function answer(question, answer, next) {
   document.getElementById('question-'+ next).classList.remove('hide')
   document.querySelector(`#question-`+next).scrollIntoView({
     behavior: 'smooth'
-});
+  });
 
+  // This section applies specific stuff
+  (resp === '1-1') ? help(1) : '';
+  (resp === '1-2') ? help(2) : '';
+  (resp === '2-1') ? sensitive(1) : '';
+  (resp === '2-2') ? sensitive(2) : '';
+  (resp === '3-1') ? ac(1) : '';
+  (resp === '3-2') ? ac(2) : '';
+}
+
+function help(x) {
+  if (x === 1) {
+    needsHelp = "Yes"
+  } else {
+    needsHelp = "No"
+  }
+  document.getElementById('needsHelp').innerHTML = needsHelp
+}
+
+function sensitive(x) {
+  if (x === 1) {
+    sensitiveGroup = "Yes"
+  } else {
+    sensitiveGroup = "No"
+  }
+  document.getElementById('sensitiveGroup').innerHTML = sensitiveGroup
+}
+
+function ac(x) {
+  if (x === 1) {
+    hasAC = "Yes"
+  } else {
+    hasAC = "No"
+  }
+  document.getElementById('hasAC').innerHTML = hasAC
 }

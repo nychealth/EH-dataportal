@@ -35,12 +35,27 @@
 
 
         <hr class="my-2">
+        <div class="fs-sm">
+          <span class="home-label">Variables:</span>
+          <p>Over 80F: <span id="over80F"></span></p>
+          <p>AQI: <span id="aqiNum"></span></p>
+          <hr>
+          <p>Needs help now: <span id="needsHelp"></span></p>
+          <p>Sensitive group: <span id="sensitiveGroup"></span></p>
+          <hr>
+          <p>Has AC: <span id="hasAC"></span></p>
+          <p>Has Fan: <span id="hasFan"></span></p>
+          <p>AC type: <span id="acType"></span></p>
+        </div>
+
+
+        <hr class="my-2">
 
         <span class="home-label font-weight-bold">Recomendations for you:</span>
 
         <!-- Recommendations pane -->
         <ul class="list-group fs-sm">
-          <li class="list-group-item" id="rec-1-1" match="1-1">You may need medical help <i class="fas fa-2x fa-regular fa-hospital float-right" aria-hidden="true"></i><br>
+          <li class="list-group-item" id="rec-1-1">You may need medical help <i class="fas fa-2x fa-regular fa-hospital float-right" aria-hidden="true"></i><br>
           </li>
 
           <li class="list-group-item">Turn on your fan
