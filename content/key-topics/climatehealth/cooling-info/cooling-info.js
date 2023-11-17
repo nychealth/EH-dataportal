@@ -102,6 +102,10 @@ function runQuestions() {
 
     })
 
+    // Create message Section
+    var message = `<p id="message-${question.id}" class="hide my-2">Here's message</p>`
+    questionBlock.innerHTML += message
+
     document.getElementById('mainContent').appendChild(questionBlock)
   })
   // end question loop
@@ -116,14 +120,49 @@ runQuestions();
 
 
 function answer(question, answer, next) {
-  var resp = question + "-" + answer
-  console.log('question/answer: ', resp)
+
+  // get question
+  var thisQuestion;
+  for (let i = 0; i < content.length; i++) {
+    if (content[i].id === question) {
+      thisQuestion = content[i]
+    } else {}
+  } 
+
+  // get answer
+  var thisAnswer;
+  for (let i = 0; i < thisQuestion.options.length; i++) {
+    if (thisQuestion.options[i].optionID === answer) {
+      thisAnswer = thisQuestion.options[i]
+    } else {}
+  }
+
+  // print message
+  var message = document.getElementById('message-' + thisQuestion.id)
+  message.classList.remove('hide')
+  message.innerHTML = thisAnswer.message 
+
+  // This exposes the next question, specified by goTo
+  document.getElementById('question-'+ next).classList.remove('hide')
+  document.querySelector(`#question-`+next).scrollIntoView({
+    behavior: 'smooth'
+  });
 
   // loop through class btn-question, remove active, add active to id btn-question-answer
   var questionButtons = document.querySelectorAll('.btn-' + question)
   questionButtons.forEach(x => x.classList.remove('active'))
   var clickedBtn = document.getElementById('btn-' + question + '-' + answer)
   clickedBtn.classList.add('active')
+
+
+  /// Everything below needs to be fixed/changed
+
+
+
+
+  
+  var resp = question + "-" + answer
+  console.log('question/answer: ', resp)
 
   // if question-answer matches a recommendation, activate recommendation
   console.log('resp:', resp)
@@ -137,11 +176,7 @@ function answer(question, answer, next) {
     // Need to figure out how to turn off Active if somebody changes their ansewr !!!!!!
   }
 
-  // This exposes the next question, specified by goTo
-  document.getElementById('question-'+ next).classList.remove('hide')
-  document.querySelector(`#question-`+next).scrollIntoView({
-    behavior: 'smooth'
-  });
+
 
   // This section applies specific stuff
   (resp === '1-1') ? help(1) : '';
@@ -151,9 +186,6 @@ function answer(question, answer, next) {
   (resp === '3-1') ? ac(1) : '';
   (resp === '3-2') ? ac(2) : '';
 
-  /* 
-    This whole section shouldn't exist - should be handled somehow with config and variables.
-  */
 }
 
 function help(x) {
@@ -182,3 +214,11 @@ function ac(x) {
   }
   document.getElementById('hasAC').innerHTML = hasAC
 }
+
+
+/*
+To do:
+- Refine "message" functionality.
+- Lines 147 to 152 - don't go down this road. There's got to be a better way.
+- Use config to change variables, and run scripts on variable change.
+*/

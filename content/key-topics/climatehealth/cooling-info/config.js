@@ -9,7 +9,8 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "goTo": 99
+                "message": "You may need medical help.",
+                "goTo": 2
             },
             {   
                 "optionID": 2,
@@ -21,12 +22,13 @@ var content = [
     },
     {
         "id": 2,
-        "text": "Do any of these describe you? Certain health conditions and life situations can make you more vulnerable to extreme heat and bad air quality.",
+        "text": "Do any of these describe you?",
         "prompt": "Heart disease | Asthma or other breathing condition | Pregnant | Diabetic | Over age 60 | Limited mobility | Living alone | Under age 16",
         "options": [
             {
                 "optionID": 1,
                 "copy": "Yes",
+                "message": "Certain health conditions and life situations can make you more vulnerable to extreme heat and bad air quality.",
                 "goTo": 3
             },
             {
@@ -38,17 +40,31 @@ var content = [
     },
     {
         "id": 3,
-        "text": "Do you have an air conditioner?",
+        "text": "What kind of Air Conditioner do you have??",
         "prompt": "On a hot day, the inside of an apartment without AC can be up to 10 degrees hotter than outside - and can stay hotter for days. Using AC at home is the best way to stay safe when it's hot outside.",
         "options": [
             {
                 "optionID": 1,
-                "copy": "Yes",
+                "copy": "Central air",
+                "message": "Stay cool!",
                 "goTo": 4
             },
             {
                 "optionID": 2,
-                "copy": "No",
+                "copy": "Window/wall unit",
+                "message": "Only cool one room!",
+                "goTo": 4
+            },
+            {
+                "optionID": 2,
+                "copy": "Portable unit",
+                "message": "Is it strong enough?",
+                "goTo": 4
+            },
+            {
+                "optionID": 2,
+                "copy": "I don't have AC",
+                "message": "OK let's find another way to keep you cool.",
                 "goTo": 5
             }
         ]
