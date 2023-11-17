@@ -119,7 +119,9 @@ runQuestions();
 
 
 
-
+// -------------------------------------------------------------------------- //
+// ---------- Answer functionality                                 ---------- //
+// -------------------------------------------------------------------------- //
 function answer(question, answer, next) {
 
   // get question
@@ -207,18 +209,7 @@ function fan(x) {
 
 /*
 To do:
-- Refine "message" functionality - needs better placement/visibility.
-- Lines 147 to 152 - don't go down this road. There's got to be a better way.
-- Use config to change variables, and run scripts on variable change.
+- Refine "message" functionality - needs better placement/visibility. Scroll should scroll to message, with a 'next question' link?
+- Final message should then deliver overall recommendations. 
+- Await recommendation logic.
 */
-
-
-/*
-var variableOne = 2
-function changeVariable(variable, value) {
-  variable = value
-}
-
-changeVariable('variableOne',1)
-*/
-
