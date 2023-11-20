@@ -209,6 +209,15 @@ function fan(x) {
 
 /*
 To do:
+- Start with a "Weather review" with the interpretation. 
+- scrollto 'message' and add a 'next' to each message item. 
+- put a padding on each div that has an ID, so the text isn't right up against the top. might need to put a div inside of it, id the outer, and border the inner... ?
+- Variable selection - can be:
+    "changeVariable": "needsHelp",
+    "to": "yes"
+
+    ...and then pass that in as needsHelp("yes") or something.
+
 - Refine "message" functionality - needs better placement/visibility. Scroll should scroll to message, with a 'next question' link?
 - Final message should then deliver overall recommendations. 
 - Await recommendation logic.
