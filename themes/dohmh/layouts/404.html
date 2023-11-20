@@ -13,14 +13,14 @@
                 <p>
                     {{- with .Site.GetPage "_index.md" -}}
                     You'll be redirected to the <a href="{{ .RelPermalink }}">
-                        Environment and Health Data Portal Home Page</a> in a few seconds.{{- end -}}</p>
+                        Environment and Health Data Portal Home Page</a> in <span id="sec">a few</span> seconds.{{- end -}}</p>
             </div>
         </div>
 
         <div class="chunk row my-4 hide mb-6" id="redirectBeta">
             <div class="col-9 mx-auto mb-6">
               <h1>Time to update your bookmarks!</h1>
-              <p>We're no longer at <code class="text-secondary">/beta</code>. We'll send you to your correct URL in a few seconds.</p>
+              <p>We're no longer at <code class="text-secondary">/beta</code>. We'll send you to your correct URL.</p>
 
             </div>
 
@@ -33,49 +33,70 @@
   </div>
 
 <script>
-// ---------- Get URL, and hide page content options ---------- // 
+// ---------- Get URL, and hide page content options -------------------------------------- // 
 
-  var url = window.location.href                              // use this when live
-  // var url = 'http://localhost:1313/IndicatorPublic/beta'   // test URL
+// var url = window.location.href                              // use this when live
 
+ var url = 'http://localhost:1313/IndicatorPublic/beta'   // test URL
 
-  var chunks = document.querySelectorAll('.chunk')
-  chunks.forEach(x => x.classList.add('hide'))
+var chunks = document.querySelectorAll('.chunk')
+
+chunks.forEach(x => x.classList.add('hide'))
 
 
 // ---------- does the URL include beta? ---------- // 
 
-  url.includes("beta") ? removeBeta(url) : redirectHome()
+url.includes("beta") ? removeBeta(url) : redirectHome()
 
 
-// ----------  remove /beta from URL and redirect to otherwise same URL ---------- // 
+// ----------  remove /beta from URL and redirect to otherwise same URL -------------------- // 
 
-  function removeBeta(x) {
-    // expose page content
-    document.getElementById('redirectBeta').classList.remove('hide')
-    console.log('It is a beta URL')
+function removeBeta(x) {
+  // expose page content
+  document.getElementById('redirectBeta').classList.remove('hide')
+  console.log('It is a beta URL')
 
-    // remove beta from URL
-    url = x.replace('beta','')
-    console.log('new url: ', url)
+  // remove beta from URL
+  url = x.replace('beta','')
+  console.log('new url: ', url)
 
-    // send to new location
+  // send to new location
+  setTimeout(() => {
+    window.location.href = url
+  }, 1000)
+}
+
+// ----------  redirect to Home Page -------------------------------------------------------- // 
+
+function redirectHome() {
+  // expose content
+  document.getElementById('main404').classList.remove('hide')
+
+  // start countdown
+  countDown(5)
+}
+
+
+function countDown(x) {
+
+  if (x > 0) {
+    var print = document.getElementById('sec')
+    print.innerHTML = x
+    var oneLess = x - 1
     setTimeout(() => {
-      window.location.href = url
-    }, 2500)
+      countDown(oneLess)
+    }, 1000)
+
+  } else {
+    sendHome()
   }
+}
 
-// ----------  redirect to Home Page ---------- // 
-
-  function redirectHome() {
-    // expose content
-    document.getElementById('main404').classList.remove('hide')
-
-    // auto redirect to Home Page
-    setTimeout(() => {
-      window.location.href = baseURL
-    }, 5000)
-  }
+function sendHome() {
+  setTimeout(() => {
+    window.location.href = baseURL
+  }, 1000)
+}
 
 </script>
   
