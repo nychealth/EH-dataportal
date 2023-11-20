@@ -114,8 +114,6 @@ function runQuestions() {
 
     })
 
-    // add message section
-
     // Create message Section
     var message = `<div id="message-${question.id}" class="hide inline-block my-2 p-2 border border-primary">Here's message</div>`
     questionBlock.innerHTML += message
@@ -180,10 +178,6 @@ function answer(question, answer, next) {
   clickedBtn.classList.add('active')
 
 
-/*
-!!!!!!!!!!!!!!!!!!!!!! Everything below needs to be changed !!!!!!!!!!!!!!!!!!!!!!
-*/
-
 // Based on config - does an answer change a variable?
 // Then, run a Recommendation() function - does a changed variable trigger a recommendation? 
 
@@ -191,12 +185,11 @@ function answer(question, answer, next) {
  // console.log('question/answer: ', resp)
 
   // if question-answer matches a recommendation, activate recommendation
-  // console.log('resp:', resp)
   var rec = document.getElementById('rec-'+resp)
 
   if (rec) {
     console.log('rec exists!')
-    rec.classList.add('active')
+    rec.classList.add('active') // we can change this to trigger a recommendation, running through a rec script that reads the temp and aqi variables.
   } else {
     console.log('no rec for this answer')
     // Need to figure out how to turn off Active if somebody changes their ansewr !!!!!!
@@ -232,16 +225,3 @@ function runFinal() {
   console.log('We are reviewing your data')
   document.getElementById('finalInfo').classList.remove('hide')
 }
-
-
-/*
-To do:
-- Variable selection - can be:
-    "changeVariable": "needsHelp",
-    "to": "yes"
-
-    ...and then pass that in as needsHelp("yes") or something.
-
-- Final message should then deliver overall recommendations. 
-
-*/
