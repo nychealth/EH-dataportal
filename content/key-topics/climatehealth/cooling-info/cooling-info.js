@@ -21,12 +21,19 @@ fetch('http://api.weatherapi.com/v1/forecast.json?key=0d4a042ad8ec468da7b1351562
     // console.log(data)
     apiData = data
 
+    printToPage()
+  })
+
+function printToPage() {
     // Print current temp, max temp, and AQI
     var currentTemp = apiData.current.temp_f
     document.getElementById('currentTemp').innerHTML = currentTemp + '° F'
+    document.getElementById('currentTemp2').innerHTML = currentTemp + '° F'
+
 
     var maxTemp = apiData.forecast.forecastday[0].day.maxtemp_f
     document.getElementById('maxTemp').innerHTML = maxTemp  + '° F'
+    document.getElementById('maxTemp2').innerHTML = maxTemp  + '° F'
 
     var aqi = apiData.current.air_quality["us-epa-index"]
     // document.getElementById('aqi').innerHTML = aqi
@@ -76,14 +83,18 @@ fetch('http://api.weatherapi.com/v1/forecast.json?key=0d4a042ad8ec468da7b1351562
       aqiMeaning.style.color = 'white'
     }
     aqiMeaning.innerHTML = aqiInterpretation
+    document.getElementById('aqimeaning2').innerHTML = aqiInterpretation
     document.getElementById('aqiNum').innerHTML = aqi
-  })
+
+}
 
 // -------------------------------------------------------------------------- //
 // ---------- Next, loop through config to print questions to page ---------- //
 // -------------------------------------------------------------------------- //
 
 function runQuestions() {
+
+
   content.forEach(question => {
 
     // Question block
@@ -103,8 +114,10 @@ function runQuestions() {
 
     })
 
+    // add message section
+
     // Create message Section
-    var message = `<p id="message-${question.id}" class="hide my-2">Here's message</p>`
+    var message = `<div id="message-${question.id}" class="hide inline-block my-2 p-2 border border-primary">Here's message</div>`
     questionBlock.innerHTML += message
 
     document.getElementById('mainContent').appendChild(questionBlock)
@@ -115,7 +128,7 @@ document.getElementById('question-1').classList.remove('hide')
 
 }
 
-runQuestions();
+
 
 
 
@@ -140,16 +153,25 @@ function answer(question, answer, next) {
     } else {}
   }
 
+  // console.log(thisAnswer)
+
   // print message
   var message = document.getElementById('message-' + thisQuestion.id)
   message.classList.remove('hide')
   message.innerHTML = thisAnswer.message 
 
+  console.log('next',next)
   // This exposes the next question, specified by goTo
-  document.getElementById('question-'+ next).classList.remove('hide')
-  document.querySelector(`#question-`+next).scrollIntoView({
-    behavior: 'smooth'
-  });
+  if (next === 99) {
+    console.log('next is 99')
+    runFinal()
+  } else {
+    document.getElementById('question-'+ next).classList.remove('hide')
+    document.querySelector(`#message-`+thisAnswer.optionID).scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+
 
   // loop through class btn-question, remove active, add active to id btn-question-answer
   var questionButtons = document.querySelectorAll('.btn-' + question)
@@ -166,10 +188,10 @@ function answer(question, answer, next) {
 // Then, run a Recommendation() function - does a changed variable trigger a recommendation? 
 
   var resp = question + "-" + answer
-  console.log('question/answer: ', resp)
+ // console.log('question/answer: ', resp)
 
   // if question-answer matches a recommendation, activate recommendation
-  console.log('resp:', resp)
+  // console.log('resp:', resp)
   var rec = document.getElementById('rec-'+resp)
 
   if (rec) {
@@ -206,19 +228,20 @@ function fan(x) {
   document.getElementById('hasFan').innerHTML = hasFan
 }
 
+function runFinal() {
+  console.log('We are reviewing your data')
+  document.getElementById('finalInfo').classList.remove('hide')
+}
+
 
 /*
 To do:
-- Start with a "Weather review" with the interpretation. 
-- scrollto 'message' and add a 'next' to each message item. 
-- put a padding on each div that has an ID, so the text isn't right up against the top. might need to put a div inside of it, id the outer, and border the inner... ?
 - Variable selection - can be:
     "changeVariable": "needsHelp",
     "to": "yes"
 
     ...and then pass that in as needsHelp("yes") or something.
 
-- Refine "message" functionality - needs better placement/visibility. Scroll should scroll to message, with a 'next question' link?
 - Final message should then deliver overall recommendations. 
-- Await recommendation logic.
+
 */

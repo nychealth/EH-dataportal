@@ -25,28 +25,14 @@
     <div class="col-md-4 ml-auto">
 
       <div class="sticky-top border p-2" style="z-index: 0">
-        <span class="home-label font-weight-bold">Weather:</span>
-        <p>Today's weather is <span id="hot" class="font-weight-bold p-1">HOT</span>. The current temp is <span id="currentTemp">XX</span> and it might reach <span id="maxTemp">YY</span> today. <a href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us">Get a full weather forecast here</a>.
+        <span class="home-label font-weight-bold">Weather:</span><br>
+        Currently: <span id="currentTemp2"></span><br>
+        Forecast high: <span id="maxTemp2"></span>
 
         <hr class="my-2">
 
-        <span class="home-label font-weight-bold">Air Quality:</span>
-        <p>The current air quality is <span id="aqimeaning" class="font-weight-bold p-1">AQI interpretation</span>.
-
-
-        <hr class="my-2">
-        <div class="fs-sm">
-          <span class="home-label">Variables:</span>
-          <p>Over 80F: <span id="over80F"></span></p>
-          <p>AQI: <span id="aqiNum"></span></p>
-          <hr>
-          <p>Needs help now: <span id="needsHelp"></span></p>
-          <p>Sensitive group: <span id="sensitiveGroup"></span></p>
-          <hr>
-          <p>Has AC: <span id="hasAC"></span></p>
-          <p>Has Fan: <span id="hasFan"></span></p>
-        </div>
-
+        <span class="home-label font-weight-bold">Air Quality Index:</span><br>
+        <span id="aqimeaning2"></span>
 
         <hr class="my-2">
 
@@ -95,18 +81,49 @@
 
     <!-- main content column -->
     <div class="col-md-7 overflow-hidden fs-rg mr-auto" id="primary-content">
-      <div id="mainContent" class="">
+      <div id="start">
+        <h4>Let's get started.</h4>
+
+        <div class="row">
+          <div class="col-sm-6 border p-2">
+            <p>Today's weather is <span id="hot" class="font-weight-bold p-1">HOT</span>. The current temp is <span id="currentTemp">XX</span> and it might reach <span id="maxTemp">YY</span> today. <a href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us">Get a full weather forecast here</a>.
+
+          </div>
+
+          <div class="col-sm-6 border p-2">
+            <p>The current air quality is <span id="aqimeaning" class="font-weight-bold p-1">AQI interpretation</span>.
+
+          </div>
+
+        </div>
+
+            <hr class="my-2">
+
+        <div class="col-md-6 mx-auto">
+          <button class="btn btn-sm btn-block btn-outline-secondary mx-auto" onclick="runQuestions()">Start questions</button>
+        </div>
+      </div>
+
+      <div id="mainContent" class="my-4">
         <!-- JavaScript inserts question conetnt into this div -->
       </div>
 
-      <div class="" style="height: 150vh;"></div>
-
-      <div class="p-2 border mt-4 hide">
+      <div class="p-2 border mt-4 hide" id="finalInfo">
+        <h4>Let's take a look at your situation.</h4>
+        <hr class="my-2">
+        <div class="fs-sm">
+          <span class="home-label">Variables:</span>
+          <p>Over 80F: <span id="over80F"></span></p>
+          <p>AQI: <span id="aqiNum"></span></p>
+          <hr>
+          <p>Needs help now: <span id="needsHelp"></span></p>
+          <p>Sensitive group: <span id="sensitiveGroup"></span></p>
+          <hr>
+          <p>Has AC: <span id="hasAC"></span></p>
+          <p>Has Fan: <span id="hasFan"></span></p>
+        </div>
+        <hr class="my-2">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non euismod sapien. Quisque ut hendrerit tortor. Curabitur non sem nec risus maximus efficitur eu vitae sapien. Ut vestibulum mauris vel urna lobortis, a fermentum sem iaculis. Nam dignissim lectus vel odio eleifend posuere. Curabitur volutpat, ex a scelerisque faucibus, nisi nulla cursus dolor, in venenatis diam justo quis mauris. Sed pulvinar urna ac massa sagittis interdum. Praesent interdum laoreet feugiat. Aliquam tristique enim rutrum tortor vehicula, in vehicula lacus varius. Nunc sollicitudin accumsan neque, vitae auctor est lacinia sit amet. Morbi tempus dui et iaculis mattis. Vivamus molestie tortor nec mi gravida posuere. Nunc lacus tellus, maximus nec bibendum ac, suscipit rhoncus sapien.</p>
-        <p>Aenean maximus felis eu laoreet aliquet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam volutpat vehicula neque vitae interdum. Quisque quam nunc, sollicitudin sed neque id, rutrum fermentum nunc. Duis vitae lorem vitae ex iaculis malesuada. Maecenas velit diam, tempor ut neque quis, cursus accumsan massa. Quisque dignissim sodales felis, quis placerat velit. Vivamus egestas justo vitae orci lacinia congue. Fusce non nulla tempor, convallis libero ac, semper nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nam facilisis sollicitudin nibh eu viverra.</p>
-        <p>Nunc consectetur turpis vel ex eleifend, nec blandit velit volutpat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris sit amet faucibus tortor, id vestibulum erat. Nulla placerat, tortor ac dignissim sodales, elit nunc congue elit, at maximus erat nulla ut metus. Nulla luctus venenatis diam vel elementum. Duis blandit velit sit amet ex pulvinar, varius tincidunt risus cursus. Curabitur vel ante quis dui consectetur accumsan. Sed nisl lectus, semper vitae bibendum id, fermentum sed justo. Mauris eget sapien sit amet ante dignissim ultrices. Quisque massa est, ultricies quis urna et, placerat mattis risus. Mauris bibendum gravida ultrices. Mauris gravida sem quis semper eleifend. Pellentesque posuere, nunc sit amet sodales dignissim, turpis eros tempor mi, et vestibulum massa erat sit amet ante. Cras et lacus luctus, fringilla ipsum ut, ultricies diam.</p>
-        <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque elementum tincidunt risus, sit amet tristique mauris finibus vel. Integer ut lacus lacus. Morbi faucibus, ante in lobortis porta, quam leo semper orci, auctor porttitor dui urna a quam. Nulla lorem erat, placerat vitae metus id, consequat pellentesque lorem. Nulla facilisi. In pretium hendrerit mollis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin consectetur at eros sed convallis.</p>
-        <p>Ut dictum non felis eu varius. Phasellus quis augue vel justo pharetra pharetra nec sed massa. Duis et enim vel lectus tincidunt mattis. Curabitur nec ante et lectus pulvinar malesuada quis vitae magna. Aenean et nisl quis odio tristique rutrum nec non metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Curabitur laoreet eu velit ut accumsan.</p>
       </div>
     </div>
     <!-- .col (main) -->

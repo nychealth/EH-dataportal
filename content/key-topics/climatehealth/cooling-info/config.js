@@ -3,8 +3,8 @@ console.log("Config file loaded.")
 var content = [
     {
         "id": 1,
-        "text": "First, let's make sure you're doing OK. Are you experiencing any of the following symptoms right now? These can be a sign that you're struggling with the heat or the air quality.",
-        "prompt": "Difficulty breathing | Lightheadedness | Fatigue | Headache | Loss of appetite | Nausea or vomiting | Rapid pulse ",
+        "text": "First, let's make sure you're doing OK. Are you experiencing any of the following symptoms right now?",
+        "prompt": "These can be a sign that you're struggling with the heat or the air quality.: <ul><li>Difficulty breathing <li>Lightheadedness <li>Fatigue <li>Headache <li>Loss of appetite <li>Nausea or vomiting <li>Rapid pulse</ul> ",
         "options": [
             {
                 "optionID": 1,
@@ -26,13 +26,13 @@ var content = [
     {
         "id": 2,
         "text": "Do any of these describe you?",
-        "prompt": "Heart disease | Asthma or other breathing condition | Pregnant | Diabetic | Over age 60 | Limited mobility | Living alone | Under age 16",
+        "prompt": "<ul><li>Heart disease <li>Asthma or other breathing condition <li>Pregnant <li>Diabetic <li>Over age 60 <li>Limited mobility <li>Living alone <li>Under age 16</ul>",
         "options": [
             {
                 "optionID": 1,
                 "copy": "Yes",
                 "setVariable": "sensitive('Yes')",
-                "message": "Certain health conditions and life situations can make you more vulnerable to extreme heat and bad air quality.",
+                "message": "These health conditions and life situations can make you more vulnerable to extreme heat and bad air quality.",
                 "goTo": 3
             },
             {
@@ -53,28 +53,28 @@ var content = [
                 "optionID": 1,
                 "copy": "Central air",
                 "setVariable": "ac('Central')",
-                "message": "Stay cool!",
+                "message": "Great. These can help you stay cool. To save energy, set it at 78 degrees F when it's hot out.",
                 "goTo": 4
             },
             {
                 "optionID": 2,
                 "copy": "Window/wall unit",
                 "setVariable": "ac('Window/wall')",
-                "message": "Only cool one room!",
+                "message": "These tend to be best at cooling single rooms, not whole homes or apartments... you can check the BTUs... (etc)",
                 "goTo": 4
             },
             {
                 "optionID": 3,
                 "copy": "Portable unit",
                 "setVariable": "ac('Portable')",
-                "message": "Is it strong enough?",
+                "message": "These tend to be best at cooling single rooms, not whole homes or apartments... you can check the BTUs... (etc and so on)",
                 "goTo": 4
             },
             {
                 "optionID": 4,
                 "copy": "I don't have AC",
                 "setVariable": "ac('None')",
-                "message": "OK let's find another way to keep you cool.",
+                "message": "When it's hot, ACs are the best way to stay cool - but let's find other ways.",
                 "goTo": 4
             }
         ]
@@ -87,27 +87,17 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "Pro fan",
+                "message": "Great, you have a fan. It can help cool things.",
                 "setVariable": "fan('Yes')",
                 "goTo": 99
             },
             {
                 "optionID": 2,
                 "copy": "No",
-                "message": "Oh no!",
+                "message": "Oh no! Well, let's figure out some other ways you can stay cool.",
                 "setVariable": "fan('No')",
                 "goTo": 99
             }
         ]
-    },
-    {
-        "id": 99,
-        "text": "So let's figure out how to stay cool.",
-        "prompt": "Stay cool message...",
-        "options": []
     }
 ]
-
-/*
-"followUP" can be addRecommendation(x) and that function can highlight (blink a few times?) one of the recommendation list-items 
-*/
