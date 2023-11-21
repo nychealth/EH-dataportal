@@ -94,16 +94,25 @@
         console.table(neighborhoods)
 
         parts = window.location.href.split('/'); // get URL Path
+        console.log('parts',parts)
 
-        if (parts.length == 7) {
-          neighbName = parts[parts.length - 2]; // if it's a Neighborhood Landing Page
-        } else if (parts.length == 8) {
-          neighbName = parts[parts.length - 3]; // if it's a Neighborhood Report
-          rpt = parts[parts.length - 2]
-          console.log(rpt)
-        } else {
-          console.log('could not get neighbName')
+        // get index value of neighborhood-reports
+        var indexValue
+        for (let i = 0; i < parts.length; i++) {
+          if (parts[i] == 'neighborhood-reports') {
+            indexValue = i
+          } else {}
         }
+
+        console.log('index value of NR:', indexValue)
+
+        // get neighborhood name and report from URL
+        var partsExtension = parts.slice(4)
+        console.log('partsExtension',partsExtension)
+        neighbName = partsExtension[1]
+        rpt = partsExtension[2]
+
+
         
         neighb = neighborhoods.filter(x => x.GEONAME == neighbName) // get neighborhood data
         var geocode = neighb[0].GEOCODE // get GEOCODE
