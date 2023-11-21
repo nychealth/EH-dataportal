@@ -26,7 +26,7 @@ var content = [
     {
         "id": 2,
         "text": "Do any of these describe you?",
-        "prompt": "<ul><li>Heart disease <li>Asthma or other breathing condition <li>Pregnant <li>Diabetic <li>Over age 60 <li>Limited mobility <li>Living alone <li>Under age 16</ul>",
+        "prompt": "<ul><li>Heart disease <li>Asthma or other breathing condition <li>Pregnant <li>Diabetic <li>Over age 60 <li>Limited mobility <li>Living alone <li>Under age 16 <li> Substance use <li> Experiencing mental health issues </ul>",
         "options": [
             {
                 "optionID": 1,
