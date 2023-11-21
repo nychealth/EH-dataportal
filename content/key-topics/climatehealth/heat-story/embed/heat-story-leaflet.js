@@ -301,8 +301,8 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
  * Create a layer based on the measures data from DoH
  */
 async function createMeasuresLayer({ id, name, measureInfo, args, displayProperties }) {
-    const { indicatorName, measureName, geoType, time } = measureInfo;
-    const data = await loadIndicator(indicatorName, measureName, geoType, time);
+    const { indicatorID, measureID, geoType, time } = measureInfo;
+    const data = await loadIndicator(indicatorID, measureID, geoType, time);
 
     const values = data.features.map(f => f.properties.Value)
         .filter(x => x != null && !isNaN(x));
@@ -324,7 +324,7 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
     const updatedDisplayProperties = {...displayProperties, 
       displayPropertyArgs: [{
         "id": "Value",
-        "displayName": measureName,
+        "displayName": measureID,
       }]
     };
     const layer = L.geoJSON(
@@ -898,7 +898,7 @@ async function loadIndicators() {
   console.log(indicators);
 }
 
-async function loadIndicator(indicatorName, measureName, geoType, time) {
+async function loadIndicator(indicatorID, measureID, geoType, time) {
   //const indicator = data[0];
   // indicators have measures. we want to search both
   /*
@@ -907,8 +907,8 @@ async function loadIndicator(indicatorName, measureName, geoType, time) {
   const geoType = 'UHF42';
   const time = 'Summer 2021';
   */
-  const indicator = indicators.filter(x => x.IndicatorName == indicatorName)[0];
-  const measure = indicator.Measures.filter(x => x.MeasureName == measureName)[0]; 
+  const indicator = indicators.filter(x => x.IndicatorID == indicatorID)[0];
+  const measure = indicator.Measures.filter(x => x.MeasureID == measureID)[0]; 
 
   const data = await loadData(indicator);
   const filteredData = data.filter(d => d.MeasureID == measure.MeasureID && d.GeoType == geoType && d.Time == time);

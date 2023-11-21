@@ -275,8 +275,8 @@ config = {
              "name": "Air Quality",
              "type": "measureData",
              "measureInfo": {
-                "indicatorName": "Black carbon",
-                "measureName": "Black carbon, Mean",
+                "indicatorID": 2024,
+                "measureID": 370,
                 "geoType": "UHF42",
                 "time": "Summer 2021",
               },
