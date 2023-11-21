@@ -609,7 +609,7 @@
                     </button>
                 </div>
                 <div class="modal-body p-0 ">
-                    {{ partial "de-chooser-accordion.html" . }}
+                    {{ partial "de-chooser-accordion.html" (dict "layout" "single" "context" . ) }}
                 </div>
             </div>
         </div>
