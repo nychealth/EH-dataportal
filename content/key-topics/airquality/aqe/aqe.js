@@ -84,13 +84,16 @@ d3.csv('aqe-nta.csv', d3.autoType).then(data => {
 
   renderChart('#PMDestination','PM','BK0101')
 
+  renderMap(1,'')
+
 }); 
 
 
 
-
+var thisGeocode
 function setNeighborhood(x, y) {
   console.log('geocode',x)
+  thisGeocode = x
   console.log(y)
   document.getElementById('NTA2').innerHTML = y
 
@@ -216,4 +219,156 @@ const renderChart = (
   console.log(barSpec)
 
   vegaEmbed(destination, barSpec, {actions:false})
+}
+
+
+
+function changeSource(x) {
+  console.log(x)
+
+  // get all class sourceBox and remove active
+  var sourceBoxes = document.querySelectorAll(".sourceBox")
+  for (let i = 0; i < sourceBoxes.length; i++) {
+      sourceBoxes[i].classList.remove('sourceBox-active')
+  }
+
+  // highlight what you clicked on
+  var thisBox = 'sourceBox' + x
+  document.getElementById(thisBox).classList.add('sourceBox-active')
+
+  // change map
+  var title;
+
+  if (x==1) {
+      title = 'Building emissions'
+  } else if (x==2) {
+      title = "Building density"
+  } else if (x==3) {
+      title = "Industrial area"
+  } else if (x==4) {
+      title = "Traffic density"
+  }
+
+  document.getElementById('mapTitle').innerHTML = title
+  renderMap(x,'50402')
+}
+
+const renderMap = (
+  x,           // indicator
+  neighborhood // NTACode
+) => {
+    var title;
+    var indicator
+    var label;
+
+    if (x==1) {
+        title = 'Building emissions'
+        indicator = 'numeric_Building_emissions'
+        label = 'Building_emissions'
+    } else if (x==2) {
+        title = "Commercial cooking"
+        indicator = 'numeric_cook_tertiles'
+        label = 'cook_tertiles'
+    } else if (x==3) {
+        title = "Industrial area"
+        indicator = 'numeric_Industrial_tertiles'
+        label = 'Industrial_tertiles'
+    } else if (x==4) {
+        title = "Traffic density"
+        indicator = 'numeric_Traffic_tertiles'
+        label = 'Traffic_tertiles'
+    }
+
+    var mapSpec = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+      "width": "container",
+      "height": "container",
+      "autosize": {"type": "fit", "contains": "padding"},
+      "config": {
+          "view": {"stroke": "transparent"},
+      },
+      "layer": [
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/NTA_2020.topo.json",
+            "format": {"type": "topojson", "feature": "collection"}
+          },
+          "mark": {"type": "geoshape", "stroke": "#ffffff", "fill": "lightgray"}
+        },
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/NTA_2020.topo.json",
+            "format": {"type": "topojson", "feature": "collection"}
+          },
+          "transform": [
+            {
+              "lookup": "properties.NTA2020",
+              "from": {
+                "data": {
+                  "url": "https://gist.githubusercontent.com/mmontesanonyc/1d27a5ab8fbbfea417e3308c733725f3/raw/1fe4964652a361b0e3c9b95b26a1116da723fe8e/aqe-nta.csv"
+                },
+                "key": "NTACODE",
+                "fields": [
+                  "NTACODE",
+                  "NTA_NAME",
+                  "TotalPM",
+                  "TotalNOx",
+                  "cook_tertiles",
+                  "Building_emissions",
+                  "Industrial_tertiles",
+                  "Traffic_tertiles"
+                ]
+              }
+            },
+            {
+              "calculate": "if(datum.cook_tertiles === 'Low', 1, if(datum.cook_tertiles === 'Medium', 2, 3))",
+              "as": "numeric_cook_tertiles"
+            },
+            {
+              "calculate": "if(datum.Building_emissions === 'Low', 1, if(datum.Building_emissions === 'Medium', 2, 3))",
+              "as": "numeric_Building_emissions"
+            },
+            {
+              "calculate": "if(datum.Industrial_tertiles === 'Low', 1, if(datum.Industrial_tertiles === 'Medium', 2, 3))",
+              "as": "numeric_Industrial_tertiles"
+            },            {
+              "calculate": "if(datum.Traffic_tertiles === 'Low', 1, if(datum.Traffic_tertiles === 'Medium', 2, 3))",
+              "as": "numeric_Traffic_tertiles"
+            }
+          ],
+          "mark": {"type": "geoshape", "stroke": "#000000"},
+          "encoding": {
+            "color": {
+              "field": indicator,
+              "type": "nominal",
+              "scale": {
+                "type": "ordinal",
+                "range": ["#f5f1f8","#bcbcdc","#8077b6"]
+                },
+              "legend": null
+            },
+            "strokeWidth": {
+              "condition": {"test": `datum.NTACODE === '${neighborhood}'`, "value": 2.5},
+              "value": 0.5
+              },
+            "tooltip": [
+              {
+                  "field": "properties.GEONAME",
+                  "type": "nominal",
+                  "title": "Neighborhood"
+                },
+                {
+                  "field": label,
+                  "type": "nominal",
+                  "title": title
+                }
+            ]
+          }
+        }
+      ]
+    }
+    
+    vegaEmbed("#mapHolder", mapSpec, {actions:false})
+
+
 }
