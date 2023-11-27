@@ -1,6 +1,6 @@
 baseURL = "https://gcappbesp307.health.dohmh.nycnet/IndicatorPublic/"
 [params]
-    data_branch = "staging"
+    data_branch = "production"
 
 [caches]
     [caches.getresource]
