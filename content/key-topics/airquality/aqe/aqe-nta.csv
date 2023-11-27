@@ -1,0 +1,264 @@
+﻿NTACODE,BORO,BoroCode,NTA_NAME,TotalPM,PM_tertiles,TotalNOx,NOx_tertiles,cook_tertiles,Building_emissions,Industrial_tertiles,Traffic_tertiles
+BK0101,Brooklyn,3,Greenpoint,2.086681416,Medium,36.66566201,Medium,High,High,High,Low
+BK0102,Brooklyn,3,Williamsburg,4.626973333,High,80.46919339,High,High,High,High,High
+BK0103,Brooklyn,3,South Williamsburg,4.594410766,High,79.75365048,High,Low,Medium,High,High
+BK0104,Brooklyn,3,East Williamsburg,10.60950211,High,184.0251502,High,High,High,High,High
+BK0201,Brooklyn,3,Brooklyn Heights,3.868041333,High,66.84560117,High,High,High,Low,High
+BK0202,Brooklyn,3,Downtown Brooklyn-DUMBO-Boerum Hill,7.915366678,High,138.0292637,High,High,High,High,High
+BK0203,Brooklyn,3,Fort Greene,4.735909349,High,82.63820045,High,High,High,High,High
+BK0204,Brooklyn,3,Clinton Hill,3.949710172,High,68.60561269,High,High,Medium,High,High
+BK0261,Brooklyn,3,Brooklyn Navy Yard,0.436489593,Low,7.679230497,Low,Low,Low,Low,Low
+BK0301,Brooklyn,3,Bedford-Stuyvesant (West),4.099245869,High,72.09534754,High,High,High,High,Medium
+BK0302,Brooklyn,3,Bedford-Stuyvesant (East),4.347976408,High,77.74418406,High,High,High,Medium,Medium
+BK0401,Brooklyn,3,Bushwick (West),1.663290848,Low,29.72665058,Low,High,High,High,Medium
+BK0402,Brooklyn,3,Bushwick (East),2.995766813,Medium,52.64664691,Medium,High,Medium,High,Medium
+BK0471,Brooklyn,3,The Evergreens Cemetery,0.125500793,Low,2.141315338,Low,Low,Low,Medium,Low
+BK0501,Brooklyn,3,Cypress Hills,2.40741609,Medium,42.03802243,Medium,Medium,Medium,High,Medium
+BK0502,Brooklyn,3,East New York (North),2.403124546,Medium,41.87956744,Medium,Medium,Medium,High,Medium
+BK0503,Brooklyn,3,East New York-New Lots,6.085814804,High,106.3024831,High,Medium,High,High,Medium
+BK0504,Brooklyn,3,Spring Creek-Starrett City,1.675988229,Low,29.45143164,Low,Low,Medium,High,Medium
+BK0505,Brooklyn,3,East New York-City Line,3.954509886,High,69.86232302,High,Medium,Medium,Medium,Medium
+BK0571,Brooklyn,3,Highland Park-Cypress Hills Cemeteries (South),0.422222074,Low,7.531421692,Low,Low,Low,Low,Low
+BK0601,Brooklyn,3,Carroll Gardens-Cobble Hill-Gowanus-Red Hook,10.64083079,High,184.8842287,High,High,High,High,High
+BK0602,Brooklyn,3,Park Slope,3.852212292,High,67.24828694,High,High,High,Medium,High
+BK0701,Brooklyn,3,Windsor Terrace-South Slope,3.545197614,Medium,61.19663574,Medium,Medium,Medium,Medium,High
+BK0702,Brooklyn,3,Sunset Park (West),15.38546597,High,266.3710757,High,High,High,High,High
+BK0703,Brooklyn,3,Sunset Park (Central),1.087719451,Low,19.32397985,Low,High,Medium,High,Low
+BK0771,Brooklyn,3,Green-Wood Cemetery,0.979436973,Low,17.06894282,Low,Low,Low,Low,Low
+BK0801,Brooklyn,3,Prospect Heights,1.962617546,Medium,34.11978755,Medium,High,Medium,Medium,High
+BK0802,Brooklyn,3,Crown Heights (North),6.253079248,High,109.3145096,High,High,High,High,High
+BK0891,Brooklyn,3,Lincoln Terrace Park,0.142200882,Low,2.473493291,Low,Low,Low,Low,Medium
+BK0901,Brooklyn,3,Crown Heights (South),1.770742249,Medium,31.07894958,Low,Medium,High,Medium,Medium
+BK0902,Brooklyn,3,Prospect Lefferts Gardens-Wingate,2.642220483,Medium,46.35579632,Medium,High,High,Medium,Medium
+BK1001,Brooklyn,3,Bay Ridge,12.11146894,High,211.3142854,High,High,High,Medium,High
+BK1002,Brooklyn,3,Dyker Heights,2.863852606,Medium,49.94361239,Medium,Medium,Medium,Medium,Medium
+BK1061,Brooklyn,3,Fort Hamilton,3.590068742,High,61.87391657,Medium,Low,Low,Low,High
+BK1091,Brooklyn,3,Dyker Beach Park,0.477916537,Low,8.436333619,Low,Low,Low,Low,Low
+BK1101,Brooklyn,3,Bensonhurst,3.07733754,Medium,53.9069846,Medium,High,High,High,Low
+BK1102,Brooklyn,3,Bath Beach,2.281878412,Medium,39.61333829,Medium,Medium,Low,Medium,High
+BK1103,Brooklyn,3,Gravesend (West),2.899390397,Medium,51.94510553,Medium,High,Medium,High,Medium
+BK1201,Brooklyn,3,Sunset Park (East)-Borough Park (West),0.901585307,Low,15.77740489,Low,Medium,Medium,Medium,Medium
+BK1202,Brooklyn,3,Borough Park,2.532210867,Medium,44.40621512,Medium,High,High,High,Low
+BK1203,Brooklyn,3,Kensington,3.279768359,Medium,56.84700039,Medium,Medium,Medium,Medium,High
+BK1204,Brooklyn,3,Mapleton-Midwood (West),3.173925599,Medium,55.34651767,Medium,Medium,Medium,High,Medium
+BK1301,Brooklyn,3,Gravesend (South),1.619004137,Low,28.45511748,Low,Medium,Medium,Medium,Medium
+BK1302,Brooklyn,3,Coney Island-Sea Gate,2.768624417,Medium,49.02029888,Medium,High,High,High,Medium
+BK1303,Brooklyn,3,Brighton Beach,0.948835021,Low,16.8507679,Low,High,Medium,Low,Medium
+BK1391,Brooklyn,3,Calvert Vaux Park,0.00417011,Low,0.070960304,Low,Low,Low,Low,Low
+BK1401,Brooklyn,3,Flatbush,2.934892868,Medium,52.22210959,Medium,High,High,Medium,Medium
+BK1402,Brooklyn,3,Flatbush (West)-Ditmas Park-Parkville,2.123829945,Medium,37.23327505,Medium,High,Medium,Medium,Medium
+BK1403,Brooklyn,3,Midwood,2.716559597,Medium,48.33008937,Medium,Medium,High,Medium,Medium
+BK1501,Brooklyn,3,Gravesend (East)-Homecrest,3.233470866,Medium,56.55463333,Medium,High,Medium,Medium,Medium
+BK1502,Brooklyn,3,Madison,2.612047693,Medium,46.34121775,Medium,Medium,Medium,Low,Medium
+BK1503,Brooklyn,3,Sheepshead Bay-Manhattan Beach-Gerritsen Beach,4.081194567,High,71.97553161,High,High,High,Medium,Medium
+BK1601,Brooklyn,3,Ocean Hill,3.172256959,Medium,55.44775298,Medium,Medium,Medium,Medium,High
+BK1602,Brooklyn,3,Brownsville,2.705053603,Medium,47.7993277,Medium,Medium,High,High,Medium
+BK1701,Brooklyn,3,East Flatbush-Erasmus,2.593020815,Medium,45.57384841,Medium,High,Medium,Medium,Medium
+BK1702,Brooklyn,3,East Flatbush-Farragut,1.649138275,Low,29.05831226,Low,Low,Medium,High,Medium
+BK1703,Brooklyn,3,East Flatbush-Rugby,3.052702349,Medium,53.72376878,Medium,Medium,Medium,Medium,Medium
+BK1704,Brooklyn,3,East Flatbush-Remsen Village,3.201754614,Medium,56.19414399,Medium,Medium,Medium,Medium,High
+BK1771,Brooklyn,3,Holy Cross Cemetery,0,Low,0,Low,Low,Low,Low,Low
+BK1801,Brooklyn,3,Flatlands,6.18176995,High,110.4650036,High,Medium,High,High,Medium
+BK1802,Brooklyn,3,Marine Park-Mill Basin-Bergen Beach,2.925463818,Medium,52.08427867,Medium,Medium,Medium,Medium,Low
+BK1803,Brooklyn,3,Canarsie,4.695993999,High,83.87823821,High,High,High,High,Low
+BK1891,Brooklyn,3,Marine Park-Plumb Island,2.63693061,Medium,45.17653862,Medium,Low,Low,Low,Medium
+BK1892,Brooklyn,3,McGuire Fields,1.284888687,Low,21.84867271,Low,Low,Low,Low,High
+BK1893,Brooklyn,3,Canarsie Park & Pier,1.766766258,Medium,30.13181776,Low,Low,Low,Low,High
+BK5591,Brooklyn,3,Prospect Park,2.521112575,Medium,43.81758878,Medium,Low,Low,Low,Medium
+BK5691,Brooklyn,3,Barren Island-Floyd Bennett Field,1.740500254,Low,29.88889144,Low,Low,High,Low,Low
+BK5692,Brooklyn,3,Jamaica Bay (West),0,Low,0,Low,Low,Low,Low,Low
+BK5693,Brooklyn,3,Shirley Chisholm State Park,0.814457891,Low,14.10772878,Low,Low,Low,Low,Medium
+BX0101,Bronx,2,Mott Haven-Port Morris,6.021635496,High,117.5338192,High,Low,High,High,High
+BX0102,Bronx,2,Melrose,0.610336218,Low,13.92408703,Low,Low,High,Medium,Low
+BX0201,Bronx,2,Hunts Point,3.384587237,Medium,67.61773739,High,Medium,Medium,High,Medium
+BX0202,Bronx,2,Longwood,0.646533076,Low,15.09567807,Low,Medium,Medium,High,Low
+BX0291,Bronx,2,North & South Brother Islands,0,Low,0,Low,Low,Low,High,Low
+BX0301,Bronx,2,Morrisania,0.664576646,Low,15.22727641,Low,Medium,Medium,High,Low
+BX0302,Bronx,2,Claremont Village-Claremont (East),1.434143372,Low,28.46858821,Low,Low,Medium,High,Medium
+BX0303,Bronx,2,Crotona Park East,1.498694433,Low,31.20244474,Low,Medium,Medium,High,Medium
+BX0391,Bronx,2,Crotona Park,0.11613395,Low,2.723764149,Low,Low,Low,Low,Low
+BX0401,Bronx,2,Concourse-Concourse Village,3.324542147,Medium,66.59059054,High,Medium,High,High,Medium
+BX0402,Bronx,2,Highbridge,3.868576147,High,74.47054335,High,Low,Medium,Medium,High
+BX0403,Bronx,2,Mount Eden-Claremont (West),2.582083207,Medium,50.50019254,Medium,Low,High,Medium,High
+BX0491,Bronx,2,Yankee Stadium-Macombs Dam Park,0.193944464,Low,4.130376304,Low,Low,Low,Low,Medium
+BX0492,Bronx,2,Claremont Park,0.031444521,Low,0.697525914,Low,Low,Low,Low,Low
+BX0501,Bronx,2,University Heights (South)-Morris Heights,5.431038536,High,105.771648,High,Low,High,Medium,High
+BX0502,Bronx,2,Mount Hope,2.461262687,Medium,48.68322347,Medium,Low,High,Medium,High
+BX0503,Bronx,2,Fordham Heights,0.353577842,Low,7.469344682,Low,Medium,Medium,Medium,Low
+BX0601,Bronx,2,West Farms,3.840742395,High,75.18204043,High,Low,Medium,Medium,High
+BX0602,Bronx,2,Tremont,3.201061413,Medium,62.5799831,Medium,Medium,Medium,Medium,High
+BX0603,Bronx,2,Belmont,1.043341098,Low,20.79317796,Low,High,Medium,Medium,Medium
+BX0701,Bronx,2,University Heights (North)-Fordham,4.372840865,High,84.59503971,High,Medium,High,Medium,High
+BX0702,Bronx,2,Bedford Park,1.135850439,Low,27.15217879,Low,Medium,High,Medium,Low
+BX0703,Bronx,2,Norwood,1.315735184,Low,28.80545249,Low,Medium,High,Medium,Medium
+BX0801,Bronx,2,Kingsbridge Heights-Van Cortlandt Village,2.500781337,Medium,49.24537998,Medium,Low,Medium,Medium,High
+BX0802,Bronx,2,Kingsbridge-Marble Hill,1.926646975,Medium,37.36693222,Medium,Medium,Medium,Medium,High
+BX0803,Bronx,2,Riverdale-Spuyten Duyvil,3.02563366,Medium,62.62495002,Medium,High,High,Low,Medium
+BX0901,Bronx,2,Soundview-Bruckner-Bronx River,4.594130454,High,89.69564793,High,High,High,High,High
+BX0902,Bronx,2,Soundview-Clason Point,1.801526156,Medium,36.97323196,Medium,Low,Medium,Medium,Medium
+BX0903,Bronx,2,Castle Hill-Unionport,6.579625905,High,127.4056923,High,Medium,Medium,High,High
+BX0904,Bronx,2,Parkchester,0.760240194,Low,15.78062272,Low,Medium,High,Medium,Medium
+BX0991,Bronx,2,Soundview Park,0.280044117,Low,5.481242096,Low,Low,Low,Low,Low
+BX1001,Bronx,2,Westchester Square,0.560738892,Low,11.63714513,Low,Medium,Low,High,Low
+BX1002,Bronx,2,Throgs Neck-Schuylerville,8.552063789,High,165.2064712,High,Medium,Medium,High,Medium
+BX1003,Bronx,2,Pelham Bay-Country Club-City Island,2.312967503,Medium,44.89016141,Medium,Medium,Medium,Medium,Low
+BX1004,Bronx,2,Co-op City,5.672555914,High,115.0387613,High,Medium,High,Medium,High
+BX1071,Bronx,2,Hart Island,0,Low,0,Low,Low,Low,Low,Low
+BX1091,Bronx,2,Ferry Point Park-St. Raymond Cemetery,3.712537158,High,71.99500301,High,Low,Low,Low,High
+BX1101,Bronx,2,Pelham Parkway-Van Nest,1.314379937,Low,27.22755866,Low,Medium,Medium,High,Medium
+BX1102,Bronx,2,Morris Park,1.091664115,Low,24.24145994,Low,Medium,Medium,Medium,Low
+BX1103,Bronx,2,Pelham Gardens,0.920365787,Low,19.00835168,Low,Low,Low,Medium,Low
+BX1104,Bronx,2,Allerton,1.072459779,Low,21.66911951,Low,Medium,Medium,Medium,Medium
+BX1161,Bronx,2,Hutchinson Metro Center,1.274778218,Low,24.91726504,Low,Low,Low,High,High
+BX1201,Bronx,2,Williamsbridge-Olinville,2.095250347,Medium,41.47031315,Medium,Medium,High,Medium,Medium
+BX1202,Bronx,2,Eastchester-Edenwald-Baychester,5.314438857,High,105.8438204,High,Medium,Medium,High,Medium
+BX1203,Bronx,2,Wakefield-Woodlawn,2.138180014,Medium,43.31945257,Medium,Medium,Medium,High,Medium
+BX1271,Bronx,2,Woodlawn Cemetery,0.604650645,Low,13.12372223,Low,Low,Low,Low,Low
+BX2691,Bronx,2,Van Cortlandt Park,6.848152192,High,134.2213827,High,Low,Low,Low,High
+BX2791,Bronx,2,Bronx Park,3.614025942,High,70.44396338,High,Low,Low,Low,High
+BX2891,Bronx,2,Pelham Bay Park,7.044826971,High,135.6600121,High,Low,Low,Low,Medium
+MN0101,Manhattan,1,Financial District-Battery Park City,3.35960821,Medium,59.34531694,Medium,High,High,Low,High
+MN0102,Manhattan,1,Tribeca-Civic Center,2.941844546,Medium,50.90278408,Medium,High,High,Medium,High
+MN0191,Manhattan,1,The Battery-Governors Island-Ellis Island-Liberty Island,0.486869264,Low,8.906155533,Low,Low,Low,Low,Low
+MN0201,Manhattan,1,SoHo-Little Italy-Hudson Square,3.524009999,Medium,59.70152676,Medium,High,High,Medium,High
+MN0202,Manhattan,1,Greenwich Village,1.671560934,Low,29.84068203,Low,High,High,Low,Medium
+MN0203,Manhattan,1,West Village,3.588862936,Medium,60.5357336,Medium,High,High,Medium,High
+MN0301,Manhattan,1,Chinatown-Two Bridges,2.565856524,Medium,44.14703231,Medium,High,Medium,Medium,High
+MN0302,Manhattan,1,Lower East Side,3.460494871,Medium,59.22384649,Medium,High,High,Medium,High
+MN0303,Manhattan,1,East Village,2.725250647,Medium,48.49360539,Medium,High,High,Medium,High
+MN0401,Manhattan,1,Chelsea-Hudson Yards,7.985377055,High,140.6594702,High,High,High,High,High
+MN0402,Manhattan,1,Hell's Kitchen,4.696974398,High,83.96133554,High,High,High,High,High
+MN0501,Manhattan,1,Midtown South-Flatiron-Union Square,4.782075933,High,85.99151641,High,High,High,Medium,High
+MN0502,Manhattan,1,Midtown-Times Square,8.268957587,High,151.933153,High,High,High,Medium,High
+MN0601,Manhattan,1,Stuyvesant Town-Peter Cooper Village,0.961368235,Low,16.5065358,Low,Low,Low,Medium,High
+MN0602,Manhattan,1,Gramercy,1.555134979,Low,28.48369649,Low,High,High,Low,Medium
+MN0603,Manhattan,1,Murray Hill-Kips Bay,4.654275634,High,78.87147142,High,High,High,Low,High
+MN0604,Manhattan,1,East Midtown-Turtle Bay,3.67467634,High,64.15928305,Medium,High,High,Low,High
+MN0661,Manhattan,1,United Nations,0.552986474,Low,8.898268291,Low,Low,Low,Low,High
+MN0701,Manhattan,1,Upper West Side-Lincoln Square,4.395742214,High,76.45507245,High,High,High,Low,High
+MN0702,Manhattan,1,Upper West Side (Central),7.162953807,High,122.9569658,High,High,High,Low,High
+MN0703,Manhattan,1,Upper West Side-Manhattan Valley,3.011413893,Medium,52.08128921,Medium,Medium,High,Medium,High
+MN0801,Manhattan,1,Upper East Side-Lenox Hill-Roosevelt Island,4.604891657,High,78.86257748,High,High,High,Medium,High
+MN0802,Manhattan,1,Upper East Side-Carnegie Hill,4.993784505,High,91.87775778,High,High,High,Low,Medium
+MN0803,Manhattan,1,Upper East Side-Yorkville,3.005646815,Medium,51.13450655,Medium,High,High,Medium,High
+MN0901,Manhattan,1,Morningside Heights,3.677076144,High,62.96663523,Medium,Medium,High,Low,High
+MN0902,Manhattan,1,Manhattanville-West Harlem,2.091556087,Medium,36.43807035,Medium,Medium,Medium,Medium,High
+MN0903,Manhattan,1,Hamilton Heights-Sugar Hill,3.384787403,Medium,58.15146857,Medium,High,High,Low,High
+MN1001,Manhattan,1,Harlem (South),1.787262686,Medium,32.76788553,Low,High,High,Low,Medium
+MN1002,Manhattan,1,Harlem (North),3.094540744,Medium,53.79278511,Medium,High,High,Medium,High
+MN1101,Manhattan,1,East Harlem (South),3.508708807,Medium,60.87585969,Medium,High,High,Medium,High
+MN1102,Manhattan,1,East Harlem (North),5.799085354,High,98.46783989,High,High,High,Medium,High
+MN1191,Manhattan,1,Randall's Island,5.766118843,High,98.70726982,High,Low,Low,High,High
+MN1201,Manhattan,1,Washington Heights (South),8.338967828,High,143.3233366,High,High,High,Low,High
+MN1202,Manhattan,1,Washington Heights (North),10.04216144,High,171.3113221,High,High,High,Medium,High
+MN1203,Manhattan,1,Inwood,1.492317869,Low,26.00961328,Low,High,High,Medium,Medium
+MN1291,Manhattan,1,Highbridge Park,3.239284595,Medium,54.49493917,Medium,Low,Low,Low,High
+MN1292,Manhattan,1,Inwood Hill Park,0.777180383,Low,12.57872089,Low,Low,Low,Low,Medium
+MN6491,Manhattan,1,Central Park,2.220109829,Medium,42.33291167,Medium,Low,Low,Low,Low
+QN0101,Queens,4,Astoria (North)-Ditmars-Steinway,5.862499081,High,117.0755545,High,High,Medium,High,Medium
+QN0102,Queens,4,Old Astoria-Hallets Point,0.36209373,Low,7.082228058,Low,Low,Low,High,Low
+QN0103,Queens,4,Astoria (Central),1.021609328,Low,20.39421393,Low,High,High,Medium,Low
+QN0104,Queens,4,Astoria (East)-Woodside (North),3.265940516,Medium,65.24722904,Medium,High,Medium,High,Medium
+QN0105,Queens,4,Queensbridge-Ravenswood-Dutch Kills,2.317742003,Medium,46.05019525,Medium,High,High,High,Medium
+QN0151,Bronx,2,Rikers Island,0.00318915,Low,0.061705046,Low,Low,High,Low,Low
+QN0161,Queens,4,Sunnyside Yards (North),0.4618471,Low,9.23298989,Low,Low,Low,High,Medium
+QN0171,Queens,4,St. Michael's Cemetery,0.31837304,Low,6.380060121,Low,Low,Low,High,Low
+QN0191,Queens,4,Astoria Park,0.888790981,Low,17.48192775,Low,Low,Low,Low,High
+QN0201,Queens,4,Long Island City-Hunters Point,3.738716476,High,74.74689125,High,High,High,High,High
+QN0202,Queens,4,Sunnyside,8.11538187,High,162.6585685,High,High,High,High,High
+QN0203,Queens,4,Woodside,6.72507743,High,134.3151761,High,High,High,High,High
+QN0261,Queens,4,Sunnyside Yards (South),0.444616174,Low,8.848459082,Low,Low,Low,High,Low
+QN0271,Queens,4,Calvary & Mount Zion Cemeteries,2.45043522,Medium,49.3771553,Medium,Low,Low,High,High
+QN0301,Queens,4,Jackson Heights,3.982348855,High,79.13058204,High,High,High,Low,Medium
+QN0302,Queens,4,East Elmhurst,4.164375873,High,83.46550285,High,Medium,Low,Medium,High
+QN0303,Queens,4,North Corona,1.073512807,Low,21.54633127,Low,Medium,Low,Medium,Medium
+QN0401,Queens,4,Elmhurst,4.734138982,High,93.52132016,High,High,High,High,Medium
+QN0402,Queens,4,Corona,1.85147452,Medium,36.49473524,Medium,High,Medium,High,Medium
+QN0501,Queens,4,Maspeth,7.241437141,High,144.6139542,High,Medium,High,High,Medium
+QN0502,Queens,4,Ridgewood,2.747019534,Medium,53.50290982,Medium,High,High,High,Low
+QN0503,Queens,4,Glendale,2.432624464,Medium,48.50945216,Medium,Medium,Medium,High,Medium
+QN0504,Queens,4,Middle Village,3.311489545,Medium,66.43212369,Medium,Medium,Medium,High,Medium
+QN0571,Queens,4,Mount Olivet & All Faiths Cemeteries,0.230496627,Low,4.513774233,Low,Low,Low,Low,Low
+QN0572,Queens,4,Middle Village Cemetery,0.116852588,Low,2.297250131,Low,Low,Low,Low,Low
+QN0573,Queens,4,St. John Cemetery,0.633647214,Low,12.70959255,Low,Low,Low,Low,Medium
+QN0574,Queens,4,Highland Park-Cypress Hills Cemeteries (North),2.441438486,Medium,49.61538617,Medium,Low,Low,Low,High
+QN0601,Queens,4,Rego Park,4.829066084,High,96.99477742,High,Medium,Medium,Low,High
+QN0602,Queens,4,Forest Hills,5.466319568,High,108.7726483,High,High,High,Low,Medium
+QN0701,Queens,4,College Point,4.147909183,High,82.54758662,High,Medium,Medium,High,Low
+QN0702,Queens,4,Whitestone-Beechhurst,3.267963774,Medium,65.17432194,Medium,Medium,Medium,High,Low
+QN0703,Queens,4,Bay Terrace-Clearview,4.69457813,High,94.02146175,High,Medium,Medium,Low,Medium
+QN0704,Queens,4,Murray Hill-Broadway Flushing,3.763961834,High,74.64793619,High,High,High,Medium,Low
+QN0705,Queens,4,East Flushing,1.141407712,Low,22.09260225,Low,Medium,Medium,Medium,Low
+QN0706,Queens,4,Queensboro Hill,5.730046189,High,115.1862965,High,Low,Low,Low,High
+QN0707,Queens,4,Flushing-Willets Point,6.072210764,High,120.2108721,High,High,High,High,Medium
+QN0761,Queens,4,Fort Totten,0.077890841,Low,1.596790132,Low,Low,Low,Low,Low
+QN0791,Queens,4,Kissena Park,0.145577473,Low,2.826579698,Low,Low,Low,Low,Low
+QN0801,Queens,4,Kew Gardens Hills,2.053430069,Medium,40.43974236,Medium,Medium,High,Low,Low
+QN0802,Queens,4,Pomonok-Electchester-Hillcrest,2.753594389,Medium,54.55889816,Medium,Medium,Medium,Low,Low
+QN0803,Queens,4,Fresh Meadows-Utopia,3.862427685,High,77.17060832,High,Medium,Low,Medium,Medium
+QN0804,Queens,4,Jamaica Estates-Holliswood,3.548066758,Medium,71.56472685,High,Low,Medium,Low,High
+QN0805,Queens,4,Jamaica Hills-Briarwood,4.940866727,High,99.29174664,High,Medium,Medium,Medium,High
+QN0871,Queens,4,Mount Hebron & Cedar Grove Cemeteries,0.047624756,Low,0.958721147,Low,Low,Low,Low,Low
+QN0891,Queens,4,Cunningham Park,4.60545654,High,92.18158828,High,Low,Low,Low,High
+QN0901,Queens,4,Kew Gardens,2.948386026,Medium,58.77210046,Medium,Medium,Medium,Medium,High
+QN0902,Queens,4,Richmond Hill,2.762939159,Medium,54.66276768,Medium,High,Medium,High,Medium
+QN0903,Queens,4,South Richmond Hill,0.79494077,Low,15.79182133,Low,Medium,Low,Medium,Low
+QN0904,Queens,4,Ozone Park (North),1.44036477,Low,28.63643065,Low,Low,Low,High,Medium
+QN0905,Queens,4,Woodhaven,1.640423893,Low,32.66005559,Low,Medium,Low,Medium,Low
+QN1001,Queens,4,South Ozone Park,7.510696695,High,151.136965,High,High,Medium,High,Medium
+QN1002,Queens,4,Ozone Park,2.022610881,Medium,40.41925579,Medium,Medium,Low,High,Medium
+QN1003,Queens,4,Howard Beach-Lindenwood,5.158122222,High,103.4256547,High,Medium,Medium,Low,Medium
+QN1091,Queens,4,Spring Creek Park,0.460921277,Low,9.314817623,Low,Low,Low,Low,Low
+QN1101,Queens,4,Auburndale,6.237923185,High,124.3203097,High,Medium,Medium,Medium,Medium
+QN1102,Queens,4,Bayside,9.470925225,High,189.1070665,High,High,Medium,Medium,Medium
+QN1103,Queens,4,Douglaston-Little Neck,7.80547153,High,157.7489204,High,Medium,Medium,Medium,Medium
+QN1104,Queens,4,Oakland Gardens-Hollis Hills,3.910480962,High,77.81652516,High,High,Medium,Low,Medium
+QN1191,Queens,4,Alley Pond Park,4.191343961,High,84.87374948,High,Low,Low,Low,High
+QN1201,Queens,4,Jamaica,6.446385451,High,125.0186316,High,High,High,High,Medium
+QN1202,Queens,4,South Jamaica,2.604720804,Medium,51.25667557,Medium,Medium,Medium,High,Low
+QN1203,Queens,4,Baisley Park,3.00280722,Medium,59.73797057,Medium,Medium,Low,Medium,Low
+QN1204,Queens,4,Springfield Gardens (North)-Rochdale Village,1.632431029,Low,32.26379449,Low,Low,High,High,Low
+QN1205,Queens,4,St. Albans,3.089802345,Medium,60.904201,Medium,Medium,Medium,High,Low
+QN1206,Queens,4,Hollis,1.840905538,Medium,35.90690105,Medium,Medium,Low,Medium,Low
+QN1301,Queens,4,Glen Oaks-Floral Park-New Hyde Park,1.719611334,Low,34.56248694,Medium,Medium,Medium,Low,Low
+QN1302,Queens,4,Bellerose,4.656626464,High,94.06646442,High,Medium,Medium,Medium,Medium
+QN1303,Queens,4,Queens Village,7.462377929,High,149.0963702,High,Medium,Medium,High,Medium
+QN1304,Queens,4,Cambria Heights,2.869423873,Medium,58.02161585,Medium,Low,Low,Low,Medium
+QN1305,Queens,4,Laurelton,1.20241076,Low,23.8002318,Low,Medium,Low,High,Low
+QN1306,Queens,4,Springfield Gardens (South)-Brookville,9.662815744,High,195.6618222,High,Medium,Low,High,High
+QN1307,Queens,4,Rosedale,5.023833044,High,101.66408,High,Low,Low,High,High
+QN1371,Queens,4,Montefiore Cemetery,0.003582889,Low,0.071733975,Low,Low,Low,Low,Low
+QN1401,Queens,4,Far Rockaway-Bayswater,1.642875457,Low,32.79369022,Low,Medium,High,Medium,Low
+QN1402,Queens,4,Rockaway Beach-Arverne-Edgemere,1.564585572,Low,31.01582658,Low,Medium,Medium,High,Low
+QN1403,Queens,4,Breezy Point-Belle Harbor-Rockaway Park-Broad Channel,1.847556912,Medium,36.31484325,Medium,Medium,Medium,Low,Low
+QN1491,Queens,4,Rockaway Community Park,0,Low,0,Low,Low,Low,Low,Low
+QN8081,Queens,4,LaGuardia Airport,1.180657638,Low,23.32070455,Low,Low,Low,Low,Low
+QN8191,Queens,4,Flushing Meadows-Corona Park,15.16051419,High,305.5994996,High,Medium,Low,Low,High
+QN8291,Queens,4,Forest Park,2.701478649,Medium,54.79998154,Medium,Low,Low,Low,High
+QN8381,Queens,4,John F. Kennedy International Airport,2.82903434,Medium,55.1053198,Medium,Low,Low,Low,Low
+QN8491,Queens,4,Jamaica Bay (East),1.102740761,Low,21.71520084,Low,Low,Low,Low,Low
+QN8492,Queens,4,Jacob Riis Park-Fort Tilden-Breezy Point Tip,0.475349972,Low,9.415608342,Low,Low,Medium,Low,Low
+SI0101,Staten Island,5,St. George-New Brighton,0.72090598,Low,13.55630958,Low,Medium,Medium,Medium,Low
+SI0102,Staten Island,5,Tompkinsville-Stapleton-Clifton-Fox Hills,0.680141931,Low,13.48375185,Low,Medium,Low,High,Low
+SI0103,Staten Island,5,Rosebank-Shore Acres-Park Hill,4.077584417,High,89.09147197,High,Medium,Low,High,Medium
+SI0104,Staten Island,5,West New Brighton-Silver Lake-Grymes Hill,3.121316519,Medium,65.83590195,Medium,High,Medium,High,Low
+SI0105,Staten Island,5,Westerleigh-Castleton Corners,5.863778492,High,127.3570939,High,Medium,Medium,Low,Medium
+SI0106,Staten Island,5,Port Richmond,2.051477255,Medium,42.78008362,Medium,High,Low,High,Low
+SI0107,Staten Island,5,Mariner's Harbor-Arlington-Graniteville,5.043288483,High,108.3138019,High,Medium,Medium,High,Low
+SI0191,Staten Island,5,Snug Harbor,0.05963592,Low,1.22951395,Low,Low,Low,Low,Low
+SI0201,Staten Island,5,Grasmere-Arrochar-South Beach-Dongan Hills,4.531315964,High,97.37757866,High,High,Medium,Medium,Low
+SI0202,Staten Island,5,New Dorp-Midland Beach,1.578831763,Low,33.79539175,Medium,High,Low,Medium,Low
+SI0203,Staten Island,5,Todt Hill-Emerson Hill-Lighthouse Hill-Manor Heights,9.426468781,High,206.4365429,High,Medium,Medium,High,Low
+SI0204,Staten Island,5,New Springville-Willowbrook-Bulls Head-Travis,12.11209614,High,262.1165987,High,High,High,High,Low
+SI0291,Staten Island,5,Freshkills Park (North),1.314291702,Low,28.62784818,Low,Low,Low,Low,Low
+SI0301,Staten Island,5,Oakwood-Richmondtown,1.287794147,Low,27.20378422,Low,Low,Low,Low,Low
+SI0302,Staten Island,5,Great Kills-Eltingville,2.964131494,Medium,62.03066909,Medium,High,Medium,Medium,Low
+SI0303,Staten Island,5,Arden Heights-Rossville,1.671228747,Low,35.73885505,Medium,Low,Low,Medium,Low
+SI0304,Staten Island,5,Annadale-Huguenot-Prince's Bay-Woodrow,3.80655256,High,82.54962621,High,Medium,Medium,Medium,Low
+SI0305,Staten Island,5,Tottenville-Charleston,2.513870624,Medium,53.97826005,Medium,High,Medium,High,Low
+SI0391,Staten Island,5,Freshkills Park (South),1.776588309,Medium,38.80784401,Medium,Low,Low,Medium,Low
+SI9561,Staten Island,5,Fort Wadsworth,2.363102162,Medium,48.76232807,Medium,Low,Low,Low,High
+SI9591,Staten Island,5,Hoffman & Swinburne Islands,0,Low,0,Low,Low,Low,Low,Low
+SI9592,Staten Island,5,Miller Field,0.070257555,Low,1.408341634,Low,Low,Low,Low,Low
+SI9593,Staten Island,5,Great Kills Park,0.273400159,Low,5.609454301,Low,Low,Low,Low,Low
+,,,,,,,,,,,
