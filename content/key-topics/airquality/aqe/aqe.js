@@ -1,5 +1,10 @@
 "use strict";
 
+/* STILL NEEDS:
+- Passing the geography into the renderChart and renderMap functions properly to highlight the selected neighborhood
+- A tolerable Initial State that draws attention to "Choose a neighborhood"
+
+*/
 
 // flexdatalist initial:
 
