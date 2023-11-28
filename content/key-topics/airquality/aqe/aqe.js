@@ -103,9 +103,8 @@ function setNeighborhood(x, y, z) {
   thisGeocode = x
   console.log(y)
   document.getElementById('NTA2').innerHTML = y
+  document.getElementById('NTA2').classList.add('yourN')
   document.getElementById('NTA3').classList.add('yourN')
-  document.getElementById('youLabel1').classList.add('yourn')
-  document.getElementById('youLabel2').classList.add('yourn')
   document.getElementById('NTA3').innerHTML = y
   document.getElementById('NTA4').innerHTML = y
   document.getElementById('NTA4').classList.add('yourN')

@@ -43,8 +43,8 @@
     </div>
 
     <div class="row my-4">
-        <div class="col-md-5 mx-auto">
-            <div class="border">
+        <div class="col-md-6 mx-auto l-green-border">
+
             <div class="fs-sm pb-1"><span class="home-label font-weight-bold">Enter a neighborhood to get data:</span></div>
 
             <div class="btn-group" role="group" style="width:100%;">
@@ -59,18 +59,29 @@
                 <button id="clear" class="btn btn-md btn-warning">Clear</button>
             </div>
 
-            </div>
+
             <p class="float-right"><em class="fs-sm"><a
                 href="/data-stories/geographies">Read about Neighborhood Tabulation Areas.</a></em> </p>
 
 
-            <div class="hide" id="showNeighb">
-                <span class="home-label font-weight-bold">Your neighborhood:</span><br>
-                <div class="basic-callout p-2">
-                     <span class="h3 yourN" id="NTA2"></span><br>
-                     <span class="home-label font-weight-bold">ZIP Codes <span id="zips"></span></span>
-                 </div>
 
+            <div class="mt-4" id="showNeighb">
+                <div class="row">
+                    <div class="col-4">
+                        <p><span class="home-label font-weight-bold">Your neighborhood:</span></p>
+                    </div>
+                    <div class="col-8">
+                        <p><span class="h5" id="NTA2">[SELECT A NEIGHBORHOOD ABOVE]</span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p><span class="home-label font-weight-bold">ZIP Codes:</span></p>
+                    </div>
+                    <div class="col-8">
+                        <p><span id="zips" class="h6">[SELECT A NEIGHBORHOOD ABOVE]</span></p>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -84,7 +95,7 @@
         <div class="col-md-10 mx-auto">
             <h3><i class="fas fa-smog mr-1"></i>Air quality in <span id="NTA3" class="">your neighborhood</span> </h3>
 
-            <div class="row mt-2">
+            <div class="row mt-2 l-green-border">
                 <div class="col-12 my-2">
                     <h4>PM2.5 (fine particles)</h4>
                     <p class="fs-sm"><b>PM2.5</b> worsens lung and heart diseases and are linked to cancer and
@@ -107,7 +118,7 @@
                 </div>
             </div>
 
-            <div class="row mt-4">
+            <div class="row mt-4 l-green-border">
                 <div class="col-12 my-2">
                     <h4>Nitrogen dioxide</h4>
                     <p class="fs-sm"><b>Nitrogen dioxide</b> is linked to asthma hospitalizations and other respiratory conditions.
@@ -131,9 +142,13 @@
             </div>
 
             <hr class="my-4">
-            <h3><i class="fa fa-question-circle mr-1"></i>What affects air quality in <span id="NTA4" class="">your neighborhood</span>?</h3>
 
-            <div class="row mt-2">
+            <div class="row mt-2 l-green-border">
+                <div class="col-12 mb-2">
+                    <h3><i class="fa fa-question-circle mr-1"></i>What affects air quality in <span id="NTA4" class="">your neighborhood</span>?</h3>
+
+                </div>
+
                 <div class="col-sm-7 col-xs-12">
 
                     <div style="background-color:#f1f1f1; width:100%" class="p-1">
@@ -255,9 +270,7 @@
         }
 
         .yourN {
-            background-color: cyan;
-            color: black;
-            padding: 2px 10px;
+            border-bottom: 3px solid cyan;
         }
     </style>
 
