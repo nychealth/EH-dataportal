@@ -43,42 +43,47 @@
     </div>
 
     <div class="row my-4">
-        <div class="col-md-10 mx-auto">
-            <div class="row">
-                <div class="col-sm-7">
-                    <div class="fs-sm pb-1"><span class="home-label font-weight-bold">Enter a neighborhood to get data:</span></div>
+        <div class="col-md-5 mx-auto">
+            <div class="border">
+            <div class="fs-sm pb-1"><span class="home-label font-weight-bold">Enter a neighborhood to get data:</span></div>
 
-                    <div class="btn-group" role="group" style="width:100%;">
-    
-                        <input 
-                            id="flex_search"
-                            type='search'
-                            class='flexdatalist form-control'
-                            name='indicator_name_suggestion'
-                        />
-    
-                        <button id="clear" class="btn btn-md btn-warning">Clear</button>
-    
-                    </div>
-                </div>
+            <div class="btn-group" role="group" style="width:100%;">
 
-                <div class="col-sm-5 hide" id="showNeighb">
-                    <span class="home-label font-weight-bold">Your neighborhood:</span><br>
-                    <div class="basic-callout p-2">
-                         <span class="h3" style="font-weight:bold;color:#15607a;" id="NTA2"></span><br>
-                         <span class="home-label font-weight-bold">ZIP Codes <span id="zips"></span></span>
-                     </div>
-                     <p class="float-right"><em class="fs-sm"><a
-                        href="/data-stories/geographies">Read about Neighborhood Tabulation Areas.</a></em> </p>
-                </div>
+                <input 
+                    id="flex_search"
+                    type='search'
+                    class='flexdatalist form-control'
+                    name='indicator_name_suggestion'
+                />
+
+                <button id="clear" class="btn btn-md btn-warning">Clear</button>
             </div>
+
+            </div>
+            <p class="float-right"><em class="fs-sm"><a
+                href="/data-stories/geographies">Read about Neighborhood Tabulation Areas.</a></em> </p>
+
+
+            <div class="hide" id="showNeighb">
+                <span class="home-label font-weight-bold">Your neighborhood:</span><br>
+                <div class="basic-callout p-2">
+                     <span class="h3 yourN" id="NTA2"></span><br>
+                     <span class="home-label font-weight-bold">ZIP Codes <span id="zips"></span></span>
+                 </div>
+
+            </div>
+
         </div>
+
     </div>
+
+
 
     <!-- new Layout -->
     <div class="row my-4">
         <div class="col-md-10 mx-auto">
-            <h3><i class="fas fa-smog mr-1"></i>Air quality in your neighborhood </h3>
+            <h3><i class="fas fa-smog mr-1"></i>Air quality in <span id="NTA3" class="">your neighborhood</span> </h3>
+
             <div class="row mt-2">
                 <div class="col-12 my-2">
                     <h4>PM2.5 (fine particles)</h4>
@@ -91,7 +96,7 @@
                     <div class="" style="width:100%;height:150px;" id="PMDestination">Chart</div>
                 </div>
                 <div class="col-2 ml-auto">
-                    <p class="mt-3"><i class="fas fa-square mr-1" style="color:cyan"></i><span class="home-label">Your neighborhood:</span></p>
+                    <p class="mt-3"><span class="home-label font-weight-bold" id="youLabel1">Your neighborhood:</span></p>
                     <p><span class="home-label">NYC average:</span></p>
                     <p><span class="home-label">EPA standard:</span></p>
                 </div>
@@ -114,7 +119,7 @@
                     <div class="" style="width:100%;height:150px;" id="NODestination">Chart</div>
                 </div>
                 <div class="col-2 ml-auto">
-                    <p class="mt-2"><i class="fas fa-square mr-1" style="color:cyan"></i><span class="home-label">Your neighborhood:</span></p>
+                    <p class="mt-2"><span class="home-label font-weight-bold" id="youLabel2">Your neighborhood:</span></p>
                     <p><span class="home-label">NYC average:</span></p>
                     <p><span class="home-label">EPA standard:</span></p>
                 </div>
@@ -125,18 +130,22 @@
                 </div>
             </div>
 
-            <hr class="mt-4 mb-2">
-            <h3><i class="fa fa-question-circle mr-1"></i>What affects air quality in your neighborhood?</h3>
+            <hr class="my-4">
+            <h3><i class="fa fa-question-circle mr-1"></i>What affects air quality in <span id="NTA4" class="">your neighborhood</span>?</h3>
 
-            <div class="row">
+            <div class="row mt-2">
                 <div class="col-sm-7 col-xs-12">
-                    
-                    <span id="mapTitle" class="h5">Building emissions</span>
-                    <div class="float-right fs-rg">
-                        <span class="badge badge-better">1 (Low)</span>
-                        <span class="badge badge-medium">2 (Medium)</span>
-                        <span class="badge badge-worse">3 (High)</span>
+
+                    <div style="background-color:#f1f1f1; width:100%" class="p-1">
+                        <span id="mapTitle" class="h5">Building emissions</span>
+                        <div class="float-right fs-rg">
+                            <span class="badge badge-better">1 (Low)</span>
+                            <span class="badge badge-medium">2 (Medium)</span>
+                            <span class="badge badge-worse">3 (High)</span>
+                        </div>
                     </div>
+                    
+
 
                     <!-- Map -->
                     <div id="mapHolder" style="width:100%; height: 500px;"></div>
@@ -152,7 +161,7 @@
 
                     <div class="sourceBox" id="sourceBox2" onclick="changeSource(2)">
                         <h3 class="fs-md">Commercial cooking: <span class="badge" id="CC">XXX</span></h3>
-                        <p class="fs-sm">Commercial cooking density - specifically, the density of restaurant permits to use charbroilers - leads to more emissions.
+                        <p class="fs-sm">Commercial cooking density - specifically, the density of restaurant permits to use charbroilers or open-fire grills without equipment to trap smoke and PM2.5 - is associated with higher levels of PM2.5 in the neighborhood.
                         </p>
                     </div>
 
@@ -226,6 +235,29 @@
 
         .sourceBox-active {
             background-color: #f1f1f1;
+        }
+
+        .surround {
+            color: #fff;
+            text-shadow:
+              3px 3px 0 #000,
+              -3px 3px 0 #000,
+              -3px -3px 0 #000,
+              3px -3px 0 #000;
+        }
+
+        .square {
+            display: inline-block;
+            height: 15px;
+            width: 15px;
+            background-color: cyan;
+            border: 1px solid darkgray
+        }
+
+        .yourN {
+            background-color: cyan;
+            color: black;
+            padding: 2px 10px;
         }
     </style>
 

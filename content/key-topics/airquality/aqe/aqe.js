@@ -103,6 +103,12 @@ function setNeighborhood(x, y, z) {
   thisGeocode = x
   console.log(y)
   document.getElementById('NTA2').innerHTML = y
+  document.getElementById('NTA3').classList.add('yourN')
+  document.getElementById('youLabel1').classList.add('yourn')
+  document.getElementById('youLabel2').classList.add('yourn')
+  document.getElementById('NTA3').innerHTML = y
+  document.getElementById('NTA4').innerHTML = y
+  document.getElementById('NTA4').classList.add('yourN')
   document.getElementById('zips').innerHTML = z
 
   // ingest data file and filter by GEOCODE
@@ -365,6 +371,14 @@ const renderMap = (
               "condition": {"test": `datum.NTACODE === '${neighborhood}'`, "value": 2.5},
               "value": 0.5
               },
+            "stroke": {
+              "condition": {"test": `datum.NTACODE === '${neighborhood}'`, "value": "cyan"},
+              "value": "darkgray"
+              },
+            "order": {
+              "condition": {"test": `datum.NTACODE === '${neighborhood}'`, "empty": false, "value": 1},
+                "value": 0
+            },
             "tooltip": [
               {
                   "field": "properties.GEONAME",
