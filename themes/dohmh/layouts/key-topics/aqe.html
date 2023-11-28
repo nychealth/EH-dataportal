@@ -39,10 +39,14 @@
 
             <hr class="my-2">
 
-            <!-- new neighborhood selector with flexdatalist -->
+        </div>
+    </div>
+
+    <div class="row my-4">
+        <div class="col-md-10 mx-auto">
             <div class="row">
-                <div class="col-md-6 mx-auto">
-                    <div class="fs-sm pb-1">Enter a neighborhood to get data:</div>
+                <div class="col-sm-7">
+                    <div class="fs-sm pb-1"><span class="home-label font-weight-bold">Enter a neighborhood to get data:</span></div>
 
                     <div class="btn-group" role="group" style="width:100%;">
     
@@ -56,19 +60,18 @@
                         <button id="clear" class="btn btn-md btn-warning">Clear</button>
     
                     </div>
+                </div>
 
-                    <div class="basic-callout p-2 my-2">
-                        <p class="h3" style="font-weight:normal!important;">Your neighborhood: <span class="h3" style="font-weight:bold;color:#15607a;" id="NTA2"></span></p>
-                        <p><em class="fs-sm"><a
-                            href="/data-stories/geographies">Read about Neighborhood Tabulation Areas.</a></em> </p>
-
+                <div class="col-sm-5 hide" id="showNeighb">
+                    <span class="home-label font-weight-bold">Your neighborhood:</span><br>
+                    <div class="basic-callout p-2">
+                         <span class="h3" style="font-weight:bold;color:#15607a;" id="NTA2"></span><br>
+                         <span class="home-label font-weight-bold">ZIP Codes <span id="zips"></span></span>
                      </div>
-
-
-
+                     <p class="float-right"><em class="fs-sm"><a
+                        href="/data-stories/geographies">Read about Neighborhood Tabulation Areas.</a></em> </p>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -88,7 +91,7 @@
                     <div class="" style="width:100%;height:150px;" id="PMDestination">Chart</div>
                 </div>
                 <div class="col-2 ml-auto">
-                    <p class="mt-3"><span class="home-label">Your neighborhood:</span></p>
+                    <p class="mt-3"><i class="fas fa-square mr-1" style="color:cyan"></i><span class="home-label">Your neighborhood:</span></p>
                     <p><span class="home-label">NYC average:</span></p>
                     <p><span class="home-label">EPA standard:</span></p>
                 </div>
@@ -111,7 +114,7 @@
                     <div class="" style="width:100%;height:150px;" id="NODestination">Chart</div>
                 </div>
                 <div class="col-2 ml-auto">
-                    <p class="mt-2"><span class="home-label">Your neighborhood:</span></p>
+                    <p class="mt-2"><i class="fas fa-square mr-1" style="color:cyan"></i><span class="home-label">Your neighborhood:</span></p>
                     <p><span class="home-label">NYC average:</span></p>
                     <p><span class="home-label">EPA standard:</span></p>
                 </div>

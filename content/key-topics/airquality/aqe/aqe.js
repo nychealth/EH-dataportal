@@ -56,7 +56,7 @@ const load_flexdatalist = async () => {
               // dataChange(set.GEOCODE);
 
               // call tester Function
-              setNeighborhood(set.NTACode, set.GEONAME)
+              setNeighborhood(set.NTACode, set.GEONAME, set.zipcode)
               
           })
 
@@ -85,9 +85,9 @@ d3.csv('aqe-nta.csv', d3.autoType).then(data => {
 
   load_flexdatalist()
 
-  renderChart('#NODestination','NOx','BK0102')
+  renderChart('#NODestination','NOx','')
 
-  renderChart('#PMDestination','PM','BK0101')
+  renderChart('#PMDestination','PM','')
 
   renderMap(1,'')
 
@@ -96,11 +96,14 @@ d3.csv('aqe-nta.csv', d3.autoType).then(data => {
 
 
 var thisGeocode
-function setNeighborhood(x, y) {
+function setNeighborhood(x, y, z) {
+  document.getElementById('showNeighb').classList.remove('hide')
+
   console.log('geocode',x)
   thisGeocode = x
   console.log(y)
   document.getElementById('NTA2').innerHTML = y
+  document.getElementById('zips').innerHTML = z
 
   // ingest data file and filter by GEOCODE
   neighborhoodData = allData.filter(neighb => neighb.NTACODE == x)
@@ -114,6 +117,12 @@ function setNeighborhood(x, y) {
   sourceTertile(neighborhoodData[0].cook_tertiles,"CC")
   sourceTertile(neighborhoodData[0].Industrial_tertiles,"IA")
   sourceTertile(neighborhoodData[0].Traffic_tertiles,"TD")
+
+  renderChart('#NODestination','NOx',x)
+
+  renderChart('#PMDestination','PM',x)
+
+  renderMap(1,x)
 
 }
 
@@ -255,7 +264,7 @@ function changeSource(x) {
   }
 
   document.getElementById('mapTitle').innerHTML = title
-  renderMap(x,'50402')
+  renderMap(x,thisGeocode)
 }
 
 const renderMap = (
@@ -266,19 +275,19 @@ const renderMap = (
     var indicator
     var label;
 
-    if (x==1) {
+    if (x===1) {
         title = 'Building emissions'
         indicator = 'numeric_Building_emissions'
         label = 'Building_emissions'
-    } else if (x==2) {
+    } else if (x===2) {
         title = "Commercial cooking"
         indicator = 'numeric_cook_tertiles'
         label = 'cook_tertiles'
-    } else if (x==3) {
+    } else if (x===3) {
         title = "Industrial area"
         indicator = 'numeric_Industrial_tertiles'
         label = 'Industrial_tertiles'
-    } else if (x==4) {
+    } else if (x===4) {
         title = "Traffic density"
         indicator = 'numeric_Traffic_tertiles'
         label = 'Traffic_tertiles'
