@@ -85,7 +85,7 @@ d3.csv('aqe-nta.csv', d3.autoType).then(data => {
 
   load_flexdatalist()
 
-  renderChart('#NODestination','NOx','')
+  renderChart('#NODestination','NO2','')
 
   renderChart('#PMDestination','PM','')
 
@@ -115,15 +115,15 @@ function setNeighborhood(x, y, z) {
 
   console.table(neighborhoodData)
 
-  document.getElementById('thisPM').innerHTML = Number(neighborhoodData[0].TotalPM).toFixed(2)
-  document.getElementById('thisNOx').innerHTML = Number(neighborhoodData[0].TotalNOx).toFixed(2)
+  document.getElementById('thisPM').innerHTML = Number(neighborhoodData[0].PM_Avg).toFixed(2)
+  document.getElementById('thisNO2').innerHTML = Number(neighborhoodData[0].NO2_Avg).toFixed(2)
 
   sourceTertile(neighborhoodData[0].Building_emissions,"BE")
   sourceTertile(neighborhoodData[0].cook_tertiles,"CC")
   sourceTertile(neighborhoodData[0].Industrial_tertiles,"IA")
   sourceTertile(neighborhoodData[0].Traffic_tertiles,"TD")
 
-  renderChart('#NODestination','NOx',x)
+  renderChart('#NODestination','NO2',x)
 
   renderChart('#PMDestination','PM',x)
 
@@ -157,7 +157,7 @@ function sourceTertile(x,dest) {
 
 const renderChart = (
   destination, // #PMDestination or #NODestination
-  variable,    // PM or NOx 
+  variable,    // PM or NO2
   neighborhood // NTACode
 ) => {
 
@@ -167,8 +167,8 @@ const renderChart = (
 
   if (variable === 'PM') {
     title = "PM2.5 (μg/m3)"
-  } else if (variable === 'NOx') {
-    title = "NOx (ppb)"
+  } else if (variable === 'NO2') {
+    title = "NO2 (ppb)"
   }
 
   var barSpec = {
@@ -186,8 +186,8 @@ const renderChart = (
       "url": "aqe-nta.csv"
     },
     "transform": [
-      {"calculate": "toNumber(datum.TotalPM)", "as": "PM"},
-      {"calculate": "toNumber(datum.TotalNOx)", "as": "NOx"}
+      {"calculate": "toNumber(datum.PM_Avg)", "as": "PM"},
+      {"calculate": "toNumber(datum.NO2_Avg)", "as": "NO2"}
     ],
     "config": {
       "concat": {"spacing": 20},
@@ -229,7 +229,11 @@ const renderChart = (
               "value": 1  
             },
             "value": 0
-          } 
+          },
+          "stroke": {
+            "condition": {"test": `datum.NTACODE === '${neighborhood}'`, "value": "cyan"},
+            "value": "darkgray"
+            }
         }
       }
     ]
@@ -330,8 +334,8 @@ const renderMap = (
                 "fields": [
                   "NTACODE",
                   "NTA_NAME",
-                  "TotalPM",
-                  "TotalNOx",
+                  "PM_Avg",
+                  "NO2_Avg",
                   "cook_tertiles",
                   "Building_emissions",
                   "Industrial_tertiles",
