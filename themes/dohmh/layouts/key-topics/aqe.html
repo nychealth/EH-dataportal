@@ -98,7 +98,7 @@
             <div class="row mt-2 l-green-border">
                 <div class="col-12 my-2">
                     <h4>PM2.5 (fine particles)</h4>
-                    <p class="fs-sm"><b>PM2.5</b> worsens lung and heart diseases and are linked to cancer and
+                    <p class="fs-md"><b>PM2.5</b> worsens lung and heart diseases and are linked to cancer and
                         premature death. NYC meets the EPA's annual average standard (measured in micrograms per cubic
                         meter, or μg/m<sup>3</sup>), but short-term concentrations sometimes exceed this threshold.</p>
 
@@ -121,7 +121,7 @@
             <div class="row mt-4 l-green-border">
                 <div class="col-12 my-2">
                     <h4>Nitrogen dioxide</h4>
-                    <p class="fs-sm"><b>Nitrogen dioxide</b> is linked to asthma hospitalizations and other respiratory conditions.
+                    <p class="fs-md"><b>Nitrogen dioxide</b> is linked to asthma hospitalizations and other respiratory conditions.
                         NYC meets the EPA's annual standard (measured in parts per billion, or ppb), but short-term
                         concentrations sometimes exceed this threshold.</p>
                 </div>
@@ -155,7 +155,7 @@
                     <div style="background-color:#f1f1f1; width:100%" class="p-1">
                         <span id="mapTitle" class="h5">Building emissions</span>
                         <div class="float-right fs-rg">
-                            <span class="badge badge-better">1 (Low)</span>
+                            <span class="badge badge-better border">1 (Low)</span>
                             <span class="badge badge-medium">2 (Medium)</span>
                             <span class="badge badge-worse">3 (High)</span>
                         </div>
@@ -170,26 +170,26 @@
 
                 <div class="col-sm-5 col-xs-12">
                     <div class="sourceBox sourceBox-active" id="sourceBox1" onclick="changeSource(1)">
-                        <h3 class="fs-md">Buliding emissions: <span class="badge" id="BE">XXX</span></h3>
-                        <p class="fs-sm">Like vehicles, buildings burn fuel: their boilers run on oil or gas to produce heat and hot water. These boilers emit pollutants that affect your neighborhood's air quality.
+                        <h3 class="fs-rg">Buliding emissions: <span class="badge" id="BE">XXX</span></h3>
+                        <p class="fs-md">Like vehicles, buildings burn fuel: their boilers run on oil or gas to produce heat and hot water. These boilers emit pollutants that affect your neighborhood's air quality.
                         </p>
                     </div>
 
                     <div class="sourceBox" id="sourceBox2" onclick="changeSource(2)">
-                        <h3 class="fs-md">Commercial cooking: <span class="badge" id="CC">XXX</span></h3>
-                        <p class="fs-sm">Commercial cooking density - specifically, the density of restaurant permits to use charbroilers or open-fire grills without equipment to trap smoke and PM2.5 - is associated with higher levels of PM2.5 in the neighborhood.
+                        <h3 class="fs-rg">Commercial cooking: <span class="badge" id="CC">XXX</span></h3>
+                        <p class="fs-md">Commercial cooking density - specifically, the density of restaurant permits to use charbroilers or open-fire grills without equipment to trap smoke and PM2.5 - is associated with higher levels of PM2.5 in the neighborhood.
                         </p>
                     </div>
 
                     <div class="sourceBox" id="sourceBox3" onclick="changeSource(3)">
-                        <h3 class="fs-md">Industrial area: <span class="badge" id="IA">XXX</span></h3>
-                        <p class="fs-sm">Manufacturing can emit pollutants, construction can kick up particulate matter, and increased truck traffic can produce more emissions.
+                        <h3 class="fs-rg">Industrial area: <span class="badge" id="IA">XXX</span></h3>
+                        <p class="fs-md">Manufacturing can emit pollutants, construction can kick up particulate matter, and increased truck traffic can produce more emissions.
                         </p>
                     </div>
 
                     <div class="sourceBox" id="sourceBox4" onclick="changeSource(4)">
-                        <h3 class="fs-md">Traffic density: <span class="badge" id="TD">XXX</span></h3>
-                        <p class="fs-sm">Traffic produces "tailpipe emissions" like PM2.5, NOx and carbon monoxide (CO), and tire wear and braking release additional particulate matter into the air.
+                        <h3 class="fs-rg">Traffic density: <span class="badge" id="TD">XXX</span></h3>
+                        <p class="fs-md">Traffic produces "tailpipe emissions" like PM2.5, NOx and carbon monoxide (CO), and tire wear and braking release additional particulate matter into the air.
                         </p>
     
                     </div>
@@ -208,6 +208,11 @@
     <div class="row mb-2">
         <div class="col-md-8 mx-auto">
             <h4>More Air Quality resources</h4>
+
+            <div class="row">
+                <div class="col-sm-4"><a href="aqe-nta.csv" class="btn btn-sm btn-block btn-outline-primary">Download data</a></div>
+
+            </div>
         </div>
     </div>
 

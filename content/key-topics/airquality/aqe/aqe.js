@@ -265,7 +265,7 @@ function changeSource(x) {
   if (x==1) {
       title = 'Building emissions'
   } else if (x==2) {
-      title = "Building density"
+      title = "Commercial cooking"
   } else if (x==3) {
       title = "Industrial area"
   } else if (x==4) {
