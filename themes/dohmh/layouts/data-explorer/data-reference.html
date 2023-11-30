@@ -1,0 +1,106 @@
+{{- define "main" -}}
+
+<article class="container" id="skip-header-target">
+    <div class="col-md-11 col-sm-12 mx-auto my-4">
+        
+        <div class="row no-gutters mb-2">
+            <div class="col">
+                <nav aria-label="breadcrumb" class="my-3">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}data-explorer/">Data Explorer</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        
+        <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
+        {{- .Content -}}
+
+        {{- partial "de-topic-indicators.html" . -}}
+
+
+                <div class="row">
+
+                    <div class="col-12 my-4">
+                        <span class="home-label">Search for an indicator:</span>
+                        {{partial "de-text-search" . }}
+                    </div>
+
+                    <div class="col-md-6">
+                        <p><span class="home-label font-weight-bold">Indicator Name [ID]</span></p>
+                        <p class="fs-xl"><span id="indName">Indicator Name</span> <span class="badge badge-pill badge-light ml-2">Indicator <span id="indID">XX</span></span></p>
+                        <p class="fs-md"><span id="indDesc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in neque nisl. Vestibulum magna leo, fermentum non feugiat et, porta id nibh. Vivamus quis nisl nunc.</span></p>
+                            <hr>
+                            <p> <span class="home-label font-weight-bold">Measures [ID]</span></p>
+                                <div id="measureList"></div>
+                            </p>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <p>
+                            <span class="home-label font-weight-bold">Parent topics</span><br>
+                            <div id="topicList"></div>
+                        </p>
+                        <hr>
+                        <p>
+                            <span class="home-label font-weight-bold">Data sources</span><br>
+                            <div id="sourceList"></div>
+                        </p>
+
+                        
+                        <div id="repoLink"></div>
+
+                        
+
+                    </div>
+
+                </div>
+                
+            </div>
+            
+        </article>
+        
+        <script>
+            // This function is called from de-text-search.html 
+            function printToPage(x) {
+                document.getElementById('indName').innerHTML = x.IndicatorName
+                document.getElementById('indID').innerHTML = x.IndicatorID
+                document.getElementById('indDesc').innerHTML = x.IndicatorDescription
+                // console.log('printed to page:')
+                // console.log(x)
+
+                
+
+                document.getElementById('repoLink').innerHTML = `<a href="https://github.com/nychealth/EHDP-data/tree/production/indicators/data/${x.IndicatorID}.json"><button class="btn btn-sm btn-block btn-outline-primary"><i class="fas fa-external-link-square-alt mr-1"></i>Download JSON from repo</button></a>`
+
+                // Print measures to page
+                document.getElementById('measureList').innerHTML = ''
+                document.getElementById('sourceList').innerHTML = ''
+                for (let i = 0; i < x.Measures.length; i ++) {
+                    // console.log(x.Measures[i].MeasureName)
+                    var measure = `<p class="fs-sm">${x.Measures[i].MeasureName} <span class="badge badge-pill badge-light">${x.Measures[i].MeasureID}</span></span><br>`
+                    document.getElementById('measureList').innerHTML += measure
+                    var source = `<p class="fs-sm">${x.Measures[i].Sources}</p>`
+                    document.getElementById('sourceList').innerHTML += source
+                }
+
+
+                // Print topics to page
+                // console.log(topicIndicatorsTable)
+                const topics = topicIndicatorsTable.filter((ind) => ind.IndicatorID === x.IndicatorID);
+                console.log(topics)
+
+                document.getElementById('topicList').innerHTML = ''
+                for (let i = 0; i < topics.length; i++) {
+                    // console.log(topics[i].topic)
+                    var datatopic = `<a class="btn btn-sm btn-outline-primary mb-1 mr-1" href="${baseURL}data-explorer/${topics[i].topic}/?id=${x.IndicatorID}">${topics[i].topic_name}</a>`
+                    document.getElementById('topicList').innerHTML += datatopic
+                }
+            }
+
+        </script>
+        
+    {{- end -}}
