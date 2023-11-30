@@ -805,7 +805,7 @@ L.Control.Legend = L.Control.extend({
 
         var div = L.DomUtil.create('div', 'info legend');
         L.DomUtil.addClass(div, 'leaflet-control-layers-expanded');
-        const innerHtml = '<fieldset><h4>Legend</h4><table>' + htmls.join('<br />') + '</table></fieldset>';
+        const innerHtml = '<fieldset><h6></h6><table>' + htmls.join('<br />') + '</table></fieldset>';
         div.innerHTML = innerHtml;
         return div;
     }
