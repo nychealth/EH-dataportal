@@ -1,6 +1,6 @@
 # The NYC Environment and Health Data Portal website
 
-This repository contains source code for the Environment and Health Data Portal. You can view a staged development version [here](https://nychealth.github.io/EH-dataportal/) and the live production version [here](https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/). 
+This repository contains source code for the Environment and Health Data Portal. You can view a staged development version [here](https://nychealth.github.io/EH-dataportal/) and the live production version [here](https://a816-dohbesp.nyc.gov/IndicatorPublic/). 
 
 This repository contains the website's source code. [To get the raw data that the site displays, visit our data repo](https://www.github.com/nychealth/EHDP-data).
 
