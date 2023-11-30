@@ -277,7 +277,7 @@ config = {
        {
           "property": {
              "id":"air_quality",
-             "name": "Air Quality - Pm2.5",
+             "name": "Air Quality - PM2.5",
              "type": "measureData",
              "measureInfo": {
                 "indicatorID": 2023,

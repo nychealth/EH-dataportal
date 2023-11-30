@@ -156,9 +156,11 @@ function addLayerButtons() {
     };
 }
 
+// ------ This function draws the accordion, looping through each story and creating accordion items ------- // 
 function drawAccordion() {
     const holderAccordion = document.getElementById('story-accordion')
     const stories = config.stories;
+    // console.log(config.stories)
     for (let i = 0; i < stories.length; i++) {
         const story = stories[i];
         const storyCard = `
@@ -175,7 +177,7 @@ function drawAccordion() {
                   </div>
               </div>
           </div>`;
-        holderAccordion.innerHTML += storyCard;
+        // holderAccordion.innerHTML += storyCard;
     }
 
     const storyCards = document.getElementById('story-cards')
@@ -183,12 +185,11 @@ function drawAccordion() {
       const story = stories[i];
       // we can put an image in the story definition
       const storyCard = `
-        <div class="col-4 story-card" id="story-card-${i}">
+        <div class="col-4 hide story-card" id="story-card-${i}">
           <div class="card content-card" style="width: 28rem;">
           <div class="card-content">
-            <img src="https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/stories/no-shade-trees/1.jpg" class="card-img-top" alt="...">
             <div class="story-card-button-container">
-              <button class="story-card-button" value=${story.id}>Show On Map</button>
+              <button class="story-card-button btn-sm btn-outline-secondary" value=${story.id}>Show On Map</button>
             </div>
             <div class="card-body story-card-content">
               <h5 class="card-title">${story.title}</h5>
