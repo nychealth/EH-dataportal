@@ -1,4 +1,4 @@
-name: Hugo Build to `dev-test` branch
+name: Hugo Build to `dev-test` branch (manual)
 
 # run action when manually triggered
 
