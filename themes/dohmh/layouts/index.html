@@ -210,33 +210,6 @@
     </div>
   </div>
   
-  
-  {{- if eq hugo.Environment "production" -}} 
-  
-  <div class="row my-4">
-    <div class="col-md-4 mx-auto">
-      <div class="d-inline-block bg-light p-2" style="width:100%;">
-        <p class="fs-md">Prefer to use our old site? <b><a id="want_old_site_home" onclick="setCookieHome()">Click here.</a></b></p>
-      </div>
-    </div>
-  </div>
-  
-  <script>
-    
-    // set cookie on click
-    
-    const setCookieHome = () => {
-      document.cookie = "want_old_site=true; path=/IndicatorPublic/";
-    }
-    
-    // redirect to home page
-    
-    document.querySelector("#want_old_site_home").href = "/IndicatorPublic/";
-    
-  </script>
-  
-  {{- end -}} 
-  
 </article>
 
 {{- end -}}
