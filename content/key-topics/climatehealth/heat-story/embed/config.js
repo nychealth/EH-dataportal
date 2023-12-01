@@ -279,6 +279,7 @@ config = {
              "id":"air_quality",
              "name": "Air Quality - PM2.5",
              "type": "measureData",
+             "units": "μg/m3",
              "measureInfo": {
                 "indicatorID": 2023,
                 "measureID": 365,
@@ -314,7 +315,7 @@ config = {
             "measureInfo": {
                "indicatorID": 2191,
                "measureID": 822,
-               "geoType": "CDTA",
+               "geoType": "CDTA2020",
                "time": "2023",
              },
             "args":{

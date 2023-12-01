@@ -714,6 +714,7 @@ function featureInfoToHtml(feature, layer) {
     return `<h3>${layer.options.name}</h3><table>${featureTable.join('')}</table>`;
 }
 
+// TOOLTIP
 function formatPopup(features) {
     const updates = features
         //.sort((a, b) => (a.sortOrder ?? 999) - (b.sortOrder ?? 999))
@@ -873,6 +874,7 @@ function addListeners() {
         });
     });
 
+    // this is where we'd add behavior to update the main card with each story's card content.
     const storyCards = document.querySelectorAll('.story-card-button')
     storyCards.forEach(s => {
         s.addEventListener('click', async () => {
