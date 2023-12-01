@@ -7,7 +7,7 @@
 
     // this gets a json of topics and nested indicators
     async function getJSON() {
-        d3.json("https://raw.githubusercontent.com/nychealth/EH-dataportal/prod-deploy/IndicatorData/topic_indicators.json").then(data => {
+        d3.json("https://raw.githubusercontent.com/nychealth/EH-dataportal/builds/prod-prod/IndicatorData/topic_indicators.json").then(data => {
             topicIndicators = data
         });
     }

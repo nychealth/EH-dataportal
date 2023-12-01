@@ -53,7 +53,7 @@ jobs:
       # using checkout action
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with: 
           ref: ${{ inputs.branch }}
           fetch-depth: 0
@@ -61,7 +61,7 @@ jobs:
       # set up node and cache for npm
 
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: lts/*
           cache: "npm"
@@ -148,6 +148,7 @@ jobs:
       - name: Publish to "builds/${{ inputs.branch }}"
         uses: peaceiris/actions-gh-pages@v3
         with:
+          # if there's a commit message use that
           full_commit_message: Publish to "builds/${{ inputs.branch }}"
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: builds/${{ inputs.branch }}
