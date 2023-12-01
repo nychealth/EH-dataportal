@@ -1,27 +1,24 @@
-name: Hugo Build to prod-deploy
+name: Hugo Build to `builds/dev-prod` (deploy to GitHub Pages)
 
-# run action on a merged PR on "production"
+# run action on a merged PR on "development"
 
 on:
-  pull_request:
-    branches:
-      - production
-    types:
-      - closed
-  
+  # pull_request:
+  #   branches:
+  #     - development
+  #   types:
+  #     - closed
+  workflow_dispatch:
+
+
 jobs:
-
-  # ------------------
-  # build to prod-deploy
-  # ------------------
-
-  prod-deploy:
-    name: Build & Deploy to prod-deploy
+  deploy:
+    name: Build & Deploy w/ Hugo
     runs-on: ubuntu-20.04
 
-    # only run on PR that is also merged
+    # only run the action if it's a push, or the PR was merged, or it was manually triggered
 
-    if: github.event.pull_request.merged == true
+    if: github.event_name == 'push' || github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
 
     # wait for other triggered jobs to finish before running this
 
@@ -43,12 +40,12 @@ jobs:
       # using checkout action
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # set up node and cache for npm
 
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: lts/*
           cache: "npm"
@@ -81,12 +78,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: |
-          npm install grunt
-          npm install lunr
-          npm install yamljs
-          npm install string
-          npm install url
+        run: npm install
 
       # set up Hugo
 
@@ -109,7 +101,7 @@ jobs:
       # build site with Hugo
 
       - name: Hugo Build
-        run: hugo --environment production --cleanDestinationDir --debug
+        run: hugo --environment development --cleanDestinationDir --debug
 
       # run gruntfile action
 
@@ -125,13 +117,14 @@ jobs:
         with:
           commitMessage: Update index & NPM package list
 
-      # publish to "deploy" branch
+      # publish to "builds/dev-prod" branch
 
-      - name: Publish to "prod-deploy"
+      - name: Publish to "builds/dev-prod"
         uses: peaceiris/actions-gh-pages@v3
         with:
-          full_commit_message: ${{ github.event.head_commit.message }} # will usually be merge commit
+          # if there's a commit message use that
+          full_commit_message: ${{ github.event.pull_request && github.event.pull_request.merge_commit_message || github.action }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: prod-deploy
+          publish_branch: builds/dev-prod
           publish_dir: ./docs/
           enable_jekyll: false

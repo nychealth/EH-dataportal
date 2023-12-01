@@ -11,15 +11,16 @@ on:
       - feature-redeploy-without-beta
     types:
       - closed
+  workflow_dispatch:
 
 jobs:
   deploy:
     name: Build & Deploy w/ Hugo
     runs-on: ubuntu-20.04
 
-    # only run the action if it's a push or the PR was merged
+    # only run the action if it's a push, or the PR was merged, or it was manually triggered
 
-    if: github.event_name == 'push' || github.event.pull_request.merged == true
+    if: github.event_name == 'push' || github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
 
     # wait for other triggered jobs to finish before running this
 
@@ -41,12 +42,12 @@ jobs:
       # using checkout action
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # set up node and cache for npm
 
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: lts/*
           cache: "npm"
@@ -79,12 +80,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: |
-          npm install grunt
-          npm install lunr
-          npm install yamljs
-          npm install string
-          npm install url
+        run: npm install
 
       # set up Hugo
 
@@ -128,7 +124,7 @@ jobs:
       - name: Publish to "test-redeploy-wo-beta"
         uses: peaceiris/actions-gh-pages@v3
         with:
-          full_commit_message: ${{ github.event.head_commit.message }} # will usually be merge commit
+          full_commit_message: ${{ github.event.pull_request && github.event.pull_request.merge_commit_message || github.action }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: test-redeploy-wo-beta
           publish_dir: ./docs/
