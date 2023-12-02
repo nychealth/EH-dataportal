@@ -215,7 +215,7 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office"
 ### 当边界重叠时如何选择？
 这些不同的社区边界会使事情变得令人困惑。例如，假设您住在Ditmas Park，并且您想将一些健康数据带到您的社区委员会的一场会议上。Ditmas Park是位于Flatbush/Midwood的社区单元14的一部分。但CD14跨越两个不同的UHF社区。
 
-[我们有一个工具可以帮助您查看重叠和差异](https://a816-dohbesp.nyc.gov/IndicatorPublic/CommunityDistrict.aspx)，以便您可以选择使用哪种社区方案进行报告，但它仍然提出了一个难题：您会带哪些社区的数据参加您的社区委员会会议？
+我们有一个工具可以帮助您查看重叠和差异，以便您可以选择使用哪种社区方案进行报告，但它仍然提出了一个难题：您会带哪些社区的数据参加您的社区委员会会议？
 
 {{< figure src="overlap.png" alt="An example of a Community District that overlaps two UHF42 neighborhoods.">}}
 

@@ -1,19 +1,26 @@
-name: Hugo Build to `dev-test` branch
+name: Hugo Build to `dev-stage` branch (deploy to 307)
 
-# run action when manually triggered
+# run action on a merged PR on "build-to-dev-stage"
 
 on:
-  workflow_dispatch
-  
+  push:
+    branches:
+      - build-to-dev-stage
+  pull_request:
+    branches:
+      - build-to-dev-stage
+    types:
+      - closed
+  workflow_dispatch:
+
 jobs:
-
-  # ------------------
-  # build to dev-test
-  # ------------------
-
-  dev-test:
-    name: Build & Deploy to dev-test
+  deploy:
+    name: Build & Deploy w/ Hugo
     runs-on: ubuntu-20.04
+
+    # only run the action if it's a push, or the PR was merged, or it was manually triggered
+
+    if: github.event_name == 'push' || github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
 
     # wait for other triggered jobs to finish before running this
 
@@ -35,12 +42,12 @@ jobs:
       # using checkout action
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # set up node and cache for npm
 
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: lts/*
           cache: "npm"
@@ -73,19 +80,14 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: |
-          npm install grunt
-          npm install lunr
-          npm install yamljs
-          npm install string
-          npm install url
+        run: npm install
 
       # set up Hugo
 
       - name: Hugo setup
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: "0.110.0"
+          hugo-version: "0.105.0"
           extended: true
 
       # cache Hugo modules
@@ -101,7 +103,7 @@ jobs:
       # build site with Hugo
 
       - name: Hugo Build
-        run: hugo --environment dev_test --cleanDestinationDir --debug
+        run: hugo --environment dev_stage --cleanDestinationDir --debug
 
       # run gruntfile action
 
@@ -119,11 +121,12 @@ jobs:
 
       # publish to "deploy" branch
 
-      - name: Publish to "dev-test"
+      - name: Publish to "builds/dev-stage"
         uses: peaceiris/actions-gh-pages@v3
         with:
-          full_commit_message: ${{ github.event.head_commit.message }} # will usually be merge commit
+          # if there's a commit message use that
+          full_commit_message: ${{ github.event.pull_request && github.event.pull_request.merge_commit_message || github.action }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: dev-test
+          publish_branch: builds/dev-stage
           publish_dir: ./docs/
           enable_jekyll: false

@@ -220,9 +220,7 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
 
 
 ### How do you choose when boundaries overlap?
-These different neighborhood boundaries can make things confusing. For example, say you live in Ditmas Park and you want to take some health data to a meeting of your Community Board. Ditmas Park is part of Community District 14, Flatbush/Midwood. But CD14 straddles two different UHF neighborhoods.
-
-[We have a tool that helps you view the overlap and the differences](https://a816-dohbesp.nyc.gov/IndicatorPublic/CommunityDistrict.aspx) so that you can choose what Neighborhood Report to use, but it still raises a difficult question: what neighborhood's data would you bring to your Community Board meeting?
+These different neighborhood boundaries can make things confusing. For example, say you live in Ditmas Park and you want to take some health data to a meeting of your Community Board. Ditmas Park is part of Community District 14, Flatbush/Midwood. But CD14 straddles two different UHF neighborhoods. This raises a difficult question: what neighborhood's data would you bring to your Community Board meeting?
 
 {{< figure src="overlap.png" alt="An example of a Community District that overlaps two UHF42 neighborhoods.">}}
 

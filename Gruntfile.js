@@ -54,7 +54,7 @@ module.exports = function(grunt) {
             // grunt.log.writeln(de_indicator_names.array("value"))
 
             // ------------------------------------------------------------------------------- //
-            // running `processFile` on all HTML files on gh-pages branch
+            // running `processFile` on all HTML files on dev-prod branch
             // ------------------------------------------------------------------------------- //
 
             // ([rootdir, subdir] are necessary in the function call, or else grunt throws an error, so we need them, even though they don't do anything)

@@ -1,24 +1,42 @@
-name: Hugo Build to prod-deploy (manual)
+name: Hugo Build from any branch
 
-# run action when manually triggered
+# run action on a merged PR on "production"
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+
+    inputs:
+
+      branch:
+        description: Branch to build
+        required: true
+        type: string
+
+      environment:
+        description: environment for Hugo
+        required: false
+        type: string
+        default: production
+      
+      baseURL:
+        description: baseURL for Hugo
+        required: false
+        type: string
   
 jobs:
 
   # ------------------
-  # build to prod-deploy
+  # build to the branch
   # ------------------
 
-  prod-deploy:
-    name: Build & Deploy to prod-deploy
+  build:
+    name: Build `${{ inputs.branch }}` to `builds/${{ inputs.branch }}`
     runs-on: ubuntu-20.04
 
     # wait for other triggered jobs to finish before running this
 
     concurrency: # don't run two of these jobs at the same time
-      group: ${{ github.workflow }}-${{ github.ref_name }} # ref name is branch name, so only one job on a branch will run at a time
+      group: ${{ github.workflow }}-${{ inputs.branch }} # use the given branch name, so only one job on a branch will run at a time
       cancel-in-progress: true # this makes it so that only the most recent job is run
 
     # define job's steps
@@ -35,12 +53,15 @@ jobs:
       # using checkout action
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with: 
+          ref: ${{ inputs.branch }}
+          fetch-depth: 0
 
       # set up node and cache for npm
 
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: lts/*
           cache: "npm"
@@ -73,12 +94,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: |
-          npm install grunt
-          npm install lunr
-          npm install yamljs
-          npm install string
-          npm install url
+        run: npm install
 
       # set up Hugo
 
@@ -100,8 +116,18 @@ jobs:
 
       # build site with Hugo
 
-      - name: Hugo Build
-        run: hugo --environment production --cleanDestinationDir --debug
+      # if only environment is specified
+      
+      - name: Hugo Build environment
+        if: ${{ ! inputs.baseURL }}
+        run: hugo --environment ${{ inputs.environment }} --cleanDestinationDir --debug 
+
+      # if baseURL is also specified
+      
+      - name: Hugo Build environment + baseURL
+        if: ${{ inputs.baseURL }}
+        run: hugo --environment ${{ inputs.environment }} --baseURL ${{ inputs.baseURL }} --cleanDestinationDir --debug 
+
 
       # run gruntfile action
 
@@ -119,11 +145,12 @@ jobs:
 
       # publish to "deploy" branch
 
-      - name: Publish to "prod-deploy"
+      - name: Publish to "builds/${{ inputs.branch }}"
         uses: peaceiris/actions-gh-pages@v3
         with:
-          full_commit_message: ${{ github.event.head_commit.message }} # will usually be merge commit
+          # if there's a commit message use that
+          full_commit_message: Publish to "builds/${{ inputs.branch }}"
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: prod-deploy
+          publish_branch: builds/${{ inputs.branch }}
           publish_dir: ./docs/
           enable_jekyll: false
