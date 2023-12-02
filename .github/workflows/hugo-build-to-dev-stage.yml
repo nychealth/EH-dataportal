@@ -125,7 +125,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           # if there's a commit message use that
-          full_commit_message: ${{ github.event.pull_request && github.event.pull_request.merge_commit_message || github.action }}
+          full_commit_message: ${{ github.event.head_commit.message }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: builds/dev-stage
           publish_dir: ./docs/
