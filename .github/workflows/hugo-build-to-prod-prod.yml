@@ -1,25 +1,28 @@
-name: Hugo Build to `data-staging` branch
+name: Hugo Build to `builds/prod-prod` (deploy to production servers)
 
-# run action on a merged PR on "production"
+# run action on a merged PR on "production", or manually
 
 on:
-  # workflow_run:
-  #   workflows: [Hugo Build to `prod-deploy` branch]
-  #   types:
-  #     - completed
+  pull_request:
+    branches:
+      - production
+    types:
+      - closed
+  workflow_dispatch:
   
-  # effectively turning this off, but keeping it in the repo
-  schedule:
-    - cron: 0 0 1 1 * 
-
 jobs:
-  deploy:
-    name: Build & Deploy w/ Hugo
+
+  # ------------------
+  # build to prod-prod
+  # ------------------
+
+  build:
+    name: Build `production` to `builds/prod-prod`
     runs-on: ubuntu-20.04
 
-    # only run on PR that is also merged
+    # only run the action if the PR was merged, or it was manually triggered
 
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
 
     # wait for other triggered jobs to finish before running this
 
@@ -41,12 +44,23 @@ jobs:
       # using checkout action
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with: 
+          ref: production
+          fetch-depth: 0
+
+      # get last commit
+
+      - name: get last commit
+        id: last_commit
+        run: |
+          echo "last_hash=$(git log -1 --format=%H)" >> $GITHUB_OUTPUT
+          echo "last_msg=$(git log -1 --format=%s)" >> $GITHUB_OUTPUT
 
       # set up node and cache for npm
 
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: lts/*
           cache: "npm"
@@ -79,12 +93,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: |
-          npm install grunt
-          npm install lunr
-          npm install yamljs
-          npm install string
-          npm install url
+        run: npm install
 
       # set up Hugo
 
@@ -107,7 +116,7 @@ jobs:
       # build site with Hugo
 
       - name: Hugo Build
-        run: hugo --environment data_staging --cleanDestinationDir
+        run: hugo --environment prod_prod --cleanDestinationDir --debug
 
       # run gruntfile action
 
@@ -123,13 +132,13 @@ jobs:
         with:
           commitMessage: Update index & NPM package list
 
-      # publish to "deploy" branch
+      # publish to "builds/prod-prod" branch
 
-      - name: Publish to "data-staging"
+      - name: Publish to "builds/prod-prod"
         uses: peaceiris/actions-gh-pages@v3
         with:
-          full_commit_message: ${{ github.event.head_commit.message }} # will usually be merge commit
+          full_commit_message: "Build ${{ steps.last_commit.outputs.last_hash }} (${{ steps.last_commit.outputs.last_msg }})"
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: data-staging
+          publish_branch: builds/prod-prod
           publish_dir: ./docs/
           enable_jekyll: false

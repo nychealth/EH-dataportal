@@ -1,4 +1,4 @@
-baseURL = "https://a816-dohbesp.nyc.gov/IndicatorPublic/"
+baseURL = "https://nychealth.github.io/EH-dataportal/"
 [params]
     data_branch = "production"
 
