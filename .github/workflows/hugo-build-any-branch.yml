@@ -156,7 +156,6 @@ jobs:
       - name: Publish to "builds/${{ inputs.branch }}"
         uses: peaceiris/actions-gh-pages@v3
         with:
-          # if there's a commit message use that
           full_commit_message: Publish ${{ steps.last_commit.outputs.last_hash }} (${{ steps.last_commit.outputs.last_msg }}) to "builds/${{ inputs.branch }}"
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: builds/${{ inputs.branch }}
