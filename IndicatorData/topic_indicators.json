@@ -55,7 +55,9 @@
       2385,
       2381,
       2386,
+      2414,
       18,
+      2431,
       2392,
       2147,
       2149,
@@ -67,12 +69,15 @@
   },
   "asthma-triggers": {
     "IndicatorID": [
+      2338,
+      2404,
+      2422,
       2101,
-      25,
-      2393,
+      2430,
+      48,
       2394,
       107,
-      48
+      2393
     ],
     "topic_name": "Asthma triggers at home"
   },
@@ -157,13 +162,14 @@
   },
   "cigarette-smoke": {
     "IndicatorID": [
-      2338,
-      2020,
-      2017,
       2421,
       2019,
       2021,
-      25
+      2338,
+      2404,
+      2422,
+      2020,
+      2017
     ],
     "topic_name": "Cigarette smoke"
   },
@@ -210,6 +216,11 @@
       2132,
       2317,
       2073,
+      2328,
+      2329,
+      2330,
+      2326,
+      2327,
       17,
       2336,
       15,
@@ -302,6 +313,15 @@
     ],
     "topic_name": "Lead poisoning"
   },
+  "mental-health": {
+    "IndicatorID": [
+      2417,
+      2418,
+      2419,
+      2420
+    ],
+    "topic_name": "Mental health"
+  },
   "mice-and-rats": {
     "IndicatorID": [
       2394,
@@ -326,7 +346,8 @@
       2063,
       2064,
       2061,
-      2062
+      2062,
+      2169
     ],
     "topic_name": "Overweight"
   },
@@ -423,6 +444,13 @@
       2114
     ],
     "topic_name": "Walking, driving, and cycling"
+  },
+  "waterways": {
+    "IndicatorID": [
+      2427,
+      2428
+    ],
+    "topic_name": "Waterways"
   },
   "weather-related-illness": {
     "IndicatorID": [

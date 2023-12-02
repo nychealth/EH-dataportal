@@ -117,6 +117,20 @@
                 hreflang="en"
                 href="/keywords/violence/"
                 /></url><url>
+    <loc>/keywords/climate/</loc>
+    <lastmod>2023-08-15T15:10:00+00:00</lastmod></url><url>
+    <loc>/keywords/climatehealth/</loc>
+    <lastmod>2023-08-15T15:10:00+00:00</lastmod></url><url>
+    <loc>/categories/climatehealth/</loc>
+    <lastmod>2023-08-15T15:10:00+00:00</lastmod></url><url>
+    <loc>/keywords/harbor/</loc>
+    <lastmod>2023-08-15T15:10:00+00:00</lastmod></url><url>
+    <loc>/keywords/pollution/</loc>
+    <lastmod>2023-08-15T15:10:00+00:00</lastmod></url><url>
+    <loc>/keywords/water/</loc>
+    <lastmod>2023-08-15T15:10:00+00:00</lastmod></url><url>
+    <loc>/data-explorer/waterways/</loc>
+    <lastmod>2023-08-15T15:10:00+00:00</lastmod></url><url>
     <loc>/keywords/elevated-blood-lead-levels/</loc>
     <lastmod>2023-07-13T08:29:34-04:00</lastmod></url><url>
     <loc>/keywords/employment/</loc>
@@ -141,9 +155,9 @@
     <lastmod>2023-06-16T09:01:00-04:00</lastmod></url><url>
     <loc>/data-stories/racial-wealth-gap/</loc>
     <lastmod>2023-06-16T09:01:00-04:00</lastmod></url><url>
-    <loc>/categories/pests/</loc>
-    <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
     <loc>/key-topics/pests/rat-mitigation-zones/</loc>
+    <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
+    <loc>/categories/pests/</loc>
     <lastmod>2023-06-01T11:14:56-04:00</lastmod></url><url>
     <loc>/keywords/garbage/</loc>
     <lastmod>2023-03-20T13:11:44-04:00</lastmod></url><url>
@@ -363,8 +377,6 @@
     <lastmod>2022-12-15T15:23:23-05:00</lastmod></url><url>
     <loc>/keywords/policy/</loc>
     <lastmod>2022-12-15T15:23:23-05:00</lastmod></url><url>
-    <loc>/keywords/pollution/</loc>
-    <lastmod>2022-12-15T15:23:23-05:00</lastmod></url><url>
     <loc>/keywords/poverty/</loc>
     <lastmod>2022-12-15T15:23:23-05:00</lastmod><xhtml:link
                 rel="alternate"
@@ -393,10 +405,6 @@
                 hreflang="en"
                 href="/keywords/traffic/"
                 /></url><url>
-    <loc>/keywords/climate/</loc>
-    <lastmod>2022-12-15T13:11:44-04:00</lastmod></url><url>
-    <loc>/categories/climatehealth/</loc>
-    <lastmod>2022-12-15T13:11:44-04:00</lastmod></url><url>
     <loc>/keywords/cold/</loc>
     <lastmod>2022-12-15T13:11:44-04:00</lastmod></url><url>
     <loc>/keywords/ice/</loc>
@@ -617,6 +625,20 @@
     <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
     <loc>/keywords/carbon-monoxide/</loc>
     <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
+    <loc>/categories/childhealth/</loc>
+    <lastmod>2021-10-02T07:56:00-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/es/categories/childhealth/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/categories/childhealth/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/categories/childhealth/"
+                /></url><url>
     <loc>/keywords/cockroaches/</loc>
     <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
     <loc>/keywords/displacement/</loc>
@@ -674,6 +696,8 @@
                 href="/keywords/maintenance-deficiencies/"
                 /></url><url>
     <loc>/keywords/mice/</loc>
+    <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
+    <loc>/key-topics/climatehealth/asthma-syndrome/</loc>
     <lastmod>2021-10-02T07:56:00-04:00</lastmod></url><url>
     <loc>/keywords/inequality/</loc>
     <lastmod>2021-10-01T07:59:16-04:00</lastmod></url><url>
@@ -747,6 +771,8 @@
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/keywords/disparities/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
+    <loc>/key-topics/pests/rat-information-portal/</loc>
+    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/categories/outcomes/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/keywords/park/</loc>
@@ -755,8 +781,6 @@
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/keywords/quality/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
-    <loc>/key-topics/pests/rat-information-portal/</loc>
-    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/keywords/sewage/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/keywords/summer/</loc>
@@ -764,8 +788,6 @@
     <loc>/keywords/swimming/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/keywords/temperature/</loc>
-    <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
-    <loc>/keywords/water/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/keywords/ed-visit/</loc>
     <lastmod>2021-08-30T11:51:01-04:00</lastmod></url><url>
@@ -879,20 +901,6 @@
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/keywords/child/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
-    <loc>/categories/childhealth/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/es/categories/childhealth/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/zh/categories/childhealth/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/categories/childhealth/"
-                /></url><url>
     <loc>/keywords/childhood-asthma/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/keywords/children/</loc>
@@ -924,6 +932,8 @@
     <loc>/keywords/crowding/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/data-explorer/data-reference/</loc>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
+    <loc>/keywords/depression/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/keywords/disease/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
@@ -967,6 +977,8 @@
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/data-explorer/health-care/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
+    <loc>/keywords/health-care-access/</loc>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/data-explorer/health-impacts-of-air-pollution/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/keywords/healthy-housing/</loc>
@@ -996,6 +1008,12 @@
     <loc>/keywords/lyme/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/keywords/lyme-disease/</loc>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
+    <loc>/keywords/mental-health/</loc>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
+    <loc>/data-explorer/mental-health/</loc>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
+    <loc>/keywords/mental-illness/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/data-explorer/mice-and-rats/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
@@ -1034,6 +1052,8 @@
     <loc>/keywords/rodents/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/keywords/secondhand/</loc>
+    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
+    <loc>/keywords/self-harm/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/keywords/smoke/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>

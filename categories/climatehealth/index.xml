@@ -6,7 +6,19 @@
     <description>Recent content in climatehealth on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 15 Dec 2022 13:11:44 -0400</lastBuildDate><atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-stage/categories/climatehealth/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Aug 2023 15:10:00 +0000</lastBuildDate><atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-stage/categories/climatehealth/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Waterways</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-explorer/waterways/</link>
+      <pubDate>Tue, 15 Aug 2023 15:10:00 +0000</pubDate>
+      
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-explorer/waterways/</guid>
+      <description>Healthy waterways are important for both aquatic life and humans who use the water for recreation.
+We measure the quality of harbor water through two key indicators:
+Dissolved oxygen is essential for most aquatic life. Coastal habitats and ecosystems thrive in environments with high concentrations of dissolved oxygen.
+Concentrations of fecal coliform bacteria and Enterococci bacteria. Higher levels of these bacteria can mean there is sewage-related water pollution. Though most of these bacteria do not cause disease, higher concentrations can indicate the presence of pathogenic (disease-producing) bacteria.</description>
+    </item>
+    
     <item>
       <title>Staying safe in cold weather</title>
       <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-stories/cold/</link>
@@ -35,6 +47,17 @@ But the power is out. Without the nebulizer, your child’s breathing gets worse
       <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/key-topics/climatehealth/</guid>
       <description>Climate, including extreme weather, has a direct impact on health. As NYC&amp;rsquo;s climate changes, along with the world&amp;rsquo;s climate, we expect more frequent and intense heat waves, increased rainfall and more severe storms. These will add to existing weather-related risks. Already, heat kills more people than all other natural disasters combined.
 In New York City, those most vulnerable to the dangers of hot weather are older adults and people with health conditions like heart disease, diabetes, and cognitive impairment - especially those in low-income, Black, and Brown communities.</description>
+    </item>
+    
+    <item>
+      <title>Real-time asthma emergency department visits</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/key-topics/climatehealth/asthma-syndrome/</link>
+      <pubDate>Sat, 02 Oct 2021 07:56:00 -0400</pubDate>
+      
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/key-topics/climatehealth/asthma-syndrome/</guid>
+      <description>Asthma is a common disease that makes breathing difficult, causing coughing, wheezing, and shortness of breath.
+Things in our environment can trigger asthma or make symptoms worse - like air pollution (like fine particulates, ozone, or diesel exhaust); unhealthy housing conditions (dust mites, cockroaches, mold); or things like pollen, pets, or tobacco smoke.
+Asthma is a leading cause of emergency department visits, hospitalizations, and missed school days. Emergency department visits for asthma are concentrated in higher-poverty neighborhoods, as poor housing quality and less access to preventive health care create barriers to managing asthma.</description>
     </item>
     
     <item>
@@ -133,6 +156,18 @@ Air conditioning, which is a vital tool to protect people who are at risk of hea
       <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-explorer/housing-stability/</guid>
       <description>Most people spend most of their time in their home. That makes the home a crucial environment that can affect one&amp;rsquo;s health.
 Housing stability In NYC, about one out of every three homes is owned by the person living there - about half the national average. Owning a home is a powerful way to build intergenerational wealth, but historical and contemporary disinvestment and housing discrimination has made it hard for many New Yorkers to own homes.</description>
+    </item>
+    
+    <item>
+      <title>Mental health</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-explorer/mental-health/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-explorer/mental-health/</guid>
+      <description>Mental health is a person’s emotional, psychological, and social wellbeing. It is an important part of overall health.
+Many factors can contribute to poor mental health. These include chronic disease, poverty, and poor environmental conditions. Many adults with mental illness do not receive the treatment they need.
+Mental health and the environment A person’s environment affects their mental health.
+Neighborhood factors like green space, noise, and infrastructure can affect mental health.</description>
     </item>
     
     <item>
