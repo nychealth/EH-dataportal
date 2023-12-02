@@ -58,6 +58,14 @@ jobs:
           ref: ${{ inputs.branch }}
           fetch-depth: 0
 
+      # get last commit
+
+      - name: get last commit
+        id: last_commit
+        run: |
+          echo "last_hash=$(git log -1 --format=%H)" >> $GITHUB_OUTPUT
+          echo "last_msg=$(git log -1 --format=%s)" >> $GITHUB_OUTPUT
+
       # set up node and cache for npm
 
       - name: Setup node
@@ -149,7 +157,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           # if there's a commit message use that
-          full_commit_message: Publish to "builds/${{ inputs.branch }}"
+          full_commit_message: Publish ${{ steps.last_commit.outputs.last_hash }} (${{ steps.last_commit.outputs.last_msg }}) to "builds/${{ inputs.branch }}"
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: builds/${{ inputs.branch }}
           publish_dir: ./docs/
