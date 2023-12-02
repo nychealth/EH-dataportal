@@ -25,9 +25,7 @@
 	        user-select: none;
 	  -webkit-user-drag: none;
 	}
-	
 /* Prevents IE11 from highlighting tiles in blue */
-
 .leaflet-tile::selection {
 	background: transparent;
 }

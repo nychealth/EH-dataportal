@@ -40,7 +40,7 @@
     {
         "title": "Data Explorer",
         "displayTitle": "Data Explorer",
-        "seo_title": "Explore Data on NYC's neighborhoods",
+        "seo_title": "Explore Data on NYC's neighborhoods.",
         "content": "Our sites data explorer contains hundreds of environmental health datasets Get tables maps trends and more to view neighborhoodlevel data on ways that environments affect health in NYC",
         "href": "data-explorer"
     },
@@ -228,8 +228,8 @@
             2386,
             2414,
             18,
-            2431,
             2392,
+            2431,
             2147,
             2149,
             2339,
