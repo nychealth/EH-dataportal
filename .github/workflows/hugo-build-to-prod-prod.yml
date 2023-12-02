@@ -16,8 +16,8 @@ jobs:
   # build to prod-prod
   # ------------------
 
-  prod-prod:
-    name: Build & Deploy to builds/prod-prod
+  build:
+    name: Build `production` to `builds/prod-prod`
     runs-on: ubuntu-20.04
 
     # only run the action if the PR was merged, or it was manually triggered
@@ -45,6 +45,17 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v4
+        with: 
+          ref: production
+          fetch-depth: 0
+
+      # get last commit
+
+      - name: get last commit
+        id: last_commit
+        run: |
+          echo "last_hash=$(git log -1 --format=%H)" >> $GITHUB_OUTPUT
+          echo "last_msg=$(git log -1 --format=%s)" >> $GITHUB_OUTPUT
 
       # set up node and cache for npm
 
@@ -121,13 +132,13 @@ jobs:
         with:
           commitMessage: Update index & NPM package list
 
-      # publish to "deploy" branch
+      # publish to "builds/prod-prod" branch
 
       - name: Publish to "builds/prod-prod"
         uses: peaceiris/actions-gh-pages@v3
         with:
           # if there's a commit message use that
-          full_commit_message: ${{ github.event.pull_request && github.event.pull_request.merge_commit_message || github.action }}
+          full_commit_message: "Build ${{ steps.last_commit.outputs.last_hash }} (${{ steps.last_commit.outputs.last_msg }})"
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: builds/prod-prod
           publish_dir: ./docs/

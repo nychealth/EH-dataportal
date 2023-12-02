@@ -14,8 +14,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
-    name: Build & Deploy w/ Hugo
+
+  # ------------------
+  # build to test-redeploy-wo-beta
+  # ------------------
+
+  build:
+    name: Build `feature-redeploy-without-beta` to `builds/test-redeploy-wo-beta`
     runs-on: ubuntu-20.04
 
     # only run the action if it's a push, or the PR was merged, or it was manually triggered
@@ -43,7 +48,18 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v4
+        with: 
+          ref: feature-redeploy-without-beta
+          fetch-depth: 0
 
+      # get last commit
+
+      - name: get last commit
+        id: last_commit
+        run: |
+          echo "last_hash=$(git log -1 --format=%H)" >> $GITHUB_OUTPUT
+          echo "last_msg=$(git log -1 --format=%s)" >> $GITHUB_OUTPUT
+      
       # set up node and cache for npm
 
       - name: Setup node
@@ -121,11 +137,11 @@ jobs:
 
       # publish to "deploy" branch
 
-      - name: Publish to "test-redeploy-wo-beta"
+      - name: Publish to "builds/test-redeploy-wo-beta"
         uses: peaceiris/actions-gh-pages@v3
         with:
-          full_commit_message: ${{ github.event.pull_request && github.event.pull_request.merge_commit_message || github.action }}
+          full_commit_message: "Build ${{ steps.last_commit.outputs.last_hash }} (${{ steps.last_commit.outputs.last_msg }})"
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: test-redeploy-wo-beta
+          publish_branch: builds/test-redeploy-wo-beta
           publish_dir: ./docs/
           enable_jekyll: false
