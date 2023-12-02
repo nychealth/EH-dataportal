@@ -89,51 +89,6 @@
     </item>
     
     <item>
-      <title>climate</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/climate/</link>
-      <pubDate>Tue, 15 Aug 2023 15:10:00 +0000</pubDate>
-      
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/climate/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>climatehealth</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/climatehealth/</link>
-      <pubDate>Tue, 15 Aug 2023 15:10:00 +0000</pubDate>
-      
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/climatehealth/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>harbor</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/harbor/</link>
-      <pubDate>Tue, 15 Aug 2023 15:10:00 +0000</pubDate>
-      
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/harbor/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>pollution</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/pollution/</link>
-      <pubDate>Tue, 15 Aug 2023 15:10:00 +0000</pubDate>
-      
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/pollution/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>water</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/water/</link>
-      <pubDate>Tue, 15 Aug 2023 15:10:00 +0000</pubDate>
-      
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/water/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>elevated blood lead levels</title>
       <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/elevated-blood-lead-levels/</link>
       <pubDate>Thu, 13 Jul 2023 08:29:34 -0400</pubDate>
@@ -449,6 +404,15 @@
     </item>
     
     <item>
+      <title>pollution</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/pollution/</link>
+      <pubDate>Thu, 15 Dec 2022 15:23:23 -0500</pubDate>
+      
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/pollution/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>poverty</title>
       <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/poverty/</link>
       <pubDate>Thu, 15 Dec 2022 15:23:23 -0500</pubDate>
@@ -463,6 +427,15 @@
       <pubDate>Thu, 15 Dec 2022 15:23:23 -0500</pubDate>
       
       <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/traffic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>climate</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/climate/</link>
+      <pubDate>Thu, 15 Dec 2022 13:11:44 -0400</pubDate>
+      
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/climate/</guid>
       <description></description>
     </item>
     
@@ -1259,6 +1232,15 @@
     </item>
     
     <item>
+      <title>water</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/water/</link>
+      <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
+      
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/water/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>ED visit</title>
       <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/ed-visit/</link>
       <pubDate>Mon, 30 Aug 2021 11:51:01 -0400</pubDate>
@@ -1601,15 +1583,6 @@
     </item>
     
     <item>
-      <title>depression</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/depression/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/depression/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>disease</title>
       <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/disease/</link>
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
@@ -1709,15 +1682,6 @@
     </item>
     
     <item>
-      <title>health care access</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/health-care-access/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/health-care-access/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>healthy housing</title>
       <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/healthy-housing/</link>
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
@@ -1804,24 +1768,6 @@
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/lyme-disease/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>mental health</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/mental-health/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/mental-health/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>mental illness</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/mental-illness/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/mental-illness/</guid>
       <description></description>
     </item>
     
@@ -1939,15 +1885,6 @@
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       
       <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/secondhand/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>self-harm</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/self-harm/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/self-harm/</guid>
       <description></description>
     </item>
     

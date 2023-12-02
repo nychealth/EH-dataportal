@@ -8,18 +8,6 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 07 Oct 2021 09:34:04 -0400</lastBuildDate><atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-explorer/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Waterways</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-explorer/waterways/</link>
-      <pubDate>Tue, 15 Aug 2023 15:10:00 +0000</pubDate>
-      
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-explorer/waterways/</guid>
-      <description>Healthy waterways are important for both aquatic life and humans who use the water for recreation.
-We measure the quality of harbor water through two key indicators:
-Dissolved oxygen is essential for most aquatic life. Coastal habitats and ecosystems thrive in environments with high concentrations of dissolved oxygen.
-Concentrations of fecal coliform bacteria and Enterococci bacteria. Higher levels of these bacteria can mean there is sewage-related water pollution. Though most of these bacteria do not cause disease, higher concentrations can indicate the presence of pathogenic (disease-producing) bacteria.</description>
-    </item>
-    
-    <item>
       <title>Healthy eating</title>
       <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-explorer/healthy-eating/</link>
       <pubDate>Wed, 17 Nov 2021 12:01:22 -0500</pubDate>
@@ -279,18 +267,6 @@ Housing stability In NYC, about one out of every three homes is owned by the per
       <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-explorer/lead/</guid>
       <description>Lead is a metal that is toxic to people. There is no safe level of lead in your body. It can cause learning and behavior problems, and delay physical growth and mental development.
 In the past, it was used in gasoline, paint, ceramics, caulking, pipes and solder. In 1960, NYC banned the use of lead-based paint in homes. A national ban came into effect in 1978. Leaded gasoline was phased out beginning in the 1970&amp;rsquo;s.</description>
-    </item>
-    
-    <item>
-      <title>Mental health</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-explorer/mental-health/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-explorer/mental-health/</guid>
-      <description>Mental health is a person’s emotional, psychological, and social wellbeing. It is an important part of overall health.
-Many factors can contribute to poor mental health. These include chronic disease, poverty, and poor environmental conditions. Many adults with mental illness do not receive the treatment they need.
-Mental health and the environment A person’s environment affects their mental health.
-Neighborhood factors like green space, noise, and infrastructure can affect mental health.</description>
     </item>
     
     <item>
