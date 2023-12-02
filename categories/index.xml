@@ -26,6 +26,15 @@
     </item>
     
     <item>
+      <title>climatehealth</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/categories/climatehealth/</link>
+      <pubDate>Tue, 15 Aug 2023 15:10:00 +0000</pubDate>
+      
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/categories/climatehealth/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>pests</title>
       <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/categories/pests/</link>
       <pubDate>Thu, 01 Jun 2023 11:14:56 -0400</pubDate>
@@ -62,15 +71,6 @@
     </item>
     
     <item>
-      <title>climatehealth</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/categories/climatehealth/</link>
-      <pubDate>Thu, 15 Dec 2022 13:11:44 -0400</pubDate>
-      
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/categories/climatehealth/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>internal</title>
       <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/categories/internal/</link>
       <pubDate>Mon, 07 Nov 2022 08:49:22 -0400</pubDate>
@@ -98,20 +98,20 @@
     </item>
     
     <item>
+      <title>childhealth</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/categories/childhealth/</link>
+      <pubDate>Sat, 02 Oct 2021 07:56:00 -0400</pubDate>
+      
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/categories/childhealth/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>outcomes</title>
       <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/categories/outcomes/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
       
       <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/categories/outcomes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>childhealth</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/categories/childhealth/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/categories/childhealth/</guid>
       <description></description>
     </item>
     
