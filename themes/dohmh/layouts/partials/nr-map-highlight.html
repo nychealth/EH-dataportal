@@ -34,7 +34,7 @@
                 "lookup": "properties.GEOCODE",
                 "from": {
                   "data": {
-                    "url": `${baseURL}` + '/UHF42.csv'
+                    "url": `${baseURL}` + 'UHF42.csv'
                     },
                   "key": "GEOCODE",
                   "fields": ["GEOCODE", "Name", "GEONAME", "VALUE"]
@@ -89,7 +89,7 @@
       var parts
     
       // load UHF42.csv to get Geoname, etc - to power neighborhood highlight for nonclickable map.
-      d3.csv(baseURL + '/UHF42.csv').then(data => {
+      d3.csv(baseURL + 'UHF42.csv').then(data => {
         neighborhoods = data;
         console.table(neighborhoods)
 
