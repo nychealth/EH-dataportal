@@ -1,4 +1,4 @@
-baseURL = "https://a816-dohbesp.nyc.gov/IndicatorPublic/"
+baseURL = "/IndicatorPublic/"
 [params]
     data_branch = "production"
 

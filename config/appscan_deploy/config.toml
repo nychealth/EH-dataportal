@@ -1,4 +1,4 @@
-baseURL = "https://stgbespweb600/IndicatorPublic/beta/"
+baseURL = "/IndicatorPublic/"
 [params]
     data_branch = "production"
 
