@@ -1,6 +1,6 @@
 <!-- Standard SEO -->
 <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Data.globals.seo_defaults.seo_description }}{{- end -}}">
-<link rel="canonical" href="{{ .Permalink }}" />
+<link rel="canonical" href="{{ .RelPermalink }}" />
 <meta name="geo.region" content="" />
 <meta name="geo.placename" content="{{ .Site.Title }}" />
 
@@ -8,7 +8,7 @@
 <meta property="fb:profile_id" content="0" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_us" />
-<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:url" content="{{ .RelPermalink }}" />
 <meta property="og:title" content="{{ if .Params.seo_title }}{{ .Params.seo_title }}{{ else }}{{ .Title }}{{- end }} &ndash; {{ .Site.Title }}" />
 <meta property="og:description" content="{{ if .Params.seo_description }}{{ .Params.seo_description }}{{ else }}{{ .Site.Data.globals.seo_defaults.seo_description }}{{- end -}}" />
 <meta property="og:site_name" content="{{ .Site.Title }}" />

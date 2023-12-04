@@ -19,7 +19,7 @@
                             Health
                         </a>
                         <span class="mx-1" aria-hidden="true">></span>
-                        <a class="text-reset" href="{{ site.BaseURL }}">
+                        <a class="text-reset" href="{{ .RelPermalink }}">
                         EH Data Portal
                         </a>
                     </p>
@@ -125,7 +125,7 @@
 
                                 </ul>
 
-                                <a class="btn-sm text-white font-weight-bold mr-2" style="border: 1px solid lightgray; border-radius: 3px;" href="/about">About us</a>
+                                <a class="btn-sm text-white font-weight-bold mr-2" style="border: 1px solid lightgray; border-radius: 3px;" href="{{ .Site.BaseURL }}about">About us</a>
 
                             </div>
                             <!-- .col -->
