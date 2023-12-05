@@ -1,4 +1,4 @@
-baseURL = "https://a816-dohbesp.nyc.gov/lookatme/"
+baseURL = "https://a816-dohbesp.nyc.gov/IndicatorPublic/"
 canonifyURLs = false
 relativeURLs = false
 languageCode = "en-us"

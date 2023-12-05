@@ -1,9 +1,6 @@
-
-baseURL = "https://a816-dohbesp.nyc.gov/lookatme/"
+baseURL = "https://a816-dohbesp.nyc.gov/IndicatorPublic/"
 [params]
     data_branch = "production"
-    # sub_URL = "/IndicatorPublic/"
-    sub_URL = "/lookatmetoo/"
 
 [caches]
     [caches.getresource]
