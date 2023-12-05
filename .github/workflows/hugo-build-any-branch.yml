@@ -74,9 +74,6 @@ jobs:
           node-version: lts/*
           cache: "npm"
 
-      - name: Installing npm
-        run: npm install
-
       # set up cache for node modules
 
       - name: Cache node_modules
