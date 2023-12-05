@@ -337,20 +337,13 @@
 <script src="{{ $color_convert.RelPermalink }}"></script>
 
 
-<!-- Uses API if it's production, else uses a static stand-in file for development -->
-{{ if hugo.IsProduction }}
-    <script>
-        var rtaqData = 'https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv'
+<!-- Uses a static stand-in file for local development - else uses the API -->
+<script>
+    var url = window.location.href
+    var rtaqData
+    url.includes('localhost') ? rtaqData = 'data/nyccas_realtime_DEC.csv' : rtaqData = 'https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv'
 
-    </script>
-
-{{ else if eq hugo.Environment "development" }}
-    <script>
-        var rtaqData = 'data/nyccas_realtime_DEC.csv'
-
-    </script>
-
-{{ end }}
+</script>
 
 
 
