@@ -6,8 +6,8 @@
         <div class="col-md-11 mx-auto mt-4">
             <nav aria-label="breadcrumb" class="mb-4">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}key-topics/">Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href="{{ .Site.BaseURL | relURL }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ .Site.BaseURL | relURL }}/key-topics/">Key Topics</a></li>
                     <li class="breadcrumb-item"><a href="..">
                         {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
                         <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>

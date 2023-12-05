@@ -1,4 +1,4 @@
-baseURL = "/IndicatorPublic/"
+baseURL = "https://gcappbesp307.health.dohmh.nycnet/IndicatorPublic/"
 [params]
     data_branch = "staging"
 

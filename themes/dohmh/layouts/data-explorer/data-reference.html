@@ -7,8 +7,8 @@
             <div class="col">
                 <nav aria-label="breadcrumb" class="my-3">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}data-explorer/">Data Explorer</a></li>
+                        <li class="breadcrumb-item"><a href="{{ .Site.BaseURL | relURL }}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ .Site.BaseURL | relURL }}/data-explorer/">Data Explorer</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                     </ul>
                 </nav>

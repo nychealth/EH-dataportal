@@ -4,7 +4,7 @@
 
     {{ $src := .Resources.GetMatch .Params.image }}
     {{ $image := $src.Resize "1920x"}}
-    <div id="datastoryheader" style="background-image: URL({{$image.Permalink}}); background-position: 50% 25%">
+    <div id="datastoryheader" style="background-image: URL({{$image.RelPermalink}}); background-position: 50% 25%">
 
         <div class="medium my-auto">
             <h1 class="titleheader py-2 px-4">
@@ -216,7 +216,7 @@
 
                     <div class="alt-event housing">
                         <p class="date">1934</p>
-                        <p class="txt">Congress creates the Federal Housing Administration, which ranks neighborhoods from most to least desirable in the racist practice known as redlining. Black and Latino neighborhoods are outlined in red - meaning high risk - on maps guiding real estate investments. Redlining devastates the East Harlem housing market, contributes to racial residential segregation and impacts the neighborhood for the next several decades. <a href="{{ .Site.BaseURL }}data-stories/redlining/">Read more about redlining</a>.
+                        <p class="txt">Congress creates the Federal Housing Administration, which ranks neighborhoods from most to least desirable in the racist practice known as redlining. Black and Latino neighborhoods are outlined in red - meaning high risk - on maps guiding real estate investments. Redlining devastates the East Harlem housing market, contributes to racial residential segregation and impacts the neighborhood for the next several decades. <a href="{{ .Site.BaseURL | relURL }}/data-stories/redlining/">Read more about redlining</a>.
                         </p>
                     </div>
 
@@ -248,12 +248,12 @@
 
                     <div class="alt-event housing right">
                         <p class="date">1968</p>
-                        <p class="txt">The Fair Housing Act is passed to protect people from discrimination when renting, buying or getting financing for housing. <a href="{{ .Site.BaseURL }}data-stories/housing/">More about health, housing, and history</a>.</p>
+                        <p class="txt">The Fair Housing Act is passed to protect people from discrimination when renting, buying or getting financing for housing. <a href="{{ .Site.BaseURL | relURL }}/data-stories/housing/">More about health, housing, and history</a>.</p>
                     </div>
 
                     <div class="alt-event  health">
                         <p class="date">1969</p>
-                        <p class="txt">The Young Lords Party, a Puerto Rican activist group, starts the Garbage Offensive to improve sanitation in East Harlem after the neighborhood is denied street cleaning by the Department of Sanitation. <a href="{{ .Site.BaseURL }}data-stories/sanitation/">Read more about sanitation and public health</a>.</p>
+                        <p class="txt">The Young Lords Party, a Puerto Rican activist group, starts the Garbage Offensive to improve sanitation in East Harlem after the neighborhood is denied street cleaning by the Department of Sanitation. <a href="{{ .Site.BaseURL | relURL }}/data-stories/sanitation/">Read more about sanitation and public health</a>.</p>
                     </div>
 
                     <div class="alt-event dis right">
@@ -280,7 +280,7 @@
 
                     <div class="alt-event pop right">
                         <p class="date">1980s</p>
-                        <p class="txt">A wave of immigrants from Mexico, Central and South America, the Caribbean, West Africa and Asia come to NYC - many settle in East Harlem. <a href="{{ .Site.BaseURL }}data-explorer/social-conditions/?id=14#display=summary">Get data on foreign-born residents</a>.</p>
+                        <p class="txt">A wave of immigrants from Mexico, Central and South America, the Caribbean, West Africa and Asia come to NYC - many settle in East Harlem. <a href="{{ .Site.BaseURL | relURL }}/data-explorer/social-conditions/?id=14#display=summary">Get data on foreign-born residents</a>.</p>
                     </div>
 
                     <div class="alt-event  dis">
@@ -290,13 +290,13 @@
 
                     <div class="alt-event health right">
                         <p class="date">2003</p>
-                        <p class="txt">The Health Department launches three District Public Health Offices, including one in Harlem, to focus public health resources in NYC neighborhoods with the highest rates of illness and premature death. <a href="{{ .Site.BaseURL }}data-explorer/health-care/?id=2151#display=summary">Get data on health care</a> and <a href="{{ .Site.BaseURL }}data-explorer/mortality/?id=2322#display=summary">data on premature mortality</a>.
+                        <p class="txt">The Health Department launches three District Public Health Offices, including one in Harlem, to focus public health resources in NYC neighborhoods with the highest rates of illness and premature death. <a href="{{ .Site.BaseURL | relURL }}/data-explorer/health-care/?id=2151#display=summary">Get data on health care</a> and <a href="{{ .Site.BaseURL | relURL }}/data-explorer/mortality/?id=2322#display=summary">data on premature mortality</a>.
                         </p>
                     </div>
 
                     <div class="alt-event transpo ">
                         <p class="date">2003</p>
-                        <p class="txt">Protected bike lanes are extended to East Harlem along First and Second Avenues. <a href="{{ .Site.BaseURL }}data-explorer/active-design/?id=2390#display=summary">Get data on bike lanes</a>.</p>
+                        <p class="txt">Protected bike lanes are extended to East Harlem along First and Second Avenues. <a href="{{ .Site.BaseURL | relURL }}/data-explorer/active-design/?id=2390#display=summary">Get data on bike lanes</a>.</p>
                     </div>
 
                     <div class="alt-event dis right">
@@ -307,13 +307,13 @@
 
                     <div class="alt-event health">
                         <p class="date">2016</p>
-                        <p class="txt">The East Harlem Community Walking Trail is created to promote physical activity and build a sense of community. <a href="{{ .Site.BaseURL }}data-explorer/active-design/?id=2133#display=summary">Get data on walkability</a>.</p>
+                        <p class="txt">The East Harlem Community Walking Trail is created to promote physical activity and build a sense of community. <a href="{{ .Site.BaseURL | relURL }}/data-explorer/active-design/?id=2133#display=summary">Get data on walkability</a>.</p>
                         </p>
                     </div>
 
                     <div class="alt-event transpo right">
                         <p class="date">2016</p>
-                        <p class="txt">Citi Bike, the NYC bike share program, expands to East Harlem. <a href="{{ .Site.BaseURL }}data-explorer/walking-driving-and-cycling/?id=2059#display=summary">Get data on bicycling</a>.</p>
+                        <p class="txt">Citi Bike, the NYC bike share program, expands to East Harlem. <a href="{{ .Site.BaseURL | relURL }}/data-explorer/walking-driving-and-cycling/?id=2059#display=summary">Get data on bicycling</a>.</p>
                         </p>
                     </div>
 
@@ -325,7 +325,7 @@
 
                     <div class="alt-event transpo right">
                         <p class="date">2017</p>
-                        <p class="txt">The Second Avenue Subway is completed with plans to extend the line to East Harlem in the coming years. <a href="{{ .Site.BaseURL }}data-explorer/active-design/?id=2391#display=summary">Get data on subway access</a>.</p>
+                        <p class="txt">The Second Avenue Subway is completed with plans to extend the line to East Harlem in the coming years. <a href="{{ .Site.BaseURL | relURL }}/data-explorer/active-design/?id=2391#display=summary">Get data on subway access</a>.</p>
                     </div>
 
                     <div class="alt-event transpo">

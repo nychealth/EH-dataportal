@@ -6,9 +6,9 @@
         <div class="col-md-11 mx-auto mt-4 pl-0">
             <nav aria-label="breadcrumb" class="mb-4">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}key-topics/">Key Topics</a></li>
-                    <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}key-topics/climatehealth/">Climate and Health</a></li>
+                    <li class="breadcrumb-item"><a href="{{ .Site.BaseURL | relURL }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ .Site.BaseURL | relURL }}/key-topics/">Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href="{{ .Site.BaseURL | relURL }}/key-topics/climatehealth/">Climate and Health</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                 </ul>
             </nav>
@@ -59,7 +59,7 @@
                 
                 <div class="fs-md mt-3 pb-1"><strong>Your neighborhood:</strong></div>
                 <span id="NTA" class="badge badge-primary mb-0">No neighborhood selected. Enter an address above</span> 
-                <p class="fs-sm"><em>This is a Neighborhood Tabulation Area. <a href="{{ .Site.BaseURL }}data-stories/geographies/">Read about NTAs</a>.</em></p>
+                <p class="fs-sm"><em>This is a Neighborhood Tabulation Area. <a href="{{ .Site.BaseURL | relURL }}/data-stories/geographies/">Read about NTAs</a>.</em></p>
                 
                 <div class="fs-md pb-1"><strong>Heat vulnerability:</strong></div>
                 <span id="hviVal" class="badge badge-primary h4 mb-0">No neighborhood selected. Enter an address above</span>
@@ -109,7 +109,7 @@
                 
                 <div class="row no-gutters py-1 mr-2">
                     <div class="col-12 mb-3">
-                        <p><i class="far fa-question-circle"></i>&nbsp;<a href="{{ .Site.BaseURL }}data-explorer/climate/?id=2141">Daytime summer surface temperature</a> is different from air temperature, and varies more by neighborhood: some neighborhoods are hotter than others. A higher surface temperature is associated with a higher risk of death from heat waves. <span class="badge badge-light">Median neighborhood: 87.0° F</span>
+                        <p><i class="far fa-question-circle"></i>&nbsp;<a href="{{ .Site.BaseURL | relURL }}/data-explorer/climate/?id=2141">Daytime summer surface temperature</a> is different from air temperature, and varies more by neighborhood: some neighborhoods are hotter than others. A higher surface temperature is associated with a higher risk of death from heat waves. <span class="badge badge-light">Median neighborhood: 87.0° F</span>
                         </p>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
                 
                 <div class="row no-gutters py-1 mr-2">
                     <div class="col mb-3">
-                        <p><i class="far fa-question-circle"></i>&nbsp;Green space is <a href="{{ .Site.BaseURL }}data-explorer/active-design/?id=2157">tree</a>, <a href="{{ .Site.BaseURL }}data-explorer/active-design/?id=2143">grass, or shrub cover</a>. Green space helps cool a neighborhood, address the <a href="../../../data-stories/localtemp/" target="_blank">UHI</a>, and create a resilient city. It also has a small association with heat mortality, weaker than other components in the index. <span class="badge badge-light">Median neighborhood: 25.0%</span>
+                        <p><i class="far fa-question-circle"></i>&nbsp;Green space is <a href="{{ .Site.BaseURL | relURL }}/data-explorer/active-design/?id=2157">tree</a>, <a href="{{ .Site.BaseURL | relURL }}/data-explorer/active-design/?id=2143">grass, or shrub cover</a>. Green space helps cool a neighborhood, address the <a href="{{ .Site.BaseURL | relURL }}/data-stories/localtemp/" target="_blank">UHI</a>, and create a resilient city. It also has a small association with heat mortality, weaker than other components in the index. <span class="badge badge-light">Median neighborhood: 25.0%</span>
                         </p>
                     </div>
                 </div>
@@ -157,7 +157,7 @@
                 
                 <div class="row no-gutters py-1 mr-2">
                     <div class="col mb-3">
-                        <p><i class="far fa-question-circle"></i>&nbsp;Air conditioning is as necessary during extreme heat as heating is in winter. A neighborhood with a high percentage of <a href="{{ .Site.BaseURL }}data-explorer/climate/?id=2104">households with air conditioners</a> means that more of its residents can be protected from extreme heat. <span class="badge badge-light">Citywide: 91.0%</span></p>
+                        <p><i class="far fa-question-circle"></i>&nbsp;Air conditioning is as necessary during extreme heat as heating is in winter. A neighborhood with a high percentage of <a href="{{ .Site.BaseURL | relURL }}/data-explorer/climate/?id=2104">households with air conditioners</a> means that more of its residents can be protected from extreme heat. <span class="badge badge-light">Citywide: 91.0%</span></p>
                     </div>
                 </div>
                 <!--END SECTION-->

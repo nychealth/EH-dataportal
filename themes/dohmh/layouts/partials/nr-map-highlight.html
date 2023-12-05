@@ -146,7 +146,7 @@
             // console.log(item.datum)
 
             // send to new page
-            window.location = '{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(item.datum.GEONAME) + '/' + rpt
+            window.location = '{{ site.BaseURL | relURL }}/neighborhood-reports/'+ DOMPurify.sanitize(item.datum.GEONAME) + '/' + rpt
           });
           }).catch(console.warn);
       }
@@ -157,7 +157,7 @@
           // console.log(item.datum)
 
           // send to new page
-          window.location = '{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(item.datum.GEONAME)
+          window.location = '{{ site.BaseURL | relURL }}/neighborhood-reports/'+ DOMPurify.sanitize(item.datum.GEONAME)
         });
         }).catch(console.warn);
 

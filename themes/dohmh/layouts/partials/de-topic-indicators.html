@@ -82,10 +82,10 @@
         
     </script>
     
-    <p class="sr-only">Also outputting a JSON version of the list to <code><a href="{{ .Site.BaseURL }}IndicatorData/topic_indicators.json">/IndicatorData/topic_indicators.json</code></a> 
+    <p class="sr-only">Also outputting a JSON version of the list to <code><a href="{{ .Site.BaseURL | relURL }}/IndicatorData/topic_indicators.json">/IndicatorData/topic_indicators.json</code></a> 
         (which on build will be put into <code>/docs/IndicatorData/</code>)</strong>
         
-        {{- $si_json_output_path := "{{ .Site.BaseURL }}IndicatorData/topic_indicators.json" -}}
+        {{- $si_json_output_path := "/IndicatorData/topic_indicators.json" -}}
         {{- $si_resource := $topic_indicators_map.Get "topic_indicators" | jsonify (dict "indent" "  ") | resources.FromString $si_json_output_path -}}
 
         <script>

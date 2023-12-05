@@ -1,6 +1,7 @@
-baseURL = "/development/"
+baseURL = "https://gcappbesp307.health.dohmh.nycnet/dev-prod/"
 [params]
     data_branch = "production"
+    sub_URL = "/lookatmetoo/"
 
 [caches]
     [caches.getresource]

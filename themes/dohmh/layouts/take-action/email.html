@@ -10,7 +10,7 @@
 
       <nav aria-label="breadcrumb" class="mb-2">
         <ul class="breadcrumb mr-auto">
-            <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ .Site.BaseURL | relURL }}/">Home</a></li>
             <li class="breadcrumb-item"><a href="..">
               {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
             <li class="breadcrumb-item active">{{ .Title }}</li>

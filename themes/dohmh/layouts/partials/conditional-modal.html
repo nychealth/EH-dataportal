@@ -41,7 +41,7 @@
 
 {{/*  evaluate script after modal definition  */}}
 
-<script src="{{ site.BaseURL }}js/conditional-modal.js"></script>
+<script src="{{ .Site.BaseURL | relURL }}/js/conditional-modal.js"></script>
 
 {{- end -}} 
 
@@ -66,7 +66,7 @@
 
 {{/*  evaluate script after modal definition  */}}
 
-<script src="{{ site.BaseURL }}js/conditional-modal.js"></script>
+<script src="{{ site.Params.sub_URL }}js/conditional-modal.js"></script>
 
 {{- end -}} 
 
@@ -117,6 +117,6 @@
 
 {{/*  evaluate script after modal definition  */}}
 
-<script src="{{ site.BaseURL }}js/conditional-modal.js"></script>
+<script src="{{ site.Params.sub_URL }}js/conditional-modal.js"></script>
 
 {{- end -}} 

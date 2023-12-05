@@ -19,7 +19,7 @@
                             Health
                         </a>
                         <span class="mx-1" aria-hidden="true">></span>
-                        <a class="text-reset" href="{{ site.BaseURL }}">
+                        <a class="text-reset" href="{{ site.BaseURL | relURL }}">
                         EH Data Portal
                         </a>
                     </p>
@@ -45,7 +45,7 @@
                         </li>
                         <li>
                             <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
-                                <img class="d-block" src="{{ site.BaseURL }}images/nyc-bubble-logo.svg" width="45" alt="NYC Logo">
+                                <img class="d-block" src="{{ site.BaseURL | relURL }}/images/nyc-bubble-logo.svg" width="45" alt="NYC Logo">
                             </a>
                         </li>
                     </ul>
@@ -74,7 +74,7 @@
             <span id="FirstSection.RelPermalink" style="display: none">{{ $currentPage.FirstSection.RelPermalink }}</span>
 
             <div class="nav-item-search border-right">
-                <a class="nav-link" id="nav-item-01" href="{{ site.BaseURL }}">
+                <a class="nav-link" id="nav-item-01" href="{{ site.BaseURL | relURL }}/">
                 <span class='text-primary'><i class='fa fa-home' aria-hidden='true'></i><span class="sr-only">Home</span></span>
                 </a>
             </div>

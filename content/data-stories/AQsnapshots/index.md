@@ -43,7 +43,7 @@ photocredit: "Mayoral Photography Office"
         <div class="narrow">
             <p>For 10 years, the New York City Community Air Survey (NYCCAS) has measured air quality at 100 locations around NYC. We’ve combined these measurements with data on things related to air quality - like traffic, building emissions, green space, and much more - to model seasonal air quality in every New York City neighborhood. 
                 </p>
-            <p>Our full findings are available in <a href="/key-topics/airquality/nyccas/">our annual report</a> - but here are a few other interesting things we've found along the way.</p>
+            <p>Our full findings are available in <a href="{{< baseurl >}}key-topics/airquality/nyccas/">our annual report</a> - but here are a few other interesting things we've found along the way.</p>
             </div>
             <div class="my-2 border" style="background:#f2f2f2;">
                 <div class="narrow py-4">
