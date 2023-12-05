@@ -336,6 +336,24 @@
 {{- $color_convert := resources.Get "js/color-convert.js" -}}
 <script src="{{ $color_convert.RelPermalink }}"></script>
 
+
+<!-- Uses API if it's production, else uses a static stand-in file for development -->
+{{ if hugo.IsProduction }}
+    <script>
+        var rtaqData = 'https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv'
+
+    </script>
+
+{{ else if eq hugo.Environment "development" }}
+    <script>
+        var rtaqData = 'data/nyccas_realtime_DEC.csv'
+
+    </script>
+
+{{ end }}
+
+
+
 <!--bring in realtime JS -->
 <script type="text/javascript" src="js/realtime.js"></script>
 
