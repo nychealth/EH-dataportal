@@ -659,6 +659,17 @@
 <script src="https://a816-dohbesp.nyc.gov/IndicatorPublic/js/color-convert.js"></script>
 
 
+
+<script>
+    var url = window.location.href
+    var rtaqData
+    url.includes('localhost') ? rtaqData = 'data/nyccas_realtime_DEC.csv' : rtaqData = 'https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv'
+
+</script>
+
+
+
+
 <script type="text/javascript" src="js/realtime.js"></script><ul id="results"></ul>
   </main>
   
