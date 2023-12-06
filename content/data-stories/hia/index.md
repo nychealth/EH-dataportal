@@ -14,9 +14,9 @@ seo_description: "Air pollution causes significant illness and death in New York
 ---
 
 Every year in NYC between 2015 and 2017 (the most recent years for which this analysis is available), fine particulate matter pollution from motor vehicles and burning fossil fuels caused:
-- At least [2,000 deaths](/data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary)
-- About 1,400 hospital admissions for [lung](/data-explorer/health-impacts-of-air-pollution/?id=2119#display=summary) and [heart conditions](/data-explorer/health-impacts-of-air-pollution/?id=2120#display=summary)
-- [3,750 emergency department admissions for asthma](/data-explorer/health-impacts-of-air-pollution/?id=2117#display=summary)
+- At least [2,000 deaths]({{< baseurl >}}/data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary)
+- About 1,400 hospital admissions for [lung]({{< baseurl >}}/data-explorer/health-impacts-of-air-pollution/?id=2119#display=summary) and [heart conditions]({{< baseurl >}}/data-explorer/health-impacts-of-air-pollution/?id=2120#display=summary)
+- [3,750 emergency department admissions for asthma]({{< baseurl >}}/data-explorer/health-impacts-of-air-pollution/?id=2117#display=summary)
 
 Since air pollution causes significant illness and death in New York City, it's important to reduce air pollution. So where do we start?
 

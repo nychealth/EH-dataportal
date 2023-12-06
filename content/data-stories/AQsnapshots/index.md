@@ -124,25 +124,25 @@ photocredit: "Mayoral Photography Office"
                 <div class="tab-content mb-2" id="tabs-01-content">
                     <div class="tab-pane fade show active" id="tab-01-a" aria-labelledby="tab-btn-01-a"
                         role="tabpanel">
-                        <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">                               
+                        <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
                             <iframe title="Deaths" aria-label="choropleth map" id="datawrapper-chart-mD8qz" src="//datawrapper.dwcdn.net/mD8qz/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                             </script>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tab-01-b" aria-labelledby="tab-btn-01-b" role="tabpanel">
-                        <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">                               
+                        <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
                             <iframe title="Cardiovascular hospitalizations" aria-label="choropleth map" id="datawrapper-chart-mDgo3" src="//datawrapper.dwcdn.net/mDgo3/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                             </script>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tab-01-c" aria-labelledby="tab-btn-01-c" role="tabpanel">
-                        <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">                               
+                        <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
                             <iframe title="Asthma emergency department visits" aria-label="choropleth map" id="datawrapper-chart-XWE9m" src="//datawrapper.dwcdn.net/XWE9m/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                             </script>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tab-01-d" aria-labelledby="tab-btn-01-d" role="tabpanel">
-                        <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">                               
+                        <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
                             <iframe title="Respiratory disease hospitalizations" aria-label="choropleth map" id="datawrapper-chart-8urPc" src="//datawrapper.dwcdn.net/8urPc/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                             </script>
                         </div>
@@ -218,7 +218,7 @@ photocredit: "Mayoral Photography Office"
 </div>
 <!--end color panel-->
     <div class="narrow">
-        <p>For more information about NYCCAS and our findings over 10 years of air quality monitoring, <a href="/key-topics/airquality/">visit the Air Quality Hub</a>.</p>
+        <p>For more information about NYCCAS and our findings over 10 years of air quality monitoring, <a href="{{< baseurl >}}/key-topics/airquality/">visit the Air Quality Hub</a>.</p>
         </div>
         <!-- .narrow -->
         <footer class="narrow my-4" id="article-footer">

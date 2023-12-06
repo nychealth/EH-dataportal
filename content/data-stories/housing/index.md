@@ -516,8 +516,8 @@ Building owners and landlords should keep apartments safe and sanitary – it’
 
 #### Get the data
 - Data on housing maintenance conditions come from the [2017 Housing and Vancancy Survey](https://www.census.gov/programs-surveys/nychvs.html).
-- [Data on childhood asthma emergency department visits](/data-explorer/asthma/?id=2383) come from the New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data.
-- [Data on the race/ethnicity of people by neighborhood](/data-explorer/social-conditions/?id=2325) come from the American Community Survey.
+- [Data on childhood asthma emergency department visits]({{< baseurl >}}/data-explorer/asthma/?id=2383) come from the New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data.
+- [Data on the race/ethnicity of people by neighborhood]({{< baseurl >}}/data-explorer/social-conditions/?id=2325) come from the American Community Survey.
 
 
 
