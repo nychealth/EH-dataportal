@@ -7,9 +7,9 @@
             <nav aria-label="breadcrumb" class="mb-4">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href=".">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ .Site.BaseURL | relURL }}/key-topics/">Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "key-topics" }}>Key Topics</a></li>
 
-                    <li class="breadcrumb-item"><a href="{{ .Site.BaseURL | relURL }}/key-topics/">
+                    <li class="breadcrumb-item"><a href={{ relURL "key-topics" }}>
                         {{- with .Parent }}
                             {{- with .Parent}}
                                 {{ .Title }}

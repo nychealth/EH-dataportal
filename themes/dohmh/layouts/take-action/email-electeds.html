@@ -10,7 +10,7 @@
 
       <nav aria-label="breadcrumb" class="mb-2">
         <ul class="breadcrumb mr-auto">
-            <li class="breadcrumb-item"><a href="{{ .Site.BaseURL | relURL }}/">Home</a></li>
+            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
             <li class="breadcrumb-item"><a href="..">
               {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
             <li class="breadcrumb-item active">{{ .Title }}</li>
@@ -368,12 +368,12 @@ function startOver() {
 }
 
 // Loads  City Council list
-d3.csv(baseURL+'take-action/council.csv').then(function(data) {
+d3.csv({{ relURL "take-action/council.csv" }}).then(function(data) {
   councilTable = data;
 })
 
 // Loads Community Board list
-d3.csv(baseURL+'take-action/communityBoardContacts.csv').then(function(data) {
+d3.csv({{ relURL "take-action/communityBoardContacts.csv" }}).then(function(data) {
   cbTable = data
 })
 

@@ -5,8 +5,8 @@
         <div class="col-md-12 mx-auto mt-4">
             <nav aria-label="breadcrumb" class="mb-4">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ .Site.BaseURL | relURL }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ .Site.BaseURL | relURL }}/neighborhood-reports/">Neighborhood Reports</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "neighborhood-reports" }}>Neighborhood Reports</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                 </ul>
             </nav>
@@ -229,7 +229,7 @@ function loadList() {
 
     console.log('chosen neighb:')
     console.log(set.page_name);
-    window.location.href = baseURL + 'neighborhood-reports/' + set.page_name + reportURL 
+    window.location.href = {{ relURL "neighborhood-reports/" }} + set.page_name + reportURL 
     
 })
 

@@ -7,7 +7,7 @@
 
     // this gets a json of topics and nested indicators
     async function getJSON() {
-        d3.json("https://raw.githubusercontent.com/nychealth/EH-dataportal/builds/prod-prod/IndicatorData/topic_indicators.json").then(data => {
+        d3.json({{ relURL "IndicatorData/topic_indicators.json" }}).then(data => {
             topicIndicators = data
         });
     }
@@ -31,7 +31,7 @@
             if (topicArray.includes(ind)) {
                 thisTopic = y
                 console.log('topic is: ' + ind + ": " + thisTopic)
-                URL = baseURL + 'data-explorer/' + thisTopic + "/?id=" + ind; // creates URL
+                URL = {{ relURL "data-explorer/" }} + thisTopic + "/?id=" + ind; // creates URL
                 document.getElementById(dataname).style.display = "block";
                 document.getElementById(dataname).href = URL; // sends it to unique ID - Get the Dataset button
                 return
@@ -134,8 +134,8 @@
         <div class="col-lg-10 mx-auto col-12">
             <nav aria-label="breadcrumb" class="mb-2">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ .Site.BaseURL | relURL }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ .Site.BaseURL | relURL }}/neighborhood-reports/">Neighborhood Reports</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "neighborhood-reports" }}>Neighborhood Reports</a></li>
                     <li class="breadcrumb-item"><a href="" id="neighbLink">{{ $.Params.neighborhood }}</a></li>
                     <li class="breadcrumb-item active"><a href="{{ .RelPermalink }}">{{ $.Params.title }}</a></li>
 

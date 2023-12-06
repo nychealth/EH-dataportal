@@ -19,14 +19,14 @@
         "layer": [
           {
             "data": {
-              "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/UHF42.topo.json",
+              "url": "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/geography/UHF42.topo.json",
               "format": {"type": "topojson", "feature": "collection"}
             },
             "mark": {"type": "geoshape", "stroke": "#ffffff", "fill": "lightgray"}
           },
           {
             "data": {
-              "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/UHF42.topo.json",
+              "url": "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/geography/UHF42.topo.json",
               "format": {"type": "topojson", "feature": "collection"}
             },
             "transform": [
@@ -34,7 +34,7 @@
                 "lookup": "properties.GEOCODE",
                 "from": {
                   "data": {
-                    "url": `${baseURL}` + 'UHF42.csv'
+                    "url": {{ relURL "UHF42.csv" }}
                     },
                   "key": "GEOCODE",
                   "fields": ["GEOCODE", "Name", "GEONAME", "VALUE"]
@@ -89,7 +89,7 @@
       var parts
     
       // load UHF42.csv to get Geoname, etc - to power neighborhood highlight for nonclickable map.
-      d3.csv(baseURL + 'UHF42.csv').then(data => {
+      d3.csv({{ relURL "UHF42.csv" }}).then(data => {
         neighborhoods = data;
         console.table(neighborhoods)
 
@@ -118,17 +118,17 @@
         drawChart(geocode)
 
         // print ZIPS on neighborhood page
-        var ZIPS = document.getElementById('zips')
-        if (typeof zips !== 'undefined') {
+        var zips = document.getElementById('zips')
+        if (typeof zips !== 'undefined' && zips != null) {
           zips.innerHTML = neighb[0].ZIPS
         } else {}
 
         // send name to breadcrumbs, for output page
         var link = document.getElementById('neighbLink')
-        var dest = baseURL + 'neighborhood-reports/' + neighb[0].GEONAME
+        var dest = {{ relURL "neighborhood-reports/" }} + neighb[0].GEONAME
 
-        if (typeof link !== 'undefined') {
-          link.setAttribute("href",dest) 
+        if (typeof link !== 'undefined' && link != null) {
+          link.setAttribute("href", dest) 
         } else {}
 
         
@@ -146,7 +146,7 @@
             // console.log(item.datum)
 
             // send to new page
-            window.location = '{{ site.BaseURL | relURL }}/neighborhood-reports/'+ DOMPurify.sanitize(item.datum.GEONAME) + '/' + rpt
+            window.location = {{ relURL "neighborhood-reports/" }} + DOMPurify.sanitize(item.datum.GEONAME) + '/' + rpt
           });
           }).catch(console.warn);
       }
@@ -157,7 +157,7 @@
           // console.log(item.datum)
 
           // send to new page
-          window.location = '{{ site.BaseURL | relURL }}/neighborhood-reports/'+ DOMPurify.sanitize(item.datum.GEONAME)
+          window.location = {{ relURL "neighborhood-reports/" }} + DOMPurify.sanitize(item.datum.GEONAME)
         });
         }).catch(console.warn);
 

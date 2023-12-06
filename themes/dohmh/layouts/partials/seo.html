@@ -19,6 +19,6 @@
 <!-- Twitter OpenGraph -->
 <meta name="twitter:title" content="{{ if .Params.seo_title }}{{ .Params.seo_title }}{{ else }}{{ .Title }}{{- end }} &ndash; {{ .Site.Title }}">
 <meta name="twitter:description" content="{{ if .Params.seo_description }}{{ .Params.seo_description }}{{ else }}{{ .Site.Data.globals.seo_defaults.seo_description }}{{- end -}}">
-<meta name="twitter:image" content="{{ if .Params.seo_image }}{{ .Params.seo_image }}{{ else }}{{ .Site.Data.globals.seo_defaults.seo_image | relURL }}{{- end -}}">
+<meta name="twitter:image" content="{{ if .Params.seo_image }}{{ relURL .Params.seo_image }}{{ else }}{{ relURL .Site.Data.globals.seo_defaults.seo_image }}{{- end -}}">
 <meta name="twitter:site" content="@nycHealthy">
 <meta name="twitter:creator" content="@nycHealthy">
