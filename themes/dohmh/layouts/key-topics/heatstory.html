@@ -45,9 +45,18 @@
   }
 
   .legend {
-    height: 100px;
+    height: 135px;
+    width: 3:1;
     margin-bottom: 10px;
     overflow-y: auto;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 1px;
+    font-weight: bold;
+    border-radius: 15px;
+    background-color: #F5F5F5;
+    opacity: 0.95;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
   }
 </style>
 
@@ -103,6 +112,33 @@
   </div>
   <div class="row my-3">
     <div class="col-4 mx-auto">
+
+      <div class="dropdown" >
+        <button class="btn btn-outline-primary btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          View story
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="storyTitleDropdown">
+          <a class="dropdown-item" href="#">Story title</a>
+
+
+        </div>
+      </div>
+
+      <!-- Add card here --> 
+      <div class="story-card" id="story-card-general-holder">
+        <div class="card content-card" style="height: 70vh">
+        <div class="card-content">
+          <div class="card-body story-card-content">
+            <h5 class="card-title">Story Title</h5>
+            <blockquote class="blockquote mb-0">
+            <p class="card-text">Story Content</p>
+            <footer class="blockquote-footer">Person Name <cite title="Source Title">
+          </blockquote>
+            <footer class="card-footer text-muted"> Washington Heights, Manhattan </div>
+          </div>
+          </div>
+      </div>
+
       <div
         class="accordion-group"
         style=""

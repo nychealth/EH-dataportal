@@ -170,6 +170,7 @@ config = {
              }
           }
        },
+       
        {    
          "property": {
            "id": "greenspaceNdvi",
@@ -178,7 +179,7 @@ config = {
            "url":"https://raw.githubusercontent.com/OpenStoryMap/geodata/main/nyc-heat-watch-2021/greenspacesNdvi.tiff",
            "args": {
                "colorStart": "black",
-               "colorStop": "lightgreen",
+               "colorStop": "red",
                "resolution": 256
            }
          }
@@ -218,6 +219,7 @@ config = {
              }
           }
        },
+       /*
        {
           "property":{
              "id":"bronx-grayspace",
@@ -235,6 +237,7 @@ config = {
              }
           }
        },
+       */
        {
           "property":{
              "id":"heatProstration",
@@ -264,6 +267,7 @@ config = {
              }
           }
        },
+       /*
        {
           "property":{
              "id":"bruckner",
@@ -281,21 +285,23 @@ config = {
              }
           }
        },
+       */
        {
           "property": {
              "id":"air_quality",
-             "name": "Air Quality",
+             "name": "Air Quality - PM2.5",
              "type": "measureData",
+             "units": "μg/m3",
              "measureInfo": {
-                "indicatorID": 2024,
-                "measureID": 370,
+                "indicatorID": 2023,
+                "measureID": 365,
                 "geoType": "UHF42",
                 "time": "Summer 2021",
               },
              "args":{
                 "colorFeatureProperty":"Black Carbon - Mean",
-                "minColor":"red",
-                "maxColor":"green",
+                "minColor":"#054fb9",
+                "maxColor":"#c44601",
                 "color": "black",
                 "opacity": 0.8,
                 "legendDescription": "This is a sample of a legend description. It can be long, it can be short, it can include <a href=\"#\">links</a>. It can do things like <b>bold</b>."
@@ -311,18 +317,52 @@ config = {
              }
           }
       },
+
+/* testing out adding HVI - not working */
+
+      {
+         "property": {
+            "id":"Heat_vulnerability_index",
+            "name": "Heat vulnerability index",
+            "type": "measureData",
+            "measureInfo": {
+               "indicatorID": 2191,
+               "measureID": 822,
+               "geoType": "CDTA2020",
+               "time": "2023",
+             },
+            "args":{
+               "colorFeatureProperty":"Black Carbon - Mean",
+               "minColor":"green",
+               "maxColor":"red",
+               "color": "black",
+               "opacity": 0.5
+            },
+            "displayProperties":{
+               "missingDisplay":"N/A",
+               "displayPropertyArgs":[
+                  {
+                     "id":"Black Carbon - Mean",
+                     "displayName":"Black Carbon - Mean"
+                  }
+               ]
+            }
+         }
+     },
+
+
       {
         "property": {
             "id":"heat_stress",
-            "name": "Heat Stress",
+            "name": "Heat stress hospitalizations",
             "type": "geojson",
             "url": window.BaseURL + "geojson/heat-stress.geojson",
             "args":{
                 "colorFeatureProperty": "5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate",
-                "minColor":"red",
-                "maxColor":"green",
+                "minColor":"#054fb9",
+                "maxColor":"#c44601",
                 "color": "black",
-                "opacity": 0.5
+                "opacity": 0.9
 
             },
             "displayProperties":{
@@ -332,10 +372,12 @@ config = {
                     "id":"5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate",
                     "displayName":"5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Age-Adjusted  Rate"
                 },
+                /*
                 {
                     "id":"5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate",
                     "displayName":"5-Year Heat Stress Hospitalizations - 5-Year Avg. Annual Rate"
                 },
+                
                 {
                     "id":"5-Year Heat Stress Hospitalizations - 5-Year Total Number",
                     "displayName":"5-Year Heat Stress Hospitalizations - 5-Year Total Number"
@@ -352,6 +394,7 @@ config = {
                     "id":"Heat Stress Hospitalizations - Estimated Annual Rate",
                     "displayName":"Heat Stress Hospitalizations - Estimated Annual Rate"
                 }
+                */
             ]
             }
         }
