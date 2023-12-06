@@ -14,10 +14,12 @@
  *      name: human readable name of the layer
  *      type: layer type for rendering. can be raster or geojson
  *      measureInfo: this is used if you are using another data explorer data setting
- *        indicatorName: name of the indicator from the explorer data
- *        measureName: name of the measure from the explorer data
+ *        displayName: name to use to display the measure in the legend
+ *        indicatorID: name of the indicator from the explorer data
+ *        measureID: name of the measure from the explorer data
  *        geoType: the geotype of the data set in the explorer. usually UHF42 or borough
  *        time: the time for the data set. the datasets usually have a time field.
+ *        dataFormat: data format type. Can be percent|float|int
  *      url: file location for the layer
  *      exclusive: if true, then this is an exclusive layer. only one exclusive layer can be done at a time
  *      args:
@@ -34,7 +36,7 @@
  *        displayPropertyArgs: list of arguments
  *          id: id of the property to display
  *          displayName: name to use for the tooltip
- *          type: can be used to show special types. optional. can be percentage or currency
+ *          format: can be used to show special types. optional. can be float, percentage or currency
  *
  *  stories: list of user stories
  *    id: unique id of the story
@@ -109,12 +111,12 @@ config = {
                    },
                    {
                       "id":"blackPercentage",
-                      "type":"percentage",
+                      "format":"percentage",
                       "displayName":"Black Population:"
                    },
                    {
                       "id":"medianHouseholdIncome",
-                      "type":"currency",
+                      "format":"currency",
                       "displayName":"Median Household Income:"
                    },
                    /*
@@ -139,14 +141,24 @@ config = {
           "property":{
              "id":"redline",
              "name":"Redlined Areas",
-             "type":"geojson",
-             "url": window.BaseURL + "geojson/redlined.geojson",
-             "args":{
-                "colorFeatureProperty":"grade",
-                "minColor":"darkred",
-                "maxColor":"indianred",
-                "color": "maroon",
-                "opacity": 0.7
+             "type":"redlined",
+             "urls": {
+                "Class A": window.BaseURL + "maps/HOLC_map/data/HOLCClassA_3.js",
+                "Class B": window.BaseURL + "maps/HOLC_map/data/HOLCClassB_2.js",
+                "Class C": window.BaseURL + "maps/HOLC_map/data/HOLCClassC_1.js",
+                "Class D": window.BaseURL + "maps/HOLC_map/data/HOLCClassD_0.js"
+             },
+             "args": {
+                "colorFeatureProperty":"holc_grade",
+                "defaultColor": "grey",
+                "colorMap": {
+                    "A": "green",
+                    "B": "blue",
+                    "C": "yellow",
+                    "D": "red"
+                },
+                "opacity": 0.7,
+                "legendDescription": "This is a description for redlined areas"
              },
              "displayProperties":{
                 "displayPropertyArgs":[
@@ -291,14 +303,15 @@ config = {
                 "minColor":"#054fb9",
                 "maxColor":"#c44601",
                 "color": "black",
-                "opacity": 0.9
+                "opacity": 0.8,
+                "legendDescription": "This is a sample of a legend description. It can be long, it can be short, it can include <a href=\"#\">links</a>. It can do things like <b>bold</b>."
              },
              "displayProperties":{
                 "missingDisplay":"N/A",
                 "displayPropertyArgs":[
                    {
-                      "id":"Black Carbon - Mean",
-                      "displayName":"Black Carbon - Mean"
+                      "displayName":"Black Carbon - Mean",
+                      "format": "float"
                    }
                 ]
              }
