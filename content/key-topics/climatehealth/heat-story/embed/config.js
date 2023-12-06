@@ -157,8 +157,8 @@ config = {
                     "C": "yellow",
                     "D": "red"
                 },
-                "color": "maroon",
-                "opacity": 0.7
+                "opacity": 0.7,
+                "legendDescription": "This is a description for redlined areas"
              },
              "displayProperties":{
                 "displayPropertyArgs":[
