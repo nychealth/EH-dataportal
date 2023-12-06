@@ -8,9 +8,6 @@ tags:
 categories: ["healthoutcomes","social"]
 keywords: ["lead", "lead poisoning","employment","workers","worker health","elevated blood lead levels"]
 image: OneWorldObservatory_TaggerYanceyIV_6565.jpg
-menu:
-    main:
-        identifier: '02'
 photocredit: Tagger Yancey IV
 ---
 ### Lead poisoning affects adults too 
