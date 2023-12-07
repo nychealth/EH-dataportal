@@ -12,6 +12,11 @@ on:
         required: true
         type: string
 
+      publish-branch:
+        description: Branch name for build files
+        required: false
+        type: string
+
       environment:
         description: environment for Hugo
         required: false
@@ -22,6 +27,9 @@ on:
         description: baseURL for Hugo
         required: false
         type: string
+
+env:
+  publish_branch: ${{ inputs.publish-branch && inputs.publish-branch || inputs.branch }}
   
 jobs:
 
@@ -30,8 +38,9 @@ jobs:
   # ------------------
 
   build:
-    name: Build `${{ inputs.branch }}` to `builds/${{ inputs.branch }}`
     runs-on: ubuntu-20.04
+    # can't use the "env" context at the job level, only in steps, so need to eval the conditional again
+    name: Build `${{ inputs.branch }} to builds/${{ inputs.publish-branch && inputs.publish-branch || inputs.branch }}`
 
     # wait for other triggered jobs to finish before running this
 
@@ -106,7 +115,7 @@ jobs:
       - name: Hugo setup
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: "0.105.0"
+          hugo-version: "0.121.0"
           extended: true
 
       # cache Hugo modules
@@ -150,11 +159,11 @@ jobs:
 
       # publish to "deploy" branch
 
-      - name: Publish to "builds/${{ inputs.branch }}"
+      - name: Publish to "builds/${{ env.publish_branch }}"
         uses: peaceiris/actions-gh-pages@v3
         with:
-          full_commit_message: Publish ${{ steps.last_commit.outputs.last_hash }} (${{ steps.last_commit.outputs.last_msg }}) to "builds/${{ inputs.branch }}"
+          full_commit_message: Publish ${{ steps.last_commit.outputs.last_hash }} (${{ steps.last_commit.outputs.last_msg }}) to "builds/${{ env.publish_branch }}"
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: builds/${{ inputs.branch }}
+          publish_branch: builds/${{ env.publish_branch }} 
           publish_dir: ./docs/
           enable_jekyll: false
