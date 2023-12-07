@@ -217,6 +217,8 @@ _editables:
     undo: false
 base_url: LookAtMeNow
 data_config: {}
+editor:
+  default_path:
 timezone: America/New_York
 x-default_sort_options:
   - key: date
