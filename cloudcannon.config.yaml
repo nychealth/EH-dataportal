@@ -215,7 +215,6 @@ _editables:
     table: false
     underline: false
     undo: false
-base_url: LookAtMeNow
 data_config: {}
 editor:
   default_path:
