@@ -40,7 +40,7 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     # can't use the "env" context at the job level, only in steps, so need to eval the conditional again
-    name: Build `${{ inputs.branch }} to ${{ inputs.publish-branch && inputs.publish-branch || inputs.branch }}`
+    name: Build `${{ inputs.branch }} to builds/${{ inputs.publish-branch && inputs.publish-branch || inputs.branch }}`
 
     # wait for other triggered jobs to finish before running this
 
@@ -118,7 +118,7 @@ jobs:
       - name: Hugo setup
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: "0.105.0"
+          hugo-version: "0.121.0"
           extended: true
 
       # cache Hugo modules
