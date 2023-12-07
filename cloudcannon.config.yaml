@@ -215,6 +215,7 @@ _editables:
     table: false
     underline: false
     undo: false
+base_url: LookAtMeNow
 data_config: {}
 timezone: America/New_York
 x-default_sort_options:
