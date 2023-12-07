@@ -1,7 +1,7 @@
 source: docs
 paths:
   uploads: content/[collection]/{title|slugify}
-  static: ''
+  static: static
   data: data
 collections_config:
   data-stories:
