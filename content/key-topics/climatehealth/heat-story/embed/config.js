@@ -88,6 +88,8 @@ config = {
 
           }
        },
+
+       /*
        {
           "property":{
              "id":"heatAndDemographics",
@@ -125,6 +127,7 @@ config = {
                       "displayName":"Morning Max Heat Index:"
                    },
                    */
+                  /*
                    {
                       "id":"afternoonMaxHeatIndex",
                       "displayName":"Afternoon Max Heat Index:"
@@ -136,7 +139,9 @@ config = {
                 ]
              }
           }
-       },
+       }, 
+       */
+
        {
           "property":{
              "id":"redline",
@@ -157,7 +162,7 @@ config = {
                     "C": "yellow",
                     "D": "red"
                 },
-                "opacity": 0.7,
+                "opacity": 0.8,
                 "legendDescription": "This is a description for redlined areas"
              },
              "displayProperties":{
@@ -171,6 +176,7 @@ config = {
           }
        },
        
+       /*
        {    
          "property": {
            "id": "greenspaceNdvi",
@@ -184,6 +190,9 @@ config = {
            }
          }
        },
+       */
+
+       /*
        {
           "property":{
              "id":"greenspace",
@@ -219,6 +228,7 @@ config = {
              }
           }
        },
+       */
        /*
        {
           "property":{
@@ -238,6 +248,7 @@ config = {
           }
        },
        */
+      /*
        {
           "property":{
              "id":"heatProstration",
@@ -268,6 +279,8 @@ config = {
           }
        },
        /*
+       /*
+
        {
           "property":{
              "id":"bruckner",
@@ -286,6 +299,7 @@ config = {
           }
        },
        */
+      
        {
           "property": {
              "id":"air_quality",
@@ -318,7 +332,39 @@ config = {
           }
       },
 
-/* testing out adding HVI - not working */
+      /* adding AQ PM2.5 again */
+
+      {
+         "property": {
+            "id":"Fine_particles_(PM2.5)",
+            "name": "Air Quality - PM2.5 test",
+            "type": "measureData",
+            "units": "μg/m3",
+            "measureInfo": {
+               "indicatorID": 2023,
+               "measureID": 365,
+               "geoType": "CD",
+               "time": "Summer 2022",
+             },
+            "args":{
+               "colorFeatureProperty":"Black Carbon - Mean",
+               "minColor":"#054fb9",
+               "maxColor":"#c44601",
+               "color": "black",
+               "opacity": 0.8,
+               "legendDescription": "This is a sample of a legend description. It can be long, it can be short, it can include <a href=\"#\">links</a>. It can do things like <b>bold</b>."
+            },
+            "displayProperties":{
+               "missingDisplay":"N/A",
+               "displayPropertyArgs":[
+                  {
+                     "displayName":"Black Carbon - Mean",
+                     "format": "float"
+                  }
+               ]
+            }
+         }
+     },
 
       {
          "property": {
@@ -350,6 +396,36 @@ config = {
          }
      },
 
+
+     {
+      "property": {
+         "id":"Vegetative_cover",
+         "name": "Vegetative cover %",
+         "type": "measureData",
+         "measureInfo": {
+            "indicatorID": 2143,
+            "measureID": 690,
+            "geoType": "CD",
+            "time": "2017",
+          },
+         "args":{
+            "colorFeatureProperty":"Black Carbon - Mean",
+            "minColor":"blue",
+            "maxColor":"green",
+            "color": "black",
+            "opacity": 0.75
+         },
+         "displayProperties":{
+            "missingDisplay":"N/A",
+            "displayPropertyArgs":[
+               {
+                  "id":"Black Carbon - Mean",
+                  "displayName":"Black Carbon - Mean"
+               }
+            ]
+         }
+      }
+  },
 
       {
         "property": {
@@ -399,6 +475,8 @@ config = {
             }
         }
     },
+
+    /*
     {
         "property": {
           "id":"health_impacts_of_air_pollution",
@@ -459,6 +537,40 @@ config = {
             }
         }
     },
+
+    */
+
+     {
+      "property": {
+         "id":"Neighborhood_poverty",
+         "name": "Neighborhood poverty %",
+         "type": "measureData",
+         "measureInfo": {
+            "indicatorID": 103,
+            "measureID": 221,
+            "geoType": "CD",
+            "time": "2017-21",
+          },
+         "args":{
+            "colorFeatureProperty":"Black Carbon - Mean",
+            "minColor":"blue",
+            "maxColor":"green",
+            "color": "black",
+            "opacity": 0.75
+         },
+         "displayProperties":{
+            "missingDisplay":"N/A",
+            "displayPropertyArgs":[
+               {
+                  "id":"Black Carbon - Mean",
+                  "displayName":"Black Carbon - Mean"
+               }
+            ]
+         }
+      }
+  },
+
+  /*
     {
         "property": {
             "id":"social_economic",
@@ -500,6 +612,8 @@ config = {
             }
         }
     }
+
+*/
     ],
     "stories":[
        {
