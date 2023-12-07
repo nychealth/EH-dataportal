@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>smog on Environment &amp; Health Data Portal</title>
+    <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/smog/</link>
+    <description>Recent content in smog on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 04 Oct 2021 12:32:15 -0400</lastBuildDate>
+    <atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/smog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Air quality</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/key-topics/airquality/</link>
+      <pubDate>Mon, 04 Oct 2021 12:32:15 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/key-topics/airquality/</guid>
+      <description>New York City&amp;rsquo;s air contains particles, drops of liquid, gasses, and other pollution that can affect health. Bad air quality can be particularly dangerous for older adults, children, and people with heart or lung conditions.&#xA;Air quality varies from neighborhood to neighborhood, based on local levels of emissions and many other factors. We monitor air quality using the New York City Community Air Survey (NYCCAS), NYC&amp;rsquo;s comprehensive air quality monitoring and modeling network.</description>
+    </item>
+  </channel>
+</rss>

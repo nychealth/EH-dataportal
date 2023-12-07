@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>streets on Environment &amp; Health Data Portal</title>
+    <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/streets/</link>
+    <description>Recent content in streets on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 28 May 2021 18:02:58 +0000</lastBuildDate>
+    <atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/streets/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Transportation-related injuries</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-explorer/transportation-related-injuries/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-explorer/transportation-related-injuries/</guid>
+      <description>Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.&#xA;In February 2014, NYC launched “Vision Zero”, an action plan to reduce injuries and deaths on city streets. Vision Zero is a multi-agency effort, incorporating road engineering, traffic enforcement, community outreach and education, and policy work to make NYC streets safer.</description>
+    </item>
+    <item>
+      <title>Walking, driving, and cycling</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-explorer/walking-driving-and-cycling/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-explorer/walking-driving-and-cycling/</guid>
+      <description>People get around New York City in many ways - public transit, walking, cycling, driving, and other modes too. When these individual behaviors are added up, they shape our city and our health.&#xA;Our built environment influences these behaviors. The design of our streets and presence of infrastructure like bicycle lanes, well maintained sidewalks, safe street crossings, dedicated bus lanes and convenient access to the subway have the potential to increase both the usage and safety of these forms of transportation.</description>
+    </item>
+    <item>
+      <title>Environments matter: the road to street safety in NYC</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/streets/</link>
+      <pubDate>Sun, 20 Sep 2020 10:54:51 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/streets/</guid>
+      <description>The COVID-19 public health emergency has changed New York City in many ways—including how we get around the city. As the city continues to adapt to COVID-19, New Yorkers will look for ways to get around that feel safe—redistributing transit among different modes to ease crowding and increase safety on public transportation.&#xA;As more New Yorkers use bicycles, let&amp;rsquo;s take a look at safety on our streets.&#xA;Cyclist safety in public health data New York City’s streets offer opportunities for active transportation, like cycling and walking, but can also pose risks from collisions.</description>
+    </item>
+  </channel>
+</rss>

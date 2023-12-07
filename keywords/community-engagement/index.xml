@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>community engagement on Environment &amp; Health Data Portal</title>
+    <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/community-engagement/</link>
+    <description>Recent content in community engagement on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 19 Mar 2023 08:49:22 -0400</lastBuildDate>
+    <atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/community-engagement/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A walk through history</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/block-by-block/</link>
+      <pubDate>Sun, 19 Mar 2023 08:49:22 -0400</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-stories/block-by-block/</guid>
+      <description>A neighborhood is not only shaped by its residents, but also by governmental practices and policies. Some of these have discriminated against residents because of the color of their skin and have segregated neighborhoods across the nation - including in New York City. This timeline is a selection of key processes and policies that shaped the physical environment and population of East Harlem, and some of the efforts to respond to local issues.</description>
+    </item>
+  </channel>
+</rss>

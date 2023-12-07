@@ -1,0 +1,83 @@
+Geotype,GeoID,Name
+Citywide,1,New York City
+Borough,1,Bronx
+Borough,2,Brooklyn
+Borough,3,Manhattan
+Borough,4,Queens
+Borough,5,Staten Island
+UHF42,101,Kingsbridge - Riverdale
+UHF42,102,Northeast Bronx
+UHF42,103,Fordham - Bronx Pk
+UHF42,104,Pelham - Throgs Neck
+UHF42,105,Crotona -Tremont
+UHF42,106,High Bridge - Morrisania
+UHF42,107,Hunts Point - Mott Haven
+UHF42,201,Greenpoint
+UHF42,202,Downtown - Heights - Slope
+UHF42,203,Bedford Stuyvesant - Crown Heights
+UHF42,204,East New York
+UHF42,205,Sunset Park
+UHF42,206,Borough Park
+UHF42,207,East Flatbush - Flatbush
+UHF42,208,Canarsie - Flatlands
+UHF42,209,Bensonhurst - Bay Ridge
+UHF42,210,Coney Island - Sheepshead Bay
+UHF42,211,Williamsburg - Bushwick
+UHF42,301,Washington Heights
+UHF42,302,Central Harlem - Morningside Heights
+UHF42,303,East Harlem
+UHF42,304,Upper West Side
+UHF42,305,Upper East Side
+UHF42,306,Chelsea - Clinton
+UHF42,307,Gramercy Park - Murray Hill
+UHF42,308,Greenwich Village - SoHo
+UHF42,309,Union Square - Lower East Side
+UHF42,310,Lower Manhattan
+UHF42,401,Long Island City - Astoria
+UHF42,402,West Queens
+UHF42,403,Flushing - Clearview
+UHF42,404,Bayside - Little Neck
+UHF42,405,Ridgewood - Forest Hills
+UHF42,406,Fresh Meadows
+UHF42,407,Southwest Queens
+UHF42,408,Jamaica
+UHF42,409,Southeast Queens
+UHF42,410,Rockaways
+UHF42,501,Port Richmond
+UHF42,502,Stapleton - St. George
+UHF42,503,Willowbrook
+UHF42,504,South Beach - Tottenville
+UHF34,101,Kingsbridge - Riverdale
+UHF34,102,Northeast Bronx
+UHF34,103,Fordham - Bronx Park
+UHF34,104,Pelham - Throgs Neck
+UHF34,201,Greenpoint
+UHF34,202,Downtown - Heights - Slope
+UHF34,203,Bedford Stuyvesant - Crown Heights
+UHF34,204,East New York
+UHF34,205,Sunset Park
+UHF34,206,Borough Park
+UHF34,207,East Flatbush - Flatbush
+UHF34,208,Canarsie - Flatlands
+UHF34,209,Bensonhurst - Bay Ridge
+UHF34,210,Coney Island - Sheepshead Bay
+UHF34,211,Williamsburg - Bushwick
+UHF34,301,Washington Heights - Inwood
+UHF34,302,Central Harlem - Morningside Heights
+UHF34,303,East Harlem
+UHF34,304,Upper West Side
+UHF34,401,Long Island City - Astoria
+UHF34,402,West Queens
+UHF34,403,Flushing - Clearview
+UHF34,405,Ridgewood - Forest Hills
+UHF34,407,Southwest Queens
+UHF34,408,Jamaica
+UHF34,409,Southeast Queens
+UHF34,410,Rockaway
+UHF34,305307,Upper East Side - Gramercy
+UHF34,306308,Chelsea - Village
+UHF34,309310,"Union Square, Lower Manhattan"
+UHF34,404406,Bayside - Meadows
+UHF34,501502,Northern SI
+UHF34,503504,Southern SI
+UHF34,105106107,South Bronx

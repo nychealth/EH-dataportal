@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>trucks on Environment &amp; Health Data Portal</title>
+    <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/trucks/</link>
+    <description>Recent content in trucks on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 28 May 2021 18:02:58 +0000</lastBuildDate>
+    <atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/trucks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Transportation-related injuries</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-explorer/transportation-related-injuries/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-explorer/transportation-related-injuries/</guid>
+      <description>Traffic injuries are no accident. Like other public health concerns, they are preventable through data driven solutions. In NYC, traffic injuries, which include injuries among pedestrians, bicyclists, motorcyclists, and motor vehicle occupants, are a leading cause of injury-related hospitalizations and emergency department visits.&#xA;In February 2014, NYC launched “Vision Zero”, an action plan to reduce injuries and deaths on city streets. Vision Zero is a multi-agency effort, incorporating road engineering, traffic enforcement, community outreach and education, and policy work to make NYC streets safer.</description>
+    </item>
+  </channel>
+</rss>

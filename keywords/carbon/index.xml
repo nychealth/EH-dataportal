@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>carbon on Environment &amp; Health Data Portal</title>
+    <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/carbon/</link>
+    <description>Recent content in carbon on Environment &amp; Health Data Portal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 28 May 2021 18:02:58 +0000</lastBuildDate>
+    <atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-prod/keywords/carbon/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Carbon monoxide</title>
+      <link>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-explorer/carbon-monoxide-incidents/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-prod/data-explorer/carbon-monoxide-incidents/</guid>
+      <description>Carbon monoxide (CO) is a poisonous gas that forms when fuel or other materials are burned. It is invisible and has no odor. Even short-term exposure to high levels of carbon monoxide can be fatal. Carbon monoxide blocks oxygen transport in the body. Symptoms of mild carbon monoxide poisoning include headache, nausea, fatigue, dizziness and disorientation. Breathing high concentrations of carbon monoxide can cause somebody to lose consciousness and have permanent neurological injury - or even death.</description>
+    </item>
+  </channel>
+</rss>
