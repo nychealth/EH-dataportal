@@ -1717,6 +1717,11 @@ const renderMeasures = async () => {
 
             // ----- set measure info boxes -------------------------------------------------- //
 
+            // reset info boxes
+
+            selectedComparisonAbout = [];
+            selectedComparisonSources = [];
+
             aqComparisonsIndicatorsMetadata.objects().forEach(m => {
 
                 selectedComparisonAbout +=
