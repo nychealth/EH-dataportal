@@ -737,7 +737,7 @@ const updateLinksData = async (e) => {
 
 // ----- add listener on each dropdown item -------------------------------------------------- //
 
-const handleTimeFilter = (el) => {
+const handleTableTimeFilter = (el) => {
 
     el.addEventListener('change', (e) => {
 
@@ -2224,7 +2224,7 @@ const renderMeasures = async () => {
     const checkboxGeo = document.querySelectorAll('.checkbox-geo');
 
     checkboxTime.forEach(checkbox => {
-        handleTimeFilter(checkbox);
+        handleTableTimeFilter(checkbox);
     })
 
     checkboxTimeAll[0].addEventListener('change', (e) => {
