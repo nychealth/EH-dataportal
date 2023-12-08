@@ -27,7 +27,7 @@ The Federal Reserve Board’s 2019 Survey of Consumer Finances (SCF) shows that,
 
 For much of American history, there has been a record of racist systematic policies implemented by the federal government that helped build wealth for White households while suppressing wealth accumulation for other groups, including Black and Hispanic households.  
 
-The Black-White wealth disparity, in particular, has been created and reinforced by systematic policies and practices including racial segregation laws, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/redlining/" target="_blank">redlining,</a> the discriminatory implementation of the New Deal and the G.I. Bill, and more. The inter-generational impacts of the enslavement of Black people have broad impacts on the wealth and health inequities observed today.
+The Black-White wealth disparity, in particular, has been created and reinforced by systematic policies and practices including racial segregation laws, <a href="../redlining/" target="_blank">redlining,</a> the discriminatory implementation of the New Deal and the G.I. Bill, and more. The inter-generational impacts of the enslavement of Black people have broad impacts on the wealth and health inequities observed today.
 
 ### Greater wealth translates to better health 
 

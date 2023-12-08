@@ -6,7 +6,7 @@
 
 {{- with $reports -}}
   {{- range sort .Pages "Title" "asc" -}}
-  <a href="{{ .RelPermalink }}" class="list-group-item list-group-item-action{{ if (eq $.report .File.BaseFileName) }} active{{- end -}}" aria-current="page">
+  <a href="{{ .RelPermalink }}" class="btn btn-sm btn-outline-primary btn-block{{ if (eq $.report .File.BaseFileName) }} active{{- end -}}" aria-current="page">
     {{- .Title -}}
   </a>
   {{- end -}}

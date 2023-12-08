@@ -10,6 +10,7 @@ const renderMap = (
         console.log("** renderMap");
 
         // console.log("data [renderMap]", data);
+        // console.log("metadata [renderMap]", metadata);
 
         // ----------------------------------------------------------------------- //
         // get unique time in data

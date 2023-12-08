@@ -51,3 +51,6 @@ static/IndicatorData/comparisons.json
 static/IndicatorData/indicators_pretty.json
 static/IndicatorData/metadata.json
 assets/js/data-explorer/some notes on refactoring.txt
+hugo-help.txt
+hugo-server-help.txt
+.Rhistory

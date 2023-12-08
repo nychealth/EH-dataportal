@@ -65,6 +65,7 @@ let selectedTrendMeasure;
 let selectedLinksMeasure;
 let selectedComparison;
 let showingNormalTrend;
+let showingComparisonsTrend;
 
 let selectedMapAbout;
 let selectedMapSources;

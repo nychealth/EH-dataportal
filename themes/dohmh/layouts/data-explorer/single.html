@@ -108,18 +108,29 @@
 
     /* dropdown list items - active styles based on if they're related to a primary or secondary button style */
 
+    .dropdown-item {
+        text-decoration: none;
+    }
+
     .btn-outline-primary ~ .dropdown-menu .dropdown-item.active,
     .btn-outline-primary ~ .dropdown-menu .dropdown-item:active {
         color: #ffffff;
-        text-decoration: none;
+        /*text-decoration: none;*/
         background-color: #841972;
     }
 
     .btn-outline-secondary ~ .dropdown-menu .dropdown-item.active,
     .btn-outline-secondary ~ .dropdown-menu .dropdown-item:active {
         color: #ffffff;
-        text-decoration: none;
+        /*text-decoration: none;*/
         background-color: #181A7B;
+    }
+
+    /* strikethrough if unavailable */
+
+    .dropdown-menu .dropdown-item.unavailable {
+        text-decoration: line-through;
+        text-decoration-thickness: 0.15rem;
     }
 
     /* topic selection modal */
@@ -575,7 +586,7 @@
 
     <div class="col-sm-12">
         <!-- Take Action partial -->
-        <div class="d-none d-sm-block d-md-block d-lg-none l-green-border mb-2 px-1">
+        <div class="d-block d-lg-none l-green-border mb-2 px-1">
             {{- partial "takeaction" . -}}
         </div>
     </div>
@@ -598,7 +609,7 @@
                     </button>
                 </div>
                 <div class="modal-body p-0 ">
-                    {{ partial "de-chooser-accordion.html" . }}
+                    {{ partial "de-chooser-accordion.html" (dict "layout" "single" "context" . ) }}
                 </div>
             </div>
         </div>
