@@ -1268,6 +1268,8 @@ const setDefaultLinksMeasure = async (visArray) => {
 
 const updateMapData = (e) => {
 
+    console.log("* updateMapData");
+
     // ----- handle selection -------------------------------------------------- //
 
     let measureId;
@@ -2000,8 +2002,9 @@ const renderMeasures = async () => {
     const mapGeoTypes = [...new Set(mapData.map(item => prettifyGeoType(item.GeoType)))];
     const dropdownMapGeoTypes = geoTypes.filter(g => mapGeoTypes.includes(g))
 
-    // console.log("geoTypes:", geoTypes);
-    // console.log("dropdownMapGeoTypes:", dropdownMapGeoTypes);
+    console.log("geoTypes:", geoTypes);
+    console.log("mapGeoTypes:", mapGeoTypes);
+    console.log("dropdownMapGeoTypes:", dropdownMapGeoTypes);
 
     dropdownMapGeoTypes.forEach(geo => {
 
@@ -2309,7 +2312,7 @@ const renderMeasures = async () => {
                     obj => obj.MeasureID === defaultMapMeasureId
                 );
 
-            // console.log("filteredMapData [showMap]", filteredMapData);
+            console.log("filteredMapData [showMap]", filteredMapData);
 
             // ----- allow map to persist when changing tabs -------------------------------------------------- //
 
@@ -3611,11 +3614,11 @@ const handleToggle = () => {
 // ======================================================================= //
 
 const renderMap = (
-    data,
+    data, 
     metadata
-    ) => {
+) => {
 
-        console.log("** renderMap");
+    console.log("** renderMap");
 
         // console.log("data [renderMap]", data);
         // console.log("metadata [renderMap]", metadata);
@@ -3632,19 +3635,19 @@ const renderMap = (
 
         // debugger;
 
-        // console.log("mapYears [map.js]", mapYears);
+    // console.log("mapYears [map.js]", mapYears);
 
-        let mapGeoType            = data[0].GeoType;
-        let geoTypeShortDesc      = data[0].GeoTypeShortDesc;
-        let mapMeasurementType    = metadata[0].MeasurementType;
-        let displayType           = metadata[0].DisplayType;
-        let mapGeoTypeDescription = 
-            metadata[0].AvailableGeographyTypes.filter(
-                gt => gt.GeoType === mapGeoType
-            )[0].GeoTypeDescription;
+    let mapGeoType            = data[0].GeoType;
+    let geoTypeShortDesc      = data[0].GeoTypeShortDesc;
+    let mapMeasurementType    = metadata[0].MeasurementType;
+    let displayType           = metadata[0].DisplayType;
+    let mapGeoTypeDescription = 
+        metadata[0].AvailableGeographyTypes.filter(
+            gt => gt.GeoType === mapGeoType
+        )[0].GeoTypeDescription;
 
-        let mapTime = mapYears[0];
-        let topoFile = '';
+    let mapTime = mapYears[0];
+    let topoFile = '';
 
         var color = 'purplered'
         var rankReverse = defaultMapMetadata[0].VisOptions[0].Map[0].RankReverse
@@ -3654,53 +3657,106 @@ const renderMap = (
             color = 'blues'
         }
 
-        // console.log('rank reverse?', rankReverse)
-        // console.log('color', color)
+    // console.log('rank reverse?', rankReverse)
+    // console.log('color', color)
 
+    // ----------------------------------------------------------------------- //
+    // format geography dropdown items
+    // ----------------------------------------------------------------------- //
 
-        // ----------------------------------------------------------------------- //
-        // get unique unreliability notes (dropping empty)
-        // ----------------------------------------------------------------------- //
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // get (pretty) geoTypes available for this year
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-        const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
+    // mapData has all the geos for every year
+    // data has the one geo x year we're mapping
 
-        document.querySelector("#map-unreliability").innerHTML = ""; // blank to start
+    const dataGeos = [...new Set(mapData.filter(d => d.Time == mapTime).map(d => prettifyGeoType(d.GeoType)))];
 
-        map_unreliability.forEach(element => {
+    console.log("dataGeos [renderMap]", dataGeos);
 
-            document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // get all geo check boxes
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    const allGeoItems = document.querySelectorAll('.mapgeosbutton');
+
+    console.log("allGeoItems", allGeoItems);
+
+    let geosNotAvailable = [];
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // format
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    
+    // remove disabled class from every geo list element
+
+    $(allGeoItems).removeClass("disabled");
+    $(allGeoItems).attr('aria-disabled', false);
+    
+    // now add disabled class for geos not available for this year
+
+    for (const item of allGeoItems) {
+
+        console.log("item.dataset.geo", item.dataset.geo);
+
+        if (!dataGeos.includes(item.dataset.geo)) {
             
-        });
-
-        // ----------------------------------------------------------------------- //
-        // set geo file based on geo type
-        // ----------------------------------------------------------------------- //
-
-        // console.log("mapGeoType [renderMap]", mapGeoType);
-
-        if (mapGeoType === "NTA2010") {
-            topoFile = 'NTA_2010.topo.json';
-        } else if (mapGeoType === "NTA2020") {
-            topoFile = 'NTA_2020.topo.json';
-        } else if (mapGeoType === "CD") {
-            topoFile = 'CD.topo.json';
-        } else if (mapGeoType === "CDTA2020") {
-            topoFile = 'CDTA_2020.topo.json';
-        } else if (mapGeoType === "PUMA") {
-            topoFile = 'PUMA_or_Subborough.topo.json';
-        } else if (mapGeoType === "Subboro") {
-            topoFile = 'PUMA_or_Subborough.topo.json';
-        } else if (mapGeoType === "UHF42") {
-            topoFile = 'UHF42.topo.json';
-        } else if (mapGeoType === "UHF34") {
-            topoFile = 'UHF34.topo.json';
-        } else if (mapGeoType === "NYCKIDS2017") {
-            topoFile = 'NYCKids_2017.topo.json';
-        } else if (mapGeoType === "NYCKIDS2019") {
-            topoFile = 'NYCKids_2019.topo.json';
-        } else if (mapGeoType === "Borough") {
-            topoFile = 'borough.topo.json';
+            geosNotAvailable.push(item)
+            
+            // set this element as disabled
+            $(item).addClass("disabled");
+            $(item).attr('aria-disabled', true);
+            
         }
+    }
+
+    // if you're on a geo that's not availble for a year you just clicked on, show the gray base map
+
+
+    // ----------------------------------------------------------------------- //
+    // get unique unreliability notes (dropping empty)
+    // ----------------------------------------------------------------------- //
+
+    const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
+
+    document.querySelector("#map-unreliability").innerHTML = ""; // blank to start
+
+    map_unreliability.forEach(element => {
+
+        document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
+        
+    });
+
+    // ----------------------------------------------------------------------- //
+    // set geo file based on geo type
+    // ----------------------------------------------------------------------- //
+
+    // console.log("mapGeoType [renderMap]", mapGeoType);
+
+    if (mapGeoType === "NTA2010") {
+        topoFile = 'NTA_2010.topo.json';
+    } else if (mapGeoType === "NTA2020") {
+        topoFile = 'NTA_2020.topo.json';
+    } else if (mapGeoType === "CD") {
+        topoFile = 'CD.topo.json';
+    } else if (mapGeoType === "CDTA2020") {
+        topoFile = 'CDTA_2020.topo.json';
+    } else if (mapGeoType === "PUMA") {
+        topoFile = 'PUMA_or_Subborough.topo.json';
+    } else if (mapGeoType === "Subboro") {
+        topoFile = 'PUMA_or_Subborough.topo.json';
+    } else if (mapGeoType === "UHF42") {
+        topoFile = 'UHF42.topo.json';
+    } else if (mapGeoType === "UHF34") {
+        topoFile = 'UHF34.topo.json';
+    } else if (mapGeoType === "NYCKIDS2017") {
+        topoFile = 'NYCKids_2017.topo.json';
+    } else if (mapGeoType === "NYCKIDS2019") {
+        topoFile = 'NYCKids_2019.topo.json';
+    } else if (mapGeoType === "Borough") {
+        topoFile = 'borough.topo.json';
+    }
 
         // ----------------------------------------------------------------------- //
         // define spec
@@ -3884,11 +3940,10 @@ const renderMap = (
         // ----------------------------------------------------------------------- //
 
         let dataForDownload = [...mapspec.data.values] // create a copy
-        // console.log(dataForDownload===mapspec.data.values) 
 
         let downloadTable = aq.from(dataForDownload)
             .derive({Indicator: `'${indicatorName}: ${mapMeasurementType}${displayType && ` (${displayType})`}'`}) // add indicator name and type column
-            .select(aq.not('GeoRank',"end_period","start_period","ban_summary_flag","GeoTypeShortDesc","MeasureID","DisplayValue")) // remove excess columns
+            .select(aq.not('GeoRank', "end_period", "start_period", "ban_summary_flag", "GeoTypeShortDesc", "MeasureID", "DisplayValue")) // remove excess columns
             // .print()
 
         CSVforDownload = downloadTable.toCSV()
@@ -4199,16 +4254,19 @@ const renderLinksChart = (
 
     vegaEmbed("#links", linkspec);
 
-    // Deliver data for download
-    let dataForDownload = [...linkspec.data.values]
+    // ----------------------------------------------------------------------- //
+    // Send chart data to download
+    // ----------------------------------------------------------------------- //
 
-    var dltable = aq.from(dataForDownload)
-        .select(aq.not("GeoType","GeoTypeShortDesc_1","GeoTypeShortDesc_2","GeoRank_1","GeoRank_2","start_period_1","end_period_1","ban_summary_flag_1","ban_summary_flag_2","BoroID","DisplayValue_1","DisplayValue_2","GeoTypeDesc_2","Geography_2","start_period_2","end_period_2","MeasureID_1","MeasureID_2"))
+    let dataForDownload = [...linkspec.data.values] // create a copy
+
+    let downloadTable = aq.from(dataForDownload)
+        .select(aq.not("GeoType", "GeoTypeShortDesc_1", "GeoTypeShortDesc_2", "GeoRank_1", "GeoRank_2", "start_period_1", "end_period_1", "ban_summary_flag_1", "ban_summary_flag_2", "BoroID", "DisplayValue_1", "DisplayValue_2", "GeoTypeDesc_2", "Geography_2", "start_period_2", "end_period_2", "MeasureID_1", "MeasureID_2"))
         .derive({ Value_1_Indicator: `'${yIndicatorName} - ${yMeasure && `${yMeasure}`} ${yDisplay && `${yDisplay}`}'`})
         .derive({ Value_2_Indicator: `'${xIndicatorName} - ${xMeasure} ${xDisplay && `(${xDisplay})`} '`})
-        .print()
+        // .print()
 
-    CSVforDownload = dltable.toCSV()
+    CSVforDownload = downloadTable.toCSV()
 
 }
 ;
@@ -4223,7 +4281,10 @@ const renderLinksChart = (
 // this function is called when the "Show Disparities" button is clicked. it
 //  in turn calls "loaddisparityData".
 
-const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
+const renderDisparities = async (
+    primaryMetadata, 
+    disparityMeasureId
+) => {
 
     console.log("** renderDisparities");
 
@@ -4527,16 +4588,27 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
             }
             ]
         }
+        
+        // ----------------------------------------------------------------------- //
+        // render chart
+        // ----------------------------------------------------------------------- //
+
         vegaEmbed("#links", disspec);
-        console.log(disspec.data.values)
-        let dataForDownload = [...disspec.data.values]
-        var dltable = aq.from(dataForDownload)
-            .select(aq.not("GeoType","GeoTypeShortDesc_1","GeoTypeShortDesc_2","GeoRank_1","GeoRank_2","start_period_1","end_period_1","ban_summary_flag_1","ban_summary_flag_2","BoroID","DisplayValue_1","DisplayValue_2","GeoTypeDesc_2","Geography_2","start_period_2","end_period_2","MeasureID_1","MeasureID_2","randomOffsetX"))
+
+
+        // ----------------------------------------------------------------------- //
+        // Send chart data to download
+        // ----------------------------------------------------------------------- //
+
+        let dataForDownload = [...disspec.data.values] // create a copy
+
+        let downloadTable = aq.from(dataForDownload)
+            .select(aq.not("GeoType", "GeoTypeShortDesc_1", "GeoTypeShortDesc_2", "GeoRank_1", "GeoRank_2", "start_period_1", "end_period_1", "ban_summary_flag_1", "ban_summary_flag_2", "BoroID", "DisplayValue_1", "DisplayValue_2", "GeoTypeDesc_2", "Geography_2", "start_period_2", "end_period_2", "MeasureID_1", "MeasureID_2", "randomOffsetX"))
             .derive({ Value_1_Indicator: `'${primaryIndicatorName && `${primaryIndicatorName}`}'`})
             .derive({ Value_2_Indicator: `'${disparityIndicatorName}'`})
             .print()
 
-        CSVforDownload = dltable.toCSV()
+        CSVforDownload = downloadTable.toCSV()
 
 
     }, 300)
@@ -4915,12 +4987,15 @@ const renderComparisonsChart = (
     
     vegaEmbed("#trend", compspec);
 
+    // ----------------------------------------------------------------------- //
+    // Send chart data to download
+    // ----------------------------------------------------------------------- //
+
     let dataForDownload = [...compspec.data.values] // create a copy
-    // console.log(dataForDownload===mapspec.data.values) 
 
     let downloadTable = aq.from(dataForDownload)
         .derive({Indicator: `'${indicatorName}: ${plotTitle} ${plotSubtitle}'`}) // add indicator name and type column
-        .select(aq.not("GeoType","GeoTypeDesc","GeoTypeShortDesc","GeoRank","MeasureID","ban_summary_flag","DisplayValue","start_period","end_period"))
+        .select(aq.not("GeoType", "GeoTypeDesc", "GeoTypeShortDesc", "GeoRank", "MeasureID", "ban_summary_flag", "DisplayValue", "start_period", "end_period"))
         .print()
 
     CSVforDownload = downloadTable.toCSV()
