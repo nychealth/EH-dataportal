@@ -168,15 +168,8 @@ const createComparisonData = async (comps) => {
             return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
                 .then(async data => {
 
-                        // console.log("@@ data:");
-                    // await data.print()
-
-                    // console.log("** aq.loadJSON");
-
-                    // filter data to keep only measures and geos in the comparison chart, using semijoin with comparison metadata
-                    // console.log("comp_data [createComparisonData]");
-
-                    // filter data to keep only measures and geos in the comparison chart, using semijoin with comparison metadata
+                    // console.log("*** aq.loadJSON");
+                    console.log("** comp_data:");
 
                     let comp_data = data
                         .derive({IndicatorID: aq.escape(ind[0])})
