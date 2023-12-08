@@ -1,9 +1,0 @@
-baseURL = "https://gcappbesp307.health.dohmh.nycnet/dev-test/beta/"
-[params]
-    # data_branch = "staging"
-    data_branch = "feature-NR-without-JSON"
-
-[caches]
-    [caches.getresource]
-      dir = ':cacheDir/:project'
-      maxAge = 0

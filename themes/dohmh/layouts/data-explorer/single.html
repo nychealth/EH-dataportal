@@ -586,7 +586,7 @@
 
     <div class="col-sm-12">
         <!-- Take Action partial -->
-        <div class="d-none d-sm-block d-md-block d-lg-none l-green-border mb-2 px-1">
+        <div class="d-block d-lg-none l-green-border mb-2 px-1">
             {{- partial "takeaction" . -}}
         </div>
     </div>
@@ -609,7 +609,7 @@
                     </button>
                 </div>
                 <div class="modal-body p-0 ">
-                    {{ partial "de-chooser-accordion.html" . }}
+                    {{ partial "de-chooser-accordion.html" (dict "layout" "single" "context" . ) }}
                 </div>
             </div>
         </div>

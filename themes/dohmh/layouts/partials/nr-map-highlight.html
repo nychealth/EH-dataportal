@@ -1,0 +1,164 @@
+<div id="vis1" class="chartdest" style="width: 100%; height: 300px;"></div>
+
+<style>
+
+  .marks:hover {
+    cursor: pointer
+  }
+</style>
+
+<script type="text/javascript">
+    var spec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "width": "container",
+        "height": 400,
+        "autosize": {"type": "fit", "contains": "padding"},
+        "config": {
+          "view": {"stroke": "transparent"}
+        },
+        "layer": [
+          {
+            "data": {
+              "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/UHF42.topo.json",
+              "format": {"type": "topojson", "feature": "collection"}
+            },
+            "mark": {"type": "geoshape", "stroke": "#ffffff", "fill": "lightgray"}
+          },
+          {
+            "data": {
+              "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/UHF42.topo.json",
+              "format": {"type": "topojson", "feature": "collection"}
+            },
+            "transform": [
+              {
+                "lookup": "properties.GEOCODE",
+                "from": {
+                  "data": {
+                    "url": `${baseURL}` + '/UHF42.csv'
+                    },
+                  "key": "GEOCODE",
+                  "fields": ["GEOCODE", "Name", "GEONAME", "VALUE"]
+                },
+                "default": "no data"
+              }
+            ],
+            "mark": {"type": "geoshape", "stroke": "#ffffff"},
+            "params": [
+              {
+                "name": "highlight",
+                "select": {
+                  "type": "point",
+                  "on": "mouseover",
+                  "clear": "mouseout"
+                }
+              }
+            ],
+            "encoding": {
+              "color": {
+                "bin": false,
+                "field": "VALUE",
+                "type": "quantitative",
+                "legend": null,
+                "scale": {"scheme": {"name": "blues", "extent": [0.25, 0.75]}}
+              },
+              "stroke": {
+                "condition": {
+                  "test": "datum['GEOCODE'] == ''",
+                  "value": "cyan"
+                  },
+                  "value": "#dadada"
+              },
+              "strokeWidth": {
+                "condition": {
+                  "test": "datum['GEOCODE'] == ''",
+                  "value": 3
+                  },
+                  "value": 1
+              },
+              "tooltip": [
+                {"field": "Name", "type": "nominal", "title": "Neighborhood"}        ]
+            }
+          }
+        ]
+      }
+
+      var neighborhoods = [];
+      var neighb = [];
+      var neighbName;
+      var rpt;
+      var parts
+    
+      // load UHF42.csv to get Geoname, etc - to power neighborhood highlight for nonclickable map.
+      d3.csv(baseURL + '/UHF42.csv').then(data => {
+        neighborhoods = data;
+        console.table(neighborhoods)
+
+        parts = window.location.href.split('/'); // get URL Path
+        // console.log('parts',parts)
+
+        // get index value of neighborhood-reports
+        var indexValue
+        for (let i = 0; i < parts.length; i++) {
+          if (parts[i] == 'neighborhood-reports') {
+            indexValue = i
+          } else {}
+        }
+
+        console.log('index value of NR:', indexValue)
+
+        // get neighborhood name and report from URL
+        var partsExtension = parts.slice(indexValue)
+        // console.log('partsExtension',partsExtension)
+        neighbName = partsExtension[1]
+        rpt = partsExtension[2]
+
+        neighb = neighborhoods.filter(x => x.GEONAME == neighbName) // get neighborhood data
+        var geocode = neighb[0].GEOCODE // get GEOCODE
+
+        drawChart(geocode)
+
+        // print ZIPS on neighborhood page
+        var ZIPS = document.getElementById('zips')
+        if (typeof zips !== 'undefined') {
+          zips.innerHTML = neighb[0].ZIPS
+        } else {}
+
+        // send name to breadcrumbs, for output page
+        var link = document.getElementById('neighbLink')
+        var dest = baseURL + 'neighborhood-reports/' + neighb[0].GEONAME
+
+        if (typeof link !== 'undefined') {
+          link.setAttribute("href",dest) 
+        } else {}
+
+        
+
+    
+      })
+    
+      // redraws map with highlighted neighborhood 
+      function drawChart(x) {
+        spec.layer[1].encoding.stroke.condition.test = `datum['GEOCODE'] == '${x}'`
+        spec.layer[1].encoding.strokeWidth.condition.test = `datum['GEOCODE'] == '${x}'`
+        vegaEmbed('#vis1', spec, {"actions": false}).then(result => {
+          result.view.addEventListener('click', function(event, item) {
+             console.log('CLICK', event, item);
+            // console.log(item.datum)
+
+            // send to new page
+            window.location = '{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(item.datum.GEONAME) + '/' + rpt
+          });
+          }).catch(console.warn);
+      }
+
+      vegaEmbed('#vis1', spec, {"actions": false}).then(result => {
+        result.view.addEventListener('click', function(event, item) {
+           console.log('CLICK', event, item);
+          // console.log(item.datum)
+
+          // send to new page
+          window.location = '{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(item.datum.GEONAME)
+        });
+        }).catch(console.warn);
+
+</script>
