@@ -1,31 +1,51 @@
-name: Hugo Build to GitHub Pages
+name: Hugo Build from any branch
 
-# run action on a merged PR on "development"
+# run action on a merged PR on "production"
 
 on:
-  pull_request:
-    branches:
-      - development
-    types:
-      - closed
+  workflow_dispatch:
 
-  # effectively turning this off, but keeping it in the repo
-  # schedule:
-  #   - cron: 0 0 1 1 * 
+    inputs:
 
+      branch:
+        description: Branch to build
+        required: true
+        type: string
+
+      publish-branch:
+        description: Branch name for build files
+        required: false
+        type: string
+
+      environment:
+        description: environment for Hugo
+        required: false
+        type: string
+        default: production
+      
+      baseURL:
+        description: baseURL for Hugo
+        required: false
+        type: string
+
+env:
+  publish_branch: ${{ inputs.publish-branch && inputs.publish-branch || inputs.branch }}
+  
 jobs:
-  deploy:
-    name: Build & Deploy w/ Hugo
+
+  # ------------------
+  # build to the branch
+  # ------------------
+
+  build:
     runs-on: ubuntu-20.04
-
-    # only run the action if it's a push or the PR was merged
-
-    if: github.event_name == 'push' || github.event.pull_request.merged == true
+    # can't use the "env" context at the job level, only in steps, so need to eval the conditional again
+    name: Build `${{ inputs.branch }} to builds/${{ inputs.publish-branch && inputs.publish-branch || inputs.branch }}`
 
     # wait for other triggered jobs to finish before running this
 
     concurrency: # don't run two of these jobs at the same time
-      group: ${{ github.workflow }}-${{ github.ref_name }} # ref name is branch name, so only one job on a branch will run at a time
+      group: ${{ github.workflow }}-${{ inputs.branch }} # use the given branch name, so only one job on a branch will run at a time
       cancel-in-progress: true # this makes it so that only the most recent job is run
 
     # define job's steps
@@ -42,18 +62,26 @@ jobs:
       # using checkout action
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with: 
+          ref: ${{ inputs.branch }}
+          fetch-depth: 0
+
+      # get last commit
+
+      - name: get last commit
+        id: last_commit
+        run: |
+          echo "last_hash=$(git log -1 --format=%h --abbrev=10)" >> $GITHUB_OUTPUT
+          echo "last_msg=$(git log -1 --format=%s)" >> $GITHUB_OUTPUT
 
       # set up node and cache for npm
 
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: lts/*
           cache: "npm"
-
-      - name: Installing npm
-        run: npm install
 
       # set up cache for node modules
 
@@ -80,19 +108,14 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-        run: |
-          npm install grunt
-          npm install lunr
-          npm install yamljs
-          npm install string
-          npm install url
+        run: npm install
 
       # set up Hugo
 
       - name: Hugo setup
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: "0.105.0"
+          hugo-version: "0.121.0"
           extended: true
 
       # cache Hugo modules
@@ -107,8 +130,18 @@ jobs:
 
       # build site with Hugo
 
-      - name: Hugo Build
-        run: hugo --environment development --cleanDestinationDir --debug
+      # if only environment is specified
+      
+      - name: Hugo Build environment
+        if: ${{ ! inputs.baseURL }}
+        run: hugo --environment ${{ inputs.environment }} --cleanDestinationDir --debug 
+
+      # if baseURL is also specified
+      
+      - name: Hugo Build environment + baseURL
+        if: ${{ inputs.baseURL }}
+        run: hugo --environment ${{ inputs.environment }} --baseURL ${{ inputs.baseURL }} --cleanDestinationDir --debug 
+
 
       # run gruntfile action
 
@@ -124,13 +157,13 @@ jobs:
         with:
           commitMessage: Update index & NPM package list
 
-      # publish to "gh-pages" branch, which triggers auto-deploy to GHP (configured thru repo settings)
+      # publish to "deploy" branch
 
-      - name: Publish to "gh-pages"
+      - name: Publish to "builds/${{ env.publish_branch }}"
         uses: peaceiris/actions-gh-pages@v3
         with:
-          full_commit_message: ${{ github.event.head_commit.message }} # will usually be merge commit
+          full_commit_message: Publish ${{ steps.last_commit.outputs.last_hash }} (${{ steps.last_commit.outputs.last_msg }}) to "builds/${{ env.publish_branch }}"
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
+          publish_branch: builds/${{ env.publish_branch }} 
           publish_dir: ./docs/
           enable_jekyll: false

@@ -336,6 +336,17 @@
 {{- $color_convert := resources.Get "js/color-convert.js" -}}
 <script src="{{ $color_convert.RelPermalink }}"></script>
 
+
+<!-- Uses a static stand-in file for local development - else uses the API -->
+<script>
+    var url = window.location.href
+    var rtaqData
+    url.includes('localhost') ? rtaqData = 'data/nyccas_realtime_DEC.csv' : rtaqData = 'https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv'
+
+</script>
+
+
+
 <!--bring in realtime JS -->
 <script type="text/javascript" src="js/realtime.js"></script>
 

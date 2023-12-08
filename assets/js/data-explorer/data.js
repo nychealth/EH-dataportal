@@ -29,7 +29,6 @@ fetch(`${data_repo}${data_branch}/indicators/metadata.json`)
         if (paramId) {
             loadIndicator(paramId)
             // console.log('param id is set')
-            globalID = paramId
 
             // fetch311(paramId)
         } else {
@@ -841,13 +840,12 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
             // get secondary measure data
 
-            const secondaryMeasureData = data.filter(d => d.MeasureID === secondaryMeasureId)
+            const aqFilteredSecondaryMeasureData = aq.from(data)
 
-            // join with geotable and times, keep only geos in primary data
+                // get secondary measure data
 
-            // console.log("aqFilteredSecondaryMeasureData [createJoinedLinksData]");
-
-            const aqFilteredSecondaryMeasureData = aq.from(secondaryMeasureData)
+                .filter(`d => d.MeasureID === ${secondaryMeasureId}`)
+                
                 .join(
                     geoTable,
                     [["GeoID", "GeoType"], ["GeoID", "GeoType"]]
@@ -955,12 +953,10 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 // function to draw 311 buttons
 // ----------------------------------------------------------------------- //
 
-
 function draw311Buttons(indicator_id) {
 
     console.log("* draw311Buttons");
 
-    let crosswalk;
     let filteredCrosswalk = [];
 
     d3.csv(`${baseURL}/311/311-crosswalk.csv`)
@@ -972,15 +968,20 @@ function draw311Buttons(indicator_id) {
         .then((crosswalk) => {
 
             document.getElementById('311').innerHTML = ''
+
+            // since we bring the takeaction partial in 2x on the DE page, we need to do this based on a class instead of an ID.
+            var dest = document.querySelectorAll('.destination311')
+            dest.forEach(element => element.innerHTML = '')
+
             filteredCrosswalk = crosswalk.filter(indicator => indicator.IndicatorID == indicator_id )
 
             // Creates label if there are 311 links
             if (filteredCrosswalk.length > 0) {
                 document.getElementById('311label').innerHTML = 'Contact 311 about:'
-                document.getElementById('311').classList.remove('hide')
+                dest.forEach(element => element.classList.remove('hide'))
             } else {
                 document.getElementById('311label').innerHTML = ''
-                document.getElementById('311').classList.add('hide')
+                dest.forEach(element => element.classList.add('hide'))
             };
 
             // draws 311 buttons
@@ -988,7 +989,7 @@ function draw311Buttons(indicator_id) {
                 var title = filteredCrosswalk[i].topic
                 var destination = filteredCrosswalk[i].kaLink
                 var btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="badge badge-pill badge-primary mr-1" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt mr-1"></i>${title}</a>`
-                document.getElementById('311').innerHTML += btn
+                dest.forEach(element => element.innerHTML += btn)
             }
     })
 }

@@ -9,7 +9,10 @@
 // this function is called when the "Show Disparities" button is clicked. it
 //  in turn calls "loaddisparityData".
 
-const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
+const renderDisparities = async (
+    primaryMetadata, 
+    disparityMeasureId
+) => {
 
     console.log("** renderDisparities");
 
@@ -313,8 +316,30 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
             }
             ]
         }
+        
+        // ----------------------------------------------------------------------- //
+        // render chart
+        // ----------------------------------------------------------------------- //
+
         vegaEmbed("#links", disspec);
 
+
+        // ----------------------------------------------------------------------- //
+        // Send chart data to download
+        // ----------------------------------------------------------------------- //
+
+        let dataForDownload = [...disspec.data.values] // create a copy
+
+        let downloadTable = aq.from(dataForDownload)
+            .select(aq.not("GeoType", "GeoTypeShortDesc_1", "GeoTypeShortDesc_2", "GeoRank_1", "GeoRank_2", "start_period_1", "end_period_1", "ban_summary_flag_1", "ban_summary_flag_2", "BoroID", "DisplayValue_1", "DisplayValue_2", "GeoTypeDesc_2", "Geography_2", "start_period_2", "end_period_2", "MeasureID_1", "MeasureID_2", "randomOffsetX"))
+            .derive({ Value_1_Indicator: `'${primaryIndicatorName && `${primaryIndicatorName}`}'`})
+            .derive({ Value_2_Indicator: `'${disparityIndicatorName}'`})
+            .print()
+
+        CSVforDownload = downloadTable.toCSV()
+
+
     }, 300)
+
 
 }

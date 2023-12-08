@@ -3,13 +3,14 @@
 // ======================================================================= //
 
 const renderMap = (
-    data,
+    data, 
     metadata
-    ) => {
+) => {
 
-        console.log("** renderMap");
+    console.log("** renderMap");
 
         // console.log("data [renderMap]", data);
+        // console.log("metadata [renderMap]", metadata);
 
         // ----------------------------------------------------------------------- //
         // get unique time in data
@@ -41,29 +42,82 @@ const renderMap = (
             color = 'blues'
         }
 
-        // console.log('rank reverse?', rankReverse)
-        // console.log('color', color)
+    // console.log('rank reverse?', rankReverse)
+    // console.log('color', color)
 
+    // ----------------------------------------------------------------------- //
+    // format geography dropdown items
+    // ----------------------------------------------------------------------- //
 
-        // ----------------------------------------------------------------------- //
-        // get unique unreliability notes (dropping empty)
-        // ----------------------------------------------------------------------- //
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // get (pretty) geoTypes available for this year
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-        const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
+    // mapData has all the geos for every year
+    // data has the one geo x year we're mapping
 
-        document.querySelector("#map-unreliability").innerHTML = ""; // blank to start
+    const dataGeos = [...new Set(mapData.filter(d => d.Time == mapTime).map(d => prettifyGeoType(d.GeoType)))];
 
-        map_unreliability.forEach(element => {
+    console.log("dataGeos [renderMap]", dataGeos);
 
-            document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // get all geo check boxes
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    const allGeoItems = document.querySelectorAll('.mapgeosbutton');
+
+    console.log("allGeoItems", allGeoItems);
+
+    let geosNotAvailable = [];
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // format
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    
+    // remove disabled class from every geo list element
+
+    $(allGeoItems).removeClass("disabled");
+    $(allGeoItems).attr('aria-disabled', false);
+    
+    // now add disabled class for geos not available for this year
+
+    for (const item of allGeoItems) {
+
+        console.log("item.dataset.geo", item.dataset.geo);
+
+        if (!dataGeos.includes(item.dataset.geo)) {
             
-        });
+            geosNotAvailable.push(item)
+            
+            // set this element as disabled
+            $(item).addClass("disabled");
+            $(item).attr('aria-disabled', true);
+            
+        }
+    }
 
-        // ----------------------------------------------------------------------- //
-        // set geo file based on geo type
-        // ----------------------------------------------------------------------- //
+    // if you're on a geo that's not availble for a year you just clicked on, show the gray base map
 
-        // console.log("mapGeoType [renderMap]", mapGeoType);
+
+    // ----------------------------------------------------------------------- //
+    // get unique unreliability notes (dropping empty)
+    // ----------------------------------------------------------------------- //
+
+    const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
+
+    document.querySelector("#map-unreliability").innerHTML = ""; // blank to start
+
+    map_unreliability.forEach(element => {
+
+        document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
+        
+    });
+
+    // ----------------------------------------------------------------------- //
+    // set geo file based on geo type
+    // ----------------------------------------------------------------------- //
+
+    // console.log("mapGeoType [renderMap]", mapGeoType);
 
         if (mapGeoType === "NTA2010") {
             topoFile = 'NTA_2010.topo.json';
@@ -269,4 +323,18 @@ const renderMap = (
         // ----------------------------------------------------------------------- //
 
         vegaEmbed("#map", mapspec);
+
+        // ----------------------------------------------------------------------- //
+        // Send chart data to download
+        // ----------------------------------------------------------------------- //
+
+        let dataForDownload = [...mapspec.data.values] // create a copy
+
+        let downloadTable = aq.from(dataForDownload)
+            .derive({Indicator: `'${indicatorName}: ${mapMeasurementType}${displayType && ` (${displayType})`}'`}) // add indicator name and type column
+            .select(aq.not('GeoRank', "end_period", "start_period", "ban_summary_flag", "GeoTypeShortDesc", "MeasureID", "DisplayValue")) // remove excess columns
+            // .print()
+
+        CSVforDownload = downloadTable.toCSV()
+
     }

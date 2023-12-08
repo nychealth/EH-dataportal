@@ -65,6 +65,7 @@ let selectedTrendMeasure;
 let selectedLinksMeasure;
 let selectedComparison;
 let showingNormalTrend;
+let showingComparisonsTrend;
 
 let selectedMapAbout;
 let selectedMapSources;
@@ -116,6 +117,10 @@ let showTrend;
 let showNormalTrend;
 let showTrendComparisons;
 let showLinks;
+
+var CSVforDownload; 
+var downloadedIndicator;
+var downloadedIndicatorMeasurement;
 
 // store hash, so display knows where it just was
 let currentHash;

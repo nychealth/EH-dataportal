@@ -221,9 +221,7 @@ En el siguiente mapa, observe cómo **tres vecindarios de UHF42 en South Bronx**
 
 
 ### ¿Cómo escoger cuando los límites se superponen?
-Estos límites de vecindarios diferentes pueden complicar las cosas. Por ejemplo, supongamos que usted vive en Ditmas Park y quiere obtener algunos datos sanitarios para una reunión de su Junta Comunitaria. Ditmas Park es parte del Distrito Comunitario 14, Flatbush/Midwood. Pero el CD14 abarca dos vecindarios diferentes de UHF.
-
-Tenemos [una herramienta que ayuda a ver la superposición y las diferencias](https://a816-dohbesp.nyc.gov/IndicatorPublic/CommunityDistrict.aspx) para que pueda elegir qué informe de vecindario usar; sin embargo, sigue surgiendo una pregunta difícil: ¿los datos de qué vecindario llevará a la reunión de la Junta Comunitaria?
+Estos límites de vecindarios diferentes pueden complicar las cosas. Por ejemplo, supongamos que usted vive en Ditmas Park y quiere obtener algunos datos sanitarios para una reunión de su Junta Comunitaria. Ditmas Park es parte del Distrito Comunitario 14, Flatbush/Midwood. Pero el CD14 abarca dos vecindarios diferentes de UHF. Sigue surgiendo una pregunta difícil: ¿los datos de qué vecindario llevará a la reunión de la Junta Comunitaria?
 
 {{< figure src="overlap.png" alt="An example of a Community District that overlaps two UHF42 neighborhoods.">}}
 

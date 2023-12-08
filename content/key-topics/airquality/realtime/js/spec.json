@@ -1,7 +1,9 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "description": "PM2.5 in micrograms per cubic meter",
-    "data": {"url": "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv"},
+    "data": {
+      "url": "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv"
+    },
     "config": {
       "legend": {
         "disable": true
@@ -73,7 +75,11 @@
             "type": "nominal",
             "scale": {
               "range": ["blue", "yellow", "orange", "red", "green","gray"]
-              }
+              },
+            "condition": [
+              {"test": "datum.SiteName === 'Broadway_35th_St'","value": "blue"},
+              {"test": "datum.SiteName === 'Cross_Bronx_Expy'","value": "red"}
+            ]
             },
             "opacity": {
               "value": 0.7
