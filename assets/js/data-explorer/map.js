@@ -329,7 +329,6 @@ const renderMap = (
         // ----------------------------------------------------------------------- //
 
         let dataForDownload = [...mapspec.data.values] // create a copy
-        // console.log(dataForDownload===mapspec.data.values) 
 
         let downloadTable = aq.from(dataForDownload)
             .derive({Indicator: `'${indicatorName}: ${mapMeasurementType}${displayType && ` (${displayType})`}'`}) // add indicator name and type column

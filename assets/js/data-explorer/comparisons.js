@@ -369,8 +369,11 @@ const renderComparisonsChart = (
     
     vegaEmbed("#trend", compspec);
 
+    // ----------------------------------------------------------------------- //
+    // Send chart data to download
+    // ----------------------------------------------------------------------- //
+
     let dataForDownload = [...compspec.data.values] // create a copy
-    // console.log(dataForDownload===mapspec.data.values) 
 
     let downloadTable = aq.from(dataForDownload)
         .derive({Indicator: `'${indicatorName}: ${plotTitle} ${plotSubtitle}'`}) // add indicator name and type column
