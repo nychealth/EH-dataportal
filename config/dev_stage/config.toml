@@ -1,7 +1,6 @@
 baseURL = "https://gcappbesp307.health.dohmh.nycnet/dev-stage/"
 [params]
-    # data_branch = "staging"
-    data_branch = "feature-NR-without-JSON"
+    data_branch = "staging"
 
 [caches]
     [caches.getresource]
