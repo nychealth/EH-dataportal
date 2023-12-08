@@ -162,8 +162,8 @@ config = {
                     "C": "yellow",
                     "D": "red"
                 },
-                "opacity": 0.8,
-                "legendDescription": "This is a description for redlined areas"
+                "opacity": 0.9,
+                "legendDescription": "This 1930s-era HOLC redlining map shows the four grades that were assigned to neighborhoods based on race, and helps us understand the nature of racism, poverty, and health in our society. Read more about redlining here."
              },
              "displayProperties":{
                 "displayPropertyArgs":[
@@ -318,7 +318,7 @@ config = {
                 "maxColor":"#c44601",
                 "color": "black",
                 "opacity": 0.8,
-                "legendDescription": "This is a sample of a legend description. It can be long, it can be short, it can include <a href=\"#\">links</a>. It can do things like <b>bold</b>."
+                "legendDescription": "<strong> PM2.5 </strong> are fine particles that are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health. It can be long, it can be short, it can include <a href=\"#\">links</a>."
              },
              "displayProperties":{
                 "missingDisplay":"N/A",
@@ -352,7 +352,7 @@ config = {
                "maxColor":"#c44601",
                "color": "black",
                "opacity": 0.8,
-               "legendDescription": "This is a sample of a legend description. It can be long, it can be short, it can include <a href=\"#\">links</a>. It can do things like <b>bold</b>."
+               "legendDescription": "This is a b sample of a legend description. It can be long, it can be short, it can include <a href=\"#\">links</a>. It can do things like <b>bold</b>."
             },
             "displayProperties":{
                "missingDisplay":"N/A",
@@ -382,7 +382,8 @@ config = {
                "minColor":"green",
                "maxColor":"red",
                "color": "black",
-               "opacity": 0.5
+               "opacity": 0.5,
+               "legendDescription": "The HVI shows the risk of community-level heat impacts, like deaths, due to extreme heat events. It is made up of data on surface temperature, green space, air conditioning access, median income, and Black population (the population most excluded from heat resources). Differences in community-level heat impacts stem from structural racism, which limits access to preventive resources. See our interactive Heat Vulnerability Index."
             },
             "displayProperties":{
                "missingDisplay":"N/A",
@@ -413,7 +414,8 @@ config = {
             "minColor":"blue",
             "maxColor":"green",
             "color": "black",
-            "opacity": 0.75
+            "opacity": 0.75,
+            "legendDescription": "Vegetative cover is the land covered by trees, grass, or other plants instead of a hard surface like roads, sidewalks, or buildings. Vegetative cover tends to reduce temperatures in the immediate area and may increase air quality."
          },
          "displayProperties":{
             "missingDisplay":"N/A",
@@ -438,7 +440,8 @@ config = {
                 "minColor":"#054fb9",
                 "maxColor":"#c44601",
                 "color": "black",
-                "opacity": 0.9
+                "opacity": 0.9,
+                "legendDescription": "Heat stress hospitalizations weather are part of the public health burden due to hot weather. Data aggregated over five years provides enough stablility to display neighborhood impacts."
 
             },
             "displayProperties":{
@@ -556,7 +559,9 @@ config = {
             "minColor":"blue",
             "maxColor":"green",
             "color": "black",
-            "opacity": 0.75
+            "opacity": 0.75,
+            "legendDescription": "The percent of households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to items such as health care and good quality housing that are needed to maintain good health."
+
          },
          "displayProperties":{
             "missingDisplay":"N/A",
