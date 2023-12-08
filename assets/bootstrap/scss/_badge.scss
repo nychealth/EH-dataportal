@@ -41,6 +41,7 @@
   padding-right: $badge-pill-padding-x;
   padding-left: $badge-pill-padding-x;
   @include border-radius($badge-pill-border-radius);
+  border-radius: 10em;
 }
 
 // Colors

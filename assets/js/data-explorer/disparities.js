@@ -29,12 +29,12 @@ const renderDisparities = async (
     // ----------------------------------------------------------------------- //
 
     const primaryIndicatorName   = indicatorName
-    const primaryMeasurementType = primaryMetadata[0].MeasurementType;
-    const primaryMeasureId       = primaryMetadata[0].MeasureID;
-    const primaryMeasureName     = primaryMetadata[0].MeasureName;
+    const primaryMeasurementType = primaryMetadata[0]?.MeasurementType;
+    const primaryMeasureId       = primaryMetadata[0]?.MeasureID;
+    const primaryMeasureName     = primaryMetadata[0]?.MeasureName;
     const primaryAbout           = primaryMetadata[0]?.how_calculated;
-    const primarySources         = primaryMetadata[0].Sources;
-    const primaryDisplay         = primaryMetadata[0].DisplayType;
+    const primarySources         = primaryMetadata[0]?.Sources;
+    const primaryDisplay         = primaryMetadata[0]?.DisplayType;
 
     // get disparities poverty indicator metadata - "indicators" is a global object created by loadIndicator
 
@@ -317,7 +317,18 @@ const renderDisparities = async (
             ]
         }
         vegaEmbed("#links", disspec);
+        console.log(disspec.data.values)
+        let dataForDownload = [...disspec.data.values]
+        var dltable = aq.from(dataForDownload)
+            .select(aq.not("GeoType","GeoTypeShortDesc_1","GeoTypeShortDesc_2","GeoRank_1","GeoRank_2","start_period_1","end_period_1","ban_summary_flag_1","ban_summary_flag_2","BoroID","DisplayValue_1","DisplayValue_2","GeoTypeDesc_2","Geography_2","start_period_2","end_period_2","MeasureID_1","MeasureID_2","randomOffsetX"))
+            .derive({ Value_1_Indicator: `'${primaryIndicatorName && `${primaryIndicatorName}`}'`})
+            .derive({ Value_2_Indicator: `'${disparityIndicatorName}'`})
+            .print()
+
+        CSVforDownload = dltable.toCSV()
+
 
     }, 300)
+
 
 }

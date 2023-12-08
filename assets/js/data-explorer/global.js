@@ -62,6 +62,7 @@ let selectedTrendMeasure;
 let selectedLinksMeasure;
 let selectedComparison;
 let showingNormalTrend;
+let showingComparisonsTrend;
 
 let selectedMapAbout;
 let selectedMapSources;
@@ -106,6 +107,10 @@ let showNormalTrend;
 let showTrendComparisons;
 let showLinks;
 
+var CSVforDownload; 
+var downloadedIndicator;
+var downloadedIndicatorMeasurement;
+
 // store hash, so display knows where it just was
 let currentHash;
 let state;
@@ -139,6 +144,8 @@ const assignGeoRank = (GeoType) => {
         case 'NYCKIDS2017':
             return 2;
         case 'NYCKIDS2019':
+            return 2;
+        case 'NYCKIDS2021':
             return 2;
         case 'UHF34':
             return 3;
