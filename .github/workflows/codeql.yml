@@ -20,11 +20,13 @@ on:
       - closed
   schedule:
     - cron: '27 6 * * 3'
+  workflow_dispatch:
 
 jobs:
   analyze:
     name: Analyze
-    if: github.event_name == 'push' || github.event.pull_request.merged == true # only run the action if it's a push or the PR was merged
+    # only run the action if it's a push or the PR was merged
+    if: github.event_name == 'push' || github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -44,7 +46,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
