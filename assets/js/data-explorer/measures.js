@@ -238,6 +238,8 @@ const setDefaultLinksMeasure = async (visArray) => {
 
 const updateMapData = (e) => {
 
+    console.log("* updateMapData");
+
     // ----- handle selection -------------------------------------------------- //
 
     let measureId;
@@ -970,8 +972,9 @@ const renderMeasures = async () => {
     const mapGeoTypes = [...new Set(mapData.map(item => prettifyGeoType(item.GeoType)))];
     const dropdownMapGeoTypes = geoTypes.filter(g => mapGeoTypes.includes(g))
 
-    // console.log("geoTypes:", geoTypes);
-    // console.log("dropdownMapGeoTypes:", dropdownMapGeoTypes);
+    console.log("geoTypes:", geoTypes);
+    console.log("mapGeoTypes:", mapGeoTypes);
+    console.log("dropdownMapGeoTypes:", dropdownMapGeoTypes);
 
     dropdownMapGeoTypes.forEach(geo => {
 
@@ -1279,7 +1282,7 @@ const renderMeasures = async () => {
                     obj => obj.MeasureID === defaultMapMeasureId
                 );
 
-            // console.log("filteredMapData [showMap]", filteredMapData);
+            console.log("filteredMapData [showMap]", filteredMapData);
 
             // ----- allow map to persist when changing tabs -------------------------------------------------- //
 
