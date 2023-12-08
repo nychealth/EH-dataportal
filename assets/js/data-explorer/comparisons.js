@@ -410,12 +410,15 @@ const renderComparisonsChart = (
     
     vegaEmbed("#trend", compspec);
 
+    // ----------------------------------------------------------------------- //
+    // Send chart data to download
+    // ----------------------------------------------------------------------- //
+
     let dataForDownload = [...compspec.data.values] // create a copy
-    // console.log(dataForDownload===mapspec.data.values) 
 
     let downloadTable = aq.from(dataForDownload)
         .derive({Indicator: `'${indicatorName}: ${plotTitle} ${plotSubtitle}'`}) // add indicator name and type column
-        .select(aq.not("GeoType","GeoTypeDesc","GeoTypeShortDesc","GeoRank","MeasureID","ban_summary_flag","DisplayValue","start_period","end_period"))
+        .select(aq.not("GeoType", "GeoTypeDesc", "GeoTypeShortDesc", "GeoRank", "MeasureID", "ban_summary_flag", "DisplayValue", "start_period", "end_period"))
         .print()
 
     CSVforDownload = downloadTable.toCSV()

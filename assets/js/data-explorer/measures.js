@@ -238,6 +238,8 @@ const setDefaultLinksMeasure = async (visArray) => {
 
 const updateMapData = (e) => {
 
+    console.log("* updateMapData");
+
     // ----- handle selection -------------------------------------------------- //
 
     let measureId;
@@ -978,8 +980,9 @@ const renderMeasures = async () => {
     const mapGeoTypes = [... new Set(aqMapGeos.array("GeoType").map(gt => prettifyGeoType(gt)))]
     const dropdownMapGeoTypes = geoTypes.filter(g => mapGeoTypes.includes(g))
 
-    // console.log("geoTypes:", geoTypes);
-    // console.log("dropdownMapGeoTypes:", dropdownMapGeoTypes);
+    console.log("geoTypes:", geoTypes);
+    console.log("mapGeoTypes:", mapGeoTypes);
+    console.log("dropdownMapGeoTypes:", dropdownMapGeoTypes);
 
     dropdownMapGeoTypes.forEach(geo => {
 
