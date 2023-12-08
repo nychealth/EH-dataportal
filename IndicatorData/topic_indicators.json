@@ -424,6 +424,13 @@
     ],
     "topic_name": "Walking, driving, and cycling"
   },
+  "waterways": {
+    "IndicatorID": [
+      2427,
+      2428
+    ],
+    "topic_name": "Waterways"
+  },
   "weather-related-illness": {
     "IndicatorID": [
       2376,
