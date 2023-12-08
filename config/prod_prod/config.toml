@@ -1,0 +1,8 @@
+baseURL = "https://a816-dohbesp.nyc.gov/IndicatorPublic/"
+[params]
+    data_branch = "production"
+
+[caches]
+    [caches.getresource]
+      dir = ':cacheDir/:project'
+      maxAge = 0
