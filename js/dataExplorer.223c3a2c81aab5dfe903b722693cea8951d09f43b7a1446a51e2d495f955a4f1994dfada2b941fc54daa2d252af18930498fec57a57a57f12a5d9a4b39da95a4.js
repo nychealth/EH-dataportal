@@ -2333,9 +2333,7 @@ const renderMeasures = async () => {
             // ----- allow map to persist when changing tabs -------------------------------------------------- //
 
             if (!selectedMapMeasure) {
-            if (!selectedMapMeasure) {
 
-                console.log(">> no selectedMapMeasure");
                 console.log(">> no selectedMapMeasure");
 
                 // this is all inside the conditional, because if a user clicks on this tab again
@@ -3280,12 +3278,9 @@ const renderMeasures = async () => {
 
     })
 
-
     checkboxGeo.forEach(checkbox => {
         handleTableGeoFilter(checkbox);
     })
-
-
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
