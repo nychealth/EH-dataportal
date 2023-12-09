@@ -125,7 +125,9 @@
 
     $( "#modal-{{ .ind.indicator_data_name }}-{{ .count }}" ).on('shown.bs.modal', function() {
 
-        {{ if ( or ( eq hugo.Environment "production" ) ( eq hugo.Environment "prod_prod" ) ( eq hugo.Environment "development" ) ) -}}
+        {{ $envs := slice "Production", "production", "prod_prod", "development" }}
+
+        {{ if ( in $envs hugo.Environment ) -}}
 
             gtag('event', 'click_modal', {
                 'modal_name': '{{ .ind.indicator_short_name }}'
