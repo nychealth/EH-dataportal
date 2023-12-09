@@ -15,6 +15,7 @@ city:
 - entry: 
   copy: "Supports energy-efficiency changes in municipal and community buildings."
   link: 
+
 you:
 - entry: 
   copy: "Be a Buddy and check in on neighbors to help them stay cool when it’s hot."
@@ -25,6 +26,7 @@ you:
 - entry: 
   copy: "Request a street tree to help cool your neighborhood."
   link: https://www.nycgovparks.org/trees/street-tree-planting/request
+
 data:
 - entry: 
   copy: NYC Community Health Profiles.
