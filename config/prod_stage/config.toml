@@ -1,7 +1,6 @@
 baseURL = "https://gcappbesp307.health.dohmh.nycnet/IndicatorPublic/"
 [params]
-    # data_branch = "staging"
-    data_branch = "feature-add-geos-to-comparisons"
+    data_branch = "staging"
 
 [caches]
     [caches.getresource]

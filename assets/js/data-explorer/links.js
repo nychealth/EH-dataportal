@@ -4,8 +4,8 @@
 
 const renderLinksChart = (
     data,
-    primaryMetadata,   // indicators.json for primary indicator
-    secondaryMetadata, // indciators.json for secondary indicator
+    primaryMetadata,   // metadata.json for primary indicator
+    secondaryMetadata, // metadata.json for secondary indicator
     primaryIndicatorName,
     secondaryIndicatorName,
 ) => {
@@ -26,22 +26,22 @@ const renderLinksChart = (
     // get measure metadata
     // ----------------------------------------------------------------------- //
 
-    const primaryMeasurementType = primaryMetadata[0].MeasurementType;
-    const primaryMeasureName     = primaryMetadata[0].MeasureName;
-    const primaryDisplay         = primaryMetadata[0].DisplayType;
-    const primaryTime            = data[0].Time_1;
-    const geoTypeShortDesc       = data[0].GeoTypeShortDesc_1;
+    const primaryMeasurementType = primaryMetadata[0]?.MeasurementType;
+    const primaryMeasureName     = primaryMetadata[0]?.MeasureName;
+    const primaryDisplay         = primaryMetadata[0]?.DisplayType;
+    const primaryTimePeriod      = data[0]?.TimePeriod_1;
+    const geoTypeShortDesc       = data[0]?.GeoTypeShortDesc_1;
 
-    const secondaryMeasurementType = secondaryMetadata[0].MeasurementType
-    const secondaryMeasureName     = secondaryMetadata[0].MeasureName
-    const secondaryMeasureId       = secondaryMetadata[0].MeasureID
-    const secondaryDisplay         = secondaryMetadata[0].DisplayType;
-    const secondaryTime            = data[0].Time_2;
+    const secondaryMeasurementType = secondaryMetadata[0]?.MeasurementType
+    const secondaryMeasureName     = secondaryMetadata[0]?.MeasureName
+    const secondaryMeasureId       = secondaryMetadata[0]?.MeasureID
+    const secondaryDisplay         = secondaryMetadata[0]?.DisplayType;
+    const secondaryTimePeriod      = data[0]?.TimePeriod_2;
 
     const SecondaryAxis = 
-        primaryMetadata[0].VisOptions[0].Links.filter(
+        primaryMetadata[0].VisOptions[0].Links[0].Measures?.filter(
             l => l.MeasureID === secondaryMeasureId
-        )[0].SecondaryAxis;
+        )[0]?.SecondaryAxis;
 
     // ----------------------------------------------------------------------- //
     // switch field assignment based on SecondaryAxis preference
@@ -53,40 +53,40 @@ const renderLinksChart = (
     let yMeasureName;
     let xDisplay = null;
     let yDisplay = null;
-    let xTime;
-    let yTime;
+    let xTimePeriod;
+    let yTimePeriod;
     let xIndicatorName;
     let yIndicatorName;
     let xMin;
 
     switch (SecondaryAxis) {
         case 'x':
-            xMeasure = secondaryMeasurementType;
-            yMeasure = primaryMeasurementType;
-            xMeasureName = secondaryMeasureName;
-            yMeasureName = primaryMeasureName;
-            xValue = "Value_2";
-            yValue = "Value_1";
-            xMin = Math.min.apply(null, Value_2); // get min value for adjusting axis
-            xDisplay = secondaryDisplay ? secondaryDisplay : '';
-            yDisplay = primaryDisplay ? primaryDisplay : '';
-            xTime = secondaryTime;
-            yTime = primaryTime;
+            xMeasure       = secondaryMeasurementType;
+            yMeasure       = primaryMeasurementType;
+            xMeasureName   = secondaryMeasureName;
+            yMeasureName   = primaryMeasureName;
+            xValue         = "Value_2";
+            yValue         = "Value_1";
+            xMin           = Math.min.apply(null, Value_2); // get min value for adjusting axis
+            xDisplay       = secondaryDisplay ? secondaryDisplay : '';
+            yDisplay       = primaryDisplay ? primaryDisplay : '';
+            xTimePeriod    = secondaryTimePeriod;
+            yTimePeriod    = primaryTimePeriod;
             xIndicatorName = secondaryIndicatorName;
             yIndicatorName = primaryIndicatorName;
             break;
         case 'y':
-            xMeasure = primaryMeasurementType;
-            yMeasure = secondaryMeasurementType;
-            xMeasureName = primaryMeasureName;
-            yMeasureName = secondaryMeasureName;
-            xValue = "Value_1";
-            yValue = "Value_2";
-            xMin = Math.min.apply(null, Value_1); // get min value for adjusting axis
-            xDisplay = primaryDisplay ? primaryDisplay : '';
-            yDisplay = secondaryDisplay ? secondaryDisplay : '';
-            xTime = primaryTime;
-            yTime = secondaryTime;
+            xMeasure       = primaryMeasurementType;
+            yMeasure       = secondaryMeasurementType;
+            xMeasureName   = primaryMeasureName;
+            yMeasureName   = secondaryMeasureName;
+            xValue         = "Value_1";
+            yValue         = "Value_2";
+            xMin           = Math.min.apply(null, Value_1); // get min value for adjusting axis
+            xDisplay       = primaryDisplay ? primaryDisplay : '';
+            yDisplay       = secondaryDisplay ? secondaryDisplay : '';
+            xTimePeriod    = primaryTimePeriod;
+            yTimePeriod    = secondaryTimePeriod;
             xIndicatorName = primaryIndicatorName;
             yIndicatorName = secondaryIndicatorName;
             break;
@@ -133,7 +133,7 @@ const renderLinksChart = (
             "font": "sans-serif",
             "baseline": "top",
             "dy": -10,
-            "subtitle": `${yMeasure && `${yMeasure}`} ${yDisplay && `${yDisplay}`} (${yTime})`,
+            "subtitle": `${yMeasure && `${yMeasure}`} ${yDisplay && `${yDisplay}`} (${yTimePeriod})`,
             "subtitleFontSize": 13,
             "limit": 1000
         },
@@ -214,7 +214,7 @@ const renderLinksChart = (
                         },
                     },
                     "x": {
-                        "title": [`${xIndicatorName && `${xIndicatorName}`}`, `${xMeasure} ${xDisplay && `(${xDisplay})`} (${xTime})`],
+                        "title": [`${xIndicatorName && `${xIndicatorName}`}`, `${xMeasure} ${xDisplay && `(${xDisplay})`} (${xTimePeriod})`],
                         "field": xValue,
                         "type": "quantitative",
                         "scale": {"domainMin": xMin, "nice": true}
@@ -231,8 +231,8 @@ const renderLinksChart = (
                             "type": "nominal"
                         },
                         {
-                            "title": "Time",
-                            "field": "Time_2",
+                            "title": "Time Period",
+                            "field": "TimePeriod_2",
                             "type": "nominal"
                         },
                         {
@@ -302,15 +302,18 @@ const renderLinksChart = (
 
     vegaEmbed("#links", linkspec);
 
-    // Deliver data for download
-    let dataForDownload = [...linkspec.data.values]
+    // ----------------------------------------------------------------------- //
+    // Send chart data to download
+    // ----------------------------------------------------------------------- //
 
-    var dltable = aq.from(dataForDownload)
-        .select(aq.not("GeoType","GeoTypeShortDesc_1","GeoTypeShortDesc_2","GeoRank_1","GeoRank_2","start_period_1","end_period_1","ban_summary_flag_1","ban_summary_flag_2","BoroID","DisplayValue_1","DisplayValue_2","GeoTypeDesc_2","Geography_2","start_period_2","end_period_2","MeasureID_1","MeasureID_2"))
+    let dataForDownload = [...linkspec.data.values] // create a copy
+
+    let downloadTable = aq.from(dataForDownload)
+        .select(aq.not("GeoType", "GeoTypeShortDesc_1", "GeoTypeShortDesc_2", "GeoRank_1", "GeoRank_2", "start_period_1", "end_period_1", "ban_summary_flag_1", "ban_summary_flag_2", "BoroID", "DisplayValue_1", "DisplayValue_2", "GeoTypeDesc_2", "Geography_2", "start_period_2", "end_period_2", "MeasureID_1", "MeasureID_2"))
         .derive({ Value_1_Indicator: `'${yIndicatorName} - ${yMeasure && `${yMeasure}`} ${yDisplay && `${yDisplay}`}'`})
         .derive({ Value_2_Indicator: `'${xIndicatorName} - ${xMeasure} ${xDisplay && `(${xDisplay})`} '`})
-        .print()
+        // .print()
 
-    CSVforDownload = dltable.toCSV()
+    CSVforDownload = downloadTable.toCSV()
 
 }

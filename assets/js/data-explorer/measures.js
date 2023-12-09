@@ -208,10 +208,10 @@ const setDefaultLinksMeasure = async (visArray) => {
 
         }
 
-        defaultLinkMeasureTimes = defaultArray[0].AvailableTime;
+        // defaultLinkMeasureTimes = defaultArray[0].AvailableTime; // <<<<<<<<<<
 
         const defaultPrimaryMeasureId = defaultArray[0].MeasureID;
-        const defaultSecondaryMeasureId = defaultArray[0].VisOptions[0].Links[0].MeasureID;
+        const defaultSecondaryMeasureId = defaultArray[0].VisOptions[0].Links[0].Measures[0]?.MeasureID;
 
         // assigning to global object
         defaultLinksMetadata = defaultArray;
@@ -237,6 +237,8 @@ const setDefaultLinksMeasure = async (visArray) => {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 const updateMapData = (e) => {
+
+    console.log("* updateMapData");
 
     // ----- handle selection -------------------------------------------------- //
 
@@ -360,9 +362,9 @@ const updateMapData = (e) => {
     // filter map data using selected measure and time
 
     filteredMapData =
-        mapData.filter(obj => 
-            obj.MeasureID == measureId &&
-            obj.Time == time &&
+        mapData.filter(
+            obj => obj.MeasureID == measureId &&
+            obj.TimePeriod == time &&
             prettifyGeoType(obj.GeoType) == geo
         );
 
@@ -431,6 +433,7 @@ const updateTrendData = (e) => {
     const measurementType = selectedTrendMetadata[0].MeasurementType;
     const about           = selectedTrendMetadata[0].how_calculated;
     const sources         = selectedTrendMetadata[0].Sources;
+    // const times           = selectedTrendMetadata[0].VisOptions[0].Trend[0]?.TimePeriodID;
 
     aqSelectedTrendMetadata = aq.from(selectedTrendMetadata)
         .derive({
@@ -457,7 +460,11 @@ const updateTrendData = (e) => {
 
     // created filtered trend data, to be passed to render function
 
-    filteredTrendData = trendData.filter(m => m.MeasureID === measureId);
+    filteredTrendData = trendData
+        .filter(m => m.MeasureID === measureId)
+        // .filter(m => times.includes(m.TimePeriod));
+
+    // console.log("filteredTrendData [updateTrendData]", filteredTrendData);
 
 
     // ----- render the chart -------------------------------------------------- //
@@ -477,7 +484,7 @@ const updateTrendData = (e) => {
 
     if (measureIdsAnnualAvg.includes(measureId)) {
 
-        const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.Time.startsWith('Annual Average'));
+        const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.TimePeriod.startsWith('Annual Average'));
 
         let aqFilteredTrendDataAnnualAvg = aq.from(filteredTrendDataAnnualAvg);
 
@@ -487,7 +494,7 @@ const updateTrendData = (e) => {
 
     } else if (measureIdsSummer.includes(measureId)) {
 
-        const filteredTrendDataSummer = filteredTrendData.filter(d => d.Time.startsWith('Summer'));
+        const filteredTrendDataSummer = filteredTrendData.filter(d => d.TimePeriod.startsWith('Summer'));
 
         let aqFilteredTrendDataSummer = aq.from(filteredTrendDataSummer);
 
@@ -580,11 +587,13 @@ const updateTrendComparisonsData = (e) => {
     aqFilteredComparisonsData = aqFilteredComparisonsMetadata
         .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
         .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
+        .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
+        .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
 
         // put host indicator first, so it gets the black line
         .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
     
-    // console.log(">>>> aqFilteredComparisonsData:");
+    // console.log(">>>> aqFilteredComparisonsData [updateTrendComparisonsData]");
     // aqFilteredComparisonsData.print()
 
     // show only last 3 years of DWQ measures with quarterly data
@@ -596,10 +605,10 @@ const updateTrendComparisonsData = (e) => {
         // console.log(">>>> aqFilteredComparisonsData [quarters]:");
 
         aqFilteredComparisonsData = aqFilteredComparisonsData
-            .join(aqMeasureIdTimes, [["MeasureID", "Time"], ["MeasureID", "TimeDescription"]])
+            .join(aqMeasureIdTimes, [["MeasureID", "TimePeriodID"], ["MeasureID", "TimePeriodID"]])
             .derive({"year": d => op.year(d.end_period)})
             .filter(d => d.year > op.max(d.year) - 3)
-            .select(aq.not("TimeDescription", "year"))
+            .select(aq.not("TimePeriodID", "year"))
             // .print(20)
 
     }
@@ -726,11 +735,11 @@ const updateLinksData = async (e) => {
 
 // need to be defined before `renderMeasures`, where they're added as listener callbacks
 
-// ===== year ================================================== //
+// ===== time ================================================== //
 
 // ----- add listener on each dropdown item -------------------------------------------------- //
 
-const handleTableYearFilter = (el) => {
+const handleTableTimeFilter = (el) => {
 
     el.addEventListener('change', (e) => {
 
@@ -738,17 +747,17 @@ const handleTableYearFilter = (el) => {
 
         if (e.target.checked) {
 
-            // selectedTableYears = [e.target.value]
-            selectedTableYears.push(e.target.value)
+            // selectedTableTimes = [e.target.value]
+            selectedTableTimes.push(e.target.value)
 
         } else {
 
-            // if the selected element is not checked, remove it from table years
+            // if the selected element is not checked, remove it from table times
 
-            let index = selectedTableYears.indexOf(e.target.value);
+            let index = selectedTableTimes.indexOf(e.target.value);
 
             if (index !== -1) {
-                selectedTableYears.splice(index, 1);
+                selectedTableTimes.splice(index, 1);
             }
         }
         renderTable()
@@ -862,7 +871,7 @@ const renderMeasures = async () => {
 
     console.log("* renderMeasures");
 
-    selectedTableYears = [];
+    selectedTableTimes = [];
     selectedTableGeography = [];
 
     linksMeasures.length = 0
@@ -912,29 +921,29 @@ const renderMeasures = async () => {
     // ----- select all -------------------------------------------------- //
 
     dropdownTableTimes.innerHTML +=
-        `<label class="dropdown-item checkbox-year-all"><input class="largerCheckbox" type="checkbox" name="year" value="all" /> Select all </label>`
+        `<label class="dropdown-item checkbox-time-all"><input class="largerCheckbox" type="checkbox" name="time" value="all" /> Select all </label>`
 
-    // ----- years -------------------------------------------------- //
+    // ----- times -------------------------------------------------- //
 
-    const tableYears = [...new Set(tableData.map(item => item.Time))];
+    const tableTimes = [...new Set(aqTableTimes.array("TimePeriod"))];
 
-    // console.log("tableYears", tableYears);
+    // console.log("tableTimes", tableTimes);
 
-    tableYears.forEach((year, index) => {
+    tableTimes.forEach((time, index) => {
 
         if (index === 0) {
 
-            // default to most recent year
+            // default to most recent time
 
-            selectedTableYears = [year];
+            selectedTableTimes = [time];
 
             dropdownTableTimes.innerHTML +=
-                `<label class="dropdown-item checkbox-year"><input class="largerCheckbox" type="checkbox" name="year" value="${year}" checked /> ${year}</label>`;
+                `<label class="dropdown-item checkbox-time"><input class="largerCheckbox" type="checkbox" name="time" value="${time}" checked /> ${time}</label>`;
 
         } else {
 
             dropdownTableTimes.innerHTML +=
-                `<label class="dropdown-item checkbox-year"><input class="largerCheckbox" type="checkbox" name="year" value="${year}" /> ${year}</label>`;
+                `<label class="dropdown-item checkbox-time"><input class="largerCheckbox" type="checkbox" name="time" value="${time}" /> ${time}</label>`;
         }
 
     });
@@ -944,7 +953,8 @@ const renderMeasures = async () => {
 
     // create geo dropdown for table (using pretty geotypes, keeping georank order)
 
-    const tableGeoTypes = [...new Set(tableData.map(item => prettifyGeoType(item.GeoType)))];
+    // const tableGeoTypes = [...new Set(tableData.map(item => prettifyGeoType(item.GeoType)))];
+    const tableGeoTypes = [... new Set(aqTableGeos.array("GeoType").map(gt => prettifyGeoType(gt)))]
     const dropdownTableGeoTypes = geoTypes.filter(g => tableGeoTypes.includes(g))
 
     // console.log("geoTypes:", geoTypes);
@@ -967,11 +977,12 @@ const renderMeasures = async () => {
 
     // create geo dropdown for table (using pretty geotypes, keeping georank order)
 
-    const mapGeoTypes = [...new Set(mapData.map(item => prettifyGeoType(item.GeoType)))];
+    const mapGeoTypes = [... new Set(aqMapGeos.array("GeoType").map(gt => prettifyGeoType(gt)))]
     const dropdownMapGeoTypes = geoTypes.filter(g => mapGeoTypes.includes(g))
 
-    // console.log("geoTypes:", geoTypes);
-    // console.log("dropdownMapGeoTypes:", dropdownMapGeoTypes);
+    console.log("geoTypes:", geoTypes);
+    console.log("mapGeoTypes:", mapGeoTypes);
+    console.log("dropdownMapGeoTypes:", dropdownMapGeoTypes);
 
     dropdownMapGeoTypes.forEach(geo => {
 
@@ -989,7 +1000,7 @@ const renderMeasures = async () => {
 
     // ----- times -------------------------------------------------- //
 
-    const mapTimes = [...new Set(mapData.map(item => item.Time))];
+    const mapTimes = [... new Set(aqMapTimes.array("TimePeriod"))]
 
     // console.log("mapTimes", mapTimes);
 
@@ -1003,7 +1014,7 @@ const renderMeasures = async () => {
     });
 
 
-    // ----- handle measures for this indicator ================================================== //
+    // ===== handle measures for this indicator ================================================== //
 
     let header = "";
 
@@ -1012,10 +1023,13 @@ const renderMeasures = async () => {
         // console.log("index", index);
         // console.log("measure", measure);
 
-        const type = measure?.MeasurementType;
-        const links = measure?.VisOptions[0].Links && measure?.VisOptions[0]?.Links[0];
-        const map = measure?.VisOptions[0].Map && measure?.VisOptions[0].Map[0]?.On;
-        const trend = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0]?.On;
+        // check to see if the different viz types exist for this measure
+
+        const map   = measure?.VisOptions[0].Map   && measure?.VisOptions[0].Map[0].TimePeriodID[0];
+        const trend = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0].TimePeriod;
+        const links = measure?.VisOptions[0].Links && measure?.VisOptions[0].Links[0].Measures[0].MeasureID;
+        
+        const type  = measure?.MeasurementType;
         const measureId = measure.MeasureID;
 
         // console.log("type", type, "links", links, "map", map, "trend", trend);
@@ -1023,7 +1037,7 @@ const renderMeasures = async () => {
 
         // ----- handle map measures -------------------------------------------------- //
 
-        if (map === 1) {
+        if (map) {
             
             mapMeasures.push(measure)
             
@@ -1037,7 +1051,7 @@ const renderMeasures = async () => {
 
         // ----- handle trend measures -------------------------------------------------- //
 
-        if (trend === 1) {
+        if (trend) {
 
             // console.log(">>>> trend");
 
@@ -1086,7 +1100,9 @@ const renderMeasures = async () => {
                 dropdownLinksMeasures.innerHTML +=
                     `<div class="dropdown-title pl-2"><strong> ${type}</strong></div>`;
 
-                measure.VisOptions[0].Links.map(link => {
+                measure?.VisOptions[0].Links[0].Measures?.map(link => {
+
+                    // console.log("link", link);
 
                     const linksSecondaryIndicator = indicators.filter(indicator =>
                         indicator.Measures.some(m =>
@@ -1094,16 +1110,18 @@ const renderMeasures = async () => {
                         )
                     );
 
-                    const linksSecondaryMeasure = linksSecondaryIndicator[0].Measures.filter(m =>
+                    const linksSecondaryMeasure = linksSecondaryIndicator[0]?.Measures?.filter(m =>
                         m.MeasureID === link.MeasureID
                     );
+
+                    // console.log("linksSecondaryMeasure", linksSecondaryMeasure);
 
                     dropdownLinksMeasures.innerHTML +=
                         `<button class="dropdown-item linksbutton pl-3"
                             data-primary-measure-id="${measureId}"
                             data-measure-id="${measure.MeasureID}"
                             data-secondary-measure-id="${link.MeasureID}">
-                            ${linksSecondaryMeasure[0].MeasureName}
+                            ${linksSecondaryMeasure[0]?.MeasureName}
                         </button>`;
 
                 });
@@ -1134,13 +1152,15 @@ const renderMeasures = async () => {
                 
                 let compGroup = titleGroup.filter(aq.escape(d => d.ComparisonID == comp))
                 
-                let compIndicatorLabel   = [... new Set(compGroup.array("IndicatorLabel"))];
-                let compMeasurementType  = [... new Set(compGroup.array("MeasurementType"))];
-                let compY_axis_title     = [... new Set(compGroup.array("Y_axis_title"))];
+                let compIndicatorLabel     = [... new Set(compGroup.array("IndicatorLabel"))];
+                let compMeasurementType   = [... new Set(compGroup.array("MeasurementType"))];
+                let compY_axis_title         = [... new Set(compGroup.array("Y_axis_title"))];
                 // let compIndicatorMeasure = [... new Set(compGroup.array("IndicatorMeasure"))];
-                let compGeoTypeName      = [... new Set(compGroup.array("GeoTypeName"))];
+                let compGeoTypeGeoTypeName      = [... new Set(compGroup.array("GeoTypeName"))];
                 let compGeography        = [... new Set(compGroup.array("Geography"))];
                 let compName             = [... new Set(compGroup.array("ComparisonName"))];
+
+                // console.log("compGeography", compGeography);
 
                 console.log("compGeography", compGeography);
                 
@@ -1285,12 +1305,19 @@ const renderMeasures = async () => {
 
             let defaultMapMeasureId = defaultMapMetadata[0].MeasureID;
 
+            let mapTimes = defaultMapMetadata[0].VisOptions[0].Map[0].TimePeriodID
+            let mapGeos = defaultMapMetadata[0].VisOptions[0].Map[0].GeoType
+
             // ----- create dataset -------------------------------------------------- //
 
             // filter map data using default measure
 
             filteredMapData = mapData.filter(
-                    obj => obj.MeasureID === defaultMapMeasureId
+                    obj => (
+                        obj.MeasureID === defaultMapMeasureId &&
+                        mapTimes.includes(obj.TimePeriodID) &&
+                        mapGeos.includes(obj.GeoType)
+                    )
                 );
 
             console.log("filteredMapData [showMap]", filteredMapData);
@@ -1361,7 +1388,7 @@ const renderMeasures = async () => {
                         obj => obj.end_period === latest_end_period
                     );
 
-                latest_time = filteredMapData[0].Time
+                latest_time = filteredMapData[0].TimePeriod
 
                 console.log("filteredMapData [no selectedMapTime]", filteredMapData);
 
@@ -1437,8 +1464,6 @@ const renderMeasures = async () => {
 
 
         } else {
-
-            console.log("else [showMap]");
 
             // if there was a map already, restore it
 
@@ -1565,6 +1590,7 @@ const renderMeasures = async () => {
             const about   = defaultTrendMetadata[0]?.how_calculated;
             const sources = defaultTrendMetadata[0].Sources;
             const measure = defaultTrendMetadata[0].MeasurementType;
+            // const times   = defaultTrendMetadata[0].VisOptions[0].Trend[0]?.TimePeriod;
 
             aqDefaultTrendMetadata = aq.from(defaultTrendMetadata)
                 .derive({
@@ -1593,8 +1619,12 @@ const renderMeasures = async () => {
             // ----- create dataset -------------------------------------------------- //
 
             const defaultTrendMeasureId = defaultTrendMetadata[0].MeasureID;
-            filteredTrendData = trendData.filter(m => m.MeasureID === defaultTrendMeasureId);
 
+            filteredTrendData = trendData
+                .filter(m => m.MeasureID === defaultTrendMeasureId)
+                // .filter(m => times.includes(m.TimePeriod));
+
+            // console.log("filteredTrendData [showNormalTrend]", filteredTrendData);
 
             // ----- render the chart -------------------------------------------------- //
 
@@ -1605,7 +1635,7 @@ const renderMeasures = async () => {
 
                 // console.log("measureIdsAnnualAvg.includes(defaultTrendMeasureId)");
                 
-                const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.Time.startsWith('Annual Average'));
+                const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.TimePeriod.startsWith('Annual Average'));
                 aqFilteredTrendData = aq.from(filteredTrendDataAnnualAvg);
                 
                 renderComparisonsChart(aqFilteredTrendData, aqDefaultTrendMetadata);
@@ -1615,7 +1645,7 @@ const renderMeasures = async () => {
 
                 // console.log("measureIdsSummer.includes(defaultTrendMeasureId)");
                 
-                const filteredTrendDataSummer = filteredTrendData.filter(d => d.Time.startsWith('Summer'));
+                const filteredTrendDataSummer = filteredTrendData.filter(d => d.TimePeriod.startsWith('Summer'));
                 aqFilteredTrendData = aq.from(filteredTrendDataSummer);
                 
                 renderComparisonsChart(aqFilteredTrendData, aqDefaultTrendMetadata);
@@ -1694,6 +1724,7 @@ const renderMeasures = async () => {
             // get first comparisonId
 
             const comparisonId = parseInt(comparisonsMetadata[0].ComparisonID);
+            // const times        = defaultTrendMetadata[0].VisOptions[0].Trend[0]?.TimePeriod;
 
             // console.log("comparisonId", comparisonId);
 
@@ -1759,8 +1790,8 @@ const renderMeasures = async () => {
                 // put host indicator first (then measure), so it gets the black line
                 .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)), d => d.MeasureID)
 
-            // console.log(">>>> aqFilteredComparisonsData:");
-            // aqFilteredComparisonsData.print({limit: Infinity})
+            // console.log(">>>> aqFilteredComparisonsData [showTrendComparisons]");
+            // aqFilteredComparisonsData.print()
 
             // show only last 3 years of DWQ measures with quarterly data
 
@@ -1771,10 +1802,10 @@ const renderMeasures = async () => {
                 // console.log(">>>> aqFilteredComparisonsData [quarters]:");
 
                 aqFilteredComparisonsData = aqFilteredComparisonsData
-                    .join(aqMeasureIdTimes, [["MeasureID", "Time"], ["MeasureID", "TimeDescription"]])
+                    .join(aqMeasureIdTimes, [["MeasureID", "TimePeriodID"], ["MeasureID", "TimePeriodID"]])
                     .derive({"year": d => op.year(d.end_period)})
                     .filter(d => d.year > op.max(d.year) - 3)
-                    .select(aq.not("TimeDescription", "year"))
+                    .select(aq.not("TimePeriod", "year"))
                     // .print(20)
 
             }
@@ -1859,8 +1890,8 @@ const renderMeasures = async () => {
             // switch on/off the disparities button
 
             const disparities =
-                defaultLinksMetadata[0].VisOptions[0].Trend &&
-                defaultLinksMetadata[0].VisOptions[0].Trend[0]?.Disparities;
+                defaultLinksMetadata[0].VisOptions[0].Links &&
+                defaultLinksMetadata[0].VisOptions[0].Links[0]?.Disparities;
 
             // hide or how disparities button
 
@@ -1895,7 +1926,7 @@ const renderMeasures = async () => {
 
             // get first linked measure by default
 
-            const secondaryMeasureId = defaultLinksMetadata[0]?.VisOptions[0].Links[0].MeasureID;
+            const secondaryMeasureId = defaultLinksMetadata[0]?.VisOptions[0].Links[0].Measures[0].MeasureID;
 
             // get linked indicator's metadata
 
@@ -1907,22 +1938,22 @@ const renderMeasures = async () => {
 
             // use linked indicator's metadata to get linked measure's metadata
 
-            const linksSecondaryMeasure = linksSecondaryIndicator[0].Measures.filter(m =>
+            const linksSecondaryMeasure = linksSecondaryIndicator[0]?.Measures?.filter(m =>
                 m.MeasureID === secondaryMeasureId
             )
 
             primaryIndicatorName   = indicatorName;
-            secondaryIndicatorName = linksSecondaryIndicator[0].IndicatorName;
+            secondaryIndicatorName = linksSecondaryIndicator[0]?.IndicatorName;
 
             // get measure metadata
 
-            const primaryMeasure         = defaultLinksMetadata[0].MeasurementType;
-            const primaryAbout           = defaultLinksMetadata[0].how_calculated;
-            const primarySources         = defaultLinksMetadata[0].Sources;
+            const primaryMeasure         = defaultLinksMetadata[0]?.MeasurementType;
+            const primaryAbout           = defaultLinksMetadata[0]?.how_calculated;
+            const primarySources         = defaultLinksMetadata[0]?.Sources;
 
-            const secondaryMeasure       = linksSecondaryMeasure[0].MeasurementType;
-            const secondaryAbout         = linksSecondaryMeasure[0].how_calculated;
-            const secondarySources       = linksSecondaryMeasure[0].Sources;
+            const secondaryMeasure       = linksSecondaryMeasure[0]?.MeasurementType;
+            const secondaryAbout         = linksSecondaryMeasure[0]?.how_calculated;
+            const secondarySources       = linksSecondaryMeasure[0]?.Sources;
 
 
             // ----- set measure info boxes -------------------------------------------------- //
@@ -2064,9 +2095,9 @@ const renderMeasures = async () => {
         enableTab(tabMap);
     }
 
-    // if there's no trend data or only 1 time period, don't show the tab
+    // if there's no trend data or only 1 time period in all of the measures, don't show the tab
 
-    const onlyOneTime = trendMeasures.every(m => m.AvailableTimes.length <= 1)
+    const onlyOneTime = trendMeasures.every(m => m.VisOptions[0].Trend[0]?.TimePeriodID.length <= 1) // <<<<<<<<<<
 
     // debugger;
 
@@ -2198,45 +2229,45 @@ const renderMeasures = async () => {
     // add event handler functions to summary tab checkboxes
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    const checkboxYear = document.querySelectorAll('.checkbox-year');
-    const checkboxYearAll = document.querySelectorAll('.checkbox-year-all');
+    const checkboxTime = document.querySelectorAll('.checkbox-time');
+    const checkboxTimeAll = document.querySelectorAll('.checkbox-time-all');
     const checkboxGeo = document.querySelectorAll('.checkbox-geo');
 
-    checkboxYear.forEach(checkbox => {
-        handleTableYearFilter(checkbox);
+    checkboxTime.forEach(checkbox => {
+        handleTableTimeFilter(checkbox);
     })
 
-    checkboxYearAll[0].addEventListener('change', (e) => {
+    checkboxTimeAll[0].addEventListener('change', (e) => {
 
         if (!e.target.checked) {
 
             // console.log("not checked");
 
-            checkboxYear.forEach(checkbox => {
+            checkboxTime.forEach(checkbox => {
 
                 // console.log("checkbox", checkbox);
 
                 $(checkbox).find("input").prop("checked", false)
-                selectedTableYears = []
+                selectedTableTimes = []
 
             })
 
-            // console.log("selectedTableYears [not checked]", selectedTableYears);
+            // console.log("selectedTableTimes [not checked]", selectedTableTimes);
 
         } else if (e.target.checked) {
 
             // console.log("checked");
 
-            checkboxYear.forEach(checkbox => {
+            checkboxTime.forEach(checkbox => {
 
                 // console.log("checkbox", checkbox);
 
                 $(checkbox).find("input").prop("checked", true)
-                selectedTableYears.push($(checkbox).find("input").val())
+                selectedTableTimes.push($(checkbox).find("input").val())
 
             })
 
-            // console.log("selectedTableYears [checked]", selectedTableYears);
+            // console.log("selectedTableTimes [checked]", selectedTableTimes);
 
 
         }
@@ -2273,4 +2304,4 @@ const renderMeasures = async () => {
 
     renderAboutSources(measureAbout, measureSources);
 
-    }
+}

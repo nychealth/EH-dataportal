@@ -6,7 +6,9 @@
 // top scope variables
 // ----------------------------------------------------------------------- //
 
-let selectedTableYears = [];
+let globalID;
+
+let selectedTableTimes = [];
 let selectedTableGeography = [];
 let aboutMeasures;
 let dataSources;
@@ -14,8 +16,9 @@ let dataSources;
 let measureAbout = `N/A`;
 let measureSources = `N/A`;
 let geoTable;
+let timeTable;
 let unreliabilityNotes;
-let aqData;
+let aqIndicatorData;
 let joinedAqData;
 let aqMeasureIdTimes;
 
@@ -51,7 +54,7 @@ let defaultMapMetadata = [];
 let defaultMapAbout;
 let defaultMapSources;
 let defaultLinksMetadata = [];
-let defaultLinkMeasureTimes = [];
+// let defaultLinkMeasureTimes = [];
 let defaultLinksAbout;
 let defaultLinksSources;
 
@@ -90,6 +93,14 @@ let aqFilteredTrendData;
 let aqFilteredComparisonsData;
 let aqFilteredComparisonsMetadata;
 let aqCombinedComparisonsMetadata;
+
+let aqMeasureDisplay;
+let aqTableTimes;
+let aqMapTimes;
+let aqTrendTimes;
+let aqTableGeos;
+let aqMapGeos;
+let aqTrendGeos;
 
 let mapMeasures = [];
 let trendMeasures = [];
@@ -225,8 +236,6 @@ const prettifyGeoType = (GeoType) => {
 
 const renderTitleDescription = (title, desc) => {
 
-    // console.log("** renderTitleDescription");
-    
     const indicatorTitle = document.getElementById('indicatorTitle');
     const indicatorDescription = document.querySelector('.indicator-description');
     indicatorTitle.innerHTML = title;
