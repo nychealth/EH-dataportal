@@ -134,13 +134,13 @@ jobs:
       
       - name: Hugo Build environment
         if: ${{ ! inputs.baseURL }}
-        run: hugo --environment ${{ inputs.environment }} --cleanDestinationDir --debug 
+        run: hugo --environment ${{ inputs.environment }} --cleanDestinationDir --logLevel debug 
 
       # if baseURL is also specified
       
       - name: Hugo Build environment + baseURL
         if: ${{ inputs.baseURL }}
-        run: hugo --environment ${{ inputs.environment }} --baseURL ${{ inputs.baseURL }} --cleanDestinationDir --debug 
+        run: hugo --environment ${{ inputs.environment }} --baseURL ${{ inputs.baseURL }} --cleanDestinationDir --logLevel debug 
 
 
       # run gruntfile action

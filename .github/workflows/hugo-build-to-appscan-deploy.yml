@@ -116,7 +116,7 @@ jobs:
       # build site with Hugo
 
       - name: Hugo Build
-        run: hugo --environment appscan_deploy --cleanDestinationDir --debug
+        run: hugo --environment appscan_deploy --cleanDestinationDir --logLevel debug
 
       # run gruntfile action
 

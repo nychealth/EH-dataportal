@@ -113,7 +113,7 @@ jobs:
       # build site with Hugo
 
       - name: Hugo Build
-        run: hugo --environment prod_prod --cleanDestinationDir --debug
+        run: hugo --environment prod_prod --cleanDestinationDir --logLevel debug
 
       # run gruntfile action
 
