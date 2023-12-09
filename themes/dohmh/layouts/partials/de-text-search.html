@@ -105,7 +105,7 @@ function sendToIndicator(x) {
     const topics = topicIndicatorsTable.filter((ind) => ind.IndicatorID === x.IndicatorID);
     console.log('Selected indicator parent topics:')
     console.log(topics)
-    window.location.href = baseURL + 'data-explorer/' + topics[0].topic + '/?id=' + x.IndicatorID 
+    window.location.href = {{ relURL "data-explorer/" }} + topics[0].topic + '/?id=' + x.IndicatorID 
 }
 
 </script>

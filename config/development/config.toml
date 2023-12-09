@@ -1,4 +1,4 @@
-baseURL = "https://nychealth.github.io/EH-dataportal/"
+baseURL = "https://gcappbesp307.health.dohmh.nycnet/dev-prod/"
 [params]
     data_branch = "production"
 

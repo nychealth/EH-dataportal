@@ -22,7 +22,7 @@
     
     {{/*  only process if it's a data explorer page */}}
     
-    {{- if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (ne (path.Base .RelPermalink) "all-data")) -}}
+    {{- if (and (eq .Kind "page") (strings.Contains .RelPermalink "/data-explorer") (ne (path.Base .RelPermalink) "all-data")) -}}
         
         {{/*  turn params into strings  */}}
         
@@ -63,6 +63,8 @@
 
 <p class="sr-only">This produces a list of topics and IndicatorIDs, stored in the variable <code>$topic_indicators</code>, 
     and printed to the console as a JavaScript variable, and then as an Arquero table.</p>
+
+    {{/*  {{ warnf ( print "~~~~~ topic_indicators_map"  $topic_indicators_map ) }}  */}}
     
     <script>
 
@@ -82,7 +84,7 @@
         
     </script>
     
-    <p class="sr-only">Also outputting a JSON version of the list to <code><a href="{{ .Site.BaseURL }}IndicatorData/topic_indicators.json">/IndicatorData/topic_indicators.json</code></a> 
+    <p class="sr-only">Also outputting a JSON version of the list to <code><a href={{ relURL "IndicatorData/topic_indicators.json" }}>/IndicatorData/topic_indicators.json</code></a> 
         (which on build will be put into <code>/docs/IndicatorData/</code>)</strong>
         
         {{- $si_json_output_path := "/IndicatorData/topic_indicators.json" -}}

@@ -7,9 +7,9 @@
         <!-- content goes here -->
         <nav aria-label="breadcrumb" class="mb-2">
           <ul class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item"><a href="/neighborhood-reports/">Neighborhood Reports</a></li>
-              <li class="breadcrumb-item active"><a href="/{{ .RelPermalink }}">{{ .Title }}</a></li>
+              <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+              <li class="breadcrumb-item"><a href={{ relURL "neighborhood-reports" }}>Neighborhood Reports</a></li>
+              <li class="breadcrumb-item active"><a href="{{ relURL .RelPermalink }}">{{ .Title }}</a></li>
           </ul>
         </nav>
 
@@ -33,7 +33,7 @@
                     {{- $src := resources.Get .Params.seo_image -}}
                     {{- $image := $src.Fill "740x400" -}}
                     
-                    <a href="{{ .RelPermalink }}"><img src="{{ $image.Permalink }}" class="card-img-top" alt="City photograph for the {{ lower .Title }} report"></a>
+                    <a href="{{ .RelPermalink }}"><img src="{{ $image.RelPermalink }}" class="card-img-top" alt="City photograph for the {{ lower .Title }} report"></a>
                     {{- end -}}
                     
                     <div class="card-body">
@@ -81,7 +81,7 @@
                 {{- $src := resources.Get .Params.seo_image -}}
                 {{- $image := $src.Fill "740x400" -}}
                 
-                <a href="{{ .RelPermalink }}"><img src="{{ $image.Permalink }}" class="card-img-top" alt="City photograph for the {{ lower .Title }} report"></a>
+                <a href="{{ .RelPermalink }}"><img src="{{ $image.RelPermalink }}" class="card-img-top" alt="City photograph for the {{ lower .Title }} report"></a>
                 {{- end -}}
               </div>
 

@@ -12,8 +12,8 @@
     <div class="col-md-10 mx-auto my-4">
       <nav aria-label="breadcrumb" class="mb-2">
         <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active"><a href="/neighborhood-reports/">{{ .Title }}</a></li>
+            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+            <li class="breadcrumb-item active"><a href={{ relURL "neighborhood-reports" }}>{{ .Title }}</a></li>
         </ul>
       </nav>
   

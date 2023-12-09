@@ -7,8 +7,8 @@
             <div class="col">
                 <nav aria-label="breadcrumb" class="my-3">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}data-explorer/">Data Explorer</a></li>
+                        <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                        <li class="breadcrumb-item"><a href={{ relURL "data-explorer" }}>Data Explorer</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                     </ul>
                 </nav>
@@ -87,7 +87,7 @@
                     
                     if (topics.length > 0) {
 
-                        cell_1.innerHTML = "<a href='" + {{ .Site.BaseURL }} + "data-explorer/" + topics[0].topic + "/" + "?id=" + indicators[i].IndicatorID + "'>" + indicators[i].IndicatorName + "</a>"
+                        cell_1.innerHTML = "<a href='" + {{ relURL "data-explorer" }} + topics[0].topic + "/" + "?id=" + indicators[i].IndicatorID + "'>" + indicators[i].IndicatorName + "</a>"
 
                     } else {
 
@@ -116,7 +116,7 @@
                     for (st = 0; st < topics.length; st++) {
 
                         let li = document.createElement('li');
-                        li.innerHTML = "<a href='" + {{ .Site.BaseURL }} + "data-explorer/" + topics[st].topic + "/'>" + topics[st].topic_name + "</a>"
+                        li.innerHTML = "<a href='" + {{ relURL "data-explorer" }} + topics[st].topic + "/'>" + topics[st].topic_name + "</a>"
                         // can eventually add an anchor or other deep-linking method
         
                         st_li.appendChild(li)

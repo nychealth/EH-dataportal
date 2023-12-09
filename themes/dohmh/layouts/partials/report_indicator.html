@@ -125,9 +125,13 @@
 
     $( "#modal-{{ .ind.indicator_data_name }}-{{ .count }}" ).on('shown.bs.modal', function() {
 
-        {{/*  gtag('event', 'click_modal', {
-            'modal_name': '{{ .ind.indicator_short_name }}'
-        });  */}}
+        {{ if ( or ( eq hugo.Environment "production" ) ( eq hugo.Environment "prod_prod" ) ( eq hugo.Environment "development" ) ) -}}
+
+            gtag('event', 'click_modal', {
+                'modal_name': '{{ .ind.indicator_short_name }}'
+            });
+
+        {{- end }}
 
         var opt = {"renderer": "svg"};
 

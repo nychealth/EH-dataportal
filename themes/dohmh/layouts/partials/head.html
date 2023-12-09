@@ -67,7 +67,7 @@
 <!-- favicon -->
 <!-- https://www.iconfinder.com/icons/7618350/heatmap_business_analytics_statistics_icon -->
 <!-- https://lucianojung.de/ -->
-<link rel="icon" href="{{ site.BaseURL }}7618350_heatmap_business_analytics_statistics_icon-gpr.ico">
+<link rel="icon" href={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }}>
 
 {{/*  Font Awesome  */}}
 
@@ -249,7 +249,7 @@
 {{- end -}}
 
 <script>
-    let baseURL = "{{ $.Site.BaseURL }}";
+    let baseURL = {{ relURL "" }}
     let data_repo = "{{ $.Site.Params.data_repo }}";
     let data_branch = "{{ $.Site.Params.data_branch }}";
 
