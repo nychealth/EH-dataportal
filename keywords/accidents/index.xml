@@ -5,17 +5,15 @@
     <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/accidents/</link>
     <description>Recent content in accidents on Environment &amp; Health Data Portal</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 18 Oct 2023 13:11:44 -0400</lastBuildDate><atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/accidents/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Wed, 18 Oct 2023 13:11:44 -0400</lastBuildDate>
+    <atom:link href="https://gcappbesp307.health.dohmh.nycnet/dev-stage/keywords/accidents/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Injury deaths in NYC</title>
       <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-stories/injury-deaths/</link>
       <pubDate>Wed, 18 Oct 2023 13:11:44 -0400</pubDate>
-      
       <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-stories/injury-deaths/</guid>
-      <description>Injury deaths among young and middle-aged adults in New York City: with a focus on homicide and suicide Young and middle-aged adults (ages 15 to 44) do not typically die from the natural causes that kill older adults. Injuries, both intentional — violence or suicide — and unintentional, dominate as causes of death. These premature deaths are tragic, unnecessary and preventable.
-Below we focus on homicide and suicide, reflecting areas of focus in the NYC Health Department’s recently released HealthyNYC, which identifies the major drivers of decreasing life expectancy and health equity in our city and identifies strategies to reduce each driver’s impact.</description>
+      <description>Injury deaths among young and middle-aged adults in New York City: with a focus on homicide and suicide Young and middle-aged adults (ages 15 to 44) do not typically die from the natural causes that kill older adults. Injuries, both intentional — violence or suicide — and unintentional, dominate as causes of death. These premature deaths are tragic, unnecessary and preventable.&#xA;Below we focus on homicide and suicide, reflecting areas of focus in the NYC Health Department’s recently released HealthyNYC, which identifies the major drivers of decreasing life expectancy and health equity in our city and identifies strategies to reduce each driver’s impact.</description>
     </item>
-    
   </channel>
 </rss>

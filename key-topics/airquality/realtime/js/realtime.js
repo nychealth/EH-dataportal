@@ -19,12 +19,10 @@ var maxTime;
 var maxTimeMinusDay;
 
 
-// ---- INITIAL: ingest data feed ---- // 
-aq.loadCSV(
-   // "data/nyccas_realtime_DEC.csv" // temporary local placeholder
-    "https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv" // actual live data feed. Also update this in spec json.
 
-).then(data => {
+
+// ---- INITIAL: ingest data feed ---- // 
+aq.loadCSV(rtaqData).then(data => {
 
     dt = data
         .derive({starttime: d => op.parse_date(d.starttime)})
@@ -104,6 +102,8 @@ var filter
 function getSpec() {
     d3.json("js/spec.json").then(data => {
         current_spec = $.extend({}, data);
+        current_spec.data.url = rtaqData
+
         getColors(); // gets colors from monitor_locations and inserts them into spec
 
         // get floor date and filter by floor date:

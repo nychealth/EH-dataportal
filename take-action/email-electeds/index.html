@@ -4,6 +4,7 @@
 
 
 
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -47,7 +48,7 @@
 
 
 
-<link rel="stylesheet" href="https://gcappbesp307.health.dohmh.nycnet/dev-stage/scss/theme.dddb5fb3ba1df173d72cd5185c793a779c5e8c39876ecd9f418a77507774707310fc5bc3e351d636578018e605b0ae3073673ae22e171768c62e0c2823c27c29.css" integrity="sha512-3dtfs7od8XPXLNUYXHk6d5xejDmHbs2fQYp3UHd0cHMQ/FvD41HWNleAGOYFsK4wc2c64i4XF2jGLgwoI8J8KQ==" />
+<link rel="stylesheet" href="https://gcappbesp307.health.dohmh.nycnet/dev-stage/scss/theme.5ef31378c1953086ea2533fa194f862e74205047f6974bdc6c6ec64937e14d9c4771709f0aea7c11106cb264fde0a302295ed2f852d6f7228b530e3a1896b17c.css" integrity="sha512-XvMTeMGVMIbqJTP6GU&#43;GLnQgUEf2l0vcbG7GSTfhTZxHcXCfCup8ERBssmT94KMCKV7S&#43;FLW9yKLUw46GJaxfA==" />
 
 <script src="https://gcappbesp307.health.dohmh.nycnet/dev-stage/node_modules/dompurify/dist/purify.min.1feae095f7d9e9fe6017b50982f1f835a6be7c60a08eb1ca320a0538699c3d347047aa082e8e51fa0b7336ba43a7b88c577b9d6f298156391e646373d449b8ad.js" integrity="sha512-H&#43;rglffZ6f5gF7UJgvH4Naa&#43;fGCgjrHKMgoFOGmcPTRwR6oILo5R&#43;gtzNrpDp7iMV3udbymBVjkeZGNz1Em4rQ=="></script>
 
@@ -55,6 +56,9 @@
     let baseURL = "https:\/\/gcappbesp307.health.dohmh.nycnet\/dev-stage\/";
     let data_repo = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/";
     let data_branch = "staging";
+
+    console.log('Build environment:', `dev_stage` )
+
 </script>
   </head>
 <body>
@@ -679,7 +683,7 @@ async function getData() {
   document.getElementById('officials').scrollIntoView({behavior: "smooth", block: "start"})
   console.log('The map has changed')
 
-  // on a timeout, gets council data and then passes location in to the Civic Info API
+  
   
 
   console.log("map.location.name [pre]", map.location.name);
@@ -711,14 +715,14 @@ async function getData() {
     document.getElementById('cmPhone').innerHTML = 'n/a'
     document.getElementById('cmEmail').innerHTML = `<a href="mailto:${districtInfo.Email}">${districtInfo.Email}</a>`
 
-    // get info from cbTable
+    
     for (let i = 0; i < cbTable.length; i ++) {
       if (Number(cbTable[i].bbc) === Number(yourCB)) {
         cbInfo = cbTable[i]
       } else {}
     }
 
-    // send CB info to page
+    
     document.getElementById('cbName').innerHTML = cbInfo.Borough + " CB" + cbInfo.CB
     document.getElementById('cbWebsite').innerHTML =  `<a href="${cbInfo.Website}">Website</a>`
     document.getElementById('cbPhone').innerHTML = cbInfo.Phone
@@ -736,10 +740,10 @@ async function getData() {
 
 
 
-// ********** SECOND FUNCTION passes location into API to get data: ********** // 
+
 
 function getFromAPI(address) {
-  // get Boro President
+  
   fetch(rootRequest+address+'&levels=administrativeArea2&roles=headofGovernment')
     .then (res => res.json())
     .then(data => {
@@ -748,7 +752,7 @@ function getFromAPI(address) {
       printInfoFromApi('bp', boroPres.officials[0])
     })
 
-  // get Public Advocate
+  
   fetch(rootRequest+address+'&levels=locality&roles=governmentOfficer')
   .then (res => res.json())
   .then(data => {
@@ -758,7 +762,7 @@ function getFromAPI(address) {
 
   })
 
-  // get state assemblymember and state senator.
+  
   fetch(rootRequest+address+'&levels=administrativeArea1&roles=legislatorUpperBody&roles=legislatorLowerBody')
   .then (res => res.json())
   .then(data => {
@@ -768,7 +772,7 @@ function getFromAPI(address) {
     printInfoFromApi('sa', stateReps.officials[1]);
   })
 
-  // get congresspeople
+  
   fetch(rootRequest+address+'&levels=country&roles=legislatorUpperBody&roles=legislatorLowerBody')
   .then (res => res.json())
   .then(data => {
@@ -780,7 +784,7 @@ function getFromAPI(address) {
   })
 
 
-  // reveal Email Content
+  
   document.getElementById('contactContainer').classList.remove('hide')
   document.getElementById('register').classList.remove('hide')
 
@@ -788,7 +792,7 @@ function getFromAPI(address) {
 }
 
 
-// print info from API calls into table
+
 function printInfoFromApi(prefix, info) {
 
   console.log("prefix", prefix);
@@ -815,12 +819,12 @@ function printEmails() {
 
   for (let i = 0; i < checkboxes.length; i ++) {
 
-    // if checked
+    
     if (checkboxes[i].checked) {
-      // get value
+      
       var prefix = checkboxes[i].value[0]+checkboxes[i].value[1]
       
-      // use value to get NAME ane EMAIL ADDRESS
+      
       var name = document.getElementById(prefix+'Name').innerHTML
       var emailAddress = document.getElementById(prefix+'Email').innerHTML
 
@@ -829,11 +833,11 @@ function printEmails() {
     } else {}
   }
 
-    // Then, loop through emailButton and add an eventlistener.
+    
     var buttons = document.getElementsByClassName('emailButton')
     console.log(buttons)
 
-    // add active class to clicked-on button
+    
     for (let x = 0; x < buttons.length; x ++) {
       buttons[x].addEventListener("click", function() {
         for (let y = 0; y < buttons.length; y ++) {
@@ -841,12 +845,12 @@ function printEmails() {
         }
         this.classList.add('active')
 
-        // get email contents:
+        
         var subject = document.getElementById('subject').value
         var body = document.getElementById('textEntry').value
         var destination = this.value
 
-        // add to href/mailto
+        
         document.getElementById('sendButton').href = `mailto:`+ destination + `?subject=` + `${subject}` + `&body=` + `${body}`
 
       })

@@ -4,6 +4,7 @@
 
 
 
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -46,7 +47,7 @@
 
 
 
-<link rel="stylesheet" href="https://gcappbesp307.health.dohmh.nycnet/dev-stage/scss/theme.dddb5fb3ba1df173d72cd5185c793a779c5e8c39876ecd9f418a77507774707310fc5bc3e351d636578018e605b0ae3073673ae22e171768c62e0c2823c27c29.css" integrity="sha512-3dtfs7od8XPXLNUYXHk6d5xejDmHbs2fQYp3UHd0cHMQ/FvD41HWNleAGOYFsK4wc2c64i4XF2jGLgwoI8J8KQ==" />
+<link rel="stylesheet" href="https://gcappbesp307.health.dohmh.nycnet/dev-stage/scss/theme.5ef31378c1953086ea2533fa194f862e74205047f6974bdc6c6ec64937e14d9c4771709f0aea7c11106cb264fde0a302295ed2f852d6f7228b530e3a1896b17c.css" integrity="sha512-XvMTeMGVMIbqJTP6GU&#43;GLnQgUEf2l0vcbG7GSTfhTZxHcXCfCup8ERBssmT94KMCKV7S&#43;FLW9yKLUw46GJaxfA==" />
 
 <script src="https://gcappbesp307.health.dohmh.nycnet/dev-stage/js/vegaBundle.2f7db7f8270efd8fda41c237b6c27874c3fa26977ced28a8c104f7d3177314a5b847f9fb538798b65bb298c74ccc70bbe4e8f19da43b5a20c290a4ef214fc468.js" integrity="sha512-L323&#43;CcO/Y/aQcI3tsJ4dMP6Jpd87SiowQT30xdzFKW4R/n7U4eYtluymMdMzHC75OjxnaQ7WiDCkKTvIU/EaA=="></script>
 
@@ -70,6 +71,9 @@
     let baseURL = "https:\/\/gcappbesp307.health.dohmh.nycnet\/dev-stage\/";
     let data_repo = "https:\/\/raw.githubusercontent.com\/nychealth\/EHDP-data\/";
     let data_branch = "staging";
+
+    console.log('Build environment:', `dev_stage` )
+
 </script>
   </head>
 <body>
@@ -657,6 +661,17 @@
     </div>
 </section>
 <script src="https://gcappbesp307.health.dohmh.nycnet/dev-stage/js/color-convert.js"></script>
+
+
+
+<script>
+    var url = window.location.href
+    var rtaqData
+    url.includes('localhost') ? rtaqData = 'data/nyccas_realtime_DEC.csv' : rtaqData = 'https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv'
+
+</script>
+
+
 
 
 <script type="text/javascript" src="js/realtime.js"></script><ul id="results"></ul>

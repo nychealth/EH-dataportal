@@ -10179,7 +10179,7 @@ h2.report-info {
   padding-right: 3.25rem; }
   @media (min-width: 720px) {
     .report-modal .modal-header {
-      padding-left: 4rem;
+      padding-left: 2rem;
       padding-right: 4rem; } }
 .report-modal .modal-body, .report-modal .modal-footer {
   padding-top: 40px;

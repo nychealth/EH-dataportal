@@ -422,15 +422,8 @@ const createComparisonData = async (comps) => {
             return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
                 .then(async data => {
 
-                        // console.log("@@ data:");
-                    // await data.print()
-
-                    // console.log("** aq.loadJSON");
-
-                    // filter data to keep only measures and geos in the comparison chart, using semijoin with comparison metadata
-                    // console.log("comp_data [createComparisonData]");
-
-                    // filter data to keep only measures and geos in the comparison chart, using semijoin with comparison metadata
+                    // console.log("*** aq.loadJSON");
+                    console.log("** comp_data:");
 
                     let comp_data = data
                         .derive({IndicatorID: aq.escape(ind[0])})
@@ -2340,7 +2333,9 @@ const renderMeasures = async () => {
             // ----- allow map to persist when changing tabs -------------------------------------------------- //
 
             if (!selectedMapMeasure) {
+            if (!selectedMapMeasure) {
 
+                console.log(">> no selectedMapMeasure");
                 console.log(">> no selectedMapMeasure");
 
                 // this is all inside the conditional, because if a user clicks on this tab again
@@ -2756,6 +2751,11 @@ const renderMeasures = async () => {
 
 
             // ----- set measure info boxes -------------------------------------------------- //
+
+            // reset info boxes
+
+            selectedComparisonAbout = [];
+            selectedComparisonSources = [];
 
             aqComparisonsIndicatorsMetadata.objects().forEach(m => {
 
