@@ -5,7 +5,7 @@ draft: false
 seo_title: "Injury deaths in NYC adults: how homicide and suicide contribute"
 seo_description: "A data story on deaths due to injury - and ways we can prevent them."
 tags:
-categories: ["healthoutcomes", "social"]
+categories: ["healthoutcomes", "social","injuryandviolence"]
 keywords:
   [
     "injuries",

@@ -5,7 +5,7 @@ draft: false
 seo_title: "Falls among older adults: data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
-categories: ["housing","healthoutcomes"]
+categories: ["housing","healthoutcomes","injuryandviolence"]
 keywords: ["older adults","falls","hospitalizations","emergency department visits","housing"]
 indicators:
 - header: null

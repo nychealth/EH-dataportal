@@ -5,7 +5,7 @@ draft: false
 seo_title: "A brief history of redlining"
 seo_description: "A data story on how redlining affected NYC's neighborhoods and its residents."
 tags:
-categories: ["housing","social","childhealth","neighborhoods"]
+categories: ["housing","social","childhealth","neighborhoods","injuryandviolence"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism"]
 image: ds-povasthma.jpg
 layout: advanced

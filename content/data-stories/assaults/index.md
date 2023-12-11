@@ -5,7 +5,7 @@ draft: false
 seo_title: "Data on violence in NYC"
 seo_description: "Violence is a public health problem, and here's how we can look at it to improve it."
 tags: 
-categories: ["social","healthoutcomes","neighborhoods"]
+categories: ["social","healthoutcomes","neighborhoods","injuryandviolence"]
 keywords: ["violence","assaults","poverty","public health","injuries","hospitalizations","emergency department visits","ED visits"]
 image: ds-assaults.jpg
 photocredit: "Benjamin Kanter/Mayoral Photography Office"

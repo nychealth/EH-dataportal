@@ -5,7 +5,7 @@ draft: false
 seo_title: "Economic conditions data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
-categories: ["social","housing"]
+categories: ["social","housing","injuryandviolence"]
 keywords: ["social","social justice","justice","injustice","social conditions","poverty","racism","housing","health"]
 indicators:
   - header: null
