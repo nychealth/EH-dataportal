@@ -35,14 +35,9 @@
     <div class="row">
         <div class="col-11 mx-auto">
             <h1><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
-
-            <!--
-            <div style="border-left: 3px solid darkgray; border-radius: 0px!important" class="aboutbox my-2">
-                Smoke from wildfires in Canada is currently affecting NYC's air.  <a href="https://www.dec.ny.gov/press/127857.html">New York State DEC has issued a health advisory that is in effect until 11:59PM on Friday, June 9, 2023</a>. Conditions will vary throughout the day. Monitor air quality here.
-            </div>
-            -->
-
         </div>
+
+        <button class="btn btn-sm btn-outline-primary"  data-toggle="modal" data-target="#rtaqModal">Download data archive</button>
 
     </div>
 
@@ -327,6 +322,31 @@
 
 
 </article>
+
+<style>
+    .modal-backdrop.show {
+        opacity: 0.70;
+        background-color: #424242
+    }
+</style>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="rtaqModal">
+    <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title'>Download realtime air quality archive. </h5>
+            </div>
+            <div class='modal-body'>
+                {{- partial "rtaq-download" . -}}
+
+            </div>
+            <hr>
+            <button type="button" class="btn btn-outline-light close-dialog" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+
 
 <!-- Related footer -->
 {{- partial "related-footer-2" . -}}
