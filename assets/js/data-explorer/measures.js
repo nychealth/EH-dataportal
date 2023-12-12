@@ -1325,9 +1325,7 @@ const renderMeasures = async () => {
             // ----- allow map to persist when changing tabs -------------------------------------------------- //
 
             if (!selectedMapMeasure) {
-            if (!selectedMapMeasure) {
 
-                console.log(">> no selectedMapMeasure");
                 console.log(">> no selectedMapMeasure");
 
                 // this is all inside the conditional, because if a user clicks on this tab again
@@ -2097,7 +2095,7 @@ const renderMeasures = async () => {
 
     // if there's no trend data or only 1 time period in all of the measures, don't show the tab
 
-    const onlyOneTime = trendMeasures.every(m => m.VisOptions[0].Trend[0]?.TimePeriodID.length <= 1) // <<<<<<<<<<
+    const onlyOneTime = trendMeasures.every(m => m.VisOptions[0].Trend[0]?.TimePeriodID.length <= 1)
 
     // debugger;
 
@@ -2276,12 +2274,9 @@ const renderMeasures = async () => {
 
     })
 
-
     checkboxGeo.forEach(checkbox => {
         handleTableGeoFilter(checkbox);
     })
-
-
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
