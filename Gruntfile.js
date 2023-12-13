@@ -47,9 +47,9 @@ module.exports = function(grunt) {
             var pagesIndex = [];
 
             // this is convoluted but necessary to get an arquero table with the right structure
-            var de_indicator_names  = aq.from(aq.from(grunt.file.readJSON(build_dir + "/IndicatorData/indicator_names.json")).array("value"));
-            var nr_indicator_names  = grunt.file.readJSON(build_dir + "/IndicatorData/nr_indicator_names.json");
-            var topic_indicators = grunt.file.readJSON(build_dir + "/IndicatorData/topic_indicators.json");
+            var de_indicator_names  = aq.from(aq.from(grunt.file.readJSON(build_dir + "/IndicatorMetadata/indicator_names.json")).array("value"));
+            var nr_indicator_names  = grunt.file.readJSON(build_dir + "/IndicatorMetadata/nr_indicator_names.json");
+            var topic_indicators = grunt.file.readJSON(build_dir + "/IndicatorMetadata/topic_indicators.json");
             
             // grunt.log.writeln(de_indicator_names.array("value"))
 
