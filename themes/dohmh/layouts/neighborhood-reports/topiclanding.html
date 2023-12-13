@@ -120,9 +120,6 @@
     background: #feff7f;
   }
   
-  .flex_search-flexdatalist {
-
-  }
   .flex_search-flexdatalist input:placeholder-shown {
     background-color: white;
   }
@@ -136,24 +133,26 @@
   </style>
 
 
-{{/* ====  save indicator names as a resource  ==== */}}
+  {{- /* ====  save indicator names as a resource  ==== */}}
 
-{{- /* ----  get metadata.json from data repo, and transform into a Hugo object  ---- */ -}}
+  {{- /* ----  get metadata.json from data repo, and transform into a Hugo object  ---- */}}
   
   {{- $nr_indicator_names := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/nr_indicator_names.json")) | transform.Unmarshal -}}
 
-  {{- $nr_indicator_names_json := $nr_indicator_names | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorData/nr_indicator_names.json" -}}
+  {{- $nr_indicator_names_json := $nr_indicator_names | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorMetadata/nr_indicator_names.json" -}}
+  
+  {{- /*  publish resource  */}}
+  
+  {{ $nr_indicator_names_json.Publish }}
 
-  {{ warnf ">>>>" $nr_indicator_names_json.RelPermalink }}
 
-
-{{/*  remove  */}}
+  {{- /*  remove  */}}
 
   {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
   {{ $secureJS := $js | resources.Fingerprint "sha512" }}
   <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-  {{/*  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
+  {{- /*  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
   {{ $secureJS := $js | resources.Fingerprint "sha512" }}
   <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>  */}}
 

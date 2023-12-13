@@ -2267,7 +2267,6 @@ const renderMeasures = async () => {
 
             // console.log("selectedTableTimes [checked]", selectedTableTimes);
 
-
         }
 
         renderTable()

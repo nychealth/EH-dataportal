@@ -27,7 +27,7 @@
 
 <script type="text/javascript" src="{{ $lunr_secureJS.RelPermalink }}" integrity="{{ $lunr_secureJS.Data.Integrity }}"></script>
 
-{{/*  NYC template JS (RTL, search and language toggle, back to top)  */}}
+{{- /*  NYC template JS (RTL, search and language toggle, back to top)  */}}
 
 {{- $js := resources.Get "js/main.js" -}}
 {{- $secureJS := $js | resources.Fingerprint "sha512" -}}

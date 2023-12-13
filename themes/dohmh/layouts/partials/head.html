@@ -44,7 +44,7 @@
     {{- if .Params.seo_title -}}{{ .Params.seo_title }}{{- else -}}{{ .Title }}{{ end }} &#x7c; {{ .Site.Title }}
 {{- end -}}</title>
 
-{{/*  content translations  */}}
+{{- /*  content translations  */}}
 
 {{- if .IsTranslated -}}
 	{{- range .Translations -}}
@@ -69,21 +69,21 @@
 <!-- https://lucianojung.de/ -->
 <link rel="icon" href={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }}>
 
-{{/*  Font Awesome  */}}
+{{- /*  Font Awesome  */}}
 
-{{/*  CSS  */}}
+{{- /*  CSS  */}}
 
 {{- $fontawesome_CSS := resources.Get "node_modules/@fortawesome/fontawesome-free/css/all.min.css" -}}
 
 <link rel="stylesheet" href="{{ $fontawesome_CSS.RelPermalink }}" />
 
-{{/*  JS  */}}
+{{- /*  JS  */}}
 
 {{- $fontawesome := resources.Get "node_modules/@fortawesome/fontawesome-free/js/all.min.js" | resources.Fingerprint "sha512" -}}
 
 <script src="{{ $fontawesome.RelPermalink }}" integrity="{{ $fontawesome.Data.Integrity }}" crossorigin="anonymous"></script>
 
-{{/*  webfonts  */}}
+{{- /*  webfonts  */}}
 
 {{- $fa_woff := resources.Match "node_modules/@fortawesome/fontawesome-free/webfonts/**.woff2" -}}
 
@@ -101,7 +101,7 @@
 <!-- Vega. To call, have vega: true in a page's frontmatter -->
 {{- if .Params.vega -}}
 
-    {{/*  VegaLite  */}}
+    {{- /*  VegaLite  */}}
 
     {{- $vega := resources.Get "node_modules/vega/build/vega.min.js" -}}
     {{- $vegaLite := resources.Get "node_modules/vega-lite/build/vega-lite.min.js" -}}
@@ -111,7 +111,7 @@
 
     <script src="{{ $vegaBundleJS.RelPermalink }}" integrity="{{ $vegaBundleJS.Data.Integrity }}"></script>
 
-    {{/*  D3  */}}
+    {{- /*  D3  */}}
 
     {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | resources.Fingerprint "sha512" -}}
 
@@ -120,7 +120,7 @@
 {{- end -}}
 
 
-{{/*  sanitizing html strings with dompurify  */}}
+{{- /*  sanitizing html strings with dompurify  */}}
 
 {{- $dompurify := resources.Get "node_modules/dompurify/dist/purify.min.js" | resources.Fingerprint "sha512" -}}
 
@@ -130,15 +130,15 @@
 
 {{- if .Params.datatables -}}
 
-    {{/*  D3  */}}
+    {{- /*  D3  */}}
 
     {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | resources.Fingerprint "sha512" -}}
 
     <script src="{{ $d3.RelPermalink }}" integrity="{{ $d3.Data.Integrity }}"></script>
 
-     {{/*  DataTables  */}}
+     {{- /*  DataTables  */}}
 
-     {{/*  CSS  */}}
+     {{- /*  CSS  */}}
 
     {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" -}}
     {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" -}}
@@ -146,7 +146,7 @@
 
     <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}" >
 
-    {{/*  JS  */}}
+    {{- /*  JS  */}}
 
     {{- $dataTables := resources.Get "node_modules/datatables.net/js/jquery.dataTables.min.js" -}}
     {{- $dataTablesButtons := resources.Get "node_modules/datatables.net-buttons/js/dataTables.buttons.min.js" -}}
@@ -163,7 +163,7 @@
 <!-- Arquero -->
 {{- if .Params.arquero -}}
 
-    {{/*  Arquero  */}}
+    {{- /*  Arquero  */}}
 
     {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" -}}
 
@@ -212,15 +212,15 @@
 <!--Other data libraries. To call, have data: true in a page's frontmatter-->
 {{- if .Params.datalibraries -}}
 
-    {{/*  D3  */}}
+    {{- /*  D3  */}}
 
     {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" | resources.Fingerprint "sha512" -}}
 
     <script src="{{ $d3.RelPermalink }}" integrity="{{ $d3.Data.Integrity }}"></script>
 
-     {{/*  DataTables  */}}
+     {{- /*  DataTables  */}}
 
-     {{/*  CSS  */}}
+     {{- /*  CSS  */}}
 
     {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" -}}
     {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" -}}
@@ -228,7 +228,7 @@
 
     <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}" >
 
-    {{/*  JS  */}}
+    {{- /*  JS  */}}
 
     {{- $dataTables := resources.Get "node_modules/datatables.net/js/jquery.dataTables.min.js" -}}
     {{- $dataTablesButtons := resources.Get "node_modules/datatables.net-buttons/js/dataTables.buttons.min.js" -}}
@@ -240,7 +240,7 @@
 
     <script src="{{ $dataTablesBundleJS.RelPermalink }}" integrity="{{ $dataTablesBundleJS.Data.Integrity }}"></script>
 
-    {{/*  Arquero  */}}
+    {{- /*  Arquero  */}}
 
     {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" -}}
 

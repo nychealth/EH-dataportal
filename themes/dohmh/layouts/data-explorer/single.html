@@ -6,7 +6,7 @@
     /* set overall row styles */
     #vg-tooltip-element table tr {
         border-bottom: 1px solid #d9d9d9;
-        {{/*  width: max-content;  */}}
+        {{- /*  width: max-content;  */}}
     }
     /* remove bottom border from last row */
     #vg-tooltip-element table tr:last-child {
@@ -218,13 +218,13 @@
         }
     </style>
 
-{{/* ====  save indicator names as a resource  ==== */}}
+{{- /* ====  save indicator names as a resource  ==== */}}
 
-{{- /* ----  get metadata.json from data repo, and transform into a Hugo object  ---- */ -}}
+{{- /* ----  get metadata.json from data repo, and transform into a Hugo object  ---- */}}
 
 {{- $indicators_json_resource := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/indicators/metadata.json")) | transform.Unmarshal -}}
 
-{{- /* ----  get names from metadata.json, using scratch  ---- */ -}}
+{{- /* ----  get names from metadata.json, using scratch  ---- */}}
 
 {{- $indicators_scratch := newScratch -}}
 {{- $indicators_map := dict -}}
@@ -233,11 +233,11 @@
     {{- $indicators_scratch.SetInMap "details" (string .IndicatorID) (dict "IndicatorID" .IndicatorID "name" .IndicatorName "description" .IndicatorDescription) -}}
 {{- end -}}
 
-{{- /* ----  save resource  ---- */ -}}
+{{- /* ----  save resource  ---- */}}
 
-{{- $indicator_names_json := $indicators_scratch.Get "details" | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorData/indicator_names.json" -}}
+{{- $indicator_names_json := $indicators_scratch.Get "details" | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorMetadata/indicator_names.json" -}}
 
-{{- warnf ">>>> indicator_names_json.RelPermalink >>>> " $indicator_names_json.RelPermalink -}}
+{{- $indicator_names_json.Publish -}}
 
 <article class="container-fluid" id="skip-header-target">
     <div class="row">
@@ -646,29 +646,29 @@
 
 {{- define "js_bot" -}}
 
-    {{/*  JS Dependencies  */}}
+    {{- /*  JS Dependencies  */}}
 
-    {{/*  Accessible Autocomplete  */}}
+    {{- /*  Accessible Autocomplete  */}}
 
     {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
     {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
 
     <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-    {{/*  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
+    {{- /*  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
     {{- $secureJS := $js | resources.Fingerprint "sha512" -}}
 
     <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>  */}}
 
-    {{/*  Arquero  */}}
+    {{- /*  Arquero  */}}
 
     {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" -}}
 
     <script type="text/javascript" src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
 
-     {{/*  DataTables  */}}
+     {{- /*  DataTables  */}}
 
-     {{/*  CSS  */}}
+     {{- /*  CSS  */}}
 
     {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" -}}
     {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" -}}
@@ -676,7 +676,7 @@
 
     <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}">
 
-    {{/*  JS  */}}
+    {{- /*  JS  */}}
 
     {{- $dataTables := resources.Get "node_modules/datatables.net/js/jquery.dataTables.min.js" -}}
     {{- $dataTablesButtons := resources.Get "node_modules/datatables.net-buttons/js/dataTables.buttons.min.js" -}}
@@ -690,24 +690,15 @@
     <script type="text/javascript" src="{{ $DT_secureJS.RelPermalink }}" integrity="{{ $DT_secureJS.Data.Integrity }}"></script>
 
     
-    {{/*  other libraries  */}}
+    {{- /*  other libraries  */}}
 
     {{- $jszip := resources.Get "node_modules/jszip/dist/jszip.min.js" -}}
     {{- $jszip_secureJS := $jszip | resources.Fingerprint "sha512" -}}
 
-    {{/*  {{- $pdfmake := resources.Get "node_modules/pdfmake/build/pdfmake.min.js" -}}  */}}
-    {{/*  {{- $pdfmake_secureJS := $pdfmake | resources.Fingerprint "sha512" -}}  */}}
-
-    {{/*  {{- $pdfmakeVfsFonts := resources.Get "node_modules/pdfmake/build/vfs_fonts.js" -}}  */}}
-    {{/*  {{- $pdfmakeVfsFonts_secureJS := $pdfmakeVfsFonts | resources.Fingerprint "sha512" -}}  */}}
 
     <script type="text/javascript" src="{{ $jszip_secureJS.RelPermalink }}" integrity="{{ $jszip_secureJS.Data.Integrity }}"></script>
-    {{/*  <script type="text/javascript" src="{{ $pdfmake_secureJS.RelPermalink }}" integrity="{{ $pdfmake_secureJS.Data.Integrity }}"></script>  */}}
-    {{/*  <script type="text/javascript" src="{{ $pdfmake.RelPermalink }}"></script>  */}}
-    {{/*  <script type="text/javascript" src="{{ $pdfmakeVfsFonts_secureJS.RelPermalink }}" integrity="{{ $pdfmakeVfsFonts_secureJS.Data.Integrity }}"></script>  */}}
-    {{/*  <script type="text/javascript" src="{{ $pdfmakeVfsFonts.RelPermalink }}"></script>  */}}
 
-    {{/*  VegaLite  */}}
+    {{- /*  VegaLite  */}}
 
     {{- $vega := resources.Get "node_modules/vega/build/vega.min.js" -}}
     {{- $vegaLite := resources.Get "node_modules/vega-lite/build/vega-lite.min.js" -}}
@@ -718,21 +709,21 @@
 
     <script type="text/javascript" src="{{ $vega_secureJS.RelPermalink }}" integrity="{{ $vega_secureJS.Data.Integrity }}"></script>
 
-    {{/*  D3  */}}
+    {{- /*  D3  */}}
 
     {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" -}}
     {{- $d3_secureJS := $d3 | resources.Fingerprint "sha512" -}}
 
     <script type="text/javascript" src="{{ $d3_secureJS.RelPermalink }}" integrity="{{ $d3_secureJS.Data.Integrity }}"></script>
 
-    {{/*  naturalSort - from https://datatables.net/plug-ins/sorting/natural  */}}
+    {{- /*  naturalSort - from https://datatables.net/plug-ins/sorting/natural  */}}
 
     {{- $naturalSort := resources.Get "js/naturalSort.js" -}}
     {{- $naturalSort_secureJS := $naturalSort | resources.Fingerprint "sha512" -}}
 
     <script type="text/javascript" src="{{ $naturalSort_secureJS.RelPermalink }}" integrity="{{ $naturalSort_secureJS.Data.Integrity }}"></script>
 
-    {{/*  seedrandom  */}}
+    {{- /*  seedrandom  */}}
 
     {{- $seedrandom := resources.Get "node_modules/seedrandom/seedrandom.min.js" -}}
     {{- $seedrandom_secureJS := $seedrandom | resources.Fingerprint "sha512" -}}
@@ -740,17 +731,17 @@
     <script type="text/javascript" src="{{ $seedrandom_secureJS.RelPermalink }}" integrity="{{ $seedrandom_secureJS.Data.Integrity }}"></script>
 
 
-    {{/*  Data Explorer JS  */}}
+    {{- /*  Data Explorer JS  */}}
 
-    {{/*  renderIndicatorDropdown needs to be here becasue of the hugo's markup  */}}
+    {{- /*  renderIndicatorDropdown needs to be here becasue of the hugo's markup  */}}
 
     <script>
 
-        {{/* =================================================================== */}}
-        {{/*  fetch and load indicators metadata into global object              */}}
-        {{/* =================================================================== */}}
+        {{- /* =================================================================== */}}
+        {{- /*  fetch and load indicators metadata into global object              */}}
+        {{- /* =================================================================== */}}
 
-        {{/*  dropdown (on mobile)  */}}
+        {{- /*  dropdown (on mobile)  */}}
 
         const renderIndicatorDropdown = () => {
 
@@ -771,8 +762,9 @@
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator({{ $id }})' data-indicator-id='{{ $id }}'>" + this_indicatorName + "</button>";
 
-                {{- end -}}
-            {{- end -}}
+                {{ end -}}
+            {{- end }}
+
         }
         
 
@@ -795,16 +787,16 @@
 
                     indicator = indicators.find(indicator => indicator.IndicatorID === {{ $id }});
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
-                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-primary text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator({{ $id }})' data-indicator-id='{{ $id }}'>" + this_indicatorName + "</button>";
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-dark text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator({{ $id }})' data-indicator-id='{{ $id }}'>" + this_indicatorName + "</button>";
                     
                 {{- end -}}
             {{- end -}}
         }
 
 
-        {{/* =================================================================== */}}
-        {{/*  citation functions                                                 */}}
-        {{/* =================================================================== */}}
+        {{- /* =================================================================== */}}
+        {{- /*  citation functions                                                 */}}
+        {{- /* =================================================================== */}}
 
         function createCitation() {
             // Create date
@@ -840,7 +832,7 @@
     </script>
 
 
-    {{/*  JS must be in this order  */}}
+    {{- /*  JS must be in this order  */}}
 
     {{- $global := resources.Get "js/data-explorer/global.js" -}}
     {{- $data := resources.Get "js/data-explorer/data.js" -}}

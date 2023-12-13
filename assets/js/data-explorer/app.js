@@ -103,28 +103,28 @@ function reveal() {
 $('#tab-btn-table').on('click', e => {
     $(e.currentTarget).tab('show');
     window.location.hash = 'display=summary'
-})
+});
 
 // ===== map ===== /
 
 $('#tab-btn-map').on('click', e => {
     $(e.currentTarget).tab('show');
     window.location.hash = 'display=map'
-})   
+});
 
 // ===== trend ===== /
 
 $('#tab-btn-trend').on('click', e => {
     $(e.currentTarget).tab('show');
     window.location.hash = 'display=trend'
-})  
+});
 
 // ===== links ===== /
 
 $('#tab-btn-links').on('click', e => {
     $(e.currentTarget).tab('show');
     window.location.hash = 'display=links'
-})
+});
 
 
 // ----------------------------------------------------------------------- //
@@ -178,10 +178,7 @@ $("#chartView").on("click", (e) => {
         e.stopPropagation();
     }
 
-
-
-
-})
+});
 
 // export full table data (i.e., original view)
 
@@ -246,4 +243,5 @@ $("#rawData").on("click", (e) => {
         e.stopPropagation();
 
     })
+
 });
