@@ -1,14 +1,55 @@
 {{- define "main" -}}
 
+{{- /* ==== get topics and measures for this report ==== */}}
+
+{{- $report_topics := ( index ( index $.Site.Data.globals.NR_content $.Params.content_yml) "report_topics" ) -}}
+
+
+{{/* ==== range through topics to get measures for this report ==== */}}
+
+{{- /*  create a slice for an array of all measure_ids  */}}
+
+{{- $all_measure_ids := slice -}}
+
+{{- range $report_topics -}}
+
+    {{- $all_measure_ids = $all_measure_ids | append .MeasureID -}}
+    
+{{- end -}}
+
+{{- $all_measure_ids = $all_measure_ids | uniq -}}
+
+
+{{- /* ==== save NR topic data as a resource (for VL charts) ==== */}}
+
+{{- $topic_data_for_hugo := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/topic_data_for_hugo.json")) | transform.Unmarshal -}}
+
+{{- /*  filter neighborhood + MeasureID for this topic  */}}
+
+{{- $topic_data := where $topic_data_for_hugo "MeasureID" "in" $all_measure_ids -}}
+
+{{/*  set download path  */}}
+
+{{- $data_path := print "/neighborhood-reports/data/" $.Params.content_yml ".json" -}}
+
+{{- /*  save and publish resource  */}}
+
+{{- $topic_data_json := $topic_data | jsonify | resources.FromString ( print "/neighborhood-reports/data/" $.Params.content_yml ".json" ) -}}
+
+{{- $topic_data_json.Publish -}}
+
+
+{{/*  ==== javascript for producing VL charts ====  */}}
+
 <script>
-    var topicIndicators;
-    var sti;
-    var thisInd;
-    var NeighborhoodName = "{{ $.Params.neighborhood }}"; // setting for use in visualizations
+    let topicIndicators;
+    let sti;
+    let thisInd;
+    let NeighborhoodName = "{{ $.Params.neighborhood }}"; // setting for use in visualizations
     
     // this gets a json of topics and nested indicators
     async function get_topic_indicators() {
-        d3.json("https://raw.githubusercontent.com/nychealth/EH-dataportal/builds/prod-prod/IndicatorData/topic_indicators.json").then(data => {
+        d3.json('{{ relURL "IndicatorMetadata/topic_indicators.json" }}').then(data => {
             topicIndicators = data
         });
     }
@@ -21,10 +62,11 @@
         
         console.log("getURL:", indID);
         
-        var thisTopic = '';
-        var topicArray = [];
-        var ind = Number(indID)
-        var URL;
+        let thisTopic = '';
+        let topicArray = [];
+        let ind = Number(indID)
+        let URL;
+
         console.log('getURL running for ' + ind)
         
         for (let y in topicIndicators) {
@@ -49,7 +91,7 @@
     
     let summarySpec;
 
-    d3.json("{{ site.BaseURL }}/js/neighborhood-reports/spec/summarySpec.json").then(data => {
+    d3.json({{ relURL "js/neighborhood-reports/spec/summarySpec.json" }} ).then(data => {
 
         summarySpec = data;
 
@@ -63,7 +105,7 @@
     
     let mapSpec;
 
-    d3.json("{{ site.BaseURL }}/js/neighborhood-reports/spec/mapSpec.json").then(data => {
+    d3.json({{ relURL "js/neighborhood-reports/spec/mapSpec.json" }} ).then(data => {
 
         mapSpec = data;
 
@@ -82,7 +124,7 @@
     
     let trendSpec;
 
-    d3.json("{{ site.BaseURL }}/js/neighborhood-reports/spec/trendSpec.json").then(data => {
+    d3.json({{ relURL "js/neighborhood-reports/spec/trendSpec.json" }} ).then(data => {
 
         trendSpec = data;
 
@@ -94,9 +136,23 @@
     
 </script>
 
-{{/* Set scratch variables for neighborhood directory and report filename to be used in side bar */}}
-{{- $.Scratch.Set "neighborhoodDir" .Parent.File.Dir -}}
-{{- $.Scratch.Set "reportFile" .File.BaseFileName -}}
+
+{{/*  ==== HTML for producing report ====  */}}
+
+{{/*  get the one big dataset for reports  */}}
+
+{{- $report_data_for_hugo := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/report_data_for_hugo.json")) | transform.Unmarshal -}}
+
+{{/*  filter by neighborhood  */}}
+
+{{/*  length = number of indicators across all NRs  */}}
+
+{{- $neighborhood_data := where $report_data_for_hugo "neighborhood" $.Params.neighborhood -}}
+
+{{/*  get zip codes from neighborhod  */}}
+
+{{ $zip_codes := index $neighborhood_data 0 "zip_code" -}}
+
 
 <div class="d-flex flex-column report-header d-print-none">
 
@@ -114,15 +170,6 @@
 
 </div>
 
-{{/* get report JSON from EHDP-data as a resource  */}}
-
-{{ $data_download_loc := (print .File.BaseFileName "_data.csv") }}
-
-<script>
-    var report_name = "{{ $.Params.title }}"
-    var data_download_loc = "{{ $data_download_loc }}"
-</script>
-
 <section class="container-fluid" id="skip-header-target">
 
     <div class="row mt-4">
@@ -131,7 +178,7 @@
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
                     <li class="breadcrumb-item"><a href={{ relURL "neighborhood-reports" }}>Neighborhood Reports</a></li>
-                    <li class="breadcrumb-item"><a href="" id="neighbLink">{{ $.Params.neighborhood }}</a></li>
+                    <li class="breadcrumb-item"><a href=".." id="neighbLink">{{ $.Params.neighborhood }}</a></li>
                     <li class="breadcrumb-item active"><a href="{{ .RelPermalink }}">{{ $.Params.title }}</a></li>
 
 
@@ -142,84 +189,98 @@
                 <span class="sub-title">{{ $.Params.neighborhood }}</span>
             </h1>
 
-            <p class="report-description fs-lg mt-2 mb-4">{{ .report_description }}</p>
+            <p class="report-description fs-lg mt-2 mb-4">{{ $.Params.summary }}</p>
 
 
             <div class="row">
                 <div class="col-md-9 h-100">
     
-                <!-- REPORT CONTENT  -->
+                <!-- REPORT CONTENT -->
                 <div class="row">
                     <div class="col-12">
                         <div>
-    
-                            {{- range $index, $content := .report_content -}}
-                            {{- $count :=add $index 1 -}}
-                            {{- $.Scratch.Set "location" .geo_entity_name -}}
-                            {{- $.Scratch.Set "borough" .borough_name -}}
-    
-                            <div class="report-topic">
-    
-                                <div class="topic-header">
-                                    <h2>{{ .report_topic }}</h2>
-                                    <p>
-                                        {{- .report_topic_description -}}
-                                    </p>
-                                </div>
-    
-                                <div class="container-fluid px-0 mb-4">
-                                    <!-- Hide on print -->
-                                    <div class="row indicator-headings mb-2 d-print-none">
-                                        <div class="col-6 col-md-5 pl-3">
-                                            Topic
-                                        </div>
-                                        <div class="col-6 col-md-4">
-    
-                                            <div class="position-relative">
-                                                <span class="meta">Compared to other neighborhoods<a href="#" data-toggle="modal" data-target="#modal-rank"
-                                                    class="info-modal meta"><i class="fas fa-question-circle fs-rg ml-1"></i> </span></a>
-    
-                                            </div>
-    
-                                        </div>
-                                        <div class="d-none d-md-inline col-md-3">
-                                            <span class="meta">All neighborhoods</span>
-                                        </div>
+                            
+                            {{- range $index, $rt := $report_topics -}}
+                            
+                                <div class="report-topic">
+                                    
+                                    <div class="topic-header">
+                                        <h2>
+                                            {{- $rt.report_topic -}} {{- /*  from YAML  */}}
+                                        </h2> 
+                                        <p>
+                                            {{- $rt.report_topic_description -}} {{- /*  from YAML  */}}
+                                        </p>
                                     </div>
-    
-                                    <!-- Only show on print -->
-                                    <div class="row indicator-headings mb-2 print-only">
-                                        <div class="col-4 font-weight-bold">
-                                            Topic
-                                        </div>
-                                        <div class="col-8">
-    
-                                            <div class="position-relative">
-                                                <span class="meta">Compared to other neighborhoods</span>
+                                    
+                                    <div class="container-fluid px-0 mb-4">
+
+                                        <!-- Hide on print -->
+
+                                        <div class="row indicator-headings mb-2 d-print-none">
+                                            <div class="col-6 col-md-5 pl-3">
+                                                Topic
                                             </div>
-    
+                                            <div class="col-6 col-md-4">
+                                                
+                                                <div class="position-relative">
+                                                    <span class="meta">Compared to other neighborhoods<a href="#" data-toggle="modal" data-target="#modal-rank"
+                                                        class="info-modal meta"><i class="fas fa-question-circle fs-rg ml-1"></i> </span></a>
+
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="d-none d-md-inline col-md-3">
+                                                <span class="meta">All neighborhoods</span>
+                                            </div>
                                         </div>
+
+                                        <!-- Only show on print -->
+
+                                        <div class="row indicator-headings mb-2 print-only">
+                                            <div class="col-4 font-weight-bold">
+                                                Topic
+                                            </div>
+                                            <div class="col-8">
+
+                                                <div class="position-relative">
+                                                    <span class="meta">Compared to other neighborhoods</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        {{- /*  filter measures for this topic  */}}
+
+                                        {{/*  length = number of indicators in this report topic  */}}
+
+                                        {{- $neighborhood_topic_data := where $neighborhood_data "MeasureID" "in" $rt.MeasureID -}}
+
+                                        {{/*  range through indicators to build this topic  */}}
+                                        
+                                        {{ range $index, $row := (sort $neighborhood_topic_data "data_value_rank" "desc") }}
+
+                                            {{/*  length = 1  */}}
+
+                                            {{- $count := add $index 1 -}}
+                                            
+                                            {{- partial "report_indicator.html" (dict "neighborhood" $.Params.neighborhood "borough" $row.borough_name "data" $row "count" $count) -}}
+                                                    
+                                        {{- end -}}
+                                    
                                     </div>
-    
-                                    {{- with .report_topic_data -}}
-                                    {{- range sort . "data_value_rank" "desc" -}}
-                                    {{- $location := $.Scratch.Get "location" -}}
-                                    {{- $borough := $.Scratch.Get "borough" -}}
-                                    {{- partial "report_indicator.html" (dict "location" $location "borough" $borough "ind" . "count" $count) -}}
-                                    {{- end -}}
-                                    {{- end -}}
+                                    <!-- .container -->
+                                    
                                 </div>
-                                <!-- .container -->
-    
-                            </div>
-                            <!-- .report-topic -->
+                                <!-- .report-topic -->
+
                             {{- end -}}
-    
+
                         </div>
-    
-    
+                            
                     </div>
                 </div>
+                <!-- .narrow -->
 
                 </div>
     
@@ -227,18 +288,24 @@
                 <div class="col-md-3 h-100">
                     <div class="border mb-2" style="height: 100%">
                         <div class="p-1">
-                            <p><strong style="color:#00923E">{{ .geo_entity_name }}</strong> includes ZIP Codes: <span
-                                class="home-label font-weight-bold" id="zips"> insert ZIP codes </span>.</p>
+                            <p><strong style="color:#00923E">{{ $.Params.neighborhood }}</strong> includes ZIP Codes: 
+                                <span class="home-label font-weight-bold" id="zips"> 
+                                    
+                                    {{- /*  insert zip code  */}}
+
+                                    {{- print $zip_codes -}}
+                                    
+                                </span>.
+                            </p>
                         </div>
 
                         {{- partial "nr-map-highlight" . -}}
+
                     </div>
 
                     <nav role="navigation">
                         <div class="">
-                            {{- $neighborhood := $.Scratch.Get "neighborhoodDir" -}}
-                            {{- $report := $.Scratch.Get "reportFile" -}}
-                            {{- partial "location_sub_nav" (dict  "neighborhood" $neighborhood "report" $report) -}}
+                            {{- partial "location_sub_nav" (dict  "neighborhood" $.Params.neighborhood  "report" .File.BaseFileName) -}}
                         </div>
                     </nav>
 
@@ -251,7 +318,8 @@
 
                 </div>
             </div>
-            <!-- .sticky-top -->
+    <!-- .row -->
+
             
         </div>
 
@@ -261,41 +329,52 @@
 
     <script>
 
+        let report_name = "{{ $.Params.title }}"
+
         // loading report CSV data here, so it only loads once per location
 
-        var arqTable;
-        var downloadLoc = "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/data/" + data_download_loc
+        {{- /*  use NR_content folder YAML to group indicators by report. Then we can remove report title etc. from database but still get data by report  */}}
+
+        let arqTable;
+        let downloadLoc = {{ ( relURL ( print "neighborhood-reports/data/" $.Params.content_yml ".json" ) ) }}
+
+        {{ warnf ( relURL ( print "neighborhood-reports/data/" $.Params.content_yml ".json" ) ) }}
 
         // loading report-level CSV data
 
-        aq.loadCSV(
+        aq.loadJSON(
             downloadLoc,
             { autoMax: 10000,  parse: { time: String } }
         )
-        .then(data => { arqTable = data })
+        .then(data => { 
 
-        {{/*  console.log("arqTable", arqTable);  */}}
+            arqTable = data 
+            
+            console.log("arqTable", arqTable);
+
+        })
+
 
 
         // set data download location
-        var reportData;
-        var download;
+        let reportData;
+        let download;
 
         // create an element, create the CSV, and download it
         function downloadData() {
 
-                download = arqTable
-                    .select(aq.not('report_id','indicator_id','indicator_data_name','start_date','end_date')) // drop unnecessary columns
-                    .filter(d => d.neighborhood == '{{ $.Params.neighborhood }}')
+            download = arqTable
+                .select(aq.not('report_id','indicator_id','indicator_data_name','start_date','end_date')) // drop unnecessary columns
+                .filter(d => d.neighborhood == '{{ $.Params.neighborhood }}')
 
-                let downloadTableCSV = download.toCSV(); // format as CSV
-                // Data URI
-                let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
-                let hiddenElement = document.createElement('a');
-                hiddenElement.href = csvData;
-                hiddenElement.target = '_blank';
-                hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - {{ $.Params.neighborhood }}.csv";
-                hiddenElement.click();
+            let downloadTableCSV = download.toCSV(); // format as CSV
+            // Data URI
+            let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
+            let hiddenElement = document.createElement('a');
+            hiddenElement.href = csvData;
+            hiddenElement.target = '_blank';
+            hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - {{ $.Params.neighborhood }}.csv";
+            hiddenElement.click();
 
             gtag('event', 'file_download', {
                 'file_name': hiddenElement.download,
@@ -307,124 +386,16 @@
 
     </script>
 
-        <div class="col-12 col-lg-9 overflow-hidden reports" id="primary-content">
-            <div class="my-5 p-mt-sm">
-                <div class="px-lg-6 my-4 p-mt-sm">
-                    <h1 class="report-title">{{ $.Params.title }} in<br>
-                        <span class="sub-title">{{ $.Params.neighborhood }}</span>
-                    </h1>
-                    <p class="report-description">{{ $.Params.title }}</p> 
-                    
-                        {{/*
-                            old structure: in each JSON, ranges over topics, which have the "rows" in them. 
-                            
-                            new structure: ranges over topics in a YAML file in data. topics have names and descriptions, and have 
-                            indicator IDs nested underneath. the indicator IDs are used to subset the data file.
-                        */}}
-
-                        
-                        {{- $reports_data := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/report_data_for_hugo.json")) | transform.Unmarshal -}}
-
-                        {{- $topic_desc_indicators := index $.Site.Data.globals.NR_content $.Params.content_yml -}}
-
-                        {{- range $index, $rt := $topic_desc_indicators.report_topics -}}
-
-                            {{/*  filter neighborhood + MeasureID for this topic  */}}
-
-                            {{- $data := where (where $reports_data "neighborhood" $.Params.neighborhood) "MeasureID" "in" $rt.MeasureID -}}
-
-                            {{/*  display zip code on first iteration  */}}
-
-                            {{- if (eq $index 0) -}}
-
-                                {{ $zip_codes := index $data 0 "zip_code" -}}
-
-                                <p><strong style="color:#00923E">{{ $.Params.neighborhood }}</strong> includes ZIP Codes: 
-                                    <span id="zip_codes" class="home-label">{{ $zip_codes }}</span>. {{/*  from data or frontmatter  */}}
-                                </p> 
-                                
-                                <hr class="mt-4">
-                                
-                                <div>
-                            
-                            {{- end -}}
-
-                    <hr class="mt-4 d-print-none">
-
-                    <div>
-
-                        <div class="report-topic">
-                            
-                            <div class="topic-header">
-                                <h2>{{ $rt.report_topic }}</h2> {{/*  from YAML  */}}
-                                <p>
-                                    {{- $rt.report_topic_description -}} {{/*  from YAML  */}}
-                                </p>
-                            </div>
-                            
-                            <div class="container-fluid px-0 mb-4">
-                                <!-- Hide on print -->
-                                <div class="row indicator-headings mb-2 d-print-none">
-                                    <div class="col-6 col-md-5 pl-3">
-                                        Topic
-                                    </div>
-                                    <div class="col-6 col-md-4">
-                                        
-                                        <div class="position-relative">
-                                            <span class="meta">Compared to other neighborhoods<a href="#" data-toggle="modal" data-target="#modal-rank"
-                                                class="info-modal meta"><i class="fas fa-question-circle fs-rg ml-1"></i> </span></a>
-
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="d-none d-md-inline col-md-3">
-                                        <span class="meta">All neighborhoods</span>
-                                    </div>
-                                </div>
-
-                                <!-- Only show on pring -->
-                                <div class="row indicator-headings mb-2 print-only">
-                                    <div class="col-4 font-weight-bold">
-                                        Topic
-                                    </div>
-                                    <div class="col-8">
-
-                                        <div class="position-relative">
-                                            <span class="meta">Compared to other neighborhoods</span>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                    
-                                {{ range $i, $row := (sort $data "data_value_rank" "desc") }}
-                                
-                                    {{- $count := add $index 1 -}}
-                                    
-                                    {{- partial "report_indicator.html" (dict "neighborhood" $.Params.neighborhood "borough" $row.borough_name "ind" $row "count" $count) -}}
-                                    
-                                {{- end -}}
-                            
-                            </div>
-                            <!-- .container -->
-                            
-                        </div>
-                        <!-- .report-topic -->
-                        {{- end -}}
-                        
-                    </div>
-                </div>
-                <!-- .narrow -->
-            </div>
-        </div>
-    </div>
-    <!-- .row -->
-    
 </section>
-{{/* Make sure we know what report content to load and that content_yml is set. If not we dont display the content */}}
+
+{{- /* Make sure we know what report content to load and that content_yml is set. If not we dont display the content */}}
+
 {{- if $.Params.content_yml -}}
 
-{{/* Variable to load the the data file from the content_yml frontmatter */}}
+{{- /* Variable to load the the data file from the content_yml frontmatter */}}
+
 {{- $content := index $.Site.Data.globals.NR_footer $.Params.content_yml -}}
+
 <section class="related-reading d-print-none">
     <div class="container">
         <div class="row">
@@ -518,7 +489,7 @@ aria-hidden="true">
     </div>
 </div>
 
-{{- end -}}
+{{/*  {{- end -}}  */}}
 
 {{- $js := resources.Get "js/uhflist.js" -}}
 {{ $secureJS := $js | resources.Fingerprint "sha512" }}
@@ -526,9 +497,9 @@ aria-hidden="true">
 
 <script type="text/javascript">
     // get report path relative to section starting with "neighborhood-reports"
-    var thisURL = window.location.pathname.match(/neighborhood-reports.*/)
-    var thisNeighb = thisURL[0].split("/")[1]; // get this neighborhood
-    var report = thisURL[0].split("/")[2]; // get this report
+    let thisURL = window.location.pathname.match(/neighborhood-reports.*/)
+    let thisNeighb = thisURL[0].split("/")[1]; // get this neighborhood
+    let report = thisURL[0].split("/")[2]; // get this report
     reportURL = '/' + report // get URL extension
 
 </script>
