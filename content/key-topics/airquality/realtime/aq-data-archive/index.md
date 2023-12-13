@@ -2,7 +2,7 @@
 title: Real-time air quality data archive
 shortTitle: Data archive
 draft: false
-date: 2022-11-08T11:14:56-04:00
+date: 2023-12-12T11:14:56-04:00
 categories:
     - airquality
 keywords:
