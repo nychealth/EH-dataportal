@@ -5,7 +5,7 @@ draft: false
 seo_title: "Lead exposure and poisoning in NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
-categories: ["housing","childhealth","social","neighborhoods"]
+categories: ["housing","childhealth","social"]
 keywords: ["lead","poisoning","housing","children","child","testing","blood"]
 indicators:
 - header: Children

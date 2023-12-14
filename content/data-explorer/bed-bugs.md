@@ -5,7 +5,7 @@ draft: false
 seo_title: "Bed bugs data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
-categories: ["housing","pests","neighborhoods"]
+categories: ["housing","pests"]
 keywords: ["bed bugs","pests","housing","maintenance deficiencies"]
 indicators:
 - header: null

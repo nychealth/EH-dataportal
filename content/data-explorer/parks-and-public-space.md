@@ -5,7 +5,7 @@ draft: true
 seo_title: "Parks and public space data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
-categories: ["transportation","neighborhoods"]
+categories: ["transportation"]
 keywords: ["parks","neighborhoods","transportation","green","trees","greenspace"]
 indicators:
 - header: null

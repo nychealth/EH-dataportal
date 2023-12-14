@@ -5,7 +5,7 @@ draft: false
 seo_title: "Por qué el asma es un problema de justicia social"
 seo_description: "A data story on asthma and justice in NYC."
 tags:
-categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
+categories: ["housing","social","childhealth","healthoutcomes"]
 keywords: ["poverty","asthma","injustice","housing","children","emergency department visits","ed visits","emergency room","social determinants","kids"]
 image: ds-povasthma.jpg
 photocredit: "Benjamin Kanter/Mayoral Photography Office"

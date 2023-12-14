@@ -5,7 +5,7 @@ draft: false
 seo_title: "Healthy eating data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
-categories: ["neighborhoods","foodanddrink"]
+categories: ["foodanddrink"]
 keywords: ["food","drink","nutrition","food environment","food desert","sugary drinks","soda","neighborhoods"]
 indicators:
 - header: null

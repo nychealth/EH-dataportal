@@ -5,7 +5,7 @@ draft: true
 seo_title: "Lead hazard data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
-categories: ["housing","childhealth","social","neighborhoods"]
+categories: ["housing","childhealth","social"]
 keywords: ["lead","poisoning","children","housing"]
 indicators:
 - header: null

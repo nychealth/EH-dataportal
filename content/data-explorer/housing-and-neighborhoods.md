@@ -5,7 +5,7 @@ draft: true
 seo_title: "Housing and neighborhood data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
-categories: ["housing","social","neighborhoods"]
+categories: ["housing","social"]
 keywords: ["built environments","neighborhoods","active design","safety","social","housing"]
 indicators:
 - header: null

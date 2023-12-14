@@ -4,7 +4,7 @@ date: 2021-02-08T08:07:31-04:00
 draft: false
 seo_title: "为什么暴力是一个公共卫生问题 "
 seo_description: "利用公共卫生预防暴力 "
-categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
+categories: ["housing","social","childhealth","healthoutcomes"]
 keywords: ["violence","assaults","injustice","poverty","social determinants","redlining","disinvestment","racism","neighborhoods"]
 image: ds-povasthma.jpg
 image: ds-violence.jpg

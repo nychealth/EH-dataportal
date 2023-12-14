@@ -5,7 +5,7 @@ draft: false
 seo_title: "About NYC's air quality, neighborhood by neighborhood."
 seo_description: "What our air quality monitors tell us about NYC's neighborhoods."
 tags: 
-categories: ["transportation","airquality","neighborhoods"]
+categories: ["transportation","airquality"]
 keywords: ["air quality","traffic","transportation","cars","traffic","car-free","carfree","pedestrians","cycling","bikes","biking","pollution","air pollution", "lungs","breathing"]
 image: ds-aq2.jpeg
 photocredit: "Michael Appleton/Mayoral Photography Office"

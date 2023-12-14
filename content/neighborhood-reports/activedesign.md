@@ -1,6 +1,6 @@
 ---
 title: 'Active Design, Physical Activity and Health'
-categories: ["airquality","transportation","housing","neighborhoods"]
+categories: ["airquality","transportation","housing"]
 layout: topiclanding
 seo_title: 'Active Design, Physical Activity and Health in NYC'
 urlExtension: '/active_design_physical_activity_and_health/'

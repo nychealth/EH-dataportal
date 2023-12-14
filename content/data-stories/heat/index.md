@@ -5,7 +5,7 @@ draft: false
 seo_title: "Protecting New Yorkers from extreme heat"
 seo_description: "A data story on the dangers of hot weather - and how we can keep people safe."
 tags: 
-categories: ["climatehealth","social","healthoutcomes","neighborhoods"]
+categories: ["climatehealth","social","healthoutcomes"]
 keywords: ["climate","heat","weather","mortality","death","climate change","air conditioner", "air conditioning","global warming"]
 image: ds-heat.jpg
 photocredit: "Michael Appleton/Mayoral Photography Office"

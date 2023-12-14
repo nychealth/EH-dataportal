@@ -5,7 +5,7 @@ draft: false
 seo_title: "Cockroaches data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
-categories: ["pests","housing","neighborhoods"]
+categories: ["pests","housing"]
 keywords: ["pests","cockroaches","roaches","bugs","housing"]
 indicators:
 - header: Asthma triggers

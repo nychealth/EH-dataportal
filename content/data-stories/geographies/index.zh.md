@@ -5,7 +5,7 @@ draft: false
 seo_title: "将健康数据映射到纽约市的社区"
 seo_description: "关于地理的一切：卫生局数据中的社区边界"
 tags: 
-categories: ["internal","neighborhoods"]
+categories: []
 keywords: ["geography","maps","neighborhoods","health data","methods","geographic"]
 image: ds-geographies.jpg
 layout: single

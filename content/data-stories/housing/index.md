@@ -5,7 +5,7 @@ draft: false
 seo_title: "Health, housing, and history"
 seo_description: "A data story on how racist housing practices harm health."
 tags:
-categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
+categories: ["housing","social","childhealth","healthoutcomes"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism","renting","pests","maintenance","maintenance deficiencies"]
 image: ds-povasthma.jpg
 layout: advanced

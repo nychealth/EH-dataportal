@@ -5,7 +5,7 @@ draft: false
 seo_title: "为什么哮喘是一个社会正义问题"
 seo_description: "贫穷会影响一个人的呼吸方式"
 tags:
-categories: ["housing","social","childhealth","healthoutcomes","neighborhoods"]
+categories: ["housing","social","childhealth","healthoutcomes"]
 keywords: ["poverty","asthma","injustice","housing","children","emergency department visits","ed visits","emergency room","social determinants","kids"]
 image: ds-povasthma.jpg
 photocredit: "Benjamin Kanter/Mayoral Photography Office"

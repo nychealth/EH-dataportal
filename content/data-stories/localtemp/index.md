@@ -5,7 +5,7 @@ draft: false
 seo_title: "The Urban Heat Island Effect in New York City"
 seo_description: "A data story on block-by-block heat differences."
 tags:
-categories: ["climatehealth","neighborhoods"]
+categories: ["climatehealth"]
 keywords: ["heat","hot weather","weather","climate","temperature","summer","greenspace","parks","green space","heat island","urban heat island","cooling","air conditioning","building","housing","global warming"]
 image: ds-localtemp.jpeg
 photocredit: "Michael Appleton/Mayoral Photography Office"

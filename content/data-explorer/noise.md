@@ -5,7 +5,7 @@ draft: true
 seo_title: "Noise data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
-categories: ["transportation","neighborhoods"]
+categories: ["transportation"]
 keywords: ["neighborhoods","traffic","noise","construction"]
 indicators:
 - header: null

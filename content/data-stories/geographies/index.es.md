@@ -5,7 +5,7 @@ draft: false
 seo_title: "Los límites del vecindario en los datos del Departamento de Salud"
 seo_description: "Diagramar los datos sanitarios en los vecindarios de la ciudad de Nueva York."
 tags: 
-categories: ["internal","neighborhoods"]
+categories: ["internal"]
 keywords: ["geography","maps","neighborhoods","health data","methods","geographic"]
 image: ds-geographies.jpg
 layout: single

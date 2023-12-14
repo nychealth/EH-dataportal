@@ -5,8 +5,8 @@ draft: true
 seo_title: "Alcohol access data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
-categories: ["foodanddrink","neighborhoods"]
-keywords: ["drink","alcohol","neighborhoods"]
+categories: ["foodanddrink"]
+keywords: ["drink","alcohol"]
 indicators:
 - header: null
   IndicatorID:

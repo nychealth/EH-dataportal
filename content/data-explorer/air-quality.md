@@ -5,7 +5,7 @@ draft: false
 seo_title: "Air quality data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
-categories: ["airquality","childhealth","transportation","neighborhoods"]
+categories: ["airquality","childhealth","transportation"]
 keywords: ["air quality","pollution","emissions","exhaust","pollutants","pm2.5","asthma","breathing","lungs"]
 indicators:
 - header: Citywide Regulatory Monitoring

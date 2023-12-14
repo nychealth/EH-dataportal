@@ -5,7 +5,7 @@ draft: false
 seo_title: "Restaurants and air quality in NYC."
 seo_description: "Tracking changes in New York City's sources of air pollution."
 tags: 
-categories: ["foodanddrink","airquality","neighborhoods"]
+categories: ["foodanddrink","airquality"]
 keywords: ["air quality","PM2.5","fine particles","cooking","restaurants","buildings","density","emissions","pollution","air pollution", "lungs","breathing"]
 image: ds-aq-cooking.jpeg
 photocredit: "Michael Appleton/Mayoral Photography Office"

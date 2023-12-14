@@ -5,7 +5,7 @@ draft: false
 seo_title: "Active design data in NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
-categories: ["transportation","neighborhoods","airquality","climate"]
+categories: ["transportation","airquality","climatehealth"]
 keyTopic: transportation
 keywords: ["active design","infrastructure","transportation","physical activity","health"]
 indicators:

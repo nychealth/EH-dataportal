@@ -5,8 +5,8 @@ draft: false
 seo_title: "Data on asthma triggers in NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
-categories: ["housing","social","neighborhoods"]
-keywords: ["built environments","neighborhoods","social","housing","maintenance","maintenance deficiencies","healthy housing","asthma","allergies","trigger","childhood asthma"]
+categories: ["housing","social"]
+keywords: ["built environments","social","housing","maintenance","maintenance deficiencies","healthy housing","asthma","allergies","trigger","childhood asthma"]
 indicators:
 - header: Asthma triggers
   IndicatorID:

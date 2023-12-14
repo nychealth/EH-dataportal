@@ -5,7 +5,7 @@ draft: true
 seo_title: "Brownfields data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
 tags: 
-categories: ["neighborhoods"]
+categories: []
 keywords: ["pollution","neighborhoods"]
 indicators: 
 ---
