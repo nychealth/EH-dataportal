@@ -24,23 +24,25 @@
 
                     </div>
                     <div class="card-body fs-sm">
-                        <!--sets variables-->
-                        {{- $page_link := .RelPermalink -}}
-                        {{- $cats := .Params.categories -}}
 
-                        {{- range where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index" -}}
-                        <!--$page equals values we find when ranging through-->
-                        {{- $page := . -}}
+                    <!--sets variables-->
+                    {{- $page_link := .RelPermalink -}}
+                    {{- $cats := .Params.categories -}}
 
-                        <!--set variable equal to intersection of categories: page that we're on, and pages we ranged through-->
-                        {{- $has_common_cats := intersect $cats .Params.categories | len | lt 0 -}}
+                    {{- range where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index" -}}
+                    <!--$page equals values we find when ranging through-->
+                    {{- $page := . -}}
 
-                        <!--Show commonalities, except for page we're on -->
-                        {{- if and $has_common_cats (ne $page_link $page.RelPermalink) -}}
-                        <a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
-                        <hr class="my-1">
-                        {{- end -}} 
-                        {{- end -}}
+                    <!--set variable equal to intersection of categories - page that we're on, and pages we ranged through-->
+                    {{- $has_common_cats := intersect $cats .Params.categories | len | lt 0 -}}
+
+                    <!--Show commonalities, except for page we're on -->
+                    {{- if and $has_common_cats (ne $page_link $page.RelPermalink) -}}
+                    <a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
+                    <hr class="my-1">
+                    {{- end -}} 
+                    {{- end -}}
+
                     </div>
                   </div>
 
