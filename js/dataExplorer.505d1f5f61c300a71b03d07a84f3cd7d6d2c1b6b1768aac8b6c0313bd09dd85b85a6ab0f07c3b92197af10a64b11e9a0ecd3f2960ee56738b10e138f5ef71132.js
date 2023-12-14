@@ -1578,6 +1578,11 @@ const updateTrendComparisonsData = (e) => {
 
     // ----- set measure info boxes -------------------------------------------------- //
 
+    // reset info boxes
+
+    selectedComparisonAbout = [];
+    selectedComparisonSources = [];
+
     // this iterates over all the indicators and measures in the comparison
 
     aqComparisonsIndicatorsMetadata.objects().forEach(m => {
@@ -2738,6 +2743,11 @@ const renderMeasures = async () => {
 
 
             // ----- set measure info boxes -------------------------------------------------- //
+
+            // reset info boxes
+
+            selectedComparisonAbout = [];
+            selectedComparisonSources = [];
 
             aqComparisonsIndicatorsMetadata.objects().forEach(m => {
 
