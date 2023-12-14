@@ -1,5 +1,7 @@
 ---
 title: "Displacement Risk"
+aliases:
+    - /key-topics/housing/displacement
 date: 2021-10-02T07:56:00-04:00
 draft: false
 seo_title: "Explore data on displacement risk in NYC"
