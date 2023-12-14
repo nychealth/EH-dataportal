@@ -488,7 +488,6 @@ const updateTrendData = (e) => {
 
         let aqFilteredTrendDataAnnualAvg = aq.from(filteredTrendDataAnnualAvg);
 
-        // renderTrendChart(filteredTrendDataAnnualAvg, aqMeasureMetadata);
         renderComparisonsChart(aqFilteredTrendDataAnnualAvg, aqSelectedTrendMetadata);
         updateChartPlotSize();
 
@@ -498,7 +497,6 @@ const updateTrendData = (e) => {
 
         let aqFilteredTrendDataSummer = aq.from(filteredTrendDataSummer);
 
-        // renderTrendChart(filteredTrendDataSummer, aqMeasureMetadata);
         renderComparisonsChart(aqFilteredTrendDataSummer, aqSelectedTrendMetadata);
         updateChartPlotSize();
 
@@ -506,7 +504,6 @@ const updateTrendData = (e) => {
 
         let aqFilteredTrendData = aq.from(filteredTrendData);
 
-        // renderTrendChart(filteredTrendData, aqMeasureMetadata);
         renderComparisonsChart(aqFilteredTrendData, aqSelectedTrendMetadata);
         updateChartPlotSize();
 
@@ -553,6 +550,11 @@ const updateTrendComparisonsData = (e) => {
 
     // ----- set measure info boxes -------------------------------------------------- //
 
+    // reset info boxes
+
+    selectedComparisonAbout = [];
+    selectedComparisonSources = [];
+
     // this iterates over all the indicators and measures in the comparison
 
     aqComparisonsIndicatorsMetadata.objects().forEach(m => {
@@ -579,23 +581,21 @@ const updateTrendComparisonsData = (e) => {
         .filter(aq.escape(d => d.ComparisonID == comparisonId))
         .join(aqComparisonsIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
 
-    // console.log("aqFilteredComparisonsMetadata:");
-    // aqFilteredComparisonsMetadata.print()
+    console.log("aqFilteredComparisonsMetadata:");
+    aqFilteredComparisonsMetadata.print()
     
     // use filtered metadata to filter data
+
+    // console.log("&&&& print x 4 [updateTrendComparisonsData]");
 
     aqFilteredComparisonsData = aqFilteredComparisonsMetadata
         .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
         .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
-        .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
-        .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
+        .join(timeTable, [["TimePeriodID"], ["TimePeriodID"]])
 
         // put host indicator first, so it gets the black line
         .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
     
-    // console.log(">>>> aqFilteredComparisonsData [updateTrendComparisonsData]");
-    // aqFilteredComparisonsData.print()
-
     // show only last 3 years of DWQ measures with quarterly data
 
     let hasQuarters = [858, 859, 860, 861, 862, 863];
@@ -605,13 +605,16 @@ const updateTrendComparisonsData = (e) => {
         // console.log(">>>> aqFilteredComparisonsData [quarters]:");
 
         aqFilteredComparisonsData = aqFilteredComparisonsData
-            .join(aqMeasureIdTimes, [["MeasureID", "TimePeriodID"], ["MeasureID", "TimePeriodID"]])
             .derive({"year": d => op.year(d.end_period)})
             .filter(d => d.year > op.max(d.year) - 3)
             .select(aq.not("TimePeriodID", "year"))
+            .reify()
             // .print(20)
 
     }
+
+    console.log(">>>> aqFilteredComparisonsData [updateTrendComparisonsData]");
+    aqFilteredComparisonsData.print()
 
 
     // ----- render the chart -------------------------------------------------- //
@@ -953,7 +956,6 @@ const renderMeasures = async () => {
 
     // create geo dropdown for table (using pretty geotypes, keeping georank order)
 
-    // const tableGeoTypes = [...new Set(tableData.map(item => prettifyGeoType(item.GeoType)))];
     const tableGeoTypes = [... new Set(aqTableGeos.array("GeoType").map(gt => prettifyGeoType(gt)))]
     const dropdownTableGeoTypes = geoTypes.filter(g => tableGeoTypes.includes(g))
 
@@ -1152,13 +1154,12 @@ const renderMeasures = async () => {
                 
                 let compGroup = titleGroup.filter(aq.escape(d => d.ComparisonID == comp))
                 
-                let compIndicatorLabel     = [... new Set(compGroup.array("IndicatorLabel"))];
-                let compMeasurementType   = [... new Set(compGroup.array("MeasurementType"))];
-                let compY_axis_title         = [... new Set(compGroup.array("Y_axis_title"))];
-                // let compIndicatorMeasure = [... new Set(compGroup.array("IndicatorMeasure"))];
-                let compGeoTypeGeoTypeName      = [... new Set(compGroup.array("GeoTypeName"))];
-                let compGeography        = [... new Set(compGroup.array("Geography"))];
-                let compName             = [... new Set(compGroup.array("ComparisonName"))];
+                let compIndicatorLabel  = [... new Set(compGroup.array("IndicatorLabel"))];
+                let compMeasurementType = [... new Set(compGroup.array("MeasurementType"))];
+                let compY_axis_title    = [... new Set(compGroup.array("Y_axis_title"))];
+                let compGeoTypeName     = [... new Set(compGroup.array("GeoTypeName"))];
+                let compGeography       = [... new Set(compGroup.array("Geography"))];
+                let compName            = [... new Set(compGroup.array("ComparisonName"))];
 
                 // console.log("compGeography", compGeography);
 
@@ -1678,12 +1679,10 @@ const renderMeasures = async () => {
             $(trendMeasureEl).addClass("active");
             $(trendMeasureEl).attr('aria-selected', true);
 
-            // ----- set measure info boxes -------------------------------------------------- //
 
         } else {
 
             // if there was a chart already, restore it
-            // ----- render the chart -------------------------------------------------- //
 
             // ----- set measure info boxes -------------------------------------------------- //
 
@@ -1693,7 +1692,6 @@ const renderMeasures = async () => {
             
             aqFilteredTrendData = aq.from(filteredTrendData);
 
-            // renderTrendChart(filteredTrendData, aqDefaultTrendMetadata);
             renderComparisonsChart(aqFilteredTrendData, aqSelectedTrendMetadata);
 
             updateChartPlotSize();
@@ -1776,19 +1774,23 @@ const renderMeasures = async () => {
                 .filter(aq.escape(d => d.ComparisonID == comparisonId))
                 .join(aqComparisonsIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
 
-            // console.log("aqFilteredComparisonsMetadata:");
-            // aqFilteredComparisonsMetadata.print({limit: Infinity})
+            console.log("aqFilteredComparisonsMetadata:");
+            aqFilteredComparisonsMetadata.print({limit: Infinity})
             
             // data
+
+            // console.log("&&&& print x 4 [showTrendComparisons]");
 
             aqFilteredComparisonsData = aqFilteredComparisonsMetadata
                 .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
                 .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
+                .join(timeTable, [["TimePeriodID"], ["TimePeriodID"]])
 
                 // put host indicator first (then measure), so it gets the black line
                 .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)), d => d.MeasureID)
 
-            // console.log(">>>> aqFilteredComparisonsData [showTrendComparisons]");
+
+            // console.log(">>>> aqFilteredComparisonsData [showTrendComparisons 1]");
             // aqFilteredComparisonsData.print()
 
             // show only last 3 years of DWQ measures with quarterly data
@@ -1800,15 +1802,15 @@ const renderMeasures = async () => {
                 // console.log(">>>> aqFilteredComparisonsData [quarters]:");
 
                 aqFilteredComparisonsData = aqFilteredComparisonsData
-                    .join(aqMeasureIdTimes, [["MeasureID", "TimePeriodID"], ["MeasureID", "TimePeriodID"]])
                     .derive({"year": d => op.year(d.end_period)})
                     .filter(d => d.year > op.max(d.year) - 3)
                     .select(aq.not("TimePeriod", "year"))
+                    .reify()
                     // .print(20)
 
             }
 
-            // console.log("aqFilteredComparisonsData:");
+            // console.log(">>>> aqFilteredComparisonsData [showTrendComparisons]");
             // aqFilteredComparisonsData.print()
 
 
@@ -1831,7 +1833,6 @@ const renderMeasures = async () => {
 
             // ----- render the chart -------------------------------------------------- //
 
-            // renderTrendChart(filteredTrendData, aqDefaultTrendMetadata);
             renderComparisonsChart(
                 aqFilteredComparisonsData,
                 aqFilteredComparisonsMetadata
@@ -1899,7 +1900,7 @@ const renderMeasures = async () => {
 
                 btnToggleDisparities.style.display = "none";
 
-                // remove click listeners to button that calls renderDisparities
+                // remove click listeners to button that calls renderDisparitiesChart
 
                 // $(btnToggleDisparities).off()
 
@@ -2028,7 +2029,7 @@ const renderMeasures = async () => {
         }
 
 
-        // add click listener to button that calls renderDisparities
+        // add click listener to button that calls renderDisparitiesChart
 
         $(btnToggleDisparities).off()
 
@@ -2038,7 +2039,7 @@ const renderMeasures = async () => {
 
             if (e.target && e.target.matches("#show-disparities") && !e.target.classList.contains("active")) {
 
-                renderDisparities(defaultLinksMetadata, 221)
+                renderDisparitiesChart(defaultLinksMetadata, 221)
 
             } else if (e.target && e.target.matches("#show-links") && !e.target.classList.contains("active")) {
 
@@ -2227,9 +2228,9 @@ const renderMeasures = async () => {
     // add event handler functions to summary tab checkboxes
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    const checkboxTime = document.querySelectorAll('.checkbox-time');
+    const checkboxTime    = document.querySelectorAll('.checkbox-time');
     const checkboxTimeAll = document.querySelectorAll('.checkbox-time-all');
-    const checkboxGeo = document.querySelectorAll('.checkbox-geo');
+    const checkboxGeo     = document.querySelectorAll('.checkbox-geo');
 
     checkboxTime.forEach(checkbox => {
         handleTableTimeFilter(checkbox);
