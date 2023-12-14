@@ -9,12 +9,12 @@
 // this function is called when the "Show Disparities" button is clicked. it
 //  in turn calls "loaddisparityData".
 
-const renderDisparities = async (
+const renderDisparitiesChart = async (
     primaryMetadata, 
     disparityMeasureId
 ) => {
 
-    console.log("** renderDisparities");
+    console.log("** renderDisparitiesChart");
 
     // ----------------------------------------------------------------------- //
     // toggle button
@@ -104,7 +104,7 @@ const renderDisparities = async (
 
     selectedDisparity = true;
 
-    // console.log(">> disparityData [renderDisparities]", disparityData);
+    // console.log(">> disparityData [renderDisparitiesChart]", disparityData);
 
     // debugger;
 
@@ -334,7 +334,9 @@ const renderDisparities = async (
             .select(aq.not("GeoType", "GeoTypeShortDesc_1", "GeoTypeShortDesc_2", "GeoRank_1", "GeoRank_2", "start_period_1", "end_period_1", "ban_summary_flag_1", "ban_summary_flag_2", "BoroID", "DisplayValue_1", "DisplayValue_2", "GeoTypeDesc_2", "Geography_2", "start_period_2", "end_period_2", "MeasureID_1", "MeasureID_2", "randomOffsetX"))
             .derive({ Value_1_Indicator: `'${primaryIndicatorName && `${primaryIndicatorName}`}'`})
             .derive({ Value_2_Indicator: `'${disparityIndicatorName}'`})
-            .print()
+        
+        // console.log("downloadTable [renderDisparitiesChart]");
+        // downloadTable.print()
 
         CSVforDownload = downloadTable.toCSV()
 

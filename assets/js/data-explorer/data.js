@@ -57,7 +57,7 @@ const fetch_comparisons = async () => {
             
             comparisons = data;
             
-            console.log("comparisons:", comparisons);
+            // console.log("comparisons:", comparisons);
             
         })
         .catch(error => console.log(error));
@@ -88,7 +88,6 @@ const createComparisonData = async (comps) => {
     // console.log("comparisonsMetadata [createComparisonData]:", comparisonsMetadata);
 
     // merged metadata
-    
 
     aqComparisonsMetadata = aq.from(comparisonsMetadata)
         .unroll("Indicators")
@@ -168,16 +167,13 @@ const createComparisonData = async (comps) => {
             return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
                 .then(async data => {
 
-                    // console.log("@@ data:");
-                    // await data.print()
-
-                    // console.log("** aq.loadJSON");
-                    // console.log("comp_data [createComparisonData]");
+                    // console.log("** aq.loadJSON [createComparisonData]");
 
                     // filter data to keep only measures and geos in the comparison chart, using semijoin with comparison metadata
 
                     let comp_data = data
                         .derive({IndicatorID: aq.escape(ind[0])})
+                        // .print()
                         .semijoin(
                             aqCombinedComparisonsMetadata, 
                             (a, b) => (op.equal(a.MeasureID, b.MeasureID) && op.equal(a.GeoType, b.GeoTypeName) && op.equal(a.GeoID, b.GeoID))
@@ -194,24 +190,29 @@ const createComparisonData = async (comps) => {
     .then(async dataArray => {
 
         // console.log("dataArray [createComparisonData]", dataArray);
+        // dataArray.print()
 
         // take array of arquero tables and combine them into 1 arquero table - like bind_rows in dplyr
 
-
+        // let aqComparisonsIndicatorData_0 = await dataArray.flatMap(d => d).reduce((a, b) => a.concat(b))
         aqComparisonsIndicatorData = await dataArray.flatMap(d => d).reduce((a, b) => a.concat(b))
 
         // console.log("aqComparisonsIndicatorData [createComparisonData]");
         // aqComparisonsIndicatorData.print()
         
         // console.log("loadTime [createComparisonData]");
-        await loadTime()
+        // await loadTime()
 
-        aqComparisonsIndicatorData = aqComparisonsIndicatorData
-            // .filter(d => op.match(d.GeoType, /Citywide/))
-            .join_left(timeTable, "TimePeriodID")
-            .reify()
+        // console.log("timeTable [createComparisonData]");
+        // timeTable.print()
 
-        // aqComparisonsIndicatorData.print();
+        // aqComparisonsIndicatorData = aqComparisonsIndicatorData_0
+        //     // .filter(d => op.match(d.GeoType, /Citywide/))
+        //     .join_left(timeTable, "TimePeriodID")
+        //     .reify()
+
+        // console.log("aqComparisonsIndicatorData [createComparisonData]");
+        // aqComparisonsIndicatorData.print()
 
     })
 }
@@ -326,8 +327,6 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
         fetch_comparisons();
     }
 
-    draw311Buttons(globalID);
-
     loadData(indicatorId);
 
 }
@@ -368,7 +367,7 @@ const loadData = async (this_indicatorId) => {
             
         })
 
-    // draw311Buttons(this_indicatorId)
+    draw311Buttons(this_indicatorId)
 
 }
 
@@ -618,24 +617,6 @@ const joinData = () => {
         .join(timeTable, "TimePeriodID")
         // .print()
         .select(aq.not("BoroID", "Borough", "TimeType"))
-        // .select(
-        //     "GeoID",
-        //     "GeoType",
-        //     "GeoTypeDesc",
-        //     "GeoTypeShortDesc",
-        //     "GeoRank",
-        //     "Geography",
-        //     "MeasureID",
-        //     "TimePeriodID",
-        //     "TimePeriod",
-        //     "Value",
-        //     "DisplayValue",
-        //     "CI",
-        //     "Note",
-        //     "start_period",
-        //     "end_period",
-        //     "ban_summary_flag"
-        // )
         .orderby(aq.desc('end_period'), aq.desc('GeoRank'))
         .reify()
         // .print()
@@ -689,7 +670,7 @@ const joinData = () => {
 
     // data for links & disparities chart ----------
 
-    console.log(">>> linksData [joinData]");
+    // console.log(">>> linksData [joinData]");
 
     linksData = joinedAqData
         .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
@@ -959,7 +940,7 @@ function draw311Buttons(indicator_id) {
     d3.csv(`${baseURL}/311/311-crosswalk.csv`)
         .then(async data => {
 
-            console.log(">>> 311-crosswalk");
+            // console.log(">>> 311-crosswalk");
             return data;
         })
         .then((crosswalk) => {

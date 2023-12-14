@@ -9,8 +9,8 @@ const renderComparisonsChart = (
 
     console.log("*** renderComparisonsChart");
 
-    console.log(">>> comp metadata");
-    metadata.print()
+    // console.log(">>> comp metadata");
+    // metadata.print()
     
     // console.log(">>> comp data:");
     // data.print(20)
@@ -419,7 +419,9 @@ const renderComparisonsChart = (
     let downloadTable = aq.from(dataForDownload)
         .derive({Indicator: `'${indicatorName}: ${plotTitle} ${plotSubtitle}'`}) // add indicator name and type column
         .select(aq.not("GeoType", "GeoTypeDesc", "GeoTypeShortDesc", "GeoRank", "MeasureID", "ban_summary_flag", "DisplayValue", "start_period", "end_period"))
-        .print()
+
+        // console.log("downloadTable [renderComparisonsChart]");
+        // downloadTable.print()
 
     CSVforDownload = downloadTable.toCSV()
     
