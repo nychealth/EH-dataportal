@@ -107,7 +107,8 @@
                 <div class="col-sm-4">
                     <div class="border p-1">
                         <span class="home-label font-weight-bold">Data File URL:</span><br>
-                        <button class="btn btn-outline-light btn-block text-secondary mb-1" id="targetURL" style="overflow-x: hidden;" disabled>URL Goes Here</button>
+                        <div class="text-secondary mb-1 border p-1" id="targetURL" style="width:100%; overflow-x: hidden;">URL Goes Here</div>
+                        <p class="fs-sm">This URL format can be used to access any available month of data, by specifying the year, month, and format.</p>
                         <button class="btn btn-outline-primary" onclick="copyURL()"><i class="fas fa-copy mr-1" aria-hidden="true"></i><span id="copied">Copy URL</span></button>
                         <a class="btn btn-outline-primary float-right" href="#" id="downloadLink"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
 
@@ -115,7 +116,7 @@
 
                     <div class="border p-1 mt-2">
                         <p><span class="home-label font-weight-bold">Location details:</span></p>
-                        <p class="fs-sm"><a href="https://azdohv2staticweb.blob.core.windows.net/$web/hist/csv/location.csv">Download details as CSV</a>. <a href="https://azdohv2staticweb.blob.core.windows.net/$web/hist/json/location.json">Download details as JSON</a>
+                        <p class="fs-sm">These files contain information about the <code>SiteID</code> field in the data files. <a href="https://azdohv2staticweb.blob.core.windows.net/$web/hist/csv/location.csv">Download as CSV</a> or <a href="https://azdohv2staticweb.blob.core.windows.net/$web/hist/json/location.json">download as JSON</a>
                         </p>    
                     </div>
 
