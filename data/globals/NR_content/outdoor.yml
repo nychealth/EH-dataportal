@@ -1,5 +1,5 @@
 report_topics:
-  - report_topic: "Health Burden: Fine Particles (PM2.5) "
+  - report_topic: "Health Burden: Fine Particles (PM2.5)"
     report_topic_description: Estimated health events attributable to PM2.5 exposure over natural background levels in NYC (average annual rate per 100,000 residents).
     MeasureID:
       - 639
