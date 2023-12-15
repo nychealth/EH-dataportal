@@ -8,7 +8,6 @@ seo_title: "Explore data on displacement risk in NYC"
 seo_description: "Data on housing, gentrification, and displacement."
 tags: 
 categories: [housing, social]
-keyTopic: housing
 keywords: ["housing","gentrification","displacement","justice","equity"]
 layout: displacement
 ---
