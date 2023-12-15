@@ -5,41 +5,7 @@
 {{- $report_topics := ( index ( index $.Site.Data.globals.NR_content $.Params.content_yml) "report_topics" ) -}}
 
 
-{{/* ==== range through topics to get measures for this report ==== */}}
-
-{{- /*  create a slice for an array of all measure_ids  */}}
-
-{{- $all_measure_ids := slice -}}
-
-{{- range $report_topics -}}
-
-    {{- $all_measure_ids = $all_measure_ids | append .MeasureID -}}
-    
-{{- end -}}
-
-{{- $all_measure_ids = $all_measure_ids | uniq -}}
-
-
-{{- /* ==== save NR topic data as a resource (for VL charts) ==== */}}
-
-{{- $topic_data_for_hugo := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/topic_data_for_hugo.json")) | transform.Unmarshal -}}
-
-{{- /*  filter neighborhood + MeasureID for this topic  */}}
-
-{{- $topic_data := where $topic_data_for_hugo "MeasureID" "in" $all_measure_ids -}}
-
-{{/*  set download path  */}}
-
-{{- $data_path := print "/neighborhood-reports/data/" $.Params.content_yml ".json" -}}
-
-{{- /*  save and publish resource  */}}
-
-{{- $topic_data_json := $topic_data | jsonify | resources.FromString ( print "/neighborhood-reports/data/" $.Params.content_yml ".json" ) -}}
-
-{{- $topic_data_json.Publish -}}
-
-
-{{/*  ==== javascript for producing VL charts ====  */}}
+{{- /*  ==== javascript for producing VL charts ====  */}}
 
 <script>
     let topicIndicators;
@@ -137,21 +103,11 @@
 </script>
 
 
-{{/*  ==== HTML for producing report ====  */}}
+{{- /*  ==== HTML for producing report ====  */}}
 
-{{/*  get the one big dataset for reports  */}}
+{{- /*  create zip code var in outer scope  */}}
 
-{{- $report_data_for_hugo := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/report_data_for_hugo.json")) | transform.Unmarshal -}}
-
-{{/*  filter by neighborhood  */}}
-
-{{/*  length = number of indicators across all NRs  */}}
-
-{{- $neighborhood_data := where $report_data_for_hugo "neighborhood" $.Params.neighborhood -}}
-
-{{/*  get zip codes from neighborhod  */}}
-
-{{ $zip_codes := index $neighborhood_data 0 "zip_code" -}}
+{{ $zip_codes := "" -}}
 
 
 <div class="d-flex flex-column report-header d-print-none">
@@ -180,8 +136,6 @@
                     <li class="breadcrumb-item"><a href={{ relURL "neighborhood-reports" }}>Neighborhood Reports</a></li>
                     <li class="breadcrumb-item"><a href=".." id="neighbLink">{{ $.Params.neighborhood }}</a></li>
                     <li class="breadcrumb-item active"><a href="{{ .RelPermalink }}">{{ $.Params.title }}</a></li>
-
-
                 </ul>
             </nav>
 
@@ -252,21 +206,57 @@
 
                                         {{- /*  filter measures for this topic  */}}
 
-                                        {{/*  length = number of indicators in this report topic  */}}
+                                        {{- /*  length = number of indicators in this report topic x 42 neighborhoods  */}}
 
-                                        {{- $neighborhood_topic_data := where $neighborhood_data "MeasureID" "in" $rt.MeasureID -}}
+                                        {{ $count := math.Counter }}
 
-                                        {{/*  range through indicators to build this topic  */}}
+                                        {{ $clean_report_topic := replace $rt.report_topic ":" "" }}
+                                        
+                                        {{- /*  {{ warnf ( print ( printf "[%d] " $count ) $clean_report_topic ) }}  */}}
+
+                                        {{ $data_path := print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/report " $.Params.content_yml " " $clean_report_topic ".json" }}
+
+                                        {{- /*  {{ warnf $data_path }}  */}}
+                                        {{- /*  {{ warnf ( print ( printf "[%d] " $count ) $data_path ) }}  */}}
+
+                                        {{ $topic_data := dict }}
+
+                                        {{ with resources.GetRemote $data_path }}
+                                            {{ with .Err }}
+                                                {{ warnf "%s" . }}
+                                            {{ else }}
+                                                {{ $topic_data = transform.Unmarshal . }}
+                                            {{ end }}
+                                        {{ else }}
+                                            {{ warnf "Unable to get remote resource %q" $data_path }}
+                                        {{ end }}
+
+                                        {{- /*  {{- $topic_data := ( resources.GetRemote $data_path ) | transform.Unmarshal -}}  */}}
+                                        {{- /*  {{- $topic_data := getJSON $data_path -}}  */}}
+
+                                        {{- /*  filter by neighborhood  */}}
+
+                                        {{- /*  length = number of indicators in this report topic  */}}
+
+                                        {{- $neighborhood_topic_data := where $topic_data "neighborhood" $.Params.neighborhood -}}
+
+                                        {{- /*  {{ warnf ( $neighborhood_topic_data | jsonify | print ) }}  */}}
+
+                                        {{- /*  range through indicators to build this topic  */}}
                                         
                                         {{ range $index, $row := (sort $neighborhood_topic_data "data_value_rank" "desc") }}
 
-                                            {{/*  length = 1  */}}
+                                            {{- /*  length = 1  */}}
 
                                             {{- $count := add $index 1 -}}
                                             
                                             {{- partial "report_indicator.html" (dict "neighborhood" $.Params.neighborhood "borough" $row.borough_name "data" $row "count" $count) -}}
                                                     
                                         {{- end -}}
+
+                                        {{ $zip_codes =  index $neighborhood_topic_data 0 "zip_code" -}}
+                                        
+                                        {{- /*  {{ warnf ( $zip_codes | print ) }}  */}}
                                     
                                     </div>
                                     <!-- .container -->
@@ -336,9 +326,9 @@
         {{- /*  use NR_content folder YAML to group indicators by report. Then we can remove report title etc. from database but still get data by report  */}}
 
         let arqTable;
-        let downloadLoc = {{ ( relURL ( print "neighborhood-reports/data/" $.Params.content_yml ".json" ) ) }}
+        let downloadLoc = {{ ( relURL ( print "neighborhood-reports/data/viz " $.Params.content_yml ".json" ) ) }}
 
-        {{/*  {{ warnf ( relURL ( print "neighborhood-reports/data/" $.Params.content_yml ".json" ) ) }}  */}}
+        {{- /*  {{ warnf ( relURL ( print "neighborhood-reports/data/" $.Params.content_yml ".json" ) ) }}  */}}
 
         // loading report-level CSV data
 
@@ -489,7 +479,7 @@ aria-hidden="true">
     </div>
 </div>
 
-{{/*  {{- end -}}  */}}
+{{- /*  {{- end -}}  */}}
 
 {{- $js := resources.Get "js/uhflist.js" -}}
 {{ $secureJS := $js | resources.Fingerprint "sha512" }}
