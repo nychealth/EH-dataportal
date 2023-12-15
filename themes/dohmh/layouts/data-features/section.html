@@ -1,0 +1,28 @@
+{{- define "main" -}}
+
+<article class="container" id="skip-header-target">
+
+    <div class="col-md-10 mx-auto mt-4">
+        <h1 class="ds-accent"><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>Data Features</h1>
+        <p>Just cool data stuff.</p>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col">
+            <h2>Latest Data Features</h2>
+            {{ range where .Pages "File.BaseFileName" "in" (slice "index" "_index") }}
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            <hr>
+            {{- end -}}
+        </div>
+    </div>
+
+
+    
+
+    
+
+
+</article>
+
+{{- end -}}
