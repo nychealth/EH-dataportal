@@ -11,7 +11,7 @@ report_topics:
       - 696
       - 1196
       - 1201
-  - report_topic: "Health Burden: Fine Particles (PM2.5) "
+  - report_topic: "Health Burden: Fine Particles (PM2.5)"
     report_topic_description: Estimated health events attributable to PM2.5 exposures, (average annual rate per 100,000 residents)
     MeasureID:
       - 648
