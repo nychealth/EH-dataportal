@@ -33,7 +33,7 @@ const load_flexdatalist = async () => {
 
     // ----- get Indicators.json -------------------------------------------------- //
     
-    await fetch(`${data_repo}${data_branch}/indicators/indicators.json`)
+    await fetch(`${data_repo}${data_branch}/indicators/metadata.json`)
         .then(response => response.json())
         .then(data => {
 
