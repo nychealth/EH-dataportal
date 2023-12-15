@@ -626,13 +626,15 @@ const joinData = () => {
 
     // data for summary table ----------
 
-    // console.log(">>> tableData [joinData]");
+    // console.log(">>> tableData x5 [joinData]");
 
     tableData = joinedAqData
+        // .print()
         .join_left(aqMeasureDisplay, "MeasureID")
         // .print()
         // filter to keep only times and geos we want in the table
         .semijoin(aqTableTimes, [["MeasureID", "TimePeriodID"], ["MeasureID", "TimePeriodID"]])
+        // .print()
         .semijoin(aqTableGeos, "GeoType")
         // .print()
         .derive({
@@ -641,31 +643,38 @@ const joinData = () => {
         })
         .derive({ DisplayCI: d => op.replace(d.DisplayCI, /^$/, "-") }) // replace missing with "-"
         .select(aq.not("start_period", "end_period"))
+        .reify()
+        // .print()
         .objects()
 
     // data for map ----------
 
-    // console.log(">>> mapData [joinData]");
+    // console.log(">>> mapData x3 [joinData]");
 
     mapData = joinedAqData
         // .print()
         // filter to keep only times and geos we want in the table
         .semijoin(aqMapTimes, [["MeasureID", "TimePeriodID"], ["MeasureID", "TimePeriodID"]])
+        // .print()
         .semijoin(aqMapGeos, "GeoType")
+        .reify()
         // .print()
         .objects()
     
     // data for trend chart ----------
 
-    // console.log(">>> trendData [joinData]");
+    // console.log(">>> trendData x4 [joinData]");
 
     trendData = joinedAqData
         // .print()
         // filter to keep only times and geos we want in the table
         .semijoin(aqTrendTimes, [["MeasureID", "TimePeriodID"], ["MeasureID", "TimePeriodID"]])
+        // .print()
         .semijoin(aqTrendGeos,"GeoType")
         // .print()
         .orderby("GeoRank", "GeoID")
+        .reify()
+        // .print()
         .objects()
 
     // data for links & disparities chart ----------
