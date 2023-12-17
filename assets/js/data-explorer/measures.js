@@ -805,7 +805,7 @@ const handleMapTimeDropdown = (MeasureID, GeoType) => {
         [...new Set(
             mapData
                 .filter(obj => obj.MeasureID == MeasureID && prettifyGeoType(obj.GeoType) == GeoType)
-                .map(d => d.Time)
+                .map(d => d.TimePeriod)
         )]
 
     console.log("mapTimesAvailable [handleMapTimeDropdown]", mapTimesAvailable);
@@ -833,14 +833,14 @@ const handleMapTimeDropdown = (MeasureID, GeoType) => {
 
 // ===== geo type ================================================== //
 
-const handleMapGeoDropdown = (MeasureID, Time) => {
+const handleMapGeoDropdown = (MeasureID, TimePeriod) => {
 
     let allGeoButtons = document.querySelectorAll('.mapgeosbutton');
 
     let mapGeosAvailable =
         [...new Set(
             mapData
-                .filter(obj => obj.MeasureID == MeasureID && obj.Time == Time)
+                .filter(obj => obj.MeasureID == MeasureID && obj.TimePeriod == TimePeriod)
                 .map(d => prettifyGeoType(d.GeoType))
         )]
 
@@ -928,9 +928,9 @@ const renderMeasures = async () => {
 
     // ----- times -------------------------------------------------- //
 
-    const tableTimes = [...new Set(aqTableTimes.array("TimePeriod"))];
+    const tableTimes = [...new Set(aqTableTimesGeos.array("TimePeriod"))];
 
-    // console.log("tableTimes", tableTimes);
+    console.log("tableTimes", tableTimes);
 
     tableTimes.forEach((time, index) => {
 
@@ -956,9 +956,10 @@ const renderMeasures = async () => {
 
     // create geo dropdown for table (using pretty geotypes, keeping georank order)
 
-    const tableGeoTypes = [... new Set(aqTableGeos.array("GeoType").map(gt => prettifyGeoType(gt)))]
+    const tableGeoTypes = [... new Set(aqTableTimesGeos.array("GeoType").map(gt => prettifyGeoType(gt)))]
     const dropdownTableGeoTypes = geoTypes.filter(g => tableGeoTypes.includes(g))
 
+    console.log("tableGeoTypes:", tableGeoTypes);
     // console.log("geoTypes:", geoTypes);
     // console.log("dropdownTableGeoTypes:", dropdownTableGeoTypes);
 
@@ -979,7 +980,7 @@ const renderMeasures = async () => {
 
     // create geo dropdown for table (using pretty geotypes, keeping georank order)
 
-    const mapGeoTypes = [... new Set(aqMapGeos.array("GeoType").map(gt => prettifyGeoType(gt)))]
+    const mapGeoTypes = [... new Set(aqMapTimesGeos.array("GeoType").map(gt => prettifyGeoType(gt)))]
     const dropdownMapGeoTypes = geoTypes.filter(g => mapGeoTypes.includes(g))
 
     console.log("geoTypes:", geoTypes);
@@ -1002,7 +1003,7 @@ const renderMeasures = async () => {
 
     // ----- times -------------------------------------------------- //
 
-    const mapTimes = [... new Set(aqMapTimes.array("TimePeriod"))]
+    const mapTimes = [... new Set(aqMapTimesGeos.array("TimePeriod"))]
 
     // console.log("mapTimes", mapTimes);
 

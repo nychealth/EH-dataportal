@@ -9,8 +9,8 @@ const renderMap = (
 
     console.log("** renderMap");
 
-        // console.log("data [renderMap]", data);
-        // console.log("metadata [renderMap]", metadata);
+        console.log("data [renderMap]", data);
+        console.log("metadata [renderMap]", metadata);
 
         // ----------------------------------------------------------------------- //
         // get unique time in data
@@ -26,10 +26,7 @@ const renderMap = (
         let geoTypeShortDesc      = data[0]?.GeoTypeShortDesc;
         let mapMeasurementType    = metadata[0]?.MeasurementType;
         let displayType           = metadata[0]?.DisplayType;
-        let mapGeoTypeDescription = 
-            metadata[0].AvailableGeoTypes?.filter(
-                gt => gt.GeoType === mapGeoType
-            )[0].GeoTypeDescription;
+        let mapGeoTypeDescription = [...new Set(geoTable.filter(aq.escape(d => d.GeoType === mapGeoType)).array("GeoTypeShortDesc"))];
 
         let mapTime = mapTimes[0];
         let topoFile = '';
@@ -56,7 +53,7 @@ const renderMap = (
     // mapData has all the geos for every year
     // data has the one geo x year we're mapping
 
-    const dataGeos = [...new Set(mapData.filter(d => d.Time == mapTime).map(d => prettifyGeoType(d.GeoType)))];
+    const dataGeos = [...new Set(mapData.filter(d => d.TimePeriod == mapTime).map(d => prettifyGeoType(d.GeoType)))];
 
     console.log("dataGeos [renderMap]", dataGeos);
 

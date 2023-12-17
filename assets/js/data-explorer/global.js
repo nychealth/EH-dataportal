@@ -95,12 +95,9 @@ let aqFilteredComparisonsMetadata;
 let aqCombinedComparisonsMetadata;
 
 let aqMeasureDisplay;
-let aqTableTimes;
-let aqMapTimes;
-let aqTrendTimes;
-let aqTableGeos;
-let aqMapGeos;
-let aqTrendGeos;
+let aqTableTimesGeos;
+let aqMapTimesGeos;
+let aqTrendTimesGeos;
 
 let mapMeasures = [];
 let trendMeasures = [];
