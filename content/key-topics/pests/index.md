@@ -1,5 +1,6 @@
 ---
 title: "Pests and pesticides"
+shortTitle: "Pests"
 date: 2021-05-05T07:59:02-04:00
 draft: false
 seo_title: "Pests and Pesticides in NYC"

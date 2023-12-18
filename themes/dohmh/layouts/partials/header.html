@@ -178,11 +178,12 @@
                 <span id="File.Path" style="display: none">{{ $currentPage.File.Path }}</span>
                 <span id="FirstSection.RelPermalink" style="display: none">{{ $currentPage.FirstSection.RelPermalink }}</span>
 
-                <div class="nav-item-search border-right">
-                    <a class="nav-link" id="nav-item-01" href="{{ site.BaseURL }}">
-                    <span class='text-primary'><i class='fa fa-home' aria-hidden='true'></i><span class="sr-only">Home</span></span>
-                    </a>
-                </div>
+                <button class="btn nav-item-search border-right" type="button" title="Home" data-toggle="collapse" data-target="#home-topics" aria-controls="home-topics" aria-expanded="false">
+
+                    <span class="sr-only">Home and Topics</span>
+                    <i class="fa fa-home fa-lg"></i>
+
+                </button>
 
                     {{- range .Site.Menus.main -}}
 
@@ -216,7 +217,15 @@
 
         </div>
 
-        <div class="container-fluid-lg border-top collapse" id="global-search">
+        <div class="container-fluid-lg border-top border-bottom collapse p-1" id="home-topics">
+            <a class="btn btn-sm btn-outline-primary mb-1" href="{{ site.BaseURL }}"><i class="fa fa-home mr-1" aria-hidden="true"></i>Home</a>
+
+            {{ range (where .Site.RegularPages "Section" "key-topics") }}
+                <a class="btn btn-sm btn-outline-light text-dark mb-1" href="{{ .RelPermalink }}"><i class="fa fa-star mr-1" aria-hidden="true"></i>{{ .Params.shortTitle }}</a>
+            {{ end }}
+        </div>
+
+        <div class="container-fluid-lg border-top border-bottom collapse" id="global-search">
 
             <form class="narrow py-2" aria-label="Search" role="search">
 

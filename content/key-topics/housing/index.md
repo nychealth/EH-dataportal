@@ -1,5 +1,6 @@
 ---
 title: "Housing"
+shortTitle: "Housing"
 date: 2021-10-02T07:56:00-04:00
 draft: false
 seo_title: "Housing in NYC"

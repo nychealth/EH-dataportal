@@ -1,5 +1,6 @@
 ---
 title: "Child health"
+shortTitle: "Children"
 date: 2021-05-05T07:59:26-04:00
 draft: false
 seo_title: "Child Health in NYC"
