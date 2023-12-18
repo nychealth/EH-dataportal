@@ -104,7 +104,7 @@
           } else {}
         }
 
-        console.log('index value of NR:', indexValue)
+        // console.log('index value of NR:', indexValue)
 
         // get neighborhood name and report from URL
         var partsExtension = parts.slice(indexValue)
@@ -139,7 +139,7 @@
         spec.layer[1].encoding.strokeWidth.condition.test = `datum['GEOCODE'] == '${x}'`
         vegaEmbed('#vis1', spec, {"actions": false}).then(result => {
           result.view.addEventListener('click', function(event, item) {
-             console.log('CLICK', event, item);
+             // console.log('CLICK', event, item);
             // console.log(item.datum)
 
             // send to new page
@@ -150,7 +150,7 @@
 
       vegaEmbed('#vis1', spec, {"actions": false}).then(result => {
         result.view.addEventListener('click', function(event, item) {
-           console.log('CLICK', event, item);
+           // console.log('CLICK', event, item);
           // console.log(item.datum)
 
           // send to new page

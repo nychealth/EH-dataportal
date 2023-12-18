@@ -136,7 +136,7 @@ $("#chartView").on("click", (e) => {
 
     // if it's summary table... (uses DataTables.net methods)
     if (window.location.hash == '#display=summary') {
-        console.log('we are on summary table')
+        
         let summaryTable = $('#tableID').DataTable();
         summaryTable.button("thisView:name").trigger();
     

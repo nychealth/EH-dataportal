@@ -26,24 +26,29 @@
     
     const getURL = async (indID, dataname) => {
         
-        console.log("getURL:", indID);
+        // console.log("getURL:", indID);
         
         let thisTopic = '';
         let topicArray = [];
         let ind = Number(indID)
         let URL;
 
-        console.log('getURL running for ' + ind)
+        // console.log('getURL running for ' + ind)
         
         for (let y in topicIndicators) {
+
             topicArray = topicIndicators[y].IndicatorID
+
             if (topicArray.includes(ind)) {
+
                 thisTopic = y
-                console.log('topic is: ' + ind + ": " + thisTopic)
+                // console.log('topic is: ' + ind + ": " + thisTopic)
                 URL = {{ relURL "data-explorer/" }} + thisTopic + "/?id=" + ind; // creates URL
                 document.getElementById(dataname).style.display = "block";
                 document.getElementById(dataname).href = URL; // sends it to unique ID - Get the Dataset button
+
                 return
+
             } else {
                 // console.log('for ' + ind + ", no topic.")
                 // document.getElementById(dataname).style.display = "none";
@@ -340,7 +345,7 @@
 
             arqTable = data 
             
-            console.log("arqTable", arqTable);
+            // console.log("arqTable", arqTable);
 
         })
 

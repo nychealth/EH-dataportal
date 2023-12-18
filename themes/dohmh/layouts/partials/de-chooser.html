@@ -241,14 +241,14 @@
     var destination = document.getElementById('indicatorNames')    
 
     function changeKT(x) {
-        console.log(x)
+        // console.log(x)
         const all = document.querySelectorAll('.dumps')
         all.forEach((dump) => {
             dump.classList.remove('show')
             dump.classList.add('hide')
         });
         const chosen = 'output'+x
-        console.log('chosen: ' + chosen)
+        // console.log('chosen: ' + chosen)
         document.getElementById(chosen).classList.remove('hide')
 
         const KTs = document.querySelectorAll('.kt')

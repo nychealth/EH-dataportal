@@ -201,7 +201,7 @@
                         // setting 'onclick' action for each geography, with the geo as the argument
                         
                         li.addEventListener('click', e => {
-                            console.log("classList [e]", e.target.classList)
+                            // console.log("classList [e]", e.target.classList)
                             toggle_button(e);
                         });
                         
@@ -348,7 +348,6 @@
                         return 'NTA';
 
                     default:
-                        {{- /*  console.log("**default**");  */}}
                         return GeoType;
 
                 }

@@ -183,7 +183,7 @@ function buttonChange(x) {
 
   var copyHolder = x + 'Descr'
   var copy = document.getElementById(copyHolder).innerHTML
-  console.log(copy)
+  // console.log(copy)
   document.getElementById('descr').innerHTML = copy
 
   // this checks
@@ -223,7 +223,7 @@ neighborhoods.forEach(function (neighborhood) {
 });
 
 function showNeighborhoods() {
-  console.log('showing neighborhoods...')
+  // console.log('showing neighborhoods...')
   document.getElementById('showNeighbs').classList.remove('hide')
   document.getElementById('showNeighbs').classList.add('show')
   }
@@ -233,7 +233,7 @@ function showNeighborhoods() {
 // ===== load flexdatalist ================================================== //
 
 function loadList() {
-  console.log(neighborhoods)
+  // console.log(neighborhoods)
 
   // ----- init flexdatalist -------------------------------------------------- //
 
@@ -253,18 +253,18 @@ function loadList() {
     data: neighborhoods
 });
 
-  console.log("$input", $input);
+  // console.log("$input", $input);
 
   // ----- add flexdatalist select handler -------------------------------------------------- //
 
   $input.on('select:flexdatalist', (e, set) => {
     
-    console.log("set", set);
+    // console.log("set", set);
     
     // SEND TO NEIGHBORHOOD...!
 
-    console.log('chosen neighb:')
-    console.log(set.page_name);
+    // console.log('chosen neighb:')
+    // console.log(set.page_name);
     window.location.href = set.page_name + reportURL 
     
 })
@@ -273,7 +273,7 @@ function loadList() {
 
 $("#clear").on("click", (e) => {
 
-    console.log("e [clear click]", e);
+    // console.log("e [clear click]", e);
 
     $($input).find("~input").val("").trigger( "focus" )
     

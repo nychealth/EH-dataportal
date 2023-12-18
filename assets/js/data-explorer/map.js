@@ -9,8 +9,8 @@ const renderMap = (
 
     console.log("** renderMap");
 
-        console.log("data [renderMap]", data);
-        console.log("metadata [renderMap]", metadata);
+        // console.log("data [renderMap]", data);
+        // console.log("metadata [renderMap]", metadata);
 
         // ----------------------------------------------------------------------- //
         // get unique time in data
@@ -55,7 +55,7 @@ const renderMap = (
 
     const dataGeos = [...new Set(mapData.filter(d => d.TimePeriod == mapTime).map(d => prettifyGeoType(d.GeoType)))];
 
-    console.log("dataGeos [renderMap]", dataGeos);
+    // console.log("dataGeos [renderMap]", dataGeos);
 
     // if you're on a geo that's not availble for a year you just clicked on, show the gray base map
 

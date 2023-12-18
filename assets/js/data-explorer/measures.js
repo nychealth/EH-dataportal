@@ -325,7 +325,7 @@ const updateMapData = (e) => {
     }
 
 
-    console.log("*measureId*", measureId, "*geo*", geo, "*time*", time);
+    // console.log("*measureId*", measureId, "*geo*", geo, "*time*", time);
     // console.log("geo", geo);
     // console.log("measureId", measureId);
     // console.log("time", time);
@@ -368,12 +368,7 @@ const updateMapData = (e) => {
             prettifyGeoType(obj.GeoType) == geo
         );
 
-    console.log("filteredMapData [updateMapData]", filteredMapData);
-
-    // get the highest GeoRank, then keep just that geo
-
-    // let maxGeoRank = Math.max(filteredMapData[0].GeoRank);
-    // filteredMapData = filteredMapData.filter(obj => obj.GeoRank === maxGeoRank)
+    // console.log("filteredMapData [updateMapData]", filteredMapData);
 
 
     // ----- format dropdowns -------------------------------------------------- //
@@ -462,7 +457,6 @@ const updateTrendData = (e) => {
 
     filteredTrendData = trendData
         .filter(m => m.MeasureID === measureId)
-        // .filter(m => times.includes(m.TimePeriod));
 
     // console.log("filteredTrendData [updateTrendData]", filteredTrendData);
 
@@ -581,8 +575,8 @@ const updateTrendComparisonsData = (e) => {
         .filter(aq.escape(d => d.ComparisonID == comparisonId))
         .join(aqComparisonsIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
 
-    console.log("aqFilteredComparisonsMetadata:");
-    aqFilteredComparisonsMetadata.print()
+    // console.log("aqFilteredComparisonsMetadata:");
+    // aqFilteredComparisonsMetadata.print()
     
     // use filtered metadata to filter data
 
@@ -613,8 +607,8 @@ const updateTrendComparisonsData = (e) => {
 
     }
 
-    console.log(">>>> aqFilteredComparisonsData [updateTrendComparisonsData]");
-    aqFilteredComparisonsData.print()
+    // console.log(">>>> aqFilteredComparisonsData [updateTrendComparisonsData]");
+    // aqFilteredComparisonsData.print()
 
 
     // ----- render the chart -------------------------------------------------- //
@@ -811,7 +805,7 @@ const handleMapTimeDropdown = (MeasureID, GeoType) => {
                 .array("TimePeriod")
         )]
 
-    console.log("mapTimesAvailable [handleMapTimeDropdown]", mapTimesAvailable);
+    // console.log("mapTimesAvailable [handleMapTimeDropdown]", mapTimesAvailable);
 
     // - - - format - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
@@ -847,7 +841,7 @@ const handleMapGeoDropdown = (MeasureID, TimePeriod) => {
                 .map(d => prettifyGeoType(d.GeoType))
         )]
 
-    console.log("mapGeosAvailable [handleMapGeoDropdown]", mapGeosAvailable);
+    // console.log("mapGeosAvailable [handleMapGeoDropdown]", mapGeosAvailable);
 
     // - - - format - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
@@ -933,7 +927,7 @@ const renderMeasures = async () => {
 
     const tableTimes = [...new Set(aqTableTimesGeos.array("TimePeriod"))];
 
-    console.log("tableTimes", tableTimes);
+    // console.log("tableTimes", tableTimes);
 
     tableTimes.forEach((time, index) => {
 
@@ -962,7 +956,7 @@ const renderMeasures = async () => {
     const tableGeoTypes = [... new Set(aqTableTimesGeos.array("GeoType").map(gt => prettifyGeoType(gt)))]
     const dropdownTableGeoTypes = geoTypes.filter(g => tableGeoTypes.includes(g))
 
-    console.log("tableGeoTypes:", tableGeoTypes);
+    // console.log("tableGeoTypes:", tableGeoTypes);
     // console.log("geoTypes:", geoTypes);
     // console.log("dropdownTableGeoTypes:", dropdownTableGeoTypes);
 
@@ -986,9 +980,9 @@ const renderMeasures = async () => {
     const mapGeoTypes = [... new Set(aqMapTimesGeos.array("GeoType").map(gt => prettifyGeoType(gt)))]
     const dropdownMapGeoTypes = geoTypes.filter(g => mapGeoTypes.includes(g))
 
-    console.log("geoTypes:", geoTypes);
-    console.log("mapGeoTypes:", mapGeoTypes);
-    console.log("dropdownMapGeoTypes:", dropdownMapGeoTypes);
+    // console.log("geoTypes:", geoTypes);
+    // console.log("mapGeoTypes:", mapGeoTypes);
+    // console.log("dropdownMapGeoTypes:", dropdownMapGeoTypes);
 
     dropdownMapGeoTypes.forEach(geo => {
 
@@ -1030,15 +1024,16 @@ const renderMeasures = async () => {
         // console.log("measure", measure);
 
         // check to see if the different viz types exist for this measure
+        // if a viz type exists, the "aq[type]TimesGeos" arquero table for the measure should have > 0 rows
 
-        const map   = measure?.VisOptions[0].Map   && measure?.VisOptions[0].Map[0].TimePeriodID[0];
-        const trend = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0].TimePeriod;
+        const map   = aqMapTimesGeos && aqMapTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
+        const trend = aqTrendTimesGeos && aqTrendTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
         const links = measure?.VisOptions[0].Links && measure?.VisOptions[0].Links[0].Measures[0].MeasureID;
         
         const type  = measure?.MeasurementType;
         const measureId = measure.MeasureID;
 
-        // console.log("type", type, "links", links, "map", map, "trend", trend);
+        // console.log("measure", measure.MeasureID, "type", type, "links", links, "map", map, "trend", trend);
 
 
         // ----- handle map measures -------------------------------------------------- //
@@ -1167,7 +1162,7 @@ const renderMeasures = async () => {
 
                 // console.log("compGeography", compGeography);
 
-                console.log("compGeography", compGeography);
+                // console.log("compGeography", compGeography);
                 
                 if (compIndicatorLabel.length == 1) {
 
@@ -1298,7 +1293,7 @@ const renderMeasures = async () => {
 
         if (!selectedMapGeo && !selectedMapTime && !selectedMapMeasure) {
 
-            console.log(">> no selected [showMap]");
+            // console.log(">> no selected [showMap]");
 
             let latest_time;
             let maxGeoPretty;
@@ -1325,13 +1320,13 @@ const renderMeasures = async () => {
                     )
                 );
 
-            console.log("filteredMapData [showMap]", filteredMapData);
+            // console.log("filteredMapData [showMap]", filteredMapData);
 
             // ----- allow map to persist when changing tabs -------------------------------------------------- //
 
             if (!selectedMapMeasure) {
 
-                console.log(">> no selectedMapMeasure");
+                // console.log(">> no selectedMapMeasure");
 
                 // this is all inside the conditional, because if a user clicks on this tab again
                 //  after selecting a measure, we don't want to recompute everything. We'll use the
@@ -1374,14 +1369,14 @@ const renderMeasures = async () => {
                         obj => obj.MeasureID === defaultMapMeasureId
                     );
 
-                console.log("filteredMapData [no selectedMapMeasure]", filteredMapData);
+                // console.log("filteredMapData [no selectedMapMeasure]", filteredMapData);
 
             }
 
 
             if (!selectedMapTime) {
 
-                console.log(">> no selectedMapTime");
+                // console.log(">> no selectedMapTime");
 
                 // get the latest end_period
 
@@ -1393,13 +1388,13 @@ const renderMeasures = async () => {
 
                 latest_time = filteredMapData[0].TimePeriod
 
-                console.log("filteredMapData [no selectedMapTime]", filteredMapData);
+                // console.log("filteredMapData [no selectedMapTime]", filteredMapData);
 
             }
 
             if (!selectedMapGeo) {
 
-                console.log(">> no selectedMapGeo [showMap]");
+                // console.log(">> no selectedMapGeo [showMap]");
 
                 // get the highest GeoRank for this measure and end_period
 
@@ -1412,10 +1407,10 @@ const renderMeasures = async () => {
                 let maxGeo = filteredMapData[0].GeoType
                 maxGeoPretty = prettifyGeoType(maxGeo)
 
-                console.log("filteredMapData [no selectedMapGeo]", filteredMapData);
+                // console.log("filteredMapData [no selectedMapGeo]", filteredMapData);
 
-                console.log("maxGeo", maxGeo);
-                console.log("maxGeoPretty", maxGeoPretty);
+                // console.log("maxGeo", maxGeo);
+                // console.log("maxGeoPretty", maxGeoPretty);
 
             }
 
@@ -1470,7 +1465,7 @@ const renderMeasures = async () => {
 
             // if there was a map already, restore it
 
-            console.log("else [showMap]");
+            // console.log("else [showMap]");
 
             // ----- set measure info boxes -------------------------------------------------- //
 
@@ -1482,7 +1477,7 @@ const renderMeasures = async () => {
             let geo = $('.mapgeosbutton.active').attr("data-geo")
             let measureId = $('.mapmeasuresbutton.active').attr("data-measure-id")
 
-            console.log("*measureId*", measureId, "*geo*", geo, "*time*", time);
+            // console.log("*measureId*", measureId, "*geo*", geo, "*time*", time);
 
             // ----- format dropdowns -------------------------------------------------- //
 
@@ -1625,7 +1620,6 @@ const renderMeasures = async () => {
 
             filteredTrendData = trendData
                 .filter(m => m.MeasureID === defaultTrendMeasureId)
-                // .filter(m => times.includes(m.TimePeriod));
 
             // console.log("filteredTrendData [showNormalTrend]", filteredTrendData);
 

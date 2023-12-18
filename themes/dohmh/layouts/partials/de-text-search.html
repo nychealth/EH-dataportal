@@ -66,7 +66,7 @@ const load_flexdatalist = async () => {
                 
                 // log selected indicator:
 
-                console.log("Selected indicator:", set);
+                // console.log("Selected indicator:", set);
                                 
                 // run page print (for data reference)
                 if (typeof printToPage === "function") {
@@ -82,7 +82,7 @@ const load_flexdatalist = async () => {
             // ----- add clear button handler -------------------------------------------------- //
             $("#clear").on("click", (e) => {
 
-                console.log("e [clear click]", e);
+                // console.log("e [clear click]", e);
 
                 $($input).find("~input").val("").trigger( "focus" )
                 
@@ -103,8 +103,8 @@ function sendToIndicator(x) {
     var id = x.IndicatorID
 
     const topics = topicIndicatorsTable.filter((ind) => ind.IndicatorID === x.IndicatorID);
-    console.log('Selected indicator parent topics:')
-    console.log(topics)
+    // console.log('Selected indicator parent topics:')
+    // console.log(topics)
     window.location.href = {{ relURL "data-explorer/" }} + topics[0].topic + '/?id=' + x.IndicatorID 
 }
 

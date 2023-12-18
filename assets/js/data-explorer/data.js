@@ -173,13 +173,11 @@ const createComparisonData = async (comps) => {
 
                     let comp_data = data
                         .derive({IndicatorID: aq.escape(ind[0])})
-                        // .print()
                         .semijoin(
                             aqCombinedComparisonsMetadata, 
                             (a, b) => (op.equal(a.MeasureID, b.MeasureID) && op.equal(a.GeoType, b.GeoTypeName) && op.equal(a.GeoID, b.GeoID))
                         )
                         .reify()
-                        // .print()
                     
                     return comp_data;
                 
@@ -194,22 +192,7 @@ const createComparisonData = async (comps) => {
 
         // take array of arquero tables and combine them into 1 arquero table - like bind_rows in dplyr
 
-        // let aqComparisonsIndicatorData_0 = await dataArray.flatMap(d => d).reduce((a, b) => a.concat(b))
         aqComparisonsIndicatorData = await dataArray.flatMap(d => d).reduce((a, b) => a.concat(b))
-
-        // console.log("aqComparisonsIndicatorData [createComparisonData]");
-        // aqComparisonsIndicatorData.print()
-        
-        // console.log("loadTime [createComparisonData]");
-        // await loadTime()
-
-        // console.log("timeTable [createComparisonData]");
-        // timeTable.print()
-
-        // aqComparisonsIndicatorData = aqComparisonsIndicatorData_0
-        //     // .filter(d => op.match(d.GeoType, /Citywide/))
-        //     .join_left(timeTable, "TimePeriodID")
-        //     .reify()
 
         // console.log("aqComparisonsIndicatorData [createComparisonData]");
         // aqComparisonsIndicatorData.print()
@@ -343,7 +326,7 @@ const loadData = async (this_indicatorId) => {
         .then(response => response.json())
         .then(async data => {
 
-                // console.log("data [loadData]", data);
+            // console.log("data [loadData]", data);
 
             // add GeoRank
 
@@ -354,7 +337,6 @@ const loadData = async (this_indicatorId) => {
 
             // call the geo file and time file loading functions
             
-            console.log("loadTime [loadData]");
             await Promise.all([
                 loadTime(),
                 loadGeo()
@@ -457,8 +439,8 @@ const joinData = () => {
 
     // take array of arquero tables and combine them into 1 arquero table - like bind_rows in dplyr
 
-    console.log("aqMeasureDisplay [joinData]");
-    aqMeasureDisplay.print()
+    // console.log("aqMeasureDisplay [joinData]");
+    // aqMeasureDisplay.print()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // getting time periods for each viz for each measure x geo combo
@@ -476,7 +458,7 @@ const joinData = () => {
 
         (measure, i) => {
 
-            console.log(i, " > MeasureID", measure.MeasureID);
+            // console.log(i, " > MeasureID", measure.MeasureID);
 
             // table -----------
 
@@ -499,19 +481,19 @@ const joinData = () => {
                             MeasureID: [measure.MeasureID]
                         })
 
-                        console.log("aqMeasureGeo");
-                        aqMeasureGeo.print()
+                        // console.log("aqMeasureGeo");
+                        // aqMeasureGeo.print()
 
                         // cross them to expand / recycle geotype & measure table rows
 
-                        let aqTimeMeasureGeos = aqTimePeriodID.cross(aqMeasureGeo)
+                        let aqTimeMeasureGeos = aqTimePeriodID.cross(aqMeasureGeo).filter(d => d.TimePeriodID).reify()
 
                         return aqTimeMeasureGeos;
 
                     }
                 )
 
-            console.log("aqTableTimesGeosMeasureArray", aqTableTimesGeosMeasureArray);
+            // console.log("aqTableTimesGeosMeasureArray", aqTableTimesGeosMeasureArray);
 
             // combine array of arquero tables into 1 arquero table
 
@@ -548,14 +530,14 @@ const joinData = () => {
 
                         // cross them to expand / recycle geotype & measure table rows
 
-                        let aqTimeMeasureGeos = aqTimePeriodID.cross(aqMeasureGeo)
+                        let aqTimeMeasureGeos = aqTimePeriodID.cross(aqMeasureGeo).filter(d => d.TimePeriodID).reify()
 
                         return aqTimeMeasureGeos;
 
                     }
                 )
 
-            console.log("aqMapTimesGeosMeasureArray", aqMapTimesGeosMeasureArray);
+            // console.log("aqMapTimesGeosMeasureArray", aqMapTimesGeosMeasureArray);
 
             // combine array of arquero tables into 1 arquero table
 
@@ -592,14 +574,14 @@ const joinData = () => {
 
                         // cross them to expand / recycle geotype & measure table rows
 
-                        let aqTimeMeasureGeos = aqTimePeriodID.cross(aqMeasureGeo)
+                        let aqTimeMeasureGeos = aqTimePeriodID.cross(aqMeasureGeo).filter(d => d.TimePeriodID).reify()
 
                         return aqTimeMeasureGeos;
 
                     }
                 )
 
-            console.log("aqTrendTimesGeosMeasureArray", aqTrendTimesGeosMeasureArray);
+            // console.log("aqTrendTimesGeosMeasureArray", aqTrendTimesGeosMeasureArray);
 
             // combine array of arquero tables into 1 arquero table
 
@@ -646,14 +628,14 @@ const joinData = () => {
             .orderby(aq.desc('end_period'), "MeasureID")
 
 
-    console.log("aqTableTimesGeos [joinData]");
-    aqTableTimesGeos.print()
+    // console.log("aqTableTimesGeos [joinData]");
+    // aqTableTimesGeos.print()
 
-    console.log("aqMapTimesGeos [joinData]");
-    aqMapTimesGeos.print()
+    // console.log("aqMapTimesGeos [joinData]");
+    // aqMapTimesGeos.print()
 
-    console.log("aqTrendTimesGeos [joinData]");
-    aqTrendTimesGeos.print()
+    // console.log("aqTrendTimesGeos [joinData]");
+    // aqTrendTimesGeos.print()
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // joining
@@ -669,75 +651,53 @@ const joinData = () => {
         .rename({'Name': 'Geography'})
         // join the additional time period info
         .join(timeTable, "TimePeriodID")
-        // .print()
         .select(aq.not("BoroID", "Borough", "TimeType"))
         .orderby(aq.desc('end_period'), aq.desc('GeoRank'))
         .reify()
-        // .print()
     
-    console.log(">>>> joinedAqData [joinData]");
-    joinedAqData.print()
+    // console.log(">>>> joinedAqData [joinData]");
+    // joinedAqData.print()
 
 
     // data for summary table ----------
 
-    console.log(">>> tableData x6 [joinData]");
-
     tableData = joinedAqData
-        // .print()
         .join_left(aqMeasureDisplay, "MeasureID")
-        .print()
         // filter to keep only times and geos we want in the table
         .semijoin(aqTableTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])
-        .print()
         .derive({
             MeasurementDisplay: d => op.trim(op.join([d.MeasurementType, d.DisplayType], " ")),
             DisplayCI: d => op.trim(op.join([d.DisplayValue, d.CI], " "))
         })
-        .print()
         .derive({ DisplayCI: d => op.replace(d.DisplayCI, /^$/, "-") }) // replace missing with "-"
-        .print()
         .select(aq.not("start_period", "end_period"))
-        .print()
         .reify()
-        .print()
         .objects()
 
-    console.log(">>>> tableData [joinData]", tableData);
+    // console.log(">>>> tableData [joinData]", tableData);
 
     // data for map ----------
 
-    // console.log(">>> mapData x3 [joinData]");
-
     mapData = joinedAqData
-        // .print()
         // filter to keep only times and geos we want in the table
         .semijoin(aqMapTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])
-        // .print()
         .orderby(aq.desc('end_period'), "MeasureID")
-        .print()
         .reify()
-        // .print()
         .objects()
 
-    console.log(">>>> mapData [joinData]", mapData);
+    // console.log(">>>> mapData [joinData]", mapData);
     
 
     // data for trend chart ----------
 
-    // console.log(">>> trendData x4 [joinData]");
-
     trendData = joinedAqData
-        // .print()
         // filter to keep only times and geos we want in the table
         .semijoin(aqTrendTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])
-        // .print()
         .orderby("GeoRank", "GeoID")
         .reify()
-        // .print()
         .objects()
 
-    console.log(">>>> trendData [joinData]", trendData);
+    // console.log(">>>> trendData [joinData]", trendData);
 
     // data for links & disparities chart ----------
 
@@ -745,8 +705,9 @@ const joinData = () => {
 
     linksData = joinedAqData
         .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
-        // .print()
         .objects()
+
+    // console.log(">>>> linksData [joinData]", linksData);
 
     // call the measure rendering etc. function
 
@@ -779,7 +740,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
         measure => measure.MeasureID === primaryMeasureId
     )
 
-    console.log("primaryMeasureMetadata", primaryMeasureMetadata);
+    // console.log("primaryMeasureMetadata", primaryMeasureMetadata);
 
     // get available geos for primary measure (excluding citywide and boro)
 
@@ -787,7 +748,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
         .map(g => g.GeoType)
         .filter(g => !/Citywide|Borough/.test(g))
 
-    console.log("primaryMeasureGeos", primaryMeasureGeos);
+    // console.log("primaryMeasureGeos", primaryMeasureGeos);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // secondary measure metadata
@@ -818,7 +779,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
         measure => measure.MeasureID === secondaryMeasureId
     )
 
-    console.log("secondaryMeasureMetadata", secondaryMeasureMetadata);
+    // console.log("secondaryMeasureMetadata", secondaryMeasureMetadata);
 
 
     // ==== geography ==== //
@@ -833,13 +794,13 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
         .map(g => g.GeoType)
         .filter(g => !/Citywide|Borough/.test(g))
 
-    console.log("secondaryMeasureGeos [createJoinedLinksData]", secondaryMeasureGeos);
+    // console.log("secondaryMeasureGeos [createJoinedLinksData]", secondaryMeasureGeos);
 
     // ---- get primary x secondary intersection ---- //
 
     const sharedGeos = secondaryMeasureGeos.filter(g => primaryMeasureGeos.includes(g));
 
-    console.log("sharedGeos", sharedGeos);
+    // console.log("sharedGeos", sharedGeos);
 
     // ==== times ==== //
 
@@ -896,45 +857,25 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
         .then(response => response.json())
         .then(async data => {
 
-            console.log("aqFilteredSecondaryMeasureData x7 [createJoinedLinksData]");
-
             // join with geotable and times, keep only geos in primary data
 
             const aqFilteredSecondaryMeasureData = aq.table(data)
             
-                .print()
-
                 // get secondary measure data
-
                 .filter(`d => d.MeasureID === ${secondaryMeasureId}`)
-                .print()
-                
                 .join(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
-                .print()
 
                 // get same geotypes as primary data (no citywide or boro)
                 .filter(aq.escape(d => sharedGeos.includes(d.GeoType)))
-                .print()
-
                 .derive({"GeoRank": aq.escape(d => assignGeoRank(d.GeoType))})
-                .print()
-
                 .rename({'Name': 'Geography'})
-                .print()
-
 
                 // get end periods
-
                 .join_left(
                     timeTable,
                     "TimePeriodID"
                 )
-                .print()
-                // .select(aq.not("TimePeriodID"))
             
-            // console.log("aqFilteredSecondaryMeasureData [createJoinedLinksData]");
-            // aqFilteredSecondaryMeasureData.groupby("MeasureID", "GeoType", "TimePeriod").count().print(50)
-            // aqFilteredSecondaryMeasureData.print(100)
 
             // convert to JS object
 

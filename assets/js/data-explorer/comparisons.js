@@ -13,7 +13,7 @@ const renderComparisonsChart = (
     // metadata.print()
     
     // console.log(">>> comp data:");
-    // data.print(20)
+    data.print(Infinity)
 
     // ----------------------------------------------------------------------- //
     // get unique unreliability notes (dropping empty)
@@ -238,7 +238,10 @@ const renderComparisonsChart = (
 
     // will be spliced into the spec
     
+    // let compTooltips = compGroupLabel.map(x => {return {"field": x, "type": "nominal", "format": ",.1~f"}})
     let compTooltips = compGroupLabel.map(x => {return {"field": x, "type": "nominal"}})
+
+    // console.log("compTooltips", compTooltips);
 
 
     // ----------------------------------------------------------------------- //
@@ -365,7 +368,7 @@ const renderComparisonsChart = (
                         "groupby": [
                             "TimePeriod"
                         ]
-                    }
+                    },
                 ],
                 "mark": "rule",
                 "encoding": {
