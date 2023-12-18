@@ -64,25 +64,17 @@
                 "scale": {"scheme": {"name": "blues", "extent": [0.25, 0.75]}}
               },
               "stroke": {
-                "condition": [
-                  {"param": "highlight", "empty": false, "value": "cyan"},
-                  {
-                    "test": "datum['GEOCODE'] == ''",
-                    "value": "cyan"
-                    },
-                ],
+                "condition": {"param": "highlight", "empty": false, "value": "cyan"},
                 "value": "#dadada"
               },
-              "strokeWidth": {"condition": [
-                {
-                  "param": "highlight", "empty": false, "value": 2.5
-                },
-                {
-                  "test": "datum['GEOCODE'] == ''",
-                  "value": 3
-                  }
-                
-              ], "value": 0.5},
+              "strokeWidth": {
+                "condition": {"param": "highlight", "empty": false, "value": 2.5},
+                "value": 0.5
+              },
+              "order": {
+                "condition": {"param": "highlight", "empty": false, "value": 1},
+                "value": 0
+              },
               "tooltip": [
                 {"field": "Name", "type": "nominal", "title": "Neighborhood"}        ]
             }

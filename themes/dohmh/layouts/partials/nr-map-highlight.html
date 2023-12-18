@@ -62,21 +62,20 @@
                 "scale": {"scheme": {"name": "blues", "extent": [0.25, 0.75]}}
               },
               "stroke": {
-                "condition": {
-                  "test": "datum['GEOCODE'] == ''",
-                  "value": "cyan"
-                  },
-                  "value": "#dadada"
+                "condition": {"test": "datum['GEOCODE'] == ''","value": "cyan"},
+                "value": "#dadada"
               },
               "strokeWidth": {
-                "condition": {
-                  "test": "datum['GEOCODE'] == ''",
-                  "value": 3
-                  },
-                  "value": 1
+                "condition": {"test": "datum['GEOCODE'] == ''","value": 2.5}, 
+                "value": 0.5
+              },
+              "order": {
+                "condition": {"test": "datum['GEOCODE'] == ''","value": 1},
+                "value": 0
               },
               "tooltip": [
-                {"field": "Name", "type": "nominal", "title": "Neighborhood"}        ]
+                {"field": "Name", "type": "nominal", "title": "Neighborhood"}
+              ]
             }
           }
         ]
@@ -91,7 +90,7 @@
       // load UHF42.csv to get Geoname, etc - to power neighborhood highlight for nonclickable map.
       d3.csv({{ relURL "UHF42.csv" }}).then(data => {
         neighborhoods = data;
-        console.table(neighborhoods)
+        {{/*  console.table(neighborhoods)  */}}
 
         parts = window.location.href.split('/'); // get URL Path
         // console.log('parts',parts)
@@ -137,6 +136,7 @@
       function drawChart(x) {
         spec.layer[1].encoding.stroke.condition.test = `datum['GEOCODE'] == '${x}'`
         spec.layer[1].encoding.strokeWidth.condition.test = `datum['GEOCODE'] == '${x}'`
+        spec.layer[1].encoding.order.condition.test = `datum['GEOCODE'] == '${x}'`
         vegaEmbed('#vis1', spec, {"actions": false}).then(result => {
           result.view.addEventListener('click', function(event, item) {
              // console.log('CLICK', event, item);
