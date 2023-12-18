@@ -77,18 +77,18 @@ ignoreFiles = ['Simplified.Chinese', 'Spanish']
     weight = -90
 
   [[menu.main]]
-    identifier = "05"
-    name = "Key Topics"
-    pre = "<span class='text-primary'><i class='fas fa-star' aria-hidden='true'></i></span>"
-    url = "/key-topics/"
-    weight = -110
-
-  [[menu.main]]
     identifier = "06"
     name = "Search"
     # pre = "<span class='sr-only'>Search</span><span class='fas fa-search fa-lg'></span>"
     # url = ""
     weight = -50
+
+  [[menu.main]]
+    identifier = "07"
+    name = "Data Features"
+    pre = "<span class='text-primary'><i class='fas fa-chart-bar' aria-hidden='true'></i></span>"
+    url = "/data-features/"
+    weight = -95
 
 
 [module]

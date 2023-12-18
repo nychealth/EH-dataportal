@@ -7,24 +7,9 @@
                 </div>
             </div>
 
-            <div class="col-lg">
-                <div class="card bg-white text-black mb-2">
-                  <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
-                  </div>
-                  <div class="card-body fs-sm overflow-fade-about" style="height:400px; overflow-y:scroll;">
-                    {{- partial "related" (dict "section" "data-stories" "layout" "singlelist" "content" . ) -}}
-                  </div>
-                </div>
-              </div>
-              <!-- .col for city -->
-        
-              <div class="col-lg">
-                <div class="card bg-white text-black mb-2">
-                    <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-star text-muted mr-1" aria-hidden="true"></i>Key Topics</h4>
-
-                    </div>
-                    <div class="card-body fs-sm">
-
+            <div class="col-12">
+              <div class="card bg-white text-green mb-2 p-2 text-primary fs-md">
+                <p><span class="home-label font-weight-bold">Topics:</span><br>
                     <!--sets variables-->
                     {{- $page_link := .RelPermalink -}}
                     {{- $cats := .Params.categories -}}
@@ -38,14 +23,27 @@
 
                     <!--Show commonalities, except for page we're on -->
                     {{- if and $has_common_cats (ne $page_link $page.RelPermalink) -}}
-                    <a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
-                    <hr class="my-1">
+                    <a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a> <span class="mx-1 text-black">|</span>
                     {{- end -}} 
                     {{- end -}}
+                  </p>
 
-                    </div>
+              </div>
+
+            </div>
+
+            <div class="col-lg">
+                <div class="card bg-white text-black mb-2">
+                  <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-passport text-muted mr-1" aria-hidden="true"></i>Data Stories</h4>
                   </div>
-
+                  <div class="card-body fs-sm overflow-fade-about" style="height:400px; overflow-y:scroll;">
+                    {{- partial "related" (dict "section" "data-stories" "layout" "singlelist" "content" . ) -}}
+                  </div>
+                </div>
+              </div>
+              <!-- .col for city -->
+        
+              <div class="col-lg">
                   <div class="card bg-white text-black mb-2">
                     <div class="card-header"><h4 class="fs-md text-muted"><i class="fas fa-map-marked-alt text-muted mr-1" aria-hidden="true"></i>Neighborhood Reports</h4>
                     </div>
