@@ -1,30 +1,49 @@
 {{- define "main" -}}
 
 <article id="skip-header-target">
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-10 mx-auto mt-4">
+            <nav aria-label="breadcrumb" class="mb-2">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active"><a href="/data-features/">Data Features</a></li>
+                </ul>
+              </nav>
             <h1 class="text-secondary"><i class='fas fa-chart-bar mr-1' aria-hidden='true'></i>Data Features</h1>
             <p>Interactive infographics, real-time data feeds, and annual reports on important environmental health topics.</p>
+
+            <div class="row my-4">
+                {{ range where .Pages "Params.hide" "ne" true }}
+                <div class="card content-card mb-4 col-sm-6 col-md-3">
+                    <div class="card-content card-body">
+                        {{- if .Params.image -}}
+                            {{ $src := .Resources.GetMatch .Params.image }}
+                            
+            
+                            {{ $image := $src.Resize "740x"}}
+                            <a class="" href="{{ .RelPermalink }}">
+                            <div style="width:100%; height:150px; background-image: URL({{ $image.Permalink }}); background-size: cover"></div></a>
+                        {{- else -}}
+                            <a class="" href="{{ .RelPermalink }}">
+                            <div style="width:100%; height:150px; background-image: URL('{{ .Site.BaseURL }}/images/home-sample-image-DE-5.png'); background-size: cover"></div></a>
+                            
+                        {{- end -}}
+                        <h4 class="fs-md mt-1"><a class="" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
+                        <p class="fs-sm">{{ .Content | plainify | truncate 175 | htmlUnescape }}
+                        </p>
+                        <p class="fs-sm text-primary float-right mb-1"><a class="" href="{{ .RelPermalink }}">Get the data... <i
+                            class="fas fa-arrow-circle-right"></i></a></p>
+                    </div>
+                </div>
+                {{- end -}}
+            
+            </div>
+
         </div> 
     </div>
-</div>
 
-<div class="container-fluid">
-<div class="row my-4">
-    {{ range where .Pages "Params.hide" "ne" true }}
-    <div class="card content-card mb-4 col-sm-6 col-md-3">
-        <div class="card-content card-body">
-            <h4 class="fs-md"><a class="link-track" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
-            <p class="fs-sm">{{ .Content | plainify | truncate 175 | htmlUnescape }}
-            </p>
-            <p class="fs-sm text-primary float-right mb-1"><a class="link-track" href="{{ .RelPermalink }}">Get the data... <i
-                class="fas fa-arrow-circle-right"></i></a></p>
-        </div>
-    </div>
-    {{- end -}}
 
-</div>
 
 </div>
 </article>

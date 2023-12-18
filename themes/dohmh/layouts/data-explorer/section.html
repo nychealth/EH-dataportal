@@ -1,13 +1,19 @@
 {{- define "main" -}}
 
 <article class="container-fluid" id="skip-header-target">
+<div class="row">
 
     <div class="col-lg-10 col-md-12 mx-auto my-4">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="de-accent"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>{{ .Title }}</h1>
-            </div>
-        </div>
+
+        <nav aria-label="breadcrumb" class="mb-2">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active"><a href="/data-explorer/">{{ .Title }}</a></li>
+            </ul>
+          </nav>
+
+        <h1 class="de-accent"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>{{ .Title }}</h1>
+
 
         <div class="row mt-2">
             <div class="col-md-7 col-sm-12">
@@ -69,47 +75,11 @@
 
     </div>
 
-
-    <!--
-    <div class="col-lg-10 col-sm-12 my-4">
-
-        <div class="row mt-4">
-            <div class="col-md-4 card content-card">
-                <div class="card-content">
-                    <div class="card-body">
-                        <img class="card-img-top" src="{{ .Site.BaseURL }}images/trend-chart-4.png" alt="Card image cap">
-                    </div>
-                    </div>
-
-            </div>
-
-            <div class="col-md-4 card content-card">
-                <div class="card-content">
-                    <div class="card-body">
-                        <img class="card-img-top" src="{{ .Site.BaseURL }}images/data-map-5.png" alt="Card image cap">
-                    </div>
-                    </div>
-
-            </div>
-
-            <div class="col-md-4 card content-card">
-                <div class="card-content">
-                    <div class="card-body">
-                        <img class="card-img-top" src="{{ .Site.BaseURL }}images/links-chart-4.png" alt="Card image cap">
-                    </div>
-                    </div>
-
-            </div>
-
-        </div>
-    </div>
-    -->
+</div>
 
 
 
 
-
-    </div>
     
 </article>
 
