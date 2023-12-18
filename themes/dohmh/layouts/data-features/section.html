@@ -1,17 +1,32 @@
 {{- define "main" -}}
 
-<article class="container" id="skip-header-target">
-
-    <div class="col-md-10 mx-auto mt-4">
-        <h1 class="text-secondary"><i class='fas fa-chart-bar mr-1' aria-hidden='true'></i>Data Features</h1>
-        <p>Just cool data stuff.</p>
-        <h2>Latest Data Features</h2>
-        {{ range where .Pages "File.BaseFileName" "in" (slice "index" "_index") }}
-        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-        <hr>
-        {{- end -}}
+<article id="skip-header-target">
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 mx-auto mt-4">
+            <h1 class="text-secondary"><i class='fas fa-chart-bar mr-1' aria-hidden='true'></i>Data Features</h1>
+            <p>Interactive infographics, real-time data feeds, and annual reports on important environmental health topics.</p>
+        </div> 
     </div>
- 
+</div>
+
+<div class="container-fluid">
+<div class="row my-4">
+    {{ range where .Pages "Params.hide" "ne" true }}
+    <div class="card content-card mb-4 col-sm-6 col-md-3">
+        <div class="card-content card-body">
+            <h4 class="fs-md"><a class="link-track" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
+            <p class="fs-sm">{{ .Content | plainify | truncate 175 | htmlUnescape }}
+            </p>
+            <p class="fs-sm text-primary float-right mb-1"><a class="link-track" href="{{ .RelPermalink }}">Get the data... <i
+                class="fas fa-arrow-circle-right"></i></a></p>
+        </div>
+    </div>
+    {{- end -}}
+
+</div>
+
+</div>
 </article>
 
 {{- end -}}
