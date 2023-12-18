@@ -803,9 +803,12 @@ const handleMapTimeDropdown = (MeasureID, GeoType) => {
 
     let mapTimesAvailable =
         [...new Set(
-            mapData
-                .filter(obj => obj.MeasureID == MeasureID && prettifyGeoType(obj.GeoType) == GeoType)
-                .map(d => d.TimePeriod)
+            aqMapTimesGeos
+                .filter(aq.escape(
+                    obj => obj.MeasureID == MeasureID && 
+                        prettifyGeoType(obj.GeoType) == GeoType
+                ))
+                .array("TimePeriod")
         )]
 
     console.log("mapTimesAvailable [handleMapTimeDropdown]", mapTimesAvailable);

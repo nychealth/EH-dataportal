@@ -625,7 +625,7 @@ const joinData = () => {
             .flatMap(d => d)
             .reduce((a, b) => a.concat(b))
             .join_left(timeTable, "TimePeriodID")
-            .orderby("MeasureID", aq.desc('end_period'))
+            .orderby(aq.desc('end_period'), "MeasureID")
     
     // map
 
@@ -634,7 +634,7 @@ const joinData = () => {
             .flatMap(d => d)
             .reduce((a, b) => a.concat(b))
             .join_left(timeTable, "TimePeriodID")
-            .orderby("MeasureID", aq.desc('end_period'))
+            .orderby(aq.desc('end_period'), "MeasureID")
     
     // trend
     
@@ -643,7 +643,7 @@ const joinData = () => {
             .flatMap(d => d)
             .reduce((a, b) => a.concat(b))
             .join_left(timeTable, "TimePeriodID")
-            .orderby("MeasureID", aq.desc('end_period'))
+            .orderby(aq.desc('end_period'), "MeasureID")
 
 
     console.log("aqTableTimesGeos [joinData]");
@@ -714,6 +714,8 @@ const joinData = () => {
         // filter to keep only times and geos we want in the table
         .semijoin(aqMapTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])
         // .print()
+        .orderby(aq.desc('end_period'), "MeasureID")
+        .print()
         .reify()
         // .print()
         .objects()

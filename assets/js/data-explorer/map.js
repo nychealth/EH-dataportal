@@ -57,42 +57,6 @@ const renderMap = (
 
     console.log("dataGeos [renderMap]", dataGeos);
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // get all geo check boxes
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-    const allGeoItems = document.querySelectorAll('.mapgeosbutton');
-
-    console.log("allGeoItems", allGeoItems);
-
-    let geosNotAvailable = [];
-
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // format
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    
-    // remove disabled class from every geo list element
-
-    $(allGeoItems).removeClass("disabled");
-    $(allGeoItems).attr('aria-disabled', false);
-    
-    // now add disabled class for geos not available for this year
-
-    for (const item of allGeoItems) {
-
-        console.log("item.dataset.geo", item.dataset.geo);
-
-        if (!dataGeos.includes(item.dataset.geo)) {
-            
-            geosNotAvailable.push(item)
-            
-            // set this element as disabled
-            $(item).addClass("disabled");
-            $(item).attr('aria-disabled', true);
-            
-        }
-    }
-
     // if you're on a geo that's not availble for a year you just clicked on, show the gray base map
 
 
