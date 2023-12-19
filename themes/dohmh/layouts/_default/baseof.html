@@ -20,33 +20,11 @@
   {{- if and (eq .Section "data-stories") ( ne .RelPermalink "/data-stories/") -}}
   {{- partial "header-ds.html" . -}}
   {{- end -}}
-
-<div class="container-fluid">
-  <div class="row no-gutters">
-    <div class="col-1 pl-0 ml-0">
-      <!-- Default dropright button -->
-      <div class="btn-group dropdown mt-4">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-star mr-1"></i>Topics
-        </button>
-        <div class="dropdown-menu">
-          <!-- Dropdown menu links -->
-          {{ range (where .Site.RegularPages "Section" "key-topics") }}
-          <a class="dropdown-item" href="{{ .RelPermalink }}">{{ .Params.shortTitle }}</a>
-          {{ end }}
-        </div>
-      </div>
-    </div>
-    <div class="col-11">
-      <main id="skip-header-target" role="main">
-        {{- block "main" . -}}{{- end -}}
-        <ul id="results"></ul>
-      </main>
-    </div>
-  </div>
-
-</div>  
-
+  
+  <main id="skip-header-target" role="main">
+    {{- block "main" . -}}{{- end -}}
+    <ul id="results"></ul>
+  </main>
   
   {{/*  put conditional modal JS and CSS at the bottom of every page  */}}
   

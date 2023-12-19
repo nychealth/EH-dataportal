@@ -68,8 +68,8 @@
                         <div class="d-flex justify-content-center justify-content-lg-start">
 
                             <p class="text-white">
-                                <span class="site-title title-hover"><a href="{{ site.BaseURL }}" class="link-no-dec">Environment and Health Data Portal</span>
-                                <span class="site-subtitle">Understand how environments shape health in New York City</a></span>
+                                <span class="site-title title-hover"><a href="{{ site.BaseURL }}" class="link-no-dec">Environment and Health </span>
+                                <span class="site-subtitle title-hover">Data Portal</a></span>
                             </p>
 
 
@@ -97,26 +97,66 @@
 
                             <div class="col-auto justify-content-end">
 
-                                <ul class="extensible-list horizontal justify-content-end">
-                                    <li>
-                                        <a class="btn-sm text-white font-weight-bold float-right" style="border: 1px solid lightgray; border-radius: 3px;" href="/about">About us</a>
 
-                                    </li>
+                                <nav class="nav border-0" role="navigation">
 
-                                    <li>
-                                        <button class="btn nav-item-search d-lg-none" type="button" title="Search"
-                                        data-toggle="collapse" data-target="#global-search"
-                                        aria-controls="global-search" aria-expanded="false">
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Topics
+                                        </a>
 
-                                        <span class="sr-only">Search</span>
-                                        <i class="fa fa-magnifying-glass fa-lg"></i>
+                                        <div class="dropdown-menu" aria-labelledby="nav-item-topic">
+                                            <ul class="extensible-list">
+                                                {{ range (where .Site.RegularPages "Section" "key-topics") }}
+                                                <li><a class="" href="{{ .RelPermalink }}">{{ .Params.shortTitle }}</a></li>
+                                                {{ end }}
+                                            </ul>
+                                        </div>
+                                    </div>
 
-                                    </button>
-                                </li>
+                                    <div class="nav-item bg-white text-primary border dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Browse
+                                        </a>
 
-                                </ul>
+                                        <div class="dropdown-menu" aria-labelledby="nav-item-type">
+                                            <ul class="extensible-list">
+                                                {{- range .Site.Menus.main -}}
 
-                            </div>
+                                                {{- if (ne .Name "Search") -}}
+
+                                                    <li><a href="{{ .URL }}">{{ .Pre }} {{ .Name }}</a></li>
+
+                                                {{- end -}}
+                                                {{- end -}}
+
+
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="nav-item bg-white text-primary border">
+                                        <a class="nav-link " href="/about/">
+                                        About
+                                    </a>
+                                    </div>
+
+                                    <div class="nav-item bg-white text-primary border">
+                                        <a class="nav-link dropdown-toggle" href="#" type="button" title="Search" data-toggle="collapse"
+                                                    data-target="#global-search" aria-controls="global-search"
+                                                    aria-expanded="false">
+                                                    <span class="sr-only">Search</span>
+                                                    <span class="fas fa-search fa-lg" ></span>
+                                                </a>
+                                    </div>
+
+                                </nav>
+
+
+                                </div>
+
                             <!-- .col -->
 
                         </div>
@@ -155,63 +195,6 @@
             </form>
         </div>  */}}
 
-        </div>
-        <div class="container-fluid collapse d-lg-block px-0 border-lg-top d-print-none" id="nav-primary">
-
-            <div class="wide">
-
-                <nav class="nav nav-pills border-bottom border-right justify-content-center" role="navigation">
-
-                    {{- $currentPage := . -}}
-
-                <span id="File.Path" style="display: none">{{ $currentPage.File.Path }}</span>
-                <span id="FirstSection.RelPermalink" style="display: none">{{ $currentPage.FirstSection.RelPermalink }}</span>
-
-                <button class="btn nav-item-search border-right dropdown-toggle" type="button" title="Home" data-toggle="collapse" data-target="#home-topics" aria-controls="home-topics" aria-expanded="false">
-
-                    <span class="sr-only">Home and Topics</span>
-                    <i class="fa fa-star fa-lg"></i>
-
-                </button>
-
-                    {{- range .Site.Menus.main -}}
-
-                    {{- if (ne .Name "Search") -}}
-
-                    <div class="nav-item {{- if (eq $currentPage.FirstSection.RelPermalink .URL) }} active {{- end -}}">
-
-                        <a class="nav-link" href="{{ .URL }}" id="nav-item-{{ .Identifier }}">{{ .Pre }} {{ .Name }}</a>
-
-                    </div>
-
-                    {{- else -}}
-
-                    <button class="btn nav-item-search d-none d-lg-block dropdown-toggle" type="button" title="Search"
-                            data-toggle="collapse" data-target="#global-search"
-                            aria-controls="global-search" aria-expanded="false">
-
-                        <span class="sr-only">Search</span>
-                        <i class="fa fa-magnifying-glass fa-lg"></i>
-
-                    </button>
-
-                    {{- end -}}
-
-                    <!-- .nav-item -->
-                    {{- end -}}
-
-                </nav>
-
-            </div>
-
-        </div>
-
-        <div class="container-fluid-lg border-top border-bottom collapse p-1" id="home-topics">
-            <a class="btn btn-sm btn-outline-primary mb-1" href="{{ site.BaseURL }}"><i class="fa fa-home mr-1" aria-hidden="true"></i>Home</a>
-
-            {{ range (where .Site.RegularPages "Section" "key-topics") }}
-                <a class="btn btn-sm btn-outline-light text-dark mb-1" href="{{ .RelPermalink }}"><i class="fa fa-star mr-1" aria-hidden="true"></i>{{ .Params.shortTitle }}</a>
-            {{ end }}
         </div>
 
         <div class="container-fluid-lg border-top border-bottom collapse" id="global-search">
