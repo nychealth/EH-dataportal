@@ -88,9 +88,10 @@ h1 {
 
 .site-subtitle {
     display: block;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1.5rem;
     line-height: 1.875rem;
+    letter-spacing: .2rem;
     @include media-breakpoint-up(md){
         font-size: 1.5rem;
     }
