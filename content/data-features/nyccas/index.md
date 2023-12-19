@@ -116,6 +116,7 @@ moreInfo: >-
 vega: true
 image: nyccas.png
 layout: nyccas-report
+report: true
 ---
 ## NYCCAS Report: 2008-2021
 
