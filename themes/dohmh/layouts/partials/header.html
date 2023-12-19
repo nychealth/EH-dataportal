@@ -15,12 +15,12 @@
                             <strong>nyc.gov</strong>
                         </a>
                         <span class="mx-1" aria-hidden="true">></span>
-                        <a class="text-reset" href="https://www1.nyc.gov/">
+                        <a class="text-reset" href="https://www1.nyc.gov/health">
                             Health
                         </a>
                         <span class="mx-1" aria-hidden="true">></span>
-                        <a class="text-reset" href="{{ site.BaseURL }}">
-                        EH Data Portal
+                        <a class="text-reset" href="https://www1.nyc.gov/health/data">
+                        Data
                         </a>
                     </p>
                 </div>
@@ -29,19 +29,13 @@
                 <div class="col-auto">
 
                     <ul class="extensible-list horizontal fs-md">
-                        <li class="d-print-none">
-                            <a class="text-reset" href="https://www1.nyc.gov/">
-                                <strong>
-                                    311
-                                </strong>
-                            </a>
-                        </li>
-                        <li class="d-print-none">
-                            <a class="text-reset" href="https://www1.nyc.gov/home/search/index.page">
-                                <strong>
-                                    Search all NYC.gov
-                                </strong>
-                            </a>
+                        <li>
+                            <button class="no-btn-style" type="button" title="Language"
+                                data-toggle="collapse" data-target="#global-language"
+                                aria-controls="global-language" aria-expanded="false">
+                                <span class="sr-only">Language</span>
+                                <span class="fas fa-language fa-lg text-white"></span>
+                            </button>
                         </li>
                         <li>
                             <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
@@ -105,13 +99,10 @@
 
                                 <ul class="extensible-list horizontal justify-content-end">
                                     <li>
-                                        <button class="no-btn-style" type="button" title="Language"
-                                            data-toggle="collapse" data-target="#global-language"
-                                            aria-controls="global-language" aria-expanded="false">
-                                            <span class="sr-only">Language</span>
-                                            <span class="fas fa-language fa-2x"></span>
-                                        </button>
+                                        <a class="btn-sm text-white font-weight-bold float-right" style="border: 1px solid lightgray; border-radius: 3px;" href="/about">About us</a>
+
                                     </li>
+
                                     <li>
                                         <button class="btn nav-item-search d-lg-none" type="button" title="Search"
                                         data-toggle="collapse" data-target="#global-search"
@@ -124,8 +115,6 @@
                                 </li>
 
                                 </ul>
-
-                                <a class="btn-sm text-white font-weight-bold mr-2" style="border: 1px solid lightgray; border-radius: 3px;" href="/about">About us</a>
 
                             </div>
                             <!-- .col -->
