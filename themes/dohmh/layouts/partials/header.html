@@ -167,7 +167,7 @@
                 <span id="File.Path" style="display: none">{{ $currentPage.File.Path }}</span>
                 <span id="FirstSection.RelPermalink" style="display: none">{{ $currentPage.FirstSection.RelPermalink }}</span>
 
-                <button class="btn nav-item-search border-right" type="button" title="Home" data-toggle="collapse" data-target="#home-topics" aria-controls="home-topics" aria-expanded="false">
+                <button class="btn nav-item-search border-right dropdown-toggle" type="button" title="Home" data-toggle="collapse" data-target="#home-topics" aria-controls="home-topics" aria-expanded="false">
 
                     <span class="sr-only">Home and Topics</span>
                     <i class="fa fa-home fa-lg"></i>
@@ -186,7 +186,7 @@
 
                     {{- else -}}
 
-                    <button class="btn nav-item-search d-none d-lg-block" type="button" title="Search"
+                    <button class="btn nav-item-search d-none d-lg-block dropdown-toggle" type="button" title="Search"
                             data-toggle="collapse" data-target="#global-search"
                             aria-controls="global-search" aria-expanded="false">
 
