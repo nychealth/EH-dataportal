@@ -7,8 +7,8 @@
         <!-- content goes here -->
         <nav aria-label="breadcrumb" class="mb-2">
           <ul class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item"><a href="/neighborhood-reports/">Neighborhood Reports</a></li>
+            <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="/neighborhood-reports/">Neighborhood Reports</a></li>
               <li class="breadcrumb-item active"><a href="/{{ .RelPermalink }}">{{ .Title }}</a></li>
           </ul>
         </nav>
