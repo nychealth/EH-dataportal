@@ -114,10 +114,11 @@
                                             Topics
                                         </a>
 
-                                        <div class="dropdown-menu" aria-labelledby="nav-item-topic">
-                                            <ul class="extensible-list">
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
+                                            <ul class="extensible-list p-0">
                                                 {{ range (where .Site.RegularPages "Section" "key-topics") }}
-                                                <li><a class="" href="{{ .RelPermalink }}">{{ .Params.shortTitle }}</a></li>
+                                               <a class="" href="{{ .RelPermalink }}"> <li class=""><i class="fas fa-star mr-1"></i>{{ .Params.shortTitle }}</li></a>
+                                               <hr class="my-1">
                                                 {{ end }}
                                             </ul>
                                         </div>
@@ -130,13 +131,14 @@
                                             Tools
                                         </a>
 
-                                        <div class="dropdown-menu" aria-labelledby="nav-item-type">
-                                            <ul class="extensible-list">
+                                        <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
+                                            <ul class="extensible-list p-0">
                                                 {{- range .Site.Menus.main -}}
 
                                                 {{- if (ne .Name "Search") -}}
 
-                                                    <li><a href="{{ .URL }}">{{ .Pre }} {{ .Name }}</a></li>
+                                                   <a href="{{ .URL }}"> <li><span class="mr-1">{{ .Pre }}</span>{{ .Name }}</li></a>
+                                                   <hr class="my-1">
 
                                                 {{- end -}}
                                                 {{- end -}}
