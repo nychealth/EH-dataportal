@@ -14,7 +14,7 @@
                     {{- $page_link := .RelPermalink -}}
                     {{- $cats := .Params.categories -}}
 
-                    {{- range where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "_index" -}}
+                    {{- range where (where .Site.Pages "Section" "key-topics") ".File.BaseFileName" "index" -}}
                     <!--$page equals values we find when ranging through-->
                     {{- $page := . -}}
 
