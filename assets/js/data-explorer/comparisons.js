@@ -13,7 +13,9 @@ const renderComparisonsChart = (
     // metadata.print()
     
     // console.log(">>> comp data:");
-    data.print(Infinity)
+    // data.print(Infinity)
+
+    // console.log("data objects", data.objects());
 
     // ----------------------------------------------------------------------- //
     // get unique unreliability notes (dropping empty)
@@ -233,6 +235,14 @@ const renderComparisonsChart = (
 
 
     // ----------------------------------------------------------------------- //
+    // create transform after pivot that replaces "undefined" with ""
+    // ----------------------------------------------------------------------- //
+
+    let compReplaceInvalid = compGroupLabel.map(x => {return {"calculate": `isValid(datum[\"${x}\"]) ? datum[\"${x}\"] : ""`, "as": `${x}`}})
+
+    console.log("compReplaceInvalid", compReplaceInvalid);
+
+    // ----------------------------------------------------------------------- //
     // create tooltips JSON
     // ----------------------------------------------------------------------- //
 
@@ -284,7 +294,7 @@ const renderComparisonsChart = (
             }
         },
         "data": {
-            "values":  data,
+            "values":  data.objects(),
         },
         "width": "container",
         "height": height,
@@ -364,11 +374,11 @@ const renderComparisonsChart = (
                 "transform": [
                     {
                         "pivot": comp_group_col,
-                        "value": "Value",
-                        "groupby": [
-                            "TimePeriod"
-                        ]
+                        "value": "DisplayValue",
+                        "groupby": ["TimePeriod"],
+                        "op": "max"
                     },
+                    ...compReplaceInvalid
                 ],
                 "mark": "rule",
                 "encoding": {
