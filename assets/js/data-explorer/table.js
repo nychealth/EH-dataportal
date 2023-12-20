@@ -227,17 +227,17 @@ const renderTable = () => {
                             last = group;
                             lastTime = time
                             
-                        }
-                    });
-                }
-                
-                createGroupRow(groupColumnTime, 0);
-                createGroupRow(groupColumnGeo, 1);
-                handleToggle();
+                    }
+                });
             }
-        })
+            
+            createGroupRow(groupColumnTime, 0);
+            createGroupRow(groupColumnGeo, 1);
+            handleToggle();
+        }
+    })
 
-    }
+}
 
 
 // ----------------------------------------------------------------------- //
