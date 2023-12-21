@@ -800,15 +800,6 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     const sharedGeos = secondaryMeasureGeos.filter(g => primaryMeasureGeos.includes(g));
 
-    console.log("sharedGeos", sharedGeos);
-
-    console.log("primaryMeasureId", primaryMeasureId);
-    console.log("secondaryMeasureId", secondaryMeasureId);
-
-    if (sharedGeos.length < 1) {
-        console.log("no shared geos");
-        return;
-    }
 
     // ==== times ==== //
 
@@ -865,36 +856,24 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
         .then(response => response.json())
         .then(async data => {
 
-            console.log("data", data);
-
             // join with geotable and times, keep only geos in primary data
-
-            console.log("aqFilteredSecondaryMeasureData x7");
 
             const aqFilteredSecondaryMeasureData = aq.table(data)
 
-                .print()
-            
                 // get secondary measure data
                 .filter(`d => d.MeasureID === ${secondaryMeasureId}`)
-                .print()
                 .join(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
-                .print()
 
                 // get same geotypes as primary data (no citywide or boro)
                 .filter(aq.escape(d => sharedGeos.includes(d.GeoType)))
-                .print()
                 .derive({"GeoRank": aq.escape(d => assignGeoRank(d.GeoType))})
-                .print()
                 .rename({'Name': 'Geography'})
-                .print()
 
                 // get end periods
                 .join_left(
                     timeTable,
                     "TimePeriodID"
                 )
-                .print()
             
             console.log("aqFilteredSecondaryMeasureData");
             aqFilteredSecondaryMeasureData.print()
