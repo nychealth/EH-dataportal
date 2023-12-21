@@ -89,15 +89,36 @@ var content = [
                 "copy": "Yes",
                 "message": "Great, you have a fan. It can help cool things.",
                 "setVariable": "fan('Yes')",
-                "goTo": 99
+                "goTo": 5
             },
             {
                 "optionID": 2,
                 "copy": "No",
                 "message": "Oh no! Well, let's figure out some other ways you can stay cool.",
                 "setVariable": "fan('No')",
+                "goTo": 5
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "text": "Do you have any pets or working animals?",
+        "prompt": "Pets and working animals are also vulnerable to heat and air quality.",
+        "options": [
+            {
+                "optionID": 1,
+                "copy": "Yes",
+                "message": "We'll make sure these recommendations include the safety of your animal(s).",
+                "setVariable": "animal('Yes')",
+                "goTo": 99
+            },
+            {
+                "optionID": 2,
+                "copy": "No",
+                "message": "",
+                "setVariable": "animal('No')",
                 "goTo": 99
             }
         ]
-    }
+    },
 ]
