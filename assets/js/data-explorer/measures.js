@@ -1029,6 +1029,7 @@ const renderMeasures = async () => {
         const map   = aqMapTimesGeos && aqMapTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
         const trend = aqTrendTimesGeos && aqTrendTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
         const links = measure?.VisOptions[0].Links && measure?.VisOptions[0].Links[0].Measures[0].MeasureID;
+        const comparisons = indicatorComparisonId;
         
         const type  = measure?.MeasurementType;
         const measureId = measure.MeasureID;
@@ -1133,7 +1134,7 @@ const renderMeasures = async () => {
 
     // ===== handle comparisons viz ================================================== //
 
-    if (indicatorComparisonId !== null) {
+    if (indicatorComparisonId) {
 
         let compLegendTitles = [... new Set(aqCombinedComparisonsMetadata.array("LegendTitle"))]
 
@@ -1712,6 +1713,8 @@ const renderMeasures = async () => {
         // ----- allow chart to persist when changing tabs -------------------------------------------------- //
 
         if (!selectedComparison) {
+
+            // console.log("comparisonsMetadata [showTrendComparisons]", comparisonsMetadata);
 
             // ----- handle selection -------------------------------------------------- //
 

@@ -261,6 +261,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     selectedDisparity = false;
     selectedComparison = false;
     showingNormalTrend = false;
+    showingComparisonsTrend = false;
 
     // if dont_add_to_history is true, then don't push the state
     // if dont_add_to_history is false, or not set, push the state
