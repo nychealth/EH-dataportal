@@ -15,7 +15,7 @@
     <div class="row align-items-center d-print-none">
         <div class="col-6 col-md-5">
             <span class="indicator-short-name">{{ .data.indicator_short_name }}</span>
-            <div class="print-only">{{- .data.indicator_name -}}</div>
+            <div class="print-only">{{- .data.indicator_long_name -}}</div>
         </div>
         <div class="col-6 col-md-4 topic-list">
             <img src="{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/images/{{ .data.summary_bar_svg }}" alt="Visualization showing neighborhood rank of {{ .data.indicator_neighborhood_rank }} out of 42 for {{ .data.indicator_short_name }} in {{ .neighborhood }}." width="100%" class="viz d-md-none mb-1">
@@ -33,7 +33,7 @@
     <div class="print-only row">
         <div class="col-4 small border-right">
             <span class="indicator-short-name">{{ .data.indicator_short_name }}</span>
-            <div style="font-size: 12px;">{{- .data.indicator_name -}}</div>
+            <div style="font-size: 12px;">{{- .data.indicator_long_name -}}</div>
         </div>
         <div class="col-3 topic-list">
             <img src="{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/images/{{ .data.summary_bar_svg }}" alt="Visualization showing neighborhood rank of {{ .data.indicator_neighborhood_rank }} out of 42." width="100%" class="viz d-md-none mb-1">
@@ -46,8 +46,8 @@
             <div class="comparison">
                 <div class="row">
                     <div class="col">
-                        {{ .location }}: <span class="float-right">{{ .data.data_value_geo_entity }}</span><br>
-                        {{ .borough }}: <span class="float-right">{{ .data.data_value_borough }}</span><br>
+                        {{ .neighborhood }}: <span class="float-right">{{ .data.data_value_geo_entity }}</span><br>
+                        {{ .borough }}: <span class="float-right">{{ .data.data_value_boro }}</span><br>
                         New York City: <span class="float-right">{{ .data.data_value_nyc }}</span>
                      </div>
 
