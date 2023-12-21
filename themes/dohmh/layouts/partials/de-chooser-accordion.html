@@ -292,24 +292,34 @@
         
                     <strong><a class="btn btn-outline-light btn-block collapse collapsed"
                         id="acc-button-10" data-toggle="collapse"
-                        href="#panel-acc-button-10" role="tab"
+                        href="#panel-acc-button-10-1" role="tab"
                         aria-expanded="false"
-                        aria-controls="panel-acc-button-10">
+                        aria-controls="panel-acc-button-10-1">
                         <span class="title" role="heading"
                             aria-level="3">All topics</span>
                     </a></strong>
             
-                    <div class="collapse show" id="panel-acc-button-10"
+                    <div class="collapse show" id="panel-acc-button-10-1"
                         role="tabpanel" aria-labelledby="acc-button-10"
                         data-parent="#accordion-03">
             
                         <div class="card-body bg-white">
                             <ul>
-                                {{ range ( where $.context.Site.RegularPages.ByTitle "Section" "data-explorer") }}
+                                
+                                {{/*  range through data explorer pages to add links to topic choosers  */ -}}
+
+                                {{- range ( where $.context.Site.RegularPages.ByTitle "Section" "data-explorer") -}}
+
+                                    {{- /*  don't add links to the data index or data reference pages  */ -}}
+
+                                    {{- if not ( or ( strings.Contains .RelPermalink "data-index" ) ( strings.Contains .RelPermalink "data-reference" ) ) -}}
                                     
-                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
-                                    </li>
-                                {{end}}
+                                        <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+
+                                    {{ end -}}
+
+                                {{- end -}}
+
                                 </ul>
                         </div>
             
@@ -322,7 +332,7 @@
         </div>
     </div>
 
-{{ else if eq $layout "single"}}
+{{- else if eq $layout "single"}}
 <div class="row no-gutters">
     <div class="col-12">
 
@@ -348,7 +358,7 @@
                             {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "airquality") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
-                            {{end}}
+                            {{ end }}
                             </ul>
                     </div>
         
@@ -378,7 +388,7 @@
                             {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "climatehealth") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
-                            {{end}}
+                            {{ end }}
                             </ul>
                     </div>
         
@@ -408,7 +418,7 @@
                             {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "housing") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
-                            {{end}}
+                            {{ end }}
                             </ul>
                     </div>
         
@@ -438,7 +448,7 @@
                             {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "social") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
-                            {{end}}
+                            {{ end }}
                             </ul>
                     </div>
         
@@ -468,7 +478,7 @@
                             {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
-                            {{end}}
+                            {{ end }}
                             </ul>
                     </div>
         
@@ -498,7 +508,7 @@
                             {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "healthoutcomes") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
-                            {{end}}
+                            {{ end }}
                             </ul>
                     </div>
         
@@ -528,7 +538,7 @@
                             {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "childhealth") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
-                            {{end}}
+                            {{ end }}
                             </ul>
                     </div>
         
@@ -558,7 +568,7 @@
                             {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "pests") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
-                            {{end}}
+                            {{ end }}
                             </ul>
                     </div>
         
@@ -588,7 +598,7 @@
                             {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "foodanddrink") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
-                            {{end}}
+                            {{ end }}
                             </ul>
                     </div>
         
@@ -604,28 +614,38 @@
         
                 <strong><a class="btn btn-outline-light btn-block collapse collapsed"
                     id="acc-button-10" data-toggle="collapse"
-                    href="#panel-acc-button-10" role="tab"
+                    href="#panel-acc-button-10-2" role="tab"
                     aria-expanded="false"
-                    aria-controls="panel-acc-button-10">
+                    aria-controls="panel-acc-button-10-2">
                     <span class="title" role="heading"
                         aria-level="3">All topics</span>
                 </a></strong>
         
-                <div class="collapse" id="panel-acc-button-10"
+                <div class="collapse" id="panel-acc-button-10-2"
                     role="tabpanel" aria-labelledby="acc-button-10"
                     data-parent="#accordion-01">
         
                     <div class="card-body bg-white">
                         <ul>
-                            {{ range ( where $.context.Site.RegularPages.ByTitle "Section" "data-explorer") }}
+                            
+                            {{/*  range through data explorer pages to add links to topic choosers  */ -}}
+
+                            {{- range ( where $.context.Site.RegularPages.ByTitle "Section" "data-explorer") -}}
+
+                                {{- /*  don't add links to the data index or data reference pages  */ -}}
+
+                                {{- if not ( or ( strings.Contains .RelPermalink "data-index" ) ( strings.Contains .RelPermalink "data-reference" ) ) -}}
                                 
-                                <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
-                                </li>
-                            {{end}}
-                            </ul>
-                    </div>
-        
+                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+
+                                {{ end -}}
+
+                            {{- end -}}
+
+                        </ul>
                 </div>
+    
+            </div>
                 <!-- .collapse -->
         
             </div>
@@ -637,5 +657,3 @@
     </div>
 </div>
 {{ end }}
-
-
