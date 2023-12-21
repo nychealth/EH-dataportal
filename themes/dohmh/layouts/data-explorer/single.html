@@ -662,7 +662,7 @@
 
     {{- /*  Arquero  */}}
 
-    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" -}}
+    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | resources.Fingerprint "sha512" }}
 
     <script type="text/javascript" src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
 
@@ -670,63 +670,63 @@
 
      {{- /*  CSS  */}}
 
-    {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" -}}
-    {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" -}}
-    {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" -}}
+    {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" }}
+    {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" }}
+    {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" }}
 
     <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}">
 
     {{- /*  JS  */}}
 
-    {{- $dataTables := resources.Get "node_modules/datatables.net/js/jquery.dataTables.min.js" -}}
-    {{- $dataTablesButtons := resources.Get "node_modules/datatables.net-buttons/js/dataTables.buttons.min.js" -}}
-    {{- $dataTablesButtonsHtml5 := resources.Get "node_modules/datatables.net-buttons/js/buttons.html5.min.js" -}}
-    {{- $dataTablesButtonsPrint := resources.Get "node_modules/datatables.net-buttons/js/buttons.print.min.js" -}}
-    {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" -}}
+    {{- $dataTables := resources.Get "node_modules/datatables.net/js/jquery.dataTables.min.js" }}
+    {{- $dataTablesButtons := resources.Get "node_modules/datatables.net-buttons/js/dataTables.buttons.min.js" }}
+    {{- $dataTablesButtonsHtml5 := resources.Get "node_modules/datatables.net-buttons/js/buttons.html5.min.js" }}
+    {{- $dataTablesButtonsPrint := resources.Get "node_modules/datatables.net-buttons/js/buttons.print.min.js" }}
+    {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" }}
     
-    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" -}}
-    {{- $DT_secureJS := $dataTablesBundleJS | resources.Fingerprint "sha512" -}}
+    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" }}
+    {{- $DT_secureJS := $dataTablesBundleJS | resources.Fingerprint "sha512" }}
 
     <script type="text/javascript" src="{{ $DT_secureJS.RelPermalink }}" integrity="{{ $DT_secureJS.Data.Integrity }}"></script>
 
     
     {{- /*  other libraries  */}}
 
-    {{- $jszip := resources.Get "node_modules/jszip/dist/jszip.min.js" -}}
-    {{- $jszip_secureJS := $jszip | resources.Fingerprint "sha512" -}}
+    {{- $jszip := resources.Get "node_modules/jszip/dist/jszip.min.js" }}
+    {{- $jszip_secureJS := $jszip | resources.Fingerprint "sha512" }}
 
 
     <script type="text/javascript" src="{{ $jszip_secureJS.RelPermalink }}" integrity="{{ $jszip_secureJS.Data.Integrity }}"></script>
 
     {{- /*  VegaLite  */}}
 
-    {{- $vega := resources.Get "node_modules/vega/build/vega.min.js" -}}
-    {{- $vegaLite := resources.Get "node_modules/vega-lite/build/vega-lite.min.js" -}}
-    {{- $vegaEmbed := resources.Get "node_modules/vega-embed/build/vega-embed.min.js" -}}
+    {{- $vega := resources.Get "node_modules/vega/build/vega.min.js" }}
+    {{- $vegaLite := resources.Get "node_modules/vega-lite/build/vega-lite.min.js" }}
+    {{- $vegaEmbed := resources.Get "node_modules/vega-embed/build/vega-embed.min.js" }}
 
-    {{- $vegaBundleJS := slice $vega $vegaLite $vegaEmbed | resources.Concat "js/vegaBundle.js" -}}
-    {{- $vega_secureJS := $vegaBundleJS | resources.Fingerprint "sha512" -}}
+    {{- $vegaBundleJS := slice $vega $vegaLite $vegaEmbed | resources.Concat "js/vegaBundle.js" }}
+    {{- $vega_secureJS := $vegaBundleJS | resources.Fingerprint "sha512" }}
 
     <script type="text/javascript" src="{{ $vega_secureJS.RelPermalink }}" integrity="{{ $vega_secureJS.Data.Integrity }}"></script>
 
     {{- /*  D3  */}}
 
-    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" -}}
-    {{- $d3_secureJS := $d3 | resources.Fingerprint "sha512" -}}
+    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" }}
+    {{- $d3_secureJS := $d3 | resources.Fingerprint "sha512" }}
 
     <script type="text/javascript" src="{{ $d3_secureJS.RelPermalink }}" integrity="{{ $d3_secureJS.Data.Integrity }}"></script>
 
     {{- /*  naturalSort - from https://datatables.net/plug-ins/sorting/natural  */}}
 
-    {{- $naturalSort := resources.Get "js/naturalSort.js" -}}
-    {{- $naturalSort_secureJS := $naturalSort | resources.Fingerprint "sha512" -}}
+    {{- $naturalSort := resources.Get "js/naturalSort.js" }}
+    {{- $naturalSort_secureJS := $naturalSort | resources.Fingerprint "sha512" }}
 
     <script type="text/javascript" src="{{ $naturalSort_secureJS.RelPermalink }}" integrity="{{ $naturalSort_secureJS.Data.Integrity }}"></script>
 
     {{- /*  seedrandom  */}}
 
-    {{- $seedrandom := resources.Get "node_modules/seedrandom/seedrandom.min.js" -}}
-    {{- $seedrandom_secureJS := $seedrandom | resources.Fingerprint "sha512" -}}
+    {{- $seedrandom := resources.Get "node_modules/seedrandom/seedrandom.min.js" }}
+    {{- $seedrandom_secureJS := $seedrandom | resources.Fingerprint "sha512" }}
 
     <script type="text/javascript" src="{{ $seedrandom_secureJS.RelPermalink }}" integrity="{{ $seedrandom_secureJS.Data.Integrity }}"></script>
 
@@ -762,7 +762,7 @@
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator({{ $id }})' data-indicator-id='{{ $id }}'>" + this_indicatorName + "</button>";
 
-                {{ end -}}
+                {{ end }}
             {{- end }}
 
         }
@@ -789,8 +789,8 @@
                     this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
                     indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' onclick='loadIndicator({{ $id }})' data-indicator-id='{{ $id }}'>" + this_indicatorName + "</button>";
                     
-                {{- end -}}
-            {{- end -}}
+                {{- end }}
+            {{- end }}
         }
 
 

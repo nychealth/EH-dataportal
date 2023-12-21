@@ -27,6 +27,7 @@
 
 
 <script>
+
 // ===== load flexdatalist ================================================== //
 
 const load_flexdatalist = async () => {
@@ -42,6 +43,7 @@ const load_flexdatalist = async () => {
             // console.log(indicatorJSON[0])
             
             // ----- init flexdatalist -------------------------------------------------- //
+
             let $input = $('.flexdatalist').flexdatalist({
                 minLength: 0,
                 valueProperty: ["IndicatorID", "IndicatorName"],
@@ -58,23 +60,16 @@ const load_flexdatalist = async () => {
                 data: indicatorJSON
             });
 
-
-
             
             // ----- add flexdatalist select handler -------------------------------------------------- //
             $input.on('select:flexdatalist', (e, set) => {
                 
-                // log selected indicator:
-
-                // console.log("Selected indicator:", set);
-                                
                 // run page print (for data reference)
                 if (typeof printToPage === "function") {
                     printToPage(set) // on data-reference.html
                 } else {
                     sendToIndicator(set) // for section.html
                 }
-                
                 
             })
 
@@ -103,8 +98,6 @@ function sendToIndicator(x) {
     var id = x.IndicatorID
 
     const topics = topicIndicatorsTable.filter((ind) => ind.IndicatorID === x.IndicatorID);
-    // console.log('Selected indicator parent topics:')
-    // console.log(topics)
     window.location.href = {{ relURL "data-explorer/" }} + topics[0].topic + '/?id=' + x.IndicatorID 
 }
 
