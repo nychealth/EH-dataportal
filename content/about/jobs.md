@@ -26,4 +26,8 @@ Join our team! See below for open positions in our bureau - or, [search cityjobs
 
 [**Division Counsel**](https://cityjobs.nyc.gov/job/division-counsel-bureau-of-environmental-science-and-policy-besp-in-manhattan-jid-10975): We're hiring a lawyer to support the Bureau of Child Care on all legal matters, represent the Department in hearings before the OATH Hearings Division, and assist the Bureau of Child Care on enforcing all applicable laws and regulations.
 
+---
+
+<br>
+
 [**Child Care Analyst, Bureau of Childcare**](https://cityjobs.nyc.gov/job/child-care-analyst-bureau-of-childcare-in-manhattan-jid-16917): We're hiring a Child Care Analyst to support the Bureau of Child Care in taking the lead on specific program analytics. Taking direction from the Data Director, duties include surveillance of enforcement outcomes, responsibility for developing analytic approach, tracking progress and overseeing quality assurance with one or more analysts.
