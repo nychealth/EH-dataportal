@@ -39,9 +39,9 @@ const renderLinksChart = (
     const secondaryTimePeriod      = data[0]?.TimePeriod_2;
 
     const SecondaryAxis = 
-        primaryMetadata[0].VisOptions[0].Links[0].Measures?.filter(
+        primaryMetadata[0].VisOptions[0].Links[0].Measures.filter(
             l => l.MeasureID === secondaryMeasureId
-        )[0]?.SecondaryAxis;
+        )[0].SecondaryAxis;
 
     // ----------------------------------------------------------------------- //
     // switch field assignment based on SecondaryAxis preference

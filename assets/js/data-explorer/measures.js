@@ -149,7 +149,7 @@ const setDefaultTrendMeasure = (visArray) => {
 
 const setDefaultLinksMeasure = async (visArray) => {
 
-    // modified so that defaultLinksMetadata is explicitly set, instead of by reference
+    // modified so that defaultPrimaryMeasureMetadata is explicitly set, instead of by reference
     //  through defaultArray
 
     let defaultArray = [];
@@ -214,13 +214,25 @@ const setDefaultLinksMeasure = async (visArray) => {
         const defaultSecondaryMeasureId = defaultArray[0].VisOptions[0].Links[0].Measures[0]?.MeasureID;
 
         // assigning to global object
-        defaultLinksMetadata = defaultArray;
+        defaultPrimaryMeasureMetadata = defaultArray;
 
         // using await here because createJoinedLinksData calls fetch, and we need that data
 
-        let aqJoinedLinksDataObjects = await createJoinedLinksData(defaultPrimaryMeasureId, defaultSecondaryMeasureId)
+        let defaultLinksDataMetadata = await createJoinedLinksData(defaultPrimaryMeasureId, defaultSecondaryMeasureId)
 
-        joinedLinksDataObjects = aqJoinedLinksDataObjects.objects()
+        // console.log("defaultLinksDataMetadata [setDefaultLinksMeasure]", defaultLinksDataMetadata);
+
+        // extract secondary metadata from data function return, assign to global object
+
+        defaultSecondaryMeasureMetadata = defaultLinksDataMetadata.secondaryMeasureMetadata;
+
+        // console.log("defaultSecondaryMeasureMetadata [setDefaultLinksMeasure]", defaultSecondaryMeasureMetadata);
+        
+        // extract data element from data function return, assign to global object
+
+        // console.log("defaultLinksDataMetadata.data", defaultLinksDataMetadata.data);
+
+        joinedLinksDataObjects = defaultLinksDataMetadata.data
 
         // console.log(">> joinedLinksDataObjects [setDefaultLinksMeasure]", joinedLinksDataObjects);
 
@@ -634,6 +646,8 @@ const updateTrendComparisonsData = (e) => {
 
 const updateLinksData = async (e) => {
 
+    console.log("* updateLinksData");
+
     // ---- handle selection -------------------------------------------------- //
 
     // persistent selection
@@ -651,17 +665,84 @@ const updateLinksData = async (e) => {
     const primaryMeasureId = parseInt(e.target.dataset.primaryMeasureId);
     const secondaryMeasureId = parseInt(e.target.dataset.secondaryMeasureId);
 
-    // call createJoinedLinksData, which creates joinedLinksDataObjects,
-    //  primaryMeasureMetadata, secondaryMeasureMetadata
+    // ----- primary measure metadata -------------------------------------------------- //
 
-    let aqJoinedLinksDataObjects = await createJoinedLinksData(primaryMeasureId, secondaryMeasureId)
+    // get metadata for the selected primary measure, assign to global variable
+    // indicatorMeasures created in loadIndicator
+
+    let primaryMeasureMetadata = linksMeasures.filter(
+        measure => measure.MeasureID === primaryMeasureId
+    )
+
+    // ----- create links data -------------------------------------------------- //
+
+    // call createJoinedLinksData, which creates joinedLinksDataObjects
+
+    let selectedLinksDataMetadata = await createJoinedLinksData(primaryMeasureId, secondaryMeasureId)
+
+    // - - - primary measure metadata - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // extract secondary metadata from data function return, assign to global object
+
+    selectedPrimaryMeasureMetadata = selectedLinksDataMetadata.primaryMeasureMetadata;
+
+    // - - - secondary measure metadata - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // extract secondary metadata from data function return, assign to global object
+
+    selectedSecondaryMeasureMetadata = selectedLinksDataMetadata.secondaryMeasureMetadata;
+
+    // console.log("selectedSecondaryMeasureMetadata [updateLinksData]", selectedSecondaryMeasureMetadata);
     
-    joinedLinksDataObjects = aqJoinedLinksDataObjects.objects()
+    // extract data element from data function return, assign to global object
+
+    joinedLinksDataObjects = selectedLinksDataMetadata.data
 
     // console.log(">> joinedLinksDataObjects [updateLinksData]", joinedLinksDataObjects);
 
 
-    // ----- get metatadata for selected measure -------------------------------------------------- //
+    // ----- handle disparities button -------------------------------------------------- //
+
+    // switch on/off the disparities button
+
+    const disparities =
+        selectedPrimaryMeasureMetadata[0].VisOptions[0].Links &&
+        selectedPrimaryMeasureMetadata[0].VisOptions[0].Links[0]?.Disparities;
+
+    // console.log(">>> selectedPrimaryMeasureMetadata", selectedPrimaryMeasureMetadata);
+
+    // console.log(">>> MeasureName", selectedPrimaryMeasureMetadata[0].MeasureName);
+
+    // hide or how disparities button
+
+    if (disparities == 0) {
+
+        // if disparities is disabled, hide the button
+
+        btnToggleDisparities.style.display = "none";
+
+        // remove click listeners to button that calls renderDisparitiesChart
+
+        // $(btnToggleDisparities).off()
+
+    } else if (disparities == 1) {
+
+        // remove event listener added when/if button was clicked
+
+        // btnToggleDisparities.innerText = "Show Disparities";
+        // $(btnToggleDisparities).off()
+
+        // make sure that the "links" button is active by default
+        $("#show-links").addClass("active");
+        $("#show-disparities").removeClass("active");
+
+        // if disparities is enabled, show the button
+        btnToggleDisparities.style.display = "inline";
+
+
+    }
+
+    // ----- get indicator name for secondary measure -------------------------------------------------- //
 
     // for all indicators, get the ones that are linked to the current indicator
 
@@ -671,6 +752,7 @@ const updateLinksData = async (e) => {
         )
     )
 
+
     // get indicator names, for chart + about & sources
 
     primaryIndicatorName   = indicatorName // created in loadIndicator
@@ -678,14 +760,14 @@ const updateLinksData = async (e) => {
 
     // extract metadata for about & sources boxes
 
-    const primaryMeasurementType = primaryMeasureMetadata[0].MeasurementType;
-    const secondaryMeasurementType = secondaryMeasureMetadata[0].MeasurementType;
+    const primaryMeasurementType   = selectedPrimaryMeasureMetadata[0].MeasurementType;
+    const secondaryMeasurementType = selectedSecondaryMeasureMetadata[0].MeasurementType;
 
-    const primaryAbout = primaryMeasureMetadata[0].how_calculated;
-    const secondaryAbout = secondaryMeasureMetadata[0].how_calculated;
+    const primaryAbout   = selectedPrimaryMeasureMetadata[0].how_calculated;
+    const secondaryAbout = selectedSecondaryMeasureMetadata[0].how_calculated;
 
-    const primarySources = primaryMeasureMetadata[0].Sources;
-    const secondarySources = secondaryMeasureMetadata[0].Sources;
+    const primarySources   = selectedPrimaryMeasureMetadata[0].Sources;
+    const secondarySources = selectedSecondaryMeasureMetadata[0].Sources;
 
 
     // ----- set measure info boxes -------------------------------------------------- //
@@ -711,8 +793,8 @@ const updateLinksData = async (e) => {
 
     renderLinksChart(
         joinedLinksDataObjects,
-        primaryMeasureMetadata,
-        secondaryMeasureMetadata,
+        selectedPrimaryMeasureMetadata,
+        selectedSecondaryMeasureMetadata,
         primaryIndicatorName,
         secondaryIndicatorName
     );
@@ -1112,18 +1194,18 @@ const renderMeasures = async () => {
                         )
                     );
 
-                    const linksSecondaryMeasure = linksSecondaryIndicator[0]?.Measures?.filter(m =>
+                    const defaultSecondaryMeasureMetadata = linksSecondaryIndicator[0]?.Measures?.filter(m =>
                         m.MeasureID === link.MeasureID
                     );
 
-                    // console.log("linksSecondaryMeasure", linksSecondaryMeasure);
+                    // console.log("defaultSecondaryMeasureMetadata", defaultSecondaryMeasureMetadata);
 
                     dropdownLinksMeasures.innerHTML +=
                         `<button class="dropdown-item linksbutton pl-3"
                             data-primary-measure-id="${measureId}"
                             data-measure-id="${measure.MeasureID}"
                             data-secondary-measure-id="${link.MeasureID}">
-                            ${linksSecondaryMeasure[0]?.MeasureName}
+                            ${defaultSecondaryMeasureMetadata[0]?.MeasureName}
                         </button>`;
 
                 });
@@ -1721,7 +1803,6 @@ const renderMeasures = async () => {
             // get first comparisonId
 
             const comparisonId = parseInt(comparisonsMetadata[0].ComparisonID);
-            // const times        = defaultTrendMetadata[0].VisOptions[0].Trend[0]?.TimePeriod;
 
             // console.log("comparisonId", comparisonId);
 
@@ -1775,8 +1856,8 @@ const renderMeasures = async () => {
                 .filter(aq.escape(d => d.ComparisonID == comparisonId))
                 .join(aqComparisonsIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
 
-            console.log("aqFilteredComparisonsMetadata:");
-            aqFilteredComparisonsMetadata.print({limit: Infinity})
+            // console.log("aqFilteredComparisonsMetadata:");
+            // aqFilteredComparisonsMetadata.print({limit: Infinity})
             
             // data
 
@@ -1880,6 +1961,8 @@ const renderMeasures = async () => {
 
         if (!selectedLinksMeasure) {
 
+            // console.log(">>> not selected");
+
             // this is all inside the conditional, because if a user clicks on this tab again
             //  after selecting a measure, we don't want to recompute everything. We'll use the
             //  values created by the update function
@@ -1890,8 +1973,12 @@ const renderMeasures = async () => {
             // switch on/off the disparities button
 
             const disparities =
-                defaultLinksMetadata[0].VisOptions[0].Links &&
-                defaultLinksMetadata[0].VisOptions[0].Links[0]?.Disparities;
+                defaultPrimaryMeasureMetadata[0].VisOptions[0].Links &&
+                defaultPrimaryMeasureMetadata[0].VisOptions[0].Links[0]?.Disparities;
+
+            // console.log(">>> defaultPrimaryMeasureMetadata", defaultPrimaryMeasureMetadata);
+
+            // console.log(">>> MeasureName", defaultPrimaryMeasureMetadata[0].MeasureName);
 
             // hide or how disparities button
 
@@ -1926,7 +2013,9 @@ const renderMeasures = async () => {
 
             // get first linked measure by default
 
-            const secondaryMeasureId = defaultLinksMetadata[0]?.VisOptions[0].Links[0].Measures[0].MeasureID;
+            const secondaryMeasureId = defaultPrimaryMeasureMetadata[0]?.VisOptions[0].Links[0].Measures[0].MeasureID;
+
+            // console.log("secondaryMeasureId", secondaryMeasureId);
 
             // get linked indicator's metadata
 
@@ -1938,7 +2027,7 @@ const renderMeasures = async () => {
 
             // use linked indicator's metadata to get linked measure's metadata
 
-            const linksSecondaryMeasure = linksSecondaryIndicator[0]?.Measures?.filter(m =>
+            defaultSecondaryMeasureMetadata = linksSecondaryIndicator[0]?.Measures?.filter(m =>
                 m.MeasureID === secondaryMeasureId
             )
 
@@ -1947,13 +2036,13 @@ const renderMeasures = async () => {
 
             // get measure metadata
 
-            const primaryMeasure         = defaultLinksMetadata[0]?.MeasurementType;
-            const primaryAbout           = defaultLinksMetadata[0]?.how_calculated;
-            const primarySources         = defaultLinksMetadata[0]?.Sources;
+            const primaryMeasure         = defaultPrimaryMeasureMetadata[0]?.MeasurementType;
+            const primaryAbout           = defaultPrimaryMeasureMetadata[0]?.how_calculated;
+            const primarySources         = defaultPrimaryMeasureMetadata[0]?.Sources;
 
-            const secondaryMeasure       = linksSecondaryMeasure[0]?.MeasurementType;
-            const secondaryAbout         = linksSecondaryMeasure[0]?.how_calculated;
-            const secondarySources       = linksSecondaryMeasure[0]?.Sources;
+            const secondaryMeasure       = defaultSecondaryMeasureMetadata[0]?.MeasurementType;
+            const secondaryAbout         = defaultSecondaryMeasureMetadata[0]?.how_calculated;
+            const secondarySources       = defaultSecondaryMeasureMetadata[0]?.Sources;
 
 
             // ----- set measure info boxes -------------------------------------------------- //
@@ -1983,10 +2072,12 @@ const renderMeasures = async () => {
 
             // joined data and metadata created in createJoinedLinksData called fron setDefaultLinksMeasure
 
+            // console.log("defaultSecondaryMeasureMetadata [showLinks 1]", defaultSecondaryMeasureMetadata);
+
             renderLinksChart(
                 joinedLinksDataObjects,
-                primaryMeasureMetadata,
-                secondaryMeasureMetadata,
+                defaultPrimaryMeasureMetadata,
+                defaultSecondaryMeasureMetadata,
                 primaryIndicatorName,
                 secondaryIndicatorName
             );
@@ -2010,6 +2101,50 @@ const renderMeasures = async () => {
 
         } else {
 
+            // console.log(">>> selected");
+
+            // ----- handle disparities button -------------------------------------------------- //
+
+            // switch on/off the disparities button
+
+            const disparities =
+                selectedPrimaryMeasureMetadata[0].VisOptions[0].Links &&
+                selectedPrimaryMeasureMetadata[0].VisOptions[0].Links[0]?.Disparities;
+
+            // console.log(">>> selectedPrimaryMeasureMetadata", selectedPrimaryMeasureMetadata);
+
+            // console.log(">>> MeasureName", selectedPrimaryMeasureMetadata[0].MeasureName);
+
+
+            // hide or how disparities button
+
+            if (disparities == 0) {
+
+                // if disparities is disabled, hide the button
+
+                btnToggleDisparities.style.display = "none";
+
+                // remove click listeners to button that calls renderDisparitiesChart
+
+                // $(btnToggleDisparities).off()
+
+            } else if (disparities == 1) {
+
+                // remove event listener added when/if button was clicked
+
+                // btnToggleDisparities.innerText = "Show Disparities";
+                // $(btnToggleDisparities).off()
+
+                // make sure that the "links" button is active by default
+                $("#show-links").addClass("active");
+                $("#show-disparities").removeClass("active");
+
+                // if disparities is enabled, show the button
+                btnToggleDisparities.style.display = "inline";
+
+
+            }
+
             // if there was a chart already, restore it
 
             // ----- set measure info boxes -------------------------------------------------- //
@@ -2020,8 +2155,8 @@ const renderMeasures = async () => {
 
             renderLinksChart(
                 joinedLinksDataObjects,
-                primaryMeasureMetadata,
-                secondaryMeasureMetadata,
+                selectedPrimaryMeasureMetadata,
+                selectedSecondaryMeasureMetadata,
                 primaryIndicatorName,
                 secondaryIndicatorName
             );
@@ -2040,7 +2175,7 @@ const renderMeasures = async () => {
 
             if (e.target && e.target.matches("#show-disparities") && !e.target.classList.contains("active")) {
 
-                renderDisparitiesChart(defaultLinksMetadata, 221)
+                renderDisparitiesChart(defaultPrimaryMeasureMetadata, 221)
 
             } else if (e.target && e.target.matches("#show-links") && !e.target.classList.contains("active")) {
 

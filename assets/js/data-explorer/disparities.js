@@ -84,9 +84,9 @@ const renderDisparitiesChart = async (
         
         // await loaddisparityData(disparityMetadata, disparityIndicatorId)
         let aqDisparityData = await createJoinedLinksData(primaryMeasureId, disparityMeasureId)
-            .then(data => {
+            .then(res => {
 
-                let dispData = data
+                let dispData = aq.from(res.data)
                     .derive({ PovRank: d => (d.Value_2 > 30 ? 4 : (d.Value_2 > 20 ? 3 : ( d.Value_2 > 10 ? 2 : 1))) })
                     .derive({ PovCat: d => (d.PovRank == 4 ? 'Very high (> 30%)' : (d.PovRank == 3  ? 'High (20-30%)' : ( d.PovRank == 2  ? 'Medium (10-20%)' : 'Low (0-10%)'))) })
                     .derive({ randomOffsetX: aq.escape(d => d.PovRank + (myrng()*2 - 1)) })

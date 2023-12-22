@@ -53,7 +53,8 @@ let defaultTrendSources;
 let defaultMapMetadata = [];
 let defaultMapAbout;
 let defaultMapSources;
-let defaultLinksMetadata = [];
+let defaultPrimaryMeasureMetadata = [];
+let defaultSecondaryMeasureMetadata;
 // let defaultLinkMeasureTimes = [];
 let defaultLinksAbout;
 let defaultLinksSources;
@@ -81,11 +82,8 @@ let selectedComparisonMetadata;
 
 let selectedLinksAbout;
 let selectedLinksSources;
-let selectedLinksMetadata;
-let selectedlinksSecondaryMeasureTime;
-
-let primaryMeasureMetadata;
-let secondaryMeasureMetadata;
+let selectedPrimaryMeasureMetadata;
+let selectedSecondaryMeasureMetadata;
 
 let filteredMapData;
 let filteredTrendData;

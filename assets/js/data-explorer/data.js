@@ -725,7 +725,7 @@ const joinData = () => {
 
 const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
-    let ret;
+    let returnData;
 
     // console.log("primaryMeasureId", primaryMeasureId);
     // console.log("secondaryMeasureId", secondaryMeasureId);
@@ -737,7 +737,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     // get metadata for the selected primary measure, assign to global variable
     // indicatorMeasures created in loadIndicator
 
-    primaryMeasureMetadata = linksMeasures.filter(
+    let primaryMeasureMetadata = linksMeasures.filter(
         measure => measure.MeasureID === primaryMeasureId
     )
 
@@ -775,8 +775,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     // get metadata for the selected secondary measure, assign to global variable
 
-    secondaryMeasureMetadata =
-        secondaryIndicator[0].Measures?.filter(
+    let secondaryMeasureMetadata = secondaryIndicator[0].Measures?.filter(
         measure => measure.MeasureID === secondaryMeasureId
     )
 
@@ -876,15 +875,15 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
                     "TimePeriodID"
                 )
             
-            console.log("aqFilteredSecondaryMeasureData");
-            aqFilteredSecondaryMeasureData.print()
+            // console.log("aqFilteredSecondaryMeasureData");
+            // aqFilteredSecondaryMeasureData.print()
             
 
             // convert to JS object
 
             const filteredSecondaryMeasureTimesDataObjects = aqFilteredSecondaryMeasureData.objects();
 
-            console.log("filteredSecondaryMeasureTimesDataObjects", filteredSecondaryMeasureTimesDataObjects);
+            // console.log("filteredSecondaryMeasureTimesDataObjects", filteredSecondaryMeasureTimesDataObjects);
             
 
             // ==== get closest data ==== //
@@ -941,14 +940,27 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
             // set the value of joinedLinksDataObjects, and make sure to wait for it
 
-            ret = await aqJoinedPrimarySecondaryData;
+            return await aqJoinedPrimarySecondaryData.objects();
 
         })
+        .then(d => {
+
+            returnData = d;
+
+            // console.log("data 2", returnData);
+
+        })
+
+    // console.log("data 3", returnData);
 
     // console.log(">> ret");
     // ret.print()
 
-    return ret;
+    return { 
+        "data": returnData, 
+        "primaryMeasureMetadata": primaryMeasureMetadata, 
+        "secondaryMeasureMetadata": secondaryMeasureMetadata 
+    };
 }
 
 
