@@ -64,4 +64,4 @@ Modifying the source code will require some understanding of Hugo. For using the
 
 ---
 <br>
-The purpose of this website is to make data easier to access, understand, and use - and we hope that working with open source technology ("working in the open") can also help with this, either by making it easier for people to use the data and visualizations, or for you to learn from this project and do similar work at your agency. [Feel free to email us if you have any questions](mailto:ehdp@health.nyc.gov) - we're always happy to talk or to help.
+The purpose of this website is to make data easier to access, understand, and use - and we hope that working with open source technology ("working in the open") can also help with this, either by making it easier for people to use the data and visualizations, or for you to learn from this project and do similar work at your agency. <a href="mailto:ehdp@health.nyc.gov">Feel free to email us if you have any questions</a> - we're always happy to talk or to help.
