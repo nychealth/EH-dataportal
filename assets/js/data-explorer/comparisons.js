@@ -240,8 +240,6 @@ const renderComparisonsChart = (
 
     let compReplaceInvalid = compGroupLabel.map(x => {return {"calculate": `isValid(datum[\"${x}\"]) ? datum[\"${x}\"] : ""`, "as": `${x}`}})
 
-    console.log("compReplaceInvalid", compReplaceInvalid);
-
     // ----------------------------------------------------------------------- //
     // create tooltips JSON
     // ----------------------------------------------------------------------- //
