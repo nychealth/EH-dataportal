@@ -9,11 +9,11 @@ const renderComparisonsChart = (
 
     console.log("*** renderComparisonsChart");
 
-    // console.log(">>> comp metadata");
-    // metadata.print()
+    console.log(">>> comp metadata");
+    metadata.print()
     
-    // console.log(">>> comp data:");
-    // data.print(Infinity)
+    console.log(">>> comp data:");
+    data.print()
 
     // console.log("data objects", data.objects());
 
@@ -372,7 +372,7 @@ const renderComparisonsChart = (
                 "transform": [
                     {
                         "pivot": comp_group_col,
-                        "value": "DisplayValue",
+                        "value": "Value",
                         "groupby": ["TimePeriod"],
                         "op": "max"
                     },

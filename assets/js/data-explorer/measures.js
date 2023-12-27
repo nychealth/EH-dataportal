@@ -619,8 +619,8 @@ const updateTrendComparisonsData = (e) => {
 
     }
 
-    // console.log(">>>> aqFilteredComparisonsData [updateTrendComparisonsData]");
-    // aqFilteredComparisonsData.print()
+    console.log(">>>> aqFilteredComparisonsData [updateTrendComparisonsData]");
+    aqFilteredComparisonsData.print()
 
 
     // ----- render the chart -------------------------------------------------- //
@@ -1872,8 +1872,8 @@ const renderMeasures = async () => {
                 .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)), d => d.MeasureID)
 
 
-            // console.log(">>>> aqFilteredComparisonsData [showTrendComparisons 1]");
-            // aqFilteredComparisonsData.print()
+            console.log(">>>> aqFilteredComparisonsData [showTrendComparisons 1]");
+            aqFilteredComparisonsData.print()
 
             // show only last 3 years of DWQ measures with quarterly data
 
@@ -1881,7 +1881,7 @@ const renderMeasures = async () => {
 
             if (aqFilteredComparisonsMetadata.array("MeasureID").some(m => hasQuarters.includes(m))) {
 
-                // console.log(">>>> aqFilteredComparisonsData [quarters]:");
+                console.log(">>>> aqFilteredComparisonsData [quarters]:");
 
                 aqFilteredComparisonsData = aqFilteredComparisonsData
                     .derive({"year": d => op.year(d.end_period)})
@@ -1892,8 +1892,8 @@ const renderMeasures = async () => {
 
             }
 
-            // console.log(">>>> aqFilteredComparisonsData [showTrendComparisons]");
-            // aqFilteredComparisonsData.print()
+            console.log(">>>> aqFilteredComparisonsData [showTrendComparisons]");
+            aqFilteredComparisonsData.print()
 
 
             // ----- render the chart -------------------------------------------------- //
