@@ -9,11 +9,11 @@ const renderComparisonsChart = (
 
     console.log("*** renderComparisonsChart");
 
-    console.log(">>> comp metadata");
-    metadata.print()
+    // console.log(">>> comp metadata");
+    // metadata.print()
     
-    console.log(">>> comp data:");
-    data.print()
+    // console.log(">>> comp data:");
+    // data.print()
 
     // console.log("data objects", data.objects());
 
