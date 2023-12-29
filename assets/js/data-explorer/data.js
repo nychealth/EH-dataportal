@@ -10,7 +10,7 @@
 // full indicator metadata
 // ----------------------------------------------------------------------- //
 
-fetch(`${data_repo}${data_branch}/indicators/metadata.json`)
+fetch(`${data_repo}${data_branch}/indicators/metadata/metadata.json`)
     .then(response => response.json())
     .then(async data => {
 
@@ -51,7 +51,7 @@ const fetch_comparisons = async () => {
     
     console.log("* fetch_comparisons.json");
 
-    await fetch(`${data_repo}${data_branch}/indicators/comparisons.json`)
+    await fetch(`${data_repo}${data_branch}/indicators/metadata/comparisons.json`)
         .then(response => response.json())
         .then(async data => {
             
@@ -383,7 +383,7 @@ const loadTime = async () => {
 
     console.log("* loadTime");
 
-    const timeUrl = `${data_repo}${data_branch}/indicators/TimePeriods.json`;
+    const timeUrl = `${data_repo}${data_branch}/indicators/metadata/TimePeriods.json`;
 
     await aq.loadJSON(timeUrl, {autoType: false})
         .then(async (data) => {

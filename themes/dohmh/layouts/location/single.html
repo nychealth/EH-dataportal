@@ -219,7 +219,7 @@
                                         
                                         {{- /*  {{ warnf ( print ( printf "[%d] " $count ) $clean_report_topic ) }}  */}}
 
-                                        {{ $data_path := print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/report " $.Params.content_yml " " $clean_report_topic ".json" }}
+                                        {{ $data_path := print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/report/" $.Params.content_yml " " $clean_report_topic ".json" }}
 
                                         {{- /*  {{ warnf $data_path }}  */}}
                                         {{- /*  {{ warnf ( print ( printf "[%d] " $count ) $data_path ) }}  */}}
@@ -331,9 +331,9 @@
         {{- /*  use NR_content folder YAML to group indicators by report. Then we can remove report title etc. from database but still get data by report  */}}
 
         let arqTable;
-        let downloadLoc = {{ ( print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/viz " $.Params.content_yml ".json" ) }}
+        let downloadLoc = {{ ( print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/viz/" $.Params.content_yml ".json" ) }}
 
-        {{- /*  {{ warnf ( relURL ( print "neighborhood-reports/data/" $.Params.content_yml ".json" ) ) }}  */}}
+        {{- /*  {{ warnf ( relURL ( print "neighborhood-reports/data/viz/" $.Params.content_yml ".json" ) ) }}  */}}
 
         // loading report-level CSV data
 

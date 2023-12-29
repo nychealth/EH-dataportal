@@ -137,7 +137,7 @@
 
   {{- /* ----  get metadata.json from data repo, and transform into a Hugo object  ---- */}}
   
-  {{- $nr_indicator_names := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/nr_indicator_names.json")) | transform.Unmarshal -}}
+  {{- $nr_indicator_names := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/metadata/nr_indicator_names.json")) | transform.Unmarshal -}}
 
   {{- $nr_indicator_names_json := $nr_indicator_names | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorMetadata/nr_indicator_names.json" -}}
   
