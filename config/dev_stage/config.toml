@@ -1,6 +1,6 @@
 baseURL = "https://gcappbesp307.health.dohmh.nycnet/dev-stage/"
 [params]
-    data_branch = "feature-all-site-changes-2023-12"
+    data_branch = "production-merge-2023-12"
 
 [caches]
     [caches.getresource]
