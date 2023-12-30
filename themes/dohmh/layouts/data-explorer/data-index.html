@@ -55,19 +55,40 @@
         </article>
         
         <script>
-            var indicators;
-            var indicatorIndex = []
+
+            let indicators;
+            let indicatorIndex = []
+            let time_periods;
             
             
             // First, load metadata.json
-            d3.json('{{ site.Params.data_repo }}{{ site.Params.data_branch }}/indicators/metadata/metadata.json').then(function (data) {
-                indicators = data;
-                loopThroughIndicators() // run loops.
-                
-            }); 
+
+            d3.json('{{ site.Params.data_repo }}{{ site.Params.data_branch }}/indicators/metadata/metadata.json')
+                .then(metadata => {
+
+                    // assign to global indicators object
+
+                    indicators = metadata;
+
+                    d3.json('{{ site.Params.data_repo }}{{ site.Params.data_branch }}/indicators/metadata/TimePeriods.json')
+                        .then(tp => {
+
+                            // assign to global time_periods object
+
+                            time_periods = tp;
+                                
+                            loopThroughIndicators() // run loops.
+                            
+                        })
+                });
+            
+
             
             // Separating json load from subsequent functions, so we can filter or modify later without reloading json
             function loopThroughIndicators() {
+
+
+
                 //  loop through indicators
                 
                 for (let i = 0; i < indicators.length; i++) {  // change the 1 to indicators.length to get back to normal
@@ -143,14 +164,15 @@
                             // here, can embed a loop through geographies to find the finest.
                         }
                         
-                        //loop through times
-                        
-                        for (let z = 0; z < indicators[i].Measures[n].AvailableTimePeriodIDs.length; z++) {
+                        // get time period IDs for this measure
+                        let AvailableTimePeriodIDs = indicators[i].Measures[n].AvailableTimePeriodIDs;
+
+                        // get end periods for this measure
+                        let end_periods = time_periods.filter(tp => AvailableTimePeriodIDs.includes(tp.TimePeriodID)).map(tp => tp.end_period);
+
+                        // push end periods to times array
+                        times.push(...end_periods);
                             
-                            times.push(new Date(indicators[i].Measures[n].AvailableTimePeriodIDs[z].end_period));
-                            
-                        }
-                        
                         // push Sources
                         sources.push(indicators[i].Measures[n].Sources)
                         
@@ -215,6 +237,8 @@
                     maxTime = new Date(Math.max(...times));
                     cell_5.innerHTML = maxTime.getFullYear();
                     row_i.appendChild(cell_5)
+                    
+                    // console.log("maxTime", maxTime);
 
 
                     // sources
