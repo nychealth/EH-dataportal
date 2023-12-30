@@ -92,26 +92,23 @@
         neighborhoods = data;
         {{/*  console.table(neighborhoods)  */}}
 
-        parts = window.location.href.split('/'); // get URL Path
-        // console.log('parts',parts)
+        {{/*  const regex = /neighborhood-reports*$/g;  */}}
+        {{/*  const found = paragraph.match(/neighborhood-reports*$/g);  */}}
 
-        // get index value of neighborhood-reports
-        var indexValue
-        for (let i = 0; i < parts.length; i++) {
-          if (parts[i] == 'neighborhood-reports') {
-            indexValue = i
-          } else {}
-        }
+        let nr_part = window.location.href.match(/neighborhood-reports.*$/g)[0]
+        // console.log('nr_part', nr_part)
+
+        parts = nr_part.split('/'); // get URL Path
+        // console.log('parts', parts)
 
         // console.log('index value of NR:', indexValue)
 
-        // get neighborhood name and report from URL
-        var partsExtension = parts.slice(indexValue)
-        console.log('partsExtension', partsExtension)
-        neighbName = partsExtension[1]
-        rpt = partsExtension[2]
-        console.log('neighbName', neighbName)
-        console.log('rpt', rpt)
+        neighbName = parts[1]
+        rpt = parts[2] ? parts[2] : ""
+
+
+        // console.log('neighbName', neighbName)
+        // console.log('rpt', rpt)
 
         neighb = neighborhoods.filter(x => x.GEONAME == neighbName) // get neighborhood data
         var geocode = neighb[0].GEOCODE // get GEOCODE
