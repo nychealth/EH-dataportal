@@ -107,9 +107,11 @@
 
         // get neighborhood name and report from URL
         var partsExtension = parts.slice(indexValue)
-        // console.log('partsExtension',partsExtension)
+        console.log('partsExtension', partsExtension)
         neighbName = partsExtension[1]
         rpt = partsExtension[2]
+        console.log('neighbName', neighbName)
+        console.log('rpt', rpt)
 
         neighb = neighborhoods.filter(x => x.GEONAME == neighbName) // get neighborhood data
         var geocode = neighb[0].GEOCODE // get GEOCODE
