@@ -362,9 +362,9 @@ const loadGeo = async () => {
 
     console.log("* loadGeo");
 
-    const geoUrl = `${data_repo}${data_branch}/geography/GeoLookup.csv`; // col named "GeoType"
+    const geoUrl = `${data_repo}${data_branch}/geography/GeoLookup.json`; // col named "GeoType"
 
-    await aq.loadCSV(geoUrl)
+    await aq.loadJSON(geoUrl, {autoType: false})
         .then(async (data) => {
 
             geoTable = await data.select(aq.not('Lat', 'Long'));
