@@ -11,6 +11,15 @@
 
 <button data-toggle="modal" data-target="#modal-{{ .data.indicator_data_name }}-{{ .count }}" onclick='getURL({{ .data.IndicatorID }}, "{{ .data.indicator_data_name }}")' class="indicator-anchor">
 
+    {{- $rank := cond ( eq .data.rankReverse true ) ( sub 43 .data.indicator_neighborhood_rank ) ( .data.indicator_neighborhood_rank )  -}}
+
+    {{/*  {{ partial "warn_counter" (print .data.MeasureID " rankReverse: " .data.rankReverse) }}
+    {{ partial "warn_counter" (print .data.MeasureID " raw rank: " .data.indicator_neighborhood_rank ) }}
+    {{ partial "warn_counter" (print .data.MeasureID " new rank: " $rank ) }}  */}}
+
+    {{- $long_rank := (print "Visualization showing neighborhood rank of " $rank " out of 42 for " .data.indicator_short_name " in " .neighborhood "." ) -}}
+    {{- $short_rank := (print $rank " of 42") -}}
+
     <!-- Table row - Screen only -->
     <div class="row align-items-center d-print-none">
         <div class="col-6 col-md-5">
@@ -18,14 +27,14 @@
             <div class="print-only">{{- .data.indicator_long_name -}}</div>
         </div>
         <div class="col-6 col-md-4 topic-list">
-            <img src="{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/images/{{ .data.summary_bar_svg }}" alt="Visualization showing neighborhood rank of {{ .data.indicator_neighborhood_rank }} out of 42 for {{ .data.indicator_short_name }} in {{ .neighborhood }}." width="100%" class="viz d-md-none mb-1">
+            <img src="{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/images/{{ .data.summary_bar_svg }}" alt="{{ $long_rank }}" width="100%" class="viz d-md-none mb-1">
             {{- if eq (string .data.data_value_rank) "1" -}}<span class="worse">Worse</span>
             {{- else if eq (string .data.data_value_rank) "2" -}}<span class="middle">Middle</span>
             {{- else -}}<span class="better">Better</span>
             {{- end -}}
         </div>
         <div class="d-none d-md-inline col-md-3">
-            <img src="{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/images/{{ .data.summary_bar_svg }}" alt="Visualization showing neighborhood rank of {{ .data.indicator_neighborhood_rank }} out of 42 for {{ .data.indicator_short_name }} in {{ .neighborhood }}." class="viz">
+            <img src="{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/images/{{ .data.summary_bar_svg }}" alt="{{ $long_rank }}" class="viz">
         </div>
     </div>
 
@@ -36,7 +45,7 @@
             <div style="font-size: 12px;">{{- .data.indicator_long_name -}}</div>
         </div>
         <div class="col-3 topic-list">
-            <img src="{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/images/{{ .data.summary_bar_svg }}" alt="Visualization showing neighborhood rank of {{ .data.indicator_neighborhood_rank }} out of 42." width="100%" class="viz d-md-none mb-1">
+            <img src="{{ site.Params.data_repo }}{{ site.Params.data_branch }}/neighborhood-reports/images/{{ .data.summary_bar_svg }}" alt="{{ $long_rank }}" width="100%" class="viz d-md-none mb-1">
             {{- if eq (string .data.data_value_rank) "1" -}}<span class="worse">Worse</span>
             {{- else if eq (string .data.data_value_rank) "2" -}}<span class="middle">Middle</span>
             {{- else -}}<span class="better">Better</span>
