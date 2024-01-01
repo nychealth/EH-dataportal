@@ -805,9 +805,10 @@
             let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
             let yyyy = today.getFullYear();
             today = mm + '/' + dd + '/' + yyyy;
+            let url = window.location.href.replace(/#.*/, "")
 
             // Create citation
-            let citation = "New York City Department of Health, Environment & Health Data Portal. "  + "{{ .Title }}" + " data. " + indicatorName + '. Accessed at ' + "{{ .Permalink }}" + ' on ' + today + "."
+            let citation = "New York City Department of Health, Environment & Health Data Portal. "  + "{{ .Title }}" + " data. " + indicatorName + '. Accessed at ' + url + ' on ' + today + "."
 
             // Add to form
             document.getElementById('citeText').setAttribute('value', citation);
