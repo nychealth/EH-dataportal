@@ -114,6 +114,13 @@
 
 {{ $zip_codes := "" -}}
 
+{{- /*  variables for location_sub_nav partial  */}}
+
+{{- /*  set hugo provided vars as local vars so that we can use them in different scopes  */}}
+
+{{- $neighborhood_dir := .Parent.File.Dir -}}
+{{- $report_filename := .File.BaseFileName -}}
+
 
 <div class="d-flex flex-column report-header d-print-none">
 
@@ -172,7 +179,7 @@
                                         </p>
                                     </div>
                                     
-                                    <div class="container-fluid px-0 mb-4">
+                                    <div class="container-fluid px-0 mb-2">
 
                                         <!-- Hide on print -->
 
@@ -217,12 +224,7 @@
 
                                         {{ $clean_report_topic := replace $rt.report_topic ":" "" }}
                                         
-                                        {{- /*  {{ warnf ( print ( printf "[%d] " $count ) $clean_report_topic ) }}  */}}
-
                                         {{ $data_path := print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/report/" $.Params.content_yml " " $clean_report_topic ".json" }}
-
-                                        {{- /*  {{ warnf $data_path }}  */}}
-                                        {{- /*  {{ warnf ( print ( printf "[%d] " $count ) $data_path ) }}  */}}
 
                                         {{ $topic_data := dict }}
 
@@ -236,16 +238,11 @@
                                             {{ warnf "Unable to get remote resource %q" $data_path }}
                                         {{ end }}
 
-                                        {{- /*  {{- $topic_data := ( resources.GetRemote $data_path ) | transform.Unmarshal -}}  */}}
-                                        {{- /*  {{- $topic_data := getJSON $data_path -}}  */}}
-
                                         {{- /*  filter by neighborhood  */}}
 
                                         {{- /*  length = number of indicators in this report topic  */}}
 
                                         {{- $neighborhood_topic_data := where $topic_data "neighborhood" $.Params.neighborhood -}}
-
-                                        {{- /*  {{ warnf ( $neighborhood_topic_data | jsonify | print ) }}  */}}
 
                                         {{- /*  range through indicators to build this topic  */}}
                                         
@@ -260,8 +257,6 @@
                                         {{- end -}}
 
                                         {{ $zip_codes =  index $neighborhood_topic_data 0 "zip_code" -}}
-                                        
-                                        {{- /*  {{ warnf ( $zip_codes | print ) }}  */}}
                                     
                                     </div>
                                     <!-- .container -->
@@ -300,7 +295,8 @@
 
                     <nav role="navigation">
                         <div class="">
-                            {{- partial "location_sub_nav" (dict  "neighborhood" $.Params.neighborhood  "report" .File.BaseFileName) -}}
+
+                            {{- partial "location_sub_nav" (dict  "neighborhood_dir" $neighborhood_dir  "report_filename" $report_filename) -}}
                         </div>
                     </nav>
 
@@ -332,8 +328,6 @@
 
         let arqTable;
         let downloadLoc = {{ ( print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/viz/" $.Params.content_yml ".json" ) }}
-
-        {{- /*  {{ warnf ( relURL ( print "neighborhood-reports/data/viz/" $.Params.content_yml ".json" ) ) }}  */}}
 
         // loading report-level CSV data
 
@@ -484,7 +478,6 @@ aria-hidden="true">
     </div>
 </div>
 
-{{- /*  {{- end -}}  */}}
 
 {{- $js := resources.Get "js/uhflist.js" -}}
 {{ $secureJS := $js | resources.Fingerprint "sha512" }}
