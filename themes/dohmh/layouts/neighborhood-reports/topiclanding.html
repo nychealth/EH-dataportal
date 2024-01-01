@@ -259,9 +259,10 @@ neighborhoods.forEach(function (neighborhood) {
 });
 
 function showNeighborhoods() {
-  // console.log('showing neighborhoods...')
-  document.getElementById('showNeighbs').classList.remove('hide')
-  document.getElementById('showNeighbs').classList.add('show')
+
+    document.getElementById('showNeighbs').classList.toggle('hide')
+    document.getElementById('showNeighbs').classList.toggle('show')
+
   }
 
 </script>
