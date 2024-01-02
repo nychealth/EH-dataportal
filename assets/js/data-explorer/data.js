@@ -746,7 +746,6 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     // get available geos for primary measure (excluding citywide and boro)
 
     const primaryMeasureGeos = primaryMeasureMetadata[0]?.AvailableGeoTypes
-        .map(g => g.GeoType)
         .filter(g => !/Citywide|Borough/.test(g))
 
     // console.log("primaryMeasureGeos", primaryMeasureGeos);
@@ -786,12 +785,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     // get avilable geos for secondary measure (excluding citywide and boro)
 
-    // const secondaryMeasureGeos = secondaryMeasureMetadata[0]?.VisOptions[0].Table
-    //     .map(g => g.GeoType)
-    //     .filter(g => !/Citywide|Borough/.test(g))
-
     const secondaryMeasureGeos = secondaryMeasureMetadata[0]?.AvailableGeoTypes
-        .map(g => g.GeoType)
         .filter(g => !/Citywide|Borough/.test(g))
 
     // console.log("secondaryMeasureGeos [createJoinedLinksData]", secondaryMeasureGeos);
