@@ -53,7 +53,7 @@ let defaultTrendSources;
 let defaultMapMetadata = [];
 let defaultMapAbout;
 let defaultMapSources;
-let defaultPrimaryMeasureMetadata = [];
+let defaultPrimaryLinksMeasureMetadata = [];
 let defaultSecondaryMeasureMetadata;
 // let defaultLinkMeasureTimes = [];
 let defaultLinksAbout;
@@ -100,6 +100,7 @@ let aqTrendTimesGeos;
 let mapMeasures = [];
 let trendMeasures = [];
 let linksMeasures = [];
+let disparities = [];
 
 let tabTable;
 let tabMap;
