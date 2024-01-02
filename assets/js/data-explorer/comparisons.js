@@ -82,7 +82,7 @@ const renderComparisonsChart = (
 
     if (compName[0] === "Boroughs") {
 
-        // ----- by boros: 1 indicator, 1 measure, 5 boros -------------------------------------------------- //
+        // ----- by boros: 1 indicator, 1 measure, 5 boros --------------------------------------------------- //
 
         // console.log("boros");
 
@@ -104,7 +104,7 @@ const renderComparisonsChart = (
 
     } else if (compIndicatorLabel.length == 1) {
 
-        // ----- by measure: 1 indicator, 2+ measures, 1 citywide -------------------------------------------------- //
+        // ----- by measure: 1 indicator, 2+ measures, 1 citywide --------------------------------------------------- //
 
         // console.log("1 indicator");
 
@@ -148,7 +148,7 @@ const renderComparisonsChart = (
 
     } else if (compMeasurementType.length == 1) {
 
-        // ----- by indicator: 2+ indicators, 1 measure, 1 citywide -------------------------------------------------- //
+        // ----- by indicator: 2+ indicators, 1 measure, 1 citywide --------------------------------------------------- //
 
         // console.log("1 measure");
 
@@ -190,7 +190,7 @@ const renderComparisonsChart = (
 
     } else if (compMeasurementType.length > 1 && compIndicatorLabel.length > 1) {
         
-        // ----- by combo: 2+ indicators, 2+ measures, 1 citywide -------------------------------------------------- //
+        // ----- by combo: 2+ indicators, 2+ measures, 1 citywide --------------------------------------------------- //
 
         // console.log("> 1 measure & indicator");
 
