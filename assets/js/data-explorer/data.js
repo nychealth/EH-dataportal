@@ -737,18 +737,18 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     // get metadata for the selected primary measure, assign to global variable
     // indicatorMeasures created in loadIndicator
 
-    let primaryMeasureMetadata = linksMeasures.filter(
+    let primaryMeasureMetadata = indicatorMeasures.filter(
         measure => measure.MeasureID === primaryMeasureId
     )
 
-    // console.log("primaryMeasureMetadata", primaryMeasureMetadata);
+    console.log("primaryMeasureMetadata", primaryMeasureMetadata);
 
     // get available geos for primary measure (excluding citywide and boro)
 
     const primaryMeasureGeos = primaryMeasureMetadata[0]?.AvailableGeoTypes
         .filter(g => !/Citywide|Borough/.test(g))
 
-    // console.log("primaryMeasureGeos", primaryMeasureGeos);
+    console.log("primaryMeasureGeos", primaryMeasureGeos);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // secondary measure metadata
@@ -798,7 +798,6 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     // ==== times ==== //
 
     // get available time periods for secondary measure
-
 
     // console.log("aqSecondaryMeasureTimes");
     // aqSecondaryMeasureTimes.print(50)
