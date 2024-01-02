@@ -252,7 +252,7 @@ const updateMapData = (e) => {
 
     console.log("* updateMapData");
 
-    // ----- handle selection -------------------------------------------------- //
+    // ----- handle selection --------------------------------------------------- //
 
     let measureId;
     let time;
@@ -343,7 +343,7 @@ const updateMapData = (e) => {
     // console.log("time", time);
 
 
-    // ----- get metatadata for selected measure -------------------------------------------------- //
+    // ----- get metatadata for selected measure --------------------------------------------------- //
 
     selectedMapMetadata = mapMeasures.filter(m => m.MeasureID == measureId);
     
@@ -352,7 +352,7 @@ const updateMapData = (e) => {
     const sources         = selectedMapMetadata[0].Sources;
 
 
-    // ----- set measure info boxes -------------------------------------------------- //
+    // ----- set measure info boxes --------------------------------------------------- //
 
     // "indicatorName" is set in loadIndicator
 
@@ -369,7 +369,7 @@ const updateMapData = (e) => {
     renderAboutSources(selectedMapAbout, selectedMapSources);
 
 
-    // ----- create dataset -------------------------------------------------- //
+    // ----- create dataset --------------------------------------------------- //
 
     // filter map data using selected measure and time
 
@@ -383,7 +383,7 @@ const updateMapData = (e) => {
     // console.log("filteredMapData [updateMapData]", filteredMapData);
 
 
-    // ----- format dropdowns -------------------------------------------------- //
+    // ----- format dropdowns --------------------------------------------------- //
 
     // set this element as active & selected
 
@@ -395,7 +395,7 @@ const updateMapData = (e) => {
     handleMapTimeDropdown(measureId, geo)
     handleMapGeoDropdown(measureId, time)
     
-    // ----- render the map -------------------------------------------------- //
+    // ----- render the map --------------------------------------------------- //
 
     renderMap(filteredMapData, selectedMapMetadata);
 
@@ -413,7 +413,7 @@ const updateTrendData = (e) => {
 
     console.log("* updateTrendData");
 
-    // ----- handle selection -------------------------------------------------- //
+    // ----- handle selection --------------------------------------------------- //
 
     // get meaasureId of selected dropdown element
 
@@ -433,7 +433,7 @@ const updateTrendData = (e) => {
     $(e.target).addClass("active");
     $(e.target).attr('aria-selected', true);
 
-    // ----- get metatadata for selected measure -------------------------------------------------- //
+    // ----- get metatadata for selected measure --------------------------------------------------- //
 
     // trendMeasures is created by renderMeasures, which evals before this would be called
     let selectedTrendMetadata = trendMeasures.filter(m => m.MeasureID == measureId);
@@ -448,7 +448,7 @@ const updateTrendData = (e) => {
             ComparisonName: aq.escape('Boroughs')
         })
 
-    // ----- set measure info boxes -------------------------------------------------- //
+    // ----- set measure info boxes --------------------------------------------------- //
 
     selectedTrendAbout =
         `<h6>${indicatorName} - ${measurementType}</h6>
@@ -463,7 +463,7 @@ const updateTrendData = (e) => {
     renderAboutSources(selectedTrendAbout, selectedTrendSources);
 
 
-    // ----- create dataset -------------------------------------------------- //
+    // ----- create dataset --------------------------------------------------- //
 
     // created filtered trend data, to be passed to render function
 
@@ -473,7 +473,7 @@ const updateTrendData = (e) => {
     // console.log("filteredTrendData [updateTrendData]", filteredTrendData);
 
 
-    // ----- render the chart -------------------------------------------------- //
+    // ----- render the chart --------------------------------------------------- //
 
     // chart only the annual average for the following measureIds:
     // 365 - PM2.5 (Fine particles), Mean
@@ -531,7 +531,7 @@ const updateTrendComparisonsData = (e) => {
 
     console.log("* updateTrendComparisonsData");
 
-    // ----- handle selection -------------------------------------------------- //
+    // ----- handle selection --------------------------------------------------- //
 
     // get meaasureId of selected dropdown element
 
@@ -554,7 +554,7 @@ const updateTrendComparisonsData = (e) => {
     $(e.target).attr('aria-selected', true);
 
 
-    // ----- set measure info boxes -------------------------------------------------- //
+    // ----- set measure info boxes --------------------------------------------------- //
 
     // reset info boxes
 
@@ -579,7 +579,7 @@ const updateTrendComparisonsData = (e) => {
     renderAboutSources(selectedComparisonAbout, selectedComparisonSources);
 
 
-    // ----- create dataset -------------------------------------------------- //
+    // ----- create dataset --------------------------------------------------- //
 
     // keep just the clicked comparison
 
@@ -623,7 +623,7 @@ const updateTrendComparisonsData = (e) => {
     // aqFilteredComparisonsData.print()
 
 
-    // ----- render the chart -------------------------------------------------- //
+    // ----- render the chart --------------------------------------------------- //
 
     renderComparisonsChart(
         aqFilteredComparisonsData,
@@ -648,7 +648,7 @@ const updateLinksData = async (e) => {
 
     console.log("* updateLinksData");
 
-    // ---- handle selection -------------------------------------------------- //
+    // ---- handle selection --------------------------------------------------- //
 
     // persistent selection
 
@@ -770,7 +770,7 @@ const updateLinksData = async (e) => {
     const secondarySources = selectedSecondaryMeasureMetadata[0].Sources;
 
 
-    // ----- set measure info boxes -------------------------------------------------- //
+    // ----- set measure info boxes --------------------------------------------------- //
 
     selectedLinksAbout =
         `<h6>${primaryIndicatorName} - ${primaryMeasurementType}</h6>
@@ -789,7 +789,7 @@ const updateLinksData = async (e) => {
     renderAboutSources(selectedLinksAbout, selectedLinksSources);
 
 
-    // ----- render the chart -------------------------------------------------- //
+    // ----- render the chart --------------------------------------------------- //
 
     renderLinksChart(
         joinedLinksDataObjects,
@@ -816,7 +816,7 @@ const updateLinksData = async (e) => {
 
 // ===== time ================================================== //
 
-// ----- add listener on each dropdown item -------------------------------------------------- //
+// ----- add listener on each dropdown item --------------------------------------------------- //
 
 const handleTableTimeFilter = (el) => {
 
@@ -1000,12 +1000,12 @@ const renderMeasures = async () => {
 
     // ----- create dropdowns for table ================================================== //
 
-    // ----- select all -------------------------------------------------- //
+    // ----- select all --------------------------------------------------- //
 
     dropdownTableTimes.innerHTML +=
         `<label class="dropdown-item checkbox-time-all"><input class="largerCheckbox" type="checkbox" name="time" value="all" /> Select all </label>`
 
-    // ----- times -------------------------------------------------- //
+    // ----- times --------------------------------------------------- //
 
     const tableTimes = [...new Set(aqTableTimesGeos.array("TimePeriod"))];
 
@@ -1031,7 +1031,7 @@ const renderMeasures = async () => {
     });
 
 
-    // ----- geo types -------------------------------------------------- //
+    // ----- geo types --------------------------------------------------- //
 
     // create geo dropdown for table (using pretty geotypes, keeping georank order)
 
@@ -1055,7 +1055,7 @@ const renderMeasures = async () => {
 
     // ----- create dropdowns for map ================================================== //
 
-    // ----- geo types -------------------------------------------------- //
+    // ----- geo types --------------------------------------------------- //
 
     // create geo dropdown for table (using pretty geotypes, keeping georank order)
 
@@ -1080,7 +1080,7 @@ const renderMeasures = async () => {
     });
 
 
-    // ----- times -------------------------------------------------- //
+    // ----- times --------------------------------------------------- //
 
     const mapTimes = [... new Set(aqMapTimesGeos.array("TimePeriod"))]
 
@@ -1111,15 +1111,18 @@ const renderMeasures = async () => {
         const map   = aqMapTimesGeos && aqMapTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
         const trend = aqTrendTimesGeos && aqTrendTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
         const links = measure?.VisOptions[0].Links && measure?.VisOptions[0].Links[0].Measures[0].MeasureID;
+        // const links = measure?.VisOptions[0].Links && (measure?.VisOptions[0].Links[0].Measures[0].MeasureID || measure?.VisOptions[0].Links[0].Disparities == 1);
         const comparisons = indicatorComparisonId;
         
         const type  = measure?.MeasurementType;
         const measureId = measure.MeasureID;
 
+        disparities.push(measure.VisOptions[0].Links[0]?.Disparities)
+        
         // console.log("measure", measure.MeasureID, "type", type, "links", links, "map", map, "trend", trend);
 
 
-        // ----- handle map measures -------------------------------------------------- //
+        // ----- handle map measures --------------------------------------------------- //
 
         if (map) {
             
@@ -1133,7 +1136,7 @@ const renderMeasures = async () => {
         }
 
 
-        // ----- handle trend measures -------------------------------------------------- //
+        // ----- handle trend measures --------------------------------------------------- //
 
         if (trend) {
 
@@ -1169,7 +1172,7 @@ const renderMeasures = async () => {
         }
 
 
-        // ----- handle links measures -------------------------------------------------- //
+        // ----- handle links measures --------------------------------------------------- //
 
         if (links) {
 
@@ -1212,6 +1215,8 @@ const renderMeasures = async () => {
             }
         }
     });
+
+    console.log("disparities [renderMeasures]", disparities);
 
 
     // ===== handle comparisons viz ================================================== //
@@ -1315,7 +1320,7 @@ const renderMeasures = async () => {
 
         console.log("* showTable");
 
-        // ----- handle tab selection -------------------------------------------------- //
+        // ----- handle tab selection --------------------------------------------------- //
 
         // set hash to summary table
 
@@ -1333,13 +1338,13 @@ const renderMeasures = async () => {
         tabLinks.setAttribute('aria-selected', false);
 
 
-        // ----- set measure info boxes -------------------------------------------------- //
+        // ----- set measure info boxes --------------------------------------------------- //
 
         renderTitleDescription(indicatorShortName, indicatorDesc);
         renderAboutSources(measureAbout, measureSources);
 
 
-        // ----- render the table -------------------------------------------------- //
+        // ----- render the table --------------------------------------------------- //
 
         renderTable();
 
@@ -1358,7 +1363,7 @@ const renderMeasures = async () => {
 
         console.log("* showMap");
 
-        // ----- handle tab selection -------------------------------------------------- //
+        // ----- handle tab selection --------------------------------------------------- //
 
         // set hash to map
 
@@ -1382,7 +1387,7 @@ const renderMeasures = async () => {
             let maxGeoPretty;
 
 
-            // ----- get metatadata for default measure -------------------------------------------------- //
+            // ----- get metatadata for default measure --------------------------------------------------- //
 
             // get default measure id
 
@@ -1391,7 +1396,7 @@ const renderMeasures = async () => {
             let mapTimes = defaultMapMetadata[0].VisOptions[0].Map[0].TimePeriodID
             let mapGeos = defaultMapMetadata[0].VisOptions[0].Map[0].GeoType
 
-            // ----- create dataset -------------------------------------------------- //
+            // ----- create dataset --------------------------------------------------- //
 
             // filter map data using default measure
 
@@ -1405,7 +1410,7 @@ const renderMeasures = async () => {
 
             // console.log("filteredMapData [showMap]", filteredMapData);
 
-            // ----- allow map to persist when changing tabs -------------------------------------------------- //
+            // ----- allow map to persist when changing tabs --------------------------------------------------- //
 
             if (!selectedMapMeasure) {
 
@@ -1415,7 +1420,7 @@ const renderMeasures = async () => {
                 //  after selecting a measure, we don't want to recompute everything. We'll use the
                 //  values created by the update function
 
-                // ----- get metatadata for default measure -------------------------------------------------- //
+                // ----- get metatadata for default measure --------------------------------------------------- //
 
                 // get default measure id
 
@@ -1428,7 +1433,7 @@ const renderMeasures = async () => {
                 const measure = defaultMapMetadata[0].MeasurementType;
 
 
-                // ----- set measure info boxes -------------------------------------------------- //
+                // ----- set measure info boxes --------------------------------------------------- //
 
                 defaultMapAbout   =
                     `<h6>${indicatorName} - ${measure}</h6>
@@ -1444,7 +1449,7 @@ const renderMeasures = async () => {
                 renderAboutSources(defaultMapAbout, defaultMapSources);
 
 
-                // ----- create dataset -------------------------------------------------- //
+                // ----- create dataset --------------------------------------------------- //
 
                 // filter map data using default measure
 
@@ -1497,14 +1502,14 @@ const renderMeasures = async () => {
 
             }
 
-            // ----- format dropdowns -------------------------------------------------- //
+            // ----- format dropdowns --------------------------------------------------- //
 
             // called before renderMap in case it fails, so dropdowns will show available combos
             
             handleMapTimeDropdown(defaultMapMeasureId, maxGeoPretty)
             handleMapGeoDropdown(defaultMapMeasureId, latest_time)
 
-            // ----- render the map -------------------------------------------------- //
+            // ----- render the map --------------------------------------------------- //
 
             // console.log("filteredMapData [showMap 1]", filteredMapData);
 
@@ -1512,7 +1517,7 @@ const renderMeasures = async () => {
 
             updateChartPlotSize();
 
-            // ----- persistent selection -------------------------------------------------- //
+            // ----- persistent selection --------------------------------------------------- //
 
             // remove active class from every list element
 
@@ -1550,11 +1555,11 @@ const renderMeasures = async () => {
 
             // console.log("else [showMap]");
 
-            // ----- set measure info boxes -------------------------------------------------- //
+            // ----- set measure info boxes --------------------------------------------------- //
 
             renderAboutSources(selectedMapAbout, selectedMapSources);
 
-            // ----- get current dropdown values -------------------------------------------------- //
+            // ----- get current dropdown values --------------------------------------------------- //
 
             let time = $('.maptimesbutton.active').attr("data-time")
             let geo = $('.mapgeosbutton.active').attr("data-geo")
@@ -1562,14 +1567,14 @@ const renderMeasures = async () => {
 
             // console.log("*measureId*", measureId, "*geo*", geo, "*time*", time);
 
-            // ----- format dropdowns -------------------------------------------------- //
+            // ----- format dropdowns --------------------------------------------------- //
 
             // called before renderMap in case it fails, so dropdowns will show available combos
             
             handleMapTimeDropdown(measureId, geo)
             handleMapGeoDropdown(measureId, time)
 
-            // ----- render the map -------------------------------------------------- //
+            // ----- render the map --------------------------------------------------- //
 
             // console.log("filteredMapData [showMap 2]", filteredMapData);
 
@@ -1584,7 +1589,7 @@ const renderMeasures = async () => {
 
     // ===== trend ================================================== //
 
-    // ----- handle tab selection -------------------------------------------------- //
+    // ----- handle tab selection --------------------------------------------------- //
 
     showTrend = (e) => {
 
@@ -1636,7 +1641,7 @@ const renderMeasures = async () => {
 
     }
 
-    // ----- show the normal trend chart -------------------------------------------------- //
+    // ----- show the normal trend chart --------------------------------------------------- //
 
     showNormalTrend = (e) => {
 
@@ -1655,7 +1660,7 @@ const renderMeasures = async () => {
 
         const measureIdsSummer = [386];
 
-        // ----- allow chart to persist when changing tabs -------------------------------------------------- //
+        // ----- allow chart to persist when changing tabs --------------------------------------------------- //
 
         // console.log("selectedTrendMeasure", selectedTrendMeasure);
 
@@ -1666,7 +1671,7 @@ const renderMeasures = async () => {
             //  values created by the update function
 
 
-            // ----- get metatadata for default measure -------------------------------------------------- //
+            // ----- get metatadata for default measure --------------------------------------------------- //
 
             const about   = defaultTrendMetadata[0]?.how_calculated;
             const sources = defaultTrendMetadata[0].Sources;
@@ -1683,7 +1688,7 @@ const renderMeasures = async () => {
             // aqDefaultTrendMetadata.print()
 
 
-            // ----- set measure info boxes -------------------------------------------------- //
+            // ----- set measure info boxes --------------------------------------------------- //
 
             defaultTrendAbout =
                 `<h6>${indicatorName} - ${measure}</h6>
@@ -1697,7 +1702,7 @@ const renderMeasures = async () => {
             renderAboutSources(defaultTrendAbout, defaultTrendSources);
 
 
-            // ----- create dataset -------------------------------------------------- //
+            // ----- create dataset --------------------------------------------------- //
 
             const defaultTrendMeasureId = defaultTrendMetadata[0].MeasureID;
 
@@ -1706,7 +1711,7 @@ const renderMeasures = async () => {
 
             // console.log("filteredTrendData [showNormalTrend]", filteredTrendData);
 
-            // ----- render the chart -------------------------------------------------- //
+            // ----- render the chart --------------------------------------------------- //
 
             // using 'aqFilteredTrendData' for all of the datasets allows the "else selected" block to use
             //  this same dataset. It will be whatever was most recently assigned to it.
@@ -1743,7 +1748,7 @@ const renderMeasures = async () => {
             }
 
 
-            // ----- persistent selection -------------------------------------------------- //
+            // ----- persistent selection --------------------------------------------------- //
 
             // remove active class from every list element
             $('.trendbutton').removeClass("active");
@@ -1765,11 +1770,11 @@ const renderMeasures = async () => {
 
             // if there was a chart already, restore it
 
-            // ----- set measure info boxes -------------------------------------------------- //
+            // ----- set measure info boxes --------------------------------------------------- //
 
             renderAboutSources(selectedTrendAbout, selectedTrendSources);
 
-            // ----- render the chart -------------------------------------------------- //
+            // ----- render the chart --------------------------------------------------- //
             
             aqFilteredTrendData = aq.from(filteredTrendData);
 
@@ -1785,20 +1790,20 @@ const renderMeasures = async () => {
     };
     
 
-    // ----- show the trend comparisons chart -------------------------------------------------- //
+    // ----- show the trend comparisons chart --------------------------------------------------- //
 
     showTrendComparisons = (e) => {
 
         console.log("** showTrendComparisons");
         // console.log("selectedComparison", selectedComparison);
 
-        // ----- allow chart to persist when changing tabs -------------------------------------------------- //
+        // ----- allow chart to persist when changing tabs --------------------------------------------------- //
 
         if (!selectedComparison) {
 
             // console.log("comparisonsMetadata [showTrendComparisons]", comparisonsMetadata);
 
-            // ----- handle selection -------------------------------------------------- //
+            // ----- handle selection --------------------------------------------------- //
 
             // get first comparisonId
 
@@ -1824,7 +1829,7 @@ const renderMeasures = async () => {
             $(trendMeasureEl).attr('aria-selected', true);
 
 
-            // ----- set measure info boxes -------------------------------------------------- //
+            // ----- set measure info boxes --------------------------------------------------- //
 
             // reset info boxes
 
@@ -1848,7 +1853,7 @@ const renderMeasures = async () => {
             renderAboutSources(selectedComparisonAbout, selectedComparisonSources);
 
 
-            // ----- create dataset -------------------------------------------------- //
+            // ----- create dataset --------------------------------------------------- //
 
             // metadata
 
@@ -1897,7 +1902,7 @@ const renderMeasures = async () => {
             // aqFilteredComparisonsData.print()
 
 
-            // ----- render the chart -------------------------------------------------- //
+            // ----- render the chart --------------------------------------------------- //
 
             renderComparisonsChart(
                 aqFilteredComparisonsData,
@@ -1910,11 +1915,11 @@ const renderMeasures = async () => {
 
             // if there was a chart already, restore it
 
-            // ----- set measure info boxes -------------------------------------------------- //
+            // ----- set measure info boxes --------------------------------------------------- //
 
             renderAboutSources(selectedComparisonAbout, selectedComparisonSources);
 
-            // ----- render the chart -------------------------------------------------- //
+            // ----- render the chart --------------------------------------------------- //
 
             renderComparisonsChart(
                 aqFilteredComparisonsData,
@@ -1939,7 +1944,7 @@ const renderMeasures = async () => {
 
         console.log("* showLinks");
 
-        // ----- handle tab selection -------------------------------------------------- //
+        // ----- handle tab selection --------------------------------------------------- //
 
         // set hash to links
 
@@ -2213,6 +2218,8 @@ const renderMeasures = async () => {
     // if there's no data to display for a tab, disable it. If you're on that tab when you switch to
     //  a new indicator (which calls renderMeasures), then switch to the summary table
 
+    // ===== map ================================================== //
+
     if (mapMeasures.length === 0) {
 
         if (tabMapSelected && window.location.hash === '#display=map') {
@@ -2230,6 +2237,8 @@ const renderMeasures = async () => {
 
         enableTab(tabMap);
     }
+
+    // ===== trend ================================================== //
 
     // if there's no trend data or only 1 time period in all of the measures, don't show the tab
 
