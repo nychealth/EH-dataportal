@@ -761,7 +761,7 @@ const updateLinksData = async (e) => {
 
     // ----- handle disparities button --------------------------------------------------- //
 
-    if (disparities.some(d => d == 1)) {
+    if (disparitiesMeasures.length > 0) {
 
         // - - - has disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
@@ -1095,17 +1095,15 @@ const renderMeasures = async () => {
         // check to see if the different viz types exist for this measure
         // if a viz type exists, the "aq[type]TimesGeos" arquero table for the measure should have > 0 rows
 
-        const map   = aqMapTimesGeos && aqMapTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
-        const trend = aqTrendTimesGeos && aqTrendTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
-        const links = measure?.VisOptions[0].Links && measure?.VisOptions[0].Links[0].Measures[0].MeasureID;
-        // const links = measure?.VisOptions[0].Links && (measure?.VisOptions[0].Links[0].Measures[0].MeasureID || measure?.VisOptions[0].Links[0].Disparities == 1);
+        const map         = aqMapTimesGeos   && aqMapTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
+        const trend       = aqTrendTimesGeos && aqTrendTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
+        const links       = measure.VisOptions[0].Links && measure.VisOptions[0].Links[0].Measures[0].MeasureID;
+        const disparities = measure.VisOptions[0].Links[0].Disparities == 1
         const comparisons = indicatorComparisonId;
         
-        const type  = measure?.MeasurementType;
+        const type  = measure.MeasurementType;
         const measureId = measure.MeasureID;
 
-        disparities.push(measure.VisOptions[0].Links[0]?.Disparities)
-        
         // console.log("measure", measure.MeasureID, "type", type, "links", links, "map", map, "trend", trend);
 
 
@@ -1201,9 +1199,20 @@ const renderMeasures = async () => {
                 });
             }
         }
+
+
+        // ----- handle disparities measures --------------------------------------------------- //
+
+        if (disparities) {
+
+            disparitiesMeasures.push(measure)
+
+        }
+        
+
     });
 
-    console.log("disparities [renderMeasures]", disparities);
+    console.log("disparitiesMeasures [renderMeasures]", disparitiesMeasures);
 
 
     // ===== handle comparisons viz ================================================== //
@@ -1956,7 +1965,7 @@ const renderMeasures = async () => {
 
             // ----- no links --------------------------------------------------- //
 
-            if (disparities.some(d => d == 1)) {
+            if (disparitiesMeasures.length > 0) {
                 
                 // - - - has disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
@@ -1983,10 +1992,6 @@ const renderMeasures = async () => {
                     renderDisparitiesChart(defaultPrimaryLinksMeasureMetadata, 221)
 
                 }
-
-                // enable the links tab to enable disparities
-
-                enableTab(tabLinks);
 
             } else {
                 // conditionals at the end of `renderMeasures` will (should) handle this case
@@ -2099,7 +2104,7 @@ const renderMeasures = async () => {
 
                 // - - - handle disparities button - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-                if (disparities.some(d => d == 1)) {
+                if (disparitiesMeasures.length > 0) {
 
                     // >>>> has disparities <<<<
 
@@ -2253,7 +2258,7 @@ const renderMeasures = async () => {
         enableTab(tabTrend);
     }
 
-    console.log("not some disp [renderMeasures]", !disparities.some(d => d == 1));
+    console.log("not some disp [renderMeasures]", !disparitiesMeasures.length > 0);
 
 
     // ===== links (and disparities) ================================================== //
@@ -2264,7 +2269,7 @@ const renderMeasures = async () => {
 
         // ----- no links --------------------------------------------------- //
 
-        if (disparities.some(d => d == 1)) {
+        if (disparitiesMeasures.length > 0) {
             
             // - - - has disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
@@ -2330,7 +2335,7 @@ const renderMeasures = async () => {
         enableTab(tabLinks);
 
             
-        if (disparities.some(d => d == 1)) {
+        if (disparities.length > 0) {
 
             // - - - has disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
 

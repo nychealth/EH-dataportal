@@ -100,7 +100,7 @@ let aqTrendTimesGeos;
 let mapMeasures = [];
 let trendMeasures = [];
 let linksMeasures = [];
-let disparities = [];
+let disparitiesMeasures = [];
 
 let tabTable;
 let tabMap;
