@@ -149,7 +149,7 @@ const setDefaultTrendMeasure = (visArray) => {
 
 const setDefaultLinksMeasure = async (visArray) => {
 
-    // modified so that defaultPrimaryMeasureMetadata is explicitly set, instead of by reference
+    // modified so that defaultPrimaryLinksMeasureMetadata is explicitly set, instead of by reference
     //  through defaultArray
 
     let defaultArray = [];
@@ -214,7 +214,9 @@ const setDefaultLinksMeasure = async (visArray) => {
         const defaultSecondaryMeasureId = defaultArray[0].VisOptions[0].Links[0].Measures[0]?.MeasureID;
 
         // assigning to global object
-        defaultPrimaryMeasureMetadata = defaultArray;
+        defaultPrimaryLinksMeasureMetadata = defaultArray;
+
+        console.log("defaultPrimaryLinksMeasureMetadata [setDefaultLinksMeasure]", defaultPrimaryLinksMeasureMetadata);
 
         // using await here because createJoinedLinksData calls fetch, and we need that data
 
@@ -665,16 +667,8 @@ const updateLinksData = async (e) => {
     const primaryMeasureId = parseInt(e.target.dataset.primaryMeasureId);
     const secondaryMeasureId = parseInt(e.target.dataset.secondaryMeasureId);
 
-    // ----- primary measure metadata -------------------------------------------------- //
 
-    // get metadata for the selected primary measure, assign to global variable
-    // indicatorMeasures created in loadIndicator
-
-    let primaryMeasureMetadata = linksMeasures.filter(
-        measure => measure.MeasureID === primaryMeasureId
-    )
-
-    // ----- create links data -------------------------------------------------- //
+    // ----- create links data --------------------------------------------------- //
 
     // call createJoinedLinksData, which creates joinedLinksDataObjects
 
@@ -701,48 +695,7 @@ const updateLinksData = async (e) => {
     // console.log(">> joinedLinksDataObjects [updateLinksData]", joinedLinksDataObjects);
 
 
-    // ----- handle disparities button -------------------------------------------------- //
-
-    // switch on/off the disparities button
-
-    const disparities =
-        selectedPrimaryMeasureMetadata[0].VisOptions[0].Links &&
-        selectedPrimaryMeasureMetadata[0].VisOptions[0].Links[0]?.Disparities;
-
-    // console.log(">>> selectedPrimaryMeasureMetadata", selectedPrimaryMeasureMetadata);
-
-    // console.log(">>> MeasureName", selectedPrimaryMeasureMetadata[0].MeasureName);
-
-    // hide or how disparities button
-
-    if (disparities == 0) {
-
-        // if disparities is disabled, hide the button
-
-        btnToggleDisparities.style.display = "none";
-
-        // remove click listeners to button that calls renderDisparitiesChart
-
-        // $(btnToggleDisparities).off()
-
-    } else if (disparities == 1) {
-
-        // remove event listener added when/if button was clicked
-
-        // btnToggleDisparities.innerText = "Show Disparities";
-        // $(btnToggleDisparities).off()
-
-        // make sure that the "links" button is active by default
-        $("#show-links").addClass("active");
-        $("#show-disparities").removeClass("active");
-
-        // if disparities is enabled, show the button
-        btnToggleDisparities.style.display = "inline";
-
-
-    }
-
-    // ----- get indicator name for secondary measure -------------------------------------------------- //
+    // ----- get indicator name for secondary measure --------------------------------------------------- //
 
     // for all indicators, get the ones that are linked to the current indicator
 
@@ -804,6 +757,40 @@ const updateLinksData = async (e) => {
     // allow links chart to persist when changing tabs
 
     selectedLinksMeasure = true;
+
+
+    // ----- handle disparities button --------------------------------------------------- //
+
+    if (disparities.some(d => d == 1)) {
+
+        // - - - has disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+        console.log("has disparities");
+
+        // make sure that the "links" button is active by default
+
+        $("#show-links").addClass("active");
+        $("#show-disparities").removeClass("active");
+
+        // if disparities is enabled, show the button
+
+        btnToggleDisparities.style.display = "inline";
+
+    } else {
+
+        // - - - no disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+        console.log("no disparities");
+
+        // if disparities is disabled, hide the button
+
+        btnToggleDisparities.style.display = "none";
+
+        // remove click listeners to button that calls renderDisparitiesChart
+
+        // $(btnToggleDisparities).off()
+
+    }
 
 }
 
@@ -1963,211 +1950,207 @@ const renderMeasures = async () => {
         $("#dropdownLinksMeasures").attr('aria-disabled', false);
 
 
-        // ----- allow chart to persist when changing tabs -------------------------------------------------- //
+        // conditionals based on if any measures have links or not
 
-        if (!selectedLinksMeasure) {
+        if (linksMeasures.length === 0) {
 
-            // console.log(">>> not selected");
+            // ----- no links --------------------------------------------------- //
 
-            // this is all inside the conditional, because if a user clicks on this tab again
-            //  after selecting a measure, we don't want to recompute everything. We'll use the
-            //  values created by the update function
+            if (disparities.some(d => d == 1)) {
+                
+                // - - - has disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-
-            // ----- handle disparities button -------------------------------------------------- //
-
-            // switch on/off the disparities button
-
-            const disparities =
-                defaultPrimaryMeasureMetadata[0].VisOptions[0].Links &&
-                defaultPrimaryMeasureMetadata[0].VisOptions[0].Links[0]?.Disparities;
-
-            // console.log(">>> defaultPrimaryMeasureMetadata", defaultPrimaryMeasureMetadata);
-
-            // console.log(">>> MeasureName", defaultPrimaryMeasureMetadata[0].MeasureName);
-
-            // hide or how disparities button
-
-            if (disparities == 0) {
-
-                // if disparities is disabled, hide the button
-
-                btnToggleDisparities.style.display = "none";
-
-                // remove click listeners to button that calls renderDisparitiesChart
-
-                // $(btnToggleDisparities).off()
-
-            } else if (disparities == 1) {
+                console.log("has disparities");
 
                 // remove event listener added when/if button was clicked
 
                 // btnToggleDisparities.innerText = "Show Disparities";
                 // $(btnToggleDisparities).off()
 
-                // make sure that the "links" button is active by default
-                $("#show-links").addClass("active");
-                $("#show-disparities").removeClass("active");
+                // make disparities active
+                $("#show-links").removeClass("active");
+                $("#show-disparities").addClass("active");
 
                 // if disparities is enabled, show the button
                 btnToggleDisparities.style.display = "inline";
 
+                // if the tab is selected, show disparities
 
+                if (tabLinksSelected && window.location.hash === '#display=links') {
+
+                    // MeasureID: 221 = neighborhood poverty percent
+
+                    renderDisparitiesChart(defaultPrimaryLinksMeasureMetadata, 221)
+
+                }
+
+                // enable the links tab to enable disparities
+
+                enableTab(tabLinks);
+
+            } else {
+                // conditionals at the end of `renderMeasures` will (should) handle this case
             }
-
-            // ----- get metatadata for default measure -------------------------------------------------- //
-
-            // get first linked measure by default
-
-            const secondaryMeasureId = defaultPrimaryMeasureMetadata[0]?.VisOptions[0].Links[0].Measures[0].MeasureID;
-
-            // console.log("secondaryMeasureId", secondaryMeasureId);
-
-            // get linked indicator's metadata
-
-            const linksSecondaryIndicator = indicators.filter(indicator =>
-                indicator.Measures.some(measure =>
-                    measure.MeasureID === secondaryMeasureId
-                )
-            )
-
-            // use linked indicator's metadata to get linked measure's metadata
-
-            defaultSecondaryMeasureMetadata = linksSecondaryIndicator[0]?.Measures?.filter(m =>
-                m.MeasureID === secondaryMeasureId
-            )
-
-            primaryIndicatorName   = indicatorName;
-            secondaryIndicatorName = linksSecondaryIndicator[0]?.IndicatorName;
-
-            // get measure metadata
-
-            const primaryMeasure         = defaultPrimaryMeasureMetadata[0]?.MeasurementType;
-            const primaryAbout           = defaultPrimaryMeasureMetadata[0]?.how_calculated;
-            const primarySources         = defaultPrimaryMeasureMetadata[0]?.Sources;
-
-            const secondaryMeasure       = defaultSecondaryMeasureMetadata[0]?.MeasurementType;
-            const secondaryAbout         = defaultSecondaryMeasureMetadata[0]?.how_calculated;
-            const secondarySources       = defaultSecondaryMeasureMetadata[0]?.Sources;
-
-
-            // ----- set measure info boxes -------------------------------------------------- //
-
-            // creating indicator & measure info
-
-            defaultLinksAbout =
-                `<h6>${primaryIndicatorName} - ${primaryMeasure}</h6>
-                <p>${primaryAbout}</p>
-                <h6>${secondaryIndicatorName} - ${secondaryMeasure}</h6>
-                <p>${secondaryAbout}</p>`;
-
-            defaultLinksSources =
-                `<h6>${primaryIndicatorName} - ${primaryMeasure}</h6>
-                <p>${primarySources}</p>
-                <h6>${secondaryIndicatorName} - ${secondaryMeasure}</h6>
-                <p>${secondarySources}</p>`;
-
-
-            // ----- create dataset -------------------------------------------------- //
-
-            renderTitleDescription(indicatorShortName, indicatorDesc);
-            renderAboutSources(defaultLinksAbout, defaultLinksSources);
-
-
-            // ----- render the chart -------------------------------------------------- //
-
-            // joined data and metadata created in createJoinedLinksData called fron setDefaultLinksMeasure
-
-            // console.log("defaultSecondaryMeasureMetadata [showLinks 1]", defaultSecondaryMeasureMetadata);
-
-            renderLinksChart(
-                joinedLinksDataObjects,
-                defaultPrimaryMeasureMetadata,
-                defaultSecondaryMeasureMetadata,
-                primaryIndicatorName,
-                secondaryIndicatorName
-            );
-
-            updateChartPlotSize();
-
-
-            // ----- persistent selection -------------------------------------------------- //
-
-            // remove active class from every list element
-            $('.linksbutton').removeClass("active");
-            $('.linksbutton').attr('aria-selected', false);
-
-            // set this element as active & selected
-
-            let linksMeasureEl = document.querySelector(`.linksbutton[data-secondary-measure-id='${secondaryMeasureId}']`)
-
-            $(linksMeasureEl).addClass("active");
-            $(linksMeasureEl).attr('aria-selected', true);
-
 
         } else {
 
-            // console.log(">>> selected");
+            // ----- has links --------------------------------------------------- //
 
-            // ----- handle disparities button -------------------------------------------------- //
+            if (!selectedLinksMeasure) {
 
-            // switch on/off the disparities button
+                // - - - allow chart to persist when changing tabs - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-            const disparities =
-                selectedPrimaryMeasureMetadata[0].VisOptions[0].Links &&
-                selectedPrimaryMeasureMetadata[0].VisOptions[0].Links[0]?.Disparities;
+                // console.log(">>> not selected");
 
-            // console.log(">>> selectedPrimaryMeasureMetadata", selectedPrimaryMeasureMetadata);
-
-            // console.log(">>> MeasureName", selectedPrimaryMeasureMetadata[0].MeasureName);
+                // this is all inside the conditional, because if a user clicks on this tab again
+                //  after selecting a measure, we don't want to recompute everything. We'll use the
+                //  values created by the update function
 
 
-            // hide or how disparities button
+                // ----- get metatadata for default measure - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-            if (disparities == 0) {
+                // get first linked measure by default
 
-                // if disparities is disabled, hide the button
+                const secondaryMeasureId = defaultPrimaryLinksMeasureMetadata[0]?.VisOptions[0].Links[0].Measures[0].MeasureID;
 
-                btnToggleDisparities.style.display = "none";
+                // console.log("secondaryMeasureId", secondaryMeasureId);
 
-                // remove click listeners to button that calls renderDisparitiesChart
+                // get linked indicator's metadata
 
-                // $(btnToggleDisparities).off()
+                const linksSecondaryIndicator = indicators.filter(indicator =>
+                    indicator.Measures.some(measure =>
+                        measure.MeasureID === secondaryMeasureId
+                    )
+                )
 
-            } else if (disparities == 1) {
+                // use linked indicator's metadata to get linked measure's metadata
 
-                // remove event listener added when/if button was clicked
+                defaultSecondaryMeasureMetadata = linksSecondaryIndicator[0]?.Measures?.filter(m =>
+                    m.MeasureID === secondaryMeasureId
+                )
 
-                // btnToggleDisparities.innerText = "Show Disparities";
-                // $(btnToggleDisparities).off()
+                primaryIndicatorName   = indicatorName;
+                secondaryIndicatorName = linksSecondaryIndicator[0]?.IndicatorName;
 
-                // make sure that the "links" button is active by default
-                $("#show-links").addClass("active");
-                $("#show-disparities").removeClass("active");
+                // get measure metadata
 
-                // if disparities is enabled, show the button
-                btnToggleDisparities.style.display = "inline";
+                const primaryMeasure         = defaultPrimaryLinksMeasureMetadata[0]?.MeasurementType;
+                const primaryAbout           = defaultPrimaryLinksMeasureMetadata[0]?.how_calculated;
+                const primarySources         = defaultPrimaryLinksMeasureMetadata[0]?.Sources;
+
+                const secondaryMeasure       = defaultSecondaryMeasureMetadata[0]?.MeasurementType;
+                const secondaryAbout         = defaultSecondaryMeasureMetadata[0]?.how_calculated;
+                const secondarySources       = defaultSecondaryMeasureMetadata[0]?.Sources;
 
 
+                // ----- set measure info boxes - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+                // creating indicator & measure info
+
+                defaultLinksAbout =
+                    `<h6>${primaryIndicatorName} - ${primaryMeasure}</h6>
+                    <p>${primaryAbout}</p>
+                    <h6>${secondaryIndicatorName} - ${secondaryMeasure}</h6>
+                    <p>${secondaryAbout}</p>`;
+
+                defaultLinksSources =
+                    `<h6>${primaryIndicatorName} - ${primaryMeasure}</h6>
+                    <p>${primarySources}</p>
+                    <h6>${secondaryIndicatorName} - ${secondaryMeasure}</h6>
+                    <p>${secondarySources}</p>`;
+
+
+                // ----- create dataset - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+                renderTitleDescription(indicatorShortName, indicatorDesc);
+                renderAboutSources(defaultLinksAbout, defaultLinksSources);
+
+
+                // ----- render the chart - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+                // joined data and metadata created in createJoinedLinksData called fron setDefaultLinksMeasure
+
+                // console.log("defaultSecondaryMeasureMetadata [showLinks 1]", defaultSecondaryMeasureMetadata);
+
+                renderLinksChart(
+                    joinedLinksDataObjects,
+                    defaultPrimaryLinksMeasureMetadata,
+                    defaultSecondaryMeasureMetadata,
+                    primaryIndicatorName,
+                    secondaryIndicatorName
+                );
+
+                updateChartPlotSize();
+
+
+                // ----- persistent selection - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+                // remove active class from every list element
+                $('.linksbutton').removeClass("active");
+                $('.linksbutton').attr('aria-selected', false);
+
+                // set this element as active & selected
+
+                let linksMeasureEl = document.querySelector(`.linksbutton[data-secondary-measure-id='${secondaryMeasureId}']`)
+
+                $(linksMeasureEl).addClass("active");
+                $(linksMeasureEl).attr('aria-selected', true);
+
+
+                // - - - handle disparities button - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+                if (disparities.some(d => d == 1)) {
+
+                    // >>>> has disparities <<<<
+
+                    console.log("has disparities");
+
+                    // make sure that the "links" button is active by default
+
+                    $("#show-links").addClass("active");
+                    $("#show-disparities").removeClass("active");
+
+                    // if disparities is enabled, show the button
+
+                    btnToggleDisparities.style.display = "inline";
+
+                } else {
+
+                    // >>>> no disparities <<<<
+
+                    console.log("no disparities");
+
+                    // if disparities is disabled, hide the button
+
+                    btnToggleDisparities.style.display = "none";
+
+                    // remove click listeners to button that calls renderDisparitiesChart
+
+                    // $(btnToggleDisparities).off()
+
+                }
+
+
+            } else {
+
+                // if there was a chart already, restore it
+
+                // ----- set measure info boxes - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+                renderAboutSources(selectedLinksAbout, selectedLinksSources);
+
+                // ----- render the chart - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+                renderLinksChart(
+                    joinedLinksDataObjects,
+                    selectedPrimaryMeasureMetadata,
+                    selectedSecondaryMeasureMetadata,
+                    primaryIndicatorName,
+                    secondaryIndicatorName
+                );
+
+                updateChartPlotSize();
             }
-
-            // if there was a chart already, restore it
-
-            // ----- set measure info boxes -------------------------------------------------- //
-
-            renderAboutSources(selectedLinksAbout, selectedLinksSources);
-
-            // ----- render the chart -------------------------------------------------- //
-
-            renderLinksChart(
-                joinedLinksDataObjects,
-                selectedPrimaryMeasureMetadata,
-                selectedSecondaryMeasureMetadata,
-                primaryIndicatorName,
-                secondaryIndicatorName
-            );
-
-            updateChartPlotSize();
         }
 
 
@@ -2181,7 +2164,9 @@ const renderMeasures = async () => {
 
             if (e.target && e.target.matches("#show-disparities") && !e.target.classList.contains("active")) {
 
-                renderDisparitiesChart(defaultPrimaryMeasureMetadata, 221)
+                // MeasureID: 221 = neighborhood poverty percent
+
+                renderDisparitiesChart(defaultPrimaryLinksMeasureMetadata, 221)
 
             } else if (e.target && e.target.matches("#show-links") && !e.target.classList.contains("active")) {
 
@@ -2268,23 +2253,114 @@ const renderMeasures = async () => {
         enableTab(tabTrend);
     }
 
+    console.log("not some disp [renderMeasures]", !disparities.some(d => d == 1));
+
+
+    // ===== links (and disparities) ================================================== //
 
     if (linksMeasures.length === 0) {
 
-        if (tabLinksSelected && window.location.hash === '#display=links') {
+        console.log("no links");
 
-            // replace history stack entry
+        // ----- no links --------------------------------------------------- //
 
-            url.hash = "display=summary";
-            window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);
+        if (disparities.some(d => d == 1)) {
+            
+            // - - - has disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+            console.log("has disparities");
+
+            // remove event listener added when/if button was clicked
+
+            // btnToggleDisparities.innerText = "Show Disparities";
+            // $(btnToggleDisparities).off()
+
+            // make disparities active
+            $("#show-links").removeClass("active");
+            $("#show-disparities").addClass("active");
+
+            // if disparities is enabled, show the button
+            btnToggleDisparities.style.display = "inline";
+
+            // if the tab is selected, show disparities
+
+            if (tabLinksSelected && window.location.hash === '#display=links') {
+
+                // MeasureID: 221 = neighborhood poverty percent
+
+                renderDisparitiesChart(defaultPrimaryLinksMeasureMetadata, 221)
+
+            }
+
+            // enable the links tab to enable disparities
+
+            enableTab(tabLinks);
+
+        } else {
+
+            // - - - no disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+            console.log("no disparities");
+
+            // no reason to enable the links tab, so if it's selected switch to table view and disable the tab
+
+            if (tabLinksSelected && window.location.hash === '#display=links') {
+
+                // replace history stack entry
+
+                url.hash = "display=summary";
+                window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);
+
+            }
+
+            // disable the links tab
+
+            disableTab(tabLinks);
 
         }
 
-        disableTab(tabLinks);
-
     } else {
 
+        // ----- has links --------------------------------------------------- //
+
+        // enable the links tab
+
+        console.log("has links");
+
         enableTab(tabLinks);
+
+            
+        if (disparities.some(d => d == 1)) {
+
+            // - - - has disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+            console.log("has disparities");
+
+            // make sure that the "links" button is active by default
+
+            $("#show-links").addClass("active");
+            $("#show-disparities").removeClass("active");
+
+            // if disparities is enabled, show the button
+
+            btnToggleDisparities.style.display = "inline";
+
+        } else {
+
+            // - - - no disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+            console.log("no disparities");
+
+            // if disparities is disabled, hide the button
+
+            btnToggleDisparities.style.display = "none";
+
+            // remove click listeners to button that calls renderDisparitiesChart
+
+            // $(btnToggleDisparities).off()
+
+        }
+
     }
 
 
