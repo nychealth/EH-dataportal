@@ -325,7 +325,7 @@ const renderDisparitiesChart = async (
 
     console.log("pre vegaEmbed");
 
-    await vegaEmbed("#links", disspec);
+    vegaEmbed("#links", disspec);
 
     console.log("post vegaEmbed");
 
