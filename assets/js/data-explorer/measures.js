@@ -2115,18 +2115,18 @@ const renderMeasures = async () => {
 
                 }
 
+                // make links inactive and disabled
+
+                $("#show-links").removeClass("active");
+                $("#show-links").addClass("disabled");
+                $("#show-links").attr('aria-disabled', true);
+
                 // make disparities active
 
                 $("#show-disparities").addClass("active");
                 $("#show-disparities").removeClass("disabled");
                 $("#show-disparities").attr('aria-disabled', false);
                 $("#show-disparities").attr('aria-selected', true);
-
-                // make links inactive and disabled
-
-                $("#show-links").removeClass("active");
-                $("#show-links").addClass("disabled");
-                $("#show-links").attr('aria-disabled', true);
 
                 // turn off click listener
                 
@@ -2285,6 +2285,13 @@ const renderMeasures = async () => {
                     // >>>> no disparities <<<<
 
                     console.log("no disparities");
+                    
+                    // make sure that the "links" button is active by default
+
+                    $("#show-links").addClass("active");
+                    $("#show-links").removeClass("disabled");
+                    $("#show-links").attr('aria-disabled', false);
+                    $("#show-links").attr('aria-selected', true);
 
                     // if disparities is disabled, disable the button
 
