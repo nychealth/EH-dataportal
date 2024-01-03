@@ -176,176 +176,173 @@ const renderDisparitiesChart = async (
     // define spec
     // ----------------------------------------------------------------------- //
 
-    setTimeout(() => {
-
-        let disspec = {
-            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "description": `${primaryIndicatorName} ${primaryMeasurementType} and poverty scatterplot`,
-            "title": {
-                "text": [`${primaryIndicatorName && `${primaryIndicatorName}`}`],
-                "align": "left", 
-                "anchor": "start", 
-                "fontSize": 18, 
-                "fontWeight": "normal",
-                "font": "sans-serif",
-                "baseline": "top",
-                "dy": -10,
-                "limit": 1000,
-                "subtitle": `${primaryMeasurementType && `${primaryMeasurementType}`} ${primaryDisplay && `${primaryDisplay}`} (${primaryTime})`,
-                "subtitleFontSize": 13
+    let disspec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "description": `${primaryIndicatorName} ${primaryMeasurementType} and poverty scatterplot`,
+        "title": {
+            "text": [`${primaryIndicatorName && `${primaryIndicatorName}`}`],
+            "align": "left", 
+            "anchor": "start", 
+            "fontSize": 18, 
+            "fontWeight": "normal",
+            "font": "sans-serif",
+            "baseline": "top",
+            "dy": -10,
+            "limit": 1000,
+            "subtitle": `${primaryMeasurementType && `${primaryMeasurementType}`} ${primaryDisplay && `${primaryDisplay}`} (${primaryTime})`,
+            "subtitleFontSize": 13
+        },
+        "width": "container",
+        "height": height,
+        "config": {
+            "background": "#FFFFFF",
+            "axisX": {
+                "labelFontSize": 11,
+                "titleFontSize": 15,
+                "titleFont": "sans-serif",
+                "titlePadding": 10,
+                "titleFontWeight": "normal"
             },
-            "width": "container",
-            "height": height,
-            "config": {
-                "background": "#FFFFFF",
-                "axisX": {
-                    "labelFontSize": 11,
-                    "titleFontSize": 15,
-                    "titleFont": "sans-serif",
-                    "titlePadding": 10,
-                    "titleFontWeight": "normal"
-                },
-                "axisY": {
-                    "labelFontSize": 11,
-                    "titleFontSize": 0, // to turn off axis title
-                    "labelAngle": 0,
-                    "titlePadding": 10,
-                    "titleFont": "sans-serif",
-                    "tickMinStep": 1
-                },
-                "view": { "stroke": "transparent" },
-                "text": {
-                    "color": "#1696d2",
-                    "fontSize": 11,
-                    "align": "center",
-                    "fontWeight": 400,
-                    "size": 11
-                }
+            "axisY": {
+                "labelFontSize": 11,
+                "titleFontSize": 0, // to turn off axis title
+                "labelAngle": 0,
+                "titlePadding": 10,
+                "titleFont": "sans-serif",
+                "tickMinStep": 1
             },
-            "data": {
-                "values": disparityData
+            "view": { "stroke": "transparent" },
+            "text": {
+                "color": "#1696d2",
+                "fontSize": 11,
+                "align": "center",
+                "fontWeight": 400,
+                "size": 11
+            }
+        },
+        "data": {
+            "values": disparityData
+        },
+        "layer": [
+        {
+            "mark": {
+                "type": "circle",
+                "filled": true,
+                "size": bubbleSize,
+                "stroke": "#7C7C7C",
+                "strokeWidth": 2
             },
-            "layer": [
+            "params": [
             {
-                "mark": {
-                    "type": "circle",
-                    "filled": true,
-                    "size": bubbleSize,
-                    "stroke": "#7C7C7C",
-                    "strokeWidth": 2
+                "name": "hover",
+                "value": "#7C7C7C",
+                "select": {"type": "point", "on": "mouseover"}
+            }
+            ],
+            "encoding": {
+                "y": {
+                    "field": "Value_1",
+                    "type": "quantitative",
+                    "axis": {
+                        "tickCount": 4
+                    },
                 },
-                "params": [
+                "x": {
+                    "title": [`${disparityIndicatorName && `${disparityIndicatorName}`}`, `(${disparityTime})`],
+                    "field": "PovRank", // Changed
+                    "type": "ordinal",
+                    "axis": {
+                        "labelExpr": "(datum.value == 4 ? 'Very high (over 30%)' : (datum.value == 3  ? 'High (20 - 29.9%)' : ( datum.value == 2  ? 'Medium (10 - 19.9%)' : 'Low (0 - 9.9%)')))",
+                        "labelAlign": "center",
+                        "labelAngle": 0
+                    }
+                },
+                "xOffset": {"field": "randomOffsetX", "type": "quantitative"}, // Jitter
+                "tooltip": [
                 {
-                    "name": "hover",
-                    "value": "#7C7C7C",
-                    "select": {"type": "point", "on": "mouseover"}
+                    "title": "Borough", 
+                    "field": "Borough", 
+                    "type": "nominal"
+                },
+                {
+                    "title": geoTypeShortDesc, 
+                    "field": "Geography_1", 
+                    "type": "nominal"
+                },
+                {
+                    "title": "Time Period", 
+                    "field": "TimePeriod_2", 
+                    "type": "nominal"
+                },
+                {
+                    "title": primaryMeasureName,
+                    "field": "Value_1",
+                    "type": "quantitative",
+                    "format": ",.1~f"
+                },
+                {
+                    "title": disparityMeasureName,
+                    "field": "Value_2",
+                    "type": "quantitative",
+                    "format": ",.1~f"
+                },
+                {
+                    "title": disparityIndicatorName,
+                    "field": "PovCat",
+                    "type": "nominal"
                 }
                 ],
-                "encoding": {
-                    "y": {
-                        "field": "Value_1",
-                        "type": "quantitative",
-                        "axis": {
-                            "tickCount": 4
-                        },
+                "fill": {
+                    "title": "PovCat", 
+                    "field": "PovRank", 
+                    "type": "nominal", 
+                    "legend": null,
+                    "scale": {
+                        "range": [
+                            "#1696d2", 
+                            "#ffa500", 
+                            "#ec008b", 
+                            "#55b748"
+                        ]
                     },
-                    "x": {
-                        "title": [`${disparityIndicatorName && `${disparityIndicatorName}`}`, `(${disparityTime})`],
-                        "field": "PovRank", // Changed
-                        "type": "ordinal",
-                        "axis": {
-                            "labelExpr": "(datum.value == 4 ? 'Very high (over 30%)' : (datum.value == 3  ? 'High (20 - 29.9%)' : ( datum.value == 2  ? 'Medium (10 - 19.9%)' : 'Low (0 - 9.9%)')))",
-                            "labelAlign": "center",
-                            "labelAngle": 0
-                        }
+                },
+                "stroke": {
+                    "condition": {
+                        "param": "hover", 
+                        "empty": false, 
+                        "value": "#7C7C7C"
                     },
-                    "xOffset": {"field": "randomOffsetX", "type": "quantitative"}, // Jitter
-                    "tooltip": [
-                    {
-                        "title": "Borough", 
-                        "field": "Borough", 
-                        "type": "nominal"
-                    },
-                    {
-                        "title": geoTypeShortDesc, 
-                        "field": "Geography_1", 
-                        "type": "nominal"
-                    },
-                    {
-                        "title": "Time Period", 
-                        "field": "TimePeriod_2", 
-                        "type": "nominal"
-                    },
-                    {
-                        "title": primaryMeasureName,
-                        "field": "Value_1",
-                        "type": "quantitative",
-                        "format": ",.1~f"
-                    },
-                    {
-                        "title": disparityMeasureName,
-                        "field": "Value_2",
-                        "type": "quantitative",
-                        "format": ",.1~f"
-                    },
-                    {
-                        "title": disparityIndicatorName,
-                        "field": "PovCat",
-                        "type": "nominal"
-                    }
-                    ],
-                    "fill": {
-                        "title": "PovCat", 
-                        "field": "PovRank", 
-                        "type": "nominal", 
-                        "legend": null,
-                        "scale": {
-                            "range": [
-                                "#1696d2", 
-                                "#ffa500", 
-                                "#ec008b", 
-                                "#55b748"
-                            ]
-                        },
-                    },
-                    "stroke": {
-                        "condition": {
-                            "param": "hover", 
-                            "empty": false, 
-                            "value": "#7C7C7C"
-                        },
-                        "value": null
-                    }
+                    "value": null
                 }
             }
-            ]
         }
-        
-        // ----------------------------------------------------------------------- //
-        // render chart
-        // ----------------------------------------------------------------------- //
+        ]
+    }
+    
+    // ----------------------------------------------------------------------- //
+    // render chart
+    // ----------------------------------------------------------------------- //
 
-        vegaEmbed("#links", disspec);
+    console.log("pre vegaEmbed");
 
+    await vegaEmbed("#links", disspec);
 
-        // ----------------------------------------------------------------------- //
-        // Send chart data to download
-        // ----------------------------------------------------------------------- //
+    console.log("post vegaEmbed");
 
-        let dataForDownload = [...disspec.data.values] // create a copy
+    // ----------------------------------------------------------------------- //
+    // Send chart data to download
+    // ----------------------------------------------------------------------- //
 
-        let downloadTable = aq.from(dataForDownload)
-            .select(aq.not("GeoType", "GeoTypeShortDesc_1", "GeoTypeShortDesc_2", "GeoRank_1", "GeoRank_2", "start_period_1", "end_period_1", "ban_summary_flag_1", "ban_summary_flag_2", "BoroID", "DisplayValue_1", "DisplayValue_2", "GeoTypeDesc_2", "Geography_2", "start_period_2", "end_period_2", "MeasureID_1", "MeasureID_2", "randomOffsetX"))
-            .derive({ Value_1_Indicator: `'${primaryIndicatorName && `${primaryIndicatorName}`}'`})
-            .derive({ Value_2_Indicator: `'${disparityIndicatorName}'`})
-        
-        // console.log("downloadTable [renderDisparitiesChart]");
-        // downloadTable.print()
+    let dataForDownload = [...disspec.data.values] // create a copy
 
-        CSVforDownload = downloadTable.toCSV()
+    let downloadTable = aq.from(dataForDownload)
+        .select(aq.not("GeoType", "GeoTypeShortDesc_1", "GeoTypeShortDesc_2", "GeoRank_1", "GeoRank_2", "start_period_1", "end_period_1", "ban_summary_flag_1", "ban_summary_flag_2", "BoroID", "DisplayValue_1", "DisplayValue_2", "GeoTypeDesc_2", "Geography_2", "start_period_2", "end_period_2", "MeasureID_1", "MeasureID_2", "randomOffsetX"))
+        .derive({ Value_1_Indicator: `'${primaryIndicatorName && `${primaryIndicatorName}`}'`})
+        .derive({ Value_2_Indicator: `'${disparityIndicatorName}'`})
+    
+    // console.log("downloadTable [renderDisparitiesChart]");
+    // downloadTable.print()
 
-
-    }, 300)
-
+    CSVforDownload = downloadTable.toCSV()
 
 }
