@@ -112,7 +112,7 @@ const renderMap = (
     // define spec
     // ----------------------------------------------------------------------- //
     
-    mapspec = {
+    let mapspec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "title": {
             "text": indicatorName,
