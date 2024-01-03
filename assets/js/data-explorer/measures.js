@@ -10,7 +10,7 @@
 
 const setDefaultMapMeasure = (visArray) => {
 
-    console.log("* setDefaultMapMeasure");
+    // console.log("* setDefaultMapMeasure");
 
     // modified so that defaultMapMetadata is explicitly set, instead of by reference
     //  through defaultArray
@@ -80,7 +80,7 @@ const setDefaultMapMeasure = (visArray) => {
 
 const setDefaultTrendMeasure = (visArray) => {
 
-    console.log("* setDefaultTrendMeasure");
+    // console.log("* setDefaultTrendMeasure");
 
     // modified so that defaultTrendMetadata is explicitly set, instead of by reference
     //  through defaultArray
@@ -153,7 +153,7 @@ const setDefaultTrendMeasure = (visArray) => {
 
 const setDefaultLinksMeasure = async (visArray) => {
 
-    console.log("* setDefaultLinksMeasure");
+    // console.log("* setDefaultLinksMeasure");
 
     // modified so that defaultPrimaryLinksMeasureMetadata is explicitly set, instead of by reference
     //  through defaultArray
@@ -222,7 +222,7 @@ const setDefaultLinksMeasure = async (visArray) => {
         // assigning to global object
         defaultPrimaryLinksMeasureMetadata = defaultArray;
 
-        console.log("defaultPrimaryLinksMeasureMetadata [setDefaultLinksMeasure]", defaultPrimaryLinksMeasureMetadata);
+        // console.log("defaultPrimaryLinksMeasureMetadata [setDefaultLinksMeasure]", defaultPrimaryLinksMeasureMetadata);
 
         // using await here because createJoinedLinksData calls fetch, and we need that data
 
@@ -253,7 +253,7 @@ const setDefaultLinksMeasure = async (visArray) => {
 
 const setDefaultDisparitiesMeasure = (visArray) => {
 
-    console.log("* setDefaultDisparitiesMeasure");
+    // console.log("* setDefaultDisparitiesMeasure");
 
     let defaultArray = [];
 
@@ -842,7 +842,7 @@ const updateLinksData = async (e) => {
 
         // - - - has disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-        console.log("has disparities");
+        // console.log("has disparities");
 
         // make sure that the "links" button is active by default
 
@@ -865,7 +865,7 @@ const updateLinksData = async (e) => {
 
         // - - - no disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-        console.log("no disparities");
+        // console.log("no disparities");
 
         // make sure that the "links" button is active by default
 
@@ -882,7 +882,7 @@ const updateLinksData = async (e) => {
 
         // remove click listeners to button that calls renderDisparitiesChart
 
-        console.log("btnToggleDisparities [updateLinksData]");
+        // console.log("btnToggleDisparities [updateLinksData]");
         $(btnToggleDisparities).off()
 
     }
@@ -1034,7 +1034,7 @@ const handleMapGeoDropdown = (MeasureID, TimePeriod) => {
 
 const clickLinksToggle = (e) => {
 
-    console.log("btnToggleDisparities [clickLinksToggle]");
+    // console.log("btnToggleDisparities [clickLinksToggle]");
     $(btnToggleDisparities).off()
 
     $(btnToggleDisparities).on("click", (e) => {
@@ -1045,7 +1045,7 @@ const clickLinksToggle = (e) => {
 
             // MeasureID: 221 = neighborhood poverty percent
 
-            console.log("renderDisparitiesChart [clickLinksToggle]");
+            // console.log("renderDisparitiesChart [clickLinksToggle]");
 
             renderDisparitiesChart(defaultDisparitiesMetadata, 221)
 
@@ -1234,7 +1234,7 @@ const renderMeasures = async () => {
 
         // console.log("measure", measure.MeasureID, "type", type, "links", links, "map", map, "trend", trend);
 
-        console.log("disparities", measureId, measure.VisOptions[0].Links[0].Disparities);
+        // console.log("disparities", measureId, measure.VisOptions[0].Links[0].Disparities);
 
 
         // ----- handle map measures --------------------------------------------------- //
@@ -1342,7 +1342,7 @@ const renderMeasures = async () => {
 
     });
 
-    console.log("disparitiesMeasures [renderMeasures]", disparitiesMeasures);
+    // console.log("disparitiesMeasures [renderMeasures]", disparitiesMeasures);
 
 
     // ===== handle comparisons viz ================================================== //
@@ -2101,7 +2101,7 @@ const renderMeasures = async () => {
                 
                 // - - - has disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-                console.log("has disparities");
+                // console.log("has disparities");
 
                 // if the tab is selected, show disparities
 
@@ -2109,7 +2109,7 @@ const renderMeasures = async () => {
 
                     // MeasureID: 221 = neighborhood poverty percent
 
-                    console.log("renderDisparitiesChart [showLinks (no links, has disp)]");
+                    // console.log("renderDisparitiesChart [showLinks (no links, has disp)]");
 
                     renderDisparitiesChart(defaultDisparitiesMetadata, 221)
 
@@ -2130,7 +2130,7 @@ const renderMeasures = async () => {
 
                 // turn off click listener
                 
-                console.log("btnToggleDisparities [showLinks (no links, has disp)]");
+                // console.log("btnToggleDisparities [showLinks (no links, has disp)]");
                 $(btnToggleDisparities).off()
 
                 // if disparities is enabled, show the button
@@ -2256,7 +2256,7 @@ const renderMeasures = async () => {
 
                     // >>>> has disparities <<<<
 
-                    console.log("has disparities");
+                    // console.log("has disparities");
                     
                     // make sure that the "links" button is active by default
 
@@ -2284,7 +2284,7 @@ const renderMeasures = async () => {
 
                     // >>>> no disparities <<<<
 
-                    console.log("no disparities");
+                    // console.log("no disparities");
                     
                     // make sure that the "links" button is active by default
 
@@ -2301,7 +2301,7 @@ const renderMeasures = async () => {
 
                     // remove click listeners to button that calls renderDisparitiesChart
                     
-                    console.log("btnToggleDisparities [showLinks (has links, no disp)]");
+                    // console.log("btnToggleDisparities [showLinks (has links, no disp)]");
                     $(btnToggleDisparities).off()
 
                 }
@@ -2408,7 +2408,7 @@ const renderMeasures = async () => {
         enableTab(tabTrend);
     }
 
-    console.log("not some disp [renderMeasures]", !disparitiesMeasures.length > 0);
+    // console.log("not some disp [renderMeasures]", !disparitiesMeasures.length > 0);
 
 
     // ===== links (and disparities) ================================================== //
@@ -2417,7 +2417,7 @@ const renderMeasures = async () => {
 
     if (linksMeasures.length === 0 && disparitiesMeasures.length === 0) {
 
-        console.log("no links, no disp");
+        // console.log("no links, no disp");
 
         // - - - no links, no disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
 

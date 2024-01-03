@@ -323,11 +323,7 @@ const renderDisparitiesChart = async (
     // render chart
     // ----------------------------------------------------------------------- //
 
-    console.log("pre vegaEmbed");
-
     vegaEmbed("#links", disspec);
-
-    console.log("post vegaEmbed");
 
     // ----------------------------------------------------------------------- //
     // Send chart data to download
