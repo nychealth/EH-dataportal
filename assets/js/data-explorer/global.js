@@ -46,16 +46,16 @@ let aqComparisonsMetadata;
 let aqComparisonsIndicatorsMetadata;
 let aqComparisonsIndicatorData;
 
-let defaultTrendMetadata = [];
+let defaultTrendMetadata;
 let aqDefaultTrendMetadata;
 let defaultTrendAbout;
 let defaultTrendSources;
-let defaultMapMetadata = [];
+let defaultMapMetadata;
 let defaultMapAbout;
 let defaultMapSources;
-let defaultPrimaryLinksMeasureMetadata = [];
+let defaultPrimaryLinksMeasureMetadata;
 let defaultSecondaryMeasureMetadata;
-// let defaultLinkMeasureTimes = [];
+let defaultDisparitiesMetadata;
 let defaultLinksAbout;
 let defaultLinksSources;
 

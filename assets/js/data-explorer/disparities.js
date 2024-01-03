@@ -16,6 +16,8 @@ const renderDisparitiesChart = async (
 
     console.log("** renderDisparitiesChart");
 
+    // console.log("primaryMetadata [renderDisparitiesChart]", primaryMetadata);
+
     // ----------------------------------------------------------------------- //
     // toggle button
     // ----------------------------------------------------------------------- //
@@ -35,6 +37,8 @@ const renderDisparitiesChart = async (
     const primaryAbout           = primaryMetadata[0]?.how_calculated;
     const primarySources         = primaryMetadata[0]?.Sources;
     const primaryDisplay         = primaryMetadata[0]?.DisplayType;
+
+    // console.log("primaryMeasureId [renderDisparitiesChart]", primaryMeasureId);
 
     // get disparities poverty indicator metadata - "indicators" is a global object created by loadIndicator
 
