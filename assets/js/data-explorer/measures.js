@@ -10,6 +10,8 @@
 
 const setDefaultMapMeasure = (visArray) => {
 
+    console.log("* setDefaultMapMeasure");
+
     // modified so that defaultMapMetadata is explicitly set, instead of by reference
     //  through defaultArray
     
@@ -77,6 +79,8 @@ const setDefaultMapMeasure = (visArray) => {
 // ===== trend ================================================== //
 
 const setDefaultTrendMeasure = (visArray) => {
+
+    console.log("* setDefaultTrendMeasure");
 
     // modified so that defaultTrendMetadata is explicitly set, instead of by reference
     //  through defaultArray
@@ -148,6 +152,8 @@ const setDefaultTrendMeasure = (visArray) => {
 // ===== links ================================================== //
 
 const setDefaultLinksMeasure = async (visArray) => {
+
+    console.log("* setDefaultLinksMeasure");
 
     // modified so that defaultPrimaryLinksMeasureMetadata is explicitly set, instead of by reference
     //  through defaultArray
@@ -239,6 +245,77 @@ const setDefaultLinksMeasure = async (visArray) => {
         // console.log(">> joinedLinksDataObjects [setDefaultLinksMeasure]", joinedLinksDataObjects);
 
     }
+}
+
+
+
+// ===== disparities ================================================== //
+
+const setDefaultDisparitiesMeasure = (visArray) => {
+
+    console.log("* setDefaultDisparitiesMeasure");
+
+    let defaultArray = [];
+
+    if (visArray.length > 0) {
+
+        const hasAgeAdjustedRate = visArray.filter(measure =>
+            measure.MeasurementType.includes('Age-adjusted rate')
+        )
+
+        const hasRate = visArray.filter(measure =>
+            measure.MeasurementType.includes('rate')
+        )
+
+        const isRate = visArray.filter(measure =>
+            measure.MeasurementType.includes('Rate')
+        )
+        
+        const hasPercent = visArray.filter(measure =>
+            measure.MeasurementType.includes('Percent')
+        )
+
+        const hasDensity = visArray.filter(measure =>
+            measure.MeasurementType.includes('Density')
+        )
+
+
+        if (hasAgeAdjustedRate.length) {
+
+            const hasAgeAdjustedRateTotal = hasAgeAdjustedRate.filter(measure =>
+                measure.MeasurementType.includes('Total')
+            )
+            // Set total as default if available
+            if (hasAgeAdjustedRateTotal.length) {
+                defaultArray.push(hasAgeAdjustedRateTotal[0]);
+
+            } else {
+                defaultArray.push(hasAgeAdjustedRate[0]);
+
+            }
+
+
+        } else if (hasRate.length) {
+            defaultArray.push(hasRate[0]);
+
+        } else if (isRate.length) {
+            defaultArray.push(isRate[0]);
+
+        } else if (hasPercent.length) {
+            defaultArray.push(hasPercent[0]);
+
+        } else if (hasDensity.length) {
+            defaultArray.push(hasDensity[0]);
+
+        } else {
+            defaultArray.push(visArray[0]);
+
+        }
+    }
+
+    // assigning to global object
+
+    defaultDisparitiesMetadata = defaultArray;
 }
 
 
@@ -770,7 +847,15 @@ const updateLinksData = async (e) => {
         // make sure that the "links" button is active by default
 
         $("#show-links").addClass("active");
+        $("#show-links").removeClass("disabled");
+        $("#show-links").attr('aria-disabled', false);
+        $("#show-links").attr('aria-selected', true);
+
+        // make disparities inactive and enabled
+
         $("#show-disparities").removeClass("active");
+        $("#show-disparities").removeClass("disabled");
+        $("#show-disparities").attr('aria-disabled', false);
 
         // if disparities is enabled, show the button
 
@@ -782,13 +867,23 @@ const updateLinksData = async (e) => {
 
         console.log("no disparities");
 
-        // if disparities is disabled, hide the button
+        // make sure that the "links" button is active by default
 
-        btnToggleDisparities.style.display = "none";
+        $("#show-links").addClass("active");
+        $("#show-links").removeClass("disabled");
+        $("#show-links").attr('aria-disabled', false);
+        $("#show-links").attr('aria-selected', true);
+
+        // if disparities is disabled, disable the button
+
+        $("#show-disparities").removeClass("active");
+        $("#show-disparities").addClass("disabled");
+        $("#show-disparities").attr('aria-disabled', true);
 
         // remove click listeners to button that calls renderDisparitiesChart
 
-        // $(btnToggleDisparities).off()
+        console.log("btnToggleDisparities [updateLinksData]");
+        $(btnToggleDisparities).off()
 
     }
 
@@ -932,6 +1027,37 @@ const handleMapGeoDropdown = (MeasureID, TimePeriod) => {
 
 }
 
+
+// ----------------------------------------------------------------------- //
+// function to toggle links / disparities
+// ----------------------------------------------------------------------- //
+
+const clickLinksToggle = (e) => {
+
+    console.log("btnToggleDisparities [clickLinksToggle]");
+    $(btnToggleDisparities).off()
+
+    $(btnToggleDisparities).on("click", (e) => {
+
+        // console.log("btnToggleDisparities", e);
+
+        if (e.target && e.target.matches("#show-disparities") && !e.target.classList.contains("active") && !e.target.classList.contains("disabled")) {
+
+            // MeasureID: 221 = neighborhood poverty percent
+
+            console.log("renderDisparitiesChart [clickLinksToggle]");
+
+            renderDisparitiesChart(defaultDisparitiesMetadata, 221)
+
+        } else if (e.target && e.target.matches("#show-links") && !e.target.classList.contains("active") && !e.target.classList.contains("disabled")) {
+
+            showLinks();
+
+        }
+    })
+}
+
+
 // ----------------------------------------------------------------------- //
 // function to render the measures
 // ----------------------------------------------------------------------- //
@@ -942,8 +1068,6 @@ const renderMeasures = async () => {
 
     selectedTableTimes = [];
     selectedTableGeography = [];
-
-    linksMeasures.length = 0
 
     const contentTable = document.querySelector('#tab-table');
     const contentMap   = document.querySelector('#tab-map')
@@ -981,8 +1105,12 @@ const renderMeasures = async () => {
 
     dropdownLinksMeasures.innerHTML = ``;
 
-    mapMeasures.length = 0;
-    trendMeasures.length = 0;
+    // clear measure arrays
+
+    mapMeasures = [];
+    trendMeasures = [];
+    linksMeasures = [];
+    disparitiesMeasures = [];
 
 
     // ----- create dropdowns for table ================================================== //
@@ -1105,6 +1233,8 @@ const renderMeasures = async () => {
         const measureId = measure.MeasureID;
 
         // console.log("measure", measure.MeasureID, "type", type, "links", links, "map", map, "trend", trend);
+
+        console.log("disparities", measureId, measure.VisOptions[0].Links[0].Disparities);
 
 
         // ----- handle map measures --------------------------------------------------- //
@@ -1297,9 +1427,11 @@ const renderMeasures = async () => {
         
     }
 
+    // ===== set metadata defaults ================================================== //
 
     setDefaultMapMeasure(mapMeasures);
     setDefaultTrendMeasure(trendMeasures);
+    setDefaultDisparitiesMeasure(disparitiesMeasures);
 
     // set default measure for links; also calls (and waits for) createJoinedLinksData, which creates the joined data
 
@@ -1971,30 +2103,46 @@ const renderMeasures = async () => {
 
                 console.log("has disparities");
 
-                // remove event listener added when/if button was clicked
-
-                // btnToggleDisparities.innerText = "Show Disparities";
-                // $(btnToggleDisparities).off()
-
-                // make disparities active
-                $("#show-links").removeClass("active");
-                $("#show-disparities").addClass("active");
-
-                // if disparities is enabled, show the button
-                btnToggleDisparities.style.display = "inline";
-
                 // if the tab is selected, show disparities
 
                 if (tabLinksSelected && window.location.hash === '#display=links') {
 
                     // MeasureID: 221 = neighborhood poverty percent
 
-                    renderDisparitiesChart(defaultPrimaryLinksMeasureMetadata, 221)
+                    console.log("renderDisparitiesChart [showLinks (no links, has disp)]");
+
+                    renderDisparitiesChart(defaultDisparitiesMetadata, 221)
 
                 }
 
+                // make disparities active
+
+                $("#show-disparities").addClass("active");
+                $("#show-disparities").removeClass("disabled");
+                $("#show-disparities").attr('aria-disabled', false);
+                $("#show-disparities").attr('aria-selected', true);
+
+                // make links inactive and disabled
+
+                $("#show-links").removeClass("active");
+                $("#show-links").addClass("disabled");
+                $("#show-links").attr('aria-disabled', true);
+
+                // turn off click listener
+                
+                console.log("btnToggleDisparities [showLinks (no links, has disp)]");
+                $(btnToggleDisparities).off()
+
+                // if disparities is enabled, show the button
+
+                btnToggleDisparities.style.display = "inline";
+
             } else {
-                // conditionals at the end of `renderMeasures` will (should) handle this case
+
+                // - - - no disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+                // conditionals at the end of `renderMeasures` will handle this case
+
             }
 
         } else {
@@ -2109,11 +2257,24 @@ const renderMeasures = async () => {
                     // >>>> has disparities <<<<
 
                     console.log("has disparities");
-
+                    
                     // make sure that the "links" button is active by default
 
                     $("#show-links").addClass("active");
+                    $("#show-links").removeClass("disabled");
+                    $("#show-links").attr('aria-disabled', false);
+                    $("#show-links").attr('aria-selected', true);
+
+                    // make disparities inactive and enabled
+
                     $("#show-disparities").removeClass("active");
+                    $("#show-disparities").removeClass("disabled");
+                    $("#show-disparities").attr('aria-disabled', false);
+
+                    // set links/disparities click listener
+                    
+                    clickLinksToggle()
+
 
                     // if disparities is enabled, show the button
 
@@ -2125,13 +2286,16 @@ const renderMeasures = async () => {
 
                     console.log("no disparities");
 
-                    // if disparities is disabled, hide the button
+                    // if disparities is disabled, disable the button
 
-                    btnToggleDisparities.style.display = "none";
+                    $("#show-disparities").removeClass("active");
+                    $("#show-disparities").addClass("disabled");
+                    $("#show-disparities").attr('aria-disabled', true);
 
                     // remove click listeners to button that calls renderDisparitiesChart
-
-                    // $(btnToggleDisparities).off()
+                    
+                    console.log("btnToggleDisparities [showLinks (has links, no disp)]");
+                    $(btnToggleDisparities).off()
 
                 }
 
@@ -2157,29 +2321,6 @@ const renderMeasures = async () => {
                 updateChartPlotSize();
             }
         }
-
-
-        // add click listener to button that calls renderDisparitiesChart
-
-        $(btnToggleDisparities).off()
-
-        $(btnToggleDisparities).on("click", (e) => {
-
-            // console.log("btnToggleDisparities", e);
-
-            if (e.target && e.target.matches("#show-disparities") && !e.target.classList.contains("active")) {
-
-                // MeasureID: 221 = neighborhood poverty percent
-
-                renderDisparitiesChart(defaultPrimaryLinksMeasureMetadata, 221)
-
-            } else if (e.target && e.target.matches("#show-links") && !e.target.classList.contains("active")) {
-
-                showLinks();
-
-            }
-
-        });
 
     };
 
@@ -2208,6 +2349,7 @@ const renderMeasures = async () => {
     // if there's no data to display for a tab, disable it. If you're on that tab when you switch to
     //  a new indicator (which calls renderMeasures), then switch to the summary table
 
+
     // ===== map ================================================== //
 
     if (mapMeasures.length === 0) {
@@ -2227,6 +2369,7 @@ const renderMeasures = async () => {
 
         enableTab(tabMap);
     }
+
 
     // ===== trend ================================================== //
 
@@ -2263,109 +2406,32 @@ const renderMeasures = async () => {
 
     // ===== links (and disparities) ================================================== //
 
-    if (linksMeasures.length === 0) {
+    // this actually might be superfluous. as long as show and update funs work thru this logic, all the case should be covered.
 
-        console.log("no links");
+    if (linksMeasures.length === 0 && disparitiesMeasures.length === 0) {
 
-        // ----- no links --------------------------------------------------- //
+        console.log("no links, no disp");
 
-        if (disparitiesMeasures.length > 0) {
-            
-            // - - - has disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
+        // - - - no links, no disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-            console.log("has disparities");
+        // no reason to enable the links tab, so if it's selected switch to table view and disable the tab
 
-            // remove event listener added when/if button was clicked
+        if (tabLinksSelected && window.location.hash === '#display=links') {
 
-            // btnToggleDisparities.innerText = "Show Disparities";
-            // $(btnToggleDisparities).off()
+            // replace history stack entry
 
-            // make disparities active
-            $("#show-links").removeClass("active");
-            $("#show-disparities").addClass("active");
-
-            // if disparities is enabled, show the button
-            btnToggleDisparities.style.display = "inline";
-
-            // if the tab is selected, show disparities
-
-            if (tabLinksSelected && window.location.hash === '#display=links') {
-
-                // MeasureID: 221 = neighborhood poverty percent
-
-                renderDisparitiesChart(defaultPrimaryLinksMeasureMetadata, 221)
-
-            }
-
-            // enable the links tab to enable disparities
-
-            enableTab(tabLinks);
-
-        } else {
-
-            // - - - no disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-            console.log("no disparities");
-
-            // no reason to enable the links tab, so if it's selected switch to table view and disable the tab
-
-            if (tabLinksSelected && window.location.hash === '#display=links') {
-
-                // replace history stack entry
-
-                url.hash = "display=summary";
-                window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);
-
-            }
-
-            // disable the links tab
-
-            disableTab(tabLinks);
+            url.hash = "display=summary";
+            window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);
 
         }
+
+        // disable the links tab
+
+        disableTab(tabLinks);
 
     } else {
 
-        // ----- has links --------------------------------------------------- //
-
-        // enable the links tab
-
-        console.log("has links");
-
         enableTab(tabLinks);
-
-            
-        if (disparities.length > 0) {
-
-            // - - - has disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-            console.log("has disparities");
-
-            // make sure that the "links" button is active by default
-
-            $("#show-links").addClass("active");
-            $("#show-disparities").removeClass("active");
-
-            // if disparities is enabled, show the button
-
-            btnToggleDisparities.style.display = "inline";
-
-        } else {
-
-            // - - - no disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-            console.log("no disparities");
-
-            // if disparities is disabled, hide the button
-
-            btnToggleDisparities.style.display = "none";
-
-            // remove click listeners to button that calls renderDisparitiesChart
-
-            // $(btnToggleDisparities).off()
-
-        }
-
     }
 
 
@@ -2459,9 +2525,13 @@ const renderMeasures = async () => {
     const checkboxTimeAll = document.querySelectorAll('.checkbox-time-all');
     const checkboxGeo     = document.querySelectorAll('.checkbox-geo');
 
+    // single time checkboxes
+
     checkboxTime.forEach(checkbox => {
         handleTableTimeFilter(checkbox);
     })
+
+    // "select all" time checkbox
 
     checkboxTimeAll[0].addEventListener('change', (e) => {
 
@@ -2500,6 +2570,8 @@ const renderMeasures = async () => {
         renderTable()
 
     })
+
+    // single geo checkboxes
 
     checkboxGeo.forEach(checkbox => {
         handleTableGeoFilter(checkbox);
