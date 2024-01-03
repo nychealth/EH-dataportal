@@ -10,7 +10,7 @@ shorthash=$(git rev-parse --short=7 HEAD)
 commit_timestamp=$(git log -1 --format=%ct)
 
 # Parse commit timestamp
-commit_timestamp_parsed=$(date -d "@$commit_timestamp" "+%Y-%m-%d-%H%M")
+commit_timestamp_parsed=$(date -d "$commit_timestamp" "+%Y-%m-%d-%H%M")
 
 # Full git log for reference file
 git_log=$(git log -1 --format=fuller)
