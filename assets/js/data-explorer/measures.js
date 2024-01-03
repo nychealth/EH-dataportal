@@ -574,6 +574,7 @@ const updateTrendData = (e) => {
         let aqFilteredTrendDataAnnualAvg = aq.from(filteredTrendDataAnnualAvg);
 
         renderComparisonsChart(aqFilteredTrendDataAnnualAvg, aqSelectedTrendMetadata);
+
         updateChartPlotSize();
 
     } else if (measureIdsSummer.includes(measureId)) {
@@ -583,6 +584,7 @@ const updateTrendData = (e) => {
         let aqFilteredTrendDataSummer = aq.from(filteredTrendDataSummer);
 
         renderComparisonsChart(aqFilteredTrendDataSummer, aqSelectedTrendMetadata);
+
         updateChartPlotSize();
 
     } else {
@@ -590,6 +592,7 @@ const updateTrendData = (e) => {
         let aqFilteredTrendData = aq.from(filteredTrendData);
 
         renderComparisonsChart(aqFilteredTrendData, aqSelectedTrendMetadata);
+
         updateChartPlotSize();
 
     }
@@ -1852,6 +1855,7 @@ const renderMeasures = async () => {
                 aqFilteredTrendData = aq.from(filteredTrendDataAnnualAvg);
                 
                 renderComparisonsChart(aqFilteredTrendData, aqDefaultTrendMetadata);
+
                 updateChartPlotSize();
                 
             } else if (measureIdsSummer.includes(defaultTrendMeasureId)) {
@@ -1862,6 +1866,7 @@ const renderMeasures = async () => {
                 aqFilteredTrendData = aq.from(filteredTrendDataSummer);
                 
                 renderComparisonsChart(aqFilteredTrendData, aqDefaultTrendMetadata);
+
                 updateChartPlotSize();
                 
             } else {
@@ -1871,6 +1876,7 @@ const renderMeasures = async () => {
                 aqFilteredTrendData = aq.from(filteredTrendData);
                 
                 renderComparisonsChart(aqFilteredTrendData, aqDefaultTrendMetadata);
+                
                 updateChartPlotSize();
                 
             }
@@ -2112,6 +2118,8 @@ const renderMeasures = async () => {
                     // console.log("renderDisparitiesChart [showLinks (no links, has disp)]");
 
                     renderDisparitiesChart(defaultDisparitiesMetadata, 221)
+
+                    updateChartPlotSize();
 
                 }
 
