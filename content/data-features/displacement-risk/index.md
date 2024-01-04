@@ -10,6 +10,7 @@ tags:
 categories: [housing, social]
 keywords: ["housing","gentrification","displacement","justice","equity"]
 layout: displacement
+externalPortal: true
 ---
 
 Housing stability creates health, but in NYC, many people have difficulty accessing healthy, stable housing. 
