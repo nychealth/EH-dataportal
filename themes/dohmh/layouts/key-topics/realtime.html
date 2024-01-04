@@ -33,12 +33,14 @@
     </div>
 
     <div class="row">
-        <div class="col-11 mx-auto mb-2">
+        <div class="col-11 mx-auto">
             <h1><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
 
-            <div style="border-left: 3px solid darkgray; border-radius: 0px!important" class="aboutbox">
-                Smoke from wildfires in Canada is currently affecting NYC's air.  <a href="https://www.dec.ny.gov/press/127831.html">New York State DEC has issued a health advisory that is in effect until 11:59PM on Thursday, June 8, 2023</a>.  Conditions will vary throughout the day. Monitor air quality here.
+            <!--
+            <div style="border-left: 3px solid darkgray; border-radius: 0px!important" class="aboutbox my-2">
+                Smoke from wildfires in Canada is currently affecting NYC's air.  <a href="https://www.dec.ny.gov/press/127857.html">New York State DEC has issued a health advisory that is in effect until 11:59PM on Friday, June 9, 2023</a>. Conditions will vary throughout the day. Monitor air quality here.
             </div>
+            -->
 
         </div>
 
@@ -147,7 +149,7 @@
             </div>
 
             <div style="background-color:#f2f2f275; border-left: 2px solid darkgray;" class="p-1 hide mt-1" id="decInfo">
-                <p class="fs-sm">Note: "DEC Monitor Average" is the average value of 11 roof-top monitors throughout the city, designed and placed for regulatory reporting. DOHMH street-level monitors are designed to measure ground-level exposures.</p>
+                <p class="fs-sm">Note: "DEC Monitor Average" is the average value of 11 roof-top monitors operated by the New York State Department of Environmental Conservation.</p>
             </div>
 
 
@@ -168,46 +170,69 @@
     </div>
 
     <div class="row mt-4">
-        <div class="col-md-7 col-sm-12 ml-auto">
-            {{- .Content  -}}
+        <div class="col-11 mx-auto">
+            <div class="row">        
+                <div class="col-md-6 mr-auto">
+                    <h4>About the data</h4>
+                    <p>Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>). External factors can sometimes affect monitor functioning. Data are preliminary and subject to change.</p>
+
+                    <strong>Street-level monitors</strong>
+                    <p>Data come from the <a href="../nyccas">NYC Community Air Survey</a>'s street-level monitors, which measure ground-level exposures. We apply a calibration factor to make our data comparable to DEC data and historical EPA data.</p>
+                    
+                    <strong>NYS DEC monitors</strong>
+                    <p>We show the average readings from 11 rooftop monitors from the <a href="https://www.dec.ny.gov/index.html">NY State Department of Environmental Conservation (DEC)</a>, which collects data for the Federal Clean Air Act.</p> 
+        
+                    <p></p>
+        
+                 </div>
+
+                 <div class="col-md-6 col-sm-12 ml-auto">
+                    <h4>About PM2.5 air pollution</h4>
+                    {{- .Content  -}}
+                </div>
+            </div>
         </div>
 
-        <div class="col-md-4 mr-auto">
-        <div class="aboutbox fs-sm">
-            <strong>About the Data</strong>
-            <p>Data are hourly measurements of PM2.5, in micrograms per cubic meter of air (µg/m<sup>3</sup>).</p>
-
-            <p>Data come from: NYCCAS near-real-time street-level monitors, and from roof-top air quality sensors operated by the <i class="fas fa-square mr-1" style="color:darkgray"></i>NYS Department of Environmental Conservation as required by the Federal Clean Air Act. External factors can sometimes affect monitor functioning. NYCCAS monitors have recently been deployed and may overestimate or underestimate PM2.5 while we adjust their performance for NYC's climate. These data are preliminary and subject to change.</p>
-        </div>
-
-        <div class="aboutbox fs-sm mt-1">Or, see <a href="../aqe">your neighborhood air quality</a>.</div>
-         </div>
     </div>
 
     
     <div class="row my-4 border py-2 mx-2">
-        <div class="col-11 mx-auto">
-            <iframe class="my-2 float-right" title="Example 1" height="340" width="230" src="https://widget.airnow.gov/aq-dial-widget/?city=NewYorkCity&state=NYC&country=USA&transparent=true" style="border: none; border-radius: 25px;"></iframe>
+        <div class="col-md-8 ml-auto">
             <h3>The Air Quality Index</h3>
-            <p><a href="https://www.airnow.gov/aqi/aqi-basics/">The Air Quality Index is the US Environmental Protection Agency's way of reporting air quality</a>. It reports whether any of five major pollutants (ground-level ozone, PM2.5, carbon monoxide, sulfur dioxide and nitrogen dioxide) are at levels that can harm health.             <a href="https://www.airnow.gov/sites/default/files/2023-03/air-quality-guide-for-particle-pollution_0.pdf">More information about the Air Quality Index, including what to do at different levels</a>.</p>
+            <p><a href="https://www.airnow.gov/aqi/aqi-basics/">The Air Quality Index is the US Environmental Protection Agency's way of reporting air quality</a>. It reports whether any of five major pollutants (ground-level ozone, fine particles, carbon monoxide, sulfur dioxide and nitrogen dioxide) are at levels that can harm health.             </p>
 
-                <span style="background-color:#00E400; padding: 0px 5px; border-radius: 2px;">Good (0-50)</span> Air pollution poses little or no risk.<br>
-                <span style="background-color:yellow; padding: 0px 5px; border-radius: 2px;">Moderate (51-100)</span> There may be some risk to people who are unusally sensitive to air pollution.<br>
-                <span style="background-color:#E17E00 ; padding: 0px 5px; border-radius: 2px; color:white;">Unhealthy for sensitive groups (101-150)</span> People with heart or lung problems may experience health effects.<br>
-                <span style="background-color:red; padding: 0px 5px; border-radius: 2px;color:white;">Unhealthy (151-200)</span> Members of the general public may experience health effects.<br>
-                <span style="background-color:#8F3F97 ; padding: 0px 5px; border-radius: 2px;color:white;">Very unhealthy (201-300)</span> The risk of health effects is increased for everyone.<br>
-                <span style="background-color:#7E0023 ; padding: 0px 5px; border-radius: 2px;color:white;">Hazardous (300+)</span> Health warning of emergency conditions.
-        </p>
+            <iframe title="AQI" aria-label="Table" id="datawrapper-chart-TyG0B" src="https://datawrapper.dwcdn.net/TyG0B/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="366" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+            </script>
         </div>
+
+        <div class="col-md-3 mr-auto">
+            <iframe class="my-2 float-right" title="Example 1" height="340" width="230" src="https://widget.airnow.gov/aq-dial-widget-primary-pollutant/?city=New%20York%20City&state=NY&country=USA&transparent=true" style="border: none; border-radius: 25px;"></iframe>
+        </div>
+
+        <div class="col-11 mx-auto">
+            <div class="row">
+                <div class="col-6">
+                    <div class="p-2 border">
+                        <a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page">Protect yourself during bad air quality.</a>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-2 border">
+                        <a href="https://www.airnow.gov/sites/default/files/2023-03/air-quality-guide-for-particle-pollution_0.pdf">What to do at different AQI levels.</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-    
+
 
     <div class="row my-4">
         <div class="col-11 mx-auto">
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <h3>Air quality varies because sources vary</h3>
-                    <p>In NYC, about 45% of PM2.5 comes from far-away sources like coal-burning power plants
+                    <p>In NYC, about 30% of PM2.5 comes from far-away sources like coal-burning power plants
                         in the Midwest. But more than half comes from <b>local sources</b>. </p>
             
                     <div class="card content-card mb-4">
@@ -263,9 +288,8 @@
                 
                                 <h4 class="card-title"> <i class="fas fa-cloud-showers-heavy mr-1" aria-hidden="true"></i>Weather patterns</h4>
                                 <p> Weather can trap emissions and cause PM2.5 to build up. Sometimes we see a
-                                    clear west-to-east pattern in rising PM2.5, likely related to a weather
-                                    pattern moving into New York City and causing pollution levels to rise as
-                                    emissions are trapped.</p>
+                                    clear west-to-east pattern in rising PM2.5, as weather
+                                    patterns moving into NYC traps local emissions. Other times, weather can bring wildfire smoke from far-away fires.</p>
                 
                                 <h4 class="card-title"><i class="fas fa-exclamation-triangle mr-1" aria-hidden="true"></i>Other spikes</h4>
                                 <p>Sometimes there are dramatic, short-term spikes
@@ -281,6 +305,26 @@
         </div>
     </div>
 
+<!-- Modal -->
+<div class="modal fade" id="sevenModal" tabindex="-1" role="dialog" aria-labelledby="sevenModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="sevenModalLongTitle">Oops!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          We can only show you realtime PM<sup>2.5</sup> data for the last 7 days. Please enter a number between 1 and 7. 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 </article>
 
@@ -291,6 +335,17 @@
 <!-- from https://gist.github.com/njvack/02ad8efcb0d552b0230d -->
 {{- $color_convert := resources.Get "js/color-convert.js" -}}
 <script src="{{ $color_convert.RelPermalink }}"></script>
+
+
+<!-- Uses a static stand-in file for local development - else uses the API -->
+<script>
+    var url = window.location.href
+    var rtaqData
+    url.includes('localhost') ? rtaqData = 'data/nyccas_realtime_DEC.csv' : rtaqData = 'https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv'
+
+</script>
+
+
 
 <!--bring in realtime JS -->
 <script type="text/javascript" src="js/realtime.js"></script>

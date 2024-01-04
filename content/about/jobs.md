@@ -6,34 +6,20 @@ seo_title: "Our bureau is hiring"
 seo_description: "Join our team at the NYC Department of Health."
 ---
 
-Join our team! See below for open positions in our bureau.
+Join our team! See below for open positions in our bureau - or, [search cityjobs.nyc.gov for 'BESP'](https://cityjobs.nyc.gov/jobs?q=BESP&options=&page=1).
 
 ---
 <br>
 
-**Senior Director of Environmental Health Policy**
-
-We are looking for an experienced- high-level professional well-versed in applying research to policy and program, who will oversee our growing work in climate health and health equity in planning.
-- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job ID 559175.
+[**Senior Evaluator**](https://cityjobs.nyc.gov/job/senior-evaluator-bureau-of-environmental-surveillance-and-policy-in-queens-jid-13557): We are hiring an experienced evaluator who will develop and implement of an evaluation strategy for the agency's community climate resiliency program portfolio, and oversee and implement analytic plans for program evaluation projects.
 
 ---
 <br>
 
-**Director of Climate Health Programs**
-We're looking for a leader experienced in applying research to program design and implementation to manage our team overseeing Be A Buddy and other community resiliency programs.
-- Visit  [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 552896.
+[**Director of Data Management**](https://cityjobs.nyc.gov/job/director-data-management-bureau-of-environmental-surveillance-and-policy-in-manhattan-jid-12559): We're hiring somebody to work with the Division of Information Technology (DIT) to create and manage data integration processes, oversee and manage analytic databases and attendant governance policies, create views and stored procedures, and manage the reporting server. 
 
 ---
 <br>
 
-**Environmental Review Policy Analyst**
-We're looking for an urban planning or environmental policy expert who works at the intersection of environment and health equity.
-- Visit  [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 528335.
+[**Division Counsel**](https://cityjobs.nyc.gov/job/division-counsel-bureau-of-environmental-science-and-policy-besp-in-manhattan-jid-10975): We're hiring a lawyer to support the Bureau of Child Care on all legal matters, represent the Department in hearings before the OATH Hearings Division, and assist the Bureau of Child Care on enforcing all applicable laws and regulations. 
 
----
-<br>
-
-**Division Counsel/Appeals Officer**
-
-Support the Bureau of Child Care on all legal matters regarding the implementation of Comprehensive Background Checks, including serving as an Appeals Officer.
-- Visit [NYC Jobs](https://www1.nyc.gov/jobs/index.page) and search for job number 558051.

@@ -3,89 +3,149 @@
 // ======================================================================= //
 
 const renderMap = (
-    data,
+    data, 
     metadata
-    ) => {
+) => {
 
-        console.log("** renderMap");
+    console.log("** renderMap");
 
         // console.log("data [renderMap]", data);
+        // console.log("metadata [renderMap]", metadata);
 
         // ----------------------------------------------------------------------- //
         // get unique time in data
         // ----------------------------------------------------------------------- //
-        
+
         const mapYears =  [...new Set(data.map(item => item.Time))];
 
-        // console.log("mapYears [map.js]", mapYears);
+        // ----------------------------------------------------------------------- //
+        // pull metadata
+        // ----------------------------------------------------------------------- //
 
-        let mapGeoType            = data[0].GeoType;
-        let geoTypeShortDesc      = data[0].GeoTypeShortDesc;
-        let mapMeasurementType    = metadata[0].MeasurementType;
-        let displayType           = metadata[0].DisplayType;
-        let mapGeoTypeDescription = 
-            metadata[0].AvailableGeographyTypes.filter(
-                gt => gt.GeoType === mapGeoType
-            )[0].GeoTypeDescription;
+        // debugger;
 
-        let mapTime = mapYears[0];
-        let topoFile = '';
+    // console.log("mapYears [map.js]", mapYears);
+
+    let mapGeoType            = data[0].GeoType;
+    let geoTypeShortDesc      = data[0].GeoTypeShortDesc;
+    let mapMeasurementType    = metadata[0].MeasurementType;
+    let displayType           = metadata[0].DisplayType;
+    let mapGeoTypeDescription = 
+        metadata[0].AvailableGeographyTypes.filter(
+            gt => gt.GeoType === mapGeoType
+        )[0].GeoTypeDescription;
+
+    let mapTime = mapYears[0];
+    let topoFile = '';
 
         var color = 'purplered'
         var rankReverse = defaultMapMetadata[0].VisOptions[0].Map[0].RankReverse
         if (rankReverse === 0) {
-            color = 'purplered'
+            color = 'reds'
         } else if (rankReverse === 1) {
             color = 'blues'
         }
 
-        // console.log('rank reverse?', rankReverse)
-        // console.log('color', color)
+    // console.log('rank reverse?', rankReverse)
+    // console.log('color', color)
 
+    // ----------------------------------------------------------------------- //
+    // format geography dropdown items
+    // ----------------------------------------------------------------------- //
 
-        // ----------------------------------------------------------------------- //
-        // get unique unreliability notes (dropping empty)
-        // ----------------------------------------------------------------------- //
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // get (pretty) geoTypes available for this year
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-        const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
+    // mapData has all the geos for every year
+    // data has the one geo x year we're mapping
 
-        document.querySelector("#map-unreliability").innerHTML = ""; // blank to start
+    const dataGeos = [...new Set(mapData.filter(d => d.Time == mapTime).map(d => prettifyGeoType(d.GeoType)))];
 
-        map_unreliability.forEach(element => {
+    console.log("dataGeos [renderMap]", dataGeos);
 
-            document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // get all geo check boxes
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    const allGeoItems = document.querySelectorAll('.mapgeosbutton');
+
+    console.log("allGeoItems", allGeoItems);
+
+    let geosNotAvailable = [];
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // format
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    
+    // remove disabled class from every geo list element
+
+    $(allGeoItems).removeClass("disabled");
+    $(allGeoItems).attr('aria-disabled', false);
+    
+    // now add disabled class for geos not available for this year
+
+    for (const item of allGeoItems) {
+
+        console.log("item.dataset.geo", item.dataset.geo);
+
+        if (!dataGeos.includes(item.dataset.geo)) {
             
-        });
-
-        // ----------------------------------------------------------------------- //
-        // set geo file based on geo type
-        // ----------------------------------------------------------------------- //
-
-        // console.log("mapGeoType [renderMap]", mapGeoType);
-
-        if (mapGeoType === "NTA2010") {
-            topoFile = 'NTA_2010.topo.json';
-        } else if (mapGeoType === "NTA2020") {
-            topoFile = 'NTA_2020.topo.json';
-        } else if (mapGeoType === "CD") {
-            topoFile = 'CD.topo.json';
-        } else if (mapGeoType === "CDTA2020") {
-            topoFile = 'CDTA_2020.topo.json';
-        } else if (mapGeoType === "PUMA") {
-            topoFile = 'PUMA_or_Subborough.topo.json';
-        } else if (mapGeoType === "Subboro") {
-            topoFile = 'PUMA_or_Subborough.topo.json';
-        } else if (mapGeoType === "UHF42") {
-            topoFile = 'UHF42.topo.json';
-        } else if (mapGeoType === "UHF34") {
-            topoFile = 'UHF34.topo.json';
-        } else if (mapGeoType === "NYCKIDS2017") {
-            topoFile = 'NYCKids_2017.topo.json';
-        } else if (mapGeoType === "NYCKIDS2019") {
-            topoFile = 'NYCKids_2019.topo.json';
-        } else if (mapGeoType === "Borough") {
-            topoFile = 'borough.topo.json';
+            geosNotAvailable.push(item)
+            
+            // set this element as disabled
+            $(item).addClass("disabled");
+            $(item).attr('aria-disabled', true);
+            
         }
+    }
+
+    // if you're on a geo that's not availble for a year you just clicked on, show the gray base map
+
+
+    // ----------------------------------------------------------------------- //
+    // get unique unreliability notes (dropping empty)
+    // ----------------------------------------------------------------------- //
+
+    const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
+
+    document.querySelector("#map-unreliability").innerHTML = ""; // blank to start
+
+    map_unreliability.forEach(element => {
+
+        document.querySelector("#map-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + element + "</div>" ;
+        
+    });
+
+    // ----------------------------------------------------------------------- //
+    // set geo file based on geo type
+    // ----------------------------------------------------------------------- //
+
+    // console.log("mapGeoType [renderMap]", mapGeoType);
+
+    if (mapGeoType === "NTA2010") {
+        topoFile = 'NTA_2010.topo.json';
+    } else if (mapGeoType === "NTA2020") {
+        topoFile = 'NTA_2020.topo.json';
+    } else if (mapGeoType === "CD") {
+        topoFile = 'CD.topo.json';
+    } else if (mapGeoType === "CDTA2020") {
+        topoFile = 'CDTA_2020.topo.json';
+    } else if (mapGeoType === "PUMA") {
+        topoFile = 'PUMA_or_Subborough.topo.json';
+    } else if (mapGeoType === "Subboro") {
+        topoFile = 'PUMA_or_Subborough.topo.json';
+    } else if (mapGeoType === "UHF42") {
+        topoFile = 'UHF42.topo.json';
+    } else if (mapGeoType === "UHF34") {
+        topoFile = 'UHF34.topo.json';
+    } else if (mapGeoType === "NYCKIDS2017") {
+        topoFile = 'NYCKids_2017.topo.json';
+    } else if (mapGeoType === "NYCKIDS2019") {
+        topoFile = 'NYCKids_2019.topo.json';
+    } else if (mapGeoType === "Borough") {
+        topoFile = 'borough.topo.json';
+    }
 
         // ----------------------------------------------------------------------- //
         // define spec
@@ -166,12 +226,12 @@ const renderMap = (
                                         "bin": false,
                                         "field": "Value",
                                         "type": "quantitative",
-                                        "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}}
+                                        "scale": {"scheme": {"name": color, "extent": [0.125, 1.125]}}
                                     },
                                     "value": "#808080"
                                 },
                                 "stroke": {
-                                    "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
+                                    "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
                                     // "value": "#161616"
                                     "value": "#dadada"
                                 },
@@ -246,7 +306,7 @@ const renderMap = (
                             }
                         },
                         "stroke": {
-                            "condition": [{"param": "highlight", "empty": false, "value": "orange"}],
+                            "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
                             "value": "white"
                         },
                         "strokeWidth": {
@@ -263,4 +323,18 @@ const renderMap = (
         // ----------------------------------------------------------------------- //
 
         vegaEmbed("#map", mapspec);
+
+        // ----------------------------------------------------------------------- //
+        // Send chart data to download
+        // ----------------------------------------------------------------------- //
+
+        let dataForDownload = [...mapspec.data.values] // create a copy
+
+        let downloadTable = aq.from(dataForDownload)
+            .derive({Indicator: `'${indicatorName}: ${mapMeasurementType}${displayType && ` (${displayType})`}'`}) // add indicator name and type column
+            .select(aq.not('GeoRank', "end_period", "start_period", "ban_summary_flag", "GeoTypeShortDesc", "MeasureID", "DisplayValue")) // remove excess columns
+            // .print()
+
+        CSVforDownload = downloadTable.toCSV()
+
     }

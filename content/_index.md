@@ -3,21 +3,8 @@ title: "The Environment and Health Data Portal: Home page"
 draft: false
 seo_title: "Explore data on how environments shape health in New York City's neighborhoods."
 seo_description: "A project by the NYC Health Department."
-featured_title: "Real-time heat-related illness"
-featured_text: "Tracking the effects of heat through near real-time emergency department visit data."
-featured_link: "/key-topics/climatehealth/syndromic"
-featured_image: syndromic.png
-recently_updated:
-- Name: Average Citi Bike availability
-  Link: /data-explorer/active-design/?id=2425#display=summary
-- Name: Citi Bike stations
-  Link: /data-explorer/active-design/?id=2426#display=summary
-- Name: Commuting modes
-  Link: /data-explorer/walking-driving-and-cycling/?id=2415#display=summary
-- Name: Tobacco retailers
-  Link: /data-explorer/cigarette-smoke/?id=2421#display=summary
-- Name: Litter basket coverage
-  Link: /data-explorer/mice-and-rats/?id=2416#display=summary
-- Name: Drinking water quality
-  Link: /data-explorer/drinking-water-quality/?id=2044#display=summary
+featured_title: "Real-Time Air Quality: PM2.5 in NYC"
+featured_text: "Get data on air quality in real time in NYC"
+featured_link: "/key-topics/airquality/realtime/"
+featured_image: realtime-screenshot.png
 ---

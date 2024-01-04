@@ -1,4 +1,6 @@
-{{ if hugo.IsProduction }}
+
+{{ if eq hugo.Environment "production" "Production" "prod" "prod_prod" }}
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-64BWDRHRGB"></script>
 <script>
@@ -247,8 +249,10 @@
 {{- end -}}
 
 <script>
-    let sitepath = "{{ $.Site.Params.sitepath }}";
     let baseURL = "{{ $.Site.BaseURL }}";
     let data_repo = "{{ $.Site.Params.data_repo }}";
     let data_branch = "{{ $.Site.Params.data_branch }}";
+
+    console.log('Build environment:', `{{ hugo.Environment }}` )
+
 </script>

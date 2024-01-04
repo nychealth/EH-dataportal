@@ -238,6 +238,8 @@ const setDefaultLinksMeasure = async (visArray) => {
 
 const updateMapData = (e) => {
 
+    console.log("* updateMapData");
+
     // ----- handle selection -------------------------------------------------- //
 
     let measureId;
@@ -323,15 +325,10 @@ const updateMapData = (e) => {
     }
 
 
-    // console.log("*measureId*", measureId, "*geo*", geo, "*time*", time);
+    console.log("*measureId*", measureId, "*geo*", geo, "*time*", time);
     // console.log("geo", geo);
     // console.log("measureId", measureId);
     // console.log("time", time);
-
-
-    // set this element as active & selected
-    $(e.target).addClass("active");
-    $(e.target).attr('aria-selected', true);
 
 
     // ----- get metatadata for selected measure -------------------------------------------------- //
@@ -365,19 +362,32 @@ const updateMapData = (e) => {
     // filter map data using selected measure and time
 
     filteredMapData =
-        mapData.filter(
-            obj => obj.MeasureID == measureId &&
+        mapData.filter(obj => 
+            obj.MeasureID == measureId &&
             obj.Time == time &&
             prettifyGeoType(obj.GeoType) == geo
         );
 
-    // console.log("filteredMapData [updateMapData]", filteredMapData);
+    console.log("filteredMapData [updateMapData]", filteredMapData);
 
     // get the highest GeoRank, then keep just that geo
 
     // let maxGeoRank = Math.max(filteredMapData[0].GeoRank);
     // filteredMapData = filteredMapData.filter(obj => obj.GeoRank === maxGeoRank)
 
+
+    // ----- format dropdowns -------------------------------------------------- //
+
+    // set this element as active & selected
+
+    $(e.target).addClass("active");
+    $(e.target).attr('aria-selected', true);
+
+    // called before renderMap in case it fails, so dropdowns will show available combos
+
+    handleMapTimeDropdown(measureId, geo)
+    handleMapGeoDropdown(measureId, time)
+    
     // ----- render the map -------------------------------------------------- //
 
     renderMap(filteredMapData, selectedMapMetadata);
@@ -502,6 +512,7 @@ const updateTrendData = (e) => {
     selectedTrendMeasure = true;
     selectedComparison = false;
     showingNormalTrend = true;
+    showingComparisonsTrend = false;
 
 }
 
@@ -536,6 +547,11 @@ const updateTrendComparisonsData = (e) => {
 
 
     // ----- set measure info boxes -------------------------------------------------- //
+
+    // reset info boxes
+
+    selectedComparisonAbout = [];
+    selectedComparisonSources = [];
 
     // this iterates over all the indicators and measures in the comparison
 
@@ -610,6 +626,7 @@ const updateTrendComparisonsData = (e) => {
     selectedComparison = true;
     selectedTrendMeasure = false;
     showingNormalTrend = false;
+    showingComparisonsTrend = true;
 
 }
 
@@ -718,7 +735,9 @@ const updateLinksData = async (e) => {
 
 // ===== year ================================================== //
 
-const handleYearFilter = (el) => {
+// ----- add listener on each dropdown item -------------------------------------------------- //
+
+const handleTableYearFilter = (el) => {
 
     el.addEventListener('change', (e) => {
 
@@ -745,7 +764,7 @@ const handleYearFilter = (el) => {
 
 // ===== geo ================================================== //
 
-const handleGeoFilter = (el) => {
+const handleTableGeoFilter = (el) => {
 
     el.addEventListener('change', (e) => {
 
@@ -768,12 +787,87 @@ const handleGeoFilter = (el) => {
 
 
 // ----------------------------------------------------------------------- //
+// functions to handle map dropdowns
+// ----------------------------------------------------------------------- //
+
+// ===== time period ================================================== //
+
+const handleMapTimeDropdown = (MeasureID, GeoType) => {
+
+    let allTimeButtons = document.querySelectorAll('.maptimesbutton');
+
+    let mapTimesAvailable =
+        [...new Set(
+            mapData
+                .filter(obj => obj.MeasureID == MeasureID && prettifyGeoType(obj.GeoType) == GeoType)
+                .map(d => d.Time)
+        )]
+
+    console.log("mapTimesAvailable [handleMapTimeDropdown]", mapTimesAvailable);
+
+    // - - - format - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // remove unavailable class from every time period button
+
+    $(allTimeButtons).removeClass("unavailable");
+
+    // now add unavailable class for time periods not available for this geo type
+
+    for (const button of allTimeButtons) {
+
+        if (!mapTimesAvailable.includes(button.dataset.time)) {
+            
+            // set this element as disabled
+            $(button).addClass("unavailable");
+            
+        }
+    }
+
+}
+
+
+// ===== geo type ================================================== //
+
+const handleMapGeoDropdown = (MeasureID, Time) => {
+
+    let allGeoButtons = document.querySelectorAll('.mapgeosbutton');
+
+    let mapGeosAvailable =
+        [...new Set(
+            mapData
+                .filter(obj => obj.MeasureID == MeasureID && obj.Time == Time)
+                .map(d => prettifyGeoType(d.GeoType))
+        )]
+
+    console.log("mapGeosAvailable [handleMapGeoDropdown]", mapGeosAvailable);
+
+    // - - - format - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // remove unavailable class from every geo type button
+
+    $(allGeoButtons).removeClass("unavailable");
+
+    // now add unavailable class for time periods not available for this geo type
+
+    for (const button of allGeoButtons) {
+
+        if (!mapGeosAvailable.includes(button.dataset.geo)) {
+            
+            // set this element as disabled
+            $(button).addClass("unavailable");
+            
+        }
+    }
+
+}
+
+// ----------------------------------------------------------------------- //
 // function to render the measures
 // ----------------------------------------------------------------------- //
 
 const renderMeasures = async () => {
 
-    console.log("** renderMeasures");
+    console.log("* renderMeasures");
 
     selectedTableYears = [];
     selectedTableGeography = [];
@@ -781,9 +875,9 @@ const renderMeasures = async () => {
     linksMeasures.length = 0
 
     const contentTable = document.querySelector('#tab-table');
-    const contentMap     = document.querySelector('#tab-map')
-    const contentTrend   = document.querySelector('#tab-trend');
-    const contentLinks   = document.querySelector('#tab-links');
+    const contentMap   = document.querySelector('#tab-map')
+    const contentTrend = document.querySelector('#tab-trend');
+    const contentLinks = document.querySelector('#tab-links');
 
     // console.log("contentTrend", contentTrend);
 
@@ -821,6 +915,11 @@ const renderMeasures = async () => {
 
 
     // ----- create dropdowns for table ================================================== //
+
+    // ----- select all -------------------------------------------------- //
+
+    dropdownTableTimes.innerHTML +=
+        `<label class="dropdown-item checkbox-year-all"><input class="largerCheckbox" type="checkbox" name="year" value="all" /> Select all </label>`
 
     // ----- years -------------------------------------------------- //
 
@@ -878,8 +977,9 @@ const renderMeasures = async () => {
     const mapGeoTypes = [...new Set(mapData.map(item => prettifyGeoType(item.GeoType)))];
     const dropdownMapGeoTypes = geoTypes.filter(g => mapGeoTypes.includes(g))
 
-    // console.log("geoTypes:", geoTypes);
-    // console.log("dropdownMapGeoTypes:", dropdownMapGeoTypes);
+    console.log("geoTypes:", geoTypes);
+    console.log("mapGeoTypes:", mapGeoTypes);
+    console.log("dropdownMapGeoTypes:", dropdownMapGeoTypes);
 
     dropdownMapGeoTypes.forEach(geo => {
 
@@ -1020,7 +1120,7 @@ const renderMeasures = async () => {
     });
 
 
-    // ----- handle comparisons viz -------------------------------------------------- //
+    // ===== handle comparisons viz ================================================== //
 
     if (indicatorComparisonId !== null) {
 
@@ -1167,11 +1267,8 @@ const renderMeasures = async () => {
 
         if (!selectedMapGeo && !selectedMapTime && !selectedMapMeasure) {
 
-            // console.log(">> no selected [showMap]");
+            console.log(">> no selected [showMap]");
 
-            // let mapMeasureData;
-            // let mapTimeData;
-            // let defaultMapMeasureId;
             let latest_time;
             let maxGeoPretty;
 
@@ -1190,13 +1287,13 @@ const renderMeasures = async () => {
                     obj => obj.MeasureID === defaultMapMeasureId
                 );
 
-            // console.log("filteredMapData [showMap]", filteredMapData);
+            console.log("filteredMapData [showMap]", filteredMapData);
 
             // ----- allow map to persist when changing tabs -------------------------------------------------- //
 
-            // if (!selectedMapMeasure) {
+            if (!selectedMapMeasure) {
 
-                // console.log(">> no selectedMapMeasure");
+                console.log(">> no selectedMapMeasure");
 
                 // this is all inside the conditional, because if a user clicks on this tab again
                 //  after selecting a measure, we don't want to recompute everything. We'll use the
@@ -1206,7 +1303,7 @@ const renderMeasures = async () => {
 
                 // get default measure id
 
-                // defaultMapMeasureId = defaultMapMetadata[0].MeasureID;
+                defaultMapMeasureId = defaultMapMetadata[0].MeasureID;
 
                 // extract metadata for info boxes
 
@@ -1241,12 +1338,12 @@ const renderMeasures = async () => {
 
                 // console.log("filteredMapData [no selectedMapMeasure]", filteredMapData);
 
-            // }
+            }
 
 
-            // if (!selectedMapTime) {
+            if (!selectedMapTime) {
 
-                // console.log(">> no selectedMapTime");
+                console.log(">> no selectedMapTime");
 
                 // get the latest end_period
 
@@ -1260,11 +1357,11 @@ const renderMeasures = async () => {
 
                 // console.log("filteredMapData [no selectedMapTime]", filteredMapData);
 
-            // }
+            }
 
-            // if (!selectedMapGeo) {
+            if (!selectedMapGeo) {
 
-                // console.log(">> no selectedMapGeo [showMap]");
+                console.log(">> no selectedMapGeo [showMap]");
 
                 // get the highest GeoRank for this measure and end_period
 
@@ -1282,9 +1379,18 @@ const renderMeasures = async () => {
                 // console.log("maxGeo", maxGeo);
                 // console.log("maxGeoPretty", maxGeoPretty);
 
-            // }
+            }
+
+            // ----- format dropdowns -------------------------------------------------- //
+
+            // called before renderMap in case it fails, so dropdowns will show available combos
+            
+            handleMapTimeDropdown(defaultMapMeasureId, maxGeoPretty)
+            handleMapGeoDropdown(defaultMapMeasureId, latest_time)
 
             // ----- render the map -------------------------------------------------- //
+
+            // console.log("filteredMapData [showMap 1]", filteredMapData);
 
             renderMap(filteredMapData, defaultMapMetadata);
 
@@ -1324,20 +1430,38 @@ const renderMeasures = async () => {
 
         } else {
 
-            // console.log("else [showMap]");
-
             // if there was a map already, restore it
+
+            console.log("else [showMap]");
 
             // ----- set measure info boxes -------------------------------------------------- //
 
             renderAboutSources(selectedMapAbout, selectedMapSources);
 
+            // ----- get current dropdown values -------------------------------------------------- //
+
+            let time = $('.maptimesbutton.active').attr("data-time")
+            let geo = $('.mapgeosbutton.active').attr("data-geo")
+            let measureId = $('.mapmeasuresbutton.active').attr("data-measure-id")
+
+            console.log("*measureId*", measureId, "*geo*", geo, "*time*", time);
+
+            // ----- format dropdowns -------------------------------------------------- //
+
+            // called before renderMap in case it fails, so dropdowns will show available combos
+            
+            handleMapTimeDropdown(measureId, geo)
+            handleMapGeoDropdown(measureId, time)
+
             // ----- render the map -------------------------------------------------- //
+
+            // console.log("filteredMapData [showMap 2]", filteredMapData);
 
             renderMap(filteredMapData, selectedMapMetadata);
 
             updateChartPlotSize();
         }
+
 
     };
 
@@ -1380,18 +1504,17 @@ const renderMeasures = async () => {
 
         }
 
-        // if (trendMeasures.length === 0 || onlyOneTime || showingNormalTrend) {
-        if (comparisonsMetadata.length === 0 || showingNormalTrend) {
-            
-            // if there's not a comparisons trend available, show the normal trend
+        if (trendMeasures.length === 0 || showingComparisonsTrend) {
 
-            showNormalTrend()
-
-        } else {
-
-            // If there is a comparisons trend available, show comparisons
+            // if there's not a normal trend availbale, or we we're looking at a comparisons chart, show comparisons
 
             showTrendComparisons()
+
+        } else {
+            
+            // otherwise, show the normal trend
+
+            showNormalTrend()
 
         }
 
@@ -1401,7 +1524,7 @@ const renderMeasures = async () => {
 
     showNormalTrend = (e) => {
 
-        console.log("* showNormalTrend");
+        console.log("** showNormalTrend");
 
         // chart only the annual average for the following measureIds:
         // 365 - PM2.5 (Fine particles), Mean
@@ -1540,6 +1663,7 @@ const renderMeasures = async () => {
         }
 
         showingNormalTrend = true;
+        showingComparisonsTrend = false;
 
     };
     
@@ -1548,7 +1672,7 @@ const renderMeasures = async () => {
 
     showTrendComparisons = (e) => {
 
-        console.log("* showTrendComparisons");
+        console.log("** showTrendComparisons");
         // console.log("selectedComparison", selectedComparison);
 
         // ----- allow chart to persist when changing tabs -------------------------------------------------- //
@@ -1589,6 +1713,11 @@ const renderMeasures = async () => {
 
 
             // ----- set measure info boxes -------------------------------------------------- //
+
+            // reset info boxes
+
+            selectedComparisonAbout = [];
+            selectedComparisonSources = [];
 
             aqComparisonsIndicatorsMetadata.objects().forEach(m => {
 
@@ -1681,6 +1810,7 @@ const renderMeasures = async () => {
         }
         
         showingNormalTrend = false;
+        showingComparisonsTrend = true;
         
     }
 
@@ -1872,7 +2002,7 @@ const renderMeasures = async () => {
 
         $(btnToggleDisparities).on("click", (e) => {
 
-            // console.log("** btnToggleDisparities **", e);
+            // console.log("btnToggleDisparities", e);
 
             if (e.target && e.target.matches("#show-disparities") && !e.target.classList.contains("active")) {
 
@@ -2066,14 +2196,58 @@ const renderMeasures = async () => {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     const checkboxYear = document.querySelectorAll('.checkbox-year');
+    const checkboxYearAll = document.querySelectorAll('.checkbox-year-all');
     const checkboxGeo = document.querySelectorAll('.checkbox-geo');
 
     checkboxYear.forEach(checkbox => {
-        handleYearFilter(checkbox);
+        handleTableYearFilter(checkbox);
     })
+
+    checkboxYearAll[0].addEventListener('change', (e) => {
+
+        if (!e.target.checked) {
+
+            // console.log("not checked");
+
+            checkboxYear.forEach(checkbox => {
+
+                // console.log("checkbox", checkbox);
+
+                $(checkbox).find("input").prop("checked", false)
+                selectedTableYears = []
+
+            })
+
+            // console.log("selectedTableYears [not checked]", selectedTableYears);
+
+        } else if (e.target.checked) {
+
+            // console.log("checked");
+
+            checkboxYear.forEach(checkbox => {
+
+                // console.log("checkbox", checkbox);
+
+                $(checkbox).find("input").prop("checked", true)
+                selectedTableYears.push($(checkbox).find("input").val())
+
+            })
+
+            // console.log("selectedTableYears [checked]", selectedTableYears);
+
+
+        }
+
+        renderTable()
+
+    })
+
+
     checkboxGeo.forEach(checkbox => {
-        handleGeoFilter(checkbox);
+        handleTableGeoFilter(checkbox);
     })
+
+
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //

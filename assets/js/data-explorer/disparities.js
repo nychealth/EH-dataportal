@@ -9,7 +9,10 @@
 // this function is called when the "Show Disparities" button is clicked. it
 //  in turn calls "loaddisparityData".
 
-const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
+const renderDisparities = async (
+    primaryMetadata, 
+    disparityMeasureId
+) => {
 
     console.log("** renderDisparities");
 
@@ -26,12 +29,12 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
     // ----------------------------------------------------------------------- //
 
     const primaryIndicatorName   = indicatorName
-    const primaryMeasurementType = primaryMetadata[0].MeasurementType;
-    const primaryMeasureId       = primaryMetadata[0].MeasureID;
-    const primaryMeasureName     = primaryMetadata[0].MeasureName;
+    const primaryMeasurementType = primaryMetadata[0]?.MeasurementType;
+    const primaryMeasureId       = primaryMetadata[0]?.MeasureID;
+    const primaryMeasureName     = primaryMetadata[0]?.MeasureName;
     const primaryAbout           = primaryMetadata[0]?.how_calculated;
-    const primarySources         = primaryMetadata[0].Sources;
-    const primaryDisplay         = primaryMetadata[0].DisplayType;
+    const primarySources         = primaryMetadata[0]?.Sources;
+    const primaryDisplay         = primaryMetadata[0]?.DisplayType;
 
     // get disparities poverty indicator metadata - "indicators" is a global object created by loadIndicator
 
@@ -175,15 +178,17 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "description": `${primaryIndicatorName} ${primaryMeasurementType} and poverty scatterplot`,
             "title": {
-                "text": [`${primaryIndicatorName && `${primaryIndicatorName}`}`, `${primaryMeasurementType && `${primaryMeasurementType}`} ${primaryDisplay && `${primaryDisplay}`} (${primaryTime})`],
+                "text": [`${primaryIndicatorName && `${primaryIndicatorName}`}`],
                 "align": "left", 
                 "anchor": "start", 
-                "fontSize": 15, 
+                "fontSize": 18, 
                 "fontWeight": "normal",
                 "font": "sans-serif",
                 "baseline": "top",
                 "dy": -10,
-                "limit": 1000
+                "limit": 1000,
+                "subtitle": `${primaryMeasurementType && `${primaryMeasurementType}`} ${primaryDisplay && `${primaryDisplay}`} (${primaryTime})`,
+                "subtitleFontSize": 13
             },
             "width": "container",
             "height": height,
@@ -311,8 +316,30 @@ const renderDisparities = async (primaryMetadata, disparityMeasureId) => {
             }
             ]
         }
+        
+        // ----------------------------------------------------------------------- //
+        // render chart
+        // ----------------------------------------------------------------------- //
+
         vegaEmbed("#links", disspec);
 
+
+        // ----------------------------------------------------------------------- //
+        // Send chart data to download
+        // ----------------------------------------------------------------------- //
+
+        let dataForDownload = [...disspec.data.values] // create a copy
+
+        let downloadTable = aq.from(dataForDownload)
+            .select(aq.not("GeoType", "GeoTypeShortDesc_1", "GeoTypeShortDesc_2", "GeoRank_1", "GeoRank_2", "start_period_1", "end_period_1", "ban_summary_flag_1", "ban_summary_flag_2", "BoroID", "DisplayValue_1", "DisplayValue_2", "GeoTypeDesc_2", "Geography_2", "start_period_2", "end_period_2", "MeasureID_1", "MeasureID_2", "randomOffsetX"))
+            .derive({ Value_1_Indicator: `'${primaryIndicatorName && `${primaryIndicatorName}`}'`})
+            .derive({ Value_2_Indicator: `'${disparityIndicatorName}'`})
+            .print()
+
+        CSVforDownload = downloadTable.toCSV()
+
+
     }, 300)
+
 
 }
