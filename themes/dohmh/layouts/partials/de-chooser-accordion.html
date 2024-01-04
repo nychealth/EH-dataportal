@@ -29,7 +29,7 @@
              
                          <div class="card-body bg-white">
                              <ul>
-                                 {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "airquality") }}
+                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "airquality")) "Title" "asc") }}
                                      <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                      </li>
                                  {{end}}
@@ -59,7 +59,7 @@
              
                          <div class="card-body bg-white">
                              <ul>
-                                 {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "climatehealth") }}
+                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "climatehealth")) "Title" "asc") }}
                                      <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                      </li>
                                  {{end}}
@@ -89,7 +89,7 @@
              
                          <div class="card-body bg-white">
                              <ul>
-                                 {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "housing") }}
+                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "housing")) "Title" "asc") }}
                                      <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                      </li>
                                  {{end}}
@@ -119,7 +119,7 @@
              
                          <div class="card-body bg-white">
                              <ul>
-                                 {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "social") }}
+                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "social")) "Title" "asc") }}
                                      <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                      </li>
                                  {{end}}
@@ -149,7 +149,7 @@
              
                          <div class="card-body bg-white">
                              <ul>
-                                 {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation") }}
+                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation")) "Title" "asc") }}
                                      <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                      </li>
                                  {{end}}
@@ -179,7 +179,7 @@
              
                          <div class="card-body bg-white">
                              <ul>
-                                 {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "healthoutcomes") }}
+                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "healthoutcomes")) "Title" "asc") }}
                                      <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                      </li>
                                  {{end}}
@@ -209,7 +209,7 @@
              
                          <div class="card-body bg-white">
                              <ul>
-                                 {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "childhealth") }}
+                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "childhealth")) "Title" "asc") }}
                                      <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                      </li>
                                  {{end}}
@@ -239,7 +239,7 @@
              
                          <div class="card-body bg-white">
                              <ul>
-                                 {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "pests") }}
+                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "pests")) "Title" "asc") }}
                                      <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                      </li>
                                  {{end}}
@@ -269,7 +269,7 @@
              
                          <div class="card-body bg-white">
                              <ul>
-                                 {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "foodanddrink") }}
+                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "foodanddrink")) "Title" "asc") }}
                                      <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                      </li>
                                  {{end}}
@@ -355,7 +355,7 @@
         
                     <div class="card-body bg-white">
                         <ul>
-                            {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "airquality") }}
+                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "airquality")) "Title" "asc") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{ end }}
@@ -385,7 +385,7 @@
         
                     <div class="card-body bg-white">
                         <ul>
-                            {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "climatehealth") }}
+                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "climatehealth")) "Title" "asc") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{ end }}
@@ -415,7 +415,7 @@
         
                     <div class="card-body bg-white">
                         <ul>
-                            {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "housing") }}
+                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "housing")) "Title" "asc") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{ end }}
@@ -445,7 +445,7 @@
         
                     <div class="card-body bg-white">
                         <ul>
-                            {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "social") }}
+                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "social")) "Title" "asc") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{ end }}
@@ -475,7 +475,7 @@
         
                     <div class="card-body bg-white">
                         <ul>
-                            {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation") }}
+                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "transportation")) "Title" "asc") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{ end }}
@@ -505,7 +505,7 @@
         
                     <div class="card-body bg-white">
                         <ul>
-                            {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "healthoutcomes") }}
+                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "healthoutcomes")) "Title" "asc") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{ end }}
@@ -535,7 +535,7 @@
         
                     <div class="card-body bg-white">
                         <ul>
-                            {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "childhealth") }}
+                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "childhealth")) "Title" "asc") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{ end }}
@@ -565,7 +565,7 @@
         
                     <div class="card-body bg-white">
                         <ul>
-                            {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "pests") }}
+                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "pests")) "Title" "asc") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{ end }}
@@ -595,7 +595,7 @@
         
                     <div class="card-body bg-white">
                         <ul>
-                            {{ range where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "foodanddrink") }}
+                            {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "foodanddrink")) "Title" "asc") }}
                                 <li><a href="{{ .RelPermalink}}">{{ .Title }}</a>
                                 </li>
                             {{ end }}
