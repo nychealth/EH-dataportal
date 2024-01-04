@@ -174,7 +174,7 @@
 
 // establish report, and reportURL - change this with a toggle on the report buttons
 var report; 
-var reportURL = '/asthma_and_the_environment/' // this is used in nr-clickable-uhf
+var reportURL = '' // this is used in nr-clickable-uhf
 
 // button Change function. Pass first word into function from buttons
 function buttonChange(x) {
@@ -217,7 +217,7 @@ var ul2 = document.getElementById("neighborhoodList2");
 
 neighborhoods.forEach(function (neighborhood) {
   var li = document.createElement("li");
-  li.innerHTML = `<a href="${neighborhood.page_name}">${neighborhood.UHF_name}</a>: ${neighborhood.Zipcodes}`;
+  li.innerHTML = "<a href='" + {{ relURL "neighborhood-reports/" }} + neighborhood.page_name + "/" + "'>" + neighborhood.UHF_name + "</a>: " + neighborhood.Zipcodes
   ul.appendChild(li);
   ul2.appendChild(li)
 });
