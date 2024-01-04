@@ -30,20 +30,23 @@ Above and to the right of the visualiaztions, there's a three-dot menu. Clicking
 
 ![](vega-lite-menu.png)
 
-**Open in Vega Editor** will open a new tab with the visualizations specification loaded in the Vega Editor, an online widget that lets you modify and run visualizations in Vega-Lite. This lets you edit a version of the visualization's code, revise it, preview it, ensure that you have working code which you can then embed in your own website using the `vegaEmbed` function.
+**Open in Vega Editor** will open a new tab with the visualizations specification loaded in the Vega Editor, an online widget that lets you modify and run visualizations in Vega-Lite. This lets you edit a version of the visualization's code, revise it, preview it, ensure that you have working code which you can then embed in your own website using the `vegaEmbed` function. [For details about how to embed Vega-Lite visualizations into another webpage, see Vega-Lite documentation](https://vega.github.io/vega-lite).
 
 ![](vega-lite-editor.png)
 
 The specification is on the left, and you can edit the layout and design details of the visualization that gets rendered on the right. It can take a bit of learning to properly edit a Vega-Lite spec. [Vega-Lite's documentation will help](https://vega.github.io/vega-lite/docs/). 
 
-## Download data - and more
+## Download data 
 Below each data visualization, there is a "Download data" button that lets you download what you're seeing:
 - For the table, this will download the full table of data
 - For the map, it will trigger a download of the data for whatever geographic resolution shown
 - For the trend chart, it will download years and geographies displayed
 - For the links chart, it will download both indicators at the geography displayed
 
-**Directly access the underlying data** by going to [our data repository](https://www.github.com/nychealth/EHDP-data). The Data Explorer's data is stored in [`/indicators`](https://github.com/nychealth/EHDP-data/tree/production/indicators). Some documentation is available in that location's Readme, but briefly:
+You can use these data for your own projects. It may be helpful to retain information on the Data Source and About The Measures (which explains how the indicator was calculated) fields displayed on each indicator's page. 
+
+## Directly access underlying data
+You can bypass ourwebsite and get data by going to [our data repository](https://www.github.com/nychealth/EHDP-data). The Data Explorer's data is stored in [`/indicators`](https://github.com/nychealth/EHDP-data/tree/production/indicators). Some documentation is available in that location's Readme, but briefly:
 - `metadata.json` contains the indicators' names, indicator IDs (used to identify which file the data are in), data sources, notes, and other visualization specifications used by the site code.
 - The `/data` folder contains a .json file for each indicator, with fields for the measure ID, geography, time period, value, and a few other supplemental fields.
 
