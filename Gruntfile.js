@@ -306,11 +306,15 @@ module.exports = function(grunt) {
                     seo_title = frontMatter.seo_title;
                     summary = frontMatter.summary;
 
-                    indicator_names = [...new Set(nr_indicator_names.filter(d => d.title == title)[0].indicator_names)].join(" ")
-                    indicator_descriptions = [...new Set(nr_indicator_names.filter(d => d.title == title)[0].indicator_descriptions)].join(" ")
+                    // grunt.log.writeln(filename, ":", nr_indicator_names);
+                    // grunt.log.writeln(filename, ":", grunt.log.wordlist(nr_indicator_names));
+
+                    indicator_names = [...new Set(nr_indicator_names.filter(d => d.title == title).indicator_names)].join(" ")
+                    indicator_descriptions = [...new Set(nr_indicator_names.filter(d => d.title == title).indicator_descriptions)].join(" ")
+
+                    // grunt.log.writeln(filename, ":", nr_indicator_names);
+                    // grunt.log.writeln(filename, ":", grunt.log.wordlist(nr_indicator_names));
                     
-                    // grunt.log.writeln(filename, ":", indicator_names);
-                    // grunt.log.writeln(filename, ":", grunt.log.wordlist(indicator_names));
 
                 } else {
                     // only add displayTitle for NR neighborhood pages, i.e. searchTitle = undefined
