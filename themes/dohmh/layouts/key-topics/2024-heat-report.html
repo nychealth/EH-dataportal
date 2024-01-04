@@ -1,0 +1,133 @@
+{{- define "main" -}}
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-4 pl-0">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href="..">
+                        {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
+                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-2 mr-auto"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7 col-sm-12 mx-auto mb-6">
+                <h1><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
+                    {{ .Title }}</h1>
+
+
+        
+                {{- .Content  -}}
+    
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-md-5 ml-auto col-sm-12">
+            {{- with .Resources.GetMatch "section1.md" -}}
+                {{ .Content }}
+            {{- end -}}
+        </div>
+
+        <div class="col-md-5 mr-auto col-sm-12">
+            <div class="p-2 border">
+                {{- with .Resources.GetMatch "vis1.md" -}}
+                {{ .Content }}
+                {{- end -}}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row my-3">
+        <div class="col-md-5 ml-auto col-sm-12">
+            {{- with .Resources.GetMatch "section2.md" -}}
+                {{ .Content }}
+            {{- end -}}
+        </div>
+
+        <div class="col-md-5 mr-auto col-sm-12">
+            <div class="p-2 border">
+                {{- with .Resources.GetMatch "vis2.md" -}}
+                {{ .Content }}
+                {{- end -}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-md-5 ml-auto col-sm-12">
+            {{- with .Resources.GetMatch "section3.md" -}}
+                {{ .Content }}
+            {{- end -}}
+        </div>
+
+        <div class="col-md-5 mr-auto col-sm-12">
+            <div class="p-2 border">
+                {{- with .Resources.GetMatch "vis3.md" -}}
+                {{ .Content }}
+                {{- end -}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-md-5 ml-auto col-sm-12">
+            {{- with .Resources.GetMatch "section4.md" -}}
+                {{ .Content }}
+            {{- end -}}
+        </div>
+
+        <div class="col-md-5 mr-auto col-sm-12">
+            <div class="p-2 border">
+                {{- with .Resources.GetMatch "vis4.md" -}}
+                {{ .Content }}
+                {{- end -}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-md-5 ml-auto col-sm-12">
+            {{- with .Resources.GetMatch "section5.md" -}}
+                {{ .Content }}
+            {{- end -}}
+        </div>
+
+        <div class="col-md-5 mr-auto col-sm-12">
+            <div class="p-2 border">
+                {{- with .Resources.GetMatch "vis5.md" -}}
+                {{ .Content }}
+                {{- end -}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-md-5 ml-auto col-sm-12">
+            {{- with .Resources.GetMatch "section6.md" -}}
+                {{ .Content }}
+            {{- end -}}
+        </div>
+
+        <div class="col-md-5 mr-auto col-sm-12">
+            <div class="p-2 border">
+                {{- with .Resources.GetMatch "vis6.md" -}}
+                {{ .Content }}
+                {{- end -}}
+            </div>
+        </div>
+    </div>
+
+
+
+</article>
+
+{{- end -}}
