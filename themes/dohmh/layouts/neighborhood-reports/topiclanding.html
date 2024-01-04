@@ -255,7 +255,6 @@ var ul2 = document.getElementById("neighborhoodList2");
 
 neighborhoods.forEach(function (neighborhood) {
   var li = document.createElement("li");
-  {{/*  li.innerHTML = `<a href="${neighborhood.page_name}">${neighborhood.UHF_name}</a>: ${neighborhood.Zipcodes}`;  */}}
   li.innerHTML = "<a href='" + {{ relURL "neighborhood-reports/" }} + neighborhood.page_name + reportURL + "'>" + neighborhood.UHF_name + "</a>: " + neighborhood.Zipcodes
   ul.appendChild(li);
   ul2.appendChild(li)
