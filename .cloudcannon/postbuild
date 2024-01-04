@@ -1,1 +1,1 @@
-grunt lunr-index --stack
+npx -y grunt lunr-index --stack
