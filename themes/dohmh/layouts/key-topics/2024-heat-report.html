@@ -126,6 +126,62 @@
         </div>
     </div>
 
+    <div class="row my-3">
+        <div class="col-md-5 ml-auto col-sm-12">
+            {{- with .Resources.GetMatch "section7.md" -}}
+                {{ .Content }}
+            {{- end -}}
+        </div>
+
+        <div class="col-md-5 mr-auto col-sm-12">
+            <div class="p-2 border">
+                {{- with .Resources.GetMatch "vis7.md" -}}
+                {{ .Content }}
+                {{- end -}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-md-5 ml-auto col-sm-12">
+            {{- with .Resources.GetMatch "section8.md" -}}
+                {{ .Content }}
+            {{- end -}}
+        </div>
+
+        <div class="col-md-5 mr-auto col-sm-12">
+            <div class="p-2 border">
+                {{- with .Resources.GetMatch "vis8.md" -}}
+                {{ .Content }}
+                {{- end -}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-md-5 ml-auto col-sm-12">
+            {{- with .Resources.GetMatch "section9.md" -}}
+                {{ .Content }}
+            {{- end -}}
+        </div>
+
+        <div class="col-md-5 mr-auto col-sm-12">
+            <div class="p-2 border">
+                {{- with .Resources.GetMatch "vis9.md" -}}
+                {{ .Content }}
+                {{- end -}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-md-7 mx-auto col-sm-12">
+            {{- with .Resources.GetMatch "conclusion.md" -}}
+            {{ .Content }}
+            {{- end -}}
+        </div>
+    </div>
+
 
 
 </article>
