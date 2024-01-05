@@ -6,7 +6,9 @@
 // top scope variables
 // ----------------------------------------------------------------------- //
 
-let selectedTableYears = [];
+let globalID;
+
+let selectedTableTimes = [];
 let selectedTableGeography = [];
 let aboutMeasures;
 let dataSources;
@@ -14,8 +16,9 @@ let dataSources;
 let measureAbout = `N/A`;
 let measureSources = `N/A`;
 let geoTable;
+let timeTable;
 let unreliabilityNotes;
-let aqData;
+let aqIndicatorData;
 let joinedAqData;
 let aqMeasureIdTimes;
 
@@ -43,15 +46,16 @@ let aqComparisonsMetadata;
 let aqComparisonsIndicatorsMetadata;
 let aqComparisonsIndicatorData;
 
-let defaultTrendMetadata = [];
+let defaultTrendMetadata;
 let aqDefaultTrendMetadata;
 let defaultTrendAbout;
 let defaultTrendSources;
-let defaultMapMetadata = [];
+let defaultMapMetadata;
 let defaultMapAbout;
 let defaultMapSources;
-let defaultLinksMetadata = [];
-let defaultLinkMeasureTimes = [];
+let defaultPrimaryLinksMeasureMetadata;
+let defaultSecondaryMeasureMetadata;
+let defaultDisparitiesMetadata;
 let defaultLinksAbout;
 let defaultLinksSources;
 
@@ -78,11 +82,8 @@ let selectedComparisonMetadata;
 
 let selectedLinksAbout;
 let selectedLinksSources;
-let selectedLinksMetadata;
-let selectedlinksSecondaryMeasureTime;
-
-let primaryMeasureMetadata;
-let secondaryMeasureMetadata;
+let selectedPrimaryMeasureMetadata;
+let selectedSecondaryMeasureMetadata;
 
 let filteredMapData;
 let filteredTrendData;
@@ -91,9 +92,15 @@ let aqFilteredComparisonsData;
 let aqFilteredComparisonsMetadata;
 let aqCombinedComparisonsMetadata;
 
+let aqMeasureDisplay;
+let aqTableTimesGeos;
+let aqMapTimesGeos;
+let aqTrendTimesGeos;
+
 let mapMeasures = [];
 let trendMeasures = [];
 let linksMeasures = [];
+let disparitiesMeasures = [];
 
 let tabTable;
 let tabMap;
@@ -161,6 +168,8 @@ const assignGeoRank = (GeoType) => {
             return 8;
         case 'NTA2020':
             return 9;
+        case 'NYHarbor':
+            return 10;
     }
 }
 
@@ -175,7 +184,8 @@ const geoTypes = [
     "Subboro",
     "CD",
     "CDTA",
-    "NTA"
+    "NTA",
+    "NYHarbor"
 ]
 
 // ----------------------------------------------------------------------- //
@@ -194,6 +204,9 @@ const prettifyGeoType = (GeoType) => {
         return 'NYCKIDS';
         
         case 'NYCKIDS2019':
+        return 'NYCKIDS';
+        
+        case 'NYCKIDS2021':
         return 'NYCKIDS';
         
         case 'CDTA2020':
@@ -219,8 +232,6 @@ const prettifyGeoType = (GeoType) => {
 
 const renderTitleDescription = (title, desc) => {
 
-    // console.log("** renderTitleDescription");
-    
     const indicatorTitle = document.getElementById('indicatorTitle');
     const indicatorDescription = document.querySelector('.indicator-description');
     indicatorTitle.innerHTML = title;
@@ -258,11 +269,11 @@ const updateChartPlotSize = () => {
 // full indicator metadata
 // ----------------------------------------------------------------------- //
 
-fetch(`${data_repo}${data_branch}/indicators/indicators.json`)
+fetch(`${data_repo}${data_branch}/indicators/metadata/metadata.json`)
     .then(response => response.json())
     .then(async data => {
 
-        // console.log("* fetch indicators.json");
+        // console.log("* fetch metadata.json");
 
         indicators = data;
 
@@ -299,7 +310,7 @@ const fetch_comparisons = async () => {
     
     console.log("* fetch_comparisons.json");
 
-    await fetch(`${data_repo}${data_branch}/indicators/comparisons.json`)
+    await fetch(`${data_repo}${data_branch}/indicators/metadata/comparisons.json`)
         .then(response => response.json())
         .then(async data => {
             
@@ -336,15 +347,16 @@ const createComparisonData = async (comps) => {
     // console.log("comparisonsMetadata [createComparisonData]:", comparisonsMetadata);
 
     // merged metadata
-    
 
     aqComparisonsMetadata = aq.from(comparisonsMetadata)
         .unroll("Indicators")
         .derive({
             IndicatorID: d => d.Indicators.IndicatorID,
-            MeasureID: d => d.Indicators.Measures
+            MeasureID:   d => d.Indicators.MeasureID,
+            GeoTypeName: d => d.Indicators.GeoTypeName,
+            GeoID:       d => d.Indicators.GeoID,
+            Geography:   d => d.Indicators.Geography
         })
-        .unroll("MeasureID")
         .select(aq.not("Indicators"))
 
     // console.log("aqComparisonsMetadata [createComparisonData]");
@@ -356,6 +368,7 @@ const createComparisonData = async (comps) => {
     let aqUniqueIndicatorMeasure = aqComparisonsMetadata
         .select("IndicatorID", "MeasureID")
         .dedupe()
+        // .print({limit: Infinity})
 
     let uniqueIndicatorMeasure = aqUniqueIndicatorMeasure
         .groupby("IndicatorID")
@@ -398,7 +411,6 @@ const createComparisonData = async (comps) => {
     // console.log("aqCombinedComparisonsMetadata [createComparisonData]");
     // aqCombinedComparisonsMetadata.print()
 
-
     // Promise.all takes the array of promises returned by map, and then the `then` callback executes after they've all resolved
 
     Promise.all(
@@ -414,32 +426,28 @@ const createComparisonData = async (comps) => {
             return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
                 .then(async data => {
 
-                        // console.log("@@ data:");
-                    // await data.print()
-
-                    // console.log("** aq.loadJSON");
-
-                    // filter data to keep only measures and geos in the comparison chart, using semijoin with comparison metadata
-                    // console.log("comp_data [createComparisonData]");
+                    // console.log("** aq.loadJSON [createComparisonData]");
 
                     // filter data to keep only measures and geos in the comparison chart, using semijoin with comparison metadata
 
                     let comp_data = data
                         .derive({IndicatorID: aq.escape(ind[0])})
-                        .filter(
-                            aq.escape(d => measures.includes(d.MeasureID)), 
-                            d => op.match(d.GeoType, /Citywide/) // keep only Citywide
+                        .semijoin(
+                            aqCombinedComparisonsMetadata, 
+                            (a, b) => (op.equal(a.MeasureID, b.MeasureID) && op.equal(a.GeoType, b.GeoTypeName) && op.equal(a.GeoID, b.GeoID))
                         )
                         .reify()
                     
                     return comp_data;
                 
                 })
-
         })
     )
 
     .then(async dataArray => {
+
+        // console.log("dataArray [createComparisonData]", dataArray);
+        // dataArray.print()
 
         // take array of arquero tables and combine them into 1 arquero table - like bind_rows in dplyr
 
@@ -447,15 +455,6 @@ const createComparisonData = async (comps) => {
 
         // console.log("aqComparisonsIndicatorData [createComparisonData]");
         // aqComparisonsIndicatorData.print()
-        
-        // console.log("loadTime [createComparisonData]");
-
-        aqComparisonsIndicatorData = aqComparisonsIndicatorData
-            .filter(d => op.match(d.GeoType, /Citywide/))
-            .reify()
-
-        // console.log("aqComparisonsIndicatorData:");
-        // aqComparisonsIndicatorData.print();
 
     })
 }
@@ -521,6 +520,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     selectedDisparity = false;
     selectedComparison = false;
     showingNormalTrend = false;
+    showingComparisonsTrend = false;
 
     // if dont_add_to_history is true, then don't push the state
     // if dont_add_to_history is false, or not set, push the state
@@ -562,8 +562,11 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     
     // make sure metadata is empty, so that we can use its length for conditionals
     comparisonsMetadata = [];
+    
+    // why are we waiting for this?
 
     if (indicatorComparisonId !== null) {
+        // await fetch_comparisons();
         fetch_comparisons();
     }
 
@@ -585,18 +588,25 @@ const loadData = async (this_indicatorId) => {
 
             // console.log("data [loadData]", data);
 
-            // call the geo file loading function
+            // add GeoRank
 
-            loadGeo();
-
-            ful = aq.from(data)
+            aqIndicatorData = aq.table(data)
                 .derive({ "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
-                .groupby("Time", "GeoType", "GeoID", "GeoRank")
+                .groupby("TimePeriodID", "GeoType", "GeoID")
+                .orderby(aq.desc('TimePeriodID'), 'GeoRank')
 
+            // call the geo file and time file loading functions
+            
+            await Promise.all([
+                loadTime(),
+                loadGeo()
+            ])
 
-            aqData = ful
-                .groupby("Time", "GeoType", "GeoID")
-                .orderby(aq.desc('Time'), 'GeoRank')
+            // call the data-to-geo joining function
+
+            joinData();
+
+            
         })
 
     draw311Buttons(this_indicatorId)
@@ -607,23 +617,44 @@ const loadData = async (this_indicatorId) => {
 // function to load geographic data
 // ----------------------------------------------------------------------- //
 
-const loadGeo = () => {
+const loadGeo = async () => {
 
     console.log("* loadGeo");
 
-    const geoUrl = `${data_repo}${data_branch}/geography/GeoLookup.csv`; // col named "GeoType"
+    const geoUrl = `${data_repo}${data_branch}/geography/GeoLookup.json`; // col named "GeoType"
 
-    aq.loadCSV(geoUrl)
-        .then(data => {
+    await aq.loadJSON(geoUrl, {autoType: false})
+        .then(async (data) => {
 
-            geoTable = data.select(aq.not('Lat', 'Long'));
+            geoTable = await data.select(aq.not('Lat', 'Long'));
 
-            // call the data-to-geo joining function
-
-            joinData();
+            // console.log("geoTable [loadGeo]");
+            // geoTable.print()
 
     });
 }
+
+// ----------------------------------------------------------------------- //
+// function to load time period data
+// ----------------------------------------------------------------------- //
+
+const loadTime = async () => {
+
+    console.log("* loadTime");
+
+    const timeUrl = `${data_repo}${data_branch}/indicators/metadata/TimePeriods.json`;
+
+    await aq.loadJSON(timeUrl, {autoType: false})
+        .then(async (data) => {
+
+            timeTable = await data;
+
+            // console.log("timeTable [loadTime]");
+            // timeTable.print()
+
+    });
+}
+
 
 // ----------------------------------------------------------------------- //
 // function to join indicator data and geo data
@@ -640,114 +671,310 @@ const joinData = () => {
     // get metadata fields
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    // flatten MeasureID + TimeDescription
-
-    let availableTimes = [];
-
     // create table column header with display type
 
-    let measurementDisplay = [];
+    let measurementDisplayArray = [];
 
-    indicatorMeasures.map(
+    let MeasureID = [];
+    let MeasurementType = [];
+    let DisplayType = [];
 
-        measure => {
+    indicatorMeasures.forEach(
 
-            let aqAvailableTimes =
-                aq.from(measure.AvailableTimes)
-                .derive({MeasureID: `${measure.MeasureID}`})
+        (measure, i) => {
 
-            availableTimes.push(aqAvailableTimes);
-
-            let aqMeasurementDisplay =
-                aq.table(
-                {
-                    MeasureID: [measure.MeasureID],
-                    MeasurementType: [measure.MeasurementType],
-                    DisplayType: [measure.DisplayType]
-                })
-
-            measurementDisplay.push(aqMeasurementDisplay);
+            MeasureID.push(measure.MeasureID)
+            MeasurementType.push(measure.MeasurementType)
+            DisplayType.push(measure.DisplayType)
 
         }
     )
     
-    // bind rows of Arquero tables in arrays
+    aqMeasureDisplay = 
+        aq.table({
+            MeasureID: MeasureID,
+            MeasurementType: MeasurementType,
+            DisplayType: DisplayType
+        })
 
-    aqMeasureIdTimes     = availableTimes.reduce((a, b) => a.concat(b))
-    let aqMeasurementDisplay = measurementDisplay.reduce((a, b) => a.concat(b))
+    // take array of arquero tables and combine them into 1 arquero table - like bind_rows in dplyr
 
-    // foundational joined dataset
+    // console.log("aqMeasureDisplay [joinData]");
+    // aqMeasureDisplay.print()
 
-    joinedAqData = aqData
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // getting time periods for each viz for each measure x geo combo
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // flatten MeasureID + TimePeriodID + GeoType
+
+    let tableTimesGeos = [];
+    let mapTimesGeos = [];
+    let trendTimesGeos = [];
+
+    indicatorMeasures.map(
+
+        // map over measures
+
+        (measure, i) => {
+
+            // console.log(i, " > MeasureID", measure.MeasureID);
+
+            // table -----------
+
+            let aqTableTimesGeosMeasureArray =
+
+                measure.VisOptions[0].Table.map(
+
+                    // map over table geotypes
+
+                    (table, i) => {
+
+                        // create table of all time period IDs for this geotype
+
+                        let aqTimePeriodID = aq.table({TimePeriodID: table.TimePeriodID})
+
+                        // create 1-row table with measure ID and geotype
+
+                        let aqMeasureGeo = aq.table({
+                            GeoType:  [table.GeoType],
+                            MeasureID: [measure.MeasureID]
+                        })
+
+                        // console.log("aqMeasureGeo");
+                        // aqMeasureGeo.print()
+
+                        // cross them to expand / recycle geotype & measure table rows
+
+                        let aqTimeMeasureGeos = aqTimePeriodID.cross(aqMeasureGeo).filter(d => d.TimePeriodID).reify()
+
+                        return aqTimeMeasureGeos;
+
+                    }
+                )
+
+            // console.log("aqTableTimesGeosMeasureArray", aqTableTimesGeosMeasureArray);
+
+            // combine array of arquero tables into 1 arquero table
+
+            let aqTableTimesGeosMeasure = 
+                aqTableTimesGeosMeasureArray
+                    .flatMap(d => d)
+                    .reduce((a, b) => a.concat(b))
+
+            // push table for this measure to array with all measures
+
+            tableTimesGeos.push(aqTableTimesGeosMeasure);
+
+
+            // map -----------
+
+            let aqMapTimesGeosMeasureArray =
+
+                measure.VisOptions[0].Map.map(
+
+                    // map over map geotypes
+
+                    (map, i) => {
+
+                        // create table of all time period IDs for this geotype
+
+                        let aqTimePeriodID = aq.table({TimePeriodID: map.TimePeriodID})
+
+                        // create 1-row table with measure ID and geotype
+
+                        let aqMeasureGeo = aq.table({
+                            GeoType:  [map.GeoType],
+                            MeasureID: [measure.MeasureID]
+                        })
+
+                        // cross them to expand / recycle geotype & measure table rows
+
+                        let aqTimeMeasureGeos = aqTimePeriodID.cross(aqMeasureGeo).filter(d => d.TimePeriodID).reify()
+
+                        return aqTimeMeasureGeos;
+
+                    }
+                )
+
+            // console.log("aqMapTimesGeosMeasureArray", aqMapTimesGeosMeasureArray);
+
+            // combine array of arquero tables into 1 arquero table
+
+            let aqMapTimesGeosMeasure = 
+                aqMapTimesGeosMeasureArray
+                    .flatMap(d => d)
+                    .reduce((a, b) => a.concat(b))
+
+            // push table for this measure to array with all measures
+
+            mapTimesGeos.push(aqMapTimesGeosMeasure);
+
+
+            // comparisons -----------
+
+            let aqTrendTimesGeosMeasureArray =
+
+                measure.VisOptions[0].Trend.map(
+
+                    // map over trend geotypes
+
+                    (trend, i) => {
+
+                        // create table of all time period IDs for this geotype
+
+                        let aqTimePeriodID = aq.table({TimePeriodID: trend.TimePeriodID})
+
+                        // create 1-row table with measure ID and geotype
+
+                        let aqMeasureGeo = aq.table({
+                            GeoType:  [trend.GeoType],
+                            MeasureID: [measure.MeasureID]
+                        })
+
+                        // cross them to expand / recycle geotype & measure table rows
+
+                        let aqTimeMeasureGeos = aqTimePeriodID.cross(aqMeasureGeo).filter(d => d.TimePeriodID).reify()
+
+                        return aqTimeMeasureGeos;
+
+                    }
+                )
+
+            // console.log("aqTrendTimesGeosMeasureArray", aqTrendTimesGeosMeasureArray);
+
+            // combine array of arquero tables into 1 arquero table
+
+            let aqTrendTimesGeosMeasure = 
+                aqTrendTimesGeosMeasureArray
+                    .flatMap(d => d)
+                    .reduce((a, b) => a.concat(b))
+
+            // push table for this measure to array with all measures
+
+            trendTimesGeos.push(aqTrendTimesGeosMeasure);
+
+        }
+    )
+    
+
+    // take array of arquero tables and combine them into 1 arquero table defined globally - like bind_rows in dplyr
+    
+    // table
+
+    aqTableTimesGeos = 
+        tableTimesGeos
+            .flatMap(d => d)
+            .reduce((a, b) => a.concat(b))
+            .join_left(timeTable, "TimePeriodID")
+            .orderby(aq.desc('end_period'), "MeasureID")
+    
+    // map
+
+    aqMapTimesGeos = 
+        mapTimesGeos
+            .flatMap(d => d)
+            .reduce((a, b) => a.concat(b))
+            .join_left(timeTable, "TimePeriodID")
+            .orderby(aq.desc('end_period'), "MeasureID")
+    
+    // trend
+    
+    aqTrendTimesGeos = 
+        trendTimesGeos
+            .flatMap(d => d)
+            .reduce((a, b) => a.concat(b))
+            .join_left(timeTable, "TimePeriodID")
+            .orderby(aq.desc('end_period'), "MeasureID")
+
+
+    // console.log("aqTableTimesGeos [joinData]");
+    // aqTableTimesGeos.print()
+
+    // console.log("aqMapTimesGeos [joinData]");
+    // aqMapTimesGeos.print()
+
+    // console.log("aqTrendTimesGeos [joinData]");
+    // aqTrendTimesGeos.print()
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // joining
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    
+    // foundational joined dataset ----------
+
+    // console.log(">>>> joinedAqData [joinData]");
+
+    joinedAqData = aqIndicatorData
+        // join the additional geo info
         .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
         .rename({'Name': 'Geography'})
-        .join(aqMeasureIdTimes, [["MeasureID", "Time"], ["MeasureID", "TimeDescription"]])
-        .select(
-            "GeoID",
-            "GeoType",
-            "GeoTypeDesc",
-            "GeoTypeShortDesc",
-            "GeoRank",
-            "Geography",
-            "MeasureID",
-            "Time",
-            "Value",
-            "DisplayValue",
-            "CI",
-            "Note",
-            "start_period",
-            "end_period",
-            "ban_summary_flag"
-        )
+        // join the additional time period info
+        .join(timeTable, "TimePeriodID")
+        .select(aq.not("BoroID", "Borough", "TimeType"))
         .orderby(aq.desc('end_period'), aq.desc('GeoRank'))
         .reify()
+    
+    // console.log(">>>> joinedAqData [joinData]");
+    // joinedAqData.print()
 
-    joinedAqData.print()
 
-    // data for summary table
+    // data for summary table ----------
 
     tableData = joinedAqData
-        .filter(d => d.ban_summary_flag == 0)
-        .join_left(aqMeasurementDisplay, "MeasureID")
+        .join_left(aqMeasureDisplay, "MeasureID")
+        // filter to keep only times and geos we want in the table
+        .semijoin(aqTableTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])
         .derive({
             MeasurementDisplay: d => op.trim(op.join([d.MeasurementType, d.DisplayType], " ")),
             DisplayCI: d => op.trim(op.join([d.DisplayValue, d.CI], " "))
         })
         .derive({ DisplayCI: d => op.replace(d.DisplayCI, /^$/, "-") }) // replace missing with "-"
         .select(aq.not("start_period", "end_period"))
+        .reify()
         .objects()
 
-    // data for map
+    // console.log(">>>> tableData [joinData]", tableData);
+
+    // data for map ----------
 
     mapData = joinedAqData
-        // remove Citywide
-        .filter(
-            d => !op.match(d.GeoType, /Citywide/),
-            d => !op.match(d.Geography, /Harborwide/)
-        ) 
-        // .impute({ Value: () => NaN })
+        // filter to keep only times and geos we want in the table
+        .semijoin(aqMapTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])
+        .orderby(aq.desc('end_period'), "MeasureID")
+        .reify()
         .objects()
-    
-    console.log("mapData", mapData);
 
-    // map for trend chart
+    // console.log(">>>> mapData [joinData]", mapData);
+    
+
+    // data for trend chart ----------
 
     trendData = joinedAqData
-        .filter(d => op.match(d.GeoType, /Citywide|Borough/)) // keep only Citywide and Boro
+        // filter to keep only times and geos we want in the table
+        .semijoin(aqTrendTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])
         .orderby("GeoRank", "GeoID")
+        .reify()
         .objects()
 
-    // data for links & disparities chart
+    // console.log(">>>> trendData [joinData]", trendData);
+
+    // data for links & disparities chart ----------
+
+    // console.log(">>> linksData [joinData]");
 
     linksData = joinedAqData
         .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
         .objects()
+
+    // console.log(">>>> linksData [joinData]", linksData);
 
     // call the measure rendering etc. function
 
     renderMeasures();
 
 }
+
 
 // ----------------------------------------------------------------------- //
 // function to create data and metadata for links chart
@@ -757,10 +984,10 @@ const joinData = () => {
 
 const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
-    let ret;
+    let returnData;
 
-    // console.log("primaryMeasureId", primaryMeasureId);
-    // console.log("secondaryMeasureId", secondaryMeasureId);
+    // console.log("primaryMeasureId [createJoinedLinksData]", primaryMeasureId);
+    // console.log("secondaryMeasureId [createJoinedLinksData]", secondaryMeasureId);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // primary measure metadata
@@ -769,16 +996,18 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     // get metadata for the selected primary measure, assign to global variable
     // indicatorMeasures created in loadIndicator
 
-    primaryMeasureMetadata = linksMeasures.filter(
+    let primaryMeasureMetadata = indicatorMeasures.filter(
         measure => measure.MeasureID === primaryMeasureId
     )
 
+    // console.log("primaryMeasureMetadata [createJoinedLinksData]", primaryMeasureMetadata);
+
     // get available geos for primary measure (excluding citywide and boro)
 
-    const primaryMeasureGeos = primaryMeasureMetadata[0].AvailableGeographyTypes
-        .map(g => g.GeoType)
+    const primaryMeasureGeos = primaryMeasureMetadata[0]?.AvailableGeoTypes
         .filter(g => !/Citywide|Borough/.test(g))
 
+    // console.log("primaryMeasureGeos [createJoinedLinksData]", primaryMeasureGeos);
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // secondary measure metadata
@@ -787,7 +1016,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     // if no secondary measure ID is given, set it to the first in the primary measure's links list
 
     if (typeof secondaryMeasureId == "undefined") {
-        secondaryMeasureId = primaryMeasureMetadata[0].VisOptions[0].Links[0].MeasureID;
+        secondaryMeasureId = primaryMeasureMetadata[0].VisOptions[0].Links[0]?.Measures[0]?.MeasureID;
     }
 
     // get the indicator element for the selected secondary measure
@@ -800,37 +1029,34 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     // get secondary indicatorID, to get secondary data and metadata
 
-    const secondaryIndicatorId = secondaryIndicator[0].IndicatorID
+    const secondaryIndicatorId = secondaryIndicator[0]?.IndicatorID
 
     // get metadata for the selected secondary measure, assign to global variable
 
-    secondaryMeasureMetadata =
-        secondaryIndicator[0].Measures.filter(
+    let secondaryMeasureMetadata = secondaryIndicator[0].Measures?.filter(
         measure => measure.MeasureID === secondaryMeasureId
     )
+
+    // console.log("secondaryMeasureMetadata", secondaryMeasureMetadata);
 
 
     // ==== geography ==== //
 
     // get avilable geos for secondary measure (excluding citywide and boro)
 
-    const secondaryMeasureGeos = secondaryMeasureMetadata[0].AvailableGeographyTypes
-        .map(g => g.GeoType)
+    const secondaryMeasureGeos = secondaryMeasureMetadata[0]?.AvailableGeoTypes
         .filter(g => !/Citywide|Borough/.test(g))
 
+    // console.log("secondaryMeasureGeos [createJoinedLinksData]", secondaryMeasureGeos);
 
     // ---- get primary x secondary intersection ---- //
 
     const sharedGeos = secondaryMeasureGeos.filter(g => primaryMeasureGeos.includes(g));
 
-    // console.log("sharedGeos", sharedGeos);
 
     // ==== times ==== //
 
     // get available time periods for secondary measure
-
-    const secondaryMeasureTimes   = secondaryMeasureMetadata[0].AvailableTimes;
-    const aqSecondaryMeasureTimes = aq.from(secondaryMeasureTimes);
 
     // console.log("aqSecondaryMeasureTimes");
     // aqSecondaryMeasureTimes.print(50)
@@ -866,7 +1092,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     const aqFilteredPrimaryMeasureTimesData = aq.from(filteredPrimaryMeasureTimesData);
 
     // console.log("aqFilteredPrimaryMeasureTimesData");
-    // aqFilteredPrimaryMeasureTimesData.groupby("MeasureID", "GeoType", "Time").count().print(50)
+    // aqFilteredPrimaryMeasureTimesData.groupby("MeasureID", "GeoType", "TimePeriod").count().print(50)
     // aqFilteredPrimaryMeasureTimesData.print(10)
 
 
@@ -882,39 +1108,34 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
         .then(response => response.json())
         .then(async data => {
 
-            // get secondary measure data
+            // join with geotable and times, keep only geos in primary data
 
-            const aqFilteredSecondaryMeasureData = aq.from(data)
+            const aqFilteredSecondaryMeasureData = aq.table(data)
 
                 // get secondary measure data
-
                 .filter(`d => d.MeasureID === ${secondaryMeasureId}`)
-                
-                .join(
-                    geoTable,
-                    [["GeoID", "GeoType"], ["GeoID", "GeoType"]]
-                )
+                .join(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
 
                 // get same geotypes as primary data (no citywide or boro)
                 .filter(aq.escape(d => sharedGeos.includes(d.GeoType)))
-
-                .derive({ "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
+                .derive({"GeoRank": aq.escape(d => assignGeoRank(d.GeoType))})
                 .rename({'Name': 'Geography'})
 
                 // get end periods
-                .join(
-                    aqSecondaryMeasureTimes,
-                    ["Time", "TimeDescription"]
+                .join_left(
+                    timeTable,
+                    "TimePeriodID"
                 )
-                .select(aq.not("TimeDescription"))
             
             // console.log("aqFilteredSecondaryMeasureData");
-            // aqFilteredSecondaryMeasureData.groupby("MeasureID", "GeoType", "Time").count().print(50)
-            // aqFilteredSecondaryMeasureData.print(10)
+            // aqFilteredSecondaryMeasureData.print()
+            
 
             // convert to JS object
 
             const filteredSecondaryMeasureTimesDataObjects = aqFilteredSecondaryMeasureData.objects();
+
+            // console.log("filteredSecondaryMeasureTimesDataObjects", filteredSecondaryMeasureTimesDataObjects);
             
 
             // ==== get closest data ==== //
@@ -952,11 +1173,11 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
             // console.log("filteredPrimaryMeasureData", filteredPrimaryMeasureData);
             
             // console.log("aqFilteredPrimaryMeasureTimesData");
-            // aqFilteredPrimaryMeasureTimesData.groupby("MeasureID", "GeoType", "Time").count().print(50)
+            // aqFilteredPrimaryMeasureTimesData.groupby("MeasureID", "GeoType", "TimePeriod").count().print(50)
             // aqFilteredPrimaryMeasureTimesData.print(10)
             
             // console.log("aqClosestSecondaryData");
-            // aqClosestSecondaryData.groupby("MeasureID", "GeoType", "Time").count().print(50)
+            // aqClosestSecondaryData.groupby("MeasureID", "GeoType", "TimePeriod").count().print(50)
             // aqClosestSecondaryData.print(10)
             
             const aqJoinedPrimarySecondaryData = aqFilteredPrimaryMeasureTimesData
@@ -964,17 +1185,34 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
                     aqClosestSecondaryData,
                     [["GeoID", "GeoType"], ["GeoID", "GeoType"]]
                 )
+                // .join_left(timeTable, "TimePeriodID")
+
+            // console.log("aqJoinedPrimarySecondaryData [createJoinedLinksData]");
+            // aqJoinedPrimarySecondaryData.print()
 
             // set the value of joinedLinksDataObjects, and make sure to wait for it
 
-            ret = await aqJoinedPrimarySecondaryData;
+            return await aqJoinedPrimarySecondaryData.objects();
 
         })
+        .then(d => {
+
+            returnData = d;
+
+            // console.log("data 2", returnData);
+
+        })
+
+    // console.log("data 3", returnData);
 
     // console.log(">> ret");
     // ret.print()
 
-    return ret;
+    return { 
+        "data": returnData, 
+        "primaryMeasureMetadata": primaryMeasureMetadata, 
+        "secondaryMeasureMetadata": secondaryMeasureMetadata 
+    };
 }
 
 
@@ -992,10 +1230,10 @@ function draw311Buttons(indicator_id) {
 
     let filteredCrosswalk = [];
 
-    d3.csv(`${baseURL}/311/311-crosswalk.csv`)
+    d3.csv(`${baseURL}311/311-crosswalk.csv`)
         .then(async data => {
 
-            console.log(">>> 311-crosswalk");
+            // console.log(">>> 311-crosswalk");
             return data;
         })
         .then((crosswalk) => {
@@ -1039,6 +1277,8 @@ function draw311Buttons(indicator_id) {
 // ===== map ================================================== //
 
 const setDefaultMapMeasure = (visArray) => {
+
+    // console.log("* setDefaultMapMeasure");
 
     // modified so that defaultMapMetadata is explicitly set, instead of by reference
     //  through defaultArray
@@ -1107,6 +1347,8 @@ const setDefaultMapMeasure = (visArray) => {
 // ===== trend ================================================== //
 
 const setDefaultTrendMeasure = (visArray) => {
+
+    // console.log("* setDefaultTrendMeasure");
 
     // modified so that defaultTrendMetadata is explicitly set, instead of by reference
     //  through defaultArray
@@ -1179,7 +1421,9 @@ const setDefaultTrendMeasure = (visArray) => {
 
 const setDefaultLinksMeasure = async (visArray) => {
 
-    // modified so that defaultLinksMetadata is explicitly set, instead of by reference
+    // console.log("* setDefaultLinksMeasure");
+
+    // modified so that defaultPrimaryLinksMeasureMetadata is explicitly set, instead of by reference
     //  through defaultArray
 
     let defaultArray = [];
@@ -1238,23 +1482,108 @@ const setDefaultLinksMeasure = async (visArray) => {
 
         }
 
-        defaultLinkMeasureTimes = defaultArray[0].AvailableTime;
+        // defaultLinkMeasureTimes = defaultArray[0].AvailableTime; // <<<<<<<<<<
 
         const defaultPrimaryMeasureId = defaultArray[0].MeasureID;
-        const defaultSecondaryMeasureId = defaultArray[0].VisOptions[0].Links[0].MeasureID;
+        const defaultSecondaryMeasureId = defaultArray[0].VisOptions[0].Links[0].Measures[0]?.MeasureID;
 
         // assigning to global object
-        defaultLinksMetadata = defaultArray;
+        defaultPrimaryLinksMeasureMetadata = defaultArray;
+
+        // console.log("defaultPrimaryLinksMeasureMetadata [setDefaultLinksMeasure]", defaultPrimaryLinksMeasureMetadata);
 
         // using await here because createJoinedLinksData calls fetch, and we need that data
 
-        let aqJoinedLinksDataObjects = await createJoinedLinksData(defaultPrimaryMeasureId, defaultSecondaryMeasureId)
+        let defaultLinksDataMetadata = await createJoinedLinksData(defaultPrimaryMeasureId, defaultSecondaryMeasureId)
 
-        joinedLinksDataObjects = aqJoinedLinksDataObjects.objects()
+        // console.log("defaultLinksDataMetadata [setDefaultLinksMeasure]", defaultLinksDataMetadata);
+
+        // extract secondary metadata from data function return, assign to global object
+
+        defaultSecondaryMeasureMetadata = defaultLinksDataMetadata.secondaryMeasureMetadata;
+
+        // console.log("defaultSecondaryMeasureMetadata [setDefaultLinksMeasure]", defaultSecondaryMeasureMetadata);
+        
+        // extract data element from data function return, assign to global object
+
+        // console.log("defaultLinksDataMetadata.data", defaultLinksDataMetadata.data);
+
+        joinedLinksDataObjects = defaultLinksDataMetadata.data
 
         // console.log(">> joinedLinksDataObjects [setDefaultLinksMeasure]", joinedLinksDataObjects);
 
     }
+}
+
+
+
+// ===== disparities ================================================== //
+
+const setDefaultDisparitiesMeasure = (visArray) => {
+
+    // console.log("* setDefaultDisparitiesMeasure");
+
+    let defaultArray = [];
+
+    if (visArray.length > 0) {
+
+        const hasAgeAdjustedRate = visArray.filter(measure =>
+            measure.MeasurementType.includes('Age-adjusted rate')
+        )
+
+        const hasRate = visArray.filter(measure =>
+            measure.MeasurementType.includes('rate')
+        )
+
+        const isRate = visArray.filter(measure =>
+            measure.MeasurementType.includes('Rate')
+        )
+        
+        const hasPercent = visArray.filter(measure =>
+            measure.MeasurementType.includes('Percent')
+        )
+
+        const hasDensity = visArray.filter(measure =>
+            measure.MeasurementType.includes('Density')
+        )
+
+
+        if (hasAgeAdjustedRate.length) {
+
+            const hasAgeAdjustedRateTotal = hasAgeAdjustedRate.filter(measure =>
+                measure.MeasurementType.includes('Total')
+            )
+            // Set total as default if available
+            if (hasAgeAdjustedRateTotal.length) {
+                defaultArray.push(hasAgeAdjustedRateTotal[0]);
+
+            } else {
+                defaultArray.push(hasAgeAdjustedRate[0]);
+
+            }
+
+
+        } else if (hasRate.length) {
+            defaultArray.push(hasRate[0]);
+
+        } else if (isRate.length) {
+            defaultArray.push(isRate[0]);
+
+        } else if (hasPercent.length) {
+            defaultArray.push(hasPercent[0]);
+
+        } else if (hasDensity.length) {
+            defaultArray.push(hasDensity[0]);
+
+        } else {
+            defaultArray.push(visArray[0]);
+
+        }
+    }
+
+    // assigning to global object
+
+    defaultDisparitiesMetadata = defaultArray;
 }
 
 
@@ -1270,7 +1599,7 @@ const updateMapData = (e) => {
 
     console.log("* updateMapData");
 
-    // ----- handle selection -------------------------------------------------- //
+    // ----- handle selection --------------------------------------------------- //
 
     let measureId;
     let time;
@@ -1355,13 +1684,13 @@ const updateMapData = (e) => {
     }
 
 
-    console.log("*measureId*", measureId, "*geo*", geo, "*time*", time);
+    // console.log("*measureId*", measureId, "*geo*", geo, "*time*", time);
     // console.log("geo", geo);
     // console.log("measureId", measureId);
     // console.log("time", time);
 
 
-    // ----- get metatadata for selected measure -------------------------------------------------- //
+    // ----- get metatadata for selected measure --------------------------------------------------- //
 
     selectedMapMetadata = mapMeasures.filter(m => m.MeasureID == measureId);
     
@@ -1370,7 +1699,7 @@ const updateMapData = (e) => {
     const sources         = selectedMapMetadata[0].Sources;
 
 
-    // ----- set measure info boxes -------------------------------------------------- //
+    // ----- set measure info boxes --------------------------------------------------- //
 
     // "indicatorName" is set in loadIndicator
 
@@ -1387,26 +1716,21 @@ const updateMapData = (e) => {
     renderAboutSources(selectedMapAbout, selectedMapSources);
 
 
-    // ----- create dataset -------------------------------------------------- //
+    // ----- create dataset --------------------------------------------------- //
 
     // filter map data using selected measure and time
 
     filteredMapData =
-        mapData.filter(obj => 
-            obj.MeasureID == measureId &&
-            obj.Time == time &&
+        mapData.filter(
+            obj => obj.MeasureID == measureId &&
+            obj.TimePeriod == time &&
             prettifyGeoType(obj.GeoType) == geo
         );
 
-    console.log("filteredMapData [updateMapData]", filteredMapData);
-
-    // get the highest GeoRank, then keep just that geo
-
-    // let maxGeoRank = Math.max(filteredMapData[0].GeoRank);
-    // filteredMapData = filteredMapData.filter(obj => obj.GeoRank === maxGeoRank)
+    // console.log("filteredMapData [updateMapData]", filteredMapData);
 
 
-    // ----- format dropdowns -------------------------------------------------- //
+    // ----- format dropdowns --------------------------------------------------- //
 
     // set this element as active & selected
 
@@ -1418,7 +1742,7 @@ const updateMapData = (e) => {
     handleMapTimeDropdown(measureId, geo)
     handleMapGeoDropdown(measureId, time)
     
-    // ----- render the map -------------------------------------------------- //
+    // ----- render the map --------------------------------------------------- //
 
     renderMap(filteredMapData, selectedMapMetadata);
 
@@ -1436,7 +1760,7 @@ const updateTrendData = (e) => {
 
     console.log("* updateTrendData");
 
-    // ----- handle selection -------------------------------------------------- //
+    // ----- handle selection --------------------------------------------------- //
 
     // get meaasureId of selected dropdown element
 
@@ -1456,13 +1780,14 @@ const updateTrendData = (e) => {
     $(e.target).addClass("active");
     $(e.target).attr('aria-selected', true);
 
-    // ----- get metatadata for selected measure -------------------------------------------------- //
+    // ----- get metatadata for selected measure --------------------------------------------------- //
 
     // trendMeasures is created by renderMeasures, which evals before this would be called
     let selectedTrendMetadata = trendMeasures.filter(m => m.MeasureID == measureId);
     const measurementType = selectedTrendMetadata[0].MeasurementType;
     const about           = selectedTrendMetadata[0].how_calculated;
     const sources         = selectedTrendMetadata[0].Sources;
+    // const times           = selectedTrendMetadata[0].VisOptions[0].Trend[0]?.TimePeriodID;
 
     aqSelectedTrendMetadata = aq.from(selectedTrendMetadata)
         .derive({
@@ -1470,7 +1795,7 @@ const updateTrendData = (e) => {
             ComparisonName: aq.escape('Boroughs')
         })
 
-    // ----- set measure info boxes -------------------------------------------------- //
+    // ----- set measure info boxes --------------------------------------------------- //
 
     selectedTrendAbout =
         `<h6>${indicatorName} - ${measurementType}</h6>
@@ -1485,14 +1810,17 @@ const updateTrendData = (e) => {
     renderAboutSources(selectedTrendAbout, selectedTrendSources);
 
 
-    // ----- create dataset -------------------------------------------------- //
+    // ----- create dataset --------------------------------------------------- //
 
     // created filtered trend data, to be passed to render function
 
-    filteredTrendData = trendData.filter(m => m.MeasureID === measureId);
+    filteredTrendData = trendData
+        .filter(m => m.MeasureID === measureId)
+
+    // console.log("filteredTrendData [updateTrendData]", filteredTrendData);
 
 
-    // ----- render the chart -------------------------------------------------- //
+    // ----- render the chart --------------------------------------------------- //
 
     // chart only the annual average for the following measureIds:
     // 365 - PM2.5 (Fine particles), Mean
@@ -1509,30 +1837,30 @@ const updateTrendData = (e) => {
 
     if (measureIdsAnnualAvg.includes(measureId)) {
 
-        const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.Time.startsWith('Annual Average'));
+        const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.TimePeriod.startsWith('Annual Average'));
 
         let aqFilteredTrendDataAnnualAvg = aq.from(filteredTrendDataAnnualAvg);
 
-        // renderTrendChart(filteredTrendDataAnnualAvg, aqMeasureMetadata);
         renderComparisonsChart(aqFilteredTrendDataAnnualAvg, aqSelectedTrendMetadata);
+
         updateChartPlotSize();
 
     } else if (measureIdsSummer.includes(measureId)) {
 
-        const filteredTrendDataSummer = filteredTrendData.filter(d => d.Time.startsWith('Summer'));
+        const filteredTrendDataSummer = filteredTrendData.filter(d => d.TimePeriod.startsWith('Summer'));
 
         let aqFilteredTrendDataSummer = aq.from(filteredTrendDataSummer);
 
-        // renderTrendChart(filteredTrendDataSummer, aqMeasureMetadata);
         renderComparisonsChart(aqFilteredTrendDataSummer, aqSelectedTrendMetadata);
+
         updateChartPlotSize();
 
     } else {
 
         let aqFilteredTrendData = aq.from(filteredTrendData);
 
-        // renderTrendChart(filteredTrendData, aqMeasureMetadata);
         renderComparisonsChart(aqFilteredTrendData, aqSelectedTrendMetadata);
+
         updateChartPlotSize();
 
     }
@@ -1553,7 +1881,7 @@ const updateTrendComparisonsData = (e) => {
 
     console.log("* updateTrendComparisonsData");
 
-    // ----- handle selection -------------------------------------------------- //
+    // ----- handle selection --------------------------------------------------- //
 
     // get meaasureId of selected dropdown element
 
@@ -1576,7 +1904,12 @@ const updateTrendComparisonsData = (e) => {
     $(e.target).attr('aria-selected', true);
 
 
-    // ----- set measure info boxes -------------------------------------------------- //
+    // ----- set measure info boxes --------------------------------------------------- //
+
+    // reset info boxes
+
+    selectedComparisonAbout = [];
+    selectedComparisonSources = [];
 
     // reset info boxes
 
@@ -1601,7 +1934,7 @@ const updateTrendComparisonsData = (e) => {
     renderAboutSources(selectedComparisonAbout, selectedComparisonSources);
 
 
-    // ----- create dataset -------------------------------------------------- //
+    // ----- create dataset --------------------------------------------------- //
 
     // keep just the clicked comparison
 
@@ -1614,16 +1947,16 @@ const updateTrendComparisonsData = (e) => {
     
     // use filtered metadata to filter data
 
+    // console.log("&&&& print x 4 [updateTrendComparisonsData]");
+
     aqFilteredComparisonsData = aqFilteredComparisonsMetadata
-        .select("IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure")
-        .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
+        .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
+        .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
+        .join(timeTable, [["TimePeriodID"], ["TimePeriodID"]])
 
         // put host indicator first, so it gets the black line
         .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
     
-    // console.log(">>>> aqFilteredComparisonsData:");
-    // aqFilteredComparisonsData.print()
-
     // show only last 3 years of DWQ measures with quarterly data
 
     let hasQuarters = [858, 859, 860, 861, 862, 863];
@@ -1633,16 +1966,19 @@ const updateTrendComparisonsData = (e) => {
         // console.log(">>>> aqFilteredComparisonsData [quarters]:");
 
         aqFilteredComparisonsData = aqFilteredComparisonsData
-            .join(aqMeasureIdTimes, [["MeasureID", "Time"], ["MeasureID", "TimeDescription"]])
             .derive({"year": d => op.year(d.end_period)})
             .filter(d => d.year > op.max(d.year) - 3)
-            .select(aq.not("TimeDescription", "year"))
+            .select(aq.not("TimePeriodID", "year"))
+            .reify()
             // .print(20)
 
     }
 
+    // console.log(">>>> aqFilteredComparisonsData [updateTrendComparisonsData]");
+    // aqFilteredComparisonsData.print()
 
-    // ----- render the chart -------------------------------------------------- //
+
+    // ----- render the chart --------------------------------------------------- //
 
     renderComparisonsChart(
         aqFilteredComparisonsData,
@@ -1665,7 +2001,9 @@ const updateTrendComparisonsData = (e) => {
 
 const updateLinksData = async (e) => {
 
-    // ---- handle selection -------------------------------------------------- //
+    console.log("* updateLinksData");
+
+    // ---- handle selection --------------------------------------------------- //
 
     // persistent selection
 
@@ -1682,17 +2020,35 @@ const updateLinksData = async (e) => {
     const primaryMeasureId = parseInt(e.target.dataset.primaryMeasureId);
     const secondaryMeasureId = parseInt(e.target.dataset.secondaryMeasureId);
 
-    // call createJoinedLinksData, which creates joinedLinksDataObjects,
-    //  primaryMeasureMetadata, secondaryMeasureMetadata
 
-    let aqJoinedLinksDataObjects = await createJoinedLinksData(primaryMeasureId, secondaryMeasureId)
+    // ----- create links data --------------------------------------------------- //
+
+    // call createJoinedLinksData, which creates joinedLinksDataObjects
+
+    let selectedLinksDataMetadata = await createJoinedLinksData(primaryMeasureId, secondaryMeasureId)
+
+    // - - - primary measure metadata - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // extract secondary metadata from data function return, assign to global object
+
+    selectedPrimaryMeasureMetadata = selectedLinksDataMetadata.primaryMeasureMetadata;
+
+    // - - - secondary measure metadata - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // extract secondary metadata from data function return, assign to global object
+
+    selectedSecondaryMeasureMetadata = selectedLinksDataMetadata.secondaryMeasureMetadata;
+
+    // console.log("selectedSecondaryMeasureMetadata [updateLinksData]", selectedSecondaryMeasureMetadata);
     
-    joinedLinksDataObjects = aqJoinedLinksDataObjects.objects()
+    // extract data element from data function return, assign to global object
+
+    joinedLinksDataObjects = selectedLinksDataMetadata.data
 
     // console.log(">> joinedLinksDataObjects [updateLinksData]", joinedLinksDataObjects);
 
 
-    // ----- get metatadata for selected measure -------------------------------------------------- //
+    // ----- get indicator name for secondary measure --------------------------------------------------- //
 
     // for all indicators, get the ones that are linked to the current indicator
 
@@ -1702,6 +2058,7 @@ const updateLinksData = async (e) => {
         )
     )
 
+
     // get indicator names, for chart + about & sources
 
     primaryIndicatorName   = indicatorName // created in loadIndicator
@@ -1709,17 +2066,17 @@ const updateLinksData = async (e) => {
 
     // extract metadata for about & sources boxes
 
-    const primaryMeasurementType = primaryMeasureMetadata[0].MeasurementType;
-    const secondaryMeasurementType = secondaryMeasureMetadata[0].MeasurementType;
+    const primaryMeasurementType   = selectedPrimaryMeasureMetadata[0].MeasurementType;
+    const secondaryMeasurementType = selectedSecondaryMeasureMetadata[0].MeasurementType;
 
-    const primaryAbout = primaryMeasureMetadata[0].how_calculated;
-    const secondaryAbout = secondaryMeasureMetadata[0].how_calculated;
+    const primaryAbout   = selectedPrimaryMeasureMetadata[0].how_calculated;
+    const secondaryAbout = selectedSecondaryMeasureMetadata[0].how_calculated;
 
-    const primarySources = primaryMeasureMetadata[0].Sources;
-    const secondarySources = secondaryMeasureMetadata[0].Sources;
+    const primarySources   = selectedPrimaryMeasureMetadata[0].Sources;
+    const secondarySources = selectedSecondaryMeasureMetadata[0].Sources;
 
 
-    // ----- set measure info boxes -------------------------------------------------- //
+    // ----- set measure info boxes --------------------------------------------------- //
 
     selectedLinksAbout =
         `<h6>${primaryIndicatorName} - ${primaryMeasurementType}</h6>
@@ -1738,12 +2095,12 @@ const updateLinksData = async (e) => {
     renderAboutSources(selectedLinksAbout, selectedLinksSources);
 
 
-    // ----- render the chart -------------------------------------------------- //
+    // ----- render the chart --------------------------------------------------- //
 
     renderLinksChart(
         joinedLinksDataObjects,
-        primaryMeasureMetadata,
-        secondaryMeasureMetadata,
+        selectedPrimaryMeasureMetadata,
+        selectedSecondaryMeasureMetadata,
         primaryIndicatorName,
         secondaryIndicatorName
     );
@@ -1754,6 +2111,58 @@ const updateLinksData = async (e) => {
 
     selectedLinksMeasure = true;
 
+
+    // ----- handle disparities button --------------------------------------------------- //
+
+    if (disparitiesMeasures.length > 0) {
+
+        // - - - has disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+        // console.log("has disparities");
+
+        // make sure that the "links" button is active by default
+
+        $("#show-links").addClass("active");
+        $("#show-links").removeClass("disabled");
+        $("#show-links").attr('aria-disabled', false);
+        $("#show-links").attr('aria-selected', true);
+
+        // make disparities inactive and enabled
+
+        $("#show-disparities").removeClass("active");
+        $("#show-disparities").removeClass("disabled");
+        $("#show-disparities").attr('aria-disabled', false);
+
+        // if disparities is enabled, show the button
+
+        btnToggleDisparities.style.display = "inline";
+
+    } else {
+
+        // - - - no disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+        // console.log("no disparities");
+
+        // make sure that the "links" button is active by default
+
+        $("#show-links").addClass("active");
+        $("#show-links").removeClass("disabled");
+        $("#show-links").attr('aria-disabled', false);
+        $("#show-links").attr('aria-selected', true);
+
+        // if disparities is disabled, disable the button
+
+        $("#show-disparities").removeClass("active");
+        $("#show-disparities").addClass("disabled");
+        $("#show-disparities").attr('aria-disabled', true);
+
+        // remove click listeners to button that calls renderDisparitiesChart
+
+        // console.log("btnToggleDisparities [updateLinksData]");
+        $(btnToggleDisparities).off()
+
+    }
+
 }
 
 
@@ -1763,11 +2172,11 @@ const updateLinksData = async (e) => {
 
 // need to be defined before `renderMeasures`, where they're added as listener callbacks
 
-// ===== year ================================================== //
+// ===== time ================================================== //
 
-// ----- add listener on each dropdown item -------------------------------------------------- //
+// ----- add listener on each dropdown item --------------------------------------------------- //
 
-const handleTableYearFilter = (el) => {
+const handleTableTimeFilter = (el) => {
 
     el.addEventListener('change', (e) => {
 
@@ -1775,17 +2184,17 @@ const handleTableYearFilter = (el) => {
 
         if (e.target.checked) {
 
-            // selectedTableYears = [e.target.value]
-            selectedTableYears.push(e.target.value)
+            // selectedTableTimes = [e.target.value]
+            selectedTableTimes.push(e.target.value)
 
         } else {
 
-            // if the selected element is not checked, remove it from table years
+            // if the selected element is not checked, remove it from table times
 
-            let index = selectedTableYears.indexOf(e.target.value);
+            let index = selectedTableTimes.indexOf(e.target.value);
 
             if (index !== -1) {
-                selectedTableYears.splice(index, 1);
+                selectedTableTimes.splice(index, 1);
             }
         }
         renderTable()
@@ -1828,12 +2237,15 @@ const handleMapTimeDropdown = (MeasureID, GeoType) => {
 
     let mapTimesAvailable =
         [...new Set(
-            mapData
-                .filter(obj => obj.MeasureID == MeasureID && prettifyGeoType(obj.GeoType) == GeoType)
-                .map(d => d.Time)
+            aqMapTimesGeos
+                .filter(aq.escape(
+                    obj => obj.MeasureID == MeasureID && 
+                        prettifyGeoType(obj.GeoType) == GeoType
+                ))
+                .array("TimePeriod")
         )]
 
-    console.log("mapTimesAvailable [handleMapTimeDropdown]", mapTimesAvailable);
+    // console.log("mapTimesAvailable [handleMapTimeDropdown]", mapTimesAvailable);
 
     // - - - format - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
@@ -1858,18 +2270,18 @@ const handleMapTimeDropdown = (MeasureID, GeoType) => {
 
 // ===== geo type ================================================== //
 
-const handleMapGeoDropdown = (MeasureID, Time) => {
+const handleMapGeoDropdown = (MeasureID, TimePeriod) => {
 
     let allGeoButtons = document.querySelectorAll('.mapgeosbutton');
 
     let mapGeosAvailable =
         [...new Set(
             mapData
-                .filter(obj => obj.MeasureID == MeasureID && obj.Time == Time)
+                .filter(obj => obj.MeasureID == MeasureID && obj.TimePeriod == TimePeriod)
                 .map(d => prettifyGeoType(d.GeoType))
         )]
 
-    console.log("mapGeosAvailable [handleMapGeoDropdown]", mapGeosAvailable);
+    // console.log("mapGeosAvailable [handleMapGeoDropdown]", mapGeosAvailable);
 
     // - - - format - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
@@ -1891,6 +2303,37 @@ const handleMapGeoDropdown = (MeasureID, Time) => {
 
 }
 
+
+// ----------------------------------------------------------------------- //
+// function to toggle links / disparities
+// ----------------------------------------------------------------------- //
+
+const clickLinksToggle = (e) => {
+
+    // console.log("btnToggleDisparities [clickLinksToggle]");
+    $(btnToggleDisparities).off()
+
+    $(btnToggleDisparities).on("click", (e) => {
+
+        // console.log("btnToggleDisparities", e);
+
+        if (e.target && e.target.matches("#show-disparities") && !e.target.classList.contains("active") && !e.target.classList.contains("disabled")) {
+
+            // MeasureID: 221 = neighborhood poverty percent
+
+            // console.log("renderDisparitiesChart [clickLinksToggle]");
+
+            renderDisparitiesChart(defaultDisparitiesMetadata, 221)
+
+        } else if (e.target && e.target.matches("#show-links") && !e.target.classList.contains("active") && !e.target.classList.contains("disabled")) {
+
+            showLinks();
+
+        }
+    })
+}
+
+
 // ----------------------------------------------------------------------- //
 // function to render the measures
 // ----------------------------------------------------------------------- //
@@ -1899,10 +2342,8 @@ const renderMeasures = async () => {
 
     console.log("* renderMeasures");
 
-    selectedTableYears = [];
+    selectedTableTimes = [];
     selectedTableGeography = [];
-
-    linksMeasures.length = 0
 
     const contentTable = document.querySelector('#tab-table');
     const contentMap   = document.querySelector('#tab-map')
@@ -1940,50 +2381,55 @@ const renderMeasures = async () => {
 
     dropdownLinksMeasures.innerHTML = ``;
 
-    mapMeasures.length = 0;
-    trendMeasures.length = 0;
+    // clear measure arrays
+
+    mapMeasures = [];
+    trendMeasures = [];
+    linksMeasures = [];
+    disparitiesMeasures = [];
 
 
     // ----- create dropdowns for table ================================================== //
 
-    // ----- select all -------------------------------------------------- //
+    // ----- select all --------------------------------------------------- //
 
     dropdownTableTimes.innerHTML +=
-        `<label class="dropdown-item checkbox-year-all"><input class="largerCheckbox" type="checkbox" name="year" value="all" /> Select all </label>`
+        `<label class="dropdown-item checkbox-time-all"><input class="largerCheckbox" type="checkbox" name="time" value="all" /> Select all </label>`
 
-    // ----- years -------------------------------------------------- //
+    // ----- times --------------------------------------------------- //
 
-    const tableYears = [...new Set(tableData.map(item => item.Time))];
+    const tableTimes = [...new Set(aqTableTimesGeos.array("TimePeriod"))];
 
-    // console.log("tableYears", tableYears);
+    // console.log("tableTimes", tableTimes);
 
-    tableYears.forEach((year, index) => {
+    tableTimes.forEach((time, index) => {
 
         if (index === 0) {
 
-            // default to most recent year
+            // default to most recent time
 
-            selectedTableYears = [year];
+            selectedTableTimes = [time];
 
             dropdownTableTimes.innerHTML +=
-                `<label class="dropdown-item checkbox-year"><input class="largerCheckbox" type="checkbox" name="year" value="${year}" checked /> ${year}</label>`;
+                `<label class="dropdown-item checkbox-time"><input class="largerCheckbox" type="checkbox" name="time" value="${time}" checked /> ${time}</label>`;
 
         } else {
 
             dropdownTableTimes.innerHTML +=
-                `<label class="dropdown-item checkbox-year"><input class="largerCheckbox" type="checkbox" name="year" value="${year}" /> ${year}</label>`;
+                `<label class="dropdown-item checkbox-time"><input class="largerCheckbox" type="checkbox" name="time" value="${time}" /> ${time}</label>`;
         }
 
     });
 
 
-    // ----- geo types -------------------------------------------------- //
+    // ----- geo types --------------------------------------------------- //
 
     // create geo dropdown for table (using pretty geotypes, keeping georank order)
 
-    const tableGeoTypes = [...new Set(tableData.map(item => prettifyGeoType(item.GeoType)))];
+    const tableGeoTypes = [... new Set(aqTableTimesGeos.array("GeoType").map(gt => prettifyGeoType(gt)))]
     const dropdownTableGeoTypes = geoTypes.filter(g => tableGeoTypes.includes(g))
 
+    // console.log("tableGeoTypes:", tableGeoTypes);
     // console.log("geoTypes:", geoTypes);
     // console.log("dropdownTableGeoTypes:", dropdownTableGeoTypes);
 
@@ -2000,16 +2446,16 @@ const renderMeasures = async () => {
 
     // ----- create dropdowns for map ================================================== //
 
-    // ----- geo types -------------------------------------------------- //
+    // ----- geo types --------------------------------------------------- //
 
     // create geo dropdown for table (using pretty geotypes, keeping georank order)
 
-    const mapGeoTypes = [...new Set(mapData.map(item => prettifyGeoType(item.GeoType)))];
+    const mapGeoTypes = [... new Set(aqMapTimesGeos.array("GeoType").map(gt => prettifyGeoType(gt)))]
     const dropdownMapGeoTypes = geoTypes.filter(g => mapGeoTypes.includes(g))
 
-    console.log("geoTypes:", geoTypes);
-    console.log("mapGeoTypes:", mapGeoTypes);
-    console.log("dropdownMapGeoTypes:", dropdownMapGeoTypes);
+    // console.log("geoTypes:", geoTypes);
+    // console.log("mapGeoTypes:", mapGeoTypes);
+    // console.log("dropdownMapGeoTypes:", dropdownMapGeoTypes);
 
     dropdownMapGeoTypes.forEach(geo => {
 
@@ -2025,9 +2471,9 @@ const renderMeasures = async () => {
     });
 
 
-    // ----- times -------------------------------------------------- //
+    // ----- times --------------------------------------------------- //
 
-    const mapTimes = [...new Set(mapData.map(item => item.Time))];
+    const mapTimes = [... new Set(aqMapTimesGeos.array("TimePeriod"))]
 
     // console.log("mapTimes", mapTimes);
 
@@ -2041,7 +2487,7 @@ const renderMeasures = async () => {
     });
 
 
-    // ----- handle measures for this indicator ================================================== //
+    // ===== handle measures for this indicator ================================================== //
 
     let header = "";
 
@@ -2050,18 +2496,26 @@ const renderMeasures = async () => {
         // console.log("index", index);
         // console.log("measure", measure);
 
-        const type = measure?.MeasurementType;
-        const links = measure?.VisOptions[0].Links && measure?.VisOptions[0]?.Links[0];
-        const map = measure?.VisOptions[0].Map && measure?.VisOptions[0].Map[0]?.On;
-        const trend = measure?.VisOptions[0].Trend && measure?.VisOptions[0].Trend[0]?.On;
+        // check to see if the different viz types exist for this measure
+        // if a viz type exists, the "aq[type]TimesGeos" arquero table for the measure should have > 0 rows
+
+        const map         = aqMapTimesGeos   && aqMapTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
+        const trend       = aqTrendTimesGeos && aqTrendTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
+        const links       = measure.VisOptions[0].Links && measure.VisOptions[0].Links[0].Measures[0].MeasureID;
+        const disparities = measure.VisOptions[0].Links[0].Disparities == 1
+        const comparisons = indicatorComparisonId;
+        
+        const type  = measure.MeasurementType;
         const measureId = measure.MeasureID;
 
-        // console.log("type", type, "links", links, "map", map, "trend", trend);
+        // console.log("measure", measure.MeasureID, "type", type, "links", links, "map", map, "trend", trend);
+
+        // console.log("disparities", measureId, measure.VisOptions[0].Links[0].Disparities);
 
 
-        // ----- handle map measures -------------------------------------------------- //
+        // ----- handle map measures --------------------------------------------------- //
 
-        if (map === 1) {
+        if (map) {
             
             mapMeasures.push(measure)
             
@@ -2073,9 +2527,9 @@ const renderMeasures = async () => {
         }
 
 
-        // ----- handle trend measures -------------------------------------------------- //
+        // ----- handle trend measures --------------------------------------------------- //
 
-        if (trend === 1) {
+        if (trend) {
 
             // console.log(">>>> trend");
 
@@ -2109,7 +2563,7 @@ const renderMeasures = async () => {
         }
 
 
-        // ----- handle links measures -------------------------------------------------- //
+        // ----- handle links measures --------------------------------------------------- //
 
         if (links) {
 
@@ -2124,7 +2578,9 @@ const renderMeasures = async () => {
                 dropdownLinksMeasures.innerHTML +=
                     `<div class="dropdown-title pl-2"><strong> ${type}</strong></div>`;
 
-                measure.VisOptions[0].Links.map(link => {
+                measure?.VisOptions[0].Links[0].Measures?.map(link => {
+
+                    // console.log("link", link);
 
                     const linksSecondaryIndicator = indicators.filter(indicator =>
                         indicator.Measures.some(m =>
@@ -2132,27 +2588,42 @@ const renderMeasures = async () => {
                         )
                     );
 
-                    const linksSecondaryMeasure = linksSecondaryIndicator[0].Measures.filter(m =>
+                    const defaultSecondaryMeasureMetadata = linksSecondaryIndicator[0]?.Measures?.filter(m =>
                         m.MeasureID === link.MeasureID
                     );
+
+                    // console.log("defaultSecondaryMeasureMetadata", defaultSecondaryMeasureMetadata);
 
                     dropdownLinksMeasures.innerHTML +=
                         `<button class="dropdown-item linksbutton pl-3"
                             data-primary-measure-id="${measureId}"
                             data-measure-id="${measure.MeasureID}"
                             data-secondary-measure-id="${link.MeasureID}">
-                            ${linksSecondaryMeasure[0].MeasureName}
+                            ${defaultSecondaryMeasureMetadata[0]?.MeasureName}
                         </button>`;
 
                 });
             }
         }
+
+
+        // ----- handle disparities measures --------------------------------------------------- //
+
+        if (disparities) {
+
+            disparitiesMeasures.push(measure)
+
+        }
+        
+
     });
+
+    // console.log("disparitiesMeasures [renderMeasures]", disparitiesMeasures);
 
 
     // ===== handle comparisons viz ================================================== //
 
-    if (indicatorComparisonId !== null) {
+    if (indicatorComparisonId) {
 
         let compLegendTitles = [... new Set(aqCombinedComparisonsMetadata.array("LegendTitle"))]
 
@@ -2172,21 +2643,36 @@ const renderMeasures = async () => {
                 
                 let compGroup = titleGroup.filter(aq.escape(d => d.ComparisonID == comp))
                 
-                let compIndicatorLabel = [... new Set(compGroup.array("IndicatorLabel"))];
+                let compIndicatorLabel  = [... new Set(compGroup.array("IndicatorLabel"))];
                 let compMeasurementType = [... new Set(compGroup.array("MeasurementType"))];
-                let compY_axis_title = [... new Set(compGroup.array("Y_axis_title"))];
-                let compIndicatorMeasure = [... new Set(compGroup.array("IndicatorMeasure"))];
-                let compName = [... new Set(compGroup.array("ComparisonName"))];
+                let compY_axis_title    = [... new Set(compGroup.array("Y_axis_title"))];
+                let compGeoTypeName     = [... new Set(compGroup.array("GeoTypeName"))];
+                let compGeography       = [... new Set(compGroup.array("Geography"))];
+                let compName            = [... new Set(compGroup.array("ComparisonName"))];
+
+                // console.log("compGeography", compGeography);
+
+                // console.log("compGeography", compGeography);
                 
                 if (compIndicatorLabel.length == 1) {
 
                     // console.log("1 indicator [Y_axis_title]");
                     // console.log(compY_axis_title);
 
+                    if (compGeoTypeName[0] == "Citywide") {
+
                     dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
                         data-comparison-id="${comp}">
                         ${compY_axis_title}
                         </button>`;
+
+                    } else {
+                        // I am very unhappy with this kludge
+                        dropdownTrendComparisons.innerHTML += `<button class="dropdown-item comparisonsbutton pl-3"
+                            data-comparison-id="${comp}">
+                            ${compGeography[compGeography.length - 1]} 
+                            </button>`;
+                    }
                     
                 } else if (compMeasurementType.length == 1) {
 
@@ -2217,9 +2703,11 @@ const renderMeasures = async () => {
         
     }
 
+    // ===== set metadata defaults ================================================== //
 
     setDefaultMapMeasure(mapMeasures);
     setDefaultTrendMeasure(trendMeasures);
+    setDefaultDisparitiesMeasure(disparitiesMeasures);
 
     // set default measure for links; also calls (and waits for) createJoinedLinksData, which creates the joined data
 
@@ -2236,7 +2724,7 @@ const renderMeasures = async () => {
 
         console.log("* showTable");
 
-        // ----- handle tab selection -------------------------------------------------- //
+        // ----- handle tab selection --------------------------------------------------- //
 
         // set hash to summary table
 
@@ -2254,13 +2742,13 @@ const renderMeasures = async () => {
         tabLinks.setAttribute('aria-selected', false);
 
 
-        // ----- set measure info boxes -------------------------------------------------- //
+        // ----- set measure info boxes --------------------------------------------------- //
 
         renderTitleDescription(indicatorShortName, indicatorDesc);
         renderAboutSources(measureAbout, measureSources);
 
 
-        // ----- render the table -------------------------------------------------- //
+        // ----- render the table --------------------------------------------------- //
 
         renderTable();
 
@@ -2279,7 +2767,7 @@ const renderMeasures = async () => {
 
         console.log("* showMap");
 
-        // ----- handle tab selection -------------------------------------------------- //
+        // ----- handle tab selection --------------------------------------------------- //
 
         // set hash to map
 
@@ -2297,19 +2785,62 @@ const renderMeasures = async () => {
 
         if (!selectedMapGeo && !selectedMapTime && !selectedMapMeasure) {
 
-            console.log(">> no selected [showMap]");
+            // console.log(">> no selected [showMap]");
 
             let latest_time;
             let maxGeoPretty;
 
 
-            // ----- get metatadata for default measure -------------------------------------------------- //
+            // ----- get metatadata for default measure --------------------------------------------------- //
 
             // get default measure id
 
+            // console.log("mapData [showMap]", mapData);
+            // console.log("defaultMapMetadata [showMap]", defaultMapMetadata);
+
             let defaultMapMeasureId = defaultMapMetadata[0].MeasureID;
 
-            // ----- create dataset -------------------------------------------------- //
+
+            // ----- allow map to persist when changing tabs --------------------------------------------------- //
+
+            // console.log(">> no selectedMapMeasure [showMap]");
+
+            // this is all inside the conditional, because if a user clicks on this tab again
+            //  after selecting a measure, we don't want to recompute everything. We'll use the
+            //  values created by the update function
+
+            // ----- get metatadata for default measure --------------------------------------------------- //
+
+            // get default measure id
+
+            defaultMapMeasureId = defaultMapMetadata[0].MeasureID;
+
+            // extract metadata for info boxes
+
+            const about   = defaultMapMetadata[0]?.how_calculated;
+            const sources = defaultMapMetadata[0].Sources;
+            const measure = defaultMapMetadata[0].MeasurementType;
+
+
+            // ----- set measure info boxes --------------------------------------------------- //
+
+            defaultMapAbout   =
+                `<h6>${indicatorName} - ${measure}</h6>
+                <p>${about}</p>`;
+
+            defaultMapSources =
+                `<h6>${indicatorName} - ${measure}</h6>
+                <p>${sources}</p>`;
+
+            // render measure info boxes
+
+            renderTitleDescription(indicatorShortName, indicatorDesc);
+            renderAboutSources(defaultMapAbout, defaultMapSources);
+
+
+            // ----- create dataset --------------------------------------------------- //
+            
+            // - - - default measure - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
             // filter map data using default measure
 
@@ -2317,108 +2848,51 @@ const renderMeasures = async () => {
                     obj => obj.MeasureID === defaultMapMeasureId
                 );
 
-            console.log("filteredMapData [showMap]", filteredMapData);
-
-            // ----- allow map to persist when changing tabs -------------------------------------------------- //
-
-            if (!selectedMapMeasure) {
-
-                console.log(">> no selectedMapMeasure");
-
-                // this is all inside the conditional, because if a user clicks on this tab again
-                //  after selecting a measure, we don't want to recompute everything. We'll use the
-                //  values created by the update function
-
-                // ----- get metatadata for default measure -------------------------------------------------- //
-
-                // get default measure id
-
-                defaultMapMeasureId = defaultMapMetadata[0].MeasureID;
-
-                // extract metadata for info boxes
-
-                const about   = defaultMapMetadata[0]?.how_calculated;
-                const sources = defaultMapMetadata[0].Sources;
-                const measure = defaultMapMetadata[0].MeasurementType;
+            // console.log("filteredMapData [no selectedMapMeasure]", filteredMapData);
 
 
-                // ----- set measure info boxes -------------------------------------------------- //
+            // - - - latest time (for default measure) - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-                defaultMapAbout   =
-                    `<h6>${indicatorName} - ${measure}</h6>
-                    <p>${about}</p>`;
+            // get the latest end_period
 
-                defaultMapSources =
-                    `<h6>${indicatorName} - ${measure}</h6>
-                    <p>${sources}</p>`;
+            let latest_end_period = Math.max(mapData[0].end_period);
 
-                // render measure info boxes
-
-                renderTitleDescription(indicatorShortName, indicatorDesc);
-                renderAboutSources(defaultMapAbout, defaultMapSources);
-
-
-                // ----- create dataset -------------------------------------------------- //
-
-                // filter map data using default measure
-
-                filteredMapData = filteredMapData.filter(
-                        obj => obj.MeasureID === defaultMapMeasureId
-                    );
-
-                // console.log("filteredMapData [no selectedMapMeasure]", filteredMapData);
-
-            }
-
-
-            if (!selectedMapTime) {
-
-                console.log(">> no selectedMapTime");
-
-                // get the latest end_period
-
-                let latest_end_period = Math.max(filteredMapData[0].end_period);
-
-                filteredMapData = filteredMapData.filter(
-                        obj => obj.end_period === latest_end_period
-                    );
-
-                latest_time = filteredMapData[0].Time
-
-                // console.log("filteredMapData [no selectedMapTime]", filteredMapData);
-
-            }
-
-            if (!selectedMapGeo) {
-
-                console.log(">> no selectedMapGeo [showMap]");
-
-                // get the highest GeoRank for this measure and end_period
-
-                let maxGeoRank = Math.max(filteredMapData[0].GeoRank);
-
-                filteredMapData = filteredMapData.filter(
-                    obj => obj.GeoRank === maxGeoRank
+            filteredMapData = filteredMapData.filter(
+                    obj => obj.end_period === latest_end_period
                 );
 
-                let maxGeo = filteredMapData[0].GeoType
-                maxGeoPretty = prettifyGeoType(maxGeo)
+            latest_time = filteredMapData[0].TimePeriod
 
-                // console.log("filteredMapData [no selectedMapGeo]", filteredMapData);
+            // console.log("filteredMapData [no selectedMapTime]", filteredMapData);
 
-                // console.log("maxGeo", maxGeo);
-                // console.log("maxGeoPretty", maxGeoPretty);
 
-            }
+            // - - - finest geography (for latest data) - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-            // ----- format dropdowns -------------------------------------------------- //
+            // get the highest GeoRank for this measure and end_period
+
+            let maxGeoRank = Math.max(filteredMapData[0].GeoRank);
+
+            filteredMapData = filteredMapData.filter(
+                obj => obj.GeoRank === maxGeoRank
+            );
+
+            let maxGeo = filteredMapData[0].GeoType
+            maxGeoPretty = prettifyGeoType(maxGeo)
+
+            // console.log("filteredMapData [no selectedMapGeo]", filteredMapData);
+
+            // console.log("maxGeo", maxGeo);
+            // console.log("maxGeoPretty", maxGeoPretty);
+
+
+            // ----- format dropdowns --------------------------------------------------- //
 
             // called before renderMap in case it fails, so dropdowns will show available combos
             
             handleMapTimeDropdown(defaultMapMeasureId, maxGeoPretty)
             handleMapGeoDropdown(defaultMapMeasureId, latest_time)
 
-            // ----- render the map -------------------------------------------------- //
+            // ----- render the map --------------------------------------------------- //
 
             // console.log("filteredMapData [showMap 1]", filteredMapData);
 
@@ -2426,7 +2900,7 @@ const renderMeasures = async () => {
 
             updateChartPlotSize();
 
-            // ----- persistent selection -------------------------------------------------- //
+            // ----- persistent selection --------------------------------------------------- //
 
             // remove active class from every list element
 
@@ -2462,28 +2936,28 @@ const renderMeasures = async () => {
 
             // if there was a map already, restore it
 
-            console.log("else [showMap]");
+            // console.log("else [showMap]");
 
-            // ----- set measure info boxes -------------------------------------------------- //
+            // ----- set measure info boxes --------------------------------------------------- //
 
             renderAboutSources(selectedMapAbout, selectedMapSources);
 
-            // ----- get current dropdown values -------------------------------------------------- //
+            // ----- get current dropdown values --------------------------------------------------- //
 
             let time = $('.maptimesbutton.active').attr("data-time")
             let geo = $('.mapgeosbutton.active').attr("data-geo")
             let measureId = $('.mapmeasuresbutton.active').attr("data-measure-id")
 
-            console.log("*measureId*", measureId, "*geo*", geo, "*time*", time);
+            // console.log("*measureId*", measureId, "*geo*", geo, "*time*", time);
 
-            // ----- format dropdowns -------------------------------------------------- //
+            // ----- format dropdowns --------------------------------------------------- //
 
             // called before renderMap in case it fails, so dropdowns will show available combos
             
             handleMapTimeDropdown(measureId, geo)
             handleMapGeoDropdown(measureId, time)
 
-            // ----- render the map -------------------------------------------------- //
+            // ----- render the map --------------------------------------------------- //
 
             // console.log("filteredMapData [showMap 2]", filteredMapData);
 
@@ -2498,7 +2972,7 @@ const renderMeasures = async () => {
 
     // ===== trend ================================================== //
 
-    // ----- handle tab selection -------------------------------------------------- //
+    // ----- handle tab selection --------------------------------------------------- //
 
     showTrend = (e) => {
 
@@ -2550,7 +3024,7 @@ const renderMeasures = async () => {
 
     }
 
-    // ----- show the normal trend chart -------------------------------------------------- //
+    // ----- show the normal trend chart --------------------------------------------------- //
 
     showNormalTrend = (e) => {
 
@@ -2569,7 +3043,7 @@ const renderMeasures = async () => {
 
         const measureIdsSummer = [386];
 
-        // ----- allow chart to persist when changing tabs -------------------------------------------------- //
+        // ----- allow chart to persist when changing tabs --------------------------------------------------- //
 
         // console.log("selectedTrendMeasure", selectedTrendMeasure);
 
@@ -2580,11 +3054,12 @@ const renderMeasures = async () => {
             //  values created by the update function
 
 
-            // ----- get metatadata for default measure -------------------------------------------------- //
+            // ----- get metatadata for default measure --------------------------------------------------- //
 
             const about   = defaultTrendMetadata[0]?.how_calculated;
             const sources = defaultTrendMetadata[0].Sources;
             const measure = defaultTrendMetadata[0].MeasurementType;
+            // const times   = defaultTrendMetadata[0].VisOptions[0].Trend[0]?.TimePeriod;
 
             aqDefaultTrendMetadata = aq.from(defaultTrendMetadata)
                 .derive({
@@ -2596,7 +3071,7 @@ const renderMeasures = async () => {
             // aqDefaultTrendMetadata.print()
 
 
-            // ----- set measure info boxes -------------------------------------------------- //
+            // ----- set measure info boxes --------------------------------------------------- //
 
             defaultTrendAbout =
                 `<h6>${indicatorName} - ${measure}</h6>
@@ -2610,13 +3085,16 @@ const renderMeasures = async () => {
             renderAboutSources(defaultTrendAbout, defaultTrendSources);
 
 
-            // ----- create dataset -------------------------------------------------- //
+            // ----- create dataset --------------------------------------------------- //
 
             const defaultTrendMeasureId = defaultTrendMetadata[0].MeasureID;
-            filteredTrendData = trendData.filter(m => m.MeasureID === defaultTrendMeasureId);
 
+            filteredTrendData = trendData
+                .filter(m => m.MeasureID === defaultTrendMeasureId)
 
-            // ----- render the chart -------------------------------------------------- //
+            // console.log("filteredTrendData [showNormalTrend]", filteredTrendData);
+
+            // ----- render the chart --------------------------------------------------- //
 
             // using 'aqFilteredTrendData' for all of the datasets allows the "else selected" block to use
             //  this same dataset. It will be whatever was most recently assigned to it.
@@ -2625,20 +3103,22 @@ const renderMeasures = async () => {
 
                 // console.log("measureIdsAnnualAvg.includes(defaultTrendMeasureId)");
                 
-                const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.Time.startsWith('Annual Average'));
+                const filteredTrendDataAnnualAvg = filteredTrendData.filter(d => d.TimePeriod.startsWith('Annual Average'));
                 aqFilteredTrendData = aq.from(filteredTrendDataAnnualAvg);
                 
                 renderComparisonsChart(aqFilteredTrendData, aqDefaultTrendMetadata);
+
                 updateChartPlotSize();
                 
             } else if (measureIdsSummer.includes(defaultTrendMeasureId)) {
 
                 // console.log("measureIdsSummer.includes(defaultTrendMeasureId)");
                 
-                const filteredTrendDataSummer = filteredTrendData.filter(d => d.Time.startsWith('Summer'));
+                const filteredTrendDataSummer = filteredTrendData.filter(d => d.TimePeriod.startsWith('Summer'));
                 aqFilteredTrendData = aq.from(filteredTrendDataSummer);
                 
                 renderComparisonsChart(aqFilteredTrendData, aqDefaultTrendMetadata);
+
                 updateChartPlotSize();
                 
             } else {
@@ -2648,12 +3128,13 @@ const renderMeasures = async () => {
                 aqFilteredTrendData = aq.from(filteredTrendData);
                 
                 renderComparisonsChart(aqFilteredTrendData, aqDefaultTrendMetadata);
+                
                 updateChartPlotSize();
                 
             }
 
 
-            // ----- persistent selection -------------------------------------------------- //
+            // ----- persistent selection --------------------------------------------------- //
 
             // remove active class from every list element
             $('.trendbutton').removeClass("active");
@@ -2670,22 +3151,19 @@ const renderMeasures = async () => {
             $(trendMeasureEl).addClass("active");
             $(trendMeasureEl).attr('aria-selected', true);
 
-            // ----- set measure info boxes -------------------------------------------------- //
 
         } else {
 
             // if there was a chart already, restore it
-            // ----- render the chart -------------------------------------------------- //
 
-            // ----- set measure info boxes -------------------------------------------------- //
+            // ----- set measure info boxes --------------------------------------------------- //
 
             renderAboutSources(selectedTrendAbout, selectedTrendSources);
 
-            // ----- render the chart -------------------------------------------------- //
+            // ----- render the chart --------------------------------------------------- //
             
             aqFilteredTrendData = aq.from(filteredTrendData);
 
-            // renderTrendChart(filteredTrendData, aqDefaultTrendMetadata);
             renderComparisonsChart(aqFilteredTrendData, aqSelectedTrendMetadata);
 
             updateChartPlotSize();
@@ -2698,18 +3176,20 @@ const renderMeasures = async () => {
     };
     
 
-    // ----- show the trend comparisons chart -------------------------------------------------- //
+    // ----- show the trend comparisons chart --------------------------------------------------- //
 
     showTrendComparisons = (e) => {
 
         console.log("** showTrendComparisons");
         // console.log("selectedComparison", selectedComparison);
 
-        // ----- allow chart to persist when changing tabs -------------------------------------------------- //
+        // ----- allow chart to persist when changing tabs --------------------------------------------------- //
 
         if (!selectedComparison) {
 
-            // ----- handle selection -------------------------------------------------- //
+            // console.log("comparisonsMetadata [showTrendComparisons]", comparisonsMetadata);
+
+            // ----- handle selection --------------------------------------------------- //
 
             // get first comparisonId
 
@@ -2734,15 +3214,13 @@ const renderMeasures = async () => {
             $(trendMeasureEl).addClass("active");
             $(trendMeasureEl).attr('aria-selected', true);
 
-            // ----- get metatadata for selected measure -------------------------------------------------- //
 
-            // aqCombinedComparisonsMetadata
-            // aqComparisonsIndicatorData
+            // ----- set measure info boxes --------------------------------------------------- //
 
-            // extract metadata for about & sources boxes
+            // reset info boxes
 
-
-            // ----- set measure info boxes -------------------------------------------------- //
+            selectedComparisonAbout = [];
+            selectedComparisonSources = [];
 
             // reset info boxes
 
@@ -2766,7 +3244,7 @@ const renderMeasures = async () => {
             renderAboutSources(selectedComparisonAbout, selectedComparisonSources);
 
 
-            // ----- create dataset -------------------------------------------------- //
+            // ----- create dataset --------------------------------------------------- //
 
             // metadata
 
@@ -2775,18 +3253,22 @@ const renderMeasures = async () => {
                 .join(aqComparisonsIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
 
             // console.log("aqFilteredComparisonsMetadata:");
-            // aqFilteredComparisonsMetadata.print()
+            // aqFilteredComparisonsMetadata.print({limit: Infinity})
             
             // data
 
+            // console.log("&&&& print x 4 [showTrendComparisons]");
+
             aqFilteredComparisonsData = aqFilteredComparisonsMetadata
-                .select("IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure")
-                .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]])
+                .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
+                .join(aqComparisonsIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
+                .join(timeTable, [["TimePeriodID"], ["TimePeriodID"]])
 
-                // put host indicator first, so it gets the black line
-                .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)))
+                // put host indicator first (then measure), so it gets the black line
+                .orderby(aq.desc(aq.escape(d => d.IndicatorID == indicatorId)), d => d.MeasureID)
 
-            // console.log(">>>> aqFilteredComparisonsData:");
+
+            // console.log(">>>> aqFilteredComparisonsData [showTrendComparisons 1]");
             // aqFilteredComparisonsData.print()
 
             // show only last 3 years of DWQ measures with quarterly data
@@ -2795,22 +3277,23 @@ const renderMeasures = async () => {
 
             if (aqFilteredComparisonsMetadata.array("MeasureID").some(m => hasQuarters.includes(m))) {
 
-                // console.log(">>>> aqFilteredComparisonsData [quarters]:");
 
                 aqFilteredComparisonsData = aqFilteredComparisonsData
-                    .join(aqMeasureIdTimes, [["MeasureID", "Time"], ["MeasureID", "TimeDescription"]])
                     .derive({"year": d => op.year(d.end_period)})
                     .filter(d => d.year > op.max(d.year) - 3)
-                    .select(aq.not("TimeDescription", "year"))
-                    // .print(20)
+                    .select(aq.not("TimePeriodID", "year"))
+                    .reify()
+                
+                // console.log(">>>> aqFilteredComparisonsData [quarters]:");
+                // aqFilteredComparisonsData.print()
 
             }
 
-            // console.log("aqFilteredComparisonsData:");
+            // console.log(">>>> aqFilteredComparisonsData [showTrendComparisons 2]");
             // aqFilteredComparisonsData.print()
 
 
-            // ----- render the chart -------------------------------------------------- //
+            // ----- render the chart --------------------------------------------------- //
 
             renderComparisonsChart(
                 aqFilteredComparisonsData,
@@ -2823,13 +3306,12 @@ const renderMeasures = async () => {
 
             // if there was a chart already, restore it
 
-            // ----- set measure info boxes -------------------------------------------------- //
+            // ----- set measure info boxes --------------------------------------------------- //
 
             renderAboutSources(selectedComparisonAbout, selectedComparisonSources);
 
-            // ----- render the chart -------------------------------------------------- //
+            // ----- render the chart --------------------------------------------------- //
 
-            // renderTrendChart(filteredTrendData, aqDefaultTrendMetadata);
             renderComparisonsChart(
                 aqFilteredComparisonsData,
                 aqFilteredComparisonsMetadata
@@ -2853,7 +3335,7 @@ const renderMeasures = async () => {
 
         console.log("* showLinks");
 
-        // ----- handle tab selection -------------------------------------------------- //
+        // ----- handle tab selection --------------------------------------------------- //
 
         // set hash to links
 
@@ -2872,179 +3354,245 @@ const renderMeasures = async () => {
         $("#dropdownLinksMeasures").attr('aria-disabled', false);
 
 
-        // ----- allow chart to persist when changing tabs -------------------------------------------------- //
+        // conditionals based on if any measures have links or not
 
-        if (!selectedLinksMeasure) {
+        if (linksMeasures.length === 0) {
 
-            // this is all inside the conditional, because if a user clicks on this tab again
-            //  after selecting a measure, we don't want to recompute everything. We'll use the
-            //  values created by the update function
+            // ----- no links --------------------------------------------------- //
 
+            if (disparitiesMeasures.length > 0) {
+                
+                // - - - has disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-            // ----- handle disparities button -------------------------------------------------- //
+                // console.log("has disparities");
 
-            // switch on/off the disparities button
+                // if the tab is selected, show disparities
 
-            const disparities =
-                defaultLinksMetadata[0].VisOptions[0].Trend &&
-                defaultLinksMetadata[0].VisOptions[0].Trend[0]?.Disparities;
+                if (tabLinksSelected && window.location.hash === '#display=links') {
 
-            // hide or how disparities button
+                    // MeasureID: 221 = neighborhood poverty percent
 
-            if (disparities == 0) {
+                    // console.log("renderDisparitiesChart [showLinks (no links, has disp)]");
 
-                // if disparities is disabled, hide the button
+                    renderDisparitiesChart(defaultDisparitiesMetadata, 221)
 
-                btnToggleDisparities.style.display = "none";
+                    updateChartPlotSize();
 
-                // remove click listeners to button that calls renderDisparities
+                }
 
-                // $(btnToggleDisparities).off()
+                // make links inactive and disabled
 
-            } else if (disparities == 1) {
+                $("#show-links").removeClass("active");
+                $("#show-links").addClass("disabled");
+                $("#show-links").attr('aria-disabled', true);
 
-                // remove event listener added when/if button was clicked
+                // make disparities active
 
-                // btnToggleDisparities.innerText = "Show Disparities";
-                // $(btnToggleDisparities).off()
+                $("#show-disparities").addClass("active");
+                $("#show-disparities").removeClass("disabled");
+                $("#show-disparities").attr('aria-disabled', false);
+                $("#show-disparities").attr('aria-selected', true);
 
-                // make sure that the "links" button is active by default
-                $("#show-links").addClass("active");
-                $("#show-disparities").removeClass("active");
+                // turn off click listener
+                
+                // console.log("btnToggleDisparities [showLinks (no links, has disp)]");
+                $(btnToggleDisparities).off()
 
                 // if disparities is enabled, show the button
+
                 btnToggleDisparities.style.display = "inline";
 
+            } else {
+
+                // - - - no disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+                // conditionals at the end of `renderMeasures` will handle this case
 
             }
-
-            // ----- get metatadata for default measure -------------------------------------------------- //
-
-            // get first linked measure by default
-
-            const secondaryMeasureId = defaultLinksMetadata[0]?.VisOptions[0].Links[0].MeasureID;
-
-            // get linked indicator's metadata
-
-            const linksSecondaryIndicator = indicators.filter(indicator =>
-                indicator.Measures.some(measure =>
-                    measure.MeasureID === secondaryMeasureId
-                )
-            )
-
-            // use linked indicator's metadata to get linked measure's metadata
-
-            const linksSecondaryMeasure = linksSecondaryIndicator[0].Measures.filter(m =>
-                m.MeasureID === secondaryMeasureId
-            )
-
-            primaryIndicatorName   = indicatorName;
-            secondaryIndicatorName = linksSecondaryIndicator[0].IndicatorName;
-
-            // get measure metadata
-
-            const primaryMeasure         = defaultLinksMetadata[0].MeasurementType;
-            const primaryAbout           = defaultLinksMetadata[0].how_calculated;
-            const primarySources         = defaultLinksMetadata[0].Sources;
-
-            const secondaryMeasure       = linksSecondaryMeasure[0].MeasurementType;
-            const secondaryAbout         = linksSecondaryMeasure[0].how_calculated;
-            const secondarySources       = linksSecondaryMeasure[0].Sources;
-
-
-            // ----- set measure info boxes -------------------------------------------------- //
-
-            // creating indicator & measure info
-
-            defaultLinksAbout =
-                `<h6>${primaryIndicatorName} - ${primaryMeasure}</h6>
-                <p>${primaryAbout}</p>
-                <h6>${secondaryIndicatorName} - ${secondaryMeasure}</h6>
-                <p>${secondaryAbout}</p>`;
-
-            defaultLinksSources =
-                `<h6>${primaryIndicatorName} - ${primaryMeasure}</h6>
-                <p>${primarySources}</p>
-                <h6>${secondaryIndicatorName} - ${secondaryMeasure}</h6>
-                <p>${secondarySources}</p>`;
-
-
-            // ----- create dataset -------------------------------------------------- //
-
-            renderTitleDescription(indicatorShortName, indicatorDesc);
-            renderAboutSources(defaultLinksAbout, defaultLinksSources);
-
-
-            // ----- render the chart -------------------------------------------------- //
-
-            // joined data and metadata created in createJoinedLinksData called fron setDefaultLinksMeasure
-
-            renderLinksChart(
-                joinedLinksDataObjects,
-                primaryMeasureMetadata,
-                secondaryMeasureMetadata,
-                primaryIndicatorName,
-                secondaryIndicatorName
-            );
-
-            updateChartPlotSize();
-
-
-            // ----- persistent selection -------------------------------------------------- //
-
-            // remove active class from every list element
-            $('.linksbutton').removeClass("active");
-            $('.linksbutton').attr('aria-selected', false);
-
-            // set this element as active & selected
-
-            let linksMeasureEl = document.querySelector(`.linksbutton[data-secondary-measure-id='${secondaryMeasureId}']`)
-
-            $(linksMeasureEl).addClass("active");
-            $(linksMeasureEl).attr('aria-selected', true);
-
 
         } else {
 
-            // if there was a chart already, restore it
+            // ----- has links --------------------------------------------------- //
 
-            // ----- set measure info boxes -------------------------------------------------- //
+            if (!selectedLinksMeasure) {
 
-            renderAboutSources(selectedLinksAbout, selectedLinksSources);
+                // - - - allow chart to persist when changing tabs - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-            // ----- render the chart -------------------------------------------------- //
+                // console.log(">>> not selected");
 
-            renderLinksChart(
-                joinedLinksDataObjects,
-                primaryMeasureMetadata,
-                secondaryMeasureMetadata,
-                primaryIndicatorName,
-                secondaryIndicatorName
-            );
-
-            updateChartPlotSize();
-        }
+                // this is all inside the conditional, because if a user clicks on this tab again
+                //  after selecting a measure, we don't want to recompute everything. We'll use the
+                //  values created by the update function
 
 
-        // add click listener to button that calls renderDisparities
+                // ----- get metatadata for default measure - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-        $(btnToggleDisparities).off()
+                // get first linked measure by default
 
-        $(btnToggleDisparities).on("click", (e) => {
+                const secondaryMeasureId = defaultPrimaryLinksMeasureMetadata[0]?.VisOptions[0].Links[0].Measures[0].MeasureID;
 
-            // console.log("btnToggleDisparities", e);
+                // console.log("secondaryMeasureId", secondaryMeasureId);
 
-            if (e.target && e.target.matches("#show-disparities") && !e.target.classList.contains("active")) {
+                // get linked indicator's metadata
 
-                renderDisparities(defaultLinksMetadata, 221)
+                const linksSecondaryIndicator = indicators.filter(indicator =>
+                    indicator.Measures.some(measure =>
+                        measure.MeasureID === secondaryMeasureId
+                    )
+                )
 
-            } else if (e.target && e.target.matches("#show-links") && !e.target.classList.contains("active")) {
+                // use linked indicator's metadata to get linked measure's metadata
 
-                showLinks();
+                defaultSecondaryMeasureMetadata = linksSecondaryIndicator[0]?.Measures?.filter(m =>
+                    m.MeasureID === secondaryMeasureId
+                )
 
+                primaryIndicatorName   = indicatorName;
+                secondaryIndicatorName = linksSecondaryIndicator[0]?.IndicatorName;
+
+                // get measure metadata
+
+                const primaryMeasure         = defaultPrimaryLinksMeasureMetadata[0]?.MeasurementType;
+                const primaryAbout           = defaultPrimaryLinksMeasureMetadata[0]?.how_calculated;
+                const primarySources         = defaultPrimaryLinksMeasureMetadata[0]?.Sources;
+
+                const secondaryMeasure       = defaultSecondaryMeasureMetadata[0]?.MeasurementType;
+                const secondaryAbout         = defaultSecondaryMeasureMetadata[0]?.how_calculated;
+                const secondarySources       = defaultSecondaryMeasureMetadata[0]?.Sources;
+
+
+                // ----- set measure info boxes - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+                // creating indicator & measure info
+
+                defaultLinksAbout =
+                    `<h6>${primaryIndicatorName} - ${primaryMeasure}</h6>
+                    <p>${primaryAbout}</p>
+                    <h6>${secondaryIndicatorName} - ${secondaryMeasure}</h6>
+                    <p>${secondaryAbout}</p>`;
+
+                defaultLinksSources =
+                    `<h6>${primaryIndicatorName} - ${primaryMeasure}</h6>
+                    <p>${primarySources}</p>
+                    <h6>${secondaryIndicatorName} - ${secondaryMeasure}</h6>
+                    <p>${secondarySources}</p>`;
+
+
+                // ----- create dataset - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+                renderTitleDescription(indicatorShortName, indicatorDesc);
+                renderAboutSources(defaultLinksAbout, defaultLinksSources);
+
+
+                // ----- render the chart - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+                // joined data and metadata created in createJoinedLinksData called fron setDefaultLinksMeasure
+
+                // console.log("defaultSecondaryMeasureMetadata [showLinks 1]", defaultSecondaryMeasureMetadata);
+
+                renderLinksChart(
+                    joinedLinksDataObjects,
+                    defaultPrimaryLinksMeasureMetadata,
+                    defaultSecondaryMeasureMetadata,
+                    primaryIndicatorName,
+                    secondaryIndicatorName
+                );
+
+                updateChartPlotSize();
+
+
+                // ----- persistent selection - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+                // remove active class from every list element
+                $('.linksbutton').removeClass("active");
+                $('.linksbutton').attr('aria-selected', false);
+
+                // set this element as active & selected
+
+                let linksMeasureEl = document.querySelector(`.linksbutton[data-secondary-measure-id='${secondaryMeasureId}']`)
+
+                $(linksMeasureEl).addClass("active");
+                $(linksMeasureEl).attr('aria-selected', true);
+
+
+                // - - - handle disparities button - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+                if (disparitiesMeasures.length > 0) {
+
+                    // >>>> has disparities <<<<
+
+                    // console.log("has disparities");
+                    
+                    // make sure that the "links" button is active by default
+
+                    $("#show-links").addClass("active");
+                    $("#show-links").removeClass("disabled");
+                    $("#show-links").attr('aria-disabled', false);
+                    $("#show-links").attr('aria-selected', true);
+
+                    // make disparities inactive and enabled
+
+                    $("#show-disparities").removeClass("active");
+                    $("#show-disparities").removeClass("disabled");
+                    $("#show-disparities").attr('aria-disabled', false);
+
+                    // set links/disparities click listener
+                    
+                    clickLinksToggle()
+
+
+                    // if disparities is enabled, show the button
+
+                    btnToggleDisparities.style.display = "inline";
+
+                } else {
+
+                    // >>>> no disparities <<<<
+
+                    // console.log("no disparities");
+                    
+                    // make sure that the "links" button is active by default
+
+                    $("#show-links").addClass("active");
+                    $("#show-links").removeClass("disabled");
+                    $("#show-links").attr('aria-disabled', false);
+                    $("#show-links").attr('aria-selected', true);
+
+                    // if disparities is disabled, disable the button
+
+                    $("#show-disparities").removeClass("active");
+                    $("#show-disparities").addClass("disabled");
+                    $("#show-disparities").attr('aria-disabled', true);
+
+                    // remove click listeners to button that calls renderDisparitiesChart
+                    
+                    // console.log("btnToggleDisparities [showLinks (has links, no disp)]");
+                    $(btnToggleDisparities).off()
+
+                }
+
+
+            } else {
+
+                // if there was a chart already, restore it
+
+                // ----- set measure info boxes - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+                renderAboutSources(selectedLinksAbout, selectedLinksSources);
+
+                // ----- render the chart - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+                renderLinksChart(
+                    joinedLinksDataObjects,
+                    selectedPrimaryMeasureMetadata,
+                    selectedSecondaryMeasureMetadata,
+                    primaryIndicatorName,
+                    secondaryIndicatorName
+                );
+
+                updateChartPlotSize();
             }
-
-        });
+        }
 
     };
 
@@ -3073,6 +3621,9 @@ const renderMeasures = async () => {
     // if there's no data to display for a tab, disable it. If you're on that tab when you switch to
     //  a new indicator (which calls renderMeasures), then switch to the summary table
 
+
+    // ===== map ================================================== //
+
     if (mapMeasures.length === 0) {
 
         if (tabMapSelected && window.location.hash === '#display=map') {
@@ -3091,9 +3642,12 @@ const renderMeasures = async () => {
         enableTab(tabMap);
     }
 
-    // if there's no trend data or only 1 time period, don't show the tab
 
-    const onlyOneTime = trendMeasures.every(m => m.AvailableTimes.length <= 1)
+    // ===== trend ================================================== //
+
+    // if there's no trend data or only 1 time period in all of the measures, don't show the tab
+
+    const onlyOneTime = trendMeasures.every(m => m.VisOptions[0].Trend[0]?.TimePeriodID.length <= 1)
 
     // debugger;
 
@@ -3119,8 +3673,20 @@ const renderMeasures = async () => {
         enableTab(tabTrend);
     }
 
+    // console.log("not some disp [renderMeasures]", !disparitiesMeasures.length > 0);
 
-    if (linksMeasures.length === 0) {
+
+    // ===== links (and disparities) ================================================== //
+
+    // this actually might be superfluous. as long as show and update funs work thru this logic, all the case should be covered.
+
+    if (linksMeasures.length === 0 && disparitiesMeasures.length === 0) {
+
+        // console.log("no links, no disp");
+
+        // - - - no links, no disparities - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+        // no reason to enable the links tab, so if it's selected switch to table view and disable the tab
 
         if (tabLinksSelected && window.location.hash === '#display=links') {
 
@@ -3130,6 +3696,8 @@ const renderMeasures = async () => {
             window.history.replaceState({ id: indicatorId, hash: url.hash}, '', url);
 
         }
+
+        // disable the links tab
 
         disableTab(tabLinks);
 
@@ -3225,46 +3793,49 @@ const renderMeasures = async () => {
     // add event handler functions to summary tab checkboxes
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    const checkboxYear = document.querySelectorAll('.checkbox-year');
-    const checkboxYearAll = document.querySelectorAll('.checkbox-year-all');
-    const checkboxGeo = document.querySelectorAll('.checkbox-geo');
+    const checkboxTime    = document.querySelectorAll('.checkbox-time');
+    const checkboxTimeAll = document.querySelectorAll('.checkbox-time-all');
+    const checkboxGeo     = document.querySelectorAll('.checkbox-geo');
 
-    checkboxYear.forEach(checkbox => {
-        handleTableYearFilter(checkbox);
+    // single time checkboxes
+
+    checkboxTime.forEach(checkbox => {
+        handleTableTimeFilter(checkbox);
     })
 
-    checkboxYearAll[0].addEventListener('change', (e) => {
+    // "select all" time checkbox
+
+    checkboxTimeAll[0].addEventListener('change', (e) => {
 
         if (!e.target.checked) {
 
             // console.log("not checked");
 
-            checkboxYear.forEach(checkbox => {
+            checkboxTime.forEach(checkbox => {
 
                 // console.log("checkbox", checkbox);
 
                 $(checkbox).find("input").prop("checked", false)
-                selectedTableYears = []
+                selectedTableTimes = []
 
             })
 
-            // console.log("selectedTableYears [not checked]", selectedTableYears);
+            // console.log("selectedTableTimes [not checked]", selectedTableTimes);
 
         } else if (e.target.checked) {
 
             // console.log("checked");
 
-            checkboxYear.forEach(checkbox => {
+            checkboxTime.forEach(checkbox => {
 
                 // console.log("checkbox", checkbox);
 
                 $(checkbox).find("input").prop("checked", true)
-                selectedTableYears.push($(checkbox).find("input").val())
+                selectedTableTimes.push($(checkbox).find("input").val())
 
             })
 
-            // console.log("selectedTableYears [checked]", selectedTableYears);
-
+            // console.log("selectedTableTimes [checked]", selectedTableTimes);
 
         }
 
@@ -3272,12 +3843,11 @@ const renderMeasures = async () => {
 
     })
 
+    // single geo checkboxes
 
     checkboxGeo.forEach(checkbox => {
         handleTableGeoFilter(checkbox);
     })
-
-
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -3300,7 +3870,7 @@ const renderMeasures = async () => {
 
     renderAboutSources(measureAbout, measureSources);
 
-    }
+}
 
 ;
 // ======================================================================= //
@@ -3317,17 +3887,17 @@ const renderTable = () => {
 
     // console.log("tableData", tableData);
 
-    const filteredTableYearData = tableData.filter(d => selectedTableYears.includes(d.Time))
+    const filteredTableTimeData = tableData.filter(d => selectedTableTimes.includes(d.TimePeriod))
 
     // ----------------------------------------------------------------------- //
     // format geography dropdown checkboxes
     // ----------------------------------------------------------------------- //
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // get (pretty) geoTypes available for this year
+    // get (pretty) geoTypes available for this time period
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    const dataGeos = [...new Set(filteredTableYearData.map(d => prettifyGeoType(d.GeoType)))];
+    const dataGeos = [...new Set(filteredTableTimeData.map(d => prettifyGeoType(d.GeoType)))];
 
     // console.log("dataGeos", dataGeos);
 
@@ -3350,7 +3920,7 @@ const renderTable = () => {
     $(allGeoChecks).removeClass("disabled");
     $(allGeoChecks).attr('aria-disabled', false);
     
-    // now add disabled class for geos not available for this year
+    // now add disabled class for geos not available for this year period
 
     for (const checkbox of allGeoChecks) {
 
@@ -3375,7 +3945,7 @@ const renderTable = () => {
     if (selectedTableGeography.length > 0) {
         
         filteredTableData = 
-            filteredTableYearData
+            filteredTableTimeData
             .filter(d => selectedTableGeography.includes(prettifyGeoType(d.GeoType)))
 
     } else {
@@ -3431,14 +4001,14 @@ const renderTable = () => {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     const filteredTableAqData = aq.from(filteredTableData)
-        .groupby("Time", "GeoTypeDesc", "GeoID", "GeoRank", "Geography")
+        .groupby("TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI")
     
         // need to put this down here because the data might be missing one of the measures, which will be undefined after the pivot
         // .impute(measureImputeObj) 
         
         // these 4 columns always exist, and we always want to hide them, so let's put them first, respecting the original relative order
-        .relocate(["Time", "GeoTypeDesc", "GeoID", "GeoRank"], { before: 0 }) 
+        .relocate(["TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank"], { before: 0 }) 
     
     // console.log("filteredTableAqData [renderTable]");
     // filteredTableAqData.print({limit: 40})
@@ -3467,7 +4037,7 @@ const renderTable = () => {
     // specify DataTable
     // ----------------------------------------------------------------------- //
     
-    const groupColumnYear = 0
+    const groupColumnTime = 0
     const groupColumnGeo = 1;
 
     $('#tableID').DataTable({
@@ -3496,7 +4066,7 @@ const renderTable = () => {
             const GeoTypeDesc = data[1];
             if (time && GeoTypeDesc) {
                 row.setAttribute(`data-group`, `${time}-${GeoTypeDesc}`)
-                row.setAttribute(`data-year`, `${time}`);
+                row.setAttribute(`data-time`, `${time}`);
             }
         },
         "drawCallback": function ( settings ) {
@@ -3507,7 +4077,7 @@ const renderTable = () => {
             const visibleColumnsCount =  totaleColumnsCount - 4;
             
             let last = null;
-            let lastYr = null;
+            let lastTime = null;
             
             const createGroupRow = (groupColumn, lvl) => {
 
@@ -3519,30 +4089,30 @@ const renderTable = () => {
                     // console.log("group", group);
                     // console.log("i", i);
                     
-                    const year = data[i][0]
-                    const groupName = `${year}-${group}`
+                    const time = data[i][0]
+                    const groupName = `${time}-${group}`
                     
-                    // console.log("year", year);
+                    // console.log("time", time);
 
-                    if ( last !== group || lastYr !== year ) {
+                    if ( last !== group || lastTime !== time ) {
                         
                         $(rows).eq( i ).before(
-                            `<tr class="group"><td colspan="${visibleColumnsCount}" data-year="${year}" data-group="${group}" data-group-level="${lvl}"> ${group}</td></tr>`
+                            `<tr class="group"><td colspan="${visibleColumnsCount}" data-time="${time}" data-group="${group}" data-group-level="${lvl}"> ${group}</td></tr>`
                             );
                             last = group;
-                            lastYr = year
+                            lastTime = time
                             
-                        }
-                    });
-                }
-                
-                createGroupRow(groupColumnYear, 0);
-                createGroupRow(groupColumnGeo, 1);
-                handleToggle();
+                    }
+                });
             }
-        })
+            
+            createGroupRow(groupColumnTime, 0);
+            createGroupRow(groupColumnGeo, 1);
+            handleToggle();
+        }
+    })
 
-    }
+}
 
 
 // ----------------------------------------------------------------------- //
@@ -3561,8 +4131,8 @@ const handleToggle = () => {
 
         const handleGroupToggle = () => {
 
-            const subGroupToggle = $(`td[data-year="${group}"][data-group-level="1"]`);
-            const subGroupRow = $(`tr[data-year="${group}"]`);
+            const subGroupToggle = $(`td[data-time="${group}"][data-group-level="1"]`);
+            const subGroupRow = $(`tr[data-time="${group}"]`);
 
             if (subGroupToggle.css('display') === 'none') {
 
@@ -3630,42 +4200,35 @@ const renderMap = (
 
     console.log("** renderMap");
 
-        // console.log("data [renderMap]", data);
-        // console.log("metadata [renderMap]", metadata);
+    // console.log("data [renderMap]", data);
+    // console.log("metadata [renderMap]", metadata);
 
-        // ----------------------------------------------------------------------- //
-        // get unique time in data
-        // ----------------------------------------------------------------------- //
+    // ----------------------------------------------------------------------- //
+    // get unique time in data
+    // ----------------------------------------------------------------------- //
+    
+    const mapTimes =  [...new Set(data.map(item => item.TimePeriod))];
 
-        const mapYears =  [...new Set(data.map(item => item.Time))];
+    // debugger;
 
-        // ----------------------------------------------------------------------- //
-        // pull metadata
-        // ----------------------------------------------------------------------- //
+    // console.log("mapTimes [map.js]", mapTimes);
 
-        // debugger;
+    let mapGeoType            = data[0]?.GeoType;
+    let geoTypeShortDesc      = data[0]?.GeoTypeShortDesc;
+    let mapMeasurementType    = metadata[0]?.MeasurementType;
+    let displayType           = metadata[0]?.DisplayType;
+    let mapGeoTypeDescription = [...new Set(geoTable.filter(aq.escape(d => d.GeoType === mapGeoType)).array("GeoTypeShortDesc"))];
 
-    // console.log("mapYears [map.js]", mapYears);
-
-    let mapGeoType            = data[0].GeoType;
-    let geoTypeShortDesc      = data[0].GeoTypeShortDesc;
-    let mapMeasurementType    = metadata[0].MeasurementType;
-    let displayType           = metadata[0].DisplayType;
-    let mapGeoTypeDescription = 
-        metadata[0].AvailableGeographyTypes.filter(
-            gt => gt.GeoType === mapGeoType
-        )[0].GeoTypeDescription;
-
-    let mapTime = mapYears[0];
+    let mapTime = mapTimes[0];
     let topoFile = '';
 
-        var color = 'purplered'
-        var rankReverse = defaultMapMetadata[0].VisOptions[0].Map[0].RankReverse
-        if (rankReverse === 0) {
-            color = 'reds'
-        } else if (rankReverse === 1) {
-            color = 'blues'
-        }
+    var color = 'purplered'
+    var rankReverse = defaultMapMetadata[0].VisOptions[0].Map[0]?.RankReverse
+    if (rankReverse === 0) {
+        color = 'reds'
+    } else if (rankReverse === 1) {
+        color = 'blues'
+    }
 
     // console.log('rank reverse?', rankReverse)
     // console.log('color', color)
@@ -3681,45 +4244,9 @@ const renderMap = (
     // mapData has all the geos for every year
     // data has the one geo x year we're mapping
 
-    const dataGeos = [...new Set(mapData.filter(d => d.Time == mapTime).map(d => prettifyGeoType(d.GeoType)))];
+    const dataGeos = [...new Set(mapData.filter(d => d.TimePeriod == mapTime).map(d => prettifyGeoType(d.GeoType)))];
 
-    console.log("dataGeos [renderMap]", dataGeos);
-
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // get all geo check boxes
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-    const allGeoItems = document.querySelectorAll('.mapgeosbutton');
-
-    console.log("allGeoItems", allGeoItems);
-
-    let geosNotAvailable = [];
-
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // format
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    
-    // remove disabled class from every geo list element
-
-    $(allGeoItems).removeClass("disabled");
-    $(allGeoItems).attr('aria-disabled', false);
-    
-    // now add disabled class for geos not available for this year
-
-    for (const item of allGeoItems) {
-
-        console.log("item.dataset.geo", item.dataset.geo);
-
-        if (!dataGeos.includes(item.dataset.geo)) {
-            
-            geosNotAvailable.push(item)
-            
-            // set this element as disabled
-            $(item).addClass("disabled");
-            $(item).attr('aria-disabled', true);
-            
-        }
-    }
+    // console.log("dataGeos [renderMap]", dataGeos);
 
     // if you're on a geo that's not availble for a year you just clicked on, show the gray base map
 
@@ -3748,6 +4275,8 @@ const renderMap = (
         topoFile = 'NTA_2010.topo.json';
     } else if (mapGeoType === "NTA2020") {
         topoFile = 'NTA_2020.topo.json';
+    } else if (mapGeoType === "NYHarbor") {
+        topoFile = 'ny_harbor.topo.json';
     } else if (mapGeoType === "CD") {
         topoFile = 'CD.topo.json';
     } else if (mapGeoType === "CDTA2020") {
@@ -3764,201 +4293,205 @@ const renderMap = (
         topoFile = 'NYCKids_2017.topo.json';
     } else if (mapGeoType === "NYCKIDS2019") {
         topoFile = 'NYCKids_2019.topo.json';
+    } else if (mapGeoType === "NYCKIDS2021") {
+        topoFile = 'NYCKids_2021.topo.json';
     } else if (mapGeoType === "Borough") {
         topoFile = 'borough.topo.json';
     }
 
-        // ----------------------------------------------------------------------- //
-        // define spec
-        // ----------------------------------------------------------------------- //
-        
-        mapspec = {
-            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "title": {
-                "text": indicatorName,
-                "subtitlePadding": 10,
-                "fontWeight": "normal",
-                "anchor": "start", 
-                "fontSize": 18, 
-                "font": "sans-serif",
-                "baseline": "top",
-                "subtitle": `${mapMeasurementType}${displayType && ` (${displayType})`}, by ${mapGeoTypeDescription} (${mapTime})`,
-                "subtitleFontSize": 13
-            },
-            "data": {
-                "values": data,
-                "format": {
-                    "parse": {
-                        "Value": "number"
-                    }
+    // ----------------------------------------------------------------------- //
+    // define spec
+    // ----------------------------------------------------------------------- //
+    
+    let mapspec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "title": {
+            "text": indicatorName,
+            "subtitlePadding": 10,
+            "fontWeight": "normal",
+            "anchor": "start", 
+            "fontSize": 18, 
+            "font": "sans-serif",
+            "baseline": "top",
+            "subtitle": `${mapMeasurementType}${displayType && ` (${displayType})`}, by ${mapGeoTypeDescription} (${mapTime})`,
+            "subtitleFontSize": 13
+        },
+        "data": {
+            "values": data,
+            "format": {
+                "parse": {
+                    "Value": "number"
                 }
-            },
-            "config": {
-                "concat": {"spacing": 20}, 
-                "view": {"stroke": "transparent"},
-                "axisY": {"domain": false,"ticks": false},
-            },
-            "projection": {"type": "mercator"},
-            "vconcat": [
-                {
-                    "layer": [
-                        {
-                            "height": 500,
-                            "width": "container",
-                            "data": {
-                                "url": `${data_repo}${data_branch}/geography/borough.topo.json`,
-                                "format": {
-                                    "type": "topojson",
-                                    "feature": "collection"
-                                }
-                            },
-                            "mark": {
-                                "type": "geoshape",
-                                "stroke": "#fafafa",
-                                "fill": "#C5C5C5",
-                                "strokeWidth": 0.5
+            }
+        },
+        "config": {
+            "concat": {"spacing": 20}, 
+            "view": {"stroke": "transparent"},
+            "axisY": {"domain": false,"ticks": false},
+        },
+        "projection": {"type": "mercator"},
+        "vconcat": [
+            {
+                "layer": [
+                    {
+                        "height": 500,
+                        "width": "container",
+                        "data": {
+                            "url": `${data_repo}${data_branch}/geography/borough.topo.json`,
+                            "format": {
+                                "type": "topojson",
+                                "feature": "collection"
                             }
                         },
-                        {
-                            "height": 500,
-                            "width": "container",
-                            "mark": {"type": "geoshape", "invalid": null},
-                            "params": [
-                                {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
-                            ],
-                            "transform": [
-                                {
-                                    "lookup": "GeoID",
-                                    "from": {
-                                        "data": {
-                                            "url": `${data_repo}${data_branch}/geography/${topoFile}`,
-                                            "format": {"type": "topojson", "feature": "collection"}
-                                        },
-                                        "key": "properties.GEOCODE"
-                                    },
-                                    "as": "geo"
-                                }
-                            ],
-                            "encoding": {
-                                "shape": {"field": "geo", "type": "geojson"},
-                                "color": {
-                                    "condition": {
-                                        "test": "isValid(datum.Value)",
-                                        "bin": false,
-                                        "field": "Value",
-                                        "type": "quantitative",
-                                        "scale": {"scheme": {"name": color, "extent": [0.125, 1.125]}}
-                                    },
-                                    "value": "#808080"
-                                },
-                                "stroke": {
-                                    "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
-                                    // "value": "#161616"
-                                    "value": "#dadada"
-                                },
-                                "strokeWidth": {
-                                    "condition": [{"param": "highlight", "empty": false, "value": 1.25}],
-                                    "value": 0.5
-                                },
-                                "order": {
-                                    "condition": [{"param": "highlight", "empty": false, "value": 1}],
-                                    "value": 0
-                                },
-                                "tooltip": [
-                                    {
-                                        "field": "Geography", 
-                                        "title": geoTypeShortDesc
-                                    },
-                                    {
-                                        "field": "DisplayValue",
-                                        "title": mapMeasurementType
-                                    },
-                                ],
-                            },
-                        }
-                    ]
-                },
-                {
-                    "height": 150,
-                    "width": "container",
-                    "config": {
-                        "axisY": {
-                            "labelAngle": 0,
-                            "labelFontSize": 13,
+                        "mark": {
+                            "type": "geoshape",
+                            "stroke": "#fafafa",
+                            "fill": "#C5C5C5",
+                            "strokeWidth": 0.5
                         }
                     },
-                    "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
-                    "params": [
-                        {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
-                    ],
-                    "encoding": {
-                        "y": {
-                            "field": "Value", 
-                            "type": "quantitative", 
-                            "title": null,
-                            "axis": {
-                                "labelAngle": 0,
-                                "labelFontSize": 11,
-                                "tickCount": 3
-                            }
-                        },
-                        "tooltip": [
-                            {
-                                "field": "Geography", 
-                                "title": geoTypeShortDesc
-                            },
-                            {
-                                "field": "DisplayValue", 
-                                "title": mapMeasurementType
-                            },
+                    {
+                        "height": 500,
+                        "width": "container",
+                        "mark": {"type": "geoshape", "invalid": null},
+                        "params": [
+                            {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
                         ],
-                        "x": {"field": "GeoID", "sort": "y", "axis": null},
-                        "color": {
-                            "bin": false,
-                            "field": "Value",
-                            "type": "quantitative",
-                            "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}},
-                            "legend": {
-                                "direction": "horizontal", 
-                                "orient": "top-left",
-                                "title": null,
-                                "offset": -30,
-                                "padding": 10,
+                        "transform": [
+                            {
+                                "lookup": "GeoID",
+                                "from": {
+                                    "data": {
+                                        "url": `${data_repo}${data_branch}/geography/${topoFile}`,
+                                        "format": {"type": "topojson", "feature": "collection"}
+                                    },
+                                    "key": "properties.GEOCODE"
+                                },
+                                "as": "geo"
                             }
+                        ],
+                        "encoding": {
+                            "shape": {"field": "geo", "type": "geojson"},
+                            "color": {
+                                "condition": {
+                                    "test": "isValid(datum.Value)",
+                                    "bin": false,
+                                    "field": "Value",
+                                    "type": "quantitative",
+                                    "scale": {"scheme": {"name": color, "extent": [0.125, 1.125]}}
+                                },
+                                "value": "#808080"
+                            },
+                            "stroke": {
+                                "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
+                                // "value": "#161616"
+                                "value": "#dadada"
+                            },
+                            "strokeWidth": {
+                                "condition": [{"param": "highlight", "empty": false, "value": 1.25}],
+                                "value": 0.5
+                            },
+                            "order": {
+                                "condition": [{"param": "highlight", "empty": false, "value": 1}],
+                                "value": 0
+                            },
+                            "tooltip": [
+                                {
+                                    "field": "Geography", 
+                                    "title": geoTypeShortDesc
+                                },
+                                {
+                                    "field": "DisplayValue",
+                                    "title": mapMeasurementType
+                                },
+                            ],
                         },
-                        "stroke": {
-                            "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
-                            "value": "white"
-                        },
-                        "strokeWidth": {
-                            "condition": [{"param": "highlight", "empty": false, "value": 3}],
-                            "value": 0
+                    }
+                ]
+            },
+            {
+                "height": 150,
+                "width": "container",
+                "config": {
+                    "axisY": {
+                        "labelAngle": 0,
+                        "labelFontSize": 13,
+                    }
+                },
+                "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+                "params": [
+                    {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
+                ],
+                "encoding": {
+                    "y": {
+                        "field": "Value", 
+                        "type": "quantitative", 
+                        "title": null,
+                        "axis": {
+                            "labelAngle": 0,
+                            "labelFontSize": 11,
+                            "tickCount": 3
                         }
+                    },
+                    "tooltip": [
+                        {
+                            "field": "Geography", 
+                            "title": geoTypeShortDesc
+                        },
+                        {
+                            "field": "DisplayValue", 
+                            "title": mapMeasurementType
+                        },
+                    ],
+                    "x": {"field": "GeoID", "sort": "y", "axis": null},
+                    "color": {
+                        "bin": false,
+                        "field": "Value",
+                        "type": "quantitative",
+                        "scale": {"scheme": {"name": color, "extent": [0.25, 1.25]}},
+                        "legend": {
+                            "direction": "horizontal", 
+                            "orient": "top-left",
+                            "title": null,
+                            "offset": -30,
+                            "padding": 10,
+                        }
+                    },
+                    "stroke": {
+                        "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
+                        "value": "white"
+                    },
+                    "strokeWidth": {
+                        "condition": [{"param": "highlight", "empty": false, "value": 3}],
+                        "value": 0
                     }
                 }
-            ]
-        }
-        
-        // ----------------------------------------------------------------------- //
-        // render chart
-        // ----------------------------------------------------------------------- //
-
-        vegaEmbed("#map", mapspec);
-
-        // ----------------------------------------------------------------------- //
-        // Send chart data to download
-        // ----------------------------------------------------------------------- //
-
-        let dataForDownload = [...mapspec.data.values] // create a copy
-
-        let downloadTable = aq.from(dataForDownload)
-            .derive({Indicator: `'${indicatorName}: ${mapMeasurementType}${displayType && ` (${displayType})`}'`}) // add indicator name and type column
-            .select(aq.not('GeoRank', "end_period", "start_period", "ban_summary_flag", "GeoTypeShortDesc", "MeasureID", "DisplayValue")) // remove excess columns
-            // .print()
-
-        CSVforDownload = downloadTable.toCSV()
-
+            }
+        ]
     }
+    
+    // ----------------------------------------------------------------------- //
+    // render chart
+    // ----------------------------------------------------------------------- //
+
+    vegaEmbed("#map", mapspec);
+
+    // ----------------------------------------------------------------------- //
+    // Send chart data to download
+    // ----------------------------------------------------------------------- //
+
+    let dataForDownload = [...mapspec.data.values] // create a copy
+
+    let downloadTable = aq.from(dataForDownload)
+        .derive({Indicator: `'${indicatorName}: ${mapMeasurementType}${displayType && ` (${displayType})`}'`}) // add indicator name and type column
+        .select(aq.not('GeoRank', "end_period", "start_period", "ban_summary_flag", "GeoTypeShortDesc", "MeasureID", "DisplayValue")) // remove excess columns
+    
+    // console.log("downloadTable [renderMap]");
+    // downloadTable.print()
+
+    CSVforDownload = downloadTable.toCSV()
+
+}
 ;
 // ======================================================================= //
 // links.js
@@ -3966,8 +4499,8 @@ const renderMap = (
 
 const renderLinksChart = (
     data,
-    primaryMetadata,   // indicators.json for primary indicator
-    secondaryMetadata, // indciators.json for secondary indicator
+    primaryMetadata,   // metadata.json for primary indicator
+    secondaryMetadata, // metadata.json for secondary indicator
     primaryIndicatorName,
     secondaryIndicatorName,
 ) => {
@@ -3988,20 +4521,20 @@ const renderLinksChart = (
     // get measure metadata
     // ----------------------------------------------------------------------- //
 
-    const primaryMeasurementType = primaryMetadata[0].MeasurementType;
-    const primaryMeasureName     = primaryMetadata[0].MeasureName;
-    const primaryDisplay         = primaryMetadata[0].DisplayType;
-    const primaryTime            = data[0].Time_1;
-    const geoTypeShortDesc       = data[0].GeoTypeShortDesc_1;
+    const primaryMeasurementType = primaryMetadata[0]?.MeasurementType;
+    const primaryMeasureName     = primaryMetadata[0]?.MeasureName;
+    const primaryDisplay         = primaryMetadata[0]?.DisplayType;
+    const primaryTimePeriod      = data[0]?.TimePeriod_1;
+    const geoTypeShortDesc       = data[0]?.GeoTypeShortDesc_1;
 
-    const secondaryMeasurementType = secondaryMetadata[0].MeasurementType
-    const secondaryMeasureName     = secondaryMetadata[0].MeasureName
-    const secondaryMeasureId       = secondaryMetadata[0].MeasureID
-    const secondaryDisplay         = secondaryMetadata[0].DisplayType;
-    const secondaryTime            = data[0].Time_2;
+    const secondaryMeasurementType = secondaryMetadata[0]?.MeasurementType
+    const secondaryMeasureName     = secondaryMetadata[0]?.MeasureName
+    const secondaryMeasureId       = secondaryMetadata[0]?.MeasureID
+    const secondaryDisplay         = secondaryMetadata[0]?.DisplayType;
+    const secondaryTimePeriod      = data[0]?.TimePeriod_2;
 
     const SecondaryAxis = 
-        primaryMetadata[0].VisOptions[0].Links.filter(
+        primaryMetadata[0].VisOptions[0].Links[0].Measures.filter(
             l => l.MeasureID === secondaryMeasureId
         )[0].SecondaryAxis;
 
@@ -4015,40 +4548,40 @@ const renderLinksChart = (
     let yMeasureName;
     let xDisplay = null;
     let yDisplay = null;
-    let xTime;
-    let yTime;
+    let xTimePeriod;
+    let yTimePeriod;
     let xIndicatorName;
     let yIndicatorName;
     let xMin;
 
     switch (SecondaryAxis) {
         case 'x':
-            xMeasure = secondaryMeasurementType;
-            yMeasure = primaryMeasurementType;
-            xMeasureName = secondaryMeasureName;
-            yMeasureName = primaryMeasureName;
-            xValue = "Value_2";
-            yValue = "Value_1";
-            xMin = Math.min.apply(null, Value_2); // get min value for adjusting axis
-            xDisplay = secondaryDisplay ? secondaryDisplay : '';
-            yDisplay = primaryDisplay ? primaryDisplay : '';
-            xTime = secondaryTime;
-            yTime = primaryTime;
+            xMeasure       = secondaryMeasurementType;
+            yMeasure       = primaryMeasurementType;
+            xMeasureName   = secondaryMeasureName;
+            yMeasureName   = primaryMeasureName;
+            xValue         = "Value_2";
+            yValue         = "Value_1";
+            xMin           = Math.min.apply(null, Value_2); // get min value for adjusting axis
+            xDisplay       = secondaryDisplay ? secondaryDisplay : '';
+            yDisplay       = primaryDisplay ? primaryDisplay : '';
+            xTimePeriod    = secondaryTimePeriod;
+            yTimePeriod    = primaryTimePeriod;
             xIndicatorName = secondaryIndicatorName;
             yIndicatorName = primaryIndicatorName;
             break;
         case 'y':
-            xMeasure = primaryMeasurementType;
-            yMeasure = secondaryMeasurementType;
-            xMeasureName = primaryMeasureName;
-            yMeasureName = secondaryMeasureName;
-            xValue = "Value_1";
-            yValue = "Value_2";
-            xMin = Math.min.apply(null, Value_1); // get min value for adjusting axis
-            xDisplay = primaryDisplay ? primaryDisplay : '';
-            yDisplay = secondaryDisplay ? secondaryDisplay : '';
-            xTime = primaryTime;
-            yTime = secondaryTime;
+            xMeasure       = primaryMeasurementType;
+            yMeasure       = secondaryMeasurementType;
+            xMeasureName   = primaryMeasureName;
+            yMeasureName   = secondaryMeasureName;
+            xValue         = "Value_1";
+            yValue         = "Value_2";
+            xMin           = Math.min.apply(null, Value_1); // get min value for adjusting axis
+            xDisplay       = primaryDisplay ? primaryDisplay : '';
+            yDisplay       = secondaryDisplay ? secondaryDisplay : '';
+            xTimePeriod    = primaryTimePeriod;
+            yTimePeriod    = secondaryTimePeriod;
             xIndicatorName = primaryIndicatorName;
             yIndicatorName = secondaryIndicatorName;
             break;
@@ -4095,7 +4628,7 @@ const renderLinksChart = (
             "font": "sans-serif",
             "baseline": "top",
             "dy": -10,
-            "subtitle": `${yMeasure && `${yMeasure}`} ${yDisplay && `${yDisplay}`} (${yTime})`,
+            "subtitle": `${yMeasure && `${yMeasure}`} ${yDisplay && `${yDisplay}`} (${yTimePeriod})`,
             "subtitleFontSize": 13,
             "limit": 1000
         },
@@ -4176,7 +4709,7 @@ const renderLinksChart = (
                         },
                     },
                     "x": {
-                        "title": [`${xIndicatorName && `${xIndicatorName}`}`, `${xMeasure} ${xDisplay && `(${xDisplay})`} (${xTime})`],
+                        "title": [`${xIndicatorName && `${xIndicatorName}`}`, `${xMeasure} ${xDisplay && `(${xDisplay})`} (${xTimePeriod})`],
                         "field": xValue,
                         "type": "quantitative",
                         "scale": {"domainMin": xMin, "nice": true}
@@ -4193,8 +4726,8 @@ const renderLinksChart = (
                             "type": "nominal"
                         },
                         {
-                            "title": "Time",
-                            "field": "Time_2",
+                            "title": "Time Period",
+                            "field": "TimePeriod_2",
                             "type": "nominal"
                         },
                         {
@@ -4274,7 +4807,9 @@ const renderLinksChart = (
         .select(aq.not("GeoType", "GeoTypeShortDesc_1", "GeoTypeShortDesc_2", "GeoRank_1", "GeoRank_2", "start_period_1", "end_period_1", "ban_summary_flag_1", "ban_summary_flag_2", "BoroID", "DisplayValue_1", "DisplayValue_2", "GeoTypeDesc_2", "Geography_2", "start_period_2", "end_period_2", "MeasureID_1", "MeasureID_2"))
         .derive({ Value_1_Indicator: `'${yIndicatorName} - ${yMeasure && `${yMeasure}`} ${yDisplay && `${yDisplay}`}'`})
         .derive({ Value_2_Indicator: `'${xIndicatorName} - ${xMeasure} ${xDisplay && `(${xDisplay})`} '`})
-        // .print()
+        
+        // console.log("downloadTable [renderLinksChart]");
+        // downloadTable.print()
 
     CSVforDownload = downloadTable.toCSV()
 
@@ -4291,12 +4826,14 @@ const renderLinksChart = (
 // this function is called when the "Show Disparities" button is clicked. it
 //  in turn calls "loaddisparityData".
 
-const renderDisparities = async (
+const renderDisparitiesChart = async (
     primaryMetadata, 
     disparityMeasureId
 ) => {
 
-    console.log("** renderDisparities");
+    console.log("** renderDisparitiesChart");
+
+    // console.log("primaryMetadata [renderDisparitiesChart]", primaryMetadata);
 
     // ----------------------------------------------------------------------- //
     // toggle button
@@ -4318,6 +4855,8 @@ const renderDisparities = async (
     const primarySources         = primaryMetadata[0]?.Sources;
     const primaryDisplay         = primaryMetadata[0]?.DisplayType;
 
+    // console.log("primaryMeasureId [renderDisparitiesChart]", primaryMeasureId);
+
     // get disparities poverty indicator metadata - "indicators" is a global object created by loadIndicator
 
     const disparityIndicator = indicators.filter(indicator =>
@@ -4326,7 +4865,7 @@ const renderDisparities = async (
         )
     );
 
-    const disparityMetadata = disparityIndicator[0].Measures.filter(
+    const disparityMetadata = disparityIndicator[0]?.Measures.filter(
         m => m.MeasureID === disparityMeasureId
     );
 
@@ -4334,16 +4873,16 @@ const renderDisparities = async (
     // put metadata into fields
     // ----------------------------------------------------------------------- //
 
-    const disparityIndicatorId     = disparityIndicator[0].IndicatorID
-    const disparityIndicatorName   = disparityIndicator[0].IndicatorName
+    const disparityIndicatorId     = disparityIndicator[0]?.IndicatorID
+    const disparityIndicatorName   = disparityIndicator[0]?.IndicatorName
 
-    const disparityMeasurementType = disparityMetadata[0].MeasurementType
-    const disparityMeasureName     = disparityMetadata[0].MeasureName
-    // const disparityMeasureId       = disparityMetadata[0].MeasureID
-    const disparityDisplay         = disparityMetadata[0].DisplayType;
+    const disparityMeasurementType = disparityMetadata[0]?.MeasurementType
+    const disparityMeasureName     = disparityMetadata[0]?.MeasureName
+    // const disparityMeasureId       = disparityMetadata[0]?.MeasureID
+    const disparityDisplay         = disparityMetadata[0]?.DisplayType;
 
-    const disparitySources         = disparityMetadata[0].Sources
-    const disparitysAbout          = disparityMetadata[0].how_calculated
+    const disparitySources         = disparityMetadata[0]?.Sources
+    const disparitysAbout          = disparityMetadata[0]?.how_calculated
 
 
     // ----------------------------------------------------------------------- //
@@ -4366,15 +4905,12 @@ const renderDisparities = async (
         
         // await loaddisparityData(disparityMetadata, disparityIndicatorId)
         let aqDisparityData = await createJoinedLinksData(primaryMeasureId, disparityMeasureId)
-            .then(data => {
-                
-                let dispData = data
+            .then(res => {
+
+                let dispData = aq.from(res.data)
                     .derive({ PovRank: d => (d.Value_2 > 30 ? 4 : (d.Value_2 > 20 ? 3 : ( d.Value_2 > 10 ? 2 : 1))) })
                     .derive({ PovCat: d => (d.PovRank == 4 ? 'Very high (> 30%)' : (d.PovRank == 3  ? 'High (20-30%)' : ( d.PovRank == 2  ? 'Medium (10-20%)' : 'Low (0-10%)'))) })
                     .derive({ randomOffsetX: aq.escape(d => d.PovRank + (myrng()*2 - 1)) })
-                
-                // console.log("dispData");
-                // dispData.print()
                 
                 return dispData;
             })
@@ -4389,13 +4925,16 @@ const renderDisparities = async (
 
     selectedDisparity = true;
 
-    // console.log(">> disparityData [renderDisparities]", disparityData);
+    // console.log(">> disparityData [renderDisparitiesChart]", disparityData);
 
     // debugger;
 
-    const primaryTime   = disparityData[0].Time_1;
-    const disparityTime = disparityData[0].Time_2;
-    const geoTypeShortDesc = disparityData[0].GeoTypeShortDesc_1;
+    const primaryTime   = disparityData[0]?.TimePeriod_1;
+    const disparityTime = disparityData[0]?.TimePeriod_2;
+    const geoTypeShortDesc = disparityData[0]?.GeoTypeShortDesc_1;
+
+    // console.log("primaryTime", primaryTime);
+    // console.log("disparityTime", disparityTime);
 
     // ----------------------------------------------------------------------- //
     // get min value for adjusting axis
@@ -4454,175 +4993,170 @@ const renderDisparities = async (
     // define spec
     // ----------------------------------------------------------------------- //
 
-    setTimeout(() => {
-
-        let disspec = {
-            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "description": `${primaryIndicatorName} ${primaryMeasurementType} and poverty scatterplot`,
-            "title": {
-                "text": [`${primaryIndicatorName && `${primaryIndicatorName}`}`],
-                "align": "left", 
-                "anchor": "start", 
-                "fontSize": 18, 
-                "fontWeight": "normal",
-                "font": "sans-serif",
-                "baseline": "top",
-                "dy": -10,
-                "limit": 1000,
-                "subtitle": `${primaryMeasurementType && `${primaryMeasurementType}`} ${primaryDisplay && `${primaryDisplay}`} (${primaryTime})`,
-                "subtitleFontSize": 13
+    let disspec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "description": `${primaryIndicatorName} ${primaryMeasurementType} and poverty scatterplot`,
+        "title": {
+            "text": [`${primaryIndicatorName && `${primaryIndicatorName}`}`],
+            "align": "left", 
+            "anchor": "start", 
+            "fontSize": 18, 
+            "fontWeight": "normal",
+            "font": "sans-serif",
+            "baseline": "top",
+            "dy": -10,
+            "limit": 1000,
+            "subtitle": `${primaryMeasurementType && `${primaryMeasurementType}`} ${primaryDisplay && `${primaryDisplay}`} (${primaryTime})`,
+            "subtitleFontSize": 13
+        },
+        "width": "container",
+        "height": height,
+        "config": {
+            "background": "#FFFFFF",
+            "axisX": {
+                "labelFontSize": 11,
+                "titleFontSize": 15,
+                "titleFont": "sans-serif",
+                "titlePadding": 10,
+                "titleFontWeight": "normal"
             },
-            "width": "container",
-            "height": height,
-            "config": {
-                "background": "#FFFFFF",
-                "axisX": {
-                    "labelFontSize": 11,
-                    "titleFontSize": 15,
-                    "titleFont": "sans-serif",
-                    "titlePadding": 10,
-                    "titleFontWeight": "normal"
-                },
-                "axisY": {
-                    "labelFontSize": 11,
-                    "titleFontSize": 0, // to turn off axis title
-                    "labelAngle": 0,
-                    "titlePadding": 10,
-                    "titleFont": "sans-serif",
-                    "tickMinStep": 1
-                },
-                "view": { "stroke": "transparent" },
-                "text": {
-                    "color": "#1696d2",
-                    "fontSize": 11,
-                    "align": "center",
-                    "fontWeight": 400,
-                    "size": 11
-                }
+            "axisY": {
+                "labelFontSize": 11,
+                "titleFontSize": 0, // to turn off axis title
+                "labelAngle": 0,
+                "titlePadding": 10,
+                "titleFont": "sans-serif",
+                "tickMinStep": 1
             },
-            "data": {
-                "values": disparityData
+            "view": { "stroke": "transparent" },
+            "text": {
+                "color": "#1696d2",
+                "fontSize": 11,
+                "align": "center",
+                "fontWeight": 400,
+                "size": 11
+            }
+        },
+        "data": {
+            "values": disparityData
+        },
+        "layer": [
+        {
+            "mark": {
+                "type": "circle",
+                "filled": true,
+                "size": bubbleSize,
+                "stroke": "#7C7C7C",
+                "strokeWidth": 2
             },
-            "layer": [
+            "params": [
             {
-                "mark": {
-                    "type": "circle",
-                    "filled": true,
-                    "size": bubbleSize,
-                    "stroke": "#7C7C7C",
-                    "strokeWidth": 2
+                "name": "hover",
+                "value": "#7C7C7C",
+                "select": {"type": "point", "on": "mouseover"}
+            }
+            ],
+            "encoding": {
+                "y": {
+                    "field": "Value_1",
+                    "type": "quantitative",
+                    "axis": {
+                        "tickCount": 4
+                    },
                 },
-                "params": [
+                "x": {
+                    "title": [`${disparityIndicatorName && `${disparityIndicatorName}`}`, `(${disparityTime})`],
+                    "field": "PovRank", // Changed
+                    "type": "ordinal",
+                    "axis": {
+                        "labelExpr": "(datum.value == 4 ? 'Very high (over 30%)' : (datum.value == 3  ? 'High (20 - 29.9%)' : ( datum.value == 2  ? 'Medium (10 - 19.9%)' : 'Low (0 - 9.9%)')))",
+                        "labelAlign": "center",
+                        "labelAngle": 0
+                    }
+                },
+                "xOffset": {"field": "randomOffsetX", "type": "quantitative"}, // Jitter
+                "tooltip": [
                 {
-                    "name": "hover",
-                    "value": "#7C7C7C",
-                    "select": {"type": "point", "on": "mouseover"}
+                    "title": "Borough", 
+                    "field": "Borough", 
+                    "type": "nominal"
+                },
+                {
+                    "title": geoTypeShortDesc, 
+                    "field": "Geography_1", 
+                    "type": "nominal"
+                },
+                {
+                    "title": "Time Period", 
+                    "field": "TimePeriod_2", 
+                    "type": "nominal"
+                },
+                {
+                    "title": primaryMeasureName,
+                    "field": "Value_1",
+                    "type": "quantitative",
+                    "format": ",.1~f"
+                },
+                {
+                    "title": disparityMeasureName,
+                    "field": "Value_2",
+                    "type": "quantitative",
+                    "format": ",.1~f"
+                },
+                {
+                    "title": disparityIndicatorName,
+                    "field": "PovCat",
+                    "type": "nominal"
                 }
                 ],
-                "encoding": {
-                    "y": {
-                        "field": "Value_1",
-                        "type": "quantitative",
-                        "axis": {
-                            "tickCount": 4
-                        },
+                "fill": {
+                    "title": "PovCat", 
+                    "field": "PovRank", 
+                    "type": "nominal", 
+                    "legend": null,
+                    "scale": {
+                        "range": [
+                            "#1696d2", 
+                            "#ffa500", 
+                            "#ec008b", 
+                            "#55b748"
+                        ]
                     },
-                    "x": {
-                        "title": [`${disparityIndicatorName && `${disparityIndicatorName}`}`, `(${disparityTime})`],
-                        "field": "PovRank", // Changed
-                        "type": "ordinal",
-                        "axis": {
-                            "labelExpr": "(datum.value == 4 ? 'Very high (over 30%)' : (datum.value == 3  ? 'High (20 - 29.9%)' : ( datum.value == 2  ? 'Medium (10 - 19.9%)' : 'Low (0 - 9.9%)')))",
-                            "labelAlign": "center",
-                            "labelAngle": 0
-                        }
+                },
+                "stroke": {
+                    "condition": {
+                        "param": "hover", 
+                        "empty": false, 
+                        "value": "#7C7C7C"
                     },
-                    "xOffset": {"field": "randomOffsetX", "type": "quantitative"}, // Jitter
-                    "tooltip": [
-                    {
-                        "title": "Borough", 
-                        "field": "Borough", 
-                        "type": "nominal"
-                    },
-                    {
-                        "title": geoTypeShortDesc, 
-                        "field": "Geography_1", 
-                        "type": "nominal"
-                    },
-                    {
-                        "title": "Time", 
-                        "field": "Time_2", 
-                        "type": "nominal"
-                    },
-                    {
-                        "title": primaryMeasureName,
-                        "field": "Value_1",
-                        "type": "quantitative",
-                        "format": ",.1~f"
-                    },
-                    {
-                        "title": disparityMeasureName,
-                        "field": "Value_2",
-                        "type": "quantitative",
-                        "format": ",.1~f"
-                    },
-                    {
-                        "title": disparityIndicatorName,
-                        "field": "PovCat",
-                        "type": "nominal"
-                    }
-                    ],
-                    "fill": {
-                        "title": "PovCat", 
-                        "field": "PovRank", 
-                        "type": "nominal", 
-                        "legend": null,
-                        "scale": {
-                            "range": [
-                                "#1696d2", 
-                                "#ffa500", 
-                                "#ec008b", 
-                                "#55b748"
-                            ]
-                        },
-                    },
-                    "stroke": {
-                        "condition": {
-                            "param": "hover", 
-                            "empty": false, 
-                            "value": "#7C7C7C"
-                        },
-                        "value": null
-                    }
+                    "value": null
                 }
             }
-            ]
         }
-        
-        // ----------------------------------------------------------------------- //
-        // render chart
-        // ----------------------------------------------------------------------- //
+        ]
+    }
+    
+    // ----------------------------------------------------------------------- //
+    // render chart
+    // ----------------------------------------------------------------------- //
 
-        vegaEmbed("#links", disspec);
+    vegaEmbed("#links", disspec);
 
+    // ----------------------------------------------------------------------- //
+    // Send chart data to download
+    // ----------------------------------------------------------------------- //
 
-        // ----------------------------------------------------------------------- //
-        // Send chart data to download
-        // ----------------------------------------------------------------------- //
+    let dataForDownload = [...disspec.data.values] // create a copy
 
-        let dataForDownload = [...disspec.data.values] // create a copy
+    let downloadTable = aq.from(dataForDownload)
+        .select(aq.not("GeoType", "GeoTypeShortDesc_1", "GeoTypeShortDesc_2", "GeoRank_1", "GeoRank_2", "start_period_1", "end_period_1", "ban_summary_flag_1", "ban_summary_flag_2", "BoroID", "DisplayValue_1", "DisplayValue_2", "GeoTypeDesc_2", "Geography_2", "start_period_2", "end_period_2", "MeasureID_1", "MeasureID_2", "randomOffsetX"))
+        .derive({ Value_1_Indicator: `'${primaryIndicatorName && `${primaryIndicatorName}`}'`})
+        .derive({ Value_2_Indicator: `'${disparityIndicatorName}'`})
+    
+    // console.log("downloadTable [renderDisparitiesChart]");
+    // downloadTable.print()
 
-        let downloadTable = aq.from(dataForDownload)
-            .select(aq.not("GeoType", "GeoTypeShortDesc_1", "GeoTypeShortDesc_2", "GeoRank_1", "GeoRank_2", "start_period_1", "end_period_1", "ban_summary_flag_1", "ban_summary_flag_2", "BoroID", "DisplayValue_1", "DisplayValue_2", "GeoTypeDesc_2", "Geography_2", "start_period_2", "end_period_2", "MeasureID_1", "MeasureID_2", "randomOffsetX"))
-            .derive({ Value_1_Indicator: `'${primaryIndicatorName && `${primaryIndicatorName}`}'`})
-            .derive({ Value_2_Indicator: `'${disparityIndicatorName}'`})
-            .print()
-
-        CSVforDownload = downloadTable.toCSV()
-
-
-    }, 300)
-
+    CSVforDownload = downloadTable.toCSV()
 
 }
 ;
@@ -4637,11 +5171,13 @@ const renderComparisonsChart = (
 
     console.log("*** renderComparisonsChart");
 
-    // console.log(">>> comp metadata");
+    // console.log("metadata [renderComparisonsChart]");
     // metadata.print()
     
-    // console.log(">>> comp data:");
-    // data.print(100)
+    // console.log("data [renderComparisonsChart]");
+    // data.print(Infinity)
+
+    // console.log("data objects", data.objects());
 
     // ----------------------------------------------------------------------- //
     // get unique unreliability notes (dropping empty)
@@ -4681,10 +5217,17 @@ const renderComparisonsChart = (
     // extract measure metadata for chart text
     // ----------------------------------------------------------------------- //
     
-    let compName =            [... new Set(metadata.array("ComparisonName"))];
-    let compIndicatorLabel =  [... new Set(metadata.array("IndicatorLabel"))];
+    let compName            = [... new Set(metadata.array("ComparisonName"))];
+    let compIndicatorLabel  = [... new Set(metadata.array("IndicatorLabel"))];
     let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
-    let compDisplayTypes =    [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
+    let compDisplayTypes    = [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
+    let compGeoIDs          = metadata.objects()[0].GeoID ? [... new Set(metadata.array("GeoID"))] : null;
+
+    // console.log(">>>> compGeoIDs", compGeoIDs);
+
+    // console.log(">> compName", compName);
+    // console.log(">> compIndicatorLabel", compIndicatorLabel);
+    // console.log(">> compMeasurementType", compMeasurementType);
 
 
     // ----------------------------------------------------------------------- //
@@ -4695,15 +5238,17 @@ const renderComparisonsChart = (
     let plotSubtitle;
     let plotTitle;
 
-    let suppressSubtitleBy = [564, 565, 566, 704, 715];
+    let suppressSubtitleBy = [564, 565, 566, 704, 715, 716, 717, 718, 719, 720, 721, 722, 723, 724, 725, 726, 727, 728, 729, 730];
 
     // comparison group label is either measure, indicator, or combo. can include geo eventually
 
     if (compName[0] === "Boroughs") {
 
-        // ----- by boros: 1 indicator, 1 measure, 5 boros -------------------------------------------------- //
+        // ----- by boros: 1 indicator, 1 measure, 5 boros --------------------------------------------------- //
 
         // console.log("boros");
+
+        // console.log("indicatorName", indicatorName);
 
         // if this is a boro comparison, tweak some things
 
@@ -4714,12 +5259,18 @@ const renderComparisonsChart = (
         plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? " by Borough" : "");
         comp_group_col = "Geography"
 
+        // console.log(">> compGroupLabel", compGroupLabel);
+        // console.log(">> plotTitle", plotTitle);
+        // console.log(">> plotSubtitle", plotSubtitle);
+
 
     } else if (compIndicatorLabel.length == 1) {
 
-        // ----- by measure: 1 indicator, 2+ measures, 1 citywide -------------------------------------------------- //
+        // ----- by measure: 1 indicator, 2+ measures, 1 citywide --------------------------------------------------- //
 
         // console.log("1 indicator");
+
+        // console.log("indicatorName", indicatorName);
         
         let compId           = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle  = [... new Set(metadata.array("LegendTitle"))];
@@ -4735,7 +5286,7 @@ const renderComparisonsChart = (
 
             // console.log(">>> SUPPRESS by", compId);
 
-            plotSubtitle = compY_axis_title;
+            plotSubtitle = compY_axis_title + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "");
 
         } else {
 
@@ -4749,12 +5300,21 @@ const renderComparisonsChart = (
         compGroupLabel = compMeasurementType;
         comp_group_col = "MeasurementType"
 
+        // reset column count based on number of lines
+
+        columns = compGroupLabel.length > 3 ? 3 : columns;
+
+        // console.log(">> compGroupLabel", compGroupLabel);
+        // console.log(">> plotTitle", plotTitle);
+        // console.log(">> plotSubtitle", plotSubtitle);
 
     } else if (compMeasurementType.length == 1) {
 
-        // ----- by indicator: 2+ indicators, 1 measure, 1 citywide -------------------------------------------------- //
+        // ----- by indicator: 2+ indicators, 1 measure, 1 citywide --------------------------------------------------- //
 
         // console.log("1 measure");
+
+        // console.log("indicatorName", indicatorName);
 
         let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
@@ -4769,7 +5329,7 @@ const renderComparisonsChart = (
 
             // console.log(">>> SUPPRESS by", compId);
 
-            plotSubtitle = compMeasurementType;
+            plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "");
 
         } else {
 
@@ -4782,12 +5342,21 @@ const renderComparisonsChart = (
         compGroupLabel = compIndicatorLabel;
         comp_group_col = "IndicatorLabel"
 
+        // reset column count based on number of lines
+
+        columns = compGroupLabel.length > 3 ? 3 : columns;
+
+        // console.log(">> compGroupLabel", compGroupLabel);
+        // console.log(">> plotTitle", plotTitle);
+        // console.log(">> plotSubtitle", plotSubtitle);
 
     } else if (compMeasurementType.length > 1 && compIndicatorLabel.length > 1) {
         
-        // ----- by combo: 2+ indicators, 2+ measures, 1 citywide -------------------------------------------------- //
+        // ----- by combo: 2+ indicators, 2+ measures, 1 citywide --------------------------------------------------- //
 
         // console.log("> 1 measure & indicator");
+
+        // console.log("indicatorName", indicatorName);
 
         let compId = [... new Set(metadata.array("ComparisonID"))][0];
         let compLegendTitle = [... new Set(metadata.array("LegendTitle"))]
@@ -4803,7 +5372,7 @@ const renderComparisonsChart = (
 
             // console.log(">>> SUPPRESS by", compId);
 
-            plotSubtitle = compY_axis_title;
+            plotSubtitle = compY_axis_title + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "");
 
         } else {
 
@@ -4816,8 +5385,22 @@ const renderComparisonsChart = (
         compGroupLabel = [... new Set(metadata.array("IndicatorMeasure"))];
         comp_group_col = "IndicatorMeasure"
 
+        // reset column count based on number of lines
+
+        columns = compGroupLabel.length > 3 ? 3 : columns;
+
+        // console.log(">> compGroupLabel", compGroupLabel);
+        // console.log(">> plotTitle", plotTitle);
+        // console.log(">> plotSubtitle", plotSubtitle);
+
     }
 
+
+    // ----------------------------------------------------------------------- //
+    // create transform after pivot that replaces "undefined" with ""
+    // ----------------------------------------------------------------------- //
+
+    let compReplaceInvalid = compGroupLabel.map(x => {return {"calculate": `isValid(datum[\"${x}\"]) ? datum[\"${x}\"] : ""`, "as": `${x}`}})
 
     // ----------------------------------------------------------------------- //
     // create tooltips JSON
@@ -4825,7 +5408,10 @@ const renderComparisonsChart = (
 
     // will be spliced into the spec
     
+    // let compTooltips = compGroupLabel.map(x => {return {"field": x, "type": "nominal", "format": ",.1~f"}})
     let compTooltips = compGroupLabel.map(x => {return {"field": x, "type": "nominal"}})
+
+    // console.log("compTooltips", compTooltips);
 
 
     // ----------------------------------------------------------------------- //
@@ -4868,7 +5454,7 @@ const renderComparisonsChart = (
             }
         },
         "data": {
-            "values":  data,
+            "values":  data.objects(),
         },
         "width": "container",
         "height": height,
@@ -4886,7 +5472,7 @@ const renderComparisonsChart = (
         },
         "encoding": {
             "x": {
-                "field": "Time",
+                "field": "TimePeriod",
                 "type": "nominal",
                 "title": null
             }
@@ -4948,11 +5534,11 @@ const renderComparisonsChart = (
                 "transform": [
                     {
                         "pivot": comp_group_col,
-                        "value": "Value",
-                        "groupby": [
-                            "Time"
-                        ]
-                    }
+                        "value": "DisplayValue",
+                        "groupby": ["TimePeriod"],
+                        "op": "max"
+                    },
+                    ...compReplaceInvalid
                 ],
                 "mark": "rule",
                 "encoding": {
@@ -4967,7 +5553,7 @@ const renderComparisonsChart = (
                     "tooltip": [
                         {
                             "title": "Year",
-                            "field": "Time",
+                            "field": "TimePeriod",
                             "type": "nominal"
                         },
                         ...compTooltips,
@@ -4979,7 +5565,7 @@ const renderComparisonsChart = (
                         "select": {
                             "type": "point",
                             "fields": [
-                                "Time"
+                                "TimePeriod"
                             ],
                             "nearest": true,
                             "on": "mouseover",
@@ -5006,7 +5592,9 @@ const renderComparisonsChart = (
     let downloadTable = aq.from(dataForDownload)
         .derive({Indicator: `'${indicatorName}: ${plotTitle} ${plotSubtitle}'`}) // add indicator name and type column
         .select(aq.not("GeoType", "GeoTypeDesc", "GeoTypeShortDesc", "GeoRank", "MeasureID", "ban_summary_flag", "DisplayValue", "start_period", "end_period"))
-        .print()
+
+        // console.log("downloadTable [renderComparisonsChart]");
+        // downloadTable.print()
 
     CSVforDownload = downloadTable.toCSV()
     
@@ -5117,28 +5705,28 @@ function reveal() {
 $('#tab-btn-table').on('click', e => {
     $(e.currentTarget).tab('show');
     window.location.hash = 'display=summary'
-})
+});
 
 // ===== map ===== /
 
 $('#tab-btn-map').on('click', e => {
     $(e.currentTarget).tab('show');
     window.location.hash = 'display=map'
-})   
+});
 
 // ===== trend ===== /
 
 $('#tab-btn-trend').on('click', e => {
     $(e.currentTarget).tab('show');
     window.location.hash = 'display=trend'
-})  
+});
 
 // ===== links ===== /
 
 $('#tab-btn-links').on('click', e => {
     $(e.currentTarget).tab('show');
     window.location.hash = 'display=links'
-})
+});
 
 
 // ----------------------------------------------------------------------- //
@@ -5150,7 +5738,7 @@ $("#chartView").on("click", (e) => {
 
     // if it's summary table... (uses DataTables.net methods)
     if (window.location.hash == '#display=summary') {
-        console.log('we are on summary table')
+        
         let summaryTable = $('#tableID').DataTable();
         summaryTable.button("thisView:name").trigger();
     
@@ -5192,10 +5780,7 @@ $("#chartView").on("click", (e) => {
         e.stopPropagation();
     }
 
-
-
-
-})
+});
 
 // export full table data (i.e., original view)
 
@@ -5204,9 +5789,9 @@ $("#allData").on("click", (e) => {
     // pivot the full dataset
 
     let allData = aq.from(tableData)
-        .groupby("Time", "GeoType", "GeoID", "GeoRank", "Geography")
+        .groupby("TimePeriod", "GeoType", "GeoID", "GeoRank", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI")
-        .relocate(["Time", "GeoType", "GeoID", "GeoRank"], { before: 0 })
+        .relocate(["TimePeriod", "GeoType", "GeoID", "GeoRank"], { before: 0 })
 
     let downloadTableCSV = allData.toCSV();
 
@@ -5260,4 +5845,5 @@ $("#rawData").on("click", (e) => {
         e.stopPropagation();
 
     })
+
 });

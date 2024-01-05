@@ -909,6 +909,16 @@
     "description": "Biking bridges gaps in existing public transportation systems and is a great way to exercise. Neighborhoods with fewer Citi Bike stations have limited access to this beneficial public resource. Neighborhoods with relatively few docks per station may also have limited access to bikes even if they have many stations. The National Association of City Transportation Officials (NACTO) suggests that there should be 28 stations per square mile and one station every 1000 feet.",
     "name": "Citi Bike stations"
   },
+  "2427": {
+    "IndicatorID": 2427,
+    "description": "\u003cp\u003eConcentration of bacteria - fecal coliform and enterococci are human-health-related indicators of water quality. Fecal coliform bacteria are found in human and animal intestines and are associated with wastewater. Enterococci may be a more sensitive indicator of wastewater pollution in a saltwater environment.\u003c/p\u003e",
+    "name": "Bacteria"
+  },
+  "2428": {
+    "IndicatorID": 2428,
+    "description": "Dissolved oxygen is essential for most aquatic life. It is an important indicator of overall water quality.",
+    "name": "Dissolved oxygen (DO)"
+  },
   "2429": {
     "IndicatorID": 2429,
     "description": "Children ages 1 to 13 who have had an asthma attack in the past year. Asthma attacks are a measureable adverse health outcome of asthma.",

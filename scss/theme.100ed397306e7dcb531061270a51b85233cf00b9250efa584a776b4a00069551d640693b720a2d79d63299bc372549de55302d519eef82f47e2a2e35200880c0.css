@@ -4010,11 +4010,11 @@ select {
   z-index: 1040;
   width: 100vw;
   height: 100vh;
-  background-color: #fff; }
+  background-color: #000; }
   .modal-backdrop.fade {
     opacity: 0; }
   .modal-backdrop.show {
-    opacity: 0.95; }
+    opacity: 0.5; }
 
 .modal-header {
   display: flex;
@@ -9628,7 +9628,7 @@ th.tablehead {
   margin-bottom: 5px; }
 
 .home-label {
-  font-size: 14px;
+  font-size: 16px;
   text-transform: uppercase;
   color: #484848; }
 
@@ -10179,7 +10179,7 @@ h2.report-info {
   padding-right: 3.25rem; }
   @media (min-width: 720px) {
     .report-modal .modal-header {
-      padding-left: 4rem;
+      padding-left: 2rem;
       padding-right: 4rem; } }
 .report-modal .modal-body, .report-modal .modal-footer {
   padding-top: 40px;

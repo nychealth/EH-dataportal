@@ -189,10 +189,6 @@
     ],
     "topic_name": "Cockroaches"
   },
-  "data-reference": {
-    "IndicatorID": [],
-    "topic_name": "Data lookup or download"
-  },
   "drinking-water-quality": {
     "IndicatorID": [
       2207,

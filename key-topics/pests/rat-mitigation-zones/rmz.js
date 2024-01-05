@@ -33,7 +33,7 @@ L.easyButton({
 }).addTo(map);     
 
 function resetZoom() {
-    console.log('reset zoom 3')
+    // console.log('reset zoom 3')
     window.location.hash = '#top'
     location.reload()
 }
@@ -59,7 +59,7 @@ var geog = L.geoJson(rmz,{
 
 d3.csv("2022-rat-data.csv").then(data => {
     ratData = data;
-    console.log(ratData)
+    // console.log(ratData)
 })
 
 // And what to do on mouseover, mouseout, and click
@@ -80,7 +80,7 @@ function zoomToFeature(e) {
     geog.resetStyle()
     map.fitBounds(e.target.getBounds());
     id = e.target.feature.properties.OBJECTID
-    console.log('Name: ' + e.target.feature.properties.Label) 
+    // console.log('Name: ' + e.target.feature.properties.Label) 
     name = e.target.feature.properties.Label
     printToPage(id);
     // The above gets id and name, puts them into global variables, for other selection display
@@ -102,8 +102,8 @@ function zoomToFeature(e) {
 // Highlght feature
 function highlightFeature(e) {
     geog.resetStyle()
-    console.log('highlight feature:')
-    console.log(e)
+    // console.log('highlight feature:')
+    // console.log(e)
     const layer = e.target;
     layer.setStyle({ // Styles for hover-highlight
         weight: 3,
@@ -118,18 +118,18 @@ layer.bringToFront();
 
 // Send Info to Page
 function printToPage(x) {
-    console.log("id: " + x)
+    // console.log("id: " + x)
     document.getElementById('zoneName').innerHTML = name;
 
     const zoneData = ratData.filter(zone => zone.ID == x)
-    console.log(zoneData)
+    // console.log(zoneData)
     document.getElementById('totalInspections').innerHTML = Number(zoneData[0].Inspections).toLocaleString()
     document.getElementById('agency').innerHTML = Number(zoneData[0].cityAgencyReferral).toLocaleString() + ' (' + (100 * Number(zoneData[0].cityAgencyReferral) / Number(zoneData[0].Inspections)).toFixed(1) + '% of inspections)'
     document.getElementById('cota').innerHTML = Number(zoneData[0].privatePropertyCOTA).toLocaleString() + ' (' + (100 * Number(zoneData[0].privatePropertyCOTA) / Number(zoneData[0].Inspections)).toFixed(1) + '% of inspections)'
 
     var totalCI = Number(zoneData[0].failedComplianceInspections) + Number(zoneData[0].passedComplianceInspection)
     document.getElementById('comp').innerHTML = Number(totalCI).toLocaleString();
-    console.log(totalCI)
+    // console.log(totalCI)
     document.getElementById('failed').innerHTML = Number(zoneData[0].failedComplianceInspections).toLocaleString() + ' (' + ((100 * zoneData[0].failedComplianceInspections) / totalCI).toFixed(1)  + '% of compliance inspections)'
     document.getElementById('passed').innerHTML = Number(zoneData[0].passedComplianceInspection).toLocaleString() + ' (' + ((100 * zoneData[0].passedComplianceInspection) / totalCI).toFixed(1)  + '% of compliance inspections)'
 
