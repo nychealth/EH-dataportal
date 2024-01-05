@@ -84,6 +84,18 @@ collections_config:
       default:
         <<: *base-schema
         path: .cloudcannon/schemas/about.md
+  data-features:
+    <<: *base-collection
+    path: content/data-features
+    name: Data Features
+    singular_name: Data feature
+    singular_key: data-features
+    description: Data features.
+    sort_options: *default-sort_options
+    schemas:
+      default:
+        <<: *base-schema
+        path: .cloudcannon/schemas/data-features.md
 collection_groups:
   - heading: Content
     collections:
