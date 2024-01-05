@@ -1,4 +1,4 @@
 ---
 ---
 
-* The average number of non-extreme hot days increased from 52 in 1971-1975 to 74 days in 2016-2020, whereas the number of extreme heat days only increased from 4 in 1971-1975 to 11 in 2016-2020(See Figure 5). Based on the results presented in Figures 3 and 5, the increasing number of non-extreme hot days in the past decade accounts for the increase in overall heat-exacerbated deaths in the past decade.
+* The average daily maximum temperature in July—the month with the highest heat-health risk—increased 5°F, from 83°F in 1971-1975 to 88°F in 2016-2020. The average daily maximum temperature in other months also increased by 3 to 5°F (see Figure 6).

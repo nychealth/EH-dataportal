@@ -1,8 +1,6 @@
 ---
 ---
 
-## Community-Level Impacts
-
 The HVI shows differences in community-level heat impacts during and shortly after extreme heat events (5). The HVI combines environmental factors (measures of a neighborhood’s average surface temperature and percentage of green space) with social factors (percentage of homes with air conditioning, residents’ median income, and the percentage of residents who are Black) to develop a relative measure of a neighborhood vulnerability to heat.
 
 Unlike many social vulnerability indices, the HVI is derived from NYC mortality data, which means that neighborhoods with elevated risk identified by the index are those areas with elevated heat-exacerbated deaths during extreme heat events. HVI scores range from 1 (lowest risk) to 5 (highest risk). The relative heat mortality risk of each&nbsp;[Neighborhood Tabulation Area (NTA](https://www1.nyc.gov/site/planning/data-maps/open-data/dwn-nynta.page)) can be explored&nbsp;[here](../hvi).

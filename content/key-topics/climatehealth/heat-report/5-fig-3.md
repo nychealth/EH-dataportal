@@ -1,5 +1,5 @@
 ---
 ---
-
+<span style="font-weight:bold">Figure 3:</span> Annual average heat-exacerbated deaths for <span style="color:red;font-weight:bold">Extreme Heat Event days</span>, and <span style="color:orange;font-weight:bold">days at or above 82°F</span> in 5-year moving time windows
 <iframe title="2023 Heat Mortality Report Figure 3" aria-label="Scatter Plot" id="datawrapper-chart-qoldt" src="https://datawrapper.dwcdn.net/qoldt/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="702" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
