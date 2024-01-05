@@ -21,24 +21,26 @@
         <div class="col-md-7 col-sm-12 mx-auto mb-6">
                 <h1><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
                     {{ .Title }}</h1>
-
-
-        
-                {{- .Content  -}}
+                    {{- .Content  -}}
     
         </div>
     </div>
 
+
     <div class="row my-3">
+        <div class="col-md-10 col-sm-12 mx-auto my-1">
+            <h2>Heat Stress Deaths</h2>
+        </div>
+
         <div class="col-md-5 ml-auto col-sm-12">
-            {{- with .Resources.GetMatch "section1.md" -}}
+            {{- with .Resources.GetMatch "1-hsd.md" -}}
                 {{ .Content }}
             {{- end -}}
         </div>
 
         <div class="col-md-5 mr-auto col-sm-12">
             <div class="p-2 border">
-                {{- with .Resources.GetMatch "vis1.md" -}}
+                {{- with .Resources.GetMatch "1-fig1.md" -}}
                 {{ .Content }}
                 {{- end -}}
             </div>
@@ -47,15 +49,84 @@
 
 
     <div class="row my-3">
+        <div class="col-md-10 col-sm-12 mx-auto my-1">
+            <h3>Demographics</h3>
+        </div>
         <div class="col-md-5 ml-auto col-sm-12">
-            {{- with .Resources.GetMatch "section2.md" -}}
+            {{- with .Resources.GetMatch "2-demographics.md" -}}
                 {{ .Content }}
             {{- end -}}
         </div>
 
         <div class="col-md-5 mr-auto col-sm-12">
             <div class="p-2 border">
-                {{- with .Resources.GetMatch "vis2.md" -}}
+                {{- with .Resources.GetMatch "2-fig2.md" -}}
+                {{ .Content }}
+                {{- end -}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-md-10 col-sm-12 mx-auto my-1">
+            <h3>Health Risk Factors</h3>
+        </div>
+        <div class="col-md-5 ml-auto col-sm-12">
+            {{- with .Resources.GetMatch "3-healthriskfactors.md" -}}
+                {{ .Content }}
+            {{- end -}}
+        </div>
+
+        <div class="col-md-5 mr-auto col-sm-12">
+            <div class="p-2 border">
+                {{- with .Resources.GetMatch "3-table1.md" -}}
+                {{ .Content }}
+                {{- end -}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-md-10 col-sm-12 mx-auto my-1">
+            <h3>Heat Exposure Circumstances</h3>
+        </div>
+        <div class="col-md-5 ml-auto col-sm-12">
+            {{- with .Resources.GetMatch "4-exposure.md" -}}
+                {{ .Content }}
+            {{- end -}}
+        </div>
+
+        <div class="col-md-5 mr-auto col-sm-12">
+            <div class="p-2 border">
+                {{- with .Resources.GetMatch "4-table2.md" -}}
+                {{ .Content }}
+                {{- end -}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-md-10 col-sm-12 mx-auto my-1">
+            <h2>Heat Exacerbated Deaths</h2>
+        </div>
+        <div class="col-md-5 ml-auto col-sm-12">
+            {{- with .Resources.GetMatch "5a-heat-ex-intro.md" -}}
+                {{ .Content }}
+            {{- end -}}
+        </div>
+        <div class="col-md-5 mr-auto"></div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-md-5 ml-auto col-sm-12">
+            {{- with .Resources.GetMatch "5-heat-ex-deaths.md" -}}
+                {{ .Content }}
+            {{- end -}}
+        </div>
+
+        <div class="col-md-5 mr-auto col-sm-12">
+            <div class="p-2 border">
+                {{- with .Resources.GetMatch "5-fig-3.md" -}}
                 {{ .Content }}
                 {{- end -}}
             </div>
@@ -64,14 +135,42 @@
 
     <div class="row my-3">
         <div class="col-md-5 ml-auto col-sm-12">
-            {{- with .Resources.GetMatch "section3.md" -}}
+            {{- with .Resources.GetMatch "6-mort-risk.md" -}}
                 {{ .Content }}
             {{- end -}}
         </div>
 
         <div class="col-md-5 mr-auto col-sm-12">
             <div class="p-2 border">
-                {{- with .Resources.GetMatch "vis3.md" -}}
+                {{- with .Resources.GetMatch "6-fig-4.md" -}}
+                {{ .Content }}
+                {{- end -}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-md-10 mx-auto col-sm-12 my-1">
+            <h3>Hotter summers</h3>
+        </div>
+        <div class="col-md-5 ml-auto col-sm-12">
+            {{- with .Resources.GetMatch "7a-hotter-summers-intro.md" -}}
+                {{ .Content }}
+            {{- end -}}
+        </div>
+        <div class="col-md-5 mr-auto"></div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-md-5 ml-auto col-sm-12">
+            {{- with .Resources.GetMatch "7b-hotter-summers.md" -}}
+                {{ .Content }}
+            {{- end -}}
+        </div>
+
+        <div class="col-md-5 mr-auto col-sm-12">
+            <div class="p-2 border">
+                {{- with .Resources.GetMatch "7-fig-5.md" -}}
                 {{ .Content }}
                 {{- end -}}
             </div>
@@ -80,14 +179,33 @@
 
     <div class="row my-3">
         <div class="col-md-5 ml-auto col-sm-12">
-            {{- with .Resources.GetMatch "section4.md" -}}
+            {{- with .Resources.GetMatch "7c-hotter-summers.md" -}}
                 {{ .Content }}
             {{- end -}}
         </div>
 
         <div class="col-md-5 mr-auto col-sm-12">
             <div class="p-2 border">
-                {{- with .Resources.GetMatch "vis4.md" -}}
+                {{- with .Resources.GetMatch "7-fig-6.md" -}}
+                {{ .Content }}
+                {{- end -}}
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="row my-3">
+        <div class="col-md-5 ml-auto col-sm-12">
+            {{- with .Resources.GetMatch "8-AC.md" -}}
+                {{ .Content }}
+            {{- end -}}
+        </div>
+
+        <div class="col-md-5 mr-auto col-sm-12">
+            <div class="p-2 border">
+                {{- with .Resources.GetMatch "8-fig-7.md" -}}
                 {{ .Content }}
                 {{- end -}}
             </div>
@@ -96,78 +214,20 @@
 
     <div class="row my-3">
         <div class="col-md-5 ml-auto col-sm-12">
-            {{- with .Resources.GetMatch "section5.md" -}}
+            {{- with .Resources.GetMatch "9-community-impacts.md" -}}
                 {{ .Content }}
             {{- end -}}
         </div>
 
         <div class="col-md-5 mr-auto col-sm-12">
             <div class="p-2 border">
-                {{- with .Resources.GetMatch "vis5.md" -}}
+                {{- with .Resources.GetMatch "9-fig-8.md" -}}
                 {{ .Content }}
                 {{- end -}}
             </div>
-        </div>
-    </div>
 
-    <div class="row my-3">
-        <div class="col-md-5 ml-auto col-sm-12">
-            {{- with .Resources.GetMatch "section6.md" -}}
-                {{ .Content }}
-            {{- end -}}
-        </div>
-
-        <div class="col-md-5 mr-auto col-sm-12">
-            <div class="p-2 border">
-                {{- with .Resources.GetMatch "vis6.md" -}}
-                {{ .Content }}
-                {{- end -}}
-            </div>
-        </div>
-    </div>
-
-    <div class="row my-3">
-        <div class="col-md-5 ml-auto col-sm-12">
-            {{- with .Resources.GetMatch "section7.md" -}}
-                {{ .Content }}
-            {{- end -}}
-        </div>
-
-        <div class="col-md-5 mr-auto col-sm-12">
-            <div class="p-2 border">
-                {{- with .Resources.GetMatch "vis7.md" -}}
-                {{ .Content }}
-                {{- end -}}
-            </div>
-        </div>
-    </div>
-
-    <div class="row my-3">
-        <div class="col-md-5 ml-auto col-sm-12">
-            {{- with .Resources.GetMatch "section8.md" -}}
-                {{ .Content }}
-            {{- end -}}
-        </div>
-
-        <div class="col-md-5 mr-auto col-sm-12">
-            <div class="p-2 border">
-                {{- with .Resources.GetMatch "vis8.md" -}}
-                {{ .Content }}
-                {{- end -}}
-            </div>
-        </div>
-    </div>
-
-    <div class="row my-3">
-        <div class="col-md-5 ml-auto col-sm-12">
-            {{- with .Resources.GetMatch "section9.md" -}}
-                {{ .Content }}
-            {{- end -}}
-        </div>
-
-        <div class="col-md-5 mr-auto col-sm-12">
-            <div class="p-2 border">
-                {{- with .Resources.GetMatch "vis9.md" -}}
+            <div class="p-2 border mt-2">
+                {{- with .Resources.GetMatch "9-maps.md" -}}
                 {{ .Content }}
                 {{- end -}}
             </div>
