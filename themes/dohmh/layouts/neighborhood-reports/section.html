@@ -12,8 +12,8 @@
     <div class="col-md-10 mx-auto my-4">
       <nav aria-label="breadcrumb" class="mb-2">
         <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active"><a href="/neighborhood-reports/">{{ .Title }}</a></li>
+            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+            <li class="breadcrumb-item active"><a href={{ relURL "neighborhood-reports" }}>{{ .Title }}</a></li>
         </ul>
       </nav>
   
@@ -65,7 +65,7 @@
             </div>
           </div>
 
-          <div class="border-bottom" style="height:550px" aria-hidden="true">
+          <div class="border-bottom nr-clickable-uhf" style="height:550px" aria-hidden="true">
             {{- partial "nr-clickable-uhf" . -}}
 
           </div>
@@ -156,9 +156,6 @@
 
 {{ define "js_bot" }}
 
-  {{/*  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
-  {{ $secureJS := $js | resources.Fingerprint "sha512" }}
-  <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>  */}}
 
   {{- $js := resources.Get "js/uhflist.js" -}}
   {{ $secureJS := $js | resources.Fingerprint "sha512" }}
@@ -177,7 +174,7 @@
 
 // establish report, and reportURL - change this with a toggle on the report buttons
 var report; 
-var reportURL = '/asthma_and_the_environment/' // this is used in nr-clickable-uhf
+var reportURL = '' // this is used in nr-clickable-uhf
 
 // button Change function. Pass first word into function from buttons
 function buttonChange(x) {
@@ -186,7 +183,7 @@ function buttonChange(x) {
 
   var copyHolder = x + 'Descr'
   var copy = document.getElementById(copyHolder).innerHTML
-  console.log(copy)
+  // console.log(copy)
   document.getElementById('descr').innerHTML = copy
 
   // this checks
@@ -220,15 +217,16 @@ var ul2 = document.getElementById("neighborhoodList2");
 
 neighborhoods.forEach(function (neighborhood) {
   var li = document.createElement("li");
-  li.innerHTML = `<a href="${neighborhood.page_name}">${neighborhood.UHF_name}</a>: ${neighborhood.Zipcodes}`;
+  li.innerHTML = "<a href='" + {{ relURL "neighborhood-reports/" }} + neighborhood.page_name + "/" + "'>" + neighborhood.UHF_name + "</a>: " + neighborhood.Zipcodes
   ul.appendChild(li);
   ul2.appendChild(li)
 });
 
 function showNeighborhoods() {
-  console.log('showing neighborhoods...')
-  document.getElementById('showNeighbs').classList.remove('hide')
-  document.getElementById('showNeighbs').classList.add('show')
+
+    document.getElementById('showNeighbs').classList.toggle('hide')
+    document.getElementById('showNeighbs').classList.toggle('show')
+
   }
 
 
@@ -236,7 +234,7 @@ function showNeighborhoods() {
 // ===== load flexdatalist ================================================== //
 
 function loadList() {
-  console.log(neighborhoods)
+  // console.log(neighborhoods)
 
   // ----- init flexdatalist -------------------------------------------------- //
 
@@ -256,19 +254,20 @@ function loadList() {
     data: neighborhoods
 });
 
-  console.log("$input", $input);
+  // console.log("$input", $input);
 
   // ----- add flexdatalist select handler -------------------------------------------------- //
 
   $input.on('select:flexdatalist', (e, set) => {
     
-    console.log("set", set);
+    // console.log("set", set);
     
     // SEND TO NEIGHBORHOOD...!
 
-    console.log('chosen neighb:')
-    console.log(set.page_name);
-    window.location.href = set.page_name + reportURL 
+    // console.log('chosen neighb:')
+    // console.log(set.page_name);
+
+    window.location.href = {{ relURL "neighborhood-reports/" }} + set.page_name + reportURL 
     
 })
 
@@ -276,7 +275,7 @@ function loadList() {
 
 $("#clear").on("click", (e) => {
 
-    console.log("e [clear click]", e);
+    // console.log("e [clear click]", e);
 
     $($input).find("~input").val("").trigger( "focus" )
     

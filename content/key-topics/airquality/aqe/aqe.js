@@ -313,14 +313,14 @@ const renderMap = (
       "layer": [
         {
           "data": {
-            "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/NTA_2020.topo.json",
+            "url": data_repo + data_branch + "/geography/NTA_2020.topo.json",
             "format": {"type": "topojson", "feature": "collection"}
           },
           "mark": {"type": "geoshape", "stroke": "#ffffff", "fill": "lightgray"}
         },
         {
           "data": {
-            "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/NTA_2020.topo.json",
+            "url": data_repo + data_branch + "/geography/NTA_2020.topo.json",
             "format": {"type": "topojson", "feature": "collection"}
           },
           "transform": [
