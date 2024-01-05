@@ -23,9 +23,13 @@
                     {{ .Title }}</h1>
                     {{- .Content  -}}
 
+                    {{- with .Resources.GetMatch "a-summary.md" -}}
+                        {{ .Content }}
+                    {{- end -}}
+
                     <hr class="my-4">
 
-                    {{- with .Resources.GetMatch "introduction.md" -}}
+                    {{- with .Resources.GetMatch "a-introduction.md" -}}
                         {{ .Content }}
                     {{- end -}}
     
@@ -266,7 +270,7 @@
 
     <div class="row my-3">
         <div class="col-md-7 mx-auto col-sm-12">
-            {{- with .Resources.GetMatch "conclusion.md" -}}
+            {{- with .Resources.GetMatch "z-conclusion.md" -}}
             {{ .Content }}
             {{- end -}}
         </div>
