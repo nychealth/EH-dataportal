@@ -7,8 +7,4 @@ categories:
 keywords:
 seo_title:
 seo_description:
-pollutantMaps:
-pollutantTrends:
-conclusion:
-moreInfo:
 ---

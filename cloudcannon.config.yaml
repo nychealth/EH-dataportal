@@ -117,29 +117,15 @@ _inputs:
     options:
       values: _select_data.categories
       allow_create: true
-  methods:
+  BC:
     type: textarea
-  nyccasSites:
+  NO:
     type: textarea
-  pollutantPredictors:
+  NO2:
     type: textarea
-  pollutantMaps:
+  O3:
     type: textarea
-  pollutantTrends:
-    type: textarea
-  conclusion:
-    type: textarea
-  moreInfo:
-    type: textarea
-  mapTextBC:
-    type: textarea
-  mapTextNO:
-    type: textarea
-  mapTextNO2:
-    type: textarea
-  mapTextO3:
-    type: textarea
-  mapTextPM:
+  PM:
     type: textarea
 _select_data:
   categories:

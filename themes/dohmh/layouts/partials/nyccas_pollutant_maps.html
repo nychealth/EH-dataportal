@@ -20,28 +20,30 @@
 
       <div class="col-sm-5" id="mapText">
           <div id="bcText" class="polText">
-                {{ .Params.mapTextBC | markdownify }}
+            {{- with .Resources.GetMatch "map-text.md" -}}
+                {{ .Params.BC | markdownify }}
           </div>
 
           <div id="noText" class="polText hide">
-            {{ .Params.mapTextNO | markdownify }}
+            {{ .Params.NO | markdownify }}
 
           </div>
 
           <div id="no2Text" class="polText hide">
-            {{ .Params.mapTextNO2 | markdownify }}
+            {{ .Params.NO2 | markdownify }}
 
           </div>
 
           <div id="o3Text" class="polText hide">
-            {{ .Params.mapTextO3 | markdownify }}
+            {{ .Params.O3 | markdownify }}
 
           </div>
 
           <div id="pm25Text" class="polText hide">
-            {{ .Params.mapTextPM | markdownify }}
+            {{ .Params.PM | markdownify }}
 
           </div>
+          {{- end -}}
       </div>
   </div>
 </div>

@@ -62,7 +62,9 @@
                 <div class="col-sm-6 col-xs-12">
                     <div class="greenleftborder">
                         <h3>Methods</h3>
-                        {{ .Params.methods | markdownify }}
+                        {{- with .Resources.GetMatch "methods.md" -}}
+                            {{ .Content }}
+                        {{- end -}}
                     </div>
                 </div>
 
@@ -71,6 +73,7 @@
 
                     <div class="accordion-group mt-2 mb-3" role="tablist" id="accordion-01">
 
+                        {{- with .Resources.GetMatch "methods.md" -}}
                         {{- range .Params.pollutantsMeasured -}}
 
                         <div class="card accordion-item border">
@@ -87,6 +90,7 @@
                         </div>
 
                         {{- end -}}
+                        {{- end -}}
 
                     </div>
                 </div>
@@ -99,7 +103,9 @@
                     <div class="greenleftborder">
                         <h3>NYCCAS Sites</h3>
 
-                        {{ .Params.nyccasSites | markdownify }}
+                        {{- with .Resources.GetMatch "nyccas-sites.md" -}}
+                            {{ .Content }}
+                        {{- end -}}
 
                     </div>
                 </div>
@@ -121,8 +127,11 @@
     <div class="row">
         <div class="col-md-8 col-sm-12 mx-auto">
             <h2>Pollutant Maps</h2>
-            <img src="NyccasInstall_red.jpg" alt="NYCCAS installation" align="right" style="width:50%;" class="my-2 pl-2"> 
-            {{ .Params.pollutantMaps | markdownify }}
+            <img src="images/NyccasInstall_red.jpg" alt="NYCCAS installation" align="right" style="width:50%;" class="my-2 pl-2"> 
+
+            {{- with .Resources.GetMatch "pollutant-maps.md" -}}
+                {{ .Content }}
+            {{- end -}}
 
             {{ partial "nyccas_pollutant_maps.html" . }}
 
@@ -134,7 +143,9 @@
     <div class="row mt-4">
         <div class="col-md-8 col-sm-12 mx-auto">
             <h2>Pollutant Trends</h2>
-            {{ .Params.pollutantTrends | markdownify }}
+            {{- with .Resources.GetMatch "pollutant-trends.md" -}}
+                {{ .Content }}
+            {{- end -}}
             <hr>
 
             {{ partial "nyccas_pollutant_trends" . }}
@@ -148,7 +159,9 @@
     <div class="row mt-4">
         <div class="col-md-8 col-sm-12 mx-auto">
             <h2>Pollutant Predictors</h2>
-            {{ .Params.pollutantPredictors | markdownify }}
+            {{- with .Resources.GetMatch "pollutant-predictors.md" -}}
+                {{ .Content }}
+            {{- end -}}
 
             <hr>
 
@@ -161,11 +174,15 @@
     <div class="row my-2">
         <div class="col-sm-8 mx-auto col-xs-12">
             <h2>Conclusion</h2>
-            {{ .Params.conclusion | markdownify }}
+            {{- with .Resources.GetMatch "conclusion.md" -}}
+                {{ .Content }}
+            {{- end -}}
             <hr>
             <div class="greenleftborder mb-4">
                 <strong>More information</strong>
-                {{ .Params.moreInfo | markdownify }}
+                {{- with .Resources.GetMatch "more-info.md" -}}
+                    {{ .Content }}
+                {{- end -}}
                 </div>
 
         </div>
