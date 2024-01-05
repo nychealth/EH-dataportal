@@ -312,7 +312,7 @@
 
                                     {{- /*  don't add links to the data index or data reference pages  */ -}}
 
-                                    {{- if not ( or ( strings.Contains .RelPermalink "data-index" ) ( strings.Contains .RelPermalink "data-reference" ) ) -}}
+                                    {{- if not ( or ( strings.Contains .RelPermalink "data-index" ) ( strings.Contains .RelPermalink "indicator-catalog" ) ) -}}
                                     
                                         <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
 
@@ -634,7 +634,7 @@
 
                                 {{- /*  don't add links to the data index or data reference pages  */ -}}
 
-                                {{- if not ( or ( strings.Contains .RelPermalink "data-index" ) ( strings.Contains .RelPermalink "data-reference" ) ) -}}
+                                {{- if not ( or ( strings.Contains .RelPermalink "data-index" ) ( strings.Contains .RelPermalink "indicator-catalog" ) ) -}}
                                 
                                     <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
 
