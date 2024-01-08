@@ -1,4 +1,5 @@
 ---
+draft: false
 ---
 
 Since it is impossible to sample the air in every location in New York City, we monitor representative sites to determine how pollution levels vary in relation to traffic, buildings, trees and other neighborhood factors. We use NYCCAS monitoring data along with data on land use, traffic, building emissions and other neighborhood factors around the monitors to build a land-use regression (LUR) model. We then use the associations from these models to estimate the seasonal average air pollution levels at locations across the city, including places where no NYCCAS measurements were collected. For more details on emission source data, see [Appendix 1 (PDF)](pdf/Appendix1.pdf). For more details on the analysis methods, see [NYCCAS Scientific Publications](https://www1.nyc.gov/site/doh/data/data-publications/air-quality-nyc-community-air-survey.page#nyccas-pubs).
