@@ -1,4 +1,5 @@
 ---
+draft: false
 ---
 
 <p><strong>Table 2:</strong> Air conditioning presence among heat stress decedents exposed to heat in homes (2012-2021)</p>

@@ -1,4 +1,5 @@
 ---
+draft: false
 ---
 
 <strong>Figure 6:</strong> Monthly average daily maximum temperature (°F), measured from LaGuardia Airport (5-year moving windows)

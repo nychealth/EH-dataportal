@@ -1,4 +1,5 @@
 ---
+draft: false
 ---
 
 <strong>Figure 5:</strong> Average number of extreme heat events and non-extreme hot days (daily maximum temperature above 82°F but excluding EHE days) in 5-year time windows (1971-2020)

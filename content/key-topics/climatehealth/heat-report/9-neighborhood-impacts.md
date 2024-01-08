@@ -1,4 +1,5 @@
 ---
+draft: false
 ---
 
 The HVI shows differences in community-level heat impacts during and shortly after extreme heat events (5). The HVI combines environmental factors (measures of a neighborhood’s average surface temperature and percentage of green space) with social factors (percentage of homes with air conditioning, residents’ median income, and the percentage of residents who are Black) to develop a relative measure of a neighborhood vulnerability to heat.

@@ -1,4 +1,5 @@
 ---
+draft: false
 ---
 
 <strong>Figure 8:</strong> Relative odds and 95% confidence intervals of dying on days reaching 82°F and higher, by quintile of HVI.

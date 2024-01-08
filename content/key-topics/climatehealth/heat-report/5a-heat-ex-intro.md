@@ -1,4 +1,5 @@
 ---
+draft: false
 ---
 
 Deaths from chronic conditions that are not recognized as heat-related on death certificates can be estimated using statistical models. There are more of these deaths than those from heat stress. They are called “excess deaths” or “heat-exacerbated deaths.” Unlike heat-stress deaths, which can be individually identified and investigated, excess deaths can be estimated only as aggregate counts. However, estimating heat-exacerbated deaths – or “mortality” – better captures the true extent of how many New Yorkers are dying of the heat.

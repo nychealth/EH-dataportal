@@ -1,4 +1,5 @@
 ---
+draft: false
 ---
 
 <button id="btn1" class="btn btn-sm btn-outline-primary active" onclick="map(1)">Heat vulnerability index</button>

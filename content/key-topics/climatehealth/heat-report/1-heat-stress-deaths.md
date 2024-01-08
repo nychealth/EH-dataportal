@@ -1,4 +1,5 @@
 ---
+draft: false
 ---
 
 The NYC Health Department examined heat-stress deaths occurring during the warm season months of May through September from 2012-2021. We reviewed death certificates and medical examiner investigation reports in cases where heat was recognized as a cause of death. A more detailed description of methods and data sources can be found in the <a target="blank" href="Heat Mortality Methods 2023.pdf">Appendix Methods and Supplemental Data</a>

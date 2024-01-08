@@ -1,4 +1,5 @@
 ---
+draft: false
 ---
 
 <p><strong>Figure 2:</strong> Demographic characteristics of heat-stress decedents (2012-2021)</p>

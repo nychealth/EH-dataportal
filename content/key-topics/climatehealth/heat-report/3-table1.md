@@ -1,4 +1,5 @@
 ---
+draft: false
 ---
 
 <p><strong>Table 1:</strong> Medical characteristics among subset with review of health conditions in medical examiner records (n=59) (2012-2021)</p>

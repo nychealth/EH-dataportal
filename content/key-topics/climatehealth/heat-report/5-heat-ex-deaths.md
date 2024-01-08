@@ -1,4 +1,5 @@
 ---
+draft: false
 ---
 
 To describe the impact of climate change, we examined how the number of hot days during warm months changed over the past five decades (1971-2020) in rolling 5-year time windows. We also computed the average of daily maximum temperature for each month between May and September to examine if changes in temperature varied by month. 

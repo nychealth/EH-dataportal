@@ -1,4 +1,5 @@
 ---
+draft: false
 ---
 
 **Each summer, on average, an estimated 350 New Yorkers die prematurely because of hot weather in New York City (NYC).** 

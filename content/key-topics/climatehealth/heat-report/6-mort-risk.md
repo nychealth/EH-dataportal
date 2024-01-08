@@ -1,4 +1,5 @@
 ---
+draft: false
 ---
 
 Heat-exacerbated mortality risks were observed across the full range of hot days (maximum temperature at or above 82°F) during warm season months. Risk increased with temperature, with the largest increases occurring at the highest temperatures, and a steeper slope of relative risk above 90°F (see Figure 4).
