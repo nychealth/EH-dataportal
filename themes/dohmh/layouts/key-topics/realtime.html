@@ -14,7 +14,7 @@
 
 </style>
 
-{{/*  main content  */}}
+{{- /*  main content  */}}
 
 <article class="container-fluid" id="skip-header-target">
 
@@ -22,9 +22,9 @@
         <div class="col-md-11 mx-auto mt-4">
             <nav aria-label="breadcrumb" class="mb-4">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
-                    <li class="breadcrumb-item"><a href="/key-topics/airquality/">Air Quality</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "key-topics" }}>Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "key-topics/airquality" }}>Air Quality</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                 </ul>
             </nav>
@@ -46,7 +46,7 @@
 
     </div>
 
-    {{/* map + chart */}}
+    {{- /* map + chart */}}
 
     <!-- location selection buttons -->
     
@@ -161,7 +161,7 @@
 
                     <p class=fs-sm><strong>No value:</strong> sometimes monitors go down or have other problems. We only produce average values if there are more than 18 hourly readings over the last 24 hours.</p>
                     
-                    {{/*  <div class="col mx-1">
+                    {{- /*  <div class="col mx-1">
                         <p>Most recent 24-hour average reading by this monitor: <span class="badge badge-primary badge-custom badge-custom-dark"><span id="24av">n/a</span> µg/m3</span>. This is <span id="comparison" class="badge badge-primary badge-custom">N/A</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">national standard</a> of 35 µg/m3 for 24 hours. <span id="goodBad" class="badge badge-primary badge-custom"></span></p>
                     </div>  */}}
                 </div>
@@ -335,6 +335,17 @@
 <!-- from https://gist.github.com/njvack/02ad8efcb0d552b0230d -->
 {{- $color_convert := resources.Get "js/color-convert.js" -}}
 <script src="{{ $color_convert.RelPermalink }}"></script>
+
+
+<!-- Uses a static stand-in file for local development - else uses the API -->
+<script>
+    var url = window.location.href
+    var rtaqData
+    url.includes('localhost') ? rtaqData = 'data/nyccas_realtime_DEC.csv' : rtaqData = 'https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv'
+
+</script>
+
+
 
 <!--bring in realtime JS -->
 <script type="text/javascript" src="js/realtime.js"></script>

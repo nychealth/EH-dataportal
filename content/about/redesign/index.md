@@ -29,7 +29,7 @@ The navigation bar at the top always tells you where you are and provides quick 
 
 Our site has always aimed to show how environments affect health.&nbsp; Our updates focus not only on improving access to data, but also making it easier to explore connections between different datasets, topics and other site content:&nbsp;
 
-* [Key Topics](/key-topics/) bring together in one display related datasets, custom data interactives, data stories, and neighborhood reports for special areas of environmental health. You can explore resources across the site for : [Air Quality](/key-topics/airquality/); [Climate](/key-topics/climatehealth/); [Housing](/key-topics/housing/); [Inequality and Health Inequities](/key-topics/social/); [Active Design,](/key-topics/transportation/)[Public Space, and Transportation](__notset__); [Environmental Health Outcomes](/key-topics/healthoutcomes/); [Child Health](/key-topics/childhealth/); [Pests and Pesticides](/key-topics/pests/); and [Food and Drink](/key-topics/foodanddrink/).&nbsp;
+* [Key Topics]({{< baseurl >}}key-topics/) bring together in one display related datasets, custom data interactives, data stories, and neighborhood reports for special areas of environmental health. You can explore resources across the site for : [Air Quality]({{< baseurl >}}key-topics/airquality/); [Climate]({{< baseurl >}}key-topics/climatehealth/); [Housing]({{< baseurl >}}key-topics/housing/); [Inequality and Health Inequities]({{< baseurl >}}key-topics/social/); [Active Design, Public Space, and Transportation]({{< baseurl >}}key-topics/transportation/); [Environmental Health Outcomes]({{< baseurl >}}key-topics/healthoutcomes/); [Child Health]({{< baseurl >}}key-topics/childhealth/); [Pests and Pesticides]({{< baseurl >}}key-topics/pests/); and [Food and Drink]({{< baseurl >}}key-topics/foodanddrink/).&nbsp;
 
 * Keywords link you to other pages on the similar topics.&nbsp;
 
@@ -47,7 +47,7 @@ Our site has always aimed to show how environments affect health.&nbsp; Our upda
 
 Our goal is for you to be able to put our data and information to work improving health throughout our city. And when we do user research, one of the most common things we hear is, "It has to be easy to use." So, we've built the site with this as our mantra.&nbsp;
 
-For example, take a look at our re-vamped [Data Explorer](/data-explorer/). &nbsp;
+For example, take a look at our re-vamped [Data Explorer]({{< baseurl >}}data-explorer/). &nbsp;
 
 ![](data-explorer-screenshot.png)
 

@@ -10,7 +10,7 @@
 
       <nav aria-label="breadcrumb" class="mb-2">
         <ul class="breadcrumb mr-auto">
-            <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}">Home</a></li>
+            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
             <li class="breadcrumb-item"><a href="..">
               {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
             <li class="breadcrumb-item active">{{ .Title }}</li>
@@ -202,7 +202,7 @@
 
         <p><strong>Tell your story:</strong> Offer some brief detail on how you see this environmental health issue affecting you and the people you know. For example: <em>"Last year, my daughter was diagnosed with asthma, and this issue is a challenge for our whole family."</em></p>
         
-        <p><strong>Cite data:</strong> For example: <em>"According to data on housing conditions, 75% of renters' households in our neighborhood have maintenance problems that threaten health. (NYC Environment and Health Data Portal: https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-explorer/housing-maintenance/?id=2399#display=map)" </em></p>
+        <p><strong>Cite data:</strong> For example: <em>"According to data on housing conditions, 75% of renters' households in our neighborhood have maintenance problems that threaten health. (NYC Environment and Health Data Portal: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-maintenance/?id=2399#display=map)" </em></p>
 
         <p><strong>Make a request:</strong> You can ask them where they stand on the issue, what they're doing to improve it, or what services are available to help their constituents.</p>
 
@@ -247,7 +247,7 @@
 
         <p><strong>Tell your story:</strong> Offer some brief detail on how you see this environmental health issue affecting you and the people you know. For example: <em>"Last year, my daughter was diagnosed with asthma, and this issue is a challenge for our whole family."</em></p>
         
-        <p><strong>Cite data:</strong> For example: <em>"According to data on housing conditions, 75% of renters' households in our neighborhood have maintenance problems that threaten health. (NYC Environment and Health Data Portal: https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-explorer/housing-maintenance/?id=2399#display=map)" </em></p>
+        <p><strong>Cite data:</strong> For example: <em>"According to data on housing conditions, 75% of renters' households in our neighborhood have maintenance problems that threaten health. (NYC Environment and Health Data Portal: https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/housing-maintenance/?id=2399#display=map)" </em></p>
 
         <p><strong>Make a request:</strong> You can ask them where they stand on the issue, what they're doing to improve it, or what services are available to help their constituents.</p>
         <hr class="my-2">
@@ -368,12 +368,12 @@ function startOver() {
 }
 
 // Loads  City Council list
-d3.csv(baseURL+'/take-action/council.csv').then(function(data) {
+d3.csv({{ relURL "take-action/council.csv" }}).then(function(data) {
   councilTable = data;
 })
 
 // Loads Community Board list
-d3.csv(baseURL+'/take-action/communityBoardContacts.csv').then(function(data) {
+d3.csv({{ relURL "take-action/communityBoardContacts.csv" }}).then(function(data) {
   cbTable = data
 })
 
@@ -385,28 +385,28 @@ document.getElementById('map-search').addEventListener("change", getData)
 
 async function getData() {
 
-  console.log(">> getData");
+  console.log("** getData");
 
   document.getElementById('startOverHolder').innerHTML = `<button class="btn btn-block btn-sm btn-outline-info" onclick="startOver()">Start over</button>`
   document.getElementById('repRow').classList.remove('hide')
   document.getElementById('officials').scrollIntoView({behavior: "smooth", block: "start"})
-  console.log('The map has changed')
+  // console.log('The map has changed')
 
   // on a timeout, gets council data and then passes location in to the Civic Info API
   // wait for map.location.name to exist
 
-  console.log("map.location.name [pre]", map.location.name);
+  // console.log("map.location.name [pre]", map.location.name);
 
   waitForGlobal("map.location.name", function() {
 
     setLoc = map.location.name
 
-    console.log("map.location.name [post]", setLoc);
+    // console.log("map.location.name [post]", setLoc);
 
     yourDistrict = map.location.data.cityCouncilDistrict
     yourCB = map.location.data.communityDistrict
-    console.log('Community Board - bbc:')
-    console.log(yourCB)
+    // console.log('Community Board - bbc:')
+    // console.log(yourCB)
 
     // NEXT STEP: send map.location.name to Google Api
     getFromAPI(setLoc)
@@ -422,7 +422,7 @@ async function getData() {
     document.getElementById('cmName').innerHTML = districtInfo.CouncilMember
     document.getElementById('cmWebsite').innerHTML = `<a href="https://council.nyc.gov/district-${districtInfo.District}">Website</a>`
     document.getElementById('cmPhone').innerHTML = 'n/a'
-    document.getElementById('cmEmail').innerHTML = districtInfo.Email
+    document.getElementById('cmEmail').innerHTML = `<a href="mailto:${districtInfo.Email}">${districtInfo.Email}</a>`
 
     // get info from cbTable
     for (let i = 0; i < cbTable.length; i ++) {
@@ -435,12 +435,12 @@ async function getData() {
     document.getElementById('cbName').innerHTML = cbInfo.Borough + " CB" + cbInfo.CB
     document.getElementById('cbWebsite').innerHTML =  `<a href="${cbInfo.Website}">Website</a>`
     document.getElementById('cbPhone').innerHTML = cbInfo.Phone
-    document.getElementById('cbEmail').innerHTML = cbInfo.Email
+    document.getElementById('cbEmail').innerHTML = `<a href="mailto:${cbInfo.Email}">${cbInfo.Email}</a>`     
 
     var recipient = {};
     recipient.name = districtInfo.CouncilMember
     recipient.area = 'District ' + districtInfo.District
-    recipient.email = districtInfo.Email
+    recipient.email = `<a href="mailto:${districtInfo.Email}">${districtInfo.Email}</a>`            
     peopleToEmail.push(recipient)
 
   });
@@ -457,7 +457,7 @@ function getFromAPI(address) {
     .then (res => res.json())
     .then(data => {
       boroPres = data
-      console.log("boroPres", boroPres);
+      // console.log("boroPres", boroPres);
       printInfoFromApi('bp', boroPres.officials[0])
     })
 
@@ -466,7 +466,7 @@ function getFromAPI(address) {
   .then (res => res.json())
   .then(data => {
     publicAdvocate = data
-    console.log("publicAdvocate", publicAdvocate);
+    // console.log("publicAdvocate", publicAdvocate);
     printInfoFromApi('pa', publicAdvocate.officials[1])
 
   })
@@ -476,7 +476,7 @@ function getFromAPI(address) {
   .then (res => res.json())
   .then(data => {
     stateReps = data;
-    console.log("stateReps", stateReps);
+    // console.log("stateReps", stateReps);
     printInfoFromApi('ss', stateReps.officials[0]);
     printInfoFromApi('sa', stateReps.officials[1]);
   })
@@ -486,7 +486,7 @@ function getFromAPI(address) {
   .then (res => res.json())
   .then(data => {
     congressReps = data;
-    console.log("congressReps", congressReps);
+    // console.log("congressReps", congressReps);
     printInfoFromApi('sen1',congressReps.officials[0])
     printInfoFromApi('sen2',congressReps.officials[1])
     printInfoFromApi('rep',congressReps.officials[2])
@@ -504,15 +504,15 @@ function getFromAPI(address) {
 // print info from API calls into table
 function printInfoFromApi(prefix, info) {
 
-  console.log("prefix", prefix);
-  console.log("info", info);
+  // console.log("prefix", prefix);
+  // console.log("info", info);
 
   document.getElementById(prefix+"Name").innerHTML = info.name
   document.getElementById(prefix+"Website").innerHTML = `<a href="${info.urls[0]}">Website</a>`
   document.getElementById(prefix+"Phone").innerHTML = info.phones[0]
 
   if (info.emails) {
-    document.getElementById(prefix+"Email").innerHTML = info.emails[0]
+    document.getElementById(prefix+"Email").innerHTML = `<a href="mailto:${info.emails[0]}">${info.emails[0]}</a>`          
   } else {
     document.getElementById(prefix+"Email").innerHTML = `<em>No email address found</em>`
   }
@@ -544,7 +544,7 @@ function printEmails() {
 
     // Then, loop through emailButton and add an eventlistener.
     var buttons = document.getElementsByClassName('emailButton')
-    console.log(buttons)
+    // console.log(buttons)
 
     // add active class to clicked-on button
     for (let x = 0; x < buttons.length; x ++) {

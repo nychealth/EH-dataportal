@@ -226,6 +226,15 @@
             
           </rule>
 
+    <!-- learn more -->
+          
+          <rule name="learn-more" stopProcessing="true">
+            
+            <match url="^LearnMore.aspx$" />
+            <action type="Redirect" url="beta/" appendQueryString="false" redirectType="Temporary" />
+            
+          </rule>
+
     <!-- data story landing page -->
           
           <rule name="data-story-landing" stopProcessing="true">

@@ -1,0 +1,8 @@
+baseURL = "https://gcappbesp307.health.dohmh.nycnet/IndicatorPublic/"
+[params]
+    data_branch = "staging"
+
+[caches]
+    [caches.getresource]
+      dir = ':cacheDir/:project'
+      maxAge = -1

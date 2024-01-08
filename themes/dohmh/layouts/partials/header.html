@@ -19,7 +19,7 @@
                             Health
                         </a>
                         <span class="mx-1" aria-hidden="true">></span>
-                        <a class="text-reset" href="{{ site.BaseURL }}">
+                        <a class="text-reset" href="{{ .RelPermalink }}">
                         EH Data Portal
                         </a>
                     </p>
@@ -45,7 +45,7 @@
                         </li>
                         <li>
                             <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
-                                <img class="d-block" src="{{ site.BaseURL }}images/nyc-bubble-logo.svg" width="45" alt="NYC Logo">
+                                <img class="d-block" src={{ relURL "images/nyc-bubble-logo.svg" }} width="45" alt="NYC Logo">
                             </a>
                         </li>
                     </ul>
@@ -61,8 +61,7 @@
 
     </div>
     <!-- #nyc-top-header -->
-    <div class="site-header bg-primary" style="background-image: url({{ site.BaseURL }}images/header_background.jpg)">
-    {{/*  <div class="site-header bg-primary" style="background-image: url(/images/header_background.jpg)">  */}}
+    <div class="site-header bg-primary" style='background-image: url({{ relURL "images/header_background.jpg" }})'>
         <div class="wrap-header">
 
             <div class="container-fluid wide">
@@ -74,7 +73,7 @@
                         <div class="d-flex justify-content-center justify-content-lg-start">
 
                             <p class="text-white">
-                                <span class="site-title title-hover"><a href="{{ site.BaseURL }}" class="link-no-dec">Environment and Health Data Portal</span>
+                                <span class="site-title title-hover"><a href={{ relURL "" }} class="link-no-dec">Environment and Health Data Portal</span>
                                 <span class="site-subtitle">Understand how environments shape health in New York City</a></span>
                             </p>
 
@@ -125,7 +124,7 @@
 
                                 </ul>
 
-                                <a class="btn-sm text-white font-weight-bold mr-2" style="border: 1px solid lightgray; border-radius: 3px;" href="/about">About us</a>
+                                <a class="btn-sm text-white font-weight-bold mr-2" style="border: 1px solid lightgray; border-radius: 3px;" href={{ relURL "about" }}>About us</a>
 
                             </div>
                             <!-- .col -->
@@ -151,20 +150,6 @@
             </div>
         </div>
 
-        {{/*  <div class="container-fluid border-top collapse d-lg-none" id="global-search">
-            <form class="narrow py-2" aria-label="Search" role="search">
-                <div class="input-group">
-                    <label class="sr-only" for="global-search-bar">Search</label>
-                    <input class="form-control form-control-lg" id="global-search-bar" placeholder="Search">  */}}
-                    {{/*  <div class="input-group-btn">  */}}
-                        {{/*  <button class="btn btn-primary btn-lg" type="button" title="Search">
-                            <span class="sr-only">Search</span>
-                            <span class="fas fa-arrow-right"></span>
-                        </button>  */}}
-                    {{/*  </div>
-                </div>
-            </form>
-        </div>  */}}
 
         </div>
         <div class="container-fluid collapse d-lg-block px-0 border-lg-top d-print-none" id="nav-primary">
@@ -175,11 +160,11 @@
 
                     {{- $currentPage := . -}}
 
-                <span id="File.Path" style="display: none">{{ $currentPage.File.Path }}</span>
+                <span id="File.Path" style="display: none">{{ with $currentPage.File }}{{- .Path -}}{{ end }}</span>
                 <span id="FirstSection.RelPermalink" style="display: none">{{ $currentPage.FirstSection.RelPermalink }}</span>
 
                 <div class="nav-item-search border-right">
-                    <a class="nav-link" id="nav-item-01" href="{{ site.BaseURL }}">
+                    <a class="nav-link" id="nav-item-01" href={{ relURL "" }}>
                     <span class='text-primary'><i class='fa fa-home' aria-hidden='true'></i><span class="sr-only">Home</span></span>
                     </a>
                 </div>
