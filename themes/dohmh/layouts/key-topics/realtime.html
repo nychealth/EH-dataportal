@@ -49,40 +49,6 @@
             <button onclick="restore()" type="button" id="btnrestore" class="mb-1 btn btn-sm btn-dark">
                 Reset</button>
 
-            
-            <!--
-            <button onclick="changeData(0)" type="button" id="btn0" class="mb-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
-                <span style="color: red">
-                    <i class="fas fa-square mr-1"></i>
-                </span>
-                Queensboro Bridge</button>
-                
-            <button onclick="changeData(1)" type="button" id="btn1" class="mb-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
-                <span style="color: limegreen">
-                    <i class="fas fa-square mr-1"></i>
-                </span>
-                Hunt's Point</button>
-            
-            <button onclick="changeData(2)" type="button" id="btn2" class="mb-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
-                <span style="color: orange">
-                    <i class="fas fa-square mr-1"></i>
-                </span>
-                Queens College</button>
-            
-            <button onclick="changeData(3)" type="button" id="btn3" class="mb-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
-                <span style="color: blue">
-                    <i class="fas fa-square mr-1"></i>
-                </span>
-                Williamsburg Bridge</button>
-            
-
-            <button onclick="changeData(4)" type="button" id="btn4" class="mb-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
-                <span style="color: violet">
-                    <i class="fas fa-square mr-1"></i>
-                </span>
-                Broadway/35th St</button>
-            -->
-
             <div id="buttonHolder" style="display:inline-block;">
                 <!-- JavaScript creates buttons from available monitor feeds and inserts them here -->
             </div>
@@ -132,7 +98,7 @@
         </div>
         <div class="col-2 ml-auto">
             
-            <a href="data-archive/" class="float-right fs-sm">Download archived data</a>
+            <a href="#accordion-01" class="float-right fs-sm">Download archived data</a>
 
         </div>
     </div>
@@ -298,6 +264,37 @@
                     </div>
                 </div>
         
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-4">
+        <div class="col-11 mx-auto">
+            <div class="accordion-group my-3" role="tablist" id="accordion-01">
+
+                <div class="card">
+            
+                    <a class="card-header h4 collapse collapsed" id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
+                        <span class="title" role="heading" aria-level="3">Data archive</span>
+                    </a>
+            
+                    <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
+            
+                        <div class="card-body bg-white border">
+                            <!-- Download interface -->
+                            {{- partial "realtime-download" . -}}
+
+                            {{- with .Resources.GetMatch "data-archive-text.md" -}}
+                                {{ .Content }}
+                            {{- end -}}
+                        </div>
+            
+                    </div>
+                    <!-- .collapse -->
+            
+                </div>
+                <!-- .card (end of first accordion, repeat as needed) -->
+            
             </div>
         </div>
     </div>
