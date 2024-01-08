@@ -264,7 +264,9 @@ module.exports = function(grunt) {
             // data explorer indicator names
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-            if (abspath.match(/data-explorer/) && typeof frontMatter.indicators != 'undefined') {
+            if (abspath.match(/data-explorer/) && typeof frontMatter.indicators != 'undefined' && frontMatter.indicators != null) {
+
+                // grunt.log.writeln(filename, ":", frontMatter);
 
                 indicator_ids = [...new Set(frontMatter.indicators.flatMap(x => x.IndicatorID))];
 
