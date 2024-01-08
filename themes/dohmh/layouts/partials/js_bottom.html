@@ -22,22 +22,22 @@
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 
-{{ $lunr := resources.Get "node_modules/lunr/lunr.min.js" }}
-{{ $lunr_secureJS := $lunr | resources.Fingerprint "sha512" }}
+{{- $lunr := resources.Get "node_modules/lunr/lunr.min.js" }}
+{{- $lunr_secureJS := $lunr | resources.Fingerprint "sha512" }}
 
 <script type="text/javascript" src="{{ $lunr_secureJS.RelPermalink }}" integrity="{{ $lunr_secureJS.Data.Integrity }}"></script>
 
-{{/*  NYC template JS (RTL, search and language toggle, back to top)  */}}
+{{- /*  NYC template JS (RTL, search and language toggle, back to top)  */}}
 
-{{- $js := resources.Get "js/main.js" -}}
-{{- $secureJS := $js | resources.Fingerprint "sha512" -}}
+{{- $js := resources.Get "js/main.js" }}
+{{- $secureJS := $js | resources.Fingerprint "sha512" }}
 
 <script type="text/javascript" 
     src="{{ $secureJS.RelPermalink }}" 
     integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-{{- $js := resources.Get "js/search.js" -}}
-{{- $secureJS := $js | resources.Fingerprint "sha512" -}}
+{{- $js := resources.Get "js/search.js" }}
+{{- $secureJS := $js | resources.Fingerprint "sha512" }}
 
 <script type="text/javascript" 
     src="{{ $secureJS.RelPermalink }}" 
