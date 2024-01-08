@@ -1,4 +1,5 @@
 ---
+draft: false
 ---
 
 **About the data:** Data in this archive are hourly averaged measurements of PM2.5 from the New York City Community Air Survey's network of TSI DustTrak sensors.

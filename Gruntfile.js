@@ -256,7 +256,7 @@ module.exports = function(grunt) {
 
             // if this is draft content, stop processing
 
-            if (frontMatter.draft != false) {
+            if (frontMatter.draft == true) {
                 return "draft";
             }
 
@@ -264,7 +264,7 @@ module.exports = function(grunt) {
             // data explorer indicator names
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-            if (abspath.match(/data-explorer/) && typeof frontMatter.indicators != 'undefined' && frontMatter.indicators != null) {
+            if (abspath.match(/data-explorer/) && typeof frontMatter.indicators != 'undefined') {
 
                 indicator_ids = [...new Set(frontMatter.indicators.flatMap(x => x.IndicatorID))];
 
