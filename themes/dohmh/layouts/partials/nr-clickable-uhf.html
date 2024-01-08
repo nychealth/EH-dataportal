@@ -21,14 +21,14 @@
         "layer": [
           {
             "data": {
-              "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/UHF42.topo.json",
+              "url": "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/geography/UHF42.topo.json",
               "format": {"type": "topojson", "feature": "collection"}
             },
             "mark": {"type": "geoshape", "stroke": "#ffffff", "fill": "lightgray"}
           },
           {
             "data": {
-              "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/UHF42.topo.json",
+              "url": "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/geography/UHF42.topo.json",
               "format": {"type": "topojson", "feature": "collection"}
             },
             "transform": [
@@ -36,7 +36,7 @@
                 "lookup": "properties.GEOCODE",
                 "from": {
                   "data": {
-                    "url": `${baseURL}` + '/UHF42.csv'
+                    "url": {{ relURL "UHF42.csv" }}
                     },
                   "key": "GEOCODE",
                   "fields": ["GEOCODE", "Name", "GEONAME", "VALUE"]
@@ -64,25 +64,17 @@
                 "scale": {"scheme": {"name": "blues", "extent": [0.25, 0.75]}}
               },
               "stroke": {
-                "condition": [
-                  {"param": "highlight", "empty": false, "value": "cyan"},
-                  {
-                    "test": "datum['GEOCODE'] == ''",
-                    "value": "cyan"
-                    },
-                ],
+                "condition": {"param": "highlight", "empty": false, "value": "cyan"},
                 "value": "#dadada"
               },
-              "strokeWidth": {"condition": [
-                {
-                  "param": "highlight", "empty": false, "value": 2.5
-                },
-                {
-                  "test": "datum['GEOCODE'] == ''",
-                  "value": 3
-                  }
-                
-              ], "value": 0.5},
+              "strokeWidth": {
+                "condition": {"param": "highlight", "empty": false, "value": 2.5},
+                "value": 0.5
+              },
+              "order": {
+                "condition": {"param": "highlight", "empty": false, "value": 1},
+                "value": 0
+              },
               "tooltip": [
                 {"field": "Name", "type": "nominal", "title": "Neighborhood"}        ]
             }
@@ -92,14 +84,14 @@
 
       // draw map, with event listener to power clickability
       function drawMap() {
-        console.log('map drawn.')
+        // console.log('map drawn.')
         vegaEmbed('#vis1', spec, {"actions": false}).then(result => {
           result.view.addEventListener('click', function(event, item) {
-             console.log('CLICK', event, item);
+             // console.log('CLICK', event, item);
             // console.log(item.datum)
 
             // send to new page
-            window.location = '{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(item.datum.GEONAME) + reportURL
+            window.location = {{ relURL "neighborhood-reports/" }} + DOMPurify.sanitize(item.datum.GEONAME) + reportURL
           });
           }).catch(console.warn);
       }

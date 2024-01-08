@@ -1,8 +1,8 @@
 baseURL = "https://gcappbesp307.health.dohmh.nycnet/dev-stage/"
 [params]
-    data_branch = "staging"
+    data_branch = "TEST-production"
 
 [caches]
     [caches.getresource]
       dir = ':cacheDir/:project'
-      maxAge = 0
+      maxAge = -1
