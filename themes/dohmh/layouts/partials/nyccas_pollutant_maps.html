@@ -3,7 +3,7 @@
   <div class="row">
 
       <div class="col">
-          <button type="button" class="btn btn-outline yearbtn" id="btn1" disabled>2021:</button>
+          <button type="button" class="btn btn-outline yearbtn" id="btn1" disabled>2022:</button>
           <button type="button" class="btn polbtn btn-outline-dark active" value="bc">BC</button>
           <button type="button" class="btn polbtn btn-outline-dark" value="no">NO</button>
           <button type="button" class="btn polbtn btn-outline-dark" value="no2">NO<sub>2</sub></button>
@@ -15,7 +15,7 @@
 
   <div class="row" style="height: 550px;">
       <div class="col-sm-7">
-          <iframe id="iframeEmbed" src="raster/bc_2021.html" style="width:100%;height:100%;" frameborder="off"></iframe>
+          <iframe id="iframeEmbed" src="raster/bc_2022.html" style="width:100%;height:100%;" frameborder="off"></iframe>
       </div>
 
       <div class="col-sm-5" id="mapText">
@@ -157,7 +157,7 @@
           //Turns off highlights on everything based on class
           for (let button of document.querySelectorAll('.polbtn')) button.classList.remove('active');
           this.classList.add('active')
-          embed = 'raster/' + this.value + '_2021.html'
+          embed = 'raster/' + this.value + '_2022.html'
           document.getElementById('iframeEmbed').src = embed;
 
           const mapTexts = document.querySelectorAll('.polText')
