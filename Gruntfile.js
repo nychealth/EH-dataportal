@@ -256,7 +256,7 @@ module.exports = function(grunt) {
 
             // if this is draft content, stop processing
 
-            if (frontMatter.draft == true) {
+            if (frontMatter.draft != false) {
                 return "draft";
             }
 
