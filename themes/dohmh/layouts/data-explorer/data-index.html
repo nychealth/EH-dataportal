@@ -160,8 +160,12 @@
                         // loop through Available Geographies
                         // var finestGeography = [];
                         for (let y = 0; y < indicators[i].Measures[n].AvailableGeoTypes.length; y++) {
-                            geographies.push(indicators[i].Measures[n].AvailableGeoTypes[y].GeoType)
+
+                            geographies.push(indicators[i].Measures[n].AvailableGeoTypes[y])
+
+                            // console.log("AvailableGeoTypes", indicators[i].Measures[n].AvailableGeoTypes);
                             // here, can embed a loop through geographies to find the finest.
+
                         }
                         
                         // get time period IDs for this measure
