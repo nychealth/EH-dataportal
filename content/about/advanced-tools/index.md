@@ -22,7 +22,7 @@ If you are a data scientist, programmer, open data enthusiast, open source evang
 
 ## Re-use data visualizations
 
-The visualizations on our site's [Data Explorer](../../data-explorer/) use a software called [Vega-Lite](https://vega.github.io/vega-lite/). Vega-lite provides a few options for you to use the visualizations in other contexts.
+The visualizations on our site's [Data Explorer](../../data-explorer/) use a JavaScript library called [Vega-Lite](https://vega.github.io/vega-lite/). Vega-lite provides a few options for you to use the visualizations in other contexts.
 
 Above and to the right of the visualiaztions, there's a three-dot menu. Clicking this gives you a few helpful options:
 
@@ -30,7 +30,7 @@ Above and to the right of the visualiaztions, there's a three-dot menu. Clicking
 
 ![](vega-lite-menu.png)
 
-**Open in Vega Editor** will open a new tab with the visualizations specification loaded in the Vega Editor, an online widget that lets you modify and run visualizations in Vega-Lite. This lets you edit a version of the visualization's code, revise it, preview it, ensure that you have working code which you can then embed in your own website using the `vegaEmbed` function. [For details about how to embed Vega-Lite visualizations into another webpage, see Vega-Lite documentation](https://vega.github.io/vega-lite).
+**Open in Vega Editor** will open a new tab with the visualizations specification loaded in the Vega Editor, an online widget that lets you modify and run visualizations in Vega-Lite. This lets you edit a version of the visualization's code, revise it, preview it, ensure that you have working code which you can then embed in your own website using the `vegaEmbed` function. [For details about how to embed Vega-Lite visualizations into another webpage, see the Vega-Lite documentation](https://vega.github.io/vega-lite).
 
 ![](vega-lite-editor.png)
 
@@ -39,9 +39,9 @@ The specification is on the left, and you can edit the layout and design details
 ## Download data 
 Below each data visualization, there is a "Download data" button that lets you download what you're seeing:
 - For the table, this will download the full table of data
-- For the map, it will trigger a download of the data for whatever geographic resolution shown
-- For the trend chart, it will download years and geographies displayed
-- For the links chart, it will download both indicators at the geography displayed
+- For the map, it will trigger a download of the data for whichever geographic resolution is being shown
+- For the trend chart, it will download the years and geographies displayed
+- For the links & disparities charts, it will download both indicators at the geography displayed
 
 You can use these data for your own projects. It may be helpful to retain information on the Data Source and About The Measures (which explains how the indicator was calculated) fields displayed on each indicator's page. 
 
@@ -50,20 +50,20 @@ You can bypass ourwebsite and get data by going to [our data repository](https:/
 - `metadata.json` contains the indicators' names, indicator IDs (used to identify which file the data are in), data sources, notes, and other visualization specifications used by the site code.
 - The `/data` folder contains a .json file for each indicator, with fields for the measure ID, geography, time period, value, and a few other supplemental fields.
 
-To help find specific datasets (indicators) in `metadata.json`, [you can search by text on our Data Reference page](../../data-explorer/data-reference/)
+To help find specific datasets (indicators) in `metadata.json`, [you can search by text on our Indicator-Catalog page](../../data-explorer/indicator-catalog/)
 
 ![](Repo.png)
 
 
 ## Use the site's source code for your own project
-[The entire source code for this website is stored in a publicly-available Github repository](www.github.com/nychealth/EH-dataportal). This means you can:
+[The entire source code for this website is stored in a publicly-available Github repository](https://github.com/nychealth/EH-dataportal/). This means you can:
 - File issues if you have questions about the site
 - View the underlying source code
 - Download the source code and modify it to create your own site.
 
-Using the source code will require a basic understanding of [NPM](https://www.npmjs.com/) and a functional understanding of [Hugo](https://gohugo.io/), the static site builder used to create this site (there are excellent video tutorials for both available on Youtube). At the most basic, you need to have NPM and Hugo installed on your computer. Run `npm install` in your local repository to install the depenedencies that the site needs, and `Hugo serve` to serve a local version of the site so you can preview your changes.
+Using the source code will require a basic understanding of [npm](https://www.npmjs.com/) and a functional understanding of [Hugo](https://gohugo.io/), the static site builder used to create this site (there are excellent video tutorials for both available on Youtube). At the most basic, you need to have npm and Hugo installed on your computer. After that, run `npm install` in your local repository to install the depenedencies that the site needs, and `Hugo serve` to serve a local version of the site so you can preview your changes.
 
-Modifying the source code will require some understanding of Hugo. For using the Data Explorer application to build your own data visualization website, extensive knowledge of JavaScript and functional knowledge of [DataTables.net](www.datatables.net), [Vega-Lite](https://vega.github.io/vega-lite/), and [Arquero](https://uwdata.github.io/arquero/). How the Data Explorer works is closely tied to how the data are structured - you will need a metadata file and indicators structured the same way that ours are, and you'd need to revise references to the data locations so that your Data Explorer application will properly display your data. 
+Modifying the source code will require some understanding of Hugo. For using the Data Explorer application to build your own data visualization website, you'll need extensive knowledge of JavaScript and functional knowledge of [DataTables.net](www.datatables.net), [Vega-Lite](https://vega.github.io/vega-lite/), and [Arquero](https://uwdata.github.io/arquero/). How the Data Explorer works is closely tied to how the data are structured - you will need a metadata file and indicators structured the same way that ours are, and you'd need to revise references to the data locations so that your Data Explorer application will properly display your data. 
 
 ---
 <br>
