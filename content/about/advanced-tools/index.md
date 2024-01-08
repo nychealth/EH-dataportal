@@ -46,11 +46,11 @@ Below each data visualization, there is a "Download data" button that lets you d
 You can use these data for your own projects. It may be helpful to retain information on the Data Source and About The Measures (which explains how the indicator was calculated) fields displayed on each indicator's page. 
 
 ## Directly access underlying data
-You can bypass ourwebsite and get data by going to [our data repository](https://www.github.com/nychealth/EHDP-data). The Data Explorer's data is stored in [`/indicators`](https://github.com/nychealth/EHDP-data/tree/production/indicators). Some documentation is available in that location's Readme, but briefly:
+You can bypass ourwebsite and get data by going to [our data repository](https://github.com/nychealth/EHDP-data). The Data Explorer's data is stored in [`/indicators`](https://github.com/nychealth/EHDP-data/tree/production/indicators). Some documentation is available in that location's Readme, but briefly:
 - `metadata.json` contains the indicators' names, indicator IDs (used to identify which file the data are in), data sources, notes, and other visualization specifications used by the site code.
 - The `/data` folder contains a .json file for each indicator, with fields for the measure ID, geography, time period, value, and a few other supplemental fields.
 
-To help find specific datasets (indicators) in `metadata.json`, [you can search by text on our Indicator-Catalog page](../../data-explorer/indicator-catalog/)
+To help find specific datasets (indicators) in `metadata.json`, [you can search by text on our Indicator Catalog page](../../data-explorer/indicator-catalog/)
 
 ![](Repo.png)
 
@@ -63,7 +63,7 @@ To help find specific datasets (indicators) in `metadata.json`, [you can search 
 
 Using the source code will require a basic understanding of [npm](https://www.npmjs.com/) and a functional understanding of [Hugo](https://gohugo.io/), the static site builder used to create this site (there are excellent video tutorials for both available on Youtube). At the most basic, you need to have npm and Hugo installed on your computer. After that, run `npm install` in your local repository to install the depenedencies that the site needs, and `Hugo serve` to serve a local version of the site so you can preview your changes.
 
-Modifying the source code will require some understanding of Hugo. For using the Data Explorer application to build your own data visualization website, you'll need extensive knowledge of JavaScript and functional knowledge of [DataTables.net](www.datatables.net), [Vega-Lite](https://vega.github.io/vega-lite/), and [Arquero](https://uwdata.github.io/arquero/). How the Data Explorer works is closely tied to how the data are structured - you will need a metadata file and indicators structured the same way that ours are, and you'd need to revise references to the data locations so that your Data Explorer application will properly display your data. 
+Modifying the source code will require some understanding of Hugo. For using the Data Explorer application to build your own data visualization website, you'll need extensive knowledge of JavaScript and functional knowledge of [DataTables.net](https://www.datatables.net), [Vega-Lite](https://vega.github.io/vega-lite/), and [Arquero](https://uwdata.github.io/arquero/). How the Data Explorer works is closely tied to how the data are structured - you will need a metadata file and indicators structured the same way that ours are, and you'd need to revise references to the data locations so that your Data Explorer application will properly display your data. 
 
 ---
 <br>
