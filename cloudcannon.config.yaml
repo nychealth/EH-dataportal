@@ -163,17 +163,6 @@ _inputs:
       empty_type: array
       values: _select_data.categories
       allow_create: true
-  BC:
-    type: textarea
-  NO:
-    type: textarea
-  NO2:
-    type: textarea
-  O3:
-    type: textarea
-  PM:
-    type: textarea
-    cascade: true
 _select_data:
   categories:
     - housing
