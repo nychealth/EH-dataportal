@@ -186,13 +186,13 @@
 
 // Breadcrumb style
 .breadcrumb {
-display: flex;
-flex-wrap: wrap;
-padding: $breadcrumb-padding-y $breadcrumb-padding-x;
-margin-bottom: $breadcrumb-margin-bottom;
-list-style: none;
-background-color: $breadcrumb-bg;
-@include border-radius($border-radius);
+    display: flex;
+    flex-wrap: wrap;
+    padding: $breadcrumb-padding-y $breadcrumb-padding-x;
+    margin-bottom: $breadcrumb-margin-bottom;
+    list-style: none;
+    background-color: $breadcrumb-bg;
+    @include border-radius($border-radius);
 }
 
 .breadcrumb-item {
@@ -1075,7 +1075,7 @@ height: 200px;}
 }
 
 .home-label {
-    font-size: 14px;
+    font-size: 16px;
     text-transform: uppercase;
     color: #484848;
 }

@@ -5,8 +5,8 @@
         <div class="col-md-12 mx-auto mt-4">
             <nav aria-label="breadcrumb" class="mb-4">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="/neighborhood-reports/">Neighborhood Reports</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "neighborhood-reports" }}>Neighborhood Reports</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                 </ul>
             </nav>
@@ -46,7 +46,7 @@
   
             </div>
 
-            <div class="border-bottom" style="height:550px; width:100%;" aria-hidden="true">
+            <div class="border-bottom nr-clickable-uhf" style="height:550px; width:100%;" aria-hidden="true">
               {{- partial "nr-clickable-uhf" . -}}
             </div>
 
@@ -120,9 +120,6 @@
     background: #feff7f;
   }
   
-  .flex_search-flexdatalist {
-
-  }
   .flex_search-flexdatalist input:placeholder-shown {
     background-color: white;
   }
@@ -136,24 +133,26 @@
   </style>
 
 
-{{/* ====  save indicator names as a resource  ==== */}}
+  {{- /* ====  save indicator names as a resource  ==== */}}
 
-{{- /* ----  get indicators.json from data repo, and transform into a Hugo object  ---- */ -}}
+  {{- /* ----  get metadata.json from data repo, and transform into a Hugo object  ---- */}}
   
-  {{- $nr_indicator_names := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/data/nr_indicator_names.json")) | transform.Unmarshal -}}
+  {{- $nr_indicator_names := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/metadata/nr_indicator_names.json")) | transform.Unmarshal -}}
 
-  {{- $nr_indicator_names_json := $nr_indicator_names | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorData/nr_indicator_names.json" -}}
+  {{- $nr_indicator_names_json := $nr_indicator_names | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorMetadata/nr_indicator_names.json" -}}
+  
+  {{- /*  publish resource  */}}
+  
+  {{ $nr_indicator_names_json.Publish }}
 
-  {{ warnf ">>>>" $nr_indicator_names_json.RelPermalink }}
 
-
-{{/*  remove  */}}
+  {{- /*  remove  */}}
 
   {{- $js := resources.Get "js/accessible-autocomplete.min.js" -}}
   {{ $secureJS := $js | resources.Fingerprint "sha512" }}
   <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 
-  {{/*  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
+  {{- /*  {{- $js := resources.Get "js/accessible-autocomplete.min.js.map" -}}
   {{ $secureJS := $js | resources.Fingerprint "sha512" }}
   <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>  */}}
 
@@ -172,7 +171,7 @@
 
 <script type="text/javascript"> 
   var title = document.getElementById('nrtitle').innerHTML
-  console.log('page title: ' + title)
+  // console.log('page title: ' + title)
   var reportURL
 
   if (title.includes("Asthma")) {
@@ -197,7 +196,9 @@
 // ===== load flexdatalist ================================================== //
 
 function loadList() {
-  console.log(neighborhoods)
+
+
+  console.log("neighborhoods [loadList]", neighborhoods)
 
   // ----- init flexdatalist -------------------------------------------------- //
 
@@ -217,7 +218,7 @@ function loadList() {
     data: neighborhoods
 });
 
-  console.log("$input", $input);
+  // console.log("$input", $input);
 
   // ----- add flexdatalist select handler -------------------------------------------------- //
 
@@ -227,9 +228,10 @@ function loadList() {
     
     // SEND TO NEIGHBORHOOD...!
 
-    console.log('chosen neighb:')
-    console.log(set.page_name);
-    window.location.href = baseURL + 'neighborhood-reports/' + set.page_name + reportURL 
+    // console.log('chosen neighb:')
+    // console.log(set.page_name);
+
+    window.location.href = {{ relURL "neighborhood-reports/" }} + set.page_name + reportURL 
     
 })
 
@@ -237,7 +239,7 @@ function loadList() {
 
 $("#clear").on("click", (e) => {
 
-    console.log("e [clear click]", e);
+    // console.log("e [clear click]", e);
 
     $($input).find("~input").val("").trigger( "focus" )
     
@@ -253,15 +255,16 @@ var ul2 = document.getElementById("neighborhoodList2");
 
 neighborhoods.forEach(function (neighborhood) {
   var li = document.createElement("li");
-  li.innerHTML = `<a href="${neighborhood.page_name}">${neighborhood.UHF_name}</a>: ${neighborhood.Zipcodes}`;
+  li.innerHTML = "<a href='" + {{ relURL "neighborhood-reports/" }} + neighborhood.page_name + reportURL + "'>" + neighborhood.UHF_name + "</a>: " + neighborhood.Zipcodes
   ul.appendChild(li);
   ul2.appendChild(li)
 });
 
 function showNeighborhoods() {
-  console.log('showing neighborhoods...')
-  document.getElementById('showNeighbs').classList.remove('hide')
-  document.getElementById('showNeighbs').classList.add('show')
+
+    document.getElementById('showNeighbs').classList.toggle('hide')
+    document.getElementById('showNeighbs').classList.toggle('show')
+
   }
 
 </script>
