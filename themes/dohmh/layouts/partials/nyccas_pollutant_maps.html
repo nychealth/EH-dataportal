@@ -91,7 +91,8 @@
 
 <script>
   // update image
-  var chosenYear = 2022
+  var thisYear = 2024
+  var chosenYear = thisYear - 2
   var mtPol = "BC"
 
   function updateRaster() {
@@ -116,16 +117,19 @@
 
   // change year value on button click
   function changeYear(x) {
+      x = Number(x)
       chosenYear = Number(chosenYear)
 
-      if (chosenYear + Number(x) < 2023 && chosenYear + Number(x) > 2008) {
-          chosenYear = chosenYear + Number(x)
+      if (chosenYear + x < (thisYear - 1) && chosenYear + x > 2008) {
+          chosenYear = chosenYear + x
           polYear = mtPol+chosenYear
           document.getElementById('yearPrint').innerHTML = chosenYear
           updateRaster()
       } else {}
 
   }
+
+  updateRaster()
 
 
 </script>
