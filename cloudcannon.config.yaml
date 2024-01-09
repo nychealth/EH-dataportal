@@ -1,5 +1,3 @@
-%YAML 1.1
----
 collections_config_override: true
 timezone: America/New_York
 paths:
