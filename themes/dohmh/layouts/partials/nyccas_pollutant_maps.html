@@ -73,7 +73,7 @@
   <div class="col-sm-3 ml-auto">
       <div class="float-right">
           <button id="btnPlus" class="btnYearChange btn btn-sm btn-outline-dark" onclick="changeYear(-1)">-</button>
-          <button id="yearPrint" class="font-weight-bold btn btn-sm btn-dark" disabled>2021</button>
+          <button id="yearPrint" class="font-weight-bold btn btn-sm btn-dark" disabled>2022</button>
           <button id="btnMinus" class="btnYearChange btn btn-sm btn-outline-dark" onclick="changeYear(1)">+</button>
       </div>
   </div>
@@ -84,14 +84,14 @@
 
 <div class="row no-gutters">
   <div class="col-9 mx-auto">
-    <img id="raster" src="embed/map-images/BC_2021.png" style="width:100%; height: auto;">
+    <img id="raster" src="embed/map-images/BC_2022.png" style="width:100%; height: auto;">
 
   </div>
 </div>
 
 <script>
   // update image
-  var chosenYear = 2020
+  var chosenYear = 2022
   var mtPol = "BC"
 
   function updateRaster() {
@@ -118,7 +118,7 @@
   function changeYear(x) {
       chosenYear = Number(chosenYear)
 
-      if (chosenYear + Number(x) < 2022 && chosenYear + Number(x) > 2008) {
+      if (chosenYear + Number(x) < 2023 && chosenYear + Number(x) > 2008) {
           chosenYear = chosenYear + Number(x)
           polYear = mtPol+chosenYear
           document.getElementById('yearPrint').innerHTML = chosenYear
