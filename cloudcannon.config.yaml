@@ -1,3 +1,5 @@
+%YAML 1.1
+---
 collections_config_override: true
 timezone: America/New_York
 paths:
@@ -115,21 +117,6 @@ _inputs:
     options:
       values: _select_data.categories
       allow_create: true
-  BC:
-    type: textarea
-    cascade: true
-  NO:
-    type: textarea
-    cascade: true
-  NO2:
-    type: textarea
-    cascade: true
-  O3:
-    type: textarea
-    cascade: true
-  PM:
-    type: textarea
-    cascade: true
   pollutantMaps:
     type: textarea
   pollutantTrends:
