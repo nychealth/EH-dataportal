@@ -1,8 +1,9 @@
 ---
+_schema: default
 draft: false
 BC: >
     Citywide, annual average levels of Black Carbon declined by 45% between 2009
-    and 2021, an average of 0.05 micrograms per cubic meter per year. 
+    and 2022, an average of 0.05 micrograms per cubic meter per year. 
 
     Across the 13-year period, higher levels were consistently seen near
     warehouses within industrial areas (reflecting increased truck traffic
@@ -11,7 +12,7 @@ BC: >
 
     In 2021, seasonal average BC concentrations across NYCCAS monitoring sites
     ranged from 0.23 to 1.9 micrograms per cubic meter.
-NO: >
+'NO': >
     Citywide, annual average levels of Nitric Oxide declined by 58% between 2009
     and 2021, an average of 1.7 parts per billion per year.
 
