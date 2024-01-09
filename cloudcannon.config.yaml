@@ -62,11 +62,8 @@ collections_config:
     filter:
       exclude:
         - airquality/aqe
-        - airquality/nycca
-        - climatehealth/hvi
-        - climatehealth/syndromic
     name: Key Topics
-    description: Key Topics collection.
+    description: Key Topics collection
     icon: article
     sort_options:
       - key: date
