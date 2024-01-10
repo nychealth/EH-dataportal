@@ -14,7 +14,7 @@ photocredit: "Ed Reed/Mayoral Photography Office"
 
 ## How do we know what air quality policies will have the biggest effect?  
 
-New York City’s air quality is generally good and has been improving over time. Still, air pollution threatens health: two pollutants, [ozone and PM2.5 cause about 2,400 deaths per year in NYC, and thousands more emergency department visits and hospitalizations for asthma, heart, and lung problems](/data-explorer/health-impacts-of-air-pollution/?id=2122#display=summary).  
+New York City’s air quality is generally good and has been improving over time. Still, air pollution threatens health: two pollutants, [ozone and PM2.5 cause about 2,400 deaths per year in NYC, and thousands more emergency department visits and hospitalizations for asthma, heart, and lung problems]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2122#display=summary).  
 
 It’s important to clean up the air to protect New Yorkers, and we know how to do it: reduce emissions from buildings, vehicles, restaurants, power plants, and other sources of pollutants.  
 
