@@ -5,8 +5,15 @@ draft: false
 seo_title: "How economic stability creates health "
 seo_description: "A data story about how economic stability creates health"
 tags:
-categories: ["social"]
-keywords: ["health equity", "inequalities", "inequities"]
+categories: ["housing", "social", "childhealth", "neighborhoods"]
+keywords:
+  [
+    "health equity",
+    "inequalities",
+    "inequities",
+    "affordable housing",
+    "social determinants",
+  ]
 image: CrownHeights_JulienneSchaer-065.JPG
 photocredit:
 ---
@@ -65,7 +72,6 @@ We see severe rent burden among New Yorkers of all income levels—but low-incom
 <p>—Participant in the <a href="https://www.nyc.gov/assets/opportunity/pdf/evidence/nycgov-povertymeasure-enhancedstudy.pdf"><i>Qualitative Study to Enhance the NYCgov Poverty Measure</i></a></p>
 </div>
 
-
 <div class="my-4 py-2 border-top border-bottom">
 <iframe title="Food insecurity in NYC" aria-label="Donut Chart" id="datawrapper-chart-XiHSE" src="https://datawrapper.dwcdn.net/XiHSE/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="398" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
@@ -73,7 +79,6 @@ We see severe rent burden among New Yorkers of all income levels—but low-incom
 Low-income New Yorkers also have to make tradeoffs when it comes to food. <strong>Food insecurity</strong> (not always having enough food) became even worse during the COVID-19 pandemic.
 
 Our health is shaped not just by having enough food to eat but also by having the right foods to eat. NYC is known for its bodegas, but they don’t always offer healthy staples. For foods that make up a healthy diet, New Yorkers need grocery stores. But most high-poverty neighborhoods in NYC have more bodegas than grocery stores – making healthier food harder to access than unhealthy food.
-
 
 <div class="my-4 py-2 border-top border-bottom">
 <iframe title="Neighborhoods with higher poverty have less access to healthy foods - a higher ratio of bodegas to supermarkets" aria-label="Scatter Plot" id="datawrapper-chart-we5Yo" src="https://datawrapper.dwcdn.net/we5Yo/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="600" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
@@ -126,7 +131,9 @@ This <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/rac
 
 </div>
 <div class="wide my-4 border-top border-bottom py-2">
-<iframe title="[ Insert title here ]" aria-label="Split Bars" id="datawrapper-chart-26GS0" src="https://datawrapper.dwcdn.net/26GS0/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="291" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+
+<iframe title="Self-reported health status" aria-label="Split Bars" id="datawrapper-chart-26GS0" src="https://datawrapper.dwcdn.net/26GS0/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="291" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+
 </div>
 <div class="narrow">
 
@@ -175,6 +182,16 @@ This <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/rac
 
 Public health is about searching for and addressing the root causes of different health outcomes. The data are clear, and so are the personal stories that were shared: increasing economic stability would greatly improve health for New Yorkers.
 
+<hr class="my-2">
+
+To hear more from New Yorkers about how they view economic stability and health, listen to recordings from the community conversations:
+
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="https://make.headliner.app/download/852924b9-b985-49c4-bfd7-bce681df222d
+"></iframe>
+</div>
+
+<!--
 <figure style="width:100%;" class="my-4 border p-2">
     <figcaption>Listen to this 3-minute medley from the community conversations:</figcaption>
     <audio controls src="economic-stability-audio-medley.mp3" style="width:100%;">
@@ -183,3 +200,4 @@ Public health is about searching for and addressing the root causes of different
             </a>
     </audio>
 </figure>
+-->

@@ -3,12 +3,12 @@ title: "Housing creates health"
 date: 2024-01-09T08:18:56-04:00
 draft: false
 seo_title: "Housing creates health"
-seo_description: "TBD"
+seo_description: "A data story about how quality and affordable housing enhances public health"
 tags:
-categories: ["internal"]
-keywords: ["how we work", "civic service design", "design", "technology"]
-image: ds-heat.jpg
-photocredit: "Michael Appleton/Mayoral Photography Office"
+categories: ["housing", "social", "childhealth", "neighborhoods"]
+keywords: ["housing", "income inequality", "eviction"]
+image: ds-housing-health_WillSteacy.jpg
+photocredit: "Will Steacy/NYC & Company"
 ---
 
 In 2020, the NYC Health Department held a series of Community Conversations with residents and local stakeholders across 26 neighborhoods in the city. In these conversations New Yorkers share the personal stories that illuminate priorities for bridging the gap between public health and communities: how to build healthier neighborhoods, healthier childhoods and more, from the people that impact most. This is one part of a three-part series on how <strong>economic stability, public space, and housing</strong> create health.
@@ -118,7 +118,6 @@ function changeBoro(x) {
 }
 </script>
 
-
 ### Housing quality: More than half of renter-occupied homes in NYC have health-related maintenance problems.
 
 When housing is unaffordable, options become limited and people often end up in lower-quality housing with maintenance and/or pest issues that can cause or worsen health conditions.
@@ -145,7 +144,6 @@ Without proper maintenance, these homes fail to address or develop health hazard
 - Lack of heat, which can cause hypothermia (a dangerously low body temperature) and worsen heart disease and other medical problems.
 
 <a href="https://www.nyc.gov/assets/doh/downloads/pdf/survey/asthma-housing-2021.pdf">Home maintenance issues are more common in high-poverty neighborhoods and in public housing than in wealthier neighborhoods or privately-owned apartments.</a>
-
 
 <div class="my-1 border-bottom">
 <button class="borobtn2 btn btn-sm btn-outline-secondary active" onclick="changeBoro2(1)" id="2btn1">Bronx</button>
@@ -193,7 +191,6 @@ function changeBoro2(x) {
 }
 </script>
 
-
 The consequences of these disparities can be dangerous. For example, people whose homes lack adequate heating might use space heaters, which are a fire risk. In January 2022, a malfunctioning space heater sparked a fire that killed 17 people in a high-rise building in the Bronx.
 
 ### Housing instability: When housing isn’t affordable, people’s living situations become unstable.  
@@ -215,7 +212,7 @@ A lack of affordable and healthy housing often leads to unstable housing. Most e
 </figure>
 </div>
 
-Eviction is associated with many poor health outcomes. These include babies that are born too small or early, and a higher rate of infant death. Adults who have been evicted have worse physical and mental health, go to the emergency department more often, and are more likely to die by suicide. 
+Eviction is associated with many poor health outcomes. These include babies that are born too small or early, and a higher rate of infant death. Adults who have been evicted have worse physical and mental health, go to the emergency department more often, and are more likely to die by suicide.
 
 Even the possibility of eviction raises the likelihood that someone will report poor health, high blood pressure, depression, anxiety, and psychological distress.
 
@@ -263,7 +260,7 @@ In summary, when housing is...
 
 <hr class="my-2">
 
-To hear more from New Yorkers about how they view economic stability and health, listen to recordings from the community conversations:
+To hear more from New Yorkers about how they view housing and health, listen to recordings from the community conversations:
 
 <video width="100%" height="auto" controls>
   <source src="https://media.sparemin.com/embed-video/videos/5e/ec/17/f7/5eec17f7-bcc2-49cb-bbfe-7c16a77ab02c_10793404.mp4" type="video/mp4">
