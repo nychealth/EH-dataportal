@@ -1,0 +1,8 @@
+baseURL = "https://gcappbesp307.health.dohmh.nycnet/dev-stage/"
+[params]
+    data_branch = "TEST-production"
+
+[caches]
+    [caches.getresource]
+      dir = ':cacheDir/:project'
+      maxAge = -1

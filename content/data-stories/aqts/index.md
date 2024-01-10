@@ -14,16 +14,6 @@ photocredit: "Ed Reed/Mayoral Photography Office"
 Does the air improve in car-free zones? People often ask us this, and it's a great question. To answer, we turn to the NYC Community Air Survey, or NYCCAS. NYCCAS is our network of air quality monitors around the city.
 
  ### NYCCAS monitors air with nearly 100 sensors across the city
- {{< rawhtml >}}
-    <iframe  width="100%" height="400" frameborder="0" scrolling="no" marginheight="0"
-    marginwidth="0" title="NYCCAS Sites"
-    src="//nycdohmh.maps.arcgis.com/apps/Embed/index.html?webmap=414f6c00466e456a9b8b994017cfc728&extent=-74.4827,40.5223,-73.5962,40.9116&home=true&zoom=true&previewImage=false&scale=true&disable_scroll=false&theme=light"></iframe>
-    <div class="mb-4">NYCCAS air quality monitor sites: <span style="font-weight:bold;color:#0F5DE2">Routine
-    site</span>, <span style="font-weight:bold;color:#FDA928;">environmental justice
-    site</span>, <span style="font-weight:bold;color:#B4C8FD;">retired site</span>.</div>
-
-{{< /rawhtml >}}
-
 We use these monitors to measure levels of six different pollutants: fine particles (PM2.5), nitrogen dioxide (NO2), nitric oxide (NO), sulfur dioxide (SO2), ozone (O3), and black carbon (BC). Then, we combine these data with information about sources of emissions, traffic volume, wind patterns, and more to model the air quality all across the city – including in places where there are no air quality monitors. This tells us how air pollution differs between neighborhoods - and why. For example, it can tell us whether air quality is better or worse in neighborhoods that have parks compared to neighborhoods without parks.
 
 ### What happens to air quality when an area goes car-free?

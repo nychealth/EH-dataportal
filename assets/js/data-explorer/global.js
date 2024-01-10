@@ -6,7 +6,9 @@
 // top scope variables
 // ----------------------------------------------------------------------- //
 
-let selectedTableYears = [];
+let globalID;
+
+let selectedTableTimes = [];
 let selectedTableGeography = [];
 let aboutMeasures;
 let dataSources;
@@ -14,8 +16,9 @@ let dataSources;
 let measureAbout = `N/A`;
 let measureSources = `N/A`;
 let geoTable;
+let timeTable;
 let unreliabilityNotes;
-let aqData;
+let aqIndicatorData;
 let joinedAqData;
 let aqMeasureIdTimes;
 
@@ -43,15 +46,16 @@ let aqComparisonsMetadata;
 let aqComparisonsIndicatorsMetadata;
 let aqComparisonsIndicatorData;
 
-let defaultTrendMetadata = [];
+let defaultTrendMetadata;
 let aqDefaultTrendMetadata;
 let defaultTrendAbout;
 let defaultTrendSources;
-let defaultMapMetadata = [];
+let defaultMapMetadata;
 let defaultMapAbout;
 let defaultMapSources;
-let defaultLinksMetadata = [];
-let defaultLinkMeasureTimes = [];
+let defaultPrimaryLinksMeasureMetadata;
+let defaultSecondaryMeasureMetadata;
+let defaultDisparitiesMetadata;
 let defaultLinksAbout;
 let defaultLinksSources;
 
@@ -62,6 +66,7 @@ let selectedTrendMeasure;
 let selectedLinksMeasure;
 let selectedComparison;
 let showingNormalTrend;
+let showingComparisonsTrend;
 
 let selectedMapAbout;
 let selectedMapSources;
@@ -77,11 +82,8 @@ let selectedComparisonMetadata;
 
 let selectedLinksAbout;
 let selectedLinksSources;
-let selectedLinksMetadata;
-let selectedlinksSecondaryMeasureTime;
-
-let primaryMeasureMetadata;
-let secondaryMeasureMetadata;
+let selectedPrimaryMeasureMetadata;
+let selectedSecondaryMeasureMetadata;
 
 let filteredMapData;
 let filteredTrendData;
@@ -90,9 +92,15 @@ let aqFilteredComparisonsData;
 let aqFilteredComparisonsMetadata;
 let aqCombinedComparisonsMetadata;
 
+let aqMeasureDisplay;
+let aqTableTimesGeos;
+let aqMapTimesGeos;
+let aqTrendTimesGeos;
+
 let mapMeasures = [];
 let trendMeasures = [];
 let linksMeasures = [];
+let disparitiesMeasures = [];
 
 let tabTable;
 let tabMap;
@@ -105,6 +113,10 @@ let showTrend;
 let showNormalTrend;
 let showTrendComparisons;
 let showLinks;
+
+var CSVforDownload; 
+var downloadedIndicator;
+var downloadedIndicatorMeasurement;
 
 // store hash, so display knows where it just was
 let currentHash;
@@ -140,6 +152,8 @@ const assignGeoRank = (GeoType) => {
             return 2;
         case 'NYCKIDS2019':
             return 2;
+        case 'NYCKIDS2021':
+            return 2;
         case 'UHF34':
             return 3;
         case 'UHF42':
@@ -154,6 +168,8 @@ const assignGeoRank = (GeoType) => {
             return 8;
         case 'NTA2020':
             return 9;
+        case 'NYHarbor':
+            return 10;
     }
 }
 
@@ -168,7 +184,8 @@ const geoTypes = [
     "Subboro",
     "CD",
     "CDTA",
-    "NTA"
+    "NTA",
+    "NYHarbor"
 ]
 
 // ----------------------------------------------------------------------- //
@@ -187,6 +204,9 @@ const prettifyGeoType = (GeoType) => {
         return 'NYCKIDS';
         
         case 'NYCKIDS2019':
+        return 'NYCKIDS';
+        
+        case 'NYCKIDS2021':
         return 'NYCKIDS';
         
         case 'CDTA2020':
@@ -212,8 +232,6 @@ const prettifyGeoType = (GeoType) => {
 
 const renderTitleDescription = (title, desc) => {
 
-    // console.log("** renderTitleDescription");
-    
     const indicatorTitle = document.getElementById('indicatorTitle');
     const indicatorDescription = document.querySelector('.indicator-description');
     indicatorTitle.innerHTML = title;

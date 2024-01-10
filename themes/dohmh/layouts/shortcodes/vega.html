@@ -2,7 +2,7 @@
 <script type = "text/javascript">
 
     
-    {{/*  defining these here, because I can't get Hugo functions to work in shortcode calls  */}}
+    {{- /*  defining these here, because I can't get Hugo functions to work in shortcode calls  */}}
     var data_repo = "{{ $.Site.Params.data_repo }}";
     var data_branch = "{{ $.Site.Params.data_branch }}";
     var dir = "{{ path.Clean .Page.File.Dir }}";
@@ -22,7 +22,7 @@
     // console.log("istrans", istrans);
     // console.log("lang", lang);
     
-    console.log("interp", `${data_repo}/${data_branch}/${dir}/${spec}`);
+    // console.log("interp", `${data_repo}/${data_branch}/${dir}/${spec}`);
 
     vegaEmbed(
         '#{{ .Get "id" }}', 

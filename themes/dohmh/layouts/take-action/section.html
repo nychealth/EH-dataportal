@@ -1,0 +1,49 @@
+{{- define "main" -}}
+    <!--D3-->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+<article class="container-fluid overflow-hidden" id="primary-content">
+
+  <div class="row my-4">
+    <div class="col-md-11 col-sm-12 mx-auto">
+      <!--start main column-->
+
+      <nav aria-label="breadcrumb" class="mb-2">
+        <ul class="breadcrumb mr-auto">
+            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+            <li class="breadcrumb-item active">{{ .Title }}
+              
+            </li>
+        </ul>                
+      </nav>
+
+      <h1>{{ .Title }}</h1>
+      <p>{{ .Content }}</p>
+
+      <div class="row">
+        {{- range ((where .Site.RegularPages "Section" "take-action")) -}}
+        <div class="col-md-6 mb-2">
+            <div class="card content-card mb-4">
+                <div class="card-content">
+                    <div class="card-body">
+                    <p class="fs-sm card-title fs-sm"><a href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></p>
+                    <p class="fs-sm">{{ .Content | truncate 150 | plainify }}</p>
+                    <p class="fs-sm text-primary float-right mb-2"><a href="{{ .RelPermalink }}">Read more <i
+                        class="fas fa-arrow-circle-right"></i></a></p>
+                  </div>
+                </div>
+              </div>
+        </div>
+        {{- end -}}
+
+
+      </div>
+
+
+    </div>
+    <!--end main column-->
+  </div>
+
+</article>
+
+{{- end -}}
