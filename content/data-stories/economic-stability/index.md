@@ -1,6 +1,6 @@
 ---
 title: Economic stability creates health
-date: 2023-06-16T09:01:00-04:00
+date: 2024-01-09T09:01:00-04:00
 draft: false
 seo_title: "How economic stability creates health "
 seo_description: "A data story about how economic stability creates health"
