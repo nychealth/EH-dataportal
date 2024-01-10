@@ -19,7 +19,7 @@ vega: true
 image: images/nyccas.png
 layout: nyccas-report
 ---
-## NYCCAS Report: 2008-2021
+## NYCCAS Report: 2008-2022
 
 In 2007, the New York City Department of Health and Mental Hygiene (Health Department) established the New York City Community Air Survey (NYCCAS), the largest ongoing urban air monitoring program of any U.S. city. NYCCAS, which began collecting data in December 2008, is a collaboration between the Health Department and Queens College of the City University of New York and provides data to:
 
@@ -31,7 +31,7 @@ In 2007, the New York City Department of Health and Mental Hygiene (Health Depar
 This report:
 
 * Provides a summary of key findings, the air monitoring program, monitoring site selection, and descriptions of the pollutants measured
-* Describes the trends in air pollutant levels from more than a decade of data from winter 2008-2009 through fall 2021 for fine particulate matter, nitrogen dioxide, nitric oxide, black carbon, wintertime sulfur dioxide and summertime ozone
+* Describes the trends in air pollutant levels from more than a decade of data from winter 2008-2009 through fall 2022 for fine particulate matter, nitrogen dioxide, nitric oxide, black carbon, wintertime sulfur dioxide and summertime ozone
 * Presents maps of neighborhood air pollution levels by year
 * Identifies the local sources that contribute to high levels of these pollutants in New York City neighborhoods
 
@@ -39,7 +39,7 @@ This report:
 
 ### Key Findings
 
-**Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2021.**
+**Citywide, annual average levels of four key pollutants have gone down between the first year of monitoring, 2009, and the most recent year of data, 2022.**
 
 * Fine particles (PM<sub>2.5</sub>)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;-40%
 * Nitrogen Dioxide (NO<sub>2</sub>)&nbsp; &nbsp; -38%
