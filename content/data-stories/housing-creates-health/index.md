@@ -1,6 +1,6 @@
 ---
 title: "Housing creates health"
-date: 2023-10-24T08:18:56-04:00
+date: 2024-1-09T08:18:56-04:00
 draft: false
 seo_title: "Housing creates health"
 seo_description: "TBD"
