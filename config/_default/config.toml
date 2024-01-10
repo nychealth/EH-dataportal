@@ -1,5 +1,5 @@
-baseURL = "https://nychealth.github.io/EH-dataportal/"
-canonifyURLs = true
+baseURL = "https://a816-dohbesp.nyc.gov/IndicatorPublic/"
+canonifyURLs = false
 relativeURLs = false
 languageCode = "en-us"
 title = "Environment & Health Data Portal"
@@ -12,7 +12,6 @@ ignoreFiles = ['Simplified.Chinese', 'Spanish']
 
 [params]
   data_repo = "https://raw.githubusercontent.com/nychealth/EHDP-data/"
-  sitepath = "/EH-dataportal"
 
 [caches]
     [caches.getresource]
@@ -31,18 +30,21 @@ ignoreFiles = ['Simplified.Chinese', 'Spanish']
 
 [languages.en]
   languageName = "English"
-  languageDesc = "English"
   weight = 1
+  [languages.en.params]
+    languageDesc = "English"
 
 [languages.es]
   languageName = "Español"
-  languageDesc = "Spanish-US"
   weight = 2
+  [languages.es.params]
+    languageDesc = "Spanish-US"
 
 [languages.zh]
   languageName = "中文"
-  languageDesc = "Chinese-Simplified"
   weight = 3
+  [languages.zh.params]
+    languageDesc = "Chinese-Simplified"
 
 
 [taxonomies]

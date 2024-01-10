@@ -269,7 +269,7 @@ sans-serif,
 // Instead of manipulation Bootstrap Default variables, 
 // we create our own opt-in font size variables
 
-$fs-xs: 0.7rem; 
+$fs-xs: 0.7rem; // EHDP added this
 $fs-sm: 0.875rem; // 14px
 $fs-md: 1rem; // 16px
 $fs-rg: 1.167rem; // 18.672px
@@ -444,8 +444,8 @@ $alert-padding-x: $spacer-2;
 // O. Modals
 ////////////////////////////////////////
 
-$modal-backdrop-bg: $white;
-$modal-backdrop-opacity: 0.95;
+$modal-backdrop-bg: $black;
+$modal-backdrop-opacity: 0.5;
 $modal-content-border-color: rgba($black, 0.2);
 
 ////////////////////////////////////////
