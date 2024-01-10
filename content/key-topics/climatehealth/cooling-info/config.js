@@ -110,15 +110,49 @@ var content = [
                 "copy": "Yes",
                 "message": "We'll make sure these recommendations include the safety of your animal(s).",
                 "setVariable": "animal('Yes')",
-                "goTo": 99
+                "goTo": 6
             },
             {
                 "optionID": 2,
                 "copy": "No",
                 "message": "",
                 "setVariable": "animal('No')",
-                "goTo": 99
+                "goTo": 6
             }
         ]
     },
+
+    /* test question */
+
+    {
+        "id": 6,  
+        "text":  "Is it over 85 degrees inside or are you uncomfortably hot?",
+        "prompt": "Often times when people get sick from the heat, they don't realize that they are overheating until they are experiencing heat exhaustion/heat stroke.",
+        "options": [  
+        { 
+            "optionID": 1, 
+            "copy": "Yes", 
+            "message": "NOTE: Certain medications can make you more sensitive to heat or make it hard for your body to cool down.",
+            "setVariable": "overheating('Yes')", 
+            "goTo": 1
+        
+        },  
+        {  
+            "optionID": 2, 
+            "copy": "No", 
+            "message": "NOTE: Certain medications can make you more sensitive to heat or make it hard for your body to cool down.", 
+            "setVariable": "overheating('No')", 
+            "goTo": 1
+        }
+    ]
+
+},
+{
+
+   
+        
+
+
+}
+
 ]
