@@ -13,7 +13,7 @@ photocredit: "Michael Appleton/Mayoral Photography Office"
 
 In 2020, the NYC Health Department held a series of Community Conversations with residents and local stakeholders across 26 neighborhoods in the city. In these conversations New Yorkers share the personal stories that illuminate priorities for bridging the gap between public health and communities: how to build healthier neighborhoods, healthier childhoods and more, from the people that impact most. This is one part of a three-part series on how <strong>economic stability, public space, and housing</strong> create health.
 
-<div class="pullquote l-green-border px-1 my-2">
+<div class="pullquote my-4">
 <figure class="">
     <figcaption>“When someone has a decent house with security…they can lock their door at night, they can sleep at night, know their children are safe. That can create a better frame of mind of how you’re living your life.” <br><span class="float-right">—NYC community conversation participant</span></figcaption>
     <audio controls src="frame-of-mind.mp3" style="width:100%;" class="mt-2">
@@ -30,7 +30,7 @@ The impacts of poor housing build up over the course of people’s lives. And th
 
 ### Housing affordability: lack of affordable housing forces difficult choices between essentials
 
-<div class="l-green-border px-1 my-2 pullquote">
+<div class="pullquote my-4">
 <figure class="">
     <figcaption figcaption class="mb-2">“Many people have moved to the neighborhood with different and higher incomes that may skew the definition of affordable housing, thereby creating a gap of income and services.” <br> <span class="float-right">—NYC community conversation participant</span>   </figcaption>
     <audio controls src="clip-gap-of-services.mp3" style="width:100%;" class="mt-2">
@@ -47,9 +47,9 @@ Across New York, half of all households are rent-burdened, leaving less money fo
 
 </div>
 
-<div class="medium">
+<div class="medium my-4 py-2 border-top border-bottom">
 
-<iframe class="my-2 py-1 border-top border-bottom" title="Percent of households that are rent-burdened by neighborhood (NTA)" aria-label="Map" id="datawrapper-chart-L4j3j" src="https://datawrapper.dwcdn.net/L4j3j/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="756" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<iframe class="" title="Percent of households that are rent-burdened by neighborhood (NTA)" aria-label="Map" id="datawrapper-chart-L4j3j" src="https://datawrapper.dwcdn.net/L4j3j/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="756" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
 </div>
 
@@ -57,7 +57,7 @@ Across New York, half of all households are rent-burdened, leaving less money fo
 
 A high rent burden is often accompanied by other housing issues like overcrowding (defined as more than one person per room). Overcrowding occurs much more often in high-poverty areas, and can compound the spread of disease.
 
-<div class="pullquote l-green-border px-1 my-2">
+<div class="pullquote my-4">
 <figure class="">
     <figcaption figcaption class="mb-2"> “A lot of the young people I work with openly share that maybe they’re sharing a bed with several siblings.” <br><span class="float-right">—NYC community conversation participant</span> </figcaption>
     <audio controls src="clip-sharing-space.mp3" style="width:100%;" class="mt-2">
@@ -123,7 +123,7 @@ function changeBoro(x) {
 
 When housing is unaffordable, options become limited and people often end up in lower-quality housing with maintenance and/or pest issues that can cause or worsen health conditions.
 
-<div class="pullquote l-green-border px-1 my-2">
+<div class="pullquote my-4">
 <figure class="">
     <figcaption figcaption class="mb-2"> “We didn’t have any heat for last year up until the middle of December. And then we didn’t have any air conditioning through the middle of August.” <br><span class="float-right">—NYC community conversation participant</span> </figcaption>
     <audio controls src="clip-ac-and-heat.mp3" style="width:100%;" class="mt-2">
@@ -200,10 +200,11 @@ The consequences of these disparities can be dangerous. For example, people whos
 
 A lack of affordable and healthy housing often leads to unstable housing. Most evictions occur because people can’t pay rent. The resulting impacts of moving frequently, eviction, and homelessness all threaten health both in the short term and over time. New Yorkers living in high-poverty neighborhoods experience eviction at more than four times the rate of those living in low-poverty neighborhoods.
 
-<iframe title="Evictions are more common in higher poverty neighborhoods" class="my-2 border-top border-bottom py-1" aria-label="Scatter Plot" id="datawrapper-chart-DEEg2" src="https://datawrapper.dwcdn.net/DEEg2/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="550" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<div class="my-4 py-2 border-top border-bottom">
+<iframe title="Evictions are more common in higher poverty neighborhoods" class="" aria-label="Scatter Plot" id="datawrapper-chart-DEEg2" src="https://datawrapper.dwcdn.net/DEEg2/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="550" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+</div>
 
-
-<div class="pullquote l-green-border px-1 my-2">
+<div class="pullquote my-4">
 <figure class="">
     <figcaption figcaption class="mb-2"> “Children whose families are homeless, and they're being shuffled from place to place—they need to have stability. I think that needs to be addressed. Because it also affects their schooling, their mental health, their medical, you know, needs for both parents and the children. And I think the children are impacted most.” <br><span class="float-right">—NYC community conversation participant</span></figcaption>
     <audio controls src="clip-place-to-place.mp3" style="width:100%;" class="mt-2">
@@ -220,7 +221,7 @@ Even the possibility of eviction raises the likelihood that someone will report 
 
 ### High-quality, affordable, and stable housing is essential to public health.
 
-<div class="pullquote l-green-border px-1 my-2">
+<div class="pullquote my-4">
 <figure class="">
     <figcaption figcaption class="mb-2"> "… like many people I choose between paying my internet or food…” <br><span class="float-right">—NYC community conversation participant</span>
  </figcaption>
@@ -234,7 +235,9 @@ Even the possibility of eviction raises the likelihood that someone will report 
 
 When COVID-19 hit, New York paused evictions, recognizing the twin threats of serious financial hardship and health risks created and made worse through experiencing homelessness. This was an effort to keep people housed—but also to keep people out of shelters, where the spread of COVID was hard to contain.
 
-<iframe title="Evictions plummeted in 2020" class="my-2 border-top border-bottom py-1" aria-label="Interactive line chart" id="datawrapper-chart-xy1ku" src="https://datawrapper.dwcdn.net/xy1ku/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="423" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+<div class="my-4 py-2 border-top border-bottom">
+<iframe title="Evictions plummeted in 2020" class="" aria-label="Interactive line chart" id="datawrapper-chart-xy1ku" src="https://datawrapper.dwcdn.net/xy1ku/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="423" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+</div>
 
 When the eviction pause ended in 2021, homelessness in NYC began to rise at a staggering rate, with Black and Latino residents affected more than other racial groups. This happened amid a backdrop of steadily increasing rates of homelessness over the past two decades, with roots that extend beyond the pandemic.
 
