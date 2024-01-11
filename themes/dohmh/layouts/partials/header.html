@@ -117,7 +117,7 @@
                                         <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
                                             <ul class="extensible-list p-0">
                                                 {{ range (where .Site.RegularPages "Section" "key-topics") }}
-                                               <a class="" href="{{ .RelPermalink }}"> <li class=""><i class="fas fa-star mr-1"></i>{{ .Params.title }}</li></a>
+                                               <a class="" href="{{ .RelPermalink }}"> <li class=""><i class="fas fa-star mr-1 text-primary"></i>{{ .Params.shortTitle }}</li></a>
                                                <hr class="my-1">
                                                 {{ end }}
                                             </ul>
