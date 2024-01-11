@@ -11,7 +11,7 @@ image: ds-housing-health_WillSteacy.jpg
 photocredit: "Will Steacy/NYC & Company"
 ---
 
-In 2020, the NYC Health Department held a series of Community Conversations with residents and local stakeholders across 26 neighborhoods in the city. In these conversations New Yorkers share the personal stories that illuminate priorities for bridging the gap between public health and communities: how to build healthier neighborhoods, healthier childhoods and more, from the people that impact most. This is one part of a three-part series on how <strong>economic stability, public space, and housing</strong> create health.
+Health is determined by many factors, and people tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories that illuminate their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong> housing, economic stability, and public space create health.</strong>
 
 <div class="pullquote my-4">
 <figure class="">
@@ -24,9 +24,9 @@ In 2020, the NYC Health Department held a series of Community Conversations with
 </figure>
 </div>
 
-Quality housing supports health and safety, can lower stress, and provides a sense of security and stability. But for some New Yorkers, their housing situation exposes them to health risks, creates financial and mental stress, and makes them vulnerable to displacement.
+Affordable, good quality, stable housing supports health. Living without access to these resources can create poor health that worsens over time. Living in low quality housing as a child also poses particular health risks.
 
-The impacts of poor housing build up over the course of people’s lives. And the major, pervasive housing issues<strong>—quality, affordability, and stability—</strong>have a greater impact on health at key stages of life, like childhood and old age, and on <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-explorer/economic-conditions/?id=103#display=summary">people living in higher-poverty neighborhoods.</a> People of color disproportionately experience injustices related to poor housing and environmental hazards as a result of systemic racism through policies like redlining and blockbusting.
+People living in higher-poverty neighborhoods are more likely to experience negative health effects of poor housing. People of color disproportionately experience housing injustices as a result of policies like redlining and blockbusting that are examples of systemic racism.
 
 ### Housing affordability: lack of affordable housing forces difficult choices between essentials
 
@@ -41,9 +41,7 @@ The impacts of poor housing build up over the course of people’s lives. And th
 </figure>
 </div>
 
-Household income is increasing at a much slower rate than rent and residents are struggling to keep up with the cost of housing and other necessities.
-
-Across New York, half of all households are rent-burdened, leaving less money for food and basic health care. People are considered rent-burdened when more than 30% of their household income goes to rent. <a href="src"> Learn more about the health implications of experiencing rent burden in How economic stability creates health.</a>
+Across New York, half of all households are rent-burdened, meaning that more than 30% of their household income goes to rent. Spending so much on rent can leave too little money for food and other essentials. <a href="src"> Learn more about the health implications of experiencing rent burden in How economic stability creates health. </a>
 
 </div>
 
@@ -54,6 +52,8 @@ Across New York, half of all households are rent-burdened, leaving less money fo
 </div>
 
 <div class="narrow">
+
+A person who has a high rent burden is often confronting other housing challenges as well, like overcrowding (defined as more than one person per room). Overcrowding occurs much more often in high-poverty areas, and can have many negative effects, including facilitating spread of disease and making it difficult for children to find a quiet place to study.
 
 A high rent burden is often accompanied by other housing issues like overcrowding (defined as more than one person per room). Overcrowding occurs much more often in high-poverty areas, and can compound the spread of disease.
 
@@ -68,7 +68,7 @@ A high rent burden is often accompanied by other housing issues like overcrowdin
 </figure>
 </div>
 
-<h4 class="mt-4">Overcrowding tends to occur in areas with high poverty</h4>
+<h4 class="mt-4 mb-2">Overcrowding tends to occur in areas with high poverty</h4>
 <div class="my-1 border-bottom">
 <button class="borobtn btn btn-sm btn-outline-secondary active" onclick="changeBoro(1)" id="btn1">Bronx</button>
 <button class="borobtn btn btn-sm btn-outline-secondary " onclick="changeBoro(2)" id="btn2">Brooklyn</button>
@@ -118,9 +118,9 @@ function changeBoro(x) {
 }
 </script>
 
-### Housing quality: More than half of renter-occupied homes in NYC have health-related maintenance problems.
+### Housing quality: Over half of renter-occupied homes in NYC have health-related maintenance problems.
 
-When housing is unaffordable, options become limited and people often end up in lower-quality housing with maintenance and/or pest issues that can cause or worsen health conditions.
+When housing is unaffordable, options become limited, and people often end up in lower-quality housing with maintenance deficiencies that can cause or worsen health conditions.
 
 <div class="pullquote my-4">
 <figure class="">
@@ -133,17 +133,15 @@ When housing is unaffordable, options become limited and people often end up in 
 </figure>
 </div>
 
-Without proper maintenance, these homes fail to address or develop health hazards, including:
+Homes that are not properly maintained can undermine health, including because they may have:
 
-- Lead and other toxins, which can cause behavioral and brain problems in children. Lead can also cause increased blood pressure, kidney and brain problems, infertility, and impotence in adults.
+- Lead paint hazards, which can cause behavioral and brain problems in children. Lead exposure can also cause increased blood pressure, kidney and brain problems, infertility and impotence in adults.
 
 - Pests, like cockroaches and mice, which can make food unclean and contribute to the worsening of asthma and its symptoms.
 
-- Lack of air conditioning, which can cause heat stress making existing health conditions worse and, in extreme cases, resulting in hospitalization and even death.
+- Lack of heat, which can cause a dangerously low body temperature and worsen heart disease and other medical problems.
 
-- Lack of heat, which can cause hypothermia (a dangerously low body temperature) and worsen heart disease and other medical problems.
-
-<a href="https://www.nyc.gov/assets/doh/downloads/pdf/survey/asthma-housing-2021.pdf">Home maintenance issues are more common in high-poverty neighborhoods and in public housing than in wealthier neighborhoods or privately-owned apartments.</a>
+<a href="https://www.nyc.gov/assets/doh/downloads/pdf/survey/asthma-housing-2021.pdf">Home maintenance issues are more common in high-poverty neighborhoods </a> and in public housing than in wealthier neighborhoods or privately-owned apartments.
 
 <div class="my-1 border-bottom">
 <button class="borobtn2 btn btn-sm btn-outline-secondary active" onclick="changeBoro2(1)" id="2btn1">Bronx</button>
@@ -193,9 +191,11 @@ function changeBoro2(x) {
 
 The consequences of these disparities can be dangerous. For example, people whose homes lack adequate heating might use space heaters, which are a fire risk. In January 2022, a malfunctioning space heater sparked a fire that killed 17 people in a high-rise building in the Bronx.
 
-### Housing instability: When housing isn’t affordable, people’s living situations become unstable.  
+Affordability and barriers to cooling can also result in consequences to health. Lack of air conditioning can result in heat stress during warmer weather and periods of extreme heat, making existing health conditions worse and, in extreme cases, resulting in hospitalization and even death.
 
-A lack of affordable and healthy housing often leads to unstable housing. Most evictions occur because people can’t pay rent. The resulting impacts of moving frequently, eviction, and homelessness all threaten health both in the short term and over time. New Yorkers living in high-poverty neighborhoods experience eviction at more than four times the rate of those living in low-poverty neighborhoods.
+### Housing instability: When people’s living situations become unstable their mental and physical health is at stake.
+
+A lack of affordable and healthy housing often leads to housing instability. Most evictions occur because the tenant can’t pay rent, and can result in frequent moves and homelessness, both of which threaten health in the short term and over time. New Yorkers living in high-poverty neighborhoods experience eviction at more than four times the rate of those living in low-poverty neighborhoods.
 
 <div class="my-4 py-2 border-top border-bottom">
 <iframe title="Evictions are more common in higher poverty neighborhoods" class="" aria-label="Scatter Plot" id="datawrapper-chart-DEEg2" src="https://datawrapper.dwcdn.net/DEEg2/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="550" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
@@ -212,11 +212,17 @@ A lack of affordable and healthy housing often leads to unstable housing. Most e
 </figure>
 </div>
 
-Eviction is associated with many poor health outcomes. These include babies that are born too small or early, and a higher rate of infant death. Adults who have been evicted have worse physical and mental health, go to the emergency department more often, and are more likely to die by suicide.
+<a href ="https://www.healthaffairs.org/do/10.1377/hpb20210315.747908/"> Eviction is associated with many poor health outcomes.</a> These include babies that are born too small or early, and a higher rate of infant death. Adults who have been evicted have worse physical and mental health, go to the emergency department more often, and are more likely to die by suicide.
 
-Even the possibility of eviction raises the likelihood that someone will report poor health, high blood pressure, depression, anxiety, and psychological distress.
+<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9502670/"> A person facing even the possibility of eviction is more likely to report poor health, </a> including high blood pressure, depression, anxiety, and psychological distress.
 
-### High-quality, affordable, and stable housing is essential to public health.
+When COVID-19 hit, New York paused evictions, recognizing the twin threats of serious financial hardship and health risks created and made worse through experiencing homelessness. This was an effort to keep people housed—but also to keep people out of shelters, where the spread of COVID was hard to contain.
+
+<div class="my-4 py-2 border-top border-bottom">
+<iframe title="Evictions plummeted in 2020" class="" aria-label="Interactive line chart" id="datawrapper-chart-xy1ku" src="https://datawrapper.dwcdn.net/xy1ku/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="423" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
+</div>
+
+When the eviction pause ended in 2021, homelessness in NYC began to rise at a staggering rate, with Black and Latino residents affected more than other racial groups. <a href="https://www.coalitionforthehomeless.org/basic-facts-about-homelessness-new-york-city/%22%20/l%20%22:~:text=In%20October%202023%2C%20there%20were,each%20night%20in%20October%202023"> This happened amid a backdrop of steadily increasing rates of homelessness over the past two decades, with roots that extend beyond the pandemic.</a>
 
 <div class="pullquote my-4">
 <figure class="">
@@ -229,14 +235,6 @@ Even the possibility of eviction raises the likelihood that someone will report 
     </audio>
 </figure>
 </div>
-
-When COVID-19 hit, New York paused evictions, recognizing the twin threats of serious financial hardship and health risks created and made worse through experiencing homelessness. This was an effort to keep people housed—but also to keep people out of shelters, where the spread of COVID was hard to contain.
-
-<div class="my-4 py-2 border-top border-bottom">
-<iframe title="Evictions plummeted in 2020" class="" aria-label="Interactive line chart" id="datawrapper-chart-xy1ku" src="https://datawrapper.dwcdn.net/xy1ku/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="423" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
-</div>
-
-When the eviction pause ended in 2021, homelessness in NYC began to rise at a staggering rate, with Black and Latino residents affected more than other racial groups. This happened amid a backdrop of steadily increasing rates of homelessness over the past two decades, with roots that extend beyond the pandemic.
 
 Implementing programs that incorporate similar strategies coupled with expanding housing options could help reduce homelessness now and in the future.
 

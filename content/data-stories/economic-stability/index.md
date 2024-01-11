@@ -15,10 +15,10 @@ keywords:
     "social determinants",
   ]
 image: CrownHeights_JulienneSchaer-065.JPG
-photocredit:
+photocredit: JulienneSchaer
 ---
 
-Health is determined by many factors, including social and economic conditions. People tend to be healthier when they have access to economic and financial stability, higher education, access to good health care, and safe, connected communities. In 2020, the NYC Health Department held a series of Community Conversations with residents and local stakeholders across 26 neighborhoods in the city. In these conversations New Yorkers share the personal stories that illuminate priorities for bridging the gap between public health and communities: how to build healthier neighborhoods, healthier childhoods and more, from the people that impact most. This is one part of a three-part series on how economic stability, public space, and housing create health.
+Health is determined by many factors, and people tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories that illuminate their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how housing, economic stability, and public space create health.
 
 <i>To hear more from New Yorkers about how they view economic stability and health, <a href="https://make.headliner.app/download/48f94852-0370-4737-b5bf-5a8dafae62da">listen to recordings from the community conversations.</a></i>
 
