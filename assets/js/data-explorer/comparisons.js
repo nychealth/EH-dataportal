@@ -13,7 +13,7 @@ const renderComparisonsChart = (
     // metadata.print()
     
     // console.log("data [renderComparisonsChart]");
-    // data.print(Infinity)
+    // data.print()
 
     // console.log("data objects", data.objects());
 
@@ -58,6 +58,7 @@ const renderComparisonsChart = (
     let compName            = [... new Set(metadata.array("ComparisonName"))];
     let compIndicatorLabel  = [... new Set(metadata.array("IndicatorLabel"))];
     let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
+    let compMeasureIDs      = [... new Set(metadata.array("MeasureID"))];
     let compDisplayTypes    = [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
     let compGeoIDs          = metadata.objects()[0].GeoID ? [... new Set(metadata.array("GeoID"))] : null;
 
@@ -67,6 +68,13 @@ const renderComparisonsChart = (
     // console.log(">> compIndicatorLabel", compIndicatorLabel);
     // console.log(">> compMeasurementType", compMeasurementType);
 
+    // determining quarters
+
+    let hasQuarters = [858, 859, 860, 861, 862, 863];
+
+    let quarter_measure = hasQuarters.some(item => compMeasureIDs.includes(item));
+
+    console.log("MeasureIDs", compMeasureIDs, "hasQuarters", hasQuarters, "quarter_measure", quarter_measure);
 
     // ----------------------------------------------------------------------- //
     // set chart text based on type of comparison
@@ -312,7 +320,8 @@ const renderComparisonsChart = (
             "x": {
                 "field": "TimePeriod",
                 "type": "nominal",
-                "title": null
+                "title": null,
+                // "labelExpre": "datum.TimePeriod[0]"
             }
         },
         "layer": [
@@ -373,7 +382,7 @@ const renderComparisonsChart = (
                     {
                         "pivot": comp_group_col,
                         "value": "DisplayValue",
-                        "groupby": ["TimePeriod"],
+                        "groupby": ["end_period", "TimePeriod"],
                         "op": "max"
                     },
                     ...compReplaceInvalid
