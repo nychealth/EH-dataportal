@@ -35,9 +35,9 @@ Health is determined by many factors, and people tend to be healthier when they 
 
 <strong>17 percent of New Yorkers, or about 1,400,000 people, live in poverty.</strong> Living in poverty impacts health in many ways. These include:
 
-- Financial and emotional stress: medical debt and making difficult choices between rent, food, medical care, and bills.
+- Financial pressures: stress and anxiety from being unable to pay for all costs of living and having to choose whether to pay for rent, food, medical care or other necessities.
 
-- Unhealthy and unstable housing conditions: illness from increased exposure to weather-related illnesses from not being able to afford air conditioning or heat.
+- Unhealthy and unstable housing conditions: increased exposure to weather-related illnesses from not being able to afford air conditioning or heat. Lack of building maintenance can lead to housing conditions that result in pests, mold and dust that can worsen asthma and other medical conditions. Read more about how housing creates health.
 
 - Food insecurity: lack of access to fresh food or enough food.
 
@@ -60,9 +60,9 @@ The combined effects of poverty are increased sickness and death.
 </figure>
 </div>
 
-<strong>Nearly one-third of renting households in the City experience severe rent burden</strong>—spending at least half their income on rent.
+Nearly one-third of renting households in the City experience severe rent burden—spending at least half their income on rent.
 
-We see severe rent burden among New Yorkers of all income levels—but low-income people feel these effects more. Severe rent burden impacts nearly half (44%) of households that earn between $25,000 and $50,000, and 85% of households that earn less than $25,000. People who are rent burdened must make difficult choices between housing and health. For example, they may choose not to use an air conditioner because of the electricity bill <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/heat/">despite this increasing their risk for heat-related illness and death.</a>
+We see severe rent burden among New Yorkers of all income levels—but low-income people feel these effects more. Severe rent burden impacts nearly half (44%) of households that earn between $25,000 and $50,000, and 85% of households that earn less than $25,000. People who are rent burdened must make difficult choices between housing and necessities that support health. For example, they may choose not to use an air conditioner because of the electricity bill <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/heat/">despite this increasing their risk for heat-related illness and death.</a>
 
 ### One out of every 10 New Yorkers experiences food insecurity.
 
@@ -76,15 +76,15 @@ We see severe rent burden among New Yorkers of all income levels—but low-incom
 <iframe title="Food insecurity in NYC" aria-label="Donut Chart" id="datawrapper-chart-XiHSE" src="https://datawrapper.dwcdn.net/XiHSE/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="398" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 
-Low-income New Yorkers also have to make tradeoffs when it comes to food. <strong>Food insecurity</strong> (not always having enough food) became even worse during the COVID-19 pandemic.
+Low-income New Yorkers also have to make tradeoffs when it comes to food. Food insecurity (not always having enough food) became even worse during the COVID-19 pandemic.
 
-Our health is shaped not just by having enough food to eat but also by having the right foods to eat. NYC is known for its bodegas, but they don’t always offer healthy staples. For foods that make up a healthy diet, New Yorkers need grocery stores. But most high-poverty neighborhoods in NYC have more bodegas than grocery stores – making healthier food harder to access than unhealthy food.
+Our health is shaped not just by having enough food to eat but also by having the <i> right</i> foods to eat. NYC is known for its bodegas (mini-markets) but they don’t always offer healthy staples. For foods that make up a healthy diet, New Yorkers need grocery stores. But most high-poverty neighborhoods in NYC have more bodegas than grocery stores – making healthier food harder to access than unhealthy food.
 
 <div class="my-4 py-2 border-top border-bottom">
 <iframe title="Neighborhoods with higher poverty have less access to healthy foods - a higher ratio of bodegas to supermarkets" aria-label="Scatter Plot" id="datawrapper-chart-we5Yo" src="https://datawrapper.dwcdn.net/we5Yo/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="600" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 
-<a href="https://www.nyc.gov/site/doh/health/neighborhood-health/shop-health.page">The City’s Shop Healthy NYC!</a> initiative encourages residents to talk to their bodega owners about offering more healthy options.
+<a href="https://www.nyc.gov/site/doh/health/neighborhood-health/shop-health.page">The City’s Shop Healthy NYC! initiative encourages residents to talk to their bodega owners about offering more healthy options. </a>
 
 ### With no money to spare after rent and food, many New Yorkers go without the health care or medicines they need.
 
@@ -109,7 +109,7 @@ Getting essential health care can mean the difference between staying afloat and
 </figure>
 </div>
 
-Getting care for a medical issue can be costly, even with insurance. Medical debt occurs when people can’t pay bills. If the bills go unpaid long enough, they get sent to collection agencies, which can impact credit scores.
+Getting care for a medical issue can be costly, even with insurance. Medical debt occurs when people can’t pay bills.
 
 ### Medical debt creates stress and disproportionately affects people of color.
 
@@ -117,7 +117,7 @@ Six percent of all New Yorkers—about 1 in 20 people—have medical debt in col
 
 Chronic stress related to finances can be debilitating because the factors causing it are difficult to resolve, and many worsen over time. Long-term stress increases the risk of mental health issues and other health problems.
 
-Racism shapes who experiences poverty—and its health effects—in NYC.
+### Racism shapes who experiences poverty—and its health effects—in NYC.
 
 In NYC, as in most places in the United States, there are more Black and Latino residents living in poverty than residents of other races. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/housing/">This is a product of racism</a> and a history of policies that deprive people of color of access to home ownership, education and jobs, and other opportunities to build wealth and economic stability.
 
