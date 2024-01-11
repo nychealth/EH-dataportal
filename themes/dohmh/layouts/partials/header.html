@@ -116,10 +116,51 @@
 
                                         <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
                                             <ul class="extensible-list p-0">
-                                                {{ range (where .Site.RegularPages "Section" "key-topics") }}
-                                               <a class="" href="{{ .RelPermalink }}"> <li class=""><i class="fas fa-star mr-1"></i>{{ .Params.title }}</li></a>
-                                               <hr class="my-1">
+                                                {{ with .GetPage "key-topics/transportation" }}
+                                                <a class="" href="{{ .RelPermalink }}"> <li class=""><i class="fas fa-star mr-1 text-primary"></i>{{ .Params.title }}</li></a>
+                                                <hr class="my-1">
                                                 {{ end }}
+
+                                                {{ with .GetPage "key-topics/airquality" }}
+                                                <a class="" href="{{ .RelPermalink }}"> <li class=""><i class="fas fa-star mr-1 text-primary"></i>{{ .Params.title }}</li></a>
+                                                <hr class="my-1">
+                                                {{ end }}
+
+                                                {{ with .GetPage "key-topics/childhealth" }}
+                                                <a class="" href="{{ .RelPermalink }}"> <li class=""><i class="fas fa-star mr-1 text-primary"></i>{{ .Params.title }}</li></a>
+                                                <hr class="my-1">
+                                                {{ end }}
+
+                                                {{ with .GetPage "key-topics/climatehealth" }}
+                                                <a class="" href="{{ .RelPermalink }}"> <li class=""><i class="fas fa-star mr-1 text-primary"></i>{{ .Params.title }}</li></a>
+                                                <hr class="my-1">
+                                                {{ end }}
+
+                                                {{ with .GetPage "key-topics/foodanddrink" }}
+                                                <a class="" href="{{ .RelPermalink }}"> <li class=""><i class="fas fa-star mr-1 text-primary"></i>{{ .Params.title }}</li></a>
+                                                <hr class="my-1">
+                                                {{ end }}
+
+                                                {{ with .GetPage "key-topics/healthoutcomes" }}
+                                                <a class="" href="{{ .RelPermalink }}"> <li class=""><i class="fas fa-star mr-1 text-primary"></i>{{ .Params.title }}</li></a>
+                                                <hr class="my-1">
+                                                {{ end }}
+
+                                                {{ with .GetPage "key-topics/housing" }}
+                                                <a class="" href="{{ .RelPermalink }}"> <li class=""><i class="fas fa-star mr-1 text-primary"></i>{{ .Params.title }}</li></a>
+                                                <hr class="my-1">
+                                                {{ end }}
+
+                                                {{ with .GetPage "key-topics/social" }}
+                                                <a class="" href="{{ .RelPermalink }}"> <li class=""><i class="fas fa-star mr-1 text-primary"></i>{{ .Params.title }}</li></a>
+                                                <hr class="my-1">
+                                                {{ end }}
+
+                                                {{ with .GetPage "key-topics/pests" }}
+                                                <a class="" href="{{ .RelPermalink }}"> <li class=""><i class="fas fa-star mr-1 text-primary"></i>{{ .Params.title }}</li></a>
+                                                <hr class="my-1">
+                                                {{ end }}
+
                                             </ul>
                                         </div>
                                     </div>
@@ -150,9 +191,11 @@
                                     <!-- .nav-item -->
 
                                     <div class="nav-item bg-white text-primary border">
-                                        <a class="nav-link " href="/about/">
-                                        About
-                                    </a>
+                                        {{- with .GetPage "about" -}}
+                                        <a class="nav-link " href="{{ .RelPermalink }}">
+                                            About
+                                        </a>
+                                        {{- end -}}
                                     </div>
                                     <!-- .nav-item -->
 
