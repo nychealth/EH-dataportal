@@ -19,14 +19,14 @@
         "layer": [
           {
             "data": {
-              "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/UHF42.topo.json",
+              "url": "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/geography/UHF42.topo.json",
               "format": {"type": "topojson", "feature": "collection"}
             },
             "mark": {"type": "geoshape", "stroke": "#ffffff", "fill": "lightgray"}
           },
           {
             "data": {
-              "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/UHF42.topo.json",
+              "url": "{{ site.Params.data_repo }}{{ site.Params.data_branch }}/geography/UHF42.topo.json",
               "format": {"type": "topojson", "feature": "collection"}
             },
             "transform": [
@@ -34,7 +34,7 @@
                 "lookup": "properties.GEOCODE",
                 "from": {
                   "data": {
-                    "url": `${baseURL}` + '/UHF42.csv'
+                    "url": {{ relURL "UHF42.csv" }}
                     },
                   "key": "GEOCODE",
                   "fields": ["GEOCODE", "Name", "GEONAME", "VALUE"]
@@ -62,21 +62,20 @@
                 "scale": {"scheme": {"name": "blues", "extent": [0.25, 0.75]}}
               },
               "stroke": {
-                "condition": {
-                  "test": "datum['GEOCODE'] == ''",
-                  "value": "cyan"
-                  },
-                  "value": "#dadada"
+                "condition": {"test": "datum['GEOCODE'] == ''","value": "cyan"},
+                "value": "#dadada"
               },
               "strokeWidth": {
-                "condition": {
-                  "test": "datum['GEOCODE'] == ''",
-                  "value": 3
-                  },
-                  "value": 1
+                "condition": {"test": "datum['GEOCODE'] == ''","value": 2.5}, 
+                "value": 0.5
+              },
+              "order": {
+                "condition": {"test": "datum['GEOCODE'] == ''","value": 1},
+                "value": 0
               },
               "tooltip": [
-                {"field": "Name", "type": "nominal", "title": "Neighborhood"}        ]
+                {"field": "Name", "type": "nominal", "title": "Neighborhood"}
+              ]
             }
           }
         ]
@@ -89,28 +88,27 @@
       var parts
     
       // load UHF42.csv to get Geoname, etc - to power neighborhood highlight for nonclickable map.
-      d3.csv(baseURL + '/UHF42.csv').then(data => {
+      d3.csv({{ relURL "UHF42.csv" }}).then(data => {
         neighborhoods = data;
-        console.table(neighborhoods)
+        {{/*  console.table(neighborhoods)  */}}
 
-        parts = window.location.href.split('/'); // get URL Path
-        // console.log('parts',parts)
+        {{/*  const regex = /neighborhood-reports*$/g;  */}}
+        {{/*  const found = paragraph.match(/neighborhood-reports*$/g);  */}}
 
-        // get index value of neighborhood-reports
-        var indexValue
-        for (let i = 0; i < parts.length; i++) {
-          if (parts[i] == 'neighborhood-reports') {
-            indexValue = i
-          } else {}
-        }
+        let nr_part = window.location.href.match(/neighborhood-reports.*$/g)[0]
+        // console.log('nr_part', nr_part)
 
-        console.log('index value of NR:', indexValue)
+        parts = nr_part.split('/'); // get URL Path
+        // console.log('parts', parts)
 
-        // get neighborhood name and report from URL
-        var partsExtension = parts.slice(indexValue)
-        // console.log('partsExtension',partsExtension)
-        neighbName = partsExtension[1]
-        rpt = partsExtension[2]
+        // console.log('index value of NR:', indexValue)
+
+        neighbName = parts[1]
+        rpt = parts[2] ? parts[2] : ""
+
+
+        // console.log('neighbName', neighbName)
+        // console.log('rpt', rpt)
 
         neighb = neighborhoods.filter(x => x.GEONAME == neighbName) // get neighborhood data
         var geocode = neighb[0].GEOCODE // get GEOCODE
@@ -118,46 +116,44 @@
         drawChart(geocode)
 
         // print ZIPS on neighborhood page
-        var ZIPS = document.getElementById('zips')
-        if (typeof zips !== 'undefined') {
+        var zips = document.getElementById('zips')
+        if (typeof zips !== 'undefined' && zips != null) {
           zips.innerHTML = neighb[0].ZIPS
         } else {}
 
         // send name to breadcrumbs, for output page
         var link = document.getElementById('neighbLink')
-        var dest = baseURL + 'neighborhood-reports/' + neighb[0].GEONAME
+        var dest = {{ relURL "neighborhood-reports/" }} + neighb[0].GEONAME + '/'
 
-        if (typeof link !== 'undefined') {
-          link.setAttribute("href",dest) 
+        if (typeof link !== 'undefined' && link != null) {
+          link.setAttribute("href", dest) 
         } else {}
 
-        
-
-    
       })
     
       // redraws map with highlighted neighborhood 
       function drawChart(x) {
         spec.layer[1].encoding.stroke.condition.test = `datum['GEOCODE'] == '${x}'`
         spec.layer[1].encoding.strokeWidth.condition.test = `datum['GEOCODE'] == '${x}'`
+        spec.layer[1].encoding.order.condition.test = `datum['GEOCODE'] == '${x}'`
         vegaEmbed('#vis1', spec, {"actions": false}).then(result => {
           result.view.addEventListener('click', function(event, item) {
-             console.log('CLICK', event, item);
+             // console.log('CLICK', event, item);
             // console.log(item.datum)
 
             // send to new page
-            window.location = '{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(item.datum.GEONAME) + '/' + rpt
+            window.location = {{ relURL "neighborhood-reports/" }} + DOMPurify.sanitize(item.datum.GEONAME) + '/' + rpt + '/'
           });
           }).catch(console.warn);
       }
 
       vegaEmbed('#vis1', spec, {"actions": false}).then(result => {
         result.view.addEventListener('click', function(event, item) {
-           console.log('CLICK', event, item);
+           // console.log('CLICK', event, item);
           // console.log(item.datum)
 
           // send to new page
-          window.location = '{{ site.BaseURL }}neighborhood-reports/'+ DOMPurify.sanitize(item.datum.GEONAME)
+          window.location = {{ relURL "neighborhood-reports/" }} + DOMPurify.sanitize(item.datum.GEONAME) + '/'
         });
         }).catch(console.warn);
 

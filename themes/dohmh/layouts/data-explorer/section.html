@@ -30,10 +30,9 @@
                     <!-- Recently updated data -->
                     <p class="home-label"><i class="fas fa-table mr-1" aria-hidden="true"></i>Recently updated datasets:</p>
                     {{ range .Site.Data.recently_updated_data.featured}}
-                    <a href="{{ .link }}" class="btn btn-outline-primary mr-1 mb-1 btn-sm">{{ .copy }}</a> 
+                    <a href="{{ relURL .link }}" class="btn btn-outline-primary mr-1 mb-1 btn-sm">{{ .copy }}</a> 
                     {{ end }}
                 </div>
-
 
 
             </div>
@@ -41,7 +40,7 @@
             <div class="col-md-5 col-sm-12">
 
                 <div class="card-content mb-4">
-                    <img class="card-img-top cardshadow" src="/images/home-sample-image-DE-5.png">
+                    <img class="card-img-top cardshadow" src={{ relURL "images/home-sample-image-DE-5.png" }}>
                 </div>
 
             </div>
@@ -65,11 +64,8 @@
             </div>
 
             <div class="col-md-6">
-                <p><a class="" href='{{ ref . "/content/data-explorer/all-data.md" }}'>Browse an index of all our datasets</a>: search by term, see available years and geographies, and filter by data source.</p>
-            </div>
-
-            <div class="col-md-6">
-                <p><a class="" href='{{ ref . "/content/data-explorer/data-reference.md" }}'>Data reference and lookup</a>: search by term, get metadata and download links.</p>
+                <p><a class="font-weight-bold" href='{{ relURL "data-explorer/data-index/" }}'>Browse an index of our datasets</a>: Search by term, see available years and geographies, and filter by data source.</p>
+                <p><a class="font-weight-bold" href='{{ relURL "data-explorer/indicator-catalog/" }}'>Browse a catalog of our indicators</a>: Search by term, get metadata and download links.</p>
             </div>
         </div>
 
@@ -83,4 +79,4 @@
     
 </article>
 
-{{- end -}}
+{{ end }}

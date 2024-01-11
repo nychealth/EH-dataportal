@@ -39,7 +39,7 @@
                         </li>
                         <li>
                             <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
-                                <img class="d-block" src="{{ site.BaseURL }}images/nyc-bubble-logo.svg" width="45" alt="NYC Logo">
+                                <img class="d-block" src={{ relURL "images/nyc-bubble-logo.svg" }} width="45" alt="NYC Logo">
                             </a>
                         </li>
                     </ul>
@@ -55,8 +55,7 @@
 
     </div>
     <!-- #nyc-top-header -->
-    <div class="site-header bg-primary" style="background-image: url({{ site.BaseURL }}images/header_background.jpg)">
-    {{/*  <div class="site-header bg-primary" style="background-image: url(/images/header_background.jpg)">  */}}
+    <div class="site-header bg-primary" style='background-image: url({{ relURL "images/header_background.jpg" }})'>
         <div class="wrap-header">
 
             <div class="container-fluid wide">
@@ -191,20 +190,6 @@
             </div>
         </div>
 
-        {{/*  <div class="container-fluid border-top collapse d-lg-none" id="global-search">
-            <form class="narrow py-2" aria-label="Search" role="search">
-                <div class="input-group">
-                    <label class="sr-only" for="global-search-bar">Search</label>
-                    <input class="form-control form-control-lg" id="global-search-bar" placeholder="Search">  */}}
-                    {{/*  <div class="input-group-btn">  */}}
-                        {{/*  <button class="btn btn-primary btn-lg" type="button" title="Search">
-                            <span class="sr-only">Search</span>
-                            <span class="fas fa-arrow-right"></span>
-                        </button>  */}}
-                    {{/*  </div>
-                </div>
-            </form>
-        </div>  */}}
 
         </div>
 

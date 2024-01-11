@@ -445,8 +445,8 @@ Los propietarios y los arrendadores de edificios deben mantener los apartamentos
 
 #### Obtenga los datos 
 - Los datos sobre las condiciones de mantenimiento de viviendas provienen de la [Encuesta de Viviendas y Vacantes (Housing and Vancancy Survey) de 2017.](https://www.census.gov/programs-surveys/nychvs.html).
-- [La información sobre las visitas a la sala de emergencias por asma infantil ](/data-explorer/asthma/?id=2383) provienen de los Datos anonimizados de alta hospitalaria del Sistema Cooperativo de Investigación y Planificación Estatal (Statewide Planning and Research Cooperative System, SPARCS).
-- [Los datos sobre la raza/etnia de las personas por vecindario](/data-explorer/social-conditions/?id=2325) provienen de la Encuesta Comunitaria Estadounidense (American Community Survey).
+- [La información sobre las visitas a la sala de emergencias por asma infantil ]({{< baseurl >}}data-explorer/asthma/?id=2383) provienen de los Datos anonimizados de alta hospitalaria del Sistema Cooperativo de Investigación y Planificación Estatal (Statewide Planning and Research Cooperative System, SPARCS).
+- [Los datos sobre la raza/etnia de las personas por vecindario]({{< baseurl >}}data-explorer/social-conditions/?id=2325) provienen de la Encuesta Comunitaria Estadounidense (American Community Survey).
 
 
 

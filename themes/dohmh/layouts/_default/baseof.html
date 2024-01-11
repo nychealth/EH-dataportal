@@ -4,6 +4,9 @@
   {{- partial "head.html" . }}
   {{ block "js_top" . -}}{{- end -}}
 </head>
+
+{{/*  {{ warnf ( print ( printf "[%d] " math.Counter ) ( string .RelPermalink ) ) }}  */}}
+
 <body>
   
   <!--
@@ -13,21 +16,21 @@
   -->
   
   {{- partial "header.html" . -}}
+  {{- end -}}
+  
+  
+  {{- if and (eq .Section "data-stories") ( ne .RelPermalink "/data-stories/") -}}
+  {{- partial "header-ds.html" . -}}
+  {{- end -}}
   
   <main id="skip-header-target" role="main">
     {{- block "main" . -}}{{- end -}}
     <ul id="results"></ul>
   </main>
   
-  {{/*  put conditional modal JS and CSS at the bottom of every page  */}}
-  
-  {{/* 
-  {{ partial "conditional-modal.html" -}}
-  */}}
-  
-  {{- partial "footer.html" . -}}
-  {{- partial "js_bottom.html" -}}
-  {{- block "js_bot" . -}}{{- end -}}
+  {{ partial "footer.html" . }}
+  {{ partial "js_bottom.html" }}
+  {{ block "js_bot" . }}{{ end }}
   
 </body>
 </html>
