@@ -43,13 +43,11 @@ Health is determined by many factors, and people tend to be healthier when they 
 
 The combined effects of poverty are increased sickness and death.
 
-</div>
 
-<div class="medium my-4 py-2 border-top border-bottom">
+<div class="my-4 py-2 border-top border-bottom">
 <iframe title="Premature deaths rates are twice as high in poor neighborhoods as in wealthier ones " aria-label="Map" id="datawrapper-chart-56Vg1" src="https://datawrapper.dwcdn.net/56Vg1/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="786" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 
-<div class="narrow">
 
 ### Poverty forces people to do without necessities that keep them healthy, like food and medical care.
 
@@ -94,11 +92,9 @@ Our health is shaped not just by having enough food to eat but also by having th
 
 Residents living in high-poverty neighborhoods are more likely to postpone health care. By going without these services, diseases can be more difficult to prevent, catch early, and treat, leading to more serious and costly health conditions.
 
-</div>
-<div class="wide my-4 border-top border-bottom py-2">
+<div class="my-4 border-top border-bottom py-2">
 <iframe title="Households in higher-poverty neighborhoods are more likely to postpone medical care" aria-label="Dot Plot" id="datawrapper-chart-W8Je1" src="https://datawrapper.dwcdn.net/W8Je1/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="523" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
-<div class="narrow">
 
 Getting essential health care can mean the difference between staying afloat and winding up in medical debt.
 
@@ -125,21 +121,18 @@ Chronic stress related to finances can be debilitating because the factors causi
 
 In NYC, as in most places in the United States, there are more Black and Latino residents living in poverty than residents of other races. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/housing/">This is a product of racism</a> and a history of policies that deprive people of color of access to home ownership, education and jobs, and other opportunities to build wealth and economic stability.
 
-</div>
-<div class="wide my-4 border-top border-bottom py-2">
+<div class="my-4 border-top border-bottom py-2">
 <iframe title="Poverty rates in segregated NYC neighborhoods" aria-label="Scatter Plot" id="datawrapper-chart-qBcx4" src="https://datawrapper.dwcdn.net/qBcx4/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="703" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
-<div class="narrow">
 
 This <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/racial-wealth-gap/">racial wealth gap</a> persists across the United States, and results in health inequities. White New Yorkers are much less likely than New Yorkers of color to report their health as fair or poor.
 
-</div>
-<div class="wide my-4 border-top border-bottom py-2">
+
+<div class="my-4 border-top border-bottom py-2">
 
 <iframe title="Self-reported health status" aria-label="Split Bars" id="datawrapper-chart-26GS0" src="https://datawrapper.dwcdn.net/26GS0/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="291" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
 </div>
-<div class="narrow">
 
 ### New Yorkers who participated in community conversations describe ways to decrease poverty and improve health
 

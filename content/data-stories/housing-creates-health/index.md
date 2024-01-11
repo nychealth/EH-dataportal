@@ -43,15 +43,11 @@ People living in higher-poverty neighborhoods are more likely to experience nega
 
 Across New York, half of all households are rent-burdened, meaning that more than 30% of their household income goes to rent. Spending so much on rent can leave too little money for food and other essentials. <a href="src"> Learn more about the health implications of experiencing rent burden in How economic stability creates health. </a>
 
-</div>
-
-<div class="medium my-4 py-2 border-top border-bottom">
+<div class="my-4 py-2 border-top border-bottom">
 
 <iframe class="" title="Percent of households that are rent-burdened by neighborhood (NTA)" aria-label="Map" id="datawrapper-chart-L4j3j" src="https://datawrapper.dwcdn.net/L4j3j/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="756" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 
 </div>
-
-<div class="narrow">
 
 A person who has a high rent burden is often confronting other housing challenges as well, like overcrowding (defined as more than one person per room). Overcrowding occurs much more often in high-poverty areas, and can have many negative effects, including facilitating spread of disease and making it difficult for children to find a quiet place to study.
 
@@ -68,6 +64,7 @@ A high rent burden is often accompanied by other housing issues like overcrowdin
 </figure>
 </div>
 
+<div class="my-4 py-2 border-top border-bottom">
 <h4 class="mt-4 mb-2">Overcrowding tends to occur in areas with high poverty</h4>
 <div class="my-1 border-bottom">
 <button class="borobtn btn btn-sm btn-outline-secondary active" onclick="changeBoro(1)" id="btn1">Bronx</button>
@@ -77,7 +74,6 @@ A high rent burden is often accompanied by other housing issues like overcrowdin
 <button class="borobtn btn btn-sm btn-outline-secondary " onclick="changeBoro(5)" id="btn5">Staten Island</button>
 </div>
 
-<div class="mb-4">
 <div class="borocontainer" id="container1">
     <div style="min-height:302px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/hNcnT/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/hNcnT/full.png" alt="" /></noscript></div>
 </div>
@@ -143,6 +139,8 @@ Homes that are not properly maintained can undermine health, including because t
 
 <a href="https://www.nyc.gov/assets/doh/downloads/pdf/survey/asthma-housing-2021.pdf">Home maintenance issues are more common in high-poverty neighborhoods </a> and in public housing than in wealthier neighborhoods or privately-owned apartments.
 
+<div class="my-4 py-2 border-top border-bottom">
+
 <div class="my-1 border-bottom">
 <button class="borobtn2 btn btn-sm btn-outline-secondary active" onclick="changeBoro2(1)" id="2btn1">Bronx</button>
 <button class="borobtn2 btn btn-sm btn-outline-secondary " onclick="changeBoro2(2)" id="2btn2">Brooklyn</button>
@@ -151,7 +149,6 @@ Homes that are not properly maintained can undermine health, including because t
 <button class="borobtn2 btn btn-sm btn-outline-secondary " onclick="changeBoro2(5)" id="2btn5">Staten Island</button>
 </div>
 
-<div class="mb-4">
 <div class="borocontainer2" id="2container1">
     <div style="min-height:302px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/UtnMr/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/UtnMr/full.png" alt="" /></noscript></div>
 </div>
