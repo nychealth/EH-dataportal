@@ -1,0 +1,3 @@
+{{- /*  this prints a warning in the hugo output with a counter prepended, which is the officially endorsed hack to stop hugo from suppressing duplicate warnings (because a unique number means no warning is duplicated). The context you pass to the partial is what you want to print.  */ -}}
+
+{{- warnf ( print ( printf "[%d] " math.Counter ) ( string . ) ) -}}
