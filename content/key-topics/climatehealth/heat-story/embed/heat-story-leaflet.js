@@ -170,7 +170,7 @@ function drawAccordion() {
       const story = stories[i];
       // we can put an image in the story definition
       const storyCard = `
-        <div class="col-4 story-card" id="story-card-${i}">
+        <div class="col-4 hide story-card" id="story-card-${i}">
           <div class="card content-card" style="width: 28rem;">
           <div class="card-content">
             <div class="story-card-button-container">
