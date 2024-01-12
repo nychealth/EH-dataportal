@@ -41,7 +41,7 @@ People living in higher-poverty neighborhoods are more likely to experience nega
 </figure>
 </div>
 
-Across New York, half of all households are rent-burdened, meaning that more than 30% of their household income goes to rent. Spending so much on rent can leave too little money for food and other essentials. <!--add link to other story when published Learn more about the health implications of experiencing rent burden in How economic stability creates health. -->
+Across New York, half of all households are rent-burdened, meaning that more than 30% of their household income goes to rent. Spending so much on rent can leave too little money for food and other essentials. <!-- Learn more about the health implications of experiencing rent burden in How economic stability creates health. -->
 
 <div class="my-4 py-2 border-top border-bottom">
 
