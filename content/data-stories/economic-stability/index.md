@@ -18,9 +18,11 @@ image: CrownHeights_JulienneSchaer-065.JPG
 photocredit: JulienneSchaer
 ---
 
-Health is determined by many factors, and people tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories that illuminate their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how housing, economic stability, and public space create health.
+Health is determined by many factors, and people tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories that illuminate their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong> housing, economic stability, and public space create health. </strong>
 
-<i>To hear more from New Yorkers about how they view economic stability and health, <a href="https://make.headliner.app/download/48f94852-0370-4737-b5bf-5a8dafae62da">listen to recordings from the community conversations.</a></i>
+<!-- commenting out link to conversations at top
+
+<i>To hear more from New Yorkers about how they view economic stability and health, <a href="https://make.headliner.app/download/48f94852-0370-4737-b5bf-5a8dafae62da">listen to recordings from the community conversations.</a></i> , leaving at bottom -->
 
 <div class="pullquote my-4">
 <figure class="my-2">
@@ -37,17 +39,15 @@ Health is determined by many factors, and people tend to be healthier when they 
 
 - Financial pressures: stress and anxiety from being unable to pay for all costs of living and having to choose whether to pay for rent, food, medical care or other necessities.
 
-- Unhealthy and unstable housing conditions: increased exposure to weather-related illnesses from not being able to afford air conditioning or heat. Lack of building maintenance can lead to housing conditions that result in pests, mold and dust that can worsen asthma and other medical conditions. Read more about how housing creates health.
+- Unhealthy and unstable housing conditions: increased exposure to weather-related illnesses from not being able to afford air conditioning or heat. Lack of building maintenance can lead to housing conditions that result in pests, mold and dust that can worsen asthma and other medical conditions. <!-- Read more about how housing creates health. -->
 
 - Food insecurity: lack of access to fresh food or enough food.
 
 The combined effects of poverty are increased sickness and death.
 
-
 <div class="my-4 py-2 border-top border-bottom">
 <iframe title="Premature deaths rates are twice as high in poor neighborhoods as in wealthier ones " aria-label="Map" id="datawrapper-chart-56Vg1" src="https://datawrapper.dwcdn.net/56Vg1/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="786" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
-
 
 ### Poverty forces people to do without necessities that keep them healthy, like food and medical care.
 
@@ -62,7 +62,7 @@ The combined effects of poverty are increased sickness and death.
 </figure>
 </div>
 
-Nearly one-third of renting households in the City experience severe rent burden—spending at least half their income on rent.
+Nearly one-third of renting households in the City experience severe rent burden — spending at least half their income on rent.
 
 We see severe rent burden among New Yorkers of all income levels—but low-income people feel these effects more. Severe rent burden impacts nearly half (44%) of households that earn between $25,000 and $50,000, and 85% of households that earn less than $25,000. People who are rent burdened must make difficult choices between housing and necessities that support health. For example, they may choose not to use an air conditioner because of the electricity bill <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/heat/">despite this increasing their risk for heat-related illness and death.</a>
 
@@ -80,7 +80,7 @@ We see severe rent burden among New Yorkers of all income levels—but low-incom
 
 Low-income New Yorkers also have to make tradeoffs when it comes to food. Food insecurity (not always having enough food) became even worse during the COVID-19 pandemic.
 
-Our health is shaped not just by having enough food to eat but also by having the <i> right</i> foods to eat. NYC is known for its bodegas (mini-markets) but they don’t always offer healthy staples. For foods that make up a healthy diet, New Yorkers need grocery stores. But most high-poverty neighborhoods in NYC have more bodegas than grocery stores – making healthier food harder to access than unhealthy food.
+Our health is shaped not just by having <i> enough </i> food to eat but also by having the <i> right</i> foods to eat. NYC is known for its bodegas (mini-markets) but they don’t always offer healthy staples. For foods that make up a healthy diet, New Yorkers need grocery stores. But most high-poverty neighborhoods in NYC have more bodegas than grocery stores – making healthier food harder to access than unhealthy food.
 
 <div class="my-4 py-2 border-top border-bottom">
 <iframe title="Neighborhoods with higher poverty have less access to healthy foods - a higher ratio of bodegas to supermarkets" aria-label="Scatter Plot" id="datawrapper-chart-we5Yo" src="https://datawrapper.dwcdn.net/we5Yo/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="600" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
@@ -117,7 +117,7 @@ Six percent of all New Yorkers—about 1 in 20 people—have medical debt in col
 
 Chronic stress related to finances can be debilitating because the factors causing it are difficult to resolve, and many worsen over time. Long-term stress increases the risk of mental health issues and other health problems.
 
-### Racism shapes who experiences poverty—and its health effects—in NYC.
+### Racism shapes who experiences poverty — and its health effects — in NYC.
 
 In NYC, as in most places in the United States, there are more Black and Latino residents living in poverty than residents of other races. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/housing/">This is a product of racism</a> and a history of policies that deprive people of color of access to home ownership, education and jobs, and other opportunities to build wealth and economic stability.
 
@@ -125,8 +125,7 @@ In NYC, as in most places in the United States, there are more Black and Latino 
 <iframe title="Poverty rates in segregated NYC neighborhoods" aria-label="Scatter Plot" id="datawrapper-chart-qBcx4" src="https://datawrapper.dwcdn.net/qBcx4/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="703" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 
-This <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/racial-wealth-gap/">racial wealth gap</a> persists across the United States, and results in health inequities. White New Yorkers are much less likely than New Yorkers of color to report their health as fair or poor.
-
+<a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/racial-wealth-gap/">This racial wealth gap persists across the United States</a> ,and results in health inequities. White New Yorkers are much less likely than New Yorkers of color to report their health as fair or poor.
 
 <div class="my-4 border-top border-bottom py-2">
 
