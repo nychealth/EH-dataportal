@@ -41,7 +41,9 @@ People living in higher-poverty neighborhoods are more likely to experience nega
 </figure>
 </div>
 
-Across New York, half of all households are rent-burdened, meaning that more than 30% of their household income goes to rent. Spending so much on rent can leave too little money for food and other essentials. <a href="src"> Learn more about the health implications of experiencing rent burden in How economic stability creates health. </a>
+Across New York, half of all households are rent-burdened, meaning that more than 30% of their household income goes to rent. Spending so much on rent can leave too little money for food and other essentials. Learn more about the health implications of experiencing rent burden in How economic stability creates health.
+
+<!-- add link to other story when published -->
 
 <div class="my-4 py-2 border-top border-bottom">
 
@@ -51,13 +53,12 @@ Across New York, half of all households are rent-burdened, meaning that more tha
 
 A person who has a high rent burden is often confronting other housing challenges as well, like overcrowding (defined as more than one person per room). Overcrowding occurs much more often in high-poverty areas, and can have many negative effects, including facilitating spread of disease and making it difficult for children to find a quiet place to study.
 
-A high rent burden is often accompanied by other housing issues like overcrowding (defined as more than one person per room). Overcrowding occurs much more often in high-poverty areas, and can compound the spread of disease.
-
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2"> “A lot of the young people I work with openly share that maybe they’re sharing a bed with several siblings.” <br><span class="float-right">—NYC community conversation participant</span> </figcaption>
-    <audio controls src="clip-sharing-space.mp3" style="width:100%;" class="mt-2">
-            <a href="clip-sharing-space.mp3">
+    <figcaption figcaption class="mb-2"> "… like many people I choose between paying my internet or food…” <br><span class="float-right">—NYC community conversation participant</span>
+ </figcaption>
+    <audio controls src="clip-internet-or-food.mp3" style="width:100%;" class="mt-2">
+            <a href="clip-internet-or-food.mp3">
                 Download audio
             </a>
     </audio>
@@ -75,22 +76,22 @@ A high rent burden is often accompanied by other housing issues like overcrowdin
 </div>
 
 <div class="borocontainer" id="container1">
-    <div style="min-height:302px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/hNcnT/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/hNcnT/full.png" alt="" /></noscript></div>
+    <div style="min-height:302px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/hNcnT/embed.js?v=3" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/hNcnT/full.png" alt="" /></noscript></div>
 </div>
 <div class="hide borocontainer" id="container2">
-    <div style="min-height:494px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/EB4Rc/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/EB4Rc/full.png" alt="" /></noscript>
+    <div style="min-height:494px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/EB4Rc/embed.js?v=3" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/EB4Rc/full.png" alt="" /></noscript>
     </div>
 </div>
 <div class="hide borocontainer" id="container3">
-    <div style="min-height:302px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/GtWMG/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/GtWMG/full.png" alt="" /></noscript>
+    <div style="min-height:302px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/GtWMG/embed.js?v=3" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/GtWMG/full.png" alt="" /></noscript>
     </div>
 </div>
 <div class="hide borocontainer" id="container4">
-    <div style="min-height:398px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/LTFad/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/LTFad/full.png" alt="" /></noscript>
+    <div style="min-height:398px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/LTFad/embed.js?v=3" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/LTFad/full.png" alt="" /></noscript>
     </div>
 </div>
 <div class="hide borocontainer" id="container5">
-    <div style="min-height:120px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/oiSDa/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/oiSDa/full.png" alt="" /></noscript></div>
+    <div style="min-height:120px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/oiSDa/embed.js?v=3" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/oiSDa/full.png" alt="" /></noscript></div>
 </div>
 </div>
 
@@ -114,6 +115,17 @@ function changeBoro(x) {
 }
 </script>
 
+<div class="pullquote my-4">
+<figure class="">
+    <figcaption figcaption class="mb-2"> “A lot of the young people I work with openly share that maybe they’re sharing a bed with several siblings.” <br><span class="float-right">—NYC community conversation participant</span> </figcaption>
+    <audio controls src="clip-sharing-space.mp3" style="width:100%;" class="mt-2">
+            <a href="clip-sharing-space.mp3">
+                Download audio
+            </a>
+    </audio>
+</figure>
+</div>
+
 ### Housing quality: Over half of renter-occupied homes in NYC have health-related maintenance problems.
 
 When housing is unaffordable, options become limited, and people often end up in lower-quality housing with maintenance deficiencies that can cause or worsen health conditions.
@@ -131,7 +143,7 @@ When housing is unaffordable, options become limited, and people often end up in
 
 Homes that are not properly maintained can undermine health, including because they may have:
 
-- Lead paint hazards, which can cause behavioral and brain problems in children. Lead exposure can also cause increased blood pressure, kidney and brain problems, infertility and impotence in adults.
+- <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/lead/?id=2189#display=summary"> Lead paint hazards, which can cause behavioral and brain problems in children. </a> Lead exposure can also cause increased blood pressure, kidney and brain problems, infertility and impotence in adults.
 
 - Pests, like cockroaches and mice, which can make food unclean and contribute to the worsening of asthma and its symptoms.
 
@@ -140,6 +152,7 @@ Homes that are not properly maintained can undermine health, including because t
 <a href="https://www.nyc.gov/assets/doh/downloads/pdf/survey/asthma-housing-2021.pdf">Home maintenance issues are more common in high-poverty neighborhoods </a> and in public housing than in wealthier neighborhoods or privately-owned apartments.
 
 <div class="my-4 py-2 border-top border-bottom">
+<h4 class="mt-4 mb-2">Maintenance issues are more common in high poverty-neighborhoods </h4>
 
 <div class="my-1 border-bottom">
 <button class="borobtn2 btn btn-sm btn-outline-secondary active" onclick="changeBoro2(1)" id="2btn1">Bronx</button>
@@ -150,19 +163,19 @@ Homes that are not properly maintained can undermine health, including because t
 </div>
 
 <div class="borocontainer2" id="2container1">
-    <div style="min-height:302px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/UtnMr/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/UtnMr/full.png" alt="" /></noscript></div>
+    <div style="min-height:302px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/UtnMr/embed.js?v=3" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/UtnMr/full.png" alt="" /></noscript></div>
 </div>
 <div class="hide borocontainer2" id="2container2">
-    <div style="min-height:494px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/zU4KL/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/zU4KL/full.png" alt="" /></noscript></div>
+    <div style="min-height:494px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/zU4KL/embed.js?v=3" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/zU4KL/full.png" alt="" /></noscript></div>
 </div>
 <div class="hide borocontainer2" id="2container3">
-    <div style="min-height:302px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/eaT6b/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/eaT6b/full.png" alt="" /></noscript></div>
+    <div style="min-height:302px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/eaT6b/embed.js?v=3" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/eaT6b/full.png" alt="" /></noscript></div>
 </div>
 <div class="hide borocontainer2" id="2container4">
-    <div style="min-height:398px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/CKbAJ/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/CKbAJ/full.png" alt="" /></noscript></div>
+    <div style="min-height:398px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/CKbAJ/embed.js?v=3" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/CKbAJ/full.png" alt="" /></noscript></div>
 </div>
 <div class="hide borocontainer2" id="2container5">
-    <div style="min-height:120px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/ZPS6h/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/ZPS6h/full.png" alt="" /></noscript></div>
+    <div style="min-height:120px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/ZPS6h/embed.js?v=3" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/ZPS6h/full.png" alt="" /></noscript></div>
 </div>
 </div>
 
@@ -186,13 +199,13 @@ function changeBoro2(x) {
 }
 </script>
 
-The consequences of these disparities can be dangerous. For example, people whose homes lack adequate heating might use space heaters, which are a fire risk. In January 2022, a malfunctioning space heater sparked a fire that killed 17 people in a high-rise building in the Bronx.
+The consequences of these deficiencies can be dangerous. For example, people whose homes lack adequate heating might use space heaters, which are a fire risk. In January 2022, a malfunctioning space heater sparked a fire that killed 17 people in a high-rise building in the Bronx.
 
 Affordability and barriers to cooling can also result in consequences to health. Lack of air conditioning can result in heat stress during warmer weather and periods of extreme heat, making existing health conditions worse and, in extreme cases, resulting in hospitalization and even death.
 
-### Housing instability: When people’s living situations become unstable their mental and physical health is at stake.
+### Housing instability: when people’s living situations become unstable their mental and physical health is at stake.
 
-A lack of affordable and healthy housing often leads to housing instability. Most evictions occur because the tenant can’t pay rent, and can result in frequent moves and homelessness, both of which threaten health in the short term and over time. New Yorkers living in high-poverty neighborhoods experience eviction at more than four times the rate of those living in low-poverty neighborhoods.
+A lack of affordable housing often leads to housing instability. Most evictions occur because the tenant can’t pay rent, and can result in frequent moves and homelessness, both of which threaten health in the short term and over time. New Yorkers living in high-poverty neighborhoods experience eviction at more than four times the rate of those living in low-poverty neighborhoods.
 
 <div class="my-4 py-2 border-top border-bottom">
 <iframe title="Evictions are more common in higher poverty neighborhoods" class="" aria-label="Scatter Plot" id="datawrapper-chart-DEEg2" src="https://datawrapper.dwcdn.net/DEEg2/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="550" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
@@ -213,7 +226,7 @@ A lack of affordable and healthy housing often leads to housing instability. Mos
 
 <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9502670/"> A person facing even the possibility of eviction is more likely to report poor health, </a> including high blood pressure, depression, anxiety, and psychological distress.
 
-When COVID-19 hit, New York paused evictions, recognizing the twin threats of serious financial hardship and health risks created and made worse through experiencing homelessness. This was an effort to keep people housed—but also to keep people out of shelters, where the spread of COVID was hard to contain.
+When COVID-19 hit, New York City paused evictions, recognizing the twin threats of serious financial hardship and health risks created and made worse through experiencing homelessness. This was an effort to keep people housed — but also to keep people out of shelters, where the spread of COVID was hard to contain.
 
 <div class="my-4 py-2 border-top border-bottom">
 <iframe title="Evictions plummeted in 2020" class="" aria-label="Interactive line chart" id="datawrapper-chart-xy1ku" src="https://datawrapper.dwcdn.net/xy1ku/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="423" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
@@ -221,23 +234,11 @@ When COVID-19 hit, New York paused evictions, recognizing the twin threats of se
 
 When the eviction pause ended in 2021, homelessness in NYC began to rise at a staggering rate, with Black and Latino residents affected more than other racial groups. <a href="https://www.coalitionforthehomeless.org/basic-facts-about-homelessness-new-york-city/%22%20/l%20%22:~:text=In%20October%202023%2C%20there%20were,each%20night%20in%20October%202023"> This happened amid a backdrop of steadily increasing rates of homelessness over the past two decades, with roots that extend beyond the pandemic.</a>
 
-<div class="pullquote my-4">
-<figure class="">
-    <figcaption figcaption class="mb-2"> "… like many people I choose between paying my internet or food…” <br><span class="float-right">—NYC community conversation participant</span>
- </figcaption>
-    <audio controls src="clip-internet-or-food.mp3" style="width:100%;" class="mt-2">
-            <a href="clip-internet-or-food.mp3">
-                Download audio
-            </a>
-    </audio>
-</figure>
-</div>
-
 Implementing programs that incorporate similar strategies coupled with expanding housing options could help reduce homelessness now and in the future.
 
 The NYC Health Department has a supportive housing program offering 11,200 permanent, affordable housing units for people with substance use or mental health diagnoses who are at risk of homelessness. Supportive housing is also available for people who have been homeless for extended periods of time and includes those coming from street outreach and shelters, foster care, the legal system, and more. In addition to a roof, supportive housing offers tenants assistance in getting jobs, reuniting with families, and getting treatment and support. The City also offers public housing, which houses more than 400,000 low-income New Yorkers—1 in every 11 renters—in over 174,000 public housing units.
 
-### To protect the health and well-being of all New Yorkers, we need to ensure that every resident has access to high-quality, affordable housing.
+### High-quality, affordable and stable housing is essential to public health.
 
 Effective policy must take into consideration how individual needs are shaped by their experience and can also change at every stage of life. Accessibility and support for older adults should be part of housing discussions too. <a href="https://wherewelive.cityofnewyork.us/">The NYC Department of Housing Preservation and Development undertook the Where We Live (WWL) project to hear from residents, government, and community leaders </a> about their experiences with housing access, accessibility, and discrimination. WWL initiatives draw on this feedback to <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/housing/"> prioritize the equitable expansion of housing opportunities in neighborhoods harmed by structural racism.</a>
 
