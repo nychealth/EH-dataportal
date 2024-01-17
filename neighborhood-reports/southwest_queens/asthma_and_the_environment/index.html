@@ -30,7 +30,7 @@
 <title>Asthma and the Environment in Southwest Queens &#x7c; Environment &amp; Health Data Portal</title>
 
 
-<meta name="build_datetime" content='2024-01-09 18:08:17'>
+<meta name="build_datetime" content='2024-01-17 20:21:48'>
 <meta name="build_environment" content='prod_prod'>
 <meta name="description" content="Explore data on how environments shape health in New York City&#39;s neighborhoods.">
 <link rel="canonical" href="/IndicatorPublic/neighborhood-reports/southwest_queens/asthma_and_the_environment/" />
@@ -4862,7 +4862,192 @@
 
 
 
-<button data-toggle="modal" data-target="#modal-Adul672-1" onclick='getURL( 2132 , "Adul672")' class="indicator-anchor">
+<button data-toggle="modal" data-target="#modal-poveACSP-1" onclick='getURL( 103 , "poveACSP")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Poverty</span>
+            <div class="print-only">Neighborhood poverty, 2017-21</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/poveACSP_407.svg" alt="Visualization showing neighborhood rank of 33 out of 42 for Poverty in Southwest Queens." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/poveACSP_407.svg" alt="Visualization showing neighborhood rank of 33 out of 42 for Poverty in Southwest Queens." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Poverty</span>
+            <div style="font-size: 12px;">Neighborhood poverty, 2017-21</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/poveACSP_407.svg" alt="Visualization showing neighborhood rank of 33 out of 42 for Poverty in Southwest Queens." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Southwest Queens: <span class="float-right">10.4</span><br>
+                        Queens: <span class="float-right">11.4</span><br>
+                        New York City: <span class="float-right">17</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Percent </em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-poveACSP-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Poverty</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Neighborhood poverty, 2017-21</h2>
+                <p>In <strong>Southwest Queens</strong>, neighborhood poverty is <span class="better">Better</span> compared to the NYC average.</p>The percent of households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to items such as health care and good quality housing that are needed to maintain good health.</div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Southwest Queens <span class="indicator-value">10.4</span></div>
+                    <div class="col-sm-4">Queens <span class="indicator-value">11.4</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">17</span></div>
+                </div>
+                <p><em>Percent </em></p><div class="data-note"></div></div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood poverty, 2017-21</h3>
+                <p>  <em>Percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-poveACSP-1"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+
+                <h3>Trends Over Time</h3>
+                <p><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-poveACSP-1"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+
+                <h3>By Neighborhood</h3>
+                <p><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-poveACSP-1"></div>
+
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="poveACSP" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-poveACSP-1" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Poverty'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "poveACSP")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-poveACSP-1",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-poveACSP-1",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "poveACSP")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-poveACSP-1",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Adul672-2" onclick='getURL( 2132 , "Adul672")' class="indicator-anchor">
     <div class="row align-items-center d-print-none">
         <div class="col-6 col-md-5">
             <span class="indicator-short-name">Health insurance (adults)</span>
@@ -4901,7 +5086,7 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Adul672-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Adul672-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -4926,7 +5111,7 @@
             <div class="modal-body">
                 <h3>Health insurance (adults), 2020</h3>
                 <p>  <em>Percent </em></p>
-                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Adul672-1"></div>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Adul672-2"></div>
 
             </div>
             <hr>
@@ -4934,7 +5119,7 @@
 
                 <h3>Trends Over Time</h3>
                 <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Adul672-1"></div>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Adul672-2"></div>
 
             </div>
             <hr>
@@ -4942,7 +5127,7 @@
 
                 <h3>By Neighborhood</h3>
                 <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Adul672-1"></div>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Adul672-2"></div>
 
             </div>
 
@@ -4959,7 +5144,7 @@
 
 <script type="text/javascript">
 
-    $( "#modal-Adul672-1" ).on('shown.bs.modal', function() {
+    $( "#modal-Adul672-2" ).on('shown.bs.modal', function() {
 
         
 
@@ -4989,7 +5174,7 @@
 
 
             vegaEmbed(
-                "#summary-Adul672-1",
+                "#summary-Adul672-2",
                 summarySpec,
                 opt
             ).then((res) => {
@@ -5007,7 +5192,7 @@
 
 
             vegaEmbed(
-                "#map-Adul672-1",
+                "#map-Adul672-2",
                 mapSpec,
                 opt
             ).then((res) => {
@@ -5030,7 +5215,7 @@
 
 
             vegaEmbed(
-                "#trend-Adul672-1",
+                "#trend-Adul672-2",
                 trendSpec,
                 opt
             ).then((res) => {

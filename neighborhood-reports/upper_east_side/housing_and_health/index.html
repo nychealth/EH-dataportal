@@ -30,7 +30,7 @@
 <title>Housing and Health in Upper East Side &#x7c; Environment &amp; Health Data Portal</title>
 
 
-<meta name="build_datetime" content='2024-01-09 18:08:17'>
+<meta name="build_datetime" content='2024-01-17 20:21:48'>
 <meta name="build_environment" content='prod_prod'>
 <meta name="description" content="Explore data on how environments shape health in New York City&#39;s neighborhoods.">
 <link rel="canonical" href="/IndicatorPublic/neighborhood-reports/upper_east_side/housing_and_health/" />
@@ -714,7 +714,377 @@
 
 
 
-<button data-toggle="modal" data-target="#modal-Heat540-2" onclick='getURL( 2076 , "Heat540")' class="indicator-anchor">
+<button data-toggle="modal" data-target="#modal-Asth1201-2" onclick='getURL( 2381 , "Asth1201")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Asthma hospitalizations (age 5 to 17)</span>
+            <div class="print-only">Asthma hospitalizations (age 5 to 17), 2020</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Asth1201_305.svg" alt="Visualization showing neighborhood rank of 41 out of 42 for Asthma hospitalizations (age 5 to 17) in Upper East Side." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Asth1201_305.svg" alt="Visualization showing neighborhood rank of 41 out of 42 for Asthma hospitalizations (age 5 to 17) in Upper East Side." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Asthma hospitalizations (age 5 to 17)</span>
+            <div style="font-size: 12px;">Asthma hospitalizations (age 5 to 17), 2020</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Asth1201_305.svg" alt="Visualization showing neighborhood rank of 41 out of 42 for Asthma hospitalizations (age 5 to 17) in Upper East Side." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Upper East Side: <span class="float-right">0.9*</span><br>
+                        Manhattan: <span class="float-right">9</span><br>
+                        New York City: <span class="float-right">8.3</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Estimated annual rate per 10,000</em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Asth1201-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Asthma hospitalizations (age 5 to 17)</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Asthma hospitalizations (age 5 to 17), 2020</h2>
+                <p>In <strong>Upper East Side</strong>, asthma hospitalizations (age 5 to 17) is <span class="better">Better</span> compared to the NYC average.</p>Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.</div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">0.9*</span></div>
+                    <div class="col-sm-4">Manhattan <span class="indicator-value">9</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">8.3</span></div>
+                </div>
+                <p><em>Estimated annual rate per 10,000</em></p><div class="data-note">* Estimate is based on small numbers so should be interpreted with caution.</div></div>
+            <hr>
+            <div class="modal-body">
+                <h3>Asthma hospitalizations (age 5 to 17), 2020</h3>
+                <p>  <em>Estimated annual rate per 10,000</em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Asth1201-2"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+
+                <h3>Trends Over Time</h3>
+                <p><em>Estimated annual rate per 10,000</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Asth1201-2"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+
+                <h3>By Neighborhood</h3>
+                <p><em>Estimated annual rate per 10,000</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Asth1201-2"></div>
+
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Asth1201" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Asth1201-2" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Asthma hospitalizations (age 5 to 17)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Asth1201")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Asth1201-2",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Asth1201-2",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Asth1201")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Asth1201-2",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Asth1204-3" onclick='getURL( 2382 , "Asth1204")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Asthma hospitalizations (adults)</span>
+            <div class="print-only">Asthma hospitalizations (adults), 2020</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Asth1204_305.svg" alt="Visualization showing neighborhood rank of 38 out of 42 for Asthma hospitalizations (adults) in Upper East Side." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Asth1204_305.svg" alt="Visualization showing neighborhood rank of 38 out of 42 for Asthma hospitalizations (adults) in Upper East Side." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Asthma hospitalizations (adults)</span>
+            <div style="font-size: 12px;">Asthma hospitalizations (adults), 2020</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Asth1204_305.svg" alt="Visualization showing neighborhood rank of 38 out of 42 for Asthma hospitalizations (adults) in Upper East Side." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Upper East Side: <span class="float-right">1.6</span><br>
+                        Manhattan: <span class="float-right">4</span><br>
+                        New York City: <span class="float-right">5.5</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Age-adjusted rate per 10,000</em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Asth1204-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Asthma hospitalizations (adults)</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Asthma hospitalizations (adults), 2020</h2>
+                <p>In <strong>Upper East Side</strong>, asthma hospitalizations (adults) is <span class="better">Better</span> compared to the NYC average.</p>Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.</div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">1.6</span></div>
+                    <div class="col-sm-4">Manhattan <span class="indicator-value">4</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">5.5</span></div>
+                </div>
+                <p><em>Age-adjusted rate per 10,000</em></p><div class="data-note"> The start of COVID-19 in Spring 2020 reduced the overall volume of ED visits, including those for asthma, which may have contributed to decreases in asthma ED visit and hospitalization counts and rates in 2020.</div></div>
+            <hr>
+            <div class="modal-body">
+                <h3>Asthma hospitalizations (adults), 2020</h3>
+                <p>  <em>Age-adjusted rate per 10,000</em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Asth1204-3"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+
+                <h3>Trends Over Time</h3>
+                <p><em>Age-adjusted rate per 10,000</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Asth1204-3"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+
+                <h3>By Neighborhood</h3>
+                <p><em>Age-adjusted rate per 10,000</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Asth1204-3"></div>
+
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Asth1204" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Asth1204-3" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Asthma hospitalizations (adults)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Asth1204")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Asth1204-3",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Asth1204-3",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Asth1204")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Asth1204-3",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Heat540-4" onclick='getURL( 2076 , "Heat540")' class="indicator-anchor">
     <div class="row align-items-center d-print-none">
         <div class="col-6 col-md-5">
             <span class="indicator-short-name">Heat hospitalizations</span>
@@ -753,7 +1123,7 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Heat540-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Heat540-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -779,7 +1149,7 @@
             <div class="modal-body">
                 <h3>Heat stress: hospitalizations, 2015</h3>
                 <p>  <em>Age-adjusted rate per 100,000</em></p>
-                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Heat540-2"></div>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Heat540-4"></div>
 
             </div>
             <hr>
@@ -787,7 +1157,7 @@
 
                 <h3>Trends Over Time</h3>
                 <p><em>Age-adjusted rate per 100,000</em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Heat540-2"></div>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Heat540-4"></div>
 
             </div>
             <hr>
@@ -795,7 +1165,7 @@
 
                 <h3>By Neighborhood</h3>
                 <p><em>Age-adjusted rate per 100,000</em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Heat540-2"></div>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Heat540-4"></div>
 
             </div>
 
@@ -812,7 +1182,7 @@
 
 <script type="text/javascript">
 
-    $( "#modal-Heat540-2" ).on('shown.bs.modal', function() {
+    $( "#modal-Heat540-4" ).on('shown.bs.modal', function() {
 
         
 
@@ -842,7 +1212,7 @@
 
 
             vegaEmbed(
-                "#summary-Heat540-2",
+                "#summary-Heat540-4",
                 summarySpec,
                 opt
             ).then((res) => {
@@ -860,7 +1230,7 @@
 
 
             vegaEmbed(
-                "#map-Heat540-2",
+                "#map-Heat540-4",
                 mapSpec,
                 opt
             ).then((res) => {
@@ -883,7 +1253,7 @@
 
 
             vegaEmbed(
-                "#trend-Heat540-2",
+                "#trend-Heat540-4",
                 trendSpec,
                 opt
             ).then((res) => {
@@ -964,7 +1334,192 @@
 
 
 
-<button data-toggle="modal" data-target="#modal-Pre-78-1" onclick='getURL( 41 , "Pre-78")' class="indicator-anchor">
+<button data-toggle="modal" data-target="#modal-Home76-1" onclick='getURL( 40 , "Home76")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Cracks</span>
+            <div class="print-only">Homes with cracks or holes, 2017</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Home76_305.svg" alt="Visualization showing neighborhood rank of 31 out of 42 for Cracks in Upper East Side." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Home76_305.svg" alt="Visualization showing neighborhood rank of 31 out of 42 for Cracks in Upper East Side." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Cracks</span>
+            <div style="font-size: 12px;">Homes with cracks or holes, 2017</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Home76_305.svg" alt="Visualization showing neighborhood rank of 31 out of 42 for Cracks in Upper East Side." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Upper East Side: <span class="float-right">6.1</span><br>
+                        Manhattan: <span class="float-right">12.3</span><br>
+                        New York City: <span class="float-right">12.3</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Percent </em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Home76-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Cracks</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Homes with cracks or holes, 2017</h2>
+                <p>In <strong>Upper East Side</strong>, homes with cracks or holes is <span class="better">Better</span> compared to the NYC average.</p>Cracks or holes are a maintenance deficiency linked to the presence of mice, rats, and cockroaches - which can harm residents' health.</div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">6.1</span></div>
+                    <div class="col-sm-4">Manhattan <span class="indicator-value">12.3</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">12.3</span></div>
+                </div>
+                <p><em>Percent </em></p><div class="data-note"></div></div>
+            <hr>
+            <div class="modal-body">
+                <h3>Homes with cracks or holes, 2017</h3>
+                <p>  <em>Percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home76-1"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+
+                <h3>Trends Over Time</h3>
+                <p><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home76-1"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+
+                <h3>By Neighborhood</h3>
+                <p><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home76-1"></div>
+
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Home76" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Home76-1" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Cracks'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Home76")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Home76-1",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Home76-1",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Home76")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Home76-1",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Pre-78-2" onclick='getURL( 41 , "Pre-78")' class="indicator-anchor">
     <div class="row align-items-center d-print-none">
         <div class="col-6 col-md-5">
             <span class="indicator-short-name">Peeling paint</span>
@@ -1003,7 +1558,7 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Pre-78-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Pre-78-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -1028,7 +1583,7 @@
             <div class="modal-body">
                 <h3>Old homes with peeling paint, 2017</h3>
                 <p>  <em>Percent </em></p>
-                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Pre-78-1"></div>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Pre-78-2"></div>
 
             </div>
             <hr>
@@ -1036,7 +1591,7 @@
 
                 <h3>Trends Over Time</h3>
                 <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Pre-78-1"></div>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Pre-78-2"></div>
 
             </div>
             <hr>
@@ -1044,7 +1599,7 @@
 
                 <h3>By Neighborhood</h3>
                 <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Pre-78-1"></div>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Pre-78-2"></div>
 
             </div>
 
@@ -1061,7 +1616,7 @@
 
 <script type="text/javascript">
 
-    $( "#modal-Pre-78-1" ).on('shown.bs.modal', function() {
+    $( "#modal-Pre-78-2" ).on('shown.bs.modal', function() {
 
         
 
@@ -1091,7 +1646,7 @@
 
 
             vegaEmbed(
-                "#summary-Pre-78-1",
+                "#summary-Pre-78-2",
                 summarySpec,
                 opt
             ).then((res) => {
@@ -1109,7 +1664,7 @@
 
 
             vegaEmbed(
-                "#map-Pre-78-1",
+                "#map-Pre-78-2",
                 mapSpec,
                 opt
             ).then((res) => {
@@ -1132,7 +1687,7 @@
 
 
             vegaEmbed(
-                "#trend-Pre-78-1",
+                "#trend-Pre-78-2",
                 trendSpec,
                 opt
             ).then((res) => {
@@ -1149,7 +1704,192 @@
 
 
 
-<button data-toggle="modal" data-target="#modal-Home90-2" onclick='getURL( 47 , "Home90")' class="indicator-anchor">
+<button data-toggle="modal" data-target="#modal-Home80-3" onclick='getURL( 42 , "Home80")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Leaks</span>
+            <div class="print-only">Homes with leaks, 2017</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Home80_305.svg" alt="Visualization showing neighborhood rank of 29 out of 42 for Leaks in Upper East Side." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Home80_305.svg" alt="Visualization showing neighborhood rank of 29 out of 42 for Leaks in Upper East Side." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Leaks</span>
+            <div style="font-size: 12px;">Homes with leaks, 2017</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Home80_305.svg" alt="Visualization showing neighborhood rank of 29 out of 42 for Leaks in Upper East Side." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Upper East Side: <span class="float-right">8.4</span><br>
+                        Manhattan: <span class="float-right">14.4</span><br>
+                        New York City: <span class="float-right">13.4</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Percent </em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Home80-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Leaks</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Homes with leaks, 2017</h2>
+                <p>In <strong>Upper East Side</strong>, homes with leaks is <span class="better">Better</span> compared to the NYC average.</p>Leaks are a maintenance deficiency that can harm health by introducing mold, which can worsen respiratory conditions like asthma.</div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">8.4</span></div>
+                    <div class="col-sm-4">Manhattan <span class="indicator-value">14.4</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">13.4</span></div>
+                </div>
+                <p><em>Percent </em></p><div class="data-note"></div></div>
+            <hr>
+            <div class="modal-body">
+                <h3>Homes with leaks, 2017</h3>
+                <p>  <em>Percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home80-3"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+
+                <h3>Trends Over Time</h3>
+                <p><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home80-3"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+
+                <h3>By Neighborhood</h3>
+                <p><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home80-3"></div>
+
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Home80" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Home80-3" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Leaks'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Home80")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Home80-3",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Home80-3",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Home80")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Home80-3",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Home90-4" onclick='getURL( 47 , "Home90")' class="indicator-anchor">
     <div class="row align-items-center d-print-none">
         <div class="col-6 col-md-5">
             <span class="indicator-short-name">Supplemental heat</span>
@@ -1188,7 +1928,7 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Home90-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Home90-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -1213,7 +1953,7 @@
             <div class="modal-body">
                 <h3>Homes using supplemental heat, 2017</h3>
                 <p>  <em>Percent </em></p>
-                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home90-2"></div>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home90-4"></div>
 
             </div>
             <hr>
@@ -1221,7 +1961,7 @@
 
                 <h3>Trends Over Time</h3>
                 <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home90-2"></div>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home90-4"></div>
 
             </div>
             <hr>
@@ -1229,7 +1969,7 @@
 
                 <h3>By Neighborhood</h3>
                 <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home90-2"></div>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home90-4"></div>
 
             </div>
 
@@ -1246,7 +1986,7 @@
 
 <script type="text/javascript">
 
-    $( "#modal-Home90-2" ).on('shown.bs.modal', function() {
+    $( "#modal-Home90-4" ).on('shown.bs.modal', function() {
 
         
 
@@ -1276,7 +2016,7 @@
 
 
             vegaEmbed(
-                "#summary-Home90-2",
+                "#summary-Home90-4",
                 summarySpec,
                 opt
             ).then((res) => {
@@ -1294,7 +2034,7 @@
 
 
             vegaEmbed(
-                "#map-Home90-2",
+                "#map-Home90-4",
                 mapSpec,
                 opt
             ).then((res) => {
@@ -1317,7 +2057,7 @@
 
 
             vegaEmbed(
-                "#trend-Home90-2",
+                "#trend-Home90-4",
                 trendSpec,
                 opt
             ).then((res) => {
@@ -1334,7 +2074,7 @@
 
 
 
-<button data-toggle="modal" data-target="#modal-Hous781-3" onclick='getURL( 2185 , "Hous781")' class="indicator-anchor">
+<button data-toggle="modal" data-target="#modal-Hous781-5" onclick='getURL( 2185 , "Hous781")' class="indicator-anchor">
     <div class="row align-items-center d-print-none">
         <div class="col-6 col-md-5">
             <span class="indicator-short-name">Households with AC</span>
@@ -1373,7 +2113,7 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Hous781-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Hous781-5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -1398,7 +2138,7 @@
             <div class="modal-body">
                 <h3>Household air conditioning, 2017</h3>
                 <p>  <em>Percent (with AC) </em></p>
-                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Hous781-3"></div>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Hous781-5"></div>
 
             </div>
             <hr>
@@ -1406,7 +2146,7 @@
 
                 <h3>Trends Over Time</h3>
                 <p><em>Percent (with AC) </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Hous781-3"></div>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Hous781-5"></div>
 
             </div>
             <hr>
@@ -1414,7 +2154,7 @@
 
                 <h3>By Neighborhood</h3>
                 <p><em>Percent (with AC) </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Hous781-3"></div>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Hous781-5"></div>
 
             </div>
 
@@ -1431,7 +2171,7 @@
 
 <script type="text/javascript">
 
-    $( "#modal-Hous781-3" ).on('shown.bs.modal', function() {
+    $( "#modal-Hous781-5" ).on('shown.bs.modal', function() {
 
         
 
@@ -1461,7 +2201,7 @@
 
 
             vegaEmbed(
-                "#summary-Hous781-3",
+                "#summary-Hous781-5",
                 summarySpec,
                 opt
             ).then((res) => {
@@ -1479,7 +2219,7 @@
 
 
             vegaEmbed(
-                "#map-Hous781-3",
+                "#map-Hous781-5",
                 mapSpec,
                 opt
             ).then((res) => {
@@ -1502,7 +2242,7 @@
 
 
             vegaEmbed(
-                "#trend-Hous781-3",
+                "#trend-Hous781-5",
                 trendSpec,
                 opt
             ).then((res) => {
@@ -1519,7 +2259,192 @@
 
 
 
-<button data-toggle="modal" data-target="#modal-Carb716-4" onclick='getURL( 2168 , "Carb716")' class="indicator-anchor">
+<button data-toggle="modal" data-target="#modal-Rent1248-6" onclick='getURL( 2399 , "Rent1248")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Maintenance problems</span>
+            <div class="print-only">Renter-occupied homes with any health-related maintenance problems, 2017</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Rent1248_305.svg" alt="Visualization showing neighborhood rank of 35 out of 42 for Maintenance problems in Upper East Side." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Rent1248_305.svg" alt="Visualization showing neighborhood rank of 35 out of 42 for Maintenance problems in Upper East Side." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Maintenance problems</span>
+            <div style="font-size: 12px;">Renter-occupied homes with any health-related maintenance problems, 2017</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Rent1248_305.svg" alt="Visualization showing neighborhood rank of 35 out of 42 for Maintenance problems in Upper East Side." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Upper East Side: <span class="float-right">46.1</span><br>
+                        Manhattan: <span class="float-right">56.6</span><br>
+                        New York City: <span class="float-right">61.5</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Percent </em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Rent1248-6" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Maintenance problems</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Renter-occupied homes with any health-related maintenance problems, 2017</h2>
+                <p>In <strong>Upper East Side</strong>, renter-occupied homes with any health-related maintenance problems is <span class="better">Better</span> compared to the NYC average.</p>Homes with maintenance deficiencies can threaten the health of the people who live there.</div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">46.1</span></div>
+                    <div class="col-sm-4">Manhattan <span class="indicator-value">56.6</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">61.5</span></div>
+                </div>
+                <p><em>Percent </em></p><div class="data-note"></div></div>
+            <hr>
+            <div class="modal-body">
+                <h3>Renter-occupied homes with any health-related maintenance problems, 2017</h3>
+                <p>  <em>Percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Rent1248-6"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+
+                <h3>Trends Over Time</h3>
+                <p><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Rent1248-6"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+
+                <h3>By Neighborhood</h3>
+                <p><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Rent1248-6"></div>
+
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Rent1248" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Rent1248-6" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Maintenance problems'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Rent1248")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Rent1248-6",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Rent1248-6",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Rent1248")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Rent1248-6",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Carb716-7" onclick='getURL( 2168 , "Carb716")' class="indicator-anchor">
     <div class="row align-items-center d-print-none">
         <div class="col-6 col-md-5">
             <span class="indicator-short-name">Carbon monoxide</span>
@@ -1558,7 +2483,7 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Carb716-4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Carb716-7" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -1583,7 +2508,7 @@
             <div class="modal-body">
                 <h3>Carbon monoxide incidents (without a detector), 2014-2016</h3>
                 <p>  <em>Average annual rate per 10,000 buildings</em></p>
-                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Carb716-4"></div>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Carb716-7"></div>
 
             </div>
             <hr>
@@ -1591,7 +2516,7 @@
 
                 <h3>Trends Over Time</h3>
                 <p><em>Average annual rate per 10,000 buildings</em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Carb716-4"></div>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Carb716-7"></div>
 
             </div>
             <hr>
@@ -1599,7 +2524,7 @@
 
                 <h3>By Neighborhood</h3>
                 <p><em>Average annual rate per 10,000 buildings</em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Carb716-4"></div>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Carb716-7"></div>
 
             </div>
 
@@ -1616,7 +2541,7 @@
 
 <script type="text/javascript">
 
-    $( "#modal-Carb716-4" ).on('shown.bs.modal', function() {
+    $( "#modal-Carb716-7" ).on('shown.bs.modal', function() {
 
         
 
@@ -1646,7 +2571,7 @@
 
 
             vegaEmbed(
-                "#summary-Carb716-4",
+                "#summary-Carb716-7",
                 summarySpec,
                 opt
             ).then((res) => {
@@ -1664,7 +2589,7 @@
 
 
             vegaEmbed(
-                "#map-Carb716-4",
+                "#map-Carb716-7",
                 mapSpec,
                 opt
             ).then((res) => {
@@ -1687,7 +2612,7 @@
 
 
             vegaEmbed(
-                "#trend-Carb716-4",
+                "#trend-Carb716-7",
                 trendSpec,
                 opt
             ).then((res) => {
@@ -1937,6 +2862,376 @@
 
             vegaEmbed(
                 "#trend-Home94-1",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Home245-2" onclick='getURL( 107 , "Home245")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Cockroaches</span>
+            <div class="print-only">Homes with cockroaches, 2017</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Home245_305.svg" alt="Visualization showing neighborhood rank of 36 out of 42 for Cockroaches in Upper East Side." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Home245_305.svg" alt="Visualization showing neighborhood rank of 36 out of 42 for Cockroaches in Upper East Side." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Cockroaches</span>
+            <div style="font-size: 12px;">Homes with cockroaches, 2017</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Home245_305.svg" alt="Visualization showing neighborhood rank of 36 out of 42 for Cockroaches in Upper East Side." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Upper East Side: <span class="float-right">10.3</span><br>
+                        Manhattan: <span class="float-right">20</span><br>
+                        New York City: <span class="float-right">24.1</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Percent </em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Home245-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Cockroaches</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Homes with cockroaches, 2017</h2>
+                <p>In <strong>Upper East Side</strong>, homes with cockroaches is <span class="better">Better</span> compared to the NYC average.</p>The presence of cockroaches in the home is often associated with poor housing maintenance. Cockroaches in the home can contaminate food and worsen asthma.</div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">10.3</span></div>
+                    <div class="col-sm-4">Manhattan <span class="indicator-value">20</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">24.1</span></div>
+                </div>
+                <p><em>Percent </em></p><div class="data-note"></div></div>
+            <hr>
+            <div class="modal-body">
+                <h3>Homes with cockroaches, 2017</h3>
+                <p>  <em>Percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Home245-2"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+
+                <h3>Trends Over Time</h3>
+                <p><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Home245-2"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+
+                <h3>By Neighborhood</h3>
+                <p><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Home245-2"></div>
+
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Home245" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Home245-2" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Cockroaches'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Home245")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Home245-2",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Home245-2",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Home245")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Home245-2",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Adul292-3" onclick='getURL( 2017 , "Adul292")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Smoke-free homes</span>
+            <div class="print-only">No smoke-free home policy, 2013</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul292_305.svg" alt="Visualization showing neighborhood rank of 29 out of 42 for Smoke-free homes in Upper East Side." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul292_305.svg" alt="Visualization showing neighborhood rank of 29 out of 42 for Smoke-free homes in Upper East Side." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Smoke-free homes</span>
+            <div style="font-size: 12px;">No smoke-free home policy, 2013</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Adul292_305.svg" alt="Visualization showing neighborhood rank of 29 out of 42 for Smoke-free homes in Upper East Side." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Upper East Side: <span class="float-right">20.0</span><br>
+                        Manhattan: <span class="float-right">23.9</span><br>
+                        New York City: <span class="float-right">22.9</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Percent </em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Adul292-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Smoke-free homes</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">No smoke-free home policy, 2013</h2>
+                <p>In <strong>Upper East Side</strong>, no smoke-free home policy is <span class="better">Better</span> compared to the NYC average.</p>Adults without a smoke-free home policy. A smoke-free home policy can limit people's exposure to secondhand smoke, which is especially dangerous to children.</div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Upper East Side <span class="indicator-value">20.0</span></div>
+                    <div class="col-sm-4">Manhattan <span class="indicator-value">23.9</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">22.9</span></div>
+                </div>
+                <p><em>Percent </em></p><div class="data-note"></div></div>
+            <hr>
+            <div class="modal-body">
+                <h3>No smoke-free home policy, 2013</h3>
+                <p>  <em>Percent </em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Adul292-3"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+
+                <h3>Trends Over Time</h3>
+                <p><em>Percent </em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Adul292-3"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+
+                <h3>By Neighborhood</h3>
+                <p><em>Percent </em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Adul292-3"></div>
+
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Adul292" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Adul292-3" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Smoke-free homes'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Adul292")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Adul292-3",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Adul292-3",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Adul292")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Adul292-3",
                 trendSpec,
                 opt
             ).then((res) => {

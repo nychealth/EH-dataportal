@@ -30,7 +30,7 @@
 <title>Climate and Health in Coney Island - Sheepshead Bay &#x7c; Environment &amp; Health Data Portal</title>
 
 
-<meta name="build_datetime" content='2024-01-09 18:08:16'>
+<meta name="build_datetime" content='2024-01-17 20:21:47'>
 <meta name="build_environment" content='prod_prod'>
 <meta name="description" content="Explore data on how environments shape health in New York City&#39;s neighborhoods.">
 <link rel="canonical" href="/IndicatorPublic/neighborhood-reports/coney_island_sheepshead_bay/climate_and_health/" />
@@ -714,7 +714,192 @@
 
 
 
-<button data-toggle="modal" data-target="#modal-Area687-2" onclick='getURL( 2140 , "Area687")' class="indicator-anchor">
+<button data-toggle="modal" data-target="#modal-Ozon386-2" onclick='getURL( 2027 , "Ozon386")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Ozone</span>
+            <div class="print-only">Ozone (O3), Summer 2022</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Ozon386_210.svg" alt="Visualization showing neighborhood rank of 2 out of 42 for Ozone in Coney Island - Sheepshead Bay." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Ozon386_210.svg" alt="Visualization showing neighborhood rank of 2 out of 42 for Ozone in Coney Island - Sheepshead Bay." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Ozone</span>
+            <div style="font-size: 12px;">Ozone (O3), Summer 2022</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Ozon386_210.svg" alt="Visualization showing neighborhood rank of 2 out of 42 for Ozone in Coney Island - Sheepshead Bay." width="100%" class="viz d-md-none mb-1"><span class="worse">Worse</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Coney Island - Sheepshead Bay: <span class="float-right">37.1</span><br>
+                        Brooklyn: <span class="float-right">34.7</span><br>
+                        New York City: <span class="float-right">34.1</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Mean ppb</em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Ozon386-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Ozone</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Ozone (O3), Summer 2022</h2>
+                <p>In <strong>Coney Island - Sheepshead Bay</strong>, ozone (o3) is <span class="worse">Worse</span> compared to the NYC average.</p>Ozone is a common air pollutant that can harm breathing and worsen asthma and other respiratory conditions.</div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Coney Island - Sheepshead Bay <span class="indicator-value">37.1</span></div>
+                    <div class="col-sm-4">Brooklyn <span class="indicator-value">34.7</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">34.1</span></div>
+                </div>
+                <p><em>Mean ppb</em></p><div class="data-note"></div></div>
+            <hr>
+            <div class="modal-body">
+                <h3>Ozone (O3), Summer 2022</h3>
+                <p>  <em>Mean ppb</em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Ozon386-2"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+
+                <h3>Trends Over Time</h3>
+                <p><em>Mean ppb</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Ozon386-2"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+
+                <h3>By Neighborhood</h3>
+                <p><em>Mean ppb</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Ozon386-2"></div>
+
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Ozon386" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Ozon386-2" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Ozone'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Ozon386")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Ozon386-2",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Ozon386-2",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Ozon386")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Ozon386-2",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Area687-3" onclick='getURL( 2140 , "Area687")' class="indicator-anchor">
     <div class="row align-items-center d-print-none">
         <div class="col-6 col-md-5">
             <span class="indicator-short-name">Flood risk</span>
@@ -753,7 +938,7 @@
 </button>
 
 
-<div class="modal fade report-modal" id="modal-Area687-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade report-modal" id="modal-Area687-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header text-left">
@@ -778,7 +963,7 @@
             <div class="modal-body">
                 <h3>Area in hurricane evacuation zone, 2013</h3>
                 <p>  <em>Percent </em></p>
-                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Area687-2"></div>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Area687-3"></div>
 
             </div>
             <hr>
@@ -786,7 +971,7 @@
 
                 <h3>Trends Over Time</h3>
                 <p><em>Percent </em></p>
-                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Area687-2"></div>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Area687-3"></div>
 
             </div>
             <hr>
@@ -794,7 +979,7 @@
 
                 <h3>By Neighborhood</h3>
                 <p><em>Percent </em></p>
-                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Area687-2"></div>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Area687-3"></div>
 
             </div>
 
@@ -811,7 +996,7 @@
 
 <script type="text/javascript">
 
-    $( "#modal-Area687-2" ).on('shown.bs.modal', function() {
+    $( "#modal-Area687-3" ).on('shown.bs.modal', function() {
 
         
 
@@ -841,7 +1026,7 @@
 
 
             vegaEmbed(
-                "#summary-Area687-2",
+                "#summary-Area687-3",
                 summarySpec,
                 opt
             ).then((res) => {
@@ -859,7 +1044,7 @@
 
 
             vegaEmbed(
-                "#map-Area687-2",
+                "#map-Area687-3",
                 mapSpec,
                 opt
             ).then((res) => {
@@ -882,7 +1067,7 @@
 
 
             vegaEmbed(
-                "#trend-Area687-2",
+                "#trend-Area687-3",
                 trendSpec,
                 opt
             ).then((res) => {
@@ -1132,6 +1317,191 @@
 
             vegaEmbed(
                 "#trend-Heat536-1",
+                trendSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("trendData", trendData).run()
+
+            }).catch(console.error);;
+
+    });
+
+    </script>
+
+
+
+
+
+<button data-toggle="modal" data-target="#modal-Asth1196-2" onclick='getURL( 2379 , "Asth1196")' class="indicator-anchor">
+    <div class="row align-items-center d-print-none">
+        <div class="col-6 col-md-5">
+            <span class="indicator-short-name">Asthma ED visits (age 5 to 17)</span>
+            <div class="print-only">Asthma emergency department visits (age 5 to 17), 2020</div>
+        </div>
+        <div class="col-6 col-md-4 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Asth1196_210.svg" alt="Visualization showing neighborhood rank of 30 out of 42 for Asthma ED visits (age 5 to 17) in Coney Island - Sheepshead Bay." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+        <div class="d-none d-md-inline col-md-3">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Asth1196_210.svg" alt="Visualization showing neighborhood rank of 30 out of 42 for Asthma ED visits (age 5 to 17) in Coney Island - Sheepshead Bay." class="viz">
+        </div>
+    </div>
+
+    
+    <div class="print-only row">
+        <div class="col-4 small border-right">
+            <span class="indicator-short-name">Asthma ED visits (age 5 to 17)</span>
+            <div style="font-size: 12px;">Asthma emergency department visits (age 5 to 17), 2020</div>
+        </div>
+        <div class="col-3 topic-list">
+            <img src="https://raw.githubusercontent.com/nychealth/EHDP-data/production/neighborhood-reports/images/Asth1196_210.svg" alt="Visualization showing neighborhood rank of 30 out of 42 for Asthma ED visits (age 5 to 17) in Coney Island - Sheepshead Bay." width="100%" class="viz d-md-none mb-1"><span class="better">Better</span></div>
+        <div class="col-5 border-left">
+            <div class="comparison">
+                <div class="row">
+                    <div class="col">
+                        Coney Island - Sheepshead Bay: <span class="float-right">25.8</span><br>
+                        Brooklyn: <span class="float-right">52</span><br>
+                        New York City: <span class="float-right">57.1</span>
+                     </div>
+
+                </div>
+            </div>
+            <p style="font-size: 12px;"><em>Estimated annual rate per 10,000</em></p>
+        </div>
+    </div>
+
+</button>
+
+
+<div class="modal fade report-modal" id="modal-Asth1196-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-left">
+                <h2 class="modal-title fs-xl" id="exampleModalLabel">Asthma ED visits (age 5 to 17)</h2>
+                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                    <span class="fas fa-times-circle"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 class="fs-xl">Asthma emergency department visits (age 5 to 17), 2020</h2>
+                <p>In <strong>Coney Island - Sheepshead Bay</strong>, asthma emergency department visits (age 5 to 17) is <span class="better">Better</span> compared to the NYC average.</p>Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.</div>
+            <hr>
+            <div class="modal-body">
+                <h3>Neighborhood Comparison</h3>
+                <div class="row comparison">
+                    <div class="col-sm-4 text-primary">Coney Island - Sheepshead Bay <span class="indicator-value">25.8</span></div>
+                    <div class="col-sm-4">Brooklyn <span class="indicator-value">52</span></div>
+                    <div class="col-sm-4">New York City <span class="indicator-value">57.1</span></div>
+                </div>
+                <p><em>Estimated annual rate per 10,000</em></p><div class="data-note"> The start of COVID-19 in Spring 2020 reduced the overall volume of ED visits, including those for asthma, which may have contributed to decreases in asthma ED visit and hospitalization counts and rates in 2020.</div></div>
+            <hr>
+            <div class="modal-body">
+                <h3>Asthma emergency department visits (age 5 to 17), 2020</h3>
+                <p>  <em>Estimated annual rate per 10,000</em></p>
+                <div style="width:100%; height:30vmin; z-index:10000;" id="summary-Asth1196-2"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+
+                <h3>Trends Over Time</h3>
+                <p><em>Estimated annual rate per 10,000</em></p>
+                <div style="width:100%; height:50vmin; z-index:10000;" id="trend-Asth1196-2"></div>
+
+            </div>
+            <hr>
+            <div class="modal-body">
+
+                <h3>By Neighborhood</h3>
+                <p><em>Estimated annual rate per 10,000</em></p>
+                <div style="width:100%; height:60vmin; z-index:10000;" id="map-Asth1196-2"></div>
+
+            </div>
+
+            
+            <div class="flex-column p-2"><a id="Asth1196" style="display:none">
+                <button type="button" class="btn btn-inline btn-outline-secondary px-4 float-left">Get the data</button></a>
+                <button type="button" class="btn btn-primary px-4 float-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    $( "#modal-Asth1196-2" ).on('shown.bs.modal', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Asthma ED visits (age 5 to 17)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Asth1196")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            vegaEmbed(
+                "#summary-Asth1196-2",
+                summarySpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("summaryData", summaryData).run()
+
+            }).catch(console.error);;
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+
+            vegaEmbed(
+                "#map-Asth1196-2",
+                mapSpec,
+                opt
+            ).then((res) => {
+
+                res.view.insert("mapData", mapData).run()
+
+            }).catch(console.error);
+
+
+            
+
+            
+
+            var trendData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Asth1196")
+                .select("start_date", "time", "geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note")
+                .dedupe()
+                .objects()
+
+
+            vegaEmbed(
+                "#trend-Asth1196-2",
                 trendSpec,
                 opt
             ).then((res) => {

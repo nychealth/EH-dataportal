@@ -100,6 +100,11 @@
     "title": "outdoor"
   },
   {
+    "indicator_description": "Black carbon is a major component of fine particles in the air. Fine particles are easily inhaled and contribute to both short-term acute health effects, as well as long-term chronic illness.",
+    "indicator_name": "Black carbon",
+    "title": "outdoor"
+  },
+  {
     "indicator_description": "Nitrogen dioxide is a pollutant formed by combusion that damage lung tissue, cause breathing problems, and contribute to smog and acid rain.",
     "indicator_name": "Nitrogen dioxide (NO2)",
     "title": "outdoor"
