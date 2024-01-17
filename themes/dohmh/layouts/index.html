@@ -8,18 +8,14 @@
 
       <div class="card content-card mb-2">
         <h1 class="fs-lg text-info"><i class="fas fa-star mr-1" aria-hidden="true"></i>Featured:</h1>
-        <a href="{{ .Params.featured_link }}">
+        <a href="{{ relURL .Params.featured_link }}">
         <div class="card-content">
-          <div style="height: 400px; width: 100%; background-image: url({{ .Site.BaseURL }}/images/{{ .Params.featured_image }}); background-position: center; background-size: cover;"></div>
-
-          <!--
-              <img class="card-img-top" src="/images/{{ .Params.featured_image }}">
-          -->
+          <div style='height: 400px; width: 100%; background-image: url({{ relURL ( urls.JoinPath "images" .Params.featured_image ) }}); background-position: center; background-size: cover;'></div>
 
         </a> 
 
         <div class="card-body">
-          <h1 class="card-title text-primary"><a href="{{ .Params.featured_link }}">{{ .Params.featured_title }}</h1>
+          <h1 class="card-title text-primary"><a href="{{ relURL .Params.featured_link }}">{{ .Params.featured_title }}</h1>
           <span class="card-text mt-2">{{ .Params.featured_text }}</span></a>
           
         </div>
@@ -32,10 +28,10 @@
       <h2 class="fs-lg text-info mt-4 mb-2 border-bottom"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Recently updated data:</h2>
       
       {{- range .Site.Data.recently_updated_data.featured -}}
-      <a href="{{ .link }}" class="btn btn-sm btn-outline-primary mr-1 mb-1"><i class="fas fa-table mr-1" aria-hidden="true"></i>{{ .copy }}</a>
+      <a href="{{ relURL .link }}" class="btn btn-sm btn-outline-primary mr-1 mb-1"><i class="fas fa-table mr-1" aria-hidden="true"></i>{{ .copy }}</a>
       {{- end -}}
       
-      <a href="/data-explorer" class="text-info font-weight-bold ml-1">All&nbsp;data&nbsp;></a>
+      <a href={{ relURL "data-explorer" }} class="text-info font-weight-bold ml-1">All&nbsp;data&nbsp;></a>
       
     </div>
     
@@ -50,7 +46,7 @@
               {{ $src := .Resources.GetMatch .Params.image }}
               {{ $image := $src.Resize "740x"}}
               <a href="{{ .RelPermalink }}">
-                <div style="width:100%; height:100%; background-image: URL({{ $image.Permalink }}); background-size: cover; background-position: center center; "></div></a>
+                <div style="width:100%; height:100%; background-image: URL({{ $image.RelPermalink }}); background-size: cover; background-position: center center; "></div></a>
               </div>
               
               <div class="col-8 ml-auto h-100 pl-1 mb-2">
@@ -60,7 +56,7 @@
             
             {{- end -}}
             <hr class="my-2">
-            <a href="/data-stories" class="text-info font-weight-bold my-1 float-right">All data stories > </a>
+            <a href={{ relURL "data-stories" }} class="text-info font-weight-bold my-1 float-right">All data stories > </a>
             
           </div>
         </div>
@@ -71,6 +67,12 @@
   
   <div class="row">
     <div class="col-10 mx-auto">
+
+
+
+
+
+
       <hr>
     </div>
   </div>
@@ -86,25 +88,18 @@
   
   <div class="row justify-content-center mx-auto">
     
-    {{/*  <a href="/key-topics/airquality" class="btn btn-outline-light border border-info text-primary mt-1 mr-1 py-2 px-2">Air quality</a> 
-    <a href="/key-topics/climatehealth" class="btn btn-outline-light border border-info text-primary mt-1 mr-1 py-2 px-2">Climate</a>
-    <a href="/key-topics/housing" class="btn btn-outline-light  border border-info text-primary mt-1 mr-1 py-2 px-2">Housing</a>
-    <a href="/key-topics/transportation" class="btn btn-outline-light  border border-info text-primary mt-1 mr-1 py-2 px-2">Public space</a>
-    <a href="/key-topics/healthoutcomes" class="btn btn-outline-light border border-info text-primary mt-1 mr-1 py-2 px-2">Health</a>
-    <a href="/key-topics/social" class="btn btn-outline-light border border-info text-primary mt-1 mr-1 py-2 px-2">Inequality</a>  */}}
-    
-    <a href="/key-topics/airquality" class="btn btn-outline-light border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Air quality</a> 
-    <a href="/key-topics/climatehealth" class="btn btn-outline-light border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Climate</a>
-    <a href="/key-topics/housing" class="btn btn-outline-light  border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Housing</a>
-    <a href="/key-topics/transportation" class="btn btn-outline-light  border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Public space</a>
-    <a href="/key-topics/healthoutcomes" class="btn btn-outline-light border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Health</a>
-    <a href="/key-topics/social" class="btn btn-outline-light border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Inequality</a>
+    <a href={{ relURL "key-topics/airquality" }} class="btn btn-outline-light border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Air quality</a> 
+    <a href={{ relURL "key-topics/climatehealth" }} class="btn btn-outline-light border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Climate</a>
+    <a href={{ relURL "key-topics/housing" }} class="btn btn-outline-light  border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Housing</a>
+    <a href={{ relURL "key-topics/transportation" }} class="btn btn-outline-light  border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Public space</a>
+    <a href={{ relURL "key-topics/healthoutcomes" }} class="btn btn-outline-light border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Health</a>
+    <a href={{ relURL "key-topics/social" }} class="btn btn-outline-light border border-info text-primary mt-1 mx-1 py-2 px-1 col-xl-1 col-sm-4 col-xs-6">Inequality</a>
     
   </div>
   
   <div class="row">
     <div class="col-md-7 mx-auto">
-      <p class="text-muted mt-3">We collect data from many different sources and put them together to show you how <span class="font-weight-bold text-primary">the environment shapes our health</span>. <a href="key-topics" class="text-info font-weight-bold">See all topics</a>.</p>
+      <p class="text-muted mt-3">We collect data from many different sources and put them together to show you how <span class="font-weight-bold text-primary">the environment shapes our health</span>. <a href={{ relURL "key-topics" }} class="text-info font-weight-bold">See all topics</a>.</p>
       
     </div>
   </div>
@@ -113,12 +108,12 @@
   <div class="row mt-4 mb-2 justify-content-center mx-auto">
     <div class="col-lg-4 col-sm-10 card content-card">
       <div class="card-content mb-4">
-        <a href="/data-stories">
-          <img class="card-img-top" src="/images/home-sample-image-datastory.png">
+        <a href={{ relURL "data-stories" }}>
+          <img class="card-img-top" src={{ relURL "images/home-sample-image-datastory.png" }}>
         </a>
         <div class="card-body">
           <h3 class="text-info"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data stories</h3>
-          <p>Perspectives and explainers on important health issues. <a class="" href="/data-stories">All data stories</a>.</p>
+          <p>Perspectives and explainers on important health issues. <a class="" href={{ relURL "data-stories" }}>All data stories</a>.</p>
           
           
         </div>
@@ -127,12 +122,12 @@
     
     <div class="col-lg-4 col-sm-10 card content-card">
       <div class="card-content mb-4">
-        <a href="/neighborhood-reports">
-          <img class="card-img-top" src="/images/home-sample-image-NR.png">
+        <a href={{ relURL "neighborhood-reports" }}>
+          <img class="card-img-top" src={{ relURL "images/home-sample-image-NR.png" }}>
         </a>
         <div class="card-body">
           <h3 class="text-info"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports</h3>
-          <p>Search for your neighborhood and get data. <a class="" href="/neighborhood-reports">Search here</a>.</p>
+          <p>Search for your neighborhood and get data. <a class="" href={{ relURL "neighborhood-reports" }}>Search here</a>.</p>
           
         </div>
       </div>
@@ -140,12 +135,12 @@
     
     <div class="col-lg-4 col-sm-10 card content-card">
       <div class="card-content mb-4">
-        <a href="/data-explorer">
-          <img class="card-img-top" src="/images/home-sample-image-DE-5.png">
+        <a href={{ relURL "data-explorer" }}>
+          <img class="card-img-top" src={{ relURL "images/home-sample-image-DE-5.png" }}>
         </a>
         <div class="card-body">
           <h3 class="text-info"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Data Explorer</h3>
-          <p>Maps, trends, tables, and more: get datasets on hundreds of topics. <a class="" href="/data-explorer">Get data</a>.</p>
+          <p>Maps, trends, tables, and more: get datasets on hundreds of topics. <a class="" href={{ relURL "data-explorer" }}>Get data</a>.</p>
           
         </div>
       </div>

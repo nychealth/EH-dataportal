@@ -1,5 +1,5 @@
-baseURL = "https://nychealth.github.io/EH-dataportal/"
-canonifyURLs = true
+baseURL = "https://a816-dohbesp.nyc.gov/IndicatorPublic/"
+canonifyURLs = false
 relativeURLs = false
 languageCode = "en-us"
 title = "Environment & Health Data Portal"

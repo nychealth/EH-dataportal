@@ -7,8 +7,8 @@
             <div class="col">
                 <nav aria-label="breadcrumb" class="my-3">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}data-explorer/">Data Explorer</a></li>
+                        <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                        <li class="breadcrumb-item"><a href={{ relURL "data-explorer" }}>Data Explorer</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                     </ul>
                 </nav>
@@ -55,19 +55,40 @@
         </article>
         
         <script>
-            var indicators;
-            var indicatorIndex = []
+
+            let indicators;
+            let indicatorIndex = []
+            let time_periods;
             
             
-            // First, load Indicators.json
-            d3.json('{{ site.Params.data_repo }}{{ site.Params.data_branch }}/indicators/indicators.json').then(function (data) {
-                indicators = data;
-                loopThroughIndicators() // run loops.
-                
-            }); 
+            // First, load metadata.json
+
+            d3.json('{{ site.Params.data_repo }}{{ site.Params.data_branch }}/indicators/metadata/metadata.json')
+                .then(metadata => {
+
+                    // assign to global indicators object
+
+                    indicators = metadata;
+
+                    d3.json('{{ site.Params.data_repo }}{{ site.Params.data_branch }}/indicators/metadata/TimePeriods.json')
+                        .then(tp => {
+
+                            // assign to global time_periods object
+
+                            time_periods = tp;
+                                
+                            loopThroughIndicators() // run loops.
+                            
+                        })
+                });
+            
+
             
             // Separating json load from subsequent functions, so we can filter or modify later without reloading json
             function loopThroughIndicators() {
+
+
+
                 //  loop through indicators
                 
                 for (let i = 0; i < indicators.length; i++) {  // change the 1 to indicators.length to get back to normal
@@ -87,7 +108,7 @@
                     
                     if (topics.length > 0) {
 
-                        cell_1.innerHTML = "<a href='" + {{ .Site.BaseURL }} + "data-explorer/" + topics[0].topic + "/" + "?id=" + indicators[i].IndicatorID + "'>" + indicators[i].IndicatorName + "</a>"
+                        cell_1.innerHTML = "<a href='" + {{ relURL "data-explorer" }} + "/" + topics[0].topic + "/" + "?id=" + indicators[i].IndicatorID + "'>" + indicators[i].IndicatorName + "</a>"
 
                     } else {
 
@@ -116,7 +137,7 @@
                     for (st = 0; st < topics.length; st++) {
 
                         let li = document.createElement('li');
-                        li.innerHTML = "<a href='" + {{ .Site.BaseURL }} + "data-explorer/" + topics[st].topic + "/'>" + topics[st].topic_name + "</a>"
+                        li.innerHTML = "<a href='" + {{ relURL "data-explorer" }} + "/" + topics[st].topic + "/'>" + topics[st].topic_name + "</a>"
                         // can eventually add an anchor or other deep-linking method
         
                         st_li.appendChild(li)
@@ -138,19 +159,24 @@
                         
                         // loop through Available Geographies
                         // var finestGeography = [];
-                        for (let y = 0; y < indicators[i].Measures[n].AvailableGeographyTypes.length; y++) {
-                            geographies.push(indicators[i].Measures[n].AvailableGeographyTypes[y].GeoType)
+                        for (let y = 0; y < indicators[i].Measures[n].AvailableGeoTypes.length; y++) {
+
+                            geographies.push(indicators[i].Measures[n].AvailableGeoTypes[y])
+
+                            // console.log("AvailableGeoTypes", indicators[i].Measures[n].AvailableGeoTypes);
                             // here, can embed a loop through geographies to find the finest.
+
                         }
                         
-                        //loop through times
-                        
-                        for (let z = 0; z < indicators[i].Measures[n].AvailableTimes.length; z++) {
+                        // get time period IDs for this measure
+                        let AvailableTimePeriodIDs = indicators[i].Measures[n].AvailableTimePeriodIDs;
+
+                        // get end periods for this measure
+                        let end_periods = time_periods.filter(tp => AvailableTimePeriodIDs.includes(tp.TimePeriodID)).map(tp => tp.end_period);
+
+                        // push end periods to times array
+                        times.push(...end_periods);
                             
-                            times.push(new Date(indicators[i].Measures[n].AvailableTimes[z].end_period));
-                            
-                        }
-                        
                         // push Sources
                         sources.push(indicators[i].Measures[n].Sources)
                         
@@ -201,7 +227,7 @@
                         // setting 'onclick' action for each geography, with the geo as the argument
                         
                         li.addEventListener('click', e => {
-                            console.log("classList [e]", e.target.classList)
+                            // console.log("classList [e]", e.target.classList)
                             toggle_button(e);
                         });
                         
@@ -215,6 +241,8 @@
                     maxTime = new Date(Math.max(...times));
                     cell_5.innerHTML = maxTime.getFullYear();
                     row_i.appendChild(cell_5)
+                    
+                    // console.log("maxTime", maxTime);
 
 
                     // sources
@@ -348,7 +376,6 @@
                         return 'NTA';
 
                     default:
-                        {{/*  console.log("**default**");  */}}
                         return GeoType;
 
                 }

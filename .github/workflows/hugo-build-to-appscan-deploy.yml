@@ -68,9 +68,6 @@ jobs:
           node-version: lts/*
           cache: "npm"
 
-      - name: Installing npm
-        run: npm install
-
       # set up cache for node modules
 
       - name: Cache node_modules
@@ -103,7 +100,7 @@ jobs:
       - name: Hugo setup
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: "0.105.0"
+          hugo-version: "0.121.0"
           extended: true
 
       # cache Hugo modules
@@ -119,7 +116,7 @@ jobs:
       # build site with Hugo
 
       - name: Hugo Build
-        run: hugo --environment appscan_deploy --cleanDestinationDir --debug
+        run: hugo --environment appscan_deploy --cleanDestinationDir --logLevel debug
 
       # run gruntfile action
 

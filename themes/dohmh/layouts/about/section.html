@@ -7,7 +7,7 @@
 
       <nav aria-label="breadcrumb" class="mb-2">
         <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">About</li>
         </ul>
       </nav>
@@ -19,7 +19,7 @@
       <!-- Start posts -->
       <p class="home-label mt-4">Recent posts:</p>
       <div class="row">
-        {{- range first 2 ((where .Site.RegularPages.ByDate "Section" "about")) -}}
+        {{- range first 3 ((where .Site.RegularPages.ByDate "Section" "about")) -}}
         <div class="col-md-6 mb-2">
             <div class="card content-card mb-4">
                 <div class="card-content">

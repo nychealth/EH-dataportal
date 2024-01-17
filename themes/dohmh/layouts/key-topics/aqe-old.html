@@ -1,6 +1,6 @@
 {{- define "main" -}}
 
-<link rel="stylesheet" href="/css/accessible-autocomplete.min.css">
+<link rel="stylesheet" href={{ relURL "css/accessible-autocomplete.min.css" }}>
 
 <article class="container-fluid" id="skip-header-target">
 
@@ -8,9 +8,9 @@
         <div class="col-md-11 mx-auto mt-4 pl-0">
             <nav aria-label="breadcrumb" class="mb-4">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}key-topics/">Key Topics</a></li>
-                    <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}key-topics/airquality/">Air Quality</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "key-topics" }}>Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "key-topics/airquality" }}>Air Quality</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                 </ul>
             </nav>
@@ -254,7 +254,7 @@
                         <div class="basic-callout p-2 my-2">
                                     <p class="h3" style="font-weight:normal!important;">Your neighborhood: <span class="h3" style="font-weight:bold;color:#15607a;" id="NTA"></span></p>
                                     <p><em class="fs-sm"><a
-                                        href="/data-stories/geographies">Read about Neighborhood Tabulation Areas.</a></em> </p>
+                                        href={{ relURL "data-stories/geographies" }}>Read about Neighborhood Tabulation Areas.</a></em> </p>
 
                         </div>
 
@@ -286,7 +286,7 @@
                     <div class="basic-callout p-2 my-2">
                         <p class="h3" style="font-weight:normal!important;">Your neighborhood: <span class="h3" style="font-weight:bold;color:#15607a;" id="NTA2"></span></p>
                         <p><em class="fs-sm"><a
-                            href="/data-stories/geographies">Read about Neighborhood Tabulation Areas.</a></em> </p>
+                            href={{ relURL "data-stories/geographies" }}>Read about Neighborhood Tabulation Areas.</a></em> </p>
 
                      </div>
 
@@ -396,7 +396,7 @@
                     <h5>NYCCAS Annual Report</h5>
                     <p class="fs-md">Key findings from NYC's comprehensive air quality monitoring program, including pollutant trends and local sources.</p>
 
-                    <p class="fs-md"><a href="/key-topics/airquality/nyccas/">Read more ></a> </p>
+                    <p class="fs-md"><a href={{ relURL "key-topics/airquality/nyccas" }}>Read more ></a> </p>
                 </div>
 
             </div>
@@ -577,7 +577,7 @@
                     </div>
                 </div>
                 <br>
-                <p>For more air quality data, see <a href="/key-topics/airquality/nyccas/">The NYCCAS Annual Report</a>. </p>
+                <p>For more air quality data, see <a href={{ relURL "key-topics/airquality/nyccas" }}>The NYCCAS Annual Report</a>. </p>
             </div>
         </div>
     </div>
