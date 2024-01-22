@@ -176,7 +176,7 @@
                                             <ul class="extensible-list p-0">
                                                 {{- range .Site.Menus.main -}}
 
-                                                {{- if (ne .Name "Search") -}}
+                                                {{- if and (ne .Name "Search") (ne .Name "Key Topics") -}}
 
                                                    <a href="{{ .URL }}"> <li><span class="mr-1">{{ .Pre }}</span>{{ .Name }}</li></a>
                                                    <hr class="my-1">
