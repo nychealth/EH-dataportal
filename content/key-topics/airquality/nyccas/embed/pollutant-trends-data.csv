@@ -1694,9 +1694,9 @@ PM2.5,2022,Summer,High,Boiler PM₂.₅ Emissions,7.977253573
 PM2.5,2022,Fall,Low,Boiler PM₂.₅ Emissions,5.43163015
 PM2.5,2022,Fall,Medium,Boiler PM₂.₅ Emissions,5.44359871
 PM2.5,2022,Fall,High,Boiler PM₂.₅ Emissions,6.751655546
-O3,2022,Summer,Low,Traffic Density,
-O3,2022,Summer,Medium,Traffic Density,
-O3,2022,Summer,High,Traffic Density,
+O3,2022,Summer,Low,Traffic Density,33.37935868
+O3,2022,Summer,Medium,Traffic Density,31.830767
+O3,2022,Summer,High,Traffic Density,30.85867298
 NO2,2022,Winter,Low,Building Density,20.47259163
 NO2,2022,Winter,Medium,Building Density,22.90175816
 NO2,2022,Winter,High,Building Density,25.0845708

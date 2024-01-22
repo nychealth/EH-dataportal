@@ -1,222 +1,88 @@
 <div id="pollutantPredictors">
-    <div class="row">
-        <div class="col-md-7">
-                <div class="">
-                    <button type="button" class="btn srcbtn btn-outline-dark active" onclick="changePollutant('bc')" id="bcbtn" value="bc">BC</button>
-                    <button type="button" class="btn srcbtn btn-outline-dark" onclick="changePollutant('no')" id="nobtn" value="no">NO</button>
-                    <button type="button" class="btn srcbtn btn-outline-dark" onclick="changePollutant('no2')" id="no2btn" value="no2">NO<sub>2</sub></button>
-                    <button type="button" class="btn srcbtn btn-outline-dark" onclick="changePollutant('o3')" id="o3btn" value="o3">O<sub>3</sub></button>
-                    <button type="button" class="btn srcbtn btn-outline-dark" onclick="changePollutant('pm')" id="pmbtn" value="pm">PM<sub>2.5</sub></button>
-                </div>
-        </div>
-    </div>
+  <div class="row">
+      <div class="col-md-7">
+              <div class="">
+                  <button type="button" class="btn srcbtn btn-outline-dark active" onclick="changePollutant('bc')" id="bcbtn" value="bc">BC</button>
+                  <button type="button" class="btn srcbtn btn-outline-dark" onclick="changePollutant('no')" id="nobtn" value="no">NO</button>
+                  <button type="button" class="btn srcbtn btn-outline-dark" onclick="changePollutant('no2')" id="no2btn" value="no2">NO<sub>2</sub></button>
+                  <button type="button" class="btn srcbtn btn-outline-dark" onclick="changePollutant('o3')" id="o3btn" value="o3">O<sub>3</sub></button>
+                  <button type="button" class="btn srcbtn btn-outline-dark" onclick="changePollutant('pm')" id="pmbtn" value="pm">PM<sub>2.5</sub></button>
+              </div>
+      </div>
+  </div>
 
-    <div class="row">
-        <div class="col">
-            <div class="mt-1">
-                <div id="bc" class="polSources">
-                    <!--black carbon source info-->
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">Indicator</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Associated sources and interpretation</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">Loading docks</th>
-                            <td>Number of warehouse loading docks within 600 m</td>
-                            <td>Emissions from trucks idling and traveling to and from warehouses</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Commercial cooking</th>
-                            <td>Number of permitted commercial cooking grills and charbroilers within 100 m</td>
-                            <td>Emissions from commercial cooking</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Truck and bus traffic density</sub></th>
-                            <td>PM<sub>2.5</sub> emissions from truck and bus traffic within 900 m</td>
-                            <td>PM<sub>2.5</sub> emissions from trucks and buses estimated from emissions rates and vehicle miles traveled </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Road density</th>
-                            <td>Area of impervious road surface within 100 m</td>
-                            <td>Emissions of motor vehicles on paved roadways</td>
-                          </tr>
-                        </tbody>
-                      </table>
+  <div class="row">
+      <div class="col">
+          <div class="mt-1">
 
-                </div>
-
-                <div id="no" class="polSources hide">
-                    <!--NO source buttons -->
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">Indicator</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Associated sources and interpretation</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">Loading docks</th>
-                                <td>Number of warehouse loading docks within 600 m</td>
-                                <td>Emissions from trucks idling and traveling to and from warehouses</td>
-                              </tr>
-                          <tr>
-                            <th scope="row">Bus traffic</th>
-                            <td>Location on a bus route (compared to non-bus route locations)</td>
-                            <td>Emissions from buses and other vehicles on busy roadways - indicator of traffic congestion</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Traffic density</th>
-                            <td>Traffic density, weighted by relative NO<sub>X</sub> emissions rates and vehicle type (car, truck, bus) within 400 m</td>
-                            <td>NO<sub>X</sub> emissions from all on-road motor vehicles based on vehicle miles and the relative emission rates of different vehicle types</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Impervious surfaces</sub></th>
-                            <td>Percent impervious surface within 100 m</td>
-                            <td>Emissions of motor vehicles on paved roadways</td>
-                          </tr>
-
-                        </tbody>
-                      </table>                    </div>
-
-                <div id="no2" class="polSources hide">
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">Indicator</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Associated sources and interpretation</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">Building density</sub></th>
-                                <td>Area of interior building space within 1,000 meters</td>
-                                <td>Combustion of heating oil and natural gas</td>
-                              </tr>
-
-                            <tr>
-                                <th scope="row">Loading docks</th>
-                                <td>Number of warehouse loading docks within 900 m</td>
-                                <td>Emissions from trucks idling and traveling to and from warehouses</td>
-                              </tr>
-
-                              <tr>
-                                <th scope="row">Traffic density</th>
-                                <td>Traffic density, weighted by relative NO<sub>X</sub> emissions rates and vehicle type (car, truck, bus) within 1000 m</td>
-                                <td>NO<sub>X</sub> emissions from all on-road motor vehicles based on vehicle miles and the relative emission rates of different vehicle types</td>
-                              </tr>
-
-                              <tr>
-                                <th scope="row">Impervious surfaces</sub></th>
-                                <td>Percent impervious surface within 100 m</td>
-                                <td>Emissions of motor vehicles on paved roadways</td>
-                              </tr>
-
-                              <tr>
-                                <th scope="row">Bus traffic</th>
-                                <td>Location on a bus route (compared to non-bus route locations)</td>
-                                <td>Emissions from buses and other vehicles on busy roadways - indicator of traffic congestion</td>
-                              </tr>
+                  <!--table placeholder-->
+                  <table class="table" id="mainTable">
+                      <thead>
+                        <tr>
+                          <th scope="col" style="width:20%">Indicator</th>
+                          <th scope="col" style="width: 35%">Description</th>
+                          <th scope="col">Associated sources</th>
+                        </tr>
+                      </thead>
+                      <tbody id="tableBody">
+                        <!-- source info gets deposited here -->
+                      </tbody>
+                    </table>
 
 
-                        </tbody>
-                      </table> 
 
-                </div>
+          </div>
+      </div>
+  </div>
+  <hr>
 
-                <div id="o3" class="polSources hide">
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">Indicator</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Associated sources and interpretation</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">NO<sub>2</sub></th>
-                            <td>Level of NO<sub>2</sub> measured at the same location</td>
-                            <td>Nitric oxides (NO<sub>x</sub>) at elevated concentrations react with ground-level ozone (O<sub>3</sub>) to create NO<sub>2</sub> and O<sub>3</sub>, also called "quenching ozone."</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Tree cover</th>
-                            <td>Tree cover within 50 m</td>
-                            <td>Reduced levels thorugh reactions of ozone with leaf surfaces.</td>
-                          </tr>
-                        </tbody>
-                      </table> 
-                </div>
+  <script>
+      var pollutant = 'bc' // default
+      var polTable = []
+      var filteredTable
+      var table = document.getElementById('tableBody')
 
-                <div id="pm" class="polSources hide">
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">Indicator</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Associated sources and interpretation</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">Commercial cooking</th>
-                            <td>Number of permitted commercial cooking grills and charbroilers within 1,000 meters</td>
-                            <td>Emissions from commercial cooking.</td>
-                          </tr>
+      function changePollutant(x) {
+          pollutant = x;
+          console.log('pollutant: ', x)
 
-                          <tr>
-                            <th scope="row">Loading docks</th>
-                            <td>Number of warehouse loading docks within 600 m</td>
-                            <td>Emissions from trucks idling and traveling to and from warehouses</td>
-                          </tr>
-
-                          <tr>
-                            <th scope="row">Traffic density</th>
-                            <td>Weighted by relative PM<sub>2.5</sub> emissions rates by vehicle type (car, truck, bus) within 250 meters</td>
-                            <td>PM<sub>2.5</sub> emissions from all on-road motor vehicle based on vehicle miles and the relative emissions rates of different vehicle types</td>
-                          </tr>
-
-                        </tbody>
-                      </table> 
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <hr>
-
-    <script>
-        function changePollutant(x) {
-            var pollutant = x;
-            console.log('pollutant: ')
-            console.log(x)
-
-            // remove active classes from .polbtn
-            const btns = document.querySelectorAll(".srcbtn")
+          // remove active classes from .polbtn & add active class to x_btn
+          const btns = document.querySelectorAll(".srcbtn")
             for (var i = 0; i < btns.length; i++) {
                 btns[i].classList.remove('active')
             }
+          document.getElementById(x+'btn').classList.add('active')
 
-            // add active class to x+btn
-            console.log(x + 'btn')
-            document.getElementById(x+'btn').classList.add('active')
-
-            // show/hide subbuttons
-            var subButtons = document.getElementsByClassName("polSources");
-            for (let i = 0; i < subButtons.length; i ++ ) {
-            subButtons[i].classList.add('hide')
-
-            // show the selected one
-            document.getElementById(x).classList.remove('hide')
+          // filter data table for selected pollutant
+          filterData(x)
         }
+
+
+      function filterData(x) {
+        filteredTable = polTable.filter(row => row.Pollutant === x);
+        table.innerHTML = ''
+        for (let i = 0; i < filteredTable.length; i++) {
+          // console.log(filteredTable[i].Indicator)
+              var row = table.insertRow()
+
+              // Create cells for Indicator, Description, and Sources
+              var cell1 = row.insertCell(0);
+              var cell2 = row.insertCell(1);
+              var cell3 = row.insertCell(2);
+
+              // Set the content of each cell
+              cell1.innerHTML = filteredTable[i].Indicator;
+              cell2.innerHTML = filteredTable[i].Description;
+              cell3.innerHTML = filteredTable[i].Sources;
         }
-    </script>
+      }
+
+    // Initialize: ingest spatial model CSV, and filter for default pollutant
+    d3.csv(`embed/spatial-model.csv`)
+    .then(async data => {
+        polTable = data;
+        filterData('bc')
+    })
+
+  </script>
 </div>
