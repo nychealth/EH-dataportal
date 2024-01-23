@@ -50,7 +50,7 @@ This report:
 
 **Ozone (O<sub>3</sub>) levels were higher in 2022 than any previous year of NYCCAS monitoring.** Ozone is produced when there are NOx emissions in the presence of sunlight and heat, which is why we see the higher levels in the summer. Summer 2022 was one of the hottest in recorded history and rainfall was significantly below normal; likely causing higher O<sub>3</sub>.&nbsp;
 
-There has not been a consistent trend in O3 levels over the history of NYCCAS monitoring, but we may expect O3 levels trending higher with further increases in average temperatures.
+There has not been a consistent trend in O<sub>3</sub> levels over the history of NYCCAS monitoring, but we may expect O<sub>3</sub> levels trending higher with further increases in average temperatures.
 
 **Air quality changes with location.**
 
