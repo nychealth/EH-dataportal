@@ -37,13 +37,6 @@
       <description>Climate, including extreme weather, has a direct impact on health. As NYC&amp;rsquo;s climate changes, along with the world&amp;rsquo;s climate, we expect more frequent and intense heat waves, increased rainfall and more severe storms. These will add to existing weather-related risks. Already, heat kills more people than all other natural disasters combined.&#xA;In New York City, those most vulnerable to the dangers of hot weather are older adults and people with health conditions like heart disease, diabetes, and cognitive impairment - especially those in low-income, Black, and Brown communities.</description>
     </item>
     <item>
-      <title>Real-time asthma emergency department visits</title>
-      <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/key-topics/climatehealth/asthma-syndrome/</link>
-      <pubDate>Sat, 02 Oct 2021 07:56:00 -0400</pubDate>
-      <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/key-topics/climatehealth/asthma-syndrome/</guid>
-      <description>Asthma is a common disease that makes breathing difficult, causing coughing, wheezing, and shortness of breath.&#xA;Things in our environment can trigger asthma or make symptoms worse - like air pollution (like fine particulates, ozone, or diesel exhaust); unhealthy housing conditions (dust mites, cockroaches, mold); or things like pollen, pets, or tobacco smoke.&#xA;Asthma is a leading cause of emergency department visits, hospitalizations, and missed school days. Emergency department visits for asthma are concentrated in higher-poverty neighborhoods, as poor housing quality and less access to preventive health care create barriers to managing asthma.</description>
-    </item>
-    <item>
       <title>2021 NYC Heat-Related Mortality Report</title>
       <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/key-topics/climatehealth/2021-heat-report/</link>
       <pubDate>Wed, 08 Sep 2021 11:14:56 -0400</pubDate>
@@ -118,7 +111,7 @@
       <link>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-explorer/mental-health/</link>
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://gcappbesp307.health.dohmh.nycnet/dev-stage/data-explorer/mental-health/</guid>
-      <description>Mental health is a person’s emotional, psychological, and social wellbeing. It is an important part of overall health.&#xA;Many factors can contribute to poor mental health. These include chronic disease, poverty, and poor environmental conditions. Many adults with mental illness do not receive the treatment they need.&#xA;Mental health and the environment A person’s environment affects their mental health.&#xA;Neighborhood factors like green space, noise, and infrastructure can affect mental health.</description>
+      <description>Mental health is a person’s emotional, psychological, and social wellbeing. It is an important part of overall health.&#xA;Mental illness can include depression, serious psychological distress, hospitalization for psychiatric reasons, and even suicide.&#xA;Many factors can contribute to mental illness. Poor mental health is associated with a variety of risk factors. These include chronic disease, poverty, and poor environmental conditions. Many adults with mental illness do not receive the treatment they need.</description>
     </item>
     <item>
       <title>Vector-borne disease</title>

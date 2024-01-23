@@ -14,6 +14,26 @@
         "href": "about"
     },
     {
+        "title": "Advanced site tools",
+        "displayTitle": "Advanced site tools",
+        "categories": [
+            "internal"
+        ],
+        "keywords": [
+            "how we work",
+            "redesign",
+            "user research",
+            "open source",
+            "Github",
+            "open data",
+            "API",
+            "data visualization"
+        ],
+        "seo_title": "Advanced tools",
+        "content": "If you are a data scientist programmer open data enthusiast open source evangelist data visualiation specialist or somebody who aspires to be any of those then there are some advanced features of the Environment and Health Data Portal that you can use to get and use our data Reuse data visualizations The visualizations on our sites Data Explorerdataexplorer use a JavaScript library called VegaLitehttpsvegagithubiovegalite Vegalite provides a few options for you to use the visualizations in other contexts Above and to the right of the visualiaztions theres a threedot menu Clicking this gives you a few helpful options Save as SVG or Save as PNG will trigger a download of the visualization as an image You can reuse this in other material When you reuse our visualizations please provide creditattribution to the NYC Health Department Environment and Health Data Portal vegalitemenupng Open in Vega Editor will open a new tab with the visualizations specification loaded in the Vega Editor an online widget that lets you modify and run visualizations in VegaLite This lets you edit a version of the visualizations code revise it preview it ensure that you have working code which you can then embed in your own website using the vegaEmbed function For details about how to embed VegaLite visualizations into another webpage see the VegaLite documentationhttpsvegagithubiovegalite vegaliteeditorpng The specification is on the left and you can edit the layout and design details of the visualization that gets rendered on the right It can take a bit of learning to properly edit a VegaLite spec VegaLites documentation will helphttpsvegagithubiovegalitedocs Download data Below each data visualization there is a Download data button that lets you download what youre seeing For the table this will download the full table of data For the map it will trigger a download of the data for whichever geographic resolution is being shown For the trend chart it will download the years and geographies displayed For the links disparities charts it will download both indicators at the geography displayed You can use these data for your own projects It may be helpful to retain information on the Data Source and About The Measures which explains how the indicator was calculated fields displayed on each indicators page Directly access underlying data You can bypass ourwebsite and get data by going to our data repositoryhttpsgithubcomnychealthEHDPdata The Data Explorers data is stored in indicatorshttpsgithubcomnychealthEHDPdatatreeproductionindicators Some documentation is available in that locations Readme but briefly metadatajson contains the indicators names indicator IDs used to identify which file the data are in data sources notes and other visualization specifications used by the site code The data folder contains a json file for each indicator with fields for the measure ID geography time period value and a few other supplemental fields To help find specific datasets indicators in metadatajson you can search by text on our Indicator Catalog pagedataexplorerindicatorcatalog Repopng Use the sites source code for your own project The entire source code for this website is stored in a publiclyavailable Github repositoryhttpsgithubcomnychealthEHdataportal This means you can File issues if you have questions about the site View the underlying source code Download the source code and modify it to create your own site Using the source code will require a basic understanding of npmhttpswwwnpmjscom and a functional understanding of Hugohttpsgohugoio the static site builder used to create this site there are excellent video tutorials for both available on Youtube At the most basic you need to have npm and Hugo installed on your computer After that run npm install in your local repository to install the depenedencies that the site needs and Hugo serve to serve a local version of the site so you can preview your changes Modifying the source code will require some understanding of Hugo For using the Data Explorer application to build your own data visualization website youll need extensive knowledge of JavaScript and functional knowledge of DataTablesnethttpswwwdatatablesnet VegaLitehttpsvegagithubiovegalite and Arquerohttpsuwdatagithubioarquero How the Data Explorer works is closely tied to how the data are structured you will need a metadata file and indicators structured the same way that ours are and youd need to revise references to the data locations so that your Data Explorer application will properly display your data",
+        "href": "about/advanced-tools"
+    },
+    {
         "title": "We're Hiring!",
         "displayTitle": "We're Hiring!",
         "seo_title": "Our bureau is hiring",
@@ -34,7 +54,7 @@
             "user research"
         ],
         "seo_title": "Redesigned EH Data Portal",
-        "content": "The Environment and Health Data Portal looks a little bit different We recently redesigned our site to make it easier for you to find important data and information on how the environment affects healthnbspnbsp Heres what the new site has to offernbsp An updated design The whole site got a fresh design to make exploring easier for you – whether you’re on a desktop computer a phone or a tablet Its been optimized for accessibility translation and clear simple presentation of information using the NYC Core Frameworkhttpswww1nycgovassetsotihtmlnyccoreframeworkindexhtml an opensource framework based on Bootstrapnbspnbsp The navigation bar at the top always tells you where you are and provides quick access to the main sections of the site Data Stories Neighborhood Reports Key Topics or Data Explorernbspnbsp New ways of connecting information Our site has always aimed to show how environments affect healthnbsp Our updates focus not only on improving access to data but also making it easier to explore connections between different datasets topics and other site contentnbsp Key Topicskeytopics bring together in one display related datasets custom data interactives data stories and neighborhood reports for special areas of environmental health You can explore resources across the site for Air Qualitykeytopicsairquality Climatekeytopicsclimatehealth Housingkeytopicshousing Inequality and Health Inequitieskeytopicssocial Active DesignkeytopicstransportationPublic Space and Transportation__notset__ Environmental Health Outcomeskeytopicshealthoutcomes Child Healthkeytopicschildhealth Pests and Pesticideskeytopicspests and Food and Drinkkeytopicsfoodanddrinknbsp Keywords link you to other pages on the similar topicsnbsp keywordsscreenshotpng Throughout the site youll see links to related content For example when youre browsing datasets about Air Quality youll be able to quickly jump directly to related Data Stories nbsp relatedscreenshotpng And if you cant find what youre looking for our revamped search function can help you find itnbspnbsp searchscreenshotpng Greater usabilitynbsp Our goal is for you to be able to put our data and information to work improving health throughout our city And when we do user research one of the most common things we hear is It has to be easy to use So weve built the site with this as our mantranbsp For example take a look at our revamped Data Explorerdataexplorer nbsp dataexplorerscreenshotpng On the pagenbsp We designed the visualization pages to be fast and smooth making it easier to click around and explorenbsp nbspAbout The Topic text added to the visualization page pairs information and context with the datanbsp Making choicesnbsp When youre exploring a dataset or indicator you can quicklynbsp load related indicators for the same topicnbsp Our redesigned data option menus make it easy to change the geography year or measure when youre looking at the datanbsp With a click of Change topic you can swiftly select a whole new area to explorenbsp New ways to view datanbsp We aim to highlight important stories in the data with our visualizations For examplenbsp The map is accompanied by a bar chart so you can see the variation in the data in a different waynbsp The Links view lets you click a borough to filter the scatterplotnbsp The charts are designed so you can screenshot them to add directly into a presentation grant or essaynbsp Getting more from the datanbsp Weve added automatic data download functions and a copy citation button so you can easily access the raw data for analysis and cite it in your worknbspnbsp New technologynbsp We completely overhauled the Portal’s technology to improve usability mobile compatibility and accessibility We use Hugohttpsgohugoio a static site generatornbsp Arquerohttpsuwdatagithubioarquero VegaLitehttpsvegagithubiovegalite and DataTableshttpsdatatablesnetnbspto drive frontend data processing and visualizationnbsp If you’re curious about the nuts and bolts you can find out more in our site repositoryhttpsgithubcomnychealthEHdataportal and data repositoryhttpsgithubcomnychealthEHDPdatanbspnbsp Help us developnbsp We built this site for you so please help us continue developing itnbsp Sign up for our email listhttpsdocsgooglecomformsde1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISwOM7PBwKuoN3Mgviewformembeddedtruenbsp– well send occasional requests for users to participate in user testing or codesign worknbsp Visit our Github repositories sitehttpsgithubcomnychealthEHdataportal datahttpsgithubcomnychealthEHDPdata and explore the code file an issue or suggest featuresnbsp Email us with any questions you have at 1011041001126410410197108116104461101219946103111118 – were here to helpnbspnbsp nbsp",
+        "content": "The Environment and Health Data Portal looks a little bit different We recently redesigned our site to make it easier for you to find important data and information on how the environment affects healthnbspnbsp Heres what the new site has to offernbsp An updated design The whole site got a fresh design to make exploring easier for you – whether you’re on a desktop computer a phone or a tablet Its been optimized for accessibility translation and clear simple presentation of information using the NYC Core Frameworkhttpswww1nycgovassetsotihtmlnyccoreframeworkindexhtml an opensource framework based on Bootstrapnbspnbsp The navigation bar at the top always tells you where you are and provides quick access to the main sections of the site Data Stories Neighborhood Reports Key Topics or Data Explorernbspnbsp New ways of connecting information Our site has always aimed to show how environments affect healthnbsp Our updates focus not only on improving access to data but also making it easier to explore connections between different datasets topics and other site contentnbsp Key Topicskeytopics bring together in one display related datasets custom data interactives data stories and neighborhood reports for special areas of environmental health You can explore resources across the site for Air Qualitykeytopicsairquality Climatekeytopicsclimatehealth Housingkeytopicshousing Inequality and Health Inequitieskeytopicssocial Active Design Public Space and Transportationkeytopicstransportation Environmental Health Outcomeskeytopicshealthoutcomes Child Healthkeytopicschildhealth Pests and Pesticideskeytopicspests and Food and Drinkkeytopicsfoodanddrinknbsp Keywords link you to other pages on the similar topicsnbsp keywordsscreenshotpng Throughout the site youll see links to related content For example when youre browsing datasets about Air Quality youll be able to quickly jump directly to related Data Stories nbsp relatedscreenshotpng And if you cant find what youre looking for our revamped search function can help you find itnbspnbsp searchscreenshotpng Greater usabilitynbsp Our goal is for you to be able to put our data and information to work improving health throughout our city And when we do user research one of the most common things we hear is It has to be easy to use So weve built the site with this as our mantranbsp For example take a look at our revamped Data Explorerdataexplorer nbsp dataexplorerscreenshotpng On the pagenbsp We designed the visualization pages to be fast and smooth making it easier to click around and explorenbsp nbspAbout The Topic text added to the visualization page pairs information and context with the datanbsp Making choicesnbsp When youre exploring a dataset or indicator you can quicklynbsp load related indicators for the same topicnbsp Our redesigned data option menus make it easy to change the geography year or measure when youre looking at the datanbsp With a click of Change topic you can swiftly select a whole new area to explorenbsp New ways to view datanbsp We aim to highlight important stories in the data with our visualizations For examplenbsp The map is accompanied by a bar chart so you can see the variation in the data in a different waynbsp The Links view lets you click a borough to filter the scatterplotnbsp The charts are designed so you can screenshot them to add directly into a presentation grant or essaynbsp Getting more from the datanbsp Weve added automatic data download functions and a copy citation button so you can easily access the raw data for analysis and cite it in your worknbspnbsp New technologynbsp We completely overhauled the Portal’s technology to improve usability mobile compatibility and accessibility We use Hugohttpsgohugoio a static site generatornbsp Arquerohttpsuwdatagithubioarquero VegaLitehttpsvegagithubiovegalite and DataTableshttpsdatatablesnetnbspto drive frontend data processing and visualizationnbsp If you’re curious about the nuts and bolts you can find out more in our site repositoryhttpsgithubcomnychealthEHdataportal and data repositoryhttpsgithubcomnychealthEHDPdatanbspnbsp Help us developnbsp We built this site for you so please help us continue developing itnbsp Sign up for our email listhttpsdocsgooglecomformsde1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISwOM7PBwKuoN3Mgviewformembeddedtruenbsp– well send occasional requests for users to participate in user testing or codesign worknbsp Visit our Github repositories sitehttpsgithubcomnychealthEHdataportal datahttpsgithubcomnychealthEHDPdata and explore the code file an issue or suggest featuresnbsp Email us with any questions you have at 1011041001126410410197108116104461101219946103111118 – were here to helpnbspnbsp nbsp",
         "href": "about/redesign"
     },
     {
@@ -143,19 +163,10 @@
         "href": "data-explorer/alcohol-use"
     },
     {
-        "title": "All data sets",
-        "displayTitle": "All data sets",
-        "categories": null,
-        "keywords": null,
-        "seo_title": "Index of Data on the Environment and Health Data Portal",
-        "content": "Browse all data sets on the Environment and Health Data Portal",
-        "href": "data-explorer/all-data"
-    },
-    {
         "title": "Asthma triggers at home",
         "displayTitle": "Asthma triggers at home",
-        "indicator_names": "Homes with mice or rats in the building##Homes with cockroaches##Mold in homes##Secondhand smoke at home (from outside sources)##Children in homes with cockroaches (age 1-13)##Children in homes with mice (age 1-13)##Secondhand smoke exposure at home (children)##E-cigarette vapor exposure at home (children)##Children in homes with visible mold or mildew (age 1-13)",
-        "indicator_descriptions": "The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and worsen asthma.##The presence of cockroaches in the home is often associated with poor housing maintenance. Cockroaches in the home can contaminate food and worsen asthma.##Adults reporting mold in the home. Mold can worsen respiratory conditions like asthma, and indicate maintenance deficiencies in a building.##Adults reporting secondhand smoke at home, from outside sources. Secondhand smoke, especially indoors, is bad for health - especially for the health of children.##The saliva, feces, and shedding body parts of cockroaches are an allergen and can trigger asthma.##The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and worsen asthma.##The number of children aged 1-13 years exposed to tobacco smoke at home all of the time, most of the time, or occasionally. Secondhand smoke is harmful to children and can cause or worsen respiratory and asthma issues and ear infections.##E-cigarette smoke: The number of children aged 1-13 years exposed to e-cigarette smoke at home all of the time, most of the time, or occasionally. Chemicals in the vapor from e-cigarettes can be harmful to kids.##Children who live in homes with visible mold/mildew. Mold and mildew can trigger asthma attacks in children.",
+        "indicator_names": "Secondhand smoke at home##Homes with mice or rats in the building##Homes with cockroaches##Mold in homes##Children in homes with cockroaches (age 1-13)##Children in homes with mice (age 1-13)",
+        "indicator_descriptions": "Adults reporting secondhand smoke at home. Secondhand smoke, especially indoors, is bad for health - particularly for the health of children.##The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and worsen asthma.##The presence of cockroaches in the home is often associated with poor housing maintenance. Cockroaches in the home can contaminate food and worsen asthma.##Adults reporting mold in the home. Mold can worsen respiratory conditions like asthma, and indicate maintenance deficiencies in a building.##The saliva, feces, and shedding body parts of cockroaches are an allergen and can trigger asthma.##The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and worsen asthma.",
         "categories": [
             "housing",
             "social",
@@ -175,15 +186,12 @@
             "childhood asthma"
         ],
         "indicator_ids": [
-            2338,
-            2404,
-            2422,
             2101,
-            2430,
-            48,
+            25,
+            2393,
             2394,
             107,
-            2393
+            48
         ],
         "seo_title": "Data on asthma triggers in NYC",
         "content": "Housing conditions can trigger asthma In New York City childhood asthma is a significant health threat that affects thousands of children per year No family should have to choose between affordable and healthy housing All tenants are entitled to safe decent and sanitary housing which prevents disease and injury",
@@ -192,8 +200,8 @@
     {
         "title": "Asthma",
         "displayTitle": "Asthma",
-        "indicator_names": "Adults with asthma (past 12 months)##Asthma hospitalizations (age 4 and under)##Asthma emergency department visits (age 4 and under)##Asthma in public school children (age 5 to 14)##Persistent asthma in public school children (age 5 to 14)##Youth asthma (past 12 months)##Asthma emergency department visits (age 4 and under), by NTA##Asthma emergency department visits (age 5 to 17)##Asthma emergency department visits (adults)##Asthma hospitalizations (age 5 to 17)##Asthma hospitalizations (adults)##Asthma emergency department visits (age 5 to 17), by NTA##Asthma emergency department visits (adults), by NTA##Asthma hospitalizations (age 4 and under), by NTA##Asthma hospitalizations (age 5 to 17), by NTA##Asthma hospitalizations (adults), by NTA##Children ever diagnosed with asthma##Adults with asthma##Children with an asthma attack (past 12 months)##Children still with asthma",
-        "indicator_descriptions": "Asthma is a common disease characterized by breathing difficulty. Poor air quality and housing issues increase risk of developing and triggering asthma.##Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.##Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.##Asthma is a common disease characterized by breathing difficulty. Poor air quality and housing issues increase risk of developing and triggering asthma.##Persistent asthma is when symptom occur more than twice per week.##Public high school students who reported having an asthma attack in the past 12 months.##Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.##Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.##Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.##Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.##Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.##Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.##Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.##Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.##Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.##Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.##Children ages 1 to 13 that have ever received an asthma diagnosis.##Adults age 18 and older who have ever been diagnosed with asthma.##Children ages 1 to 13 who have had an asthma attack in the past year. Asthma attacks are a measureable adverse health outcome of asthma.##Children ages 1 to 13 that currently have asthma. Not every asthma diagnosis is correct. The number of children who still have asthma is usually smaller than the number of children who have ever been diagnosed with asthma.",
+        "indicator_names": "Adults with asthma (past 12 months)##Asthma hospitalizations (age 4 and under)##Asthma emergency department visits (age 4 and under)##Asthma in public school children (age 5 to 14)##Persistent asthma in public school children (age 5 to 14)##Youth asthma (past 12 months)##Asthma emergency department visits (age 4 and under), by NTA##Asthma emergency department visits (age 5 to 17)##Asthma emergency department visits (adults)##Asthma hospitalizations (age 5 to 17)##Asthma hospitalizations (adults)##Asthma emergency department visits (age 5 to 17), by NTA##Asthma emergency department visits (adults), by NTA##Asthma hospitalizations (age 4 and under), by NTA##Asthma hospitalizations (age 5 to 17), by NTA##Asthma hospitalizations (adults), by NTA##Children ever diagnosed with asthma##Adults with asthma##Children with an asthma attack (past 12 months)",
+        "indicator_descriptions": "Asthma is a common disease characterized by breathing difficulty. Poor air quality and housing issues increase risk of developing and triggering asthma.##Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.##Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.##Asthma is a common disease characterized by breathing difficulty. Poor air quality and housing issues increase risk of developing and triggering asthma.##Persistent asthma is when symptom occur more than twice per week.##Public high school students who reported having an asthma attack in the past 12 months.##Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.##Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.##Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.##Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.##Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.##Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.##Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.##Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.##Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.##Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers.##Children ages 1 to 13 that have ever received an asthma diagnosis.##Adults age 18 and older who have ever been diagnosed with asthma.##Children ages 1 to 13 who have had an asthma attack in the past year. Asthma attacks are a measureable adverse health outcome of asthma.",
         "categories": [
             "airquality",
             "childhealth",
@@ -226,13 +234,12 @@
             2385,
             2381,
             2386,
-            2414,
             18,
             2392,
-            2431,
             2147,
             2149,
             2339,
+            2414,
             2429
         ],
         "seo_title": "Asthma data for NYC",
@@ -423,8 +430,8 @@
     {
         "title": "Cigarette smoke",
         "displayTitle": "Cigarette smoke",
-        "indicator_names": "No smoke-free home policy##Cigarette smoking (adults)##Secondhand smoke at work##Cigarette smoking (youth)##Secondhand smoke at home (from outside sources)##Secondhand smoke exposure at home (children)##Tobacco retailers##E-cigarette vapor exposure at home (children)",
-        "indicator_descriptions": "Adults without a smoke-free home policy. A smoke-free home policy can limit people's exposure to secondhand smoke, which is especially dangerous to children.##Adults who are current smokers. Cigarette smoking is the leading cause of preventable deaths in the USA. It causes many diseases and greatly harms health.##Adults reporting secondhand smoke at work. Secondhand smoke, especially indoors, is bad for health.##High school students who smoked in the past 30 days (from when they were surveyed). Cigarette smoking is the leading cause of preventable deaths in the USA. It causes many diseases and greatly harms health.##Adults reporting secondhand smoke at home, from outside sources. Secondhand smoke, especially indoors, is bad for health - especially for the health of children.##The number of children aged 1-13 years exposed to tobacco smoke at home all of the time, most of the time, or occasionally. Secondhand smoke is harmful to children and can cause or worsen respiratory and asthma issues and ear infections.##Retail locations that sell tobacco products. Neighborhoods with higher densities of tobacco retailers increase access to tobacco and may increase smoking rates.##E-cigarette smoke: The number of children aged 1-13 years exposed to e-cigarette smoke at home all of the time, most of the time, or occasionally. Chemicals in the vapor from e-cigarettes can be harmful to kids.",
+        "indicator_names": "Secondhand smoke at home##No smoke-free home policy##Cigarette smoking (adults)##Secondhand smoke at work##Cigarette smoking (youth)##Secondhand smoke at home (from outside sources)##Tobacco retailers",
+        "indicator_descriptions": "Adults reporting secondhand smoke at home. Secondhand smoke, especially indoors, is bad for health - particularly for the health of children.##Adults without a smoke-free home policy. A smoke-free home policy can limit people's exposure to secondhand smoke, which is especially dangerous to children.##Adults who are current smokers. Cigarette smoking is the leading cause of preventable deaths in the USA. It causes many diseases and greatly harms health.##Adults reporting secondhand smoke at work. Secondhand smoke, especially indoors, is bad for health.##High school students who smoked in the past 30 days (from when they were surveyed). Cigarette smoking is the leading cause of preventable deaths in the USA. It causes many diseases and greatly harms health.##Adults reporting secondhand smoke at home, from outside sources. Secondhand smoke, especially indoors, is bad for health - especially for the health of children.##Retail locations that sell tobacco products. Neighborhoods with higher densities of tobacco retailers increase access to tobacco and may increase smoking rates.",
         "categories": [
             "housing",
             "childhealth"
@@ -440,14 +447,13 @@
             "children"
         ],
         "indicator_ids": [
+            2338,
+            2020,
+            2017,
             2421,
             2019,
             2021,
-            2338,
-            2404,
-            2422,
-            2020,
-            2017
+            25
         ],
         "seo_title": "Cigarette smoking data for NYC",
         "content": "Smoking causes over a dozen cancers heart disease stroke type 2 diabetes and many other diseases it remains a leading cause of death in New York City NYC On average people who do not smoke live about 10 years longer than people who do Additionally there is no safe level of exposure to secondhand smoke Secondhand smoke causes cancer heart disease and other illnesses in adults Children exposed to smoke are more likely to have bronchitis asthma attacks ear infections pneumonia and sudden infant death syndrome SIDS The harms of ecigarettes Ecigarettes are devices that heat a liquid called eliquid into an aerosol that the user can inhale Although eliquids do not contain tobacco they contain chemicals usually including flavorings and often contain nicotine which is addictive Ecigarette use also known as vaping can be especially harmful for young people because nicotine affects them in different ways than adults Youth who use ecigarettes are also more likely to try cigarettes Eliquid ingredients are not closely regulated so the nicotine content additives and flavorings can vary extensively The longterm health effects of vaping are unknown but the aerosol from heated eliquids can contain other harmful chemicals such as formaldehyde benzene diacetyl and heavy metals Ecigarettes are not approved by the FDA to help people quit smoking Other people nearby can be harmed by breathing in the harmful chemicals in ecigarette aerosol in the air Environmental Exposure to Tobacco and Ecigarette Products A person’s environment can affect how much they are exposed to tobacco and ecigarette products and related marketing as well as secondhand smoke and aerosol Higher levels of tobacco retailer density and proximity are associated with higher tobacco use The tobacco industry’s marketing activities including incentivizing retailers to display their products and ads result in increased marketing and accessibility of products in communities with higher poverty The tobacco industry has a long history of deceptive tactics and marketing to youth communities of color and other marginalized communities NYC’s Smoke Free Air Act prohibits smoking and vaping in most workplaces and public spaces including inside restaurants and bars Under the SFAA any smoking or vaping is also banned in all indoor common areas of residential buildings with three or more units Find Out More Everyone deserves the opportunity to be free from the harm that commercial tobacco and nicotine products can cause To learn more about prevention and treatment resources as well as how you can take action in your community visit these webpages and websites NYC Quitshttpswww1nycgovsitedohhealthhealthtopicssmokingnycquitspage Ecigaretteshttpswww1nycgovsitedohhealthhealthtopicssmokingecigarettespage Smoke Free Air Lawshttpswww1nycgovsitedohbusinesspermitsandlicensessmokefreeairactexemptionsandregistrationspage NYC SmokeFreehttpsnycsmokefreeorg",
@@ -511,13 +517,13 @@
         "href": "data-explorer/cockroaches"
     },
     {
-        "title": "Data lookup or download",
-        "displayTitle": "Data lookup or download",
+        "title": "Data index",
+        "displayTitle": "Data index",
         "categories": null,
         "keywords": null,
-        "seo_title": "The Environment and Health Data Portal's datasets",
-        "content": "Look up and reference EHDP indicators",
-        "href": "data-explorer/data-reference"
+        "seo_title": "Index of Data on the Environment and Health Data Portal",
+        "content": "Search by term see available years and geographies and filter by data source",
+        "href": "data-explorer"
     },
     {
         "title": "Drinking water quality",
@@ -546,8 +552,8 @@
     {
         "title": "Economic conditions",
         "displayTitle": "Economic conditions",
-        "indicator_names": "Household crowding##Owner-occupied homes##Neighborhood poverty##Perception of neighborhood safety##Health insurance (adults)##Child poverty (under age 5)##Jail incarceration##Race and Ethnicity (ICE 1)##Race and Ethnicity (ICE 2)##ICE 1##ICE 2##ICE 3##Rent-burdened households##Unemployment##Evictions (court-ordered)",
-        "indicator_descriptions": "Households with more than one person per room are considered crowded.##Housing units occupied by their owner.##The percent of households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to items such as health care and good quality housing that are needed to maintain good health.##Adults reporting their neighborhood is safe from crime. Whether people perceive their neighborhood as safe can affect whether they will spend time outside, use parks, and use active and sustainable forms of transportation. It can also affect mental well-being.##Health insurance coverage is associated with numerous beneficial health effects. Those with health insurance are more likely to have a regular doctor, receive preventive care services, better manage chronic health conditions, have longer life expectancy, and more.##Poverty is a major determinant of health, since poverty deprives people of access to health and safety resources.##Each component of the criminal justice continuum - from arrest to re-entry - carries various health consequences, and a growing body of literature has documented severe adverse health outcomes associated with incarceration on the individual, their families, and neighborhoods.############Rent burden is spending 30% or more of your income on rent and utilities.##Adults age 16+ who are unemployed.##Eviction often leads to residential instability, moving into poor quality housing, overcrowding, and homelessness, all of which is associated with negative health among adults and children.People who are threatened with eviction, even before they lose their home, are more likely to report poor health, high blood pressure, depression (from \"The Hidden Health Crisis of Eviction\" by Allison Bovell-Ammo and Megan Sandel).",
+        "indicator_names": "Household crowding##Owner-occupied homes##Neighborhood poverty##Perception of neighborhood safety##Health insurance (adults)##Child poverty (under age 5)##Jail incarceration##Rent-burdened households##Unemployment##Evictions (court-ordered)",
+        "indicator_descriptions": "Households with more than one person per room are considered crowded.##Housing units occupied by their owner.##The percent of households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to items such as health care and good quality housing that are needed to maintain good health.##Adults reporting their neighborhood is safe from crime. Whether people perceive their neighborhood as safe can affect whether they will spend time outside, use parks, and use active and sustainable forms of transportation. It can also affect mental well-being.##Health insurance coverage is associated with numerous beneficial health effects. Those with health insurance are more likely to have a regular doctor, receive preventive care services, better manage chronic health conditions, have longer life expectancy, and more.##Poverty is a major determinant of health, since poverty deprives people of access to health and safety resources.##Each component of the criminal justice continuum - from arrest to re-entry - carries various health consequences, and a growing body of literature has documented severe adverse health outcomes associated with incarceration on the individual, their families, and neighborhoods.##Rent burden is spending 30% or more of your income on rent and utilities.##Adults age 16+ who are unemployed.##Eviction often leads to residential instability, moving into poor quality housing, overcrowding, and homelessness, all of which is associated with negative health among adults and children.People who are threatened with eviction, even before they lose their home, are more likely to report poor health, high blood pressure, depression (from \"The Hidden Health Crisis of Eviction\" by Allison Bovell-Ammo and Megan Sandel).",
         "categories": [
             "social",
             "housing"
@@ -570,11 +576,6 @@
             2132,
             2317,
             2073,
-            2328,
-            2329,
-            2330,
-            2326,
-            2327,
             17,
             2336,
             15,
@@ -805,6 +806,15 @@
         "href": "data-explorer/housing-stability"
     },
     {
+        "title": "Indicator catalog",
+        "displayTitle": "Indicator catalog",
+        "categories": null,
+        "keywords": null,
+        "seo_title": "Catalog of Indicators on The Environment and Health Data Portal",
+        "content": "Search by term get metadata and download links",
+        "href": "data-explorer/indicator-catalog"
+    },
+    {
         "title": "Lead poisoning",
         "displayTitle": "Lead poisoning",
         "indicator_names": "Very old homes##Old homes with peeling paint##Child poverty (under age 5)##Elevated blood levels (under age 6)##Lead testing (by age 3)##Elevated blood lead levels (age 16+)##Elevated blood levels (under age 6), by NTA",
@@ -840,8 +850,6 @@
     {
         "title": "Mental health",
         "displayTitle": "Mental health",
-        "indicator_names": "Depression (adults)##Psychiatric hospitalizations (adults)##Serious psychological distress (adults)##Suicide deaths",
-        "indicator_descriptions": "Adults with probable depression in the past 2 weeks (from when they were surveyed). Depression is a common mental health disorder. Symptoms include feeling sad or hopeless, having little interest in doing things and feeling tired.##A psychiatric hospitalization is defined as an overnight stay or longer in a psychiatric inpatient unit (excluding emergency room visits without an inpatient admission) for individuals with behaviors or symptoms that are likely to result in harm to themselves or others.##Serious psychological distress includes mental health problems that impact social, occupational, and educational functioning.##An intentional injury death that results from self-harm.",
         "categories": [
             "social",
             "transportation",
@@ -861,14 +869,8 @@
             "self-harm",
             "violence"
         ],
-        "indicator_ids": [
-            2417,
-            2418,
-            2419,
-            2420
-        ],
         "seo_title": "Mental health data in NYC",
-        "content": "Mental health is a person’s emotional psychological and social wellbeing It is an important part of overall health Many factors can contribute to poor mental health These include chronic disease poverty and poor environmental conditions Many adults with mental illness do not receive the treatment they need Mental health and the environment A person’s environment affects their mental health Neighborhood factors like green space noise and infrastructure can affect mental health People who say their neighborhood gives them more opportunities to be physically active are less likely to report poor mental health People exposed to poor housing quality like housing maintenance issues and pests are more likely to report poor mental health Living in high poverty neighborhoods is associated with depression serious psychological distress and psychiatric hospitalization Experiencing violence is also a risk factor depression is higher among those who report that their neighborhood is not very safe and those who have ever been hurt by an intimate partner Even climate change is a risk extreme heat is associated with mood disorders and anxiety and disasters such as floods and hurricanes result in trauma posttraumatic stress disorder and poorer mental health How to get help If you’re struggling connect with trained counselors at NYC Well It’s free and confidential Staff are available 24 hours a day seven days a week and can provide counseling and referrals to care in over 200 languages For support call 888NYCWELL 8886929355 text “WELL” to 65173 or chat online at nycgovnycwellhttpswwwnycgovnycwell If you or someone you know is at immediate risk of hurting themselves or in immediate danger call 911 You can visit nycgovnycwell and click on the App Libraryhttpswwwnycgovnycwell to find apps and online tools to help you manage your health and emotional wellbeing from home Or get more information on coping through COVID19httpswww1nycgovsiteacsaboutcovidhelppage",
+        "content": "Mental health is a person’s emotional psychological and social wellbeing It is an important part of overall health Mental illness can include depression serious psychological distress hospitalization for psychiatric reasons and even suicide Many factors can contribute to mental illness Poor mental health is associated with a variety of risk factors These include chronic disease poverty and poor environmental conditions Many adults with mental illness do not receive the treatment they need Mental health and the environment A person’s environment affects their mental health Neighborhood factors like green space noise and infrastructure can affect mental health People who say their neighborhood gives them more opportunities to be physically active are less likely to report poor mental health People exposed to poor housing quality like housing maintenance issues and pests are more likely to report poor mental health Living in high poverty neighborhoods is associated with depression serious psychological distress and psychiatric hospitalization Experiencing violence is also a risk factor depression is higher among those who report that their neighborhood is not very safe and those who have ever been hurt by an intimate partner Even climate change is a risk extreme heat is associated with mood disorders and anxiety and disasters such as floods and hurricanes result in trauma posttraumatic stress disorder and poorer mental health How to get help If you’re struggling connect with trained counselors at NYC Well It’s free and confidential Staff are available 24 hours a day seven days a week and can provide counseling and referrals to care in over 200 languages For support call 888NYCWELL 8886929355 text “WELL” to 65173 or chat online at nycgovnycwellhttpswwwnycgovnycwell If you or someone you know is at immediate risk of hurting themselves or in immediate danger call 911 You can visit nycgovnycwell and click on the App Libraryhttpswwwnycgovnycwell to find apps and online tools to help you manage your health and emotional wellbeing from home Or get more information on coping through COVID19httpswww1nycgovsiteacsaboutcovidhelppage",
         "href": "data-explorer/mental-health"
     },
     {
@@ -926,8 +928,8 @@
     {
         "title": "Overweight",
         "displayTitle": "Overweight",
-        "indicator_names": "Overweight or obesity (adults)##Overweight or obesity (youth)##Obesity (adults)##Obesity (youth)##Diabetes (adults)",
-        "indicator_descriptions": "People who are overweight or obese are at increased risk for heart disease and diabetes.##People who are overweight or obese are at increased risk for heart disease and diabetes.##People who are obese are at increased risk for heart disease and diabetes. Neighborhood factors such as walkability and the types of food retail outlets available can impact residents' risk of being overweight or obese.##People who are obese are at increased risk for heart disease and diabetes. Neighborhood factors such as walkability and the types of food retail outlets available can impact residents' risk of being overweight or obese.##Diabetes is a metabolic disorder that affects how well your body can get energy from food and drink. Adults can be born with diabetes or develop it later in life. Health problems from diabetes can include heart disease, stroke, vision problems, and amputations.",
+        "indicator_names": "Overweight or obesity (adults)##Overweight or obesity (youth)##Obesity (adults)##Obesity (youth)",
+        "indicator_descriptions": "People who are overweight or obese are at increased risk for heart disease and diabetes.##People who are overweight or obese are at increased risk for heart disease and diabetes.##People who are obese are at increased risk for heart disease and diabetes. Neighborhood factors such as walkability and the types of food retail outlets available can impact residents' risk of being overweight or obese.##People who are obese are at increased risk for heart disease and diabetes. Neighborhood factors such as walkability and the types of food retail outlets available can impact residents' risk of being overweight or obese.",
         "categories": [
             "healthoutcomes"
         ],
@@ -939,8 +941,7 @@
             2063,
             2064,
             2061,
-            2062,
-            2169
+            2062
         ],
         "seo_title": "Overweight data for NYC",
         "content": "People who are overweight or obese are at increased risk for heart disease and diabetes Physical activity and healthy eating can promote wellbeing and relieve stress Weight and the Environment Neighborhood conditions and resources can encourage or discourage healthy behaviors The density and types of food retail outlets available in neighborhoods may affect food shopping habits and nutrition choices of residents Healthy food choices combined with physically active lifestyle support maintenance of an optimal bodyweight and overall good health About the Data and Indicators Weight indicators presented on this site are derived from the biennial NYC Youth Risk Behavior Survey and the annual Community Health Survey They are estimates that depend on study participants accurate recollections and reporting Health Promotion Strategies Maintain good nutrition habits including Eat plenty of fruits and vegetables Watch your portions Eat whole grains Drink very low calorie beverages like water and unsweetened tea Avoid sugary drinks Keep to recommended calorie levels for your age gender weight and physical activity level Key Messages More than half of adult New Yorkers are either overweight or obese Being at an unhealthy weight increases a persons risk of developing many conditions including diabetes high blood pressure high cholesterol cancer and heart disease Poor neighborhoods have higher rates of obesity and related deaths due to diabetes and heart disease than more affluent neighborhoods",
@@ -2002,7 +2003,7 @@
             "user research"
         ],
         "seo_title": "Redesigned EH Data Portal",
-        "content": "The Environment and Health Data Portal looks a little bit different We recently redesigned our site to make it easier for you to find important data and information on how the environment affects healthnbspnbsp Heres what the new site has to offernbsp An updated design The whole site got a fresh design to make exploring easier for you – whether you’re on a desktop computer a phone or a tablet Its been optimized for accessibility translation and clear simple presentation of information using the NYC Core Frameworkhttpswww1nycgovassetsotihtmlnyccoreframeworkindexhtml an opensource framework based on Bootstrapnbspnbsp The navigation bar at the top always tells you where you are and provides quick access to the main sections of the site Data Stories Neighborhood Reports Key Topics or Data Explorernbspnbsp New ways of connecting information Our site has always aimed to show how environments affect healthnbsp Our updates focus not only on improving access to data but also making it easier to explore connections between different datasets topics and other site contentnbsp Key Topicskeytopics bring together in one display related datasets custom data interactives data stories and neighborhood reports for special areas of environmental health You can explore resources across the site for Air Qualitykeytopicsairquality Climatekeytopicsclimatehealth Housingkeytopicshousing Inequality and Health Inequitieskeytopicssocial Active DesignkeytopicstransportationPublic Space and Transportation__notset__ Environmental Health Outcomeskeytopicshealthoutcomes Child Healthkeytopicschildhealth Pests and Pesticideskeytopicspests and Food and Drinkkeytopicsfoodanddrinknbsp Keywords link you to other pages on the similar topicsnbsp keywordsscreenshotpng Throughout the site youll see links to related content For example when youre browsing datasets about Air Quality youll be able to quickly jump directly to related Data Stories nbsp relatedscreenshotpng And if you cant find what youre looking for our revamped search function can help you find itnbspnbsp searchscreenshotpng Greater usabilitynbsp Our goal is for you to be able to put our data and information to work improving health throughout our city And when we do user research one of the most common things we hear is It has to be easy to use So weve built the site with this as our mantranbsp For example take a look at our revamped Data Explorerdataexplorer nbsp dataexplorerscreenshotpng On the pagenbsp We designed the visualization pages to be fast and smooth making it easier to click around and explorenbsp nbspAbout The Topic text added to the visualization page pairs information and context with the datanbsp Making choicesnbsp When youre exploring a dataset or indicator you can quicklynbsp load related indicators for the same topicnbsp Our redesigned data option menus make it easy to change the geography year or measure when youre looking at the datanbsp With a click of Change topic you can swiftly select a whole new area to explorenbsp New ways to view datanbsp We aim to highlight important stories in the data with our visualizations For examplenbsp The map is accompanied by a bar chart so you can see the variation in the data in a different waynbsp The Links view lets you click a borough to filter the scatterplotnbsp The charts are designed so you can screenshot them to add directly into a presentation grant or essaynbsp Getting more from the datanbsp Weve added automatic data download functions and a copy citation button so you can easily access the raw data for analysis and cite it in your worknbspnbsp New technologynbsp We completely overhauled the Portal’s technology to improve usability mobile compatibility and accessibility We use Hugohttpsgohugoio a static site generatornbsp Arquerohttpsuwdatagithubioarquero VegaLitehttpsvegagithubiovegalite and DataTableshttpsdatatablesnetnbspto drive frontend data processing and visualizationnbsp If you’re curious about the nuts and bolts you can find out more in our site repositoryhttpsgithubcomnychealthEHdataportal and data repositoryhttpsgithubcomnychealthEHDPdatanbspnbsp Help us developnbsp We built this site for you so please help us continue developing itnbsp Sign up for our email listhttpsdocsgooglecomformsde1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISwOM7PBwKuoN3Mgviewformembeddedtruenbsp– well send occasional requests for users to participate in user testing or codesign worknbsp Visit our Github repositories sitehttpsgithubcomnychealthEHdataportal datahttpsgithubcomnychealthEHDPdata and explore the code file an issue or suggest featuresnbsp Email us with any questions you have at 1011041001126410410197108116104461101219946103111118 – were here to helpnbspnbsp nbsp",
+        "content": "The Environment and Health Data Portal looks a little bit different We recently redesigned our site to make it easier for you to find important data and information on how the environment affects healthnbspnbsp Heres what the new site has to offernbsp An updated design The whole site got a fresh design to make exploring easier for you – whether you’re on a desktop computer a phone or a tablet Its been optimized for accessibility translation and clear simple presentation of information using the NYC Core Frameworkhttpswww1nycgovassetsotihtmlnyccoreframeworkindexhtml an opensource framework based on Bootstrapnbspnbsp The navigation bar at the top always tells you where you are and provides quick access to the main sections of the site Data Stories Neighborhood Reports Key Topics or Data Explorernbspnbsp New ways of connecting information Our site has always aimed to show how environments affect healthnbsp Our updates focus not only on improving access to data but also making it easier to explore connections between different datasets topics and other site contentnbsp Key Topicskeytopics bring together in one display related datasets custom data interactives data stories and neighborhood reports for special areas of environmental health You can explore resources across the site for Air Qualitykeytopicsairquality Climatekeytopicsclimatehealth Housingkeytopicshousing Inequality and Health Inequitieskeytopicssocial Active Design Public Space and Transportationkeytopicstransportation Environmental Health Outcomeskeytopicshealthoutcomes Child Healthkeytopicschildhealth Pests and Pesticideskeytopicspests and Food and Drinkkeytopicsfoodanddrinknbsp Keywords link you to other pages on the similar topicsnbsp keywordsscreenshotpng Throughout the site youll see links to related content For example when youre browsing datasets about Air Quality youll be able to quickly jump directly to related Data Stories nbsp relatedscreenshotpng And if you cant find what youre looking for our revamped search function can help you find itnbspnbsp searchscreenshotpng Greater usabilitynbsp Our goal is for you to be able to put our data and information to work improving health throughout our city And when we do user research one of the most common things we hear is It has to be easy to use So weve built the site with this as our mantranbsp For example take a look at our revamped Data Explorerdataexplorer nbsp dataexplorerscreenshotpng On the pagenbsp We designed the visualization pages to be fast and smooth making it easier to click around and explorenbsp nbspAbout The Topic text added to the visualization page pairs information and context with the datanbsp Making choicesnbsp When youre exploring a dataset or indicator you can quicklynbsp load related indicators for the same topicnbsp Our redesigned data option menus make it easy to change the geography year or measure when youre looking at the datanbsp With a click of Change topic you can swiftly select a whole new area to explorenbsp New ways to view datanbsp We aim to highlight important stories in the data with our visualizations For examplenbsp The map is accompanied by a bar chart so you can see the variation in the data in a different waynbsp The Links view lets you click a borough to filter the scatterplotnbsp The charts are designed so you can screenshot them to add directly into a presentation grant or essaynbsp Getting more from the datanbsp Weve added automatic data download functions and a copy citation button so you can easily access the raw data for analysis and cite it in your worknbspnbsp New technologynbsp We completely overhauled the Portal’s technology to improve usability mobile compatibility and accessibility We use Hugohttpsgohugoio a static site generatornbsp Arquerohttpsuwdatagithubioarquero VegaLitehttpsvegagithubiovegalite and DataTableshttpsdatatablesnetnbspto drive frontend data processing and visualizationnbsp If you’re curious about the nuts and bolts you can find out more in our site repositoryhttpsgithubcomnychealthEHdataportal and data repositoryhttpsgithubcomnychealthEHDPdatanbspnbsp Help us developnbsp We built this site for you so please help us continue developing itnbsp Sign up for our email listhttpsdocsgooglecomformsde1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISwOM7PBwKuoN3Mgviewformembeddedtruenbsp– well send occasional requests for users to participate in user testing or codesign worknbsp Visit our Github repositories sitehttpsgithubcomnychealthEHdataportal datahttpsgithubcomnychealthEHDPdata and explore the code file an issue or suggest featuresnbsp Email us with any questions you have at 1011041001126410410197108116104461101219946103111118 – were here to helpnbspnbsp nbsp",
         "href": "data-stories/redesign"
     },
     {
@@ -2334,6 +2335,10 @@
         "href": "key-topics/airquality/nyccas"
     },
     {
+        "content": "About the data Data in this archive are hourly averaged measurements of PM25 from the New York City Community Air Surveys network of TSI DustTrak sensors Measurements The value shown is PM25 in micrograms per cubic meter of air µgm3 ObservationTimeUTC datetime stamp displayed is the beginning of the averaged PM25 measurements for the hour eg 212020 10000 AM UTC reflects data collected between 212020 10000 AM UTC and 212020 15900 AM UTC External factors can sometimes affect monitor functioning Data are preliminary and subject to change",
+        "href": "key-topics/airquality/realtime/data-archive-text"
+    },
+    {
         "title": "Real-Time Air Quality: PM2.5 in NYC",
         "displayTitle": "Real-Time Air Quality: PM2.5 in NYC",
         "categories": [
@@ -2436,28 +2441,6 @@
         "seo_title": "Climate and Health in NYC",
         "content": "Climate including extreme weather has a direct impact on health As NYCs climate changes along with the worlds climate we expect more frequent and intense heat waves increased rainfall and more severe storms These will add to existing weatherrelated risks Already heat kills more people than all other natural disasters combined In New York City those most vulnerable to the dangers of hot weather are older adults and people with health conditions like heart disease diabetes and cognitive impairment especially those in lowincome Black and Brown communities Air conditioning is the best defense against the heat Equitable access and responsible use of air conditioning is crucial to protect the lives of all New Yorkers while reducing impacts on the environment",
         "href": "key-topics/climatehealth"
-    },
-    {
-        "title": "Real-time asthma emergency department visits",
-        "displayTitle": "Real-time asthma emergency department visits",
-        "categories": [
-            "housing",
-            "airquality",
-            "childhealth",
-            "climatehealth",
-            "healthoutcomes",
-            "pests"
-        ],
-        "keywords": [
-            "housing",
-            "gentrification",
-            "displacement",
-            "justice",
-            "equity"
-        ],
-        "seo_title": "Daily asthma ED visits",
-        "content": "Asthma is a common disease that makes breathing difficult causing coughing wheezing and shortness of breath Things in our environment can trigger asthma or make symptoms worse like air pollution like fine particulates ozone or diesel exhaust unhealthy housing conditions dust mites cockroaches mold or things like pollen pets or tobacco smoke Asthma is a leading cause of emergency department visits hospitalizations and missed school days Emergency department visits for asthma are concentrated in higherpoverty neighborhoods as poor housing quality and less access to preventive health care create barriers to managing asthma",
-        "href": "key-topics/climatehealth/asthma-syndrome"
     },
     {
         "title": "2023 NYC Heat-Related Mortality Report",
@@ -2633,19 +2616,21 @@
         "href": "key-topics/pests"
     },
     {
-        "title": "NYC Rat Information Portal",
-        "displayTitle": "NYC Rat Information Portal",
+        "title": "Rat Information Portal",
+        "displayTitle": "Rat Information Portal",
         "categories": [
             "pests"
         ],
-        "keywords": null,
+        "keywords": [
+            "pests"
+        ],
         "seo_title": "Data on rat inspections",
         "content": "New York City’s Rat Information Portal is a web map application that lets you view rat inspection and action data collected by the NYC Health Department",
         "href": "key-topics/pests/rat-information-portal"
     },
     {
-        "title": "NYC Rat Mitigation Zones",
-        "displayTitle": "NYC Rat Mitigation Zones",
+        "title": "Rat Mitigation Zones",
+        "displayTitle": "Rat Mitigation Zones",
         "categories": [
             "pests"
         ],
@@ -4174,8 +4159,8 @@
     {
         "title": "Asthma and the Environment",
         "displayTitle": "Asthma and the Environment",
-        "indicator_names": "Adults with asthma (past 12 months) Secondhand smoke at home Homes with cracks or holes Homes with leaks Neighborhood poverty Homes with cockroaches No smoke-free home policy Fine particles (PM 2.5) Ozone (O3) Adults reporting mice or rats inside Asthma emergency department visits due to PM2.5 Cardiovascular hospitalizations due to PM2.5 (age 40+) Asthma emergency departments visits due to Ozone Asthma hospitalizations due to Ozone Health insurance (adults) Asthma in public school children (age 5 to 14) Asthma emergency department visits (age 5 to 17) Asthma emergency department visits (adults) Asthma hospitalizations (age 5 to 17) Asthma hospitalizations (adults) Renter-occupied homes with any health-related maintenance problems",
-        "indicator_descriptions": "Asthma is a common disease characterized by breathing difficulty. Poor air quality and housing issues increase risk of developing and triggering asthma. Adults reporting secondhand smoke at home. Secondhand smoke, especially indoors, is bad for health - particularly for the health of children. Cracks or holes are a maintenance deficiency linked to the presence of mice, rats, and cockroaches - which can harm residents' health. Leaks are a maintenance deficiency that can harm health by introducing mold, which can worsen respiratory conditions like asthma. The percent of households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to items such as health care and good quality housing that are needed to maintain good health. The presence of cockroaches in the home is often associated with poor housing maintenance. Cockroaches in the home can contaminate food and worsen asthma. Adults without a smoke-free home policy. A smoke-free home policy can limit people's exposure to secondhand smoke, which is especially dangerous to children. Fine particles are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health. Ozone is a common air pollutant that can harm breathing and worsen asthma and other respiratory conditions. Mice and rats are a source of household allergens connected to developing or worsening asthma. PM2.5 can cause asthma ED visits, which represent part of the health burden of fine particle air pollution. PM2.5 can cause cardiovascular hospitalizations, which represent part of the health burden of fine particle air pollution. Ozone can cause asthma ED visits, which are part of the health burden of air pollution. Ozone can cause hospitalizations for asthma, which are part of the health burden of air pollution. Health insurance coverage is associated with numerous beneficial health effects. Those with health insurance are more likely to have a regular doctor, receive preventive care services, better manage chronic health conditions, have longer life expectancy, and more. Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma. Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers. Homes with maintenance deficiencies can threaten the health of the people who live there.",
+        "indicator_names": "",
+        "indicator_descriptions": "",
         "categories": [
             "airquality",
             "transportation",
@@ -4226,8 +4211,8 @@
     {
         "title": "Climate and Health",
         "displayTitle": "Climate and Health",
-        "indicator_names": "Homes near structures rated good or excellent Ozone (O3) Heat stress: emergency department visits Area in hurricane evacuation zone Daytime summer surface temperature Neighborhood Poverty (ACS) Vegetative cover Serious psychological distress Independent living difficulty (adults) Older adults living alone Older adults with air conditioners (age 65+) Asthma emergency department visits (age 5 to 17)",
-        "indicator_descriptions": "Building quality predicts the number of housing maintenance deficiencies in a residence that place residents at increased risk of acute or chronic health problems. Ozone is a common air pollutant that can harm breathing and worsen asthma and other respiratory conditions. ED visits due to heat-related illnesses, such as heat stroke and heat exhaustion, represent part of the public health burden of extreme heat. Areas in evacuation zones are at increased risk of flooding during coastal storms. They may be ordered to evacuate in the event of a hurricane or coastal flooding. Surface temperatures vary based on vegetative cover (which promotes cooling), as well as by materials that retain heat (like paved roads, sidewalks, and buildings). Hotter neighborhoods tend to have more heat-exacerbated deaths associated with extreme heat events. Neighborhood poverty measures residents' access to economic stability, education, adequate health care, safe housing and freedom from stress. Neighborhoods with higher poverty tend to have less access to these factors and experience worse health outcomes. Vegetative cover is the land covered by trees, grass, or other plants instead of a hard surface like roads, sidewalks, or buildings. Vegetative cover tends to reduce temperatures in the immediate area and may increase air quality. Mental health conditions like series psychological distress can be worsened by extreme weather such as heat waves and coastal storms. People with disabilities or access or functional needs may need additional support during extreme weather. For example, they may need extra planning for safe travel out of evacuation zones during a hurricane, or back-up electricity to support medical equipment during power outages. Information provided here about adults with independent living difficulties can help emergency management professionals better prepare our residents for emergencies. Older adults are more vulnerable to extreme weather. Those living alone may have more difficulty getting resources they need in an emergency, and are at higher risk of weather-related illnesses like heat stroke and hypothermia. Older adults (over 65) are more vulnerable to hot weather and heat stress. Air conditioning reduces the risk of heat stroke and other heat-related illness. Severe asthma attacks can result in a visit to the ED. Things like smoke, air pollution, dust mites, cockroaches, mold, pollen and pet dander can trigger asthma.",
+        "indicator_names": "",
+        "indicator_descriptions": "",
         "categories": [
             "climatehealth",
             "housing",
@@ -4241,8 +4226,8 @@
     {
         "title": "Housing and Health",
         "displayTitle": "Housing and Health",
-        "indicator_names": "Household crowding Homes with cracks or holes Old homes with peeling paint Homes with leaks Homes using supplemental heat Homes with mice or rats in the building Homes with cockroaches No smoke-free home policy Heat stress: hospitalizations Carbon monoxide incidents (without a detector) Child poverty (under age 5) Elevated blood levels (under age 6) Household air conditioning Asthma hospitalizations (age 5 to 17) Asthma hospitalizations (adults) Renter-occupied homes with any health-related maintenance problems",
-        "indicator_descriptions": "Households with more than one person per room are considered crowded. Cracks or holes are a maintenance deficiency linked to the presence of mice, rats, and cockroaches - which can harm residents' health. Older housing (built before 1960) that has peeling paint can put residents at risk of lead poisoning, due to lead paint. Lead paint was banned from household paints in New York City in 1960 and in the USA in 1978. Leaks are a maintenance deficiency that can harm health by introducing mold, which can worsen respiratory conditions like asthma. The need for supplemental heat may mean a building's main heat source doesn't work - and can indicate the presence of other health-threatening maintenance deficiencies. The presence of mice or rats in the home is often associated with poor housing maintenance. These pests can contaminate food and worsen asthma. The presence of cockroaches in the home is often associated with poor housing maintenance. Cockroaches in the home can contaminate food and worsen asthma. Adults without a smoke-free home policy. A smoke-free home policy can limit people's exposure to secondhand smoke, which is especially dangerous to children. Heat stress hospitalizations due to heat-related illnesses, such as heat stroke and heat exhaustion, represent part of the public health burden of hot weather. Data aggregated over five years provides enough stability to display neighborhood impacts.\r\n Carbon monoxide detectors are required in NYC homes by law. Failure to provide or maintain a detector can put people at risk for carbon monoxide poisoning and death. Poverty is a major determinant of health, since poverty deprives people of access to health and safety resources. Elevated blood lead levels are 5+ mcg/dL. There is no safe level of lead in the blood. Lead poisoning can cause learning and behavior problems, and delay growth and mental development. Air conditioning is an important way to avoid heat stress, especially for persons with limited mobility. Asthma hospitalizations are more severe asthma outcomes. They're often clustered in high-poverty neighborhoods, where disinvestment and poor housing conditions expose residents to triggers. Homes with maintenance deficiencies can threaten the health of the people who live there.",
+        "indicator_names": "",
+        "indicator_descriptions": "",
         "categories": [
             "housing",
             "childhealth",
@@ -4256,8 +4241,8 @@
     {
         "title": "Outdoor Air and Health",
         "displayTitle": "Outdoor Air and Health",
-        "indicator_names": "Fine particles (PM 2.5) Nitrogen dioxide (NO2) Ozone (O3) Deaths due to PM2.5 Boiler Emissions- Total SO2 Emissions Boiler Emissions- Total PM2.5 Emissions Boiler Emissions- Total NOx Emissions Annual vehicle miles traveled Annual vehicle miles traveled (cars) Annual vehicle miles traveled (trucks) Outdoor Air Toxics - Benzene Outdoor Air Toxics - Formaldehyde Asthma emergency department visits due to PM2.5 Respiratory hospitalizations due to PM2.5 (age 20+) Cardiovascular hospitalizations due to PM2.5 (age 40+) Cardiac and respiratory deaths due to Ozone Asthma emergency departments visits due to Ozone Asthma hospitalizations due to Ozone",
-        "indicator_descriptions": "Fine particles are emitted by vehicles, building boilers, and other combustion - and are a major form of air pollution that harms health. Nitrogen dioxide is a pollutant formed by combusion that damage lung tissue, cause breathing problems, and contribute to smog and acid rain. Ozone is a common air pollutant that can harm breathing and worsen asthma and other respiratory conditions. Estimating deaths that can be linked to PM2.5 is a way to understand how air pollution increases mortality. Boilers are a common source of SO2, which can worsen lung disease. Boilers are a common source of PM2.5, which can harm health. Boilers are a common source of NOx emissions, which can harm health. Traffic density is a measure of the average number of vehicles that occupy specified area. Traffic density can influence health as a source of air pollution and traffic-related injuries. Benzene is an air pollutant resulting from motor vehicle and industrial emissions and tobacco smoke. Benzene is a known carcinogen that can also harm bone marrow and red blood cell function. Formaldehyde is an air pollutant resulting from car exhaust and the manufacture of industrial products. Formaldehyde is a known carcinogen that can also cause irritation to eyes and lungs and increase risk of asthma and trigger asthma symptoms. PM2.5 can cause asthma ED visits, which represent part of the health burden of fine particle air pollution. Estimating hospitalizations that can be linked to PM2.5 is a way to understand how air pollution impacts public health. PM2.5 can cause cardiovascular hospitalizations, which represent part of the health burden of fine particle air pollution. Estimating heart and respiratory deaths that can be linked to ozone is a way to understand how air pollution increases mortality. Ozone can cause asthma ED visits, which are part of the health burden of air pollution. Ozone can cause hospitalizations for asthma, which are part of the health burden of air pollution.",
+        "indicator_names": "",
+        "indicator_descriptions": "",
         "categories": [
             "airquality",
             "childhealth",
@@ -4390,6 +4375,13 @@
         "indicator_descriptions": "Mice and rats are a source of household allergens connected to developing or worsening asthma.",
         "indicator_ids": 24,
         "href": "data-explorer/mice-and-rats/?id=24"
+    },
+    {
+        "title": "Secondhand smoke at home",
+        "displayTitle": "Secondhand smoke at home",
+        "indicator_descriptions": "Adults reporting secondhand smoke at home. Secondhand smoke, especially indoors, is bad for health - particularly for the health of children.",
+        "indicator_ids": 25,
+        "href": "data-explorer/asthma-triggers/?id=25"
     },
     {
         "title": "Anencephaly",
@@ -5274,13 +5266,6 @@
         "href": "data-explorer/carbon-monoxide-incidents/?id=2168"
     },
     {
-        "title": "Diabetes (adults)",
-        "displayTitle": "Diabetes (adults)",
-        "indicator_descriptions": "Diabetes is a metabolic disorder that affects how well your body can get energy from food and drink. Adults can be born with diabetes or develop it later in life. Health problems from diabetes can include heart disease, stroke, vision problems, and amputations.",
-        "indicator_ids": 2169,
-        "href": "data-explorer/overweight/?id=2169"
-    },
-    {
         "title": "Recent walking",
         "displayTitle": "Recent walking",
         "indicator_descriptions": "Adults reporting walking for transportation in the last 7 days (from when they were surveyed)",
@@ -5505,41 +5490,6 @@
         "href": "data-explorer/social-conditions/?id=2325"
     },
     {
-        "title": "Race and Ethnicity (ICE 1)",
-        "displayTitle": "Race and Ethnicity (ICE 1)",
-        "indicator_descriptions": null,
-        "indicator_ids": 2326,
-        "href": "data-explorer/economic-conditions/?id=2326"
-    },
-    {
-        "title": "Race and Ethnicity (ICE 2)",
-        "displayTitle": "Race and Ethnicity (ICE 2)",
-        "indicator_descriptions": null,
-        "indicator_ids": 2327,
-        "href": "data-explorer/economic-conditions/?id=2327"
-    },
-    {
-        "title": "ICE 1",
-        "displayTitle": "ICE 1",
-        "indicator_descriptions": null,
-        "indicator_ids": 2328,
-        "href": "data-explorer/economic-conditions/?id=2328"
-    },
-    {
-        "title": "ICE 2",
-        "displayTitle": "ICE 2",
-        "indicator_descriptions": null,
-        "indicator_ids": 2329,
-        "href": "data-explorer/economic-conditions/?id=2329"
-    },
-    {
-        "title": "ICE 3",
-        "displayTitle": "ICE 3",
-        "indicator_descriptions": null,
-        "indicator_ids": 2330,
-        "href": "data-explorer/economic-conditions/?id=2330"
-    },
-    {
         "title": "Graduated high school",
         "displayTitle": "Graduated high school",
         "indicator_descriptions": "People age 25 years and over who have completed high school or high school equivalency.",
@@ -5572,7 +5522,7 @@
         "displayTitle": "Secondhand smoke at home (from outside sources)",
         "indicator_descriptions": "Adults reporting secondhand smoke at home, from outside sources. Secondhand smoke, especially indoors, is bad for health - especially for the health of children.",
         "indicator_ids": 2338,
-        "href": "data-explorer/asthma-triggers/?id=2338"
+        "href": "data-explorer/cigarette-smoke/?id=2338"
     },
     {
         "title": "Youth asthma (past 12 months)",
@@ -5834,13 +5784,6 @@
         "href": "data-explorer/falls-among-older-adults/?id=2403"
     },
     {
-        "title": "Secondhand smoke exposure at home (children)",
-        "displayTitle": "Secondhand smoke exposure at home (children)",
-        "indicator_descriptions": "The number of children aged 1-13 years exposed to tobacco smoke at home all of the time, most of the time, or occasionally. Secondhand smoke is harmful to children and can cause or worsen respiratory and asthma issues and ear infections.",
-        "indicator_ids": 2404,
-        "href": "data-explorer/asthma-triggers/?id=2404"
-    },
-    {
         "title": "Carbon monoxide emergency department visits",
         "displayTitle": "Carbon monoxide emergency department visits",
         "indicator_descriptions": "Carbon monoxide (CO) exposure can be life-threatening or fatal. ED visits and hospitalizations allows us to understand the burden of CO-related health impacts.",
@@ -5904,46 +5847,11 @@
         "href": "data-explorer/active-design/?id=2416"
     },
     {
-        "title": "Depression (adults)",
-        "displayTitle": "Depression (adults)",
-        "indicator_descriptions": "Adults with probable depression in the past 2 weeks (from when they were surveyed). Depression is a common mental health disorder. Symptoms include feeling sad or hopeless, having little interest in doing things and feeling tired.",
-        "indicator_ids": 2417,
-        "href": "data-explorer/mental-health/?id=2417"
-    },
-    {
-        "title": "Psychiatric hospitalizations (adults)",
-        "displayTitle": "Psychiatric hospitalizations (adults)",
-        "indicator_descriptions": "A psychiatric hospitalization is defined as an overnight stay or longer in a psychiatric inpatient unit (excluding emergency room visits without an inpatient admission) for individuals with behaviors or symptoms that are likely to result in harm to themselves or others.",
-        "indicator_ids": 2418,
-        "href": "data-explorer/mental-health/?id=2418"
-    },
-    {
-        "title": "Serious psychological distress (adults)",
-        "displayTitle": "Serious psychological distress (adults)",
-        "indicator_descriptions": "Serious psychological distress includes mental health problems that impact social, occupational, and educational functioning.",
-        "indicator_ids": 2419,
-        "href": "data-explorer/mental-health/?id=2419"
-    },
-    {
-        "title": "Suicide deaths",
-        "displayTitle": "Suicide deaths",
-        "indicator_descriptions": "An intentional injury death that results from self-harm.",
-        "indicator_ids": 2420,
-        "href": "data-explorer/mental-health/?id=2420"
-    },
-    {
         "title": "Tobacco retailers",
         "displayTitle": "Tobacco retailers",
         "indicator_descriptions": "Retail locations that sell tobacco products. Neighborhoods with higher densities of tobacco retailers increase access to tobacco and may increase smoking rates.",
         "indicator_ids": 2421,
         "href": "data-explorer/cigarette-smoke/?id=2421"
-    },
-    {
-        "title": "E-cigarette vapor exposure at home (children)",
-        "displayTitle": "E-cigarette vapor exposure at home (children)",
-        "indicator_descriptions": "E-cigarette smoke: The number of children aged 1-13 years exposed to e-cigarette smoke at home all of the time, most of the time, or occasionally. Chemicals in the vapor from e-cigarettes can be harmful to kids.",
-        "indicator_ids": 2422,
-        "href": "data-explorer/asthma-triggers/?id=2422"
     },
     {
         "title": "Average Citi Bike availability",
@@ -5979,20 +5887,6 @@
         "indicator_descriptions": "Children ages 1 to 13 who have had an asthma attack in the past year. Asthma attacks are a measureable adverse health outcome of asthma.",
         "indicator_ids": 2429,
         "href": "data-explorer/asthma/?id=2429"
-    },
-    {
-        "title": "Children in homes with visible mold or mildew (age 1-13)",
-        "displayTitle": "Children in homes with visible mold or mildew (age 1-13)",
-        "indicator_descriptions": "Children who live in homes with visible mold/mildew. Mold and mildew can trigger asthma attacks in children.",
-        "indicator_ids": 2430,
-        "href": "data-explorer/asthma-triggers/?id=2430"
-    },
-    {
-        "title": "Children still with asthma",
-        "displayTitle": "Children still with asthma",
-        "indicator_descriptions": "Children ages 1 to 13 that currently have asthma. Not every asthma diagnosis is correct. The number of children who still have asthma is usually smaller than the number of children who have ever been diagnosed with asthma.",
-        "indicator_ids": 2431,
-        "href": "data-explorer/asthma/?id=2431"
     },
     {
         "title": "Farmers markets",
