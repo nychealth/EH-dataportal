@@ -48,6 +48,8 @@ This report:
 
 **Air quality improved significantly after local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO<sub>2</sub> in New York City. In 2022, only eight of our 90 sites detected any SO<sub>2</sub>, and the levels at those sites were similar to SO<sub>2</sub> levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements.
 
+**Ozone (O3) levels were higher in 2022 than any previous year of NYCCAS monitoring.** Ozone is produced when there are NOx emissions in the presence of sunlight and heat, which is why we see the higher levels in the summer. Summer 2022 was one of the hottest in recorded history and rainfall was significantly below normal; likely causing higher O3.
+
 **Air quality changes with location.**
 
 PM<sub>2.5</sub>, NO<sub>2</sub>, NO, and BC are highest in:
