@@ -848,6 +848,32 @@
         "href": "data-explorer/lead"
     },
     {
+        "title": "Mental health",
+        "displayTitle": "Mental health",
+        "categories": [
+            "social",
+            "transportation",
+            "healthoutcomes",
+            "housing",
+            "climatehealth"
+        ],
+        "keywords": [
+            "mental health",
+            "mental illness",
+            "health care",
+            "health care access",
+            "health",
+            "depression",
+            "hospitalization",
+            "suicide",
+            "self-harm",
+            "violence"
+        ],
+        "seo_title": "Mental health data in NYC",
+        "content": "Mental health is a person’s emotional psychological and social wellbeing It is an important part of overall health Mental illness can include depression serious psychological distress hospitalization for psychiatric reasons and even suicide Many factors can contribute to mental illness Poor mental health is associated with a variety of risk factors These include chronic disease poverty and poor environmental conditions Many adults with mental illness do not receive the treatment they need Mental health and the environment A person’s environment affects their mental health Neighborhood factors like green space noise and infrastructure can affect mental health People who say their neighborhood gives them more opportunities to be physically active are less likely to report poor mental health People exposed to poor housing quality like housing maintenance issues and pests are more likely to report poor mental health Living in high poverty neighborhoods is associated with depression serious psychological distress and psychiatric hospitalization Experiencing violence is also a risk factor depression is higher among those who report that their neighborhood is not very safe and those who have ever been hurt by an intimate partner Even climate change is a risk extreme heat is associated with mood disorders and anxiety and disasters such as floods and hurricanes result in trauma posttraumatic stress disorder and poorer mental health How to get help If you’re struggling connect with trained counselors at NYC Well It’s free and confidential Staff are available 24 hours a day seven days a week and can provide counseling and referrals to care in over 200 languages For support call 888NYCWELL 8886929355 text “WELL” to 65173 or chat online at nycgovnycwellhttpswwwnycgovnycwell If you or someone you know is at immediate risk of hurting themselves or in immediate danger call 911 You can visit nycgovnycwell and click on the App Libraryhttpswwwnycgovnycwell to find apps and online tools to help you manage your health and emotional wellbeing from home Or get more information on coping through COVID19httpswww1nycgovsiteacsaboutcovidhelppage",
+        "href": "data-explorer/mental-health"
+    },
+    {
         "title": "Mice and rats",
         "displayTitle": "Mice and rats",
         "indicator_names": "Adults reporting mice or rats outside##Homes with mice or rats in the building##Adults reporting mice or rats inside##Children in homes with mice (age 1-13)##Litter basket coverage",
@@ -2307,6 +2333,10 @@
         "seo_title": "NYC Community Air Survey Annual Report",
         "content": "NYCCAS Report 20082021 In 2007 the New York City Department of Health and Mental Hygiene Health Department established the New York City Community Air Survey NYCCAS the largest ongoing urban air monitoring program of any US city NYCCAS which began collecting data in December 2008 is a collaboration between the Health Department and Queens College of the City University of New York and provides data to Help inform PlaNYC the City’s sustainability plan Track changes in air quality over time Estimate exposures for health research Inform the public about local topics such asnbsprecent air quality improvementsdatastoriesbreatheeasy carfree zonesdatastoriesaqts changes in the sources of air pollutiondatastoriesaqcooking unique air quality studies conducted in New York Citydatastoriesaqsnapshots efforts to reduce health impactsdatastorieshia and differences in air quality and related health impacts across NYC neighborhoodsdatastoriesaq2 This report Provides a summary of key findings the air monitoring program monitoring site selection and descriptions of the pollutants measured Describes the trends in air pollutant levels from more than a decade of data from winter 20082009 through fall 2021 for fine particulate matter nitrogen dioxide nitric oxide black carbon wintertime sulfur dioxide and summertime ozone Presents maps of neighborhood air pollution levels by year Identifies the local sources that contribute to high levels of these pollutants in New York City neighborhoods",
         "href": "key-topics/airquality/nyccas"
+    },
+    {
+        "content": "About the data Data in this archive are hourly averaged measurements of PM25 from the New York City Community Air Surveys network of TSI DustTrak sensors Measurements The value shown is PM25 in micrograms per cubic meter of air µgm3 ObservationTimeUTC datetime stamp displayed is the beginning of the averaged PM25 measurements for the hour eg 212020 10000 AM UTC reflects data collected between 212020 10000 AM UTC and 212020 15900 AM UTC External factors can sometimes affect monitor functioning Data are preliminary and subject to change",
+        "href": "key-topics/airquality/realtime/data-archive-text"
     },
     {
         "title": "Real-Time Air Quality: PM2.5 in NYC",

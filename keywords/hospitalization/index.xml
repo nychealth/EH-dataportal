@@ -15,5 +15,12 @@
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/carbon-monoxide-incidents/</guid>
       <description>Carbon monoxide (CO) is a poisonous gas that forms when fuel or other materials are burned. It is invisible and has no odor. Even short-term exposure to high levels of carbon monoxide can be fatal. Carbon monoxide blocks oxygen transport in the body. Symptoms of mild carbon monoxide poisoning include headache, nausea, fatigue, dizziness and disorientation. Breathing high concentrations of carbon monoxide can cause somebody to lose consciousness and have permanent neurological injury - or even death.</description>
     </item>
+    <item>
+      <title>Mental health</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/mental-health/</link>
+      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/mental-health/</guid>
+      <description>Mental health is a person’s emotional, psychological, and social wellbeing. It is an important part of overall health.&#xA;Mental illness can include depression, serious psychological distress, hospitalization for psychiatric reasons, and even suicide.&#xA;Many factors can contribute to mental illness. Poor mental health is associated with a variety of risk factors. These include chronic disease, poverty, and poor environmental conditions. Many adults with mental illness do not receive the treatment they need.</description>
+    </item>
   </channel>
 </rss>
