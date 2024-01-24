@@ -10,6 +10,7 @@ keyTopic:
 keywords: 
 layout: indicator-catalog
 datalibraries: true
+aliases: data-index.md
 ---
 
 Search by term, get metadata and download links.
