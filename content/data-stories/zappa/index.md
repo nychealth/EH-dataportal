@@ -2,8 +2,8 @@
 title: "ZAPPA: A tool to understand air quality policies"
 date: 2022-12-03T08:33:22-04:00
 draft: false
-seo_title: "How ZAPPA helps policy makers center equity in neighborhood air quality policies"
-seo_description: "A data story on ZAPPA, a tool to understand air quality policies"
+seo_title: "ZAPPA: a tool to understand air quality policies."
+seo_description: "A data story on ZAPPA, a tool to understand air quality policies."
 tags: 
 categories: ["transportation","airquality"]
 keywords: ["air quality","traffic","transportation","air pollution", "lungs","breathing","pm2.5","fine particles","fine particulate matter","health impacts","ZAPPA","modelling","data science","computer modelling","model","policies","policy","health impacts","health impact assessment"]
