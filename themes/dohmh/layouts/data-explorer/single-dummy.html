@@ -6,7 +6,7 @@
     /* set overall row styles */
     #vg-tooltip-element table tr {
         border-bottom: 1px solid #d9d9d9;
-        {{/*  width: max-content;  */}}
+        {{- /*  width: max-content;  */}}
     }    
     /* remove bottom border from last row */
     #vg-tooltip-element table tr:last-child {
@@ -188,8 +188,8 @@
         <div class="col-12 mt-4">
             <nav aria-label="breadcrumb" class="mb-2">
                 <ul class="breadcrumb mr-auto">
-                    <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ .Site.BaseURL }}data-explorer/">Data Explorer</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "data-explorer" }}>Data Explorer</a></li>
 
                     <li class="breadcrumb-item active"><strong><a href="{{ .Page.RelPermalink }}">{{ .Title }}</a></strong></li>
                     <li class="nav-item ml-auto">
