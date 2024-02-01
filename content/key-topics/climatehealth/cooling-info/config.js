@@ -92,7 +92,7 @@ var content = [
                 "optionID": 8,
                 "copy": "None of the above symptoms",
                 "message": "This can be serious. Maybe you should see a doctor or go to urgent care. These are the signs and symptoms of heat exhaustion. Remember, more people die of heat than all other natural disasters combined. If you're not feeling well, take it seriously. Drink cool water and seek medical attention.",
-                "setVariable": "help('Yes')",
+                "setVariable": "help('No')",
                 "goTo": 3
             }
         ]
@@ -181,7 +181,7 @@ var content = [
                 "optionID": 10,
                 "copy": "No",
                 "message": "Good. Let's take a look at ways to stay cool when it's hot and take precautions based on the air quality",
-                "setVariable": "sensitive('Yes')",
+                "setVariable": "sensitive('No')",
                 "goTo": 4
             },
         
@@ -200,14 +200,14 @@ var content = [
                 "optionID": 1,
                 "copy": "Yes",
                 "message": "Make sure to have an emergency plan back up batteries. You can also register your equipment with your utility provider. <br> CONED: 1-800-752-6633 <br> PSEG: 1800-490-0025",
-                "setVariable": "EME('Yes')",
+                "setVariable": "eme('Yes')",
                 "goTo": 4
             },
             {   
                 "optionID": 2,
                 "copy": "No",
                 "message": "Great, let's move on.",
-                "setVariable": "EME('No')",
+                "setVariable": "eme('No')",
                 "goTo": 4
             }
         ]
@@ -323,14 +323,14 @@ var content = [
                 "optionID": 1,
                 "copy": "Yes",
                 "message": "Great! You have an air conditioner.",
-                "setVariable": "AC('Yes')",
+                "setVariable": "ac('Yes')",
                 "goTo": 8
             },
             {   
                 "optionID": 2,
                 "copy": "No",
                 "message": "When it's hot, AC is the best way to stay cool — but let's find other ways.",
-                "setVariable": "AC('No')",
+                "setVariable": "ac('No')",
                 "goTo": 11
             }
         ]
@@ -350,14 +350,14 @@ var content = [
                 "optionID": 1,
                 "copy": "Yes",
                 "message": "There are resources such as HEAP and CON ED's Energy Affordability Program that can help make air conditioning your home more affordable.",
-                "setVariable": "LimitAC('Yes')",
+                "setVariable": "limitAC('Yes')",
                 "goTo": 9
             },
             {   
                 "optionID": 2,
                 "copy": "No",
                 "message": "Great, let's move on to the next question.",
-                "setVariable": "LimitAC('No')",
+                "setVariable": "limitAC('No')",
                 "goTo": 9
             }
         ]
@@ -377,28 +377,28 @@ var content = [
                 "optionID": 1,
                 "copy": "Central AC",
                 "message": "Great. These can help you stay cool. To save energy, set your unit at 78 degrees F when it's hot out.",
-                "setVariable": "ac('Central')",
+                "setVariable": "acType('Central')",
                 "goTo": 11
             },
             {   
                 "optionID": 2,
                 "copy": "Window or wall unit",
                 "message": "These tend to be best at cooling single rooms, not whole homes or apartments.",
-                "setVariable": "ac('Window/wall')",
+                "setVariable": "acType('Window/wall')",
                 "goTo": 10
             },
             {   
                 "optionID": 3,
                 "copy": "Portable AC",
                 "message": "These tend to be best at cooling single rooms, not whole homes or apartments.",
-                "setVariable": "ac('Portable')",
+                "setVariable": "acType('Portable')",
                 "goTo": 10
             },
             {   
                 "optionID": 4,
                 "copy": "Ductless mini split",
                 "message": "These tend to be best at cooling single rooms, not whole homes or apartments.",
-                "setVariable": "ac('Window/wall')", /* not sure how to set this new var */
+                "setVariable": "acType('Window/wall')", /* not sure how to set this new var */
                 "goTo": 10
             }
 
@@ -419,10 +419,8 @@ var content = [
                 "optionID": 1,
                 "copy": "Next question",
                 "message": "",
-                "setVariable": "continue('Next Question')",
                 "goTo": 11
-            },
-         
+            }
         ]
 
     },
@@ -438,14 +436,14 @@ var content = [
                 "optionID": 1,
                 "copy": "Yes",
                 "message": "Great, you have a fan. It can help cool you down .",
-                "setVariable": "Fan('Yes')",
+                "setVariable": "fan('Yes')",
                 "goTo": 12
             },
             {   
                 "optionID": 2,
                 "copy": "No",
                 "message": "Let's figure out some other ways you can stay cool.",
-                "setVariable": "Fan('No')",
+                "setVariable": "fan('No')",
                 "goTo": 12
             }
         ]
@@ -465,14 +463,14 @@ var content = [
                 "optionID": 1,
                 "copy": "Yes",
                 "message": "If the temperature is cooler outside than inside, opening windows can be another way to cool down a space that does not have an AC unit. However, uncovered or unshaded windows can let in sunlight that heats up a room. In these instances, keeping shades drawn during the day may be a better option to prevent extra heat from entering the apartment.",
-                "setVariable": "Window('Yes')",
+                "setVariable": "ifWindow('Yes')",
                 "goTo": 99
             },
             {   
                 "optionID": 2,
                 "copy": "No",
                 "message": "",
-                "setVariable": "Window('No')",
+                "setVariable": "ifWindow('No')",
                 "goTo": 99
             }
         ]

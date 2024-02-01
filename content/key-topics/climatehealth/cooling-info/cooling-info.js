@@ -1,11 +1,22 @@
-// set up variables
+// set up variables for questions
+var isOverheating;
 var needsHelp;
 var sensitiveGroup;
-var over80F;
-var aqiInterpretation;
+var usesEME;
+var doesBehavior;
+var isSensitiveAge;
+var hasAnimal;
 var hasAC;
+var limitsAC
+var typeAC;
 var hasFan;
 var hasWindow;
+
+// other variables
+var over80F;
+var aqiInterpretation;
+
+
 
 // ----------------------------------------------------------------- //
 // ---------- First, ingest weather API and print to page ---------- //
@@ -165,9 +176,11 @@ function answer(question, answer, next) {
     runFinal()
   } else {
     document.getElementById('question-'+ next).classList.remove('hide')
+    /* 
     document.querySelector(`#message-`+thisAnswer.optionID).scrollIntoView({
       behavior: 'smooth'
     });
+    */
   }
 
 
@@ -201,6 +214,11 @@ function answer(question, answer, next) {
 // ---------- These functions set variables; they're set in config ---------- //
 // -------------------------------------------------------------------------- //
 
+function overheating(x) {
+  isOverheating = x
+  document.getElementById('isOverheating').innerHTML = isOverheating
+}
+
 function help(x) {
   needsHelp = x
   document.getElementById('needsHelp').innerHTML = needsHelp
@@ -211,14 +229,56 @@ function sensitive(x) {
   document.getElementById('sensitiveGroup').innerHTML = sensitiveGroup
 }
 
+function eme(x) {
+  usesEME = x
+  document.getElementById('usesEME').innerHTML = usesEME
+
+}
+
+function behavior(x) {
+  doesBehavior = x
+  document.getElementById('doesBehavior').innerHTML = doesBehavior
+
+}
+
+function age(x) {
+  isSensitiveAge = x;
+  document.getElementById('isSensitiveAge').innerHTML = isSensitiveAge
+
+}
+
+function animal(x) {
+  hasAnimal = x;
+  document.getElementById('hasAnimal').innerHTML = hasAnimal
+
+}
+
 function ac(x) {
   hasAC = x
   document.getElementById('hasAC').innerHTML = hasAC
 }
 
+function limitAC(x) {
+  limitsAC = x;
+  document.getElementById('limitsAC').innerHTML = limitsAC
+
+}
+
+function acType(x) {
+  typeAC = x;
+  document.getElementById('typeAC').innerHTML = typeAC
+
+}
+
 function fan(x) {
   hasFan = x
   document.getElementById('hasFan').innerHTML = hasFan
+}
+
+function ifWindow(x) {
+  hasWindow = x
+  document.getElementById('hasWindow').innerHTML = hasWindow
+
 }
 
 function runFinal() {
