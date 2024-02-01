@@ -13,8 +13,10 @@ var hasFan;
 var hasWindow;
 
 // other variables
-var over80F;
+var over78F;
 var aqiInterpretation;
+var aqi
+var warmSeason;
 
 
 
@@ -46,16 +48,19 @@ function printToPage() {
     document.getElementById('maxTemp').innerHTML = maxTemp  + '° F'
     document.getElementById('maxTemp2').innerHTML = maxTemp  + '° F'
 
-    var aqi = apiData.current.air_quality["us-epa-index"]
+    aqi = apiData.current.air_quality["us-epa-index"]
     // document.getElementById('aqi').innerHTML = aqi
 
     // Style temp interpretation
       var hotText = document.getElementById('hot')
 
+      if (maxTemp > 77.9) {
+        over78F = 'Yes'
+      }
+
     if (maxTemp > 80 & maxTemp < 85) {
         hotText.innerHTML = 'warm'
         hotText.style['background-color'] = "orange";
-        over80F = 'Yes'
     } else if (maxTemp > 85 & maxTemp < 90) {
         hotText.innerHTML = 'hot'
         hotText.style['background-color'] = "red";
@@ -120,7 +125,7 @@ function runQuestions() {
     // Draw answer buttons
     question.options.forEach(option => {
 
-      var btn = `<button class="btn-${question.id} btn btn-sm btn-outline-secondary px-2 mr-1" id="btn-${question.id}-${option.optionID}" onclick="answer(${question.id}, ${option.optionID}, ${option.goTo});${option.setVariable}">${option.copy}</button>`
+      var btn = `<button class="btn-${question.id} btn btn-sm btn-outline-secondary px-2 mr-1 mb-1" id="btn-${question.id}-${option.optionID}" onclick="answer(${question.id}, ${option.optionID}, ${option.goTo});${option.setVariable}">${option.copy}</button>`
       questionBlock.innerHTML += btn
 
     })
@@ -130,6 +135,13 @@ function runQuestions() {
     questionBlock.innerHTML += message
 
     document.getElementById('mainContent').appendChild(questionBlock)
+
+    /*
+    // Create secondary message section?
+    var answerMessage = `<div id="am-${question.id}" class="border my-2">Post answer message goes here</div>`
+    questionBlock.innerHTML += answerMessage
+    */
+
   })
   // end question loop
 
@@ -282,6 +294,56 @@ function ifWindow(x) {
 }
 
 function runFinal() {
+  var msg
   console.log('We are reviewing your data')
   document.getElementById('finalInfo').classList.remove('hide')
+
+  var finalMessageText = document.getElementById('finalMessages')
+
+  // Message One
+  if (needsHelp == 'Yes' || 
+    (warmSeason === 'Yes' && (isSensitiveAge ==='Yes' || sensitiveGroup === 'Yes' || doesBehavior === 'Yes'))
+  ) {
+    msg = '<p>Speak to a medical provider to get additional recommendations that are specific to your situation. You can find available medical providers here:</p>'
+    finalMessageText.innerHTML += msg
+  }
+
+  // Message two
+  if (aqi > 3 || 
+    (aqi > 2 && sensitiveGroup === 'Yes')) {
+    msg = '<p>Consider wearing a mask when outside to lessen your inhalation of pollution. Read more about mask use.</p>'
+    finalMessageText.innerHTML += msg
+  }
+
+  // Message three
+  if (over78F === 'Yes' && hasAC === 'No') {
+    msg = '<p>Fans can help cool you down by moving air around to increase sweat evaporation which can be especially helpful in a humid environment. However, fans do not cool the air so the air currents flowing over the body must be cooler than your body temperature to cool you down. If it is over 78 degrees indoors, the fan is actually moving hot air around and can make you even warmer.</p>'
+    finalMessageText.innerHTML += msg
+  }
+
+}
+
+
+// -------------------------------------------------------------------------- //
+// ---------- Determines if we're in warm season ---------------------------- //
+// -------------------------------------------------------------------------- //
+function isSummerDate() {
+  // Get the current date
+  var currentDate = new Date();
+
+  // Set the start and end dates for summer (April 1 and September 30)
+  var summerStart = new Date(currentDate.getFullYear(), 3, 1); // Month is zero-based
+  var summerEnd = new Date(currentDate.getFullYear(), 8, 30); // Month is zero-based
+
+  // Check if the current date is between April 1 and September 30
+  return currentDate >= summerStart && currentDate <= summerEnd;
+}
+
+// Example usage
+if (isSummerDate()) {
+  console.log('It is summer!');
+  warmSeason = 'Yes'
+} else {
+  console.log('It is not summer.');
+  warmSeason = 'No'
 }
