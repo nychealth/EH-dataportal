@@ -30,7 +30,7 @@
 <title>Catalog of Indicators on The Environment and Health Data Portal &#x7c; Environment &amp; Health Data Portal</title>
 
 
-<meta name="build_datetime" content='2024-01-24 14:37:49'>
+<meta name="build_datetime" content='2024-02-01 16:43:05'>
 <meta name="build_environment" content='prod_prod'>
 <meta name="description" content="Explore data on how environments shape health in New York City&#39;s neighborhoods.">
 <link rel="canonical" href="/IndicatorPublic/data-explorer/indicator-catalog/" />
@@ -513,7 +513,7 @@ function sendToIndicator(x) {
             function printToPage(x) {
                 
                 
-                document.getElementById('indName').innerHTML = `<p class="fs-md">${x.IndicatorName}<span class="badge badge-pill badge-light ml-2">${x.IndicatorID}</span></p>`
+                document.getElementById('indName').innerHTML = `<p class="fs-md">${x.IndicatorName}&nbsp;<span class="badge badge-pill badge-light ml-2">${x.IndicatorID}</span></p>`
                 document.getElementById('indDesc').innerHTML = `<p class="fs-md"><i>${x.IndicatorDescription}</i></p>`
                 
                 
@@ -527,7 +527,7 @@ function sendToIndicator(x) {
 
                     
 
-                    var measure = `<p class="fs-md">${x.Measures[i].MeasurementType}<span class="badge badge-pill badge-light ml-2">${x.Measures[i].MeasureID}</span></p>`
+                    var measure = `<p class="fs-md">${x.Measures[i].MeasurementType}&nbsp;<span class="badge badge-pill badge-light ml-2">${x.Measures[i].MeasureID}</span></p>`
                     document.getElementById('measureList').innerHTML += measure
 
                     var source = `<p class="fs-md"><u>${x.Measures[i].MeasurementType}</u></p><p class="fs-sm">${x.Measures[i].Sources}</p>`
