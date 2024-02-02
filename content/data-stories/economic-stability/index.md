@@ -153,7 +153,7 @@ In NYC, as in most places in the United States, there are more Black and Latino 
 <strong>Educating (and, potentially, regulating) employers:</strong> 
 <div class="pullquote my-4">
 <figure class="my-2">
-    <figcaption>“I think there needs to be legal organizations that need to be involved and that educate employers and employees on labor laws and rights…”</figcaption>
+    <figcaption>“I think there needs to be legal organizations that are involved and that educate employers and employees on labor laws and rights, but also some sort of mechanism for these attorneys to be more regularly connected through action NYC. Like having some sort of resource for those who do not know what their rights are.”</figcaption>
     <audio controls src="clip-we-need-legal.mp3" style="width:100%;">
             <a href="clip-we-need-legal.mp3">
                 Download audio
