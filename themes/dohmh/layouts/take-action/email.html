@@ -1,0 +1,436 @@
+{{- define "main" -}}
+    <!--D3-->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+<article class="container-fluid overflow-hidden" id="primary-content">
+
+  <div class="row my-4">
+    <div class="col-md-11 col-sm-12 mx-auto">
+      <!--start main column-->
+
+      <nav aria-label="breadcrumb" class="mb-2">
+        <ul class="breadcrumb mr-auto">
+            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+            <li class="breadcrumb-item"><a href="..">
+              {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
+            <li class="breadcrumb-item active">{{ .Title }}</li>
+        </ul>                
+    </nav>
+
+      <h1>{{- .Title -}}</h1>
+        {{- .Content -}}
+
+      <div class="row border-top pt-2">
+        <div class="col-12">
+          <p class="fs-xl font-weight-bold">First, enter your address.</p>
+          <p>Enter your address below. We'll use your address to tell you who your elected City Council Member is.</p>
+          
+        </div>
+      </div>
+
+      <div class="row pt-2">
+        <div class="col-md-6 col-sm-12">
+
+          <!-- Search/input -->
+          <div class="srch input-group" role="search">
+            <input class="rad-all form-control form-control-lg" placeholder="Search Address" id="map-search">
+          </div>
+
+          <!-- Map gets drawn here -->
+          <div id='mapLocator'></div>
+
+
+       
+        </div>
+
+        <div class="col-md-6 col-sm-12" id="cmInfo">
+        <!-- entry button -->
+        <button class="btn btn-primary btn-block" id="outputButton" onclick="dataChange()">Get Council Member for this address:</button> 
+        <div class="row mt-2">
+          <div class="col-sm-5">
+            <span class="home-label">Your City Council Member:</span>
+          </div>
+          <div class="col-sm-7">
+            <span id="CCM" class="font-weight-bold"></span>
+          </div>
+        </div> 
+
+        <div class="row border-top">
+          <div class="col-sm-5">
+            <span class="home-label">Your City Council District:</span>
+          </div>
+          <div class="col-sm-7">
+            <span id="CCD" class="font-weight-bold"></span>
+          </div>
+        </div> 
+
+        <div class="row border-top mb-2">
+          <div class="col-sm-5">
+            <span class="home-label">Your Neighborhood:</span>
+          </div>
+          <div class="col-sm-7">
+            <span id="neighb" class="font-weight-bold fs-sm"></span>
+          </div>
+        </div> 
+
+          <button type="button" id="sendEmailBtn" class="btn btn-block btn-primary hide" onclick="email1()"><i class="fas fa-envelope-square mr-1"></i>Send my Council Member an email</button>
+
+
+        </div>
+      </div>
+
+
+
+      <script>
+        function email1() {
+          document.getElementById('email').style.display = "block"
+          document.getElementById('email').scrollIntoView({  behavior: 'smooth', // smooth scroll
+          block: 'start' // the upper border of the element will be aligned at the top of the visible part of the window of the scrollable area.
+        });
+
+        document.getElementById('sendEmailBtn').classList.remove('btn-primary')
+        document.getElementById('sendEmailBtn').classList.add('btn-outline-primary')
+
+        document.getElementById('yourCM').innerHTML = districtInfo.CouncilMember;
+        }
+      </script>
+
+      <div id="email" style="display:none">
+        <div class="row mt-2 border-top pt-2">
+          <div class="col-12">
+            <p class="fs-xl font-weight-bold">OK, let's send Council Member <span id="yourCM" class="text-primary"></span> an email.</p>
+            <p>This page will help you draft and send the email. If you want to, you'll be able to edit the text before you send it. Read the prompts on the left and select buttons on the right.</p>
+
+          </div>
+        </div>
+
+        <div class="row mt-2 pt-2">
+          <div class="col-md-6 col-sm-12">
+            <p class="home-label">First, what issues are you concerned about?</p>
+
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <div id="concernContainer">
+              <button type="button" class="btn btn-outline-secondary mb-1">Air quality</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">Climate</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">Housing</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">Environmental justice</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">Asthma</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">Active design</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">Children's health</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">Pests and pesticides</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">Food and drink issues</button>
+            </div>
+          </div>
+        </div> <!-- end of row -->
+
+        <div class="row mt-2 border-top pt-2">
+          <div class="col-md-6 col-sm-12">
+            <p class="home-label">Next, why are you concerned?</p>
+
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <div id="reasonsContainer">
+              <button type="button" class="btn btn-outline-secondary mb-1">This issue is worse in my neighborhood</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">It affects my life</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">The whole city could be doing better</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-2 border-top pt-2">
+          <div class="col-md-6 col-sm-12">
+            <p class="home-label">Last, what do you want?</p>
+
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <div id="needsContainer">
+              <button type="button" class="btn btn-outline-secondary mb-1">What services or resources are available to me</button>
+              <button type="button" class="btn btn-outline-secondary mb-1">What you're doing to address these issues</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-2 border-top pt-2">
+          <div class="col-md-6 ml-auto col-sm-12">
+            <button type="button" class="btn btn-primary mb-1 btn-block" onclick="writeEmail()">Write my email!</button>
+          </div>
+        </div>
+
+
+
+
+      </div> <!-- close email bucket-->
+
+      <div style="display:none" id="emailText">
+        <div class="row mt-6 border-top p-2">
+          <div class="col-md-6" id="yourEmail">
+            <p class="fs-xl font-weight-bold">Here's your email:</p>
+            <div id="textDestination">
+              <p>Dear Council Member <span id="councilMemberLastName"></span>,</p>
+              <p>I am one of your constituents, a resident of district <span id="districtNum">XX</span>. I was reading about neighborhood issues on one of the Health Department's websites, the Environment and Health Data Portal (on.nyc.gov/dataportal). I am concerned about the following issues: <span id="concerns"></span>
+  
+              <p>I'm concerned because <span id="reasons"></span>
+                
+              <p>I'm writing to ask you <span id="needs"></span>
+  
+              <p>I look forward to your reply. Thank you.</p>
+  
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p class="fs-xl font-weight-bold">Your email is below.</p>
+    
+            <span class="home-label" id="emailLabel">You can edit the text in the box before you send it.</span>
+            <form>
+              <textarea id="textEntry" name="textEntry" style="width:100%;height:300px">
+                Dear [Council Member],
+                I am one of your constituents, a resident of [MY NEIGHBORHOOD]. I was reading about neighborhood issues on one of the Health Department's websites, the Environment and Health Data Portal (on.nyc.gov/dataportal). I am concerned about [ISSUES YOU ARE CONCERNED ABOUT].
+  
+                These concern me because [WHY YOU ARE CONCERNED].
+  
+                I'm writing to know [WHAT YOU WANT YOUR COUNCIL MEMBER TO DO].
+  
+                Thank you for your attention, and I look forward to your reply.
+  
+                Sincerely,
+                [YOUR NAME]
+              </textarea>
+              <br>
+              <a href="" id="sendButton" target="_blank" class="btn btn-primary btn-block">
+                Send email!
+              </a>
+              <em class="fs-sm">This will open the email in your email client for you to send from your address.</em>
+            </form>      
+          </div>
+  
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <!--end main column-->
+  </div>
+
+</article>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4.js"></script>
+<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.4.0/papaparse.min.js"></script>
+<script src="https://maps.nyc.gov/nyc-lib/v1.2.79/js/babel-polyfill.js"></script>
+<script src="https://maps.nyc.gov/nyc-lib/v1.2.79/js/nyc-ol-lib.js"></script>
+
+<script>
+// This initializes and draws the locator map
+  var map = new nyc.ol.FrameworkMap({
+  mapTarget: '#mapLocator',
+  searchTarget: '#map-search',
+  startAt: '125 Worth Street',
+  geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example'
+  // Developer portal app_key and id don't work, though the nycLib example works
+  //geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=cfed478bf47829a2951bc5a3bbc26422&app_id=2d2a1b38'
+  });
+
+// Loads our City Council list
+var councilTable = [];
+var district;
+d3.csv(sitepath+'/take-action/council.csv').then(function(data) {
+  councilTable = data;
+  // console.log('All City Council members:')
+  // console.table(councilTable)
+
+})
+
+// gets your initial info:
+var yourDistrict; 
+var districtInfo;
+var lastname;
+// runs on button click 
+function dataChange() {
+  document.getElementById('outputButton').classList.remove('btn-primary')
+  document.getElementById('outputButton').classList.add('btn-outline-primary')
+
+
+  yourDistrict = map.location.data.cityCouncilDistrict
+  document.getElementById('CCD').innerHTML = yourDistrict;
+  // console.log('Map geolocator produces the following data from map.location.data')
+  // console.table(map.location.data)
+  document.getElementById('sendEmailBtn').style.display = "block"
+
+  // get info from councilTable
+  for (let i = 0; i < councilTable.length; i ++) {
+    if (Number(councilTable[i].District) === Number(yourDistrict)) {
+      districtInfo = councilTable[i]
+      console.log('your district:')
+      console.table(districtInfo)
+    } else {}
+  }
+
+  // send info to page
+  document.getElementById('CCM').innerHTML = districtInfo.CouncilMember
+  document.getElementById('neighb').innerHTML = districtInfo.Neighborhoods
+
+  // reveal email button
+  document.getElementById('sendEmailBtn').classList.remove('hide')
+
+  // get last name
+  lastname = districtInfo.CouncilMember
+  lastname = lastname.substring(lastname.indexOf(" ") +1);
+
+
+}
+
+// Create CONCERNS
+var concerns = [];
+var concernsText = [];
+
+// get concern buttons
+var concernContainer = document.getElementById('concernContainer') 
+var concernBtns = concernContainer.getElementsByClassName("btn");
+
+// toggle active state on click
+for (var i = 0; i < concernBtns.length; i++) {
+  concernBtns[i].addEventListener("click", function() {
+    this.classList.toggle('active');
+    concernsText = []; // empty concerns array
+
+    concerns = document.querySelectorAll("#concernContainer .active") // get active buttons
+
+    for (var x = 0; x < concerns.length; x ++) {
+      concernsText.push(concerns[x].innerHTML) // for active buttons, send their innerHTML to concernsText array
+    }
+
+  });
+}
+
+
+// Next, create REASONS.
+var reasons = [];
+var reasonsText = [];
+
+var reasonsContainer = document.getElementById('reasonsContainer')
+var reasonBtns = reasonsContainer.getElementsByClassName("btn");
+for (var i = 0 ; i < reasonBtns.length; i++) {
+  reasonBtns[i].addEventListener("click", function() {
+    this.classList.toggle('active');
+    reasonsText = [];
+    reasons = document.querySelectorAll("#reasonsContainer .active")
+    for (var x = 0; x < reasons.length; x++) {
+      reasonsText.push(reasons[x].innerHTML)
+    }
+  });
+}
+
+// Lastly, create NEEDS. 
+var needs;
+var needsText;
+
+var needsContainer = document.getElementById('needsContainer')
+var needsBtns = needsContainer.getElementsByClassName('btn');
+for (var i = 0 ; i < needsBtns.length; i++) {
+  needsBtns[i].addEventListener("click", function() {
+    this.classList.toggle('active');
+    needsText = [];
+    needs = document.querySelectorAll("#needsContainer .active")
+    for (var x = 0 ; x < needs.length; x++) {
+      needsText.push(needs[x].innerHTML)
+    }
+  })
+}
+
+// and create other info
+var councilMemberLastName;
+var neighborhoodName;
+
+
+// now, create EMAIL
+function writeEmail() {
+   document.getElementById('emailText').style.display = "block" // reveal text
+   document.getElementById('districtNum').innerHTML = map.location.data.cityCouncilDistrict 
+   document.getElementById('councilMemberLastName').innerHTML = lastname;
+
+   // send Concerns to text
+    var str = '';
+
+    for (i = 0 ; i < concernsText.length; i++) {
+      if (i === concernsText.length - 1) {
+        str += 'and ' + concernsText[i].toLowerCase() + '.' // end sentence
+      } else {
+        str += concernsText[i].toLowerCase() + ', ' // use commas in between
+      }
+    }
+
+    document.getElementById("concerns").innerHTML = str;
+
+    // send Reasons to text
+    var str2 = ''
+    for (i = 0 ; i < reasonsText.length; i++) {
+      if (i === reasonsText.length - 1) {
+        str2 += '' + reasonsText[i].toLowerCase() + '.' // end sentence
+      } else {
+        str2 += reasonsText[i].toLowerCase() + ', ' // use commas in between
+      }
+    }
+  
+      document.getElementById("reasons").innerHTML = str2;
+
+    // send Needs to text
+    var str3 = ''
+    needsText
+
+    for (i = 0 ; i < needsText.length; i++) {
+      if (i === needsText.length - 1) {
+        str3 += '' + needsText[i].toLowerCase() + '.' // end sentence
+      } else {
+        str3 += needsText[i].toLowerCase() + ', ' // use commas in between
+      }
+    }
+  
+      document.getElementById("needs").innerHTML = str3;
+
+    // send text to form
+    document.getElementById('textEntry').textContent = document.getElementById('textDestination').innerText
+
+    sendButton()
+
+    document.getElementById('yourEmail').scrollIntoView({  behavior: 'smooth', // smooth scroll
+    block: 'start' // the upper border of the element will be aligned at the top of the visible part of the window of the scrollable area.
+  });
+
+}
+
+function illWrite() {
+  document.getElementById('emailText').style.display = "block" // reveal text
+  document.getElementById('emailLabel').innerHTML = `Write your email below. We've written up a template - delete the parts in [BRACKETS] and add whatever you'd like.`
+
+  sendButton()
+}
+
+function sendButton() {
+  // var address = districtInfo.Email
+  var address = 'trackingportal@health.nyc.gov'
+
+  var subject = 'Health concerns in district ' + map.location.data.cityCouncilDistrict
+  var body = document.getElementById('textEntry').textContent
+
+  document.getElementById('sendButton').href = `mailto:`+ address + `?subject=` + `${subject}` + `&body=` + `${body}`
+}
+
+function sendEmail() {
+
+
+}
+
+
+</script>
+
+
+{{- end -}}

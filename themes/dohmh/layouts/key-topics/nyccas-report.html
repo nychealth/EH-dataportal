@@ -15,7 +15,7 @@
     <div class="row no-gutters px-0">
         {{ $src := .Resources.GetMatch .Params.image }}
         {{ $image := $src.Resize "1920x"}}
-        <div id="datastoryheader" style="background-image: URL({{ $image.Permalink }}); background-position: 50% 25%">
+        <div id="datastoryheader" style="background-image: URL({{ $image.RelPermalink }}); background-position: 50% 25%">
     
             <div class="medium my-auto">
                 <h1 class="titleheader py-2 px-4">
@@ -32,8 +32,8 @@
         <div class="col-md-11 mx-auto mt-4 pl-0">
             <nav aria-label="breadcrumb" class="mb-4">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "key-topics" }}>Key Topics</a></li>
                     <li class="breadcrumb-item"><a href="..">
                         {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
                     <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
@@ -147,7 +147,7 @@
                 <div class="col-sm-6 col-cx-12">
                     <div class="greenleftborder">
                         <h3>NYCCAS Sites</h3>
-                        <p>The monitoring locations represent a wide variety of New York City environments – sidewalks, busy streets, parks and quiet neighborhood roads. Most of the sites (80%) were chosen by the Health Department to ensure representation in all types of neighborhoods, including residential, commercial and industrial areas. The locations vary in how many trees they have and in the density of traffic and buildings. The remaining sites were selected because they are near potentially high-emission locations that were not captured in the initial assignment. These include Times Square, the Port Authority Bus Terminal and the entrance to the Holland Tunnel. The number of sites has changed over the years as we have learned about air quality in our city. In 2021, we monitored 78 routine locations and an additional 15 sites in low-income neighborhoods that would benefit from additional monitoring to understand potential sources of emissions. We refer to these as <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/AQsnapshots/Index.html#section5">Environmental Justice Sites</a>, in <span style="font-weight:bold; color:green">green</span> on the map.</p>
+                        <p>The monitoring locations represent a wide variety of New York City environments – sidewalks, busy streets, parks and quiet neighborhood roads. Most of the sites (80%) were chosen by the Health Department to ensure representation in all types of neighborhoods, including residential, commercial and industrial areas. The locations vary in how many trees they have and in the density of traffic and buildings. The remaining sites were selected because they are near potentially high-emission locations that were not captured in the initial assignment. These include Times Square, the Port Authority Bus Terminal and the entrance to the Holland Tunnel. The number of sites has changed over the years as we have learned about air quality in our city. In 2021, we monitored 78 routine locations and an additional 15 sites in low-income neighborhoods that would benefit from additional monitoring to understand potential sources of emissions. We refer to these as <a href="../../../data-stories/aqsnapshots">Environmental Justice Sites</a>, in <span style="font-weight:bold; color:green">green</span> on the map.</p>
 
                     </div>
                 </div>
@@ -501,13 +501,13 @@
                           // put listener on source buttons
                           for (let x = 0; x < srcBtns.length; x++) {
                               srcBtns[x].addEventListener("click", function() {
-                              // remove "active" from classnames
-                              var activeSource = document.querySelectorAll('.srcbtn.border')
-                              activeSource[0].classList.remove('border')
-                              // apply Active to selected source button
-                              this.className += " border";
-                              source = this.innerHTML;
-                              drawChart();
+                                // remove "active" from classnames
+                                var activeSource = document.querySelectorAll('.srcbtn.border')
+                                activeSource[0].classList.remove('border')
+                                // apply Active to selected source button
+                                this.className += " border";
+                                source = this.innerHTML;
+                                drawChart();
                               })
                           }
                       }
@@ -608,7 +608,7 @@
 
             <!-- Pollutant predictors: template -->
             <h2>Pollutant Predictors</h2>
-            <p>NYCCAS data were analyzed using a land-use regression (LUR) model. LUR models estimate associations among pollution levels, average traffic, building emissions, land use and other neighborhood factors around the monitoring sites. The pollution sources that contribute most to differences in concentrations of NO, NO<sub>2</sub>, BC, and PM<sub>2.5</sub> across NYC are listed in the table below. SO<sub>2</sub> is now so low in NYC that it is not possible to build a LUR model for the most recent years of data.</p><p>Fuel used to provide heat and hot water in buildings has become significantly cleaner under state and local regulations requiring use of cleaner burning fuels. As a result, commercial charbroiling and grilling operations have become a more important source of PM<sub>2.5</sub> emissions over the past several years. The number of commercial cooking charbroilers and grills in an area now explains PM<sub>2.5</sub> and Black Carbon differences among neighborhoods better than building emissions. For more information on these changes, see <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/aq-cooking/">Tracking changes in New York City's sources of air pollution</a>.</p>
+            <p>NYCCAS data were analyzed using a land-use regression (LUR) model. LUR models estimate associations among pollution levels, average traffic, building emissions, land use and other neighborhood factors around the monitoring sites. The pollution sources that contribute most to differences in concentrations of NO, NO<sub>2</sub>, BC, and PM<sub>2.5</sub> across NYC are listed in the table below. SO<sub>2</sub> is now so low in NYC that it is not possible to build a LUR model for the most recent years of data.</p><p>Fuel used to provide heat and hot water in buildings has become significantly cleaner under state and local regulations requiring use of cleaner burning fuels. As a result, commercial charbroiling and grilling operations have become a more important source of PM<sub>2.5</sub> emissions over the past several years. The number of commercial cooking charbroilers and grills in an area now explains PM<sub>2.5</sub> and Black Carbon differences among neighborhoods better than building emissions. For more information on these changes, see <a href="../../../data-stories/aq-cooking/">Tracking changes in New York City's sources of air pollution</a>.</p>
 
             <hr>
             <div id="pollutantPredictors">

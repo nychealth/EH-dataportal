@@ -14,7 +14,7 @@
 
 </style>
 
-{{/*  main content  */}}
+{{- /*  main content  */}}
 
 <article class="container-fluid" id="skip-header-target">
 
@@ -22,9 +22,9 @@
         <div class="col-md-11 mx-auto mt-4">
             <nav aria-label="breadcrumb" class="mb-4">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
-                    <li class="breadcrumb-item"><a href="/key-topics/airquality/">Air Quality</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "key-topics" }}>Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "key-topics/airquality" }}>Air Quality</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                 </ul>
             </nav>
@@ -35,18 +35,10 @@
     <div class="row">
         <div class="col-11 mx-auto">
             <h1><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
-
-            <!--
-            <div style="border-left: 3px solid darkgray; border-radius: 0px!important" class="aboutbox my-2">
-                Smoke from wildfires in Canada is currently affecting NYC's air.  <a href="https://www.dec.ny.gov/press/127857.html">New York State DEC has issued a health advisory that is in effect until 11:59PM on Friday, June 9, 2023</a>. Conditions will vary throughout the day. Monitor air quality here.
-            </div>
-            -->
-
         </div>
-
     </div>
 
-    {{/* map + chart */}}
+    {{- /* map + chart */}}
 
     <!-- location selection buttons -->
     
@@ -56,40 +48,6 @@
 
             <button onclick="restore()" type="button" id="btnrestore" class="mb-1 btn btn-sm btn-dark">
                 Reset</button>
-
-            
-            <!--
-            <button onclick="changeData(0)" type="button" id="btn0" class="mb-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
-                <span style="color: red">
-                    <i class="fas fa-square mr-1"></i>
-                </span>
-                Queensboro Bridge</button>
-                
-            <button onclick="changeData(1)" type="button" id="btn1" class="mb-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
-                <span style="color: limegreen">
-                    <i class="fas fa-square mr-1"></i>
-                </span>
-                Hunt's Point</button>
-            
-            <button onclick="changeData(2)" type="button" id="btn2" class="mb-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
-                <span style="color: orange">
-                    <i class="fas fa-square mr-1"></i>
-                </span>
-                Queens College</button>
-            
-            <button onclick="changeData(3)" type="button" id="btn3" class="mb-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
-                <span style="color: blue">
-                    <i class="fas fa-square mr-1"></i>
-                </span>
-                Williamsburg Bridge</button>
-            
-
-            <button onclick="changeData(4)" type="button" id="btn4" class="mb-1 selectorbtn btn btn-sm btn-outline-secondary no-underline">
-                <span style="color: violet">
-                    <i class="fas fa-square mr-1"></i>
-                </span>
-                Broadway/35th St</button>
-            -->
 
             <div id="buttonHolder" style="display:inline-block;">
                 <!-- JavaScript creates buttons from available monitor feeds and inserts them here -->
@@ -138,6 +96,11 @@
                 </div>
             </div>
         </div>
+        <div class="col-2 ml-auto">
+            
+            <a href="#accordion-01" class="float-right fs-sm">Download archived data</a>
+
+        </div>
     </div>
 
 
@@ -161,7 +124,7 @@
 
                     <p class=fs-sm><strong>No value:</strong> sometimes monitors go down or have other problems. We only produce average values if there are more than 18 hourly readings over the last 24 hours.</p>
                     
-                    {{/*  <div class="col mx-1">
+                    {{- /*  <div class="col mx-1">
                         <p>Most recent 24-hour average reading by this monitor: <span class="badge badge-primary badge-custom badge-custom-dark"><span id="24av">n/a</span> µg/m3</span>. This is <span id="comparison" class="badge badge-primary badge-custom">N/A</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">national standard</a> of 35 µg/m3 for 24 hours. <span id="goodBad" class="badge badge-primary badge-custom"></span></p>
                     </div>  */}}
                 </div>
@@ -305,8 +268,68 @@
         </div>
     </div>
 
+    <div class="row my-4">
+        <div class="col-11 mx-auto">
+            <div class="accordion-group my-3" role="tablist" id="accordion-01">
+
+                <div class="card">
+            
+                    <a class="card-header h4 collapse collapsed" id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
+                        <span class="title" role="heading" aria-level="3">Data archive</span>
+                    </a>
+            
+                    <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
+            
+                        <div class="card-body bg-white border">
+                            <!-- Download interface -->
+                            {{- partial "realtime-download" . -}}
+
+                            {{- with .Resources.GetMatch "data-archive-text.md" -}}
+                                {{ .Content }}
+                            {{- end -}}
+                        </div>
+            
+                    </div>
+                    <!-- .collapse -->
+            
+                </div>
+                <!-- .card (end of first accordion, repeat as needed) -->
+            
+            </div>
+        </div>
+    </div>
+
+<!-- Modal -->
+<div class="modal fade" id="sevenModal" tabindex="-1" role="dialog" aria-labelledby="sevenModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="sevenModalLongTitle">Oops!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          We can only show you realtime PM<sup>2.5</sup> data for the last 7 days. Please enter a number between 1 and 7. 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 </article>
+
+<style>
+    .modal-backdrop.show {
+        opacity: 0.70;
+        background-color: #424242
+    }
+</style>
+
+
 
 <!-- Related footer -->
 {{- partial "related-footer-2" . -}}
@@ -315,6 +338,17 @@
 <!-- from https://gist.github.com/njvack/02ad8efcb0d552b0230d -->
 {{- $color_convert := resources.Get "js/color-convert.js" -}}
 <script src="{{ $color_convert.RelPermalink }}"></script>
+
+
+<!-- Uses a static stand-in file for local development - else uses the API -->
+<script>
+    var url = window.location.href
+    var rtaqData
+    url.includes('localhost') ? rtaqData = 'data/nyccas_realtime_DEC.csv' : rtaqData = 'https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv'
+
+</script>
+
+
 
 <!--bring in realtime JS -->
 <script type="text/javascript" src="js/realtime.js"></script>

@@ -4,6 +4,15 @@
 
   <div class="row my-4">
     <div class="col-md-8 col-sm-12 mx-auto">
+
+      <nav aria-label="breadcrumb" class="mb-2">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+            <li class="breadcrumb-item"><a href={{ relURL "about" }}>About</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+        </ul>
+      </nav>
+      
       <!--start main column-->
       <h1>{{- .Title -}}</h1>
         {{- .Content -}}

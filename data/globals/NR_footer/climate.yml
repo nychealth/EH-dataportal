@@ -1,0 +1,33 @@
+---
+city:
+- entry: 
+  copy: "Plants trees, funds Cool Roof projects, and supports heat awareness trainings and more to address extreme heat."
+  link: 
+- entry: 
+  copy: "Set a goal to achieve carbon neutrality by 2050 using the OneNYC strategic plan."
+  link: https://onenyc.cityofnewyork.us/
+- entry:
+  copy: "Helps low-income households buy and install air conditioners."
+  link: https://access.nyc.gov/programs/cooling-assistance-benefit/
+- entry: 
+  copy: "Operates the largest electric municipal fleet in the nation."
+  link: 
+- entry: 
+  copy: "Supports energy-efficiency changes in municipal and community buildings."
+  link: 
+
+you:
+- entry: 
+  copy: "Be a Buddy and check in on neighbors to help them stay cool when it’s hot."
+  link: https://www.nyc.gov/site/doh/health/emergency-preparedness/cold-weather-be-a-buddy.page
+- entry: 
+  copy: "Get info during weather emergencies."
+  link: https://www.nyc.gov/site/severeweather/index.page
+- entry: 
+  copy: "Request a street tree to help cool your neighborhood."
+  link: https://www.nycgovparks.org/trees/street-tree-planting/request
+
+data:
+- entry: 
+  copy: NYC Community Health Profiles.
+  link: https://www1.nyc.gov/site/doh/data/data-publications/profiles.page

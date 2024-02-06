@@ -34,9 +34,9 @@ If you're a regular to the Environment & Health Data Portal, then you may notice
 #### Why'd we make these changes?
 Well, for a few reasons:
 
-**To highlight our best tools and resources**. We want our home page to make it clear what this site is all about, and draw attention to our top tools: our [Data Explorer](/data-explorer), [Neighborhood Reports](/neighborhood-reports), and [Data Stories](/data-stories). By bringing these to the top, we're showing what we want our visitors to do here.
+**To highlight our best tools and resources**. We want our home page to make it clear what this site is all about, and draw attention to our top tools: our [Data Explorer]({{< baseurl >}}data-explorer), [Neighborhood Reports]({{< baseurl >}}neighborhood-reports), and [Data Stories]({{< baseurl >}}data-stories). By bringing these to the top, we're showing what we want our visitors to do here.
 
-**To incorporate new content**. Over the coming months, we’ll be producing more [Data Stories](/data-stories) on critical issues in environmental health in New York City. These Data Stories will take deep dives into our data, investigating important issues that affect health in New York City. Some of these will be essays, some of them will be interactive infographics. For now, take a look at “A Closer Look” on our homepage – or find them all at [Data Stories](/data-stories).
+**To incorporate new content**. Over the coming months, we’ll be producing more [Data Stories]({{< baseurl >}}data-stories) on critical issues in environmental health in New York City. These Data Stories will take deep dives into our data, investigating important issues that affect health in New York City. Some of these will be essays, some of them will be interactive infographics. For now, take a look at “A Closer Look” on our homepage – or find them all at [Data Stories]({{< baseurl >}}data-stories).
 
 **To improve accessibility**. Our new Home Page works a lot better on mobile, but it also works better for users who are visually impaired or navigate using their keyboard. Ensuring accessibility for all users – by meeting what are called Section 508 Standards – we’re working toward information equity: ensuring that all users can access the information that we’re producing.
 
