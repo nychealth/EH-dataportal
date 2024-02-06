@@ -17,6 +17,7 @@ var over78F;
 var aqiInterpretation;
 var aqi
 var warmSeason;
+var currentTemp
 
 
 
@@ -39,14 +40,12 @@ fetch('http://api.weatherapi.com/v1/forecast.json?key=0d4a042ad8ec468da7b1351562
 
 function printToPage() {
     // Print current temp, max temp, and AQI
-    var currentTemp = apiData.current.temp_f
+    currentTemp = apiData.current.temp_f
     document.getElementById('currentTemp').innerHTML = currentTemp + '° F'
-    document.getElementById('currentTemp2').innerHTML = currentTemp + '° F'
 
 
     var maxTemp = apiData.forecast.forecastday[0].day.maxtemp_f
     document.getElementById('maxTemp').innerHTML = maxTemp  + '° F'
-    document.getElementById('maxTemp2').innerHTML = maxTemp  + '° F'
 
     aqi = apiData.current.air_quality["us-epa-index"]
     // document.getElementById('aqi').innerHTML = aqi
@@ -99,7 +98,6 @@ function printToPage() {
       aqiMeaning.style.color = 'white'
     }
     aqiMeaning.innerHTML = aqiInterpretation
-    document.getElementById('aqimeaning2').innerHTML = aqiInterpretation
     document.getElementById('aqiNum').innerHTML = aqi
 
 }
@@ -203,11 +201,11 @@ function answer(question, answer, next) {
   clickedBtn.classList.add('active')
 
 
+/* Commenting out recommendations panel for questions - since it's not a question -> recommendation, but rather, multivariate
 // Based on config - does an answer change a variable?
 // Then, run a Recommendation() function - does a changed variable trigger a recommendation? 
 
   var resp = question + "-" + answer
- // console.log('question/answer: ', resp)
 
   // if question-answer matches a recommendation, activate recommendation
   var rec = document.getElementById('rec-'+resp)
@@ -219,6 +217,7 @@ function answer(question, answer, next) {
     console.log('no rec for this answer')
     // Need to figure out how to turn off Active if somebody changes their ansewr !!!!!!
   }
+  */
 
 }
 
@@ -300,26 +299,61 @@ function runFinal() {
 
   var finalMessageText = document.getElementById('finalMessages')
 
-  // Message One
+  // Message 1
   if (needsHelp == 'Yes' || 
     (warmSeason === 'Yes' && (isSensitiveAge ==='Yes' || sensitiveGroup === 'Yes' || doesBehavior === 'Yes'))
   ) {
-    msg = '<p>Speak to a medical provider to get additional recommendations that are specific to your situation. You can find available medical providers here:</p>'
+    msg = '<p><strong>You have potentially serious symptoms.</strong> Find medical providers here.</p>'
     finalMessageText.innerHTML += msg
   }
 
-  // Message two
+  // Message 2
   if (aqi > 3 || 
     (aqi > 2 && sensitiveGroup === 'Yes')) {
-    msg = '<p>Consider wearing a mask when outside to lessen your inhalation of pollution. Read more about mask use.</p>'
+    msg = '<p><strong>You are more sensitive to air pollution,</strong>, and <strong>the Air Quality Index is elevated</strong> Consider wearing a mask outside. Read more about mask use.</p>'
     finalMessageText.innerHTML += msg
   }
 
-  // Message three
+  // Message 3
   if (over78F === 'Yes' && hasAC === 'No') {
-    msg = '<p>Fans can help cool you down by moving air around to increase sweat evaporation which can be especially helpful in a humid environment. However, fans do not cool the air so the air currents flowing over the body must be cooler than your body temperature to cool you down. If it is over 78 degrees indoors, the fan is actually moving hot air around and can make you even warmer.</p>'
+    msg = '<p><strong>It’s warm, and you don’t have an AC</strong>. A fan can help cool you down. But it won’t cool the air – if it’s too hot inside, it’s just moving hot air around, and can make you even warmer. </p>'
     finalMessageText.innerHTML += msg
   }
+
+  // Message 4
+  if (hasAC === 'No' && (over78F === 'Yes' || isOverheating === 'Yes')) {
+    msg = '<p><strong>It’s hot outside and you don’t have an AC</strong>. Open a window to cool down your home. Keep shades drawn during the day to prevent sunlight from heating up your home. </p>'
+    finalMessageText.innerHTML += msg
+  }
+
+  // Message 5
+  if (hasAC === 'No' && (currentTemp > 94.9 || (currentTemp > 84.5 && (aqi > 3|| (aqi > 2 && sensitiveGroup === 'Yes'))))) {
+    msg = '<strong>Air conditioning is the best way to stay safe when it is this hot.</strong> Get a list of public air conditioned spaces here.  '
+    finalMessageText.innerHTML += msg
+  }
+
+  // Message 6
+  if (typeAC === 'Window/wall') {}
+  
+  // Message 7
+  if (currentTemp > 85 || sensitiveGroup === 'Yes' || aqi > 2 || isSensitiveAge === 'Yes' ) {}
+
+  // Message 8
+  if (currentTemp > 80 ) {
+    msg = 'Limit activities that can heat up your home like indoor cooking.'
+    finalMessageText.innerHTML += msg
+  }
+
+  // Message 9
+
+
+  // Message 10
+  if (currentTemp > 85 || isOverheating === 'Yes') {
+    msg = 'Using AC at home is the best way to stay safe when it is hot outside.  Set your unit to 78 degrees or "low cool" to reduce energy consumption and remain safe from the heat.'
+    finalMessageText.innerHTML += msg
+  }
+
+  // 
 
 }
 

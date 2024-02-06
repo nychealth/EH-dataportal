@@ -29,7 +29,7 @@ var content = [
 
     {
         "id": 2,
-        "text": "Let's make sure you're doing Ok. Are you experiencing any of the following symptoms right now?",
+        "text": "Let's make sure you're doing OK. Are you experiencing any of the following symptoms right now?",
         "prompt": "These can be a sign that you're struggling with the heat or the air quality. These symptoms can be a sign of severe illness. If this is an emergency call 911. You can also call 311 for health insurance.", 
         "options": [
             {
@@ -383,23 +383,23 @@ var content = [
             {   
                 "optionID": 2,
                 "copy": "Window or wall unit",
-                "message": "These tend to be best at cooling single rooms, not whole homes or apartments.",
+                "message": "These tend to be best at cooling single rooms, not whole homes or apartments. <br><br><strong>How many BTUs is your AC?</strong> BTU is a measure of how strong your AC is. Look for a small label. A 5,000 BTU unit can cool a small bedroom, up to 150 square feet. Every additional 100 square feet requires 1,000 more BTUs. If your AC isn't strong enough to cool your whole space, then use it to just cool a single room. ",
                 "setVariable": "acType('Window/wall')",
-                "goTo": 10
+                "goTo": 11
             },
             {   
                 "optionID": 3,
                 "copy": "Portable AC",
-                "message": "These tend to be best at cooling single rooms, not whole homes or apartments.",
+                "message": "These tend to be best at cooling single rooms, not whole homes or apartments.<br><br> <strong>How many BTUs is your AC?</strong> BTU is a measure of how strong your AC is. Look for a small label. A 5,000 BTU unit can cool a small bedroom, up to 150 square feet. Every additional 100 square feet requires 1,000 more BTUs. If your AC isn't strong enough to cool your whole space, then use it to just cool a single room. ",
                 "setVariable": "acType('Portable')",
-                "goTo": 10
+                "goTo": 11
             },
             {   
                 "optionID": 4,
                 "copy": "Ductless mini split",
-                "message": "These tend to be best at cooling single rooms, not whole homes or apartments.",
+                "message": "These tend to be best at cooling single rooms, not whole homes or apartments.<br><br> <strong>How many BTUs is your AC?</strong> BTU is a measure of how strong your AC is. Look for a small label. A 5,000 BTU unit can cool a small bedroom, up to 150 square feet. Every additional 100 square feet requires 1,000 more BTUs. If your AC isn't strong enough to cool your whole space, then use it to just cool a single room. ",
                 "setVariable": "acType('Window/wall')", /* not sure how to set this new var */
-                "goTo": 10
+                "goTo": 11
             }
 
         ]

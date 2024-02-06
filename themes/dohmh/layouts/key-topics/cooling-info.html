@@ -25,54 +25,23 @@
     <div class="col-md-4 ml-auto">
 
       <div class="sticky-top border p-2" style="z-index: 0">
-        <span class="home-label font-weight-bold">Weather:</span><br>
-        Currently: <span id="currentTemp2"></span><br>
-        Forecast high: <span id="maxTemp2"></span>
+        <p>Today's weather is <span id="hot" class="font-weight-bold p-1">HOT</span>. The current temp is <span id="currentTemp">XX</span> and it might reach <span id="maxTemp">YY</span> today. <a href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us">Get a full weather forecast here</a>.
 
         <hr class="my-2">
 
-        <span class="home-label font-weight-bold">Air Quality Index:</span><br>
-        <span id="aqimeaning2"></span>
+        <p>The current air quality is <span id="aqimeaning" class="font-weight-bold p-1">AQI interpretation</span>.
+
 
         <hr class="my-2">
 
-        <span class="home-label font-weight-bold">Recomendations for you:</span>
+        <div class="" id="recsHolder">
+          <span class="home-label font-weight-bold">About you:</span>
 
-        <!-- Recommendations pane -->
-        <ul class="list-group fs-sm">
-          <li class="list-group-item" id="rec-1-1">You may need medical help <i class="fas fa-2x fa-regular fa-hospital float-right" aria-hidden="true"></i><br>
-          </li>
-
-          <li class="list-group-item">Turn on your fan
-          <i class="fas fa-2x fa-solid fa-fan float-right" aria-hidden="true"></i>
-          </li>
-
-          <li class="list-group-item"> Open a window
-          <i class="fas fa-2x fa-solid fa-store float-right" aria-hidden="true"></i>
-          </li>
-
-          <li class="list-group-item">You may want to visit a cooling center
-          <i class="fas fa-2x fa-regular fa-building float-right" aria-hidden="true"></i>
-          </li>
-
-          <li class="list-group-item"> You may need medical attention
-          <i class="fas fa-2x fa-solid fa-user-doctor float-right" aria-hidden="true"></i></li>
-
-          <li class="list-group-item">Avoid strenuous activity
-          <i class="fas fa-2x fa-solid fa-person-running float-right" aria-hidden="true"></i></li>
-
-          <li class="list-group-item">Don't smoke or vape indoors
-          <i class="fas fa-2x fa-solid fa-ban-smoking float-right" aria-hidden="true"></i></li>
-
-          <li class="list-group-item">Wear a mask when you go outside
-          <i class="fas fa-2x fa-solid fa-mask-face float-right" aria-hidden="true"></i></li>
-        </ul>
-
-        <style>
-          .list-group .active {
-            background-color:rgb(17, 181, 118)
-          }
-        </style>
+          <!-- Recommendations pane -->
+          <ul class="list-group fs-sm" id="sidebarRecs">
+            
+          </ul>
+        </div>
 
 
       </div>
@@ -82,25 +51,8 @@
     <!-- main content column -->
     <div class="col-md-7 overflow-hidden fs-rg mr-auto" id="primary-content">
       <div id="start">
-        <h4>Let's get started.</h4>
-
-        <div class="row">
-          <div class="col-sm-6 border p-2">
-            <p>Today's weather is <span id="hot" class="font-weight-bold p-1">HOT</span>. The current temp is <span id="currentTemp">XX</span> and it might reach <span id="maxTemp">YY</span> today. <a href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us">Get a full weather forecast here</a>.
-
-          </div>
-
-          <div class="col-sm-6 border p-2">
-            <p>The current air quality is <span id="aqimeaning" class="font-weight-bold p-1">AQI interpretation</span>.
-
-          </div>
-
-        </div>
-
-            <hr class="my-2">
-
         <div class="col-md-6 mx-auto">
-          <button class="btn btn-sm btn-block btn-outline-secondary mx-auto" onclick="runQuestions()">Start questions</button>
+          <button class="btn btn btn-block btn-outline-secondary mx-auto" onclick="runQuestions()">Let's get started</button>
         </div>
       </div>
 
