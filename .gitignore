@@ -44,6 +44,8 @@ reports_data.json
 links data columns.js
 content/key-topics/climatehealth/hvi/de_map_spec.vg.json
 content/key-topics/climatehealth/hvi/hvi-nta.csv
+assets/js/data-explorer/some notes on refactoring.txt
+.Rhistory
 fooling around with gh.sh
 # local data
 static/IndicatorData/data/
@@ -52,3 +54,5 @@ static/IndicatorData/indicators_pretty.json
 static/IndicatorData/metadata.json
 assets/js/data-explorer/some notes on refactoring.txt
 hugo-help.txt
+hugo-server-help.txt
+hugo_completion_powershell.ps1

@@ -1,321 +1,405 @@
 "use strict";
 
-// STYLES THE AUTOCOMPLETE FORM
+/* STILL NEEDS:
+- Passing the geography into the renderChart and renderMap functions properly to highlight the selected neighborhood
+- A tolerable Initial State that draws attention to "Choose a neighborhood"
 
-var selectEl = document.querySelector('#last-neighborhood')
-accessibleAutocomplete.enhanceSelectElement({
-    autoselect: true,
-    confirmOnBlur: true,
-    defaultValue: "",
-    minLength: 2,
-    selectElement: selectEl
-})
+*/
 
-// EVENT LISTENER ON FORM, RETRIEVE VALUE 
+// flexdatalist initial:
 
-var ntaForm = document.getElementById('nta-form');
+// ===== load flexdatalist ================================================== //
 
-ntaForm.addEventListener('submit', function (event) {
-    
-    event.preventDefault();                      // prevent page re-load
-    selectedName = event.target[0].value;    // gives you full neighborhood name
-    selectedNeighborhood = event.target[0].value.slice(0, 4); // gives you NTA code
-    console.log('selectedNeighborhood: ' + selectedNeighborhood)
+const load_flexdatalist = async () => {
 
-    document.getElementById('NTA').innerHTML = 'Your neighborhood: <h3><span style="font-weight:bold;color:#15607a">' + DOMPurify.sanitize(selectedName) + '</span></h3>';
-    document.getElementById('yourneighb').style.display = "block";
-    document.getElementById('outputContent').style.display = "block";
-    
-    dataFilter(nyccasData); // filters NYCCAS Data for neighborhood data
-    dataChange(); // sends data to page
-    console.log('code: ')
-    console.log(code)
+  // ----- get NTA with associated zipcodes -------------------------------------------------- //
+  
+  await fetch(`nta_zip_collapsed.json`)
+      .then(response => response.json())
+      .then(data => {
 
-    changeFactor(1,code) // loads the map
+          let nta_zip_collapsed = data;
+          // console.log("nta_zip_collapsed", nta_zip_collapsed);
+          
+          // ----- init flexdatalist -------------------------------------------------- //
+          
+          let $input = $('.flexdatalist').flexdatalist({
+              minLength: 0,
+              valueProperty: ["GEOCODE", "GEONAME"],
+              textProperty: "{GEONAME}",
+              selectionRequired: false,
+              focusFirstResult: true,
+              visibleProperties: ["NTACode", "GEONAME", "zipcode"],
+              searchIn: ["GEONAME", "zipcode"],
+              searchContain: true,
+              searchByWord: true,
+              redoSearchOnFocus: true,
+              toggleSelected: true,
+              cache: false,
+              data: nta_zip_collapsed
+          });
 
-    
-});
+          console.log("$input", $input);
+          
+          // ----- add flexdatalist select handler -------------------------------------------------- //
 
-// Create and initialize variables
+          $input.on('select:flexdatalist', (e, set) => {
+              
+              console.log("set", set);
 
-// 'data_repo' and 'data_branch' are created from Hugo variables in the aqe.html template
+              // set neighborhood name on page
+              
+                // document.querySelector("#NTA").innerHTML = '<h4>' + DOMPurify.sanitize(set.GEONAME) + '</h4>';
+              
+              // call dataChange
 
-var nyccasData = [];
+              // dataChange(set.GEOCODE);
+
+              // call tester Function
+              setNeighborhood(set.NTACode, set.GEONAME, set.zipcode)
+              
+          })
+
+          // ----- add clear button handler -------------------------------------------------- //
+
+          $("#clear").on("click", (e) => {
+
+              console.log("e [clear click]", e);
+
+              $($input).find("~input").val("").trigger( "focus" )
+              
+          })
+
+      })
+}
+
+// ----- Load data and call loader function -------------------------------------------------- //
+var allData = [];
 var neighborhoodData = [];
-var selectedNeighborhood;
-var selectedName = '';
-var code;
-var dPM = 0;
-var dNO2 = 0;
-var dBuildingEmissions = 0;
-var dBuildingDensity = 0;
-var dTrafficDensity = 0;
-var dIndustrial = 0;
 
+d3.csv('aqe-nta.csv', d3.autoType).then(data => {
 
-// path variables
-var nyccas_url = data_repo + data_branch + "/key-topics/air-quality-explorer/aqe-nta.csv";
-var PMBarVGSpec  = "PMBarSpec.vg.json";
-var NO2BarVGSpec = "NO2BarSpec.vg.json";
-var embed_opt = {
-    actions:false
-};
+  allData = data;
 
-// path to topo json, will be loaded by vega
+  // console.table(allData);
 
-var nta_topojson = data_repo + data_branch + "/geography/NTA_2010.topo.json"; 
+  load_flexdatalist()
 
-// the d3 code below loads the data from a CSV file and dumps it into global javascript object variable.
+  renderChart('#NODestination','NO2','')
 
-// LOAD DATA
+  renderChart('#PMDestination','PM','')
 
-d3.csv(nyccas_url, d3.autoType).then(data => {
-    nyccasData = data;
+  renderMap(1,'')
+
 }); 
 
-// FILTER DATA BASED ON SELECTION FROM FORM
 
-function dataFilter(data) {
-    
-    neighborhoodData = data.filter(sf => {
 
-        // geo code used in aqe.html is the character NTACode, so using that here instead of numeric GEOCODE
+var thisGeocode
+function setNeighborhood(x, y, z) {
+  document.getElementById('showNeighb').classList.remove('hide')
 
-        return sf.NTACode === selectedNeighborhood;
+  console.log('geocode',x)
+  thisGeocode = x
+  console.log(y)
+  document.getElementById('NTA2').innerHTML = y
+  document.getElementById('NTA2').classList.add('yourN')
+  document.getElementById('NTA3').classList.add('yourN')
+  document.getElementById('NTA3').innerHTML = y
+  document.getElementById('NTA4').innerHTML = y
+  document.getElementById('NTA4').classList.add('yourN')
+  document.getElementById('zips').innerHTML = z
 
-    
+  // ingest data file and filter by GEOCODE
+  neighborhoodData = allData.filter(neighb => neighb.NTACODE == x)
 
-    });
+  console.table(neighborhoodData)
 
+  document.getElementById('thisPM').innerHTML = Number(neighborhoodData[0].PM_Avg).toFixed(2)
+  document.getElementById('thisNO2').innerHTML = Number(neighborhoodData[0].NO2_Avg).toFixed(2)
+
+  sourceTertile(neighborhoodData[0].Building_emissions,"BE")
+  sourceTertile(neighborhoodData[0].cook_tertiles,"CC")
+  sourceTertile(neighborhoodData[0].Industrial_tertiles,"IA")
+  sourceTertile(neighborhoodData[0].Traffic_tertiles,"TD")
+
+  renderChart('#NODestination','NO2',x)
+
+  renderChart('#PMDestination','PM',x)
+
+  renderMap(1,x)
+
+}
+
+function sourceTertile(x,dest) {
+
+  var destination = document.getElementById(dest)
+
+  if (x === 'High') {
+    // change class
+    destination.classList.add('badge-worse')
+  } else if (x === 'Medium') {
+    // change class
+    destination.classList.add('badge-medium')
+  } else if (x === 'Low') {
+    // change class
+    destination.classList.add('badge-better')
+  }
+
+  destination.innerHTML = x
 
 }
 
 
-// runs on hitting the map's buttons
-const changeFactor = (
-    x,   // number passed in by button selection
-    y   // looking for GEOCODE for highlighting
-    ) => {
-    var mapButtons = document.querySelectorAll(".mapbtns")
-    mapButtons.forEach(btn => {
-        btn.classList.remove('active')
-    })
-    var selBtn = 'btn'+x
-    document.getElementById(selBtn).classList.add('active')
 
-    // hide all text
-    var textDescr = document.querySelectorAll('.descriptionText')
-        textDescr.forEach(text => {
-            text.style.display = "none"
-        })
-    var text = 'text'+x
-    document.getElementById(text).style.display = "block"
 
-    var indicator;
-    var neighb = y.toString();
-    console.log(neighb)
 
-    if (x === 1) {
-      indicator = "tertile_buildingemissions";
-    } else if (x === 2) {
-        indicator = "tertile_buildingdensity";
+
+const renderChart = (
+  destination, // #PMDestination or #NODestination
+  variable,    // PM or NO2
+  neighborhood // NTACode
+) => {
+
+  // add conditionals for TITLE, units, etc.
+  var title
+  var units
+
+  if (variable === 'PM') {
+    title = "PM2.5 (μg/m3)"
+  } else if (variable === 'NO2') {
+    title = "NO2 (ppb)"
+  }
+
+  var barSpec = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": title,
+      "subtitlePadding": 10,
+      "fontWeight": "normal",
+      "anchor": "start",
+      "fontSize": 12,
+      "font": "sans-serif",
+      "baseline": "top"
+    },
+    "data": {
+      "url": "aqe-nta.csv"
+    },
+    "transform": [
+      {"calculate": "toNumber(datum.PM_Avg)", "as": "PM"},
+      {"calculate": "toNumber(datum.NO2_Avg)", "as": "NO2"}
+    ],
+    "config": {
+      "concat": {"spacing": 20},
+      "view": {"stroke": "transparent"},
+      "axisY": {"domain": false, "ticks": false,"orient": "left"}
+    },
+    "layer": [
+          {
+        "height": "container",
+        "width": "container",
+        "config": {"axisY": {"labelAngle": 0, "labelFontSize": 13}},
+        "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
+        "encoding": {
+          "y": {
+            "field": `${variable}`,
+            "type": "quantitative",
+            "title": null,
+            "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
+          },
+          "tooltip": [
+            {"field": "NTA_NAME", "title": "Neighborhood"},
+            {"field": `${variable}`, "title": `${title}`,"format": ".2f"}
+          ],
+          "x": {
+            "field": "NTA_NAME", 
+            "sort": "y", 
+            "axis": null
+            },
+          "color": {
+            "condition": {
+              "test": `datum['NTACODE'] === '${neighborhood}'`,
+              "value": "cyan"
+              },
+            "value": "darkgray"
+            },
+          "strokeWidth": {
+            "condition": {
+              "test": `datum['NTACODE'] === '${neighborhood}'`,
+              "value": 1  
+            },
+            "value": 0
+          },
+          "stroke": {
+            "condition": {"test": `datum.NTACODE === '${neighborhood}'`, "value": "cyan"},
+            "value": "darkgray"
+            }
+        }
+      }
+    ]
+  }
+
+  console.log(barSpec)
+
+  vegaEmbed(destination, barSpec, {actions:false})
+}
+
+
+
+function changeSource(x) {
+  console.log(x)
+
+  // get all class sourceBox and remove active
+  var sourceBoxes = document.querySelectorAll(".sourceBox")
+  for (let i = 0; i < sourceBoxes.length; i++) {
+      sourceBoxes[i].classList.remove('sourceBox-active')
+  }
+
+  // highlight what you clicked on
+  var thisBox = 'sourceBox' + x
+  document.getElementById(thisBox).classList.add('sourceBox-active')
+
+  // change map
+  var title;
+
+  if (x==1) {
+      title = 'Building emissions'
+  } else if (x==2) {
+      title = "Commercial cooking"
+  } else if (x==3) {
+      title = "Industrial area"
+  } else if (x==4) {
+      title = "Traffic density"
+  }
+
+  document.getElementById('mapTitle').innerHTML = title
+  renderMap(x,thisGeocode)
+}
+
+const renderMap = (
+  x,           // indicator
+  neighborhood // NTACode
+) => {
+    var title;
+    var indicator
+    var label;
+
+    if (x===1) {
+        title = 'Building emissions'
+        indicator = 'numeric_Building_emissions'
+        label = 'Building_emissions'
+    } else if (x===2) {
+        title = "Commercial cooking"
+        indicator = 'numeric_cook_tertiles'
+        label = 'cook_tertiles'
     } else if (x===3) {
-        indicator = "tertile_industrial";
-    } else {
-        indicator = "tertile_trafficdensity";
+        title = "Industrial area"
+        indicator = 'numeric_Industrial_tertiles'
+        label = 'Industrial_tertiles'
+    } else if (x===4) {
+        title = "Traffic density"
+        indicator = 'numeric_Traffic_tertiles'
+        label = 'Traffic_tertiles'
     }
 
     var mapSpec = {
-        "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-        "width": "container",
-        "height": "container",
-        "autosize": {"type": "fit", "contains": "padding"},
-        "config": {
-            "view": {"stroke": "transparent"},
-        },
-        "layer": [
-          {
-            "data": {
-              "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/" + data_branch + "/geography/NTA_2010.topo.json",
-              "format": {"type": "topojson", "feature": "collection"}
-            },
-            "mark": {"type": "geoshape", "stroke": "#ffffff", "fill": "lightgray"}
+      "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+      "width": "container",
+      "height": "container",
+      "autosize": {"type": "fit", "contains": "padding"},
+      "config": {
+          "view": {"stroke": "transparent"},
+      },
+      "layer": [
+        {
+          "data": {
+            "url": data_repo + data_branch + "/geography/NTA_2020.topo.json",
+            "format": {"type": "topojson", "feature": "collection"}
           },
-          {
-            "data": {
-              "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/" + data_branch + "/geography/NTA_2010.topo.json",
-              "format": {"type": "topojson", "feature": "collection"}
-            },
-            "transform": [
-              {
-                "lookup": "properties.NTACode",
-                "from": {
-                  "data": {
-                    "url": "https://raw.githubusercontent.com/nychealth/EHDP-data/" + data_branch + "/key-topics/air-quality-explorer/aqe-nta.csv"
-                  },
-                  "key": "NTACode",
-                  "fields": [
-                    "NTACode",
-                    "GEONAME",
-                    "GEOCODE",
-                    "tertile_buildingemissions",
-                    "tertile_buildingdensity",
-                    "tertile_industrial",
-                    "tertile_trafficdensity"
-                  ]
-                }
-              }
-            ],
-            "mark": {"type": "geoshape", "stroke": "#000000"},
-            "encoding": {
-              "color": {
-                "bin": false,
-                "field": indicator,
-                "type": "ordinal",
-                "scale": {"scheme": {"name": "purples", "extent": [-0.5, 1]}},
-                "legend": null
-              },
-              "strokeWidth": {
-                "condition": {"test": `datum.properties.GEOCODE === ${neighb}`, "value": 2.5},
-                "value": 0.5
+          "mark": {"type": "geoshape", "stroke": "#ffffff", "fill": "lightgray"}
+        },
+        {
+          "data": {
+            "url": data_repo + data_branch + "/geography/NTA_2020.topo.json",
+            "format": {"type": "topojson", "feature": "collection"}
+          },
+          "transform": [
+            {
+              "lookup": "properties.NTA2020",
+              "from": {
+                "data": {
+                  "url": "https://gist.githubusercontent.com/mmontesanonyc/1d27a5ab8fbbfea417e3308c733725f3/raw/1fe4964652a361b0e3c9b95b26a1116da723fe8e/aqe-nta.csv"
                 },
-              "tooltip": [
-                {
-                    "field": "GEONAME",
-                    "type": "nominal",
-                    "title": "Neighborhood"
-                  },
-                  {
-                    "field": "tertile_buildingemissions",
-                    "type": "nominal",
-                    "title": "Building emissions"
-                  },
-                  {
-                    "field": "tertile_buildingdensity",
-                    "type": "nominal",
-                    "title": "Building density"
-                  },
-                  {
-                    "field": "tertile_industrial",
-                    "type": "nominal",
-                    "title": "Industrial area"
-                  },
-                  {
-                    "field": "tertile_trafficdensity",
-                    "type": "nominal",
-                    "title": "Traffic"
-                  }
-              ]
+                "key": "NTACODE",
+                "fields": [
+                  "NTACODE",
+                  "NTA_NAME",
+                  "PM_Avg",
+                  "NO2_Avg",
+                  "cook_tertiles",
+                  "Building_emissions",
+                  "Industrial_tertiles",
+                  "Traffic_tertiles"
+                ]
+              }
+            },
+            {
+              "calculate": "if(datum.cook_tertiles === 'Low', 1, if(datum.cook_tertiles === 'Medium', 2, 3))",
+              "as": "numeric_cook_tertiles"
+            },
+            {
+              "calculate": "if(datum.Building_emissions === 'Low', 1, if(datum.Building_emissions === 'Medium', 2, 3))",
+              "as": "numeric_Building_emissions"
+            },
+            {
+              "calculate": "if(datum.Industrial_tertiles === 'Low', 1, if(datum.Industrial_tertiles === 'Medium', 2, 3))",
+              "as": "numeric_Industrial_tertiles"
+            },            {
+              "calculate": "if(datum.Traffic_tertiles === 'Low', 1, if(datum.Traffic_tertiles === 'Medium', 2, 3))",
+              "as": "numeric_Traffic_tertiles"
             }
+          ],
+          "mark": {"type": "geoshape", "stroke": "#000000"},
+          "encoding": {
+            "color": {
+              "field": indicator,
+              "type": "nominal",
+              "scale": {
+                "type": "ordinal",
+                "range": ["#f5f1f8","#bcbcdc","#8077b6"]
+                },
+              "legend": null
+            },
+            "strokeWidth": {
+              "condition": {"test": `datum.NTACODE === '${neighborhood}'`, "value": 2.5},
+              "value": 0.5
+              },
+            "stroke": {
+              "condition": {"test": `datum.NTACODE === '${neighborhood}'`, "value": "cyan"},
+              "value": "darkgray"
+              },
+            "order": {
+              "condition": {"test": `datum.NTACODE === '${neighborhood}'`, "empty": false, "value": 1},
+                "value": 0
+            },
+            "tooltip": [
+              {
+                  "field": "properties.GEONAME",
+                  "type": "nominal",
+                  "title": "Neighborhood"
+                },
+                {
+                  "field": label,
+                  "type": "nominal",
+                  "title": title
+                }
+            ]
           }
-        ]
-      };
-
-      vegaEmbed("#mapHolder", mapSpec, {actions: false})
-}
-
-
-
-
-
-
-
-// at this point we have: neighborhoodName (full name), ntaCode (4-digit), and neighborhooData (array of data)
-
-// UPON SELECTION, UPDATES DATA
-
-
-function dataChange() {
-    
-    selectedName = neighborhoodData[0].GEONAME;
-    code = neighborhoodData[0].GEOCODE
-    
-    dPM = numRound(neighborhoodData[0].Avg_annavg_PM25);
-    dNO2 = numRound(neighborhoodData[0].Avg_annavg_NO2);
-    
-    dBuildingEmissions = neighborhoodData[0].tertile_buildingemissions;
-    dBuildingDensity = neighborhoodData[0].tertile_buildingdensity;
-    dTrafficDensity = neighborhoodData[0].tertile_trafficdensity;
-    dIndustrial = neighborhoodData[0].tertile_industrial;
-
-    document.querySelector("#PM").innerHTML = dPM + ' μg/m<sup>3</sup>';
-    document.querySelector("#NO2").innerHTML = dNO2 + ' ppb';
-    document.querySelector("#buildingEmissions").innerHTML = tertileTranslate(dBuildingEmissions);
-    document.querySelector("#buildingDensity").innerHTML = tertileTranslate(dBuildingDensity);
-    document.querySelector("#trafficDensity").innerHTML = tertileTranslate(dTrafficDensity);
-    document.querySelector("#industrial").innerHTML = tertileTranslate(dIndustrial) ;
-    
-    // load the PM2.5 bar chart
-    buildChart(
-        "#PMbar", 
-        PMBarVGSpec, 
-        nyccasData,
-        selectedNeighborhood
-    );
-
-    // load the NO2 bar chart
-
-    buildChart(
-        "#NO2bar", 
-        NO2BarVGSpec, 
-        nyccasData,
-        selectedNeighborhood
-    );
-    
-} 
-
-
-// rounding function lets us round all numbers the same
-
-function numRound(x) {
-    return Number.parseFloat(x).toFixed(1);
-} 
-
-
-// Returns block-level badges for the tabs
-
-function tertileTranslate(tertileVal) {
-    
-    if (tertileVal == 3) {
-        return '<span class="badge badge-worse ml-1">High</span>';
-        
-    } else if (tertileVal == 2) {
-        return '<span class="badge badge-medium ml-1">Medium</span>';
-        
-    } else {
-        return '<span class="badge badge-better ml-1">Low</span>';
-        
-    };
-}
-
-
-
-
-// function to build charts
-        
-function buildChart(div, spec, csv, nbr) {
-
-    d3.json(spec).then(spec => {
-
-        vegaEmbed(div, spec, {actions: false})
-            .then(res => {
-
-                var res_view = 
-                    res.view
-                        .insert("nyccasData", csv)
-                        .signal("selectNTA", nbr)
-                        .logLevel(vega.Info)
-                        .runAsync();
-
-            })
-            .catch(console.error);
-        });
+        }
+      ]
     }
+    
+    vegaEmbed("#mapHolder", mapSpec, {actions:false})
 
 
-
-
-
-
-
-
+}

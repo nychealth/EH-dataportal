@@ -394,9 +394,9 @@ Heat Complaint in a Residential Building,KA-01036,2396,Children in homes with su
 Carbon Monoxide,KA-02608,2398,Carbon monoxide deaths
 NYCHA Public Housing Maintenance Complaint,KA-01076,2399,Renter-occupied homes with any health-related maintenance problems
 Apartment Maintenance Complaint,KA-01074,2399,Renter-occupied homes with any health-related maintenance problems
-Assault,KA-01515,2400,Assault emergency department visits (non-fatal)
-Sexual Assault,KA-02049,2400,Assault emergency department visits (non-fatal)
-Sexual Assault Victim Support,KA-01621,2400,Assault emergency department visits (non-fatal)
+2400,Assault emergency department visits (non-fatal)
+2400,Assault emergency department visits (non-fatal)
+2400,Assault emergency department visits (non-fatal)
 NYC Care,KA-03317,2401,Postponing health care
 Community Health Profile,KA-02655,2401,Postponing health care
 Asthma,KA-02563,2402,Public School Children (K-8) with Active Asthma

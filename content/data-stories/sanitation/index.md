@@ -150,7 +150,7 @@ We also see this difference between neighborhoods in data on rat inspections, wi
             <strong>Enclosed baskets per square mile</strong>
             <iframe title="EH / UES locator map" aria-label="Locator maps" id="datawrapper-chart-5WJ8y" src="https://datawrapper.dwcdn.net/5WJ8y/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="350"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
 </script>
-            <a href="/data-explorer/active-design/?id=2416#display=summary">Explore litter basket data here</a>.
+            <a href="{{< baseurl >}}data-explorer/active-design/?id=2416#display=summary">Explore litter basket data here</a>.
         </div>
         <div class="col-sm-6">
             <strong>Rat Indexing</strong>
