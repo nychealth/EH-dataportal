@@ -10,23 +10,28 @@
 
 
   <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/bootstrap.css">
+
 
 </head>
 
-<body>
+<body style="height:100vh">
 
-  <p><a href=".">Reset</a></p>
-  <button onclick="on()">Turn on overlay effect</button>
+  <div class="topper">
+        <p><a href=".">Reset</a></p>
+        <button onclick="on()">Turn on overlay effect</button>
+  </div>
+
 
 
   <div class="main">
     <canvas id="canvas"></canvas>
     <div class="indoor">
-        <img tabindex="0" class="indoor-bg desktop superimpose" alt="" src="../background.svg" />
+        <img tabindex="0" class="indoor-bg desktop superimpose border" alt="" src="../background.svg" />
         <img tabindex="0" class="indoor-bg superimpose" alt="" id="spillOverlay" src="../spill.svg" />
         <div class="clickables desktop">
 
-            <a id="spillDot" onclick="spill()"  aria-label="...." style="position:absolute;top: 64.5%;left: 27.2%;"  data-placement="right" tabindex="0" class="dot dot-border" ></a>
+            <a id="spillDot" aria-describedby="modal-spill" data-toggle="modal" data-trigger="focus" aria-label="...." style="position:absolute;top: 64.5%;left: 27.2%;"  data-placement="right" tabindex="0" class="dot dot-border" ></a>
 
         </div>
 
@@ -34,8 +39,11 @@
 
   </div>
 
-  <div class="hide">
-        <h2 class="h4">Moisture issues</h2>
+  <div  class="modal" role="dialog" tabindex="-1"  id="modal-spill">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+                <div class="modal-body">
+                        <h2 class="h4">Moisture issues</h2>
         <h3 class="h5">Why it's dangerous</h3>
         <p>Water leaks and moisture issuess such as leaks, standing water, or moisture thatwon't dry can attract pests and cause mold growth.</p>
         <p>Pests and mold can trigger or worsen asthma and allergies, and can create unsanitary conditions in the home.</p>
@@ -50,7 +58,17 @@
             <li>Resource two</li>
             <li>Resource three</li>
         </ul></p>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">CLOSE</span>
+        </button>
+        </div>
+        </div></div>
+        
   </div>
+
+
+
+
 
   <script>
 
@@ -64,6 +82,12 @@
 
 
   <style>
+        .topper {
+        display: block;
+        }
+
+
+
         .superimpose {
                 position: absolute;
                 top: 0px;
