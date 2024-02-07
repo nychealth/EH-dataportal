@@ -1,0 +1,80 @@
+{{- define "main" -}}
+
+<article class="container-fluid" id="skip-header-target">
+
+    <div class="row">
+        <div class="col-md-11 mx-auto mt-4 pl-0">
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/key-topics/">Key Topics</a></li>
+                    <li class="breadcrumb-item"><a href="..">
+                        {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
+                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
+
+            <h1><i class="fas fa-star" aria-hidden="true" style="margin-right: 10px"></i>
+                {{ .Title }}</h1>
+
+                {{- .Content  -}}
+        </div>
+    </div>
+
+    <div class="row" style="height: 1000px;">
+        <div class="col-12">
+            <div class="main">
+                <canvas id="canvas"></canvas>
+                <div class="indoor">
+                    <img tabindex="0" class="indoor-bg desktop superimpose" alt="" src="background.svg" />
+                    <img tabindex="0" class="indoor-bg desktop superimpose" alt="" src="spill.svg" />
+            
+            
+                    <div class="clickables desktop">
+                        <a id="pone" aria-label="..." style="position:absolute;top: 6.2%;left: 52.8%;" aria-describedby="popover-content-pone" tabindex="0" class="dot dot-border" data-toggle="modal" data-trigger="focus" ><img class="flash"  alt="Smoke alarm" src="assets/img/flake.png" /></a>
+            
+                        <a id="ptwo"  aria-label="..." style="position:absolute;top: 40.2%;left: 49.1%;" aria-describedby="popover-content-ptwo" tabindex="0" class="dot dot-border" data-toggle="popover" data-trigger="focus" ><img class="flash"  alt="Radiator" src="assets/img/flake.png" /></a>
+            
+                        <a id="pthree"  aria-label="..." style="position:absolute;top: 46.2%;left: 41.1%;" aria-describedby="popover-content-pthree" tabindex="0" class="dot dot-border" data-toggle="popover" data-trigger="focus" ><img class="flash"  alt="Crib" src="assets/img/flake.png" /></a>
+            
+                        <a id="pfour"  aria-label="...." style="position:absolute;top: 55.8%;left: 73.1%;" aria-describedby="popover-content-pfour" data-placement="left" tabindex="0" class="dot dot-border" data-toggle="popover" data-trigger="focus" ><img class="flash"  alt="Space heater" src="assets/img/flake.png" /></a>
+            
+                        <a id="pfive"  aria-label="...." style="position:absolute;top: 59.1%;left: 22.7%;" aria-describedby="popover-content-pfive" data-placement="right" tabindex="0" class="dot dot-border" data-toggle="popover" data-trigger="focus" ><img class="flash"  alt="Phone" src="assets/img/flake.png" /></a>
+            
+                    </div>
+            
+                </div>
+            
+              </div>
+        </div>
+    </div>
+
+
+
+</article>
+
+
+
+  <style>
+    .superimpose {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+
+    .dot {
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        display: inline-block;
+        cursor: pointer;
+      }
+
+      .dot-border {
+          border: 3px solid orange;
+      }
+  </style>
+
+
+
+{{- end -}}

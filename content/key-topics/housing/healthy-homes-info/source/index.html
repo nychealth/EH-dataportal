@@ -1,0 +1,106 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Winter Weather Safety</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+  <link rel="stylesheet" href="assets/css/main.css">
+
+</head>
+
+<body>
+
+  <p><a href=".">Reset</a></p>
+  <button onclick="on()">Turn on overlay effect</button>
+
+
+  <div class="main">
+    <canvas id="canvas"></canvas>
+    <div class="indoor">
+        <img tabindex="0" class="indoor-bg desktop superimpose" alt="" src="../background.svg" />
+        <img tabindex="0" class="indoor-bg superimpose" alt="" id="spillOverlay" src="../spill.svg" />
+        <div class="clickables desktop">
+
+            <a id="spillDot" onclick="spill()"  aria-label="...." style="position:absolute;top: 64.5%;left: 27.2%;"  data-placement="right" tabindex="0" class="dot dot-border" ></a>
+
+        </div>
+
+    </div>
+
+  </div>
+
+  <div class="hide">
+        <h2 class="h4">Moisture issues</h2>
+        <h3 class="h5">Why it's dangerous</h3>
+        <p>Water leaks and moisture issuess such as leaks, standing water, or moisture thatwon't dry can attract pests and cause mold growth.</p>
+        <p>Pests and mold can trigger or worsen asthma and allergies, and can create unsanitary conditions in the home.</p>
+        <h3 class="h5">What you can do</h3>
+        <p>Fix leaks and dry out damp areas, especially in kitchen and bathrooms, by opening a window or running a fan while showering or cooking. Use a dehumidifier to lower humidity levels in your home. Use water and detergent to clean mold on walls or other hard surfaces with small areas of mold.</p>
+        <p>Report mold, water leaks, and plumbing that needs fixing to building management. If leaks aren't fixed or you think that repair work is done unsafetly, call 311</p>
+        <p>NYCHA residents should call 718-707-7771 to report a maintenance problem.</p>
+        <p>If you or your child has asthma and there are pests or mold in your home, your health care provider or asthma case manager can make a referral to the Healthy Neighborhoods Program.</p>
+        <h3 class="h5">Resources</h3>
+        <p><ul>
+            <li>Resources one</li>
+            <li>Resource two</li>
+            <li>Resource three</li>
+        </ul></p>
+  </div>
+
+  <script>
+
+        function spill() {
+                console.log('spill message')
+                document.getElementById('spillOverlay').classList.add('hide')
+                document.getElementById('spillDot').classList.remove('dot-border')
+
+        }
+    </script>
+
+
+  <style>
+        .superimpose {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+            }
+    
+            .dot {
+              height: 60px;
+              width: 60px;
+              border-radius: 50%;
+              display: inline-block;
+              cursor: pointer;
+              border: 1px dotted orange;
+
+            }
+    
+            .dot-border {
+                border: 3px solid orange;
+            }
+
+            .hide {
+                display: none;
+            }
+  </style>
+
+
+
+
+  <!-- Add your site or application content here -->
+  <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+  <script src="assets/js/plugins.js"></script>
+  <script src="assets/js/popper.js"></script>
+  <script src="assets/js/bootstrap.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
