@@ -1,4 +1,4 @@
-var map = L.map('map').setView([40.715554,-74.0026642],11); // [Lat,Long],Zoom
+var map = L.map('map').setView([40.715554, -74.0026642], 11); // [Lat, Long], Zoom
 var lastMapState = {
     lat: null,
     lng: null,
@@ -37,21 +37,22 @@ const geoTypes = [
 
 L.TopoJSON = L.GeoJSON.extend({
     addData: function (data) {
-      var geojson, key;
-      if (data.type === "Topology") {
-        for (key in data.objects) {
-          if (data.objects.hasOwnProperty(key)) {
-            geojson = topojson.feature(data, data.objects[key]);
-            L.GeoJSON.prototype.addData.call(this, geojson);
-          }
+        var geojson, key;
+        if (data.type === "Topology") {
+            for (key in data.objects) {
+                if (data.objects.hasOwnProperty(key)) {
+                    geojson = topojson.feature(data, data.objects[key]);
+                    L.GeoJSON.prototype.addData.call(this, geojson);
+                }
+            }
+            return this;
         }
+        L.GeoJSON.prototype.addData.call(this, data);
         return this;
-      }
-      L.GeoJSON.prototype.addData.call(this, data);
-      return this;
     }
-  });
-  L.topoJson = function (data, options) {
+});
+
+L.topoJson = function (data, options) {
     return new L.TopoJSON(data, options);
 };
 
@@ -72,49 +73,50 @@ function getLayerConfigById(layerId) {
 /*
  * Setup the map with the base map and the neighborhoods
  */
+
 function setupMap() {
     L.tileLayer(
         'https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=dwIJ8hO2KsTMegUfEpYE',{
         attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank" rel="noopener noreferrer">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
     }).addTo(map);
-
+    
     layerGroup.addTo(map);
-
+    
     const url = window.BaseURL + "geojson/neighborhoods.geojson";
     fetch(url).then(response => {
-      if (!response.ok) {
-          return null;
-      }
-      return response.json();
-    }).then(data => {
-      const neighborhoodsLayer = L.geoJSON(
-        data,
-        {
-          name: "Neighborhood",
-          style: { color: 'black', fillOpacity: 0, weight: 1 },
-          displayProperties: {
-            displayPropertyArgs: [{
-                "id": "NTAName",
-                "displayName": "Neightborhood"
-            }]
-          },
-          _custom_id: '__neighborhood',
-          sortOrder: 1,
-        });
-      layerGroup.addLayer(neighborhoodsLayer);
-    });
-    // add the markers to the story
-    const stories = config.stories;
-    for (let i = 0; i < stories.length; i++) {
-        const story = stories[i];
-        if (!story.marker) {
-            continue;
+        if (!response.ok) {
+            return null;
         }
-        const marker = L.marker([story.marker.lat, story.marker.lng]);
-        storyMarkerLayerGroup.addLayer(marker);
+        return response.json();
+    }).then(data => {
+        const neighborhoodsLayer = L.geoJSON(
+            data,
+            {
+                name: "Neighborhood",
+                style: { color: 'black', fillOpacity: 0, weight: 1 },
+                displayProperties: {
+                    displayPropertyArgs: [{
+                        "id": "NTAName",
+                        "displayName": "Neightborhood"
+                    }]
+                },
+                _custom_id: '__neighborhood',
+                sortOrder: 1,
+            });
+            layerGroup.addLayer(neighborhoodsLayer);
+        });
+        // add the markers to the story
+        const stories = config.stories;
+        for (let i = 0; i < stories.length; i++) {
+            const story = stories[i];
+            if (!story.marker) {
+                continue;
+            }
+            const marker = L.marker([story.marker.lat, story.marker.lng]);
+            storyMarkerLayerGroup.addLayer(marker);
+        }
+        storyMarkerLayerGroup.addTo(map);
     }
-    storyMarkerLayerGroup.addTo(map);
-}
 
 var buttonHolderBase = document.getElementById('buttonHolderBase')
 var buttonHolderAdditional = document.getElementById('buttonHolderAdditional')
@@ -149,45 +151,45 @@ function drawAccordion() {
     for (let i = 0; i < stories.length; i++) {
         const story = stories[i];
         const storyCard = `
-          <div class="card">
-              <a class="card-header collapse collapsed font-weight-bold accordion-button" id="${story.id}"
-                  data-toggle="collapse" href="#panel-acc-button-${i}" role="tab"
-                  aria-expanded="false" aria-controls="panel-acc-button-${i}">
-                  <span class="title" role="heading" aria-level="3">${story.title}</span>
-              </a>
-              <div class="collapse" id="panel-acc-button-${i}" role="tabpanel"
-                  aria-labelledby="acc-button-01">
-                  <div class="card-body">
-                      <p>${story.content}</p>
-                  </div>
-              </div>
-          </div>`;
-        // holderAccordion.innerHTML += storyCard;
+            <div class="card">
+                <a class="card-header collapse collapsed font-weight-bold accordion-button" id="${story.id}"
+                    data-toggle="collapse" href="#panel-acc-button-${i}" role="tab"
+                    aria-expanded="false" aria-controls="panel-acc-button-${i}">
+                    <span class="title" role="heading" aria-level="3">${story.title}</span>
+                </a>
+                <div class="collapse" id="panel-acc-button-${i}" role="tabpanel"
+                    aria-labelledby="acc-button-01">
+                    <div class="card-body">
+                        <p>${story.content}</p>
+                    </div>
+                </div>
+            </div>`;
+            // holderAccordion.innerHTML += storyCard;
     }
 
     const storyCards = document.getElementById('story-cards')
     for (let i = 0; i < stories.length; i++) {
-      const story = stories[i];
-      // we can put an image in the story definition
-      const storyCard = `
-        <div class="col-4 hide story-card" id="story-card-${i}">
-          <div class="card content-card" style="width: 28rem;">
-          <div class="card-content">
-            <div class="story-card-button-container">
-              <button class="story-card-button btn-sm btn-outline-secondary" value=${story.id}>Show On Map</button>
+        const story = stories[i];
+        // we can put an image in the story definition
+        const storyCard = `
+            <div class="col-4 hide story-card" id="story-card-${i}">
+                <div class="card content-card" style="width: 28rem;">
+                <div class="card-content">
+                    <div class="story-card-button-container">
+                        <button class="story-card-button btn-sm btn-outline-secondary" value=${story.id}>Show On Map</button>
+                    </div>
+                    <div class="card-body story-card-content">
+                        <h5 class="card-title">${story.title}</h5>
+                        <blockquote class="blockquote mb-0">
+                        <p class="card-text">${story.content}</p>
+                        <footer class="blockquote-footer">Person Name <cite title="Source Title">
+                    </blockquote>
+                        <footer class="card-footer text-muted"> Washington Heights, Manhattan </div>
+                    </div>
+                    </div>
             </div>
-            <div class="card-body story-card-content">
-              <h5 class="card-title">${story.title}</h5>
-              <blockquote class="blockquote mb-0">
-              <p class="card-text">${story.content}</p>
-              <footer class="blockquote-footer">Person Name <cite title="Source Title">
-            </blockquote>
-              <footer class="card-footer text-muted"> Washington Heights, Manhattan </div>
-            </div>
-            </div>
-        </div>
-      `;
-      storyCards.innerHTML += storyCard;
+        `;
+        storyCards.innerHTML += storyCard;
     }
 }
 
@@ -375,8 +377,8 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
         }
         if (args.legendDescription) {
             const collapseId = `${id}LegendCollapse`;
-          legend += `<br /><div style="display: block; width: 100%; max-width: 250px;"><a data-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More Info About ${name}</a>`
-            + `<div class="collapse" id="${collapseId}">${args.legendDescription}</div></div>`;
+            legend += `<br /><div style="display: block; width: 100%; max-width: 250px;"><a data-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More Info About ${name}</a>`
+                + `<div class="collapse" id="${collapseId}">${args.legendDescription}</div></div>`;
         }
         return legend;
     }
@@ -653,6 +655,7 @@ async function createLayer(layerId) {
  * Get a layer from the layer cache. If it does not exist, create it.
  */
 async function getOrCreateLayer(layerId) {
+    let layer;
     if (!(layerId in layers)) {
         layer = await createLayer(layerId);
     } else {
@@ -714,16 +717,16 @@ let layersVisible = {};
 async function toggleLayerOnMap(layerId, button) {
     // FIXME disable while waiting
     try {
-      button.disabled = true;
-      if (!(layerId in layersVisible)) {
-          // FIXME make this a set
-          await addLayerToMap(layerId);
-      } else {
-          removeLayerFromMap(layerId);
-      }
+        button.disabled = true;
+        if (!(layerId in layersVisible)) {
+            // FIXME make this a set
+            await addLayerToMap(layerId);
+        } else {
+            removeLayerFromMap(layerId);
+        }
     } catch (error) {
     } finally {
-      button.disabled = false;
+        button.disabled = false;
     }
 }
 
@@ -869,8 +872,7 @@ function updatePopup({ lat, lng }) {
     const visibleLayers = Object.keys(layerGroup._layers).length;
 
     // if there are no layers, then we don't need a popup
-    if (Object.keys(layerGroup._layers).length == 0
-        || featureMouseOver == null) {
+    if (Object.keys(layerGroup._layers).length == 0 || featureMouseOver == null) {
         if (popup != null) {
             popup.removeFrom(map);
             popup = null;
@@ -881,30 +883,30 @@ function updatePopup({ lat, lng }) {
 
     var features = [{ feature: featureMouseOver, layer: layerMouseOver }];
     if (visibleLayers > 1) {
-      // check intersections
-      layerGroup.eachLayer(_layer => {
-          // only check intersections if we are going to display something
-          if (_layer.options.displayProperties == null) {
-              return;
-          }
+        // check intersections
+        layerGroup.eachLayer(_layer => {
+            // only check intersections if we are going to display something
+            if (_layer.options.displayProperties == null) {
+                return;
+            }
 
-          // this is our main layer. we know we overlap here because we are in this function, so ignore it.
-          if (layerMouseOver.options[CUSTOM_ID_FIELD] == _layer.options._custom_id) {
-              return;
-          }
+            // this is our main layer. we know we overlap here because we are in this function, so ignore it.
+            if (layerMouseOver.options[CUSTOM_ID_FIELD] == _layer.options._custom_id) {
+                return;
+            }
 
-          let intersection = [];
-          try {
-            intersection = leafletPip.pointInLayer({ lat, lng }, _layer);
-          } catch(err) {
-            console.log(err);
-          }
+            let intersection = [];
+            try {
+                intersection = leafletPip.pointInLayer({ lat, lng }, _layer);
+            } catch(err) {
+                console.log(err);
+            }
 
-          // keep track of the intersections
-          if (intersection.length > 0) {
-              features.push({feature: intersection[0].feature, layer: _layer});
-          }
-      });
+            // keep track of the intersections
+            if (intersection.length > 0) {
+                features.push({feature: intersection[0].feature, layer: _layer});
+            }
+        });
     }
 
     const content = formatPopup(features);
@@ -1064,18 +1066,18 @@ function addListeners() {
     const layerButtons = document.querySelectorAll('.layer-button')
     layerButtons.forEach(button => {
         button.addEventListener('click', async () => {
-          await toggleLayerOnMap(button.id, button)
+            await toggleLayerOnMap(button.id, button)
         });
     });
 
     const accordions = document.querySelectorAll('.accordion-button')
     accordions.forEach(a => {
         a.addEventListener('click', async () => {
-          if (a.classList.contains("collapsed")) {
-              await updateMapStateForStory(a.id);
-          } else {
-              await resetMapState();
-          }
+            if (a.classList.contains("collapsed")) {
+                await updateMapStateForStory(a.id);
+            } else {
+                await resetMapState();
+            }
         });
     });
 
@@ -1083,8 +1085,8 @@ function addListeners() {
     const storyCards = document.querySelectorAll('.story-card-button')
     storyCards.forEach(s => {
         s.addEventListener('click', async () => {
-          mapElement.scrollIntoView({ behavior: "smooth" });
-          await updateMapStateForStory(s.value);
+            mapElement.scrollIntoView({ behavior: "smooth" });
+            await updateMapStateForStory(s.value);
         });
     });
 
@@ -1106,51 +1108,51 @@ function addListeners() {
  * Save these for later use.
  */
 async function loadIndicators() {
-  const response = await fetch(data_repo + data_branch + '/indicators/indicators.json');
-  indicators = await response.json();
-  console.log(indicators);
+    const response = await fetch(data_repo + data_branch + '/indicators/indicators.json');
+    indicators = await response.json();
+    console.log(indicators);
 }
 
 /*
  * Load a particular indicator given the indicatorID, measureID, geoType and time
  */
 async function loadIndicator(indicatorID, measureID, geoType, time) {
-  // indicators have measures. we want to search both
-  /*
+    // indicators have measures. we want to search both
+    /*
     const sampleIndicatorID = 2024; // Black carbon
     const sampleMeasureID = 370; // Black carbon, Mean
     const geoType = 'UHF42';
     const time = 'Summer 2021';
-  */
-  const indicator = indicators.filter(x => x.IndicatorID == indicatorID)[0];
-  if (indicator == null) {
-      console.log(`ERROR: No indicator found with indicatorID ${indicatorID}`);
-  }
-  const measure = indicator.Measures.filter(x => x.MeasureID == measureID)[0]; 
-  if (measure == null) {
-      console.log(`ERROR: No data found with indicatorID ${indicatorID}, measureID ${measureID}. Missing measure.`);
-  }
-
-  const data = await loadData(indicator);
-  const filteredData = data.filter(d => d.MeasureID == measure.MeasureID && d.GeoType == geoType && d.Time == time);
-  if (filteredData == null) {
-      console.log(`ERROR: No data found with indicator ${indicatorID}, measureID ${indicatorID}, GeoType ${geoType}, time ${time}`);
-  }
-
-  // the below is taken from other parts of the code.
-  // this grabs all the data and joins the geodata to the features to create geojson
-  const filteredDataMap = filteredData.reduce((x, y) => {x[y.GeoID] = y; return x}, {})
-  const renderedMap = renderMap(filteredData, measure);
-  const responseTopo = await fetch(renderedMap.url);
-  const topoData = await responseTopo.json();
-  const geoJsonData = topojson.feature(topoData, topoData.objects.collection)
-
-  geoJsonData.features = geoJsonData.features.map(feature => {
-    const properties = {...feature.properties, ...(filteredDataMap[feature.properties.GEOCODE] ?? {})};
-    return {...feature, properties};
-  });
-
-  return geoJsonData;
+    */
+    const indicator = indicators.filter(x => x.IndicatorID == indicatorID)[0];
+    if (indicator == null) {
+        console.log(`ERROR: No indicator found with indicatorID ${indicatorID}`);
+    }
+    const measure = indicator.Measures.filter(x => x.MeasureID == measureID)[0]; 
+    if (measure == null) {
+        console.log(`ERROR: No data found with indicatorID ${indicatorID}, measureID ${measureID}. Missing measure.`);
+    }
+    
+    const data = await loadData(indicator);
+    const filteredData = data.filter(d => d.MeasureID == measure.MeasureID && d.GeoType == geoType && d.Time == time);
+    if (filteredData == null) {
+        console.log(`ERROR: No data found with indicator ${indicatorID}, measureID ${indicatorID}, GeoType ${geoType}, time ${time}`);
+    }
+    
+    // the below is taken from other parts of the code.
+    // this grabs all the data and joins the geodata to the features to create geojson
+    const filteredDataMap = filteredData.reduce((x, y) => {x[y.GeoID] = y; return x}, {})
+    const renderedMap = renderMap(filteredData, measure);
+    const responseTopo = await fetch(renderedMap.url);
+    const topoData = await responseTopo.json();
+    const geoJsonData = topojson.feature(topoData, topoData.objects.collection)
+    
+    geoJsonData.features = geoJsonData.features.map(feature => {
+        const properties = {...feature.properties, ...(filteredDataMap[feature.properties.GEOCODE] ?? {})};
+        return {...feature, properties};
+    });
+    
+    return geoJsonData;
 }
 
 /*
@@ -1165,42 +1167,39 @@ const loadData = async (indicator) => {
 /*
  * function to load geographic data
  */
-const renderMap = (
-    data,
-    metadata
-    ) => {
-        let mapGeoType = data[0].GeoType;
-            metadata.AvailableGeographyTypes.filter(
-                gt => gt.GeoType === mapGeoType
-            )[0].GeoTypeDescription;
+const renderMap = ( data, metadata ) => {
+    let mapGeoType = data[0].GeoType;
+        metadata.AvailableGeographyTypes.filter(
+            gt => gt.GeoType === mapGeoType
+        )[0].GeoTypeDescription;
 
-        let topoFile = '';
+    let topoFile = '';
 
-        // set geo file based on geo type
-        if (mapGeoType === "NTA2010") {
-            topoFile = 'NTA_2010.topo.json';
-        } else if (mapGeoType === "NTA2020") {
-            topoFile = 'NTA_2020.topo.json';
-        } else if (mapGeoType === "CD") {
-            topoFile = 'CD.topo.json';
-        } else if (mapGeoType === "CDTA2020") {
-            topoFile = 'CDTA_2020.topo.json';
-        } else if (mapGeoType === "PUMA") {
-            topoFile = 'PUMA_or_Subborough.topo.json';
-        } else if (mapGeoType === "Subboro") {
-            topoFile = 'PUMA_or_Subborough.topo.json';
-        } else if (mapGeoType === "UHF42") {
-            topoFile = 'UHF42.topo.json';
-        } else if (mapGeoType === "UHF34") {
-            topoFile = 'UHF34.topo.json';
-        } else if (mapGeoType === "NYCKIDS2017") {
-            topoFile = 'NYCKids_2017.topo.json';
-        } else if (mapGeoType === "NYCKIDS2019") {
-            topoFile = 'NYCKids_2019.topo.json';
-        } else if (mapGeoType === "Borough") {
-            topoFile = 'borough.topo.json';
-        }
-        return {url: `${data_repo}${data_branch}/geography/${topoFile}`,}
+    // set geo file based on geo type
+    if (mapGeoType === "NTA2010") {
+        topoFile = 'NTA_2010.topo.json';
+    } else if (mapGeoType === "NTA2020") {
+        topoFile = 'NTA_2020.topo.json';
+    } else if (mapGeoType === "CD") {
+        topoFile = 'CD.topo.json';
+    } else if (mapGeoType === "CDTA2020") {
+        topoFile = 'CDTA_2020.topo.json';
+    } else if (mapGeoType === "PUMA") {
+        topoFile = 'PUMA_or_Subborough.topo.json';
+    } else if (mapGeoType === "Subboro") {
+        topoFile = 'PUMA_or_Subborough.topo.json';
+    } else if (mapGeoType === "UHF42") {
+        topoFile = 'UHF42.topo.json';
+    } else if (mapGeoType === "UHF34") {
+        topoFile = 'UHF34.topo.json';
+    } else if (mapGeoType === "NYCKIDS2017") {
+        topoFile = 'NYCKids_2017.topo.json';
+    } else if (mapGeoType === "NYCKIDS2019") {
+        topoFile = 'NYCKids_2019.topo.json';
+    } else if (mapGeoType === "Borough") {
+        topoFile = 'borough.topo.json';
     }
+    return {url: `${data_repo}${data_branch}/geography/${topoFile}`}
+}
 
 init();
