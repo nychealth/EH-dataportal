@@ -19,7 +19,6 @@
 
   <div class="topper">
         <p><a href=".">Reset</a></p>
-        <button onclick="on()">Turn on overlay effect</button>
   </div>
 
 
@@ -27,11 +26,15 @@
   <div class="main">
     <canvas id="canvas"></canvas>
     <div class="indoor">
+        <!-- Background -->
         <img tabindex="0" class="indoor-bg desktop superimpose border" alt="" src="../background.svg" />
+        <!-- Individual overlay -->
         <img tabindex="0" class="indoor-bg superimpose" alt="" id="spillOverlay" src="../spill.svg" />
+
+        <!-- clickable circles -->
         <div class="clickables desktop">
 
-            <a id="spillDot" aria-describedby="modal-spill" data-toggle="modal" data-trigger="focus" aria-label="...." style="position:absolute;top: 64.5%;left: 27.2%;"  data-placement="right" tabindex="0" class="dot dot-border" ></a>
+            <a id="spillDot" onclick="spill()" aria-describedby="modal-spill" data-toggle="modal" data-trigger="focus" aria-label="...." style="position:absolute;top: 64.5%;left: 27.2%;"  data-placement="right" tabindex="0" class="dot dot-border" ></a>
 
         </div>
 
@@ -39,32 +42,35 @@
 
   </div>
 
-  <div  class="modal" role="dialog" tabindex="-1"  id="modal-spill">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-                <div class="modal-body">
-                        <h2 class="h4">Moisture issues</h2>
-        <h3 class="h5">Why it's dangerous</h3>
-        <p>Water leaks and moisture issuess such as leaks, standing water, or moisture thatwon't dry can attract pests and cause mold growth.</p>
-        <p>Pests and mold can trigger or worsen asthma and allergies, and can create unsanitary conditions in the home.</p>
-        <h3 class="h5">What you can do</h3>
-        <p>Fix leaks and dry out damp areas, especially in kitchen and bathrooms, by opening a window or running a fan while showering or cooking. Use a dehumidifier to lower humidity levels in your home. Use water and detergent to clean mold on walls or other hard surfaces with small areas of mold.</p>
-        <p>Report mold, water leaks, and plumbing that needs fixing to building management. If leaks aren't fixed or you think that repair work is done unsafetly, call 311</p>
-        <p>NYCHA residents should call 718-707-7771 to report a maintenance problem.</p>
-        <p>If you or your child has asthma and there are pests or mold in your home, your health care provider or asthma case manager can make a referral to the Healthy Neighborhoods Program.</p>
-        <h3 class="h5">Resources</h3>
-        <p><ul>
-            <li>Resources one</li>
-            <li>Resource two</li>
-            <li>Resource three</li>
-        </ul></p>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">CLOSE</span>
-        </button>
-        </div>
-        </div></div>
-        
+  <div class="popover">
+    <div  class="modal" role="dialog" tabindex="-1"  id="modal-spill">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+              <div class="modal-body">
+                      <h2 class="h4">Moisture issues</h2>
+      <h3 class="h5">Why it's dangerous</h3>
+      <p>Water leaks and moisture issuess such as leaks, standing water, or moisture thatwon't dry can attract pests and cause mold growth.</p>
+      <p>Pests and mold can trigger or worsen asthma and allergies, and can create unsanitary conditions in the home.</p>
+      <h3 class="h5">What you can do</h3>
+      <p>Fix leaks and dry out damp areas, especially in kitchen and bathrooms, by opening a window or running a fan while showering or cooking. Use a dehumidifier to lower humidity levels in your home. Use water and detergent to clean mold on walls or other hard surfaces with small areas of mold.</p>
+      <p>Report mold, water leaks, and plumbing that needs fixing to building management. If leaks aren't fixed or you think that repair work is done unsafetly, call 311</p>
+      <p>NYCHA residents should call 718-707-7771 to report a maintenance problem.</p>
+      <p>If you or your child has asthma and there are pests or mold in your home, your health care provider or asthma case manager can make a referral to the Healthy Neighborhoods Program.</p>
+      <h3 class="h5">Resources</h3>
+      <p><ul>
+          <li>Resources one</li>
+          <li>Resource two</li>
+          <li>Resource three</li>
+      </ul></p>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">CLOSE</span>
+      </button>
+      </div>
+      </div></div>
+      
+</div>
   </div>
+
 
 
 
