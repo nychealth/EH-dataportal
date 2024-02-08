@@ -1,6 +1,6 @@
 ---
 title: Economic stability creates health
-date: 2024-01-09T09:01:00-04:00
+date: 2024-02-08T09:01:00-04:00
 draft: false
 seo_title: "How economic stability creates health "
 seo_description: "A data story about how economic stability creates health"
@@ -19,10 +19,6 @@ photocredit: JulienneSchaer
 ---
 
 Health is determined by many factors, and people tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories that illuminate their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong> housing, economic stability, and public space create health. </strong>
-
-<!-- commenting out link to conversations at top
-
-<i>To hear more from New Yorkers about how they view economic stability and health, <a href="https://make.headliner.app/download/48f94852-0370-4737-b5bf-5a8dafae62da">listen to recordings from the community conversations.</a></i> , leaving at bottom -->
 
 <div class="pullquote my-4">
 <figure class="my-2">
@@ -185,14 +181,3 @@ To hear more from New Yorkers about how they view economic stability and health,
 <div class="embed-responsive embed-responsive-16by9">
   <iframe class="embed-responsive-item" src="https://media.sparemin.com/embed-video/videos/85/29/24/b9/852924b9-b985-49c4-bfd7-bce681df222d_10793355.mp4"></iframe>
 </div>
-
-<!--
-<figure style="width:100%;" class="my-4 border p-2">
-    <figcaption>Listen to this 3-minute medley from the community conversations:</figcaption>
-    <audio controls src="economic-stability-audio-medley.mp3" style="width:100%;">
-            <a href="economic-stability-audio-medley.mp3">
-                Download audio
-            </a>
-    </audio>
-</figure>
--->
