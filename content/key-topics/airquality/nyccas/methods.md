@@ -1,4 +1,5 @@
 ---
+_schema: default
 draft: false
 pollutantsMeasured:
     -
@@ -78,4 +79,4 @@ The Health Department designed NYCCAS to understand how average air pollution le
 
 The New York State Department of Environmental Conservation also has a network of 19 air quality monitors in New York City that are required by the Federal government, but they are mounted on building roofs. We placed our air samplers at street level to measure pollution where people spend time, and where traffic-related pollution levels are usually higher.
 
-NYCCAS has also deployed a limited number of monitors that can measure PM<sub>2.5</sub> levels in real time. These monitors allow us to monitor air pollution as it changes based on the time of day, weather or due to local pollution sources, such as heavy-duty trucks. [Get data on real-time air quality](../realtime/).
+NYCCAS has also deployed eight monitors that can measure PM<sub>2.5</sub> levels in real time. These monitors allow us to monitor air pollution as it changes based on the time of day, weather or due to local pollution sources, such as heavy-duty trucks. [Get data on real-time air quality](../realtime/).
