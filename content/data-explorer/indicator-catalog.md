@@ -10,6 +10,7 @@ keyTopic:
 keywords: 
 layout: indicator-catalog
 datalibraries: true
+aliases: data-reference
 ---
 
 Search by term, get metadata and download links.
