@@ -29,11 +29,12 @@ NO2: >-
     - Across the 14-year period, higher levels were consistently seen at sites
     with higher nearby building and traffic emissions. 
 
-    - The persistence of building density as the most important indicator of NO<sub>2</sub> reflects the continued use of fossil fuel combustion for heat and hot water,
-    even as fuels become cleaner and equipment more efficient. 
+    - The persistence of building density as the most important indicator of
+    NO<sub>2</sub> reflects the continued use of fossil fuel combustion for heat
+    and hot water, even as fuels become cleaner and equipment more efficient. 
 
-    - In 2022, seasonal average NO<sub>2</sub> concentrations across NYCCAS monitoring
-    sites ranged from 5.3 to 33 ppb.    
+    - In 2022, seasonal average NO<sub>2</sub> concentrations across NYCCAS
+    monitoring sites ranged from 5.3 to 33 ppb.    
 PM: >-
     - Citywide, annual average levels of fine particulate matter declined by 46%
     between 2009 and 2022, an average of 0.4 micrograms per cubic meter per
@@ -50,13 +51,12 @@ O3: >-
     - Since the first summer (2009) when relatively cool temperatures
     contributed to lower levels of Ozone, citywide summertime average levels
     varied slightly year to year (ranging from 27.8 ppb to 32 ppb between 2010
-    and 2022), without a consistent trend.
-    
-    - Higher levels were consistently measured at sites with lower traffic density and lower NO<sub>2</sub> concentrations
-    such as areas of outer Queens, Brooklyn, and Staten Island, reflecting less
-    removal of ozone from the atmosphere by fresh combustion NOX emissions.
-    
-    - In summer 2022, seasonal average O<sub>3</sub> varied from 26.2 to 39.7 ppb across the monitoring sites. Citywide, summertime ozone levels were higher than any
-    other year. This is likely due to higher temperatures and low rainfall in
-    2022.
+    and 2022), without a consistent trend.- Higher levels were consistently
+    measured at sites with lower traffic density and lower NO<sub>2</sub>
+    concentrations such as areas of outer Queens, Brooklyn, and Staten Island,
+    reflecting less removal of ozone from the atmosphere by fresh combustion NOX
+    emissions.- In summer 2022, seasonal average O<sub>3</sub> varied from 26.2
+    to 39.7 ppb across the monitoring sites. Citywide, summertime ozone levels
+    were higher than any other year. This was likely due to higher temperatures
+    and low rainfall in 2022.
 ---
