@@ -15,13 +15,13 @@
  *      type: layer type for rendering. can be raster or geojson
  *      measureInfo: this is used if you are using another data explorer data setting
  *        displayName: name to use to display the measure in the legend
- *        indicatorID: name of the indicator from the explorer data
- *        measureID: name of the measure from the explorer data
+ *        indicatorID: ID of the indicator from the explorer data
+ *        measureID: ID of the measure from the explorer data
  *        geoType: the geotype of the data set in the explorer. usually UHF42 or borough
  *        time: the time for the data set. the datasets usually have a time field.
  *        dataFormat: data format type. Can be percent|float|int
  *      url: file location for the layer
- *      exclusive: if true, then this is an exclusive layer. only one exclusive layer can be done at a time
+ *      exclusive: if true, then this is an exclusive layer. only one exclusive layer can be shown at a time
  *      args:
  *        colorFeatureProperty: data property to use for setting the layer color
  *        minColor / maxColor: color is linearly interpolated. These are the starting and ending colors
@@ -32,7 +32,7 @@
  *        legendColor: can be used to set the legend color
  *        legendDescription: the description to use in the legend when expanding the more info button
  *      displayProperties: properties for hover
- *        missingDisplay": string to use for missing properties
+ *        missingDisplay: string to use for missing properties
  *        displayPropertyArgs: list of arguments
  *          id: id of the property to display
  *          displayName: name to use for the tooltip
