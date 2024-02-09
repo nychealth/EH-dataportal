@@ -103,28 +103,28 @@ function reveal() {
 $('#tab-btn-table').on('click', e => {
     $(e.currentTarget).tab('show');
     window.location.hash = 'display=summary'
-})
+});
 
 // ===== map ===== /
 
 $('#tab-btn-map').on('click', e => {
     $(e.currentTarget).tab('show');
     window.location.hash = 'display=map'
-})   
+});
 
 // ===== trend ===== /
 
 $('#tab-btn-trend').on('click', e => {
     $(e.currentTarget).tab('show');
     window.location.hash = 'display=trend'
-})  
+});
 
 // ===== links ===== /
 
 $('#tab-btn-links').on('click', e => {
     $(e.currentTarget).tab('show');
     window.location.hash = 'display=links'
-})
+});
 
 
 // ----------------------------------------------------------------------- //
@@ -136,7 +136,7 @@ $("#chartView").on("click", (e) => {
 
     // if it's summary table... (uses DataTables.net methods)
     if (window.location.hash == '#display=summary') {
-        console.log('we are on summary table')
+        
         let summaryTable = $('#tableID').DataTable();
         summaryTable.button("thisView:name").trigger();
     
@@ -178,10 +178,7 @@ $("#chartView").on("click", (e) => {
         e.stopPropagation();
     }
 
-
-
-
-})
+});
 
 // export full table data (i.e., original view)
 
@@ -190,9 +187,9 @@ $("#allData").on("click", (e) => {
     // pivot the full dataset
 
     let allData = aq.from(tableData)
-        .groupby("Time", "GeoType", "GeoID", "GeoRank", "Geography")
+        .groupby("TimePeriod", "GeoType", "GeoID", "GeoRank", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI")
-        .relocate(["Time", "GeoType", "GeoID", "GeoRank"], { before: 0 })
+        .relocate(["TimePeriod", "GeoType", "GeoID", "GeoRank"], { before: 0 })
 
     let downloadTableCSV = allData.toCSV();
 
@@ -219,7 +216,7 @@ $("#allData").on("click", (e) => {
 
 $("#rawData").on("click", (e) => {
 
-    let dataURL = data_repo + data_branch + '/indicators/data/' + indicatorId + '.json'
+    let dataURL = `${data_repo}${data_branch}/indicators/data/${indicatorId}.json`
 
     // console.log('Data are at: ' + dataURL)
 
@@ -246,4 +243,5 @@ $("#rawData").on("click", (e) => {
         e.stopPropagation();
 
     })
+
 });

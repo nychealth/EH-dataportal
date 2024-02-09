@@ -4,7 +4,7 @@
 
     {{ $src := .Resources.GetMatch .Params.image }}
     {{ $image := $src.Resize "1920x"}}
-    <div id="datastoryheader" style="background-image: URL({{ $image.Permalink }}); background-position: 50% 25%">
+    <div id="datastoryheader" style="background-image: URL({{ $image.RelPermalink }}); background-position: 50% 25%">
 
         <div class="medium my-auto">
             <h1 class="titleheader py-2 px-4">

@@ -47,14 +47,14 @@ module.exports = function(grunt) {
             var pagesIndex = [];
 
             // this is convoluted but necessary to get an arquero table with the right structure
-            var de_indicator_names  = aq.from(aq.from(grunt.file.readJSON(build_dir + "/IndicatorData/indicator_names.json")).array("value"));
-            var nr_indicator_names  = grunt.file.readJSON(build_dir + "/IndicatorData/nr_indicator_names.json");
-            var topic_indicators = grunt.file.readJSON(build_dir + "/IndicatorData/topic_indicators.json");
+            var de_indicator_names  = aq.from(aq.from(grunt.file.readJSON(build_dir + "/IndicatorMetadata/indicator_names.json")).array("value"));
+            var nr_indicator_names  = grunt.file.readJSON(build_dir + "/IndicatorMetadata/nr_indicator_names.json");
+            var topic_indicators = grunt.file.readJSON(build_dir + "/IndicatorMetadata/topic_indicators.json");
             
             // grunt.log.writeln(de_indicator_names.array("value"))
 
             // ------------------------------------------------------------------------------- //
-            // running `processFile` on all HTML files on gh-pages branch
+            // running `processFile` on all HTML files on dev-prod branch
             // ------------------------------------------------------------------------------- //
 
             // ([rootdir, subdir] are necessary in the function call, or else grunt throws an error, so we need them, even though they don't do anything)
@@ -264,7 +264,7 @@ module.exports = function(grunt) {
             // data explorer indicator names
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-            if (abspath.match(/data-explorer/) && typeof frontMatter.indicators != 'undefined') {
+            if (abspath.match(/data-explorer/) && typeof frontMatter.indicators != 'undefined' && frontMatter.indicators != null) {
 
                 indicator_ids = [...new Set(frontMatter.indicators.flatMap(x => x.IndicatorID))];
 
@@ -306,11 +306,15 @@ module.exports = function(grunt) {
                     seo_title = frontMatter.seo_title;
                     summary = frontMatter.summary;
 
-                    indicator_names = [...new Set(nr_indicator_names.filter(d => d.title == title)[0].indicator_names)].join(" ")
-                    indicator_descriptions = [...new Set(nr_indicator_names.filter(d => d.title == title)[0].indicator_descriptions)].join(" ")
+                    // grunt.log.writeln(filename, ":", nr_indicator_names);
+                    // grunt.log.writeln(filename, ":", grunt.log.wordlist(nr_indicator_names));
+
+                    indicator_names = [...new Set(nr_indicator_names.filter(d => d.title == title).indicator_names)].join(" ")
+                    indicator_descriptions = [...new Set(nr_indicator_names.filter(d => d.title == title).indicator_descriptions)].join(" ")
+
+                    // grunt.log.writeln(filename, ":", nr_indicator_names);
+                    // grunt.log.writeln(filename, ":", grunt.log.wordlist(nr_indicator_names));
                     
-                    // grunt.log.writeln(filename, ":", indicator_names);
-                    // grunt.log.writeln(filename, ":", grunt.log.wordlist(indicator_names));
 
                 } else {
                     // only add displayTitle for NR neighborhood pages, i.e. searchTitle = undefined
