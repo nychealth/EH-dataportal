@@ -57,12 +57,15 @@ L.topoJson = function (data, options) {
 };
 
 function init() {
+
+    console.log("* init");
+
     addLayerButtons();
     drawAccordion();
     setupMap();
     addListeners();
     createLegend();
-    loadIndicators().catch(console.log);
+    loadMetadata().catch(console.log);
 }
 
 function getLayerConfigById(layerId) {
@@ -75,6 +78,9 @@ function getLayerConfigById(layerId) {
  */
 
 function setupMap() {
+
+    console.log("* setupMap");
+
     L.tileLayer(
         'https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=dwIJ8hO2KsTMegUfEpYE',{
         attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank" rel="noopener noreferrer">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
@@ -120,7 +126,11 @@ function setupMap() {
 
 var buttonHolderBase = document.getElementById('buttonHolderBase')
 var buttonHolderAdditional = document.getElementById('buttonHolderAdditional')
+
 function addLayerButtons() {
+
+    console.log("* addLayerButtons");
+    
     const layers = config.layers;
     for (let i = 0; i < layers.length; i++) {
         const layer = layers[i];
@@ -145,6 +155,9 @@ function addLayerButtons() {
  * Draw the layer buttons and accordions
  */
 function drawAccordion() {
+
+    console.log("* drawAccordion");
+    
     const holderAccordion = document.getElementById('story-accordion')
     const stories = config.stories;
     // console.log(config.stories)
@@ -199,6 +212,9 @@ function drawAccordion() {
  * colors are based on category, not a continuous line.
  */
 async function createRedlinedLayer({ id, name, urls, args, displayProperties }) {
+
+    console.log("* createRedlinedLayer");
+    
     const data = {}
     for (const [name, url] of Object.entries(urls)) {
         const response = await fetch(url);
@@ -220,6 +236,9 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
     }
 
     const onStyle = (feature) => {
+
+        console.log("** onStyle [createRedlinedLayer]");
+    
         const fillColor = args?.colorMap != null
             ? args.colorMap[feature.properties[args.colorFeatureProperty]]
             : args?.defaultColor;
@@ -258,6 +277,9 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
         });
 
     const legendFunc = () => {
+
+        console.log("** legendFunc [createRedlinedLayer]");
+    
         if (!args?.colorMap) {
             return '';
         }
@@ -297,6 +319,9 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
  * Create a layer based on the measures data from DoH
  */
 async function createMeasuresLayer({ id, name, measureInfo, args, displayProperties }) {
+
+    console.log("* createMeasuresLayer");
+    
     const { indicatorID, measureID, geoType, time } = measureInfo;
     const data = await loadIndicator(indicatorID, measureID, geoType, time);
 
@@ -348,6 +373,9 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
         });
 
     const legendFunc = () => {
+
+        console.log("** legendFunc [createMeasuresLayer]");
+    
         if (!args?.fillColor && !args?.color && !args?.minColor && !args?.maxColor) {
             return '';
         }
@@ -392,6 +420,9 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
  * Create a geojson layer using a url with proper geojson data
  */
 async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
+
+    console.log("* createGeoJsonLayer");
+    
     const response = await fetch(url);
     if (!response.ok) {
         return null;
@@ -410,6 +441,9 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
         .domain([Math.min(...values), Math.max(...values)]);;
     }
     const onStyle = (feature) => {
+        
+        console.log("** onStyle [createGeoJsonLayer]");
+        
         const fillColor = args?.colorFeatureProperty != null
             ? colorChroma(feature.properties[args.colorFeatureProperty])
             : args?.fillColor;
@@ -448,6 +482,9 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
         });
 
     const legendFunc = () => {
+
+        console.log("** legendFunc [createGeoJsonLayer]");
+    
         if (!args?.fillColor && !args?.color && !args?.minColor && !args?.maxColor) {
             return '';
         }
@@ -486,6 +523,9 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
  * Create a layer based on the measures data from DoH
  */
 async function createMeasuresLayer({ id, name, measureInfo, args, displayProperties }) {
+
+    console.log("** createMeasuresLayer");
+    
     const { indicatorID, measureID, geoType, time } = measureInfo;
     const data = await loadIndicator(indicatorID, measureID, geoType, time);
 
@@ -536,6 +576,9 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
         });
 
     const legendFunc = () => {
+
+        console.log("** legendFunc [createMeasuresLayer]");
+    
         if (!args?.fillColor && !args?.color && !args?.minColor && !args?.maxColor) {
             return '';
         }
@@ -575,6 +618,9 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
  * Geotiff files are images. This is good for heatmap and continuous data.
  */
 async function createGeotiffLayer({ id, url, args, name }) {
+
+    console.log("* createGeotiffLayer");
+    
     const response = await fetch(url);
     if (!response.ok) {
         return null;
@@ -619,6 +665,9 @@ let layers = {};
  * The layers are created by type using all their arguments.
  */
 async function createLayer(layerId) {
+
+    console.log("* createLayer");
+    
     const layerConfig = config.layers.find(l => l.property.id == layerId);
     if (layerConfig == null) {
         console.log(`Could not find layer ${layerId} in config`);
@@ -655,6 +704,9 @@ async function createLayer(layerId) {
  * Get a layer from the layer cache. If it does not exist, create it.
  */
 async function getOrCreateLayer(layerId) {
+
+    console.log("* getOrCreateLayer");
+    
     let layer;
     if (!(layerId in layers)) {
         layer = await createLayer(layerId);
@@ -669,6 +721,9 @@ async function getOrCreateLayer(layerId) {
  * If the layer is already on the map, ignore it.
  */
 async function addLayerToMap(layerId) {
+
+    console.log("* addLayerToMap");
+    
     const layer = await getOrCreateLayer(layerId);
     if (layer != null && !map.hasLayer(layer)) {
         layerGroup.addLayer(layer);
@@ -699,6 +754,9 @@ async function addLayerToMap(layerId) {
  * Remove layer from the map. Update the layer button
  */
 function removeLayerFromMap(layerId) {
+
+    console.log("* removeLayerFromMap");
+    
     if (layerId in layers) {
         const layer = layers[layerId];
         layerGroup.removeLayer(layer);
@@ -715,6 +773,9 @@ let layersVisible = {};
  * If a layer is on the map, take it off. If it is not on the map, add it.
  */
 async function toggleLayerOnMap(layerId, button) {
+
+    console.log("* toggleLayerOnMap");
+    
     // FIXME disable while waiting
     try {
         button.disabled = true;
@@ -735,6 +796,9 @@ async function toggleLayerOnMap(layerId, button) {
  * Stores the lat, lng, zoom and visible layers
  */
 function saveCurrentMapState() {
+
+    console.log("* saveCurrentMapState");
+    
     const { lat, lng } = map.getCenter();
     const zoom = map.getZoom();
     lastMapState.lat = lat;
@@ -752,6 +816,9 @@ function saveCurrentMapState() {
  * @returns 
  */
 async function updateMapStateForStory(storyId) {
+
+    console.log("* updateMapStateForStory");
+    
     const storyConfig = config.stories.find(s => s.id == storyId);
     if (storyConfig == null) {
         console.log(`Could not find story ${storyId} in config`);
@@ -791,6 +858,9 @@ async function updateMapStateForStory(storyId) {
  *    currency    - only USD, includes $xxx.xx
  */
 function formatValue(value, type) {
+
+    console.log("* formatValue");
+    
     // FIXME handle NaN
     if (type == null || value == null) return value;
 
@@ -816,6 +886,9 @@ function formatValue(value, type) {
  * from the config that then get put into the layer.
  */
 function featureInfoToHtmlForPopup(feature, layer) {
+
+    console.log("* featureInfoToHtmlForPopup");
+    
     const displayProperties = layer.options.displayProperties;
     if (displayProperties == null || displayProperties?.displayPropertyArgs == null) {
         return '';
@@ -852,6 +925,9 @@ function featureInfoToHtmlForPopup(feature, layer) {
  * Iterate over each feature in the popup and turn it into html
  */
 function formatPopup(features) {
+
+    console.log("* formatPopup");
+    
     const updates = features
         .sort((a, b) => (a?.layer?.options?.sortOrder ?? 999) - (b?.layer?.options?.sortOrder ?? 999))
         .map(({ feature, layer }) => featureInfoToHtmlForPopup(feature, layer))
@@ -869,6 +945,9 @@ function formatPopup(features) {
  * This functionality is not native to leaflet, so we used a third party library.
  */
 function updatePopup({ lat, lng }) {
+
+    // console.log("* updatePopup");
+    
     const visibleLayers = Object.keys(layerGroup._layers).length;
 
     // if there are no layers, then we don't need a popup
@@ -987,6 +1066,9 @@ let lastLayerEventHash = {id: null, type: null};
  * and gets added below the map in a separate div
  */
 function createLegend(layerEvent) {
+
+    console.log("* createLegend");
+    
     const layerEventHash = {
         id: layerEvent?.layer?.options[CUSTOM_ID_FIELD],
         type: layerEvent?.type
@@ -1028,6 +1110,9 @@ function createLegend(layerEvent) {
  * Reset the map config based on the last known map state.
  */
 async function resetMapState() {
+
+    console.log("* resetMapState");
+    
     const { lat, lng, zoom, layers } = lastMapState;
     if ( lat != null && lng != null && zoom != null ) {
         map.flyTo([lat, lng], zoom);
@@ -1063,6 +1148,9 @@ async function resetMapState() {
  *
  */
 function addListeners() {
+
+    console.log("* addListeners");
+    
     const layerButtons = document.querySelectorAll('.layer-button')
     layerButtons.forEach(button => {
         button.addEventListener('click', async () => {
@@ -1107,8 +1195,11 @@ function addListeners() {
  * Load all the indicators from indicator.json
  * Save these for later use.
  */
-async function loadIndicators() {
-    const response = await fetch(data_repo + data_branch + '/indicators/indicators.json');
+async function loadMetadata() {
+
+    console.log("* loadMetadata");
+    
+    const response = await fetch(data_repo + data_branch + '/indicators/metadata/metadata.json');
     indicators = await response.json();
     console.log(indicators);
 }
@@ -1117,6 +1208,9 @@ async function loadIndicators() {
  * Load a particular indicator given the indicatorID, measureID, geoType and time
  */
 async function loadIndicator(indicatorID, measureID, geoType, time) {
+
+    console.log("* loadIndicator");
+    
     // indicators have measures. we want to search both
     /*
     const sampleIndicatorID = 2024; // Black carbon
@@ -1159,6 +1253,9 @@ async function loadIndicator(indicatorID, measureID, geoType, time) {
  * Load one indicator by ID
  */
 const loadData = async (indicator) => {
+
+    console.log("* loadData");
+    
     const response = await fetch(data_repo + data_branch + `/indicators/data/${indicator.IndicatorID}.json`)
     const data = await response.json()
     return data;
@@ -1168,6 +1265,9 @@ const loadData = async (indicator) => {
  * function to load geographic data
  */
 const renderMap = ( data, metadata ) => {
+
+    console.log("* renderMap");
+    
     let mapGeoType = data[0].GeoType;
         metadata.AvailableGeographyTypes.filter(
             gt => gt.GeoType === mapGeoType
