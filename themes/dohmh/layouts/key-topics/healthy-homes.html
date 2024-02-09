@@ -19,52 +19,25 @@
 
                 {{- .Content  -}}
 
-            <div class="row" style="height:1000px;">
+            <div class="row" style="min-height:95vh">
                 <div class="col-12">
-                    <iframe src="source/index.html" style="width:100%;height:100%;border:none;"></iframe>
+                    <iframe src="source/index.html" style="width:100%;height:100%;border:1px solid darkgray;"></iframe>
                 </div>
             </div>
 
+            <div class="row mt-4">
+                <div class="col-6">
+                    <strong>Resources</strong>
+                    <P><a href="">Health Homes resources</a> </P>
+                </div>
+            </div>
         </div>
     </div>
 
-    <script>
-        function spill() {
-            console.log('Spill cleaned up!')
-            document.getElementById('spill').classList.add('hide')
-            document.getElementById('spillCircle').classList.remove('dot-border')
-            document.getElementById('spillText').classList.remove('hide')
-        }
-
-    </script>
-
-    <style>
-        .superimpose {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-        }
-
-        .dot {
-          height: 60px;
-          width: 60px;
-          border-radius: 50%;
-          display: inline-block;
-          cursor: pointer;
-        }
-
-        .dot-border {
-            border: 3px solid orange;
-        }
-
-        .flash {
-            -webkit-animation: blink 3s;
-            -webkit-animation-iteration-count: 1;
-        }
-    </style>
 
 
-    <!-- Add interactive content here --> 
+
+    <!-- Old mockup  
     <div class="row hide my-4">
         <div class="col-md-8"> 
             <img class="img-responsive" src="11.15-mockup.png"style="width:100%">
@@ -97,6 +70,7 @@
             </div>
 
     </div>
+    -->
 
 
 

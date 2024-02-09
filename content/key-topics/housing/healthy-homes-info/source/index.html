@@ -8,121 +8,150 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
 
-  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/normalize.css">
   <link rel="stylesheet" href="assets/css/bootstrap.css">
-
+  <link rel="stylesheet" href="assets/css/main.css">
 
 </head>
 
-<body style="height:100vh">
+<body>
 
-  <div class="topper">
-        <p><a href=".">Reset</a></p>
-  </div>
+<style>
+        .topper {
+                display: block;
+        }
+        
+        
+        
+        .superimpose {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+        }
+        
+        .dot {
+                height: 60px;
+                width: 60px;
+                border-radius: 50%;
+                display: inline-block;
+                cursor: pointer;
+                border: 1px dotted orange;
+        }
+        
+        .dot-border {
+                border: 3px solid orange;
+        }
+        
+        .hide {
+                display: none;
+        }
+</style>
 
+ <div>
+        <a href=".">Reset</a>
 
-
-  <div class="main">
+ </div>
+  <div class="main" style="background:white!important;">
     <canvas id="canvas"></canvas>
     <div class="indoor">
-        <!-- Background -->
-        <img tabindex="0" class="indoor-bg desktop superimpose border" alt="" src="../background.svg" />
-        <!-- Individual overlay -->
+
+        <!-- Images -->
+        <img tabindex="0" class="indoor-bg superimpose" alt="" src="../background.svg" />
         <img tabindex="0" class="indoor-bg superimpose" alt="" id="spillOverlay" src="../spill.svg" />
 
-        <!-- clickable circles -->
+	
+        <!-- Clickable circles -->
         <div class="clickables desktop">
+            <a id="pone" onclick="spill()" aria-label=".." style="position:absolute;top: 65%;left: 27%;" aria-describedby="popover-content-pone" tabindex="0" class="flake desktop dot dot-border" data-toggle="modal" data-trigger="focus" ></a>
+        </div>
 
-            <a id="spillDot" onclick="spill()" aria-describedby="modal-spill" data-toggle="modal" data-trigger="focus" aria-label="...." style="position:absolute;top: 64.5%;left: 27.2%;"  data-placement="right" tabindex="0" class="dot dot-border" ></a>
-
+        <div class="clickables mobile">
+                <a id="pone" onclick="spill()" style="position:absolute;top: 60%;left: 24%;" aria-describedby="popover-content-pone" tabindex="0" class="flake dot dot-border mobile" data-toggle="modal" data-target="#popover-content-pone" data-trigger="focus" ></a>
         </div>
 
     </div>
 
   </div>
 
-  <div class="popover">
-    <div  class="modal" role="dialog" tabindex="-1"  id="modal-spill">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-              <div class="modal-body">
-                      <h2 class="h4">Moisture issues</h2>
-      <h3 class="h5">Why it's dangerous</h3>
-      <p>Water leaks and moisture issuess such as leaks, standing water, or moisture thatwon't dry can attract pests and cause mold growth.</p>
-      <p>Pests and mold can trigger or worsen asthma and allergies, and can create unsanitary conditions in the home.</p>
-      <h3 class="h5">What you can do</h3>
-      <p>Fix leaks and dry out damp areas, especially in kitchen and bathrooms, by opening a window or running a fan while showering or cooking. Use a dehumidifier to lower humidity levels in your home. Use water and detergent to clean mold on walls or other hard surfaces with small areas of mold.</p>
-      <p>Report mold, water leaks, and plumbing that needs fixing to building management. If leaks aren't fixed or you think that repair work is done unsafetly, call 311</p>
-      <p>NYCHA residents should call 718-707-7771 to report a maintenance problem.</p>
-      <p>If you or your child has asthma and there are pests or mold in your home, your health care provider or asthma case manager can make a referral to the Healthy Neighborhoods Program.</p>
-      <h3 class="h5">Resources</h3>
-      <p><ul>
-          <li>Resources one</li>
-          <li>Resource two</li>
-          <li>Resource three</li>
-      </ul></p>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">CLOSE</span>
-      </button>
+
+
+
+
+  <!-- MODALS -->
+  <div class="popover-contents">
+
+        <!-- First modal--> 
+      <div  class="modal" role="dialog" tabindex="-1"  id="popover-content-pone">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                    <div class="modal-body">
+                        <h2 class="h4">Moisture issues</h2>
+                        <h3 class="h5">Why it's dangerous</h3>
+                        <p>Water leaks and moisture issuess such as leaks, standing water, or moisture thatwon't dry can attract pests and cause mold growth.</p>
+                        <p>Pests and mold can trigger or worsen asthma and allergies, and can create unsanitary conditions in the home.</p>
+                        <h3 class="h5">What you can do</h3>
+                        <p>Fix leaks and dry out damp areas, especially in kitchen and bathrooms, by opening a window or running a fan while showering or cooking. Use a dehumidifier to lower humidity levels in your home. Use water and detergent to clean mold on walls or other hard surfaces with small areas of mold.</p>
+                        <p>Report mold, water leaks, and plumbing that needs fixing to building management. If leaks aren't fixed or you think that repair work is done unsafetly, call 311</p>
+                        <p>NYCHA residents should call 718-707-7771 to report a maintenance problem.</p>
+                        <p>If you or your child has asthma and there are pests or mold in your home, your health care provider or asthma case manager can make a referral to the Healthy Neighborhoods Program.</p>
+                        <h3 class="h5">Resources</h3>
+                        <p><ul>
+                            <li>Resources one</li>
+                            <li>Resource two</li>
+                            <li>Resource three</li>
+                        </ul></p>            
+            
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">CLOSE</span>
+            </button>
+            </div>
+            </div></div>
+            
       </div>
-      </div></div>
-      
-</div>
+
+      <!-- Second modal -->
+
   </div>
 
 
 
+<!-- Accessibility Modal -->
+<div class="modal fade" id="accessibilityModal" tabindex="-1" role="dialog" aria-labelledby="accessibilityModalLabel" aria-hidden="true" style="z-index: 999999999999">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title" id="accessibilityModalLabel">Accessibility Help</h5>
+			
+		  </div>
+		  <div class="modal-body">
+			<ul>
+                <li>For Keyboard and Screen reader access on desktop, use the tab key to navigate between icons. You will hear the description that goes along with that icon. There is no need to press the close button. Press tab to navigate to the next icon and hear its description.</li>
+                <li>When using mobile, view in portrait orientation for best results. When using Voiceover on iOS, double tap an icon and its description will appear. Swipe right to listen to the descriptions then double tap on the close button. Voiceover focus will return to the icon. Swipe right to move to the next icon.</li>
+                <li>Note: some links do not have keyboard access when using Safari on Mac.</li>
+            </ul>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Close</button>
+			
+		  </div>
+		</div>
+	  </div>
+</div>
+
+<!-- HOUSING SCRIPTS --> 
+<script>
+function spill() {
+        document.getElementById('spillOverlay').classList.add('hide')
+        document.getElementById('pone').classList.remove('dot-border')
+
+}
+</script>
 
 
-
-  <script>
-
-        function spill() {
-                console.log('spill message')
-                document.getElementById('spillOverlay').classList.add('hide')
-                document.getElementById('spillDot').classList.remove('dot-border')
-
-        }
-    </script>
-
-
-  <style>
-        .topper {
-        display: block;
-        }
-
-
-
-        .superimpose {
-                position: absolute;
-                top: 0px;
-                left: 0px;
-            }
-    
-            .dot {
-              height: 60px;
-              width: 60px;
-              border-radius: 50%;
-              display: inline-block;
-              cursor: pointer;
-              border: 1px dotted orange;
-
-            }
-    
-            .dot-border {
-                border: 3px solid orange;
-            }
-
-            .hide {
-                display: none;
-            }
-  </style>
-
-
-
-
-  <!-- Add your site or application content here -->
   <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
