@@ -207,15 +207,30 @@
                         showImages: false,
                         baseUrl: baseURL,
                         showEmptyFilters: true,
+                        debounceTimeoutMs: 500,
+                        processTerm: function (term) {
+                            gtag('event', 'search', {
+                                search_term: term
+                            });
+                            return term;
+                        },
                         processResult: function (result) {
-
-                            result.sub_results.forEach(sub => { 
+                            result.sub_results.forEach(sub => {
 
                                 sub.url = sub.url.replace("#IndicatorID-", "?id=");
 
                             });
 
+                            // Get all search results
+                            var allResults = document.getElementsByClassName('pagefind-ui__result-link');
+
+                            // add a click listener to each result
+                            for(h = 0; h < allResults.length; h+=1) {
+                                allResults[h].setAttribute('onclick',"gtag('event', 'search_click', { page_viewed: '" + allResults[h].href + "' });");
+                            }
+
                             console.log("@ result:", result);
+
 
                             result.sub_results.forEach(r => console.log("<> sub url:", r.url));
 
