@@ -62,6 +62,7 @@
         <!-- Images -->
         <img tabindex="0" class="indoor-bg superimpose" alt="" src="../background.svg" />
         <img tabindex="0" class="indoor-bg superimpose" alt="" id="spillOverlay" src="../spill.svg" />
+        <img tabindex="0" class="indoor-bg superimpose" alt="" id="bowlOverlay" src="../bowl.svg" /> 
 
 	
         <!-- Clickable circles -->
@@ -72,7 +73,12 @@
         <div class="clickables mobile">
                 <a id="pone" onclick="spill()" style="position:absolute;top: 60%;left: 24%;" aria-describedby="popover-content-pone" tabindex="0" class="flake dot dot-border mobile" data-toggle="modal" data-target="#popover-content-pone" data-trigger="focus" ></a>
         </div>
-
+        <div class="clickables desktop">
+                <a id="ptwo" onclick="bowl()" aria-label=".." style="position:absolute;top: 70%;left: 3%;" aria-describedby="popover-content-ptwo" tabindex="0" class="flake desktop dot dot-border" data-toggle="modal" data-target="#popover-content-ptwo" data-trigger="focus" ></a>
+            </div>
+        <div class="clickables mobile">
+                <a id="ptwo" onclick="bowl()" style="position:absolute;top: 60%;left: 24%;" aria-describedby="popover-content-ptwo" tabindex="0" class="flake dot dot-border mobile" data-toggle="modal" data-target="#popover-content-ptwo" data-trigger="focus" ></a>
+        </div>
     </div>
 
   </div>
@@ -115,6 +121,32 @@
 
       <!-- Second modal -->
 
+      <div  class="modal" role="dialog" tabindex="-1"  id="popover-content-ptwo">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+                <div class="modal-body">
+                    <h2 class="h4">Open food, pet food and trash</h2>
+                    <h3 class="h5">Why it's dangerous</h3>
+                    <p>Open food packages, pet food left out and garbage cans that don’t close tightly can attract pests. Pest dander can worsen allergies. </p>
+                    <h3 class="h5">What you can do</h3>
+                    <p>Block access to food sources.</p>
+                    <p>Clean up clutter, keep food in sealed containers, don’t leave pet food out, and store trash in a can with a tight-fitting lid.</p>
+                    <p>If you or your child has asthma and there are pests or mold in your home, your health care provider or asthma case manager can make a referral to the Healthy Neighborhoods Program.</p>
+                    <h3 class="h5">Resources</h3>
+                    <p><ul>
+                        <li>Resources one</li>
+                        <li>Resource two</li>
+                        <li>Resource three</li>
+                    </ul></p>            
+        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">CLOSE</span>
+        </button>
+        </div>
+        </div></div>
+        
+  </div>
+
   </div>
 
 
@@ -149,6 +181,11 @@ function spill() {
         document.getElementById('pone').classList.remove('dot-border')
 
 }
+
+function bowl () {
+        document.getElementById('bowlOverlay').classList.add('hide')
+        document.getElementById('ptwo').classList.remove('dot-border')
+} 
 </script>
 
 
