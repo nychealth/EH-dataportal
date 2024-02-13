@@ -8,8 +8,10 @@ tags:
 categories: [housing]
 keyTopic: housing
 keywords:
-layout: healthy-homes
+layout: healthy-homes-2
 image: ratportal-screenshot.png
 ---
 
 The image below contains common health hazards that are found in the home. You can learn more about what to look for, what to do about it, and how to find out more information on prevention through the interactive image and information pane below.
+
+<a href=".">Reset</a>

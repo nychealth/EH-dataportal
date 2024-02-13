@@ -21,45 +21,95 @@
         </div>
     </div>
 
-    <div class="row" style="height: 1000px;">
-        <div class="col-12">
-            <div class="main">
-                <canvas id="canvas"></canvas>
-                <div class="indoor">
-                    <img tabindex="0" class="indoor-bg desktop superimpose" alt="" src="background.svg" />
-                    <img tabindex="0" class="indoor-bg desktop superimpose" alt="" src="spill.svg" />
-            
-            
-                    <div class="clickables desktop">
-                        <a id="pone" aria-label="..." style="position:absolute;top: 6.2%;left: 52.8%;" aria-describedby="popover-content-pone" tabindex="0" class="dot dot-border" data-toggle="modal" data-trigger="focus" ><img class="flash"  alt="Smoke alarm" src="assets/img/flake.png" /></a>
-            
-                        <a id="ptwo"  aria-label="..." style="position:absolute;top: 40.2%;left: 49.1%;" aria-describedby="popover-content-ptwo" tabindex="0" class="dot dot-border" data-toggle="popover" data-trigger="focus" ><img class="flash"  alt="Radiator" src="assets/img/flake.png" /></a>
-            
-                        <a id="pthree"  aria-label="..." style="position:absolute;top: 46.2%;left: 41.1%;" aria-describedby="popover-content-pthree" tabindex="0" class="dot dot-border" data-toggle="popover" data-trigger="focus" ><img class="flash"  alt="Crib" src="assets/img/flake.png" /></a>
-            
-                        <a id="pfour"  aria-label="...." style="position:absolute;top: 55.8%;left: 73.1%;" aria-describedby="popover-content-pfour" data-placement="left" tabindex="0" class="dot dot-border" data-toggle="popover" data-trigger="focus" ><img class="flash"  alt="Space heater" src="assets/img/flake.png" /></a>
-            
-                        <a id="pfive"  aria-label="...." style="position:absolute;top: 59.1%;left: 22.7%;" aria-describedby="popover-content-pfive" data-placement="right" tabindex="0" class="dot dot-border" data-toggle="popover" data-trigger="focus" ><img class="flash"  alt="Phone" src="assets/img/flake.png" /></a>
-            
-                    </div>
-            
-                </div>
-            
-              </div>
-        </div>
-    </div>
-
-
 
 </article>
 
+<div class="bucket border px-4 my-4">
+    <div>
+        <img tabindex="0" class="superimpose" id="backgroundImage" alt="" src="background.svg" />
+        <img tabindex="0" class="superimpose" id="spillOverlay" alt="" src="spill.svg" />
 
+
+        <div class="clickables">
+            <a id="spillDot" onclick="spill()" aria-label="..." style="position:absolute;top: 65%;left: 27%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#spillModal" ></a>
+        </div>
+    </div>
+
+</div>
+
+<!-- Modals -->
+<div class="modal fade" id="spillModal" tabindex="-1" role="dialog" aria-labelledby="spillDot" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+            <h2 class="h4">Moisture issues</h2>
+            <h3 class="h5">Why it's dangerous</h3>
+            <p>Water leaks and moisture issuess such as leaks, standing water, or moisture thatwon't dry can attract pests and cause mold growth.</p>
+            <p>Pests and mold can trigger or worsen asthma and allergies, and can create unsanitary conditions in the home.</p>
+            <h3 class="h5">What you can do</h3>
+            <p>Fix leaks and dry out damp areas, especially in kitchen and bathrooms, by opening a window or running a fan while showering or cooking. Use a dehumidifier to lower humidity levels in your home. Use water and detergent to clean mold on walls or other hard surfaces with small areas of mold.</p>
+            <p>Report mold, water leaks, and plumbing that needs fixing to building management. If leaks aren't fixed or you think that repair work is done unsafetly, call 311</p>
+            <p>NYCHA residents should call 718-707-7771 to report a maintenance problem.</p>
+            <p>If you or your child has asthma and there are pests or mold in your home, your health care provider or asthma case manager can make a referral to the Healthy Neighborhoods Program.</p>
+            <h3 class="h5">Resources</h3>
+            <p><ul>
+                <li>Resources one</li>
+                <li>Resource two</li>
+                <li>Resource three</li>
+            </ul></p>  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    function spill() {
+            document.getElementById('spillOverlay').classList.add('hide')
+            document.getElementById('spillDot').classList.remove('dot-border')
+    
+    }
+    </script>
 
   <style>
+    /* Custom CSS to position the modal on the right */
+    .modal-dialog {
+        margin: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        position: fixed;
+        width: 400px; /* You can adjust the width as per your preference */
+      }
+  
+      .modal-content {
+        height: 100%;
+        border-radius: 0;
+      }
+  
+      .modal-header {
+        border-bottom: none;
+      }
+  
+      .modal-body {
+        overflow-y: auto;
+      }
+
+    .bucket {
+        position: relative;
+        width: 1200px;
+        margin: auto;
+        height: 100vh;
+    }
+
     .superimpose {
         position: absolute;
         top: 0px;
         left: 0px;
+        height: 100%;
     }
 
     .dot {
@@ -68,6 +118,8 @@
         border-radius: 50%;
         display: inline-block;
         cursor: pointer;
+        border: 1px dashed orange;
+
       }
 
       .dot-border {
