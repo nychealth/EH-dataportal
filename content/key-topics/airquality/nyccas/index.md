@@ -15,6 +15,7 @@ keywords:
     - pollutants
 seo_title: NYC Community Air Survey Annual Report
 seo_description: Data, findings, and more from NYC's citywide air quality monitoring program.
+Description: Data, findings, and more from NYC's citywide air quality monitoring program.
 pollutantMaps: >-
     <img src="NyccasInstall_red.jpg" alt="NYCCAS installation" align="right"
     style="width:50%;" class="my-2 pl-2"> <p>Since it is impossible to sample
