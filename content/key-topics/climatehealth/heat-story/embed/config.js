@@ -603,7 +603,11 @@ config = {
                 "lat": 40.8082044,
                 "lng": -73.9232586,
                 "zoom": 15,
-                "layers": [ "nycAfternoon", "greenspace", "heat_stress" ]
+                "layers": [ 
+                    "nycAfternoon", 
+                    "greenspace", 
+                    "heat_stress" 
+                ]
             }
         }
     ]

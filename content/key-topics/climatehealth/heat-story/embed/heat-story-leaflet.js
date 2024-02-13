@@ -177,7 +177,7 @@ function drawAccordion() {
                     </div>
                 </div>
             </div>`;
-            // holderAccordion.innerHTML += storyCard;
+            holderAccordion.innerHTML += storyCard;
     }
 
     const storyCards = document.getElementById('story-cards')
@@ -859,7 +859,7 @@ async function updateMapStateForStory(storyId) {
  */
 function formatValue(value, type) {
 
-    console.log("* formatValue");
+    // console.log("* formatValue");
     
     // FIXME handle NaN
     if (type == null || value == null) return value;
@@ -887,7 +887,7 @@ function formatValue(value, type) {
  */
 function featureInfoToHtmlForPopup(feature, layer) {
 
-    console.log("* featureInfoToHtmlForPopup");
+    // console.log("* featureInfoToHtmlForPopup");
     
     const displayProperties = layer.options.displayProperties;
     if (displayProperties == null || displayProperties?.displayPropertyArgs == null) {
@@ -926,7 +926,7 @@ function featureInfoToHtmlForPopup(feature, layer) {
  */
 function formatPopup(features) {
 
-    console.log("* formatPopup");
+    // console.log("* formatPopup");
     
     const updates = features
         .sort((a, b) => (a?.layer?.options?.sortOrder ?? 999) - (b?.layer?.options?.sortOrder ?? 999))
@@ -1201,7 +1201,7 @@ async function loadMetadata() {
     
     const response = await fetch(data_repo + data_branch + '/indicators/metadata/metadata.json');
     indicators = await response.json();
-    console.log(indicators);
+    console.log("metadata.json: ", indicators);
 }
 
 /*
