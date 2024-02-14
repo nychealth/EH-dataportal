@@ -1,5 +1,5 @@
 <!-- Standard SEO -->
-<meta name="description" content="{{ if .Description -}} {{ .Description }} {{ else if .seo_description }} {{ .seo_description }} {{ else if .seo_title }} {{ .seo_title }} {{ else }} {{ .Site.Data.globals.seo_defaults.seo_description }} {{- end }}">
+<meta name="description" content="{{ if .Description -}} {{ .Description }} {{ else if .Params.seo_description }} {{ .Params.seo_description }} {{ else if .Params.seo_title }} {{ .Params.seo_title }} {{ else }} {{ .Site.Data.globals.seo_defaults.seo_description }} {{- end }}">
 <link rel="canonical" href="{{ .RelPermalink }}" />
 <meta name="geo.region" content="" />
 <meta name="geo.placename" content="{{ .Site.Title }}" />
