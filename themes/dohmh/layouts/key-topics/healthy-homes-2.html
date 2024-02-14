@@ -28,13 +28,12 @@
     <div>
         <img tabindex="0" class="superimpose" id="backgroundImage" alt="" src="background.svg" />
         <img tabindex="0" class="superimpose" id="spillOverlay" alt="" src="spill.svg" />
-        <img tabindex="0" class="superimpose" id="spillOverlay" alt="" src="bowl.svg" />
-        <img tabindex="0" class="superimpose" id="bowlOverlay" alt="" src="spill.svg" />
+        <img tabindex="0" class="superimpose" id="bowlOverlay" alt="" src="bowl.svg" />
 
 
         <div class="clickables">
             <a id="spillDot" onclick="spill()" aria-label="..." style="position:absolute;top: 65%;left: 27%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#spillModal" ></a>
-            <a id="spillDot" onclick="bowl()" aria-label="..." style="position:absolute;top: 72%;left: 5%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#bowlModal" ></a>
+            <a id="bowlDot" onclick="bowl()" aria-label="..." style="position:absolute;top: 72%;left: 5%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#bowlModal" ></a>
         </div>
     </div>
 
@@ -106,7 +105,7 @@
       document.getElementById('bowlOverlay').classList.add('hide')
       document.getElementById('bowlDot').classList.remove('dot-border')
 
-}
+    }
 
     </script>
 
