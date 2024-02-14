@@ -4,7 +4,7 @@ date: 2021-05-28 18:02:58.812716
 draft: false
 seo_title: "Alcohol access and use data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
-Description: "Datasets and visualizations of alcohol use data in NYC."
+description: "Datasets and visualizations of alcohol use data in NYC."
 tags: 
 categories: ["foodanddrink"]
 keywords: ["drinking","alcohol","binge drinking"]

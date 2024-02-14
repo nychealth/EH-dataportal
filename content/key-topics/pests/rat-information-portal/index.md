@@ -5,7 +5,7 @@ draft: false
 draft: false
 seo_title: "NYC Rat Information Portal"
 seo_description: "Data on NYC's rat inspections."
-Description: "Data on NYC's rat inspections. "
+description: "Data on NYC's rat inspections. "
 tags: 
 categories: [pests]
 keywords: ["pests"]

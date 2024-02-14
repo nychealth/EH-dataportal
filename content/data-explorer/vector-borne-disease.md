@@ -4,7 +4,7 @@ date: 2021-05-28 18:02:58.809035
 draft: false
 seo_title: "Vector-borne disease data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
-Description: "Datasets and visualizations of vector-borne disease in NYC."
+description: "Datasets and visualizations of vector-borne disease in NYC."
 tags: 
 categories: ["pests","climatehealth","healthoutcomes"]
 keywords: ["ticks","lyme disease","lyme","disease","climate change"]

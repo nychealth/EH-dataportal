@@ -4,7 +4,7 @@ date: 2023-06-01T11:14:56-04:00
 draft: false
 seo_title: "Rat mitigation zones."
 seo_description: "Data on rat mitigation zones."
-Description: "Data on NYC's rat mitigation zones."
+description: "Data on NYC's rat mitigation zones."
 tags: 
 categories: [pests]
 keywords: 

@@ -4,7 +4,7 @@ date: 2021-05-28 18:02:58.737586
 draft: false
 seo_title: "Mortality data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
-Description: "Datasets and visualizations of mortality data in NYC."
+description: "Datasets and visualizations of mortality data in NYC."
 tags: 
 categories: ["healthoutcomes","social"]
 keywords: ["mortality","death","dying","health"]

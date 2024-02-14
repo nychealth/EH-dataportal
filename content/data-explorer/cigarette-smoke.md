@@ -4,7 +4,7 @@ date: 2021-05-28 18:02:58.768736
 draft: false
 seo_title: "Cigarette smoking data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
-Description: "Datasets and visualizations of cigarette smoking data in NYC."
+description: "Datasets and visualizations of cigarette smoking data in NYC."
 tags: 
 categories: ["housing","childhealth"]
 keywords: ["smoking","cigarettes","cancer","secondhand","smoke","work","home", "children"]

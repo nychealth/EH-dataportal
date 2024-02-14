@@ -5,7 +5,7 @@ draft: false
 notes: "Remove sex ratio per 7/13/2022 conversation with AQ team, wendy"
 seo_title: "Birth outcomes data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
-Description: "Datasets and visualizations of birth defects data in NYC."
+description: "Datasets and visualizations of birth defects data in NYC."
 tags: 
 categories: ["childhealth","healthoutcomes"]
 keywords: ["children","birth","birth defects","babies","pregnancy"]

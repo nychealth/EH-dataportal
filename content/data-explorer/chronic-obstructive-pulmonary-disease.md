@@ -5,7 +5,7 @@ draft: true
 notes: "Decided to remove this 7/13/2022 with AQ team"
 seo_title: "Chronic obstructive pulmonary disease data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
-Description: "Datasets and visualizations of COPD data in NYC."
+description: "Datasets and visualizations of COPD data in NYC."
 tags: 
 categories: ["airquality","healthoutcomes","climatehealth"]
 keywords: ["COPD","breathing","lungs","hospitalization","emergency department visits","smoking"]

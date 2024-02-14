@@ -4,7 +4,7 @@ date: 2021-05-28 18:02:58.823781
 draft: false
 seo_title: "Worker health data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
-Description: "Datasets and visualizations of worker health in NYC."
+description: "Datasets and visualizations of worker health in NYC."
 tags: 
 categories: ["social","healthoutcomes"]
 keywords: ["workers"]

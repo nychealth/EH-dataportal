@@ -4,7 +4,7 @@ date: 2021-05-28 18:02:58.764067
 draft: false
 seo_title: "Overweight data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
-Description: "Datasets and visualizations of obesity and overweight in NYC."
+description: "Datasets and visualizations of obesity and overweight in NYC."
 tags: 
 categories: ["healthoutcomes"]
 keywords: ["overweight","obesity"]

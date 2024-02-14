@@ -4,7 +4,7 @@ date: 2021-05-28 18:02:58.732973
 draft: false
 seo_title: "Birth defects data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
-Description: "Datasets and visualizations of birth defects data in NYC."
+description: "Datasets and visualizations of birth defects data in NYC."
 tags: 
 categories: ["childhealth","healthoutcomes"]
 keywords: ["children","birth","birth defects","babies","pregnancy"]
