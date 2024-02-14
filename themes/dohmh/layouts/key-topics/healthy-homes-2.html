@@ -29,11 +29,17 @@
         <img tabindex="0" class="superimpose" id="backgroundImage" alt="" src="background.svg" />
         <img tabindex="0" class="superimpose" id="spillOverlay" alt="" src="spill.svg" />
         <img tabindex="0" class="superimpose" id="bowlOverlay" alt="" src="bowl.svg" />
+        <img tabindex="0" class="superimpose" id="moldOverlay" alt="" src="mold.svg" />
+        <img tabindex="0" class="superimpose" id="crackinwallOverlay" alt="" src="crackinwall.svg" />
+        <img tabindex="0" class="superimpose" id="peelingpaintOverlay" alt="" src="peelingpaint.svg" />
 
 
         <div class="clickables">
             <a id="spillDot" onclick="spill()" aria-label="..." style="position:absolute;top: 65%;left: 27%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#spillModal" ></a>
             <a id="bowlDot" onclick="bowl()" aria-label="..." style="position:absolute;top: 72%;left: 5%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#bowlModal" ></a>
+            <a id="moldDot" onclick="mold()" aria-label="..." style="position:absolute;top: 40%;left: 39.5%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#moldModal" ></a>
+            <a id="crackinwallDot" onclick="crackinwall()" aria-label="..." style="position:absolute;top: 40%;left: 30%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#crackinwallModal" ></a>
+            <a id="peelingpaintDot" onclick="peelingpaint()" aria-label="..." style="position:absolute;top: 55%;left: 3%;" tabindex="0" class="dot dot-border" data-toggle="modal" data-target="#peelingpaintModal" ></a>
         </div>
     </div>
 
@@ -94,6 +100,88 @@
     </div>
   </div>
 
+  <div class="modal fade" id="moldModal" tabindex="-1" role="dialog" aria-labelledby="moldDot" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+            <h2 class="h4">Mold</h2>
+            <h3 class="h5">Why it's dangerous</h3>
+            <p>Water leaks and moisture issuess such as leaks, standing water, or moisture that won't dry can attract pests and cause mold growth.</p>
+            <p>Pests and mold can trigger or worsen asthma and allergies, and can create unsanitary conditions in the home.</p>
+            <h3 class="h5">What you can do</h3>
+            <p>Fix leaks and dry out damp areas, especially in kitchen and bathrooms, by opening a window or running a fan while showering or cooking. Use a dehumidifier to lower humidity levels in your home. Use water and detergent to clean mold on walls or other hard surfaces with small areas of mold.</p>
+            <p>Report mold, water leaks, and plumbing that needs fixing to building management. If leaks aren't fixed or you think that repair work is done unsafetly, call 311</p>
+            <p>NYCHA residents should call 718-707-7771 to report a maintenance problem.</p>
+            <p>If you or your child has asthma and there are pests or mold in your home, your health care provider or asthma case manager can make a referral to the Healthy Neighborhoods Program.</p>
+            <h3 class="h5">Resources</h3>
+            <p><ul>
+                <li>Resources one</li>
+                <li>Resource two</li>
+                <li>Resource three</li>
+            </ul></p>  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="crackinwallModal" tabindex="-1" role="dialog" aria-labelledby="crackinwallDot" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+            <h2 class="h4">Gaps, cracks or holes </h2>
+            <h3 class="h5">Why it's dangerous</h3>
+            <p>Gaps, cracks or holes can let in pests like mice and cockroaches.</p>
+            <p>Cockroaches and mice can contaminate food, damage homes, and make allergies and asthma worse.</p>
+
+            <h3 class="h5">What you can do</h3>
+            <p>To get rid of pests and keep them from coming back, you have to deprive them of food, water, shelter and ways to get around.</p>
+            <p>Seal pests out. Report gaps, cracks or holes and other conditions that can attract pests to building management. </p>
+            <p> If the repairs are not being made or you think that repair work is being done unsafely, call 311. </p>
+            <p> NYCHA residents should call 718-707-7771 to report a maintenance problem. </p>
+            
+            <h3 class="h5">Resources</h3>
+            <p><ul>
+                <li>For building residents</li>
+                <li>For owners, managers, and supers</li>
+                <li>To get rid of mold</li>
+            </ul></p>  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="peelingpaintModal" tabindex="-1" role="dialog" aria-labelledby="peelingpaintDot" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+            <h2 class="h4">Peeling paint</h2>
+            <h3 class="h5">Why it's dangerous</h3>
+            <p>Water leaks and moisture issuess such as leaks, standing water, or moisture that won't dry can attract pests and cause mold growth.</p>
+            <p>Pests and mold can trigger or worsen asthma and allergies, and can create unsanitary conditions in the home.</p>
+            <h3 class="h5">What you can do</h3>
+            <p>Fix leaks and dry out damp areas, especially in kitchen and bathrooms, by opening a window or running a fan while showering or cooking. Use a dehumidifier to lower humidity levels in your home. Use water and detergent to clean mold on walls or other hard surfaces with small areas of mold.</p>
+            <p>Report mold, water leaks, and plumbing that needs fixing to building management. If leaks aren't fixed or you think that repair work is done unsafetly, call 311</p>
+            <p>NYCHA residents should call 718-707-7771 to report a maintenance problem.</p>
+            <p>If you or your child has asthma and there are pests or mold in your home, your health care provider or asthma case manager can make a referral to the Healthy Neighborhoods Program.</p>
+            <h3 class="h5">Resources</h3>
+            <p><ul>
+                <li>Resources one</li>
+                <li>Resource two</li>
+                <li>Resource three</li>
+            </ul></p>  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script>
     function spill() {
@@ -101,9 +189,28 @@
             document.getElementById('spillDot').classList.remove('dot-border')
     
     }
+
     function bowl() {
       document.getElementById('bowlOverlay').classList.add('hide')
       document.getElementById('bowlDot').classList.remove('dot-border')
+
+    }
+
+    function mold() {
+      document.getElementById('moldOverlay').classList.add('hide')
+      document.getElementById('moldDot').classList.remove('dot-border')
+
+    }
+
+    function crackinwall() {
+      document.getElementById('crackinwallOverlay').classList.add('hide')
+      document.getElementById('crackinwallDot').classList.remove('dot-border')
+
+    }
+
+    function peelingpaint() {
+      document.getElementById('peelingpaintOverlay').classList.add('hide')
+      document.getElementById('peelingpaintDot').classList.remove('dot-border')
 
     }
 
