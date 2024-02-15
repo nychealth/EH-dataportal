@@ -60,7 +60,7 @@ The combined effects of poverty are increased sickness and death.
 
 Nearly one-third of renting households in the City experience severe rent burden — spending at least half their income on rent.
 
-We see severe rent burden among New Yorkers of all income levels—but low-income people feel these effects more. Severe rent burden impacts nearly half (44%) of households that earn between $25,000 and $50,000, and 85% of households that earn less than $25,000. People who are rent burdened must make difficult choices between housing and necessities that support health. For example, they may choose not to use an air conditioner because of the electricity bill <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/heat/">despite this increasing their risk for heat-related illness and death.</a>
+We see severe rent burden among New Yorkers of all income levels — but low-income people feel these effects more. Severe rent burden impacts nearly half (44%) of households that earn between $25,000 and $50,000, and 85% of households that earn less than $25,000. People who are rent burdened must make difficult choices between housing and necessities that support health. For example, they may choose not to use an air conditioner because of the electricity bill <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/heat/"> despite this increasing their risk for heat-related illness and death.</a>
 
 ### One out of every 10 New Yorkers experiences food insecurity.
 
@@ -109,7 +109,7 @@ Getting care for a medical issue can be costly, even with insurance. Medical deb
 
 ### Medical debt creates stress and disproportionately affects people of color.
 
-Six percent of all New Yorkers—about 1 in 20 people—have medical debt in collections. People living in communities of color tend to experience a higher rate of, and owe more money in, medical debt than people living in White communities. In Brooklyn, for example, <a href="https://apps.urban.org/features/debt-interactive-map/?type=medical&variable=medcoll&state=36&county=36047">communities of color have double the amount of residents with medical debt in collections.</a>
+Six percent of all New Yorkers — about 1 in 20 people — have medical debt in collections. People living in communities of color tend to experience a higher rate of, and owe more money in, medical debt than people living in White communities. In Brooklyn, for example, <a href="https://apps.urban.org/features/debt-interactive-map/?type=medical&variable=medcoll&state=36&county=36047">communities of color have double the amount of residents with medical debt in collections.</a> <a href="https://www.nyc.gov/office-of-the-mayor/news/062-24/mayor-adams-relieve-2-billion-medical-debt-hundreds-thousands-working-class#/0"> A medical debt relief program is planned to help alleviate some of this burden. </a>
 
 Chronic stress related to finances can be debilitating because the factors causing it are difficult to resolve, and many worsen over time. Long-term stress increases the risk of mental health issues and other health problems.
 
