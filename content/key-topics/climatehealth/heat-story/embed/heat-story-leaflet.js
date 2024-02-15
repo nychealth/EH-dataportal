@@ -18,6 +18,7 @@ var legendPropertiesByLayer = {};
 var layersExclusive = new Set();
 var indicators = [];
 var mapElement = document.getElementById("wholeMap")
+let timeTable;
 
 // add this field to the layer options to keep a custom id
 const CUSTOM_ID_FIELD = '_custom_id';
@@ -64,7 +65,7 @@ function init() {
     drawAccordion();
     setupMap();
     addListeners();
-    createLegend();
+    // createLegend();
     loadMetadata().catch(console.log);
 }
 
@@ -89,17 +90,21 @@ function setupMap() {
     layerGroup.addTo(map);
     
     const url = window.BaseURL + "geojson/neighborhoods.geojson";
+
     fetch(url).then(response => {
+
         if (!response.ok) {
             return null;
         }
         return response.json();
+
     }).then(data => {
+
         const neighborhoodsLayer = L.geoJSON(
             data,
             {
                 name: "Neighborhood",
-                style: { color: 'black', fillOpacity: 0, weight: 1 },
+                style: { color: '#C5C5C5', fillOpacity: 0, weight: 1 },
                 displayProperties: {
                     displayPropertyArgs: [{
                         "id": "NTAName",
@@ -109,19 +114,30 @@ function setupMap() {
                 _custom_id: '__neighborhood',
                 sortOrder: 1,
             });
+
             layerGroup.addLayer(neighborhoodsLayer);
+
         });
+
         // add the markers to the story
         const stories = config.stories;
+
         for (let i = 0; i < stories.length; i++) {
+
             const story = stories[i];
+
             if (!story.marker) {
                 continue;
             }
+
             const marker = L.marker([story.marker.lat, story.marker.lng]);
+
             storyMarkerLayerGroup.addLayer(marker);
+
         }
+
         storyMarkerLayerGroup.addTo(map);
+
     }
 
 var buttonHolderBase = document.getElementById('buttonHolderBase')
@@ -133,6 +149,7 @@ function addLayerButtons() {
     
     const layers = config.layers;
     for (let i = 0; i < layers.length; i++) {
+
         const layer = layers[i];
         const color = layer.property?.args?.color ?? "grey";
         const button = `
@@ -142,11 +159,16 @@ function addLayerButtons() {
                 </span>
                 ${layer.property.name}
             </button>`
+
         if (layer.property?.exclusive === true) {
+
             buttonHolderBase.innerHTML += button;
             layersExclusive.add(layer.property.id);
+
         } else {
+
             buttonHolderAdditional.innerHTML += button;
+
         }
     };
 }
@@ -161,7 +183,9 @@ function drawAccordion() {
     const holderAccordion = document.getElementById('story-accordion')
     const stories = config.stories;
     // console.log(config.stories)
+
     for (let i = 0; i < stories.length; i++) {
+
         const story = stories[i];
         const storyCard = `
             <div class="card">
@@ -181,7 +205,9 @@ function drawAccordion() {
     }
 
     const storyCards = document.getElementById('story-cards')
+
     for (let i = 0; i < stories.length; i++) {
+
         const story = stories[i];
         // we can put an image in the story definition
         const storyCard = `
@@ -203,6 +229,7 @@ function drawAccordion() {
             </div>
         `;
         storyCards.innerHTML += storyCard;
+
     }
 }
 
@@ -216,12 +243,17 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
     console.log("* createRedlinedLayer");
     
     const data = {}
+
     for (const [name, url] of Object.entries(urls)) {
+
         const response = await fetch(url);
+
         if (!response.ok) {
             return null;
         }
+
         let responseText = await response.text(); 
+
         try {
             // assume the file is in the format var something = {[ json ]}
             // parse using regex
@@ -230,8 +262,11 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
                 console.log(`Could not parse ${name} as valid json. Please check ${url}`);
             }
             data[name] = JSON.parse(groups.json);
+
         } catch (error) {
+
             console.log(`Could not parse ${name} as valid json. Please check ${url}`);
+
         }
     }
 
@@ -290,24 +325,32 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
         // split into even parts
         // see an example https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_images/Using_CSS_gradients#creating_color_bands_stripes
         const percent = 100 / colorMapEntries.length;
+
         for (let i = 0; i < colorMapEntries.length; i++) {
+
             const [value, color] = colorMapEntries[i];
+
             if (i > 0) {
                 gradients.push(`${color} ${i * percent}%`);
             }
+
             gradients.push(`${color} ${(i + 1) * percent}%`);
             labels.push(`<div style="float: left; width: ${percent}%; text-align: center;">${value}</div>`);
+
         }
+
         const backgroundCss = `background: linear-gradient(to right, ${gradients.join(', ')});`
+
         var legend = name + '<span style="'
             + backgroundCss
-            + 'height: 20px; width: 100%;'
-            + 'display: block; background-repeat: no-repeat;'
-            + '"></span>'
-            + "<style> .redlined-row:after { content: \"\"; display: table; clear: both; } </style>"
-            + '<div class="redlined-row">'
+            + ' height: 20px; width: 100%;'
+            + ' display: block; background-repeat: no-repeat;'
+            + ' "></span>'
+            + " <style> .redlined-row:after { content: \"\"; display: table; clear: both; } </style>"
+            + ' <div class="redlined-row">'
             + labels.join('')
             + '</div>';
+
         return legend;
     }
 
@@ -322,14 +365,19 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
 
     console.log("* createMeasuresLayer");
     
+    console.log("measureInfo [createMeasuresLayer]", measureInfo);
+
     const { indicatorID, measureID, geoType, time } = measureInfo;
     const data = await loadIndicator(indicatorID, measureID, geoType, time);
 
     const values = data.features.map(f => f.properties.Value)
         .filter(x => x != null && !isNaN(x));
+
     const colorChroma = chroma.scale([args?.minColor ?? '#fff', args?.maxColor ?? '#000'])
-        .domain([Math.min(...values), Math.max(...values)]);;
+        .domain([Math.min(...values), Math.max(...values)]);
+
     const onStyle = (feature) => {
+
         const fillColor = colorChroma(feature.properties.Value);
 
         const colors = ({
@@ -338,16 +386,17 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
             ...(args?.opacity != null && { opacity: args.opacity }),
             ...(args?.opacity != null && fillColor != null && { fillOpacity: args.opacity * args.opacity }),
         });
-        return {
-            ...colors,
-        };
+
+        return { ...colors };
     }
+
     // All metrics have an Id of value. Add that to 
     const updatedDisplayProperties = {...displayProperties, 
         displayPropertyArgs: displayProperties.displayPropertyArgs
             ? displayProperties.displayPropertyArgs.map(x => { return {...x, id: "Value"}})
             : [{ "id": "Value", }]
     };
+
     const layer = L.geoJSON(
         data,
         {
@@ -385,16 +434,20 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
             : args?.legendColor
             ? `background: ${args.legendColor};`
             : '';
-        const borderColor = args?.color ? `border-width: 2px; border-color: ${args?.color}; border-style: solid;` : '';
+
+        const borderColor = args?.color ? `border-width: 0px; border-color: ${args?.color}; border-style: solid;` : '';
+
         const backgroundCss = (args.colorFeatureProperty != null
                 && args?.minColor != null && args?.maxColor != null)
             ? `background-image: linear-gradient(to right, ${args.minColor}, ${args?.maxColor});`
             : ('' + background + borderColor);
+
         var legend = name + '<span style="'
             + backgroundCss
-            + 'height: 20px; width: 100%;'
-            + 'display: block; background-repeat: no-repeat;'
-            + '"></span>'
+            + ' height: 20px;  width: 100%;'
+            + ' display: block; background-repeat: no-repeat; '
+            + ' "></span>'
+
         if (args.colorFeatureProperty) {
             const values = layer.getLayers()
                 .map(x => x.feature.properties.Value)
@@ -403,15 +456,18 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
                 + `<div style="float: left;">${Math.min(...values)}</div>`
                 + `<div style="float: right;">${Math.max(...values)}</div></div>`;
         }
+
         if (args.legendDescription) {
             const collapseId = `${id}LegendCollapse`;
             legend += `<br /><div style="display: block; width: 100%; max-width: 250px;"><a data-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More Info About ${name}</a>`
                 + `<div class="collapse" id="${collapseId}">${args.legendDescription}</div></div>`;
         }
+
         return legend;
     }
 
     layer.options.legendFunc = legendFunc;
+
     return layer;
 }
 
@@ -424,22 +480,31 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
     console.log("* createGeoJsonLayer");
     
     const response = await fetch(url);
+
     if (!response.ok) {
         return null;
     }
+
     let data = null;
+
     try {
         data = await response.json();
     } catch (error) {
         console.log(error);
     }
+
     let colorChroma = null;
+
     if (args?.colorFeatureProperty != null) {
+
       const values = data.features.map(f => f.properties[args.colorFeatureProperty])
           .filter(x => x != null && !isNaN(x));
+
       colorChroma = chroma.scale([args?.minColor ?? '#fff', args?.maxColor ?? '#000'])
-        .domain([Math.min(...values), Math.max(...values)]);;
+        .domain([Math.min(...values), Math.max(...values)]);
+
     }
+
     const onStyle = (feature) => {
         
         console.log("** onStyle [createGeoJsonLayer]");
@@ -454,9 +519,8 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
             ...(args?.opacity != null && { opacity: args.opacity }),
             ...(args?.opacity != null && fillColor != null && { fillOpacity: args.opacity * args.opacity }),
         });
-        return {
-            ...colors,
-        };
+
+        return { ...colors };
     }
     const layer = L.geoJSON(
         data,
@@ -494,124 +558,42 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
             : args?.legendColor
             ? `background: ${args.legendColor};`
             : '';
-        const borderColor = args?.color ? `border-width: 2px; border-color: ${args?.color}; border-style: solid;` : '';
+
+        const borderColor = args?.color ? `border-width: 0px; border-color: ${args?.color}; border-style: solid;` : '';
+
         const backgroundCss = (args.colorFeatureProperty != null
                 && args?.minColor != null && args?.maxColor != null)
             ? `background-image: linear-gradient(to right, ${args.minColor}, ${args?.maxColor});`
             : ('' + background + borderColor);
+
         var legend = name + '<span style="'
             + backgroundCss
-            + 'height: 20px; width: 100%;'
-            + 'display: block; background-repeat: no-repeat;'
-            + '"></span>'
+            + ' height: 20px;   width: 100%;'
+            + ' display: block; background-repeat: no-repeat;'
+            + ' "></span>'
+
         if (args?.colorFeatureProperty) {
+
             const values = layer.getLayers()
                 .map(x => x.feature.properties[args.colorFeatureProperty])
                 .filter(x => x != null && !isNaN(x));
+
             legend += '<div style="display: block; width: 100%;">'
                 + `<div style="float: left;">${Math.min(...values)}</div>`
                 + `<div style="float: right;">${Math.max(...values)}</div></div>`;
+
         }
+
         return legend;
+
     }
 
     layer.options.legendFunc = legendFunc;
+
     return layer;
+
 }
 
-/*
- * Create a layer based on the measures data from DoH
- */
-async function createMeasuresLayer({ id, name, measureInfo, args, displayProperties }) {
-
-    console.log("** createMeasuresLayer");
-    
-    const { indicatorID, measureID, geoType, time } = measureInfo;
-    const data = await loadIndicator(indicatorID, measureID, geoType, time);
-
-    const values = data.features.map(f => f.properties.Value)
-        .filter(x => x != null && !isNaN(x));
-    const colorChroma = chroma.scale([args?.minColor ?? '#fff', args?.maxColor ?? '#000'])
-        .domain([Math.min(...values), Math.max(...values)]);;
-    const onStyle = (feature) => {
-        const fillColor = colorChroma(feature.properties.Value);
-
-        const colors = ({
-            ...(fillColor != null && { fillColor: fillColor }),
-            ...(args?.color != null && { color: args.color }),
-            ...(args?.opacity != null && { opacity: args.opacity }),
-            ...(args?.opacity != null && fillColor != null && { fillOpacity: args.opacity * args.opacity }),
-        });
-        return {
-            ...colors,
-        };
-    }
-    // All metrics have an Id of value. Add that to 
-    const updatedDisplayProperties = {...displayProperties, 
-        displayPropertyArgs: displayProperties.displayPropertyArgs
-            ? displayProperties.displayPropertyArgs.map(x => { return {...x, id: "Value"}})
-            : [{ "id": "Value", }]
-    };
-    const layer = L.geoJSON(
-        data,
-        {
-            style: onStyle,
-            onEachFeature: function(feature, layer) {
-                layer.on('mouseover', function(event) {
-                    layerMouseOver = layer;
-                    featureMouseOver = feature;
-                    layerMouseOver[layer.options[CUSTOM_ID_FIELD]] = true;
-                    updatePopup(event.latlng);
-                });
-                layer.on('mouseout', function() {
-                    if (layer.options[CUSTOM_ID_FIELD] == layerMouseOver.options._custom_id) {
-                        layerMouseOver = null;
-                        featureMouseOver = null;
-                    }
-                });
-            },
-            _custom_id: id,
-            displayProperties: updatedDisplayProperties,
-            name,
-        });
-
-    const legendFunc = () => {
-
-        console.log("** legendFunc [createMeasuresLayer]");
-    
-        if (!args?.fillColor && !args?.color && !args?.minColor && !args?.maxColor) {
-            return '';
-        }
-
-        const background = args?.fillColor
-            ? `background: ${args.fillColor};`
-            : args?.legendColor
-            ? `background: ${args.legendColor};`
-            : '';
-        const borderColor = args?.color ? `border-width: 2px; border-color: ${args?.color}; border-style: solid;` : '';
-        const backgroundCss = (args.colorFeatureProperty != null
-                && args?.minColor != null && args?.maxColor != null)
-            ? `background-image: linear-gradient(to right, ${args.minColor}, ${args?.maxColor});`
-            : ('' + background + borderColor);
-        var legend = name + '<span style="'
-            + backgroundCss
-            + 'height: 20px; width: 100%;'
-            + 'display: block; background-repeat: no-repeat;'
-            + '"></span>'
-        if (args.colorFeatureProperty) {
-            const values = layer.getLayers()
-                .map(x => x.feature.properties.Value)
-                .filter(x => x != null && !isNaN(x));
-            legend += '<div style="display: block; width: 100%;">'
-                + `<div style="float: left;">${Math.min(...values)}</div>`
-                + `<div style="float: right;">${Math.max(...values)}</div></div>`;
-        }
-        return legend;
-    }
-
-    layer.options.legendFunc = legendFunc;
-    return layer;
-}
 
 /*
  * Create a layer from geotiff file using a 3rd party library.
@@ -622,30 +604,39 @@ async function createGeotiffLayer({ id, url, args, name }) {
     console.log("* createGeotiffLayer");
     
     const response = await fetch(url);
+
     if (!response.ok) {
         return null;
     }
+
     const arrayBuffer = await response.arrayBuffer();
+
     data = await parseGeoraster(arrayBuffer);
 
     const colorStart = args?.colorStart || '#0f0';
     const colorStop = args?.colorStop || '#f00';
     const colorChroma = chroma.scale([colorStart, colorStop]).domain([data.mins[0], data.maxs[0]]);
+
     const legendFunc = () => {
+
         const colorStart = args?.colorStart || '#0f0';
         const colorStop = args?.colorStop || '#f00';
         const legend = name + '<span style="'
-            + `background-image: linear-gradient(to right, ${colorStart}, ${colorStop});`
-            + 'height: 20px; width: 100%;'
-            + 'display: block; background-repeat: no-repeat;'
-            + '"></span>'
-            + '<div style="display: block; width: 100%;">'
+            + ` background-image: linear-gradient(to right, ${colorStart}, ${colorStop});`
+            + ' height: 20px;     width: 100%;'
+            + ' display: block; background-repeat: no-repeat;'
+            + ' "></span>'
+            + ' <div style="display: block; width: 100%;">'
             + ((data.mins && data.mins[0]) ? `<div style="float: left">${data.mins[0].toFixed(1)}</div>` : '')
             + ((data.maxs && data.maxs[0]) ? `<div style="float: right">${data.maxs[0].toFixed(1)}</div>` : '')
             + '</div>';
+
         return legend;
+
     }
+
     const layer = new GeoRasterLayer({
+
           georaster: data,
           opacity: 0.7,
           resolution: args?.resolution || 64,
@@ -654,8 +645,11 @@ async function createGeotiffLayer({ id, url, args, name }) {
           },
           legendFunc,
           _custom_id: id,
+
       });
+
     return layer;
+
 }
 
 
@@ -675,6 +669,7 @@ async function createLayer(layerId) {
     }
 
     const properties = layerConfig.property;
+
     let layer = null;
     switch (properties.type) {
         case 'geojson':
@@ -692,11 +687,13 @@ async function createLayer(layerId) {
         default:
             console.log(`Could not create layer of type ${properties.type}`);
     }
+
     if (layer == null) {
         return null;
     }
 
     layers[layerId] = layer;
+
     return layer;
 }
 
@@ -708,11 +705,13 @@ async function getOrCreateLayer(layerId) {
     console.log("* getOrCreateLayer");
     
     let layer;
+
     if (!(layerId in layers)) {
         layer = await createLayer(layerId);
     } else {
         layer = layers[layerId];
     }
+
     return layer;
 }
 
@@ -725,17 +724,23 @@ async function addLayerToMap(layerId) {
     console.log("* addLayerToMap");
     
     const layer = await getOrCreateLayer(layerId);
+
     if (layer != null && !map.hasLayer(layer)) {
+
         layerGroup.addLayer(layer);
 
         // only one active one at a time
         if ( layersExclusive.has(layerId) ) {
+
             for (_layerId in layersVisible) {
+
                 // this only applies to exclusive layers
                 if (!layersExclusive.has(_layerId)) {
                     continue;
                 }
+
                 const isVisible = layersVisible[_layerId];
+                
                 if ( isVisible === true && _layerId !== layerId ) {
                     removeLayerFromMap(_layerId);
                 }
@@ -744,9 +749,12 @@ async function addLayerToMap(layerId) {
 
         layersVisible[layerId] = true;
         const button = document.querySelector(`#${layerId}`)
+
         if (button != null) {
             button.classList.add("active");
         }
+
+        // createLegend()
     }
 }
 
@@ -758,14 +766,19 @@ function removeLayerFromMap(layerId) {
     console.log("* removeLayerFromMap");
     
     if (layerId in layers) {
+
         const layer = layers[layerId];
         layerGroup.removeLayer(layer);
         delete layersVisible[layerId];
         const button = document.querySelector(`#${layerId}`)
+
         if (button != null) {
             button.classList.remove("active");
         }
     }
+
+    // createLegend()
+
 }
 
 let layersVisible = {};
@@ -820,6 +833,7 @@ async function updateMapStateForStory(storyId) {
     console.log("* updateMapStateForStory");
     
     const storyConfig = config.stories.find(s => s.id == storyId);
+
     if (storyConfig == null) {
         console.log(`Could not find story ${storyId} in config`);
         return;
@@ -827,6 +841,7 @@ async function updateMapStateForStory(storyId) {
 
     const mapState = storyConfig.mapState;
     const { lat, lng, zoom } = mapState;
+
     if ( lat != null && lng != null && zoom != null ) {
         saveCurrentMapState();
         map.flyTo([lat, lng], zoom);
@@ -837,10 +852,12 @@ async function updateMapStateForStory(storyId) {
     var layersVisible = []
     layerGroup.eachLayer(l => layersVisible.push(l.options[CUSTOM_ID_FIELD]));
     // add the layers that are not in the visible layer
+
     layers.filter(l => !(l in layersVisible)).forEach(async l => {
         await addLayerToMap(l);
     });
     // remove
+
     layersVisible.filter(l => !(l in layers)).forEach(async l => {
         removeLayerFromMap(l)
     });
@@ -890,6 +907,7 @@ function featureInfoToHtmlForPopup(feature, layer) {
     // console.log("* featureInfoToHtmlForPopup");
     
     const displayProperties = layer.options.displayProperties;
+
     if (displayProperties == null || displayProperties?.displayPropertyArgs == null) {
         return '';
     }
@@ -917,6 +935,7 @@ function featureInfoToHtmlForPopup(feature, layer) {
             ? `<h3>${layer.options.name}</h3>${missingDisplay}`
             : '';
     }
+
     return `<h3>${layer.options.name}</h3><table class="popup-table">${featureTable.join('')}</table>`;
 }
 
@@ -933,6 +952,7 @@ function formatPopup(features) {
         .map(({ feature, layer }) => featureInfoToHtmlForPopup(feature, layer))
         .filter(x => x != "")
         .join("<br />");
+
     return updates == "" ? null : updates;
 }
 
@@ -961,6 +981,7 @@ function updatePopup({ lat, lng }) {
     }
 
     var features = [{ feature: featureMouseOver, layer: layerMouseOver }];
+
     if (visibleLayers > 1) {
         // check intersections
         layerGroup.eachLayer(_layer => {
@@ -985,25 +1006,34 @@ function updatePopup({ lat, lng }) {
             if (intersection.length > 0) {
                 features.push({feature: intersection[0].feature, layer: _layer});
             }
+
         });
     }
 
     const content = formatPopup(features);
+
     // new popup
     if (popup == null && content != null) {
+
         popup = L.popup({autoPan: false}).setLatLng({ lat, lng }).setContent(content).openOn(map);
         popupContent = content;
-    // change the content of an existing popup
+        // change the content of an existing popup
+
     } else if ( popup != null && content != null) {
+
         popup.setLatLng({ lat, lng });
+
         if (content != popupContent) {
             popupContent = content;
             popup.setContent(content);
         }
+
     // popup should be removed
     } else if (content == null && popup != null) {
+
         popup.removeFrom(map);
         popup = null;
+
     }
 }
 
@@ -1021,6 +1051,7 @@ L.Control.Legend = L.Control.extend({
         L.Util.setOptions(this, options);
     },
     onAdd: function (map) {
+        console.log("onAdd [L.Control.Legend]");
         const htmls = [];
         layerGroup.eachLayer(layer => {
             const layerEventHash = this.options?.properties?.layerEventHash;
@@ -1047,6 +1078,7 @@ L.Control.Legend = L.Control.extend({
         var div = L.DomUtil.create('div', 'info legend');
         L.DomUtil.addClass(div, 'leaflet-control-layers-expanded');
         const innerHtml = '<fieldset><h6></h6><table>' + htmls.join('<br />') + '</table></fieldset>';
+        console.log("innerHtml [onAdd]", innerHtml);
         div.innerHTML = innerHtml;
         return div;
     }
@@ -1068,6 +1100,8 @@ let lastLayerEventHash = {id: null, type: null};
 function createLegend(layerEvent) {
 
     console.log("* createLegend");
+
+    console.log("layerEvent", layerEvent);
     
     const layerEventHash = {
         id: layerEvent?.layer?.options[CUSTOM_ID_FIELD],
@@ -1080,22 +1114,28 @@ function createLegend(layerEvent) {
     }
 
     let legendDescriptions = [];
+
     layerGroup.eachLayer(_layer => {
+
         const config = getLayerConfigById(_layer.options[CUSTOM_ID_FIELD]);
+
         if (config == null || config?.property?.args?.legendDescription == null) {
             return;
         }
         // layers get added and removed for all their sub-layers, which means we may still see the layer in this
         // function while removing it. this line makes sure that layer does not make a legend
+
         if (layerEvent.type == 'layerremove' && _layer.options[CUSTOM_ID_FIELD] == layerEvent?.layer?.options[CUSTOM_ID_FIELD]) {
             return;
         }
+
         legendDescriptions.push(config?.property?.args?.legendDescription);
     });
 
     // combine descriptions and add to the div
     const legendDescriptionsDiv = document.getElementById("legendDescriptions");
     legendDescriptionsDiv.innerHTML = legendDescriptions.join('<br />');
+
     if (legendControl != null) {
         map.removeControl(legendControl);
     }
@@ -1114,6 +1154,7 @@ async function resetMapState() {
     console.log("* resetMapState");
     
     const { lat, lng, zoom, layers } = lastMapState;
+
     if ( lat != null && lng != null && zoom != null ) {
         map.flyTo([lat, lng], zoom);
     }
@@ -1202,6 +1243,7 @@ async function loadMetadata() {
     const response = await fetch(data_repo + data_branch + '/indicators/metadata/metadata.json');
     indicators = await response.json();
     console.log("metadata.json: ", indicators);
+
 }
 
 /*
@@ -1210,6 +1252,8 @@ async function loadMetadata() {
 async function loadIndicator(indicatorID, measureID, geoType, time) {
 
     console.log("* loadIndicator");
+
+    console.log("indicatorID:", indicatorID, "measureID:", measureID, "geoType:", geoType, "time:", time);
     
     // indicators have measures. we want to search both
     /*
@@ -1219,16 +1263,25 @@ async function loadIndicator(indicatorID, measureID, geoType, time) {
     const time = 'Summer 2021';
     */
     const indicator = indicators.filter(x => x.IndicatorID == indicatorID)[0];
+
     if (indicator == null) {
         console.log(`ERROR: No indicator found with indicatorID ${indicatorID}`);
     }
+
     const measure = indicator.Measures.filter(x => x.MeasureID == measureID)[0]; 
+
     if (measure == null) {
         console.log(`ERROR: No data found with indicatorID ${indicatorID}, measureID ${measureID}. Missing measure.`);
     }
     
     const data = await loadData(indicator);
-    const filteredData = data.filter(d => d.MeasureID == measure.MeasureID && d.GeoType == geoType && d.Time == time);
+
+    console.log("data [loadIndicator]", data);
+
+    const filteredData = data.filter(d => d.MeasureID == measure.MeasureID && d.GeoType == geoType && d.TimePeriod == time);
+
+    console.log("filteredData [loadIndicator]", filteredData);
+
     if (filteredData == null) {
         console.log(`ERROR: No data found with indicator ${indicatorID}, measureID ${indicatorID}, GeoType ${geoType}, time ${time}`);
     }
@@ -1236,16 +1289,26 @@ async function loadIndicator(indicatorID, measureID, geoType, time) {
     // the below is taken from other parts of the code.
     // this grabs all the data and joins the geodata to the features to create geojson
     const filteredDataMap = filteredData.reduce((x, y) => {x[y.GeoID] = y; return x}, {})
+
     const renderedMap = renderMap(filteredData, measure);
+    console.log("renderedMap [loadIndicator]", renderedMap);
+
     const responseTopo = await fetch(renderedMap.url);
+    console.log("responseTopo [loadIndicator]", responseTopo);
+
     const topoData = await responseTopo.json();
+    console.log("topoData [loadIndicator]", topoData);
+
     const geoJsonData = topojson.feature(topoData, topoData.objects.collection)
+    console.log("geoJsonData 1 [loadIndicator]", geoJsonData);
     
     geoJsonData.features = geoJsonData.features.map(feature => {
         const properties = {...feature.properties, ...(filteredDataMap[feature.properties.GEOCODE] ?? {})};
         return {...feature, properties};
     });
     
+    console.log("geoJsonData 2 [loadIndicator]", geoJsonData);
+
     return geoJsonData;
 }
 
@@ -1255,10 +1318,61 @@ async function loadIndicator(indicatorID, measureID, geoType, time) {
 const loadData = async (indicator) => {
 
     console.log("* loadData");
+
+    let data_url = data_repo + data_branch + `/indicators/data/${indicator.IndicatorID}.json`;
+    let indicator_data;
+
+    // wait for data and time periods to load
+
+    await Promise.all([
+
+        aq.loadJSON(data_url, {autoType: false})
+            .then(async (d) => {
+
+                indicator_data = await d;
+
+                // console.log("timeTable [loadTime]");
+                // timeTable.print()
+
+            }),
+
+        loadTime()
+
+    ])
+
+    data = indicator_data
+        // join the additional time period info
+        .join(timeTable, "TimePeriodID")
+        .select(aq.not("TimePeriodID", "TimeType", "start_period", "end_period"))
+        .reify()
     
-    const response = await fetch(data_repo + data_branch + `/indicators/data/${indicator.IndicatorID}.json`)
-    const data = await response.json()
-    return data;
+    // const response = await fetch(data_repo + data_branch + `/indicators/data/${indicator.IndicatorID}.json`)
+    // const data = await response.json()
+
+    console.log("data.objects() [loadData]", data.objects());
+
+    return data.objects();
+
+}
+
+/* 
+ * Load time period metadata
+ */
+const loadTime = async () => {
+
+    console.log("* loadTime");
+
+    const timeUrl = `${data_repo}${data_branch}/indicators/metadata/TimePeriods.json`;
+
+    await aq.loadJSON(timeUrl, {autoType: false})
+        .then(async (data) => {
+
+            timeTable = await data;
+
+            // console.log("timeTable [loadTime]");
+            // timeTable.print()
+
+    });
 }
 
 /*
@@ -1268,10 +1382,9 @@ const renderMap = ( data, metadata ) => {
 
     console.log("* renderMap");
     
-    let mapGeoType = data[0].GeoType;
-        metadata.AvailableGeographyTypes.filter(
-            gt => gt.GeoType === mapGeoType
-        )[0].GeoTypeDescription;
+    let mapGeoType = data[0].GeoType
+
+    console.log("mapGeoType [renderMap]", mapGeoType);
 
     let topoFile = '';
 
@@ -1280,6 +1393,8 @@ const renderMap = ( data, metadata ) => {
         topoFile = 'NTA_2010.topo.json';
     } else if (mapGeoType === "NTA2020") {
         topoFile = 'NTA_2020.topo.json';
+    } else if (mapGeoType === "NYHarbor") {
+        topoFile = 'ny_harbor.topo.json';
     } else if (mapGeoType === "CD") {
         topoFile = 'CD.topo.json';
     } else if (mapGeoType === "CDTA2020") {
@@ -1296,9 +1411,12 @@ const renderMap = ( data, metadata ) => {
         topoFile = 'NYCKids_2017.topo.json';
     } else if (mapGeoType === "NYCKIDS2019") {
         topoFile = 'NYCKids_2019.topo.json';
+    } else if (mapGeoType === "NYCKIDS2021") {
+        topoFile = 'NYCKids_2021.topo.json';
     } else if (mapGeoType === "Borough") {
         topoFile = 'borough.topo.json';
     }
+
     return {url: `${data_repo}${data_branch}/geography/${topoFile}`}
 }
 
