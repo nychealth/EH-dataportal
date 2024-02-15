@@ -706,7 +706,6 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 
-
 .greenfill {
     border-top: 5px solid $info;
     padding: 5px;
@@ -1181,4 +1180,13 @@ th.tablehead {
     color: gray;
     font-weight: normal;
     font-style: italic;
+}
+
+.pullquote {
+    font-family: Baskerville, "Baskerville Old Face", "Goudy Old Style", Garamond, "Times New Roman", serif;
+    font-weight: medium;
+    border-left: 8px solid #00923E50;
+    padding: 5px 25px;
+    margin: 25px 0px;
+    // background-color: #e5f4eb50;
 }
