@@ -26,7 +26,7 @@ In 2007, the New York City Department of Health and Mental Hygiene (Health Depar
 * Help inform PlaNYC, the City’s sustainability plan
 * Track changes in air quality over time
 * Estimate exposures for health research
-* Inform the public about local topics, such as&nbsp;[recent air quality improvements](./../../data-stories/breatheeasy/), [car-free zones](./../../data-stories/aqts/), [changes in the sources of air pollution](./../../data-stories/aq-cooking/), [unique air quality studies conducted in New York City](./../../data-stories/aqsnapshots/), [efforts to reduce health impacts](./../../data-stories/hia/) and [differences in air quality and related health impacts across NYC neighborhoods](./../../data-stories/aq2/). NYCCAS also <a target="_blank" rel="noopener" href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/zappa/">developed a tool (ZAPPA)</a> that can help people understand how policy changes can change local emissions.
+* Inform the public about local topics, such as&nbsp;<a target="_blank" rel="noopener" href="./../../data-stories/breatheeasy/">recent air quality improvements</a>, [car-free zones](./../../data-stories/aqts/), [changes in the sources of air pollution](./../../data-stories/aq-cooking/), [unique air quality studies conducted in New York City](./../../data-stories/aqsnapshots/), [efforts to reduce health impacts](./../../data-stories/hia/) and [differences in air quality and related health impacts across NYC neighborhoods](./../../data-stories/aq2/). NYCCAS also <a target="_blank" rel="noopener" href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/zappa/">developed a tool (ZAPPA)</a> that can help people understand how policy changes can change local emissions.
 
 This report:
 
@@ -48,7 +48,7 @@ This report:
 
 **Air quality improved significantly after local regulations required building owners to convert to cleaner heating oils by 2015.** These heating oils were a major source of SO<sub>2</sub> in New York City. In 2022, only eight of our 90 sites detected any SO<sub>2</sub>, and the levels at those sites were similar to SO<sub>2</sub> levels measured on Whiteface Mountain in the Adirondack Mountains, demonstrating the success of the clean heating oil requirements.
 
-**Ozone (O<sub>3</sub>) levels were higher in 2022 than any previous year of NYCCAS monitoring.** Ozone is produced when there are NOx and volatile organic carbon emissions in the presence of sunlight and heat, which is why we see higher levels in the summer. Summer 2022 was one of the hottest and sunniest in recorded history, likely causing higher O<sub>3</sub>.&nbsp;
+**Ozone (O<sub>3</sub>) levels were higher in 2022 than any previous year of NYCCAS monitoring.** Ozone is produced when there are NOx and volatile organic carbon emissions in the presence of sunlight and heat, which is why we see higher levels in the summer. Summer 2022 was one of the hottest and driest in recorded history, likely causing higher O<sub>3</sub>.&nbsp;
 
 There has not been a consistent trend in O<sub>3</sub> levels over the history of NYCCAS monitoring, but we may expect O<sub>3</sub> levels to trend higher in the future with further increases in average temperatures due to climate change.
 
