@@ -12,7 +12,7 @@ keywords:
   - usability
   - redesign
   - user research
-seo_title: Redesigned EH Data Portal
+seo_title: Redesigned EH Data Portal | Data story | Environment & Health Data Portal
 seo_description: "We recently redesigned our site to make it easier for you to find important data and information on how the environment affects health."
 ---
 
@@ -30,9 +30,9 @@ The navigation bar at the top always tells you where you are and provides quick 
 
 Our site has always aimed to show how environments affect health.&nbsp; Our updates focus not only on improving access to data, but also making it easier to explore connections between different datasets, topics and other site content:&nbsp;
 
-* [Key Topics]({{< baseurl >}}key-topics/) bring together in one display related datasets, custom data interactives, data stories, and neighborhood reports for special areas of environmental health. You can explore resources across the site for : [Air Quality]({{< baseurl >}}key-topics/airquality/); [Climate]({{< baseurl >}}key-topics/climatehealth/); [Housing]({{< baseurl >}}key-topics/housing/); [Inequality and Health Inequities]({{< baseurl >}}key-topics/social/); [Active Design, Public Space, and Transportation]({{< baseurl >}}key-topics/transportation/); [Environmental Health Outcomes]({{< baseurl >}}key-topics/healthoutcomes/); [Child Health]({{< baseurl >}}key-topics/childhealth/); [Pests and Pesticides]({{< baseurl >}}key-topics/pests/); and [Food and Drink]({{< baseurl >}}key-topics/foodanddrink/).&nbsp;
+- [Key Topics]({{< baseurl >}}key-topics/) bring together in one display related datasets, custom data interactives, data stories, and neighborhood reports for special areas of environmental health. You can explore resources across the site for : [Air Quality]({{< baseurl >}}key-topics/airquality/); [Climate]({{< baseurl >}}key-topics/climatehealth/); [Housing]({{< baseurl >}}key-topics/housing/); [Inequality and Health Inequities]({{< baseurl >}}key-topics/social/); [Active Design, Public Space, and Transportation]({{< baseurl >}}key-topics/transportation/); [Environmental Health Outcomes]({{< baseurl >}}key-topics/healthoutcomes/); [Child Health]({{< baseurl >}}key-topics/childhealth/); [Pests and Pesticides]({{< baseurl >}}key-topics/pests/); and [Food and Drink]({{< baseurl >}}key-topics/foodanddrink/).&nbsp;
 
-- Keywords link you to other pages on the similar topics.&nbsp;
+* Keywords link you to other pages on the similar topics.&nbsp;
 
 ![](keywords-screenshot.png)
 
