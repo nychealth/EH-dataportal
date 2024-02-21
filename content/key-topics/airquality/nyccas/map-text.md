@@ -8,7 +8,7 @@ BC: >-
     - Across the 14-year period, higher levels were consistently seen near
     warehouses within industrial areas (reflecting increased truck traffic
     density) and in areas with higher nearby commercial cooking
-    grills/charbroilers. 
+    grills and charbroilers. 
 
     - In 2022, seasonal average BC concentrations across NYCCAS monitoring sites
     ranged from 0.21 to 1.8 micrograms per cubic meter.
@@ -41,7 +41,7 @@ PM: >-
     year.
 
     - Recently, higher levels of PM<sub>2.5</sub> have been seen at sites with
-    nearby commercial cooking grills/charbroilers and traffic emissions. This is
+    nearby commercial cooking grills and charbroilers and traffic emissions. This is
     largely due to buildings using cleaner fuels for heating and therefore
     emitting less PM<sub>2.5</sub> than when NYCCAS began monitoring.
 
