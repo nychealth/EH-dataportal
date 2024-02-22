@@ -241,7 +241,9 @@
     {{- $dataTablesButtonsPrint := resources.Get "node_modules/datatables.net-buttons/js/buttons.print.min.js" }}
     {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" }}
     
-    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" | resources.Fingerprint "sha512" }}
+    {{- $dataTablesButtonsDt := resources.Get "node_modules/datatables.net-buttons-dt/js/buttons.dataTables.min.js" }}
+
+    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup $dataTablesButtonsDt | resources.Concat "js/dataTableBundle.js" | resources.Fingerprint "sha512" }}
 
     <script src="{{ $dataTablesBundleJS.RelPermalink }}" integrity="{{ $dataTablesBundleJS.Data.Integrity }}"></script>
 
