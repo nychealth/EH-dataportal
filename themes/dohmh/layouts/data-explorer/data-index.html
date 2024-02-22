@@ -39,6 +39,8 @@
                     
                 </table>
 
+                <button class="btn btn-sm btn-outline-primary my-2" onclick="tableToCSV()"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download table</button>
+
                 <hr class="my-2">
                 <p><i class="fas fa-exclamation-circle mr-1"></i><em>Can't find what you're looking for?</em> Try these other Health Department resources:
                 <ul>
@@ -451,9 +453,7 @@
                 if ((str === null) || (str === ''))
                     return false;
                 else
-                    // str.replace('<li>', ', ') REPACE LI WITH COMMAS???
                     str = str.toString();
-
             
                 // Regular expression to identify HTML tags in
                 // the input string. Replacing the identified
