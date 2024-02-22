@@ -11,8 +11,13 @@ function init() {
     console.log("* init");
 
     addLayerButtons();
+
     drawStoryCardDropdown();
+
     drawStoryCard("getting-started");
+    $("#btn-getting-started").addClass("active");
+    $("#btn-getting-started").attr('aria-selected', true);
+
     setupMap();
     addListeners();
     // createLegend();
@@ -202,38 +207,6 @@ function setupMap() {
     // NTA overlay
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    // not everything is NTA, so this might not be desireable
-
-    // const url = window.BaseURL + "geojson/neighborhoods.geojson";
-
-    // fetch(url).then(response => {
-
-    //     if (!response.ok) {
-    //         return null;
-    //     }
-    //     return response.json();
-
-    // }).then(data => {
-
-    //     const neighborhoodsLayer = L.geoJSON(
-    //         data,
-    //         {
-    //             name: "Neighborhood",
-    //             style: { color: '#C5C5C5', fillOpacity: 0, weight: 1 },
-    //             displayProperties: {
-    //                 displayPropertyArgs: [{
-    //                     "id": "NTAName",
-    //                     "displayName": ""
-    //                 }]
-    //             },
-    //             _custom_id: '__neighborhood',
-    //             sortOrder: 1,
-    //         });
-
-    //         layerGroup.addLayer(neighborhoodsLayer);
-
-    // });
-
     // add the markers to the story
     // const stories = config.stories;
 
@@ -331,7 +304,7 @@ function drawStoryCardDropdown() {
         // construct story button with title
         
         const storyButton = `
-            <button id="btn-${story.id}" class="dropdown-item" type="button" data-story-id=${story.id}>
+            <button id="btn-${story.id}" class="dropdown-item story-dropdown-item" type="button" data-story-id=${story.id}>
                 ${story.title}
             </button>
         `;
@@ -359,9 +332,23 @@ function drawStoryCardDropdown() {
 
 const handleStoryClick = (e) => {
 
+    console.log("** handleStoryClick");
+
+    // get story IDn then pass to card drawing function
+
     const id = e.target.dataset.storyId;
     
     drawStoryCard(id)
+
+    // remove active class from every list element
+
+    $('.story-dropdown-item').removeClass("active");
+    $('.story-dropdown-item').attr('aria-selected', false);
+
+    // set this element as active & selected
+
+    $(e.target).addClass("active");
+    $(e.target).attr('aria-selected', true);
 
 }
 
@@ -1686,7 +1673,9 @@ const loadData = async (indicatorID) => {
 
     console.log("* loadData");
 
-    let data_url = data_repo + data_branch + `/indicators/data/${IndicatorID}.json`;
+    // console.log("indicatorID [loadData]", indicatorID);
+
+    let data_url = data_repo + data_branch + `/indicators/data/${indicatorID}.json`;
     let indicator_data;
 
     // wait for data and time periods to load
@@ -1698,8 +1687,8 @@ const loadData = async (indicatorID) => {
 
                 indicator_data = await d;
 
-                // console.log("timeTable [loadTime]");
-                // timeTable.print()
+                console.log("indicator_data [loadData]");
+                indicator_data.print()
 
             }),
 
@@ -1708,14 +1697,12 @@ const loadData = async (indicatorID) => {
     ])
 
     data = indicator_data
+
         // join the additional time period info
         .join(timeTable, "TimePeriodID")
         .select(aq.not("TimePeriodID", "TimeType", "start_period", "end_period"))
         .reify()
     
-    // const response = await fetch(data_repo + data_branch + `/indicators/data/${indicator.IndicatorID}.json`)
-    // const data = await response.json()
-
     // console.log("data.objects() [loadData]", data.objects());
 
     return data.objects();
@@ -1738,8 +1725,8 @@ const loadTime = async () => {
 
             timeTable = await data;
 
-            // console.log("timeTable [loadTime]");
-            // timeTable.print()
+            console.log("timeTable [loadTime]");
+            timeTable.print()
 
     });
 }
@@ -1755,11 +1742,12 @@ const renderMap = ( data, metadata ) => {
     
     let mapGeoType = data[0].GeoType
 
-    // console.log("mapGeoType [renderMap]", mapGeoType);
+    console.log("mapGeoType [renderMap]", mapGeoType);
 
     let topoFile = '';
 
     // set geo file based on geo type
+
     if (mapGeoType === "NTA2010") {
         topoFile = 'NTA_2010.topo.json';
     } else if (mapGeoType === "NTA2020") {
@@ -1841,13 +1829,17 @@ function addListeners() {
     
     // this is where we'd add behavior to update the main card with each story's card content.
 
-    const storyCards = document.querySelectorAll('.story-card-button')
+    const storyButtons = document.querySelectorAll('.story-dropdown-item')
 
-    storyCards.forEach(s => {
+    storyButtons.forEach(s => {
+
         s.addEventListener('click', async () => {
+
             mapElement.scrollIntoView({ behavior: "smooth" });
-            await updateMapStateForStory(s.value);
+            await updateMapStateForStory(s.dataset.storyId);
+
         });
+
     });
 
 
