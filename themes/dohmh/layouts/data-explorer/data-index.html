@@ -273,11 +273,6 @@
             
             function initializeDataTables() {
                 let table = new DataTable('#indicators', {
-                    layout: {
-                        topStart: {
-                            buttons: ['csvHtml5']
-                        }
-                    },
                     // options
                     scrollY: 600,
                     scrollX: true,
@@ -453,8 +448,9 @@
                 if ((str === null) || (str === ''))
                     return false;
                 else
-                    str = str.toString();
-            
+                    // append comma to </li> tags not followed by a <\ul> tag, so that it'll be a comma separated list when tags are removed
+                    str = str.toString().replace(/(<\/li>)/ig, '$1, ').replace(/(<\/li>, <\/ul>)/ig, '<\/li><\/ul>');
+
                 // Regular expression to identify HTML tags in
                 // the input string. Replacing the identified
                 // HTML tag with a null string.
