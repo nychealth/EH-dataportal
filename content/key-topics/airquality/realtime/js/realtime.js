@@ -1,11 +1,13 @@
 /* // ---- REALTIME AQ ---- //
-If a monitor is in the datafeed, it needs an entry in monitor_locations.csv. loc_col needs to equal SiteName in the datafeed.
+
+Variable rtaqData is set in realtime.html template, determining whether this is local or live.
+
+If a monitor is in the feed, it needs an entry in monitor_locations.csv; loc_col needs to equal SiteName in the datafeed.
 
 This app excludes DEC_Avg from conventional functionality: 
 - monitors_group_noDEC sets the map bounds without the DEC Average monitor - which is given an abitrary off-coast lat/long
 - if (x != 'DEC_Avg') changes what happens to the map zoom on button click - just zooming to the initial extent if somebody selects the DEC_Avg option.
 
-Because of CORS restrictions to localhost1313, test by copying the contents of the azure feed to data/nyccas_realtime_DEC.csv, and replace the locations both in the initial ingestion (below) and in spec.json.
 */
 
 // initialize variables (other variables are initialized closer to their prime use)
@@ -18,9 +20,7 @@ var floorDate;
 var maxTime;
 var maxTimeMinusDay;
 
-
-
-
+ 
 // ---- INITIAL: ingest data feed ---- // 
 aq.loadCSV(rtaqData).then(data => {
 
@@ -39,8 +39,6 @@ aq.loadCSV(rtaqData).then(data => {
     maxTime = Date.parse(maxTime)
     maxTimeMinusDay = maxTime - 86400000
 
-
-    
     // console.log("fullTable:", fullTable);
     getStationsFromData();
 
