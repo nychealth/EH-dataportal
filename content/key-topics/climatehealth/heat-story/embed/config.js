@@ -504,7 +504,13 @@ config = {
         {
             "id": "getting-started",
             "title": "Getting Started",
-            "content": "<span style=\"text-align: center;\">This story map can be used to visualize the results of NYC and northeastern NJ's 2021 urban heat island mapping campaign combined with personal experience stories about extreme heat, as well as historical and demographic information that <strong><a href=\"unequal.html\">show how heat connects to social inequities and health disparities</a></strong>.</span><p style=\"text-align: center;\">To see different data visualizations, first select layers (see top right on the map) and then adjust your options from the 'CONTROLS' panel.</p><p style=\"text-align: center;\">Do you live within the study area (Northern Manhattan, South Bronx, Jersey City, Newark, and Elizabeth) and would like to tell your story about extreme heat here?<br><strong><a href=\"submit.html\">Please submit your story here for a chance to win a $50 gift card.</a></strong></p>"
+            "content": "<span style=\"text-align: center;\">This story map can be used to visualize the results of NYC and northeastern NJ's 2021 urban heat island mapping campaign combined with personal experience stories about extreme heat, as well as historical and demographic information that <strong><a href=\"unequal.html\">show how heat connects to social inequities and health disparities</a></strong>.</span><p style=\"text-align: center;\">To see different data visualizations, first select layers (see top right on the map) and then adjust your options from the 'CONTROLS' panel.</p><p style=\"text-align: center;\">Do you live within the study area (Northern Manhattan, South Bronx, Jersey City, Newark, and Elizabeth) and would like to tell your story about extreme heat here?<br><strong><a href=\"submit.html\">Please submit your story here for a chance to win a $50 gift card.</a></strong></p>",
+            "mapState": {
+                "lat": 40.715554,
+                "lng": -74.0026642,
+                "zoom": 11,
+                "layers": [ ]
+            }
         },
         {
             "id": "heat-traffic-pollution",
