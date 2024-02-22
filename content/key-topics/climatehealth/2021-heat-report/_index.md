@@ -15,7 +15,7 @@ keywords:
   - summer
   - disparities
   - mortality
-seo_title: 2021 annual report on heat mortality in NYC | Environment & Health Data Portal.
+seo_title: 2021 heat mortality annual report in NYC | Environment & Health Data Portal.
 seo_description: Data and findings on the impact of heat in NYC.
 description: Data and findings on the impact of heat in NYC.
 layout: report
