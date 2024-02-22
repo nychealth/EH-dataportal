@@ -1,4 +1,31 @@
+// ======================================================================= //
+// setting up
+// ======================================================================= //
+
+// ----------------------------------------------------------------------- //
+// define init function
+// ----------------------------------------------------------------------- //
+
+function init() {
+
+    console.log("* init");
+
+    addLayerButtons();
+    drawStoryCardDropdown();
+    drawStoryCard("getting-started");
+    setupMap();
+    addListeners();
+    // createLegend();
+    loadMetadata().catch(console.log);
+}
+
+
+// ----------------------------------------------------------------------- //
+// initial map state
+// ----------------------------------------------------------------------- //
+
 var map = L.map('map').setView([40.715554, -74.0026642], 11); // [Lat, Long], Zoom
+
 var lastMapState = {
     lat: null,
     lng: null,
@@ -6,24 +33,86 @@ var lastMapState = {
     layers: [ ]
 };
 
+
+// ----------------------------------------------------------------------- //
+// create global vars
+// ----------------------------------------------------------------------- //
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // set the popup content separately to handle intersecting layers
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 var popup = null;
 var popupContent = "";
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// get (pretty) geoTypes available for this year
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 var layerGroup = L.layerGroup();
 var storyMarkerLayerGroup = L.layerGroup();
+
 var layerMouseOver = null;
 var featureMouseOver = null;
+
 var legendControl = null;
 var legendPropertiesByLayer = {};
+
 var layersExclusive = new Set();
+
 var indicators = [];
 var mapElement = document.getElementById("wholeMap")
+
 let timeTable;
 
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // add this field to the layer options to keep a custom id
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// we'll use the custom ID to keep track of our custom layers by their ID from the config
+
 const CUSTOM_ID_FIELD = '_custom_id';
 
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// functioin to prettify geo types
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+const prettifyGeoType = (GeoType) => {
+    
+    switch (GeoType) {
+        
+        case 'NYCKIDS2017':
+        return 'NYCKIDS';
+        
+        case 'NYCKIDS2019':
+        return 'NYCKIDS';
+        
+        case 'NYCKIDS2021':
+        return 'NYCKIDS';
+        
+        case 'CDTA2020':
+        return 'CDTA';
+        
+        case 'NTA2010':
+        return 'NTA';
+        
+        case 'NTA2020':
+        return 'NTA';
+        
+        default:
+        return GeoType;
+        
+    }
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // array of (pretty) geotypes in georank order
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 const geoTypes = [
     "Citywide",
     "Borough",
@@ -35,6 +124,15 @@ const geoTypes = [
     "CDTA",
     "NTA"
 ]
+
+
+// ----------------------------------------------------------------------- //
+// create topojson layer type
+// ----------------------------------------------------------------------- //
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// extend geojson
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 L.TopoJSON = L.GeoJSON.extend({
     addData: function (data) {
@@ -53,34 +151,45 @@ L.TopoJSON = L.GeoJSON.extend({
     }
 });
 
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// layer function
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 L.topoJson = function (data, options) {
     return new L.TopoJSON(data, options);
 };
 
-function init() {
 
-    console.log("* init");
-
-    addLayerButtons();
-    drawAccordion();
-    setupMap();
-    addListeners();
-    // createLegend();
-    loadMetadata().catch(console.log);
-}
+// ----------------------------------------------------------------------- //
+// function to get config by layer
+// ----------------------------------------------------------------------- //
 
 function getLayerConfigById(layerId) {
+
+    // console.log("** getLayerConfigById");
+
     const layersFromConfig = config.layers;
-    return layersFromConfig.find((layer) => layer.property?.id == layerId);
+    const layerMatch = layersFromConfig.find((layer) => layer.property?.id == layerId)
+
+    // console.log("layerMatch [getLayerConfigById]", layerMatch);
+
+    return layerMatch;
+
 }
 
-/*
- * Setup the map with the base map and the neighborhoods
- */
+
+// ----------------------------------------------------------------------- //
+// Setup the map with the base map and the neighborhoods
+// ----------------------------------------------------------------------- //
 
 function setupMap() {
 
     console.log("* setupMap");
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // map tiles
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     L.tileLayer(
         'https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=dwIJ8hO2KsTMegUfEpYE',{
@@ -88,60 +197,79 @@ function setupMap() {
     }).addTo(map);
     
     layerGroup.addTo(map);
-    
-    const url = window.BaseURL + "geojson/neighborhoods.geojson";
 
-    fetch(url).then(response => {
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // NTA overlay
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-        if (!response.ok) {
-            return null;
-        }
-        return response.json();
+    // not everything is NTA, so this might not be desireable
 
-    }).then(data => {
+    // const url = window.BaseURL + "geojson/neighborhoods.geojson";
 
-        const neighborhoodsLayer = L.geoJSON(
-            data,
-            {
-                name: "Neighborhood",
-                style: { color: '#C5C5C5', fillOpacity: 0, weight: 1 },
-                displayProperties: {
-                    displayPropertyArgs: [{
-                        "id": "NTAName",
-                        "displayName": "Neightborhood"
-                    }]
-                },
-                _custom_id: '__neighborhood',
-                sortOrder: 1,
-            });
+    // fetch(url).then(response => {
 
-            layerGroup.addLayer(neighborhoodsLayer);
+    //     if (!response.ok) {
+    //         return null;
+    //     }
+    //     return response.json();
 
-        });
+    // }).then(data => {
 
-        // add the markers to the story
-        const stories = config.stories;
+    //     const neighborhoodsLayer = L.geoJSON(
+    //         data,
+    //         {
+    //             name: "Neighborhood",
+    //             style: { color: '#C5C5C5', fillOpacity: 0, weight: 1 },
+    //             displayProperties: {
+    //                 displayPropertyArgs: [{
+    //                     "id": "NTAName",
+    //                     "displayName": ""
+    //                 }]
+    //             },
+    //             _custom_id: '__neighborhood',
+    //             sortOrder: 1,
+    //         });
 
-        for (let i = 0; i < stories.length; i++) {
+    //         layerGroup.addLayer(neighborhoodsLayer);
 
-            const story = stories[i];
+    // });
 
-            if (!story.marker) {
-                continue;
-            }
+    // add the markers to the story
+    // const stories = config.stories;
 
-            const marker = L.marker([story.marker.lat, story.marker.lng]);
+    // for (let i = 0; i < stories.length; i++) {
 
-            storyMarkerLayerGroup.addLayer(marker);
+    //     const story = stories[i];
 
-        }
+    //     if (!story.marker) {
+    //         continue;
+    //     }
 
-        storyMarkerLayerGroup.addTo(map);
+    //     const marker = L.marker([story.marker.lat, story.marker.lng]);
 
-    }
+    //     storyMarkerLayerGroup.addLayer(marker);
+
+    // }
+
+    // storyMarkerLayerGroup.addTo(map);
+
+}
+
+
+// ----------------------------------------------------------------------- //
+// create layer buttons
+// ----------------------------------------------------------------------- //
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// get the elements to append
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 var buttonHolderBase = document.getElementById('buttonHolderBase')
 var buttonHolderAdditional = document.getElementById('buttonHolderAdditional')
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// define function to create buttons
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 function addLayerButtons() {
 
@@ -173,46 +301,93 @@ function addLayerButtons() {
     };
 }
 
-/*
- * Draw the layer buttons and accordions
- */
-function drawAccordion() {
 
-    console.log("* drawAccordion");
+// ======================================================================= //
+// functions to display content
+// ======================================================================= //
+
+// ----------------------------------------------------------------------- //
+// create story dropdown and card
+// ----------------------------------------------------------------------- //
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// create dropdown for story buttons
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+function drawStoryCardDropdown() {
+
+    console.log("* drawStoryCardDropdown");
+
+    const storyTitleDropdown = document.getElementById('storyTitleDropdown');
     
-    const holderAccordion = document.getElementById('story-accordion')
     const stories = config.stories;
-    // console.log(config.stories)
+
+    // loop through stories
 
     for (let i = 0; i < stories.length; i++) {
 
         const story = stories[i];
-        const storyCard = `
-            <div class="card">
-                <a class="card-header collapse collapsed font-weight-bold accordion-button" id="${story.id}"
-                    data-toggle="collapse" href="#panel-acc-button-${i}" role="tab"
-                    aria-expanded="false" aria-controls="panel-acc-button-${i}">
-                    <span class="title" role="heading" aria-level="3">${story.title}</span>
-                </a>
-                <div class="collapse" id="panel-acc-button-${i}" role="tabpanel"
-                    aria-labelledby="acc-button-01">
-                    <div class="card-body">
-                        <p>${story.content}</p>
-                    </div>
-                </div>
-            </div>`;
-            holderAccordion.innerHTML += storyCard;
+
+        // construct story button with title
+        
+        const storyButton = `
+            <button id="btn-${story.id}" class="dropdown-item" type="button" data-story-id=${story.id}>
+                ${story.title}
+            </button>
+        `;
+
+        // add titles to dropdown
+
+        storyTitleDropdown.innerHTML += storyButton;
+
     }
 
-    const storyCards = document.getElementById('story-cards')
+    const storyButtons = document.querySelectorAll('#storyTitleDropdown');
 
-    for (let i = 0; i < stories.length; i++) {
+    // add event listeners for story button clicks
 
-        const story = stories[i];
-        // we can put an image in the story definition
-        const storyCard = `
-            <div class="col-4 hide story-card" id="story-card-${i}">
-                <div class="card content-card" style="width: 28rem;">
+    storyButtons.forEach(btn => {
+        btn.addEventListener('click', handleStoryClick);
+    })
+
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// get story ID from click event
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+const handleStoryClick = (e) => {
+
+    const id = e.target.dataset.storyId;
+    
+    drawStoryCard(id)
+
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// show story content
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+function drawStoryCard(id) {
+
+    console.log("* drawStoryCard");
+
+    console.log("story ID", id);
+
+    // get story content by ID
+    
+    const story = config.stories.filter(s => s.id == id)[0];
+
+    console.log("story", story);
+
+
+    // we can put an image in the story definition
+
+    const storyCard = `
+        <div class="story-card" id="story-card-${id}">
+            <div class="card content-card">
                 <div class="card-content">
                     <div class="story-card-button-container">
                         <button class="story-card-button btn-sm btn-outline-secondary" value=${story.id}>Show On Map</button>
@@ -220,27 +395,40 @@ function drawAccordion() {
                     <div class="card-body story-card-content">
                         <h5 class="card-title">${story.title}</h5>
                         <blockquote class="blockquote mb-0">
-                        <p class="card-text">${story.content}</p>
-                        <footer class="blockquote-footer">Person Name <cite title="Source Title">
-                    </blockquote>
-                        <footer class="card-footer text-muted"> Washington Heights, Manhattan </div>
+                            <p class="card-text">${story.content}</p>
+                        </blockquote>
                     </div>
-                    </div>
+                </div>
             </div>
-        `;
-        storyCards.innerHTML += storyCard;
+        </div>
+    `;
 
-    }
+    // replace storyCardHolder inner HTML with story content
+
+    const storyCardHolder = document.getElementById('story-card-general-holder')
+
+    storyCardHolder.innerHTML = storyCard;
+
 }
 
+
+// ----------------------------------------------------------------------- //
+// create redlining layer
+// ----------------------------------------------------------------------- //
 /*
  * The redlined layer comes from a series of JS files. See the red lined HOLC map for details
  * This function pulls those files and creates a custom layer. It is a categorical layer, so
  * colors are based on category, not a continuous line.
  */
+
+
 async function createRedlinedLayer({ id, name, urls, args, displayProperties }) {
 
     console.log("* createRedlinedLayer");
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // get data
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     
     const data = {}
 
@@ -270,9 +458,14 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
         }
     }
 
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // style map
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    
     const onStyle = (feature) => {
 
-        console.log("** onStyle [createRedlinedLayer]");
+        // console.log("** onStyle [createRedlinedLayer]");
     
         const fillColor = args?.colorMap != null
             ? args.colorMap[feature.properties[args.colorFeatureProperty]]
@@ -288,12 +481,21 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
             ...colors,
         };
     }
+
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // create geojson layer
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    
     const layer = L.geoJSON(
         Object.values(data),
         {
             style: onStyle,
             onEachFeature: function(feature, layer) {
                 layer.on('mouseover', function(event) {
+
+                    // console.log("mouseover [createRedlinedLayer]");
+
                     layerMouseOver = layer;
                     featureMouseOver = feature;
                     layerMouseOver[layer.options[CUSTOM_ID_FIELD]] = true;
@@ -311,9 +513,14 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
             name,
         });
 
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // create legend
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    
     const legendFunc = () => {
 
-        console.log("** legendFunc [createRedlinedLayer]");
+        // console.log("** legendFunc [createRedlinedLayer]");
     
         if (!args?.colorMap) {
             return '';
@@ -358,14 +565,16 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
     return layer;
 }
 
-/*
- * Create a layer based on the measures data from DoH
- */
+
+// ----------------------------------------------------------------------- //
+// Create a layer based on the measures data from DoH
+// ----------------------------------------------------------------------- //
+
 async function createMeasuresLayer({ id, name, measureInfo, args, displayProperties }) {
 
     console.log("* createMeasuresLayer");
     
-    console.log("measureInfo [createMeasuresLayer]", measureInfo);
+    // console.log("measureInfo [createMeasuresLayer]", measureInfo);
 
     const { indicatorID, measureID, geoType, time } = measureInfo;
     const data = await loadIndicator(indicatorID, measureID, geoType, time);
@@ -375,7 +584,12 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
 
     const colorChroma = chroma.scale([args?.minColor ?? '#fff', args?.maxColor ?? '#000'])
         .domain([Math.min(...values), Math.max(...values)]);
+    
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // style map
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    
     const onStyle = (feature) => {
 
         const fillColor = colorChroma(feature.properties.Value);
@@ -397,6 +611,11 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
             : [{ "id": "Value", }]
     };
 
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // create geojson layer
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    
     const layer = L.geoJSON(
         data,
         {
@@ -404,6 +623,9 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
             onEachFeature: function(feature, layer) {
                 //layer.bindPopup("Hello popup", {});
                 layer.on('mouseover', function(event) {
+
+                    console.log("mouseover [createMeasuresLayer]");
+
                     layerMouseOver = layer;
                     featureMouseOver = feature;
                     layerMouseOver[layer.options[CUSTOM_ID_FIELD]] = true;
@@ -421,9 +643,14 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
             name,
         });
 
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // create legend
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    
     const legendFunc = () => {
 
-        console.log("** legendFunc [createMeasuresLayer]");
+        // console.log("** legendFunc [createMeasuresLayer]");
     
         if (!args?.fillColor && !args?.color && !args?.minColor && !args?.maxColor) {
             return '';
@@ -435,7 +662,8 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
             ? `background: ${args.legendColor};`
             : '';
 
-        const borderColor = args?.color ? `border-width: 0px; border-color: ${args?.color}; border-style: solid;` : '';
+        // const borderColor = args?.color ? `border-width: 0px; border-color: ${args?.color}; border-style: solid;` : '';
+        const borderColor = '';
 
         const backgroundCss = (args.colorFeatureProperty != null
                 && args?.minColor != null && args?.maxColor != null)
@@ -472,9 +700,10 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
 }
 
 
-/*
- * Create a geojson layer using a url with proper geojson data
- */
+// ----------------------------------------------------------------------- //
+// Create a geojson layer using a url with proper geojson data
+// ----------------------------------------------------------------------- //
+
 async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
 
     console.log("* createGeoJsonLayer");
@@ -505,9 +734,14 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
 
     }
 
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // style map
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    
     const onStyle = (feature) => {
         
-        console.log("** onStyle [createGeoJsonLayer]");
+        // console.log("** onStyle [createGeoJsonLayer]");
         
         const fillColor = args?.colorFeatureProperty != null
             ? colorChroma(feature.properties[args.colorFeatureProperty])
@@ -522,12 +756,21 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
 
         return { ...colors };
     }
+
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // create geojson layer
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    
     const layer = L.geoJSON(
         data,
         {
             style: onStyle,
             onEachFeature: function(feature, layer) {
                 layer.on('mouseover', function(event) {
+
+                    console.log("mouseover [createGeoJsonLayer]");
+
                     layerMouseOver = layer;
                     featureMouseOver = feature;
                     layerMouseOver[layer.options[CUSTOM_ID_FIELD]] = true;
@@ -545,9 +788,14 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
             name,
         });
 
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // create legend
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    
     const legendFunc = () => {
 
-        console.log("** legendFunc [createGeoJsonLayer]");
+        // console.log("** legendFunc [createGeoJsonLayer]");
     
         if (!args?.fillColor && !args?.color && !args?.minColor && !args?.maxColor) {
             return '';
@@ -559,7 +807,8 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
             ? `background: ${args.legendColor};`
             : '';
 
-        const borderColor = args?.color ? `border-width: 0px; border-color: ${args?.color}; border-style: solid;` : '';
+        // const borderColor = args?.color ? `border-width: 0px; border-color: ${args?.color}; border-style: solid;` : '';
+        const borderColor = ''
 
         const backgroundCss = (args.colorFeatureProperty != null
                 && args?.minColor != null && args?.maxColor != null)
@@ -595,10 +844,12 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
 }
 
 
-/*
- * Create a layer from geotiff file using a 3rd party library.
- * Geotiff files are images. This is good for heatmap and continuous data.
- */
+// ----------------------------------------------------------------------- //
+// Create a layer from geotiff file using a 3rd party library.
+// ----------------------------------------------------------------------- //
+
+//  Geotiff files are images. This is good for heatmap and continuous data.
+
 async function createGeotiffLayer({ id, url, args, name }) {
 
     console.log("* createGeotiffLayer");
@@ -613,11 +864,22 @@ async function createGeotiffLayer({ id, url, args, name }) {
 
     data = await parseGeoraster(arrayBuffer);
 
+    // console.log("mins [createGeotiffLayer]", data.mins[0]);
+    // console.log("maxs [createGeotiffLayer]", data.maxs[0]);
+
     const colorStart = args?.colorStart || '#0f0';
     const colorStop = args?.colorStop || '#f00';
     const colorChroma = chroma.scale([colorStart, colorStop]).domain([data.mins[0], data.maxs[0]]);
-
+    
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // create legend
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    
     const legendFunc = () => {
+
+        // console.log("mins [legendFunc (createGeotiffLayer)]", data.mins[0]);
+        // console.log("maxs [legendFunc (createGeotiffLayer)]", data.maxs[0]);
 
         const colorStart = args?.colorStart || '#0f0';
         const colorStop = args?.colorStop || '#f00';
@@ -635,6 +897,11 @@ async function createGeotiffLayer({ id, url, args, name }) {
 
     }
 
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // create geo raster layer
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    
     const layer = new GeoRasterLayer({
 
           georaster: data,
@@ -653,14 +920,19 @@ async function createGeotiffLayer({ id, url, args, name }) {
 }
 
 
-let layers = {};
+// ----------------------------------------------------------------------- //
+// Create layers by calling layer funs
+// ----------------------------------------------------------------------- //
 /*
  * Create a layer using the layer configs.
  * The layers are created by type using all their arguments.
  */
+
+let layers = {};
+
 async function createLayer(layerId) {
 
-    console.log("* createLayer");
+    console.log("* createLayer:", layerId);
     
     const layerConfig = config.layers.find(l => l.property.id == layerId);
     if (layerConfig == null) {
@@ -697,12 +969,18 @@ async function createLayer(layerId) {
     return layer;
 }
 
-/*
- * Get a layer from the layer cache. If it does not exist, create it.
- */
+
+// ----------------------------------------------------------------------- //
+// layer manipulation functions
+// ----------------------------------------------------------------------- //
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// Get a layer from the layer cache. If it does not exist, create it.
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 async function getOrCreateLayer(layerId) {
 
-    console.log("* getOrCreateLayer");
+    console.log("* getOrCreateLayer:", layerId);
     
     let layer;
 
@@ -715,13 +993,18 @@ async function getOrCreateLayer(layerId) {
     return layer;
 }
 
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// Add a layer to the map
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 /*
- * Add a layer to the map. If it does not exist in the cache, create it.
+ * If it does not exist in the cache, create it.
  * If the layer is already on the map, ignore it.
  */
+
 async function addLayerToMap(layerId) {
 
-    console.log("* addLayerToMap");
+    console.log("* addLayerToMap:", layerId);
     
     const layer = await getOrCreateLayer(layerId);
 
@@ -758,12 +1041,14 @@ async function addLayerToMap(layerId) {
     }
 }
 
-/*
- * Remove layer from the map. Update the layer button
- */
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// Remove layer from the map & Update the layer button
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 function removeLayerFromMap(layerId) {
 
-    console.log("* removeLayerFromMap");
+    console.log("* removeLayerFromMap:", layerId);
     
     if (layerId in layers) {
 
@@ -781,13 +1066,19 @@ function removeLayerFromMap(layerId) {
 
 }
 
-let layersVisible = {};
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// toggle layers
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 /*
  * If a layer is on the map, take it off. If it is not on the map, add it.
  */
+
+let layersVisible = {};
+
 async function toggleLayerOnMap(layerId, button) {
 
-    console.log("* toggleLayerOnMap");
+    console.log("* toggleLayerOnMap:", layerId);
     
     // FIXME disable while waiting
     try {
@@ -804,10 +1095,14 @@ async function toggleLayerOnMap(layerId, button) {
     }
 }
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// track map state
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 /*
  * Keep track of the current map state.
  * Stores the lat, lng, zoom and visible layers
  */
+
 function saveCurrentMapState() {
 
     console.log("* saveCurrentMapState");
@@ -823,11 +1118,16 @@ function saveCurrentMapState() {
     lastMapState.layers = layersVisible.filter(x => x);
 }
 
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// update map state
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 /**
  * Update the map state to show a story.
  * @param {*} storyId 
  * @returns 
  */
+
 async function updateMapStateForStory(storyId) {
 
     console.log("* updateMapStateForStory");
@@ -863,292 +1163,18 @@ async function updateMapStateForStory(storyId) {
     });
 
     // clear out the layer markers
-    map.removeLayer(storyMarkerLayerGroup);
+    // map.removeLayer(storyMarkerLayerGroup);
     $("#refreshButton").css("visibility", "visible");
 }
 
-/*
- * Format the value based on a type.
- * Types can be
- *    float       - float with two decimal places
- *    percentage  - two decimal places with a percentage sign
- *    currency    - only USD, includes $xxx.xx
- */
-function formatValue(value, type) {
 
-    // console.log("* formatValue");
-    
-    // FIXME handle NaN
-    if (type == null || value == null) return value;
-
-    switch(type) {
-    case 'float':
-        return `${(value * 100).toFixed(2)}`;
-    case 'percentage':
-        return `${(value * 100).toFixed(2)}%`;
-    case 'currency':
-        // code block
-        return value.toLocaleString('en-US', {
-            style: 'currency',
-            currency: 'USD',
-        });
-    default:
-        return value;
-    }
-}
-
-/*
- * Create the HTML to display in the tooltip.
- * The html is based on displayProperties and displayPropertyArgs
- * from the config that then get put into the layer.
- */
-function featureInfoToHtmlForPopup(feature, layer) {
-
-    // console.log("* featureInfoToHtmlForPopup");
-    
-    const displayProperties = layer.options.displayProperties;
-
-    if (displayProperties == null || displayProperties?.displayPropertyArgs == null) {
-        return '';
-    }
-
-    // convert our list of arguments in the format of { id, value } to { id: { id, value } }
-    const displayPropertyArgs = displayProperties?.displayPropertyArgs?.reduce((m, x) => {
-        m[x.id] = x;
-        return m;
-    }, {});
-
-    const missingDisplay = displayProperties.missingDisplay || '';
-
-    // create a map of unique keys to values
-    const featureMap = Object.entries(feature.properties)
-        .filter(x => x[0] in displayPropertyArgs)
-        .map(x => [displayPropertyArgs[x[0]]?.displayName ?? x[0], formatValue(x[1], displayPropertyArgs[x[0]]?.format)])
-        .reduce((m, [k, v]) => {m[k] = v ?? m[k]; return m;}, {});
-
-    // then create that into an html table
-    const featureTable = Object.entries(featureMap)
-        .map(x => `<tr><td>${x[0]}</td><td>${x[1] ?? missingDisplay}</td></tr>`);
-
-    if (!featureTable.length || !featureTable.length) {
-        return missingDisplay != null
-            ? `<h3>${layer.options.name}</h3>${missingDisplay}`
-            : '';
-    }
-
-    return `<h3>${layer.options.name}</h3><table class="popup-table">${featureTable.join('')}</table>`;
-}
-
-/*
- * Format the popup (tooltip)
- * Iterate over each feature in the popup and turn it into html
- */
-function formatPopup(features) {
-
-    // console.log("* formatPopup");
-    
-    const updates = features
-        .sort((a, b) => (a?.layer?.options?.sortOrder ?? 999) - (b?.layer?.options?.sortOrder ?? 999))
-        .map(({ feature, layer }) => featureInfoToHtmlForPopup(feature, layer))
-        .filter(x => x != "")
-        .join("<br />");
-
-    return updates == "" ? null : updates;
-}
-
-/*
- * Update the popup (or tooltip)
- * This function looks at the visible layers in the layer group,
- * grabs the data for each layer, foramts the data, then displays it.
- *
- * The point-in-polygon algorithm is used to find overlapping layers.
- * This functionality is not native to leaflet, so we used a third party library.
- */
-function updatePopup({ lat, lng }) {
-
-    // console.log("* updatePopup");
-    
-    const visibleLayers = Object.keys(layerGroup._layers).length;
-
-    // if there are no layers, then we don't need a popup
-    if (Object.keys(layerGroup._layers).length == 0 || featureMouseOver == null) {
-        if (popup != null) {
-            popup.removeFrom(map);
-            popup = null;
-        }
-        popupContent = null;
-        return;
-    }
-
-    var features = [{ feature: featureMouseOver, layer: layerMouseOver }];
-
-    if (visibleLayers > 1) {
-        // check intersections
-        layerGroup.eachLayer(_layer => {
-            // only check intersections if we are going to display something
-            if (_layer.options.displayProperties == null) {
-                return;
-            }
-
-            // this is our main layer. we know we overlap here because we are in this function, so ignore it.
-            if (layerMouseOver.options[CUSTOM_ID_FIELD] == _layer.options._custom_id) {
-                return;
-            }
-
-            let intersection = [];
-            try {
-                intersection = leafletPip.pointInLayer({ lat, lng }, _layer);
-            } catch(err) {
-                console.log(err);
-            }
-
-            // keep track of the intersections
-            if (intersection.length > 0) {
-                features.push({feature: intersection[0].feature, layer: _layer});
-            }
-
-        });
-    }
-
-    const content = formatPopup(features);
-
-    // new popup
-    if (popup == null && content != null) {
-
-        popup = L.popup({autoPan: false}).setLatLng({ lat, lng }).setContent(content).openOn(map);
-        popupContent = content;
-        // change the content of an existing popup
-
-    } else if ( popup != null && content != null) {
-
-        popup.setLatLng({ lat, lng });
-
-        if (content != popupContent) {
-            popupContent = content;
-            popup.setContent(content);
-        }
-
-    // popup should be removed
-    } else if (content == null && popup != null) {
-
-        popup.removeFrom(map);
-        popup = null;
-
-    }
-}
-
-/*
- * Create a custom legend control for leaflet.
- * This example can be found in the docs.
- */
-L.Control.Legend = L.Control.extend({
-    options: {
-        collapsed: false,
-        position: 'bottomright',
-        label: null,
-    },
-    initialize: function (layerGroup, options) {
-        L.Util.setOptions(this, options);
-    },
-    onAdd: function (map) {
-        console.log("onAdd [L.Control.Legend]");
-        const htmls = [];
-        layerGroup.eachLayer(layer => {
-            const layerEventHash = this.options?.properties?.layerEventHash;
-            // the layer may exist on the map if we remove it (async code, in the process of removing)
-            // check the last layer hash to see if this layer shouldn't be in the legend
-            if (layerEventHash?.type == 'layerremove' && layerEventHash?.id == layer.options[CUSTOM_ID_FIELD]) {
-                return;
-            }
-
-            if (layer.options?.legendFunc == null) {
-                return;
-            }
-            const html = layer.options.legendFunc();
-            if (html === '') {
-                return;
-            }
-            htmls.push(html);
-        });
-
-        if (!htmls.length) {
-            return L.DomUtil.create('div', '');
-        }
-
-        var div = L.DomUtil.create('div', 'info legend');
-        L.DomUtil.addClass(div, 'leaflet-control-layers-expanded');
-        const innerHtml = '<fieldset><h6></h6><table>' + htmls.join('<br />') + '</table></fieldset>';
-        console.log("innerHtml [onAdd]", innerHtml);
-        div.innerHTML = innerHtml;
-        return div;
-    }
-});
-
-L.control.legend = function (overlays, options) {
-    return new L.Control.Legend(overlays, options);
-};
-
-// layer events happen waaay too often.
-// keep track of the last one to skip if a duplicate.
-// the duplicate happens because each layer has multiple little sub layers
-let lastLayerEventHash = {id: null, type: null};
-
-/*
- * Create the legend. The legend comes from the legendDescription
- * and gets added below the map in a separate div
- */
-function createLegend(layerEvent) {
-
-    console.log("* createLegend");
-
-    console.log("layerEvent", layerEvent);
-    
-    const layerEventHash = {
-        id: layerEvent?.layer?.options[CUSTOM_ID_FIELD],
-        type: layerEvent?.type
-    };
-
-    // compare to prior event to see if we need to continue making the legend
-    if (layerEventHash.id == lastLayerEventHash.id && layerEventHash.type == lastLayerEventHash.type) {
-        return;
-    }
-
-    let legendDescriptions = [];
-
-    layerGroup.eachLayer(_layer => {
-
-        const config = getLayerConfigById(_layer.options[CUSTOM_ID_FIELD]);
-
-        if (config == null || config?.property?.args?.legendDescription == null) {
-            return;
-        }
-        // layers get added and removed for all their sub-layers, which means we may still see the layer in this
-        // function while removing it. this line makes sure that layer does not make a legend
-
-        if (layerEvent.type == 'layerremove' && _layer.options[CUSTOM_ID_FIELD] == layerEvent?.layer?.options[CUSTOM_ID_FIELD]) {
-            return;
-        }
-
-        legendDescriptions.push(config?.property?.args?.legendDescription);
-    });
-
-    // combine descriptions and add to the div
-    const legendDescriptionsDiv = document.getElementById("legendDescriptions");
-    legendDescriptionsDiv.innerHTML = legendDescriptions.join('<br />');
-
-    if (legendControl != null) {
-        map.removeControl(legendControl);
-    }
-    legendControl = L.control
-        .legend(layerGroup, { label: 'Legend', properties: { layerEventHash } });
-    legendControl.addTo(map);
-
-    lastLayerEventHash = layerEventHash;
-}
-
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// reset map state
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 /*
  * Reset the map config based on the last known map state.
  */
+
 async function resetMapState() {
 
     console.log("* resetMapState");
@@ -1178,77 +1204,411 @@ async function resetMapState() {
         layers: [ ]
     };
 
-    map.addLayer(storyMarkerLayerGroup);
-    $("#refreshButton").css("visibility", "hidden");
+    // map.addLayer(storyMarkerLayerGroup);
+    // $("#refreshButton").css("visibility", "hidden");
 }
 
-/*
- * Add listeners to all our various buttons.
- * The listeners add / remove layers.
- * This function also adds the layeradd hooks for creating the legend.
- *
- */
-function addListeners() {
 
-    console.log("* addListeners");
+// ----------------------------------------------------------------------- //
+// popup functions
+// ----------------------------------------------------------------------- //
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// format data value
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+/*
+ * Format the value based on a type.
+ * Types can be
+ *    float       - float with two decimal places
+ *    percentage  - two decimal places with a percentage sign
+ *    currency    - only USD, includes $xxx.xx
+ */
+
+function formatValue(value, type) {
+
+    // console.log("* formatValue");
     
-    const layerButtons = document.querySelectorAll('.layer-button')
-    layerButtons.forEach(button => {
-        button.addEventListener('click', async () => {
-            await toggleLayerOnMap(button.id, button)
+    // FIXME handle NaN
+    if (type == null || value == null) return value;
+
+    switch(type) {
+    case 'float':
+        return `${(value * 100).toFixed(2)}`;
+    case 'percentage':
+        return `${(value * 100).toFixed(2)}%`;
+    case 'currency':
+        // code block
+        return value.toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD',
         });
-    });
-
-    const accordions = document.querySelectorAll('.accordion-button')
-    accordions.forEach(a => {
-        a.addEventListener('click', async () => {
-            if (a.classList.contains("collapsed")) {
-                await updateMapStateForStory(a.id);
-            } else {
-                await resetMapState();
-            }
-        });
-    });
-
-    // this is where we'd add behavior to update the main card with each story's card content.
-    const storyCards = document.querySelectorAll('.story-card-button')
-    storyCards.forEach(s => {
-        s.addEventListener('click', async () => {
-            mapElement.scrollIntoView({ behavior: "smooth" });
-            await updateMapStateForStory(s.value);
-        });
-    });
-
-    map.addEventListener('mousemove', (event) => {
-        updatePopup(event.latlng);
-    });
-
-    document.querySelector('#refreshButton').addEventListener('click', async () => {
-        await resetMapState();
-    });
-
-    // FIXME this gets called a lot. can we have it called less? or at least do less
-    map.on('layeradd', createLegend);
-    map.on('layerremove', createLegend);
+    default:
+        return value;
+    }
 }
 
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// create popup HTML
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 /*
- * Load all the indicators from indicator.json
- * Save these for later use.
+ * The html is based on displayProperties and displayPropertyArgs
+ * from the config that then get put into the layer.
  */
+
+//  NEED A WAY TO CREATE THE POPUP THAT IS AWARE OF ALL LAYERS, WITHOUT FIRING AN EVENT ON LITERALLY EVERY MOUSEMOVE
+
+function featureInfoToHtmlForPopup(feature, layer) {
+
+    console.log("* featureInfoToHtmlForPopup");
+
+    console.log("feature [featureInfoToHtmlForPopup]", feature);
+    console.log("layer [featureInfoToHtmlForPopup]", layer);
+    
+    const displayProperties = layer.options.displayProperties;
+
+    if (displayProperties == null || displayProperties?.displayPropertyArgs == null) {
+        return '';
+    }
+
+    // convert our list of arguments in the format of { id, value } to { id: { id, value } }
+    const displayPropertyArgs = displayProperties?.displayPropertyArgs?.reduce((m, x) => {
+        m[x.id] = x;
+        return m;
+    }, {});
+
+    const missingDisplay = displayProperties.missingDisplay || '';
+
+    // create a map of unique keys to values
+    const featureMap = Object.entries(feature.properties)
+        .filter(x => x[0] in displayPropertyArgs)
+        .map(x => [displayPropertyArgs[x[0]]?.displayName ?? x[0], formatValue(x[1], displayPropertyArgs[x[0]]?.format)])
+        .reduce((m, [k, v]) => {m[k] = v ?? m[k]; return m;}, {});
+
+    // console.log("featureMap [featureInfoToHtmlForPopup]", featureMap);
+
+    // EITGHER NEED TO EDIT THE GEOJSON ETC. SOURCES TO CONTAIN STANDARDIZED FIELD NAMES, OR USE CONDITIONALS
+
+    const geoName = feature.properties.GEONAME;
+
+    const geoTypePretty = prettifyGeoType(feature.properties.GeoType);
+
+    console.log("geoTypePretty", geoTypePretty);
+
+    // then create that into an html table
+    const featureTable = Object.entries(featureMap)
+        .map(x => `<tr><td>${x[0]}</td><td style="text-align: right;">${x[1] ?? missingDisplay}</td></tr>`);
+
+    console.log("featureTable [featureInfoToHtmlForPopup]", featureTable);
+
+    // debugger;
+
+    if (!featureTable.length || !featureTable.length) {
+        return missingDisplay != null
+            ? `<h5>${layer.options.name}</h5>${missingDisplay}`
+            : '';
+    }
+
+    // return `<h5>${layer.options.name}</h5><table class="table popup-table table-bordered" style="width:100%">${featureTable.join('')}</table>`;
+
+    let popup_html = 
+        `<table class="table popup-table table-bordered" style="width:100%">` + 
+        `<tr><th>${layer.options.name}</th></tr>` + 
+        `<tr><td>Neighborhood (${geoTypePretty})</td><td>${geoName}</td></tr>` +
+        `${featureTable.join('')}</table>`
+
+    return popup_html;
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// Format the popup (tooltip)
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// Iterate over each feature in the popup and turn it into html
+
+function formatPopup(features) {
+
+    // console.log("* formatPopup");
+    
+    const updates = features
+        .sort((a, b) => (a?.layer?.options?.sortOrder ?? 999) - (b?.layer?.options?.sortOrder ?? 999))
+        .map(({ feature, layer }) => featureInfoToHtmlForPopup(feature, layer))
+        .filter(x => x != "")
+        .join("<br />");
+
+    return updates == "" ? null : updates;
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// update the popup (tooltip)
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+/*
+ * This function looks at the visible layers in the layer group,
+ * grabs the data for each layer, foramts the data, then displays it.
+ *
+ * The point-in-polygon algorithm is used to find overlapping layers.
+ * This functionality is not native to leaflet, so we used a third party library.
+ */
+
+function updatePopup({ lat, lng }) {
+
+    console.log("* updatePopup");
+    
+    const visibleLayers = Object.keys(layerGroup._layers);
+
+    // console.log("visibleLayers [updatePopup]", visibleLayers);
+
+    // if there are no layers, then we don't need a popup
+    if (Object.keys(layerGroup._layers).length == 0 || featureMouseOver == null) {
+
+        console.log("no layers [updatePopup]");
+
+        if (popup != null) {
+            popup.removeFrom(map);
+            popup = null;
+        }
+
+        popupContent = null;
+        return;
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // handle multiple layers
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    let features = [{ feature: featureMouseOver, layer: layerMouseOver }];
+
+    if (visibleLayers.length > 1) {
+
+        // check intersections
+
+        layerGroup.eachLayer(_layer => {
+
+            // only check intersections if we are going to display something
+            if (_layer.options.displayProperties == null) {
+                return;
+            }
+
+            // this is our main layer. we know we overlap here because we are in this function, so ignore it.
+
+            console.log("CUSTOM_ID_FIELD [updatePopup]", layerMouseOver.options[CUSTOM_ID_FIELD]);
+            console.log("_custom_id [updatePopup]", _layer.options._custom_id);
+
+            if (layerMouseOver.options[CUSTOM_ID_FIELD] == _layer.options._custom_id) {
+                return;
+            }
+
+            let intersection = [];
+
+            try {
+                intersection = leafletPip.pointInLayer({ lat, lng }, _layer);
+            } catch(err) {
+                console.log(err);
+            }
+
+            // keep track of the intersections
+            if (intersection.length > 0) {
+                features.push({feature: intersection[0].feature, layer: _layer});
+            }
+
+        });
+    }
+
+    const content = formatPopup(features);
+
+    console.log("popup [updatePopup]", popup);
+    console.log("content [updatePopup]", content);
+
+    if (popup == null && content != null) {
+
+        // new popup
+
+        console.log("> new popup");
+
+        popup = L.popup({autoPan: false}).setLatLng({ lat, lng }).setContent(content).openOn(map);
+        popupContent = content;
+
+    } else if ( popup != null && content != null) {
+
+        // change the content of an existing popup
+
+        console.log("> change popup");
+
+        popup.setLatLng({ lat, lng });
+
+        if (content != popupContent) {
+            popupContent = content;
+            popup.setContent(content);
+        }
+
+    } else if (popup != null && content == null) {
+
+        // popup should be removed
+
+        console.log("> remove popup");
+
+        popup.removeFrom(map);
+        popup = null;
+
+    }
+}
+
+
+// ----------------------------------------------------------------------- //
+// legend functions
+// ----------------------------------------------------------------------- //
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// extend legend
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+/*
+ * Create a custom legend control for leaflet.
+ * This example can be found in the docs.
+ */
+
+L.Control.Legend = L.Control.extend({
+    options: {
+        collapsed: false,
+        position: 'bottomright',
+        label: null,
+    },
+    initialize: function (layerGroup, options) {
+        L.Util.setOptions(this, options);
+    },
+    onAdd: function (map) {
+        // console.log("onAdd [L.Control.Legend]");
+        const htmls = [];
+        layerGroup.eachLayer(layer => {
+            const layerEventHash = this.options?.properties?.layerEventHash;
+            // the layer may exist on the map if we remove it (async code, in the process of removing)
+            // check the last layer hash to see if this layer shouldn't be in the legend
+            if (layerEventHash?.type == 'layerremove' && layerEventHash?.id == layer.options[CUSTOM_ID_FIELD]) {
+                return;
+            }
+
+            if (layer.options?.legendFunc == null) {
+                return;
+            }
+            const html = layer.options.legendFunc();
+            if (html === '') {
+                return;
+            }
+            htmls.push(html);
+        });
+
+        if (!htmls.length) {
+            return L.DomUtil.create('div', '');
+        }
+
+        var div = L.DomUtil.create('div', 'info legend');
+        L.DomUtil.addClass(div, 'leaflet-control-layers-expanded');
+        const innerHtml = '<fieldset><h6></h6><table>' + htmls.join('<br />') + '</table></fieldset>';
+        // console.log("innerHtml [onAdd]", innerHtml);
+        div.innerHTML = innerHtml;
+        return div;
+    }
+});
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// legend layer function
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+L.control.legend = function (overlays, options) {
+    return new L.Control.Legend(overlays, options);
+};
+
+// layer events happen waaay too often.
+// keep track of the last one to skip if a duplicate.
+// the duplicate happens because each layer has multiple little sub layers
+let lastLayerEventHash = {id: null, type: null};
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// legend adding function
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+/*
+ * Create the legend. The legend comes from the legendDescription
+ * and gets added below the map in a separate div
+ */
+
+function createLegend(layerEvent) {
+
+    // console.log("* createLegend");
+
+    // console.log("layerEvent", layerEvent);
+    
+    const layerEventHash = {
+        id: layerEvent?.layer?.options[CUSTOM_ID_FIELD],
+        type: layerEvent?.type
+    };
+
+    // compare to prior event to see if we need to continue making the legend
+
+    if (layerEventHash.id == lastLayerEventHash.id && layerEventHash.type == lastLayerEventHash.type) {
+        return;
+    }
+
+    let legendDescriptions = [];
+
+    layerGroup.eachLayer(_layer => {
+
+        const config = getLayerConfigById(_layer.options[CUSTOM_ID_FIELD]);
+
+        if (config == null || config?.property?.args?.legendDescription == null) {
+            return;
+        }
+
+        // layers get added and removed for all their sub-layers, which means we may still see the layer in this
+        // function while removing it. this line makes sure that layer does not make a legend
+
+        if (layerEvent.type == 'layerremove' && _layer.options[CUSTOM_ID_FIELD] == layerEvent?.layer?.options[CUSTOM_ID_FIELD]) {
+            return;
+        }
+
+        legendDescriptions.push(config?.property?.args?.legendDescription);
+    });
+
+    // combine descriptions and add to the div
+
+    const legendDescriptionsDiv = document.getElementById("legendDescriptions");
+    legendDescriptionsDiv.innerHTML = legendDescriptions.join('<br />');
+
+    if (legendControl != null) {
+        map.removeControl(legendControl);
+    }
+    legendControl = L.control.legend(layerGroup, { label: 'Legend', properties: { layerEventHash } });
+    legendControl.addTo(map);
+
+    lastLayerEventHash = layerEventHash;
+}
+
+
+// ======================================================================= //
+// loading EHDP data
+// ======================================================================= //
+
+// ----------------------------------------------------------------------- //
+// fetch metadata
+// ----------------------------------------------------------------------- //
+
 async function loadMetadata() {
 
     console.log("* loadMetadata");
     
     const response = await fetch(data_repo + data_branch + '/indicators/metadata/metadata.json');
     indicators = await response.json();
-    console.log("metadata.json: ", indicators);
+    // console.log("metadata.json: ", indicators);
 
 }
 
-/*
- * Load a particular indicator given the indicatorID, measureID, geoType and time
- */
+
+// ----------------------------------------------------------------------- //
+// load and format indicator data
+// ----------------------------------------------------------------------- //
+
 async function loadIndicator(indicatorID, measureID, geoType, time) {
 
     console.log("* loadIndicator");
@@ -1262,6 +1622,7 @@ async function loadIndicator(indicatorID, measureID, geoType, time) {
     const geoType = 'UHF42';
     const time = 'Summer 2021';
     */
+
     const indicator = indicators.filter(x => x.IndicatorID == indicatorID)[0];
 
     if (indicator == null) {
@@ -1273,14 +1634,16 @@ async function loadIndicator(indicatorID, measureID, geoType, time) {
     if (measure == null) {
         console.log(`ERROR: No data found with indicatorID ${indicatorID}, measureID ${measureID}. Missing measure.`);
     }
-    
-    const data = await loadData(indicator);
 
-    console.log("data [loadIndicator]", data);
+    // actually load the data
+    
+    const data = await loadData(indicatorID);
+
+    // console.log("data [loadIndicator]", data);
 
     const filteredData = data.filter(d => d.MeasureID == measure.MeasureID && d.GeoType == geoType && d.TimePeriod == time);
 
-    console.log("filteredData [loadIndicator]", filteredData);
+    // console.log("filteredData [loadIndicator]", filteredData);
 
     if (filteredData == null) {
         console.log(`ERROR: No data found with indicator ${indicatorID}, measureID ${indicatorID}, GeoType ${geoType}, time ${time}`);
@@ -1288,19 +1651,20 @@ async function loadIndicator(indicatorID, measureID, geoType, time) {
     
     // the below is taken from other parts of the code.
     // this grabs all the data and joins the geodata to the features to create geojson
+
     const filteredDataMap = filteredData.reduce((x, y) => {x[y.GeoID] = y; return x}, {})
 
     const renderedMap = renderMap(filteredData, measure);
-    console.log("renderedMap [loadIndicator]", renderedMap);
+    // console.log("renderedMap [loadIndicator]", renderedMap);
 
     const responseTopo = await fetch(renderedMap.url);
-    console.log("responseTopo [loadIndicator]", responseTopo);
+    // console.log("responseTopo [loadIndicator]", responseTopo);
 
     const topoData = await responseTopo.json();
-    console.log("topoData [loadIndicator]", topoData);
+    // console.log("topoData [loadIndicator]", topoData);
 
     const geoJsonData = topojson.feature(topoData, topoData.objects.collection)
-    console.log("geoJsonData 1 [loadIndicator]", geoJsonData);
+    // console.log("geoJsonData 1 [loadIndicator]", geoJsonData);
     
     geoJsonData.features = geoJsonData.features.map(feature => {
         const properties = {...feature.properties, ...(filteredDataMap[feature.properties.GEOCODE] ?? {})};
@@ -1310,16 +1674,19 @@ async function loadIndicator(indicatorID, measureID, geoType, time) {
     console.log("geoJsonData 2 [loadIndicator]", geoJsonData);
 
     return geoJsonData;
+
 }
 
-/*
- * Load one indicator by ID
- */
-const loadData = async (indicator) => {
+
+// ----------------------------------------------------------------------- //
+// fetch indicator data
+// ----------------------------------------------------------------------- //
+
+const loadData = async (indicatorID) => {
 
     console.log("* loadData");
 
-    let data_url = data_repo + data_branch + `/indicators/data/${indicator.IndicatorID}.json`;
+    let data_url = data_repo + data_branch + `/indicators/data/${IndicatorID}.json`;
     let indicator_data;
 
     // wait for data and time periods to load
@@ -1349,15 +1716,17 @@ const loadData = async (indicator) => {
     // const response = await fetch(data_repo + data_branch + `/indicators/data/${indicator.IndicatorID}.json`)
     // const data = await response.json()
 
-    console.log("data.objects() [loadData]", data.objects());
+    // console.log("data.objects() [loadData]", data.objects());
 
     return data.objects();
 
 }
 
-/* 
- * Load time period metadata
- */
+
+// ----------------------------------------------------------------------- //
+// fetch time period metadata
+// ----------------------------------------------------------------------- //
+
 const loadTime = async () => {
 
     console.log("* loadTime");
@@ -1375,16 +1744,18 @@ const loadTime = async () => {
     });
 }
 
-/*
- * function to load geographic data
- */
+
+// ----------------------------------------------------------------------- //
+// fetch geo info
+// ----------------------------------------------------------------------- //
+
 const renderMap = ( data, metadata ) => {
 
     console.log("* renderMap");
     
     let mapGeoType = data[0].GeoType
 
-    console.log("mapGeoType [renderMap]", mapGeoType);
+    // console.log("mapGeoType [renderMap]", mapGeoType);
 
     let topoFile = '';
 
@@ -1419,5 +1790,116 @@ const renderMap = ( data, metadata ) => {
 
     return {url: `${data_repo}${data_branch}/geography/${topoFile}`}
 }
+
+
+// ======================================================================= //
+// add listeners
+// ======================================================================= //
+/*
+ * Add listeners to all our various buttons.
+ * The listeners add / remove layers.
+ * This function also adds the layeradd hooks for creating the legend.
+ */
+
+function addListeners() {
+
+    console.log("* addListeners");
+
+    // ----------------------------------------------------------------------- //
+    // layer buttons
+    // ----------------------------------------------------------------------- //
+    
+    const layerButtons = document.querySelectorAll('.layer-button')
+
+    layerButtons.forEach(button => {
+        button.addEventListener('click', async () => {
+            await toggleLayerOnMap(button.id, button)
+        });
+    });
+
+
+    // ----------------------------------------------------------------------- //
+    // story card accordions
+    // ----------------------------------------------------------------------- //
+    
+    const accordions = document.querySelectorAll('.accordion-button')
+
+    accordions.forEach(a => {
+        a.addEventListener('click', async () => {
+            if (a.classList.contains("collapsed")) {
+                await updateMapStateForStory(a.id);
+            } else {
+                await resetMapState();
+            }
+        });
+    });
+
+
+    // ----------------------------------------------------------------------- //
+    // story card buttons
+    // ----------------------------------------------------------------------- //
+    
+    // this is where we'd add behavior to update the main card with each story's card content.
+
+    const storyCards = document.querySelectorAll('.story-card-button')
+
+    storyCards.forEach(s => {
+        s.addEventListener('click', async () => {
+            mapElement.scrollIntoView({ behavior: "smooth" });
+            await updateMapStateForStory(s.value);
+        });
+    });
+
+
+    // ----------------------------------------------------------------------- //
+    // the whole map
+    // ----------------------------------------------------------------------- //
+
+    //  NEED A WAY TO CREATE THE POPUP THAT IS AWARE OF ALL LAYERS, WITHOUT FIRING AN EVENT ON LITERALLY EVERY MOUSEMOVE
+    
+    // map.addEventListener('mousemove', (event) => {
+
+    //     console.log("mousemove [addListeners]");
+
+    //     updatePopup(event.latlng);
+
+    // });
+
+    
+    // ----------------------------------------------------------------------- //
+    // when the popup is closed, reset the popup variable
+    // ----------------------------------------------------------------------- //
+
+    map.addEventListener('popupclose', (event) => {
+
+        console.log("popupclose [addListeners]");
+
+        popup = null;
+
+    });
+
+    
+    // ----------------------------------------------------------------------- //
+    // map refresh button
+    // ----------------------------------------------------------------------- //
+
+    document.querySelector('#refreshButton').addEventListener('click', async () => {
+        await resetMapState();
+    });
+
+
+    // ----------------------------------------------------------------------- //
+    // adding legends
+    // ----------------------------------------------------------------------- //
+
+    // FIXME this gets called a lot. can we have it called less? or at least do less
+    map.on('layeradd', createLegend);
+    map.on('layerremove', createLegend);
+}
+
+
+// ======================================================================= //
+// initialize page
+// ======================================================================= //
 
 init();

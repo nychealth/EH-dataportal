@@ -320,7 +320,6 @@ config = {
             }
         },
 
-        /* testing out adding HVI - not working */
 
         {
             "property": {
@@ -334,7 +333,7 @@ config = {
                     "time": "2023",
                     },
                 "args": {
-                    "colorFeatureProperty": "Black Carbon - Mean",
+                    "colorFeatureProperty": "HVI",
                     "minColor": "green",
                     "maxColor": "red",
                     "color": "black",
@@ -344,8 +343,8 @@ config = {
                     "missingDisplay": "N/A",
                     "displayPropertyArgs": [
                         {
-                            "id": "Black Carbon - Mean",
-                            "displayName": "Black Carbon - Mean"
+                            "id": "Heat vulnerability index",
+                            "displayName": "HVI"
                         }
                     ]
                 }
