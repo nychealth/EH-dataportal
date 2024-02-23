@@ -2,7 +2,7 @@
     {
         "title": "The Environment and Health Data Portal: Home page",
         "displayTitle": "The Environment and Health Data Portal: Home page",
-        "seo_title": "Explore data on how environments shape health in New York City's neighborhoods.",
+        "seo_title": "NYC Environment and Health Data Portal.",
         "content": "",
         "href": ""
     },
@@ -736,7 +736,7 @@
             2399,
             2179
         ],
-        "seo_title": "Housing data for NYC",
+        "seo_title": "Housing maintenance data for NYC | Environment and Health Data Portal",
         "content": "Buildings with maintenance issues and disrepair can harm health Across NYC lowincome neighborhoods have a higher percentage of buildings in disrepair due to past and present disinvestment and housing discrimination This housing disrepair harms residents health No family should have to choose between affordable and healthy housing All tenants are entitled to safe decent and sanitary housing which prevents disease and injury All building owners are required by law to provide essential services such as heat and hot water make timely repairs and maintain a pestfree building Housing and health Housing quality impacts health directly and indirectly Housing maintenance deficiencies are associated with Increase likelihood of pest infestations which can worsen asthmahttpwww1nycgovsitedohhealthhealthtopicsasthmapage Asthma Exposure to leadhttpwww1nycgovsitedohhealthhealthtopicsleadpoisoningpreventionpage Mold growth which may cause allergic reactions Other health problems such as mental distress To reduce health risks Owners and landlords must Provide homes and buildings free of pests and employ pest control that uses preventive measures — not just pesticides Install and maintain smoke and carbon monoxide detectors in residential units Tenants can Report housing conditions such as peeling paint water leaks pest problems and mold to property owners Inform the buildings owner if there is a child under the age of 11 living there to get window guards installed Test smoke and carbon monoxide detectors and replace batteries at least twice a year Call 311 if landlords fail to fix problems For more information visit the Housing Rules and Regulations page for NYC Owners and Tenantshttpwww1nycgovnycresourcesservice4706housingrulesandregulationsfornycownersandtenants Housing rules and regulations",
         "href": "data-explorer/housing-maintenance"
     },
@@ -768,7 +768,7 @@
             2185,
             2377
         ],
-        "seo_title": "Housing data for NYC",
+        "seo_title": "Housing safety data for NYC | Environment and Health Data Portal",
         "content": "Most people spend most of their time in their home That makes the home a crucial environment that can affect ones health both in terms of safety characteristics within the home and in terms of factors that affect housing stability Safety characteristics A homes safety characteristics might include Air conditioning which is a vital tool to protect people who are at risk of heatrelated illness and death Electric medical equipment People who rely on electric medical equipment are at risk during power outages Grab bars in bathrooms which can help older people and people with mobility impairments stay safe",
         "href": "data-explorer/housing-safety"
     },
@@ -801,7 +801,7 @@
             17,
             2336
         ],
-        "seo_title": "Housing data for NYC",
+        "seo_title": "Housing stability data for NYC | Environment and Health Data Portal",
         "content": "Most people spend most of their time in their home That makes the home a crucial environment that can affect ones health Housing stability In NYC about one out of every three homes is owned by the person living there about half the national average Owning a home is a powerful way to build intergenerational wealth but historical and contemporary disinvestment and housing discrimination has made it hard for many New Yorkers to own homes Meanwhile rising housing costs increase the rent burden for many New Yorkers Because of New York Citys housing crisis some families are at risk of being kicked out of their homes People who are threatened with eviction even before they lose their home are more likely to report poor health high blood pressure depression anxiety and psychological distress Eviction often leads to residential instability moving into poor quality housing overcrowding and homelessness all of which is associated with negative health among adults and children",
         "href": "data-explorer/housing-stability"
     },
@@ -2022,7 +2022,7 @@
             "redesign",
             "user research"
         ],
-        "seo_title": "Redesigned EH Data Portal",
+        "seo_title": "Redesigned EH Data Portal | Data story | Environment & Health Data Portal",
         "content": "The Environment and Health Data Portal looks a little bit different We recently redesigned our site to make it easier for you to find important data and information on how the environment affects healthnbspnbsp Heres what the new site has to offernbsp An updated design The whole site got a fresh design to make exploring easier for you – whether you’re on a desktop computer a phone or a tablet Its been optimized for accessibility translation and clear simple presentation of information using the NYC Core Frameworkhttpswww1nycgovassetsotihtmlnyccoreframeworkindexhtml an opensource framework based on Bootstrapnbspnbsp The navigation bar at the top always tells you where you are and provides quick access to the main sections of the site Data Stories Neighborhood Reports Key Topics or Data Explorernbspnbsp New ways of connecting information Our site has always aimed to show how environments affect healthnbsp Our updates focus not only on improving access to data but also making it easier to explore connections between different datasets topics and other site contentnbsp Key Topicskeytopics bring together in one display related datasets custom data interactives data stories and neighborhood reports for special areas of environmental health You can explore resources across the site for Air Qualitykeytopicsairquality Climatekeytopicsclimatehealth Housingkeytopicshousing Inequality and Health Inequitieskeytopicssocial Active Design Public Space and Transportationkeytopicstransportation Environmental Health Outcomeskeytopicshealthoutcomes Child Healthkeytopicschildhealth Pests and Pesticideskeytopicspests and Food and Drinkkeytopicsfoodanddrinknbsp Keywords link you to other pages on the similar topicsnbsp keywordsscreenshotpng Throughout the site youll see links to related content For example when youre browsing datasets about Air Quality youll be able to quickly jump directly to related Data Stories nbsp relatedscreenshotpng And if you cant find what youre looking for our revamped search function can help you find itnbspnbsp searchscreenshotpng Greater usabilitynbsp Our goal is for you to be able to put our data and information to work improving health throughout our city And when we do user research one of the most common things we hear is It has to be easy to use So weve built the site with this as our mantranbsp For example take a look at our revamped Data Explorerdataexplorer nbsp dataexplorerscreenshotpng On the pagenbsp We designed the visualization pages to be fast and smooth making it easier to click around and explorenbsp nbspAbout The Topic text added to the visualization page pairs information and context with the datanbsp Making choicesnbsp When youre exploring a dataset or indicator you can quicklynbsp load related indicators for the same topicnbsp Our redesigned data option menus make it easy to change the geography year or measure when youre looking at the datanbsp With a click of Change topic you can swiftly select a whole new area to explorenbsp New ways to view datanbsp We aim to highlight important stories in the data with our visualizations For examplenbsp The map is accompanied by a bar chart so you can see the variation in the data in a different waynbsp The Links view lets you click a borough to filter the scatterplotnbsp The charts are designed so you can screenshot them to add directly into a presentation grant or essaynbsp Getting more from the datanbsp Weve added automatic data download functions and a copy citation button so you can easily access the raw data for analysis and cite it in your worknbspnbsp New technologynbsp We completely overhauled the Portal’s technology to improve usability mobile compatibility and accessibility We use Hugohttpsgohugoio a static site generatornbsp Arquerohttpsuwdatagithubioarquero VegaLitehttpsvegagithubiovegalite and DataTableshttpsdatatablesnetnbspto drive frontend data processing and visualizationnbsp If you’re curious about the nuts and bolts you can find out more in our site repositoryhttpsgithubcomnychealthEHdataportal and data repositoryhttpsgithubcomnychealthEHDPdatanbspnbsp Help us developnbsp We built this site for you so please help us continue developing itnbsp Sign up for our email listhttpsdocsgooglecomformsde1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISwOM7PBwKuoN3Mgviewformembeddedtruenbsp– well send occasional requests for users to participate in user testing or codesign worknbsp Visit our Github repositories sitehttpsgithubcomnychealthEHdataportal datahttpsgithubcomnychealthEHDPdata and explore the code file an issue or suggest featuresnbsp Email us with any questions you have at 1011041001126410410197108116104461101219946103111118 – were here to helpnbspnbsp nbsp",
         "href": "data-stories/redesign"
     },
@@ -2130,8 +2130,8 @@
             "inequalities",
             "inequitites"
         ],
-        "seo_title": "How sanitation service, trash, and rats affect our lives and our health",
-        "content": "Why trash service is crucial for public health New York City’s modern history of public health starts in the 1600s with the Bureau of Sanitary Inspections and ever since sanitation has been an essential part of public health — fighting disease by keeping our city clean From A Chronology of the NYC Department of Healthhttpswww1nycgovassetsdohdownloadspdfhistorychronology1966centennialpdf How does sanitation affect health Proper sanitation is a crucial component of public health and of safe health and equitable neighborhood environments Trash can pollute our soil water and air becoming an issue of health quality of life and equity New Yorkers live work and play in our public spaces when they arent clean theyre not welcoming safe healthy places for us Trash feeds populations of pests like cockroaches and rats which can damage property degrade housing contaminate food and transmit diseases Pests can trigger asthma and other health issues These pests are unfortunately no surprise to any New Yorker but due to differences in sanitation they are more prevalent in some neighborhoods than others In areas where unhoused people seek shelter if there arent public restrooms then feces and urine which are not handled by the sanitation system become a crucial sanitation issue that affects health and quality of life In East Harlem the Health Departments Bureau of Neighborhood health has been partnering with community organizations to document the lived reality of the impact of sanitation for residents And throughout the city the Department of Sanitation DSNY and City Hall are working to address sanitation concerns in ways that benefit all New Yorkers regardless of where they live Everyone is entitled to clean streets In East Harlem street cleanliness affects people’s lives every day In East Harlem residents experience a lot of trash on streets and sidewalks Community health workers report that excess trash threatens the quality of life for those who come facetoface with it These community health workers have documented concerns about trash on the streets inadequate trash service overflowing waste bins sidewalk blockages and accessibility issues Trash on streets discourages outside play for neighborhood residents and impacts people’s mental health as they go about their everyday lives Residents see rats scurrying around trash looking for food which creates uneasy feelings and physical barriers to where they need to go No one should have to walk on sidewalks in this condition",
+        "seo_title": "How sanitation, trash, and rats affect our city.",
+        "content": "Why trash service is crucial for public health New York City’s modern history of public health starts in the 1600s with the Bureau of Sanitary Inspections and ever since sanitation has been an essential part of public health — fighting disease by keeping our city clean _From A Chronology of the NYC Department of Healthhttpswww1nycgovassetsdohdownloadspdfhistorychronology1966centennialpdf_ How does sanitation affect health Proper sanitation is a crucial component of public health and of safe health and equitable neighborhood environments Trash can pollute our soil water and air becoming an issue of health quality of life and equity New Yorkers live work and play in our public spaces when they arent clean theyre not welcoming safe healthy places for us Trash feeds populations of pests like cockroaches and rats which can damage property degrade housing contaminate food and transmit diseases Pests can trigger asthma and other health issues These pests are unfortunately no surprise to any New Yorker but due to differences in sanitation they are more prevalent in some neighborhoods than others In areas where unhoused people seek shelter if there arent public restrooms then feces and urine which are not handled by the sanitation system become a crucial sanitation issue that affects health and quality of life In East Harlem the Health Departments Bureau of Neighborhood health has been partnering with community organizations to document the lived reality of the impact of sanitation for residents And throughout the city the Department of Sanitation DSNY and City Hall are working to address sanitation concerns in ways that benefit all New Yorkers regardless of where they live Everyone is entitled to clean streets In East Harlem street cleanliness affects people’s lives every day In East Harlem residents experience a lot of trash on streets and sidewalks Community health workers report that excess trash threatens the quality of life for those who come facetoface with it These community health workers have documented concerns about trash on the streets inadequate trash service overflowing waste bins sidewalk blockages and accessibility issues Trash on streets discourages outside play for neighborhood residents and impacts people’s mental health as they go about their everyday lives Residents see rats scurrying around trash looking for food which creates uneasy feelings and physical barriers to where they need to go No one should have to walk on sidewalks in this condition",
         "href": "data-stories/sanitation"
     },
     {
@@ -2282,7 +2282,7 @@
             "health impacts",
             "health impact assessment"
         ],
-        "seo_title": "How ZAPPA helps policy makers center equity in neighborhood air quality policies",
+        "seo_title": "ZAPPA: a tool to understand air quality policies.",
         "content": "How do we know what air quality policies will have the biggest effect New York City’s air quality is generally good and has been improving over time Still air pollution threatens health two pollutants ozone and PM25 cause about 2400 deaths per year in NYC and thousands more emergency department visits and hospitalizations for asthma heart and lung problemsdataexplorerhealthimpactsofairpollutionid2122displaysummary It’s important to clean up the air to protect New Yorkers and we know how to do it reduce emissions from buildings vehicles restaurants power plants and other sources of pollutants But how can New Yorkers decide which policies to push for How can we know what changes will have the greatest benefits To help answer these questions the Health Department developed ZAPPA — the ZIP Code Air Pollution Policy Assessmenthttpstreehugappitsuncedunyserda — a free online tool that that uses emissions data and atmospheric chemistry models to predict the effects of different policy proposals to reduce emissions Planners advocates scientists and others can use ZAPPA to see how proposed policy changes would affect air pollution health outcomes and costs including at the neighborhood level Let’s try it Modelling different scenarios using ZAPPA Scenario 1 What if we eliminated electric power generation in NYC Some New Yorkers advocate closing all power plants in NYC and relying only on renewable energy sources like hydro wind or solar power What does ZAPPA tell us about the impact of such a proposal Generating electricity releases pollutants like nitrogen oxides and sulfur dioxide which help create PM25 Many of New York City’s power plants are “peaker plants” that are only activated at times of high electricity demand ZAPPA shows us that if we closed all the city’s power plants we would see a fairly small reduction in average PM25 across the city citywide PM25 would go down by 012 µgm3 This would prevent only 5 deaths per million people aged 30 and older and avoid only 9 asthma emergency department visits per million people td paddingright 15px Reductions in Value",
         "href": "data-stories/zappa"
     },
@@ -2415,7 +2415,7 @@
             "disparities",
             "mortality"
         ],
-        "seo_title": "Annual Report on heat mortality in NYC.",
+        "seo_title": "2021 heat mortality annual report in NYC | Environment & Health Data Portal.",
         "content": "Summary Heat Stress Deaths Each summer from 20102019 there were on average10 heat stress deaths those caused directly by heat in New York City NYC Lack of home air conditioning AC continues to be an important risk factor for heat stress death Among those who died from heat stress the place of death was most often an unairconditioned home Black New Yorkers are more likely to die from heat stress with death rates two times higher than among other New Yorkers This inequity is the result of past and current structural racism that creates economic educational health care housing and other systems that benefit white people but put at a disadvantage Black Indigenous and other people of color Even though the number of heat stress deaths has decreased in recent years the racial inequity persists Summary HeatExacerbated Deaths and Neighborhood Impacts From 20102018 there was an average of approximately 100 heatexacerbated deaths those caused indirectly by heat such as by aggravating an underlying illness each summer associated with extreme heat events which are defined as at least 2 consecutive days with 95°F or higher daily maximum heat index HI or any day with a maximum HI of 100°F or higher the threshold used for the Citys heat advisory An estimated 350 heatexacerbated deaths were associated on average each year with hot days overall – daily maximum temperature above 82°F – or about 2 of all naturalcause deaths over summer Heatexacerbated mortality is higher in neighborhoods that are home to a greater proportion of Black New Yorkers reflecting the impacts of structural racism at the neighborhood level Heatexacerbated mortality is also higher in communities with a greater proportion of people with household incomes below the federal poverty line Summers are growing hotter Although the number of days meeting the National Weather Service extreme heat threshold has stayed constant the number of nonextreme hot days ie days with temperature below the heat advisory threshold is increasing contributing the most to heatexacerbated deaths each summer and highlighting the need for heatmitigation outside of emergency response measures Emergency response to extreme heat must be coupled with equitable investments in structural interventions and heat mitigation measures to protect New Yorkers throughout the increasingly hot summer weather Introduction Hot weather is dangerous to health sometimes resulting in death We track heatrelated deaths in three ways Heat stress deaths are caused directly by heat and happen when heatrelated illnesses such as heat exhaustion and hyperthermia lead to death Heatexacerbated deaths happen when heat worsens existing chronic conditions such as heart disease and diabetes These deaths are caused indirectly by heat Neighborhood impacts can be tracked by looking at communitylevel differences in risk of heatrelated death and are described using the Health Department’s Heat Vulnerability Index HVI All heatrelated deaths are preventable Heat stress deaths The Health Department examined heat stress deaths occurring during the months of May through September from 20102019 Researchers reviewed death certificates and medical examiner investigation reports in cases where heat was recognized as a cause of death A more detailed description of methods and data sources can be found here Among NYC residents there were 102 heat stress deaths during the warm season from 2010 to 2019 There were an average of 10 deaths per year with a minimum of 0 deaths in 2014 the coolest year and a maximum of 33 in 2011 which had one of the hottest heat waves during the time period examined Most deaths occurred in July 73 and August 15 as shown in Figure 1 In 2020 there were 4 heat stress deaths though that number is provisional and subject to change because mortality records are not finalized Year n deaths n extreme heat days Maximum heat index reached degrees F Length of longest extreme heat event days",
         "href": "key-topics/climatehealth/2021-heat-report"
     },
@@ -2436,7 +2436,7 @@
             "disparities",
             "mortality"
         ],
-        "seo_title": "Annual Report on heat mortality in NYC.",
+        "seo_title": "2022 heat mortality annual report in NYC | Environment and Health Data Portal",
         "content": "Summary Each summer an estimated 370 New Yorkers die prematurely because of hot weather in New York City NYC These heatrelated deaths account for about 2 of all deaths over the warm season months of May September Of the 370 deaths From 20112020 there was an average of 10 heatstress deaths caused directly by heat From 20112019 there was an average of about 360 heatexacerbated deaths caused indirectly by heat aggravating an underlying illness Black New Yorkers are more likely to die from heat stress with death rates two times higher than among White New Yorkers This inequity is due to past and current structural racism that creates economic health care housing energy and other systems that benefit white people and disadvantage people of color Lack of access to home air conditioning AC is an important risk factor for heatstress death Among those who died from heat stress the place of death was most often an unairconditioned home NYC summers are getting hotter More warm season days now reach hotter temperatures 90°F and higher compared to a few decades ago Emergency response to extreme heat must be coupled with equitable investments in structural interventions and heat mitigation measures for example energy efficient home cooling that New Yorkers can afford to run and tree planting and greening to protect residents throughout the increasingly hot warm season weather Introduction Hot weather is dangerous to health sometimes resulting in death Heatrelated deaths are preventable In this second annual report on heatrelated mortality the Health Department examined data from 20112021 We track heatrelated deaths in three ways Heat stress deaths are caused directly by heat and happen when heatrelated illnesses such as heat exhaustion and hyperthermia lead to death These deaths are coded as heatrelated in death certificates and cases can be counted and investigated Heatexacerbated deaths happen when heat worsens existing chronic conditions such as heart disease and diabetes These deaths are caused indirectly by heat These deaths are caused indirectly by heat and are estimated using statistical models Neighborhood impacts are tracked by looking at communitylevel differences in risk of heatrelated death and are described using the Health Department’s Heat Vulnerability Index HVI Data for HVI inputs remain the same as last year’s report because updated data were not available This report’s findings are similar to last year’s report Heat Stress Deaths The Health Department examined heatstress deaths occurring during the warm season months of May through September from 20102020 We reviewed death certificates and medical examiner investigation reports in cases where heat was recognized as a cause of death A more detailed description of methods and data sources can be found here Among NYC residents there were 96 heatstress deaths over the 10year period There was an average of 10 deaths per year with the largest yearly numbers of deaths occurring earlier in the period as a result of severe heat waves Most deaths occurred in July 75 and August 13 followed by June 8 May 2 and September 2 As of March 2022 there were 4 heatstress deaths in 2021 though that number is provisional and subject to change because mortality records are not finalized Figure 1 Heatstress deaths and maximum heat index by year NYC residents 20112020 Notes The number of heatstress deaths for 2020 is provisional If additional deaths are certified as caused by heat stress the Department will update the number in future reports Weather data is from the National Weather Service LaGuardia airport station Heat index is a measure of air temperature and humidity Demographics The ageadjusted death rate among nonHispanic Black New Yorkers is twice as high as that of nonHispanic White New Yorkers 22 deaths per million versus 09 deaths per million from 20112020 This inequity is rooted in systemic racism1 Lack of equitable access to resources needed for wellness – for example jobs that pay a living wage affordable and healthy housing with air conditioning and health care – are causes of these differences in heatrelated mortality Death rates were higher in neighborhoods with more residents living below the federal poverty line compared with wealthier neighborhoods Ageadjusted death rates were highest in Brooklyn and the Bronx Heatstress deaths occurred among all age groups with the lowest rates among people who were 2029 and the highest among people who were 80 and older About two thirds of heat stressdeaths occurred among men Ageadjusted heatstress deaths by race and ethnicity 20112020 Deaths are grouped into these five race and ethnicity categories due to the small sample size of deaths and the availability of denominator data However these categories represent an oversimplification of the ethnically and racially diverse population found in NYC People identified as two or more races or racesethnicities not listed here are included in the other or unknown category and the HispanicLatino category includes people of any race Differences in mortality rates among racial and ethnic groups are due to longterm structural racism not biological or personal traits Structural racism — centuries of racist policies and discriminatory practices across institutions including government agencies and society — prevents communities of color from accessing vital resources such as health care and healthy housing and opportunities such as employment and education and negatively affects overall health and wellbeing See Appendix Methods and Supplemental Data for more information on numbers and percentages by race and ethnicity Neighborhood poverty level of heatstress decedents 20112020 n Avg annual ageadjusted rate per million",
         "href": "key-topics/climatehealth/2022-heat-report"
     },
@@ -2479,7 +2479,7 @@
             "disparities",
             "mortality"
         ],
-        "seo_title": "Annual Report on heat mortality in NYC.",
+        "seo_title": "2023 heat mortality annual report in NYC | Environment and Health Data Portal",
         "content": "Summary Each summer on average an estimated 350 New Yorkers die prematurely because of hot weather in New York City NYC These heatrelated deaths account for about 2 of all deaths over the warm season months of May through September Of the 350 deaths From 20122021 there were an average of 7 heatstress deaths caused directly by heat From 20162020 there were an average of about 345 heatexacerbated deaths caused indirectly by heat aggravating an underlying illness Heatexacerbated deaths have been increasing in the past decade mainly due to hotter summers overall with more “nonextreme hot days” of 82°F or up to but below the extreme heat threshold nbsp Black New Yorkers are more likely to die from heat stress with death rates two times higher than White New Yorkers This inequity is due to past and current structural racism that creates economic health care housing energy and other systems that benefit White people and disadvantage people of color nbsp Lack of access to home air conditioning AC is an important risk factor for heatstress death Among those who died from heat stress the place of death was most often an unairconditioned home NYC summers are getting hotter because of climate change Emergency response to extreme heat must be coupled with equitable investments in structural interventions and heat mitigation measures that reduce risk throughout the season For example New Yorkers will need energy efficient home cooling that they can afford to run while tree planting and greening can help reduce local temperatures while providing shade Introduction Hot weather is dangerous to health sometimes resulting in death Heatrelated deaths are preventable In this third annual report on heatrelated mortality the NYC Health Department examined data from 20122021 We track heatrelated deaths in three ways Heatstress deaths also called heat stroke deaths are caused directly by heat and happen when heatrelated illnesses such as heat exhaustion and hyperthermia lead to death These deaths are coded as heatrelated in death certificates and cases can be counted and investigated Heatexacerbated deaths happen when heat worsens existing chronic conditions such as heart disease These deaths are caused indirectly by heat and are estimated using statistical models They are also often called “excess” mortality Neighborhood impacts are tracked by looking at communitylevel differences in risk of heatrelated death and are described using the NYC Health Department’s Heat Vulnerability Index HVI HVI data inputs for income race and surface temperature were updated for this analysis Data for neighborhood air conditioning prevalence and green space remains the same as last year’s report because updated data were not available Starting this year we report estimated heatexacerbated deaths for the current and past 20 years in fiveyear rolling time windows to look at trends For heatstress deaths caused directly by heat we report counts and the annual average for the past ten years Previous years reports are available herepreviousreports​ Heat Stress Deaths The NYC Health Department examined heatstress deaths occurring during the warm season months of May through September from 20122021 We reviewed death certificates and medical examiner investigation reports in cases where heat was recognized as a cause of death A more detailed description of methods and data sources can be found in the Appendix Methods and Supplemental Data Among NYC residents there were 68 heatstress deaths over the 10year period There was an average of 7 deaths per year with the largest yearly numbers of deaths occurring earlier in the period as a result of a severe heat wave in 2013 Most deaths occurred in July 68 followed by June 13 August 12 September 4 and May 3 As of January 2023 there were 8 heatstress deaths in 2022 though that number is provisional and subject to change because mortality records are not finalizednbspnbsp Figure 1 Heatstress deaths and maximum heat index by year NYC residents 20122021 Notes The number of heatstress deaths for 2021 is provisional If additional deaths are certified as caused by heat stress the number will be updated in future reports Weather data are from the National Weather Service LaGuardia airport station Heat index is a measure of air temperature and humidity Demographics Black New Yorkers have an ageadjusted death rate is that is twice as high as that of White New Yorkers 13 deaths per million compared with 06 deaths per million from 20122021 This inequity is rooted in systemic racism 1 Lack of equitable access to resources needed for wellness – for example jobs that pay a living wage affordable and healthy housing with air conditioning and health care – are causes of these differences in heatrelated mortalitynbsp Death rates were higher in neighborhoods with more residents living below the federal poverty line compared with wealthier neighborhoodsnbsp Heatstress deaths occurred among all age groups with the lowest rates among people aged 20 and younger and the highest among people aged 60 and older nbsp About two thirds of heatstress deaths occurred among mennbsp Ageadjusted death rates were highest in Brooklyn Figure 2 Demographic characteristics of heatstress decedents 20122021functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightvar edocumentquerySelectorAlliframeforvar t in adatadatawrapperheightforvar r0relengthrifercontentWindowasourcevar iadatadatawrapperheighttpxerstyleheighti Note on race and ethnicitynbspDeaths are grouped into five race and ethnicity categories due to the small sample size of deaths and the availability of denominator data However these categories represent an oversimplification of the ethnically and racially diverse population found in NYC People identified as two or more races or races and ethnicities not listed here are included in the other or unknown category The Hispanic category includes people of any race Differences in mortality rates among racial and ethnic groups are due to longterm structural racism not biological or personal traits Structural racism — centuries of racist policies and discriminatory practices across institutions including government agencies and society — prevents communities of color from accessing vital resources such as health care and healthy housing and opportunities such as employment and education and negatively affects overall health and wellbeing See Appendix Methods and Supplemental Data for more information on numbers and percentages by race and ethnicity Health Risk Factors Among decedents with detailed medical examiner records available 90 had at least one chronic health condition Common chronic conditions included cardiovascular disease substance or alcohol use serious mental health or cognitive conditions and a history of diabetes Table 1 Medical characteristics among subset with review of health conditions in medical examiner records n59 20122021functionuse strictwindowaddEventListenermessagefunctioneifvoid 0edatadatawrapperheightvar tdocumentquerySelectorAlliframeforvar a in edatadatawrapperheightforvar r0rtlengthriftrcontentWindowesourcetrstyleheightedatadatawrapperheightapx Heat Exposure Circumstances People who died from heat stress were most often exposed to dangerous heat in homes 60 n 35 of 58 records with detailed information available about onset place Without ACnbspindoor temperatures can be much higher than outdoorshttpsjournalsametsocorgviewjournalsbams9912bamsd1602801xml especially at night and can continue for days after a heat wave 2nbsp Among New Yorkers who were exposed in homes and for whom there was information about the presence or absence of an AC none had or were using AC About a quarter n15 26 of decedents were exposed outdoors 7 n4 were exposed in parked cars and 5 n3 were exposed indoors at worksites Overall 10 n6 of deaths were workrelated Table 2 Air conditioning presence among heat stress decedents exposed to heat in homes 20122021functionuse strictwindowaddEventListenermessagefunctioneifvoid 0edatadatawrapperheightvar tdocumentquerySelectorAlliframeforvar a in edatadatawrapperheightforvar r0rtlengthriftrcontentWindowesourcetrstyleheightedatadatawrapperheightapx About a third n12 34 of people who were exposed to dangerous heat at home had an electric fan present and on indicating that using an electric fan without an AC cannot always prevent death during extreme heat for people who are at highest heat risk Previous NYC Health Department studies have found that air conditioning access differs across race and class Black New Yorkers and lowincome New Yorkers are less likely to own or use an AC during hot weather and the main reason is cost 3httpsnyccascityofnewyorkusnyccas2022report1References While more than 90 of NYC households currently have air conditioning access can be as low as 76 in neighborhoods where more people are living with limited financial resources Heat Exacerbated Deaths Deaths from chronic conditions that are not recognized as heatrelated on death certificates can be estimated using statistical models There are more of these deaths than those from heat stress They are called “excess deaths” or “heatexacerbated deaths” Unlike heatstress deaths which can be individually identified and investigated excess deaths can be estimated only as aggregate counts However estimating heatexacerbated deaths – or “mortality” – better captures the true extent of how many New Yorkers are dying of the heat In the previous two annual reports we estimated heatexacerbated mortality risk and number of deaths for a 9year period eg 20112019 for the 2022 report using weather and natural cause death data for MaySeptember in NYC Starting this year we report estimated heatexacerbated deaths for the current and historical data in fiveyear rolling time windows to characterize trends The average natural death count per year was about 18000 for May through September for the most recent 5year period 20162020 We used timeseries statistical models to compare deaths on hot days with those on cooler days We estimated heatexacerbated deaths using an indicator yesno for extreme heat event days defined by the National Weather Service’s heat advisory threshold for NYC Based on the NYC Health Department’s previous analysis of heatexacerbated mortality heat advisories are for at least 2 consecutive days with 95°F or higher daily maximum heat index HI or any day with a maximum HI of 100°F or higher a range of hot daily maximum temperatures that includes both extreme heat event days and other hot days We estimated heatexacerbated deaths for days ranging from the median maximum daily temperature of 82°F through the highest temperature during the period These models were run in 5year rolling time windows between 1971 and 2020 We included deaths occurring on the date of exposure to hot weather and over the following 3 days because previous NYC Health Department studies have shown that heatexacerbated deaths can occur up to 3 days after the initial hot weather 4 Detailed methods used to estimate risks and attributable deaths can be found in the Appendix Methods and Supplemental Data To describe the impact of climate change we examined how the number of hot days during warm months changed over the past five decades 19712020 in rolling 5year time windows We also computed the average of daily maximum temperature for each month between May and September to examine if changes in temperature varied by month nbsp Historically the estimated impacts of heat both extreme and nonextreme hot days declined substantially between 1971 and 2000 plateaued after 2000 and then started increasing in the past decade see Figure 3 From 2016 to 2020 the most recent 5year time window the estimated annual average of heatexacerbated deaths from MaySeptember for all hot days was 345 95 Confidence Interval 95CI 139 549 Heatexacerbated deaths make up approximately 2 of all naturalcause deaths in the warm months in this most recent period Heatexacerbated deaths at and above 82°F show an upward trend in the past decade see Figure 3 The estimated annual average of heatexacerbated deaths associated with extreme heat events for 20162020 was 115 95 CI 50 177 In contrast to the trend for both extreme and nonextreme hot days heatexacerbated deaths due to only extreme heat days are relatively constant over the past decade see Figure 3 Heatexacerbated mortality risks were observed across the full range of hot days maximum temperature at or above 82°F during warm season months Risk increased with temperature with the largest increases occurring at the highest temperatures and a steeper slope of relative risk above 90°F see Figure 4 Heatattributable deaths occurred most frequently in July 37 followed by August 28 June 18 September 10 and May 7 for 20162020 functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightvar edocumentquerySelectorAlliframeforvar t in adatadatawrapperheightforvar r0relengthrifercontentWindowasourcevar iadatadatawrapperheighttpxerstyleheighti Figure 4 cumulative relative risk and 95 confidence intervals of heatexacerbated deaths for daily maximum temperature over sameday and 3 previous days MaySeptember 20112020 Ticks represent days at each temperature Hotter Summers There are many more days every summer that are hot but not extremely hot ie daily maximum temperature at or above 82°F to single days of 95°F compared to extreme heat event days These days are also associated with increased risk of heatrelated death Figure 4 Due to climate change the numbers of extreme heat events and nonextreme hot days are increasing which contributes to an increase in heatexacerbated deaths The average number of nonextreme hot days increased from 52 in 19711975 to 74 days in 20162020 whereas the number of extreme heat days only increased from 4 in 19711975 to 11 in 20162020See Figure 5 Based on the results presented in Figures 3 and 5 the increasing number of nonextreme hot days in the past decade accounts for the increase in overall heatexacerbated deaths in the past decade The average daily maximum temperature in July—the month with the highest heathealth risk—increased 5°F from 83°F in 19711975 to 88°F in 20162020 The average daily maximum temperature in other months also increased by 3 to 5°F see Figure 6 Given the consistently high and increasing proportion of hot days in July and August heatrisk mitigation planning needs to emphasize nonemergency interventions such as access to air conditioning According to US Census Bureau’s American Housing Surveyhttpswwwcensusgovprogramssurveysahshtml and Housing and Vacancy Surveyhttpswwwcensusgovprogramssurveysnychvshtml conducted in New York City air conditioning AC prevalence increased from about 40 in 1970 to over 80 by mid2000 Figure 7 likely explaining the reduction in estimated heatexacerbated deaths in the corresponding period Figure 3 However the rate of increase in AC prevalence appears to have slowed since mid2000 Figure 7 as the number of hot days continued to increase highlighting the urgency of achieving equitable cooling in the very near future Figure 5 Average number of extreme heat events and nonextreme hot days daily maximum temperature above 82°F but excluding EHE days in 5year time windows 19712020functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightvar edocumentquerySelectorAlliframeforvar t in adatadatawrapperheightforvar r0relengthrifercontentWindowasourcevar iadatadatawrapperheighttpxerstyleheighti functionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightvar edocumentquerySelectorAlliframeforvar t in adatadatawrapperheightforvar r0relengthrifercontentWindowasourcevar iadatadatawrapperheighttpxerstyleheighti Figure 6 Monthly average daily maximum temperature °F measured from LaGuardia Airport 5year moving windowsfunctionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightvar edocumentquerySelectorAlliframeforvar t in adatadatawrapperheightforvar r0relengthrifercontentWindowasourcevar iadatadatawrapperheighttpxerstyleheighti Figure 7 Air conditioning AC Prevalence estimated from three surveys between 1970 and 2017 American Housing Survey New York City Community Health Survey and Housing and Vacancy Survey The line is fitted using natural cubic splines with 3 degrees of freedom AHS and HVS surveys were weighted to households whereas CHS data were weighted to individuals in the census CommunityLevel Impacts The HVI shows differences in communitylevel heat impacts during and shortly after extreme heat events 5 The HVI combines environmental factors measures of a neighborhood’s average surface temperature and percentage of green space with social factors percentage of homes with air conditioning residents’ median income and the percentage of residents who are Black to develop a relative measure of a neighborhood vulnerability to heat Unlike many social vulnerability indices the HVI is derived from NYC mortality data which means that neighborhoods with elevated risk identified by the index are those areas with elevated heatexacerbated deaths during extreme heat events HVI scores range from 1 lowest risk to 5 highest risk The relative heat mortality risk of eachnbspNeighborhood Tabulation Area NTAhttpswww1nycgovsiteplanningdatamapsopendatadwnnyntapage can be explorednbspherehvi Including race in the HVI analysis is critical to understanding the impact of heat structural racism has resulted in neighborhood disinvestment racist housing policies fewer job opportunities and lower pay and limited access to highquality education and health care all of which are associated with health risks including those related to heat Read more about how structural racism affectsnbsphousing and public healthdatastorieshousingnbspand thenbsphistory of redlining and how it impacts public health in NYCdatastoriesredliningindexhtml We updated data for three HVI variables for which new data were available — race income and surface temperature — and conducted an analysis to reexamine associations between the updated HVI and heatexacerbated mortality seenbspAppendix Methods and Supplemental Datanbspfor more information The updated HVI continues to be associated with heatexacerbated mortality during extreme heat and on nonextreme hot days The odds of dying during hot weather was higher in census tracts with higher HVI scores see Figure 8 Among the HVI components air conditioning race and income had the strongest associations with heatexacerbated mortality see Appendix Methods and Supplemental Data While green space had a weak protective association compared to the other factors in the HVI it is a critical factor in addressing the Urban Heat Islandhttpswwwepagovgreeninfrastructurereduceurbanheatislandeffect effect by lowering surface and outdoor air temperatures providing relief from the heat through shade and supporting a range of public health benefits beyond heatrelated mortality Figure 8 Relative odds and 95 confidence intervals of dying on days reaching 82°F and higher by quintile of HVIfunctionuse strictwindowaddEventListenermessagefunctionaifvoid 0adatadatawrapperheightvar edocumentquerySelectorAlliframeforvar t in adatadatawrapperheightforvar r0relengthrifercontentWindowasourcevar iadatadatawrapperheighttpxerstyleheighti The best indicator ofnbspneighborhoodlevel heat impacts is the HVIhvi see map 1 which shows differences in heatexacerbated mortality risk The number of heat stress deaths by NTA map 2 should be interpreted with caution The NTAs are small and the number of deaths at this level is also small and unreliable so it is difficult to tell whether differences between areas are due to random fluctuation or because there is a difference in risk functionuse strictwindowaddEventListenermessagefunctioneifvoid 0edatadatawrapperheightvar tdocumentquerySelectorAlliframeforvar a in edatadatawrapperheightforvar r0rtlengthriftrcontentWindowesourcetrstyleheightedatadatawrapperheightapx functionuse strictwindowaddEventListenermessagefunctioneifvoid 0edatadatawrapperheightvar tdocumentquerySelectorAlliframeforvar a in edatadatawrapperheightforvar r0rtlengthriftrcontentWindowesourcetrstyleheightedatadatawrapperheightapx Conclusion Heat contributes to the deaths of about 350 New Yorkers on average each year during the warm season of May through September July accounts for the greatest share of heatexacerbated deaths and the average daily maximum temperature in July has increased by about 5°F in the past five decades Deaths have been increasing over the past decade likely due to both increasing temperatures and lagging access to home AC particularly in communities most burdened by heathealth impacts To prepare for a hotter future and prevent heatrelated deaths the City needs longlasting structural interventions alongside emergency preparedness and response Adapting to a hotter climate means the City must Ensure equitable access to lifesaving residential cooling for all New Yorkers Implement maximum temperature regulations during the summer months for tenants as laid out in 2023 PlaNYC Getting Sustainability Donehttpsclimatecityofnewyorkusinitiativesplanycgettingsustainabilitydone Explore mandates on property owners to provide tenants with AC without additional surcharges Help eligible residents apply for a free air conditioner with installation through the Home Energy Assistance Program HEAP’s Cooling Assistance Componenthttpsotdanygovprogramsheapcoolingassistance Make summertime utility costs affordable for low and middleincome New Yorkers so they can use AC to protect themselves from the heat Expand HEAP Cooling Assistance Component benefits to include summer utility costsnbsp Prohibit electricity disconnections during hot weather even if bills are unpaid Make energy prices affordable for all New Yorkers through affordable energy rates for low and middleincome customersnbsp Fund energy efficient home improvements to help reduce family energy costs and decrease pressure on the electrical grid Protect the electrical grid including by discouraging excess cooling in offices and commercial establishments Invest in hyperlocal resiliency to make all NYC neighborhoods cooler and safer Implementing green infrastructure projects especially in high HVI neighborhoods including planting trees and other greenery and expanding cool roofsnbsp Support communitybased organizations CBO working to reduce the health impacts of climate change Include CBOs and residents in decisionmaking about and investments in community infrastructure and public space Fund and provide technical assistance for programs — such as the NYC Health Department’s Be a Buddy — that support CBOs to build community resilience through social cohesion and access to physical and mental health resources that can help people stay safe in the heatnbsp Continue to strengthen emergency response during extreme heat such as opening cooling centers and issuing heathealth warnings prioritizing people and communities with the greatest need More data and information about heat climate and health is available on the NYC Health Department’snbspClimate and Health page Learn more about what the City is doing to mitigate the effects of heat as part of PlaNYC Getting Sustainability Donehttpsclimatecityofnewyorkusinitiativesplanycgettingsustainabilitydonenbsp Note on years of data included For heatstress data for 2021 and 2022 are considered preliminary because death data are still being compiled by the Bureau of Vital Statistics These numbers may be updated in future reports as final data become available 2021 heatstress numbers are less likely to change All heatstress tables are based on heatstress deaths from 20122021 The heatexacerbated mortality analysis requires complete daily death counts to produce accurate estimates making 2020 the most recent available year of data ReferencesBailey ZD Krieger N Agénor M Graves J Linos N Bassett MT Structural racism and health inequities in the USA evidence and interventions Lancet 2017 Apr 83891007714531463 doi 101016S014067361730569XVantHull B Ramamurthy P Havlik B Jusino C CorbinMark C Schuerman M Keefe J Drapkin J K amp Glenn A A 2018 The Harlem Heat Project A Unique Media–Community Collaboration to Study Indoor Heat Waves Bulletin of the American Meteorological Society 9912 24912506 Retrieved Jan 30 2023 fromnbsphttpsjournalsametsocorgviewjournalsbams9912bamsd1602801xmlMadrigano J Lane K Petrovic N Ahmed M Blum M Matte T Awareness Risk Perception and Protective Behaviors for Extreme Heat and Climate Change in New York City Int J Environ Res Public Health 2018 Jul 71571433 doi 103390ijerph15071433httpswwwncbinlmnihgovpmcarticlesPMC6069135Metzger KB Ito K Matte TD Summer heat and mortality in New York City how hot is too hot Environ Health Perspect 2010 Jan1181806 doi 101289ehp0900906 PMID 20056571 PMCID PMC2831972 httpsehpniehsnihgovdoi101289ehp0900906Madrigano J Ito K Johnson S Kinney PL Matte T A CaseOnly Study of Vulnerability to Heat WaveRelated Mortality in New York City 20002011 Environ Health Perspect 2015 Jul12376728 doi 101289ehp1408178 Epub 2015 Mar 17 httpswwwncbinlmnihgovpmcarticlesPMC4492264 Previous reports 2022 Heat Mortality Report2022heatreport 2021 Heat Mortality Report2021heatreport",
         "href": "key-topics/climatehealth/heat-report"
     },
@@ -2644,7 +2644,7 @@
         "keywords": [
             "pests"
         ],
-        "seo_title": "Data on rat inspections",
+        "seo_title": "Data on rat inspections | Environment and Health Data Portal",
         "content": "New York City’s Rat Information Portal is a web map application that lets you view rat inspection and action data collected by the NYC Health Department",
         "href": "key-topics/pests/rat-information-portal"
     },
@@ -2655,7 +2655,7 @@
             "pests"
         ],
         "keywords": null,
-        "seo_title": "Data on rat inspections",
+        "seo_title": "Data on rat mitigation zones | Environment and Health Data Portal",
         "content": "Rats can contaminate food spread disease and reduce our quality of life Rat Mitigation Zones RMZ are areas with high levels of rat activity where City agencies focus resources to address rats and the conditions that support them Choose an RMZ on the map below to view data on complaints and NYC Health Department rat control activity",
         "href": "key-topics/pests/rat-mitigation-zones"
     },
@@ -2727,7 +2727,7 @@
         "href": "key-topics/transportation/beaches"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Bayside - Little Neck",
+        "displayTitle": "Active Design in Bayside - Little Neck",
         "neighborhood": "Bayside - Little Neck",
         "content": "",
         "href": "neighborhood-reports/bayside_little_neck/active_design_physical_activity_and_health"
@@ -2762,7 +2762,7 @@
         "href": "neighborhood-reports/bayside_little_neck"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Bedford Stuyvesant - Crown Heights",
+        "displayTitle": "Active Design in Bedford Stuyvesant - Crown Heights",
         "neighborhood": "Bedford Stuyvesant - Crown Heights",
         "content": "",
         "href": "neighborhood-reports/bedford_stuyvesant_crown_heights/active_design_physical_activity_and_health"
@@ -2797,7 +2797,7 @@
         "href": "neighborhood-reports/bedford_stuyvesant_crown_heights"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Bensonhurst - Bay Ridge",
+        "displayTitle": "Active Design in Bensonhurst - Bay Ridge",
         "neighborhood": "Bensonhurst - Bay Ridge",
         "content": "",
         "href": "neighborhood-reports/bensonhurst_bay_ridge/active_design_physical_activity_and_health"
@@ -2832,7 +2832,7 @@
         "href": "neighborhood-reports/bensonhurst_bay_ridge"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Borough Park",
+        "displayTitle": "Active Design in Borough Park",
         "neighborhood": "Borough Park",
         "content": "",
         "href": "neighborhood-reports/borough_park/active_design_physical_activity_and_health"
@@ -2867,7 +2867,7 @@
         "href": "neighborhood-reports/borough_park"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Central Harlem - Morningside Heights",
+        "displayTitle": "Active Design in Central Harlem - Morningside Heights",
         "neighborhood": "Central Harlem - Morningside Heights",
         "content": "",
         "href": "neighborhood-reports/central_harlem_morningside_heights/active_design_physical_activity_and_health"
@@ -2902,7 +2902,7 @@
         "href": "neighborhood-reports/central_harlem_morningside_heights"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Chelsea - Clinton",
+        "displayTitle": "Active Design in Chelsea - Clinton",
         "neighborhood": "Chelsea - Clinton",
         "content": "",
         "href": "neighborhood-reports/chelsea_clinton/active_design_physical_activity_and_health"
@@ -2937,7 +2937,7 @@
         "href": "neighborhood-reports/chelsea_clinton"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Coney Island - Sheepshead Bay",
+        "displayTitle": "Active Design in Coney Island - Sheepshead Bay",
         "neighborhood": "Coney Island - Sheepshead Bay",
         "content": "",
         "href": "neighborhood-reports/coney_island_sheepshead_bay/active_design_physical_activity_and_health"
@@ -2972,7 +2972,7 @@
         "href": "neighborhood-reports/coney_island_sheepshead_bay"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Crotona -Tremont",
+        "displayTitle": "Active Design in Crotona -Tremont",
         "neighborhood": "Crotona -Tremont",
         "content": "",
         "href": "neighborhood-reports/crotona_tremont/active_design_physical_activity_and_health"
@@ -3007,7 +3007,7 @@
         "href": "neighborhood-reports/crotona_tremont"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Downtown - Heights - Slope",
+        "displayTitle": "Active Design in Downtown - Heights - Slope",
         "neighborhood": "Downtown - Heights - Slope",
         "content": "",
         "href": "neighborhood-reports/downtown_heights_slope/active_design_physical_activity_and_health"
@@ -3042,7 +3042,7 @@
         "href": "neighborhood-reports/downtown_heights_slope"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in East Flatbush - Flatbush",
+        "displayTitle": "Active Design in East Flatbush - Flatbush",
         "neighborhood": "East Flatbush - Flatbush",
         "content": "",
         "href": "neighborhood-reports/east_flatbush_flatbush/active_design_physical_activity_and_health"
@@ -3077,7 +3077,7 @@
         "href": "neighborhood-reports/east_flatbush_flatbush"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in East Harlem",
+        "displayTitle": "Active Design in East Harlem",
         "neighborhood": "East Harlem",
         "content": "",
         "href": "neighborhood-reports/east_harlem/active_design_physical_activity_and_health"
@@ -3107,12 +3107,12 @@
         "href": "neighborhood-reports/east_harlem/outdoor_air_and_health"
     },
     {
-        "displayTitle": "East Harlem",
+        "displayTitle": "Neighborhood report - East Harlem | Environment & Health Data Portal",
         "content": "",
         "href": "neighborhood-reports/east_harlem"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in East New York",
+        "displayTitle": "Active Design in East New York",
         "neighborhood": "East New York",
         "content": "",
         "href": "neighborhood-reports/east_new_york/active_design_physical_activity_and_health"
@@ -3147,7 +3147,7 @@
         "href": "neighborhood-reports/east_new_york"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Flushing - Clearview",
+        "displayTitle": "Active Design in Flushing - Clearview",
         "neighborhood": "Flushing - Clearview",
         "content": "",
         "href": "neighborhood-reports/flushing_clearview/active_design_physical_activity_and_health"
@@ -3182,7 +3182,7 @@
         "href": "neighborhood-reports/flushing_clearview"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Fordham - Bronx Pk",
+        "displayTitle": "Active Design in Fordham - Bronx Pk",
         "neighborhood": "Fordham - Bronx Pk",
         "content": "",
         "href": "neighborhood-reports/fordham_bronx_pk/active_design_physical_activity_and_health"
@@ -3217,7 +3217,7 @@
         "href": "neighborhood-reports/fordham_bronx_pk"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Fresh Meadows",
+        "displayTitle": "Active Design in Fresh Meadows",
         "neighborhood": "Fresh Meadows",
         "content": "",
         "href": "neighborhood-reports/fresh_meadows/active_design_physical_activity_and_health"
@@ -3252,7 +3252,7 @@
         "href": "neighborhood-reports/fresh_meadows"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Gramercy Park - Murray Hill",
+        "displayTitle": "Active Design in Gramercy Park - Murray Hill",
         "neighborhood": "Gramercy Park - Murray Hill",
         "content": "",
         "href": "neighborhood-reports/gramercy_park_murray_hill/active_design_physical_activity_and_health"
@@ -3287,7 +3287,7 @@
         "href": "neighborhood-reports/gramercy_park_murray_hill"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Greenpoint",
+        "displayTitle": "Active Design in Greenpoint",
         "neighborhood": "Greenpoint",
         "content": "",
         "href": "neighborhood-reports/greenpoint/active_design_physical_activity_and_health"
@@ -3322,7 +3322,7 @@
         "href": "neighborhood-reports/greenpoint"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Greenwich Village - SoHo",
+        "displayTitle": "Active Design in Greenwich Village - SoHo",
         "neighborhood": "Greenwich Village - SoHo",
         "content": "",
         "href": "neighborhood-reports/greenwich_village_soho/active_design_physical_activity_and_health"
@@ -3357,7 +3357,7 @@
         "href": "neighborhood-reports/greenwich_village_soho"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in High Bridge - Morrisania",
+        "displayTitle": "Active Design in High Bridge - Morrisania",
         "neighborhood": "High Bridge - Morrisania",
         "content": "",
         "href": "neighborhood-reports/high_bridge_morrisania/active_design_physical_activity_and_health"
@@ -3392,7 +3392,7 @@
         "href": "neighborhood-reports/high_bridge_morrisania"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Hunts Point - Mott Haven",
+        "displayTitle": "Active Design in Hunts Point - Mott Haven",
         "neighborhood": "Hunts Point - Mott Haven",
         "content": "",
         "href": "neighborhood-reports/hunts_point_mott_haven/active_design_physical_activity_and_health"
@@ -3427,7 +3427,7 @@
         "href": "neighborhood-reports/hunts_point_mott_haven"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Jamaica",
+        "displayTitle": "Active Design in Jamaica",
         "neighborhood": "Jamaica",
         "content": "",
         "href": "neighborhood-reports/jamaica/active_design_physical_activity_and_health"
@@ -3462,7 +3462,7 @@
         "href": "neighborhood-reports/jamaica"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Kingsbridge - Riverdale",
+        "displayTitle": "Active Design in Kingsbridge - Riverdale",
         "neighborhood": "Kingsbridge - Riverdale",
         "content": "",
         "href": "neighborhood-reports/kingsbridge_riverdale/active_design_physical_activity_and_health"
@@ -3497,7 +3497,7 @@
         "href": "neighborhood-reports/kingsbridge_riverdale"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Long Island City - Astoria",
+        "displayTitle": "Active Design in Long Island City - Astoria",
         "neighborhood": "Long Island City - Astoria",
         "content": "",
         "href": "neighborhood-reports/long_island_city_astoria/active_design_physical_activity_and_health"
@@ -3532,7 +3532,7 @@
         "href": "neighborhood-reports/long_island_city_astoria"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Lower Manhattan",
+        "displayTitle": "Active Design in Lower Manhattan",
         "neighborhood": "Lower Manhattan",
         "content": "",
         "href": "neighborhood-reports/lower_manhattan/active_design_physical_activity_and_health"
@@ -3567,7 +3567,7 @@
         "href": "neighborhood-reports/lower_manhattan"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Northeast Bronx",
+        "displayTitle": "Active Design in Northeast Bronx",
         "neighborhood": "Northeast Bronx",
         "content": "",
         "href": "neighborhood-reports/northeast_bronx/active_design_physical_activity_and_health"
@@ -3602,7 +3602,7 @@
         "href": "neighborhood-reports/northeast_bronx"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Pelham - Throgs Neck",
+        "displayTitle": "Active Design in Pelham - Throgs Neck",
         "neighborhood": "Pelham - Throgs Neck",
         "content": "",
         "href": "neighborhood-reports/pelham_throgs_neck/active_design_physical_activity_and_health"
@@ -3637,7 +3637,7 @@
         "href": "neighborhood-reports/pelham_throgs_neck"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Port Richmond",
+        "displayTitle": "Active Design in Port Richmond",
         "neighborhood": "Port Richmond",
         "content": "",
         "href": "neighborhood-reports/port_richmond/active_design_physical_activity_and_health"
@@ -3672,7 +3672,7 @@
         "href": "neighborhood-reports/port_richmond"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Ridgewood - Forest Hills",
+        "displayTitle": "Active Design in Ridgewood - Forest Hills",
         "neighborhood": "Ridgewood - Forest Hills",
         "content": "",
         "href": "neighborhood-reports/ridgewood_forest_hills/active_design_physical_activity_and_health"
@@ -3707,7 +3707,7 @@
         "href": "neighborhood-reports/ridgewood_forest_hills"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Rockaways",
+        "displayTitle": "Active Design in Rockaways",
         "neighborhood": "Rockaways",
         "content": "",
         "href": "neighborhood-reports/rockaways/active_design_physical_activity_and_health"
@@ -3742,7 +3742,7 @@
         "href": "neighborhood-reports/rockaways"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in South Beach - Tottenville",
+        "displayTitle": "Active Design in South Beach - Tottenville",
         "neighborhood": "South Beach - Tottenville",
         "content": "",
         "href": "neighborhood-reports/south_beach_tottenville/active_design_physical_activity_and_health"
@@ -3777,7 +3777,7 @@
         "href": "neighborhood-reports/south_beach_tottenville"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Southeast Queens",
+        "displayTitle": "Active Design in Southeast Queens",
         "neighborhood": "Southeast Queens",
         "content": "",
         "href": "neighborhood-reports/southeast_queens/active_design_physical_activity_and_health"
@@ -3812,7 +3812,7 @@
         "href": "neighborhood-reports/southeast_queens"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Southwest Queens",
+        "displayTitle": "Active Design in Southwest Queens",
         "neighborhood": "Southwest Queens",
         "content": "",
         "href": "neighborhood-reports/southwest_queens/active_design_physical_activity_and_health"
@@ -3847,7 +3847,7 @@
         "href": "neighborhood-reports/southwest_queens"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Stapleton - St. George",
+        "displayTitle": "Active Design in Stapleton - St. George",
         "neighborhood": "Stapleton - St. George",
         "content": "",
         "href": "neighborhood-reports/stapleton_st_george/active_design_physical_activity_and_health"
@@ -3882,7 +3882,7 @@
         "href": "neighborhood-reports/stapleton_st_george"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Sunset Park",
+        "displayTitle": "Active Design in Sunset Park",
         "neighborhood": "Sunset Park",
         "content": "",
         "href": "neighborhood-reports/sunset_park/active_design_physical_activity_and_health"
@@ -3917,7 +3917,7 @@
         "href": "neighborhood-reports/sunset_park"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Union Square - Lower East Side",
+        "displayTitle": "Active Design in Union Square - Lower East Side",
         "neighborhood": "Union Square - Lower East Side",
         "content": "",
         "href": "neighborhood-reports/union_square_lower_east_side/active_design_physical_activity_and_health"
@@ -3952,7 +3952,7 @@
         "href": "neighborhood-reports/union_square_lower_east_side"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Upper East Side",
+        "displayTitle": "Active Design in Upper East Side",
         "neighborhood": "Upper East Side",
         "content": "",
         "href": "neighborhood-reports/upper_east_side/active_design_physical_activity_and_health"
@@ -3987,7 +3987,7 @@
         "href": "neighborhood-reports/upper_east_side"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Upper West Side",
+        "displayTitle": "Active Design in Upper West Side",
         "neighborhood": "Upper West Side",
         "content": "",
         "href": "neighborhood-reports/upper_west_side/active_design_physical_activity_and_health"
@@ -4022,7 +4022,7 @@
         "href": "neighborhood-reports/upper_west_side"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Washington Heights",
+        "displayTitle": "Active Design in Washington Heights",
         "neighborhood": "Washington Heights",
         "content": "",
         "href": "neighborhood-reports/washington_heights/active_design_physical_activity_and_health"
@@ -4057,7 +4057,7 @@
         "href": "neighborhood-reports/washington_heights"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in West Queens",
+        "displayTitle": "Active Design in West Queens",
         "neighborhood": "West Queens",
         "content": "",
         "href": "neighborhood-reports/west_queens/active_design_physical_activity_and_health"
@@ -4092,7 +4092,7 @@
         "href": "neighborhood-reports/west_queens"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Williamsburg - Bushwick",
+        "displayTitle": "Active Design in Williamsburg - Bushwick",
         "neighborhood": "Williamsburg - Bushwick",
         "content": "",
         "href": "neighborhood-reports/williamsburg_bushwick/active_design_physical_activity_and_health"
@@ -4127,7 +4127,7 @@
         "href": "neighborhood-reports/williamsburg_bushwick"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Willowbrook",
+        "displayTitle": "Active Design in Willowbrook",
         "neighborhood": "Willowbrook",
         "content": "",
         "href": "neighborhood-reports/willowbrook/active_design_physical_activity_and_health"
@@ -4194,7 +4194,7 @@
         "href": "neighborhood-reports/asthma"
     },
     {
-        "displayTitle": "Active Design Physical Activity and Health in Canarsie - Flatlands",
+        "displayTitle": "Active Design in Canarsie - Flatlands",
         "neighborhood": "Canarsie - Flatlands",
         "content": "",
         "href": "neighborhood-reports/canarsie_flatlands/active_design_physical_activity_and_health"
@@ -4239,7 +4239,7 @@
             "social",
             "neighborhoods"
         ],
-        "seo_title": "Climate and Health in NYC",
+        "seo_title": "Neighborhood reports on climate and health in NYC | Environment and Health Data Portal",
         "content": "Extreme heat coastal storms and flooding are climaterelated hazards that are increasing because of climate change They have important public health impacts in New York City Extreme weather can cause power outages which also threaten public health This report provides neighborhood indicators of climaterelated hazards populations that may be most affected built environment factors that can increase risk and health impacts",
         "href": "neighborhood-reports/climateandhealth"
     },
