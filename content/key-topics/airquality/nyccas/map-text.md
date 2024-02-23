@@ -49,7 +49,7 @@ PM: >-
     monitoring sites ranged from 2.6 to 21 micrograms per cubic meter.
 O3: >-
     - Since the first summer (2009) when relatively cool temperatures
-    contributed to lower levels of Ozone, citywide summertime average levels
+    contributed to lower levels of ozone, citywide summertime average levels
     varied slightly year to year (ranging from 27.8 ppb to 32 ppb between 2010
     and 2022), without a consistent trend.
     
