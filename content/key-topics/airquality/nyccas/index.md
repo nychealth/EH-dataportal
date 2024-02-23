@@ -54,7 +54,7 @@ There has not been a consistent trend in O<sub>3</sub> levels over the history o
 
 **Air quality changes with location.**
 
-PM<sub>2.5</sub>, NO<sub>2</sub>, NO, and black carbon are highest in:
+PM<sub>2.5</sub>, NO<sub>2</sub>, NO, and black carbon (BC) are highest in:
 
 * Areas with higher density of commercial cooking grills and charbroilers
 * Industrial areas, specifically areas with higher density of warehouses
