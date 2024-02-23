@@ -4,6 +4,7 @@ date: 2021-10-02T07:56:00-04:00
 draft: true
 seo_title: "Daily asthma ED visits"
 seo_description: "Near real-time data."
+description: "Near real-time data on asthma emergency department visits in NYC."
 tags: 
 categories: [housing, airquality, childhealth, climatehealth, healthoutcomes, pests]
 keyTopic: housing

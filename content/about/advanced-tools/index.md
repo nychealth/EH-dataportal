@@ -17,6 +17,7 @@ keywords:
     - data visualization
 seo_title: Advanced tools
 seo_description: "Tools for advanced users of the EH Data Portal."
+description: "Tools for advanced users of the EH Data Portal."
 ---
 If you are a data scientist, programmer, open data enthusiast, open source evangelist, data visualiation specialist or somebody who aspires to be any of those, then there are some advanced features of the Environment and Health Data Portal that you can use to get and use our data.
 

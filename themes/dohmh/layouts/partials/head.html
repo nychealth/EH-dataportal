@@ -15,7 +15,7 @@
 <meta name="robots" content="all" />
 
 
-{{ else if eq hugo.Environment "development" }}
+{{- else if eq hugo.Environment "development" }}
 
 <!-- Google won't index this page or follow links -->
 <meta name="robots" content="noindex, nofollow">
@@ -41,7 +41,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <title>{{ block "title" . }}
-    {{- if .Params.seo_title -}}{{ .Params.seo_title }}{{- else -}}{{ .Title }}{{ end }} &#x7c; {{ .Site.Title }}
+    {{- if .Params.seo_title -}}{{ .Params.seo_title }}{{- else -}}{{ .Title }}{{ end }}
 {{- end -}}</title>
 
 <!-- build datetime -->
