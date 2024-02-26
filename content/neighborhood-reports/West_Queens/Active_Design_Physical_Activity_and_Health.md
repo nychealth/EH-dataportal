@@ -5,7 +5,7 @@ summary: "The design and conditions of buildings, streets, public transportation
 data_json: "Active Design Physical Activity and Health in West Queens"
 content_yml: "active_design"
 type: location
-seo_title: "Active Design Physical Activity and Health in West Queens"
+seo_title: "Active Design in West Queens"
 seo_description: "Active Design Physical Activity and Health data profile for the West Queens neighborhood of NYC."
 seo_image: "images/nyc_health_report_active_design_health.jpg"
 vega: true

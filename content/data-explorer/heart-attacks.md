@@ -4,7 +4,8 @@ date: 2021-05-28 18:02:58.879198
 draft: true
 notes: "Decided to remove this 7/13/2022 with AQ team"
 seo_title: "Heart attacks data for NYC"
-seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
+description: "Datasets and visualizations of heart attacks in NYC."
 tags: 
 categories: ["healthoutcomes"]
 keywords: ["heart","attacks","hospitalizations","emergency department visits"]

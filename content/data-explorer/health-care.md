@@ -3,7 +3,8 @@ title: Health care
 date: 2021-05-28 18:02:58.908603
 draft: false
 seo_title: "Health care data for NYC"
-seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
+description: "Datasets and visualizations of health care data in NYC."
 tags: 
 categories: ["social"]
 keywords: ["health care","doctors","mortality"]

@@ -3,7 +3,8 @@ title: Social and economic conditions
 date: 2021-05-28 18:02:58.798880
 draft: true
 seo_title: "Social and economic conditions data for NYC"
-seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods.."
+seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
+description: "Datasets and visualizations of social and economic conditions in NYC."
 tags: 
 categories: ["social","housing"]
 keywords: ["social","social justice","justice","injustice","social conditions","poverty","racism","housing","health"]

@@ -5,7 +5,7 @@ summary: "The design and conditions of buildings, streets, public transportation
 data_json: "Active Design Physical Activity and Health in Downtown - Heights - Slope"
 content_yml: "active_design"
 type: location
-seo_title: "Active Design Physical Activity and Health in Downtown - Heights - Slope"
+seo_title: "Active Design in Downtown - Heights - Slope"
 seo_description: "Active Design Physical Activity and Health data profile for the Downtown - Heights - Slope neighborhood of NYC."
 seo_image: "images/nyc_health_report_active_design_health.jpg"
 vega: true
