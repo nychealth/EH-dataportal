@@ -160,7 +160,7 @@ config = {
                         "C": "yellow",
                         "D": "red"
                     },
-                    "opacity": 0.7,
+                    "opacity": 0.6,
                     "legendDescription": "This is a description for redlined areas"
                 },
                 "displayProperties": {
@@ -248,6 +248,7 @@ config = {
                 "url": window.BaseURL + "geojson/heat-prostration.geojson",
                 "ignoreOpacity": true,
                 "displayProperties": {
+                    "missingDisplay": "N/A",
                     "displayPropertyArgs": [
                         {
                             "id": "Casualty",
@@ -305,7 +306,7 @@ config = {
                     "minColor": "#054fb9",
                     "maxColor": "#c44601",
                     "color": "black",
-                    "opacity": 0.8,
+                    "opacity": 0.6,
                     "legendDescription": "This is a sample of a legend description. It can be long, it can be short, it can include <a href=\"#\">links</a>. It can do things like <b>bold</b>."
                 },
                 "displayProperties": {
@@ -337,7 +338,7 @@ config = {
                     "minColor": "green",
                     "maxColor": "red",
                     "color": "black",
-                    "opacity": 0.5
+                    "opacity": 0.6
                 },
                 "displayProperties": {
                     "missingDisplay": "N/A",
@@ -361,7 +362,7 @@ config = {
                     "minColor": "#054fb9",
                     "maxColor": "#c44601",
                     "color": "black",
-                    "opacity": 0.9
+                    "opacity": 0.6
 
                 },
                 "displayProperties": {
@@ -409,7 +410,7 @@ config = {
                     "minColor": "white",
                     "maxColor": "black",
                     "color": "darkgrey",
-                    "opacity": 0.7
+                    "opacity": 0.6
                 },
                 "displayProperties": {
                     "missingDisplay": "N/A",
@@ -469,7 +470,7 @@ config = {
                     "minColor": "black",
                     "maxColor": "green",
                     "color": "darkgrey",
-                    "opacity": 0.7
+                    "opacity": 0.6
                 },
                 "displayProperties": {
                     "missingDisplay": "N/A",
