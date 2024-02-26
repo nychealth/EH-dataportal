@@ -82,9 +82,19 @@
     margin-bottom: 0;
     padding-bottom: 0;
   }
+  
+  /* set inside borders of popup table */
+
+  /* Remove all the outside borders of the existing table */
 
   .popup-table {
-    border: 1px solid #ccc
+    margin: 0 auto;
+    border-collapse: collapse;
+    border-style: hidden;
+  }
+  .popup-table td {
+    padding: 0.5rem;
+    border: 1px solid #aaaaaa;
   }
 
 .leaflet-bottom .leaflet-control {
@@ -329,6 +339,7 @@
 <script async type="text/javascript" src="embed/heat-story-leaflet.js"></script>
 <script src="https://unpkg.com/georaster"></script>
 <script src="https://unpkg.com/georaster-layer-for-leaflet/dist/georaster-layer-for-leaflet.min.js"></script>
+<script src="https://unpkg.com/geoblaze"></script>
 <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
 
 {{- end -}}

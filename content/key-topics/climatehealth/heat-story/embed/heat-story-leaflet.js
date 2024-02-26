@@ -6,6 +6,8 @@
 // define init function
 // ----------------------------------------------------------------------- //
 
+// let mouse_count = 0;
+
 function init() {
 
     console.log("* init");
@@ -52,7 +54,7 @@ var popupContent = "";
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-// get (pretty) geoTypes available for this year
+// set up layers
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 var layerGroup = L.layerGroup();
@@ -203,29 +205,6 @@ function setupMap() {
     
     layerGroup.addTo(map);
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // NTA overlay
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-    // add the markers to the story
-    // const stories = config.stories;
-
-    // for (let i = 0; i < stories.length; i++) {
-
-    //     const story = stories[i];
-
-    //     if (!story.marker) {
-    //         continue;
-    //     }
-
-    //     const marker = L.marker([story.marker.lat, story.marker.lng]);
-
-    //     storyMarkerLayerGroup.addLayer(marker);
-
-    // }
-
-    // storyMarkerLayerGroup.addTo(map);
-
 }
 
 
@@ -361,14 +340,11 @@ function drawStoryCard(id) {
 
     console.log("* drawStoryCard");
 
-    console.log("story ID", id);
+    console.log(">> story ID", id);
 
     // get story content by ID
     
-    const story = config.stories.filter(s => s.id == id)[0];
-
-    console.log("story", story);
-
+    const story = config.stories.find(s => s.id == id);
 
     // we can put an image in the story definition
 
@@ -496,8 +472,8 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
                 });
             },
             _custom_id: id,
-            displayProperties,
-            name,
+            displayProperties: displayProperties,
+            name: name,
         });
 
 
@@ -549,6 +525,9 @@ async function createRedlinedLayer({ id, name, urls, args, displayProperties }) 
     }
 
     layer.options.legendFunc = legendFunc;
+
+    // console.log("layer [createRedlinedLayer]", layer);
+
     return layer;
 }
 
@@ -611,7 +590,7 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
                 //layer.bindPopup("Hello popup", {});
                 layer.on('mouseover', function(event) {
 
-                    console.log("mouseover [createMeasuresLayer]");
+                    // console.log("mouseover [createMeasuresLayer]");
 
                     layerMouseOver = layer;
                     featureMouseOver = feature;
@@ -627,7 +606,7 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
             },
             _custom_id: id,
             displayProperties: updatedDisplayProperties,
-            name,
+            name: name,
         });
 
 
@@ -683,6 +662,8 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
 
     layer.options.legendFunc = legendFunc;
 
+    // console.log("layer [createMeasuresLayer]", layer);
+
     return layer;
 }
 
@@ -694,8 +675,14 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
 async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
 
     console.log("* createGeoJsonLayer");
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // fetch data
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     
     const response = await fetch(url);
+
+    // if bad response, return
 
     if (!response.ok) {
         return null;
@@ -708,6 +695,13 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
     } catch (error) {
         console.log(error);
     }
+
+    // console.log("data [createGeoJsonLayer]", data);
+
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // format colors
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     let colorChroma = null;
 
@@ -748,37 +742,57 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // create geojson layer
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    
+
+    // figure out which pane to put it on
+
+    let isPoint = /Point/i.test(data.features[0].geometry.type)
+
     const layer = L.geoJSON(
         data,
         {
+            // if we wanted to customize the marker we'd use 'pointToLayer', but we'd have to get clever about passing the options, because "inherit" doesn't seem to work with a custom function 
             style: onStyle,
             onEachFeature: function(feature, layer) {
-                layer.on('mouseover', function(event) {
 
-                    console.log("mouseover [createGeoJsonLayer]");
+                layer.on('mouseover', function(event) {
 
                     layerMouseOver = layer;
                     featureMouseOver = feature;
                     layerMouseOver[layer.options[CUSTOM_ID_FIELD]] = true;
                     updatePopup(event.latlng);
+
                 });
+
                 layer.on('mouseout', function() {
+
                     if (layer.options[CUSTOM_ID_FIELD] == layerMouseOver.options._custom_id) {
                         layerMouseOver = null;
                         featureMouseOver = null;
                     }
+
                 });
+
             },
+            markersInheritOptions: true,
+            // geoJSON by default is on overlay pane, which is behind marker shadows, so put it on the marker pane if it's a point geometry
+            pane: isPoint ? "markerPane" : "overlayPane",
             _custom_id: id,
-            displayProperties,
-            name,
+            displayProperties: displayProperties,
+            name: name
         });
+
+    // setting extra options down here, because they don't get passed to the geojson points layer
+
+    // layer.options.displayProperties = layer.options.displayProperties ? layer.options.displayProperties : displayProperties
+    // layer.options._custom_id = layer.options._custom_id ? layer.options._custom_id : id
+    // layer.options.name = layer.options.name ? layer.options.name : name
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // create legend
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // this comes after the layer func because it needs layer
     
     const legendFunc = () => {
 
@@ -826,6 +840,8 @@ async function createGeoJsonLayer({ id, name, url, args, displayProperties }) {
 
     layer.options.legendFunc = legendFunc;
 
+    // console.log("layer [createGeoJsonLayer]", layer);
+
     return layer;
 
 }
@@ -841,15 +857,26 @@ async function createGeotiffLayer({ id, url, args, name }) {
 
     console.log("* createGeotiffLayer");
     
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // fetch data
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    
     const response = await fetch(url);
+
+    // if bad response, return
 
     if (!response.ok) {
         return null;
     }
 
     const arrayBuffer = await response.arrayBuffer();
+    
+    // data is a georaster
 
-    data = await parseGeoraster(arrayBuffer);
+    let data = await parseGeoraster(arrayBuffer);
+
+    console.log("data [georaster]", data);
 
     // console.log("mins [createGeotiffLayer]", data.mins[0]);
     // console.log("maxs [createGeotiffLayer]", data.maxs[0]);
@@ -891,16 +918,42 @@ async function createGeotiffLayer({ id, url, args, name }) {
     
     const layer = new GeoRasterLayer({
 
-          georaster: data,
-          opacity: 0.7,
-          resolution: args?.resolution || 64,
-          pixelValuesToColorFn: values => {
-              return values[0] > 0.0001 ? colorChroma(values[0]) : null;
-          },
-          legendFunc,
-          _custom_id: id,
+        georaster: data,
+        opacity: 0.6,
+        resolution: args?.resolution || 64,
+        pixelValuesToColorFn: values => {
+            return values[0] > 0.0001 ? colorChroma(values[0]) : null;
+        },
+        legendFunc: legendFunc,
+        _custom_id: id,
 
-      });
+    });
+
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // add mouseover to geo raster layer
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // map.on("click", async (event) => {
+
+    //     let lng = event.latlng.lng
+    //     let lat = event.latlng.lat
+
+    //     console.log("lng", lng, "lat", lat);
+        
+    //     let value = 
+    //         await geoblaze.identify(
+    //             data, 
+    //             [lng, lat]
+    //         );
+
+    //     console.log(`georaster (${lat.toFixed(5)}, ${lng.toFixed(5)}): ${value}`);
+        
+    //     // updatePopup(event.latlng);
+            
+    // });
+    
+    // console.log("layer [createGeotiffLayer]", layer);
 
     return layer;
 
@@ -919,7 +972,7 @@ let layers = {};
 
 async function createLayer(layerId) {
 
-    console.log("* createLayer:", layerId);
+    // console.log("* createLayer:", layerId);
     
     const layerConfig = config.layers.find(l => l.property.id == layerId);
     if (layerConfig == null) {
@@ -994,6 +1047,8 @@ async function addLayerToMap(layerId) {
     console.log("* addLayerToMap:", layerId);
     
     const layer = await getOrCreateLayer(layerId);
+
+    console.log("layer [addLayerToMap]", layer);
 
     if (layer != null && !map.hasLayer(layer)) {
 
@@ -1165,6 +1220,8 @@ async function updateMapStateForStory(storyId) {
 async function resetMapState() {
 
     console.log("* resetMapState");
+
+    // save map state
     
     const { lat, lng, zoom, layers } = lastMapState;
 
@@ -1172,17 +1229,22 @@ async function resetMapState() {
         map.flyTo([lat, lng], zoom);
     }
 
+    // save visible layers
+
     var layersVisible = []
     layerGroup.eachLayer(l => layersVisible.push(l.options[CUSTOM_ID_FIELD]));
 
     // find the difference between what is visible now and what should be visible.
     // add and remove accordingly
+
     layers.filter(l => !(l in layersVisible)).forEach(async l => {
         await addLayerToMap(l);
     });
     layersVisible.filter(l => !(l in layers)).forEach(async l => {
         removeLayerFromMap(l)
     });
+
+    // reset map state var
 
     lastMapState = {
         lat: null,
@@ -1193,6 +1255,17 @@ async function resetMapState() {
 
     // map.addLayer(storyMarkerLayerGroup);
     // $("#refreshButton").css("visibility", "hidden");
+
+    // reset the story card and dropdown
+
+    $('.story-dropdown-item').removeClass("active");
+    $('.story-dropdown-item').attr('aria-selected', false);
+
+    $("#btn-getting-started").addClass("active");
+    $("#btn-getting-started").attr('aria-selected', true);
+
+    drawStoryCard("getting-started");
+
 }
 
 
@@ -1247,10 +1320,10 @@ function formatValue(value, type) {
 
 function featureInfoToHtmlForPopup(feature, layer) {
 
-    console.log("* featureInfoToHtmlForPopup");
+    // console.log("* featureInfoToHtmlForPopup");
 
-    console.log("feature [featureInfoToHtmlForPopup]", feature);
-    console.log("layer [featureInfoToHtmlForPopup]", layer);
+    // console.log("feature [featureInfoToHtmlForPopup]", feature);
+    // console.log("layer [featureInfoToHtmlForPopup]", layer);
     
     const displayProperties = layer.options.displayProperties;
 
@@ -1274,33 +1347,35 @@ function featureInfoToHtmlForPopup(feature, layer) {
 
     // console.log("featureMap [featureInfoToHtmlForPopup]", featureMap);
 
-    // EITGHER NEED TO EDIT THE GEOJSON ETC. SOURCES TO CONTAIN STANDARDIZED FIELD NAMES, OR USE CONDITIONALS
+    // EITHER NEED TO EDIT THE GEOJSON ETC. SOURCES TO CONTAIN STANDARDIZED FIELD NAMES, OR USE CONDITIONALS
 
     const geoName = feature.properties.GEONAME;
 
     const geoTypePretty = prettifyGeoType(feature.properties.GeoType);
 
-    console.log("geoTypePretty", geoTypePretty);
+    // console.log("geoTypePretty", geoTypePretty);
 
     // then create that into an html table
     const featureTable = Object.entries(featureMap)
-        .map(x => `<tr><td>${x[0]}</td><td style="text-align: right;">${x[1] ?? missingDisplay}</td></tr>`);
+        .map(x => `<tr><td>${x[0]}</td><td style="text-align: left;">${x[1] ?? missingDisplay}</td></tr>`);
 
-    console.log("featureTable [featureInfoToHtmlForPopup]", featureTable);
+    // console.log("featureTable [featureInfoToHtmlForPopup]", featureTable);
 
     // debugger;
 
     if (!featureTable.length || !featureTable.length) {
         return missingDisplay != null
-            ? `<h5>${layer.options.name}</h5>${missingDisplay}`
+            ? `<h3 class="h5">${layer.options.name}</h3>${missingDisplay}`
             : '';
     }
 
     // return `<h5>${layer.options.name}</h5><table class="table popup-table table-bordered" style="width:100%">${featureTable.join('')}</table>`;
 
     let popup_html = 
-        `<table class="table popup-table table-bordered" style="width:100%">` + 
-        `<tr><th>${layer.options.name}</th></tr>` + 
+        `<h3 class="h5">${layer.options.name}</h3>` +
+        // `<table class="table popup-table" rules="all" style="width:100%">` + 
+        `<table class="table popup-table" style="width:100%">` + 
+        // `<tr><th>${layer.options.name}</th></tr>` + 
         `<tr><td>Neighborhood (${geoTypePretty})</td><td>${geoName}</td></tr>` +
         `${featureTable.join('')}</table>`
 
@@ -1317,12 +1392,16 @@ function featureInfoToHtmlForPopup(feature, layer) {
 function formatPopup(features) {
 
     // console.log("* formatPopup");
+
+    // console.log("features [formatPopup]", features);
     
     const updates = features
         .sort((a, b) => (a?.layer?.options?.sortOrder ?? 999) - (b?.layer?.options?.sortOrder ?? 999))
         .map(({ feature, layer }) => featureInfoToHtmlForPopup(feature, layer))
         .filter(x => x != "")
         .join("<br />");
+
+    // console.log("updates [formatPopup]", updates);
 
     return updates == "" ? null : updates;
 }
@@ -1341,7 +1420,7 @@ function formatPopup(features) {
 
 function updatePopup({ lat, lng }) {
 
-    console.log("* updatePopup");
+    // console.log("* updatePopup");
     
     const visibleLayers = Object.keys(layerGroup._layers);
 
@@ -1349,8 +1428,9 @@ function updatePopup({ lat, lng }) {
 
     // if there are no layers, then we don't need a popup
     if (Object.keys(layerGroup._layers).length == 0 || featureMouseOver == null) {
+    // if (Object.keys(layerGroup._layers).length == 0) {
 
-        console.log("no layers [updatePopup]");
+        // console.log("no layers [updatePopup]");
 
         if (popup != null) {
             popup.removeFrom(map);
@@ -1374,18 +1454,21 @@ function updatePopup({ lat, lng }) {
         layerGroup.eachLayer(_layer => {
 
             // only check intersections if we are going to display something
+
             if (_layer.options.displayProperties == null) {
                 return;
             }
 
             // this is our main layer. we know we overlap here because we are in this function, so ignore it.
 
-            console.log("CUSTOM_ID_FIELD [updatePopup]", layerMouseOver.options[CUSTOM_ID_FIELD]);
-            console.log("_custom_id [updatePopup]", _layer.options._custom_id);
+            // console.log("CUSTOM_ID_FIELD [updatePopup]", layerMouseOver.options[CUSTOM_ID_FIELD]);
+            // console.log("_custom_id [updatePopup]", _layer.options._custom_id);
 
             if (layerMouseOver.options[CUSTOM_ID_FIELD] == _layer.options._custom_id) {
                 return;
             }
+
+            // check for more than 1 layer at mouse location
 
             let intersection = [];
 
@@ -1396,6 +1479,7 @@ function updatePopup({ lat, lng }) {
             }
 
             // keep track of the intersections
+
             if (intersection.length > 0) {
                 features.push({feature: intersection[0].feature, layer: _layer});
             }
@@ -1405,23 +1489,23 @@ function updatePopup({ lat, lng }) {
 
     const content = formatPopup(features);
 
-    console.log("popup [updatePopup]", popup);
-    console.log("content [updatePopup]", content);
+    // console.log("popup [updatePopup]", popup);
+    // console.log("content [updatePopup]", content);
 
     if (popup == null && content != null) {
 
         // new popup
 
-        console.log("> new popup");
+        // console.log("> new popup");
 
-        popup = L.popup({autoPan: false}).setLatLng({ lat, lng }).setContent(content).openOn(map);
+        popup = L.popup({autoPan: false, maxWidth: 560}).setLatLng({ lat, lng }).setContent(content).openOn(map);
         popupContent = content;
 
     } else if ( popup != null && content != null) {
 
         // change the content of an existing popup
 
-        console.log("> change popup");
+        // console.log("> change popup");
 
         popup.setLatLng({ lat, lng });
 
@@ -1434,7 +1518,7 @@ function updatePopup({ lat, lng }) {
 
         // popup should be removed
 
-        console.log("> remove popup");
+        // console.log("> remove popup");
 
         popup.removeFrom(map);
         popup = null;
@@ -1510,6 +1594,7 @@ L.control.legend = function (overlays, options) {
 // layer events happen waaay too often.
 // keep track of the last one to skip if a duplicate.
 // the duplicate happens because each layer has multiple little sub layers
+
 let lastLayerEventHash = {id: null, type: null};
 
 
@@ -1658,7 +1743,7 @@ async function loadIndicator(indicatorID, measureID, geoType, time) {
         return {...feature, properties};
     });
     
-    console.log("geoJsonData 2 [loadIndicator]", geoJsonData);
+    // console.log("geoJsonData 2 [loadIndicator]", geoJsonData);
 
     return geoJsonData;
 
@@ -1687,8 +1772,8 @@ const loadData = async (indicatorID) => {
 
                 indicator_data = await d;
 
-                console.log("indicator_data [loadData]");
-                indicator_data.print()
+                // console.log("indicator_data [loadData]");
+                // indicator_data.print()
 
             }),
 
@@ -1725,8 +1810,8 @@ const loadTime = async () => {
 
             timeTable = await data;
 
-            console.log("timeTable [loadTime]");
-            timeTable.print()
+            // console.log("timeTable [loadTime]");
+            // timeTable.print()
 
     });
 }
@@ -1742,7 +1827,7 @@ const renderMap = ( data, metadata ) => {
     
     let mapGeoType = data[0].GeoType
 
-    console.log("mapGeoType [renderMap]", mapGeoType);
+    // console.log("mapGeoType [renderMap]", mapGeoType);
 
     let topoFile = '';
 
@@ -1800,26 +1885,13 @@ function addListeners() {
     const layerButtons = document.querySelectorAll('.layer-button')
 
     layerButtons.forEach(button => {
+
         button.addEventListener('click', async () => {
+
             await toggleLayerOnMap(button.id, button)
+
         });
-    });
 
-
-    // ----------------------------------------------------------------------- //
-    // story card accordions
-    // ----------------------------------------------------------------------- //
-    
-    const accordions = document.querySelectorAll('.accordion-button')
-
-    accordions.forEach(a => {
-        a.addEventListener('click', async () => {
-            if (a.classList.contains("collapsed")) {
-                await updateMapStateForStory(a.id);
-            } else {
-                await resetMapState();
-            }
-        });
     });
 
 
@@ -1849,22 +1921,18 @@ function addListeners() {
 
     //  NEED A WAY TO CREATE THE POPUP THAT IS AWARE OF ALL LAYERS, WITHOUT FIRING AN EVENT ON LITERALLY EVERY MOUSEMOVE
     
-    // map.addEventListener('mousemove', (event) => {
+    map.addEventListener('mousemove', (event) => {
 
-    //     console.log("mousemove [addListeners]");
+        updatePopup(event.latlng);
 
-    //     updatePopup(event.latlng);
-
-    // });
+    });
 
     
     // ----------------------------------------------------------------------- //
     // when the popup is closed, reset the popup variable
     // ----------------------------------------------------------------------- //
 
-    map.addEventListener('popupclose', (event) => {
-
-        console.log("popupclose [addListeners]");
+    map.addEventListener('popupclose', () => {
 
         popup = null;
 
@@ -1885,8 +1953,10 @@ function addListeners() {
     // ----------------------------------------------------------------------- //
 
     // FIXME this gets called a lot. can we have it called less? or at least do less
+
     map.on('layeradd', createLegend);
     map.on('layerremove', createLegend);
+
 }
 
 
