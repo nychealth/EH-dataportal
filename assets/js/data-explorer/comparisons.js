@@ -59,9 +59,9 @@ const renderComparisonsChart = (
     let compIndicatorLabel  = [... new Set(metadata.array("IndicatorLabel"))];
     let compMeasurementType = [... new Set(metadata.array("MeasurementType"))];
     let compDisplayTypes    = [... new Set(metadata.array("DisplayType"))].filter(dt => dt != "");
-    let compGeoIDs          = metadata.objects()[0].GeoID ? [... new Set(metadata.array("GeoID"))] : null;
+    let compNoCompare       = [... new Set(metadata.array("TrendNoCompare"))].filter(nc => nc != null)
 
-    // console.log(">>>> compGeoIDs", compGeoIDs);
+    console.log(">>>> compNoCompare", compNoCompare);
 
     // console.log(">> compName", compName);
     // console.log(">> compIndicatorLabel", compIndicatorLabel);
@@ -253,6 +253,38 @@ const renderComparisonsChart = (
 
 
     // ----------------------------------------------------------------------- //
+    // create "don't compare" line JSON
+    // ----------------------------------------------------------------------- //
+
+    let noCompare;
+
+    if (compNoCompare[0]) {
+
+        // if a time period exists, return vertical rule JSON
+
+        noCompare = [{
+            "mark": "rule",
+            "encoding": {
+                "x": {
+                    "datum": compNoCompare[0]
+                },
+                "xOffset": {"value": 0.5},
+                "color": {"value": "red"},
+                "size": {"value": 2},
+                "strokeDash": {"value": [2, 2]}
+            }
+        }]
+
+    } else {
+
+        // if no time period, return an empty array
+
+        noCompare = []
+
+    }
+
+
+    // ----------------------------------------------------------------------- //
     // define spec
     // ----------------------------------------------------------------------- //
     
@@ -411,7 +443,8 @@ const renderComparisonsChart = (
                         }
                     }
                 ]
-            }
+            },
+            ...noCompare
         ]
     }
     

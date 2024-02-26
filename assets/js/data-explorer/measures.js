@@ -527,6 +527,9 @@ const updateTrendData = (e) => {
             ComparisonName: aq.escape('Boroughs')
         })
 
+    // console.log(">>> aqSelectedTrendMetadata");
+    // aqSelectedTrendMetadata.print()
+
     // ----- set measure info boxes --------------------------------------------------- //
 
     selectedTrendAbout =
