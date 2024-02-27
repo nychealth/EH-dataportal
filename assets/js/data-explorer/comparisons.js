@@ -269,11 +269,15 @@ const renderComparisonsChart = (
                     "datum": compNoCompare[0]
                 },
                 "xOffset": {"value": 0.5},
-                "color": {"value": "red"},
+                "color": {"value": "gray"},
                 "size": {"value": 2},
                 "strokeDash": {"value": [2, 2]}
             }
         }]
+
+        let noCompareFootnote = `Because of a method change, data before ${compNoCompare[0]} shouldn't be compared to later data.`
+        document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-sm text-muted'>" + noCompareFootnote + "</div>" ;
+
 
     } else {
 
