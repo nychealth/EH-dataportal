@@ -1,5 +1,9 @@
 
-{{ if eq hugo.Environment "production" "Production" "prod" "prod_prod" }}
+{{/*  add GA code for prod data  */}}
+
+{{ if eq hugo.Environment "production" "prod_prod" }}
+
+{{ warnf (print "prod environment: " hugo.Environment) }}
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-64BWDRHRGB"></script>
@@ -14,7 +18,11 @@
 <!-- Google will index this page -->
 <meta name="robots" content="all" />
 
-{{ else if eq hugo.Environment "development" }}
+{{/*  add GA code for dev data  */}}
+
+{{ else }}
+
+{{ warnf (print "dev environment: " hugo.Environment) }}
 
 <!-- Google won't index this page or follow links -->
 <meta name="robots" content="noindex, nofollow">
