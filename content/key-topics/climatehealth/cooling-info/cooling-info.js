@@ -225,15 +225,6 @@ function answer(question, answer, next) {
 // ---------- These functions set variables; they're set in config ---------- //
 // -------------------------------------------------------------------------- //
 
-function overheating(x) {
-  isOverheating = x
-  document.getElementById('isOverheating').innerHTML = isOverheating
-}
-
-function help(x) {
-  needsHelp = x
-  document.getElementById('needsHelp').innerHTML = needsHelp
-}
 
 function sensitive(x) {
   sensitiveGroup = x
@@ -243,19 +234,6 @@ function sensitive(x) {
 function eme(x) {
   usesEME = x
   document.getElementById('usesEME').innerHTML = usesEME
-
-}
-
-function behavior(x) {
-  doesBehavior = x
-  document.getElementById('doesBehavior').innerHTML = doesBehavior
-
-}
-
-function age(x) {
-  isSensitiveAge = x;
-  document.getElementById('isSensitiveAge').innerHTML = isSensitiveAge
-
 }
 
 function animal(x) {
@@ -275,9 +253,17 @@ function limitAC(x) {
 
 }
 
-function acType(x) {
-  typeAC = x;
-  document.getElementById('typeAC').innerHTML = typeAC
+
+
+function behavior(x) {
+  doesBehavior = x
+  document.getElementById('doesBehavior').innerHTML = doesBehavior
+
+}
+
+function age(x) {
+  isSensitiveAge = x;
+  document.getElementById('isSensitiveAge').innerHTML = isSensitiveAge
 
 }
 
@@ -286,11 +272,6 @@ function fan(x) {
   document.getElementById('hasFan').innerHTML = hasFan
 }
 
-function ifWindow(x) {
-  hasWindow = x
-  document.getElementById('hasWindow').innerHTML = hasWindow
-
-}
 
 function runFinal() {
   var msg

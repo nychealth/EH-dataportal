@@ -19,7 +19,8 @@
     </div>
   </div>
 
-  <div class="row">
+
+  <div class="row my-4">
 
     <!--left-hand sticky column-->
     <div class="col-md-4 ml-auto">
@@ -36,6 +37,21 @@
 
         <div class="" id="recsHolder">
           <span class="home-label font-weight-bold">About you:</span>
+          <div class="fs-sm">
+            <p>Over 80F: <span id="over80F"></span></p>
+            <p>AQI: <span id="aqiNum"></span></p>
+            <hr class="my-1">
+            <p>Sensitive group: <span id="sensitiveGroup"></span></p>
+            <hr class="my-1">
+            <p>Uses EME: <span id="usesEME"></span></p>
+            <p>Has animal: <span id="hasAnimal"></span></p>
+            <hr class="my-1">
+            <p>Has AC: <span id="hasAC"></span></p>
+            <p>Limits AC use: <span id="limitsAC"></span></p>
+            <p>Has Fan: <span id="hasFan"></span></p>
+          </div>
+
+
 
           <!-- Recommendations pane -->
           <ul class="list-group fs-sm" id="sidebarRecs">
@@ -50,9 +66,14 @@
 
     <!-- main content column -->
     <div class="col-md-7 overflow-hidden fs-rg mr-auto" id="primary-content">
+
+      <div class="border p-1 mb-4">
+        <strong><i class="fas fa-exclamation-triangle mr-1" aria-hidden="true"></i>Before we get started:</strong> if you are feeling very hot, with nausea or vomiting, fast pulse, weakness or dizziness, you may need medical help. <a href="https://www.cdc.gov/disasters/extremeheat/warning.html">See a full list of symptoms of heat-related illness</a>.
+      </div>
+
       <div id="start">
         <div class="col-md-6 mx-auto">
-          <button class="btn btn btn-block btn-outline-secondary mx-auto" onclick="runQuestions()">Let's get started</button>
+          <button class="btn btn btn-block btn-outline-secondary mx-auto py-2" onclick="runQuestions()"><i class="fas fa-arrow-circle-down mr-1" aria-hidden="true"></i>Let's get started</button>
         </div>
       </div>
 
@@ -62,28 +83,8 @@
 
       <div class="p-2 border mt-4 hide" id="finalInfo">
         <h4>Let's take a look at your situation.</h4>
-        <hr class="my-2">
-        <div class="fs-sm">
-          <span class="home-label">Variables:</span>
-          <p>Over 80F: <span id="over80F"></span></p>
-          <p>AQI: <span id="aqiNum"></span></p>
-          <hr>
-          <p>Is overheating: <span id="isOverheating"></span></p>
-          <p>Needs help now: <span id="needsHelp"></span></p>
-          <p>Sensitive group: <span id="sensitiveGroup"></span></p>
-          <hr>
-          <p>Uses EME: <span id="usesEME"></span></p>
-          <p>Risk behavior: <span id="doesBehavior"></span></p>
-          <p>Old or young: <span id="isSensitiveAge"></span></p>
-          <p>Has animal: <span id="hasAnimal"></span></p>
-          <hr>
-          <p>Has AC: <span id="hasAC"></span></p>
-          <p>Limits AC use: <span id="limitsAC"></span></p>
-          <p>AC Type:: <span id="typeAC"></span></p>
-          <p>Has Fan: <span id="hasFan"></span></p>
-          <p>Has window: <span id="hasWindow"></span></p>
-        </div>
-        <hr class="my-2">
+        <p>Dev note - let's display this, animate elipses, and then print finalMessages on a short delay.</p>
+
         <div id="finalMessages">
 
         </div>

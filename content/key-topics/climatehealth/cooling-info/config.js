@@ -12,21 +12,21 @@ var content = [
     {
         "id": 1,
         "text": "Do any of these describe you?",
-        "prompt": "Certain health conditions and life situations can make you more vulnerable to extreme heat and bad air quality. <ul> Health conditions <li> difficulty breathing <li> heart disease <li> asthma or other breathing condition <li> pregnant <li> diabetic <li> limited mobility <li> immunocompromised <li> mental health, cognitive, or developmental condition </ul> <ul> Life situations <li> work or exercise outside or have limited access to indoor shelter <li> misuse drugs or alcohol <li> take medicine that makes it difficult for your body to stay cool <li> socially isolated (living alone) </ul> <ul> Age <li> Over the age of 60 or under the age of 16 </ul>.",
+        "prompt": "Certain health conditions and life situations can make you more vulnerable to extreme heat and bad air quality. <ul> <li><strong>Health conditions</strong>: difficulty breathing, heart disease, asthma or other breathing condition, pregnant, diabetic, limited mobility, immunocompromised, mental health, cognitive, or developmental condition </li> <li><strong>Life situations</strong>:  work or exercise outside, limited access to indoor shelter, misuse drugs or alcohol, take medicine that makes it difficult for your body to stay cool, living alone </li> <li><strong>Age</strong>: Over 60 or under  16 </li></ul>",
 
         "options": [
             {
                 "optionID": 1,
                 "copy": "Yes",
                 "message": "These health conditions and life situations can make you more vulnerable to extreme heat and bad air quality.",
-                "setVariable": "sensitiveGroup('Yes')",
+                "setVariable": "sensitive('Yes')",
                 "goTo": 2
             },
             {   
                 "optionID": 2,
                 "copy": "No",
-                "message": "",
-                "setVariable": "sensitiveGroup('No')",
+                "message": "Great. Let's move on.",
+                "setVariable": "sensitive('No')",
                 "goTo": 2
             },
         ]
@@ -45,14 +45,14 @@ var content = [
                 "optionID": 1,
                 "copy": "Yes",
                 "message": "Make sure to have an emergency plan back up batteries. You can also register your equipment with your utility provider: <br> CON ED: 1-800-752-6633 <br> PSEG: 1-800-490-0025",
-                "setVariable": "usesEME('Yes')",
+                "setVariable": "eme('Yes')",
                 "goTo": 3
             },
             {   
                 "optionID": 2,
                 "copy": "No",
-                "message": "",
-                "setVariable": "usesEME('No')",
+                "message": "Great. Let's move on.",
+                "setVariable": "eme('No')",
                 "goTo": 3
             }
         
@@ -71,14 +71,14 @@ var content = [
                 "optionID": 1,
                 "copy": "Yes",
                 "message": "We'll make sure these recommendations include the safety of your animal(s).",
-                "setVariable": "hasAnimal('Yes')",
+                "setVariable": "animal('Yes')",
                 "goTo": 4
             },
             {
                 "optionID": 2,
                 "copy": "No",
                 "message": "",
-                "setVariable": "hasAnimal('No')",
+                "setVariable": "animal('No')",
                 "goTo": 4
             }
         ]
@@ -96,14 +96,14 @@ var content = [
                 "optionID": 1,
                 "copy": "Yes",
                 "message": "Great! You have an air conditioner.",
-                "setVariable": "hasAC('Yes')",
+                "setVariable": "ac('Yes')",
                 "goTo": 5
             },
             {   
                 "optionID": 2,
                 "copy": "No",
                 "message": "Different types of air conditioning are able to provide varying levels of cooling and air filtration during hot weather. BTU is a measure of how powerful your air conditioner is. Look for a small label <br> A 5,000 BTU air conditioner can effectively cool a small bedroom or a room that is 100 to 150 square feet. Every additional 100 square feet requires 1,000 more BTUs. <br> If your air conditioner is not powerful enough to cool several rooms, confining the AC to one room can be a way to ensure part of your space stays cool.",
-                "setVariable": "hasAC('No')",
+                "setVariable": "ac('No')",
                 "goTo": 5
             }
         ]
@@ -123,14 +123,14 @@ var content = [
                 "optionID": 1,
                 "copy": "Yes",
                 "message": "There are resources such as HEAP and CON ED's Energy Affordability Program that can help make air conditioning your home more affordable.",
-                "setVariable": "limitsAC('Yes')",
+                "setVariable": "limitAC('Yes')",
                 "goTo": 6
             },
             {   
                 "optionID": 2,
                 "copy": "No",
                 "message": "Great, let's move on to the next question.",
-                "setVariable": "limitsAC('No')",
+                "setVariable": "limitAC('No')",
                 "goTo": 6
             }
         ]
@@ -148,15 +148,15 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "Great, you have a fan. It can help cool you down .",
-                "setVariable": "hasFan('Yes')",
+                "message": "Great, you have a fan. It can help cool you down.",
+                "setVariable": "fan('Yes')",
                 "goTo": 99
             },
             {   
                 "optionID": 2,
                 "copy": "No",
                 "message": "Let's figure out some other ways you can stay cool.",
-                "setVariable": "hasFan('No')",
+                "setVariable": "fan('No')",
                 "goTo": 99
             }
         ]
