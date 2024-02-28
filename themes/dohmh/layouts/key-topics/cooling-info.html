@@ -37,18 +37,18 @@
 
         <div class="" id="recsHolder">
           <span class="home-label font-weight-bold">About you:</span>
-          <div class="fs-sm">
-            <p>Over 80F: <span id="over80F"></span></p>
-            <p>AQI: <span id="aqiNum"></span></p>
+          <div class="fs-md">
+            <p>Over 80F: <span id="over80F" class="float-right"></span></p>
+            <p>AQI: <span id="aqiNum" class="float-right"></span></p>
             <hr class="my-1">
-            <p>Sensitive group: <span id="sensitiveGroup"></span></p>
+            <p>Sensitive group: <span id="sensitiveGroup" class="float-right"></span></p>
             <hr class="my-1">
-            <p>Uses EME: <span id="usesEME"></span></p>
-            <p>Has animal: <span id="hasAnimal"></span></p>
+            <p>Uses EME: <span id="usesEME" class="float-right"></span></p>
+            <p>Has animal: <span id="hasAnimal" class="float-right"></span></p>
             <hr class="my-1">
-            <p>Has AC: <span id="hasAC"></span></p>
-            <p>Limits AC use: <span id="limitsAC"></span></p>
-            <p>Has Fan: <span id="hasFan"></span></p>
+            <p>Has AC: <span id="hasAC" class="float-right"></span></p>
+            <p>Limits AC use: <span id="limitsAC" class="float-right"></span></p>
+            <p>Has Fan: <span id="hasFan" class="float-right"></span></p>
           </div>
 
 
@@ -83,11 +83,30 @@
 
       <div class="p-2 border mt-4 hide" id="finalInfo">
         <h4>Let's take a look at your situation.</h4>
-        <p>Dev note - let's display this, animate elipses, and then print finalMessages on a short delay.</p>
+        <p>Here are some recommendations, tailored just for you, that can help keep you cool and safe in hot weather or bad air quality.</p>
 
         <div id="finalMessages">
-
+          <!-- Final messages get printed here --> 
         </div>
+      </div>
+
+      <div id="testInfo" class="mt-4">
+        <h2>TESTING ZONE</h2>
+        <button onclick="setUpTest()" class="btn btn-primary">Click to set up test</button><br><br>
+
+        <button id='btn-sensitiveGroup' class="btn btn-sm btn-outline-primary testbtn">Sensitive Group?</button><br>
+        <button id='btn-usesEME' class="btn btn-sm btn-outline-primary testbtn">Uses EME?</button><br>
+        <button id='btn-hasAnimal' class="btn btn-sm btn-outline-primary testbtn">Has animal?</button><br>
+        <button id='btn-hasAC' class="btn btn-sm btn-outline-primary testbtn">Has AC?</button><br>
+        <button id='btn-limitsAC' class="btn btn-sm btn-outline-primary testbtn">Limits AC?</button><br>
+        <button id='btn-hasFan' class="btn btn-sm btn-outline-primary testbtn">Has Fan?</button><br>
+        <label for="temp">Current Temp:</label>
+        <input type="number" id="input-currentTemp" name="temp" min="60" max="110" value=""><br>
+
+        <label for="aqinum">AQI:</label>
+        <input type="number" id="input-aqinum" name="aqinum" min="1" max="6" value="">
+
+
       </div>
     </div>
     <!-- .col (main) -->

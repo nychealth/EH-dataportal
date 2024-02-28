@@ -1,23 +1,20 @@
 // set up variables for questions
-var isOverheating;
-var needsHelp;
-var sensitiveGroup;
-var usesEME;
-var doesBehavior;
-var isSensitiveAge;
-var hasAnimal;
-var hasAC;
-var limitsAC
-var typeAC;
-var hasFan;
-var hasWindow;
+
+var sensitiveGroup  = "No"
+var usesEME         = "No"
+var hasAnimal       = "No"
+var hasAC           = "No"
+var limitsAC        = "No"
+var hasFan          = "No"
+var currentTemp     = "No"
+var aqi             = "No"
 
 // other variables
 var over78F;
 var aqiInterpretation;
-var aqi
+
 var warmSeason;
-var currentTemp
+
 
 
 
@@ -253,20 +250,6 @@ function limitAC(x) {
 
 }
 
-
-
-function behavior(x) {
-  doesBehavior = x
-  document.getElementById('doesBehavior').innerHTML = doesBehavior
-
-}
-
-function age(x) {
-  isSensitiveAge = x;
-  document.getElementById('isSensitiveAge').innerHTML = isSensitiveAge
-
-}
-
 function fan(x) {
   hasFan = x
   document.getElementById('hasFan').innerHTML = hasFan
@@ -276,67 +259,111 @@ function fan(x) {
 function runFinal() {
   var msg
   console.log('We are reviewing your data')
+
   document.getElementById('finalInfo').classList.remove('hide')
+  document.getElementById('testInfo').classList.remove('hide')
 
   var finalMessageText = document.getElementById('finalMessages')
+  finalMessageText.innerHTML = ''
 
-  // Message 1
-  if (needsHelp == 'Yes' || 
-    (warmSeason === 'Yes' && (isSensitiveAge ==='Yes' || sensitiveGroup === 'Yes' || doesBehavior === 'Yes'))
-  ) {
-    msg = '<p><strong>You have potentially serious symptoms.</strong> Find medical providers here.</p>'
-    finalMessageText.innerHTML += msg
-  }
-
-  // Message 2
+  // Message 1 - AQI / wear a mask
   if (aqi > 3 || 
     (aqi > 2 && sensitiveGroup === 'Yes')) {
-    msg = '<p><strong>You are more sensitive to air pollution,</strong>, and <strong>the Air Quality Index is elevated</strong> Consider wearing a mask outside. Read more about mask use.</p>'
+    msg = '<p><strong>You are more sensitive to air pollution,</strong> and <strong>the Air Quality Index is elevated</strong>. Consider wearing a mask outside. Read more about when to use a mask.</p>'
     finalMessageText.innerHTML += msg
   }
 
-  // Message 3
-  if (over78F === 'Yes' && hasAC === 'No') {
-    msg = '<p><strong>It’s warm, and you don’t have an AC</strong>. A fan can help cool you down. But it won’t cool the air – if it’s too hot inside, it’s just moving hot air around, and can make you even warmer. </p>'
+  // Message 2 - warm and no AC? Use a fan. 
+  if (hasAC === 'No' && currentTemp > 78 && hasFan === 'Yes') {
+    msg = '<p>It’s warm, and you don’t have an AC. A fan can help cool you down. But it won’t cool the air – if it’s too hot inside, it’s just moving hot air around, and can make you even warmer.</p><p>When the Air Quality Index is elevated, you can also use your fan as a DIY air purifier: Research on DIY Air Cleaners to Reduce Wildfire Smoke Indoors | US EPA</p>.'
     finalMessageText.innerHTML += msg
   }
 
-  // Message 4
-  if (hasAC === 'No' && (over78F === 'Yes' || isOverheating === 'Yes')) {
-    msg = '<p><strong>It’s hot outside and you don’t have an AC</strong>. Open a window to cool down your home. Keep shades drawn during the day to prevent sunlight from heating up your home. </p>'
+  // Message 3 - high AQI and warm
+  if ( 
+    (hasAC === 'Yes' && currentTemp > 70 && aqi > 3) || 
+    (hasAC === 'Yes' && currentTemp > 70 && aqi > 2 && sensitiveGroup === 'Yes')
+    ) {
+      msg = '<p><strong>The Air Quality Index</strong> is elevated. Close your windows to prevent the air pollution from getting in. Closed windows can make your space warmer, so use your AC to stay cool and comfortable if you need to. </p>.'
+      finalMessageText.innerHTML += msg
+    }
+
+  // Message 3b - high AQI and not warm
+  if ( 
+    (currentTemp < 60 && aqi > 3) ||
+    (currentTemp < 60 && aqi > 2 && sensitiveGroup === 'Yes')
+    ) {
+      msg = '<p><strong>The Air Quality Index</strong> is elevated. Close your windows to prevent the air pollution from getting in. </p>.'
+      finalMessageText.innerHTML += msg
+    }
+
+  // Message 4 - warm and no AC
+  if (hasAC === 'No' && currentTemp > 78) {
+    msg = '<p><strong>It’s warm, and you don’t have an AC</strong>. A fan can help cool you down. Fans can help move cooler air from outdoors to indoors, but it won’t cool the air – if it’s too hot inside, it’s just moving hot air around, and can even make you warmer.</p>'
+    finalMessageText.innerHTML += msg
+
+  }
+
+  // Message 5 - hot and AC
+  if ( currentTemp > 85 && hasAC === 'Yes') {
+    msg = '<p>Air conditioning is the best way to stay safe when it’s this hot. Reach out to friends to make sure they have a place to cool off.  <a href="https://ny.curbed.com/maps/nyc-summer-public-spaces-air-conditioning">Get a list of public air-conditioned spaces here</a>.  </p>'
+  finalMessageText.innerHTML += msg
+
+  }
+
+  // Message 6 - hot and no AC
+  if ( currentTemp > 85 && hasAC === 'No') {
+    msg = "<p>Air conditioning is the best way to stay safe when it’s this hot. Since you don't have AC, visit a cool public place, or friend or family member who has AC. When you are at home, continue to be mindful of the heat and make sure to drink enough water.<a href='https://ny.curbed.com/maps/nyc-summer-public-spaces-air-conditioning'>Get a list of public air-conditioned spaces here</a>.  </p>"
     finalMessageText.innerHTML += msg
   }
 
-  // Message 5
-  if (hasAC === 'No' && (currentTemp > 94.9 || (currentTemp > 84.5 && (aqi > 3|| (aqi > 2 && sensitiveGroup === 'Yes'))))) {
-    msg = '<strong>Air conditioning is the best way to stay safe when it is this hot.</strong> Get a list of public air conditioned spaces here.  '
+  // Message 7 - hot or high AQI
+  if (currentTemp > 85 || aqi > 3) {
+    msg = '<p>Activities such as cooking can heat up your home and gas stoves can pollute your indoor air. When it is really hot out or the Air Quality Index is elevated, cooking less with appliances that heat the home can help. Consider cooking with a microwave. </p> <p>Other activities that can worsen indoor air: smoking or vaping tobacco or cannabis products, vacuuming, burning candles or incense, or using a fireplace.</p>'    
     finalMessageText.innerHTML += msg
   }
 
-  // Message 6
-  if (typeAC === 'Window/wall') {}
-  
-  // Message 7
-  if (currentTemp > 85 || sensitiveGroup === 'Yes' || aqi > 2 || isSensitiveAge === 'Yes' ) {}
+  // High AQI
+  if (
+    ( hasAC === 'Yes') &&
+    ((sensitiveGroup === 'Yes' && aqi > 2) || (aqi > 3))
+    ) {
+      msg = '<p>strong>The Air Quality Index</strong> is elevated. Air purifiers can help remove smaller pollution particles from the air. Note that the use of ultraviolet (UV) light in air cleaners does not effectively help to remove smoke from air. </p><p>Some air cleaners release ozone gas, a known lung irritant and asthma trigger. These should not be used under any conditions. Indoor Air Quality - NYC Health.</p> <p>Closing the vent on your AC or setting it re-circulate is a great way to stay cool while preventing your AC unit from blowing polluted air inside note. Remember to change the filter every month during the summer months and after a large AQ event. If you cannot find a way to close the vent or set the AC to re-circulate, you should still use the AC regardless of the AQ outside. Remember that when it’s hot outside, staying cool always takes priority! </p>     '
+      finalMessageText.innerHTML += msg
+    }
 
-  // Message 8
-  if (currentTemp > 80 ) {
-    msg = 'Limit activities that can heat up your home like indoor cooking.'
+  // high AQI
+    if (
+      (sensitiveGroup === 'Yes' && aqi > 2) || 
+      (aqi > 3)
+      ) {
+        msg = '<p>Since the air quality is bad, limit outdoor exposure to pollution and outdoor strenuous activity to lessen the health effects.</p>'
+        finalMessageText.innerHTML += msg
+      }
+
+  // Limits AC and is warm
+  if (limitsAC === 'Yes' && currentTemp > 78) {
+    msg = "<p>You have an AC, but sometimes limit use because of the cost? This is common. Setting your AC to 'low cool' or 78 degrees and using it for even just a few hours a day can help keep a space from getting dangerously warm. There are resources such as HEAP and Con Ed's Energy Affordability Program that can help make air conditioning your home more affordable.</p>."
     finalMessageText.innerHTML += msg
   }
 
-  // Message 9
-
-
-  // Message 10
-  if (currentTemp > 85 || isOverheating === 'Yes') {
-    msg = 'Using AC at home is the best way to stay safe when it is hot outside.  Set your unit to 78 degrees or "low cool" to reduce energy consumption and remain safe from the heat.'
+  // Pets, high temp or high AQI
+  if ( hasAnimal === 'Yes' && 
+      (currentTemp > 80 || aqi > 3)
+  ) {
+    msg = '<p>Animals can’t tell you when they are not feeling well so pay close attention for symptoms of heat exhaustion or the effects of poor air quality to keep them healthy. </p> <p>Generally, if it is more than 80 degrees outside, animals need AC. And if the AQ is unhealthy for the general public, animals may need to spend more time indoors than usual. </p> <p>Who is at risk to extreme heat | HEAT.gov - National Integrated Heat Health Information System </p>'
     finalMessageText.innerHTML += msg
   }
 
-  // 
+  // uses EME
+  if (usesEME === 'Yes') {
+    msg = '<p><strong>You use electric medical equipment</strong>. You can register electronic medical equipment such as wheelchairs, nebulizers, respirators, or dialysis machines with your utility provider in the event of an emergency (such as a power outage during a heatwave!). A medical certificate is required. ConEd customers Call 1-877-582-6633 or use “MyAccount” online. PSEG customers can call Call 1-800-490-0025. </p>'
+    finalMessageText.innerHTML += msg
+  }
 
 }
+
+
 
 
 // -------------------------------------------------------------------------- //
@@ -362,3 +389,128 @@ if (isSummerDate()) {
   console.log('It is not summer.');
   warmSeason = 'No'
 }
+
+
+// -------------------------------------------------------------------------- //
+// ---------- Sets up test buttons ---------------------------- //
+// -------------------------------------------------------------------------- //
+
+function setUpTest() {
+  document.getElementById('input-currentTemp').setAttribute('value',currentTemp);
+  document.getElementById('input-aqinum').setAttribute('value',aqi);
+  if (sensitiveGroup === 'Yes') {
+    document.getElementById('btn-sensitiveGroup').classList.add('active')
+  }
+
+  if (usesEME === 'Yes') {
+    document.getElementById('btn-usesEME').classList.add('active')
+  }
+
+  if (hasAnimal === 'Yes') {
+    document.getElementById('btn-hasAnimal').classList.add('active')
+  }
+
+  if (hasAC === 'Yes') {
+    document.getElementById('btn-hasAC').classList.add('active')
+  }
+
+  if (limitsAC === 'Yes') {
+    document.getElementById('btn-limitsAC').classList.add('active')
+  }
+
+  if (hasFan === 'Yes') {
+    document.getElementById('btn-hasFan').classList.add('active')
+  }
+}
+
+
+
+// put event listeners on each button to toggle state and variable
+var btnSensitiveGroup = document.getElementById('btn-sensitiveGroup');
+btnSensitiveGroup.addEventListener('click', function(event) {
+  btnSensitiveGroup.classList.toggle('active')
+  if (sensitiveGroup === 'Yes') {
+    sensitiveGroup = 'No'
+  } else { sensitiveGroup = 'Yes'}
+  document.getElementById('sensitiveGroup').innerHTML = sensitiveGroup;
+  runFinal()
+});
+
+// put event listeners on each button to toggle state and variable
+var btnusesEME = document.getElementById('btn-usesEME');
+btnusesEME.addEventListener('click', function(event) {
+  btnusesEME.classList.toggle('active')
+  if (usesEME === 'Yes') {
+    usesEME = 'No'
+  } else { usesEME = 'Yes'}
+  document.getElementById('usesEME').innerHTML = usesEME;
+  runFinal()
+});
+
+// put event listeners on each button to toggle state and variable
+var btnhasAnimal = document.getElementById('btn-hasAnimal');
+btnhasAnimal.addEventListener('click', function(event) {
+  btnhasAnimal.classList.toggle('active')
+  if (hasAnimal === 'Yes') {
+    hasAnimal = 'No'
+  } else { hasAnimal = 'Yes'}
+  document.getElementById('hasAnimal').innerHTML = hasAnimal;
+  runFinal()
+});
+
+// put event listeners on each button to toggle state and variable
+var btnhasAC = document.getElementById('btn-hasAC');
+btnhasAC.addEventListener('click', function(event) {
+  btnhasAC.classList.toggle('active')
+  if (hasAC === 'Yes') {
+    hasAC = 'No'
+  } else { hasAC = 'Yes'}
+  document.getElementById('hasAnimal').innerHTML = hasAC;
+  runFinal()
+});
+
+// put event listeners on each button to toggle state and variable
+var btnlimitsAC = document.getElementById('btn-limitsAC');
+btnlimitsAC.addEventListener('click', function(event) {
+  btnlimitsAC.classList.toggle('active')
+  if (limitsAC === 'Yes') {
+    limitsAC = 'No'
+  } else { limitsAC = 'Yes'}
+  document.getElementById('hasAnimal').innerHTML = limitsAC;
+  runFinal()
+});
+
+// put event listeners on each button to toggle state and variable
+var btnhasFan = document.getElementById('btn-hasFan');
+btnhasFan.addEventListener('click', function(event) {
+  btnhasFan.classList.toggle('active')
+  if (hasFan === 'Yes') {
+    hasFan = 'No'
+  } else { hasFan = 'Yes'}
+  document.getElementById('hasAnimal').innerHTML = hasFan;
+  runFinal()
+});
+
+// temp
+var inputCurrentTemp = document.getElementById('input-currentTemp');
+if (inputCurrentTemp) {
+  inputCurrentTemp.addEventListener('input', function(event) {
+      var currentValue = parseFloat(this.value);
+      console.log('Current temperature:', currentValue);
+      currentTemp = currentValue
+      document.getElementById('currentTemp').innerHTML = currentValue
+      runFinal()
+  })
+};
+
+// aqi
+var inputAQI = document.getElementById('input-aqinum');
+if (inputAQI) {
+  inputAQI.addEventListener('input', function(event) {
+      var currentValue = parseFloat(this.value);
+      console.log('Current temperature:', currentValue);
+      aqi = currentValue
+      document.getElementById('aqiNum').innerHTML = currentValue
+      runFinal()
+  })
+};
