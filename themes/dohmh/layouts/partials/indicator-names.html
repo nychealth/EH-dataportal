@@ -20,7 +20,7 @@
     
     {{/*  only process if it's a data explorer page */}}
     
-    {{- if (and (eq .Kind "page") (hasPrefix .RelPermalink "/data-explorer") (ne (path.Base .RelPermalink) "all-data")) -}}
+    {{- if ( and ( eq .Kind "page" ) ( strings.Contains .RelPermalink "/data-explorer" ) ( not ( or ( strings.Contains .RelPermalink "data-index" ) ( strings.Contains .RelPermalink "indicator-catalog" ) ) ) ) -}}
         
         {{/*  turn params into strings  */}}
         
