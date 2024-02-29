@@ -56,7 +56,7 @@ O3: >-
     - Higher levels were consistently
     measured at sites with lower traffic density and lower NO<sub>2</sub>
     concentrations such as areas of outer Queens, Brooklyn, and Staten Island,
-    reflecting less removal of ozone from the atmosphere by fresh combustion NOX
+    reflecting less removal of ozone from the atmosphere by fresh combustion NO<sub>x</sub>
     emissions.
     
     - In summer 2022, seasonal average O<sub>3</sub> varied from 26.2
