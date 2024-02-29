@@ -1,1 +1,18 @@
-{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"name":"Bruckner Boulevard, between Alexander and Willis Avenues"},"geometry":{"type":"Point","coordinates":[-73.92651915550232,40.806460236287634]}}]}
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Bruckner Boulevard, between Alexander and Willis Avenues"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -73.92651915550232,
+                    40.806460236287634
+                ]
+            }
+        }
+    ]
+}

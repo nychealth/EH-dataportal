@@ -212,6 +212,15 @@
 
     <script src="{{ $colorIcon.RelPermalink }}" integrity="{{ $colorIcon.Data.Integrity }}"></script>
 
+    <!-- leaflet marker icons -->
+
+    {{- $leaflet_marker_icon := resources.Get "node_modules/leaflet/dist/images/marker-icon.png" }}
+    {{- $leaflet_marker_shadow := resources.Get "node_modules/leaflet/dist/images/marker-shadow.png" }}
+
+    {{- $leaflet_marker_icon.Publish -}}
+    {{- $leaflet_marker_shadow.Publish -}}
+
+
 {{- end -}}
 
 <!--Other data libraries. To call, have data: true in a page's frontmatter-->
