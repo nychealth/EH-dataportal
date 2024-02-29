@@ -1620,9 +1620,12 @@ function createLegend(layerEvent) {
     // compare to prior event to see if we need to continue making the legend
 
     if (layerEventHash.id == lastLayerEventHash.id && layerEventHash.type == lastLayerEventHash.type) {
+        console.log("* createLegend (return)");
         return;
     }
 
+    console.log("* createLegend (continue)");
+    
     let legendDescriptions = [];
 
     layerGroup.eachLayer(_layer => {
