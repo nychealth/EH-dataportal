@@ -26,7 +26,7 @@ var warmSeason;
 // Sample returns: https://www.weatherapi.com/api-explorer.aspx#forecast
 
 var apiData;
-fetch('http://api.weatherapi.com/v1/forecast.json?key=0d4a042ad8ec468da7b135156231711&q=NYC&days=1&aqi=yes&alerts=no')
+fetch('https://api.weatherapi.com/v1/forecast.json?key=0d4a042ad8ec468da7b135156231711&q=NYC&days=1&aqi=yes&alerts=no')
     .then(response => {return response.json()})
     .then(data => {
     // console.log(data)
