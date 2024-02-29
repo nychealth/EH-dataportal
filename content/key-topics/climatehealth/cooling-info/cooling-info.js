@@ -270,13 +270,13 @@ function runFinal() {
   if (aqi > 3 || 
     (aqi > 2 && sensitiveGroup === 'Yes')) {
     msg = '<p><strong>You are more sensitive to air pollution,</strong> and <strong>the Air Quality Index is elevated</strong>. Consider wearing a mask outside. Read more about when to use a mask.</p>'
-    finalMessageText.innerHTML += msg
+    finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
   // Message 2 - warm and no AC? Use a fan. 
   if (hasAC === 'No' && currentTemp > 78 && hasFan === 'Yes') {
-    msg = '<p>It’s warm, and you don’t have an AC. A fan can help cool you down. But it won’t cool the air – if it’s too hot inside, it’s just moving hot air around, and can make you even warmer.</p><p>When the Air Quality Index is elevated, you can also use your fan as a DIY air purifier: Research on DIY Air Cleaners to Reduce Wildfire Smoke Indoors | US EPA</p>.'
-    finalMessageText.innerHTML += msg
+    msg = '<p><strong>It’s warm, and you don’t have an AC</strong>. Your fan can help cool you down. But it won’t cool the air – if it’s too hot inside, it’s just moving hot air around, and can make you even warmer.</p><p>When the Air Quality Index is elevated, you can also use your fan as a DIY air purifier: Research on DIY Air Cleaners to Reduce Wildfire Smoke Indoors | US EPA</p>'
+    finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
   // Message 3 - high AQI and warm
@@ -284,8 +284,8 @@ function runFinal() {
     (hasAC === 'Yes' && currentTemp > 70 && aqi > 3) || 
     (hasAC === 'Yes' && currentTemp > 70 && aqi > 2 && sensitiveGroup === 'Yes')
     ) {
-      msg = '<p><strong>The Air Quality Index</strong> is elevated. Close your windows to prevent the air pollution from getting in. Closed windows can make your space warmer, so use your AC to stay cool and comfortable if you need to. </p>.'
-      finalMessageText.innerHTML += msg
+      msg = '<p><strong>The Air Quality Index</strong> is elevated. Close your windows to prevent the air pollution from getting in. Closed windows can make your space warmer, so use your AC to stay cool and comfortable if you need to. </p>'
+      finalMessageText.innerHTML += msg + '<hr class="my-2">'
     }
 
   // Message 3b - high AQI and not warm
@@ -293,34 +293,34 @@ function runFinal() {
     (currentTemp < 60 && aqi > 3) ||
     (currentTemp < 60 && aqi > 2 && sensitiveGroup === 'Yes')
     ) {
-      msg = '<p><strong>The Air Quality Index</strong> is elevated. Close your windows to prevent the air pollution from getting in. </p>.'
-      finalMessageText.innerHTML += msg
+      msg = '<p><strong>The Air Quality Index</strong> is elevated. Close your windows to prevent the air pollution from getting in. </p>'
+      finalMessageText.innerHTML += msg + '<hr class="my-2">'
     }
 
   // Message 4 - warm and no AC
   if (hasAC === 'No' && currentTemp > 78) {
     msg = '<p><strong>It’s warm, and you don’t have an AC</strong>. A fan can help cool you down. Fans can help move cooler air from outdoors to indoors, but it won’t cool the air – if it’s too hot inside, it’s just moving hot air around, and can even make you warmer.</p>'
-    finalMessageText.innerHTML += msg
+    finalMessageText.innerHTML += msg + '<hr class="my-2">'
 
   }
 
   // Message 5 - hot and AC
   if ( currentTemp > 85 && hasAC === 'Yes') {
-    msg = '<p>Air conditioning is the best way to stay safe when it’s this hot. Reach out to friends to make sure they have a place to cool off.  <a href="https://ny.curbed.com/maps/nyc-summer-public-spaces-air-conditioning">Get a list of public air-conditioned spaces here</a>.  </p>'
-  finalMessageText.innerHTML += msg
+    msg = '<p><strong>Air conditioning is the best way to stay safe when it’s this hot</strong>. Reach out to friends to make sure they have a place to cool off.  <a href="https://ny.curbed.com/maps/nyc-summer-public-spaces-air-conditioning">Get a list of public air-conditioned spaces here</a>.  </p>'
+  finalMessageText.innerHTML += msg + '<hr class="my-2">'
 
   }
 
   // Message 6 - hot and no AC
   if ( currentTemp > 85 && hasAC === 'No') {
-    msg = "<p>Air conditioning is the best way to stay safe when it’s this hot. Since you don't have AC, visit a cool public place, or friend or family member who has AC. When you are at home, continue to be mindful of the heat and make sure to drink enough water.<a href='https://ny.curbed.com/maps/nyc-summer-public-spaces-air-conditioning'>Get a list of public air-conditioned spaces here</a>.  </p>"
-    finalMessageText.innerHTML += msg
+    msg = "<p><strong>Air conditioning is the best way to stay safe when it’s this hot</strong>. Since you don't have AC, visit a cool public place, or friend or family member who has AC. When you are at home, continue to be mindful of the heat and make sure to drink enough water.<a href='https://ny.curbed.com/maps/nyc-summer-public-spaces-air-conditioning'>Get a list of public air-conditioned spaces here</a>.  </p>"
+    finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
   // Message 7 - hot or high AQI
   if (currentTemp > 85 || aqi > 3) {
     msg = '<p>Activities such as cooking can heat up your home and gas stoves can pollute your indoor air. When it is really hot out or the Air Quality Index is elevated, cooking less with appliances that heat the home can help. Consider cooking with a microwave. </p> <p>Other activities that can worsen indoor air: smoking or vaping tobacco or cannabis products, vacuuming, burning candles or incense, or using a fireplace.</p>'    
-    finalMessageText.innerHTML += msg
+    finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
   // High AQI
@@ -329,7 +329,7 @@ function runFinal() {
     ((sensitiveGroup === 'Yes' && aqi > 2) || (aqi > 3))
     ) {
       msg = '<p><strong>The Air Quality Index</strong> is elevated. Air purifiers can help remove smaller pollution particles from the air. Note that the use of ultraviolet (UV) light in air cleaners does not effectively help to remove smoke from air. </p><p>Some air cleaners release ozone gas, a known lung irritant and asthma trigger. These should not be used under any conditions. Indoor Air Quality - NYC Health.</p> <p>Closing the vent on your AC or setting it re-circulate is a great way to stay cool while preventing your AC unit from blowing polluted air inside note. Remember to change the filter every month during the summer months and after a large AQ event. If you cannot find a way to close the vent or set the AC to re-circulate, you should still use the AC regardless of the AQ outside. Remember that when it’s hot outside, staying cool always takes priority! </p>     '
-      finalMessageText.innerHTML += msg
+      finalMessageText.innerHTML += msg + '<hr class="my-2">'
     }
 
   // high AQI
@@ -337,28 +337,34 @@ function runFinal() {
       (sensitiveGroup === 'Yes' && aqi > 2) || 
       (aqi > 3)
       ) {
-        msg = '<p>Since the air quality is bad, limit outdoor exposure to pollution and outdoor strenuous activity to lessen the health effects.</p>'
-        finalMessageText.innerHTML += msg
+        msg = '<p>Since <strong>the air quality is bad</strong>, limit outdoor exposure to pollution and outdoor strenuous activity to lessen the health effects.</p>'
+        finalMessageText.innerHTML += msg + '<hr class="my-2">'
       }
 
   // Limits AC and is warm
   if (limitsAC === 'Yes' && currentTemp > 78) {
-    msg = "<p>You have an AC, but sometimes limit use because of the cost? This is common. Setting your AC to 'low cool' or 78 degrees and using it for even just a few hours a day can help keep a space from getting dangerously warm. There are resources such as HEAP and Con Ed's Energy Affordability Program that can help make air conditioning your home more affordable.</p>."
-    finalMessageText.innerHTML += msg
+    msg = "<p><strong>You have an AC, but sometimes limit use because of the cost</strong>. This is common. Setting your AC to 'low cool' or 78 degrees and using it for even just a few hours a day can help keep a space from getting dangerously warm. There are resources such as HEAP and Con Ed's Energy Affordability Program that can help make air conditioning your home more affordable.</p>"
+    finalMessageText.innerHTML += msg + '<hr class="my-2">'
+  }
+
+  // no AC
+  if (hasAC === 'No') {
+    msg = `<p><strong>No AC?</strong> About 9% of NYC households don't have an AC - but it's the best way to stay safe during extreme heat. If you can't afford AC, there are resources such as HEAP and Con Ed's Energy Affordability Program that can help make air conditioning your home more affordable.</p>`
+    finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
   // Pets, high temp or high AQI
   if ( hasAnimal === 'Yes' && 
       (currentTemp > 80 || aqi > 3)
   ) {
-    msg = '<p>Animals can’t tell you when they are not feeling well so pay close attention for symptoms of heat exhaustion or the effects of poor air quality to keep them healthy. </p> <p>Generally, if it is more than 80 degrees outside, animals need AC. And if the AQ is unhealthy for the general public, animals may need to spend more time indoors than usual. </p> <p>Who is at risk to extreme heat | HEAT.gov - National Integrated Heat Health Information System </p>'
-    finalMessageText.innerHTML += msg
+    msg = '<p><strong>Your animal</strong> can’t tell you when they are not feeling well so pay close attention for symptoms of heat exhaustion or the effects of poor air quality to keep them healthy. </p> <p>Generally, if it is more than 80 degrees outside, animals need AC. And if the AQ is unhealthy for the general public, animals may need to spend more time indoors than usual. </p> <p>Who is at risk to extreme heat | HEAT.gov - National Integrated Heat Health Information System </p>'
+    finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
   // uses EME
   if (usesEME === 'Yes') {
     msg = '<p><strong>You use electric medical equipment</strong>. You can register electronic medical equipment such as wheelchairs, nebulizers, respirators, or dialysis machines with your utility provider in the event of an emergency (such as a power outage during a heatwave!). A medical certificate is required. ConEd customers Call 1-877-582-6633 or use “MyAccount” online. PSEG customers can call Call 1-800-490-0025. </p>'
-    finalMessageText.innerHTML += msg
+    finalMessageText.innerHTML += msg + '<hr class="my-2">'
   }
 
 }
