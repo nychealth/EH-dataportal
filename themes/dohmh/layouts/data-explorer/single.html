@@ -652,13 +652,16 @@
     {{ range $index, $id := $indicators }}
 
         {{ $indicator := (index $indicator_names (string $id)) }}
+
+        {{- /*  this gets an id because we want sub results with links  */}}
         
         <h1 
             id="IndicatorID-{{ $id }}" 
             class="d-none"> 
             {{ $indicator.name }}
         </h1>
-        <h2>
+        <h2
+            class="d-none"> 
             {{ $indicator.description }}
         </h2>
 
